@@ -17,6 +17,7 @@
 #pragma once
 
 #include <QAbstractListModel>
+#include <QString>
 #include <QVector>
 
 class TorrentTrackerModel : public QAbstractListModel {
@@ -34,7 +35,8 @@ public:
         CountryCodeRole,
         MessageRole,
         SeedersRole,
-        PeersRole
+        PeersRole,
+        NextAnnounceRole
     };
 
     struct Entry {
@@ -50,6 +52,8 @@ public:
         QString message;
         int seeders{0};
         int peers{0};
+        // Seconds until the next scheduled announce; -1 = not applicable / unknown.
+        int nextAnnounceSecs{-1};
     };
 
     explicit TorrentTrackerModel(QObject *parent = nullptr);
@@ -59,7 +63,12 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
     void setEntries(const QVector<Entry> &entries);
+    Q_INVOKABLE void sortBy(const QString &key, bool ascending);
 
 private:
+    void applySortOrder();
+
     QVector<Entry> m_entries;
+    QString m_sortKey;
+    bool    m_sortAscending{true};
 };

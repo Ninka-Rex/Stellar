@@ -16,6 +16,8 @@
 
 #include "TorrentTrackerModel.h"
 
+#include <algorithm>
+
 namespace {
 QString trackerKey(const TorrentTrackerModel::Entry &entry) {
     return QStringLiteral("%1|%2|%3")
@@ -49,6 +51,7 @@ QVariant TorrentTrackerModel::data(const QModelIndex &index, int role) const {
     case MessageRole: return entry.message;
     case SeedersRole: return entry.seeders;
     case PeersRole: return entry.peers;
+    case NextAnnounceRole: return entry.nextAnnounceSecs;
     default: return {};
     }
 }
@@ -66,7 +69,8 @@ QHash<int, QByteArray> TorrentTrackerModel::roleNames() const {
         { CountryCodeRole, "countryCode" },
         { MessageRole, "message" },
         { SeedersRole, "seeders" },
-        { PeersRole, "peers" }
+        { PeersRole, "peers" },
+        { NextAnnounceRole, "nextAnnounceSecs" }
     };
 }
 
@@ -102,6 +106,7 @@ void TorrentTrackerModel::setEntries(const QVector<Entry> &entries) {
             if (a.message != b.message) changed << MessageRole;
             if (a.seeders != b.seeders) changed << SeedersRole;
             if (a.peers != b.peers) changed << PeersRole;
+            if (a.nextAnnounceSecs != b.nextAnnounceSecs) changed << NextAnnounceRole;
             if (!changed.isEmpty())
                 emit dataChanged(index(i, 0), index(i, 0), changed);
         }
@@ -111,5 +116,51 @@ void TorrentTrackerModel::setEntries(const QVector<Entry> &entries) {
 
     emit layoutAboutToBeChanged();
     m_entries = entries;
+    applySortOrder();
     emit layoutChanged();
+}
+
+void TorrentTrackerModel::sortBy(const QString &key, bool ascending) {
+    m_sortKey = key;
+    m_sortAscending = ascending;
+    if (m_entries.isEmpty())
+        return;
+    emit layoutAboutToBeChanged();
+    applySortOrder();
+    emit layoutChanged();
+}
+
+void TorrentTrackerModel::applySortOrder() {
+    if (m_sortKey.isEmpty())
+        return;
+
+    const QString key = m_sortKey;
+    const bool asc = m_sortAscending;
+
+    // System entries (DHT, PeX, LSD) always stay at the top regardless of sort.
+    auto partitionPoint = std::stable_partition(m_entries.begin(), m_entries.end(),
+        [](const Entry &e) { return e.systemEntry; });
+
+    std::stable_sort(partitionPoint, m_entries.end(), [&](const Entry &a, const Entry &b) {
+        auto cmpStr = [&](const QString &x, const QString &y) {
+            return asc ? (x.compare(y, Qt::CaseInsensitive) < 0)
+                       : (x.compare(y, Qt::CaseInsensitive) > 0);
+        };
+        auto cmpInt = [&](int x, int y) {
+            // -1 means unknown — sort unknown values last regardless of direction.
+            if (x < 0 && y < 0) return false;
+            if (x < 0) return false;
+            if (y < 0) return true;
+            return asc ? (x < y) : (x > y);
+        };
+
+        if (key == QLatin1String("tracker"))      return cmpStr(a.url,     b.url);
+        if (key == QLatin1String("status"))       return cmpStr(a.status,  b.status);
+        if (key == QLatin1String("source"))       return cmpStr(a.source,  b.source);
+        if (key == QLatin1String("message"))      return cmpStr(a.message, b.message);
+        if (key == QLatin1String("seeders"))      return cmpInt(a.seeders, b.seeders);
+        if (key == QLatin1String("peers"))        return cmpInt(a.peers,   b.peers);
+        if (key == QLatin1String("nextAnnounce")) return cmpInt(a.nextAnnounceSecs, b.nextAnnounceSecs);
+        return false;
+    });
 }

@@ -101,7 +101,7 @@ Window {
 
     // Column order (persisted as JSON key arrays)
     property string peerColOrderJson: '["country","endpoint","port","client","progress","down","up","downloaded","uploaded","type"]'
-    property string trkColOrderJson:  '["tracker","status","source","seeders","peers","message"]'
+    property string trkColOrderJson:  '["tracker","status","source","seeders","peers","nextAnnounce","message"]'
     property string fileColOrderJson: '["name","progress","size"]'
 
     // Peer column drag-reorder state
@@ -133,12 +133,13 @@ Window {
         { title: qsTr("Flags"),    key: "type",     sortKey: "type" }
     ]
     readonly property var _trkColDefs: [
-        { title: qsTr("Tracker"), key: "tracker" },
-        { title: qsTr("Status"),  key: "status" },
-        { title: qsTr("Source"),  key: "source" },
-        { title: qsTr("Seeders"), key: "seeders" },
-        { title: qsTr("Peers"),   key: "peers" },
-        { title: qsTr("Message"), key: "message" }
+        { title: qsTr("Tracker"),       key: "tracker",       sortKey: "tracker" },
+        { title: qsTr("Status"),        key: "status",        sortKey: "status" },
+        { title: qsTr("Source"),        key: "source",        sortKey: "source" },
+        { title: qsTr("Seeders"),       key: "seeders",       sortKey: "seeders" },
+        { title: qsTr("Peers"),         key: "peers",         sortKey: "peers" },
+        { title: qsTr("Next Announce"), key: "nextAnnounce",  sortKey: "nextAnnounce" },
+        { title: qsTr("Message"),       key: "message",       sortKey: "message" }
     ]
     readonly property var _fileColDefs: [
         { title: qsTr("Name"),     key: "name" },
@@ -186,7 +187,7 @@ Window {
         return map
     }
     property var _trkColXMap: {
-        var _w = trkColTracker + trkColStatus + trkColSource + trkColSeeders + trkColPeers + trkColMessage
+        var _w = trkColTracker + trkColStatus + trkColSource + trkColSeeders + trkColPeers + trkColNextAnnounce + trkColMessage
         var _o = trkColOrderJson
         var map = {}, x = 0
         for (var i = 0; i < _trkColsOrdered.length; i++) {
@@ -214,12 +215,17 @@ Window {
     property real fileColSize:      90
 
     // Tracker list column widths
-    property real trkColTracker: 520
-    property real trkColStatus:  120
-    property real trkColSource:   80
-    property real trkColSeeders:  70
-    property real trkColPeers:    70
-    property real trkColMessage:  260
+    property real trkColTracker:       400
+    property real trkColStatus:        110
+    property real trkColSource:         80
+    property real trkColSeeders:        70
+    property real trkColPeers:          70
+    property real trkColNextAnnounce:  110
+    property real trkColMessage:       260
+
+    // Tracker sort
+    property string trkSortKey: ""
+    property bool   trkSortAscending: true
 
     // Peer sort
     property string peerSortKey: "country"
@@ -342,6 +348,7 @@ Window {
         property alias trkColSource: root.trkColSource
         property alias trkColSeeders: root.trkColSeeders
         property alias trkColPeers: root.trkColPeers
+        property alias trkColNextAnnounce: root.trkColNextAnnounce
         property alias trkColMessage: root.trkColMessage
         property alias peerColOrderJson: root.peerColOrderJson
         property alias trkColOrderJson:  root.trkColOrderJson
@@ -1039,12 +1046,13 @@ Window {
         return 80
     }
     function _trkColW(key) {
-        if (key === "tracker") return trkColTracker
-        if (key === "status")  return trkColStatus
-        if (key === "source")  return trkColSource
-        if (key === "seeders") return trkColSeeders
-        if (key === "peers")   return trkColPeers
-        if (key === "message") return trkColMessage
+        if (key === "tracker")       return trkColTracker
+        if (key === "status")        return trkColStatus
+        if (key === "source")        return trkColSource
+        if (key === "seeders")       return trkColSeeders
+        if (key === "peers")         return trkColPeers
+        if (key === "nextAnnounce")  return trkColNextAnnounce
+        if (key === "message")       return trkColMessage
         return 80
     }
     function _fileColW(key) {
@@ -1103,6 +1111,18 @@ Window {
             peerSortAscending = (key === "country" || key === "endpoint" || key === "client" || key === "type" || key === "region" || key === "city")
         }
         torrentPeerModel.sortBy(peerSortKey, peerSortAscending)
+    }
+
+    function sortTrackers(key) {
+        if (!activeTrackerListModel) return
+        if (trkSortKey === key)
+            trkSortAscending = !trkSortAscending
+        else {
+            trkSortKey = key
+            // Text columns default ascending; numeric/time columns default descending (highest first)
+            trkSortAscending = (key === "tracker" || key === "status" || key === "source" || key === "message")
+        }
+        activeTrackerListModel.sortBy(trkSortKey, trkSortAscending)
     }
 
     function savePeerListViewport() {
@@ -4824,7 +4844,7 @@ Window {
                             Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
                             Item {
                                 x: -trackerList.contentX
-                                width: root.trkColTracker + root.trkColStatus + root.trkColSource + root.trkColSeeders + root.trkColPeers + root.trkColMessage
+                                width: root.trkColTracker + root.trkColStatus + root.trkColSource + root.trkColSeeders + root.trkColPeers + root.trkColNextAnnounce + root.trkColMessage
                                 height: parent.height
 
                                 Repeater {
@@ -4846,8 +4866,17 @@ Window {
                                         }
 
                                         Text {
-                                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: trkRh.left; rightMargin: 2 }
-                                            text: modelData.title; color: "#b0b0b0"; font.pixelSize: 12; font.bold: true; elide: Text.ElideRight
+                                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: trkSortArrow.left; rightMargin: 2 }
+                                            text: modelData.title
+                                            color: root.trkSortKey === modelData.sortKey ? "#88bbff" : "#b0b0b0"
+                                            font.pixelSize: 12; font.bold: true; elide: Text.ElideRight
+                                        }
+                                        Text {
+                                            id: trkSortArrow
+                                            anchors { verticalCenter: parent.verticalCenter; right: trkRh.left; rightMargin: 4 }
+                                            text: root.trkSortAscending ? "▲" : "▼"
+                                            color: "#88bbff"; font.pixelSize: 9
+                                            visible: root.trkSortKey === modelData.sortKey
                                         }
                                         Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: "#3a3a3a" }
 
@@ -4877,6 +4906,9 @@ Window {
                                                 root._trkColDragInsertBeforeKey = ""
                                                 root._trkColDragging = false
                                             }
+                                            onClicked: {
+                                                if (root._trkColDragInsertBeforeKey === "") root.sortTrackers(modelData.sortKey)
+                                            }
                                         }
 
                                         // Resize handle
@@ -4894,12 +4926,13 @@ Window {
                                                     var k = modelData.key
                                                     var minW = (k === "tracker") ? 220 : (k === "message") ? 120 : 55
                                                     var newW = Math.max(minW, Math.round(trkRh._startW + translation.x))
-                                                    if      (k === "tracker") root.trkColTracker = newW
-                                                    else if (k === "status")  root.trkColStatus  = newW
-                                                    else if (k === "source")  root.trkColSource  = newW
-                                                    else if (k === "seeders") root.trkColSeeders = newW
-                                                    else if (k === "peers")   root.trkColPeers   = newW
-                                                    else if (k === "message") root.trkColMessage = newW
+                                                    if      (k === "tracker")      root.trkColTracker      = newW
+                                                    else if (k === "status")       root.trkColStatus       = newW
+                                                    else if (k === "source")       root.trkColSource       = newW
+                                                    else if (k === "seeders")      root.trkColSeeders      = newW
+                                                    else if (k === "peers")        root.trkColPeers        = newW
+                                                    else if (k === "nextAnnounce") root.trkColNextAnnounce = newW
+                                                    else if (k === "message")      root.trkColMessage      = newW
                                                 }
                                             }
                                         }
@@ -4926,7 +4959,7 @@ Window {
                             flickableDirection: Flickable.HorizontalAndVerticalFlick
                             ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
                             ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AlwaysOn }
-                            contentWidth: root.trkColTracker + root.trkColStatus + root.trkColSource + root.trkColSeeders + root.trkColPeers + root.trkColMessage
+                            contentWidth: root.trkColTracker + root.trkColStatus + root.trkColSource + root.trkColSeeders + root.trkColPeers + root.trkColNextAnnounce + root.trkColMessage
 
                             Text {
                                 anchors.centerIn: parent
@@ -4944,6 +4977,7 @@ Window {
                                 required property string source
                                 required property int    seeders
                                 required property int    peers
+                                required property int    nextAnnounceSecs
                                 required property string message
                                 required property bool   isSystemEntry
 
@@ -4984,8 +5018,10 @@ Window {
                                             text: safeStr(trd.status)
                                             color: {
                                                 var s = safeStr(trd.status).toLowerCase()
+                                                if (s === "not working") return "#cc6060"
                                                 if (s.indexOf("error") >= 0 || s.indexOf("fail") >= 0) return "#cc6060"
-                                                if (s.indexOf("working") >= 0 || s.indexOf("ok") >= 0) return "#55cc66"
+                                                if (s === "working") return "#55cc66"
+                                                if (s.indexOf("announcing") >= 0 || s.indexOf("reannouncing") >= 0) return "#c0a54a"
                                                 return "#b0b0b0"
                                             }
                                             font.pixelSize: 12; elide: Text.ElideRight
@@ -5019,6 +5055,27 @@ Window {
                                         }
                                     }
                                     Item {
+                                        x: root._trkColXMap["nextAnnounce"] || 0
+                                        width: root.trkColNextAnnounce; height: parent.height; clip: true
+                                        Text {
+                                            anchors { fill: parent; leftMargin: 6 }
+                                            verticalAlignment: Text.AlignVCenter
+                                            color: "#b0b0b0"; font.pixelSize: 12
+                                            text: {
+                                                if (trd.isSystemEntry) return ""
+                                                var s = trd.nextAnnounceSecs | 0
+                                                if (s < 0) return qsTr("—")
+                                                if (s === 0) return qsTr("Now")
+                                                var h = Math.floor(s / 3600)
+                                                var m = Math.floor((s % 3600) / 60)
+                                                var sec = s % 60
+                                                if (h > 0) return qsTr("%1h %2m").arg(h).arg(m)
+                                                if (m > 0) return qsTr("%1m %2s").arg(m).arg(sec)
+                                                return qsTr("%1s").arg(sec)
+                                            }
+                                        }
+                                    }
+                                    Item {
                                         x: root._trkColXMap["message"] || 0
                                         width: root.trkColMessage; height: parent.height; clip: true
                                         Text {
@@ -5027,11 +5084,9 @@ Window {
                                             text: {
                                                 var msg = safeStr(trd.message)
                                                 if (msg.length > 0) return msg
-                                                // No message from tracker yet — show status as a hint
-                                                // so the column isn't completely empty
                                                 if (trd.isSystemEntry) return ""
                                                 var s = safeStr(trd.status)
-                                                return s === "Idle" ? "Waiting to announce" : ""
+                                                return s === "Idle" ? qsTr("Waiting to announce") : ""
                                             }
                                             color: safeStr(trd.message).length > 0 ? "#8ea1b5" : "#4a5a6a"
                                             font.pixelSize: 12; elide: Text.ElideRight

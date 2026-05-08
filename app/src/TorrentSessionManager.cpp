@@ -64,6 +64,7 @@
 #include <libtorrent/settings_pack.hpp>
 #include <libtorrent/hex.hpp>
 #include <libtorrent/announce_entry.hpp>
+#include <libtorrent/time.hpp>
 #include <libtorrent/address.hpp>
 #include <libtorrent/ip_filter.hpp>
 #include <libtorrent/string_view.hpp>
@@ -147,6 +148,12 @@ QString trackerStatusKey(const QString &urlText) {
 libtorrent::span<char const> asSpan(const QByteArray &data) {
     return libtorrent::span<char const>(data.constData(), data.size());
 }
+
+// Working snapshots persist indefinitely so trackers don't revert to Idle between announces
+// (typical announce interval is 30 min). Non-working snapshots expire after two full announce
+// cycles so stale errors/warnings eventually clear themselves.
+constexpr qint64 kTrackerSnapshotWorkingExpiryNever = std::numeric_limits<qint64>::max();
+constexpr qint64 kTrackerSnapshotErrorExpirySecs = 7200; // two announce cycles
 
 const libtorrent::announce_infohash *firstTrackerInfohash(const libtorrent::announce_entry &tracker) {
     for (const auto &endpoint : tracker.endpoints) {
@@ -3143,12 +3150,16 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
             bool anyStarted = false;
             bool anyCompleted = false;
             bool anyFailures = false;
+            libtorrent::time_point32 earliestNextAnnounce = (libtorrent::time_point32::max)();
             for (const auto &endpoint : tracker.endpoints) {
                 for (const auto &infohash : endpoint.info_hashes) {
                     anyUpdating = anyUpdating || infohash.updating;
                     anyStarted = anyStarted || infohash.start_sent;
                     anyCompleted = anyCompleted || infohash.complete_sent;
                     anyFailures = anyFailures || (infohash.fails > 0);
+                    if (infohash.next_announce != (libtorrent::time_point32::min)()
+                            && infohash.next_announce < earliestNextAnnounce)
+                        earliestNextAnnounce = infohash.next_announce;
                     if (endpointMessage.isEmpty() && !infohash.message.empty())
                         endpointMessage = QString::fromStdString(infohash.message);
                     if (endpointError.isEmpty() && infohash.last_error)
@@ -3159,9 +3170,22 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
                 if (!endpointMessage.isEmpty() && !endpointError.isEmpty())
                     break;
             }
+
+            // Compute seconds until next announce (-1 = unknown/not applicable).
+            if (earliestNextAnnounce != (libtorrent::time_point32::max)()) {
+                const auto nowLt = libtorrent::time_point_cast<libtorrent::seconds32>(
+                    libtorrent::clock_type::now());
+                const auto deltaSecs = libtorrent::total_seconds(earliestNextAnnounce - nowLt);
+                entry.nextAnnounceSecs = deltaSecs > 0 ? static_cast<int>(deltaSecs) : 0;
+            }
+
             if (!endpointError.isEmpty()) {
-                entry.status = QStringLiteral("Error");
-                entry.message = endpointError;
+                // Map timeout errors to the dedicated "Not working / Timed out" state so
+                // the user sees a distinct, human-readable status instead of a raw OS error.
+                const bool isTimeout = endpointError.contains(QLatin1String("timed out"),
+                                                               Qt::CaseInsensitive);
+                entry.status = isTimeout ? QStringLiteral("Not working") : QStringLiteral("Error");
+                entry.message = isTimeout ? QStringLiteral("Timed out") : endpointError;
             } else if (anyUpdating) {
                 entry.status = QStringLiteral("Announcing");
                 entry.message = endpointMessage;
@@ -3172,7 +3196,7 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
                 entry.status = QStringLiteral("Working");
                 entry.message = endpointMessage;
             } else if (anyFailures) {
-                entry.status = QStringLiteral("Error");
+                entry.status = QStringLiteral("Not working");
                 entry.message = endpointMessage;
             } else if (!endpointMessage.isEmpty()) {
                 entry.status = QStringLiteral("Announcing");
@@ -3193,16 +3217,29 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
 
             const TrackerAlertSnapshot snapshot =
                 m_trackerAlertSnapshots.value(downloadId).value(trackerKey);
-            if (snapshot.updatedAt.isValid()
-                && snapshot.updatedAt.secsTo(QDateTime::currentDateTimeUtc()) <= 120) {
-                if (!snapshot.status.isEmpty())
-                    entry.status = snapshot.status;
-                if (!snapshot.message.isEmpty())
-                    entry.message = snapshot.message;
-                if (snapshot.seeders >= 0)
-                    entry.seeders = snapshot.seeders;
-                if (snapshot.peers >= 0)
-                    entry.peers = snapshot.peers;
+            // Live transient states derived directly from libtorrent must never be
+            // overridden by a cached snapshot — the snapshot only fills in the gap
+            // when the tracker is Idle between announces.
+            const bool entryIsTransient = entry.status == QLatin1String("Announcing")
+                                       || entry.status == QLatin1String("Reannouncing")
+                                       || ((entry.status == QLatin1String("Error")
+                                            || entry.status == QLatin1String("Not working"))
+                                           && anyFailures);
+            if (snapshot.updatedAt.isValid() && !entryIsTransient) {
+                const bool isWorking = snapshot.status == QLatin1String("Working");
+                const qint64 expirySecs = isWorking ? kTrackerSnapshotWorkingExpiryNever
+                                                    : kTrackerSnapshotErrorExpirySecs;
+                const qint64 ageSecs = snapshot.updatedAt.secsTo(QDateTime::currentDateTimeUtc());
+                if (ageSecs <= expirySecs) {
+                    if (!snapshot.status.isEmpty())
+                        entry.status = snapshot.status;
+                    if (!snapshot.message.isEmpty())
+                        entry.message = snapshot.message;
+                    if (snapshot.seeders >= 0)
+                        entry.seeders = snapshot.seeders;
+                    if (snapshot.peers >= 0)
+                        entry.peers = snapshot.peers;
+                }
             }
 
             // Geo-locate tracker hostname

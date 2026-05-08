@@ -5879,13 +5879,62 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             
         
             <source>File Properties</source>
-            
-        
+
+
             <translation></translation>
-            
-    
+
+
         </message>
-        
+
+
+        <message>
+            <location filename="../app/qml/FilePropertiesDialog.qml" line="140"/>
+            <source>Next Announce</source>
+            <translation>Next Announce</translation>
+        </message>
+
+
+        <message>
+            <location filename="../app/qml/FilePropertiesDialog.qml" line="5086"/>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+
+
+        <message>
+            <location filename="../app/qml/FilePropertiesDialog.qml" line="5087"/>
+            <source>Now</source>
+            <translation>Now</translation>
+        </message>
+
+
+        <message>
+            <location filename="../app/qml/FilePropertiesDialog.qml" line="5090"/>
+            <source>%1h %2m</source>
+            <translation>%1h %2m</translation>
+        </message>
+
+
+        <message>
+            <location filename="../app/qml/FilePropertiesDialog.qml" line="5091"/>
+            <source>%1m %2s</source>
+            <translation>%1m %2s</translation>
+        </message>
+
+
+        <message>
+            <location filename="../app/qml/FilePropertiesDialog.qml" line="5092"/>
+            <source>%1s</source>
+            <translation>%1s</translation>
+        </message>
+
+
+        <message>
+            <location filename="../app/qml/FilePropertiesDialog.qml" line="5102"/>
+            <source>Waiting to announce</source>
+            <translation>Waiting to announce</translation>
+        </message>
+
 
     </context>
     
