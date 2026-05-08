@@ -591,9 +591,7 @@ private:
     QMap<QString, QDateTime> m_lastQueueRun;
     mutable QMap<QString, QList<QPair<QDateTime, qint64>>> m_queueTransferHistory;
     QSet<QString>           m_queueLimitNotifications;
-    // CLI /h and /q tracking: URLs that should hang-up or quit the app when
-    // their download completes (set by the cliDownload IPC handler).
-    QSet<QString>           m_cliHangUpUrls;
+    // CLI /q tracking: URLs that should quit the app when their download completes.
     QSet<QString>           m_cliQuitAfterUrls;
     QMap<QString, int>      m_queueRetryCounts;
     int                     m_completedCount{0};

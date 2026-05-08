@@ -831,7 +831,6 @@ void AppController::handleIpcPayload(const QByteArray &json) {
         const QString filename = obj.value(QStringLiteral("filename")).toString().trimmed();
         const bool    silent   = obj.value(QStringLiteral("silent")).toBool();
         const bool    addOnly  = obj.value(QStringLiteral("addOnly")).toBool();
-        const bool    hangUp   = obj.value(QStringLiteral("hangUp")).toBool();
         const bool    quitAfter= obj.value(QStringLiteral("quitAfter")).toBool();
 
         if (url.isEmpty()) return;
@@ -866,13 +865,8 @@ void AppController::handleIpcPayload(const QByteArray &json) {
             addUrl(url, effectiveSave, {}, {}, startNow, {}, {}, {}, {}, {}, effectiveName);
         }
 
-        // /h and /q are acted on when the download completes.  Wire a one-shot
-        // connection on downloadCompleted so we don't affect other downloads.
-        if (hangUp || quitAfter) {
-            // We track these flags per-URL in maps so the lambda can be stateless.
-            if (hangUp)    m_cliHangUpUrls.insert(url);
-            if (quitAfter) m_cliQuitAfterUrls.insert(url);
-        }
+        if (quitAfter)
+            m_cliQuitAfterUrls.insert(url);
 
         // Non-silent mode: bring the window to the foreground so the user can see
         // the new download (mirrors IDM behaviour when /n is not passed).
@@ -1429,22 +1423,11 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         });
     });
 
-    // CLI /q and /h: when a download that was added via CLI completes, either
-    // hang up the network connection or quit the app as requested.
+    // CLI /q: quit the app when a tracked download completes.
     connect(this, &AppController::downloadCompleted, this, [this](QObject *obj) {
         DownloadItem *item = qobject_cast<DownloadItem *>(obj);
         if (!item) return;
-        const QString url = item->url().toString();
-        const bool doHangUp  = m_cliHangUpUrls.remove(url);
-        const bool doQuit    = m_cliQuitAfterUrls.remove(url);
-        if (doHangUp) {
-            // Disconnect the application-level network proxy to simulate a hang-up.
-            // On most platforms the simplest equivalent is to take the proxy offline;
-            // we emit a signal that QML can use to trigger a true disconnect if desired.
-            QNetworkProxy noProxy(QNetworkProxy::NoProxy);
-            QNetworkProxy::setApplicationProxy(noProxy);
-        }
-        if (doQuit) {
+        if (m_cliQuitAfterUrls.remove(item->url().toString())) {
             // Delay slightly so any in-flight DB writes can flush.
             QTimer::singleShot(500, qApp, []() { QCoreApplication::quit(); });
         }

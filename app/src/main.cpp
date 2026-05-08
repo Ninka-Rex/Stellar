@@ -383,7 +383,6 @@ static int runNativeMessagingHost(int argc, char *argv[])
 // /p path - local directory to save the file
 // /f name - local filename to save the file
 // /q      - quit Stellar after successful download (first copy only)
-// /h      - hang up connection after successful download
 // /n      - silent mode (no UI prompts)
 // /a      - add to queue but do not start downloading
 
@@ -394,7 +393,6 @@ struct CliArgs {
     QString     savePath;             // /p path
     QString     saveFilename;         // /f filename
     bool        quitAfter   = false;  // /q
-    bool        hangUp      = false;  // /h
     bool        silent      = false;  // /n
     bool        addOnly     = false;  // /a (add to queue, don't start)
 };
@@ -425,8 +423,6 @@ static CliArgs parseCliArgs(int argc, char *argv[])
                 ca.saveFilename = QString::fromLocal8Bit(argv[++i]);
         } else if (isSwitch("/q")) {
             ca.quitAfter = true;
-        } else if (isSwitch("/h")) {
-            ca.hangUp = true;
         } else if (isSwitch("/n")) {
             ca.silent = true;
         } else if (isSwitch("/a")) {
@@ -446,7 +442,6 @@ static QByteArray makeCliDownloadPayload(const CliArgs &ca)
     obj[QStringLiteral("filename")] = ca.saveFilename;
     obj[QStringLiteral("silent")]   = ca.silent;
     obj[QStringLiteral("addOnly")]  = ca.addOnly;
-    obj[QStringLiteral("hangUp")]   = ca.hangUp;
     obj[QStringLiteral("quitAfter")]= ca.quitAfter;
     return QJsonDocument(obj).toJson(QJsonDocument::Compact);
 }
