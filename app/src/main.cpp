@@ -583,7 +583,11 @@ int main(int argc, char *argv[])
     app.setApplicationName(QStringLiteral("Stellar"));
     app.setApplicationVersion(QStringLiteral("0.1.0"));
     app.setOrganizationName(QStringLiteral("Stellar"));
-    app.setWindowIcon(QIcon(QStringLiteral("qrc:/qt/qml/com/stellar/app/app/qml/icons/milky-way.png")));
+    // desktopFileName lets KDE/Wayland compositors resolve the window icon from
+    // the installed .desktop file instead of relying on the in-process icon.
+    app.setDesktopFileName(QStringLiteral("io.github.stellar.Stellar"));
+    const QIcon appIcon(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way.png"));
+    app.setWindowIcon(appIcon);
 
     // Qt writes several caches under QStandardPaths::CacheLocation, which
     // defaults to %LOCALAPPDATA%\<Org>\<App>\cache\.  Redirect both the QML
@@ -708,8 +712,22 @@ int main(int argc, char *argv[])
         if (auto *win = qobject_cast<QQuickWindow *>(engine.rootObjects().constFirst())) {
             win->setPersistentSceneGraph(true);
             win->setPersistentGraphics(true);
+            // On Linux/KDE QQuickWindows don't inherit the application icon —
+            // set it explicitly so every window (main + dialogs) shows the icon.
+            win->setIcon(appIcon);
         }
     }
+
+#if defined(Q_OS_LINUX)
+    // Propagate the app icon to all QQuickWindows created after engine load
+    // (dialogs, property windows, etc.) since QQuickWindow doesn't inherit
+    // QGuiApplication::windowIcon automatically on Wayland/KDE.
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &engine,
+        [&appIcon](QObject *obj, const QUrl &) {
+            if (auto *win = qobject_cast<QQuickWindow *>(obj))
+                win->setIcon(appIcon);
+        });
+#endif
 
     // Schedule a zero-delay timer to fire on the FIRST event loop iteration after
     // app.exec() starts.  By that time:
