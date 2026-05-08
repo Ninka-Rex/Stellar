@@ -38,38 +38,37 @@ AbstractButton {
         radius: 0
     }
 
-    contentItem: Column {
-        anchors {
-            fill: parent
-            topMargin: 2
-            bottomMargin: 6
-        }
-        spacing: 4
+    contentItem: Item {
+        anchors.fill: parent
 
-        Image {
-            anchors.horizontalCenter: parent.horizontalCenter
-            source: root.iconSrc
-            width: root.iconSize
-            height: root.iconSize
-            sourceSize.width: root.iconSize
-            sourceSize.height: root.iconSize
-            fillMode: Image.PreserveAspectFit
-            smooth: false
-            mipmap: false
-            asynchronous: false
-            cache: true
-        }
+        Column {
+            anchors.centerIn: parent
+            spacing: 4
 
-        Text {
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: root.label
-            color: root.hovered ? "#ffffff" : "#d0d0d0"
-            font.pixelSize: 11
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignTop
-            wrapMode: Text.WordWrap
-            maximumLineCount: 2
-            width: root.width - 4
+            Image {
+                anchors.horizontalCenter: parent.horizontalCenter
+                source: root.iconSrc
+                width: root.iconSize
+                height: root.iconSize
+                sourceSize.width: root.iconSize
+                sourceSize.height: root.iconSize
+                fillMode: Image.PreserveAspectFit
+                smooth: false
+                mipmap: false
+                asynchronous: false
+                cache: true
+            }
+
+            Text {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: root.label
+                color: root.hovered ? "#ffffff" : "#d0d0d0"
+                font.pixelSize: 11
+                horizontalAlignment: Text.AlignHCenter
+                wrapMode: Text.WordWrap
+                maximumLineCount: 2
+                width: root.width - 4
+            }
         }
     }
 

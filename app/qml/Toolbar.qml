@@ -56,7 +56,7 @@ Rectangle {
     }
 
     Row {
-        anchors { fill: parent; topMargin: 4; bottomMargin: 4; leftMargin: 2 }
+        anchors { fill: parent; leftMargin: 2 }
         spacing: 0
 
         ToolbarBtn { label: qsTr("Add URL");        iconSrc: "icons/link.png";        onClicked: root.addClicked() }

@@ -44,7 +44,7 @@ AbstractButton {
     }
 
     width: 76
-    height: 62
+    height: 72
 
     background: Rectangle {
         color: root.pressed ? "#3a3a4a"
@@ -53,28 +53,32 @@ AbstractButton {
         radius: 0
     }
 
-    contentItem: Column {
-        anchors.centerIn: parent
-        spacing: 4
+    contentItem: Item {
+        anchors.fill: parent
 
-        Image {
-            anchors.horizontalCenter: parent.horizontalCenter
-            source: root.iconSrc
-            width: 32
-            height: 32
-            fillMode: Image.PreserveAspectFit
-            smooth: true
-        }
+        Column {
+            anchors.centerIn: parent
+            spacing: 4
 
-        Text {
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: root.label
-            color: root.hovered ? "#ffffff" : "#d0d0d0"
-            font.pixelSize: 11
-            horizontalAlignment: Text.AlignHCenter
-            wrapMode: Text.WordWrap
-            width: root.width - 4
-            maximumLineCount: 2
+            Image {
+                anchors.horizontalCenter: parent.horizontalCenter
+                source: root.iconSrc
+                width: 32
+                height: 32
+                fillMode: Image.PreserveAspectFit
+                smooth: true
+            }
+
+            Text {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: root.label
+                color: root.hovered ? "#ffffff" : "#d0d0d0"
+                font.pixelSize: 11
+                horizontalAlignment: Text.AlignHCenter
+                wrapMode: Text.WordWrap
+                width: root.width - 4
+                maximumLineCount: 2
+            }
         }
     }
 
