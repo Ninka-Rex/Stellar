@@ -164,6 +164,7 @@ collect_binary_dependencies_recursive() {
 }
 
 qt_install_prefix() {
+    # Prefer qmake6/qmake queries — they know the real install layout.
     if command -v qmake6 >/dev/null 2>&1; then
         qmake6 -query QT_INSTALL_PREFIX
         return
@@ -182,6 +183,54 @@ qt_install_prefix() {
     exit 1
 }
 
+qt_install_plugins() {
+    # qmake knows the real plugin path (differs from prefix/plugins on Debian/Ubuntu).
+    if command -v qmake6 >/dev/null 2>&1; then
+        qmake6 -query QT_INSTALL_PLUGINS
+        return
+    fi
+    if command -v qmake >/dev/null 2>&1; then
+        qmake -query QT_INSTALL_PLUGINS
+        return
+    fi
+    # Fallback: search common Debian/Ubuntu non-standard paths.
+    for d in \
+        /usr/lib/x86_64-linux-gnu/qt6/plugins \
+        /usr/lib/qt6/plugins \
+        /usr/lib64/qt6/plugins \
+        "$(qt_install_prefix)/plugins"; do
+        if [[ -d "$d/platforms" ]]; then
+            printf '%s\n' "$d"
+            return
+        fi
+    done
+    echo "ERROR: Could not determine Qt plugin directory." >&2
+    exit 1
+}
+
+qt_install_qml() {
+    if command -v qmake6 >/dev/null 2>&1; then
+        qmake6 -query QT_INSTALL_QML
+        return
+    fi
+    if command -v qmake >/dev/null 2>&1; then
+        qmake -query QT_INSTALL_QML
+        return
+    fi
+    for d in \
+        /usr/lib/x86_64-linux-gnu/qt6/qml \
+        /usr/lib/qt6/qml \
+        /usr/lib64/qt6/qml \
+        "$(qt_install_prefix)/qml"; do
+        if [[ -d "$d" ]]; then
+            printf '%s\n' "$d"
+            return
+        fi
+    done
+    echo "ERROR: Could not determine Qt QML directory." >&2
+    exit 1
+}
+
 bundle_qt_runtime() {
     local app_dir="$DEB_ROOT/opt/stellar"
     local lib_dir="$app_dir/lib"
@@ -190,9 +239,11 @@ bundle_qt_runtime() {
     local qt_prefix qt_plugins qt_qml qt_lib
 
     qt_prefix="$(qt_install_prefix)"
-    qt_lib="$qt_prefix/lib"
-    qt_plugins="$qt_prefix/plugins"
-    qt_qml="$qt_prefix/qml"
+    qt_plugins="$(qt_install_plugins)"
+    qt_qml="$(qt_install_qml)"
+    # On Debian/Ubuntu the Qt libs live in the multiarch lib dir, not $prefix/lib.
+    qt_lib="$(dirname "$qt_plugins")/../../lib/x86_64-linux-gnu"
+    [[ -d "$qt_lib" ]] || qt_lib="$qt_prefix/lib"
 
     mkdir -p "$lib_dir" "$plugin_dir" "$qml_dir"
     log "Bundling Qt runtime from: $qt_prefix"
