@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-#include <QGuiApplication>
+#include <QApplication>
 #include <QTimer>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -577,7 +577,7 @@ int main(int argc, char *argv[])
     }
 
     nmLog(QStringLiteral("Constructing QGuiApplication..."));
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
     nmLog(QStringLiteral("QGuiApplication constructed."));
     
     app.setApplicationName(QStringLiteral("Stellar"));
