@@ -23,6 +23,7 @@
 #include <QCoreApplication>
 #include <QProcess>
 #include <QStandardPaths>
+#include <QGuiApplication>
 
 static QIcon createDefaultIcon() {
     QPixmap pm(16, 16);
@@ -102,6 +103,51 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
     m_downloadsTray->setIcon(createDownloadsTrayIcon());
     m_downloadsTray->setToolTip(tr("SDM downloads"));
 
+#if defined(Q_OS_LINUX)
+    // On KDE/Wayland the Context activation signal never fires — KDE intercepts
+    // right-click and shows the native QMenu directly. Set one up so it works.
+    m_menu = new QMenu();
+    m_menu->setStyleSheet(
+        "QMenu { background:#2b2b2b; border:1px solid #555; color:#e0e0e0; }"
+        "QMenu::item { padding:4px 20px; }"
+        "QMenu::item:selected { background:#3a3a5a; }"
+        "QMenu::separator { height:1px; background:#444; margin:2px 0; }"
+    );
+
+    auto *openAction = m_menu->addAction(tr("Open Stellar"));
+    openAction->setFont([&]{ QFont f; f.setBold(true); return f; }());
+    connect(openAction, &QAction::triggered, this, &SystemTrayIcon::showRequested);
+
+    m_menu->addAction(tr("Add URL…"), this, &SystemTrayIcon::addUrlRequested);
+    m_menu->addSeparator();
+    m_menu->addAction(tr("GitHub"), this, &SystemTrayIcon::githubRequested);
+    m_menu->addAction(tr("About Stellar"), this, &SystemTrayIcon::aboutRequested);
+    m_menu->addSeparator();
+
+    m_speedLimiterAction = m_menu->addAction(tr("Speed Limiter"), this, [this] {
+        // Toggle: if checked currently active, disable; else enable.
+        if (m_speedLimiterAction->isChecked())
+            emit disableSpeedLimiterRequested();
+        else
+            emit enableSpeedLimiterRequested();
+    });
+    m_speedLimiterAction->setCheckable(true);
+    m_menu->addAction(tr("Speed Limiter Settings…"), this, &SystemTrayIcon::speedLimiterSettingsRequested);
+    m_menu->addSeparator();
+
+    m_pauseSessionAction = m_menu->addAction(tr("Pause Session"), this, [this] {
+        if (m_pauseSessionAction->text() == tr("Pause Session"))
+            emit pauseSessionRequested();
+        else
+            emit resumeSessionRequested();
+    });
+
+    m_menu->addSeparator();
+    m_menu->addAction(tr("Exit Stellar"), this, &SystemTrayIcon::quitRequested);
+
+    m_tray->setContextMenu(m_menu);
+#endif
+
     connect(m_downloadsTray, &QSystemTrayIcon::activated, this,
             [this](QSystemTrayIcon::ActivationReason reason) {
         switch (reason) {
@@ -133,6 +179,24 @@ void SystemTrayIcon::setDownloadsTrayToolTip(const QString &tip) { m_downloadsTr
 
 void SystemTrayIcon::setToolTip(const QString &tip) {
     m_tray->setToolTip(tip);
+}
+
+void SystemTrayIcon::setSpeedLimiterActive(bool active) {
+#if defined(Q_OS_LINUX)
+    if (m_speedLimiterAction)
+        m_speedLimiterAction->setChecked(active);
+#else
+    Q_UNUSED(active)
+#endif
+}
+
+void SystemTrayIcon::setSessionPaused(bool paused) {
+#if defined(Q_OS_LINUX)
+    if (m_pauseSessionAction)
+        m_pauseSessionAction->setText(paused ? tr("Resume Session") : tr("Pause Session"));
+#else
+    Q_UNUSED(paused)
+#endif
 }
 
 void SystemTrayIcon::showNotification(const QString &title, const QString &msg) {

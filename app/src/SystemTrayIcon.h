@@ -18,10 +18,9 @@
 #include <QObject>
 #include <QPoint>
 #include <QSystemTrayIcon>
+#include <QMenu>
+#include <QAction>
 
-// SystemTrayIcon wraps QSystemTrayIcon.
-// No QMenu/QAction used — those require QApplication (we use QGuiApplication).
-// Context menu is handled via QML popup triggered by contextMenuRequested().
 class SystemTrayIcon : public QObject {
     Q_OBJECT
 public:
@@ -38,6 +37,10 @@ public:
     void hideDownloadsTray();
     void setDownloadsTrayToolTip(const QString &tip);
 
+    // Called by AppController to keep native menu state in sync.
+    void setSpeedLimiterActive(bool active);
+    void setSessionPaused(bool paused);
+
 signals:
     void showRequested();
     void addUrlRequested();
@@ -46,6 +49,11 @@ signals:
     void githubRequested();
     void aboutRequested();
     void speedLimiterRequested();
+    void enableSpeedLimiterRequested();
+    void disableSpeedLimiterRequested();
+    void speedLimiterSettingsRequested();
+    void pauseSessionRequested();
+    void resumeSessionRequested();
 
     void downloadsContextMenuRequested(int x, int y);
     void downloadsShowAllRequested();
@@ -53,4 +61,10 @@ signals:
 private:
     QSystemTrayIcon *m_tray{nullptr};
     QSystemTrayIcon *m_downloadsTray{nullptr};
+
+#if defined(Q_OS_LINUX)
+    QMenu   *m_menu{nullptr};
+    QAction *m_speedLimiterAction{nullptr};
+    QAction *m_pauseSessionAction{nullptr};
+#endif
 };

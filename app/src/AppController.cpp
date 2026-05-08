@@ -2010,9 +2010,22 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_tray, &SystemTrayIcon::githubRequested,       this, &AppController::trayGithubRequested);
     connect(m_tray, &SystemTrayIcon::aboutRequested,        this, &AppController::trayAboutRequested);
     connect(m_tray, &SystemTrayIcon::speedLimiterRequested, this, &AppController::traySpeedLimiterRequested);
+    connect(m_tray, &SystemTrayIcon::enableSpeedLimiterRequested,  this, &AppController::enableSpeedLimiter);
+    connect(m_tray, &SystemTrayIcon::disableSpeedLimiterRequested, this, &AppController::disableSpeedLimiter);
+    connect(m_tray, &SystemTrayIcon::speedLimiterSettingsRequested, this, &AppController::traySpeedLimiterRequested);
+    connect(m_tray, &SystemTrayIcon::pauseSessionRequested,  this, &AppController::pauseSession);
+    connect(m_tray, &SystemTrayIcon::resumeSessionRequested, this, &AppController::resumeSession);
     connect(m_tray, &SystemTrayIcon::contextMenuRequested,  this, &AppController::contextMenuRequested);
     connect(m_tray, &SystemTrayIcon::downloadsContextMenuRequested, this, &AppController::downloadsContextMenuRequested);
     connect(m_tray, &SystemTrayIcon::downloadsShowAllRequested,     this, &AppController::downloadsShowAllRequested);
+
+    // Keep native Linux tray menu state in sync with settings.
+    connect(m_settings, &AppSettings::globalSpeedLimitKBpsChanged, this, [this] {
+        m_tray->setSpeedLimiterActive(m_settings->globalSpeedLimitKBps() > 0);
+    });
+    connect(this, &AppController::sessionPausedChanged, this, [this] {
+        m_tray->setSessionPaused(m_sessionPaused);
+    });
     
     connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit, this, [this]() {
         // Surface a shutdown indicator on the tray tooltip so the user knows
