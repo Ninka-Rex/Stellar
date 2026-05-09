@@ -191,7 +191,17 @@ QString desktopAssociationExec() {
     return QStringLiteral("\"%1\" %u").arg(QCoreApplication::applicationFilePath());
 }
 
-QString linuxDesktopEntryContents() {
+// includeTorrent / includeMagnet control which MIME types appear in MimeType=.
+// Only include a type when Stellar is actually being set as default for it;
+// including a type we're not the default for causes update-desktop-database to
+// populate mimeinfo.cache with Stellar as a handler, which KDE then auto-selects
+// as the default for that type if mimeapps.list has no explicit entry — resulting
+// in both associations being set when only one was requested.
+QString linuxDesktopEntryContents(bool includeTorrent, bool includeMagnet) {
+    QString mimeTypes;
+    if (includeTorrent) mimeTypes += QStringLiteral("application/x-bittorrent;");
+    if (includeMagnet)  mimeTypes += QStringLiteral("x-scheme-handler/magnet;");
+
     return QStringLiteral(
         "[Desktop Entry]\n"
         "Version=1.0\n"
@@ -201,10 +211,10 @@ QString linuxDesktopEntryContents() {
         "Exec=%1\n"
         "Terminal=false\n"
         "Categories=Network;FileTransfer;\n"
-        "MimeType=application/x-bittorrent;x-scheme-handler/magnet;\n"
+        "MimeType=%2\n"
         "StartupNotify=true\n"
         "StartupWMClass=Stellar\n")
-        .arg(desktopAssociationExec());
+        .arg(desktopAssociationExec(), mimeTypes);
 }
 
 QString linuxApplicationsDir() {
@@ -219,7 +229,7 @@ QString linuxDesktopEntryPath() {
     return linuxApplicationsDir() + QLatin1Char('/') + desktopAssociationFileName();
 }
 
-bool writeLinuxDesktopEntry(QString *errorText) {
+bool writeLinuxDesktopEntry(bool includeTorrent, bool includeMagnet, QString *errorText) {
     QFile file(linuxDesktopEntryPath());
     if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
         if (errorText)
@@ -228,7 +238,7 @@ bool writeLinuxDesktopEntry(QString *errorText) {
         return false;
     }
     QTextStream stream(&file);
-    stream << linuxDesktopEntryContents();
+    stream << linuxDesktopEntryContents(includeTorrent, includeMagnet);
     file.close();
     if (file.error() != QFile::NoError) {
         if (errorText)
@@ -3605,7 +3615,10 @@ QString AppController::setTorrentFileAssociationDefault() const {
     return QStringLiteral("Stellar was registered as a .torrent handler. Windows still requires you to confirm the change in the Default Apps settings page that opened.");
 #elif defined(Q_OS_LINUX)
     QString error;
-    if (!writeLinuxDesktopEntry(&error))
+    // Capture magnet state before writing the desktop entry so MimeType= only
+    // lists types Stellar is actually the default for — prevents update-desktop-database
+    // from populating mimeinfo.cache with magnet if the user hasn't set that yet.
+    if (!writeLinuxDesktopEntry(/*torrent=*/true, /*magnet=*/isMagnetAssociationDefault(), &error))
         return error;
     if (!runProcessOk(QStringLiteral("xdg-mime"),
                       { QStringLiteral("default"), desktopAssociationId(),
@@ -3664,7 +3677,10 @@ QString AppController::setMagnetAssociationDefault() const {
     return QStringLiteral("Stellar was registered as a magnet handler. Windows still requires you to confirm the change in the Default Apps settings page that opened.");
 #elif defined(Q_OS_LINUX)
     QString error;
-    if (!writeLinuxDesktopEntry(&error))
+    // Capture torrent state before writing the desktop entry so MimeType= only
+    // lists types Stellar is actually the default for — prevents update-desktop-database
+    // from populating mimeinfo.cache with torrent if the user hasn't set that yet.
+    if (!writeLinuxDesktopEntry(/*torrent=*/isTorrentFileAssociationDefault(), /*magnet=*/true, &error))
         return error;
     if (!runProcessOk(QStringLiteral("xdg-mime"),
                       { QStringLiteral("default"), desktopAssociationId(),
