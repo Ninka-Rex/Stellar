@@ -364,19 +364,14 @@ async function shouldIntercept(url, mimeType, filenameHint, explicitIntent = fal
 }
 
 async function requestDownload(details) {
-    return new Promise((resolve, reject) => {
-        browser.runtime.sendNativeMessage(NATIVE_HOST_ID, {
-            type: "download",
-            url: details.url,
-            filename: details.filename ?? "",
-            referrer: details.referrer ?? "",
-            pageUrl: details.pageUrl ?? "",
-            cookies: details.cookies ?? "",
-            modifierKey: details.modifierKey ?? 0,
-        }, (resp) => {
-            if (browser.runtime.lastError) reject(new Error(browser.runtime.lastError.message));
-            else resolve(resp);
-        });
+    return browser.runtime.sendNativeMessage(NATIVE_HOST_ID, {
+        type: "download",
+        url: details.url,
+        filename: details.filename ?? "",
+        referrer: details.referrer ?? "",
+        pageUrl: details.pageUrl ?? "",
+        cookies: details.cookies ?? "",
+        modifierKey: details.modifierKey ?? 0,
     });
 }
 
@@ -513,13 +508,9 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
         return true;
     }
     if (message.type === "focus") {
-        browser.runtime.sendNativeMessage(NATIVE_HOST_ID, { type: "focus" }, (response) => {
-            if (browser.runtime.lastError) {
-                sendResponse({ ok: false, error: browser.runtime.lastError.message });
-            } else {
-                sendResponse({ ok: true, response });
-            }
-        });
+        browser.runtime.sendNativeMessage(NATIVE_HOST_ID, { type: "focus" })
+            .then((response) => sendResponse({ ok: true, response }))
+            .catch((err) => sendResponse({ ok: false, error: err?.message ?? "unknown" }));
         return true;
     }
     if (message.type === "setEnabled") {
