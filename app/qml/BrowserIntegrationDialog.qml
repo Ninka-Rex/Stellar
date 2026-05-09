@@ -35,9 +35,15 @@ Window {
     Material.background: "#1e1e1e"
     Material.accent: "#4488dd"
 
-    property string regState:    "idle"
-    property string regError:    ""
-    property string manifestPath: ""
+    property string regState:       "idle"
+    property string regError:       ""
+    property string manifestPath:   ""
+    // sandboxedIssue: "" | "snap" | "flatpak_perm"
+    property string sandboxedIssue: ""
+    property string actionStatus:   ""    // "", "ok", "fail"
+    property string actionMessage:  ""
+    property string portalLaunchStatus: ""   // "" | "ok" | "fail"  (snap section)
+    property string grantStatus:    ""       // "" | "ok" | "fail"  (flatpak perm section)
 
     // These are populated from update.json once the app fetches it;
     // fall back to known stable store URLs so the dialog is never empty.
@@ -50,6 +56,11 @@ Window {
         var err      = App.registerNativeHost()
         regState     = err === "" ? "ok" : "error"
         regError     = err
+        sandboxedIssue = (Qt.platform.os === "linux") ? App.sandboxedFirefoxIssue() : ""
+        actionStatus      = ""
+        actionMessage     = ""
+        portalLaunchStatus = ""
+        grantStatus       = ""
     }
 
     function _centerOnOwner() {
@@ -168,6 +179,170 @@ Window {
                     InstallButton {
                         label: qsTr("Open Link")
                         url: root.firefoxUrl
+                    }
+
+                    // ── Snap-Firefox-on-KDE compatibility notice ─────────────
+                    // Snap Firefox is confined and cannot launch the Stellar
+                    // host binary directly. The clean fix is to use a
+                    // non-snap Firefox (flatpak / Mozilla deb) or another
+                    // Chromium-family browser. We never recommend installing
+                    // xdg-desktop-portal-gnome — it pulls GNOME components
+                    // that can break SDDM / switch-user on Plasma.
+                    Rectangle {
+                        visible: root.sandboxedIssue === "snap"
+                        Layout.fillWidth: true
+                        Layout.topMargin: 4
+                        implicitHeight: snapCol.implicitHeight + 16
+                        color: "#3a2a14"
+                        border.color: "#6a4a22"
+                        radius: 3
+
+                        ColumnLayout {
+                            id: snapCol
+                            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
+                            spacing: 6
+
+                            RowLayout {
+                                spacing: 6
+                                Text { text: "⚠"; color: "#ddaa55"; font.pixelSize: 14 }
+                                Text {
+                                    text: qsTr("Snap Firefox detected — won't work with Stellar")
+                                    color: "#ddaa55"; font.pixelSize: 12; font.bold: true
+                                }
+                            }
+                            Text {
+                                Layout.fillWidth: true
+                                text: qsTr("Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.")
+                                color: "#ddc8a0"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                            }
+
+                            RowLayout {
+                                spacing: 8
+                                Rectangle {
+                                    width: 220; height: 26; radius: 3
+                                    color: discoverMa.containsMouse ? "#3a5a9a" : "#2a4a7a"
+
+                                    Text {
+                                        anchors.centerIn: parent
+                                        text: qsTr("Open Firefox flatpak in Discover")
+                                        color: "#fff"; font.pixelSize: 11
+                                    }
+                                    MouseArea {
+                                        id: discoverMa
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: {
+                                            var ok = App.openFlatpakFirefoxInDiscover()
+                                            root.portalLaunchStatus = ok ? "ok" : "fail"
+                                        }
+                                    }
+                                }
+                                Rectangle {
+                                    width: 160; height: 26; radius: 3
+                                    color: mozMa.containsMouse ? "#3a5a9a" : "#2a4a7a"
+                                    Text {
+                                        anchors.centerIn: parent
+                                        text: qsTr("Mozilla download page")
+                                        color: "#fff"; font.pixelSize: 11
+                                    }
+                                    MouseArea {
+                                        id: mozMa
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: Qt.openUrlExternally("https://www.mozilla.org/firefox/download/thanks/")
+                                    }
+                                }
+                            }
+                            Text {
+                                visible: root.portalLaunchStatus === "fail"
+                                Layout.fillWidth: true
+                                text: qsTr("Could not open Discover — search for \"Firefox\" manually in your store, or use the Mozilla download link.")
+                                color: "#cc7777"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                            }
+                            Text {
+                                visible: root.portalLaunchStatus === "ok"
+                                Layout.fillWidth: true
+                                text: qsTr("Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).")
+                                color: "#88cc88"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                            }
+                        }
+                    }
+
+                    // ── Flatpak Firefox needs org.freedesktop.Flatpak=talk ────────
+                    Rectangle {
+                        visible: root.sandboxedIssue === "flatpak_perm"
+                        Layout.fillWidth: true
+                        Layout.topMargin: 4
+                        implicitHeight: flatpakPermCol.implicitHeight + 16
+                        color: "#1a2a3a"
+                        border.color: "#2a4a6a"
+                        radius: 3
+
+                        ColumnLayout {
+                            id: flatpakPermCol
+                            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
+                            spacing: 6
+
+                            RowLayout {
+                                spacing: 6
+                                Text { text: "⚠"; color: "#5599dd"; font.pixelSize: 14 }
+                                Text {
+                                    text: qsTr("Flatpak Firefox needs an extra permission")
+                                    color: "#5599dd"; font.pixelSize: 12; font.bold: true
+                                }
+                            }
+                            Text {
+                                Layout.fillWidth: true
+                                text: qsTr("Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.")
+                                color: "#aac8e8"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                            }
+
+                            RowLayout {
+                                spacing: 8
+
+                                Rectangle {
+                                    width: 200; height: 26; radius: 3
+                                    color: grantMa.containsMouse ? "#2a5a8a" : "#1a4a7a"
+
+                                    Text {
+                                        anchors.centerIn: parent
+                                        text: qsTr("Grant permission")
+                                        color: "#fff"; font.pixelSize: 11
+                                    }
+                                    MouseArea {
+                                        id: grantMa
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: {
+                                            var err = App.grantFlatpakFirefoxNativeMessagingPermission()
+                                            if (err === "") {
+                                                root.grantStatus = "ok"
+                                            } else {
+                                                root.grantStatus = "fail"
+                                                root.actionMessage = err
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            Text {
+                                visible: root.grantStatus === "ok"
+                                Layout.fillWidth: true
+                                text: qsTr("Permission granted. Restart Firefox for the change to take effect.")
+                                color: "#88cc88"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                            }
+                            Text {
+                                visible: root.grantStatus === "fail"
+                                Layout.fillWidth: true
+                                text: qsTr("Failed to grant permission: ") + root.actionMessage
+                                      + qsTr("\n\nRun manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox")
+                                color: "#cc7777"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                            }
+                        }
                     }
                 }
             }

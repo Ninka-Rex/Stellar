@@ -369,6 +369,20 @@ public:
     Q_INVOKABLE QString  registerNativeHost() const;
     Q_INVOKABLE QString  nativeHostManifestPath() const;
     Q_INVOKABLE QString  nativeHostDiagnostics() const;
+    // Sandboxed-Firefox detection. Both snap and flatpak Firefox confine the
+    // browser process so it can't directly exec the Stellar host. Returns:
+    //   ""              — no issue (or non-Linux)
+    //   "snap"          — snap Firefox installed; recommend switching browser
+    //   "flatpak_perm"  — flatpak Firefox missing org.freedesktop.Flatpak talk
+    //                     permission; one-click fixable
+    Q_INVOKABLE QString  sandboxedFirefoxIssue() const;
+    // Runs `flatpak override --user --talk-name=org.freedesktop.Flatpak
+    // org.mozilla.firefox`. Returns empty string on success, error text on
+    // failure.
+    Q_INVOKABLE QString  grantFlatpakFirefoxNativeMessagingPermission() const;
+    // Opens the Firefox flatpak listing in Discover (or the system appstream
+    // handler) for users who'd rather switch from snap Firefox to flatpak.
+    Q_INVOKABLE bool     openFlatpakFirefoxInDiscover() const;
     Q_INVOKABLE bool     isTorrentFileAssociationDefault() const;
     Q_INVOKABLE bool     isMagnetAssociationDefault() const;
     Q_INVOKABLE QString  setTorrentFileAssociationDefault() const;

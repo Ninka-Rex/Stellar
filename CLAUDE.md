@@ -119,6 +119,13 @@ Vendored at `third_party/libtorrent-rasterbar-2.0.12`, auto-detected by CMake. O
 - Length-prefixed: 4-byte little-endian uint32 + JSON bytes
 - `modifierKey` (0=none, 1=alt, 2=ctrl, 3=shift) bypasses interception
 
+**Native Messaging Host Registration (Linux):**
+- `AppController::registerNativeHost()` writes manifests to all known Firefox dirs
+- **Firefox manifest must NOT contain `allowed_origins`** — Firefox silently skips manifests with that Chrome-only field, producing "No such native application". Always write a Firefox-only manifest object without it; Chrome gets its own separate manifest
+- **Flatpak Firefox** (`~/.var/app/org.mozilla.firefox/` exists): sandbox cannot execute binaries outside its own app-data dir. Solution: write a wrapper script at `~/.var/app/org.mozilla.firefox/stellar-nm-host` that calls `exec flatpak-spawn --host <binary> "$@"`, point the manifest `path` at the wrapper. `flatpak-spawn` is available inside Firefox's sandbox at `/usr/bin/flatpak-spawn`
+- Flatpak Firefox also needs `org.freedesktop.Flatpak=talk` D-Bus permission: `flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox`. Without it, `flatpak-spawn --host` is blocked. `sandboxedFirefoxIssue()` detects this; `grantFlatpakFirefoxNativeMessagingPermission()` grants it
+- Firefox's "Internal UUID" in about:debugging is NOT the extension ID used for `allowed_extensions` matching — the ID for native messaging is always the `gecko.id` from the extension manifest (`stellar@stellar.moe`)
+
 **Settings Synchronization:**
 - AppSettings reads/writes QSettings file (Windows: registry fallback)
 - Browser extension caches settings 5 s, syncs on demand from native host

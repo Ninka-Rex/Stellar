@@ -3349,6 +3349,92 @@ QString AppController::nativeHostDiagnostics() const {
     return lines.join(QLatin1Char('\n'));
 }
 
+QString AppController::sandboxedFirefoxIssue() const {
+#if defined(STELLAR_LINUX)
+    const QString home = QDir::homePath();
+
+    // Flatpak Firefox is the preferred fallback path. Detect installation by
+    // the data directory created on first run (works whether installed
+    // system-wide or per-user). If found, check whether the flatpak has
+    // talk permission for org.freedesktop.Flatpak — required for the
+    // browser to spawn the Stellar host on the host system via
+    // flatpak-spawn. The per-user override file is the simplest source of
+    // truth; Mozilla's flathub manifest doesn't grant it by default.
+    const bool flatpakFirefox = QDir(home + QStringLiteral("/.var/app/org.mozilla.firefox")).exists();
+    if (flatpakFirefox) {
+        // Run `flatpak info --show-permissions org.mozilla.firefox` and grep.
+        // Don't trust the override file alone — the user may have set it via
+        // Flatseal which writes a different format.
+        QProcess p;
+        p.start(QStringLiteral("flatpak"),
+                { QStringLiteral("info"), QStringLiteral("--show-permissions"),
+                  QStringLiteral("org.mozilla.firefox") });
+        if (p.waitForFinished(2000)) {
+            const QByteArray out = p.readAllStandardOutput();
+            // Look for either "org.freedesktop.Flatpak=talk" or a wildcard.
+            if (!out.contains("org.freedesktop.Flatpak=talk") &&
+                !out.contains("org.freedesktop.Flatpak.*=talk")) {
+                return QStringLiteral("flatpak_perm");
+            }
+        }
+    }
+
+    // Snap Firefox: confined and effectively unusable for native messaging
+    // on KDE without pulling GNOME-portal bits we won't recommend. Surface
+    // it only when no working alternative is detected.
+    const bool snapFirefox =
+        QDir(QStringLiteral("/snap/firefox")).exists() ||
+        QDir(home + QStringLiteral("/snap/firefox")).exists();
+    if (snapFirefox)
+        return QStringLiteral("snap");
+
+    return {};
+#else
+    return {};
+#endif
+}
+
+QString AppController::grantFlatpakFirefoxNativeMessagingPermission() const {
+#if defined(STELLAR_LINUX)
+    // Mozilla's flatpak Firefox supports native messaging via flatpak-spawn,
+    // but the manifest doesn't declare org.freedesktop.Flatpak=talk so the
+    // sandbox can't reach the host spawning service. A per-user override
+    // adds the permission without modifying the system manifest.
+    QProcess p;
+    p.start(QStringLiteral("flatpak"),
+            { QStringLiteral("override"), QStringLiteral("--user"),
+              QStringLiteral("--talk-name=org.freedesktop.Flatpak"),
+              QStringLiteral("org.mozilla.firefox") });
+    if (!p.waitForStarted(3000))
+        return QStringLiteral("Could not run flatpak: ") + p.errorString();
+    if (!p.waitForFinished(8000)) {
+        p.kill();
+        return QStringLiteral("flatpak override timed out");
+    }
+    if (p.exitStatus() != QProcess::NormalExit || p.exitCode() != 0) {
+        const QByteArray err = p.readAllStandardError();
+        return QStringLiteral("flatpak override failed (exit %1): %2")
+                   .arg(p.exitCode()).arg(QString::fromUtf8(err).trimmed());
+    }
+    return {};
+#else
+    return QStringLiteral("Not supported on this platform.");
+#endif
+}
+
+bool AppController::openFlatpakFirefoxInDiscover() const {
+#if defined(STELLAR_LINUX)
+    if (QProcess::startDetached(QStringLiteral("plasma-discover"),
+                                { QStringLiteral("--search"), QStringLiteral("org.mozilla.firefox") }))
+        return true;
+    if (QDesktopServices::openUrl(QUrl(QStringLiteral("appstream://org.mozilla.firefox"))))
+        return true;
+    return false;
+#else
+    return false;
+#endif
+}
+
 bool AppController::isTorrentFileAssociationDefault() const {
 #if defined(Q_OS_WIN)
     const QString userChoice = readRegistryNamedValue(
@@ -3642,6 +3728,17 @@ QString AppController::registerNativeHost() const {
     manifest[QStringLiteral("allowed_extensions")] = QJsonArray{ QStringLiteral("stellar@stellar.moe") };
     manifest[QStringLiteral("allowed_origins")] = chromeNativeMessagingOrigins();
 
+    // Firefox rejects manifests containing allowed_origins (Chrome-only field) — confirmed
+    // via live debugging: manifest was silently skipped, wrapper never called.
+    // Build a separate Firefox manifest without it; used for all Firefox install dirs.
+    QJsonObject firefoxOnlyManifest;
+    firefoxOnlyManifest[QStringLiteral("name")]              = manifest[QStringLiteral("name")];
+    firefoxOnlyManifest[QStringLiteral("description")]       = manifest[QStringLiteral("description")];
+    firefoxOnlyManifest[QStringLiteral("path")]              = manifest[QStringLiteral("path")];
+    firefoxOnlyManifest[QStringLiteral("type")]              = manifest[QStringLiteral("type")];
+    firefoxOnlyManifest[QStringLiteral("allowed_extensions")] = manifest[QStringLiteral("allowed_extensions")];
+    const QByteArray firefoxOnlyJson = QJsonDocument(firefoxOnlyManifest).toJson(QJsonDocument::Indented);
+
     const QByteArray json = QJsonDocument(manifest).toJson(QJsonDocument::Indented);
 
     // Write the manifest source file (used for manual cp instructions).
@@ -3732,14 +3829,49 @@ QString AppController::registerNativeHost() const {
     // Copy manifest to all known Firefox native-messaging-hosts directories.
     // Standard Firefox:  ~/.mozilla/native-messaging-hosts/
     // Snap Firefox:      ~/snap/firefox/common/.mozilla/native-messaging-hosts/
-    // Flatpak Firefox:   ~/.var/app/org.mozilla.Firefox/.mozilla/native-messaging-hosts/
-    struct MozDir { QString path; QString guardDir; };
+    // Flatpak Firefox:   ~/.var/app/org.mozilla.firefox/.mozilla/native-messaging-hosts/
+    //
+    // Flatpak Firefox's sandbox does NOT have --filesystem=home, so it cannot
+    // read ~/.mozilla/ or execute binaries outside its own app-data directory.
+    // We write a thin wrapper script into ~/.var/app/org.mozilla.firefox/ (which
+    // Firefox CAN execute) and point a separate manifest at that wrapper.
+    // Inside Firefox's sandbox, flatpak-spawn is available at /usr/bin/flatpak-spawn
+    // and with the org.freedesktop.Flatpak=talk permission it can reach the host.
+    QByteArray flatpakFirefoxJson;
+    if (!isFlatpak) {
+        const QString ffDir = QDir::homePath() + QStringLiteral("/.var/app/org.mozilla.firefox");
+        if (QDir(ffDir).exists()) {
+            const QString wrapperPath = ffDir + QStringLiteral("/stellar-nm-host");
+            QFile wrapper(wrapperPath);
+            if (wrapper.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
+                wrapper.write(QStringLiteral("#!/bin/sh\nexec flatpak-spawn --host %1 \"$@\"\n")
+                              .arg(hostExePath).toUtf8());
+                wrapper.close();
+                wrapper.setPermissions(
+                    QFileDevice::ReadOwner | QFileDevice::WriteOwner | QFileDevice::ExeOwner |
+                    QFileDevice::ReadGroup | QFileDevice::ExeGroup |
+                    QFileDevice::ReadOther | QFileDevice::ExeOther);
+            }
+            // Firefox rejects manifests with unknown fields like allowed_origins.
+            // Build a clean Firefox-only manifest without it.
+            QJsonObject ffManifest;
+            ffManifest[QStringLiteral("name")]        = QStringLiteral("com.stellar.downloadmanager");
+            ffManifest[QStringLiteral("description")] = QStringLiteral("Stellar Download Manager native messaging host");
+            ffManifest[QStringLiteral("path")]        = wrapperPath;
+            ffManifest[QStringLiteral("type")]        = QStringLiteral("stdio");
+            ffManifest[QStringLiteral("allowed_extensions")] = QJsonArray{ QStringLiteral("stellar@stellar.moe") };
+            flatpakFirefoxJson = QJsonDocument(ffManifest).toJson(QJsonDocument::Indented);
+        }
+    }
+
+    struct MozDir { QString path; QString guardDir; const QByteArray *jsonOverride; };
     const QList<MozDir> mozDirs = {
-        { QDir::homePath() + QStringLiteral("/.mozilla/native-messaging-hosts"), {} },
+        { QDir::homePath() + QStringLiteral("/.mozilla/native-messaging-hosts"), {}, nullptr },
         { QDir::homePath() + QStringLiteral("/snap/firefox/common/.mozilla/native-messaging-hosts"),
-          QDir::homePath() + QStringLiteral("/snap/firefox") },
+          QDir::homePath() + QStringLiteral("/snap/firefox"), nullptr },
         { QDir::homePath() + QStringLiteral("/.var/app/org.mozilla.firefox/.mozilla/native-messaging-hosts"),
-          QDir::homePath() + QStringLiteral("/.var/app/org.mozilla.firefox") },
+          QDir::homePath() + QStringLiteral("/.var/app/org.mozilla.firefox"),
+          flatpakFirefoxJson.isEmpty() ? nullptr : &flatpakFirefoxJson },
     };
 
     QString lastError;
@@ -3756,12 +3888,24 @@ QString AppController::registerNativeHost() const {
         }
         const QString dest = mozDir + QStringLiteral("/com.stellar.downloadmanager.json");
         QFile::remove(dest);
-        QFile src(manifestPath);
-        if (!src.copy(dest)) {
-            lastError = QStringLiteral("Could not copy manifest to: ") + dest
-                        + QStringLiteral("\nError: ") + src.errorString();
+        if (entry.jsonOverride) {
+            QFile f(dest);
+            if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+                lastError = QStringLiteral("Could not write manifest to: ") + dest
+                            + QStringLiteral("\nError: ") + f.errorString();
+            } else {
+                f.write(*entry.jsonOverride);
+                anyOk = true;
+            }
         } else {
-            anyOk = true;
+            QFile f(dest);
+            if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+                lastError = QStringLiteral("Could not write manifest to: ") + dest
+                            + QStringLiteral("\nError: ") + f.errorString();
+            } else {
+                f.write(firefoxOnlyJson);
+                anyOk = true;
+            }
         }
     }
 
