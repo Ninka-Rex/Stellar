@@ -68,6 +68,10 @@ AbstractButton {
                 wrapMode: Text.WordWrap
                 maximumLineCount: 2
                 width: root.width - 4
+                // Fixed height reserves space for 2 lines on every button so the
+                // Column (and therefore the icon) stays at the same vertical
+                // position regardless of whether the label wraps or not.
+                height: 26
             }
         }
     }

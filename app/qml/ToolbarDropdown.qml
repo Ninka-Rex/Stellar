@@ -78,6 +78,7 @@ AbstractButton {
                 wrapMode: Text.WordWrap
                 width: root.width - 4
                 maximumLineCount: 2
+                height: 26
             }
         }
     }
