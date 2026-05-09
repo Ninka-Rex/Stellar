@@ -3730,20 +3730,24 @@ QString AppController::registerNativeHost() const {
     }
 #elif defined(STELLAR_LINUX)
     // Copy manifest to all known Firefox native-messaging-hosts directories.
-    // Standard Firefox: ~/.mozilla/native-messaging-hosts/
-    // Snap Firefox:     ~/snap/firefox/common/.mozilla/native-messaging-hosts/
-    const QStringList mozDirs = {
-        QDir::homePath() + QStringLiteral("/.mozilla/native-messaging-hosts"),
-        QDir::homePath() + QStringLiteral("/snap/firefox/common/.mozilla/native-messaging-hosts"),
+    // Standard Firefox:  ~/.mozilla/native-messaging-hosts/
+    // Snap Firefox:      ~/snap/firefox/common/.mozilla/native-messaging-hosts/
+    // Flatpak Firefox:   ~/.var/app/org.mozilla.Firefox/.mozilla/native-messaging-hosts/
+    struct MozDir { QString path; QString guardDir; };
+    const QList<MozDir> mozDirs = {
+        { QDir::homePath() + QStringLiteral("/.mozilla/native-messaging-hosts"), {} },
+        { QDir::homePath() + QStringLiteral("/snap/firefox/common/.mozilla/native-messaging-hosts"),
+          QDir::homePath() + QStringLiteral("/snap/firefox") },
+        { QDir::homePath() + QStringLiteral("/.var/app/org.mozilla.firefox/.mozilla/native-messaging-hosts"),
+          QDir::homePath() + QStringLiteral("/.var/app/org.mozilla.firefox") },
     };
 
     QString lastError;
     bool anyOk = false;
-    for (const QString &mozDir : mozDirs) {
-        // Only write to snap path if the snap directory exists (avoids creating
-        // snap dirs on systems that don't have snap Firefox).
-        if (mozDir.contains(QStringLiteral("/snap/")) &&
-            !QDir(QDir::homePath() + QStringLiteral("/snap/firefox")).exists())
+    for (const MozDir &entry : mozDirs) {
+        const QString &mozDir = entry.path;
+        // Only write to sandboxed paths if their container directory exists.
+        if (!entry.guardDir.isEmpty() && !QDir(entry.guardDir).exists())
             continue;
 
         if (!QDir().mkpath(mozDir)) {
