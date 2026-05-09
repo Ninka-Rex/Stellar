@@ -376,12 +376,8 @@ async function requestDownload(details) {
 }
 
 async function ping() {
-    try {
-        const resp = await browser.runtime.sendNativeMessage(NATIVE_HOST_ID, { type: "ping" });
-        return resp?.type === "ready";
-    } catch {
-        return false;
-    }
+    const resp = await browser.runtime.sendNativeMessage(NATIVE_HOST_ID, { type: "ping" });
+    return resp?.type === "ready";
 }
 
 async function refreshIcon() {
@@ -498,13 +494,9 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
         return true;
     }
     if (message.type === "ping") {
-        (async () => {
-            try {
-                sendResponse({ alive: await ping() });
-            } catch (err) {
-                sendResponse({ alive: false, error: err?.message ?? "unknown" });
-            }
-        })();
+        ping()
+            .then((alive) => sendResponse({ alive }))
+            .catch((err) => sendResponse({ alive: false, error: err?.message ?? "unknown" }));
         return true;
     }
     if (message.type === "focus") {
