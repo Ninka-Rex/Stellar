@@ -15,7 +15,7 @@ Work in progress, but fully functional
 - Splits each download into multiple parts so it finishes faster, and shifts work to the slowest part as it goes
 - Pause and resume any download, including after a crash or power loss
 - Browser extensions for Chrome and Firefox that sends downloads straight to Stellar (Snap version of Firefox not supported)
-- Full torrent client with magnet links, DHT, peer encryption, peer banning, and seeding limits
+- Full-featured torrent client
 - World map showing where your torrent peers and trackers are located
 - Download videos and audio from YouTube and similar sites, with a picker for quality and format
 - Site grabber that walks a website and pulls every file matching the requirements you give it
