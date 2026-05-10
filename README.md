@@ -22,7 +22,7 @@ Work in progress, but fully functional
 - Built in torrent search engine (compatable with qBittorrent plugins)
 - Download queues with a scheduler (pick days and times)
 - Speed limiter
-- Categories with custom save folders, drag to reorder
+- Categories with custom save folders
 - Available in 77 languages
 
 ## How to Install 📦
@@ -90,12 +90,7 @@ build\windows-debug\Stellar.exe
 
 ### GeoIP database
 
-The torrent peer/tracker world map needs a MaxMind-format city database. Download `dbip-city-lite.mmdb` from https://db-ip.com/db/download/ip-to-city-lite, rename it to whatever the app expects, and drop it in the `data/` folder inside the application's data directory:
-
-- Windows: `%LOCALAPPDATA%\Stellar\data\`
-- Linux: `~/.local/share/Stellar/data/`
-
-Without it, geo lookups return empty and the map will be blank. Everything else works.
+-Only needed if building from source. The torrent peer/tracker world map uses a MaxMind-format city database. Download `dbip-city-lite.mmdb` from https://db-ip.com/db/download/ip-to-city-lite and place it in `app/data/` in the repository.
 
 ## Command Line
 
