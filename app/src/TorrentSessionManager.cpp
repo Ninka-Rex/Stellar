@@ -1080,6 +1080,7 @@ void TorrentSessionManager::applySettings(const AppSettings *settings) {
         m_session.reset();
         // Clear stale handle/item maps so re-enable starts with a clean slate.
         m_handles.clear();
+        m_handleToId.clear();
         m_items.clear();
         m_pausedIds.clear();
         m_firedFinishedIds.clear();
@@ -1822,6 +1823,7 @@ void TorrentSessionManager::unsuspendSession() {
 void TorrentSessionManager::remove(const QString &downloadId, bool deleteFiles) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     const auto handle = m_handles.take(downloadId);
+    m_handleToId.remove(handle);
     m_items.remove(downloadId);
     m_pausedIds.remove(downloadId);
     m_movingIds.remove(downloadId);
@@ -2428,11 +2430,7 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
 }
 
 QString TorrentSessionManager::idForHandle(const libtorrent::torrent_handle &handle) const {
-    for (auto it = m_handles.constBegin(); it != m_handles.constEnd(); ++it) {
-        if (it.value() == handle)
-            return it.key();
-    }
-    return {};
+    return m_handleToId.value(handle);
 }
 
 bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPaused, const QString &torrentFilePath) {
@@ -2531,6 +2529,7 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
     // metadata arrives (piece count is not yet known at add time for magnets).
 
     m_handles[item->id()] = handle;
+    m_handleToId[handle] = item->id();
     m_items[item->id()] = item;
     if (startPaused)
         m_pausedIds.insert(item->id());

@@ -42,6 +42,9 @@ namespace libtorrent {
 class session;
 class alert;
 }
+inline size_t qHash(const libtorrent::torrent_handle &h, size_t seed = 0) noexcept {
+    return libtorrent::hash_value(h) ^ seed;
+}
 #endif
 
 class TorrentSessionManager : public QObject {
@@ -184,6 +187,7 @@ private:
     std::unique_ptr<libtorrent::session> m_session;
     std::unique_ptr<GeoDbState> m_geoDb;
     QHash<QString, libtorrent::torrent_handle> m_handles;
+    QHash<libtorrent::torrent_handle, QString> m_handleToId;
     QHash<QString, QPointer<DownloadItem>> m_items;
     QHash<QString, TorrentFileModel *> m_fileModels;
     QHash<QString, TorrentPeerModel *> m_peerModels;
