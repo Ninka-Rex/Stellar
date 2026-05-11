@@ -83,12 +83,6 @@ ApplicationWindow {
         win.show()
         win.raise()
         win.requestActivate()
-        Qt.callLater(function() {
-            if (win.visible) {
-                win.raise()
-                win.requestActivate()
-            }
-        })
     }
 
     // Map of downloadId → DownloadProgressDialog instances

@@ -4300,6 +4300,8 @@ void AppController::deleteDownload(const QString &id, int mode) {
 
     m_queue->cancel(id);
     m_torrentSpeedHistory.remove(id);
+    m_lastTorrentPersistUploaded.remove(id);
+    m_lastTorrentPersistDownloaded.remove(id);
 
     // Clean up temp/part files for non-completed downloads.
     // DownloadQueue::cancel() calls abort() on the active worker (which cleans

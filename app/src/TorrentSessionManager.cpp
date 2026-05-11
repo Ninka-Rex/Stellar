@@ -1829,6 +1829,9 @@ void TorrentSessionManager::remove(const QString &downloadId, bool deleteFiles) 
     m_lastResumeSaveRequest.remove(downloadId);
     m_trackerReannounceUntil.remove(downloadId);
     m_trackerAlertSnapshots.remove(downloadId);
+    m_seedingStartTimes.remove(downloadId);
+    m_lastUploadBytesForInactive.remove(downloadId);
+    m_lastUploadActivityTime.remove(downloadId);
     if (handle.is_valid() && m_session) {
         libtorrent::remove_flags_t flags{};
         if (deleteFiles)
