@@ -3413,6 +3413,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <translation></translation>
     </message>
     <message>
+        <source>Create Torrent…</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/Main.qml" line="2259"/>
         <source>Downloads</source>
         <translation></translation>
@@ -7304,6 +7308,177 @@ and audio streams merged by ffmpeg after download.</source>
         <location filename="../app/qml/YtdlpDialog.qml" line="44"/>
         <location filename="../app/qml/YtdlpDialog.qml" line="390"/>
         <source>Video Download</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>TorrentCreatorDialog</name>
+    <message>
+        <source>Create Torrent</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Source Files / Folders</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>+ Files</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>+ Folder</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Drag files or folders here, or use the buttons above</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Output</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Save to:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Path to save the .torrent file…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Browse…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Optional — defaults to folder/file name</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Piece size:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>%1 pieces × %2</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Metadata</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Optional comment embedded in the .torrent</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Description:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Optional extended description</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Created by:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>One URL per line</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Web Seeds (HTTP/FTP)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>https://example.com/files/</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Open torrent when created</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>✓ Torrent created successfully: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>✗ Error: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Cancelled</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Hashing pieces… %1%</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>%1 pieces × %2 per piece</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Creating…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Open Torrent</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Create Torrent…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Add Files</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Add Folder</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Save .torrent File</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Torrent files (*.torrent)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>All files (*)</source>
         <translation></translation>
     </message>
 </context>

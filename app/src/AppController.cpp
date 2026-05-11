@@ -94,6 +94,12 @@ QJsonArray chromeNativeMessagingOrigins()
 #include <QTextStream>
 #include <Queue.h>
 
+#if defined(STELLAR_HAS_LIBTORRENT)
+#  include <libtorrent/create_torrent.hpp>
+#  include <libtorrent/file_storage.hpp>
+#  include <libtorrent/aux_/path.hpp>
+#endif
+
 namespace {
 constexpr int kMinimumUpdateCheckIndicatorMs = 3000;
 constexpr qint64 kTorrentSpeedHistoryRetentionMs = 24LL * 60LL * 60LL * 1000LL;
@@ -7530,4 +7536,54 @@ void AppController::restartApp()
     });
 
     emit restartRequested();
+}
+
+// ── Torrent Creator ───────────────────────────────────────────────────────────
+
+QVariantMap AppController::beginCreateTorrent(const QVariantMap &params) {
+    // Wire up one-shot signal forwarding from TorrentSessionManager → AppController.
+    // We disconnect first so repeated calls don't double-connect.
+    disconnect(m_torrentSession, &TorrentSessionManager::torrentCreationProgress,
+               this, &AppController::torrentCreationProgress);
+    disconnect(m_torrentSession, &TorrentSessionManager::torrentCreationFinished,
+               this, &AppController::torrentCreationFinished);
+    connect(m_torrentSession, &TorrentSessionManager::torrentCreationProgress,
+            this, &AppController::torrentCreationProgress);
+    connect(m_torrentSession, &TorrentSessionManager::torrentCreationFinished,
+            this, &AppController::torrentCreationFinished);
+
+    // Pre-compute piece count and size from the input so the UI can display
+    // "N pieces × K bytes" before the long hashing step begins.
+    QVariantMap result;
+
+#if defined(STELLAR_HAS_LIBTORRENT)
+    namespace lt = libtorrent;
+    const QStringList inputPaths = params.value(QStringLiteral("inputPaths")).toStringList();
+    const int pieceSizeArg       = params.value(QStringLiteral("pieceSize")).toInt();
+
+    lt::file_storage fs;
+    for (const QString &p : inputPaths) {
+        if (QFileInfo::exists(p))
+            lt::add_files(fs, p.toStdString());
+    }
+
+    if (fs.num_files() > 0) {
+        lt::create_torrent creator(fs, pieceSizeArg);
+        result[QStringLiteral("pieceCount")] = creator.num_pieces();
+        result[QStringLiteral("pieceSize")]  = creator.piece_length();
+    } else {
+        result[QStringLiteral("pieceCount")] = 0;
+        result[QStringLiteral("pieceSize")]  = 0;
+    }
+#else
+    result[QStringLiteral("pieceCount")] = 0;
+    result[QStringLiteral("pieceSize")]  = 0;
+#endif
+
+    m_torrentSession->createTorrentFile(params);
+    return result;
+}
+
+void AppController::cancelCreateTorrent() {
+    m_torrentSession->cancelTorrentCreation();
 }

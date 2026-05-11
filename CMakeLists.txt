@@ -229,6 +229,7 @@ qt_add_qml_module(Stellar
         app/qml/TorrentMetadataDialog.qml
         app/qml/TorrentDuplicateDialog.qml
         app/qml/TorrentSpeedLimitDialog.qml
+        app/qml/TorrentCreatorDialog.qml
         app/qml/DlgButton.qml
         app/qml/RssWindow.qml
         app/qml/RssDownloadRulesDialog.qml
@@ -487,7 +488,7 @@ qt_add_resources(Stellar "conf"
 # ── Platform-specific ─────────────────────────────────────────────────────────
 if(WIN32)
     set_target_properties(Stellar PROPERTIES
-        WIN32_EXECUTABLE TRUE
+        WIN32_EXECUTABLE FALSE
     )
     target_compile_definitions(Stellar PRIVATE STELLAR_WINDOWS)
 elseif(UNIX AND NOT APPLE)

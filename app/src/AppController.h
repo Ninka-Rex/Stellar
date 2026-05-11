@@ -424,6 +424,12 @@ public:
     Q_INVOKABLE void applyUiLanguage(const QString &locale);
     Q_INVOKABLE void restartApp();
 
+    // Torrent creator — delegates to TorrentSessionManager on a worker thread.
+    // params: see TorrentSessionManager::createTorrentFile().
+    // Returns {pieceCount, pieceSize} for immediate display before hashing starts.
+    Q_INVOKABLE QVariantMap beginCreateTorrent(const QVariantMap &params);
+    Q_INVOKABLE void cancelCreateTorrent();
+
 signals:
     void restartRequested();
     void activeDownloadsChanged();
@@ -503,6 +509,8 @@ signals:
     void torrentBannedPeersChanged();
     void publicIpChanged();
     void hasIncomingConnectionsChanged();
+    void torrentCreationProgress(int percent);
+    void torrentCreationFinished(bool success, const QString &errorOrPath);
 
 private:
     QString generateId() const;

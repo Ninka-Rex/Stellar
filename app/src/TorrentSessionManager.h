@@ -27,6 +27,7 @@
 #include <QElapsedTimer>
 #include <QByteArray>
 #include <QVector>
+#include <atomic>
 #include <memory>
 
 class AppSettings;
@@ -85,6 +86,16 @@ public:
     // by reading the live file_storage paths from libtorrent. Empty if unavailable.
     QString torrentCurrentRootName(const QString &downloadId) const;
     bool exportTorrentFile(const QString &downloadId, const QString &outputPath) const;
+
+    // Create a brand-new .torrent from local files/folders on a background thread.
+    // params keys: inputPaths (QStringList), outputPath (QString), name (QString),
+    //   comment (QString), description (QString), trackers (QStringList),
+    //   webSeeds (QStringList), isPrivate (bool), pieceSize (int, bytes; 0=auto),
+    //   creatorTag (QString).
+    // Emits torrentCreationProgress(int percent) and
+    //   torrentCreationFinished(bool success, QString errorOrPath).
+    void createTorrentFile(const QVariantMap &params);
+    void cancelTorrentCreation();
     void setTorrentFlags(const QString &downloadId, bool disableDht, bool disablePex, bool disableLsd = false);
     void setTorrentDownloadMode(const QString &downloadId, bool sequential, bool firstLastPieces);
     void forceRecheck(const QString &downloadId);
@@ -132,6 +143,8 @@ signals:
     void torrentErrored(const QString &downloadId, const QString &reason);
     void torrentShareLimitReached(const QString &downloadId, int action);
     void bannedPeersChanged();
+    void torrentCreationProgress(int percent);
+    void torrentCreationFinished(bool success, const QString &errorOrPath);
 
 private:
 #if defined(STELLAR_HAS_LIBTORRENT)
@@ -270,6 +283,8 @@ private:
     bool m_dhtEstimatorEnabled{true};
 #endif
     QTimer m_alertTimer;
+    // Atomic flag so the hashing thread can check for cancellation each piece.
+    std::atomic<bool> m_torrentCreationCancelled{false};
 };
 
 // When libtorrent is absent the .cpp stubs may be in a stale cached obj.
@@ -295,4 +310,8 @@ inline QString TorrentSessionManager::dhtEstimateDebugText() const { return {}; 
 inline bool TorrentSessionManager::dhtCrawlInProgress() const { return false; }
 inline void TorrentSessionManager::startDhtCrawlNow() {}
 inline void TorrentSessionManager::setDhtEstimatorEnabled(bool) {}
+inline void TorrentSessionManager::createTorrentFile(const QVariantMap &) {
+    emit torrentCreationFinished(false, QStringLiteral("BitTorrent support not compiled in"));
+}
+inline void TorrentSessionManager::cancelTorrentCreation() {}
 #endif

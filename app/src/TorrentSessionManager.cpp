@@ -45,6 +45,7 @@
 #include <QSaveFile>
 #include <QTextStream>
 #include <QThreadPool>
+#include <QtConcurrent>
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
@@ -4097,4 +4098,177 @@ void TorrentSessionManager::checkShareLimits(const QString &id, DownloadItem *it
         emit torrentShareLimitReached(id, effectiveAction);
     }
 }
+
+// ── Torrent Creator ───────────────────────────────────────────────────────────
+// Runs set_piece_hashes() (the slow SHA-1/SHA-256 hashing step) on a
+// QtConcurrent thread so the UI stays responsive. Progress is reported as a
+// percent via torrentCreationProgress(). On completion torrentCreationFinished
+// carries success=true and the output path, or success=false and an error string.
+
+void TorrentSessionManager::cancelTorrentCreation() {
+    m_torrentCreationCancelled.store(true, std::memory_order_release);
+}
+
+void TorrentSessionManager::createTorrentFile(const QVariantMap &params) {
+    m_torrentCreationCancelled.store(false, std::memory_order_release);
+
+    const QStringList inputPaths   = params.value(QStringLiteral("inputPaths")).toStringList();
+    const QString     outputPath   = params.value(QStringLiteral("outputPath")).toString();
+    const QString     name         = params.value(QStringLiteral("name")).toString();
+    const QString     comment      = params.value(QStringLiteral("comment")).toString();
+    const QString     description  = params.value(QStringLiteral("description")).toString();
+    const QStringList trackers     = params.value(QStringLiteral("trackers")).toStringList();
+    const QStringList webSeeds     = params.value(QStringLiteral("webSeeds")).toStringList();
+    const bool        isPrivate    = params.value(QStringLiteral("isPrivate")).toBool();
+    const int         pieceSizeArg = params.value(QStringLiteral("pieceSize")).toInt(); // 0 = auto
+    const QString     creatorTag   = params.value(QStringLiteral("creatorTag")).toString();
+
+    if (inputPaths.isEmpty() || outputPath.isEmpty()) {
+        emit torrentCreationFinished(false, QStringLiteral("No input files or output path specified"));
+        return;
+    }
+
+    // Capture the cancel-flag pointer so the lambda doesn't hold 'this'.
+    std::atomic<bool> *cancelFlag = &m_torrentCreationCancelled;
+
+    // We need a QObject* to emit signals from the thread; use a direct connection
+    // back to the main thread via QMetaObject::invokeMethod.
+    QPointer<TorrentSessionManager> self = this;
+
+    QtConcurrent::run([=]() {
+        namespace lt = libtorrent;
+
+        try {
+            lt::file_storage fs;
+
+            // Build file_storage from each dropped input path.
+            for (const QString &inputPath : inputPaths) {
+                const std::string stdPath = inputPath.toStdString();
+                QFileInfo fi(inputPath);
+                if (!fi.exists()) {
+                    QMetaObject::invokeMethod(self, [=]() {
+                        if (self) emit self->torrentCreationFinished(
+                            false,
+                            QStringLiteral("Path not found: %1").arg(inputPath));
+                    }, Qt::QueuedConnection);
+                    return;
+                }
+                // add_files handles both single files and whole directory trees.
+                lt::add_files(fs, stdPath);
+            }
+
+            if (fs.num_files() == 0) {
+                QMetaObject::invokeMethod(self, [=]() {
+                    if (self) emit self->torrentCreationFinished(false, QStringLiteral("No files found to hash"));
+                }, Qt::QueuedConnection);
+                return;
+            }
+
+            lt::create_torrent creator(fs, pieceSizeArg);
+
+            // Set metadata.
+            if (!comment.isEmpty())
+                creator.set_comment(comment.toUtf8().constData());
+            if (!creatorTag.isEmpty())
+                creator.set_creator(creatorTag.toUtf8().constData());
+            creator.set_priv(isPrivate);
+
+            // Add trackers — each on its own tier so they are tried in order.
+            int tier = 0;
+            for (const QString &url : trackers) {
+                const QString trimmed = url.trimmed();
+                if (!trimmed.isEmpty())
+                    creator.add_tracker(trimmed.toStdString(), tier++);
+            }
+
+            // Add HTTP/URL web seeds.
+            for (const QString &url : webSeeds) {
+                const QString trimmed = url.trimmed();
+                if (!trimmed.isEmpty())
+                    creator.add_url_seed(trimmed.toStdString());
+            }
+
+            // Embed the description as a custom key in the info dictionary
+            // using a comment field (no standard key for this; we use "x-description"
+            // in the root — not info — dict, appended after generate()).
+            // We cannot inject into the info dict from create_torrent, so store
+            // it as the comment when description is provided and comment is not.
+            // This is the most widely-supported approach.
+            if (comment.isEmpty() && !description.isEmpty())
+                creator.set_comment(description.toUtf8().constData());
+
+            const int totalPieces = creator.num_pieces();
+
+            // Determine the base path for set_piece_hashes: parent of the first input.
+            // For multiple inputs they should share a common parent; use that.
+            QString basePath;
+            if (!inputPaths.isEmpty()) {
+                basePath = QFileInfo(inputPaths.first()).absolutePath();
+            }
+
+            lt::error_code ec;
+            // set_piece_hashes reads every file and SHA-hashes each piece.
+            // We use the callback overload to report progress and honour cancellation.
+            lt::set_piece_hashes(creator, basePath.toStdString(),
+                [&](lt::piece_index_t p) {
+                    if (cancelFlag->load(std::memory_order_acquire))
+                        throw std::runtime_error("cancelled");
+
+                    if (totalPieces > 0) {
+                        const int pct = static_cast<int>(
+                            (static_cast<int>(p) + 1) * 100 / totalPieces);
+                        QMetaObject::invokeMethod(self, [=]() {
+                            if (self) emit self->torrentCreationProgress(pct);
+                        }, Qt::QueuedConnection);
+                    }
+                }, ec);
+
+            if (ec) {
+                const QString msg = QString::fromStdString(ec.message());
+                QMetaObject::invokeMethod(self, [=]() {
+                    if (self) emit self->torrentCreationFinished(false, msg);
+                }, Qt::QueuedConnection);
+                return;
+            }
+
+            if (cancelFlag->load(std::memory_order_acquire)) {
+                QMetaObject::invokeMethod(self, [=]() {
+                    if (self) emit self->torrentCreationFinished(false, QStringLiteral("cancelled"));
+                }, Qt::QueuedConnection);
+                return;
+            }
+
+            // Generate and write the .torrent file.
+            const std::vector<char> buf = creator.generate_buf();
+
+            QSaveFile file(outputPath);
+            if (!file.open(QIODevice::WriteOnly)) {
+                const QString msg = file.errorString();
+                QMetaObject::invokeMethod(self, [=]() {
+                    if (self) emit self->torrentCreationFinished(false, msg);
+                }, Qt::QueuedConnection);
+                return;
+            }
+            file.write(buf.data(), static_cast<qint64>(buf.size()));
+            if (!file.commit()) {
+                const QString msg = file.errorString();
+                QMetaObject::invokeMethod(self, [=]() {
+                    if (self) emit self->torrentCreationFinished(false, msg);
+                }, Qt::QueuedConnection);
+                return;
+            }
+
+            QMetaObject::invokeMethod(self, [=]() {
+                if (self) emit self->torrentCreationFinished(true, outputPath);
+            }, Qt::QueuedConnection);
+
+        } catch (const std::exception &ex) {
+            const QString msg = QString::fromLocal8Bit(ex.what());
+            QMetaObject::invokeMethod(self, [=]() {
+                if (self) emit self->torrentCreationFinished(false, msg);
+            }, Qt::QueuedConnection);
+        }
+    });
+}
+
 #endif

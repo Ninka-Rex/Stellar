@@ -1382,6 +1382,17 @@ ApplicationWindow {
         }
     }
 
+    TorrentCreatorDialog {
+        id: torrentCreatorDialog
+        transientParent: root
+        onOpenTorrentRequested: (torrentFilePath) => {
+            root.showTorrentMetadataDialogForFile(
+                torrentFilePath,
+                root.torrentSaveDirFromInputPath(App.settings.defaultSavePath),
+                "", "", true)
+        }
+    }
+
     TorrentMetadataDialog {
         id: torrentMetadataDialog
         transientParent: root
@@ -2246,6 +2257,14 @@ ApplicationWindow {
                     root.pendingTorrentExportIds = downloadTable.selectedTorrentIds()
                     if (root.pendingTorrentExportIds.length > 0)
                         exportTorrentFolderDialog.open()
+                }
+            }
+            CompactMenuItem {
+                text: qsTr("Create Torrent…")
+                onTriggered: {
+                    torrentCreatorDialog.show()
+                    torrentCreatorDialog.raise()
+                    torrentCreatorDialog.requestActivate()
                 }
             }
         }
