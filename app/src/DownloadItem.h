@@ -57,7 +57,10 @@ class DownloadItem : public QObject {
     Q_PROPERTY(QStringList torrentTrackers  READ torrentTrackers  NOTIFY torrentChanged)
     Q_PROPERTY(QStringList torrentUrlSeeds  READ torrentUrlSeeds  NOTIFY torrentChanged)
     Q_PROPERTY(QStringList torrentHttpSeeds READ torrentHttpSeeds NOTIFY torrentChanged)
-    Q_PROPERTY(QString  torrentInfoHash READ torrentInfoHash NOTIFY torrentChanged)
+    Q_PROPERTY(QString  torrentInfoHash  READ torrentInfoHash  NOTIFY torrentChanged)
+    Q_PROPERTY(QString  torrentComment   READ torrentComment   NOTIFY torrentChanged)
+    Q_PROPERTY(QString  torrentCreator   READ torrentCreator   NOTIFY torrentChanged)
+    Q_PROPERTY(QString  torrentCreatedOn READ torrentCreatedOn NOTIFY torrentChanged)
     Q_PROPERTY(int      torrentSeeders     READ torrentSeeders     NOTIFY torrentStatsChanged)
     Q_PROPERTY(int      torrentListSeeders READ torrentListSeeders NOTIFY torrentStatsChanged)
     Q_PROPERTY(int      torrentPeers       READ torrentPeers       NOTIFY torrentStatsChanged)
@@ -184,9 +187,12 @@ public:
     qint64 torrentSeedingTimeSecs()const { return m_torrentSeedingTimeSecs; }
     qint64 torrentWastedBytes()    const { return m_torrentWastedBytes; }
     int    torrentConnections()    const { return m_torrentConnections; }
-    bool torrentHasMetadata()  const { return m_torrentHasMetadata; }
-    bool torrentIsSingleFile() const { return m_torrentIsSingleFile; }
-    bool torrentIsPrivate()    const { return m_torrentIsPrivate; }
+    bool    torrentHasMetadata()  const { return m_torrentHasMetadata; }
+    bool    torrentIsSingleFile() const { return m_torrentIsSingleFile; }
+    bool    torrentIsPrivate()    const { return m_torrentIsPrivate; }
+    QString torrentComment()      const { return m_torrentComment; }
+    QString torrentCreator()      const { return m_torrentCreator; }
+    QString torrentCreatedOn()    const { return m_torrentCreatedOn; }
     bool torrentDisableDht()     const { return m_torrentDisableDht; }
     bool torrentDisablePex()     const { return m_torrentDisablePex; }
     bool torrentDisableLsd()     const { return m_torrentDisableLsd; }
@@ -215,8 +221,11 @@ public:
     void setTorrentWastedBytes(qint64 v)    { if (m_torrentWastedBytes    != v) { m_torrentWastedBytes    = v; emit torrentStatsChanged(); } }
     void setTorrentConnections(int v)       { if (m_torrentConnections    != v) { m_torrentConnections    = v; emit torrentStatsChanged(); } }
     void setTorrentHasMetadata(bool v);
-    void setTorrentIsSingleFile(bool v) { if (m_torrentIsSingleFile != v) { m_torrentIsSingleFile = v; emit torrentChanged(); } }
-    void setTorrentIsPrivate(bool v)    { if (m_torrentIsPrivate    != v) { m_torrentIsPrivate    = v; emit torrentChanged(); } }
+    void setTorrentIsSingleFile(bool v)       { if (m_torrentIsSingleFile != v) { m_torrentIsSingleFile = v; emit torrentChanged(); } }
+    void setTorrentIsPrivate(bool v)          { if (m_torrentIsPrivate    != v) { m_torrentIsPrivate    = v; emit torrentChanged(); } }
+    void setTorrentComment(const QString &v)  { if (m_torrentComment   != v) { m_torrentComment   = v; emit torrentChanged(); } }
+    void setTorrentCreator(const QString &v)  { if (m_torrentCreator   != v) { m_torrentCreator   = v; emit torrentChanged(); } }
+    void setTorrentCreatedOn(const QString &v){ if (m_torrentCreatedOn != v) { m_torrentCreatedOn = v; emit torrentChanged(); } }
     void setTorrentDisableDht(bool v)      { if (m_torrentDisableDht      != v) { m_torrentDisableDht      = v; emit torrentFlagsChanged(); } }
     void setTorrentDisablePex(bool v)      { if (m_torrentDisablePex      != v) { m_torrentDisablePex      = v; emit torrentFlagsChanged(); } }
     void setTorrentDisableLsd(bool v)      { if (m_torrentDisableLsd      != v) { m_torrentDisableLsd      = v; emit torrentFlagsChanged(); } }
@@ -338,6 +347,9 @@ private:
     bool         m_torrentHasMetadata{false};
     bool         m_torrentIsSingleFile{true};   // true until metadata proves otherwise
     bool         m_torrentIsPrivate{false};
+    QString      m_torrentComment;
+    QString      m_torrentCreator;
+    QString      m_torrentCreatedOn;
     bool         m_torrentDisableDht{false};
     bool         m_torrentDisablePex{false};
     bool         m_torrentDisableLsd{false};

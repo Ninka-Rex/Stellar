@@ -3482,6 +3482,16 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
         item->setTorrentInfoHash(toHexString(bestHash.to_string()));
         item->setTorrentIsSingleFile(ti->num_files() == 1);
         item->setTorrentIsPrivate(ti->priv());
+        item->setTorrentComment(QString::fromStdString(ti->comment()));
+        item->setTorrentCreator(QString::fromStdString(ti->creator()));
+        // creation_date() returns time_t; 0 means not set.
+        const std::time_t cd = ti->creation_date();
+        if (cd != 0) {
+            const QDateTime dt = QDateTime::fromSecsSinceEpoch(static_cast<qint64>(cd)).toLocalTime();
+            item->setTorrentCreatedOn(QLocale().toString(dt, QLocale::ShortFormat));
+        } else {
+            item->setTorrentCreatedOn(QString());
+        }
     }
 
     // Reflect per-torrent flag state so the UI stays in sync with libtorrent.

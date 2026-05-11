@@ -1379,6 +1379,21 @@ You may change it in Options → Downloads at a later time.</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="1971"/>
+        <source>Description</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="1978"/>
+        <source>Created by</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="1985"/>
+        <source>Created on</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/FilePropertiesDialog.qml" line="1994"/>
         <source>Category</source>
         <translation></translation>
