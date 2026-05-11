@@ -420,10 +420,12 @@ Window {
     }
     onVisibleChanged: {
         if (visible) {
-            root._applySize()
-            root._centerOnOwner()
             raise()
             requestActivate()
+            Qt.callLater(function() {
+                root._applySize()
+                root._centerOnOwner()
+            })
             root.loadSwarmStatsForCurrent()
         } else {
             root.persistSwarmStatsForCurrent()
@@ -2555,6 +2557,7 @@ Window {
                             clip: true; model: root.torrentFileModel; spacing: 0
                             contentWidth: root.fileColName + root.fileColProgress + root.fileColSize
                             flickableDirection: Flickable.HorizontalAndVerticalFlick
+                            cacheBuffer: 520
                             ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
                             ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AlwaysOn }
 
@@ -2578,7 +2581,7 @@ Window {
                                 required property bool   expanded
                                 required property int    fileIndex
 
-                                width: Math.max(ListView.view.width, fileList.contentWidth); height: 26
+                                width: Math.max(fileList.width, fileList.contentWidth); height: 26
                                 color: isFolder ? "#1f1f1f" : (index % 2 === 0 ? "#1c1c1c" : "#222222")
 
                                 Row {
