@@ -260,7 +260,7 @@ Window {
                     Layout.preferredWidth: 60
                     Layout.preferredHeight: 32
                     text: qsTr("Delete")
-                    enabled: root.selectedQueue !== null && (root.selectedQueue ? root.selectedQueue.id !== "main-download" : false)
+                    enabled: root.selectedQueue !== null && (root.selectedQueue ? (root.selectedQueue.id !== "main-download" && root.selectedQueue.id !== "download-limits") : false)
                     opacity: enabled ? 1.0 : 0.5
                     onClicked: {
                         if (root.selectedQueue) {
