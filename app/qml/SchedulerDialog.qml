@@ -25,8 +25,8 @@ Window {
     id: root
     title: qsTr("Scheduler")
     modality: Qt.ApplicationModal
-    width: 820
-    height: 620
+    width: 700
+    height: 520
     minimumWidth: 700
     minimumHeight: 520
     flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowSystemMenuHint | Qt.WindowCloseButtonHint
@@ -526,20 +526,42 @@ Window {
                                 checked: root.selectedQueue ? root.selectedQueue.hasStartAgainEvery : false
                                 onToggled: { if (root.selectedQueue) { root.selectedQueue.hasStartAgainEvery = checked; root.checkForChanges() } }
                             }
-                            SpinBox {
-                                from: 0; to: 23
-                                value: root.selectedQueue ? root.selectedQueue.startAgainEveryHours : 2
-                                enabled: startAgainCb.checked
-                                onValueModified: { if (root.selectedQueue) { root.selectedQueue.startAgainEveryHours = value; root.checkForChanges() } }
+                            Rectangle {
+                                width: 46; height: 26; radius: 2
+                                color: "#1b1b1b"
+                                border.color: startAgainHoursInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                opacity: startAgainCb.checked ? 1.0 : 0.4
+                                TextInput {
+                                    id: startAgainHoursInput
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    text: root.selectedQueue ? String(root.selectedQueue.startAgainEveryHours) : "2"
+                                    color: "#e0e0e0"; font.pixelSize: 12
+                                    horizontalAlignment: TextInput.AlignHCenter
+                                    verticalAlignment: TextInput.AlignVCenter
+                                    enabled: startAgainCb.checked
+                                    validator: IntValidator { bottom: 0; top: 23 }
+                                    onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v)) { root.selectedQueue.startAgainEveryHours = v; root.checkForChanges() } } }
+                                }
                             }
-                            Text { text: qsTr("hours"); color: "#d0d0d0" }
-                            SpinBox {
-                                from: 0; to: 59
-                                value: root.selectedQueue ? root.selectedQueue.startAgainEveryMins : 0
-                                enabled: startAgainCb.checked
-                                onValueModified: { if (root.selectedQueue) { root.selectedQueue.startAgainEveryMins = value; root.checkForChanges() } }
+                            Text { text: qsTr("hours"); color: "#d0d0d0"; font.pixelSize: 12 }
+                            Rectangle {
+                                width: 46; height: 26; radius: 2
+                                color: "#1b1b1b"
+                                border.color: startAgainMinsInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                opacity: startAgainCb.checked ? 1.0 : 0.4
+                                TextInput {
+                                    id: startAgainMinsInput
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    text: root.selectedQueue ? String(root.selectedQueue.startAgainEveryMins) : "0"
+                                    color: "#e0e0e0"; font.pixelSize: 12
+                                    horizontalAlignment: TextInput.AlignHCenter
+                                    verticalAlignment: TextInput.AlignVCenter
+                                    enabled: startAgainCb.checked
+                                    validator: IntValidator { bottom: 0; top: 59 }
+                                    onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v)) { root.selectedQueue.startAgainEveryMins = v; root.checkForChanges() } } }
+                                }
                             }
-                            Text { text: qsTr("min"); color: "#d0d0d0" }
+                            Text { text: qsTr("min"); color: "#d0d0d0"; font.pixelSize: 12 }
                         }
 
                         // Day checkboxes for sync queues
@@ -667,48 +689,64 @@ Window {
                                 checked: root.selectedQueue ? root.selectedQueue.hasMaxRetries : false
                                 onToggled: { if (root.selectedQueue) { root.selectedQueue.hasMaxRetries = checked; root.checkForChanges() } }
                             }
-                            SpinBox {
-                                from: 1; to: 100
-                                value: root.selectedQueue ? root.selectedQueue.maxRetries : 10
-                                enabled: retriesCb.checked
-                                onValueModified: { if (root.selectedQueue) { root.selectedQueue.maxRetries = value; root.checkForChanges() } }
+                            Rectangle {
+                                width: 46; height: 26; radius: 2
+                                color: "#1b1b1b"
+                                border.color: retriesInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                opacity: retriesCb.checked ? 1.0 : 0.4
+                                TextInput {
+                                    id: retriesInput
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    text: root.selectedQueue ? String(root.selectedQueue.maxRetries) : "10"
+                                    color: "#e0e0e0"; font.pixelSize: 12
+                                    horizontalAlignment: TextInput.AlignHCenter
+                                    verticalAlignment: TextInput.AlignVCenter
+                                    enabled: retriesCb.checked
+                                    validator: IntValidator { bottom: 1; top: 100 }
+                                    onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) { root.selectedQueue.maxRetries = v; root.checkForChanges() } } }
+                                }
                             }
                         }
 
                         Rectangle { Layout.fillWidth: true; Layout.leftMargin: 12; Layout.rightMargin: 12; height: 1; color: "#3a3a3a" }
 
-                        // Open file when done
-                        CheckBox {
-                            id: openFileCb
-                            Layout.leftMargin: 12
-                            text: qsTr("Open the following file when done:")
-                            topPadding: 0
-                            bottomPadding: 0
-                            checked: root.selectedQueue ? root.selectedQueue.openFileWhenDone : false
-                            onToggled: { if (root.selectedQueue) { root.selectedQueue.openFileWhenDone = checked; root.checkForChanges() } }
-                        }
+                        // Open file when done — checkbox + inline path field on one row
                         RowLayout {
-                            Layout.leftMargin: 28
+                            Layout.leftMargin: 12
                             Layout.rightMargin: 12
-                            spacing: 6
-                            enabled: openFileCb.checked
-                            opacity: enabled ? 1.0 : 0.5
+                            spacing: 8
 
-                            TextField {
+                            CheckBox {
+                                id: openFileCb
+                                text: qsTr("Open the following file when done:")
+                                topPadding: 0
+                                bottomPadding: 0
+                                checked: root.selectedQueue ? root.selectedQueue.openFileWhenDone : false
+                                onToggled: { if (root.selectedQueue) { root.selectedQueue.openFileWhenDone = checked; root.checkForChanges() } }
+                            }
+                            Rectangle {
                                 Layout.fillWidth: true
-                                text: root.selectedQueue ? root.selectedQueue.openFilePath : ""
-                                onTextChanged: {
-                                    if (root.selectedQueue) {
-                                        root.selectedQueue.openFilePath = text
-                                        root.checkForChanges()
-                                    }
+                                height: 26; radius: 2
+                                color: "#1b1b1b"
+                                border.color: openFileInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                opacity: openFileCb.checked ? 1.0 : 0.4
+                                TextInput {
+                                    id: openFileInput
+                                    anchors { fill: parent; leftMargin: 7; rightMargin: 7 }
+                                    text: root.selectedQueue ? root.selectedQueue.openFilePath : ""
+                                    color: "#e0e0e0"; font.pixelSize: 12
+                                    verticalAlignment: TextInput.AlignVCenter
+                                    enabled: openFileCb.checked
+                                    clip: true
+                                    onTextEdited: { if (root.selectedQueue) { root.selectedQueue.openFilePath = text; root.checkForChanges() } }
                                 }
                             }
-                            Button {
-                                Layout.preferredWidth: 36
-                                Layout.preferredHeight: 32
+                            DlgButton {
                                 text: "..."
-                                background: Rectangle { color: parent.pressed ? "#2a2a3a" : (parent.hovered ? "#2d2d3d" : "#252525"); radius: 0; border.color: "#3a3a3a"; border.width: 1 }
+                                Layout.preferredWidth: 36
+                                Layout.preferredHeight: 26
+                                enabled: openFileCb.checked
+                                opacity: enabled ? 1.0 : 0.4
                                 onClicked: fileDialog.open()
                             }
                         }
@@ -761,13 +799,23 @@ Window {
                         Layout.leftMargin: 8
                         spacing: 8
 
-                        Text { text: qsTr("Download"); color: "#d0d0d0" }
-                        SpinBox {
-                            from: 1; to: 10
-                            value: root.selectedQueue ? root.selectedQueue.maxConcurrentDownloads : 3
-                            onValueModified: { if (root.selectedQueue) { root.selectedQueue.maxConcurrentDownloads = value; root.checkForChanges() } }
+                        Text { text: qsTr("Download"); color: "#d0d0d0"; font.pixelSize: 12 }
+                        Rectangle {
+                            width: 46; height: 26; radius: 2
+                            color: "#1b1b1b"
+                            border.color: concurrentInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                            TextInput {
+                                id: concurrentInput
+                                anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                text: root.selectedQueue ? String(root.selectedQueue.maxConcurrentDownloads) : "3"
+                                color: "#e0e0e0"; font.pixelSize: 12
+                                horizontalAlignment: TextInput.AlignHCenter
+                                verticalAlignment: TextInput.AlignVCenter
+                                validator: IntValidator { bottom: 1; top: 10 }
+                                onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) { root.selectedQueue.maxConcurrentDownloads = v; root.checkForChanges() } } }
+                            }
                         }
-                        Text { text: qsTr("files at the same time"); color: "#d0d0d0" }
+                        Text { text: qsTr("files at the same time"); color: "#d0d0d0"; font.pixelSize: 12 }
                         Item { Layout.fillWidth: true }
                     }
 
@@ -989,20 +1037,36 @@ Window {
                         enabled: limitsEnabledCb.checked
                         opacity: enabled ? 1.0 : 0.5
 
-                        Text { text: qsTr("Download no more than"); color: "#d0d0d0" }
-                        SpinBox {
-                            from: 1; to: 100000
-                            value: root.selectedQueue ? root.selectedQueue.downloadLimitMBytes : 200
-                            onValueModified: { if (root.selectedQueue) { root.selectedQueue.downloadLimitMBytes = value; root.checkForChanges() } }
+                        Text { text: qsTr("Download no more than"); color: "#d0d0d0"; font.pixelSize: 12 }
+                        Rectangle {
+                            width: 60; height: 26; radius: 2
+                            color: "#1b1b1b"; border.color: limitMbInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                            TextInput {
+                                id: limitMbInput
+                                anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                text: root.selectedQueue ? String(root.selectedQueue.downloadLimitMBytes) : "200"
+                                color: "#e0e0e0"; font.pixelSize: 12
+                                horizontalAlignment: TextInput.AlignHCenter; verticalAlignment: TextInput.AlignVCenter
+                                validator: IntValidator { bottom: 1; top: 100000 }
+                                onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) { root.selectedQueue.downloadLimitMBytes = v; root.checkForChanges() } } }
+                            }
                         }
-                        Text { text: qsTr("MBytes"); color: "#d0d0d0" }
-                        Text { text: qsTr("every"); color: "#d0d0d0" }
-                        SpinBox {
-                            from: 1; to: 24
-                            value: root.selectedQueue ? root.selectedQueue.downloadLimitHours : 5
-                            onValueModified: { if (root.selectedQueue) { root.selectedQueue.downloadLimitHours = value; root.checkForChanges() } }
+                        Text { text: qsTr("MBytes"); color: "#d0d0d0"; font.pixelSize: 12 }
+                        Text { text: qsTr("every"); color: "#d0d0d0"; font.pixelSize: 12 }
+                        Rectangle {
+                            width: 46; height: 26; radius: 2
+                            color: "#1b1b1b"; border.color: limitHrInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                            TextInput {
+                                id: limitHrInput
+                                anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                text: root.selectedQueue ? String(root.selectedQueue.downloadLimitHours) : "5"
+                                color: "#e0e0e0"; font.pixelSize: 12
+                                horizontalAlignment: TextInput.AlignHCenter; verticalAlignment: TextInput.AlignVCenter
+                                validator: IntValidator { bottom: 1; top: 24 }
+                                onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) { root.selectedQueue.downloadLimitHours = v; root.checkForChanges() } } }
+                            }
                         }
-                        Text { text: qsTr("hours"); color: "#d0d0d0" }
+                        Text { text: qsTr("hours"); color: "#d0d0d0"; font.pixelSize: 12 }
                         Item { Layout.fillWidth: true }
                     }
 
@@ -1044,20 +1108,36 @@ Window {
                     enabled: dlLimitsEnabledCb.checked
                     opacity: enabled ? 1.0 : 0.5
 
-                    Text { text: qsTr("Download no more than"); color: "#d0d0d0" }
-                    SpinBox {
-                        from: 1; to: 100000
-                        value: root.selectedQueue ? root.selectedQueue.downloadLimitMBytes : 200
-                        onValueModified: { if (root.selectedQueue) root.selectedQueue.downloadLimitMBytes = value }
+                    Text { text: qsTr("Download no more than"); color: "#d0d0d0"; font.pixelSize: 12 }
+                    Rectangle {
+                        width: 60; height: 26; radius: 2
+                        color: "#1b1b1b"; border.color: dlLimitMbInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                        TextInput {
+                            id: dlLimitMbInput
+                            anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                            text: root.selectedQueue ? String(root.selectedQueue.downloadLimitMBytes) : "200"
+                            color: "#e0e0e0"; font.pixelSize: 12
+                            horizontalAlignment: TextInput.AlignHCenter; verticalAlignment: TextInput.AlignVCenter
+                            validator: IntValidator { bottom: 1; top: 100000 }
+                            onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) root.selectedQueue.downloadLimitMBytes = v } }
+                        }
                     }
-                    Text { text: qsTr("MBytes"); color: "#d0d0d0" }
-                    Text { text: qsTr("every"); color: "#d0d0d0" }
-                    SpinBox {
-                        from: 1; to: 24
-                        value: root.selectedQueue ? root.selectedQueue.downloadLimitHours : 5
-                        onValueModified: { if (root.selectedQueue) root.selectedQueue.downloadLimitHours = value }
+                    Text { text: qsTr("MBytes"); color: "#d0d0d0"; font.pixelSize: 12 }
+                    Text { text: qsTr("every"); color: "#d0d0d0"; font.pixelSize: 12 }
+                    Rectangle {
+                        width: 46; height: 26; radius: 2
+                        color: "#1b1b1b"; border.color: dlLimitHrInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                        TextInput {
+                            id: dlLimitHrInput
+                            anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                            text: root.selectedQueue ? String(root.selectedQueue.downloadLimitHours) : "5"
+                            color: "#e0e0e0"; font.pixelSize: 12
+                            horizontalAlignment: TextInput.AlignHCenter; verticalAlignment: TextInput.AlignVCenter
+                            validator: IntValidator { bottom: 1; top: 24 }
+                            onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) root.selectedQueue.downloadLimitHours = v } }
+                        }
                     }
-                    Text { text: qsTr("hours"); color: "#d0d0d0" }
+                    Text { text: qsTr("hours"); color: "#d0d0d0"; font.pixelSize: 12 }
                     Item { Layout.fillWidth: true }
                 }
 
