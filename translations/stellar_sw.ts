@@ -61,38 +61,6 @@
             <translation>IMESIMAMISHWA</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Inapakua: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>   Inapanda: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Inapanda: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>   Jumla: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Jumla: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar inapunguza...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Weka Firefox XPI, bila kurekebisha kwa ujasiri</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox imegunduliwa — haitafanya kazi na Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox inaendesha katika eneo funge na haiwezi kuzindua seva ya Stellar. Badilisha kwa Firefox flatpak (inapendekezwa), .deb rasmi ya Mozilla, au tumia Chromium / Brave / Vivaldi badala yake.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Fungua Firefox flatpak katika Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Ukurasa wa kupakua wa Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Haikuweza kufungua Discover — tafuta &quot;Firefox&quot; mwenyewe katika duka lako, au tumia kiungo cha kupakua cha Mozilla.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Imefunguliwa. Sakinisha Firefox, kisha ondoa toleo la snap (Mipangilio ya Mfumo → Programu).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Firefox ya Flatpak inahitaji ruhusa ya ziada</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) inaendesha katika eneo funge na inahitaji ruhusa ya org.freedesktop.Flatpak=talk ili kuzindua seva ya ujumbe asili ya Stellar. Bofya kitufe hapa chini kuidhinisha, kisha anzisha upya Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Idhinisha ruhusa</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Ruhusa imeidhinishwa. Anzisha upya Firefox ili mabadiliko yatekelezwe.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>Imeshindwa kutoa ruhusa: </translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>
+Endesha wewe mwenyewe: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1090,18 @@ Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
             <translation>Metadata</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Maelezo</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>Imetengenezwa na</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>Imetengenezwa tarehe</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Aina</translation>
         </message>
@@ -1157,6 +1188,10 @@ Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Kadi ya Sehemu</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>Hamisha...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2658,6 +2693,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Hamisha .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>Tengeneza Torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Mauzo</translation>
         </message>
@@ -2692,10 +2731,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>Weka kizuizi</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Kikomo cha Kasi</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4839,6 +4874,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>4. Vipakuliwa vya SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Fungua Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>Ongeza URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Kuhusu Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Kikomo Kasi</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Mipangilio ya Kikomo Kasi…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Simamisha Kipindi</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Ondoka Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Endelea Kipindi</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5684,6 +5755,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Pakua Video</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Unda Torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Faili/Folda Chanzo</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Faili</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Folda</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Ondoa</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Buruta faili au folda hapa, au tumia vitufe vilivyo juu</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Tokeo</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Hifadhi kwa:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Njia ya kuhifadhi faili ya .torrent…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Vinjari…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Jina:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Si lazima — chaguo-msingi ni jina la folda/faili</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Ukubwa wa kipande:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Kiotomatiki</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 vipande × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metadata</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Maoni:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Maoni ya hiari yaliyopachikwa kwenye .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Maelezo:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Maelezo marefu ya hiari</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Imetengenezwa na:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Torrenti ya faragha (DHT na PEX zimezimwa kwa torrenti hii)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Vifuatiliaji</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>URL moja kwa kila mstari</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Mbegu za Wavuti (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>1. https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>2. Fungua torrent inapoundwa</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>3. ✓ Torrent imeundwa: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>4. ✗ Hitilafu: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>5. Imeghairiwa</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>6. Inahashi vipande… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>7. Vipande %1 × %2 kwa kipande</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>8. Ghairi</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>9. Funga</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>10. Inaunda…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Fungua Torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Unda Torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Ongeza Faili</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Ongeza Folda</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Hifadhi faili ya .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Faili za Torrent (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Faili zote (*)</translation>
         </message>
     </context>
 </TS>

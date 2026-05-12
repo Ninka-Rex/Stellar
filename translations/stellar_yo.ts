@@ -61,38 +61,6 @@
             <translation>DADURO</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>Ìsàlẹ̀: %1  Òkè: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Ìgbàsílẹ̀: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>Fífúnrúgbìn: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Fífúnrúgbìn: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>Lápapọ̀: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Lápapọ̀: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar ń ti pa...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Fi Firefox XPI sórí ẹ̀rọ, kò sí ìmúdójúìwọ̀n aládàáṣe</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox ti ri — kò ní ṣiṣẹ pẹlu Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox nṣiṣẹ ninu sandbox ti o ni ihamọ ati pe ko le ṣe ifilọlẹ Stellar host. Yipada si Firefox flatpak (ti a ṣeduro), Mozilla's official .deb, tabi lo Chromium / Brave / Vivaldi dipo.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Ṣii Firefox flatpak ni Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Oju-iwe igbasilẹ Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Ko le ṣii Discover — wa &quot;Firefox&quot; pẹlu ọwọ ninu itaja rẹ, tabi lo ọna asopọ igbasilẹ Mozilla.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Ti ṣii. Fi Firefox sori ẹrọ, lẹhinna yọ ẹya snap kuro (System Settings → Apps).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox nilo igbanilaaye afikun</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) nṣiṣẹ ninu sandbox ati pe o nilo igbanilaaye org.freedesktop.Flatpak=talk lati ṣe ifilọlẹ Stellar native messaging host. Tẹ bọtini ni isalẹ lati fun ni, lẹhinna tun bẹrẹ Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Fun ni igbanilaaye</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Igbanilaaye ti gba. Tun bẹrẹ Firefox fun iyipada lati mu ṣiṣẹ.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>1. Ikuna lati funni ni igbanilaaye:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>2. 
+Ṣiṣe pẹlu ọwọ: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1090,18 @@ O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkók�
             <translation>Àlàyé</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Àpèjúwe</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>3. Dá láti ọwọ́</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>4. Dá ní</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Ẹ̀ka</translation>
         </message>
@@ -1157,6 +1188,10 @@ O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkók�
         <message>
             <source>Piece Map</source>
             <translation>Máàpù àwọn píìsì</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>5. Gbé...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2673,6 +2708,10 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <translation>Ṣàkójá .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>6. Ṣẹ̀dá Torrent...</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Àwọn ìgbàlódé</translation>
         </message>
@@ -2707,10 +2746,6 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
         <message>
             <source>Stop Queue</source>
             <translation>Dá ìlà dúró</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Ìdínà Ìyára</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4857,6 +4892,42 @@ Tẹ láti ṣí Ìṣirò</translation>
             <source>SDM downloads</source>
             <translation>Àwọn ìgbàsílẹ̀ SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>7. Ṣí Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>8. Fi URL kún...</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>9. GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>10. Nípa Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Ìdádúró Ìsáré</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Ètò Ìdádúró Ìsáré…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Dádúró Ìgbà</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Jáde kúrò ní Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Tún Ìgbà Bẹ̀rẹ̀</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5702,6 +5773,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Gba Fídíò</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Ṣẹ̀dá Torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Àwọn Fáìlì / Fọ́ldà Orisun</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Fáìlì</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Fọ́ldà</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Yọ</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Fa awọn faili tabi folda síbí, tabi lo àwọn bọ́tìnì lókè</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Ìjáde</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Fi pamọ́ sí:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Ọ̀nà láti fi fáìlì .torrent pamọ́ sí…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Ṣàwárí…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Orúkọ:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Yiyan — àìpé sí orúkọ folda/faili</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Ìwọ̀n ẹyọ:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Aládàáṣe</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 ẹyọ × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Àkọsílẹ̀</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Ọ̀rọ̀ìwòye:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Ọ̀rọ̀ìwòye àṣàyàn tí a fi sínú .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Àpèjúwe:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Àpèjúwe gbòòrò àṣàyàn</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Dá láti ọwọ́:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Torrent àdáni (DHT àti PEX kò ṣiṣẹ́ fún torrent yìí)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Àwọn olùtọpinpin</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>URL kan fún ìlà kan</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Àwọn irúgbìn wẹ́ẹ̀bù (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>1. https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>2. Ṣí torrent tó bá ṣẹ̀dá</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>3. ✓ Torrent ti ṣẹ̀dá dáadáa: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>4. ✗ Àṣìṣe: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>5. Ti fagi lé</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>6. Ń ṣe hash àwọn ẹyọ… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>7. %1 ẹyọ × %2 fún ẹyọ kan</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>8. Fagi lé</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>9. Ti pa</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>10. Ń ṣẹ̀dá…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Ṣí Torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Ṣẹ̀dá Torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Fi Fáìlì Kún</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Fi Fọ́ldà Kún</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Fipamọ́ Fáìlì .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Fáìlì Torrent (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Gbogbo fáìlì (*)</translation>
         </message>
     </context>
 </TS>

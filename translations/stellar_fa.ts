@@ -61,38 +61,6 @@
             <translation>مکث</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>مدیریت دانلود استلار نسخه</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>در حال دریافت: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>در حال بارگذاری: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>در حال بارگذاری: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>کل: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>کل: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>استلار در حال خاموش شدن...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>نصب فایل XPI Firefox (بدون به‌روزرسانی خودکار)</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>اسنپ فایرفاکس شناسایی شد — با Stellar کار نمی‌کند</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>اسنپ فایرفاکس در یک سندباکس محدود اجرا می‌شود و نمی‌تواند میزبان Stellar را راه‌اندازی کند. به فلت‌پک فایرفاکس (توصیه‌شده)، بستهٔ رسمی .deb موزیلا بروید یا از کرومیوم / بریو / ویوالدی استفاده کنید.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>باز کردن فلت‌پک فایرفاکس در دیسکاور</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>صفحهٔ دانلود موزیلا</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>نتوانست دیسکاور را باز کند — «Firefox» را دستی در فروشگاه خود جستجو کنید یا از لینک دانلود موزیلا استفاده کنید.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>باز شد. فایرفاکس را نصب کنید، سپس نسخهٔ اسنپ را حذف کنید (تنظیمات سیستم → برنامه‌ها).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>فلت‌پک فایرفاکس به یک مجوز اضافی نیاز دارد</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>فایرفاکس (فلت‌پک) در یک سندباکس اجرا می‌شود و برای راه‌اندازی میزبان پیام‌رسانی بومی Stellar به مجوز org.freedesktop.Flatpak=talk نیاز دارد. دکمهٔ زیر را برای اعطای آن کلیک کنید، سپس فایرفاکس را راه‌اندازی مجدد کنید.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>اعطای مجوز</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>مجوز اعطا شد. برای اعمال تغییر، فایرفاکس را راه‌اندازی مجدد کنید.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>عدم موفقیت در اعطای مجوز:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>اجرای دستی: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1089,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>متادیتا</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>توضیحات</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>ایجاد شده توسط</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>ایجاد شده در</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>دسته</translation>
         </message>
@@ -1157,6 +1187,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>نقشه قطعه</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>انتقال...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2664,6 +2698,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>خروجی .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>ایجاد تورنت...</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>دانلودها</translation>
         </message>
@@ -2698,10 +2736,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>ایستادن صف</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>محدودکننده سرعت</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4844,6 +4878,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>دانلودهای SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>باز کردن Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>افزودن URL...</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>گیت‌هاب</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>درباره Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>محدودکننده سرعت</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>تنظیمات محدودکننده سرعت…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>توقف نشست</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>خروج از Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>ادامه نشست</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5689,6 +5759,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>دانلود ویدیو</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>ساخت تورنت</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>فایلها/پوشههای منبع</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ فایلها</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ پوشه</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>حذف</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>فایلها یا پوشهها را اینجا بکشید یا از دکمههای بالا استفاده کنید</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>خروجی</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>ذخیره در:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>مسیر ذخیره فایل تورنت…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>مرور…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>نام:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>اختیاری — پیش‌فرض نام پوشه/فایل</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>اندازه قطعه:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>خودکار</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 قطعه × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>فراداده</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>دیدگاه:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>دیدگاه اختیاری درون فایل تورنت</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>توضیح:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>توضیح گسترده اختیاری</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>ساخته‌شده توسط:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>تورنت خصوصی (DHT و PEX غیرفعال)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>ردیاب‌ها</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>هر خط یک URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>بذرهای وب (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>بازکردن تورنت پس از ساخت</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ تورنت با موفقیت ساخته شد: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ خطا: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>لغو شد</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>در حال هش قطعات... %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 قطعه × %2 هر قطعه</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>لغو</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>بستن</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>در حال ساخت...</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>باز کردن تورنت</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>ساخت تورنت…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>افزودن فایل</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>افزودن پوشه</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>ذخیرهٔ فایل تورنت.</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>فایل‌های تورنت (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>همهٔ فایل‌ها (*)</translation>
         </message>
     </context>
 </TS>

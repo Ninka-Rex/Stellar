@@ -61,38 +61,6 @@
             <translation>PAUSE</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Henter: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>Seeder: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Seeder: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>I alt: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>I alt: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar lukker ned...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Installer Firefox XPI, ingen automatiske opdateringer</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox registreret — virker ikke med Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap-versionen af Firefox kører i et isoleret sandbox-miljø og kan ikke starte Stellar-værten. Skift til Firefox flatpak (anbefales), Mozillas officielle .deb-pakke, eller brug Chromium / Brave / Vivaldi i stedet.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Åbn Firefox flatpak i Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Mozilla-downloadside</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Kunne ikke åbne Discover — søg efter &quot;Firefox&quot; manuelt i din butik, eller brug Mozillas downloadlink.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Åbnet. Installer Firefox, og afinstaller derefter snap-versionen (Systemindstillinger → Apps).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox har brug for en ekstra tilladelse</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) kører i en sandkasse og har brug for tilladelsen org.freedesktop.Flatpak=talk for at starte Stellar native messaging host. Klik på knappen nedenfor for at give tilladelsen, og genstart derefter Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Giv tilladelse</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Tilladelse givet. Genstart Firefox for at ændringen kan træde i kraft.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>Tilladelse mislykkedes:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>Kør manuelt: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1089,18 @@ Du kan ændre det i Indstillinger → Downloads senere.</translation>
             <translation>Metadata</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Beskrivelse</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>Oprettet af</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>Oprettet den</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Kategori</translation>
         </message>
@@ -1157,6 +1187,10 @@ Du kan ændre det i Indstillinger → Downloads senere.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Stykke-kort</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>Flyt...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2667,6 +2701,10 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
             <translation>Eksporter .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>Opret torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Downloads</translation>
         </message>
@@ -2701,10 +2739,6 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
         <message>
             <source>Stop Queue</source>
             <translation>Stop kø</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Hastighedsbegrænser</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4851,6 +4885,42 @@ Klik for at åbne Statistik</translation>
             <source>SDM downloads</source>
             <translation>SDM downloads</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Åbn Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>Tilføj URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Om Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Hastighedsgrænse</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Indstillinger for hastighedsgrænse…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Pause session</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Afslut Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Genoptag session</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5697,6 +5767,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Videodownload</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Opret torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Kildefiler / -mapper</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Filer</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Mappe</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Fjern</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Træk filer eller mapper hertil, eller brug knapperne ovenfor</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Output</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Gem til:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Sti til .torrent-fil…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Gennemse…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Navn:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Valgfrit — standard er mappe-/filnavn</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Stykstørrelse:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 stykker × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metadata</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Kommentar:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Valgfri kommentar indlejret i .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Beskrivelse:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Valgfri udvidet beskrivelse</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Oprettet af:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Privat torrent (DHT og PEX deaktiveret)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Trackere</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Én URL pr. linje</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Web Seeds (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Åbn torrent når oprettet</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Torrent oprettet: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Fejl: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Annulleret</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Hasher stykker… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 stykker × %2 pr. stykke</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Annuller</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Luk</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Opretter…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Åbn torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Opret torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Tilføj filer</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Tilføj mappe</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Gem .torrent-fil</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Torrentfiler (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Alle filer (*)</translation>
         </message>
     </context>
 </TS>

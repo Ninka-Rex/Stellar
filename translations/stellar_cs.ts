@@ -61,38 +61,6 @@
             <translation>POZASTAVENO</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Stahování: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>Seedování: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Seedování: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>Celkem: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Celkem: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar se vypíná...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Instalovat Firefox XPI, bez automatických aktualizací</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox detekován — nebude fungovat se Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox běží v sandboxu a nemůže spustit hostitele Stellar. Přepněte na flatpak Firefox (doporučeno), oficiální .deb od Mozilly, nebo použijte Chromium / Brave / Vivaldi.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Otevřít flatpak Firefox v Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Stránka ke stažení Mozilly</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Nelze otevřít Discover — vyhledejte „Firefox“ ručně v obchodě, nebo použijte odkaz ke stažení od Mozilly.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Otevřeno. Nainstalujte Firefox a poté odinstalujte snap verzi (Nastavení → Aplikace).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox potřebuje další oprávnění</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) běží v sandboxu a potřebuje oprávnění org.freedesktop.Flatpak=talk ke spuštění hostitele Stellar. Klikněte na tlačítko níže pro udělení a restartujte Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Udělit oprávnění</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Oprávnění uděleno. Restartujte Firefox, aby se změna projevila.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>Nepodařilo se udělit oprávnění: </translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>Spusťte ručně: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1072,6 +1090,18 @@ Lze změnit v Možnosti → Stahování.</translation>
             <translation>Metadata</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Popis</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>Vytvořil</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>Vytvořeno</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Kategorie</translation>
         </message>
@@ -1158,6 +1188,10 @@ Lze změnit v Možnosti → Stahování.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Mapa dílků</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>Přesunout…</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2668,6 +2702,10 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <translation>Exportovat .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>Vytvořit torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Stahování</translation>
         </message>
@@ -2702,10 +2740,6 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
         <message>
             <source>Stop Queue</source>
             <translation>Zastavit frontu</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Omezovač rychlosti</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4852,6 +4886,42 @@ Klikněte pro otevření Statistiky</translation>
             <source>SDM downloads</source>
             <translation>SDM stahování</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Otevřít Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>Přidat URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>O Stellaru</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Omezovač rychlosti</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Nastavení omezovače…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Pozastavit relaci</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Ukončit Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Obnovit relaci</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5698,6 +5768,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Stáhnout video</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Vytvořit torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Zdrojové soubory/složky</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Soubory</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Složka</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Odebrat</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Přetáhněte soubory nebo složky sem, nebo použijte tlačítka výše</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Výstup</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Uložit do:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Cesta k uložení .torrent souboru…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Procházet…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Název:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Volitelné — výchozí název složky/souboru</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Velikost dílu:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 dílů × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metadata</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Komentář:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Volitelný komentář v .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Popis:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Volitelný rozšířený popis</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Vytvořil:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Soukromý torrent (DHT a PEX vypnuty)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Trackery</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Jedna URL na řádek</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Web zdroje (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Otevřít po vytvoření</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Torrent vytvořen: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Chyba: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Zrušeno</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Hašování dílů… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 dílů × %2 na díl</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Zrušit</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Zavřít</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Vytvářím…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Otevřít torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Vytvořit torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Přidat soubory</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Přidat složku</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Uložit .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Soubory torrentu (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Všechny soubory (*)</translation>
         </message>
     </context>
 </TS>

@@ -61,38 +61,6 @@
             <translation>DAKATA</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>3. Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>Sauka: %1  Aika: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Ana saukewa: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>Ana shukawa: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Ana shukawa: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>Jimla: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Jimla: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>10. Stellar na rufewa...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Shigar Firefox XPI, babu sabuntawa ta atomatik</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox an gano — ba zai yi aiki da Stellar ba</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox yana gudana a cikin sandbox mai ƙuntatawa kuma ba zai iya buɗe Stellar host ba. Canja zuwa Firefox flatpak (an bada shawara), .deb na hukuma na Mozilla, ko amfani da Chromium / Brave / Vivaldi maimakon.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Buɗe Firefox flatpak a cikin Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Shafin saukewa na Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>An kasa buɗe Discover — nemo &quot;Firefox&quot; da hannu a cikin kantin sayayyarka, ko amfani da hanyar saukewa ta Mozilla.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>An buɗe. Shigar Firefox, sannan cire sigar snap (System Settings → Apps).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox na buƙatar ƙarin izini</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) yana gudana a cikin sandbox kuma yana buƙatar izinin org.freedesktop.Flatpak=talk don buɗe Stellar native messaging host. Danna maɓallin da ke ƙasa don ba da shi, sannan sake kunna Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Ba da izini</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>An ba da izini. Sake kunna Firefox don canjin ya fara aiki.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>An kasa ba da izini:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>
+Gudanar da hannu: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1070,6 +1089,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Metadata</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Bayani</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>Ƙirƙira ta</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>An ƙirƙira a</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Rukuni</translation>
         </message>
@@ -1156,6 +1187,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>Taswirar Yanki</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>Matsar...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2672,6 +2707,10 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
             <translation>Fitar da .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>Ƙirƙiri Torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Zazzagewa</translation>
         </message>
@@ -2706,10 +2745,6 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
         <message>
             <source>Stop Queue</source>
             <translation>Tsayar da jerin</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Mai iyakance gudu</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4856,6 +4891,42 @@ Danna don buɗe Ƙididdiga</translation>
             <source>SDM downloads</source>
             <translation>Zazzagewar SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Buɗe Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>Ƙara URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Game da Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Mai iyaka gudu</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Saitunan mai iyaka gudu…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Dakatar da zaman</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Fita daga Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Ci gaba da zaman</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5701,6 +5772,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Zazzage Bidiyo</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Ƙirƙiri Torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Fayiloli / manyan fayiloli na asali</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Fayiloli</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Manyan fayiloli</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Cire</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Ja fayiloli ko manyan fayiloli nan, ko amfani da maɓallan sama</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Fitarwa</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Ajiye zuwa:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Hanyar ajiye fayil ɗin .torrent…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Bincika…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Suna:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Na zaɓi — tsoho zuwa sunan babban fayil/fayil</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Girman yanki:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Kai tsaye</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 yankuna × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metadata</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Sharhi:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Sharhi na zaɓi a cikin .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Bayani:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Ƙarin bayani na zaɓi</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Wanda ya ƙirƙira:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Torrent na sirri (DHT da PEX an kashe)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Masu bibiya</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>URL ɗaya a kowane layi</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Tsaba na Yanar (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Buɗe torrent idan an ƙirƙira</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ An ƙirƙiri torrent cikin nasara: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Kuskure: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>An soke</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Ana hash ɓangarori… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 ɓangarori × %2 kowane ɓangare</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Soke</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Rufe</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Ana ƙirƙira…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Buɗe Torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Ƙirƙiri Torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Ƙara Fayiloli</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Ƙara Jaka</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Ajiye fayil ɗin .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Fayilolin Torrent (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Duk fayiloli (*)</translation>
         </message>
     </context>
 </TS>

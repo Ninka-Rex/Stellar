@@ -61,38 +61,6 @@
             <translation>已暂停</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar 下载管理器 v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓ %1  ↑ %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>下载中: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>  做种中: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>做种中: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>  总计: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>总计: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar 正在关闭...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>安装 Firefox XPI，无自动更新</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>1. 检测到 Snap 版 Firefox — 无法与 Stellar 配合使用</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>2. Snap 版 Firefox 运行在受限沙盒中，无法启动 Stellar 主机。请改用 Firefox flatpak（推荐）、Mozilla 官方 .deb 包，或使用 Chromium / Brave / Vivaldi。</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>3. 在 Discover 中打开 Firefox flatpak</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>4. Mozilla 下载页面</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>5. 无法打开 Discover — 请在应用商店中手动搜索“Firefox”，或使用 Mozilla 下载链接。</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>6. 已打开。安装 Firefox，然后卸载 snap 版本（系统设置 → 应用）。</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>7. Flatpak 版 Firefox 需要额外权限</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>8. Firefox (Flatpak) 运行在沙盒中，需要 org.freedesktop.Flatpak=talk 权限才能启动 Stellar 原生消息主机。点击下方按钮授权，然后重启 Firefox。</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>9. 授予权限</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>10. 权限已授予。重启 Firefox 使更改生效。</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>1. 权限授予失败：</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>2. 
+手动运行：flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1090,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>元数据</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>描述</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>3. 创建者</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>4. 创建于</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>分类</translation>
         </message>
@@ -1157,6 +1188,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>块图</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>5. 移动...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2667,6 +2702,10 @@ Stellar 选项 → 浏览器 → 绕过下载拦截</translation>
             <translation>导出 .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>6. 创建种子...</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>下载</translation>
         </message>
@@ -2701,10 +2740,6 @@ Stellar 选项 → 浏览器 → 绕过下载拦截</translation>
         <message>
             <source>Stop Queue</source>
             <translation>停止队列</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>限速器</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4850,6 +4885,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM 下载</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>7. 打开 Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>8. 添加 URL...</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>9. GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>10. 关于 Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>限速器</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>限速器设置…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>暂停会话</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>退出 Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>恢复会话</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5695,6 +5766,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>视频下载</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>创建种子</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>源文件/文件夹</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ 文件</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ 文件夹</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>移除</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>拖放文件或文件夹至此，或使用上方按钮</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>输出</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>保存至：</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent 文件保存路径…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>浏览…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>名称：</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>可选 — 默认使用文件夹/文件名</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>分块大小：</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>自动</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 块 × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>元数据</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>备注：</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>嵌入 .torrent 的可选备注</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>描述：</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>可选扩展描述</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>创建者：</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>私有种子（此种子禁用 DHT 和 PEX）</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Tracker 服务器</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>每行一个 URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Web 种子（HTTP/FTP）</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>创建后打开种子</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ 种子创建成功：%1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ 错误：%1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>已取消</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>正在校验分块… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 分块 × 每块 %2</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>关闭</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>创建中…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>打开种子</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>创建种子…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>添加文件</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>添加文件夹</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>保存 .torrent 文件</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>种子文件 (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>所有文件 (*)</translation>
         </message>
     </context>
 </TS>

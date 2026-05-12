@@ -61,38 +61,6 @@
             <translation>PAUZĒTS</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar lejupielādes menedžeris v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>Lejup: %1  Augšup: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Lejupielādē: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>Izplatīšana: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Izplatīšana: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>Kopā: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Kopā: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar tiek apturēts...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Instalēt Firefox XPI, bez automātiskiem atjauninājumiem</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox atklāts — nedarbosies ar Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox darbojas ierobežotā smilškastē un nevar palaist Stellar resursdatoru. Pārejiet uz Firefox flatpak (ieteicams), Mozilla oficiālo .deb vai izmantojiet Chromium / Brave / Vivaldi.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Atvērt Firefox flatpak veikalā Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Mozilla lejupielādes lapa</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Nevarēja atvērt Discover — meklējiet &quot;Firefox&quot; manuāli veikalā vai izmantojiet Mozilla lejupielādes saiti.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Atvērts. Instalējiet Firefox, pēc tam atinstalējiet snap versiju (Sistēmas iestatījumi → Lietotnes).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox nepieciešama papildu atļauja</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) darbojas smilškastē un tam nepieciešama org.freedesktop.Flatpak=talk atļauja, lai palaistu Stellar vietējo ziņojumapmaiņas resursdatoru. Noklikšķiniet zemāk esošo pogu, lai to piešķirtu, pēc tam restartējiet Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Piešķirt atļauju</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Atļauja piešķirta. Restartējiet Firefox, lai izmaiņas stātos spēkā.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>Neizdevās piešķirt atļauju:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation/>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1089,18 @@ To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
             <translation>Metadati</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Apraksts</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>Palaist manuāli: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>Izveidoja</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Kategorija</translation>
         </message>
@@ -1157,6 +1187,10 @@ To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Daļu karte</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>Izveidots</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2667,6 +2701,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Eksportēt .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>Pārvietot...</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Lejupielādes</translation>
         </message>
@@ -2701,10 +2739,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>Apturēt rindu</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Ātruma ierobežotājs</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4851,6 +4885,42 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
             <source>SDM downloads</source>
             <translation>SDM lejupielādes</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Izveidot torrentu…</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>Atvērt Stellar</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>Pievienot URL…</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Ātruma ierobežotājs</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Ātruma ierobežotāja iestatījumi…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Pauzēt sesiju</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Iziet no Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Atsākt sesiju</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5697,6 +5767,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Video lejupielāde</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Izveidot torrentu</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Avota datnes / mapes</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Datnes</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Mape</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Noņemt</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Velciet failus vai mapes šeit, vai izmantojiet pogas augšā</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Izvade</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Saglabāt:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Ceļš .torrent faila saglabāšanai…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Pārlūkot…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Nosaukums:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Neobligāti — pēc noklusējuma mapes/faila nosaukums</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Daļas izmērs:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 daļas × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metadati</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Komentārs:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Neobligāts komentārs .torrent failā</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Apraksts:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Neobligāts paplašināts apraksts</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Izveidoja:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Privāts torrents (DHT un PEX atspējoti)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Trekeri</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Viens URL katrā rindā</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Tīmekļa sēklas (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Atvērt, kad izveidots</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Torrents veiksmīgi izveidots: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Kļūda: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Atcelts</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Jaucas daļas… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 daļas × %2 katra</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Atcelt</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Aizvērt</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Veido…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Atvērt torrentu</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Izveidot torrentu…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Pievienot failus</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Pievienot mapi</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Saglabāt .torrent failu</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Torrent faili (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Visi faili (*)</translation>
         </message>
     </context>
 </TS>

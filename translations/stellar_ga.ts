@@ -61,38 +61,6 @@
             <translation>SOS</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Bainisteoir Íoslódála Stellar v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>Síos: %1  Suas: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Á íoslódáil: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>  Ag síolrú: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Ag síolrú: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>  Iomlán: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Iomlán: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar ag stop...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Stáalaigh Firefox XPI, gan nuashonruithe uathoibríocha</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Braitheadh Snap Firefox — ní oibreoidh sé le Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Ritheann Snap Firefox i mbosca gainimh teoranta agus ní féidir leis óstach Stellar a sheoladh. Athraigh go Firefox flatpak (molta), .deb oifigiúil Mozilla, nó úsáid Chromium / Brave / Vivaldi ina ionad.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Oscail Firefox flatpak in Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Leathanach íoslódála Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Níorbh fhéidir Discover a oscailt — cuardaigh &quot;Firefox&quot; de láimh i do stór, nó úsáid an nasc íoslódála Mozilla.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Oscailte. Suiteáil Firefox, ansin díshuiteáil an leagan snap (Socruithe Córais → Aipeanna).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Teastaíonn cead breise ó Flatpak Firefox</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Ritheann Firefox (Flatpak) i mbosca gainimh agus teastaíonn an cead org.freedesktop.Flatpak=talk uaidh chun óstach teachtaireachtaí dúchais Stellar a sheoladh. Cliceáil an cnaipe thíos chun é a dheonú, ansin atosaigh Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Deonaigh cead</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Cead deonaithe. Atosaigh Firefox chun an t-athrú a chur i bhfeidhm.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>Theip ar chead a thabhairt:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>Rith de láimh: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1070,6 +1088,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Meiteashonraí</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Cur síos</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>Cruthaithe ag</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>Cruthaithe ar</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Catagóir</translation>
         </message>
@@ -1156,6 +1186,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>Mapa píosaí</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>Bog...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2666,6 +2700,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Easpórtáil .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>Cruthaigh Torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Íoslódálacha</translation>
         </message>
@@ -2700,10 +2738,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>Stad an Fheidhmchlár</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Teorannóir luais</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4849,6 +4883,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>4. Íoslódálacha SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Oscail Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>Cuir URL leis…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Maidir le Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Teorannóir Luais</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Socruithe Teorannóra Luais…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Sos Seisiúin</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Scoir Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Atosaigh Seisiún</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5694,6 +5764,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Íoslódáil Físeáin</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Cruthaigh Torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Comhaid / Fillteáin Foinse</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Comhaid</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Fillteán</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Bain</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Tarraing comhaid nó fillteáin anseo, nó úsáid na cnaipí thuas</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Aschur</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Sábháil go:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Cosán chun an comhad .torrent a shábháil…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Brabhsáil…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Ainm:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Roghnach — réamhshocrú go hainm fillteáin/comhaid</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Méid píosa:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Uathoibríoch</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 píosa × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Meiteashonraí</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Nóta:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Nóta roghnach leabaithe sa .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Cur síos:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Cur síos fada roghnach</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Cruthaithe ag:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Torrent príobháideach (DHT &amp; PEX díchumasaithe)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Lorgairí</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>URL amháin in aghaidh an líne</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Síolta Gréasáin (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Oscail nuair a chruthaítear</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Cruthaíodh an torrent: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Earráid: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Cealaithe</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Haisáil píosaí… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 píosa × %2 an píosa</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Cealaigh</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Dún</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Á chruthú…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Oscail Torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Cruthaigh Torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Cuir Comhaid Leis</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Cuir Fillteán Leis</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Sábháil .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Comhaid torrent (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Gach comhad (*)</translation>
         </message>
     </context>
 </TS>

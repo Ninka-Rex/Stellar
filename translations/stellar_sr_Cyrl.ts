@@ -61,38 +61,6 @@
             <translation>ПАУЗИРАНО</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Преузимање: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>   Дели: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Дели: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>   Укупно: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Укупно: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar se gasi...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Instalirajte Firefox XPI bez automatskih ažuriranja</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox откривен — не ради са Stellar-ом</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox ради у ограниченом сандбоксу и не може да покрене Stellar хост. Пређите на Firefox flatpak (препоручено), Mozilla-ин званични .deb, или користите Chromium / Brave / Vivaldi.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Отвори Firefox flatpak у Discover-у</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Mozilla страница за преузимање</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Не могу да отворим Discover — потражите „Firefox“ ручно у продавници или користите Mozilla линк за преузимање.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Отворено. Инсталирајте Firefox, затим деинсталирајте snap верзију (Подешавања → Апликације).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox-у треба додатна дозвола</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) ради у сандбоксу и треба му org.freedesktop.Flatpak=talk дозвола да покрене Stellar native messaging хост. Кликните дугме испод да је одобрите, па поново покрените Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Одобри дозволу</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Дозвола одобрена. Поново покрените Firefox да би промена ступила на снагу.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>1. Неуспело давање дозволе:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>2. 
+Покрени ручно: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1090,18 @@ Možete promeniti u Opcije → Preuzimanja kasnije.</translation>
             <translation>Метаподаци</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Опис</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>3. Направио</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>4. Направљено</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Категорија</translation>
         </message>
@@ -1157,6 +1188,10 @@ Možete promeniti u Opcije → Preuzimanja kasnije.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Karta komada</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>5. Премести...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2664,6 +2699,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Извези .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>6. Направи торент…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Preuzimanja</translation>
         </message>
@@ -2698,10 +2737,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>Stani red</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Ограничавач брзине</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4847,6 +4882,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>СДМ преузимања</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>7. Отвори Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>8. Додај URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>9. GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>10. О Stellar-у</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Ограничивач брзине</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Подешавања ограничивача…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Паузирај сесију</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Изађи из Stellar-а</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Настави сесију</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5692,6 +5763,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Preuzmi video</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Направи торент</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Изворне датотеке/фасцикле</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Датотеке</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Фасцикла</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Уклони</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Превуци датотеке или фасцикле овде, или користи дугмад изнад</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Излаз</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Сачувај у:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Путања за чување .torrent датотеке…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Прегледај…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Име:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Опционо — подразумевано име фасцикле/датотеке</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Величина дела:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Ауто</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 делова × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Метаподаци</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Коментар:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Опциони коментар у .torrent датотеци</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Опис:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Опциони проширени опис</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Направио:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Приватни торент (DHT и PEX онемогућени)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Тракери</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Један URL по реду</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Веб извори (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Отвори торент по креирању</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Торент успешно креиран: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Грешка: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Отказано</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Хеширање делова… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 делова × %2 по делу</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Откажи</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Затвори</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Креирање…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Отвори торент</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Направи торент…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Додај датотеке</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Додај фасциклу</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Сачувај .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Торент датотеке (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Све датотеке (*)</translation>
         </message>
     </context>
 </TS>

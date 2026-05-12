@@ -61,38 +61,6 @@
             <translation>இடைநிறுத்தப்பட்டது</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>ஸ்டெல்லார் பதிவிறக்க மேலாளர் v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>↓: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>↑: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>↑: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>மொத்தம்: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>மொத்தம்: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>ஸ்டெல்லார் நிறுத்தப்படுகிறது...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Firefox XPI நிறுவு, தானியங்கு புதுப்பிப்பு இல்லை</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>ஸ்னாப் பயர்பாக்ஸ் கண்டறியப்பட்டது — ஸ்டெல்லருடன் இயங்காது</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>ஸ்னாப் பயர்பாக்ஸ் கட்டுப்படுத்தப்பட்ட சாண்ட்பாக்ஸில் இயங்குவதால் ஸ்டெல்லர் ஹோஸ்ட்டை துவக்க முடியாது. பயர்பாக்ஸ் பிளாட்பேக்கிற்கு மாறவும் (பரிந்துரை), மொஸில்லாவின் அதிகாரப்பூர்வ .deb, அல்லது குரோமியம் / பிரேவ் / விவால்டியைப் பயன்படுத்தவும்.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>டிஸ்கவரில் பயர்பாக்ஸ் பிளாட்பேக்கைத் திற</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>மொஸில்லா பதிவிறக்கப் பக்கம்</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>டிஸ்கவரைத் திறக்க முடியவில்லை — உங்கள் ஸ்டோரில் &quot;Firefox&quot; எனத் தேடவும் அல்லது மொஸில்லா பதிவிறக்க இணைப்பைப் பயன்படுத்தவும்.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>திறக்கப்பட்டது. பயர்பாக்ஸை நிறுவி, பின்னர் ஸ்னாப் பதிப்பை நீக்கவும் (கணினி அமைப்புகள் → பயன்பாடுகள்).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>பிளாட்பேக் பயர்பாக்ஸுக்கு கூடுதல் அனுமதி தேவை</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>பயர்பாக்ஸ் (பிளாட்பேக்) சாண்ட்பாக்ஸில் இயங்குகிறது மற்றும் ஸ்டெல்லர் நேட்டிவ் மெசேஜிங் ஹோஸ்ட்டை துவக்க org.freedesktop.Flatpak=talk அனுமதி தேவை. கீழே உள்ள பொத்தானைக் கிளிக் செய்து அனுமதியை வழங்கவும், பின்னர் பயர்பாக்ஸை மறுதொடக்கம் செய்யவும்.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>அனுமதி வழங்கு</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>அனுமதி வழங்கப்பட்டது. மாற்றம் நடைமுறைக்கு வர பயர்பாக்ஸை மறுதொடக்கம் செய்யவும்.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>அனுமதி வழங்கத் தவறியது:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>கைமுறையாக இயக்கு: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1089,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>மீதரவு</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>விளக்கம்</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>உருவாக்கியவர்</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>உருவாக்கிய தேதி</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>வகை</translation>
         </message>
@@ -1157,6 +1187,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>துண்டு வரைபடம்</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>நகர்த்து...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2672,6 +2706,10 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <translation>.torrent ஏற்றுமதி…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>டோரண்ட் உருவாக்கு…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>பதிவிறக்கங்கள்</translation>
         </message>
@@ -2706,10 +2744,6 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
         <message>
             <source>Stop Queue</source>
             <translation>வரிசையை நிறுத்து</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>வேக வரம்பு</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4856,6 +4890,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM பதிவிறக்கங்கள்</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Stellar-ஐத் திற</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>URL சேர்…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Stellar பற்றி</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>வேக வரம்பு</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>வேக வரம்பு அமைப்புகள்…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>அமர்வை இடைநிறுத்து</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>ஸ்டெல்லரிலிருந்து வெளியேறு</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>அமர்வை மீண்டும் தொடர்</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5702,6 +5772,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>வீடியோ பதிவிறக்கம்</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>டொரண்ட் உருவாக்கு</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>மூல கோப்புகள் / கோப்புறைகள்</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ கோப்புகள்</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ கோப்புறை</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>நீக்கு</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>கோப்புகள்/கோப்புறைகளை இழுத்து விடவும் அல்லது மேலே உள்ள பொத்தான்களைப் பயன்படுத்தவும்</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>வெளியீடு</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>சேமி:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent கோப்பைச் சேமிக்கும் பாதை…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>உலாவு…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>பெயர்:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>விருப்பம் — கோப்புறை/கோப்பின் பெயருக்கு இயல்பாகும்</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>துண்டு அளவு:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>தானி</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 துண்டுகள் × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>மீதரவு</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>கருத்து:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>.torrent-இல் உட்பொதிக்கப்பட்ட விருப்ப கருத்து</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>விளக்கம்:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>விருப்ப விரிவான விளக்கம்</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>உருவாக்கியவர்:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>தனியார் டொரண்ட் (இந்த டொரண்டிற்கு DHT மற்றும் PEX முடக்கப்பட்டுள்ளது)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>கண்காணிப்பான்கள்</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>ஒரு வரிக்கு ஒரு URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>வலை விதைகள் (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>உருவாக்கும்போது திற</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ டொரன்ட் வெற்றியாக உருவாக்கப்பட்டது: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ பிழை: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>ரத்துசெய்யப்பட்டது</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>துண்டுகளை ஹேஷ் செய்கிறது… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 துண்டுகள் × %2/துண்டு</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ரத்துசெய்</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>மூடு</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>உருவாக்குகிறது…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>திற</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>உருவாக்கு…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>கோப்புகளைச் சேர்</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>கோப்புறை சேர்</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent சேமி</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Torrent கோப்புகள் (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>அனைத்து கோப்புகள் (*)</translation>
         </message>
     </context>
 </TS>

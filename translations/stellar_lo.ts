@@ -61,38 +61,6 @@
             <translation>ຢຸດຊົ່ວຄາວ</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>13. Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>ກຳລັງດາວໂຫຼດ: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>  ກຳລັງແຈກຢາຍ: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>ກຳລັງແຈກຢາຍ: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>  ລວມ: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>ລວມ: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>20. Stellar ກຳລັງປິດ...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>ຕິດຕັ້ງ Firefox XPI, ບໍ່ມີອັບເດດອັດຕະໂນມັດ</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox ກວດພົບ — ບໍ່ສາມາດໃຊ້ກັບ Stellar ໄດ້</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox ເຮັດວຽກໃນ sandbox ທີ່ຈຳກັດ ແລະບໍ່ສາມາດເປີດ Stellar host ໄດ້. ປ່ຽນໄປໃຊ້ Firefox flatpak (ແນະນຳ), .deb ທາງການຈາກ Mozilla, ຫຼືໃຊ້ Chromium / Brave / Vivaldi ແທນ.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>ເປີດ Firefox flatpak ໃນ Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>ໜ້າດາວໂຫຼດ Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>ບໍ່ສາມາດເປີດ Discover ໄດ້ — ຄົ້ນຫາ &quot;Firefox&quot; ດ້ວຍຕົນເອງໃນຮ້ານຄ້າ, ຫຼືໃຊ້ລິ້ງດາວໂຫຼດຈາກ Mozilla.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>ເປີດແລ້ວ. ຕິດຕັ້ງ Firefox, ຈາກນັ້ນຖອນເວີຊັນ snap (ການຕັ້ງຄ່າລະບົບ → ແອັບ).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox ຕ້ອງການສິດພິເສດ</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) ເຮັດວຽກໃນ sandbox ແລະຕ້ອງການສິດ org.freedesktop.Flatpak=talk ເພື່ອເປີດ Stellar native messaging host. ຄລິກປຸ່ມຂ້າງລຸ່ມເພື່ອອະນຸຍາດ, ຈາກນັ້ນຣີສະຕາດ Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>ອະນຸຍາດ</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>ອະນຸຍາດແລ້ວ. ຣີສະຕາດ Firefox ເພື່ອໃຫ້ການປ່ຽນແປງມີຜົນ.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>1. ບໍ່ສາມາດອະນຸຍາດ: </translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>2. 
+ແລ່ນດ້ວຍຕົນເອງ: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1090,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ຂໍ້ມູນເມຕາ</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>ລາຍລະອຽດ</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>3. ສ້າງໂດຍ</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>4. ສ້າງເມື່ອ</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>ໝວດ</translation>
         </message>
@@ -1157,6 +1188,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>ແຜນທີ່ຊິ້ນສ່ວນ</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>5. ຍ້າຍ...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2674,6 +2709,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ສົ່ງອອກ .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>6. ສ້າງ Torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>ດາວໂຫຼດ</translation>
         </message>
@@ -2708,10 +2747,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>ຢຸດຄິວ</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>ຈຳກັດຄວາມໄວ</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4858,6 +4893,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>ດາວໂຫຼດ SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>7. ເປີດ Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>8. ເພີ່ມ URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>9. GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>10. ກ່ຽວກັບ Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>ຈຳກັດຄວາມໄວ</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>ຕັ້ງຄ່າຈຳກັດຄວາມໄວ…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>ຢຸດເຊສຊັນ</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>ອອກ Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>ສືບຕໍ່ເຊສຊັນ</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5704,6 +5775,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ດາວໂຫຼດວິດີໂອ</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>ສ້າງ Torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>ໄຟລ໌ / ໂຟນເດີ້ຕົ້ນທາງ</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ ໄຟລ໌</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ ໂຟນເດີ້</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>ລຶບ</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>ລາກໄຟລ໌ ຫຼື ໂຟນເດີ້ມາທີ່ນີ້ ຫຼື ໃຊ້ປຸ່ມຂ້າງເທິງ</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>ຜົນລັບ</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>ບັນທຶກໃສ່:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>ທາງບັນທຶກໄຟລ໌ .torrent…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>ເລືອກ…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>ຊື່:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>ທາງເລືອກ — ຄ່າເລີ່ມຕົ້ນແມ່ນຊື່ໂຟນເດີ້/ໄຟລ໌</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>ຂະໜາດຊິ້ນ:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>ອັດຕະໂນມັດ</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 ຊິ້ນ × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>ຂໍ້ມູນເມຕາ</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>ຄຳເຫັນ:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>ຄຳເຫັນທາງເລືອກທີ່ຝັງໃນ .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>ຄຳອະທິບາຍ:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>ຄຳອະທິບາຍຂະຫຍາຍທາງເລືອກ</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>ສ້າງໂດຍ:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>ທໍເຣັນສ່ວນຕົວ (ປິດ DHT ແລະ PEX)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>ຕົວຕິດຕາມ</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>ໜຶ່ງ URL ຕໍ່ແຖວ</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Web Seeds (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>1. https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>2. ເປີດ torrent ເມື່ອສ້າງ</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>3. ✓ ສ້າງ torrent ສຳເລັດ: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>4. ✗ ຜິດພາດ: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>5. ຍົກເລີກ</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>6. ກຳລັງ hash… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>7. %1 ຊິ້ນ × %2 ຕໍ່ຊິ້ນ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>8. ຍົກເລີກ</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>9. ປິດ</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>10. ກຳລັງສ້າງ…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>ເປີດ Torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>ສ້າງ Torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ເພີ່ມໄຟລ໌</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>ເພີ່ມໂຟນເດີ</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>ບັນທຶກ .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>ໄຟລ໌ Torrent (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>ທຸກໄຟລ໌ (*)</translation>
         </message>
     </context>
 </TS>

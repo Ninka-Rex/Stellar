@@ -61,38 +61,6 @@
             <translation>PEATATUD</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Allalaadimishaldur v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>Alla: %1  Üles: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Allalaadimine: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>Jagamine: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Jagamine: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>Kokku: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Kokku: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar sulgub...</translation>
         </message>
@@ -248,6 +216,58 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Paigalda Firefox XPI, ilma automaatsete uuendusteta</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox tuvastatud — ei tööta Stellariga</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox töötab piiratud liivakastis ega saa Stellari hosti käivitada. Kasuta Firefox flatpaki (soovitatav), Mozilla ametlikku .deb paketti või Chromiumi / Brave'i / Vivaldit.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Ava Firefox flatpak Discoveris</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Mozilla allalaadimisleht</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Discoverit ei saanud avada — otsi poest käsitsi &quot;Firefox&quot; või kasuta Mozilla allalaadimislinki.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Avatud. Paigalda Firefox, seejärel eemalda snapi versioon (Süsteemiseaded → Rakendused).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpaki Firefox vajab lisaluba</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) töötab liivakastis ja vajab Stellari hosti käivitamiseks luba org.freedesktop.Flatpak=talk. Klõpsa allolevat nuppu selle andmiseks, seejärel taaskäivita Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Anna luba</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Luba antud. Muudatuse jõustumiseks taaskäivita Firefox.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>Loa andmine ebaõnnestus:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>
+
+Käivita käsitsi: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1084,6 +1104,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Metaandmed</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Kirjeldus</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>Looja</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>Loodud</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Kategooria</translation>
         </message>
@@ -1170,6 +1202,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>Tükkide kaart</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>Liiguta...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2677,6 +2713,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Ekspordi .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>Loo torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Allalaadimised</translation>
         </message>
@@ -2711,10 +2751,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>Järjekorra peatamine</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Kiirusepiiraja</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4855,6 +4891,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM allalaadimised</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Ava Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>Lisa URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Stellarist</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Kiirusepiiraja</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Kiirusepiiraja seaded…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Peata seanss</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Välju Stellarist</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Jätka seanssi</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5700,6 +5772,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Video allalaadimine</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Loo torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Lähtefailid / -kaustad</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Failid</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Kaust</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Eemalda</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Lohista failid või kaustad siia või kasuta ülalolevaid nuppe</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Väljund</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Salvesta:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent-faili salvestamise tee…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Sirvi…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Nimi:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Valikuline — vaikimisi kausta/faili nimi</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Tüki suurus:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 tükki × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metaandmed</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Kommentaar:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Valikuline kommentaar .torrent failis</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Kirjeldus:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Valikuline pikem kirjeldus</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Looja:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Privaatne torrent (DHT ja PEX keelatud)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Jälitajad</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Üks URL rea kohta</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Veebiseemned (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Ava torrent loomisel</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Torrent loodud: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Viga: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Tühistatud</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Tükkide räsimine… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 tükki × %2 tüki kohta</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Tühista</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Sulge</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Loomine…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Ava torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Loo torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Lisa faile</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Lisa kaust</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Salvesta .torrent fail</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Torrentfailid (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Kõik failid (*)</translation>
         </message>
     </context>
 </TS>

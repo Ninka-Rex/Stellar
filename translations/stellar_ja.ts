@@ -61,38 +61,6 @@
             <translation>一時停止中</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>↓中: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>  配信中: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>配信中: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>  合計: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>合計: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar を終了します...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Firefox XPI をインストール（自動更新なし）</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap版Firefoxを検出 — Stellarでは動作しません</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap版Firefoxは制限付きサンドボックスで動作し、Stellarホストを起動できません。Firefox flatpak版（推奨）、Mozilla公式.deb版、またはChromium/Brave/Vivaldiをご利用ください。</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>DiscoverでFirefox flatpak版を開く</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Mozillaダウンロードページ</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Discoverを開けませんでした — ストアで手動で「Firefox」を検索するか、Mozillaのダウンロードリンクをご利用ください。</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>開きました。Firefoxをインストールし、Snap版を削除してください（システム設定 → アプリ）。</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak版Firefoxに追加権限が必要です</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox（Flatpak版）はサンドボックス内で動作し、Stellarネイティブメッセージングホストを起動するにはorg.freedesktop.Flatpak=talk権限が必要です。下のボタンをクリックして許可し、Firefoxを再起動してください。</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>権限を許可</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>権限を許可しました。変更を反映するにはFirefoxを再起動してください。</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>権限の付与に失敗しました: </translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>手動で実行: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1069,6 +1087,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>メタデータ</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>説明</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>作成者</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>作成日</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>カテゴリ</translation>
         </message>
@@ -1155,6 +1185,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>ピースマップ</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>移動...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2661,6 +2695,10 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
             <translation>torrentをエクスポート…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>Torrentを作成...</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>ダウンロード</translation>
         </message>
@@ -2695,10 +2733,6 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
         <message>
             <source>Stop Queue</source>
             <translation>キュー停止</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>速度制限</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4844,6 +4878,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>4. SDMダウンロード</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Stellarを開く</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>URLを追加...</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Stellarについて</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>速度制限</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>速度制限の設定…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>セッション一時停止</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Stellarを終了</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>セッション再開</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5689,6 +5759,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>動画ダウンロード</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>トレント作成</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>ソースファイル/フォルダ</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ ファイル</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ フォルダ</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>削除</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>ファイル/フォルダをここにドロップ、または上のボタンを使用</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>出力</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>保存先:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrentファイルの保存先パス…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>参照…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>名前:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>任意 — デフォルトはフォルダ/ファイル名</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>ピースサイズ:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>自動</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1ピース × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>メタデータ</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>コメント:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>.torrentに埋め込む任意コメント</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>説明:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>任意の詳細説明</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>作成者:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>プライベートトレント (DHT/PEX無効)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>トラッカー</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>1行に1URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Webシード (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>作成時に開く</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ 作成成功: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ エラー: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>キャンセル済</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>ハッシュ中… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1ピース × %2/ピース</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>閉じる</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>作成中…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>トレントを開く</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>トレントを作成…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ファイルを追加</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>フォルダを追加</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent ファイルを保存</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>トレントファイル (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>すべてのファイル (*)</translation>
         </message>
     </context>
 </TS>

@@ -61,38 +61,6 @@
             <translation>KWỤSỊRỊ</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Onye njikwa nbudata Stellar v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>N'ala: %1  N'elu: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>N'ebudata: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>  N'ịgha mkpụrụ: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>N'ịgha mkpụrụ: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>  Ngụkọta: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Ngụkọta: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar na-emechi...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Wụnye Firefox XPI, enweghị mmelite akpaghị aka</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox achọpụtara — agaghị arụ ọrụ na Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox na-agba n'ime sandbox akpọchiri ma enweghị ike ịmalite Stellar host. Gbanwee na Firefox flatpak (atụrụ aro), Mozilla's official .deb, ma ọ bụ jiri Chromium / Brave / Vivaldi kama.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Mepee Firefox flatpak na Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Ibe nbudata Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Enweghị ike imepe Discover — chọọ &quot;Firefox&quot; n'onwe gị na ụlọ ahịa gị, ma ọ bụ jiri njikọ nbudata Mozilla.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Emeghe. Wụnye Firefox, wee wepụ ụdị snap (Ntọala Sistemụ → Ngwa).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox chọrọ ikike ọzọ</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) na-agba n'ime sandbox ma chọrọ ikike org.freedesktop.Flatpak=talk iji malite Stellar native messaging host. Pịa bọtịnụ n'okpuru iji nye ya, wee malitegharịa Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Nye ikike</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Enyela ikike. Malitegharịa Firefox ka mgbanwe ahụ wee rụọ ọrụ.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>Enweghi ike inye ikike: </translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>
+Jiri aka gị mee: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1070,6 +1089,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Metadata</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Nkọwa</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>Onye kere</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>Emere na</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Òtù</translation>
         </message>
@@ -1156,6 +1187,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>Mapụ Iberibe</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>Bugharịa...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2672,6 +2707,10 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
             <translation>Bupụta .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>Mepụta Torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Nbudata</translation>
         </message>
@@ -2706,10 +2745,6 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
         <message>
             <source>Stop Queue</source>
             <translation>Kwụsị Kwụ</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Oke Ọsọ</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4856,6 +4891,42 @@ Pịa imeghe Ọnụọgụ</translation>
             <source>SDM downloads</source>
             <translation>Nbudata SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Mepee Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>Tinye URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Maka Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Ihe mgbochi ọsọ</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Ntọala ihe mgbochi ọsọ…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Kwụsị oge</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Pụọ na Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Malitegharịa oge</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5701,6 +5772,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Nbudata Vidiyo</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Mepụta Torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Faịlụ / Nchekwa isi</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Faịlụ</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Nchekwa</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Wepụ</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Dọrọ faịlụ ma ọ bụ nchekwa ebe a, ma ọ bụ jiri bọtịnụ dị n'elu</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Mpụta</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Chekwaa na:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Ụzọ ichekwa faịlụ .torrent…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Chọgharịa…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Aha:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Nhọrọ — na-adaba na aha nchekwa/faịlụ</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Nha iberibe:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Akpaka</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 iberibe × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metadata</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Okwu nkọwa:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Okwu nkọwa nhọrọ etinyere na .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Nkọwa:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Nkọwa gbasaa nhọrọ</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Onye mepụtara:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Torrent nzuzo (DHT na PEX agbanyụrụ maka torrent a)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Ndị na-eso ụzọ</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Otu URL n'ahịrị</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Mkpụrụ Weebụ (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>1. https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>2. Mepee torrent mgbe emepụtara</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>3. ✓ Torrent emepụtara nke ọma: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>4. ✗ Njehie: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>5. Akagbuola</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>6. Na-ahazi iberibe… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>7. %1 iberibe × %2 n'otu iberibe</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>8. Kagbuo</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>9. Mechie</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>10. Na-emepụta…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Mepee Torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Mepụta Torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Tinye Faịlụ</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Tinye Nchekwa</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Chekwaa faịlụ .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Faịlụ Torrent (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Faịlụ niile (*)</translation>
         </message>
     </context>
 </TS>

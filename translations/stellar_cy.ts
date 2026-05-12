@@ -61,38 +61,6 @@
             <translation>WEDI'I OEDI</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>3. Rheolwr Llwytho Stellar v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>I lawr: %1  I fyny: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Wrthi'n llwytho i lawr: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>  Hadu: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Hadu: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>  Cyfanswm: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Cyfanswm: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>10. Mae Stellar yn cau...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Gosod XPI Firefox, dim diweddariadau awtomatig</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Canfuwyd Snap Firefox — ni fydd yn gweithio gyda Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Mae Snap Firefox yn rhedeg mewn blwch tywod cyfyngedig ac ni all lansio'r gwesteiwr Stellar. Newidiwch i Firefox flatpak (argymhellir), .deb swyddogol Mozilla, neu defnyddiwch Chromium / Brave / Vivaldi yn lle.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Agor Firefox flatpak yn Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Tudalen lawrlwytho Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Methu agor Discover — chwiliwch am &quot;Firefox&quot; â llaw yn eich siop, neu defnyddiwch ddolen lawrlwytho Mozilla.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Wedi'i agor. Gosodwch Firefox, yna dadosodwch y fersiwn snap (Gosodiadau System → Apiau).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Mae angen caniatâd ychwanegol ar Firefox Flatpak</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Mae Firefox (Flatpak) yn rhedeg mewn blwch tywod ac mae angen y caniatâd org.freedesktop.Flatpak=talk i lansio gwesteiwr negeseuon brodorol Stellar. Cliciwch y botwm isod i'w roi, yna ailgychwynnwch Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Caniatâd</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Caniatâd wedi'i roi. Ailgychwynnwch Firefox er mwyn i'r newid ddod i rym.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>1. Methu rhoi caniatâd:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>2. Rhedeg â llaw: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1089,18 @@ Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
             <translation>Metadata</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Disgrifiad</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>3. Crëwyd gan</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>4. Crëwyd ar</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Categori</translation>
         </message>
@@ -1157,6 +1187,10 @@ Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Map Darn</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>5. Symud...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2673,6 +2707,10 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <translation>Allforio .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>6. Creu Torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Llwythiadau</translation>
         </message>
@@ -2707,10 +2745,6 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
         <message>
             <source>Stop Queue</source>
             <translation>Stopio Ciw</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Cyfyngydd Cyflymder</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4857,6 +4891,42 @@ Cliciwch i agor Ystadegau</translation>
             <source>SDM downloads</source>
             <translation>Llwythiadau SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>7. Agor Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>8. Ychwanegu URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>9. GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>10. Ynghylch Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Cyfyngydd Cyflymder</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Gosodiadau Cyfyngydd Cyflymder…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Oedi Sesiwn</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Gadael Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Ailgychwyn Sesiwn</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5703,6 +5773,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Llwytho Fideo</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Creu Torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Ffeiliau / Ffolderi Ffynhonnell</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Ffeiliau</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Ffolder</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Tynnu</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Llusgwch ffeiliau neu ffolderi yma, neu defnyddiwch y botymau uchod</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Allbwn</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Cadw i:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Llwybr i gadw'r ffeil .torrent…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Pori…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Enw:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Dewisol — rhagosodiad i enw'r ffolder/ffeil</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Maint darn:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Awto</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 darn × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metadata</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Sylw:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Sylw dewisol wedi'i fewnosod yn y .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Disgrifiad:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Disgrifiad estynedig dewisol</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Crëwyd gan:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Torrent preifat (DHT a PEX wedi'u hanalluogi)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Tracwyr</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Un URL fesul llinell</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Hadau Gwe (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Agor torrent wedi'i greu</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Torrent wedi'i greu'n llwyddiannus: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Gwall: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Canslwyd</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Hashio darnau… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 darn × %2 y darn</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Canslo</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Cau</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Yn creu…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Agor Torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Creu Torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Ychwanegu Ffeiliau</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Ychwanegu Ffolder</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Cadw Ffeil .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Ffeiliau torrent (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Pob ffeil (*)</translation>
         </message>
     </context>
 </TS>

@@ -61,38 +61,6 @@
             <translation>ΣΕ ΠΑΥΣΗ</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>Λήψη: %1  Αποστολή: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Λήψη: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>Διαμοιρασμός: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Διαμοιρασμός: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>Σύνολο: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Σύνολο: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Το Stellar κλείνει...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Εγκατάσταση Firefox XPI, χωρίς αυτόματες ενημερώσεις</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Ο Firefox Snap εντοπίστηκε — δεν θα λειτουργήσει με το Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Το Snap Firefox εκτελείται σε περιορισμένο sandbox και δεν μπορεί να εκκινήσει τον κεντρικό υπολογιστή Stellar. Μεταβείτε στο Firefox flatpak (συνιστάται), στο επίσημο .deb της Mozilla ή χρησιμοποιήστε Chromium / Brave / Vivaldi.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Άνοιγμα του Firefox flatpak στο Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Σελίδα λήψης του Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Δεν ήταν δυνατό το άνοιγμα του Discover — αναζητήστε το &quot;Firefox&quot; χειροκίνητα στο κατάστημά σας ή χρησιμοποιήστε τον σύνδεσμο λήψης της Mozilla.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Άνοιγμα. Εγκαταστήστε τον Firefox και, στη συνέχεια, απεγκαταστήστε την έκδοση snap (Ρυθμίσεις συστήματος → Εφαρμογές).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Ο Flatpak Firefox χρειάζεται μια επιπλέον άδεια</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Ο Firefox (Flatpak) εκτελείται σε sandbox και χρειάζεται την άδεια org.freedesktop.Flatpak=talk για να εκκινήσει τον εγγενή κεντρικό υπολογιστή ανταλλαγής μηνυμάτων Stellar. Κάντε κλικ στο παρακάτω κουμπί για να την παραχωρήσετε και, στη συνέχεια, επανεκκινήστε τον Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Χορήγηση άδειας</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Άδεια παραχωρήθηκε. Επανεκκινήστε τον Firefox για να εφαρμοστεί η αλλαγή.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>Αποτυχία παραχώρησης άδειας:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>
+Εκτέλεση χειροκίνητα: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1090,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Μεταδεδομένα</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Περιγραφή</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>Δημιουργός</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>Ημ/νία δημιουργίας</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Κατηγορία</translation>
         </message>
@@ -1157,6 +1188,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>Χάρτης Τεμαχίων</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>Μετακίνηση…</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2667,6 +2702,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Εξαγωγή .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>Δημιουργία Torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Λήψεις</translation>
         </message>
@@ -2701,10 +2740,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>Διακοπή ουράς</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Περιορισμός ταχύτητας</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4851,6 +4886,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>Λήψεις SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Άνοιγμα Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>Προσθήκη URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Σχετικά με το Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Περιορισμός ταχύτητας</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Ρυθμίσεις περιορισμού…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Παύση συνεδρίας</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Έξοδος</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Συνέχιση συνεδρίας</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5697,6 +5768,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Λήψη βίντεο</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Δημιουργία torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Αρχεία / Φάκελοι πηγής</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Αρχεία</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Φάκελος</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Αφαίρεση</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Σύρετε αρχεία ή φακέλους εδώ ή χρησιμοποιήστε τα κουμπιά</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Έξοδος</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Αποθήκευση σε:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Διαδρομή αποθήκευσης .torrent…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Περιήγηση…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Όνομα:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Προαιρετικό — προεπιλογή ονόματος φακέλου/αρχείου</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Μέγεθος κομματιού:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Αυτόματα</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 κομμάτια × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Μεταδεδομένα</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Σχόλιο:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Προαιρετικό σχόλιο στο .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Περιγραφή:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Προαιρετική εκτενής περιγραφή</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Δημιουργός:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Ιδιωτικό torrent (DHT, PEX ανενεργά)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Trackers</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Ένα URL ανά γραμμή</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Web Seeds (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Άνοιγμα torrent</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Το torrent δημιουργήθηκε: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Σφάλμα: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Ακυρώθηκε</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Κατακερματισμός… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 τμήματα × %2/τμήμα</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ακύρωση</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Κλείσιμο</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Δημιουργία…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Άνοιγμα Torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Δημιουργία Torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Προσθήκη αρχείων</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Προσθήκη φακέλου</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Αποθήκευση .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Αρχεία Torrent (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Όλα τα αρχεία (*)</translation>
         </message>
     </context>
 </TS>

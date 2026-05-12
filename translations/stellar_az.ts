@@ -61,38 +61,6 @@
             <translation>FASİLƏ</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar İndirmə Meneceri v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Yüklənir: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>  Paylanır: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Paylanır: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>  Cəmi: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Cəmi: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar söndürülür...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Firefox XPI-ni quraşdırın, avtomatik yeniləmələr yoxdur</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox aşkarlandı — Stellar ilə işləməyəcək</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox məhdud sandbox mühitində işləyir və Stellar hostu işə sala bilmir. Firefox flatpak (tövsiyə olunur), Mozilla-nın rəsmi .deb versiyasına keçin, ya da Chromium / Brave / Vivaldi istifadə edin.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Discover-da Firefox flatpak-i açın</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Mozilla yükləmə səhifəsi</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Kəşf etmək mümkün olmadı — mağazanızda &quot;Firefox&quot;u əl ilə axtarın, ya da Mozilla yükləmə keçidindən istifadə edin.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Açıldı. Firefox-u quraşdırın, sonra snap versiyasını silin (Sistem Parametrləri → Tətbiqlər).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox əlavə icazəyə ehtiyac duyur</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) qum qutusunda işləyir və Stellar doğma mesajlaşma hostunu işə salmaq üçün org.freedesktop.Flatpak=talk icazəsinə ehtiyac duyur. İcazə vermək üçün aşağıdakı düyməyə klikləyin, sonra Firefox-u yenidən başladın.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Icazə ver</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>İcazə verildi. Dəyişikliyin qüvvəyə minməsi üçün Firefox-u yenidən başladın.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>İcazə verilmədi:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>Manual işə salın: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1070,6 +1088,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Metaməlumat</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Təsvir</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>Yaradan</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>Yaradılma tarixi</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Kateqoriya</translation>
         </message>
@@ -1156,6 +1186,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>Parça Xəritəsi</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>Daşı...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2667,6 +2701,10 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
             <translation>Export .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>Torrent yarat...</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Yükləmələr</translation>
         </message>
@@ -2701,10 +2739,6 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
         <message>
             <source>Stop Queue</source>
             <translation>Sıranı dayandır</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Sürət məhdudlaşdırıcı</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4848,6 +4882,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM yükləmələri</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Stellar-ı aç</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>URL əlavə et...</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Stellar haqqında</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Sürət məhdudlaşdırıcı</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Sürət məhdudlaşdırıcı parametrləri…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Sessiyanı dayandır</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Stellar-dan çıx</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Sessiyanı davam etdir</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5693,6 +5763,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Video yükləmə</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Torrent yarat</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Mənbə fayllar / qovluqlar</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Fayllar</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Qovluq</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Sil</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Fayl və ya qovluqları buraya sürükləyin, ya da yuxarıdakı düymələri işlədin</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Çıxış</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Saxlama yeri:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent faylını saxlamaq üçün yol…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Gözdən keçir…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Ad:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>İstəyə bağlı — qovluq/fayl adı ilə eyni</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Parça ölçüsü:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Avto</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 parça × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metadata</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Şərh:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Torrent faylına əlavə edilmiş isteğe bağlı şərh</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Təsvir:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>İsteğe bağlı genişləndirilmiş təsvir</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Yaradan:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Gizli torrent (bu torrent üçün DHT və PEX deaktivdir)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>İzləyicilər</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Hər sətirdə bir URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Veb Mənbələr (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Torrent yaradılanda aç</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Torrent uğurla yaradıldı: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Xəta: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Ləğv edildi</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Parçalar heşlənir… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 parça × parça başına %2</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ləğv et</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Bağla</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Yaradılır…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Torrenti Aç</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Torrent Yarat…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Fayl Əlavə Et</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Qovluq Əlavə Et</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent Faylını Saxla</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Torrent faylları (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Bütün fayllar (*)</translation>
         </message>
     </context>
 </TS>

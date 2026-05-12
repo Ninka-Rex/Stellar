@@ -61,38 +61,6 @@
             <translation>შეჩერებულია</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>↓: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>თესვა: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>თესვა: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>სულ: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>სულ: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar ითიშება...</translation>
         </message>
@@ -248,6 +216,58 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Firefox XPI-ის დაყენება, ავტომატური განახლებების გარეშე</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox აღმოჩენილია — Stellar-თან არ იმუშავებს</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox იზოლირებულ გარემოში მუშაობს და Stellar ჰოსტს ვერ გაუშვებს. გადადით Firefox flatpak-ზე (რეკომენდირებული), Mozilla-ს ოფიციალურ .deb-ზე, ან გამოიყენეთ Chromium / Brave / Vivaldi.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>გახსენით Firefox flatpak Discover-ში</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Mozilla-ს ჩამოტვირთვის გვერდი</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Discover ვერ გაიხსნა — მოძებნეთ „Firefox“ ხელით თქვენს მაღაზიაში, ან გამოიყენეთ Mozilla-ს ჩამოტვირთვის ბმული.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>გაიხსნა. დააყენეთ Firefox, შემდეგ წაშალეთ snap ვერსია (პარამეტრები → აპები).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox-ს დამატებითი ნებართვა სჭირდება</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) იზოლირებულ გარემოში მუშაობს და საჭიროებს org.freedesktop.Flatpak=talk ნებართვას Stellar-ის ჰოსტის გასაშვებად. დააჭირეთ ქვემოთ ღილაკს მის მისანიჭებლად, შემდეგ გადატვირთეთ Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>ნებართვის მინიჭება</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>ნებართვა მინიჭებულია. გადატვირთეთ Firefox ცვლილების ასამოქმედებლად.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>ნებართვის მინიჭება ვერ მოხერხდა: </translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>
+
+ხელით გაუშვით: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1074,6 +1094,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>მეტამონაცემები</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>აღწერა</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>შემქმნელი</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>შექმნის თარიღი</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>კატეგორია</translation>
         </message>
@@ -1160,6 +1192,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>ტეხილების რუკა</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>გადატანა...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2674,6 +2710,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>.torrent-ის ექსპორტი…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>ტორენტის შექმნა…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>ჩამოტვირთვები</translation>
         </message>
@@ -2708,10 +2748,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>რიგის შეჩერება</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>სიჩქარის ლიმიტი</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4858,6 +4894,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM ჩამოტვირთვები</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Stellar-ის გახსნა</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>URL-ის დამატება…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Stellar-ის შესახებ</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>სიჩქარის შემზღუდველი</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>სიჩქარის შემზღუდველის პარამეტრები…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>სესიის პაუზა</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Stellar-დან გასვლა</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>სესიის გაგრძელება</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5704,6 +5776,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ვიდეოს ჩამოტვირთვა</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>ტორენტის შექმნა</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>წყარო ფაილები / საქაღალდეები</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ ფაილები</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ საქაღალდე</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>წაშლა</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>გადმოათრიეთ ფაილები ან საქაღალდეები, ან გამოიყენეთ ზემოთა ღილაკები</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>გამოტანა</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>შენახვა:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>გზა .torrent ფაილის შესანახად…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>მოძიება…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>სახელი:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>არასავალდებულო — ნაგულისხმევია საქაღალდის/ფაილის სახელი</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>ნაწილის ზომა:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>ავტო</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 ნაწილი × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>მეტამონაცემები</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>კომენტარი:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>სურვილისამებრ კომენტარი .torrent-ში</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>აღწერა:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>სურვილისამებრ ვრცელი აღწერა</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>შემქმნელი:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>პირადი ტორენტი (DHT და PEX გამორთულია)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>ტრეკერები</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>თითო URL ხაზზე</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>ვებ-წყაროები (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>გახსნა შექმნისას</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ ტორენტი წარმატებით შეიქმნა: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ შეცდომა: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>გაუქმებულია</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>ნაწილების ჰეშირება… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 ნაწილი × %2 თითო ნაწილზე</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>დახურვა</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>იქმნება…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>გახსენი ტორენტი</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>ტორენტის შექმნა…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ფაილების დამატება</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>საქაღალდის დამატება</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>შეინახე .torrent ფაილი</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>ტორენტ ფაილები (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>ყველა ფაილი (*)</translation>
         </message>
     </context>
 </TS>

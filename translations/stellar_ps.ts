@@ -61,38 +61,6 @@
             <translation>ځنډول شوی</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar ډاونلوډ مدیر v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>ښکته کول: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>تخم اچول: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>تخم اچول: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>ټول: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>ټول: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar بندېږي...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>د فایرفاکس XPI نصب کړئ، اتوماتیک تازه کول نشته</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>سنپ فایرفاکس وموندل شو — له سټلر سره کار نه کوي</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>سنپ فایرفاکس په یوه محدود شګه بکس کې چلیږي او د سټلر کوربه نشي پیلولی. د فایرفاکس فلیټ پیک (سپارښتنه شوی)، د موزیلا رسمي .deb، یا پرځای کرومیم / بریو / ویوالډي وکاروئ.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>په ډیسکور کې د فایرفاکس فلیټ پیک پرانیزئ</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>د موزیلا ډاونلوډ پاڼه</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>ډیسکور پرانیستل نشو — په خپل پلورنځي کې په لاسي ډول &quot;Firefox&quot; وپلټئ، یا د موزیلا ډاونلوډ لینک وکاروئ.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>پرانیستل شو. فایرفاکس نصب کړئ، بیا سنپ نسخه ړنګه کړئ (سیسټم تنظیمات → اپلیکېشنونه).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>فلیټ پیک فایرفاکس یو اضافي اجازې ته اړتیا لري</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>فایرفاکس (فلیټ پیک) په شګه بکس کې چلیږي او د سټلر اصلي پیغام رسولو کوربه پیلولو لپاره org.freedesktop.Flatpak=talk اجازې ته اړتیا لري. د ورکولو لپاره لاندې تڼۍ کلیک کړئ، بیا فایرفاکس بیا پیل کړئ.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>اجازه ورکړئ</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>اجازه ورکړل شوه. د بدلون د اغیزمن کیدو لپاره فایرفاکس بیا پیل کړئ.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>د اجازې ورکولو کې پاتې راغی:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>
+په لاسي ډول چلول: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1090,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>میټاډاټا</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>تشریح</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>جوړوونکی</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>جوړېدو نېټه</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>ډول</translation>
         </message>
@@ -1157,6 +1188,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>د برخې نقشه</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>لېږدول...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2667,6 +2702,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <translation>ټورنټ صادرول…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>ټورنټ جوړول...</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>ډاونلوډونه</translation>
         </message>
@@ -2701,10 +2740,6 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
         <message>
             <source>Stop Queue</source>
             <translation>قطار ودرول</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>سرعت محدودونکی</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4848,6 +4883,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM ډاونلوډونه</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>سټلر پرانیستل</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>یو آر اېل ورګډول...</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>ګیټ هب</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>د سټلر په اړه</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>سرعت محدودونکی</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>د سرعت محدودونکي تنظیمات…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>غونډه ودروئ</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>سټیلر وتړئ</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>غونډه بیا پیل کړئ</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5693,6 +5764,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ویډیو ډاونلوډ</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>ټورنټ جوړ کړئ</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>سرچینې فایلونه / پوښۍ</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ فایلونه</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ پوښۍ</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>لرې کړئ</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>فایلونه یا فولډر دلته کش کړئ، یا پورته تڼۍ وکاروئ</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>وتنه</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>خوندي کول:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>د .torrent فایل خوندي کولو لار…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>لټون…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>نوم:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>اختیاري — فولډر/فایل نوم ته ډیفالټ</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>ټوټه اندازه:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>اتومات</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 ټوټې × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>مېټاډاټا</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>تبصره:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>په .torrent کې خوندي شوې اختياري تبصره</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>تشریح:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>اختیاري پراخه تشریح</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>جوړوونکی:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>خصوصي تورنټ (DHT او PEX غیر فعال)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>تعقیبوونکي</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>په هر کرښه یو URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>وېب سېډونه (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>کله چې جوړ شي، ټورنټ پرانیزئ</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ ټورنټ په بریالیتوب جوړ شو: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ تېروتنه: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>لغوه شو</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>ټوټې هش کېږي… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 ټوټې × %2 هره ټوټه</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>تړل</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>جوړېږي…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>ټورنټ پرانیزئ</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>ټورنټ جوړ کړئ…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>فایلونه اضافه کړئ</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>پوښۍ اضافه کړئ</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent فایل خوندي کړئ</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>ټورنټ فایلونه (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>ټول فایلونه (*)</translation>
         </message>
     </context>
 </TS>

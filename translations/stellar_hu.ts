@@ -61,38 +61,6 @@
             <translation>SZÜNETEL</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Letöltés: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>   Seedelés: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Seedelés: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>   Összes: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Összes: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>A Stellar leállítása...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Firefox XPI telepítése, automatikus frissítések nélkül</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>A Firefox böngésző észlelve — nem működik a Stellarral</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>A Snap Firefox egy korlátozott homokozóban fut, és nem tudja elindítani a Stellar hosztot. Váltson a Firefox flatpak verziójára (ajánlott), a Mozilla hivatalos .deb csomagjára, vagy használja helyette a Chromium / Brave / Vivaldi böngészőt.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Nyissa meg a Firefox flatpak-ot a Discoverben</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Mozilla letöltési oldal</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Nem sikerült megnyitni a Discover alkalmazást — keresse meg kézzel a „Firefox” böngészőt az áruházában, vagy használja a Mozilla letöltési hivatkozását.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Megnyitva. Telepítse a Firefoxot, majd távolítsa el a snap verziót (Rendszerbeállítások → Alkalmazások).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>A Flatpak Firefoxnak további engedélyre van szüksége</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) homokozóban fut, és szüksége van az org.freedesktop.Flatpak=talk engedélyre a Stellar natív üzenetküldő gazda elindításához. Kattintson az alábbi gombra az engedély megadásához, majd indítsa újra a Firefoxot.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Engedély megadása</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Engedély megadva. A módosítás érvénybe lépéséhez indítsa újra a Firefoxot.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>Sikertelen engedélykérés: </translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>Futtasd kézzel: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1089,18 @@ Később az Opciók → Letöltések menüpontban módosíthatja.</translation>
             <translation>Metaadatok</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Leírás</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>Készítette</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>Létrehozva</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Kategória</translation>
         </message>
@@ -1157,6 +1187,10 @@ Később az Opciók → Letöltések menüpontban módosíthatja.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Darab térkép</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>Áthelyezés…</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2661,6 +2695,10 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <translation>.torrent exportálása…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>Torrent létrehozása…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Letöltések</translation>
         </message>
@@ -2695,10 +2733,6 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
         <message>
             <source>Stop Queue</source>
             <translation>Sor leállítása</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Sebességkorlátozó</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4838,6 +4872,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM letöltések</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Stellar megnyitása</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>URL hozzáadása…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>A Stellar névjegye</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Sebességkorlátozó</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Sebességkorlátozó beállításai…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Munkamenet szüneteltetése</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Kilépés a Stellarból</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Munkamenet folytatása</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5684,6 +5754,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Videó letöltése</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Torrent létrehozása</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Forrásfájlok / mappák</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Fájlok</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Mappa</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Eltávolítás</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Húzzon ide fájlokat vagy mappákat, vagy használja a fenti gombokat</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Kimenet</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Mentés helye:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent fájl mentési útvonala…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Tallózás…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Név:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Opcionális — alapértelmezés: mappa/fájlnév</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Darabméret:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Automatikus</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 darab × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metaadatok</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Megjegyzés:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Opcionális megjegyzés a .torrent fájlban</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Leírás:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Opcionális bővebb leírás</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Készítette:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Privát torrent (DHT és PEX letiltva)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Trackerek</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Soronként egy URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Web seed-ek (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Megnyitás létrehozás után</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Torrent létrehozva: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Hiba: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Megszakítva</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Darabok hashelése… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 darab × %2 / darab</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Mégse</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Bezárás</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Létrehozás…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Torrent megnyitása</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Torrent létrehozása…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Fájlok hozzáadása</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Mappa hozzáadása</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent mentése</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Torrent fájlok (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Minden fájl (*)</translation>
         </message>
     </context>
 </TS>

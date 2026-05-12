@@ -61,38 +61,6 @@
             <translation>ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>ಸ್ಟೆಲ್ಲರ್ ಡೌನ್‌ಲೋಡ್ ಮ್ಯಾನೇಜರ್ v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>ಡೌನ್ಲೋಡ್: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>ಸೀಡಿಂಗ್: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>ಸೀಡಿಂಗ್: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>ಒಟ್ಟು: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>ಒಟ್ಟು: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>ಸ್ಟೆಲ್ಲರ್ ಮುಚ್ಚುತ್ತಿದೆ...</translation>
         </message>
@@ -248,6 +216,58 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Firefox XPI ಸ್ಥಾಪಿಸಿ, ಸ್ವಯಂಚಾಲಿತ ನವೀಕರಣಗಳಿಲ್ಲ</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>ಸ್ನ್ಯಾಪ್ ಫೈರ್ಫಾಕ್ಸ್ ಪತ್ತೆಯಾಗಿದೆ — ಸ್ಟೆಲ್ಲಾರ್‌ನೊಂದಿಗೆ ಕೆಲಸ ಮಾಡುವುದಿಲ್ಲ</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>ಸ್ನ್ಯಾಪ್ ಫೈರ್ಫಾಕ್ಸ್ ಸೀಮಿತ ಸ್ಯಾಂಡ್‌ಬಾಕ್ಸ್‌ನಲ್ಲಿ ಚಲಿಸುತ್ತದೆ ಮತ್ತು ಸ್ಟೆಲ್ಲಾರ್ ಹೋಸ್ಟ್ ಅನ್ನು ಪ್ರಾರಂಭಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಬದಲಿಗೆ ಫೈರ್ಫಾಕ್ಸ್ ಫ್ಲಾಟ್‌ಪ್ಯಾಕ್ (ಶಿಫಾರಸು), ಮೊಜಿಲ್ಲಾದ ಅಧಿಕೃತ .deb, ಅಥವಾ ಕ್ರೋಮಿಯಂ / ಬ್ರೇವ್ / ವಿವಾಲ್ಡಿ ಬಳಸಿ.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>ಡಿಸ್ಕವರ್‌ನಲ್ಲಿ ಫೈರ್ಫಾಕ್ಸ್ ಫ್ಲಾಟ್‌ಪ್ಯಾಕ್ ತೆರೆಯಿರಿ</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>ಮೊಜಿಲ್ಲಾ ಡೌನ್‌ಲೋಡ್ ಪುಟ</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>ಡಿಸ್ಕವರ್ ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ — ನಿಮ್ಮ ಸ್ಟೋರ್‌ನಲ್ಲಿ &quot;Firefox&quot; ಎಂದು ಹಸ್ತಚಾಲಿತವಾಗಿ ಹುಡುಕಿ, ಅಥವಾ ಮೊಜಿಲ್ಲಾ ಡೌನ್‌ಲೋಡ್ ಲಿಂಕ್ ಬಳಸಿ.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>ತೆರೆಯಲಾಗಿದೆ. ಫೈರ್ಫಾಕ್ಸ್ ಸ್ಥಾಪಿಸಿ, ನಂತರ ಸ್ನ್ಯಾಪ್ ಆವೃತ್ತಿಯನ್ನು ಅಸ್ಥಾಪಿಸಿ (ಸಿಸ್ಟಮ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು → ಆಪ್‌ಗಳು).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>ಫ್ಲಾಟ್‌ಪ್ಯಾಕ್ ಫೈರ್ಫಾಕ್ಸ್‌ಗೆ ಹೆಚ್ಚುವರಿ ಅನುಮತಿ ಬೇಕು</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>ಫೈರ್ಫಾಕ್ಸ್ (ಫ್ಲಾಟ್‌ಪ್ಯಾಕ್) ಸ್ಯಾಂಡ್‌ಬಾಕ್ಸ್‌ನಲ್ಲಿ ಚಲಿಸುತ್ತದೆ ಮತ್ತು ಸ್ಟೆಲ್ಲಾರ್ ನೇಟಿವ್ ಮೆಸೇಜಿಂಗ್ ಹೋಸ್ಟ್ ಪ್ರಾರಂಭಿಸಲು org.freedesktop.Flatpak=talk ಅನುಮತಿಯ ಅಗತ್ಯವಿದೆ. ಅದನ್ನು ನೀಡಲು ಕೆಳಗಿನ ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡಿ, ನಂತರ ಫೈರ್ಫಾಕ್ಸ್ ಮರುಪ್ರಾರಂಭಿಸಿ.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>ಅನುಮತಿ ನೀಡಿ</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>ಅನುಮತಿ ನೀಡಲಾಗಿದೆ. ಬದಲಾವಣೆ ಕಾರ್ಯಗತಗೊಳಿಸಲು ಫೈರ್ಫಾಕ್ಸ್ ಮರುಪ್ರಾರಂಭಿಸಿ.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>1. ಅನುಮತಿ ನೀಡಲು ವಿಫಲವಾಗಿದೆ:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>2. 
+
+ಹಸ್ತಚಾಲಿತವಾಗಿ ರನ್ ಮಾಡಿ: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1086,6 +1106,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ಮೆಟಾಡೇಟಾ</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>ವಿವರ</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>3. ರಚಿಸಿದವರು</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>4. ರಚಿಸಿದ ದಿನಾಂಕ</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>ವರ್ಗ</translation>
         </message>
@@ -1172,6 +1204,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>ಪೀಸ್ ನಕ್ಷೆ</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>5. ಸರಿಸಿ...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2687,6 +2723,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>.torrent ರಫ್ತು…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>6. ಟೊರೆಂಟ್ ರಚಿಸಿ…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>ಹಿಂಜರಿಕೆಗಳು</translation>
         </message>
@@ -2721,10 +2761,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>ಕ್ಯೂ ನಿಲ್ಲಿಸು</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>ವೇಗ ಮಿತಿ</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4871,6 +4907,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM ಡೌನ್ಲೋಡ್ಗಳು</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>7. Stellar ತೆರೆಯಿರಿ</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>8. URL ಸೇರಿಸಿ…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>9. GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>10. Stellar ಬಗ್ಗೆ</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>ವೇಗ ಮಿತಿ</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>ವೇಗ ಮಿತಿ ಸೆಟ್ಟಿಂಗ್‌ಗಳು…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>ಸೆಷನ್ ವಿರಾಮ</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>ಸ್ಟೆಲ್ಲಾರ್‌ನಿಂದ ನಿರ್ಗಮಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>ಸೆಷನ್ ಮುಂದುವರಿಸಿ</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5717,6 +5789,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ವೀಡಿಯೊ ಡೌನ್‌ಲೋಡ್</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>ಟೊರೆಂಟ್ ರಚಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>ಮೂಲ ಫೈಲ್‌ಗಳು / ಫೋಲ್ಡರ್‌ಗಳು</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ ಫೈಲ್‌ಗಳು</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ ಫೋಲ್ಡರ್</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>ತೆಗೆದುಹಾಕಿ</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>ಫೈಲ್‌ಗಳು ಅಥವಾ ಫೋಲ್ಡರ್‌ಗಳನ್ನು ಇಲ್ಲಿ ಎಳೆಯಿರಿ, ಅಥವಾ ಮೇಲಿನ ಬಟನ್‌ಗಳನ್ನು ಬಳಸಿ</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>ಔಟ್‌ಪುಟ್</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>ಇಲ್ಲಿ ಉಳಿಸಿ:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent ಫೈಲ್ ಉಳಿಸುವ ಮಾರ್ಗ…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>ಬ್ರೌಸ್…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>ಹೆಸರು:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>ಐಚ್ಛಿಕ — ಫೋಲ್ಡರ್/ಫೈಲ್ ಹೆಸರಿಗೆ ಡೀಫಾಲ್ಟ್</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>ತುಣುಕು ಗಾತ್ರ:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>ಸ್ವಯಂ</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 ತುಣುಕುಗಳು × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>ಮೆಟಾಡೇಟಾ</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>ಟಿಪ್ಪಣಿ:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>ಟೊರೆಂಟ್‌ನಲ್ಲಿ ಹುದುಗಿಸಿದ ಐಚ್ಛಿಕ ಟಿಪ್ಪಣಿ</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>ವಿವರ:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>ಐಚ್ಛಿಕ ವಿಸ್ತೃತ ವಿವರ</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>ರಚಿಸಿದವರು:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>ಖಾಸಗಿ ಟೊರೆಂಟ್ (DHT ಮತ್ತು PEX ನಿಷ್ಕ್ರಿಯ)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>ಟ್ರ್ಯಾಕರ್‌ಗಳು</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>ಪ್ರತಿ ಸಾಲಿಗೆ ಒಂದು URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>ವೆಬ್ ಸೀಡ್‌ಗಳು (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>ಸೃಷ್ಟಿಸಿದಾಗ ಟೊರೆಂಟ್ ತೆರೆಯಿರಿ</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ ಟೊರೆಂಟ್ ಯಶಸ್ವಿಯಾಗಿ ಸೃಷ್ಟಿಸಲಾಗಿದೆ: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ ದೋಷ: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>ರದ್ದುಮಾಡಲಾಗಿದೆ</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>ತುಣುಕುಗಳನ್ನು ಹ್ಯಾಶ್ ಮಾಡಲಾಗುತ್ತಿದೆ… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 ತುಣುಕುಗಳು × ಪ್ರತಿ %2</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡು</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>ಮುಚ್ಚು</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>ಸೃಷ್ಟಿಸಲಾಗುತ್ತಿದೆ…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>ಟೊರೆಂಟ್ ತೆರೆಯಿರಿ</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>ಟೊರೆಂಟ್ ರಚಿಸಿ…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ಫೈಲ್‌ಗಳನ್ನು ಸೇರಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>ಫೋಲ್ಡರ್ ಸೇರಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent ಫೈಲ್ ಉಳಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>ಟೊರೆಂಟ್ ಫೈಲ್‌ಗಳು (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>ಎಲ್ಲಾ ಫೈಲ್‌ಗಳು (*)</translation>
         </message>
     </context>
 </TS>

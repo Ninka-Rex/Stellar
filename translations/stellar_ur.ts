@@ -61,38 +61,6 @@
             <translation>موقوف</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>اسٹیلر ڈاؤن لوڈ مینجر v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>ڈاؤن لوڈ: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>سیڈنگ: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>سیڈنگ: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>کل: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>کل: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>اسٹیلر بند ہو رہا ہے...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Firefox XPI انسٹال کریں، خودکار اپ ڈیٹس نہیں</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>اسنیپ فائر فاکس کا پتہ چلا — اسٹیلر کے ساتھ کام نہیں کرے گا</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>اسنیپ فائر فاکس محدود سینڈ باکس میں چلتا ہے اور اسٹیلر ہوسٹ لانچ نہیں کر سکتا۔ فائر فاکس فلیٹ پیک (تجویز کردہ)، موزیلا کا آفیشل ڈیب، یا کرومیم / بریو / ویوالڈی استعمال کریں۔</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>ڈسکور میں فائر فاکس فلیٹ پیک کھولیں</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>موزیلا ڈاؤن لوڈ صفحہ</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>ڈسکور نہیں کھل سکا — اپنے اسٹور میں دستی طور پر &quot;Firefox&quot; تلاش کریں، یا موزیلا ڈاؤن لوڈ لنک استعمال کریں۔</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>کھل گیا۔ فائر فاکس انسٹال کریں، پھر اسنیپ ورژن ان انسٹال کریں (سسٹم سیٹنگز → ایپس)۔</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>فلیٹ پیک فائر فاکس کو اضافی اجازت درکار ہے</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>فائر فاکس (فلیٹ پیک) سینڈ باکس میں چلتا ہے اور اسٹیلر مقامی میسجنگ ہوسٹ لانچ کرنے کے لیے org.freedesktop.Flatpak=talk کی اجازت درکار ہے۔ دینے کے لیے نیچے بٹن دبائیں، پھر فائر فاکس دوبارہ شروع کریں۔</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>اجازت دیں</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>اجازت مل گئی۔ تبدیلی کے اثر کے لیے فائر فاکس دوبارہ شروع کریں۔</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>اجازت دینے میں ناکام:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>
+دستی طور پر چلائیں: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1069,6 +1088,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>میٹا ڈیٹا</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>تفصیل</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>بنانے والا</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>تاریخ تخلیق</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>زمرہ</translation>
         </message>
@@ -1155,6 +1186,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>پسے نقشہ</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>منتقل کریں...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2659,6 +2694,10 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>.torrent برآمد کریں…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>ٹورینٹ بنائیں…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>ڈاؤنلوڈز</translation>
         </message>
@@ -2693,10 +2732,6 @@ Stellar Options → Browser → Bypass Download Interception</translation>
         <message>
             <source>Stop Queue</source>
             <translation>رینج روکیں</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>رفتار محدود</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4841,6 +4876,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM ڈاؤن لوڈز</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>اسٹیلر کھولیں</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>یو آر ایل شامل کریں…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>گٹ ہب</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>اسٹیلر کے بارے میں</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>رفتار محدود</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>رفتار محدود کی ترتیبات…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>سیشن روکیں</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>اسٹیلر سے نکلیں</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>سیشن جاری رکھیں</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5686,6 +5757,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ویڈیو ڈاؤن لوڈ</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>ٹورنٹ بنائیں</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>ماخذ فائلیں / فولڈرز</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ فائلیں</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ فولڈر</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>ہٹائیں</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>فائلیں یا فولڈر یہاں گھسیٹیں، یا اوپر والے بٹن استعمال کریں</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>آؤٹ پٹ</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>محفوظ کریں:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent فائل محفوظ کرنے کا راستہ…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>براؤز کریں…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>نام:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>اختیاری — ڈیفالٹ فولڈر/فائل کا نام</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>ٹکڑے کا سائز:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>خودکار</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 ٹکڑے × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>میٹا ڈیٹا</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>تبصرہ:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>اختیاری تبصرہ .torrent میں شامل</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>تفصیل:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>اختیاری توسیعی تفصیل</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>بنانے والا:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>نجی ٹورینٹ (اس کے لیے DHT اور PEX غیر فعال)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>ٹریکرز</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>فی سطر ایک URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>ویب سیڈز (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>ٹورنٹ بننے پر کھولیں</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ ٹورنٹ کامیابی سے بن گیا: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ خرابی: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>منسوخ</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>ٹکڑے ہیش ہو رہے… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 ٹکڑے × %2 فی ٹکڑا</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>منسوخ</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>بند کریں</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>بن رہا ہے…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>ٹورنٹ کھولیں</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>ٹورنٹ بنائیں…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>فائلیں شامل کریں</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>فولڈر شامل کریں</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent فائل محفوظ کریں</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>ٹورنٹ فائلیں (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>تمام فائلیں (*)</translation>
         </message>
     </context>
 </TS>

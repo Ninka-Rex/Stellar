@@ -61,38 +61,6 @@
             <translation>ቆሟል</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>ስቴላር አውርድ አስተዳዳሪ v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>በማውረድ ላይ: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>   በማብቀል ላይ: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>በማብቀል ላይ: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>   ድምር: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>ድምር: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>ስቴላር እየተዘጋ ነው...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Firefox XPI ይጫኑ፣ ራስ-ሰር ማሻሻያ የለም</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>ስናፕ ፋየርፎክስ ተገኝቷል — ከስቴላር ጋር አይሰራም</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>ስናፕ ፋየርፎክስ በተዘጋ አሸዋ ውስጥ ይሰራል እና የስቴላር አስተናጋጅን ማስጀመር አይችልም። ወደ ፍላትፓክ ፋየርፎክስ (የሚመከር)፣ የሞዚላ ኦፊሴላዊ .deb ይቀይሩ፣ ወይም በምትኩ ክሮሚየም / ብሬቭ / ቪቫልዲ ይጠቀሙ።</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>ፍላትፓክ ፋየርፎክስን በDiscover ውስጥ ክፈት</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>የሞዚላ ማውረጃ ገጽ</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Discover መክፈት አልተቻለም — በመደብርዎ ውስጥ &quot;Firefox&quot;ን በእጅ ይፈልጉ፣ ወይም የሞዚላ ማውረጃ አገናኝን ይጠቀሙ።</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>ተከፍቷል። ፋየርፎክስን ይጫኑ፣ ከዚያ የስናፕ ስሪቱን ያራግፉ (የስርዓት ቅንብሮች → መተግበሪያዎች)።</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>ፍላትፓክ ፋየርፎክስ ተጨማሪ ፍቃድ ያስፈልገዋል</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>ፋየርፎክስ (ፍላትፓክ) በአሸዋ ውስጥ ይሰራል እና የስቴላር ቤተኛ መልእክት አስተናጋጅን ለማስጀመር org.freedesktop.Flatpak=talk ፍቃድ ያስፈልገዋል። ከታች ያለውን ቁልፍ ጠቅ ያድርጉ ለመስጠት፣ ከዚያ ፋየርፎክስን እንደገና ያስጀምሩ።</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>ፍቃድ ስጥ</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>ፍቃድ ተሰጥቷል። ለውጡ ተግባራዊ እንዲሆን ፋየርፎክስን እንደገና ያስጀምሩ።</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>ፈቃድ መስጠት አልተሳካም፦</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>
+በእጅ አሂድ፦ flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1070,6 +1089,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ሜታዳታ</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>መግለጫ</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>የተፈጠረው በ</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>የተፈጠረበት ቀን</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>ምድብ</translation>
         </message>
@@ -1156,6 +1187,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>4. የቁራጭ ካርታ</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>አንቀሳቅስ...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2671,6 +2706,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>.torrent ላክ…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>ቶረንት ፍጠር…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>ውርዶች</translation>
         </message>
@@ -2705,10 +2744,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>ወረፋ አስቁም</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>የፍጥነት ገዳቢ</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4855,6 +4890,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM አውርዶች</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>ስቴላር ክፈት</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>URL አክል…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>ስለ Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>የፍጥነት ገዳቢ</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>የፍጥነት ገዳቢ ቅንብሮች…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>ክፍለ-ጊዜ አቁም</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>ከስቴላር ውጣ</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>ክፍለ-ጊዜ ቀጥል</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5701,6 +5772,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ቪዲዮ አውርድ</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>ቶረንት ፍጠር</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>ምንጭ ፋይሎች / አቃፊዎች</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ ፋይሎች</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ አቃፊ</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>አስወግድ</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>ፋይሎችን ወይም አቃፊዎችን እዚህ ይጎትቱ፣ ወይም ከላይ ያሉትን አዝራሮች ይጠቀሙ</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>ውጤት</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>አስቀምጥ በ፦</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>የ.torrent ፋይል መቀመጫ መንገድ…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>አስስ…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>ስም፦</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>አማራጭ — ነባሪው የአቃፊ/ፋይል ስም</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>ቁራጭ መጠን፦</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>ራስ-ሰር</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 ቁርጥራጮች × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>ሜታዳታ</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>አስተያየት፦</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>በ.torrent ውስጥ የተካተተ አማራጭ አስተያየት</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>መግለጫ፦</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>አማራጭ የተራዘመ መግለጫ</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>የተፈጠረው በ፦</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>የግል ቶረንት (DHT እና PEX ለዚህ ቶረንት ተሰናክለዋል)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>መከታተያዎች</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>በአንድ መስመር አንድ URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>የድር ዘሮች (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>ሲፈጠር ክፈት</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ ቶረንት ተፈጥሯል: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ ስህተት: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>ተሰርዟል</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>ክፍሎች እየተከታተለ… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 ክፍሎች × %2 በክፍል</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ይቅር</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>ዝጋ</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>እየፈጠረ…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>ክፈት ቶረንት</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>ቶረንት ፍጠር…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ፋይሎች አክል</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>አቃፊ አክል</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent አስቀምጥ</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>የቶረንት ፋይሎች (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>ሁሉም ፋይሎች (*)</translation>
         </message>
     </context>
 </TS>

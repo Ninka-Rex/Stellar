@@ -61,38 +61,6 @@
             <translation>NAKA-PAUSE</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>Baba: %1  Taas: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Dina-download: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>  Sine-seed: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Sine-seed: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>  Kabuuan: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Kabuuan: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Nag-iisaayos ang Stellar...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>I-install ang Firefox XPI, walang awtomatikong updates</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Na-detect ang Snap Firefox — hindi gagana sa Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Ang Snap Firefox ay tumatakbo sa isang nakakulong na sandbox at hindi mailunsad ang Stellar host. Lumipat sa Firefox flatpak (inirerekomenda), opisyal na .deb ng Mozilla, o gumamit ng Chromium / Brave / Vivaldi.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Buksan ang Firefox flatpak sa Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Pahina ng pag-download ng Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Hindi mabuksan ang Discover — hanapin ang &quot;Firefox&quot; nang manu-mano sa iyong tindahan, o gamitin ang link ng pag-download ng Mozilla.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Nabuksan. I-install ang Firefox, pagkatapos ay i-uninstall ang snap na bersyon (System Settings → Apps).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Kailangan ng Flatpak Firefox ng karagdagang pahintulot</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Ang Firefox (Flatpak) ay tumatakbo sa isang sandbox at kailangan ang pahintulot na org.freedesktop.Flatpak=talk upang mailunsad ang Stellar native messaging host. I-click ang button sa ibaba upang ibigay ito, pagkatapos ay i-restart ang Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Ibigay ang pahintulot</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Naibigay ang pahintulot. I-restart ang Firefox upang magkabisa ang pagbabago.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>1. Nabigong magbigay ng pahintulot:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>2. 
+Patakbuhin nang manu-mano: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1090,18 @@ Maaari mong baguhin ito sa Options → Downloads sa ibang oras.</translation>
             <translation>Metadata</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Deskripsyon</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>3. Ginawa ni</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>4. Ginawa noong</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Kategorya</translation>
         </message>
@@ -1157,6 +1188,10 @@ Maaari mong baguhin ito sa Options → Downloads sa ibang oras.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Mapa ng Bahagi</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>5. Ilipat...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2661,6 +2696,10 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>I-export ang .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>6. Gumawa ng Torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Mga Pag-download</translation>
         </message>
@@ -2695,10 +2734,6 @@ Stellar Options → Browser → Bypass Download Interception</translation>
         <message>
             <source>Stop Queue</source>
             <translation>Tigil ang Pila</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Limit ng Bilis</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4844,6 +4879,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>Mga download ng SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>7. Buksan ang Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>8. Magdagdag ng URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>9. GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>10. Tungkol sa Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Limitador ng Bilis</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Mga Setting ng Limitador ng Bilis…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>I-pause ang Sesyon</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Lumabas sa Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Ituloy ang Sesyon</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5689,6 +5760,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>I-download ang video</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Gumawa ng Torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Mga Pinagmulang File / Folder</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Mga File</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Folder</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Tanggalin</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>I-drag ang mga file o folder dito, o gamitin ang mga button sa itaas</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Output</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>I-save sa:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Path para i-save ang .torrent file…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Mag-browse…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Pangalan:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Opsyonal — default sa pangalan ng folder/file</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Laki ng piraso:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 piraso × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metadata</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Komentaryo:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Opsyonal na komentaryo sa .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Deskripsyon:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Opsyonal na pinalawig na deskripsyon</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Ginawa ni:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Pribadong torrent (DHT at PEX naka-disable)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Mga Tracker</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Isang URL bawat linya</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Web Seeds (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Buksan kapag nalikha</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Matagumpay na nalikha: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Error: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Nakansela</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Nagha-hash… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 piraso × %2 bawat piraso</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Kanselahin</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Isara</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Gumagawa…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Buksan ang Torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Gumawa ng Torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Magdagdag ng Files</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Magdagdag ng Folder</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>I-save ang .torrent File</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Torrent files (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Lahat ng files (*)</translation>
         </message>
     </context>
 </TS>

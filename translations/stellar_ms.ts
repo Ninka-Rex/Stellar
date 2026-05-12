@@ -61,38 +61,6 @@
             <translation>DIHENTIKAN</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>Muat turun: %1  Muat naik: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Memuat turun: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>Membenih: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Membenih: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>Jumlah: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Jumlah: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar sedang menutup...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Pasang fail XPI Firefox, tanpa kemas kini automatik.</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox dikesan — tidak serasi dengan Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox berjalan dalam kotak pasir terhad dan tidak boleh melancarkan hos Stellar. Tukar ke Firefox flatpak (disyorkan), .deb rasmi Mozilla, atau guna Chromium / Brave / Vivaldi.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Buka Firefox flatpak di Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Halaman muat turun Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Tidak dapat buka Discover — cari &quot;Firefox&quot; secara manual di kedai anda, atau guna pautan muat turun Mozilla.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Dibuka. Pasang Firefox, kemudian nyahpasang versi snap (Tetapan Sistem → Apl).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Firefox Flatpak perlukan kebenaran tambahan</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) berjalan dalam kotak pasir dan perlukan kebenaran org.freedesktop.Flatpak=talk untuk melancarkan hos pemesejan asli Stellar. Klik butang di bawah untuk beri kebenaran, kemudian mulakan semula Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Beri kebenaran</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Kebenaran diberi. Mulakan semula Firefox untuk perubahan berkuat kuasa.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>1. Gagal beri kebenaran: </translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>2. 
+Jalankan manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1090,18 @@ Anda boleh ubah dalam Pilihan → Muat Turun nanti.</translation>
             <translation>Meta</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Penerangan</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>3. Dicipta oleh</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>4. Dicipta pada</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Kategori</translation>
         </message>
@@ -1157,6 +1188,10 @@ Anda boleh ubah dalam Pilihan → Muat Turun nanti.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Peta Potongan</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>5. Alih...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2664,6 +2699,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Eksport .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>6. Cipta Torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Muat Turun</translation>
         </message>
@@ -2698,10 +2737,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>Berhenti Antrian</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Pengehad Laju</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4847,6 +4882,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>Muat turun SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>7. Buka Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>8. Tambah URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>9. GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>10. Perihal Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Penghad Laju</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Tetapan Penghad Laju…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Henti Sesi</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Keluar Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Sambung Sesi</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5692,6 +5763,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Muat turun video</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Cipta Torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Fail / Folder Sumber</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Fail</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Folder</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Buang</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Seret fail atau folder ke sini, atau guna butang di atas</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Output</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Simpan ke:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Laluan simpan fail .torrent…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Semak imbas…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Nama:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Pilihan — guna nama folder/fail jika kosong</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Saiz cebisan:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 cebisan × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metadata</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Komen:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Komen pilihan dalam .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Penerangan:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Penerangan lanjut pilihan</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Dicipta oleh:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Torrent peribadi (DHT &amp; PEX dimatikan)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Penjejak</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Satu URL sebaris</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Benih Web (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Buka torrent bila siap</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Torrent berjaya dibuat: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Ralat: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Dibatalkan</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Mencincang kepingan… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 kepingan × %2 setiap keping</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Batal</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Tutup</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Membuat…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Buka Torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Cipta Torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Tambah Fail</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Tambah Folder</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Simpan Fail .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Fail torrent (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Semua fail (*)</translation>
         </message>
     </context>
 </TS>

@@ -61,38 +61,6 @@
             <translation>⏸ متوقف</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>تنزيل: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>بذر: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>بذر: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>المجموع: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>المجموع: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar ينطفئ...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>تثبيت ملحق فايرفوكس XPI، بدون تحديثات تلقائية</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>سناب فايرفوكس تم اكتشافه — لن يعمل مع ستيلار</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>سناب فَيَرفُكس يعمل في صندوق رمل محصور ولا يمكنه تشغيل مضيف ستيلار. انتقل إلى فَيَرفُكس فلاتباك (موصى به)، أو حزمة .deb الرسمية من موزيلا، أو استخدم كروميوم / بريف / فيفالدي بدلاً من ذلك.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>افتح Firefox flatpak في Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>صفحة تحميل موزيلا</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>لم نتمكن من فتح Discover — ابحث عن &quot;Firefox&quot; يدويًا في متجرك، أو استخدم رابط التحميل من Mozilla.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>مفتوح. ثبّت فَيَرفُكس، ثم أزِل تثبيت إصدار snap (إعدادات النظام ← التطبيقات).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>فَيَرفُكس Flatpak يحتاج إلى إذن إضافي</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>فَيَرفُكس (فلاتباك) يعمل في بيئة معزولة ويحتاج إلى إذن org.freedesktop.Flatpak=talk لتشغيل مضيف المراسلة الأصلي Stellar. انقر على الزر أدناه لمنحه الإذن، ثم أعد تشغيل فَيَرفُكس.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>منح الإذن</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>تم منح الإذن. أعد تشغيل فَيَرفُكس لتفعيل التغيير.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>فشل منح الإذن:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>نفّذ يدويًا: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1089,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>البيانات الوصفية</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>الوصف</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>أُنشئ بواسطة</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>أُنشئ في</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>الفئة</translation>
         </message>
@@ -1157,6 +1187,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>خريطة القطع</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>نقل...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2668,6 +2702,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>تصدير .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>إنشاء تورنت…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>التحميلات</translation>
         </message>
@@ -2702,10 +2740,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>إيقاف الطابور</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>محدد السرعة</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4851,6 +4885,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>4. تنزيلات SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>فتح Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>إضافة رابط…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>حول Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>محدد السرعة</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>إعدادات محدد السرعة…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>إيقاف الجلسة</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>خروج</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>استئناف الجلسة</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5697,6 +5767,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>تنزيل الفيديو</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>إنشاء تورنت</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>الملفات / المجلدات المصدر</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ ملفات</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ مجلد</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>إزالة</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>اسحب الملفات أو المجلدات هنا، أو استخدم الأزرار أعلاه</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>الإخراج</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>حفظ إلى:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>مسار حفظ ملف .torrent…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>تصفح…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>الاسم:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>اختياري — الافتراضي اسم المجلد/الملف</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>حجم القطعة:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>تلقائي</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 قطعة × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>البيانات الوصفية</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>تعليق:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>تعليق اختياري مضمّن في ملف التورنت</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>وصف:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>وصف موسّع اختياري</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>أُنشئ بواسطة:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>تورنت خاص (DHT وPEX معطّلان)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>المتعقّبات</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>رابط واحد لكل سطر</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>بذور ويب (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>فتح عند الإنشاء</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ تم إنشاء التورنت: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ خطأ: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>أُلغِي</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>تجزئة القطع… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 قطع × %2 للقطعة</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>إغلاق</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>جارٍ الإنشاء…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>فتح تورنت</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>إنشاء تورنت…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>إضافة ملفات</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>إضافة مجلد</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>حفظ ملف .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>ملفات تورنت (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>كل الملفات (*)</translation>
         </message>
     </context>
 </TS>

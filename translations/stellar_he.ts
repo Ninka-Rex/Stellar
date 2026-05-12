@@ -61,38 +61,6 @@
             <translation>מושהה</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>מוריד: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>מזריע: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>מזריע: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>סה״כ: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>סה״כ: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar נסגר...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>התקן קובץ XPI ל-Firefox, ללא עדכונים אוטומטיים</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox זוהה — לא יעבוד עם Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox רץ בארגז חול מוגבל ולא יכול להפעיל את Stellar. עבור ל-Firefox flatpak (מומלץ), חבילת deb הרשמית של Mozilla, או השתמש ב-Chromium / Brave / Vivaldi.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>פתח את Firefox flatpak ב-Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>דף ההורדה של Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>לא ניתן לפתוח את Discover — חפש &quot;Firefox&quot; ידנית בחנות שלך, או השתמש בקישור ההורדה של Mozilla.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>נפתח. התקן את Firefox, ואז הסר את גרסת ה-snap (הגדרות מערכת ← יישומים).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox צריך הרשאה נוספת</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) רץ בארגז חול וזקוק להרשאת org.freedesktop.Flatpak=talk כדי להפעיל את Stellar. לחץ על הכפתור למטה כדי להעניק אותה, ואז הפעל מחדש את Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>הענק הרשאה</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>ההרשאה ניתנה. הפעל מחדש את Firefox כדי שהשינוי ייכנס לתוקף.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>הענקת הרשאה נכשלה:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>
+הפעל ידנית: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1070,6 +1089,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>מטא-נתונים</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>תיאור</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>נוצר על ידי</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>נוצר בתאריך</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>קטגוריה</translation>
         </message>
@@ -1156,6 +1187,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>מפת חלקים</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>העבר...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2657,6 +2692,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ייצא .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>צור טורנט...</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>הורדות</translation>
         </message>
@@ -2691,10 +2730,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>עצור תור</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>מגביל מהירות</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4835,6 +4870,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>הורדות SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>פתח את Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>הוסף URL...</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>אודות Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>מגביל מהירות</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>הגדרות מגביל מהירות…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>השהה הפעלה</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>יציאה מ-Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>המשך הפעלה</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5680,6 +5751,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>הורדת וידאו</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>צור טורנט</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>קבצי/תיקיות מקור</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ קבצים</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ תיקייה</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>הסר</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>גרור קבצים/תיקיות לכאן, או השתמש בכפתורים למעלה</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>פלט</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>שמור אל:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>נתיב שמירת קובץ Torrent…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>עיון…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>שם:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>רשות — ברירת מחדל: שם תיקייה/קובץ</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>גודל חלקה:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>אוטומטי</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 חלקות × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>מטא-נתונים</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>הערה:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>הערה אופציונלית מוטבעת בקובץ .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>תיאור:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>תיאור מורחב אופציונלי</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>נוצר על ידי:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>טורנט פרטי (DHT ו-PEX מושבתים)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>עוקבים</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>כתובת אחת לשורה</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>מקורות רשת (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>פתח טורנט ביצירה</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ טורנט נוצר: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ שגיאה: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>בוטל</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>גיבוב חלקים… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 חלקים × %2 לחלק</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>בטל</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>סגור</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>יוצר…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>פתח טורנט</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>צור טורנט…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>הוסף קבצים</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>הוסף תיקייה</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>שמור קובץ .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>קבצי טורנט (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>כל הקבצים (*)</translation>
         </message>
     </context>
 </TS>

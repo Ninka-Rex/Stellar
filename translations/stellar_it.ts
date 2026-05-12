@@ -61,38 +61,6 @@
             <translation>IN PAUSA</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1 ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>↓: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>↑: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>↑: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>Tot: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Tot: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar sta chiudendo...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Installa XPI Firefox, senza aggiornamenti automatici</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox rilevato — non funziona con Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox è confinato in una sandbox e non può avviare l'host Stellar. Passa al flatpak di Firefox (consigliato), al .deb ufficiale di Mozilla, oppure usa Chromium / Brave / Vivaldi.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Apri flatpak Firefox in Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Pagina download Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Impossibile aprire Discover — cerca &quot;Firefox&quot; manualmente nello store, o usa il link Mozilla.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Aperto. Installa Firefox, poi disinstalla la versione snap (Impostazioni → App).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox richiede un permesso extra</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) è in sandbox e necessita il permesso org.freedesktop.Flatpak=talk per avviare l'host Stellar. Clicca sotto per concederlo, poi riavvia Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Concedi permesso</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Permesso concesso. Riavvia Firefox per applicare la modifica.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>Permesso negato:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>Esegui manualmente: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1070,6 +1088,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Metadati</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Descrizione</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>Creato da</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>Creato il</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Categoria</translation>
         </message>
@@ -1156,6 +1186,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>Mappa Pezzi</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>Sposta...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2657,6 +2691,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Esporta .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>Crea torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Download</translation>
         </message>
@@ -2691,10 +2729,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>Ferma coda</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Limite velocità</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4840,6 +4874,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>Download SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Apri Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>Aggiungi URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Info su Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Limitatore velocità</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Impostazioni limitatore…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Metti in pausa</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Esci da Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Riprendi</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5685,6 +5755,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Download video</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Crea torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>File / cartelle sorgente</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ File</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Cartella</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Rimuovi</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Trascina qui file o cartelle, o usa i pulsanti sopra</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Output</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Salva in:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Percorso per salvare il file .torrent…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Sfoglia…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Nome:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Opzionale — predefinito nome cartella/file</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Dimensione pezzo:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 pezzi × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metadati</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Commento:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Commento opzionale nel .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Descrizione:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Descrizione estesa opzionale</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Creato da:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Torrent privato (DHT e PEX disabilitati)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Tracker</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Un URL per riga</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Web Seed (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Apri al termine</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Torrent creato: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Errore: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Annullato</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Hash in corso… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 pezzi × %2 cad.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Annulla</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Chiudi</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Creazione…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Apri torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Crea torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Aggiungi file</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Aggiungi cartella</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Salva file .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>File torrent (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Tutti i file (*)</translation>
         </message>
     </context>
 </TS>

@@ -61,38 +61,6 @@
             <translation>বিরাম</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar ডাউনলোড ম্যানেজার v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>ডাউন: %1  আপ: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>ডাউনলোড হচ্ছে: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>সিডিং: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>সিডিং: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>মোট: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>মোট: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar বন্ধ হচ্ছে...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Firefox XPI ইনস্টল করুন, স্বয়ংক্রিয় আপডেট নেই</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>স্ন্যাপ ফায়ারফক্স শনাক্ত — স্টেলারের সাথে কাজ করবে না</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>স্ন্যাপ ফায়ারফক্স সীমাবদ্ধ স্যান্ডবক্সে চলে এবং স্টেলার হোস্ট চালু করতে পারে না। ফায়ারফক্স ফ্ল্যাটপ্যাক (প্রস্তাবিত), মোজিলার অফিসিয়াল .deb, অথবা ক্রোমিয়াম/ব্রেভ/ভিভাল্ডি ব্যবহার করুন।</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>ডিসকভারে ফায়ারফক্স ফ্ল্যাটপ্যাক খুলুন</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>মোজিলা ডাউনলোড পৃষ্ঠা</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>ডিসকভার খোলা যায়নি — আপনার স্টোরে &quot;Firefox&quot; খুঁজুন, অথবা মোজিলা ডাউনলোড লিংক ব্যবহার করুন।</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>খোলা হয়েছে। ফায়ারফক্স ইনস্টল করুন, তারপর স্ন্যাপ সংস্করণ আনইনস্টল করুন (সিস্টেম সেটিংস → অ্যাপস)।</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>ফ্ল্যাটপ্যাক ফায়ারফক্সের অতিরিক্ত অনুমতি প্রয়োজন</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>ফায়ারফক্স (ফ্ল্যাটপ্যাক) স্যান্ডবক্সে চলে এবং স্টেলার নেটিভ মেসেজিং হোস্ট চালু করতে org.freedesktop.Flatpak=talk অনুমতি প্রয়োজন। অনুমতি দিতে নিচের বোতামে ক্লিক করুন, তারপর ফায়ারফক্স রিস্টার্ট করুন।</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>অনুমতি দিন</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>অনুমতি দেওয়া হয়েছে। পরিবর্তন কার্যকর করতে ফায়ারফক্স রিস্টার্ট করুন।</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>1. অনুমতি দিতে ব্যর্থ: </translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>2. 
+ম্যানুয়ালি চালান: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1090,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>মেটাডেটা</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>বিবরণ</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>3. নির্মাতা</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>4. তৈরির তারিখ</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>বিভাগ</translation>
         </message>
@@ -1157,6 +1188,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>পিস ম্যাপ</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>5. সরান...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2667,6 +2702,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <translation>এক্সপোর্ট .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>6. টরেন্ট তৈরি করুন…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>ডাউনলোড</translation>
         </message>
@@ -2701,10 +2740,6 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
         <message>
             <source>Stop Queue</source>
             <translation>কিউ বন্ধ করুন</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>গতি সীমক</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4851,6 +4886,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM ডাউনলোড</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>7. স্টেলার খুলুন</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>8. URL যোগ করুন…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>9. গিটহাব</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>10. স্টেলার সম্পর্কে</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>গতি সীমক</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>গতি সীমক সেটিংস…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>সেশন বিরাম</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>স্টেলার বন্ধ</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>সেশন চালু</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5697,6 +5768,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ভিডিও ডাউনলোড</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>টরেন্ট তৈরি</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>উৎস ফাইল/ফোল্ডার</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ ফাইল</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ ফোল্ডার</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>সরান</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>ফাইল বা ফোল্ডার টেনে আনুন, বা উপরের বোতাম ব্যবহার করুন</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>আউটপুট</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>সংরক্ষণ করুন:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent ফাইল সংরক্ষণের পথ…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>ব্রাউজ…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>নাম:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>ঐচ্ছিক — ডিফল্ট ফোল্ডার/ফাইলের নাম</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>পিস সাইজ:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>অটো</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 পিস × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>মেটাডেটা</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>মন্তব্য:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>টরেন্টে সংযুক্ত ঐচ্ছিক মন্তব্য</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>বিবরণ:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>ঐচ্ছিক বিস্তারিত বিবরণ</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>স্রষ্টা:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>ব্যক্তিগত টরেন্ট (এই টরেন্টে DHT ও PEX নিষ্ক্রিয়)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>ট্র্যাকার</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>প্রতি লাইনে একটি URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>ওয়েব সিড (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>তৈরি হলে টরেন্ট খুলুন</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ টরেন্ট সফলভাবে তৈরি: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ ত্রুটি: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>বাতিল করা হয়েছে</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>পিস হ্যাশ হচ্ছে… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 পিস × প্রতি পিসে %2</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>বন্ধ</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>তৈরি হচ্ছে…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>টরেন্ট খুলুন</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>টরেন্ট তৈরি…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ফাইল যোগ</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>ফোল্ডার যোগ</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent সংরক্ষণ</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>টরেন্ট ফাইল (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>সব ফাইল (*)</translation>
         </message>
     </context>
 </TS>

@@ -78,5 +78,9 @@
     "zh_CN",
     "zh_TW"
   ],
-  "failed_keys": {}
+  "failed_keys": {
+    "lv": [
+      "\n\nRun manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox"
+    ]
+  }
 }

@@ -61,38 +61,6 @@
             <translation>నిలిపివేయబడింది</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>స్టెల్లార్ డౌన్‌లోడ్ మేనేజర్ v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>దిగు: %1  ఎగు: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>డౌన్‌లోడ్: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>సీడింగ్: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>సీడింగ్: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>మొత్తం: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>మొత్తం: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>స్టెల్లార్ ఆపివేయబడుతోంది...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Firefox XPI ఇన్స్టాల్ చేయండి, స్వయంచాలక నవీకరణలు లేవు</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>స్నాప్ Firefox కనుగొనబడింది — Stellarతో పనిచేయదు</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>స్నాప్ Firefox పరిమిత శాండ్బాక్స్లో నడుస్తుంది, Stellar హోస్ట్ను ప్రారంభించలేదు. Firefox flatpak (సిఫార్సు), Mozilla అధికారిక .debకి మారండి లేదా బదులుగా Chromium / Brave / Vivaldi ఉపయోగించండి.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Discoverలో Firefox flatpak తెరవండి</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Mozilla డౌన్లోడ్ పేజీ</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Discover తెరవడం సాధ్యం కాలేదు — మీ స్టోర్లో &quot;Firefox&quot; కోసం మాన్యువల్గా శోధించండి లేదా Mozilla డౌన్లోడ్ లింక్ ఉపయోగించండి.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>తెరవబడింది. Firefox ఇన్స్టాల్ చేయండి, ఆపై స్నాప్ వెర్షన్ను అన్ఇన్స్టాల్ చేయండి (సిస్టమ్ సెట్టింగ్స్ → యాప్లు).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefoxకి అదనపు అనుమతి అవసరం</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) శాండ్బాక్స్లో నడుస్తుంది, Stellar స్థానిక మెసేజింగ్ హోస్ట్ను ప్రారంభించడానికి org.freedesktop.Flatpak=talk అనుమతి అవసరం. దాన్ని మంజూరు చేయడానికి క్రింది బటన్ క్లిక్ చేసి, ఆపై Firefox పునఃప్రారంభించండి.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>అనుమతి మంజూరు చేయి</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>అనుమతి మంజూరు చేయబడింది. మార్పు అమలులోకి రావడానికి Firefox పునఃప్రారంభించండి.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>అనుమతి మంజూరు చేయడంలో విఫలమైంది</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox ను మాన్యువల్‌గా అమలు చేయండి</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1089,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>మెటాడేటా</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>వివరణ</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>సృష్టించినది</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>సృష్టించబడిన తేదీ</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>వర్గం</translation>
         </message>
@@ -1157,6 +1187,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>ముక్కల పటం</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>తరలించు...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2673,6 +2707,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>1. .torrent ఎగుమతి…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>టొరెంట్ సృష్టించండి…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>డౌన్‌లోడ్‌లు</translation>
         </message>
@@ -2707,10 +2745,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>క్యూ ఆపు</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>2. వేగ పరిమితి</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4857,6 +4891,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM డౌన్‌లోడ్‌లు</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>స్టెల్లార్ తెరవండి</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>URL జోడించండి…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>స్టెల్లార్ గురించి</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>వేగ పరిమితి</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>వేగ పరిమితి సెట్టింగ్‌లు…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>సెషన్‌ను పాజ్ చేయి</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>స్టెల్లార్ నుండి నిష్క్రమించు</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>సెషన్‌ను తిరిగి ప్రారంభించు</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5704,6 +5774,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>వీడియో డౌన్‌లోడ్</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>టొరెంట్ సృష్టించు</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>మూల ఫైల్‌లు / ఫోల్డర్‌లు</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ ఫైల్‌లు</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ ఫోల్డర్</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>తొలగించు</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>ఫైల్లు లేదా ఫోల్డర్లను ఇక్కడ లాగండి లేదా పై బటన్లను ఉపయోగించండి</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>అవుట్పుట్</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>ఇక్కడ సేవ్ చేయి:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent ఫైల్ను సేవ్ చేయడానికి మార్గం…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>బ్రౌజ్ చేయి…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>పేరు:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>ఐచ్ఛికం — ఫోల్డర్/ఫైల్ పేరుకు డిఫాల్ట్</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>పీస్ సైజు:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>ఆటో</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 పీస్లు × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>మెటాడేటా</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>వ్యాఖ్య:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>టొరెంట్‌లో పొందుపరిచిన ఐచ్ఛిక వ్యాఖ్య</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>వివరణ:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>ఐచ్ఛిక విస్తృత వివరణ</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>సృష్టించినవారు:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>ప్రైవేట్ టొరెంట్ (దీనికి DHT, PEX నిలిపివేయబడ్డాయి)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>ట్రాకర్లు</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>ప్రతి లైన్‌కు ఒక URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>వెబ్ సీడ్లు (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>సృష్టించినప్పుడు తెరువు</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ టొరెంట్ విజయవంతంగా సృష్టించబడింది: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ లోపం: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>రద్దు చేయబడింది</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>ముక్కలు హాష్ చేస్తోంది… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 ముక్కలు × ఒక్కో ముక్కకు %2</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>రద్దు చేయి</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>మూసివేయి</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>సృష్టిస్తోంది…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>టొరెంట్ తెరవండి</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>టొరెంట్ సృష్టించు…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ఫైల్స్ జోడించు</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>ఫోల్డర్ జోడించు</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent ఫైల్ సేవ్ చేయి</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>టొరెంట్ ఫైల్స్ (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>అన్ని ఫైల్స్ (*)</translation>
         </message>
     </context>
 </TS>

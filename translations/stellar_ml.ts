@@ -61,38 +61,6 @@
             <translation>താൽക്കാലികമായി നിർത്തി</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>സ്റ്റെല്ലർ ഡൗൺലോഡ് മാനേജർ v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>ഡൗൺലോഡ്: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>സീഡിംഗ്: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>സീഡിംഗ്: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>ആകെ: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>ആകെ: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>സ്റ്റെല്ലർ അടയ്ക്കുന്നു...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Firefox XPI ഇൻസ്റ്റാൾ ചെയ്യുക, സ്വയം അപ്ഡേറ്റുകൾ ഇല്ല</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>സ്നാപ് ഫയർഫോക്സ് കണ്ടെത്തി — സ്റ്റെല്ലറിനൊപ്പം പ്രവർത്തിക്കില്ല</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>സ്നാപ് ഫയർഫോക്സ് പരിമിത സാൻഡ്ബോക്സിൽ പ്രവർത്തിക്കുന്നതിനാൽ സ്റ്റെല്ലർ ഹോസ്റ്റ് ലോഞ്ച് ചെയ്യാനാകില്ല. ഫയർഫോക്സ് ഫ്ലാറ്റ്പാക്കിലേക്ക് (ശുപാർശ), മോസില്ലയുടെ ഔദ്യോഗിക .deb-ലേക്ക് മാറുക, അല്ലെങ്കിൽ ക്രോമിയം / ബ്രേവ് / വിവാൾഡി ഉപയോഗിക്കുക.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>ഡിസ്കവറിൽ ഫയർഫോക്സ് ഫ്ലാറ്റ്പാക്ക് തുറക്കുക</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>മോസില്ല ഡൗൺലോഡ് പേജ്</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>ഡിസ്കവർ തുറക്കാനായില്ല — സ്റ്റോറിൽ &quot;Firefox&quot; എന്ന് സ്വയം തിരയുക, അല്ലെങ്കിൽ മോസില്ല ഡൗൺലോഡ് ലിങ്ക് ഉപയോഗിക്കുക.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>തുറന്നു. ഫയർഫോക്സ് ഇൻസ്റ്റാൾ ചെയ്ത ശേഷം സ്നാപ് പതിപ്പ് അൺഇൻസ്റ്റാൾ ചെയ്യുക (സിസ്റ്റം ക്രമീകരണങ്ങൾ → ആപ്പുകൾ).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>ഫ്ലാറ്റ്പാക്ക് ഫയർഫോക്സിന് അധിക അനുമതി ആവശ്യമാണ്</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>ഫയർഫോക്സ് (ഫ്ലാറ്റ്പാക്ക്) ഒരു സാൻഡ്ബോക്സിൽ പ്രവർത്തിക്കുന്നു, സ്റ്റെല്ലർ നേറ്റീവ് മെസേജിംഗ് ഹോസ്റ്റ് ലോഞ്ച് ചെയ്യാൻ org.freedesktop.Flatpak=talk അനുമതി ആവശ്യമാണ്. അത് നൽകാൻ താഴെയുള്ള ബട്ടൺ ക്ലിക്ക് ചെയ്യുക, എന്നിട്ട് ഫയർഫോക്സ് പുനരാരംഭിക്കുക.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>അനുമതി നൽകുക</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>അനുമതി നൽകി. മാറ്റം പ്രാബല്യത്തിൽ വരാൻ ഫയർഫോക്സ് പുനരാരംഭിക്കുക.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>അനുമതി നൽകുന്നതിൽ പരാജയപ്പെട്ടു:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>സ്വമേധയാ പ്രവർത്തിപ്പിക്കുക: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1070,6 +1088,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>മെറ്റാഡാറ്റ</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>വിവരണം</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>സൃഷ്ടിച്ചത്</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>സൃഷ്ടിച്ച തീയതി</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>വിഭാഗം</translation>
         </message>
@@ -1156,6 +1186,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>പീസ് മാപ്പ്</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>നീക്കുക...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2671,6 +2705,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>.torrent കയറ്റുമതി ചെയ്യുക…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>ടോറന്റ് സൃഷ്ടിക്കുക…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>ഡൗൺലോഡുകൾ</translation>
         </message>
@@ -2705,10 +2743,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>ക്യൂ നിർത്തുക</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>വേഗ പരിധി</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4853,6 +4887,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM ഡൗൺലോഡുകൾ</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Stellar തുറക്കുക</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>URL ചേർക്കുക…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Stellar-നെ കുറിച്ച്</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>വേഗ പരിധി</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>വേഗ പരിധി ക്രമീകരണങ്ങൾ…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>സെഷൻ താൽക്കാലികമായി നിർത്തുക</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>സ്റ്റെല്ലാർ അവസാനിപ്പിക്കുക</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>സെഷൻ പുനരാരംഭിക്കുക</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5699,6 +5769,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>വീഡിയോ ഡൗൺലോഡ്</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>ടോറന്റ് സൃഷ്ടിക്കുക</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>ഉറവിട ഫയലുകൾ / ഫോൾഡറുകൾ</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ ഫയലുകൾ</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ ഫോൾഡർ</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>നീക്കം ചെയ്യുക</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>ഫയലുകളോ ഫോൾഡറുകളോ ഇവിടെ വലിച്ചിടുക, അല്ലെങ്കിൽ മുകളിലെ ബട്ടണുകൾ ഉപയോഗിക്കുക</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>ഔട്ട്പുട്ട്</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>ഇവിടെ സേവ് ചെയ്യുക:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent ഫയൽ സേവ് ചെയ്യാനുള്ള പാത…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>ബ്രൗസ് ചെയ്യുക…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>പേര്:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>ഐച്ഛികം — ഫോൾഡർ/ഫയൽ പേരിലേക്ക് ഡിഫോൾട്ടാകുന്നു</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>പീസ് വലുപ്പം:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>ഓട്ടോ</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 പീസുകൾ × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>മെറ്റാഡാറ്റ</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>അഭിപ്രായം:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>.torrent-ൽ ഉൾച്ചേർത്ത ഐച്ഛിക അഭിപ്രായം</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>വിവരണം:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>ഐച്ഛിക വിപുലീകൃത വിവരണം</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>സൃഷ്ടിച്ചത്:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>സ്വകാര്യ ടോറന്റ് (ഈ ടോറന്റിന് DHT, PEX പ്രവർത്തനരഹിതം)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>ട്രാക്കറുകൾ</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>ഓരോ വരിയിലും ഒരു URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>വെബ് സീഡുകൾ (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>സൃഷ്ടിക്കുമ്പോൾ ടോറന്റ് തുറക്കുക</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ ടോറന്റ് വിജയകരമായി സൃഷ്ടിച്ചു: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ പിശക്: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>റദ്ദാക്കി</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>ഹാഷിംഗ് പീസുകൾ… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 പീസുകൾ × %2 ഓരോ പീസിനും</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>റദ്ദാക്കുക</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>അടയ്ക്കുക</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>സൃഷ്ടിക്കുന്നു…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>ടോറന്റ് തുറക്കുക</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>ടോറന്റ് സൃഷ്ടിക്കുക…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ഫയലുകൾ ചേർക്കുക</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>ഫോൾഡർ ചേർക്കുക</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent ഫയൽ സേവ് ചെയ്യുക</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>ടോറന്റ് ഫയലുകൾ (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>എല്ലാ ഫയലുകളും (*)</translation>
         </message>
     </context>
 </TS>

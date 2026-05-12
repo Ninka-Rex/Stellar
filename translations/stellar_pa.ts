@@ -61,38 +61,6 @@
             <translation>ਰੁਕਿਆ</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>ਸਟੈਲਰ ਡਾਊਨਲੋਡ ਮੈਨੇਜਰ v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>ਡਾਊਨ: %1  ਅੱਪ: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>ਡਾਊਨਲੋਡ: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>ਸੀਡਿੰਗ: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>ਸੀਡਿੰਗ: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>ਕੁੱਲ: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>ਕੁੱਲ: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>ਸਟੈਲਰ ਬੰਦ ਹੋ ਰਿਹਾ ਹੈ...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>ਫਾਇਰਫਾਕਸ XPI ਇੰਸਟਾਲ ਕਰੋ, ਕੋਈ ਆਟੋਮੈਟਿਕ ਅਪਡੇਟ ਨਹੀਂ</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox ਖੋਜਿਆ — Stellar ਨਾਲ ਕੰਮ ਨਹੀਂ ਕਰੇਗਾ</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox ਸੀਮਤ ਸੈਂਡਬਾਕਸ 'ਚ ਚੱਲਦਾ ਹੈ ਤੇ Stellar ਹੋਸਟ ਲਾਂਚ ਨਹੀਂ ਕਰ ਸਕਦਾ। Firefox flatpak (ਸਿਫ਼ਾਰਸ਼ੀ), Mozilla ਦਾ ਅਧਿਕਾਰਤ .deb, ਜਾਂ Chromium / Brave / Vivaldi ਵਰਤੋ।</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Discover 'ਚ Firefox flatpak ਖੋਲ੍ਹੋ</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Mozilla ਡਾਊਨਲੋਡ ਪੇਜ</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Discover ਨਹੀਂ ਖੁੱਲ੍ਹਿਆ — ਆਪਣੇ ਸਟੋਰ 'ਚ &quot;Firefox&quot; ਹੱਥੀਂ ਲੱਭੋ, ਜਾਂ Mozilla ਡਾਊਨਲੋਡ ਲਿੰਕ ਵਰਤੋ।</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>ਖੁੱਲ੍ਹ ਗਿਆ। Firefox ਇੰਸਟਾਲ ਕਰੋ, ਫਿਰ snap ਵਰਜਨ ਹਟਾਓ (ਸਿਸਟਮ ਸੈਟਿੰਗਾਂ → ਐਪਾਂ)।</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox ਨੂੰ ਵਾਧੂ ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) ਸੈਂਡਬਾਕਸ 'ਚ ਚੱਲਦਾ ਹੈ ਤੇ Stellar ਨੇਟਿਵ ਮੈਸੇਜਿੰਗ ਹੋਸਟ ਲਾਂਚ ਕਰਨ ਲਈ org.freedesktop.Flatpak=talk ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ। ਦੇਣ ਲਈ ਹੇਠਾਂ ਬਟਨ ਦਬਾਓ, ਫਿਰ Firefox ਮੁੜ ਚਾਲੂ ਕਰੋ।</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>ਇਜਾਜ਼ਤ ਦਿਓ</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>ਇਜਾਜ਼ਤ ਦਿੱਤੀ ਗਈ। ਤਬਦੀਲੀ ਲਾਗੂ ਕਰਨ ਲਈ Firefox ਮੁੜ ਚਾਲੂ ਕਰੋ।</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>ਇਜਾਜ਼ਤ ਦੇਣ ਵਿੱਚ ਅਸਫਲ:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>
+ਹੱਥੀਂ ਚਲਾਓ: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1090,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ਮੈਟਾਡੇਟਾ</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>ਵੇਰਵਾ</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>ਬਣਾਇਆ</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>ਬਣਾਉਣ ਦੀ ਮਿਤੀ</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>ਸ਼੍ਰੇਣੀ</translation>
         </message>
@@ -1157,6 +1188,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>پسہ نقشہ</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>ਹਿਲਾਓ...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2660,6 +2695,10 @@ Stellar ਓਪਸ਼ਨਸ → ਬ੍ਰਾਊਜ਼ਰ → ਡਾਊਨਲੋ�
             <translation>ਟੋਰੈਂਟ ਬਰਾਮਦ ਕਰੋ…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>ਟੋਰੈਂਟ ਬਣਾਓ…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>ਡਾਊਨਲੋਡ</translation>
         </message>
@@ -2694,10 +2733,6 @@ Stellar ਓਪਸ਼ਨਸ → ਬ੍ਰਾਊਜ਼ਰ → ਡਾਊਨਲੋ�
         <message>
             <source>Stop Queue</source>
             <translation>ਕਿਰਿਆ ਰੋਕੋ</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>ਸਪੀਡ ਸੀਮਕ</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4843,6 +4878,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM ਡਾਊਨਲੋਡ</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Stellar ਖੋਲ੍ਹੋ</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>URL ਜੋੜੋ…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Stellar ਬਾਰੇ</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>ਸਪੀਡ ਸੀਮਕ</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>ਸਪੀਡ ਸੀਮਕ ਸੈਟਿੰਗਾਂ…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>ਸੈਸ਼ਨ ਰੋਕੋ</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Stellar ਬੰਦ ਕਰੋ</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>ਸੈਸ਼ਨ ਮੁੜ ਸ਼ੁਰੂ</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5688,6 +5759,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ਵੀਡੀਓ ਡਾਊਨਲੋਡ</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>ਟੋਰੈਂਟ ਬਣਾਓ</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>ਸਰੋਤ ਫਾਈਲਾਂ/ਫੋਲਡਰ</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ ਫਾਈਲਾਂ</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ ਫੋਲਡਰ</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>ਹਟਾਓ</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>ਫਾਈਲਾਂ ਜਾਂ ਫੋਲਡਰ ਇੱਥੇ ਖਿੱਚੋ, ਜਾਂ ਉੱਪਰ ਦਿੱਤੇ ਬਟਨ ਵਰਤੋ</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>ਆਉਟਪੁੱਟ</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>ਇੱਥੇ ਸੰਭਾਲੋ:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent ਫਾਈਲ ਸੰਭਾਲਣ ਦਾ ਮਾਰਗ…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>ਬ੍ਰਾਊਜ਼…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>ਨਾਮ:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>ਵਿਕਲਪਿਕ — ਫੋਲਡਰ/ਫਾਈਲ ਨਾਮ 'ਤੇ ਮੂਲ</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>ਟੁਕੜਾ ਆਕਾਰ:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>ਆਟੋ</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 ਟੁਕੜੇ × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>ਮੈਟਾਡਾਟਾ</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>ਟਿੱਪਣੀ:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>.torrent ਵਿੱਚ ਸ਼ਾਮਲ ਵਿਕਲਪਿਕ ਟਿੱਪਣੀ</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>ਵੇਰਵਾ:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>ਵਿਕਲਪਿਕ ਵਿਸਤ੍ਰਿਤ ਵੇਰਵਾ</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>ਬਣਾਉਣ ਵਾਲਾ:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>ਪ੍ਰਾਈਵੇਟ ਟੋਰੈਂਟ (ਇਸ ਟੋਰੈਂਟ ਲਈ DHT ਅਤੇ PEX ਬੰਦ)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>ਟਰੈਕਰ</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>ਹਰ ਲਾਈਨ 'ਤੇ ਇੱਕ URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>ਵੈੱਬ ਸੀਡ (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>ਟੋਰੈਂਟ ਬਣਨ 'ਤੇ ਖੋਲ੍ਹੋ</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ ਟੋਰੈਂਟ ਸਫਲਤਾਪੂਰਵਕ ਬਣਿਆ: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ ਗੜਬੜ: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>ਰੱਦ ਕੀਤਾ</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>ਟੁਕੜੇ ਹੈਸ਼ ਹੋ ਰਹੇ… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 ਟੁਕੜੇ × %2 ਪ੍ਰਤੀ ਟੁਕੜਾ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ਰੱਦ ਕਰੋ</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>ਬੰਦ ਕਰੋ</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>ਬਣ ਰਿਹਾ…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>ਟੋਰੈਂਟ ਖੋਲ੍ਹੋ</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>ਟੋਰੈਂਟ ਬਣਾਓ…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ਫਾਈਲਾਂ ਸ਼ਾਮਲ ਕਰੋ</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>ਫੋਲਡਰ ਸ਼ਾਮਲ ਕਰੋ</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent ਫਾਈਲ ਸੰਭਾਲੋ</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>ਟੋਰੈਂਟ ਫਾਈਲਾਂ (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>ਸਾਰੀਆਂ ਫਾਈਲਾਂ (*)</translation>
         </message>
     </context>
 </TS>

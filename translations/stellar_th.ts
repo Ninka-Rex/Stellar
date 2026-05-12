@@ -61,38 +61,6 @@
             <translation>⏸ หยุดชั่วคราว</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>กำลังดาวน์โหลด: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>กำลังแชร์: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>กำลังแชร์: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>รวม: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>รวม: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>กำลังปิด Stellar...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>ติดตั้งไฟล์ XPI ของ Firefox โดยไม่มีการอัปเดตอัตโนมัติ</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>ตรวจพบ Snap Firefox — ใช้กับ Stellar ไม่ได้</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox ทำงานในแซนด์บ็อกซ์จำกัด เปิดโฮสต์ Stellar ไม่ได้ เปลี่ยนไปใช้ Firefox flatpak (แนะนำ) .deb ทางการจาก Mozilla หรือใช้ Chromium / Brave / Vivaldi แทน</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>เปิด Firefox flatpak ใน Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>หน้าดาวน์โหลด Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>เปิด Discover ไม่ได้ — ค้นหา &quot;Firefox&quot; เองในร้านค้า หรือใช้ลิงก์ดาวน์โหลด Mozilla</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>เปิดแล้ว ติดตั้ง Firefox แล้วถอนการติดตั้งเวอร์ชัน snap (ตั้งค่าระบบ → แอป)</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox ต้องการสิทธิ์เพิ่มเติม</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) ทำงานในแซนด์บ็อกซ์และต้องการสิทธิ์ org.freedesktop.Flatpak=talk เพื่อเปิดโฮสต์ส่งข้อความ Stellar คลิกปุ่มด้านล่างเพื่ออนุญาต แล้วรีสตาร์ท Firefox</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>อนุญาตสิทธิ์</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>อนุญาตแล้ว รีสตาร์ท Firefox เพื่อให้มีผล</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>ไม่สามารถให้สิทธิ์ได้: </translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>
+เรียกใช้ด้วยตนเอง: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1070,6 +1089,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ข้อมูล</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>คำอธิบาย</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>สร้างโดย</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>สร้างเมื่อ</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>หมวดหมู่</translation>
         </message>
@@ -1156,6 +1187,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>แผนที่ชิ้นส่วน</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>ย้าย...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2661,6 +2696,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ส่งออก .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>สร้างทอร์เรนต์…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>ดาวน์โหลด</translation>
         </message>
@@ -2695,10 +2734,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>หยุดคิว</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>จำกัดความเร็ว</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4842,6 +4877,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>ดาวน์โหลด SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>เปิด Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>เพิ่ม URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>เกี่ยวกับ Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>ตัวจำกัดความเร็ว</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>ตั้งค่าตัวจำกัดความเร็ว…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>หยุดเซสชัน</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>ออกจาก Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>ดำเนินการต่อ</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5687,6 +5758,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ดาวน์โหลดวิดีโอ</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>สร้างทอร์เรนต์</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>ไฟล์/โฟลเดอร์ต้นทาง</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ ไฟล์</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ โฟลเดอร์</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>ลบ</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>ลากไฟล์หรือโฟลเดอร์มาที่นี่ หรือใช้ปุ่มด้านบน</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>ผลลัพธ์</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>บันทึกไปที่:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>เส้นทางบันทึกไฟล์ .torrent…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>เรียกดู…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>ชื่อ:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>ไม่บังคับ — ค่าเริ่มต้นเป็นชื่อโฟลเดอร์/ไฟล์</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>ขนาดชิ้น:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>อัตโนมัติ</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 ชิ้น × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>ข้อมูลเมตา</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>ความคิดเห็น:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>ความคิดเห็นเสริมที่ฝังใน .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>คำอธิบาย:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>คำอธิบายเพิ่มเติม</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>สร้างโดย:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>ทอร์เรนต์ส่วนตัว (ปิด DHT และ PEX)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>แทร็กเกอร์</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>หนึ่ง URL ต่อบรรทัด</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>เว็บซีด (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>เปิดทอร์เรนต์เมื่อสร้าง</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ สร้างทอร์เรนต์สำเร็จ: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ ข้อผิดพลาด: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>ยกเลิกแล้ว</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>กำลังแฮชชิ้นส่วน… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 ชิ้น × %2 ต่อชิ้น</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ยกเลิก</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>ปิด</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>กำลังสร้าง…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>เปิดทอร์เรนต์</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>สร้างทอร์เรนต์…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>เพิ่มไฟล์</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>เพิ่มโฟลเดอร์</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>บันทึก .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>ไฟล์ทอร์เรนต์ (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>ไฟล์ทั้งหมด (*)</translation>
         </message>
     </context>
 </TS>

@@ -61,38 +61,6 @@
             <translation>NDALUAR</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>Shkarkim: %1  Ngarkim: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Duke shkarkuar: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>  Duke shpërndarë: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Duke shpërndarë: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>  Totali: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Totali: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar po mbyllet...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Instaloni Firefox XPI, pa përditësime automatike</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox i zbuluar — s’funksionon me Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox ekzekutohet në sandbox të izoluar dhe s’mund të nisë hostin Stellar. Kalo te Firefox flatpak (e rekomanduar), .deb zyrtare e Mozilla-s, ose përdor Chromium / Brave / Vivaldi.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Hap Firefox flatpak në Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Faqja e shkarkimit të Mozilla-s</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>S’u hap dot Discover — kërko &quot;Firefox&quot; manualisht në dyqanin tënd, ose përdor lidhjen e shkarkimit të Mozilla-s.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>U hap. Instalo Firefox-in, pastaj çinstalo versionin snap (Cilësimet e Sistemit → Aplikacionet).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Firefox Flatpak ka nevojë për leje shtesë</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) ekzekutohet në sandbox dhe ka nevojë për lejen org.freedesktop.Flatpak=talk që të nisë hostin Stellar. Kliko butonin më poshtë për ta dhënë, pastaj rinis Firefox-in.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Jep lejen</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Leja u dha. Rinis Firefox-in që ndryshimi të hyjë në fuqi.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>Dështoi dhënia e lejes: </translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>
+Ekzekuto manualisht: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1090,18 @@ E mundon në Opsione → Shkarkime më vonë.</translation>
             <translation>Meta</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Përshkrimi</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>Krijuar nga</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>Krijuar më</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Kategoria</translation>
         </message>
@@ -1157,6 +1188,10 @@ E mundon në Opsione → Shkarkime më vonë.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Harta e pjesëve</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>Lëviz...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2664,6 +2699,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Eksporto .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>Krijo Torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Shkarkime</translation>
         </message>
@@ -2698,10 +2737,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>Ndal Filën</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Kufizues shpejtësie</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4845,6 +4880,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>Shkarkimet SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Hap Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>Shto URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Rreth Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Kufizues Shpejtësie</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Cilësimet e Kufizuesit…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Pauzo Sesionin</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Dil nga Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Vazhdo Sesionin</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5690,6 +5761,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Shkarkim videoje</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Krijo Torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Burimi</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Skedarë</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Dosje</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Hiq</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Tërhiq skedarë ose dosje këtu, ose përdor butonat më sipër</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Dalje</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Ruaj në:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Rruga për të ruajtur skedarin .torrent…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Shfleto…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Emri:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Opsionale — parazgjedhje emri i dosjes/skedarit</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Madhësia e pjesës:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 pjesë × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metadata</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Koment:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Koment opsional i ngulitur në .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Përshkrim:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Përshkrim opsional i zgjeruar</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Krijuar nga:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Torrent privat (DHT dhe PEX çaktivizuar)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Gjurmues</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Një URL për rresht</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Fara Web (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Hap torrentin kur krijohet</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Torrenti u krijua me sukses: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Gabim: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Anuluar</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Duke hash pjesët… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 pjesë × %2 për pjesë</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulo</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Mbylle</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Duke krijuar…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Hap Torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Krijo Torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Shto Skedarë</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Shto Dosje</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Ruaj .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Torrent (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Të gjithë (*)</translation>
         </message>
     </context>
 </TS>

@@ -61,38 +61,6 @@
             <translation>일시정지됨</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar 다운로드 관리자 v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>다운로드 중: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>시딩 중: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>시딩 중: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>합계: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>합계: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar 종료 중...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Firefox XPI 설치, 자동 업데이트 비활성화</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox 감지됨 — Stellar와 호환 안 됨</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox는 샌드박스에서 실행되어 Stellar 호스트를 실행할 수 없습니다. Firefox flatpak(권장), Mozilla 공식 .deb, 또는 Chromium / Brave / Vivaldi로 전환하세요.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Discover에서 Firefox flatpak 열기</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Mozilla 다운로드 페이지</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Discover를 열 수 없음 — 스토어에서 'Firefox'를 직접 검색하거나 Mozilla 다운로드 링크를 사용하세요.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>열림. Firefox 설치 후 snap 버전 제거(시스템 설정 → 앱).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox 추가 권한 필요</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox(Flatpak)는 샌드박스에서 실행되며 Stellar 네이티브 메시징 호스트 실행을 위해 org.freedesktop.Flatpak=talk 권한이 필요합니다. 아래 버튼을 눌러 권한을 부여한 후 Firefox를 다시 시작하세요.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>권한 부여</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>권한 부여됨. 변경 사항 적용을 위해 Firefox를 다시 시작하세요.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>권한 부여 실패: </translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>수동 실행: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1070,6 +1088,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>메타데이터</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>설명</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>제작자</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>제작일</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>분류</translation>
         </message>
@@ -1156,6 +1186,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>피스 맵</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>이동...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2660,6 +2694,10 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <translation>Export .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>토렌트 생성...</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>다운로드</translation>
         </message>
@@ -2694,10 +2732,6 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
         <message>
             <source>Stop Queue</source>
             <translation>대기열 중지</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>속도 제한</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4841,6 +4875,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM 다운로드</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Stellar 열기</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>URL 추가...</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Stellar 정보</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>속도 제한</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>속도 제한 설정…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>세션 일시정지</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Stellar 종료</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>세션 재개</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5686,6 +5756,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>동영상 다운로드</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>토렌트 생성</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>원본 파일/폴더</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ 파일</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ 폴더</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>제거</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>파일 또는 폴더를 여기로 끌거나 위 버튼 사용</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>출력</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>저장 위치:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent 파일 저장 경로…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>찾아보기…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>이름:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>선택 사항 — 폴더/파일명 기본값</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>조각 크기:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>자동</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1개 조각 × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>메타데이터</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>설명:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>.torrent에 포함될 선택적 설명</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>설명:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>선택적 상세 설명</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>작성자:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>비공개 토렌트 (DHT 및 PEX 비활성화)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>트래커</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>한 줄에 URL 하나씩</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>웹 시드 (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>생성 시 토렌트 열기</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ 토렌트 생성 완료: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ 오류: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>취소됨</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>조각 해싱 중… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1개 조각 × 조각당 %2</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>취소</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>닫기</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>생성 중…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>토렌트 열기</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>토렌트 생성…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>파일 추가</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>폴더 추가</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent 파일 저장</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>토렌트 파일 (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>모든 파일 (*)</translation>
         </message>
     </context>
 </TS>

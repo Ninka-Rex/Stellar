@@ -61,38 +61,6 @@
             <translation>TO'XTATILGAN</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Yuklanmoqda: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>Ulatilmoqda: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Ulatilmoqda: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>Jami: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Jami: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar o'chirilmoqda...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Firefox XPI ni o'rnating, avtomatik yangilanish yo'q</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox aniqlandi — Stellar bilan ishlamaydi</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox cheklangan sandboxda ishlaydi va Stellar xostini ishga tushira olmaydi. Firefox flatpak (tavsiya etiladi), Mozilla rasmiy .deb versiyasiga o‘ting yoki Chromium / Brave / Vivaldi’dan foydalaning.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Discover orqali Firefox flatpak-ni oching</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Mozilla yuklab olish sahifasi</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Discover’ni ochib bo‘lmadi — do‘koningizda &quot;Firefox&quot;ni qo‘lda qidiring yoki Mozilla yuklab olish havolasidan foydalaning.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Ochilgan. Firefox-ni o‘rnating, so‘ng snap versiyasini o‘chirib tashlang (Tizim sozlamalari → Ilovalar).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox qo‘shimcha ruxsat talab qiladi</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) qumloq muhitda ishlaydi va Stellar mahalliy xabar almashish xostini ishga tushirish uchun org.freedesktop.Flatpak=talk ruxsatiga ehtiyoj sezadi. Uni berish uchun quyidagi tugmani bosing, so‘ng Firefox’ni qayta ishga tushiring.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Ruxsat berish</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Ruxsat berildi. O‘zgarish kuchga kirishi uchun Firefox’ni qayta ishga tushiring.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>1. Ruxsat berilmadi:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>2. 
+Qo‘lda ishga tushiring: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1090,18 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
             <translation>Metadannalar</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Tavsif</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>3. Yaratuvchi</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>4. Yaratilgan sana</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Turkum</translation>
         </message>
@@ -1157,6 +1188,10 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Qismlar xaritasi</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>5. Ko‘chirish…</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2658,6 +2693,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Export .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>6. Torrent yaratish…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Yuklab olishlar</translation>
         </message>
@@ -2692,10 +2731,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>O'rinva to'xtatish</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Tezlik cheklagich</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4841,6 +4876,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM yuklamalari</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>7. Stellarni ochish</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>8. URL qo‘shish…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>9. GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>10. Stellar haqida</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Tezlik cheklagich</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Tezlik cheklagich sozlamalari…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Sessiyani to‘xtatish</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Stellar’dan chiqish</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Sessiyani davom ettirish</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5686,6 +5757,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Video yuklab olish</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Torrent yaratish</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Manba fayllar/papkalar</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Fayllar</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Papka</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Olib tashlash</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Fayl yoki papkalarni shu yerga sudrang yoki yuqoridagi tugmalardan foydalaning</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Chiqish</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Saqlash joyi:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent faylni saqlash yo‘li…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Ko‘rib chiqish…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Nomi:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Ixtiyoriy — sukut bo‘yicha papka/fayl nomi</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Bo‘lak hajmi:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Avto</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 bo‘lak × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metadata</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Izoh:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>.torrent ichiga joylangan ixtiyoriy izoh</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Tavsif:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Ixtiyoriy kengaytirilgan tavsif</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Yaratuvchi:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Maxfiy torrent (ushbu torrent uchun DHT va PEX o‘chirilgan)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Trekerlar</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Har bir satrga bitta URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Veb-sidlar (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Yaratilganda ochish</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Torrent yaratildi: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Xato: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Bekor qilindi</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Bo‘laklar xeshlanmoqda… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 bo‘lak × %2/bo‘lak</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Yopish</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Yaratilmoqda…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Torrentni ochish</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Torrent yaratish…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Fayllar qo‘shish</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Jild qo‘shish</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent faylni saqlash</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Torrent fayllar (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Barcha fayllar (*)</translation>
         </message>
     </context>
 </TS>

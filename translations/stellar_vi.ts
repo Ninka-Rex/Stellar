@@ -61,38 +61,6 @@
             <translation>TẠM DỪNG</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Đang tải: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>Đang gieo: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Đang gieo: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>Tổng: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Tổng: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar đang tắt...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Cài XPI Firefox, không cập nhật tự động</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Phát hiện Firefox Snap — sẽ không hoạt động với Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox chạy trong môi trường sandbox hạn chế và không thể khởi chạy máy chủ Stellar. Hãy chuyển sang Firefox flatpak (khuyến nghị), gói .deb chính thức của Mozilla, hoặc sử dụng Chromium / Brave / Vivaldi thay thế.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Mở Firefox flatpak trong Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Trang tải xuống Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Không thể mở Discover — hãy tự tìm kiếm &quot;Firefox&quot; trong cửa hàng của bạn, hoặc sử dụng liên kết tải xuống từ Mozilla.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Đã mở. Cài đặt Firefox, sau đó gỡ bỏ phiên bản snap (Cài đặt hệ thống → Ứng dụng).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox cần thêm một quyền bổ sung</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) chạy trong môi trường sandbox và cần quyền org.freedesktop.Flatpak=talk để khởi chạy máy chủ nhắn tin gốc Stellar. Nhấp vào nút bên dưới để cấp quyền, sau đó khởi động lại Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Cấp quyền</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Đã cấp quyền. Khởi động lại Firefox để thay đổi có hiệu lực.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>1. Không thể cấp quyền:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>2. 
+Chạy thủ công: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1070,6 +1089,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Metadata</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Mô tả</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>3. Tạo bởi</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>4. Tạo lúc</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Danh mục</translation>
         </message>
@@ -1156,6 +1187,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>Bản đồ mảnh</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>5. Di chuyển...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2665,6 +2700,10 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <translation>Xuất .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>6. Tạo Torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Tải xuống</translation>
         </message>
@@ -2699,10 +2738,6 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
         <message>
             <source>Stop Queue</source>
             <translation>Dừng hàng đợi</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Giới hạn tốc độ</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4849,6 +4884,42 @@ Nhấp để xem thống kê</translation>
             <source>SDM downloads</source>
             <translation>Tải SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>7. Mở Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>8. Thêm URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>9. GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>10. Về Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Giới hạn tốc độ</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Cài đặt giới hạn tốc độ…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Tạm dừng phiên</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Thoát Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Tiếp tục phiên</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5694,6 +5765,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Tải Video</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Tạo torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Tệp/Thư mục nguồn</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Tệp</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Thư mục</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Xóa</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Kéo tệp/thư mục vào đây, hoặc dùng nút trên</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Đầu ra</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Lưu vào:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Đường dẫn lưu tệp .torrent…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Duyệt…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Tên:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Tùy chọn — mặc định là tên thư mục/tệp</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Kích thước mảnh:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Tự động</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 mảnh × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Siêu dữ liệu</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Ghi chú:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Ghi chú tùy chọn nhúng trong .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Mô tả:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Mô tả mở rộng tùy chọn</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Tạo bởi:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Torrent riêng tư (tắt DHT và PEX)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Máy theo dõi</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Mỗi dòng một URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Nguồn Web (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Mở torrent khi tạo</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Đã tạo torrent: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Lỗi: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Đã hủy</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Đang băm mảnh… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 mảnh × %2 mỗi mảnh</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Hủy</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Đóng</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Đang tạo…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Mở Torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Tạo Torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Thêm tệp</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Thêm thư mục</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Lưu tệp .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Tệp torrent (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Tất cả tệp (*)</translation>
         </message>
     </context>
 </TS>

@@ -61,38 +61,6 @@
             <translation>DIPUNJEDA</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>Mudhun: %1  Munggah: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Ngundhuh: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>   Nyebar: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Nyebar: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>   Total: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Total: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar lagi mati...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Pasang XPI Firefox, tanpa nganyari otomatis</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox dideteksi — ora bisa digunakake karo Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox mlaku ing sandbox sing kakurung lan ora bisa mbukak host Stellar. Ganti menyang Firefox flatpak (disaranake), .deb resmi Mozilla, utawa gunakake Chromium / Brave / Vivaldi.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Bukak Firefox flatpak ing Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Kaca unduhan Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Ora bisa mbukak Discover — goleki &quot;Firefox&quot; kanthi manual ing toko sampeyan, utawa gunakake tautan unduhan Mozilla.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Wis dibukak. Instal Firefox, banjur busak versi snap (Setelan Sistem → Aplikasi).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Firefox Flatpak butuh ijin tambahan</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) mlaku ing sandbox lan butuh ijin org.freedesktop.Flatpak=talk kanggo mbukak host olahpesen asli Stellar. Klik tombol ing ngisor iki kanggo menehi ijin, banjur wiwiti maneh Firefox.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Wenehana ijin</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Ijin wis diwenehake. Wiwiti maneh Firefox supaya owah-owahan bisa ditrapake.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>Gagal mènèhi idin:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>Lakokaké manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1089,18 @@ Sampeyan bisa ngubah ing Opsi → Unduhan mengko.</translation>
             <translation>Metadata</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Katrangan</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>Digawe déning</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>Digawe ing</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Kategori</translation>
         </message>
@@ -1157,6 +1187,10 @@ Sampeyan bisa ngubah ing Opsi → Unduhan mengko.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Peta Potongan</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>Pindhah...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2672,6 +2706,10 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
             <translation>Èkspor .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>Gawe Torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Unduhan</translation>
         </message>
@@ -2706,10 +2744,6 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
         <message>
             <source>Stop Queue</source>
             <translation>Mandheg Antrean</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Wates Kacepetan</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4856,6 +4890,42 @@ Klik kanggo mbukak Statistik</translation>
             <source>SDM downloads</source>
             <translation>4. Unduhan SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Bukak Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>Tambah URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Babagan Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Wates Kacepetan</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Setelan Wates Kacepetan…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Ngaso Sesi</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Metu Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Terusna Sesi</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5701,6 +5771,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Undhuh Video</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Gawe Torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Berkas / Folder Sumber</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Berkas</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Folder</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Busak</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Seret berkas utawa folder mrene, utawa gunakake tombol ing ndhuwur</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Output</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Simpen menyang:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Path kanggo nyimpen berkas .torrent…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Telusuri…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Jeneng:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Opsional — gawan jeneng folder/berkas</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Ukuran potongan:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Otomatis</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 potongan × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metadata</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Komentar:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Komentar opsional ing .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Deskripsi:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Deskripsi tambahan opsional</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Digawe dening:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Torrent pribadi (DHT &amp; PEX mati)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Pelacak</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Siji URL saben baris</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Wiji Web (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Bukak torrent yen wis digawe</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Torrent kasil digawe: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Kasalahan: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Diwurungake</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Ng-hash potongan… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 potongan × %2 saben potongan</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Wurung</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Tutup</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Nggawe…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Mbukak Torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Gawe Torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Tambah Berkas</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Tambah Folder</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Simpen Berkas .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Berkas torrent (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Kabeh berkas (*)</translation>
         </message>
     </context>
 </TS>

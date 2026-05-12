@@ -61,38 +61,6 @@
             <translation>ផ្អាក</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>13. Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓ %1  ↑ %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>កំពុងទាញយក៖ %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>កំពុងផ្សព្វផ្សាយ៖ %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>កំពុងផ្សព្វផ្សាយ៖ %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>សរុប៖ %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>សរុប៖ %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>20. Stellar កំពុងបិទ...</translation>
         </message>
@@ -248,6 +216,58 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>6. ដំឡើង Firefox XPI គ្មានការអាប់ដេតស្វ័យប្រវត្តិ</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox បានរកឃើញ — មិនដំណើរការជាមួយ Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox ដំណើរការក្នុងប្រអប់ខ្សាច់បិទជិត ហើយមិនអាចបើកដំណើរការ Stellar host បានទេ។ ប្តូរទៅ Firefox flatpak (ណែនាំ), .deb ផ្លូវការរបស់ Mozilla ឬប្រើ Chromium / Brave / Vivaldi ជំនួសវិញ។</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>បើក Firefox flatpak ក្នុង Discover</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>ទំព័រទាញយក Mozilla</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>មិនអាចបើក Discover — ស្វែងរក &quot;Firefox&quot; ដោយដៃក្នុងហាងរបស់អ្នក ឬប្រើតំណទាញយក Mozilla។</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>បានបើក។ ដំឡើង Firefox បន្ទាប់មកលុបកំណែ snap (ការកំណត់ប្រព័ន្ធ → កម្មវិធី)។</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox ត្រូវការការអនុញ្ញាតបន្ថែម</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) ដំណើរការក្នុងប្រអប់ខ្សាច់ ហើយត្រូវការការអនុញ្ញាត org.freedesktop.Flatpak=talk ដើម្បីបើកដំណើរការ Stellar native messaging host។ ចុចប៊ូតុងខាងក្រោមដើម្បីផ្តល់វា បន្ទាប់មកចាប់ផ្តើម Firefox ឡើងវិញ។</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>ផ្តល់ការអនុញ្ញាត</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>បានផ្តល់ការអនុញ្ញាត។ ចាប់ផ្តើម Firefox ឡើងវិញដើម្បីឱ្យការផ្លាស់ប្តូរមានប្រសិទ្ធភាព។</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>បរាជ័យក្នុងការផ្តល់សិទ្ធិ៖</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>
+
+ដំណើរការដោយដៃ៖ flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1091,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ទិន្នន័យមេតា</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>ការពិពណ៌នា</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>បង្កើតដោយ</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>បង្កើតនៅ</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>ប្រភេទ</translation>
         </message>
@@ -1157,6 +1189,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>ផែនទីដុំ</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>ផ្លាស់ទី...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2672,6 +2708,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>នាំចេញ .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>បង្កើត Torrent...</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>ការទាញយក</translation>
         </message>
@@ -2706,10 +2746,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stop Queue</source>
             <translation>បញ្ឈប់ជួរ</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>កំណត់ល្បឿន</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4856,6 +4892,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>ការទាញយក SDM</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>បើក Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>បន្ថែម URL...</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>អំពី Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>កម្រិតល្បឿន</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>ការកំណត់កម្រិតល្បឿន…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>ផ្អាកសម័យ</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>ចាកចេញពី Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>បន្តសម័យ</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5702,6 +5774,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ទាញយកវីដេអូ</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>បង្កើត Torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>ឯកសារ/ថតប្រភព</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ ឯកសារ</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ ថត</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>ដកចេញ</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>អូសឯកសារ ឬថតមកទីនេះ ឬប្រើប៊ូតុងខាងលើ</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>លទ្ធផល</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>រក្សាទុកទៅ៖</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>ផ្លូវរក្សាទុកឯកសារ .torrent…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>រកមើល…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>ឈ្មោះ៖</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>ស្រេចចិត្ត — លំនាំដើមជាឈ្មោះថត/ឯកសារ</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>ទំហំដុំ៖</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>ស្វ័យប្រវត្តិ</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 ដុំ × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>ទិន្នន័យមេតា</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>មតិ:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>មតិស្រេចដែលបង្កប់ក្នុង .torrent</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>ការពិពណ៌នា:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>ការពិពណ៌នាបន្ថែមស្រេច</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>បង្កើតដោយ:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>torrent ឯកជន (DHT និង PEX បានបិទសម្រាប់ torrent នេះ)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>កម្មវិធីតាមដាន</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>URL មួយក្នុងមួយបន្ទាត់</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>គ្រាប់ពូជបណ្ដាញ (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>បើក torrent ពេលបង្កើត</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ បង្កើត torrent បានជោគជ័យ៖ %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ កំហុស៖ %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>បានបោះបង់</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>កំពុងធ្វើ hash… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 បំណែក × %2 ក្នុងមួយបំណែក</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>បោះបង់</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>បិទ</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>កំពុងបង្កើត…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>បើក Torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>បង្កើត Torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>បន្ថែមឯកសារ</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>បន្ថែមថត</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>រក្សាទុកឯកសារ .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>ឯកសារ Torrent (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>ឯកសារទាំងអស់ (*)</translation>
         </message>
     </context>
 </TS>

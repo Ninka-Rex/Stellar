@@ -61,38 +61,6 @@
             <translation>ۋاقىتلىق توختىتىلدى</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>3. Stellar چۈشۈرۈش باشقۇرغۇچى v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>چۈشۈش: %1  چىقىش: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>چۈشۈرۈۋاتىدۇ: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>تارقىتىۋاتىدۇ: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>تارقىتىۋاتىدۇ: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>جەمئىي: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>جەمئىي: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>10. Stellar تاقىلىۋاتىدۇ...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Firefox XPI نى قاچىلاڭ، ئاپتوماتىك يېڭىلانمايدۇ</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox بايقالدى — Stellar بىلەن ئىشلىمەيدۇ</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox چەكلىك قۇم ساندۇقتا ئىجرا بولۇپ، Stellar مىزبانىنى قوزغىيالمايدۇ. Firefox flatpak غا (تەۋسىيە قىلىنىدۇ)، Mozilla نىڭ رەسمىي .deb غا ئالماشتۇرۇڭ ياكى Chromium / Brave / Vivaldi نى ئىشلىتىڭ.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Firefox flatpak نى Discover دا ئېچىڭ</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Mozilla چۈشۈرۈش بېتى</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Discover نى ئاچالمىدى — دۇكىنىڭىزدا 'Firefox' نى قولدا ئىزدەڭ ياكى Mozilla چۈشۈرۈش ئۇلانمىسىنى ئىشلىتىڭ.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>ئېچىلدى. Firefox نى قاچىلاڭ، ئاندىن snap نەشرىنى چىقىرىۋېتىڭ (سىستېما تەڭشەكلىرى → ئەپلەر).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox قوشۇمچە ئىجازەتكە موھتاج</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) قۇم ساندۇقتا ئىجرا بولۇپ، Stellar يەرلىك ئۇچۇر مىزبانىنى قوزغاش ئۈچۈن org.freedesktop.Flatpak=talk ئىجازىتىگە موھتاج. بۇنى بېرىش ئۈچۈن تۆۋەندىكى كۇنۇپكىنى بېسىڭ، ئاندىن Firefox نى قايتا قوزغىڭ.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>ئىجازەت بەر</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>ئىجازەت بېرىلدى. ئۆزگىرىش كۈچكە ئىگە بولۇشى ئۈچۈن Firefox نى قايتا قوزغىڭ.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>1. ئىجازەت بېرىش مەغلۇپ بولدى: </translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>2. 
+قولدا ئىجرا قىلىڭ: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1070,6 +1089,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>مېتاداتا</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>چۈشەندۈرۈش</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>3. قۇرغۇچى</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>4. قۇرۇلغان ۋاقتى</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>تۈر</translation>
         </message>
@@ -1156,6 +1187,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>پارچە خەرىتىسى</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>5. يۆتكە...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2671,6 +2706,10 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
             <translation>Export .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>6. Torrent قۇر…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>چۈشۈرۈشلەر</translation>
         </message>
@@ -2705,10 +2744,6 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
         <message>
             <source>Stop Queue</source>
             <translation>نۆۋەتنى توختات</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Tezlik Chekligüch</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4855,6 +4890,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM چۈشۈرۈشلىرى</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>7. Stellar ئاچ</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>8. URL قوش…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>9. GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>10. Stellar ھەققىدە</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>تېزلىك چەكلىگۈچ</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>تېزلىك چەكلىگۈچ تەڭشەكلەر…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>نۆۋەتچىلىكنى توختات</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Stellar دىن چىق</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>نۆۋەتچىلىكنى داۋاملاشتۇر</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5700,6 +5771,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>سىن چۈشۈرۈش</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>توررېنت قۇر</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>مەنبە ھۆججەت / قىسقۇچ</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ ھۆججەت</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ قىسقۇچ</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>چىقىرىۋەت</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>ھۆججەت ياكى قىسقۇچلارنى بۇ يەرگە سۆرەڭ، ياكى يۇقىرىدىكى كۇنۇپكىلارنى ئىشلىتىڭ</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>چىقىرىش</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>ساقلاش ئورنى:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent ھۆججىتىنى ساقلاش يولى…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>كۆرۈش…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>ئاتى:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>ئىختىيارى — قىسقۇچ/ھۆججەت ئاتى كۆڭۈلدىكىدەك</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>پارچە چوڭلۇقى:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>ئاپتوماتىك</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 پارچە × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>مېتامەلۇمات</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>ئىزاھات:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>توررېنتقا قىستۇرۇلغان ئىختىيارى ئىزاھات</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>چۈشەندۈرۈش:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>ئىختىيارى كېڭەيتىلگەن چۈشەندۈرۈش</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>يارىتىلغۇچى:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>شەخسىي توررېنت (بۇ توررېنت ئۈچۈن DHT ۋە PEX چەكلەنگەن)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>ئىزلىغۇچىلار</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>ھەر قۇرغا بىر URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>تور ئۇرۇقلىرى (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>1. https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>2. توررېنت قۇرۇلغاندا ئاچ</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>3. ✓ توررېنت مۇۋەپپەقىيەتلىك قۇرۇلدى: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>4. ✗ خاتالىق: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>5. بىكار قىلىندى</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>6. پارچىلار ھەشلەنمەكتە… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>7. %1 پارچە × ھەر پارچىگە %2</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>8. بىكار</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>9. ياپ</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>10. قۇرۇلماقتا…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>توررېنت ئاچ</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>توررېنت قۇر…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ھۆججەت قوش</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>قىسقۇچ قوش</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent ھۆججەت ساقلا</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>توررېنت ھۆججەتلىرى (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>بارلىق ھۆججەتلەر (*)</translation>
         </message>
     </context>
 </TS>

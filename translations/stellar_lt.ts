@@ -61,38 +61,6 @@
             <translation>SUSTABDYTA</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓ %1  ↑ %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>Atsiunčiama: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>  Dalijamasi: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>Dalijamasi: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>  Iš viso: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Iš viso: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar užsibaigia...</translation>
         </message>
@@ -248,6 +216,57 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Įdiekite Firefox XPI, automatiniai atnaujinimai neįjungti</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Aptiktas „Snap“ Firefox — neveiks su Stellar</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>„Snap“ Firefox veikia izoliuotoje aplinkoje ir negali paleisti Stellar pagrindinio komponento. Pereikite prie „Firefox flatpak“ (rekomenduojama), oficialaus „Mozilla“ .deb paketo arba naudokite „Chromium“ / „Brave“ / „Vivaldi“.</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Atidaryti „Firefox flatpak“ programoje „Discover“</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>„Mozilla“ atsisiuntimo puslapis</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Nepavyko atidaryti „Discover“ — paieškokite „Firefox“ rankiniu būdu savo programų parduotuvėje arba naudokite „Mozilla“ atsisiuntimo nuorodą.</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>Atidaryta. Įdiekite „Firefox“, tada pašalinkite „snap“ versiją (Sistemos nustatymai → Programos).</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>„Flatpak Firefox“ reikia papildomo leidimo</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>„Firefox“ („Flatpak“) veikia izoliuotoje aplinkoje ir jam reikia org.freedesktop.Flatpak=talk leidimo, kad paleistų Stellar savąjį pranešimų komponentą. Spustelėkite žemiau esantį mygtuką, kad suteiktumėte leidimą, tada paleiskite „Firefox“ iš naujo.</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>Suteikti leidimą</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>Leidimas suteiktas. Paleiskite „Firefox“ iš naujo, kad pakeitimas įsigaliotų.</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>1. Nepavyko suteikti leidimo:</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>2. 
+Paleiskite rankiniu būdu: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1070,6 +1089,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Meta duomenys</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>Aprašas</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>3. Sukūrė</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>4. Sukurta</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>Kategorija</translation>
         </message>
@@ -1156,6 +1187,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>Dalelių žemėlapis</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>5. Perkelti...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2666,6 +2701,10 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <translation>Eksportuoti .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>6. Kurti Torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>Atsisiuntimai</translation>
         </message>
@@ -2700,10 +2739,6 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
         <message>
             <source>Stop Queue</source>
             <translation>Stabdyti eilę</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Greičio ribotuvas</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4844,6 +4879,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM atsisiuntimai</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>7. Atverti Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>8. Pridėti URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>9. GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>10. Apie Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Greičio ribotuvas</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>Greičio ribotuvo nustatymai…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Pristabdyti seansą</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Išeiti iš Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Tęsti seansą</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5689,6 +5760,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Vaizdo įrašo atsisiuntimas</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Sukurti torrentą</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>Šaltinio failai / aplankai</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ Failai</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ Aplankas</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Pašalinti</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>Vilkite failus ar aplankus čia arba naudokite mygtukus viršuje</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>Išvestis</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Išsaugoti į:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>Kelias .torrent failui išsaugoti…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Naršyti…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Pavadinimas:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>Neprivaloma — pagal numatytuosius aplanko/failo pavadinimas</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Dalies dydis:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 dalys × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>Metaduomenys</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Komentaras:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>Pasirinktinis komentaras .torrent faile</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Aprašas:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>Pasirinktinis išplėstinis aprašas</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>Sukūrė:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>Privatus torrent (DHT ir PEX išjungti)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Sekikliai</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>Vienas URL eilutėje</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>Žiniatinklio sėklos (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>Atidaryti sukūrus</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Torrentas sėkmingai sukurtas: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Klaida: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Atšaukta</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>Maišomos dalys… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 dalys × %2 vienai</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Atšaukti</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Uždaryti</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Kuriama…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Atverti torrentą</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>Sukurti torrentą…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Pridėti failus</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Pridėti aplanką</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>Išsaugoti .torrent</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Torrent failai (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Visi failai (*)</translation>
         </message>
     </context>
 </TS>

@@ -61,38 +61,6 @@
             <translation>已暫停</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar 下載管理器 v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>下載中: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>做種中: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>做種中: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>總計: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>總計: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar 正在關閉...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>安裝 Firefox XPI，不支援自動更新</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>偵測到 Snap 版 Firefox — 無法與 Stellar 搭配使用</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap 版 Firefox 在受限沙箱中執行，無法啟動 Stellar 主機。請改用 Firefox flatpak（建議）、Mozilla 官方 .deb，或改用 Chromium / Brave / Vivaldi。</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>在 Discover 中開啟 Firefox flatpak</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Mozilla 下載頁面</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>無法開啟 Discover — 請在應用程式商店中手動搜尋「Firefox」，或使用 Mozilla 下載連結。</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>已開啟。請安裝 Firefox，然後移除 snap 版本（系統設定 → 應用程式）。</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak 版 Firefox 需要額外權限</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) 在沙箱中執行，需要 org.freedesktop.Flatpak=talk 權限才能啟動 Stellar 原生訊息主機。請點擊下方按鈕授予權限，然後重新啟動 Firefox。</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>授予權限</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>權限已授予。請重新啟動 Firefox 使變更生效。</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>權限授予失敗：</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>手動執行：flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1070,6 +1088,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>金標</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>描述</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>建立者</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>建立日期</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>分類</translation>
         </message>
@@ -1156,6 +1186,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>區塊地圖</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>移動...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2659,6 +2693,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <translation>匯出 .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>建立 Torrent…</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>下載</translation>
         </message>
@@ -2693,10 +2731,6 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
         <message>
             <source>Stop Queue</source>
             <translation>停止佇列</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>限速器</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4842,6 +4876,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM 下載</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>開啟 Stellar</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>新增 URL…</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>關於 Stellar</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>限速器</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>限速器設定…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>暫停工作階段</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>結束 Stellar</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>繼續工作階段</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5687,6 +5757,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>影片下載</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>建立 Torrent</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>來源檔案 / 資料夾</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ 檔案</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ 資料夾</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>移除</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>將檔案或資料夾拖曳至此，或使用上方按鈕</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>輸出</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>儲存至：</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent 檔案儲存路徑…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>瀏覽…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>名稱：</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>選填 — 預設為資料夾/檔案名稱</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>分塊大小：</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>自動</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 個分塊 × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>中繼資料</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>註解：</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>嵌入 .torrent 的選用註解</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>說明：</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>選用延伸說明</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>建立者：</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>私人種子（停用 DHT 和 PEX）</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>追蹤器</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>每行一個 URL</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>網頁種子（HTTP/FTP）</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>建立後開啟種子</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ 種子建立成功：%1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ 錯誤：%1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>已取消</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>雜湊處理中… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 片段 × 每片段 %2</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>關閉</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>建立中…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>開啟 Torrent</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>建立 Torrent…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>加入檔案</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>加入資料夾</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>儲存 .torrent 檔案</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Torrent 檔案 (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>所有檔案 (*)</translation>
         </message>
     </context>
 </TS>

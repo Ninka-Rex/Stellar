@@ -61,38 +61,6 @@
             <translation>ခေတ္တရပ်</translation>
         </message>
         <message>
-            <source>Stellar Download Manager v</source>
-            <translation>Stellar ဒေါင်းလုဒ်မန်နေဂျာ v</translation>
-        </message>
-        <message>
-            <source>
-Down: %1  Up: %2</source>
-            <translation>ဒေါင်း: %1  တက်: %2</translation>
-        </message>
-        <message>
-            <source>
-Downloading: %1</source>
-            <translation>ဒေါင်းနေသည်: %1</translation>
-        </message>
-        <message>
-            <source>  Seeding: %1</source>
-            <translation>မျှဝေနေသည်: %1</translation>
-        </message>
-        <message>
-            <source>
-Seeding: %1</source>
-            <translation>မျှဝေနေသည်: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
-            <translation>စုစုပေါင်း: %1</translation>
-        </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>စုစုပေါင်း: %1</translation>
-        </message>
-        <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar ပိတ်နေသည်...</translation>
         </message>
@@ -248,6 +216,56 @@ Total: %1</source>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
             <translation>Firefox XPI ထည့်သွင်းပါ၊ အလိုအလျောက် အပ်ဒိတ်မရှိပါ</translation>
+        </message>
+        <message>
+            <source>Snap Firefox detected — won't work with Stellar</source>
+            <translation>Snap Firefox တွေ့ရှိ — Stellar နှင့် အလုပ်မလုပ်ပါ</translation>
+        </message>
+        <message>
+            <source>Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.</source>
+            <translation>Snap Firefox သည် သီးသန့် sandbox တွင် လည်ပတ်ပြီး Stellar host ကို မဖွင့်နိုင်ပါ။ Firefox flatpak (အကြံပြု)၊ Mozilla ၏ တရားဝင် .deb သို့ ပြောင်းပါ သို့မဟုတ် Chromium / Brave / Vivaldi ကို သုံးပါ။</translation>
+        </message>
+        <message>
+            <source>Open Firefox flatpak in Discover</source>
+            <translation>Discover တွင် Firefox flatpak ဖွင့်ပါ</translation>
+        </message>
+        <message>
+            <source>Mozilla download page</source>
+            <translation>Mozilla ဒေါင်းလုဒ် စာမျက်နှာ</translation>
+        </message>
+        <message>
+            <source>Could not open Discover — search for &quot;Firefox&quot; manually in your store, or use the Mozilla download link.</source>
+            <translation>Discover မဖွင့်နိုင်ပါ — သင့်စတိုးတွင် &quot;Firefox&quot; ကို ကိုယ်တိုင်ရှာပါ သို့မဟုတ် Mozilla ဒေါင်းလုဒ်လင့်ခ်ကို သုံးပါ။</translation>
+        </message>
+        <message>
+            <source>Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).</source>
+            <translation>ဖွင့်ပြီး။ Firefox ကို ထည့်သွင်းပါ၊ ထို့နောက် snap ဗားရှင်းကို ဖယ်ရှားပါ (စနစ်ဆက်တင် → အက်ပ်များ)။</translation>
+        </message>
+        <message>
+            <source>Flatpak Firefox needs an extra permission</source>
+            <translation>Flatpak Firefox သည် အပိုခွင့်ပြုချက် လိုအပ်သည်</translation>
+        </message>
+        <message>
+            <source>Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.</source>
+            <translation>Firefox (Flatpak) သည် sandbox တွင် လည်ပတ်ပြီး Stellar native messaging host ကို ဖွင့်ရန် org.freedesktop.Flatpak=talk ခွင့်ပြုချက် လိုအပ်သည်။ အောက်ပါခလုတ်ကို နှိပ်၍ ခွင့်ပြုပါ၊ ထို့နောက် Firefox ကို ပြန်စပါ။</translation>
+        </message>
+        <message>
+            <source>Grant permission</source>
+            <translation>ခွင့်ပြုချက် ပေးပါ</translation>
+        </message>
+        <message>
+            <source>Permission granted. Restart Firefox for the change to take effect.</source>
+            <translation>ခွင့်ပြုချက် ရရှိပြီး။ အပြောင်းအလဲ အကျိုးသက်ရောက်ရန် Firefox ကို ပြန်စပါ။</translation>
+        </message>
+        <message>
+            <source>Failed to grant permission: </source>
+            <translation>ခွင့်ပြုချက်ပေးရန်မအောင်မြင်ပါ</translation>
+        </message>
+        <message>
+            <source>
+
+Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
+            <translation>ကိုယ်တိုင်လုပ်ဆောင်ရန်- flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -1071,6 +1089,18 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>မက်တာဒေတာ</translation>
         </message>
         <message>
+            <source>Description</source>
+            <translation>ဖော်ပြချက်</translation>
+        </message>
+        <message>
+            <source>Created by</source>
+            <translation>ဖန်တီးသူ</translation>
+        </message>
+        <message>
+            <source>Created on</source>
+            <translation>ဖန်တီးရက်</translation>
+        </message>
+        <message>
             <source>Category</source>
             <translation>အမျိုးအစား</translation>
         </message>
@@ -1157,6 +1187,10 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>အပိုင်းမြေပုံ</translation>
+        </message>
+        <message>
+            <source>Move...</source>
+            <translation>ရွှေ့...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -2672,6 +2706,10 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
             <translation>ဖိုင်ထုတ်ရန် .torrent…</translation>
         </message>
         <message>
+            <source>Create Torrent…</source>
+            <translation>တိုရန့်ဖန်တီး...</translation>
+        </message>
+        <message>
             <source>Downloads</source>
             <translation>ဒေါင်းလုဒ်များ</translation>
         </message>
@@ -2706,10 +2744,6 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         <message>
             <source>Stop Queue</source>
             <translation>တန်းစီရပ်</translation>
-        </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>အမြန်နှုန်းကန့်သတ်ချက်</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -4856,6 +4890,42 @@ Click to open Statistics</source>
             <source>SDM downloads</source>
             <translation>SDM ဒေါင်းလုဒ်များ</translation>
         </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Stellar ဖွင့်</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>URL ထည့်...</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Stellar အကြောင်း</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>အမြန်နှုန်းကန့်သတ်ချက်</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>အမြန်နှုန်းကန့်သတ်ချက် ဆက်တင်များ…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>ဆက်ရှင်ခေတ္တရပ်</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Stellar မှထွက်မည်</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>ဆက်ရှင်ပြန်စမည်</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
@@ -5702,6 +5772,177 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ဗီဒီယိုဒေါင်းလုဒ်</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>တိုရန့်ဖန်တီးမည်</translation>
+        </message>
+        <message>
+            <source>Source Files / Folders</source>
+            <translation>ရင်းမြစ်ဖိုင်/ဖိုလ်ဒါများ</translation>
+        </message>
+        <message>
+            <source>+ Files</source>
+            <translation>+ ဖိုင်များ</translation>
+        </message>
+        <message>
+            <source>+ Folder</source>
+            <translation>+ ဖိုလ်ဒါ</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>ဖယ်ရှားမည်</translation>
+        </message>
+        <message>
+            <source>Drag files or folders here, or use the buttons above</source>
+            <translation>ဖိုင်များ သို့မဟုတ် ဖိုလ်ဒါများကို ဤနေရာသို့ ဆွဲချပါ၊ သို့မဟုတ် အပေါ်က ခလုတ်များကို သုံးပါ</translation>
+        </message>
+        <message>
+            <source>Output</source>
+            <translation>ထုတ်လုပ်မှု</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>သိမ်းရန်:</translation>
+        </message>
+        <message>
+            <source>Path to save the .torrent file…</source>
+            <translation>.torrent ဖိုင်သိမ်းမည့်လမ်းကြောင်း…</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>ရှာဖွေ…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>အမည်:</translation>
+        </message>
+        <message>
+            <source>Optional — defaults to folder/file name</source>
+            <translation>ချန်လှပ်နိုင်သည် — ဖိုလ်ဒါ/ဖိုင်အမည်ကို မူလအတိုင်းသုံး</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>အပိုင်းအရွယ်:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>အော်တို</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 အပိုင်း × %2</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>မက်တာဒေတာ</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>မှတ်ချက်:</translation>
+        </message>
+        <message>
+            <source>Optional comment embedded in the .torrent</source>
+            <translation>.torrent တွင် ထည့်သွင်းနိုင်သော မှတ်ချက်</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>ဖော်ပြချက်:</translation>
+        </message>
+        <message>
+            <source>Optional extended description</source>
+            <translation>ထပ်တိုးဖော်ပြချက်</translation>
+        </message>
+        <message>
+            <source>Created by:</source>
+            <translation>ဖန်တီးသူ:</translation>
+        </message>
+        <message>
+            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
+            <translation>သီးသန့်တိုးရင့် (ဤတိုးရင့်အတွက် DHT နှင့် PEX ပိတ်ထား)</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>ခြေရာခံကိရိယာများ</translation>
+        </message>
+        <message>
+            <source>One URL per line</source>
+            <translation>တစ်ကြောင်းလျှင် URL တစ်ခု</translation>
+        </message>
+        <message>
+            <source>Web Seeds (HTTP/FTP)</source>
+            <translation>ဝဘ်မျိုးစေ့များ (HTTP/FTP)</translation>
+        </message>
+        <message>
+            <source>https://example.com/files/</source>
+            <translation>https://example.com/files/</translation>
+        </message>
+        <message>
+            <source>Open torrent when created</source>
+            <translation>ဖန်တီးပြီးပါက torrent ဖွင့်ပါ</translation>
+        </message>
+        <message>
+            <source>✓ Torrent created successfully: %1</source>
+            <translation>✓ Torrent ဖန်တီးပြီး: %1</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ အမှား: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>ပယ်ဖျက်ပြီး</translation>
+        </message>
+        <message>
+            <source>Hashing pieces… %1%</source>
+            <translation>အပိုင်းများ hash လုပ်နေသည်… %1%</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2 per piece</source>
+            <translation>%1 အပိုင်း × တစ်ပိုင်းလျှင် %2</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ပယ်ဖျက်မည်</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>ပိတ်မည်</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>ဖန်တီးနေသည်…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>ဖွင့်မည်</translation>
+        </message>
+        <message>
+            <source>Create Torrent…</source>
+            <translation>ဖန်တီးမည်…</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ဖိုင်ထည့်မည်</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>ဖိုလ်ဒါထည့်မည်</translation>
+        </message>
+        <message>
+            <source>Save .torrent File</source>
+            <translation>.torrent သိမ်းမည်</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>*.torrent</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>*.*</translation>
         </message>
     </context>
 </TS>
