@@ -3381,8 +3381,19 @@ tracker_refresh:
                 } else {
                     // Async resolve; geo data will appear on the next refresh cycle
                     QHostInfo::lookupHost(hostname, this, [this, hostname](const QHostInfo &info) {
-                        if (info.error() == QHostInfo::NoError && !info.addresses().isEmpty())
+                        if (info.error() == QHostInfo::NoError && !info.addresses().isEmpty()) {
+                            // Evict oldest half when cap reached — tracker hostnames are stable
+                            // across the session so this rarely fires, but prevents unbounded growth
+                            // when torrents are added/removed over a long session.
+                            constexpr int kTrackerIpCacheMax = 512;
+                            if (m_trackerIpCache.size() >= kTrackerIpCacheMax) {
+                                auto it = m_trackerIpCache.begin();
+                                const int toRemove = kTrackerIpCacheMax / 2;
+                                for (int i = 0; i < toRemove && it != m_trackerIpCache.end(); ++i)
+                                    it = m_trackerIpCache.erase(it);
+                            }
                             m_trackerIpCache[hostname] = info.addresses().first().toString();
+                        }
                     });
                 }
             }
@@ -3604,6 +3615,19 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
         } else {
             item->setTorrentCreatedOn(QString());
         }
+        // Web seed lists are static once metadata is present — pull them here
+        // rather than outside this block where they would run every 2-second tick
+        // per torrent, copying libtorrent-internal vectors and emitting torrentChanged
+        // into the expensive onItemChanged() path on every state_update_alert.
+        {
+            QStringList urlSeeds, httpSeeds;
+            for (const auto &seed : handle.url_seeds())
+                urlSeeds.push_back(QString::fromStdString(seed));
+            for (const auto &seed : handle.http_seeds())
+                httpSeeds.push_back(QString::fromStdString(seed));
+            item->setTorrentUrlSeeds(urlSeeds);
+            item->setTorrentHttpSeeds(httpSeeds);
+        }
     }
 
     // Reflect per-torrent flag state so the UI stays in sync with libtorrent.
@@ -3642,17 +3666,6 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
     item->setTorrentSeedingTimeSecs(static_cast<qint64>(st.seeding_duration.count()));
     item->setTorrentWastedBytes(st.total_failed_bytes + st.total_redundant_bytes);
     item->setTorrentConnections(st.num_connections);
-
-    // Populate web seeds (url_seeds = BEP-19 GetRight, http_seeds = BEP-17 Hoffman)
-    {
-        QStringList urlSeeds, httpSeeds;
-        for (const auto &seed : handle.url_seeds())
-            urlSeeds.push_back(QString::fromStdString(seed));
-        for (const auto &seed : handle.http_seeds())
-            httpSeeds.push_back(QString::fromStdString(seed));
-        item->setTorrentUrlSeeds(urlSeeds);
-        item->setTorrentHttpSeeds(httpSeeds);
-    }
 
     const QString id = item->id();
     if (m_movingIds.contains(id)) {
