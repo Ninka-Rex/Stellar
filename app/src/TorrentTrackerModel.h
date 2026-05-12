@@ -65,10 +65,17 @@ public:
     void setEntries(const QVector<Entry> &entries);
     Q_INVOKABLE void sortBy(const QString &key, bool ascending);
 
+    // Tracker model is only meaningful while the properties/metadata dialog is open.
+    // When hidden, skip the expensive rebuild (QUrl parsing, geo-IP lookups,
+    // status snapshot lookups) on every alert tick.
+    bool liveUpdatesEnabled() const { return m_liveUpdatesEnabled; }
+    Q_INVOKABLE void setLiveUpdatesEnabled(bool enabled) { m_liveUpdatesEnabled = enabled; }
+
 private:
     void applySortOrder();
 
     QVector<Entry> m_entries;
     QString m_sortKey;
     bool    m_sortAscending{true};
+    bool    m_liveUpdatesEnabled{false};
 };

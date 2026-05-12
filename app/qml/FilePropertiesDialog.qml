@@ -51,6 +51,12 @@ Window {
             torrentFileModel.setLiveUpdatesEnabled(fileUpdatesActive)
     }
     readonly property bool trackerTabActive:  visible && _isTorrent && currentTab === 5
+    // Gate tracker model rebuilds (QUrl parse + geo-IP + status snapshot lookups
+    // per tracker × per torrent) on tracker tab visibility.
+    onTrackerTabActiveChanged: {
+        if (torrentTrackerModel)
+            torrentTrackerModel.setLiveUpdatesEnabled(trackerTabActive)
+    }
     readonly property bool webSeedsTabActive: visible && _isTorrent && currentTab === 6
     readonly property var activePeerListModel: peerListActive ? torrentPeerModel : null
     readonly property var activePeerMapModel: peerMapActive ? torrentPeerModel : null

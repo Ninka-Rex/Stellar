@@ -178,7 +178,15 @@ private:
     void handleAlert(libtorrent::alert *alert);
     QString idForHandle(const libtorrent::torrent_handle &handle) const;
     void updateItemFromStatus(DownloadItem *item, const libtorrent::torrent_handle &handle);
-    void updateModels(const QString &downloadId, const libtorrent::torrent_handle &handle, bool forceTrackerUpdate = false);
+    // trackerOnly: skip full peer-info scan / file-model / peer-model refresh —
+    // only refresh the tracker model. Tracker alerts (announce/reply/scrape/etc.)
+    // do not change the connected peer set, so re-scanning every peer (with
+    // geo-IP lookups, auto-ban regex, QStringList allocs) on every tracker
+    // alert is wasted work that scales with N_torrents × N_trackers.
+    void updateModels(const QString &downloadId, const libtorrent::torrent_handle &handle,
+                      bool forceTrackerUpdate = false, bool trackerOnly = false);
+    void requestIpFilterRebuild(); // coalesced via m_ipFilterRebuildPending
+    void flushIpFilterRebuild();
     bool addTorrentInternal(DownloadItem *item, bool startPaused, const QString &torrentFilePath);
     void checkShareLimits(const QString &id, DownloadItem *item, const AppSettings *settings);
     void refreshPeerBanRules(const AppSettings *settings);
@@ -232,6 +240,13 @@ private:
     QSet<QString> m_blockedPeerCountries;
     bool m_autoBanAbusivePeers{false};
     bool m_autoBanMediaPlayerPeers{false};
+    // Coalesce IP-filter rebuilds within one processAlerts() pass. Each ban
+    // previously rebuilt the libtorrent ip_filter with all N rules; under
+    // auto-ban with a steady stream of abusive peers this turned every alert
+    // tick into an N² operation that froze the UI thread.
+    bool m_ipFilterRebuildPending{false};
+    static constexpr int kMaxTemporaryBans = 5000;
+    static constexpr int kMaxBannedPeers   = 8000;
     const AppSettings *m_settings{nullptr};
     int m_modelTick{0};
     int m_dhtNodesMetricIndex{-1};

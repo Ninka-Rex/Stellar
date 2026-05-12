@@ -928,6 +928,12 @@ struct TorrentSessionManager::GeoDbState {
     bool attempted{false};
     QString path;
     QHash<QString, PeerLocation> cache;
+    // Insertion order for FIFO eviction. QHash iteration order is unspecified,
+    // so the prior eviction loop effectively dropped random entries — which
+    // could (and did) evict hot peers immediately after insertion, thrashing
+    // the cache when swarm size approached the cap. A FIFO ring evicts the
+    // genuinely oldest entries.
+    QList<QString> insertionOrder;
 };
 #endif
 
@@ -2160,6 +2166,17 @@ void TorrentSessionManager::refreshPeerBanRules(const AppSettings *settings) {
         emit bannedPeersChanged();
 }
 
+void TorrentSessionManager::requestIpFilterRebuild() {
+    m_ipFilterRebuildPending = true;
+}
+
+void TorrentSessionManager::flushIpFilterRebuild() {
+    if (!m_ipFilterRebuildPending)
+        return;
+    m_ipFilterRebuildPending = false;
+    rebuildIpFilter();
+}
+
 void TorrentSessionManager::rebuildIpFilter() {
     if (!m_session)
         return;
@@ -2183,8 +2200,34 @@ void TorrentSessionManager::setTemporaryPeerBan(const QString &endpoint, const Q
     if (normalized.isEmpty())
         return;
     if (!m_temporaryBannedPeers.contains(normalized)) {
+        // Cap the temporary ban set so a public swarm with a steady stream of
+        // abusive peers cannot grow it without bound. Each rebuild allocates
+        // a libtorrent::ip_filter rule per entry; without a cap a multi-hour
+        // seeding session could push this past 10k entries and turn every
+        // alert tick into seconds of work on the GUI thread.
+        if (m_temporaryBannedPeers.size() >= kMaxTemporaryBans) {
+            // Drop a chunk so we don't thrash at the boundary. QSet iteration
+            // order is unspecified — random eviction is acceptable for what is
+            // effectively a session-scope blacklist (re-bans on next inspection
+            // if still abusive).
+            const int toDrop = kMaxTemporaryBans / 8;
+            int dropped = 0;
+            for (auto it = m_temporaryBannedPeers.begin();
+                 it != m_temporaryBannedPeers.end() && dropped < toDrop; ) {
+                const QString ep = *it;
+                it = m_temporaryBannedPeers.erase(it);
+                auto bp = m_bannedPeers.find(ep);
+                if (bp != m_bannedPeers.end() && !bp.value().permanent)
+                    m_bannedPeers.erase(bp);
+                ++dropped;
+            }
+        }
         m_temporaryBannedPeers.insert(normalized);
-        rebuildIpFilter();
+        // Coalesce: defer the actual ip_filter rebuild until the end of the
+        // current processAlerts() pass. Without this, every newly-banned peer
+        // during a single alert burst triggered a full O(N) rebuild — under
+        // auto-ban this scaled as N² over a multi-hour session.
+        requestIpFilterRebuild();
     }
     BannedPeer entry;
     entry.endpoint = normalized;
@@ -2192,6 +2235,19 @@ void TorrentSessionManager::setTemporaryPeerBan(const QString &endpoint, const Q
     entry.countryCode = countryCode.trimmed().toUpper();
     entry.reason = reason;
     entry.permanent = false;
+    // Cap m_bannedPeers in tandem with m_temporaryBannedPeers, otherwise the
+    // permanent-or-not record persists across temp evictions and the QHash
+    // grows past either set's nominal cap.
+    if (m_bannedPeers.size() >= kMaxBannedPeers) {
+        for (auto it = m_bannedPeers.begin(); it != m_bannedPeers.end(); ) {
+            if (!it.value().permanent && !m_temporaryBannedPeers.contains(it.key()))
+                it = m_bannedPeers.erase(it);
+            else
+                ++it;
+            if (m_bannedPeers.size() < kMaxBannedPeers * 7 / 8)
+                break;
+        }
+    }
     m_bannedPeers.insert(normalized, entry);
 }
 
@@ -2592,6 +2648,10 @@ void TorrentSessionManager::processAlerts() {
     m_session->pop_alerts(&alerts);
     for (libtorrent::alert *alert : alerts)
         handleAlert(alert);
+    // Apply any IP-filter rebuilds requested during this alert burst as a
+    // single operation. Per-ban rebuilds during the loop turned a heavy alert
+    // burst into N² work; coalescing brings it back to one O(N) rebuild.
+    flushIpFilterRebuild();
 }
 
 void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
@@ -2789,7 +2849,7 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
             snapshot.message = QStringLiteral("Announce sent");
             snapshot.updatedAt = QDateTime::currentDateTimeUtc();
             m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(announce->tracker_url()).left(1024))] = snapshot;
-            updateModels(id, announce->handle);
+            updateModels(id, announce->handle, /*forceTrackerUpdate=*/false, /*trackerOnly=*/true);
         }
         return;
     }
@@ -2803,7 +2863,7 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
             snapshot.peers = std::max(0, reply->num_peers);
             snapshot.updatedAt = QDateTime::currentDateTimeUtc();
             m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(reply->tracker_url()).left(1024))] = snapshot;
-            updateModels(id, reply->handle);
+            updateModels(id, reply->handle, /*forceTrackerUpdate=*/false, /*trackerOnly=*/true);
         }
         return;
     }
@@ -2816,7 +2876,7 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
             snapshot.message = QString::fromUtf8(warning->warning_message()).left(512);
             snapshot.updatedAt = QDateTime::currentDateTimeUtc();
             m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(warning->tracker_url()).left(1024))] = snapshot;
-            updateModels(id, warning->handle);
+            updateModels(id, warning->handle, /*forceTrackerUpdate=*/false, /*trackerOnly=*/true);
         }
         return;
     }
@@ -2832,7 +2892,7 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
                 : reason;
             snapshot.updatedAt = QDateTime::currentDateTimeUtc();
             m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(trackerError->tracker_url()).left(1024))] = snapshot;
-            updateModels(id, trackerError->handle);
+            updateModels(id, trackerError->handle, /*forceTrackerUpdate=*/false, /*trackerOnly=*/true);
         }
         return;
     }
@@ -2847,7 +2907,7 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
             snapshot.peers = std::max(0, scrapeReply->incomplete);
             snapshot.updatedAt = QDateTime::currentDateTimeUtc();
             m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(scrapeReply->tracker_url()).left(1024))] = snapshot;
-            updateModels(id, scrapeReply->handle);
+            updateModels(id, scrapeReply->handle, /*forceTrackerUpdate=*/false, /*trackerOnly=*/true);
         }
         return;
     }
@@ -2863,7 +2923,7 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
                 : reason;
             snapshot.updatedAt = QDateTime::currentDateTimeUtc();
             m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(scrapeFailed->tracker_url()).left(1024))] = snapshot;
-            updateModels(id, scrapeFailed->handle);
+            updateModels(id, scrapeFailed->handle, /*forceTrackerUpdate=*/false, /*trackerOnly=*/true);
         }
         return;
     }
@@ -2896,10 +2956,29 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
     }
 }
 
-void TorrentSessionManager::updateModels(const QString &downloadId, const libtorrent::torrent_handle &handle, bool forceTrackerUpdate) {
+void TorrentSessionManager::updateModels(const QString &downloadId, const libtorrent::torrent_handle &handle, bool forceTrackerUpdate, bool trackerOnly) {
     if (!handle.is_valid())
         return;
 
+    int dhtPeerCount = 0;
+    int dhtSeederCount = 0;
+    int pexPeerCount = 0;
+    int pexSeederCount = 0;
+    int lsdPeerCount = 0;
+    int lsdSeederCount = 0;
+
+    // Tracker-alert refresh path: tracker alerts don't change the connected
+    // peer set or file-progress, so the heavy peer-info scan (with per-peer
+    // geo-IP lookups, QStringList allocs, and auto-ban regex matching) is
+    // wasted work that scaled with N_torrents × N_trackers and was the
+    // dominant cause of UI lag while seeding many torrents. We still refresh
+    // the tracker model below — the DHT/PEX/LSD counts shown there will be
+    // stale until the next state_update_alert tick (~2s), which is fine
+    // because those rows are derived from the live peer set anyway.
+    if (trackerOnly)
+        goto tracker_refresh;
+
+    {
     auto *fileModel = qobject_cast<TorrentFileModel *>(m_fileModels.value(downloadId, nullptr));
     if (fileModel && handle.torrent_file()) {
         const auto ti = handle.torrent_file();
@@ -2964,12 +3043,6 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
             peerModel = nullptr;
     }
 
-    int dhtPeerCount = 0;
-    int dhtSeederCount = 0;
-    int pexPeerCount = 0;
-    int pexSeederCount = 0;
-    int lsdPeerCount = 0;
-    int lsdSeederCount = 0;
     const bool shouldInspectPeers = peerModel
         || !m_manualBannedPeers.isEmpty()
         || !m_blockedPeerUserAgentTerms.isEmpty()
@@ -2981,8 +3054,15 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
         handle.get_peer_info(peerInfos);
     if (shouldInspectPeers) {
         m_didInspectPeersThisTick = true;
+        // Only allocate the entries vector when there's actually a peer model
+        // observing it. When auto-ban or manual bans alone drive the scan,
+        // entries are pushed but immediately discarded — the allocation,
+        // QStringList flags construction, and geo-IP lookup per peer are all
+        // wasted work that scaled with N_torrents × peers-per-torrent.
+        const bool needFullEntry = (peerModel != nullptr);
         QVector<TorrentPeerModel::Entry> entries;
-        entries.reserve(int(peerInfos.size()));
+        if (needFullEntry)
+            entries.reserve(int(peerInfos.size()));
         bool anyBanChanged = false;
         for (const auto &peer : peerInfos) {
             TorrentPeerModel::Entry entry;
@@ -2997,15 +3077,21 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
             entry.rtt = peer.rtt;
             entry.isSeed = (peer.flags & libtorrent::peer_info::seed) != libtorrent::peer_flags_t{};
 
-            // Build flags string
-            {
+            // Track incoming connections unconditionally — this drives the
+            // hasIncomingConnection indicator independent of the peer model.
+            if ((peer.flags & libtorrent::peer_info::local_connection) == libtorrent::peer_flags_t{})
+                m_hasIncomingPending = true;
+
+            // Build flags string only when a peer model is observing — flag
+            // string is otherwise unused and the QStringList allocations
+            // accounted for a significant share of per-tick CPU when seeding
+            // many torrents.
+            if (needFullEntry) {
                 QStringList fl;
-                // Connection direction
                 if ((peer.flags & libtorrent::peer_info::local_connection) != libtorrent::peer_flags_t{}) {
                     fl << QStringLiteral("OUT");
                 } else {
                     fl << QStringLiteral("IN");
-                    m_hasIncomingPending = true;
                 }
                 // Sources
                 if ((peer.source & libtorrent::peer_info::tracker) != libtorrent::peer_source_flags_t{})
@@ -3036,18 +3122,25 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
                 entry.flags = fl.join(QLatin1Char(' '));
             }
 
-            if ((peer.source & libtorrent::peer_info::tracker) != libtorrent::peer_source_flags_t{})
-                entry.source = QStringLiteral("Tracker");
-            else if ((peer.source & libtorrent::peer_info::dht) != libtorrent::peer_source_flags_t{})
-                entry.source = QStringLiteral("DHT");
-            else if ((peer.source & libtorrent::peer_info::pex) != libtorrent::peer_source_flags_t{})
-                entry.source = QStringLiteral("PeX");
-            else if ((peer.source & libtorrent::peer_info::lsd) != libtorrent::peer_source_flags_t{})
-                entry.source = QStringLiteral("LSD");
-            else
-                entry.source = QStringLiteral("Peer");
-            lookupPeerLocation(entry.endpoint, &entry.countryCode, &entry.regionCode, &entry.regionName,
-                               &entry.cityName, &entry.latitude, &entry.longitude);
+            if (needFullEntry) {
+                if ((peer.source & libtorrent::peer_info::tracker) != libtorrent::peer_source_flags_t{})
+                    entry.source = QStringLiteral("Tracker");
+                else if ((peer.source & libtorrent::peer_info::dht) != libtorrent::peer_source_flags_t{})
+                    entry.source = QStringLiteral("DHT");
+                else if ((peer.source & libtorrent::peer_info::pex) != libtorrent::peer_source_flags_t{})
+                    entry.source = QStringLiteral("PeX");
+                else if ((peer.source & libtorrent::peer_info::lsd) != libtorrent::peer_source_flags_t{})
+                    entry.source = QStringLiteral("LSD");
+                else
+                    entry.source = QStringLiteral("Peer");
+            }
+            // Geo lookup needed whenever the peer model is visible OR when the
+            // user has a country-based ban list active. Otherwise it's pure waste.
+            const bool needGeo = needFullEntry || !m_blockedPeerCountries.isEmpty();
+            if (needGeo) {
+                lookupPeerLocation(entry.endpoint, &entry.countryCode, &entry.regionCode, &entry.regionName,
+                                   &entry.cityName, &entry.latitude, &entry.longitude);
+            }
 
             entry.endpoint = normalizePeerEndpoint(entry.endpoint);
             const QString normalizedCountry = entry.countryCode.trimmed().toUpper();
@@ -3074,7 +3167,8 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
                 continue;
             }
 
-            entries.push_back(entry);
+            if (needFullEntry)
+                entries.push_back(entry);
             if ((peer.source & libtorrent::peer_info::dht) != libtorrent::peer_source_flags_t{}) {
                 ++dhtPeerCount;
                 if (entry.isSeed)
@@ -3108,7 +3202,9 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
         if (anyBanChanged)
             emit bannedPeersChanged();
     }
+    } // end !trackerOnly peer/file scan block
 
+tracker_refresh:
     // Tracker models are notably heavier because they also resolve and
     // geo-locate tracker endpoints, so keep those on the slower cadence
     // without penalizing the peer list refresh rate.
@@ -3116,6 +3212,16 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
     // so the status change is visible immediately rather than up to 3s later).
     if (!forceTrackerUpdate && m_modelTick % 3 != 0)
         return;
+
+    // Skip tracker model rebuild entirely if no consumer is watching the model
+    // (properties dialog closed). The tracker model still exists in m_trackerModels
+    // but its data isn't visible — rebuilding it allocates QVectors of entries,
+    // does QUrl parsing, geo-IP lookups, and string formatting that nothing reads.
+    {
+        auto *tm = qobject_cast<TorrentTrackerModel *>(m_trackerModels.value(downloadId, nullptr));
+        if (tm && !tm->liveUpdatesEnabled())
+            return;
+    }
 
     if (auto *trackerModel = qobject_cast<TorrentTrackerModel *>(m_trackerModels.value(downloadId, nullptr))) {
         const auto trackers = handle.trackers();
@@ -3360,6 +3466,7 @@ void TorrentSessionManager::releaseGeoDatabaseForUpdate() {
     m_geoDb->attempted = false;
     m_geoDb->path.clear();
     m_geoDb->cache.clear();
+    m_geoDb->insertionOrder.clear();
 #endif
 }
 
@@ -3442,14 +3549,19 @@ void TorrentSessionManager::lookupPeerLocation(const QString &endpoint, QString 
 
     // Evict oldest quarter of entries when the cache reaches its limit so a
     // swarm with thousands of unique peers cannot grow it without bound.
+    // Eviction follows insertion order (FIFO) — QHash iteration order is
+    // unspecified and previously dropped random entries, occasionally evicting
+    // freshly-inserted hot peers and forcing immediate re-lookup.
     constexpr int kGeoCacheMaxEntries = 8192;
     if (m_geoDb->cache.size() >= kGeoCacheMaxEntries) {
         int toRemove = kGeoCacheMaxEntries / 4;
-        auto it = m_geoDb->cache.begin();
-        while (it != m_geoDb->cache.end() && toRemove-- > 0)
-            it = m_geoDb->cache.erase(it);
+        while (toRemove-- > 0 && !m_geoDb->insertionOrder.isEmpty()) {
+            const QString oldest = m_geoDb->insertionOrder.takeFirst();
+            m_geoDb->cache.remove(oldest);
+        }
     }
     m_geoDb->cache.insert(ip, resolved);
+    m_geoDb->insertionOrder.append(ip);
     if (countryCode)
         *countryCode = resolved.countryCode;
     if (regionCode)
