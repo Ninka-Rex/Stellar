@@ -24,7 +24,7 @@ AbstractButton {
     property string iconSrc: ""
     property int iconSize: 32
     
-    width: 76
+    width: 84
     height: 72
 
     // Dim the whole button when disabled so the user can see it won't respond.
@@ -38,41 +38,46 @@ AbstractButton {
         radius: 0
     }
 
+    // Center icon + label as a single group. Label sizes to its actual content
+    // height (1 or 2 lines), so padding above icon ≈ padding below text. When
+    // a label wraps to 2 lines (e.g. long translations), the whole group is
+    // still centered — the icon shifts up by half the extra line height,
+    // which is the only way to keep top/bottom whitespace equal.
     contentItem: Item {
         anchors.fill: parent
 
-        Column {
-            anchors.centerIn: parent
-            spacing: 4
+        readonly property int _gap: 4
+        readonly property int _groupH: root.iconSize + _gap + btnLabel.contentHeight
+        readonly property int _topPad: Math.max(0, Math.round((root.height - _groupH) / 2))
 
-            Image {
-                anchors.horizontalCenter: parent.horizontalCenter
-                source: root.iconSrc
-                width: root.iconSize
-                height: root.iconSize
-                sourceSize.width: root.iconSize
-                sourceSize.height: root.iconSize
-                fillMode: Image.PreserveAspectFit
-                smooth: false
-                mipmap: false
-                asynchronous: false
-                cache: true
-            }
+        Image {
+            id: btnIcon
+            y: parent._topPad
+            anchors.horizontalCenter: parent.horizontalCenter
+            source: root.iconSrc
+            width: root.iconSize
+            height: root.iconSize
+            sourceSize.width: root.iconSize
+            sourceSize.height: root.iconSize
+            fillMode: Image.PreserveAspectFit
+            smooth: false
+            mipmap: false
+            asynchronous: false
+            cache: true
+        }
 
-            Text {
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: root.label
-                color: root.hovered ? "#ffffff" : "#d0d0d0"
-                font.pixelSize: 11
-                horizontalAlignment: Text.AlignHCenter
-                wrapMode: Text.WordWrap
-                maximumLineCount: 2
-                width: root.width - 4
-                // Fixed height reserves space for 2 lines on every button so the
-                // Column (and therefore the icon) stays at the same vertical
-                // position regardless of whether the label wraps or not.
-                height: 26
-            }
+        Text {
+            id: btnLabel
+            y: btnIcon.y + btnIcon.height + parent._gap
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: root.width - 4
+            text: root.label
+            color: root.hovered ? "#ffffff" : "#d0d0d0"
+            font.pixelSize: 11
+            horizontalAlignment: Text.AlignHCenter
+            wrapMode: Text.WordWrap
+            maximumLineCount: 2
+            elide: Text.ElideRight
         }
     }
 

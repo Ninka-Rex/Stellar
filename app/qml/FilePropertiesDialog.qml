@@ -1938,40 +1938,55 @@ Window {
                             spacing: 0
 
                             // ── Info + Save (merged, compact) ─────────────────
-                            // Strict 3-column grid: label | content | action
-                            // Every row uses the same column widths → clean alignment.
+                            // 2-col grid: label | content-row (field + optional actions).
+                            // Action buttons live inside the content row so each row
+                            // controls its own action area independently — no off-center
+                            // buttons or stretched fields.
                             GridLayout {
                                 id: infoGrid
                                 Layout.fillWidth: true
                                 Layout.topMargin: 8
-                                columns: 3
-                                columnSpacing: 6
+                                columns: 2
+                                columnSpacing: 8
                                 rowSpacing: 5
                                 property real lw: 68
 
                                 // Source
                                 Text { text: qsTr("Source"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
                                 ReadOnlyField {
-                                    Layout.fillWidth: true; Layout.columnSpan: 2
+                                    Layout.fillWidth: true
                                     fieldText: root.item ? safeStr(root.item.torrentSource) : ""
                                     textColor: "#b0c0d0"
                                 }
 
-                                // Info hash — full-width field, action col = badge + Copy
+                                // Info hash — sized to fit a SHA1/SHA256 hash; badge + Copy follow inline.
                                 Text { text: qsTr("Info hash"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
-                                ReadOnlyField {
-                                    Layout.fillWidth: true
-                                    fieldText: root.item ? safeStr(root.item.torrentInfoHash) : ""
-                                }
                                 RowLayout {
-                                    spacing: 6
-                                    Text {
-                                        readonly property bool hasMetadata: !!root.item && root.item.torrentHasMetadata
-                                        text: hasMetadata ? qsTr("✓ Metadata") : qsTr("Fetching…")
-                                        color: hasMetadata ? "#5eaa6e" : "#c09a50"
-                                        font.pixelSize: 11
-                                        Layout.alignment: Qt.AlignVCenter
+                                    Layout.fillWidth: true
+                                    spacing: 8
+                                    ReadOnlyField {
+                                        Layout.preferredWidth: 360
+                                        Layout.maximumWidth: 360
+                                        fieldText: root.item ? safeStr(root.item.torrentInfoHash) : ""
                                     }
+                                    Rectangle {
+                                        readonly property bool hasMetadata: !!root.item && root.item.torrentHasMetadata
+                                        Layout.alignment: Qt.AlignVCenter
+                                        implicitHeight: 22
+                                        implicitWidth: badgeText.implicitWidth + 14
+                                        radius: 3
+                                        color: hasMetadata ? "#16331f" : "#2a1f0c"
+                                        border.color: hasMetadata ? "#2d5a3a" : "#5a3f12"
+                                        Text {
+                                            id: badgeText
+                                            anchors.centerIn: parent
+                                            text: parent.hasMetadata ? qsTr("✓ Metadata") : qsTr("Fetching…")
+                                            color: parent.hasMetadata ? "#5eaa6e" : "#c09a50"
+                                            font.pixelSize: 11
+                                            font.bold: true
+                                        }
+                                    }
+                                    Item { Layout.fillWidth: true }
                                     DlgButton {
                                         text: qsTr("Copy")
                                         enabled: !!root.item && safeStr(root.item.torrentInfoHash).length > 0
@@ -1981,18 +1996,23 @@ Window {
 
                                 // Save to
                                 Text { text: qsTr("Save to"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
-                                ReadOnlyField { Layout.fillWidth: true; fieldText: root.item ? safeStr(root.item.savePath) : "" }
-                                DlgButton {
-                                    text: qsTr("Move...")
-                                    enabled: !!root.item && !root._torrentIsMoving
-                                    onClicked: { if (root._isTorrent) moveTorrentDialog.open(); else moveFileDialog.open() }
+                                RowLayout {
+                                    Layout.fillWidth: true
+                                    spacing: 8
+                                    ReadOnlyField { Layout.fillWidth: true; fieldText: root.item ? safeStr(root.item.savePath) : "" }
+                                    DlgButton {
+                                        text: qsTr("Move...")
+                                        enabled: !!root.item && !root._torrentIsMoving
+                                        onClicked: { if (root._isTorrent) moveTorrentDialog.open(); else moveFileDialog.open() }
+                                    }
                                 }
 
                                 // Category
                                 Text { text: qsTr("Category"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
                                 ComboBox {
                                     id: categoryCombo
-                                    Layout.preferredWidth: 180; Layout.columnSpan: 2
+                                    Layout.preferredWidth: 180
+                                    Layout.fillWidth: false
                                     implicitHeight: 26
                                     model: App.categoryModel
                                     textRole: "categoryLabel"
@@ -2028,7 +2048,7 @@ Window {
                                 // Note
                                 Text { text: qsTr("Note"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
                                 TextField {
-                                    Layout.fillWidth: true; Layout.columnSpan: 2
+                                    Layout.fillWidth: true
                                     implicitHeight: 26
                                     text: root.item ? safeStr(root.item.description) : ""
                                     color: "#d0d0d0"; font.pixelSize: 11

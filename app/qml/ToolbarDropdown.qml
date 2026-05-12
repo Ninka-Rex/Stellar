@@ -43,7 +43,7 @@ AbstractButton {
         return queues
     }
 
-    width: 76
+    width: 84
     height: 72
 
     background: Rectangle {
@@ -53,33 +53,42 @@ AbstractButton {
         radius: 0
     }
 
+    // Fixed-position layout matching ToolbarBtn — icon and label anchored to
+    // absolute slots so wrapping or locale changes don't shift the icon.
+    // Center icon + label as a single group; label sizes to content height.
     contentItem: Item {
         anchors.fill: parent
 
-        Column {
-            anchors.centerIn: parent
-            spacing: 4
+        readonly property int _iconSize: 32
+        readonly property int _gap: 4
+        readonly property int _groupH: _iconSize + _gap + btnLabel.contentHeight
+        readonly property int _topPad: Math.max(0, Math.round((root.height - _groupH) / 2))
 
-            Image {
-                anchors.horizontalCenter: parent.horizontalCenter
-                source: root.iconSrc
-                width: 32
-                height: 32
-                fillMode: Image.PreserveAspectFit
-                smooth: true
-            }
+        Image {
+            id: btnIcon
+            y: parent._topPad
+            anchors.horizontalCenter: parent.horizontalCenter
+            source: root.iconSrc
+            width: parent._iconSize
+            height: parent._iconSize
+            sourceSize.width: parent._iconSize
+            sourceSize.height: parent._iconSize
+            fillMode: Image.PreserveAspectFit
+            smooth: true
+        }
 
-            Text {
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: root.label
-                color: root.hovered ? "#ffffff" : "#d0d0d0"
-                font.pixelSize: 11
-                horizontalAlignment: Text.AlignHCenter
-                wrapMode: Text.WordWrap
-                width: root.width - 4
-                maximumLineCount: 2
-                height: 26
-            }
+        Text {
+            id: btnLabel
+            y: btnIcon.y + btnIcon.height + parent._gap
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: root.width - 4
+            text: root.label
+            color: root.hovered ? "#ffffff" : "#d0d0d0"
+            font.pixelSize: 11
+            horizontalAlignment: Text.AlignHCenter
+            wrapMode: Text.WordWrap
+            maximumLineCount: 2
+            elide: Text.ElideRight
         }
     }
 
