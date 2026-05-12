@@ -1612,7 +1612,8 @@ ApplicationWindow {
 
                 Image {
                     source: "icons/file_no_longer_available.png"
-                    width: 36; height: 36
+                    width: 24; height: 24
+                    sourceSize.width: 24; sourceSize.height: 24
                     fillMode: Image.PreserveAspectFit
                     Layout.alignment: Qt.AlignTop
                 }

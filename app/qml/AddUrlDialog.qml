@@ -70,8 +70,12 @@ Window {
     function _submit() {
         if (urlField.text.trim().length === 0) return
         var trimmed = urlField.text.trim()
-        if (/^[0-9a-fA-F]{40}$/.test(trimmed))
+        if (/^[0-9a-fA-F]{40}$/.test(trimmed)) {
             urlField.text = "magnet:?xt=urn:btih:" + trimmed.toLowerCase()
+        } else if (!/^[a-zA-Z][a-zA-Z0-9+\-.]*:/.test(trimmed)) {
+            // No scheme — assume https so isLikelyYtdlpUrl and QUrl parse correctly
+            urlField.text = "https://" + trimmed
+        }
         root.accepted()
         root.close()
     }
