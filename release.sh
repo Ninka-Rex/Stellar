@@ -101,11 +101,11 @@ copy_shared_object() {
         local dest_resolved
         dest_resolved="$(readlink -f "$dest")"
         if [[ "$dest_resolved" == "$resolved" ]]; then
-            if [[ -L "$src" ]]; then
+            if [[ -L "$src" && "$(basename "$src")" != "$base" ]]; then
                 ln -sf "$base" "$dst_dir/$(basename "$src")"
             fi
             soname="$(readelf -d "$resolved" 2>/dev/null | awk -F'[][]' '/SONAME/ {print $2; exit}')"
-            if [[ -n "$soname" ]]; then
+            if [[ -n "$soname" && "$soname" != "$base" ]]; then
                 ln -sf "$base" "$dst_dir/$soname"
             fi
             return 0
@@ -114,12 +114,12 @@ copy_shared_object() {
 
     cp -L "$resolved" "$dest"
 
-    if [[ -L "$src" ]]; then
+    if [[ -L "$src" && "$(basename "$src")" != "$base" ]]; then
         ln -sf "$base" "$dst_dir/$(basename "$src")"
     fi
 
     soname="$(readelf -d "$resolved" 2>/dev/null | awk -F'[][]' '/SONAME/ {print $2; exit}')"
-    if [[ -n "$soname" ]]; then
+    if [[ -n "$soname" && "$soname" != "$base" ]]; then
         ln -sf "$base" "$dst_dir/$soname"
     fi
 }
@@ -515,6 +515,9 @@ BuildArch:      x86_64
 
 # All content is pre-staged in BUILDROOT — nothing to build here.
 %global debug_package %{nil}
+# Default __spec_install_pre wipes the buildroot before running %install.
+# Our files are already staged, so disable that wipe (keep env setup only).
+%global __spec_install_pre %{___build_pre}
 
 %description
 Stellar is a cross-platform download manager written in Qt6/C++.
