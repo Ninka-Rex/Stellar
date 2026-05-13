@@ -110,7 +110,7 @@ Source: "native-host-manifest-installed.json";  DestDir: "{app}";          DestN
 [Icons]
 Name: "{group}\Stellar Download Manager"; Filename: "{app}\{#AppExeName}"; IconFilename: "{app}\{#AppExeName}"
 Name: "{group}\Uninstall Stellar";        Filename: "{uninstallexe}"
-Name: "{userdesktop}\Stellar";            Filename: "{app}\{#AppExeName}"; Tasks: desktopicon
+Name: "{userdesktop}\Stellar Download Manager"; Filename: "{app}\{#AppExeName}"; Tasks: desktopicon
 
 [Registry]
 ; Chrome native messaging host
