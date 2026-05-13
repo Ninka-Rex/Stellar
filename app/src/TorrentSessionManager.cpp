@@ -1000,19 +1000,14 @@ TorrentSessionManager::TorrentSessionManager(QObject *parent)
     m_alertTimer.setInterval(2000);
     connect(&m_alertTimer, &QTimer::timeout, this, [this]() {
 #if defined(STELLAR_HAS_LIBTORRENT)
-        QElapsedTimer _tickTimer; _tickTimer.start();
         ++m_modelTick;
         processAlerts();
-        qDebug() << "[perf] processAlerts:" << _tickTimer.elapsed() << "ms";
         // Keep the DHT estimator epoch/warmup ticking even when no DHT responses
         // are arriving (silent crawler stalls would otherwise freeze warmup at 0%).
         {
-            QElapsedTimer _t; _t.start();
             if (m_dhtEstimatorEnabled && m_lastDhtNodeId.size() == 20)
                 maybePublishDhtMeasurementEpoch(QDateTime::currentDateTimeUtc());
             pumpDhtEstimatorCrawler();
-            const qint64 _dhtMs = _t.elapsed();
-            if (_dhtMs > 5) qDebug() << "[perf] dht pump:" << _dhtMs << "ms";
         }
         if (m_session) {
             m_session->post_torrent_updates();
@@ -1040,7 +1035,6 @@ TorrentSessionManager::TorrentSessionManager(QObject *parent)
                 }
             }
         }
-        qDebug() << "[perf] full tick:" << _tickTimer.elapsed() << "ms, torrents:" << m_items.size();
 #endif
     });
 }
@@ -2662,15 +2656,8 @@ void TorrentSessionManager::processAlerts() {
         return;
     std::vector<libtorrent::alert *> alerts;
     m_session->pop_alerts(&alerts);
-    if (alerts.size() > 50)
-        qDebug() << "[perf] alert burst:" << alerts.size() << "alerts";
-    QElapsedTimer _alertTimer;
     for (libtorrent::alert *alert : alerts) {
-        _alertTimer.start();
-        const int _type = alert->type();
         handleAlert(alert);
-        const qint64 _ms = _alertTimer.elapsed();
-        if (_ms > 10) qDebug() << "[perf] slow alert type" << _type << ":" << _ms << "ms";
     }
     // Apply any IP-filter rebuilds requested during this alert burst as a
     // single operation. Per-ban rebuilds during the loop turned a heavy alert
@@ -2796,7 +2783,6 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
     if (auto *update = libtorrent::alert_cast<libtorrent::state_update_alert>(alert)) {
         m_hasIncomingPending = false;
         m_didInspectPeersThisTick = false;
-        QElapsedTimer _suTimer; qint64 _suUpdateItem = 0, _suUpdateModels = 0;
         for (const auto &status : update->status) {
             const QString id = idForHandle(status.handle);
             DownloadItem *item = m_items.value(id, nullptr).data();
@@ -2804,13 +2790,11 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
                 // Pass the already-fetched torrent_status directly — avoids a
                 // redundant handle.status() IPC call (acquires session mutex)
                 // per torrent per alert tick.
-                _suTimer.start(); updateItemFromStatus(item, status.handle, status); _suUpdateItem += _suTimer.elapsed();
-                _suTimer.start(); updateModels(id, status.handle, status); _suUpdateModels += _suTimer.elapsed();
+                updateItemFromStatus(item, status.handle, status);
+                updateModels(id, status.handle, status);
             }
         }
         emit torrentBatchUpdated();
-        qDebug() << "[perf] state_update" << update->status.size() << "torrents:"
-                 << "updateItem=" << _suUpdateItem << "ms updateModels=" << _suUpdateModels << "ms";
         if (m_didInspectPeersThisTick && m_hasIncomingPending != m_hasIncomingConnection) {
             m_hasIncomingConnection = m_hasIncomingPending;
             emit hasIncomingConnectionChanged();
@@ -2997,11 +2981,6 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
     if (!handle.is_valid())
         return;
 
-    QElapsedTimer _umTimer; _umTimer.start();
-    const auto _umEarlyCheck = [&](const char *tag) {
-        const qint64 e = _umTimer.elapsed();
-        if (e > 50) qDebug() << "[perf] updateModels EARLY" << tag << downloadId << e << "ms";
-    };
     int dhtPeerCount = 0;
     int dhtSeederCount = 0;
     int pexPeerCount = 0;
@@ -3020,10 +2999,8 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
     if (trackerOnly)
         goto tracker_refresh;
 
-    _umEarlyCheck("pre-filemodel");
     {
     auto *fileModel = qobject_cast<TorrentFileModel *>(m_fileModels.value(downloadId, nullptr));
-    const qint64 _umT0 = _umTimer.elapsed();
     const auto ti = st.torrent_file.lock();
     if (fileModel && ti) {
         const auto &files = ti->files();
@@ -3059,7 +3036,6 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
         }
     }
 
-    _umEarlyCheck("post-filemodel");
     if (m_pausedIds.contains(downloadId)) {
         if (auto *peerModel = qobject_cast<TorrentPeerModel *>(m_peerModels.value(downloadId, nullptr))) {
             if (peerModel->liveUpdatesEnabled()) {
@@ -3100,17 +3076,9 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
         || m_autoBanAbusivePeers
         || m_autoBanMediaPlayerPeers;
     std::vector<libtorrent::peer_info> peerInfos;
-    const qint64 _umT1 = _umTimer.elapsed();
     if (shouldInspectPeers) {
-        qDebug() << "[perf] getPeerInfo reason: peerModel=" << (peerModel!=nullptr)
-                 << "manualBans=" << m_manualBannedPeers.size()
-                 << "uaTerms=" << m_blockedPeerUserAgentTerms.size()
-                 << "countries=" << m_blockedPeerCountries.size()
-                 << "autoBanAbusive=" << m_autoBanAbusivePeers
-                 << "autoBanMedia=" << m_autoBanMediaPlayerPeers;
         handle.get_peer_info(peerInfos);
     }
-    const qint64 _umT2 = _umTimer.elapsed();
     if (shouldInspectPeers) {
         m_didInspectPeersThisTick = true;
         // Only allocate the entries vector when there's actually a peer model
@@ -3244,18 +3212,8 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
                     ++lsdSeederCount;
             }
         }
-        const qint64 _umT3 = _umTimer.elapsed();
         if (peerModel)
             peerModel->setEntries(entries);
-        const qint64 _umT4 = _umTimer.elapsed();
-        if (_umT4 - _umT0 > 100 || _umT2 - _umT1 > 20) {
-            qDebug() << "[perf] updateModels" << downloadId
-                     << "fileModel=" << (_umT1 - _umT0) << "ms"
-                     << "getPeerInfo=" << (_umT2 - _umT1) << "ms peers=" << int(peerInfos.size())
-                     << "buildEntries=" << (_umT3 - _umT2) << "ms"
-                     << "setEntries=" << (_umT4 - _umT3) << "ms"
-                     << "total(peer)=" << _umT4 << "ms";
-        }
 
         DownloadItem *modelItem = m_items.value(downloadId, nullptr).data();
         if (modelItem && !modelItem->torrentHasMetadata()) {
@@ -3272,7 +3230,6 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
             emit bannedPeersChanged();
     }
     } // end !trackerOnly peer/file scan block
-    _umEarlyCheck("pre-tracker");
 
 tracker_refresh:
     // Tracker models are notably heavier because they also resolve and
@@ -3294,9 +3251,7 @@ tracker_refresh:
     }
 
     if (auto *trackerModel = qobject_cast<TorrentTrackerModel *>(m_trackerModels.value(downloadId, nullptr))) {
-        const qint64 _umTtk0 = _umTimer.elapsed();
         const auto trackers = handle.trackers();
-        const qint64 _umTtk1 = _umTimer.elapsed();
         QVector<TorrentTrackerModel::Entry> trackerEntries;
         trackerEntries.reserve(int(trackers.size()) + 3);
 
@@ -3472,19 +3427,10 @@ tracker_refresh:
 
             trackerEntries.push_back(entry);
         }
-        const qint64 _umTtk2 = _umTimer.elapsed();
         trackerModel->setEntries(trackerEntries);
-        const qint64 _umTtk3 = _umTimer.elapsed();
-        if (_umTtk3 - _umTtk0 > 50) {
-            qDebug() << "[perf] updateModels tracker" << downloadId
-                     << "handle.trackers()=" << (_umTtk1 - _umTtk0) << "ms count=" << int(trackers.size())
-                     << "buildEntries=" << (_umTtk2 - _umTtk1) << "ms"
-                     << "setEntries=" << (_umTtk3 - _umTtk2) << "ms";
-        }
     } else if (auto *trackerModel = qobject_cast<TorrentTrackerModel *>(m_trackerModels.value(downloadId, nullptr))) {
         trackerModel->setEntries({});
     }
-    _umEarlyCheck("end");
 }
 
 void TorrentSessionManager::ensureGeoDb() {

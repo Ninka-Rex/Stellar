@@ -470,7 +470,7 @@ Rectangle {
         { title: qsTr("Ratio"),          key: "ratio",      widthPx: 70,  visible: false },
         { title: qsTr("Uploaded"),       key: "uploaded",   widthPx: 90,  visible: false },
         { title: qsTr("Downloaded"),     key: "downloaded", widthPx: 90,  visible: false },
-        { title: qsTr("Last try date"),  key: "added",      widthPx: 130, visible: true  },
+        { title: qsTr("Date added"),      key: "added",      widthPx: 130, visible: true  },
         { title: qsTr("Last try date"),  key: "lasttry",    widthPx: 110, visible: false },
         { title: qsTr("Description"),    key: "description",widthPx: 120, visible: false },
         { title: qsTr("Save to"),        key: "saveto",     widthPx: 140, visible: false },
