@@ -76,6 +76,7 @@ QJsonArray chromeNativeMessagingOrigins()
 }
 #include <QUrl>
 #include <QFile>
+#include <QSet>
 #include <QFileInfo>
 #include <QSaveFile>
 #include <QStandardPaths>
@@ -4821,6 +4822,77 @@ QString AppController::updateMetadataUrl() {
     return QStringLiteral("https://ninka-rex.github.io/Stellar/update.json");
 }
 
+QString AppController::linuxPackageFormat() {
+    // Cached for the lifetime of the process — /etc/os-release is immutable
+    // for a running system and re-parsing it on every update check is wasteful.
+    // Non-Linux platforms never call this in a meaningful way, but the cache
+    // is harmless there too.
+    static const QString kFormat = []() -> QString {
+#if defined(Q_OS_LINUX)
+        QFile osRelease(QStringLiteral("/etc/os-release"));
+        if (!osRelease.open(QIODevice::ReadOnly | QIODevice::Text))
+            return QStringLiteral("deb");
+
+        // Distros whose native package format is RPM. Match against both
+        // ID= (the distro itself) and ID_LIKE= (its declared lineage) so
+        // downstream rebuilds (Rocky, Alma, Nobara, Bazzite, Tumbleweed,
+        // etc.) inherit the correct format without an explicit listing.
+        static const QSet<QString> kRpmIds = {
+            QStringLiteral("fedora"),
+            QStringLiteral("rhel"),
+            QStringLiteral("centos"),
+            QStringLiteral("rocky"),
+            QStringLiteral("almalinux"),
+            QStringLiteral("ol"),           // Oracle Linux
+            QStringLiteral("opensuse"),
+            QStringLiteral("opensuse-leap"),
+            QStringLiteral("opensuse-tumbleweed"),
+            QStringLiteral("suse"),
+            QStringLiteral("sles"),
+            QStringLiteral("mageia"),
+            QStringLiteral("openmandriva"),
+        };
+
+        QString id;
+        QStringList idLike;
+        const QByteArray contents = osRelease.readAll();
+        const QList<QByteArray> lines = contents.split('\n');
+        for (const QByteArray &rawLine : lines) {
+            const QByteArray line = rawLine.trimmed();
+            if (line.startsWith("ID=") || line.startsWith("ID_LIKE=")) {
+                const int eq = line.indexOf('=');
+                if (eq < 0)
+                    continue;
+                QString value = QString::fromUtf8(line.mid(eq + 1)).trimmed();
+                // Strip surrounding quotes (both ' and ") — os-release uses
+                // shell-style quoting when the value contains spaces.
+                if (value.size() >= 2
+                    && ((value.startsWith(QLatin1Char('"')) && value.endsWith(QLatin1Char('"')))
+                     || (value.startsWith(QLatin1Char('\'')) && value.endsWith(QLatin1Char('\''))))) {
+                    value = value.mid(1, value.size() - 2);
+                }
+                value = value.toLower();
+                if (line.startsWith("ID="))
+                    id = value;
+                else
+                    idLike = value.split(QLatin1Char(' '), Qt::SkipEmptyParts);
+            }
+        }
+
+        if (kRpmIds.contains(id))
+            return QStringLiteral("rpm");
+        for (const QString &like : idLike) {
+            if (kRpmIds.contains(like))
+                return QStringLiteral("rpm");
+        }
+        return QStringLiteral("deb");
+#else
+        return QStringLiteral("deb");
+#endif
+    }();
+    return kFormat;
+}
+
 QString AppController::updateChangelogUrl() {
     return QStringLiteral("https://ninka-rex.github.io/Stellar/changelog.md");
 }
@@ -4906,15 +4978,43 @@ void AppController::applyUpdateMetadata(const QVariantMap &map, bool manual) {
             : installerFilename);
     m_updateSha256 = map.value(QStringLiteral("sha256")).toString().trimmed();
 #else
-    const QString linuxFilename = map.value(QStringLiteral("linuxInstallerFilename")).toString().trimmed();
-    m_updateInstallerUrl = kReleaseBase.arg(version)
-        + (linuxFilename.isEmpty()
-            ? QStringLiteral("stellar-%1.deb").arg(version)
-            : linuxFilename);
-    const QString linuxSha = map.value(QStringLiteral("linuxSha256")).toString().trimmed();
-    m_updateSha256 = linuxSha.isEmpty()
-        ? map.value(QStringLiteral("sha256")).toString().trimmed()
-        : linuxSha;
+    // Pick the package format that matches the running distro. We accept
+    // separate per-format keys in update.json so a single metadata document
+    // can serve both Debian-family and RPM-family clients; if the per-format
+    // key is absent we fall back to the legacy linuxInstaller* keys (which
+    // historically pointed at the .deb) so older metadata still works.
+    const QString pkgFormat = AppController::linuxPackageFormat();
+    const bool wantRpm = (pkgFormat == QStringLiteral("rpm"));
+
+    const QString rpmFilename = map.value(QStringLiteral("linuxRpmInstallerFilename")).toString().trimmed();
+    const QString rpmSha      = map.value(QStringLiteral("linuxRpmSha256")).toString().trimmed();
+    const QString debFilename = map.value(QStringLiteral("linuxDebInstallerFilename"))
+        .toString().trimmed().isEmpty()
+        ? map.value(QStringLiteral("linuxInstallerFilename")).toString().trimmed()
+        : map.value(QStringLiteral("linuxDebInstallerFilename")).toString().trimmed();
+    const QString debSha = map.value(QStringLiteral("linuxDebSha256")).toString().trimmed().isEmpty()
+        ? map.value(QStringLiteral("linuxSha256")).toString().trimmed()
+        : map.value(QStringLiteral("linuxDebSha256")).toString().trimmed();
+
+    QString chosenFilename;
+    QString chosenSha;
+    if (wantRpm && (!rpmFilename.isEmpty() || !rpmSha.isEmpty())) {
+        chosenFilename = rpmFilename.isEmpty()
+            ? QStringLiteral("stellar-%1-1.x86_64.rpm").arg(version)
+            : rpmFilename;
+        chosenSha = rpmSha;
+    } else {
+        // Fall back to the .deb when we're on a Debian-family system OR
+        // when no RPM artifact was published for this release.
+        chosenFilename = debFilename.isEmpty()
+            ? QStringLiteral("stellar_%1_amd64.deb").arg(version)
+            : debFilename;
+        chosenSha = debSha.isEmpty()
+            ? map.value(QStringLiteral("sha256")).toString().trimmed()
+            : debSha;
+    }
+    m_updateInstallerUrl = kReleaseBase.arg(version) + chosenFilename;
+    m_updateSha256 = chosenSha;
 #endif
     m_updateLinuxInstallerUrl.clear();
     m_updateLinuxSha256.clear();
@@ -5298,7 +5398,11 @@ bool AppController::startUpdateInstall() {
 #if defined(Q_OS_WIN)
         filename = QStringLiteral("StellarSetup-%1.exe").arg(m_updateVersion);
 #else
-        filename = QStringLiteral("stellar-%1.deb").arg(m_updateVersion);
+        // Match the format chosen in applyUpdateMetadata() so we don't fall
+        // back to a .deb name on a Fedora client (and vice-versa).
+        filename = (AppController::linuxPackageFormat() == QStringLiteral("rpm"))
+            ? QStringLiteral("stellar-%1-1.x86_64.rpm").arg(m_updateVersion)
+            : QStringLiteral("stellar_%1_amd64.deb").arg(m_updateVersion);
 #endif
     }
     // Strip any remaining directory components — defence against encoded separators

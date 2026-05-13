@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Stellar Download Manager - Linux release script
-# Usage: ./release.sh [--version 0.2.0] [--skip-build] [--skip-deb] [--skip-rpm]
+# Usage: ./release.sh [--version 0.2.0] [--skip-build] [--skip-deb] [--skip-rpm] [--parallel]
 #
 # Prerequisites:
 #   cmake, ninja, dpkg-deb, rpmbuild, gzip, sha256sum, ldd, readelf, patchelf
@@ -19,6 +19,7 @@ VERSION=""
 SKIP_BUILD=0
 SKIP_DEB=0
 SKIP_RPM=0
+PARALLEL=0
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -26,6 +27,7 @@ while [[ $# -gt 0 ]]; do
         --skip-build) SKIP_BUILD=1; shift ;;
         --skip-deb)   SKIP_DEB=1; shift ;;
         --skip-rpm)   SKIP_RPM=1; shift ;;
+        --parallel)   PARALLEL=1; shift ;;
         *) echo "Unknown option: $1"; exit 1 ;;
     esac
 done
@@ -540,6 +542,7 @@ SPEC
     rpmbuild \
         --define "_topdir $RPM_DIR" \
         --define "_rpmdir $RPM_DIR/RPMS" \
+        --define "dist %{nil}" \
         --buildroot "$rpm_root" \
         -bb "$spec_file"
 
@@ -564,16 +567,47 @@ else
     warn "Skipping CMake build."
 fi
 
-if [[ $SKIP_DEB -eq 0 ]]; then
-    build_deb
-else
-    warn "Skipping .deb build."
-fi
+if [[ $PARALLEL -eq 1 ]]; then
+    # Run deb and rpm packaging concurrently; each writes to its own build dir.
+    declare -a pids=()
+    declare -a jobs=()
 
-if [[ $SKIP_RPM -eq 0 ]]; then
-    build_rpm
+    if [[ $SKIP_DEB -eq 0 ]]; then
+        build_deb &
+        pids+=($!)
+        jobs+=(deb)
+    else
+        warn "Skipping .deb build."
+    fi
+
+    if [[ $SKIP_RPM -eq 0 ]]; then
+        build_rpm &
+        pids+=($!)
+        jobs+=(rpm)
+    else
+        warn "Skipping .rpm build."
+    fi
+
+    failed=0
+    for i in "${!pids[@]}"; do
+        if ! wait "${pids[$i]}"; then
+            echo "ERROR: ${jobs[$i]} packaging failed." >&2
+            failed=1
+        fi
+    done
+    [[ $failed -eq 0 ]] || exit 1
 else
-    warn "Skipping .rpm build."
+    if [[ $SKIP_DEB -eq 0 ]]; then
+        build_deb
+    else
+        warn "Skipping .deb build."
+    fi
+
+    if [[ $SKIP_RPM -eq 0 ]]; then
+        build_rpm
+    else
+        warn "Skipping .rpm build."
+    fi
 fi
 
 ok "=== Linux release $VERSION complete ==="

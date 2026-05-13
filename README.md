@@ -30,11 +30,20 @@ Work in progress, but fully functional
 Grab the latest installer from the [Releases](../../releases) page.
 
 - Windows: download the `.exe` and run it.
-- Linux: download the `.deb`. Most desktop environments will open it in a graphical installer when you double-click it (Discover on Ubuntu/KDE, Package Installer on Linux Mint, GDebi on others). If yours doesn't, install it from a terminal:
+- Linux (Debian / Ubuntu / Mint / Pop!_OS / …): download the `.deb`. Most desktop environments will open it in a graphical installer when you double-click it (Discover on Ubuntu/KDE, Package Installer on Linux Mint, GDebi on others). If yours doesn't, install it from a terminal:
 
   ```bash
   sudo apt install ./stellar_*.deb
   ```
+
+- Linux (Fedora / RHEL / Rocky / Alma / openSUSE / …): download the `.rpm` and install it from a terminal:
+
+  ```bash
+  sudo dnf install ./stellar-*.rpm        # Fedora / RHEL family
+  sudo zypper install ./stellar-*.rpm     # openSUSE
+  ```
+
+Stellar's built-in auto-updater detects which package format your distro uses (via `/etc/os-release`) and downloads the matching artifact.
 
 ## Building 🔨
 

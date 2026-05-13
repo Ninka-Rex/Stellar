@@ -597,6 +597,10 @@ private:
     void applyUpdateMetadata(const QVariantMap &map, bool manual);
     static QString updateMetadataUrl();
     static QString updateChangelogUrl();
+    // Returns "rpm" on Fedora / RHEL / openSUSE / Mageia and derivatives,
+    // "deb" everywhere else (Debian, Ubuntu, Mint, Pop!_OS, unknown distros).
+    // Reads /etc/os-release once and caches the result for the process lifetime.
+    static QString linuxPackageFormat();
     DownloadItem *createDownloadItem(const QString &url, const QString &savePath,
                                      const QString &category, const QString &description,
                                      bool startNow, const QString &cookies,
