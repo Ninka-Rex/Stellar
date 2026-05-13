@@ -122,7 +122,7 @@ private:
     bool m_sortAscending{true};
     QHash<QString, int> m_missingPeerStreaks;
     QVector<Entry> m_pendingEntries;
-    bool m_liveUpdatesEnabled{true};
+    bool m_liveUpdatesEnabled{false};
     bool m_structuralUpdatesDeferred{false};
     bool m_hasLocalLocation{false};
     double m_localLatitude{0.0};

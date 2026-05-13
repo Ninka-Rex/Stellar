@@ -38,6 +38,7 @@ class TorrentTrackerModel;
 
 #if defined(STELLAR_HAS_LIBTORRENT)
 #include <libtorrent/torrent_handle.hpp>
+#include <libtorrent/torrent_status.hpp>
 #include <memory>
 namespace libtorrent {
 class session;
@@ -139,6 +140,7 @@ public:
 signals:
     void externalAddressChanged();
     void hasIncomingConnectionChanged();
+    void torrentBatchUpdated();
     void torrentFinished(const QString &downloadId);
     void torrentErrored(const QString &downloadId, const QString &reason);
     void torrentShareLimitReached(const QString &downloadId, int action);
@@ -177,12 +179,19 @@ private:
     void processAlerts();
     void handleAlert(libtorrent::alert *alert);
     QString idForHandle(const libtorrent::torrent_handle &handle) const;
+    // Primary overload: uses pre-fetched status (avoids redundant handle.status() IPC call).
+    void updateItemFromStatus(DownloadItem *item, const libtorrent::torrent_handle &handle,
+                              const libtorrent::torrent_status &st);
+    // Convenience wrapper for call sites that only have a handle (fetches status internally).
     void updateItemFromStatus(DownloadItem *item, const libtorrent::torrent_handle &handle);
     // trackerOnly: skip full peer-info scan / file-model / peer-model refresh —
     // only refresh the tracker model. Tracker alerts (announce/reply/scrape/etc.)
     // do not change the connected peer set, so re-scanning every peer (with
     // geo-IP lookups, auto-ban regex, QStringList allocs) on every tracker
     // alert is wasted work that scales with N_torrents × N_trackers.
+    void updateModels(const QString &downloadId, const libtorrent::torrent_handle &handle,
+                      const libtorrent::torrent_status &st,
+                      bool forceTrackerUpdate = false, bool trackerOnly = false);
     void updateModels(const QString &downloadId, const libtorrent::torrent_handle &handle,
                       bool forceTrackerUpdate = false, bool trackerOnly = false);
     void requestIpFilterRebuild(); // coalesced via m_ipFilterRebuildPending
@@ -216,6 +225,7 @@ private:
     QSet<QString> m_pausedIds;
     QSet<QString> m_movingIds;
     QSet<QString> m_firedFinishedIds;
+    QSet<QString> m_webSeedsFetched; // tracks which torrent IDs have had static web-seed lists pulled
     QHash<QString, QDateTime> m_seedingStartTimes;
     QHash<QString, qint64> m_lastUploadBytesForInactive;
     QHash<QString, QDateTime> m_lastUploadActivityTime;

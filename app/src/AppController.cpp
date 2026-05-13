@@ -1319,13 +1319,6 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             m_estimatedOnlineUsersDebugText = debugText;
             emit estimatedOnlineUsersChanged();
         }
-        // Recompute all-time ratio on the same cadence
-        const auto stats = torrentAllTimeStats();
-        const double ratio = stats[QStringLiteral("ratio")].toDouble();
-        if (qAbs(m_allTimeRatio - ratio) > 0.001) {
-            m_allTimeRatio = ratio;
-            emit allTimeRatioChanged();
-        }
     });
     m_speedTimer->start();
 
@@ -1375,6 +1368,14 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         if (tip != m_lastTrayTooltip) {
             m_lastTrayTooltip = tip;
             m_tray->setToolTip(tip);
+        }
+
+        // All-time ratio: changes slowly, no need for 1-second cadence.
+        const auto stats = torrentAllTimeStats();
+        const double ratio = stats[QStringLiteral("ratio")].toDouble();
+        if (qAbs(m_allTimeRatio - ratio) > 0.001) {
+            m_allTimeRatio = ratio;
+            emit allTimeRatioChanged();
         }
     });
     m_tooltipTimer->start();
@@ -1578,6 +1579,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     });
     connect(m_torrentSession, &TorrentSessionManager::bannedPeersChanged,
             this, &AppController::torrentBannedPeersChanged);
+    connect(m_torrentSession, &TorrentSessionManager::torrentBatchUpdated,
+            m_downloadModel, &DownloadTableModel::flushVolatileSort);
     connect(m_torrentSession, &TorrentSessionManager::torrentFinished, this, [this](const QString &id) {
         auto *item = m_downloadModel->itemById(id);
         if (!item)

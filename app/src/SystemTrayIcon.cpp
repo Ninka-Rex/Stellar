@@ -136,11 +136,12 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
     m_menu->addSeparator();
 
     m_pauseSessionAction = m_menu->addAction(tr("Pause Session"), this, [this] {
-        if (m_pauseSessionAction->text() == tr("Pause Session"))
+        if (m_pauseSessionAction->isChecked())
             emit pauseSessionRequested();
         else
             emit resumeSessionRequested();
     });
+    m_pauseSessionAction->setCheckable(true);
 
     m_menu->addSeparator();
     m_menu->addAction(tr("Exit Stellar"), this, &SystemTrayIcon::quitRequested);
@@ -193,7 +194,7 @@ void SystemTrayIcon::setSpeedLimiterActive(bool active) {
 void SystemTrayIcon::setSessionPaused(bool paused) {
 #if defined(Q_OS_LINUX)
     if (m_pauseSessionAction)
-        m_pauseSessionAction->setText(paused ? tr("Resume Session") : tr("Pause Session"));
+        m_pauseSessionAction->setChecked(paused);
 #else
     Q_UNUSED(paused)
 #endif

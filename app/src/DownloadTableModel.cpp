@@ -52,7 +52,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 DownloadTableModel::DownloadTableModel(QObject *parent)
-    : QAbstractTableModel(parent) {}
+    : QAbstractTableModel(parent) {
+}
 
 int DownloadTableModel::rowCount(const QModelIndex &parent) const {
     return parent.isValid() ? 0 : m_visible.size();
@@ -432,13 +433,13 @@ void DownloadTableModel::onItemProgressChanged() {
     const int visRow = m_visible.indexOf(item);
     if (visRow < 0) return;
 
-    // When the active sort column tracks a value that changes per progress
-    // tick (downspeed, upspeed, progress, ratio, uploaded, downloaded,
-    // timeleft), a value change can violate the sort order — the row needs to
-    // move, not just refresh in place. Without this, sorting by Up Speed once
-    // freezes the row order: items stay where they were ranked at click time
-    // even though their speeds have since shifted, producing the apparently
-    // mis-sorted column the user reported.
+    // When the active sort column is volatile (changes every tick for multiple
+    // rows simultaneously — upspeed, ratio, uploaded, etc.), bubbling one row
+    // at a time produces a permanently mis-sorted table: each tick only fixes
+    // the last item to emit, leaving all others stale. Instead, mark this item
+    // dirty and coalesce all dirty items into one stable re-sort on the next
+    // event-loop cycle (interval=0 timer). Non-volatile columns keep the
+    // single-row bubble path in onItemChanged.
     static const QSet<QString> kVolatileSortCols = {
         QStringLiteral("downspeed"), QStringLiteral("speed"),
         QStringLiteral("upspeed"),   QStringLiteral("progress"),
@@ -447,53 +448,37 @@ void DownloadTableModel::onItemProgressChanged() {
         QStringLiteral("seeders"),   QStringLiteral("peers")
     };
     if (kVolatileSortCols.contains(m_sortColumn)) {
-        // When a single row's value crosses one of its neighbours' values,
-        // move just that row to its correct sorted position — using
-        // beginMoveRows/endMoveRows rather than a full layoutChanged.
-        //
-        // Why move semantics: layoutChanged is a "everything potentially
-        // permuted" notification, and ListView responds by re-anchoring the
-        // viewport based on currentIndex — which produces a visible
-        // scroll-jump even when only one row actually moved. Move semantics
-        // tell the view "exactly this row went from A to B" so the view
-        // slides that single delegate without disturbing scroll position.
-        //
-        // We don't sort the entire visible list here; we just bubble the
-        // changed row into its correct slot. The caller's invariant is
-        // that the list was sorted before this stat change, so the only
-        // mis-ordered row is the one that just changed.
-        int targetRow = visRow;
-        // Bubble up while the row above us should now sort *after* us.
-        while (targetRow > 0
-               && compareItems(m_visible[targetRow - 1], item, m_sortColumn, m_sortAscending) > 0) {
-            --targetRow;
-        }
-        // Bubble down while the row below us should now sort *before* us.
-        while (targetRow < m_visible.size() - 1
-               && compareItems(item, m_visible[targetRow + 1], m_sortColumn, m_sortAscending) > 0) {
-            ++targetRow;
-        }
-
-        if (targetRow != visRow) {
-            // Qt's beginMoveRows uses a slightly counter-intuitive
-            // destination convention: when moving down, the destination is
-            // the row index *after* the target slot (i.e. one past where
-            // the row will end up). Moving up is the natural index.
-            const int destinationChild = (targetRow > visRow) ? targetRow + 1 : targetRow;
-            beginMoveRows(QModelIndex(), visRow, visRow,
-                          QModelIndex(), destinationChild);
-            DownloadItem *moved = m_visible.takeAt(visRow);
-            m_visible.insert(targetRow, moved);
-            endMoveRows();
-            // Refresh the row's data at its new position so any displayed
-            // values that just changed (the very change that triggered the
-            // re-sort) actually render.
-            emit dataChanged(index(targetRow, 0), index(targetRow, ColCount - 1));
-            return;
-        }
+        // Mark dirty; flushVolatileSort() is called synchronously by AppController
+        // after the full torrent batch update completes (via torrentBatchUpdated signal),
+        // so sort + dataChanged happen in the same frame as the value update.
+        m_volatileDirty.insert(item);
+        return;
     }
 
     emit dataChanged(index(visRow, ColProgress), index(visRow, ColTimeLeft));
+}
+
+void DownloadTableModel::flushVolatileSort() {
+    if (m_volatileDirty.isEmpty() || m_visible.size() < 2) {
+        m_volatileDirty.clear();
+        return;
+    }
+    // Re-sort entire visible list in one stable pass.
+    // We deliberately avoid layoutAboutToBeChanged/layoutChanged — per CLAUDE.md,
+    // layoutChanged causes QML ListView to re-anchor to currentIndex, producing
+    // visible scroll jumps, and with reuseItems:true delegates don't reliably
+    // re-bind after layout changes.
+    //
+    // Instead: sort m_visible in-place, then emit dataChanged for every row in
+    // the full range. QML re-reads model.item (ItemRole) for each delegate,
+    // getting the correctly-positioned DownloadItem* without any model reset
+    // or delegate destruction.
+    std::stable_sort(m_visible.begin(), m_visible.end(),
+        [this](DownloadItem *a, DownloadItem *b) {
+            return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
+        });
+    emit dataChanged(index(0, 0), index(m_visible.size() - 1, ColCount - 1));
+    m_volatileDirty.clear();
 }
 
 int DownloadTableModel::statusSortKey(const QString &status) {

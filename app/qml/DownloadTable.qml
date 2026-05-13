@@ -793,12 +793,42 @@ Rectangle {
     readonly property var _sortableKeys: ["name","size","status","timeleft","downspeed","upspeed","seeders","peers","ratio","uploaded","downloaded","added","lasttry","description","saveto","referrer","parenturl","queue"]
 
     // ── Column visibility context menu ────────────────────────────────────────
+    // Separate component from CtxMenuItem — needs a visible checkbox indicator.
+    component ColCheckMenuItem: MenuItem {
+        id: _colChkMi
+        implicitHeight: 22
+        height: 22
+        topPadding: 0; bottomPadding: 0; verticalPadding: 0
+        leftPadding: 28; rightPadding: 12
+        spacing: 0
+        font.pixelSize: 12
+        indicator: Text {
+            x: 8
+            anchors.verticalCenter: parent ? parent.verticalCenter : undefined
+            text: _colChkMi.checked ? "✓" : ""
+            color: "#88bbff"
+            font.pixelSize: 11
+        }
+        arrow: Item { width: 0; height: 0 }
+        contentItem: Text {
+            text: _colChkMi.text
+            font: _colChkMi.font
+            color: _colChkMi.enabled ? "#d0d0d0" : "#666666"
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
+        }
+        background: Rectangle {
+            implicitHeight: 22
+            color: _colChkMi.highlighted ? "#1e3a6e" : "transparent"
+        }
+    }
+
     Menu {
         id: colCtxMenu
         topPadding: 0; bottomPadding: 0
         Repeater {
             model: root.columnDefs.length
-            delegate: CtxMenuItem {
+            delegate: ColCheckMenuItem {
                 text: root.columnDefs[index].title
                 checkable: true
                 checked: root.columnDefs[index].visible

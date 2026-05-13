@@ -520,7 +520,7 @@ ApplicationWindow {
             TrayMenuItem { label: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "") + qsTr("Speed Limiter"); onClicked: { trayMenu.visible = false; if (App.settings.globalSpeedLimitKBps > 0) App.disableSpeedLimiter(); else App.enableSpeedLimiter() } }
             TrayMenuItem { label: qsTr("Speed Limiter Settings…"); onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageSpeedLimiter) } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
-            TrayMenuItem { label: App.sessionPaused ? qsTr("Resume Session") : qsTr("Pause Session"); iconSource: App.sessionPaused ? "icons/resume.png" : "icons/pause.png"; onClicked: { trayMenu.visible = false; if (App.sessionPaused) App.resumeSession(); else App.pauseSession() } }
+            TrayMenuItem { label: (App.sessionPaused ? "✓ " : "") + qsTr("Pause Session"); onClicked: { trayMenu.visible = false; if (App.sessionPaused) App.resumeSession(); else App.pauseSession() } }
             TrayMenuItem { label: qsTr("Exit Stellar");  onClicked: { trayMenu.visible = false; root.quitApp() } }
         }
     }

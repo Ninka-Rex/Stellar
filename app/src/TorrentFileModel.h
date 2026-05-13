@@ -101,5 +101,5 @@ private:
     Node *m_root{nullptr};
     QVector<Node *> m_visibleRows;
     QVector<Entry> m_fileEntries;
-    bool m_liveUpdatesEnabled{true};
+    bool m_liveUpdatesEnabled{false};
 };

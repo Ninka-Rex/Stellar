@@ -17,6 +17,7 @@
 #pragma once
 #include <QAbstractTableModel>
 #include <QList>
+#include <QSet>
 #include "DownloadItem.h"
 
 class DownloadTableModel : public QAbstractTableModel {
@@ -59,6 +60,9 @@ public:
     Q_INVOKABLE void sortBy(const QString &column, bool ascending);
     QList<DownloadItem *> allItems() const { return m_items; }
 
+public slots:
+    void flushVolatileSort();
+
 private slots:
     void onItemChanged();
     void onItemProgressChanged();
@@ -76,6 +80,7 @@ private:
     QString               m_sortColumn{QStringLiteral("added")};
     bool                  m_sortAscending{true};
     bool                  m_bulkRemoving{false};
+    QSet<DownloadItem *>  m_volatileDirty;
     static QString formatSize(qint64 bytes);
     static QString formatSpeed(qint64 bps);
 };

@@ -231,6 +231,7 @@ Window {
     // ── Swarm map properties (mirrored from FilePropertiesDialog peer map) ──
     readonly property var metaPeerModel: downloadId.length > 0 ? App.torrentPeerModel(downloadId) : null
     readonly property bool metaMapActive: visible && !!(item) && !item.torrentHasMetadata && metaPeerModel !== null
+    onMetaMapActiveChanged: { if (metaPeerModel) metaPeerModel.setLiveUpdatesEnabled(metaMapActive) }
 
     // Pan drag state helpers
     property real _metaLastPanX: 0
