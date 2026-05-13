@@ -1,27 +1,31 @@
 #!/usr/bin/env bash
-# Stellar Download Manager - Linux .deb release script
-# Usage: ./release.sh [--version 0.2.0] [--skip-build] [--skip-deb]
+# Stellar Download Manager - Linux release script
+# Usage: ./release.sh [--version 0.2.0] [--skip-build] [--skip-deb] [--skip-rpm]
 #
 # Prerequisites:
-#   cmake, ninja, dpkg-deb, gzip, sha256sum, ldd, readelf
+#   cmake, ninja, dpkg-deb, rpmbuild, gzip, sha256sum, ldd, readelf, patchelf
 #   Qt 6 Linux development packages
 #   yt-dlp, ffmpeg, and ffprobe available on PATH for packaging, or set YTDLP_PATH / FFMPEG_PATH / FFPROBE_PATH
 #
 # Output:
 #   dist/linux/stellar_<version>_amd64.deb
 #   dist/linux/stellar_<version>_amd64.deb.sha256
+#   dist/linux/stellar-<version>-1.x86_64.rpm
+#   dist/linux/stellar-<version>-1.x86_64.rpm.sha256
 
 set -euo pipefail
 
 VERSION=""
 SKIP_BUILD=0
 SKIP_DEB=0
+SKIP_RPM=0
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --version)    VERSION="$2"; shift 2 ;;
         --skip-build) SKIP_BUILD=1; shift ;;
         --skip-deb)   SKIP_DEB=1; shift ;;
+        --skip-rpm)   SKIP_RPM=1; shift ;;
         *) echo "Unknown option: $1"; exit 1 ;;
     esac
 done
@@ -34,9 +38,8 @@ APP_NAME="Stellar"
 APP_ID="io.github.stellar.Stellar"
 DEB_DIR="$ROOT/build/linux-deb"
 DEB_ROOT="$DEB_DIR/root"
-DEB_DATA="$DEB_DIR/data"
+RPM_DIR="$ROOT/build/linux-rpm"
 DIST_DIR="$ROOT/dist/linux"
-RELEASES_DIR="$ROOT/releases"
 
 log()  { echo -e "\033[0;36m[release]\033[0m $*"; }
 ok()   { echo -e "\033[0;32m[release]\033[0m $*"; }
@@ -53,6 +56,8 @@ fi
 
 DEB_FILE="$DIST_DIR/${PKG_NAME}_${VERSION}_${ARCH}.deb"
 DEB_SHA256="$DEB_FILE.sha256"
+RPM_FILE="$DIST_DIR/${PKG_NAME}-${VERSION}-1.x86_64.rpm"
+RPM_SHA256="$RPM_FILE.sha256"
 
 need_tool() {
     command -v "$1" >/dev/null 2>&1 || { echo "ERROR: '$1' not found on PATH" >&2; exit 1; }
@@ -60,7 +65,6 @@ need_tool() {
 
 need_tool cmake
 need_tool sha256sum
-need_tool dpkg-deb
 need_tool ldd
 need_tool readelf
 
@@ -108,12 +112,10 @@ copy_shared_object() {
 
     cp -L "$resolved" "$dest"
 
-    # Preserve source symlink/name (often SONAME path such as libfoo.so.1).
     if [[ -L "$src" ]]; then
         ln -sf "$base" "$dst_dir/$(basename "$src")"
     fi
 
-    # Ensure SONAME symlink exists for the dynamic loader.
     soname="$(readelf -d "$resolved" 2>/dev/null | awk -F'[][]' '/SONAME/ {print $2; exit}')"
     if [[ -n "$soname" ]]; then
         ln -sf "$base" "$dst_dir/$soname"
@@ -164,7 +166,6 @@ collect_binary_dependencies_recursive() {
 }
 
 qt_install_prefix() {
-    # Prefer qmake6/qmake queries — they know the real install layout.
     if command -v qmake6 >/dev/null 2>&1; then
         qmake6 -query QT_INSTALL_PREFIX
         return
@@ -184,7 +185,6 @@ qt_install_prefix() {
 }
 
 qt_install_plugins() {
-    # qmake knows the real plugin path (differs from prefix/plugins on Debian/Ubuntu).
     if command -v qmake6 >/dev/null 2>&1; then
         qmake6 -query QT_INSTALL_PLUGINS
         return
@@ -193,7 +193,6 @@ qt_install_plugins() {
         qmake -query QT_INSTALL_PLUGINS
         return
     fi
-    # Fallback: search common Debian/Ubuntu non-standard paths.
     for d in \
         /usr/lib/x86_64-linux-gnu/qt6/plugins \
         /usr/lib/qt6/plugins \
@@ -232,7 +231,7 @@ qt_install_qml() {
 }
 
 bundle_qt_runtime() {
-    local app_dir="$DEB_ROOT/opt/stellar"
+    local app_dir="$1"
     local lib_dir="$app_dir/lib"
     local plugin_dir="$app_dir/plugins"
     local qml_dir="$app_dir/qml"
@@ -241,15 +240,12 @@ bundle_qt_runtime() {
     qt_prefix="$(qt_install_prefix)"
     qt_plugins="$(qt_install_plugins)"
     qt_qml="$(qt_install_qml)"
-    # On Debian/Ubuntu the Qt libs live in the multiarch lib dir, not $prefix/lib.
     qt_lib="$(dirname "$qt_plugins")/../../lib/x86_64-linux-gnu"
     [[ -d "$qt_lib" ]] || qt_lib="$qt_prefix/lib"
 
     mkdir -p "$lib_dir" "$plugin_dir" "$qml_dir"
     log "Bundling Qt runtime from: $qt_prefix"
 
-    # Bundle the full Qt shared-library set from the build's Qt installation so
-    # helper libs like libQt6XcbQpa are always present beside the app.
     while read -r qt_so; do
         [[ -n "$qt_so" ]] || continue
         copy_shared_object "$qt_so" "$lib_dir"
@@ -262,7 +258,6 @@ bundle_qt_runtime() {
         fi
     done
 
-    # Recursively collect dependencies for the main binary and every bundled plugin/QML shared object.
     local dep_roots=("$app_dir/Stellar")
     while read -r sofile; do
         [[ -n "$sofile" ]] || continue
@@ -270,7 +265,6 @@ bundle_qt_runtime() {
     done < <(find "$plugin_dir" "$qml_dir" -type f -name '*.so' 2>/dev/null || true)
     collect_binary_dependencies_recursive "$lib_dir" "${dep_roots[@]}"
 
-    # Hard-pin critical xcb chain required by Qt's xcb platform plugin on Debian/Ubuntu.
     local xcb_sonames=(
         "libxcb-cursor.so.0"
         "libxcb-util.so.1"
@@ -295,7 +289,6 @@ bundle_qt_runtime() {
         "libXext.so.6"
         "libXi.so.6"
         "libxshmfence.so.1"
-        "libxshmfence.so.1"
         "libGL.so.1"
         "libGLX.so.0"
         "libGLdispatch.so.0"
@@ -311,7 +304,6 @@ bundle_qt_runtime() {
         warn "libxcb-cursor.so.0 not found — install libxcb-cursor0 on the build machine (required by Qt xcb platform plugin)."
     fi
 
-    # Verify the xcb platform plugin itself was actually bundled.
     if [[ ! -e "$plugin_dir/platforms/libqxcb.so" ]]; then
         echo "ERROR: Qt xcb platform plugin (libqxcb.so) not found in $qt_plugins/platforms." >&2
         echo "       Install qt6-base-dev or libqt6gui6 on the build machine." >&2
@@ -335,7 +327,7 @@ EOF
 }
 
 patch_bundled_rpaths() {
-    local app_dir="$DEB_ROOT/opt/stellar"
+    local app_dir="$1"
 
     if ! command -v patchelf >/dev/null 2>&1; then
         warn "patchelf not found; skipping RPATH patching."
@@ -355,14 +347,110 @@ patch_bundled_rpaths() {
     done < <(find "$app_dir/qml" -type f -name '*.so' 2>/dev/null || true)
 }
 
-update_deb_manifest() {
-    mkdir -p "$DEB_DIR"
-    local installed_size_kib=1
-    if [[ -d "$DEB_ROOT" ]]; then
-        installed_size_kib="$(du -sk "$DEB_ROOT" | awk '{print $1}')"
-        [[ -n "$installed_size_kib" ]] || installed_size_kib=1
-    fi
-    cat > "$DEB_DIR/control" <<EOF
+# Writes the launcher script to $1 (path) for install root $2 (e.g. /opt/stellar).
+write_launcher() {
+    local dest="$1"
+    local appdir="$2"
+    cat > "$dest" <<EOF
+#!/bin/sh
+set -e
+APPDIR="$appdir"
+export LD_LIBRARY_PATH="\$APPDIR/lib\${LD_LIBRARY_PATH:+:\$LD_LIBRARY_PATH}"
+export QT_PLUGIN_PATH="\$APPDIR/plugins"
+export QT_QPA_PLATFORM_PLUGIN_PATH="\$APPDIR/plugins/platforms"
+export QML2_IMPORT_PATH="\$APPDIR/qml"
+export QT_QML_IMPORT_PATH="\$APPDIR/qml"
+if [ -n "\$WAYLAND_DISPLAY" ] && [ -f "\$APPDIR/plugins/platforms/libqwayland-generic.so" ]; then
+    export QT_QPA_PLATFORM="\${QT_QPA_PLATFORM:-wayland;xcb}"
+else
+    export QT_QPA_PLATFORM="\${QT_QPA_PLATFORM:-xcb}"
+fi
+exec "\$APPDIR/Stellar" "\$@"
+EOF
+    chmod 0755 "$dest"
+}
+
+# Populate /opt/stellar subtree under $1 (the package root).
+stage_app() {
+    local pkg_root="$1"
+    local app_dir="$pkg_root/opt/stellar"
+    local ytdlp_path ffmpeg_path ffprobe_path
+
+    ytdlp_path="$(resolve_binary YTDLP_PATH yt-dlp)"
+    ffmpeg_path="$(resolve_binary FFMPEG_PATH ffmpeg)"
+    ffprobe_path="$(resolve_binary FFPROBE_PATH ffprobe)"
+
+    mkdir -p \
+        "$app_dir" \
+        "$pkg_root/usr/bin" \
+        "$pkg_root/usr/share/applications" \
+        "$pkg_root/usr/share/icons/hicolor/256x256/apps" \
+        "$pkg_root/usr/share/icons/hicolor/128x128/apps" \
+        "$pkg_root/usr/lib/mozilla/native-messaging-hosts" \
+        "$pkg_root/usr/share/metainfo"
+
+    cp "$ROOT/build/linux-release/Stellar"                     "$app_dir/Stellar"
+    cp "$ytdlp_path"                                           "$app_dir/yt-dlp"
+    cp "$ffmpeg_path"                                          "$app_dir/ffmpeg"
+    cp "$ffprobe_path"                                         "$app_dir/ffprobe"
+    cp "$ROOT/app/data/dbip-city-lite-2026-04.mmdb"           "$app_dir/dbip-city-lite-2026-04.mmdb"
+    cp "$ROOT/tips.txt"                                        "$app_dir/tips.txt"
+    cp -R "$ROOT/extensions"                                   "$app_dir/extensions"
+
+    cp "$ROOT/packaging/linux/com.stellar.downloadmanager.json" \
+        "$pkg_root/usr/lib/mozilla/native-messaging-hosts/com.stellar.downloadmanager.json"
+    cp "$ROOT/packaging/linux/io.github.stellar.Stellar.desktop" \
+        "$pkg_root/usr/share/applications/io.github.stellar.Stellar.desktop"
+    cp "$ROOT/packaging/linux/io.github.stellar.Stellar.metainfo.xml" \
+        "$pkg_root/usr/share/metainfo/io.github.stellar.Stellar.metainfo.xml"
+    cp "$ROOT/app/qml/icons/milky-way.png" \
+        "$pkg_root/usr/share/icons/hicolor/256x256/apps/io.github.stellar.Stellar.png"
+    cp "$ROOT/app/qml/icons/milky-way.png" \
+        "$pkg_root/usr/share/icons/hicolor/128x128/apps/io.github.stellar.Stellar.png"
+
+    write_launcher "$pkg_root/usr/bin/stellar" "/opt/stellar"
+
+    python3 - "$pkg_root/usr/lib/mozilla/native-messaging-hosts/com.stellar.downloadmanager.json" <<'PY'
+import json, sys
+from pathlib import Path
+
+path = Path(sys.argv[1])
+data = json.loads(path.read_text(encoding="utf-8"))
+data["path"] = "/usr/bin/stellar"
+path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+PY
+
+    sed -i "s|^Exec=.*|Exec=/usr/bin/stellar|; s|^Icon=.*|Icon=io.github.stellar.Stellar|" \
+        "$pkg_root/usr/share/applications/io.github.stellar.Stellar.desktop"
+
+    bundle_qt_runtime "$app_dir"
+    patch_bundled_rpaths "$app_dir"
+}
+
+build_app() {
+    log "Configuring (linux-release)..."
+    cmake --preset linux-release -S "$ROOT"
+    log "Building..."
+    cmake --build --preset linux-release
+    ok "CMake build complete."
+}
+
+# ── .deb ──────────────────────────────────────────────────────────────────────
+
+build_deb() {
+    need_tool dpkg-deb
+
+    log "Staging .deb filesystem..."
+    rm -rf "$DEB_ROOT"
+    mkdir -p "$DEB_ROOT/DEBIAN"
+
+    stage_app "$DEB_ROOT"
+
+    local installed_size_kib
+    installed_size_kib="$(du -sk "$DEB_ROOT" | awk '{print $1}')"
+    [[ -n "$installed_size_kib" ]] || installed_size_kib=1
+
+    cat > "$DEB_ROOT/DEBIAN/control" <<EOF
 Package: stellar
 Version: $VERSION
 Section: utils
@@ -376,7 +464,7 @@ Description: Stellar Download Manager
  Manage, accelerate, and schedule downloads.
 EOF
 
-    cat > "$DEB_DIR/postinst" <<'EOF'
+    cat > "$DEB_ROOT/DEBIAN/postinst" <<'EOF'
 #!/bin/sh
 set -e
 if command -v update-desktop-database >/dev/null 2>&1; then
@@ -387,102 +475,88 @@ if command -v update-mime-database >/dev/null 2>&1; then
 fi
 exit 0
 EOF
-    chmod 0755 "$DEB_DIR/postinst"
-}
+    chmod 0755 "$DEB_ROOT/DEBIAN/postinst"
 
-build_app() {
-    log "Configuring (linux-release)..."
-    cmake --preset linux-release -S "$ROOT"
-    log "Building..."
-    cmake --build --preset linux-release
-    ok "CMake build complete."
-}
-
-stage_deb() {
-    local ytdlp_path ffmpeg_path ffprobe_path
-    ytdlp_path="$(resolve_binary YTDLP_PATH yt-dlp)"
-    ffmpeg_path="$(resolve_binary FFMPEG_PATH ffmpeg)"
-    ffprobe_path="$(resolve_binary FFPROBE_PATH ffprobe)"
-
-    log "Staging .deb filesystem..."
-    rm -rf "$DEB_ROOT"
-    mkdir -p \
-        "$DEB_ROOT/opt/stellar" \
-        "$DEB_ROOT/usr/bin" \
-        "$DEB_ROOT/usr/share/applications" \
-        "$DEB_ROOT/usr/share/icons/hicolor/256x256/apps" \
-        "$DEB_ROOT/usr/share/icons/hicolor/128x128/apps" \
-        "$DEB_ROOT/usr/lib/mozilla/native-messaging-hosts" \
-        "$DEB_ROOT/usr/share/metainfo" \
-        "$DEB_ROOT/DEBIAN"
-
-    cp "$ROOT/build/linux-release/Stellar" "$DEB_ROOT/opt/stellar/Stellar"
-    cp "$ytdlp_path"  "$DEB_ROOT/opt/stellar/yt-dlp"
-    cp "$ffmpeg_path" "$DEB_ROOT/opt/stellar/ffmpeg"
-    cp "$ffprobe_path" "$DEB_ROOT/opt/stellar/ffprobe"
-    cp "$ROOT/app/data/dbip-city-lite-2026-04.mmdb" "$DEB_ROOT/opt/stellar/dbip-city-lite-2026-04.mmdb"
-    cp "$ROOT/tips.txt" "$DEB_ROOT/opt/stellar/tips.txt"
-    cp -R "$ROOT/extensions" "$DEB_ROOT/opt/stellar/extensions"
-    cp "$ROOT/packaging/linux/com.stellar.downloadmanager.json" \
-        "$DEB_ROOT/usr/lib/mozilla/native-messaging-hosts/com.stellar.downloadmanager.json"
-    cp "$ROOT/packaging/flatpak/io.github.stellar.Stellar.desktop" \
-        "$DEB_ROOT/usr/share/applications/io.github.stellar.Stellar.desktop"
-    cp "$ROOT/packaging/flatpak/io.github.stellar.Stellar.metainfo.xml" \
-        "$DEB_ROOT/usr/share/metainfo/io.github.stellar.Stellar.metainfo.xml"
-    cp "$ROOT/app/qml/icons/milky-way.png" \
-        "$DEB_ROOT/usr/share/icons/hicolor/256x256/apps/io.github.stellar.Stellar.png"
-    cp "$ROOT/app/qml/icons/milky-way.png" \
-        "$DEB_ROOT/usr/share/icons/hicolor/128x128/apps/io.github.stellar.Stellar.png"
-
-    cat > "$DEB_ROOT/usr/bin/stellar" <<'EOF'
-#!/bin/sh
-set -e
-APPDIR="/opt/stellar"
-export LD_LIBRARY_PATH="$APPDIR/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-export QT_PLUGIN_PATH="$APPDIR/plugins"
-export QT_QPA_PLATFORM_PLUGIN_PATH="$APPDIR/plugins/platforms"
-export QML2_IMPORT_PATH="$APPDIR/qml"
-export QT_QML_IMPORT_PATH="$APPDIR/qml"
-# Let Qt auto-detect wayland vs xcb based on the running session.
-# Fall back to xcb if WAYLAND_DISPLAY is not set.
-if [ -n "$WAYLAND_DISPLAY" ] && [ -f "$APPDIR/plugins/platforms/libqwayland-generic.so" ]; then
-    export QT_QPA_PLATFORM="${QT_QPA_PLATFORM:-wayland;xcb}"
-else
-    export QT_QPA_PLATFORM="${QT_QPA_PLATFORM:-xcb}"
-fi
-exec "$APPDIR/Stellar" "$@"
-EOF
-    chmod 0755 "$DEB_ROOT/usr/bin/stellar"
-
-    python3 - "$DEB_ROOT/usr/lib/mozilla/native-messaging-hosts/com.stellar.downloadmanager.json" <<'PY'
-import json, sys
-from pathlib import Path
-
-path = Path(sys.argv[1])
-data = json.loads(path.read_text(encoding="utf-8"))
-data["path"] = "/usr/bin/stellar"
-path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
-PY
-
-    sed -i "s|^Exec=.*|Exec=/usr/bin/stellar|; s|^Icon=.*|Icon=io.github.stellar.Stellar|" \
-        "$DEB_ROOT/usr/share/applications/io.github.stellar.Stellar.desktop"
-
-    bundle_qt_runtime
-    patch_bundled_rpaths
-
-}
-
-build_deb() {
-    stage_deb
-    update_deb_manifest
-    install -m 0755 "$DEB_DIR/postinst" "$DEB_ROOT/DEBIAN/postinst"
-    install -m 0644 "$DEB_DIR/control" "$DEB_ROOT/DEBIAN/control"
     mkdir -p "$DIST_DIR"
     log "Building .deb..."
     dpkg-deb --root-owner-group --build "$DEB_ROOT" "$DEB_FILE"
     sha256sum "$DEB_FILE" > "$DEB_SHA256"
     ok "Debian package: $DEB_FILE"
 }
+
+# ── .rpm ──────────────────────────────────────────────────────────────────────
+
+build_rpm() {
+    need_tool rpmbuild
+
+    log "Staging RPM build tree..."
+    rm -rf "$RPM_DIR"
+    local rpm_root="$RPM_DIR/BUILDROOT/stellar-${VERSION}-1.x86_64"
+    mkdir -p "$RPM_DIR"/{BUILD,RPMS,SOURCES,SPECS,SRPMS} "$rpm_root"
+
+    stage_app "$rpm_root"
+
+    # Build a file list from the staged tree for %files — rpmbuild needs paths
+    # relative to the buildroot, one per line, with directory entries omitted.
+    local files_list="$RPM_DIR/stellar.files"
+    find "$rpm_root" -not -type d -printf "/%P\n" | sort > "$files_list"
+
+    local spec_file="$RPM_DIR/SPECS/stellar.spec"
+    cat > "$spec_file" <<SPEC
+Name:           stellar
+Version:        $VERSION
+Release:        1%{?dist}
+Summary:        Manage, accelerate, and schedule downloads
+License:        GPL-3.0-or-later
+URL:            https://stellar.moe/
+BuildArch:      x86_64
+
+# All content is pre-staged in BUILDROOT — nothing to build here.
+%global debug_package %{nil}
+
+%description
+Stellar is a cross-platform download manager written in Qt6/C++.
+
+%install
+# Files already staged; rpmbuild picks them up from BUILDROOT automatically.
+
+%post
+if command -v update-desktop-database >/dev/null 2>&1; then
+    update-desktop-database /usr/share/applications >/dev/null 2>&1 || true
+fi
+if command -v update-mime-database >/dev/null 2>&1; then
+    update-mime-database /usr/share/mime >/dev/null 2>&1 || true
+fi
+
+%files
+$(cat "$files_list")
+
+%changelog
+* $(date -u '+%a %b %d %Y') Ninka_ <admin@stellar.moe> - $VERSION-1
+- Release $VERSION
+SPEC
+
+    log "Building .rpm..."
+    rpmbuild \
+        --define "_topdir $RPM_DIR" \
+        --define "_rpmdir $RPM_DIR/RPMS" \
+        --buildroot "$rpm_root" \
+        -bb "$spec_file"
+
+    local built_rpm
+    built_rpm="$(find "$RPM_DIR/RPMS" -name '*.rpm' | head -1)"
+    if [[ -z "$built_rpm" ]]; then
+        echo "ERROR: rpmbuild produced no .rpm file." >&2
+        exit 1
+    fi
+
+    mkdir -p "$DIST_DIR"
+    cp "$built_rpm" "$RPM_FILE"
+    sha256sum "$RPM_FILE" > "$RPM_SHA256"
+    ok "RPM package: $RPM_FILE"
+}
+
+# ── Main ──────────────────────────────────────────────────────────────────────
 
 if [[ $SKIP_BUILD -eq 0 ]]; then
     build_app
@@ -496,6 +570,12 @@ else
     warn "Skipping .deb build."
 fi
 
+if [[ $SKIP_RPM -eq 0 ]]; then
+    build_rpm
+else
+    warn "Skipping .rpm build."
+fi
+
 ok "=== Linux release $VERSION complete ==="
-echo "  deb      : $DEB_FILE"
-echo "  sha256   : $DEB_SHA256"
+[[ $SKIP_DEB -eq 0 ]] && echo "  deb      : $DEB_FILE" && echo "  sha256   : $DEB_SHA256"
+[[ $SKIP_RPM -eq 0 ]] && echo "  rpm      : $RPM_FILE" && echo "  sha256   : $RPM_SHA256"
