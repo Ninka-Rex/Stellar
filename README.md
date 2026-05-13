@@ -10,7 +10,7 @@ A clean-room reimplementation of Internet Download Manager for Windows and Linux
 
 Work in progress, but fully functional
 
-## Features ✨
+## Features
 
 - Splits each download into multiple parts so it finishes faster, and shifts work to the slowest part as it goes
 - Pause and resume any download, including after a crash or power loss
@@ -43,8 +43,6 @@ Grab the latest installer from the [Releases](../../releases) page.
   sudo zypper install ./stellar-*.rpm     # openSUSE
   ```
 
-Stellar's built-in auto-updater detects which package format your distro uses (via `/etc/os-release`) and downloads the matching artifact.
-
 ## Building 🔨
 
 Requires CMake, Ninja, Qt 6 (Core, Quick, Network, QuickControls2, LinguistTools), Boost, and OpenSSL. libtorrent is vendored under `third_party/`. MaxMindDB is optional (enables GeoIP).
@@ -59,7 +57,7 @@ sudo apt install build-essential cmake ninja-build \
     qml6-module-qtquick qml6-module-qtquick-controls qml6-module-qtquick-layouts \
     qml6-module-qtquick-dialogs qml6-module-qtquick-window \
     libboost-all-dev libssl-dev libmaxminddb-dev \
-    python3
+    python3 patchelf npm
 ```
 
 Then:
