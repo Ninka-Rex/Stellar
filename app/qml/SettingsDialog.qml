@@ -130,6 +130,12 @@ Window {
     property bool   editTorrentAutoBanAbusivePeers: false
     property bool   editTorrentAutoBanMediaPlayerPeers: false
     property int    editTorrentEncryptionMode: 0
+    property int    editTorrentStorageMode: 0
+    property bool   editTorrentPieceExtentAffinity: false
+    property bool   editTorrentCoalesceReads: false
+    property bool   editTorrentCoalesceWrites: false
+    property int    editTorrentDiskIoType: 0
+    property int    editTorrentDiskWriteQueueMiB: 64
     property var    torrentAdapterOptions:     []
     property var    torrentCountryOptions:     []
     property string selectedTorrentCountryCode: ""
@@ -437,6 +443,12 @@ Window {
         editTorrentAutoBanAbusivePeers !== App.settings.torrentAutoBanAbusivePeers ||
         editTorrentAutoBanMediaPlayerPeers !== App.settings.torrentAutoBanMediaPlayerPeers ||
         editTorrentEncryptionMode !== App.settings.torrentEncryptionMode ||
+        editTorrentStorageMode    !== App.settings.torrentStorageMode    ||
+        editTorrentPieceExtentAffinity !== App.settings.torrentPieceExtentAffinity ||
+        editTorrentCoalesceReads  !== App.settings.torrentCoalesceReads  ||
+        editTorrentCoalesceWrites !== App.settings.torrentCoalesceWrites ||
+        editTorrentDiskIoType     !== App.settings.torrentDiskIoType     ||
+        editTorrentDiskWriteQueueMiB !== App.settings.torrentDiskWriteQueueMiB ||
         editProxyType             !== App.settings.proxyType             ||
         editProxyHost             !== App.settings.proxyHost             ||
         editProxyPort             !== App.settings.proxyPort             ||
@@ -700,6 +712,12 @@ Window {
         App.settings.torrentAutoBanAbusivePeers = editTorrentAutoBanAbusivePeers
         App.settings.torrentAutoBanMediaPlayerPeers = editTorrentAutoBanMediaPlayerPeers
         App.settings.torrentEncryptionMode = editTorrentEncryptionMode
+        App.settings.torrentStorageMode    = editTorrentStorageMode
+        App.settings.torrentPieceExtentAffinity = editTorrentPieceExtentAffinity
+        App.settings.torrentCoalesceReads  = editTorrentCoalesceReads
+        App.settings.torrentCoalesceWrites = editTorrentCoalesceWrites
+        App.settings.torrentDiskIoType     = editTorrentDiskIoType
+        App.settings.torrentDiskWriteQueueMiB = editTorrentDiskWriteQueueMiB
         App.settings.proxyType              = editProxyType
         App.settings.proxyHost              = editProxyHost
         App.settings.proxyPort              = editProxyPort
@@ -790,6 +808,12 @@ Window {
         editTorrentAutoBanAbusivePeers = App.settings.torrentAutoBanAbusivePeers
         editTorrentAutoBanMediaPlayerPeers = App.settings.torrentAutoBanMediaPlayerPeers
         editTorrentEncryptionMode = App.settings.torrentEncryptionMode
+        editTorrentStorageMode    = App.settings.torrentStorageMode
+        editTorrentPieceExtentAffinity = App.settings.torrentPieceExtentAffinity
+        editTorrentCoalesceReads  = App.settings.torrentCoalesceReads
+        editTorrentCoalesceWrites = App.settings.torrentCoalesceWrites
+        editTorrentDiskIoType     = App.settings.torrentDiskIoType
+        editTorrentDiskWriteQueueMiB = App.settings.torrentDiskWriteQueueMiB
         ensureTorrentAdapterOption(editTorrentBindInterface)
         editProxyType             = App.settings.proxyType
         editProxyHost             = App.settings.proxyHost
@@ -3155,6 +3179,174 @@ Window {
                             color: "#666666"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        Text { text: qsTr("Storage"); color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+
+                        // Allocation mode radio group
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            spacing: 4
+
+                            Text { text: qsTr("Allocation mode"); color: "#a0a0a0"; font.pixelSize: 11 }
+
+                            RowLayout {
+                                spacing: 16
+
+                                RadioButton {
+                                    id: storageSparseRadio
+                                    text: qsTr("Sparse")
+                                    checked: root.editTorrentStorageMode === 0
+                                    onToggled: if (checked) root.editTorrentStorageMode = 0
+                                    topPadding: 0; bottomPadding: 0
+                                    contentItem: Text {
+                                        text: parent.text
+                                        color: "#e0e0e0"
+                                        font.pixelSize: 13
+                                        leftPadding: parent.indicator.width + 4
+                                    }
+                                }
+
+                                RadioButton {
+                                    text: qsTr("Pre-allocate")
+                                    checked: root.editTorrentStorageMode === 1
+                                    onToggled: if (checked) root.editTorrentStorageMode = 1
+                                    topPadding: 0; bottomPadding: 0
+                                    contentItem: Text {
+                                        text: parent.text
+                                        color: "#e0e0e0"
+                                        font.pixelSize: 13
+                                        leftPadding: parent.indicator.width + 4
+                                    }
+                                }
+                            }
+
+                            Text {
+                                Layout.fillWidth: true
+                                text: qsTr("Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.")
+                                color: "#666666"
+                                font.pixelSize: 11
+                                wrapMode: Text.WordWrap
+                            }
+                        }
+
+                        CheckBox {
+                            text: qsTr("Piece extent affinity")
+                            checked: root.editTorrentPieceExtentAffinity
+                            onToggled: root.editTorrentPieceExtentAffinity = checked
+                            topPadding: 0; bottomPadding: 0
+                            contentItem: Text { text: parent.text; color: "#e0e0e0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+                        Text {
+                            Layout.fillWidth: true
+                            text: qsTr("Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.")
+                            color: "#666666"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        CheckBox {
+                            text: qsTr("Coalesce disk reads")
+                            checked: root.editTorrentCoalesceReads
+                            onToggled: root.editTorrentCoalesceReads = checked
+                            topPadding: 0; bottomPadding: 0
+                            contentItem: Text { text: parent.text; color: "#e0e0e0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+
+                        CheckBox {
+                            text: qsTr("Coalesce disk writes")
+                            checked: root.editTorrentCoalesceWrites
+                            onToggled: root.editTorrentCoalesceWrites = checked
+                            topPadding: 0; bottomPadding: 0
+                            contentItem: Text { text: parent.text; color: "#e0e0e0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: qsTr("Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.")
+                            color: "#666666"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        // Disk I/O type
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 8
+
+                            Text { text: qsTr("Disk I/O type"); color: "#a0a0a0"; font.pixelSize: 11; Layout.alignment: Qt.AlignVCenter }
+
+                            ComboBox {
+                                id: diskIoTypeCombo
+                                implicitWidth: 140
+                                model: [qsTr("Default"), qsTr("Memory-mapped"), qsTr("POSIX")]
+                                currentIndex: root.editTorrentDiskIoType
+                                onActivated: root.editTorrentDiskIoType = currentIndex
+                                contentItem: Text {
+                                    leftPadding: 8
+                                    text: diskIoTypeCombo.displayText
+                                    color: "#e0e0e0"
+                                    font.pixelSize: 12
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                                background: Rectangle {
+                                    color: "#1b1b1b"
+                                    border.color: diskIoTypeCombo.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    radius: 3
+                                }
+                            }
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: {
+                                switch (root.editTorrentDiskIoType) {
+                                case 1: return qsTr("Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.")
+                                case 2: return qsTr("POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.")
+                                default: return qsTr("Default: Stellar picks the best mode for your platform automatically.")
+                                }
+                            }
+                            color: "#666666"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        // Disk write queue
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 8
+
+                            Text { text: qsTr("Disk write queue"); color: "#a0a0a0"; font.pixelSize: 11; Layout.alignment: Qt.AlignVCenter }
+
+                            Rectangle {
+                                width: 60; height: 26; radius: 2
+                                color: "#1b1b1b"
+                                border.color: diskQueueField.activeFocus ? "#4488dd" : "#3a3a3a"
+                                TextInput {
+                                    id: diskQueueField
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    verticalAlignment: TextInput.AlignVCenter
+                                    color: "#e0e0e0"
+                                    font.pixelSize: 12
+                                    text: root.editTorrentDiskWriteQueueMiB.toString()
+                                    validator: IntValidator { bottom: 1; top: 65536 }
+                                    onEditingFinished: {
+                                        var v = parseInt(text)
+                                        if (!isNaN(v) && v >= 1) root.editTorrentDiskWriteQueueMiB = v
+                                    }
+                                    Connections {
+                                        target: root
+                                        function onEditTorrentDiskWriteQueueMiBChanged() {
+                                            if (!diskQueueField.activeFocus)
+                                                diskQueueField.text = root.editTorrentDiskWriteQueueMiB.toString()
+                                        }
+                                    }
+                                }
+                            }
+
+                            Text { text: qsTr("MiB"); color: "#666666"; font.pixelSize: 11; Layout.alignment: Qt.AlignVCenter }
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }

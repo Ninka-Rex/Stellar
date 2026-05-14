@@ -135,6 +135,15 @@ class AppSettings : public QObject {
     Q_PROPERTY(bool torrentAutoBanMediaPlayerPeers READ torrentAutoBanMediaPlayerPeers WRITE setTorrentAutoBanMediaPlayerPeers NOTIFY torrentSettingsChanged)
     // Encryption mode: 0=Prefer (default), 1=Require, 2=Allow (disable encryption)
     Q_PROPERTY(int  torrentEncryptionMode READ torrentEncryptionMode WRITE setTorrentEncryptionMode NOTIFY torrentSettingsChanged)
+    // Storage mode: 0=Sparse (default), 1=Pre-allocate — set per-torrent at add_torrent time
+    Q_PROPERTY(int  torrentStorageMode READ torrentStorageMode WRITE setTorrentStorageMode NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(bool torrentPieceExtentAffinity READ torrentPieceExtentAffinity WRITE setTorrentPieceExtentAffinity NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(bool torrentCoalesceReads  READ torrentCoalesceReads  WRITE setTorrentCoalesceReads  NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(bool torrentCoalesceWrites READ torrentCoalesceWrites WRITE setTorrentCoalesceWrites NOTIFY torrentSettingsChanged)
+    // Disk I/O type: 0=Default, 1=mmap, 2=POSIX
+    Q_PROPERTY(int  torrentDiskIoType READ torrentDiskIoType WRITE setTorrentDiskIoType NOTIFY torrentSettingsChanged)
+    // max_queued_disk_bytes in MiB (0 = libtorrent default)
+    Q_PROPERTY(int  torrentDiskWriteQueueMiB READ torrentDiskWriteQueueMiB WRITE setTorrentDiskWriteQueueMiB NOTIFY torrentSettingsChanged)
     // Proxy — 0=None, 1=System, 2=HTTP/HTTPS, 3=SOCKS5
     // Per-host connection limit — caps concurrent segments to a single server (some ban >4)
     Q_PROPERTY(int     perHostConnectionLimit READ perHostConnectionLimit WRITE setPerHostConnectionLimit NOTIFY perHostConnectionLimitChanged)
@@ -258,6 +267,12 @@ public:
     bool torrentAutoBanAbusivePeers() const { return m_torrentAutoBanAbusivePeers; }
     bool torrentAutoBanMediaPlayerPeers() const { return m_torrentAutoBanMediaPlayerPeers; }
     int  torrentEncryptionMode()          const { return m_torrentEncryptionMode; }
+    int  torrentStorageMode()             const { return m_torrentStorageMode; }
+    bool torrentPieceExtentAffinity()     const { return m_torrentPieceExtentAffinity; }
+    bool torrentCoalesceReads()           const { return m_torrentCoalesceReads; }
+    bool torrentCoalesceWrites()          const { return m_torrentCoalesceWrites; }
+    int  torrentDiskIoType()              const { return m_torrentDiskIoType; }
+    int  torrentDiskWriteQueueMiB()       const { return m_torrentDiskWriteQueueMiB; }
     int     proxyType()               const { return m_proxyType; }
     QString proxyHost()               const { return m_proxyHost; }
     int     proxyPort()               const { return m_proxyPort; }
@@ -372,6 +387,12 @@ public:
     void setTorrentAutoBanAbusivePeers(bool v);
     void setTorrentAutoBanMediaPlayerPeers(bool v);
     void setTorrentEncryptionMode(int v);
+    void setTorrentStorageMode(int v);
+    void setTorrentPieceExtentAffinity(bool v);
+    void setTorrentCoalesceReads(bool v);
+    void setTorrentCoalesceWrites(bool v);
+    void setTorrentDiskIoType(int v);
+    void setTorrentDiskWriteQueueMiB(int v);
     qint64 torrentHistoricalUploadedBytes() const { return m_torrentHistoricalUploadedBytes; }
     qint64 torrentHistoricalDownloadedBytes() const { return m_torrentHistoricalDownloadedBytes; }
     void accumulateTorrentStats(qint64 uploadedBytes, qint64 downloadedBytes);
@@ -593,6 +614,12 @@ private:
     bool        m_torrentAutoBanAbusivePeers{false};
     bool        m_torrentAutoBanMediaPlayerPeers{false};
     int         m_torrentEncryptionMode{0}; // 0=Prefer, 1=Require, 2=Allow
+    int         m_torrentStorageMode{0};              // 0=Sparse, 1=Pre-allocate
+    bool        m_torrentPieceExtentAffinity{false};
+    bool        m_torrentCoalesceReads{false};
+    bool        m_torrentCoalesceWrites{false};
+    int         m_torrentDiskIoType{0};               // 0=Default, 1=mmap, 2=POSIX
+    int         m_torrentDiskWriteQueueMiB{64};
     // All-time torrent transfer accumulators — incremented when a torrent item is deleted
     qint64      m_torrentHistoricalUploadedBytes{0};
     qint64      m_torrentHistoricalDownloadedBytes{0};

@@ -2475,6 +2475,38 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
                      libtorrent::settings_pack::pe_both);
     }
 
+    // Storage / disk I/O settings (libtorrent 2.0+)
+    pack.set_bool(libtorrent::settings_pack::piece_extent_affinity,
+                  settings->torrentPieceExtentAffinity());
+    // coalesce_reads/writes moved to deprecated_ prefix in lt 2.0 ABI; use the versioned alias.
+    pack.set_bool(libtorrent::settings_pack::deprecated_coalesce_reads,
+                  settings->torrentCoalesceReads());
+    pack.set_bool(libtorrent::settings_pack::deprecated_coalesce_writes,
+                  settings->torrentCoalesceWrites());
+    // Disk I/O read/write mode (io_buffer_mode_t):
+    //   0=Default (enable_os_cache), 1=mmap (enable_os_cache, libtorrent 2.0 default on most
+    //   platforms), 2=POSIX (disable_os_cache — bypass page cache, use direct I/O where available).
+    // Note: libtorrent 2.0 chooses mmap_disk_io vs posix_disk_io internally; these flags
+    // control OS cache behaviour of whichever backend is active.
+    {
+        int readMode  = libtorrent::settings_pack::enable_os_cache;
+        int writeMode = libtorrent::settings_pack::enable_os_cache;
+        switch (settings->torrentDiskIoType()) {
+        case 2: // POSIX / bypass OS page cache
+            readMode  = libtorrent::settings_pack::disable_os_cache;
+            writeMode = libtorrent::settings_pack::disable_os_cache;
+            break;
+        default: // Default and mmap both use the OS cache (let libtorrent select the backend)
+            break;
+        }
+        pack.set_int(libtorrent::settings_pack::disk_io_read_mode,  readMode);
+        pack.set_int(libtorrent::settings_pack::disk_io_write_mode, writeMode);
+    }
+    // 0 means "use libtorrent default"; otherwise convert MiB → bytes.
+    if (settings->torrentDiskWriteQueueMiB() > 0)
+        pack.set_int(libtorrent::settings_pack::max_queued_disk_bytes,
+                     settings->torrentDiskWriteQueueMiB() * 1024 * 1024);
+
     m_session->apply_settings(pack);
 
     // Per-torrent limits are not in settings_pack — apply to all existing handles.
@@ -2531,6 +2563,11 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
         params.flags |= libtorrent::torrent_flags::paused;
     else
         params.flags &= ~libtorrent::torrent_flags::paused;
+    // storage_mode must be set at add time — it cannot be changed after the torrent is added.
+    if (m_settings && m_settings->torrentStorageMode() == 1)
+        params.storage_mode = libtorrent::storage_mode_allocate;
+    else
+        params.storage_mode = libtorrent::storage_mode_sparse;
     if (m_settings && !m_settings->torrentEnablePex())
         params.flags |= libtorrent::torrent_flags::disable_pex;
     else

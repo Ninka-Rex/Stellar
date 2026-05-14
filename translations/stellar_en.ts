@@ -5331,8 +5331,103 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/SettingsDialog.qml" line="3162"/>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
         <source>Torrent Security</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Storage</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Allocation mode</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Sparse</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Pre-allocate</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Piece extent affinity</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Coalesce disk reads</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Coalesce disk writes</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Disk I/O type</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Default</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Memory-mapped</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>POSIX</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Disk write queue</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>MiB</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3186"/>
+        <source>Default: Stellar picks the best mode for your platform automatically.</source>
         <translation></translation>
     </message>
     <message>

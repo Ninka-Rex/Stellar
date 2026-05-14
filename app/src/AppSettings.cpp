@@ -265,6 +265,12 @@ void AppSettings::load() {
     m_torrentAutoBanAbusivePeers = m_settings.value(QStringLiteral("torrentAutoBanAbusivePeers"), false).toBool();
     m_torrentAutoBanMediaPlayerPeers = m_settings.value(QStringLiteral("torrentAutoBanMediaPlayerPeers"), false).toBool();
     m_torrentEncryptionMode = m_settings.value(QStringLiteral("torrentEncryptionMode"), 0).toInt();
+    m_torrentStorageMode          = m_settings.value(QStringLiteral("torrentStorageMode"), 0).toInt();
+    m_torrentPieceExtentAffinity  = m_settings.value(QStringLiteral("torrentPieceExtentAffinity"), false).toBool();
+    m_torrentCoalesceReads        = m_settings.value(QStringLiteral("torrentCoalesceReads"), false).toBool();
+    m_torrentCoalesceWrites       = m_settings.value(QStringLiteral("torrentCoalesceWrites"), false).toBool();
+    m_torrentDiskIoType           = m_settings.value(QStringLiteral("torrentDiskIoType"), 0).toInt();
+    m_torrentDiskWriteQueueMiB    = m_settings.value(QStringLiteral("torrentDiskWriteQueueMiB"), 64).toInt();
     m_torrentHistoricalUploadedBytes   = m_settings.value(QStringLiteral("torrentHistoricalUploadedBytes"), 0LL).toLongLong();
     m_torrentHistoricalDownloadedBytes = m_settings.value(QStringLiteral("torrentHistoricalDownloadedBytes"), 0LL).toLongLong();
     // Install date — recorded once on the very first run and never overwritten.
@@ -515,6 +521,12 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("torrentAutoBanAbusivePeers"), m_torrentAutoBanAbusivePeers);
     m_settings.setValue(QStringLiteral("torrentAutoBanMediaPlayerPeers"), m_torrentAutoBanMediaPlayerPeers);
     m_settings.setValue(QStringLiteral("torrentEncryptionMode"),          m_torrentEncryptionMode);
+    m_settings.setValue(QStringLiteral("torrentStorageMode"),             m_torrentStorageMode);
+    m_settings.setValue(QStringLiteral("torrentPieceExtentAffinity"),     m_torrentPieceExtentAffinity);
+    m_settings.setValue(QStringLiteral("torrentCoalesceReads"),           m_torrentCoalesceReads);
+    m_settings.setValue(QStringLiteral("torrentCoalesceWrites"),          m_torrentCoalesceWrites);
+    m_settings.setValue(QStringLiteral("torrentDiskIoType"),              m_torrentDiskIoType);
+    m_settings.setValue(QStringLiteral("torrentDiskWriteQueueMiB"),       m_torrentDiskWriteQueueMiB);
     m_settings.setValue(QStringLiteral("torrentHistoricalUploadedBytes"),   m_torrentHistoricalUploadedBytes);
     m_settings.setValue(QStringLiteral("torrentHistoricalDownloadedBytes"), m_torrentHistoricalDownloadedBytes);
     // installDate is set once in load() and never overwritten by save().
@@ -787,6 +799,12 @@ void AppSettings::setTorrentBlockedPeerCountries(const QStringList &v) { if (m_t
 void AppSettings::setTorrentAutoBanAbusivePeers(bool v) { if (m_torrentAutoBanAbusivePeers != v) { m_torrentAutoBanAbusivePeers = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentAutoBanMediaPlayerPeers(bool v) { if (m_torrentAutoBanMediaPlayerPeers != v) { m_torrentAutoBanMediaPlayerPeers = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentEncryptionMode(int v) { if (m_torrentEncryptionMode != v) { m_torrentEncryptionMode = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentStorageMode(int v)         { if (m_torrentStorageMode != v) { m_torrentStorageMode = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentPieceExtentAffinity(bool v){ if (m_torrentPieceExtentAffinity != v) { m_torrentPieceExtentAffinity = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentCoalesceReads(bool v)      { if (m_torrentCoalesceReads != v) { m_torrentCoalesceReads = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentCoalesceWrites(bool v)     { if (m_torrentCoalesceWrites != v) { m_torrentCoalesceWrites = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentDiskIoType(int v)          { if (m_torrentDiskIoType != v) { m_torrentDiskIoType = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentDiskWriteQueueMiB(int v)   { if (m_torrentDiskWriteQueueMiB != v) { m_torrentDiskWriteQueueMiB = v; emit torrentSettingsChanged(); save(); } }
 
 void AppSettings::accumulateTorrentStats(qint64 uploadedBytes, qint64 downloadedBytes) {
     m_torrentHistoricalUploadedBytes   += uploadedBytes;
