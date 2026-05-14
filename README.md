@@ -45,9 +45,57 @@ Grab the latest installer from the [Releases](../../releases) page.
 
 ## Building 🔨
 
-Requires CMake, Ninja, Qt 6 (Core, Quick, Network, QuickControls2, LinguistTools), Boost, and OpenSSL. libtorrent is vendored under `third_party/`. MaxMindDB is optional (enables GeoIP).
+Requires CMake, Ninja, Qt 6 (Core, Quick, Network, QuickControls2, LinguistTools), Boost, and OpenSSL. libtorrent and libmaxminddb are **not bundled** — see [Third-party source dependencies](#third-party-source-dependencies) below for how to obtain them.
 
 You will also need to download a GeoIP database for the torrent world map to work. See the [GeoIP database](#geoip-database) section below.
+
+### Third-party source dependencies
+
+These libraries must be placed under `third_party/` before configuring, **or** pointed to via CMake variables. The directory is excluded from version control.
+
+#### libtorrent-rasterbar 2.0.12 (required for torrent/magnet support)
+
+Download the release tarball from GitHub and extract it:
+
+```bash
+mkdir -p third_party
+curl -L https://github.com/arvidn/libtorrent/releases/download/v2.0.12/libtorrent-rasterbar-2.0.12.tar.gz \
+    | tar -xz -C third_party/
+# Result: third_party/libtorrent-rasterbar-2.0.12/
+```
+
+On Windows, download from <https://github.com/arvidn/libtorrent/releases/tag/v2.0.12> and extract to `third_party\libtorrent-rasterbar-2.0.12\`.
+
+Alternatively, point CMake at an existing source tree or installed package:
+
+```
+cmake --preset windows-debug -DLIBTORRENT_SOURCE_DIR=C:\path\to\libtorrent
+# or, if already installed system-wide:
+cmake --preset linux-debug -DLibtorrentRasterbar_DIR=/usr/lib/cmake/LibtorrentRasterbar
+```
+
+Without libtorrent, torrent and magnet downloads are disabled; everything else works.
+
+#### libmaxminddb (optional — enables GeoIP world map)
+
+**Linux:** install the system package — no manual step needed:
+
+```bash
+sudo apt install libmaxminddb-dev      # Debian / Ubuntu
+sudo dnf install libmaxminddb-devel    # Fedora / RHEL
+```
+
+**Windows / manual build:** clone and place under `third_party/`:
+
+```bash
+git clone https://github.com/maxmind/libmaxminddb.git third_party/libmaxminddb
+```
+
+Or disable it entirely:
+
+```
+cmake --preset windows-debug -DENABLE_MAXMINDDB=OFF
+```
 
 ### Linux 🐧
 

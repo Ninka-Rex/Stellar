@@ -5,6 +5,7 @@ releases/
 backups/
 docs/
 packaging/windows/output
+third_party/
 .claude/
 .cmake/
 CMakeCache.txt
