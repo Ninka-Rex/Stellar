@@ -2,9 +2,14 @@
 
 A clean-room reimplementation of Internet Download Manager for Windows and Linux, with a built-in torrent client and yt-dlp support for downloading from YouTube and other video sites. Written in C++ and Qt.
 
-![Screenshot](screenshots/ui.png)
-![Screenshot](screenshots/http-download.png)
-![Screenshot](screenshots/torrent-swarm-map.png)
+<details>
+<summary>Screenshots</summary>
+
+![UI](screenshots/ui.png)
+![HTTP Download](screenshots/http-download.png)
+![Torrent Swarm Map](screenshots/torrent-swarm-map.png)
+
+</details>
 
 ## Status
 
