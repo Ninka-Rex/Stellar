@@ -2488,6 +2488,11 @@ QObject *AppController::torrentTrackerModel(const QString &id) const {
     return m_torrentSession ? m_torrentSession->trackerModel(id) : nullptr;
 }
 
+void AppController::refreshTorrentModelsNow(const QString &id) const {
+    if (m_torrentSession)
+        m_torrentSession->refreshModelsNow(id);
+}
+
 QVariantList AppController::torrentBannedPeers() const {
     return m_torrentSession ? m_torrentSession->bannedPeers() : QVariantList{};
 }

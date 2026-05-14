@@ -4035,6 +4035,19 @@ void TorrentSessionManager::forceRecheck(const QString &downloadId) {
 #endif
 }
 
+void TorrentSessionManager::refreshModelsNow(const QString &downloadId) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    const auto handle = m_handles.value(downloadId);
+    if (!handle.is_valid())
+        return;
+    // Pass forceTrackerUpdate=true so the tracker model is rebuilt even though
+    // this isn't triggered by a tracker alert.
+    updateModels(downloadId, handle, /*forceTrackerUpdate=*/true, /*trackerOnly=*/false);
+#else
+    Q_UNUSED(downloadId);
+#endif
+}
+
 void TorrentSessionManager::forceReannounce(const QString &downloadId, const QStringList &trackerUrls) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     const auto handle = m_handles.value(downloadId);

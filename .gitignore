@@ -26,5 +26,6 @@ AGENTS.md
 app/data/*.mmdb
 *.pem
 *.xpi
+*.zip
 CLAUDE.original.md
 .env

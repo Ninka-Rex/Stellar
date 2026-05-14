@@ -101,6 +101,11 @@ public:
     void setTorrentDownloadMode(const QString &downloadId, bool sequential, bool firstLastPieces);
     void forceRecheck(const QString &downloadId);
     void forceReannounce(const QString &downloadId, const QStringList &trackerUrls = {});
+    // Immediately push peer and tracker data to their models without waiting for
+    // the next alert-timer tick. Called when the user switches to the peers,
+    // swarm-map, or trackers tab so the view populates instantly instead of after
+    // up to 2 s.
+    Q_INVOKABLE void refreshModelsNow(const QString &downloadId);
     bool banPeer(const QString &downloadId, const QString &endpoint, int port,
                  const QString &client = {}, const QString &countryCode = {});
     bool unbanPeer(const QString &endpoint);

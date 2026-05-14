@@ -246,6 +246,7 @@ public:
     Q_INVOKABLE QObject *torrentFileModel(const QString &id) const;
     Q_INVOKABLE QObject *torrentPeerModel(const QString &id) const;
     Q_INVOKABLE QObject *torrentTrackerModel(const QString &id) const;
+    Q_INVOKABLE void refreshTorrentModelsNow(const QString &id) const;
     Q_INVOKABLE QVariantList torrentCountryOptions() const;
     Q_INVOKABLE QVariantList torrentNetworkAdapters() const;
     Q_INVOKABLE bool banTorrentPeer(const QString &downloadId, const QString &endpoint, int port,
