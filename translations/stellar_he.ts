@@ -4190,6 +4190,82 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>אבטחת Torrent</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>אחסון</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>מצב הקצאה</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>דליל</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>הקצאה מראש</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>חל על טורנטים חדשים בלבד. הקצאה מראש שומרת שטח דיסק מלא מיד; דליל מקצה לפי דרישה.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>זיקת מקטעים</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>הורד מקטעים במקטעים סמוכים של 4MiB. מפחית פיצול בטורנטים עם מקטעים קטנים.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>אחד קריאות דיסק</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>אחד כתיבות דיסק</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>איחוד ממזג פעולות קלט/פלט קטנות למאגרים גדולים לפני כתיבה לדיסק. עשוי לשפר תפוקה בטורנטים מפוצלים.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>סוג קלט/פלט דיסק</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>ברירת מחדל</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>ממופה זיכרון</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>תור כתיבה לדיסק</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>ממופה זיכרון: קבצים ממופים ישירות לזיכרון. Windows ו-Linux קוראים וכותבים נתוני טורנט דרך מטמון הדפים עם שימוש מינימלי במעבד. מומלץ לרוב המשתמשים.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: קריאות וכתיבות עוברות דרך קריאות קבצים רגילות ללא מיפוי זיכרון. משתמש בפחות מרחב כתובות מממופה זיכרון, מה שיכול לעזור במערכות 32-ביט או כשמזריעים הרבה טורנטים גדולים בו-זמנית.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>ברירת מחדל: Stellar בוחרת את המצב הטוב ביותר עבור הפלטפורמה שלך אוטומטית.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>האסורים יידרשו מיד. תת-תווים של User-Agent אסורים, מדינות אסורות ואפשרויות אסור-אוטומטי יחולו רק לאחר לחיצה על 'יישום' או 'אישור'.</translation>
         </message>
@@ -4512,6 +4588,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>סטלר הוא תוכנה חינמית: ניתן להפיץ ול/או לשנות אותה בהתאם לתנאי רישיון ה-GNU General Public License, גרסה 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>תוכנה זו מופצת בתקווה שתהיה שימושית, אך ללא כל אחריות; אף לא אחריות משתמעת לסחירות או התאמה למטרה מסוימת.</translation>
         </message>
         <message>
             <source>Third-party software</source>

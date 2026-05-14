@@ -4200,6 +4200,82 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <translation>Torrent-turva</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Tallennus</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Varaustila</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Harva</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Esivaraa</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Koskee vain uusia torrentteja. Esivaraus varaa levytilan heti; harva varaa tarpeen mukaan.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Osien sijaintihakuisuus</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Lataa osat 4 MiB:n vierekkäisinä lohkoina. Vähentää sirpaloitumista pienillä osako'oilla.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Yhdistä lukupyynnöt</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Yhdistä kirjoituspyynnöt</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Yhdistäminen kokoaa pienet I/O-toiminnot suuremmiksi puskureiksi ennen levylle kirjoitusta. Voi parantaa läpisyöttöä sirpaloituneissa torrentteissa.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Levyn I/O-tyyppi</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Oletus</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Muistikartoitettu</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Levyn kirjoitusjono</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Muistikartoitettu: tiedostot kartoitetaan suoraan muistiin. Windows ja Linux lukevat ja kirjoittavat torrent-dataa sivuvälimuistin kautta minimaalisella suorittimen käytöllä. Suositellaan useimmille käyttäjille.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: luku ja kirjoitus tapahtuvat tavallisten tiedostokutsujen kautta ilman muistikartoitusta. Käyttää vähemmän osoiteavaruutta kuin muistikartoitettu, mikä voi auttaa 32-bittisissä järjestelmissä tai jaettaessa useita suuria torrenteja samanaikaisesti.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Oletus: Stellar valitsee parhaan tilan alustallesi automaattisesti.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Manuaaliset vertausten kiellot astuvat välittömästi. Kiellolistat käyttäjänimien osatekijöille, maat ja automaattikielto-asetukset astuvat voimaan painamalla 'Käytä' tai 'OK'.</translation>
         </message>
@@ -4522,6 +4598,10 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar on vapaata ohjelmistoa: voit jakaa ja/tai muokata sitä GNU:n yleisen julkisen lisenssin (GNU GPL) versio 3:n ehdoilla.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Tätä ohjelmaa jaetaan siinä toivossa, että se on hyödyllinen, mutta ilman mitään takuuta; edes implisiittistä takuuta kaupallisesta hyväksyttävyydestä tai soveltuvuudesta tiettyyn tarkoitukseen.</translation>
         </message>
         <message>
             <source>Third-party software</source>

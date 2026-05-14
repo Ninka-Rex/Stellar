@@ -4194,6 +4194,82 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <translation>Торрент аюулгүй байдал</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Хадгалах сан</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Хуваарилалтын төрөл</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Сийрэг</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Урьдчилан хуваарилах</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Зөвхөн шинэ торрентод үйлчилнэ. Урьдчилан хуваарилах нь дискийн зайг шууд бүрэн нөөцөлнө; сийрэг нь хэрэгцээгээр хуваарилна.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Хэсгийн хүрээний хамаарал</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Хэсгүүдийг 4 МиБ зэргэлдээ хүрээгээр татах. Жижиг хэсэгтэй торрентуудын фрагментацийг бууруулна.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Диск уншилтыг нэгтгэх</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Диск бичилтийг нэгтгэх</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Нэгтгэх нь дискэнд бичихээс өмнө жижиг O/I үйлдлүүдийг том буферт нэгтгэнэ. Фрагментацтай торрентуудад дамжуулалтыг сайжруулж болно.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Диск I/O төрөл</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Өгөгдмөл</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Санах ойд буулгах</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Диск бичих дараалал</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>МиБ</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Санах ойд буулгах: файлууд шууд санах ойд буулгагдана. Windows болон Linux нь torrent өгөгдлийг хуудас кэшээр дамжуулан бага CPU ашиглалттай уншиж бичнэ. Ихэнх хэрэглэгчдэд санал болгоно.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: унших, бичих үйлдлүүд санах ойд буулгахгүйгээр стандарт файлын дуудлагаар хийгдэнэ. Санах ойд буулгахаас бага хаягийн зай ашигладаг тул 32-битийн системд эсвэл олон том torrent-ыг зэрэг тараахад тустай.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Өгөгдмөл: Stellar таны платформд хамгийн тохиромжтой горимыг автоматаар сонгоно.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Хүчинтэй хамгаалалт</translation>
         </message>
@@ -4516,6 +4592,10 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar нь үнэгүй програм бөгөөд GNU General Public License-ийн 3-р хувилбараар дамжуулан дахин тархаж/засварлах боломжтой.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Энэ программ нь хэрэгцээтэй байх найдлагаар түгээгдсэн боловч ямар ч баталгаагүй; худалдааны үнэ цэнэ эсвэл тодорхой зорилгод нийцэх далд баталгааг ч оруулаагүй.</translation>
         </message>
         <message>
             <source>Third-party software</source>

@@ -4210,6 +4210,82 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
             <translation>Nchekwa Torrent</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Nchekwa</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Ụdị nkesa</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Sparse</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Kenyebu ụzọ</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Ọ na-emetụta naanị torrent ọhụrụ. Kenyebu ụzọ na-edobe ohere diski zuru ezu ozugbo; sparse na-ekenye mgbe achọrọ.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Mmasị mpaghara iberibe</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Budata iberibe na mpaghara 4 MiB dị nso. Na-ebelata nkewa na torrent nwere obere nha iberibe.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Jikọta ọgụgụ diski</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Jikọta ederede diski</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Njikọta na-ejikọ obere ọrụ I/O n'ime nchekwa buru ibu tupu edee na diski. Ọ nwere ike imeziwanye mmepụta na torrent gbasasịrị.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Ụdị I/O diski</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Nke ndabere</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Ebe nchekwa eserese</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Kwụ n'ahịrị ide diski</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Ebe nchekwa eserese: faịlụ na-abanye ozugbo na ebe nchekwa. Windows na Linux na-agụ ma na-ede data torrent site na cache peeji na-eji CPU pere mpe. A na-atụ aro maka ọtụtụ ndị ọrụ.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: ọgụgụ na ederede na-aga site na oku faịlụ ọkọlọtọ na-enweghị eserese ebe nchekwa. Na-eji ohere adreesị dị nta karịa eserese ebe nchekwa, nke nwere ike inye aka na sistemụ 32-bit ma ọ bụ mgbe ị na-ekesa ọtụtụ nnukwu torrent n'otu oge.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Nke ndabere: Stellar na-ahọrọ ọnọdụ kacha mma maka ikpo okwu gị na-akpaghị aka.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Mmachibido ndị ọgbọ aka na-arụ ọrụ ozugbo. Ihe ndị na-egbochi eriri onye ọrụ, mba ndị egbochiri, na nhọrọ mmachibido onwe na-arụ ọrụ mgbe ị pịa Tinye ma ọ bụ Ọ DỊ MMA.</translation>
         </message>
@@ -4532,6 +4608,10 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar bụ ngwanrọ n'efu: ị nwere ike kesaa ya na/ma ọ bụ gbanwee ya n'okpuru usoro nke GNU General Public License, ụdị nke 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>A na-ekesa mmemme a n'olileanya na ọ ga-aba uru, mana enweghị akwụkwọ ikike ọ bụla; ọbụnadị enweghị akwụkwọ ikike a na-akọwaghị nke ịzụ ahịa ma ọ bụ ịdị mma maka otu ebumnuche.</translation>
         </message>
         <message>
             <source>Third-party software</source>

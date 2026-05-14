@@ -1,15 +1,23 @@
-# Stellar Download Manager Updates
+# Stellar Download Manager - Changelog
 
-Apr 10, 2026
+---
 
-Version 0.3.6 Beta is available
+## Version 0.8.0 Beta - May 14, 2026
 
-Windows and Firefox beta release only
+### New
+- **New!** 77 languages supported, with a language picker in Settings
+- **New!** Torrent creator -create `.torrent` files directly from the app
+- **New!** Command line interface - download URLs, set save paths, control the queue scheduler
+- **New!** Pause and resume the entire session from the tray menu
 
-This build is focused on the Windows app and Firefox integration.
-Some features are still untested, some behavior may still be buggy, 
-and this release should be treated as an early beta.
+### Improved
+- Download Progress, Download Complete, and Add URL dialogs redesigned to be closer to IDM
+- Speed chart in torrent properties improved
+- General performance and security improvements
+- New icons
 
-What's new in version 0.7.1?
+---
+
+## Version 0.7.1 Beta - April 25, 2026
 
 - Initial release

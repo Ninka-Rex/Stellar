@@ -4209,6 +4209,82 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>የቶረንት ደህንነት</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>ማከማቻ</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>የመደብ ሁነታ</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>ተበታትኖ</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>ቅድመ-መደብ</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>ለአዳዲስ ቶረንቶች ብቻ ይሠራል። ቅድመ-መደብ ሙሉ የዲስክ ቦታ ወዲያውኑ ያስይዛል፤ ተበታትኖ ሲፈለግ ይመድባል።</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>የክፍል መጠን ትስስር</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>ክፍሎችን በ4 ሜባ ተያያዥ ክልሎች አውርድ። ትንንሽ ክፍል መጠን ባላቸው ቶረንቶች ላይ መበታተንን ይቀንሳል።</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>የዲስክ ንባቦችን አዋህድ</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>የዲስክ ጽሑፎችን አዋህድ</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>ማዋሀድ ትንንሽ I/O ስራዎችን ወደ ትልልቅ ቋቶች ከዲስክ ከመጻፉ በፊት ያዋህዳል። በተበታተኑ ቶረንቶች ላይ ፍሰትን ሊያሻሽል ይችላል።</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>የዲስክ I/O አይነት</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>ነባሪ</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>ማህደረ-ትውስታ-የተቀረጸ</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>የዲስክ ጽሑፍ ወረፋ</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>ሜባ</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>ማህደረ-ትውስታ-የተቀረጸ፦ ፋይሎች በቀጥታ ወደ ማህደረ ትውስታ ይቀረጻሉ። ዊንዶውስ እና ሊኑክስ የ torrent ውሂብ በገጽ መሸጎጫ በኩል በዝቅተኛ ሲፒዩ አጠቃቀም ያነባሉ፣ ይጽፋሉ። ለአብዛኞቹ ተጠቃሚዎች ይመከራል።</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX፦ ንባብና ጽሑፍ ያለ ማህደረ-ትውስታ ቅረጸት በመደበኛ ፋይል ጥሪዎች ያልፋሉ። ከማህደረ-ትውስታ-የተቀረጸ ያነሰ የአድራሻ ቦታ ይጠቀማል፤ ይህም በ32-ቢት ሲስተሞች ላይ ወይም ብዙ ትላልቅ torrentዎችን በአንድ ጊዜ ሲዘሩ ሊረዳ ይችላል።</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>ነባሪ፦ ስቴላር ለእርስዎ መድረክ በራሱ ምርጡን ሁነታ ይመርጣል።</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>በእጅ የሚደረጉ የአቻ እገዳዎች ወዲያውኑ ተግባራዊ ይሆናሉ። የታገዱ የተጠቃሚ ወኪል ንዑስ ሕብረቁምፊዎች፣ የታገዱ አገሮች እና ራስ-እገዳ አማራጮች ተግባራዊ የሚሆኑት ተግብር ወይም እሺን ሲጫኑ ነው።</translation>
         </message>
@@ -4531,6 +4607,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>ስቴላር ነፃ ሶፍትዌር ነው፦ በጂኤንዩ አጠቃላይ የህዝብ ፍቃድ ስሪት 3 መሰረት ማሰራጨት እና/ወይም ማሻሻል ይችላሉ።</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>ይህ ፕሮግራም ጠቃሚ ይሆናል በሚል ተስፋ ተሰራጭቷል፣ ነገር ግን ያለ ምንም ዋስትና፤ ለንግድ ብቃት ወይም ለተለየ ዓላማ ተስማሚነት በተዘዋዋሪ የሚሰጥ ዋስትና እንኳ ሳይኖር።</translation>
         </message>
         <message>
             <source>Third-party software</source>

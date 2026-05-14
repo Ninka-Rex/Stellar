@@ -265,7 +265,7 @@
             <source>
 
 Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
-            <translation/>
+            <translation>Izpildīt manuāli: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -4204,6 +4204,82 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <translation>Torrent drošība</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Krātuve</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Piešķiršanas režīms</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Retināta</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Iepriekš piešķirt</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Attiecas tikai uz jaunām straumēm. Iepriekšēja piešķiršana rezervē visu vietu uzreiz; retināta piešķir pēc vajadzības.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Blakus gabalu piesaiste</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Lejupielādēt gabalus 4 MiB blakus apgabalos. Samazina fragmentāciju straumēm ar maziem gabalu izmēriem.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Apvienot diska lasīšanu</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Apvienot diska rakstīšanu</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Apvienošana</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Diska I/O veids</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Noklusējuma</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Atmiņā kartēts</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Diska rakstīšanas rinda</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Atmiņā kartēts: faili tiek tieši kartēti atmiņā. Windows un Linux lasa un raksta torrentu datus caur lapu kešatmiņu ar minimālu CPU lietojumu. Ieteicams lielākajai daļai lietotāju.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: lasīšana un rakstīšana notiek caur standarta failu izsaukumiem bez atmiņas kartēšanas. Izmanto mazāk adrešu telpas nekā atmiņā kartēts, kas var palīdzēt 32 bitu sistēmās vai vienlaicīgi izsējot daudz lielu torrentu.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Noklusējuma: Stellar automātiski izvēlas labāko režīmu jūsu platformai.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Manuālie bloķētie peer tiek piemēroti nekavējoties. Bloķētie lietotāja aģenta apakšvirknes, bloķētās valstis un automātiskās bloķēšanas opcijas tiek piemērotas, kad noklikšķināt uz 'Piemērot' vai 'Labi'.</translation>
         </message>
@@ -4526,6 +4602,10 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar ir bezmaksas programmatūra: to varat izplatīt un/vai modificēt saskaņā ar GNU ģenerālās publiskās licences 3. versijas noteikumiem.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Šī programma tiek izplatīta cerībā, ka tā būs noderīga, bet bez jebkādas garantijas; pat bez netiešas garantijas par tirgojamību vai piemērotību konkrētam mērķim.</translation>
         </message>
         <message>
             <source>Third-party software</source>

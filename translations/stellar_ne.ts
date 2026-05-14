@@ -4195,6 +4195,82 @@ torrent प्रयोग गर्नु अघि तपाईंको IP ad
             <translation>टोरेंट सुरक्षा</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>भण्डारण</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>बाँडफाँट विधि</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>स्पार्स</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>पूर्व-बाँडफाँट</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>नयाँ टोरेन्टमा मात्र लागू। पूर्व-बाँडफाँटले तुरुन्तै पूरै डिस्क स्थान सुरक्षित गर्छ; स्पार्सले माग अनुसार बाँडफाँट गर्छ।</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>टुक्रा विस्तार आत्मीयता</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>४ MiB नजिकका विस्तारमा टुक्रा डाउनलोड गर्छ। साना टुक्रा आकारका टोरेन्टमा खण्डीकरण घटाउँछ।</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>डिस्क पठन एकीकरण</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>डिस्क लेखन एकीकरण</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>एकीकरणले डिस्कमा लेख्नुअघि साना I/O सञ्चालनलाई ठूला बफरमा मर्ज गर्छ। खण्डित टोरेन्टमा थ्रुपुट सुधार गर्न सक्छ।</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation/>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation/>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation/>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation/>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation/>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation/>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation/>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation/>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation/>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>म्यानुअल पेयर बानहरू तुरुन्त लागू हुन्छन्। ब्लक गरिएका user-agent सबस्ट्रिङ, ब्लक गरिएका देशहरू, र auto-ban विकल्पहरू तपाईंले Apply वा OK मा क्लिक गर्दा लागू हुन्छन्।</translation>
         </message>
@@ -4517,6 +4593,10 @@ torrent प्रयोग गर्नु अघि तपाईंको IP ad
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar स्वतन्त्र सफ्टवेयर हो: तपाईं GNU General Public License, संस्करण 3 को शर्तहरूमा यसलाई पुन: वितरण गर्न सक्नुहुन्छ र/वा परिवर्तन गर्न सक्नुहुन्छ।</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation/>
         </message>
         <message>
             <source>Third-party software</source>

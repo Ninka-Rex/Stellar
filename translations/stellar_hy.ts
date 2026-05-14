@@ -4196,6 +4196,82 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Torrent անվտանգություն</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Պահեստ</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Տեղաբաշխման եղանակ</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Նոսր</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Նախատեղաբաշխել</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Կիրառվում է միայն նոր թորրենտների համար: Նախատեղաբաշխումն անմիջապես զբաղեցնում է ամբողջ սկավառակային տարածքը, նոսրը՝ ըստ պահանջի:</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Հատվածի կցորդում</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Ներբեռնել մասերը 4 ՄԲ հարակից հատվածներով: Նվազեցնում է մասնատումը փոքր մասերով թորրենտներում:</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Միավորել կարդալը</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Միավորել գրելը</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Միավորումը փոքր I/O գործողությունները միախմբում է ավելի մեծ բուֆերներում՝ նախքան սկավառակ գրելը: Կարող է բարելավել թողունակությունը մասնատված թորրենտներում:</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Սկավառակի I/O տեսակ</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Լռելյայն</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Հիշողության մեջ արտապատկերված</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Գրելու հերթ</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>ՄիԲ</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Հիշող. արտապատկերում. ֆայլերն ուղղակի հիշողության մեջ են: Windows-ը և Linux-ը կարդում/գրում են քեշով, նվազ CPU օգտագործմամբ: Խորհուրդ է տրվում շատերին:</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX. կարդում/գրում է ստանդարտ ֆայլային կանչերով, առանց արտապատկերման: Ավելի քիչ հասցեային տարածք է օգտագործում, օգտակար 32-բիթ համակարգերում կամ շատ մեծ թորենթներ սերմանելիս:</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Լռելյայն. Stellar-ը ավտոմատ ընտրում է լավագույն ռեժիմը ձեր հարթակի համար:</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Ձեռքով զրկումները կիրառվում են անմիջապես: Բլոկավորված user agent ենթատողերը, բլոկավորված երկրները և ավտո-զրկման տարբերակները կիրառվում են, երբ սեղմում եք Կիրառել կամ Լավ է:</translation>
         </message>
@@ -4518,6 +4594,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar-ը ազատ ծրագիր է. կարող եք վերաբաշխել և/կամ փոփոխել այն GNU Ընդհանուր Հանրային Լիցենզիայի, տարբերակ 3-ի պայմաններով:</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Այս ծրագիրը տարածվում է օգտակար լինելու հույսով, բայց առանց որևէ երաշխիքի, նույնիսկ առանց վաճառելիության կամ որոշակի նպատակի համար պիտանիության ենթադրյալ երաշխիքի:</translation>
         </message>
         <message>
             <source>Third-party software</source>

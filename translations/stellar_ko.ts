@@ -4195,6 +4195,82 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <translation>토렌트 보안</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>저장소</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>할당 모드</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>희소</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>미리 할당</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>새 토렌트에만 적용됩니다. 사전 할당은 전체 디스크 공간을 즉시 예약하고, 스파스 할당은 필요할 때 할당합니다.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>조각 범위 친화도</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>4 MiB 인접 범위로 조각을 다운로드합니다. 작은 조각 크기의 토렌트에서 조각화를 줄입니다.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>디스크 읽기 통합</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>디스크 쓰기 통합</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>작은 I/O 작업을 디스크에 쓰기 전에 더 큰 버퍼로 병합합니다. 조각난 토렌트에서 처리량을 향상시킬 수 있습니다.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>디스크 I/O 방식</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>기본값</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>메모리 매핑</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>디스크 쓰기 대기열</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>메모리 매핑: 파일을 메모리에 직접 매핑. Windows와 Linux에서 페이지 캐시를 통해 토렌트 데이터를 읽고 쓰며 CPU 사용량이 적음. 대부분의 사용자에게 권장.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: 메모리 매핑 없이 표준 파일 호출로 읽기/쓰기. 메모리 매핑보다 주소 공간을 적게 사용하므로 32비트 시스템이나 대용량 토렌트를 동시에 시딩할 때 유용.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>기본값: Stellar가 플랫폼에 맞는 최적 방식을 자동 선택.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>수동 피어 차단 즉시 적용. 차단된 사용자 에이전트 부분 문자열, 차단된 국가, 자동 차단 옵션은 [적용] 또는 [확인] 클릭 시 적용됩니다.</translation>
         </message>
@@ -4517,6 +4593,10 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar 은 무료 소프트웨어입니다. GNU 일반 공중 사용 허가서 버전 3 의 조건에 따라 재배포하고/또는 수정할 수 있습니다.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>이 프로그램은 유용하게 사용되길 바라며 배포되지만, 어떠한 보증도 제공하지 않습니다. 상품성이나 특정 목적에의 적합성에 대한 묵시적 보증도 포함되지 않습니다.</translation>
         </message>
         <message>
             <source>Third-party software</source>

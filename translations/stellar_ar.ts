@@ -4205,6 +4205,82 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>أمان التورنت</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>التخزين</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>وضع التخصيص</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>متفرق</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>التخصيص المسبق</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>ينطبق على التورنت الجديدة فقط. التخصيص المسبق يحجز مساحة القرص بالكامل فورًا؛ التخصيص المتناثر يحجز عند الحاجة.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>مدى تقارب القطعة</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>تنزيل القطع في نطاقات متجاورة بحجم 4 ميبي بايت. يقلل من التجزئة في التورنتات ذات أحجام القطع الصغيرة.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>تجميع قراءات القرص</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>تجميع عمليات الكتابة على القرص</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>دمج عمليات الإدخال/الإخراج الصغيرة في مخازن أكبر قبل الكتابة على القرص. قد يحسن الإنتاجية في التورنت المجزأ.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>نوع إدخال/إخراج القرص</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>افتراضي</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>مُعيّن بالذاكرة</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>طابور كتابة القرص</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>م.بايت</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>مُعيّن بالذاكرة: تُعيّن الملفات مباشرة في الذاكرة. يقرأ ويندوز ولينكس بيانات التورنت عبر ذاكرة التخزين المؤقت بأقل استخدام للمعالج. يُنصح به لمعظم المستخدمين.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: تمر عمليات القراءة والكتابة عبر استدعاءات ملفات قياسية دون تعيين بالذاكرة. يستخدم مساحة عناوين أقل من المُعيّن بالذاكرة، مما يساعد على أنظمة 32-بت أو عند بذر تورنتات كبيرة كثيرة معًا.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>افتراضي: يختار Stellar الوضع الأمثل لمنصتك تلقائيًا.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>تطبق الحظر اليدوي للأقران فورًا. تُطبق سلاسل وكيل المستخدم المحظورة، والدول المحظورة، وخيارات الحظر التلقائي عند النقر على تطبيق أو موافق.</translation>
         </message>
@@ -4527,6 +4603,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar برنامج مجاني: يمكنك إعادة توزيعه و/أو تعديله بموجب شروط الرخصة العامة العامة لـ GNU، الإصدار 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>يُوزّع هذا البرنامج رجاءً أن يكون مفيدًا، لكن دون أي ضمان؛ ولا حتى الضمان الضمني للصلاحية التجارية أو الملاءمة لغرض معين.</translation>
         </message>
         <message>
             <source>Third-party software</source>

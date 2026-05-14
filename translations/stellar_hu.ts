@@ -4192,6 +4192,82 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Torrent biztonság</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Tárhely</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Foglalási mód</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Ritka</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Előfoglalás</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Csak új torrentekre. Az előfoglalás azonnal lefoglalja a teljes helyet; a ritka igény szerint.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Darabkiosztás</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>4 MiB-os szomszédos darabok letöltése. Csökkenti a töredezettséget kis darabméretnél.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Olvasások összevonása</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Írások összevonása</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Az összevonás kis I/O műveleteket nagyobb pufferekbe gyűjt írás előtt. Javíthatja az átvitelt töredezett torrenteknél.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Lemez I/O típus</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Alapértelmezett</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Memóriába képezett</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Lemez írási sor</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Memóriába képezett: a fájlok közvetlenül a memóriába kerülnek. A Windows és Linux a lapgyorsítótáron át kezeli a torrent adatokat, minimális CPU-használattal. A legtöbb felhasználónak ajánlott.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: az írás és olvasás szabványos fájlhívásokon át történik, memóriába képezés nélkül. Kevesebb címtartományt használ, ami 32 bites rendszereken vagy sok nagy torrent egyidejű seedelésekor segíthet.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Alapértelmezett: a Stellar automatikusan a platformnak legmegfelelőbb módot választja.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>A kézi társak tilalma azonnal érvényesül. A blokkolt felhasználói ügynök-alrészek, országok és az automatikus tiltható opciók csak az Alkalmazás vagy Rendben gombra kattintva lépnek érvénybe.</translation>
         </message>
@@ -4514,6 +4590,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar ingyenes szoftver: a GNU General Public License, 3. verzió feltételei szerint terjesztheti és/vagy módosíthatja.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>A program abban a reményben kerül terjesztésre, hogy hasznos lesz, de minden garancia nélkül; még a forgalmazhatóságra vagy adott célra való alkalmasságra vonatkozó hallgatólagos garancia nélkül is.</translation>
         </message>
         <message>
             <source>Third-party software</source>

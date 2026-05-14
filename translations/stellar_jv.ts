@@ -4209,6 +4209,82 @@ Disaranaké banget kanggo naleni Stellar nèng antarmuka jaringan VPN lan verifi
             <translation>Kaamanan Torrent</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Panyimpenan</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Mode alokasi</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Jarang</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Pra-alokasi</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Mung kanggo torrent anyar. Pra-alokasi nyadhiakake ruang disk langsung; jarang dialokasikake miturut kabutuhan.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Afinitas jangkah</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Undhuh potongan ing jangkah jejer 4 MiB. Ngurangi fragmentasi ing torrent kanthi ukuran potongan cilik.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Gabung wacan disk</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Gabung tulisan disk</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Penggabungan nggabungake operasi I/O cilik dadi buffer luwih gedhe sadurunge ditulis menyang disk. Bisa ningkatake throughput ing torrent sing terfragmentasi.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Jinis I/O disk</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Baku</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Peta-memori</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Antrian tulis disk</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Peta-memori: berkas dipetakan langsung ke memori. Windows lan Linux maca lan nulis data torrent liwat cache kaca kanthi panggunaan CPU minimal. Disaranake kanggo umume pangguna.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: maca lan nulis nganggo panggilan berkas standar tanpa peta-memori. Nggunakake ruang alamat luwih sithik tinimbang peta-memori, sing bisa mbantu ing sistem 32-bit utawa nalika nyebar akeh torrent gedhe bebarengan.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Baku: Stellar milih mode paling apik kanggo platform sampeyan kanthi otomatis.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Larangan peer manual langsung lumaku. Substring agen panganggo sing diblokir, negara sing diblokir, lan opsi larangan otomatis lumaku nalika panjenengan klik Terap utawa OK.</translation>
         </message>
@@ -4531,6 +4607,10 @@ Disaranaké banget kanggo naleni Stellar nèng antarmuka jaringan VPN lan verifi
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar iku piranti lunak gratis: panjenengan bisa nyebar lan/utawa ngowahi miturut syarat GNU General Public License, versi 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Program iki disebar kanthi pangarep-arep bakal migunani, nanging tanpa jaminan; tanpa jaminan sing diwenehake babagan kelayakan dagang utawa kesesuaian kanggo tujuan tartamtu.</translation>
         </message>
         <message>
             <source>Third-party software</source>

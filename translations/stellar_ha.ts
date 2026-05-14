@@ -4210,6 +4210,82 @@ An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabb
             <translation>Tsaron Torrent</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Ajiya</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Yanayin rabon sarari</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Sparse</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Raba gaba</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Yana aiki ga sabbin torrents kawai. Raba gaba yana tanadin cikakken sarari nan take; sparse yana raba bisa buƙata.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Dangantakar yanki</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Sauke ɓangarori a yankuna 4 MiB masu kusa. Yana rage ɓarkewa a torrents masu ƙananan girman ɓangarori.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Haɗa karatun diski</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Haɗa rubutun diski</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Haɗawa yana haɗa ƙananan ayyukan I/O zuwa manyan buffers kafin rubutawa diski. Zai iya inganta saurin aiki a torrents masu ɓarkewa.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Nau'in I/O na faifai</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Tsoho</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Taswirar ƙwaƙwalwa</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Layin rubutu na faifai</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Taswirar ƙwaƙwalwa: fayiloli ana haɗa su kai tsaye cikin ƙwaƙwalwa. Windows da Linux suna karantawa da rubuta bayanan torrent ta hanyar cache shafi tare da ƙarancin amfani da CPU. An ba da shawarar ga yawancin masu amfani.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: karantawa da rubutawa suna tafiya ta hanyar kiran fayil na yau da kullun ba tare da taswirar ƙwaƙwalwa ba. Yana amfani da ƙaramin sarari adireshi fiye da taswirar ƙwaƙwalwa, wanda zai iya taimakawa akan tsarin 32-bit ko lokacin shuka manyan torrents da yawa a lokaci guda.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Tsoho: Stellar yana zaɓar mafi kyawun yanayin don dandamalin ku ta atomatik.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Hana takwarori da hannu yana aiki nan take. Ƙananan igiyoyin wakilin mai amfani da aka toshe, ƙasashe da aka toshe, da zaɓuɓɓukan hana kai tsaye suna aiki lokacin da ka danna Aiwatar ko Ok.</translation>
         </message>
@@ -4532,6 +4608,10 @@ An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabb
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar software ce kyauta: za ka iya sake rarrabawa ko gyara ta ƙarƙashin sharuɗɗan GNU General Public License, sigar 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Ana rarraba wannan shirin da fatan zai zama mai amfani, amma ba tare da wani garanti ba; ba tare da ma garanti na kasuwanci ko dacewa da wata manufa ta musamman ba.</translation>
         </message>
         <message>
             <source>Third-party software</source>

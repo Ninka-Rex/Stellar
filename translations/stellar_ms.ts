@@ -4202,6 +4202,82 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <translation>Keselamatan Torrent</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Penyimpanan</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Mod peruntukan</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Jarang</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Pra-peruntukan</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Hanya terpakai untuk torrent baharu. Pra-peruntukan menyimpan ruang cakera penuh dengan segera; peruntukan jarang dilakukan mengikut keperluan.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Tahap pertalian kepingan</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Muat turun kepingan dalam lingkungan bersebelahan 4 MiB. Mengurangkan fragmentasi pada torrent dengan saiz kepingan kecil.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Gabungkan bacaan cakera</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Gabungkan penulisan cakera</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Penggabungan menggabungkan operasi I/O kecil ke dalam penimbal yang lebih besar sebelum menulis ke cakera. Boleh meningkatkan daya pemprosesan pada torrent yang terpecah.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Jenis I/O cakera</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Lalai</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Peta ingatan</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Gilir tulis cakera</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Peta ingatan: fail dipetakan terus ke ingatan. Windows dan Linux baca/tulis data torrent melalui cache halaman dengan penggunaan CPU minima. Disyorkan untuk kebanyakan pengguna.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: baca/tulis guna panggilan fail piawai tanpa peta ingatan. Guna ruang alamat kurang dari peta ingatan, bantu sistem 32-bit atau bila sebar banyak torrent besar serentak.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Lalai: Stellar pilih mod terbaik untuk platform anda secara automatik.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Larangan rakan manual berkuat kuasa serta-merta. Substring user-agent, negara terlarang, dan pilihan larangan automatik berkuat kuasa apabila anda klik Terapkan atau OK.</translation>
         </message>
@@ -4524,6 +4600,10 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar adalah perisian percuma: anda boleh mendistribusikan dan/atau mengubah suai ia di bawah terma Lesen Awam Am GNU, versi 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Atur cara ini diedarkan dengan harapan ia berguna, tetapi tanpa sebarang jaminan; tanpa jaminan tersirat kebolehdagangan atau kesesuaian untuk tujuan tertentu.</translation>
         </message>
         <message>
             <source>Third-party software</source>

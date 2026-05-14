@@ -4206,6 +4206,82 @@ Recoméndase encarecidamente vincular Stellar a unha interface de rede VPN e ver
             <translation>Seguridade de Torrent</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Almacenamento</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Modo de asignación</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Esparso</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Preasignar</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Só para novos torrents. Preasignar reserva o espazo completo; esparso asigna baixo demanda.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Afinidade de extensións</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Descarga pezas en extensións de 4 MiB. Reduce a fragmentación en torrents con pezas pequenas.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Agrupar lecturas</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Agrupar escrituras</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Agrupar combina operacións E/S pequenas en búferes maiores antes de escribir. Pode mellorar o rendemento en torrents fragmentados.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Tipo de E/S de disco</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Predeterminado</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Mapeado en memoria</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Cola de escritura en disco</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Mapeado en memoria: os ficheiros mapeanse directamente na memoria. Windows e Linux len e escriben datos de torrent a través da caché de páxina cun uso mínimo de CPU. Recomendado para a maioría dos usuarios.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: as lecturas e escrituras fanse mediante chamadas de ficheiro estándar sen mapeado en memoria. Usa menos espazo de enderezos que o mapeado en memoria, o que pode axudar en sistemas de 32 bits ou ao compartir moitos torrentes grandes simultaneamente.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Predeterminado: Stellar escolle o mellor modo para a túa plataforma automaticamente.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Os bloqueos manuais de pares aplícanse inmediatamente. As subcadeas de axente de usuario bloqueadas, países bloqueados e opcións de bloqueo automático aplícanse ao premer Aplicar ou Aceptar.</translation>
         </message>
@@ -4528,6 +4604,10 @@ Recoméndase encarecidamente vincular Stellar a unha interface de rede VPN e ver
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar é software libre: pode redistribuílo e/ou modificalo baixo os termos da GNU General Public License, versión 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Este programa distribúese coa esperanza de que sexa útil, pero sen ningunha garantía; nin sequera a garantía implícita de comerciabilidade ou idoneidade para un propósito particular.</translation>
         </message>
         <message>
             <source>Third-party software</source>

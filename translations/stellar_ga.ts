@@ -4203,6 +4203,82 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <translation>Slándáil Torrent</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Stóras</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Mód leithdháilte</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Tanaí</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Réamh-leithdháil</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Baineann le torthaí nua amháin. Cuireann réamh-leithdháil spás diosca iomlán in áirithe láithreach; leithdháileann tanaí de réir éilimh.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Cleamhnas píosaí</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Íoslódáil píosaí i bhfairsingí 4 MiB cóngaracha. Laghdaíonn ilroinnt ar thorthaí le píosaí beaga.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Cumaisc léamha diosca</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Cumaisc scríobh diosca</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Comhcheanglaíonn cumasc oibríochtaí beaga I/O i maoláin níos mó roimh scríobh ar dhiosca. D’fhéadfadh sé cur le tréchur ar thorthaí ilroinnte.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Cineál I/O diosca</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Réamhshocrú</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Mapáilte sa chuimhne</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Ciú scríofa diosca</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Mapáilte sa chuimhne: mapáiltear comhaid go díreach sa chuimhne. Léann agus scríobhann Windows agus Linux sonraí torrent tríd an taisce leathanaigh le húsáid íosta LAP. Molta don chuid is mó d'úsáideoirí.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: téann léamha agus scríobhanna trí ghlaonna caighdeánacha comhaid gan mapáil chuimhne. Úsáideann níos lú spáis seoltaí ná mapáil chuimhne, rud a chabhraíonn ar chórais 32-giotán nó nuair a bhíonn go leor torrent mór á síolrú ag an am céanna.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Réamhshocrú: roghnaíonn Stellar an mód is fearr do d'ardán go huathoibríoch.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Cuirtear ban comhpháirtí de láimh i bhfeidhm láithreach. Cuirtear foinsí ainmneora bloicthí, tíortha bloicthí, agus roghanna ban uathoibríoch i bhfeidhm nuair a chliceálann tú Cuir i bhfeidhm nó OK.</translation>
         </message>
@@ -4525,6 +4601,10 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Is bogearraí saor é Stellar: is féidir leat é a athdhealú agus/nó a chur in eagar faoi théarmaí an Licins Ginearálta Poiblí GNU, leagan 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Dáiltear an clár seo le súil go mbeidh sé úsáideach, ach gan aon bharántas; gan fiú an barántas intuigthe indíoltachta nó oiriúnachta do chuspóir ar leith.</translation>
         </message>
         <message>
             <source>Third-party software</source>

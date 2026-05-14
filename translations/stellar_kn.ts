@@ -4226,6 +4226,82 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <translation>ಟರೆಂಟ್ ಸುರಕ್ಷತೆ</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>ಸಂಗ್ರಹ</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>ಹಂಚಿಕೆ ವಿಧಾನ</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>ವಿರಳ</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>ಪೂರ್ವ-ಹಂಚಿಕೆ</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>ಹೊಸ ಟೊರೆಂಟ್‌ಗಳಿಗೆ ಮಾತ್ರ. ಪೂರ್ವ-ಹಂಚಿಕೆ ತಕ್ಷಣ ಪೂರ್ಣ ಡಿಸ್ಕ್ ಸ್ಥಳ ಕಾಯ್ದಿರಿಸುತ್ತದೆ; ವಿರಳ ಬೇಡಿಕೆಯಂತೆ ಹಂಚಿಕೆ ಮಾಡುತ್ತದೆ.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>ತುಣುಕು ವ್ಯಾಪ್ತಿ ಸಂಬಂಧ</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>4 MiB ಪಕ್ಕದ ವ್ಯಾಪ್ತಿಗಳಲ್ಲಿ ತುಣುಕುಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ. ಸಣ್ಣ ತುಣುಕು ಗಾತ್ರದ ಟೊರೆಂಟ್‌ಗಳಲ್ಲಿ ವಿಘಟನೆ ಕಡಿಮೆ ಮಾಡುತ್ತದೆ.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>ಡಿಸ್ಕ್ ಓದುಗಳನ್ನು ಒಗ್ಗೂಡಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>ಡಿಸ್ಕ್ ಬರಹಗಳನ್ನು ಒಗ್ಗೂಡಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>ಒಗ್ಗೂಡಿಸುವಿಕೆ ಡಿಸ್ಕ್‌ಗೆ ಬರೆಯುವ ಮೊದಲು ಸಣ್ಣ I/O ಕಾರ್ಯಾಚರಣೆಗಳನ್ನು ದೊಡ್ಡ ಬಫರ್‌ಗಳಾಗಿ ವಿಲೀನಗೊಳಿಸುತ್ತದೆ. ವಿಘಟಿತ ಟೊರೆಂಟ್‌ಗಳಲ್ಲಿ ಥ್ರೋಪುಟ್ ಸುಧಾರಿಸಬಹುದು.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>ಡಿಸ್ಕ್ I/O ಪ್ರಕಾರ</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>ಡೀಫಾಲ್ಟ್</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>ಮೆಮೊರಿ-ಮ್ಯಾಪ್ ಮಾಡಲಾಗಿದೆ</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>ಡಿಸ್ಕ್ ಬರೆಯುವ ಸರತಿ</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>ಎಂಐಬಿ</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>ಮೆಮೊರಿ-ಮ್ಯಾಪ್ಡ್: ಫೈಲ್ಗಳನ್ನು ನೇರವಾಗಿ ಮೆಮೊರಿಗೆ ಮ್ಯಾಪ್ ಮಾಡಲಾಗುತ್ತದೆ. ವಿಂಡೋಸ್ ಮತ್ತು ಲಿನಕ್ಸ್ ಕನಿಷ್ಠ CPU ಬಳಕೆಯೊಂದಿಗೆ ಪುಟ ಕ್ಯಾಶ್ ಮೂಲಕ ಟೊರೆಂಟ್ ಡೇಟಾವನ್ನು ಓದುತ್ತವೆ ಮತ್ತು ಬರೆಯುತ್ತವೆ. ಹೆಚ್ಚಿನ ಬಳಕೆದಾರರಿಗೆ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: ಮೆಮೊರಿ-ಮ್ಯಾಪಿಂಗ್ ಇಲ್ಲದೆ ಪ್ರಮಾಣಿತ ಫೈಲ್ ಕರೆಗಳ ಮೂಲಕ ಓದುತ್ತದೆ ಮತ್ತು ಬರೆಯುತ್ತದೆ. ಮೆಮೊರಿ-ಮ್ಯಾಪ್ ಮಾಡಿದ್ದಕ್ಕಿಂತ ಕಡಿಮೆ ವಿಳಾಸ ಸ್ಥಳವನ್ನು ಬಳಸುತ್ತದೆ, ಇದು 32-ಬಿಟ್ ಸಿಸ್ಟಮ್ಗಳಲ್ಲಿ ಅಥವಾ ಏಕಕಾಲದಲ್ಲಿ ಅನೇಕ ದೊಡ್ಡ ಟೊರೆಂಟ್ಗಳನ್ನು ಸೀಡ್ ಮಾಡುವಾಗ ಸಹಾಯ ಮಾಡುತ್ತದೆ.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>ಪೂರ್ವನಿಯೋಜಿತ: ಸ್ಟೆಲ್ಲಾರ್ ನಿಮ್ಮ ಪ್ಲಾಟ್ಫಾರ್ಮ್ಗೆ ಸೂಕ್ತವಾದ ಮೋಡ್ ಅನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಆಯ್ಕೆ ಮಾಡುತ್ತದೆ.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>ಮ್ಯಾನುವಲ್ ಪಿಯರ್ ನಿಷೇಧಗಳು ತಕ್ಷಣ ಅನ್ವಯವಾಗುತ್ತವೆ. ಬ್ಲಾಕ್ ಮಾಡಿದ ಬಳಕೆದಾರ ಏಜೆಂಟ್ ಸಬ್‌ಸ್ಟ್ರಿಂಗ್‌ಗಳು, ಬ್ಲಾಕ್ ಮಾಡಿದ ದೇಶಗಳು ಮತ್ತು ಆಟೋ-ಬ್ಯಾನ್ ಆಯ್ಕೆಗಳು 'Apply' ಅಥವಾ 'OK' ಕ್ಲಿಕ್ ಮಾಡಿದಾಗ ಅನ್ವಯವಾಗುತ್ತವೆ.</translation>
         </message>
@@ -4548,6 +4624,10 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>ಸ್ಟೆಲ್ಲರ್ ಒಂದು ಮುಕ್ತ ಮೃದುವಸ್ತು: ಇದನ್ನು GNU ಸಾರ್ವಜನಿಕ ಅನುಮತಿಯ (GNU General Public License) ಆವೃತ್ತಿ 3 ರ ಷರತ್ತುಗಳ ಅಡಿಯಲ್ಲಿ ಮರುಹಂಚಿಕೆ ಮಾಡಬಹುದು ಮತ್ತು/ಅಥವಾ ಸಂಶೋಧಿಸಬಹುದು.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>ಈ ಪ್ರೋಗ್ರಾಮ್ ಉಪಯುಕ್ತವಾಗಬಹುದೆಂಬ ನಿರೀಕ್ಷೆಯಲ್ಲಿ ವಿತರಿಸಲಾಗಿದೆ, ಆದರೆ ಯಾವುದೇ ಖಾತರಿಯಿಲ್ಲದೆ; ವ್ಯಾಪಾರಯೋಗ್ಯತೆ ಅಥವಾ ನಿರ್ದಿಷ್ಟ ಉದ್ದೇಶಕ್ಕೆ ಸೂಕ್ತತೆಯ ಸೂಚಿತ ಖಾತರಿಯೂ ಇಲ್ಲದೆ.</translation>
         </message>
         <message>
             <source>Third-party software</source>

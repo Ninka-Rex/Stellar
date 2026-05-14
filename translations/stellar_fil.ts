@@ -4199,6 +4199,82 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
             <translation>Torrent Security</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Imbakan</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Mode ng alokasyon</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Kalat-kalat</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Paunang-laang</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Para lang sa bagong torrents. Ang paunang-laang ay agad nagrereserba ng buong espasyo; ang kalat-kalat ay naglalaan kapag kailangan.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Pagkaka-ugnay ng lawak ng piyesa</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>I-download ang mga piyesa sa magkakatabing 4 MiB na lawak. Binabawasan ang pagkakawatak-watak sa torrents na may maliliit na sukat ng piyesa.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Pagsamahin ang pagbasa ng disk</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Pagsamahin ang pagsulat ng disk</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Pinagsasama ng pagsasama-sama ang maliliit na operasyong I/O sa mas malalaking buffer bago isulat sa disk. Maaaring mapabuti ang throughput sa watak-watak na torrents.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Uri ng disk I/O</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Default</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Naka-mapa sa memorya</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Pila ng pagsulat sa disk</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Naka-mapa sa memorya: direktang minamapa ang mga file sa memorya. Binabasa at sinusulat ng Windows at Linux ang data ng torrent sa pamamagitan ng page cache na may kaunting paggamit ng CPU. Inirerekomenda para sa karamihan.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: dumadaan ang pagbasa at pagsulat sa karaniwang tawag ng file nang walang memory-mapping. Gumagamit ng mas kaunting address space kaysa naka-mapa sa memorya, na makakatulong sa 32-bit system o kapag sabayang nagse-seed ng maraming malalaking torrent.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Default: awtomatikong pinipili ng Stellar ang pinakamahusay na mode para sa iyong platform.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Manwal na peer bans ay agad na epektibo. Ang blocked user-agent substrings, blocked countries, at auto-ban options ay epektibo kapag pindutin ang Apply o OK.</translation>
         </message>
@@ -4521,6 +4597,10 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Libre ang Stellar: pwedeng ibahagi o baguhin ito ayon sa GNU General Public License, bersyon 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Ipinamamahagi ang program na ito nang may pag-asang magiging kapaki-pakinabang ito, ngunit walang anumang garantiya; kahit ang ipinahihiwatig na garantiya ng pagiging mabibili o kaangkupan para sa isang partikular na layunin.</translation>
         </message>
         <message>
             <source>Third-party software</source>

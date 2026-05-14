@@ -4209,6 +4209,82 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
             <translation>တိုရန့်လုံခြုံရေး</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>သိုလှောင်မှု</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>ခွဲဝေနည်း</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>ကျဲ</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>ကြိုခွဲဝေ</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>တောရင့်အသစ်များအတွက်သာ။ ကြိုခွဲဝေက ဒစ်ခ်နေရာကို ချက်ချင်းအပြည့်ယူထား၊ ကျဲက လိုသလောက်သာယူ။</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>အပိုင်းအစ နီးစပ်မှု</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>အပိုင်းအစများကို ၄ မီဘီ ကပ်လျက်အတွဲများဖြင့် ဒေါင်းလုဒ်ဆွဲ။ အပိုင်းငယ်များရှိ တောရင့်များတွင် အပိုင်းကွဲခြင်းကို လျှော့ချ။</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>ဒစ်ခ်ဖတ်ခြင်း ပေါင်းစည်း</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>ဒစ်ခ်ရေးခြင်း ပေါင်းစည်း</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>ပေါင်းစည်းခြင်းက I/O အသေးများကို ဒစ်ခ်မရေးမီ ဘတ်ဖာကြီးများအဖြစ် ပေါင်းစည်းပေး။ အပိုင်းကွဲနေသော တောရင့်များတွင် လွှဲပြောင်းနှုန်း တိုးတက်နိုင်။</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>ဒစ်ခ် I/O အမျိုးအစား</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>မူလ</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>မှတ်ဉာဏ်မြေပုံ</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>ဒစ်ခ်ရေးတန်းစီ</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>မှတ်ဉာဏ်မြေပုံ- ဖိုင်များကို မှတ်ဉာဏ်ထဲသို့ တိုက်ရိုက်မြေပုံဆွဲသည်။ Windows နှင့် Linux တွင် torrent ဒေတာကို စာမျက်နှာ cache မှတစ်ဆင့် CPU သုံးစွဲမှုနည်းစွာဖြင့် ဖတ်ရေးလုပ်သည်။ သုံးစွဲသူအများစုအတွက် အကြံပြုသည်။</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX- ဖတ်ရေးကို မှတ်ဉာဏ်မြေပုံမပါဘဲ စံဖိုင်ခေါ်ဆိုမှုများဖြင့် လုပ်ဆောင်သည်။ မှတ်ဉာဏ်မြေပုံထက် လိပ်စာနေရာကို လျှော့သုံးသဖြင့် 32-bit စနစ်များ သို့မဟုတ် ကြီးမားသော torrent များစွာကို တစ်ပြိုင်နက် မျိုးစေ့ချရာတွင် အထောက်အကူဖြစ်သည်။</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>မူလ- Stellar သည် သင့်ပလက်ဖောင်းအတွက် အကောင်းဆုံးမုဒ်ကို အလိုအလျောက်ရွေးချယ်သည်။</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>လက်ဖြင့်ပီယာပိတ်ပင်မှုများသည် ချက်ချင်းအကျိုးသက်ရောက်သည်။ ပိတ်ပင်ထားသောအသုံးပြုသူအေးဂျင့်စာတန်းခွဲများ၊ ပိတ်ပင်ထားသောနိုင်ငံများနှင့် အလိုအလျောက်ပိတ်ပင်မှုရွေးချယ်စရာများသည် Apply သို့မဟုတ် OK ကိုနှိပ်သည့်အခါ အကျိုးသက်ရောက်သည်။</translation>
         </message>
@@ -4531,6 +4607,10 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar သည် အခမဲ့ဆော့ဖ်ဝဲဖြစ်သည် - GNU GPL v3 အောက်တွင် ပြန်လည်ဖြန့်ဝေခြင်းနှင့် ပြုပြင်ခြင်းပြုလုပ်နိုင်သည်။</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>ဤပရိုဂရမ်ကို အသုံးဝင်မည်ဟု မျှော်လင့်ချက်ဖြင့် ဖြန့်ဝေသော်လည်း မည်သည့်အာမခံမှမရှိပါ။ ရောင်းဝယ်နိုင်မှု သို့မဟုတ် သီးခြားရည်ရွယ်ချက်အတွက် သင့်လျော်မှုဆိုင်ရာ အဓိပ္ပာယ်သက်ရောက်သော အာမခံပင် မပါဝင်ပါ။</translation>
         </message>
         <message>
             <source>Third-party software</source>

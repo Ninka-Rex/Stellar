@@ -4212,6 +4212,82 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ຄວາມປອດໄພທໍເຣັນ</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>ບ່ອນເກັບຂໍ້ມູນ</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>ໂໝດການຈັດສັນ</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>ແບບກະຈາຍ</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>ຈອງລ່ວງໜ້າ</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>ໃຊ້ສະເພາະທໍເຣັນໃໝ່. ຈອງລ່ວງໜ້າຈະຈອງພື້ນທີ່ດິສກ໌ທັນທີ; ແບບກະຈາຍຈະຈັດສັນຕາມຄວາມຕ້ອງການ.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>ຄວາມຜູກພັນຂອງຊິ້ນສ່ວນ</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>ດາວໂຫຼດຊິ້ນສ່ວນໃນຂອບເຂດ 4 MiB ຕິດກັນ. ຫຼຸດການກະຈັດກະຈາຍໃນທໍເຣັນທີ່ມີຊິ້ນສ່ວນນ້ອຍ.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>ຮວມການອ່ານດິສກ໌</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>ຮວມການຂຽນດິສກ໌</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>ການຮວມຈະລວມການດຳເນີນການ I/O ນ້ອຍໆເຂົ້າເປັນບັບເຟີໃຫຍ່ກ່ອນຂຽນລົງດິສກ໌. ອາດຊ່ວຍເພີ່ມປະສິດທິພາບໃນທໍເຣັນທີ່ກະຈັດກະຈາຍ.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>ປະເພດ I/O ດິສກ໌</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>ຄ່າເລີ່ມຕົ້ນ</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>ແມັບໜ່ວຍຄວາມຈຳ</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>ຄິວຂຽນລົງດິສກ໌</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>ແມັບໜ່ວຍຄວາມຈຳ: ໄຟລ໌ຖືກແມັບໃສ່ໜ່ວຍຄວາມຈຳໂດຍກົງ. Windows ແລະ Linux ອ່ານຂຽນຂໍ້ມູນທໍເຣັນຜ່ານແຄສໜ້າເວັບ ໃຊ້ CPU ໜ້ອຍ. ແນະນຳສຳລັບຜູ້ໃຊ້ສ່ວນໃຫຍ່.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: ອ່ານຂຽນຜ່ານຟັງກ໌ຊັນໄຟລ໌ມາດຕະຖານ ບໍ່ແມັບໜ່ວຍຄວາມຈຳ. ໃຊ້ພື້ນທີ່ແອັດເດຣສໜ້ອຍກວ່າ ເໝາະສຳລັບລະບົບ 32-bit ຫຼື ເວລາຊີດທໍເຣັນໃຫຍ່ຫຼາຍໆພ້ອອມກັນ.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>ຄ່າເລີ່ມຕົ້ນ: Stellar ເລືອກໂໝດທີ່ດີທີ່ສຸດໃຫ້ແພລັດຟອມຂອງທ່ານອັດຕະໂນມັດ.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>ການແບນເພຍດ້ວຍຕົນເອງມີຜົນທັນທີ. ການບລັອກສະຕຣິງຍ່ອຍຕົວແທນຜູ້ໃຊ້, ປະເທດທີ່ຖືກບລັອກ, ແລະຕົວເລືອກແບນອັດຕະໂນມັດມີຜົນເມື່ອຄລິກ ນຳໃຊ້ ຫຼື ຕົກລົງ.</translation>
         </message>
@@ -4534,6 +4610,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar ແມ່ນຊອບແວເສລີ: ທ່ານສາມາດແຈກຢາຍ ແລະ/ຫຼື ດັດແປງມັນໄດ້ຕາມເງື່ອນໄຂຂອງ GNU General Public License, ເວີຊັນ 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>ໂປຣແກຣມນີ້ຖືກແຈກຢາຍດ້ວຍຄວາມຫວັງວ່າຈະມີປະໂຫຍດ ແຕ່ບໍ່ມີການຮັບປະກັນໃດໆ ແມ່ນແຕ່ການຮັບປະກັນໂດຍປະລິຍາຍກ່ຽວກັບການຄ້າ ຫຼື ຄວາມເໝາະສົມສຳລັບຈຸດປະສົງໃດໜຶ່ງ.</translation>
         </message>
         <message>
             <source>Third-party software</source>

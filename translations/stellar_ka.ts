@@ -4213,6 +4213,82 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ტორენტის უსაფრთხოება</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>საცავი</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>გამოყოფის რეჟიმი</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>იშვიათი</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>წინასწარი</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>მოქმედებს მხოლოდ ახალ ტორენტებზე. წინასწარი მყისიერად იტოვებს სრულ ადგილს; იშვიათი ანაწილებს მოთხოვნისამებრ.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>ნაწილის მიჯრა</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>ნაწილების ჩამოტვირთვა 4 მიბ-ის მიმდებარე ზონებში. ამცირებს ფრაგმენტაციას მცირე ნაწილების მქონე ტორენტებზე.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>კითხვის გაერთიანება</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>ჩაწერის გაერთიანება</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>გაერთიანება აერთიანებს მცირე I/O ოპერაციებს უფრო დიდ ბუფერებში ჩაწერამდე. შეიძლება გააუმჯობესოს გამტარუნარიანობა ფრაგმენტირებულ ტორენტებზე.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>დისკის I/O ტიპი</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>ნაგულისხმევი</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>მეხსიერებაში ასახული</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>დისკზე ჩაწერის რიგი</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>მეხსიერებაში ასახული: ფაილები პირდაპირ აისახება მეხსიერებაში. Windows და Linux ტორენტის მონაცემებს კითხულობს და წერს გვერდის ქეშით, მინიმალური CPU გამოყენებით. რეკომენდებულია მომხმარებელთა უმეტესობისთვის.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: კითხვა-ჩაწერა ხდება სტანდარტული ფაილური გამოძახებებით, მეხსიერებაში ასახვის გარეშე. იყენებს ნაკლებ მისამართთა სივრცეს, რაც გამოსადეგია 32-ბიტიან სისტემებზე ან მრავალი დიდი ტორენტის ერთდროულად გაზიარებისას.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>ნაგულისხმევი: Stellar ავტომატურად ირჩევს საუკეთესო რეჟიმს თქვენი პლატფორმისთვის.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>ხელით დაბლოკილი პირები მყისიერად მოქმედებს. დაბლოკილი აგენტების ქვეჯაჭვები, დაბლოკილი ქვეყნები და ავტომატური დაბლოკვის პარამეტრები მოქმედებს Apply ან OK-ზე დაჭერისას.</translation>
         </message>
@@ -4535,6 +4611,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar თავისუფალი პროგრამაა: შეგიძლიათ გადაცეთ და/ან შეცვალოთ GNU General Public License ვერსია 3-ის პირობებით.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>ეს პროგრამა ვრცელდება იმ იმედით, რომ ის გამოსადეგი იქნება, მაგრამ ყოველგვარი გარანტიის გარეშე; თუნდაც ფარული გარანტიის გარეშე გაყიდვადობის ან კონკრეტული მიზნისთვის ვარგისიანობის შესახებ.</translation>
         </message>
         <message>
             <source>Third-party software</source>

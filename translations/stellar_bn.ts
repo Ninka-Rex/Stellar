@@ -4205,6 +4205,82 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <translation>টরেন্ট নিরাপত্তা</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>সংরক্ষণাগার</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>বরাদ্দ মোড</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>স্পার্স</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>প্রি-অ্যালোকেট</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>শুধু নতুন টরেন্টে প্রযোজ্য। প্রি-অ্যালোকেট পুরো ডিস্ক স্পেস আগে থেকে সংরক্ষণ করে; স্পার্স চাহিদামতো বরাদ্দ করে।</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>পিস এক্সটেন্ট অ্যাফিনিটি</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>৪ মাইব সংলগ্ন এক্সটেন্টে পিস ডাউনলোড করে। ছোট পিস সাইজের টরেন্টে ফ্র্যাগমেন্টেশন কমায়।</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>ডিস্ক রিড একত্রীকরণ</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>ডিস্ক রাইট একত্রীকরণ</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>একত্রীকরণ ছোট I/O অপারেশনগুলোকে বড় বাফারে একত্রিত করে ডিস্কে লেখে। ফ্র্যাগমেন্টেড টরেন্টে থ্রুপুট বাড়াতে পারে।</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>ডিস্ক I/O ধরন</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>ডিফল্ট</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>মেমরি-ম্যাপড</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>ডিস্ক লেখার সারি</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>মেমরি-ম্যাপড: ফাইল সরাসরি মেমরিতে ম্যাপ করা হয়। Windows ও Linux ন্যূনতম CPU ব্যবহারে পৃষ্ঠা ক্যাশের মাধ্যমে টরেন্ট ডেটা পড়ে ও লেখে। বেশিরভাগ ব্যবহারকারীর জন্য সুপারিশকৃত।</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: মেমরি-ম্যাপিং ছাড়াই স্ট্যান্ডার্ড ফাইল কলের মাধ্যমে পড়া ও লেখা হয়। মেমরি-ম্যাপডের চেয়ে কম ঠিকানা স্থান ব্যবহার করে, যা 32-বিট সিস্টেমে বা একসাথে অনেক বড় টরেন্ট সিড করার সময় সহায়ক।</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>ডিফল্ট: Stellar আপনার প্ল্যাটফর্মের জন্য স্বয়ংক্রিয়ভাবে সেরা মোড বেছে নেয়।</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>ম্যানুয়াল পিয়ার ব্যান তাৎক্ষণিকভাবে প্রযোজ্য। ব্লক করা ইউজার-এজেন্ট সাবস্ট্রিং, ব্লক করা দেশ এবং অটো-ব্যান অপশনগুলো 'Apply' বা 'OK' ক্লিক করলে প্রযোজ্য হবে।</translation>
         </message>
@@ -4527,6 +4603,10 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>স্টেলার একটি মুক্ত সফটওয়্যার: আপনি এটি GNU সাধারণ পাবলিক লাইসেন্স, সংস্করণ ৩-এর শর্তাবলী অনুসারে পুনর্বিতরণ এবং/অথবা পরিবর্তন করতে পারেন।</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>এই প্রোগ্রামটি এই আশায় বিতরণ করা হয়েছে যে এটি উপকারী হবে, কিন্তু কোনো ওয়ারেন্টি ছাড়াই; এমনকি বাণিজ্যিকতা বা নির্দিষ্ট উদ্দেশ্যে উপযুক্ততার অন্তর্নিহিত ওয়ারেন্টিও নেই।</translation>
         </message>
         <message>
             <source>Third-party software</source>

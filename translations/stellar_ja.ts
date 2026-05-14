@@ -4198,6 +4198,82 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
             <translation>Torrent セキュリティ</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>ストレージ</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>割り当て方式</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>スパース</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>事前割り当て</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>新規torrentのみ適用。事前割り当ては即座に全容量確保、スパースは必要時確保。</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>ピース範囲優先</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>4MiB隣接範囲でピースをDL。小ピースtorrentの断片化を低減。</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>読取統合</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>書込統合</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>小I/Oを統合し大バッファで書込。断片化torrentのスループット向上の可能性。</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>ディスクI/O方式</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>デフォルト</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>メモリマップト</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>ディスク書き込みキュー</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>メモリマップト: ファイルを直接メモリにマッピング。WindowsとLinuxはページキャッシュ経由で読み書きし、CPU使用率を抑えます。ほとんどのユーザーに推奨。</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: メモリマッピングなしで標準ファイル呼び出しを使用。アドレス空間消費が少なく、32ビット環境や多数の大容量torrentを同時配信する場合に有効。</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>デフォルト: プラットフォームに最適な方式を自動選択します。</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>手動ピア禁止は即時適用されます。ブロックされたユーザーエージェント部分文字、ブロックされた国、および自動禁止オプションは「適用」または「OK」をクリック時に適用されます。</translation>
         </message>
@@ -4520,6 +4596,10 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar はフリーソフトウェアです。GNU General Public License バージョン 3 の条件に従って再配布および/または修正できます。</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>本プログラムは有用であることを期待して配布されますが、いかなる保証もありません。商品性や特定目的への適合性の黙示保証もありません。</translation>
         </message>
         <message>
             <source>Third-party software</source>

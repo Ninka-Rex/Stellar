@@ -4205,6 +4205,82 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Ασφάλεια Torrent</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Αποθήκευση</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Λειτουργία δέσμευσης</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Αραιή</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Προδέσμευση</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Μόνο για νέα torrent. Προδέσμευση δεσμεύει χώρο άμεσα· αραιή κατ' απαίτηση.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Συνάφεια τμημάτων</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Λήψη τμημάτων σε συνεχόμενα 4 MiB. Μειώνει κατακερματισμό.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Συγχώνευση αναγνώσεων</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Συγχώνευση εγγραφών</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Συγχώνευση μικρών I/O σε μεγαλύτερα buffers πριν την εγγραφή. Βελτιώνει απόδοση.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Τύπος I/O δίσκου</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Προεπιλογή</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Χαρτογράφηση μνήμης</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Ουρά εγγραφής</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Χαρτογράφηση μνήμης: τα αρχεία αντιστοιχίζονται απευθείας στη μνήμη. Τα Windows και Linux διαβάζουν και γράφουν δεδομένα torrent μέσω της κρυφής μνήμης σελίδων με ελάχιστη χρήση CPU. Συνιστάται για τους περισσότερους χρήστες.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: οι αναγνώσεις και εγγραφές γίνονται μέσω τυπικών κλήσεων αρχείων χωρίς χαρτογράφηση μνήμης. Χρησιμοποιεί λιγότερο χώρο διευθύνσεων από τη χαρτογράφηση μνήμης, κάτι που βοηθά σε συστήματα 32-bit ή κατά τον διαμοιρασμό πολλών μεγάλων torrent ταυτόχρονα.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Προεπιλογή: Το Stellar επιλέγει αυτόματα την καλύτερη λειτουργία για την πλατφόρμα σας.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Οι χειροκίνητες απαγορεύσεις peer ισχύουν άμεσα. Τα μπλοκαρισμένα υποstrings user-agent, οι μπλοκαρισμένες χώρες και οι επιλογές αυτο-απαγόρευσης ισχύουν όταν κάνετε κλικ στο Εφαρμογή ή OK.</translation>
         </message>
@@ -4527,6 +4603,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Το Stellar είναι ελεύθερο λογισμικό: μπορείτε να το αναδιανείμετε και/ή να το τροποποιήσετε υπό τους όρους της GNU General Public License, έκδοση 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Αυτό το πρόγραμμα διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά χωρίς καμία εγγύηση· ούτε καν τη σιωπηρή εγγύηση εμπορευσιμότητας ή καταλληλότητας για συγκεκριμένο σκοπό.</translation>
         </message>
         <message>
             <source>Third-party software</source>

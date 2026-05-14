@@ -4210,6 +4210,82 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <translation>Diogelwch Torrent</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Storfa</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Modd dyrannu</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Gwasgaredig</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Rhag-ddyrannu</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Dim ond ar gyfer torrents newydd. Mae rhag-ddyrannu'n cadw lle disg llawn ar unwaith; mae gwasgaredig yn dyrannu yn ôl y galw.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Affinedd darnau</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Llwytho darnau mewn darnau cyfagos 4 MiB. Yn lleihau darnio ar torrents gyda meintiau darnau bach.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Cyfuno darlleniadau disg</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Cyfuno ysgrifeniadau disg</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Mae cyfuno'n uno gweithrediadau M/A bach i glustogau mwy cyn ysgrifennu i'r ddisg. Gall wella trwybwn ar torrents tameidiog.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Math I/O disg</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Diofyn</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Mapio cof</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Ciw ysgrifennu disg</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Mapio cof: ffeiliau wedi'u mapio'n uniongyrchol i gof. Mae Windows a Linux yn darllen ac ysgrifennu data torrent trwy storfa dudalennau gyda defnydd CPU isel. Argymhellir i'r rhan fwyaf o ddefnyddwyr.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: mae darllen ac ysgrifennu'n mynd trwy alwadau ffeil safonol heb fapio cof. Yn defnyddio llai o ofod cyfeiriadau na mapio cof, a all helpu ar systemau 32-bit neu wrth hadu nifer o dorrenti mawr ar yr un pryd.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Diofyn: mae Stellar yn dewis y modd gorau ar gyfer eich platfform yn awtomatig.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Mae gwaharddiadau cymheiriaid â llaw yn berthnasol ar unwaith. Mae is-linynnau asiant defnyddiwr wedi'u blocio, gwledydd wedi'u blocio, ac opsiynau awto-wahardd yn berthnasol pan fyddwch yn clicio Gwneud Cais neu Iawn.</translation>
         </message>
@@ -4532,6 +4608,10 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Meddalwedd rydd yw Stellar: cewch ei ailddosbarthu a/neu ei addasu o dan delerau Trwydded Gyhoeddus Gyffredinol GNU, fersiwn 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Dosberthir y rhaglen hon yn y gobaith y bydd yn ddefnyddiol, ond heb unrhyw warant; hyd yn oed heb warant ymhlyg o fasnachadwyedd neu addasrwydd at bwrpas penodol.</translation>
         </message>
         <message>
             <source>Third-party software</source>
