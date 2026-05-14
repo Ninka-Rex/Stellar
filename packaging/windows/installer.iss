@@ -8,7 +8,7 @@
   #define AppVersion "0.0.0"
 #endif
 #define AppPublisher "Ninka_"
-#define AppURL       "https://stellar.moe/"
+#define AppURL       "https://stellardownloadmanager.org/"
 #define AppExeName   "Stellar.exe"
 ; Path relative to this .iss file (packaging/windows/)
 #define BuildDir     "..\..\build\windows-release"

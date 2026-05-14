@@ -461,7 +461,7 @@ Architecture: $ARCH
 Maintainer: Ninka_
 Installed-Size: $installed_size_kib
 Depends: libc6, libstdc++6, libgcc-s1, zlib1g, libx11-6, libxcb1, libxkbcommon0, libxcb-cursor0, libxkbcommon-x11-0, libxcb-icccm4, libxcb-image0, libxcb-keysyms1, libxcb-render-util0, libxcb-xinerama0
-Homepage: https://stellar.moe/
+Homepage: https://stellardownloadmanager.org/
 Description: Stellar Download Manager
  Manage, accelerate, and schedule downloads.
 EOF
@@ -510,7 +510,7 @@ Version:        $VERSION
 Release:        1%{?dist}
 Summary:        Manage, accelerate, and schedule downloads
 License:        GPL-3.0-or-later
-URL:            https://stellar.moe/
+URL:            https://stellardownloadmanager.org/
 BuildArch:      x86_64
 
 # All content is pre-staged in BUILDROOT — nothing to build here.

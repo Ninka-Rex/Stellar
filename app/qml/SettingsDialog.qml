@@ -4519,8 +4519,9 @@ Window {
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a"; Layout.bottomMargin: 12 }
 
                         // ── License + Links ───────────────────────────────────────────
-                        RowLayout {
-                            spacing: 16
+                        Flow {
+                            spacing: 6
+                            Layout.fillWidth: true
                             Layout.bottomMargin: 16
 
                             Text {
@@ -4537,11 +4538,11 @@ Window {
                             }
                             Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
                             Text {
-                                text: "stellar.moe"
+                                text: "stellardownloadmanager.org"
                                 color: "#4488dd"; font.pixelSize: 11
                                 font.underline: true
                                 MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
-                                    onClicked: Qt.openUrlExternally("https://stellar.moe/") }
+                                    onClicked: Qt.openUrlExternally("https://stellardownloadmanager.org/") }
                             }
                             Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
                             Text {
@@ -4564,6 +4565,15 @@ Window {
                         Text {
                             Layout.fillWidth: true
                             text: qsTr("Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.")
+                            color: "#808080"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                            Layout.bottomMargin: 6
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: qsTr("This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.")
                             color: "#808080"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap

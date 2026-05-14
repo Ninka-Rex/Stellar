@@ -5843,6 +5843,11 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <translation></translation>
     </message>
     <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="4578"/>
+        <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/SettingsDialog.qml" line="4388"/>
         <source>Third-party software</source>
         <translation></translation>
