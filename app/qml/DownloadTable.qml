@@ -1331,10 +1331,12 @@ Rectangle {
                             if (st !== "Downloading" && st !== "Seeding") return ""
                             var bps = rowRect.item.speed
                             if (bps <= 0) return ""
-                            if (bps >= 1073741824) return (bps / 1073741824).toFixed(2) + " GB/s"
-                            if (bps >= 1048576)    return (bps / 1048576).toFixed(2) + " MB/s"
-                            if (bps >= 1024)       return (bps / 1024).toFixed(1) + " KB/s"
-                            return bps + " B/s"
+                            var limited = rowRect.item.speedLimitKBps > 0 || rowRect.item.perTorrentDownLimitKBps > 0
+                            var suffix = limited ? "*" : ""
+                            if (bps >= 1073741824) return (bps / 1073741824).toFixed(2) + " GB/s" + suffix
+                            if (bps >= 1048576)    return (bps / 1048576).toFixed(2) + " MB/s" + suffix
+                            if (bps >= 1024)       return (bps / 1024).toFixed(1) + " KB/s" + suffix
+                            return bps + " B/s" + suffix
                         }
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
                         font.pixelSize: 12
@@ -1355,10 +1357,12 @@ Rectangle {
                             if (!rowRect.item || !rowRect.item.isTorrent) return ""
                             if (rowRect.item.status !== "Downloading" && rowRect.item.status !== "Seeding") return ""
                             var bps = rowRect.item.torrentUploadSpeed
-                            if (bps >= 1073741824) return (bps / 1073741824).toFixed(2) + " GB/s"
-                            if (bps >= 1048576)    return (bps / 1048576).toFixed(2) + " MB/s"
-                            if (bps >= 1024)       return (bps / 1024).toFixed(1) + " KB/s"
-                            return bps > 0 ? (bps + " B/s") : ""
+                            var limited = rowRect.item.perTorrentUpLimitKBps > 0
+                            var suffix = limited ? "*" : ""
+                            if (bps >= 1073741824) return (bps / 1073741824).toFixed(2) + " GB/s" + suffix
+                            if (bps >= 1048576)    return (bps / 1048576).toFixed(2) + " MB/s" + suffix
+                            if (bps >= 1024)       return (bps / 1024).toFixed(1) + " KB/s" + suffix
+                            return bps > 0 ? (bps + " B/s" + suffix) : ""
                         }
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
                         font.pixelSize: 12
