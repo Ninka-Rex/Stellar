@@ -144,7 +144,7 @@ build\windows-debug\Stellar.exe
 
 ### GeoIP database
 
--Only needed if building from source. The torrent peer/tracker world map uses a MaxMind-format city database. Download `dbip-city-lite.mmdb` from https://db-ip.com/db/download/ip-to-city-lite and place it in `app/data/` in the repository.
+- Only needed if building from source. The torrent peer/tracker world map uses a MaxMind-format city database. Download `dbip-city-lite.mmdb` from https://db-ip.com/db/download/ip-to-city-lite and place it in `app/data/` in the repository.
 
 ## Command Line
 
