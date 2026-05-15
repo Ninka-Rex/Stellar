@@ -146,12 +146,24 @@ static QString pendingDownloadFilePath()
     return QDir::tempPath() + QStringLiteral("/stellar_pending_download.json");
 }
 
+// True when arg looks like a CLI switch (/x or -x) that should not be
+// misinterpreted as a file path during torrent/magnet argument scanning.
+static bool looksLikeCliSwitch(const QString &arg)
+{
+    if (arg.length() < 2)
+        return false;
+    const QChar first = arg.at(0);
+    return (first == QLatin1Char('/') || first == QLatin1Char('-'))
+        && arg.at(1).isLetter();
+}
+
 static QString localTorrentFileFromArgument(const QString &arg)
 {
-    if (arg.trimmed().isEmpty() || arg.startsWith(QStringLiteral("--")))
+    const QString trimmed = arg.trimmed();
+    if (trimmed.isEmpty() || looksLikeCliSwitch(trimmed) || trimmed.startsWith(QStringLiteral("--")))
         return {};
 
-    QString candidate = arg.trimmed();
+    QString candidate = trimmed;
     const QUrl maybeUrl = QUrl::fromUserInput(candidate);
     if (maybeUrl.isLocalFile())
         candidate = maybeUrl.toLocalFile();
@@ -167,7 +179,7 @@ static QString localTorrentFileFromArgument(const QString &arg)
 static QString magnetUriFromArgument(const QString &arg)
 {
     const QString trimmed = arg.trimmed();
-    if (trimmed.isEmpty() || trimmed.startsWith(QStringLiteral("--")))
+    if (trimmed.isEmpty() || looksLikeCliSwitch(trimmed) || trimmed.startsWith(QStringLiteral("--")))
         return {};
 
     return trimmed.startsWith(QStringLiteral("magnet:?"), Qt::CaseInsensitive)
@@ -175,20 +187,82 @@ static QString magnetUriFromArgument(const QString &arg)
         : QString();
 }
 
-static QByteArray makeTorrentOpenPayload(const QString &filePath)
+// CLI modifier flags that can accompany a bare torrent/magnet argument.
+// Mirrors the non-/d fields in CliArgs so the same payload shape is used.
+struct TorrentCliMods {
+    QString savePath;
+    QString saveFilename;
+    bool    silent    = false;
+    bool    addOnly   = false;
+    bool    quitAfter = false;
+
+    bool hasAny() const {
+        return !savePath.isEmpty() || !saveFilename.isEmpty()
+            || silent || addOnly || quitAfter;
+    }
+};
+
+// Extract modifier flags from argv without requiring /d or /s.
+// Caller must skip argv[0] and any arg already consumed as a download URL.
+static TorrentCliMods extractTorrentMods(int argc, char *argv[], int skipIdx = -1)
+{
+    TorrentCliMods mod;
+    for (int i = 1; i < argc; ++i) {
+        if (i == skipIdx)
+            continue;
+        const QString arg = QString::fromLocal8Bit(argv[i]);
+        auto isSwitch = [&](const char *s) {
+            return arg.compare(QString::fromLatin1(s),            Qt::CaseInsensitive) == 0
+                || arg.compare(QString::fromLatin1(s).replace(QLatin1Char('/'), QLatin1Char('-')), Qt::CaseInsensitive) == 0;
+        };
+        if (isSwitch("/p")) {
+            if (i + 1 < argc)
+                mod.savePath = QString::fromLocal8Bit(argv[++i]);
+        } else if (isSwitch("/f")) {
+            if (i + 1 < argc)
+                mod.saveFilename = QString::fromLocal8Bit(argv[++i]);
+        } else if (isSwitch("/q")) {
+            mod.quitAfter = true;
+        } else if (isSwitch("/n")) {
+            mod.silent = true;
+        } else if (isSwitch("/a")) {
+            mod.addOnly = true;
+        }
+    }
+    return mod;
+}
+
+// Build a cliDownload-style payload so the running instance routes the
+// torrent/magnet through the same handler as /d URL (respects /p, /f, /n, etc.).
+static QByteArray makeTorrentCliPayload(const QString &source, const TorrentCliMods &mod)
 {
     return QJsonDocument(QJsonObject{
-        {QStringLiteral("type"), QStringLiteral("download")},
-        {QStringLiteral("url"), QDir::toNativeSeparators(QFileInfo(filePath).absoluteFilePath())},
+        {QStringLiteral("type"),      QStringLiteral("cliDownload")},
+        {QStringLiteral("url"),       source},
+        {QStringLiteral("savePath"),  mod.savePath},
+        {QStringLiteral("filename"),  mod.saveFilename},
+        {QStringLiteral("silent"),    mod.silent},
+        {QStringLiteral("addOnly"),   mod.addOnly},
+        {QStringLiteral("quitAfter"), mod.quitAfter},
+    }).toJson(QJsonDocument::Compact);
+}
+
+// Plain payload used when no CLI modifiers are present — falls through the
+// existing "download" handler so the normal interactive flow kicks in.
+static QByteArray makeTorrentPlainPayload(const QString &filePath)
+{
+    return QJsonDocument(QJsonObject{
+        {QStringLiteral("type"),     QStringLiteral("download")},
+        {QStringLiteral("url"),      QDir::toNativeSeparators(QFileInfo(filePath).absoluteFilePath())},
         {QStringLiteral("filename"), QFileInfo(filePath).fileName()}
     }).toJson(QJsonDocument::Compact);
 }
 
-static QByteArray makeMagnetOpenPayload(const QString &magnetUri)
+static QByteArray makeMagnetPlainPayload(const QString &magnetUri)
 {
     return QJsonDocument(QJsonObject{
-        {QStringLiteral("type"), QStringLiteral("download")},
-        {QStringLiteral("url"), magnetUri},
+        {QStringLiteral("type"),     QStringLiteral("download")},
+        {QStringLiteral("url"),      magnetUri},
         {QStringLiteral("filename"), QStringLiteral("Magnetized transfer")}
     }).toJson(QJsonDocument::Compact);
 }
@@ -604,6 +678,22 @@ int main(int argc, char *argv[])
     // settings file so that all subsequent opens find data in the new location.
     StellarPaths::migrateIfNeeded();
 
+    // Build the torrent/magnet IPC payload once, incorporating any CLI modifier
+    // flags (/n, /a, /q, /p, /f) that may accompany a bare torrent/magnet argument.
+    QByteArray launchTorrentPayload;
+    QByteArray launchMagnetPayload;
+    if (!launchTorrentFile.isEmpty()) {
+        const TorrentCliMods mod = extractTorrentMods(argc, argv);
+        launchTorrentPayload = mod.hasAny()
+            ? makeTorrentCliPayload(launchTorrentFile, mod)
+            : makeTorrentPlainPayload(launchTorrentFile);
+    } else if (!launchMagnetUri.isEmpty()) {
+        const TorrentCliMods mod = extractTorrentMods(argc, argv);
+        launchMagnetPayload = mod.hasAny()
+            ? makeTorrentCliPayload(launchMagnetUri, mod)
+            : makeMagnetPlainPayload(launchMagnetUri);
+    }
+
     // Single-instance guard: try to reach an already-running instance first.
     // Only remove stale server entries when connect is explicitly refused.
     const QString kServerName = QStringLiteral("StellarDownloadManager");
@@ -618,9 +708,9 @@ int main(int argc, char *argv[])
                       ? QStringLiteral("Existing instance found, sending torrent-open message...")
                       : QStringLiteral("Existing instance found, sending focus message..."));
             const QByteArray msg = shouldOpenTorrent
-                ? makeTorrentOpenPayload(launchTorrentFile)
+                ? launchTorrentPayload
                 : shouldOpenMagnet
-                    ? makeMagnetOpenPayload(launchMagnetUri)
+                    ? launchMagnetPayload
                 : QJsonDocument(QJsonObject{{QStringLiteral("type"), QStringLiteral("focus")}})
                       .toJson(QJsonDocument::Compact);
             sock.write(msg);
@@ -741,7 +831,7 @@ int main(int argc, char *argv[])
     // because Component.onCompleted fires during engine.load() — before app.exec()
     // starts the event loop — so any IPC socket data buffered in the OS wouldn't
     // have been processed yet, and the drain would be a no-op.
-    QTimer::singleShot(0, &controller, [&controller, launchTorrentFile, launchMagnetUri]() {
+    QTimer::singleShot(0, &controller, [&controller, launchTorrentPayload, launchMagnetPayload]() {
         const QString dropPath = pendingDownloadFilePath();
         QFile dropFile(dropPath);
         if (dropFile.exists() && dropFile.open(QIODevice::ReadOnly)) {
@@ -753,12 +843,12 @@ int main(int argc, char *argv[])
                 controller.handleIpcPayload(pending);
             }
         }
-        if (!launchTorrentFile.isEmpty()) {
+        if (!launchTorrentPayload.isEmpty()) {
             nmLog(QStringLiteral("Replaying startup torrent-open payload from command line"));
-            controller.handleIpcPayload(makeTorrentOpenPayload(launchTorrentFile));
-        } else if (!launchMagnetUri.isEmpty()) {
+            controller.handleIpcPayload(launchTorrentPayload);
+        } else if (!launchMagnetPayload.isEmpty()) {
             nmLog(QStringLiteral("Replaying startup magnet-open payload from command line"));
-            controller.handleIpcPayload(makeMagnetOpenPayload(launchMagnetUri));
+            controller.handleIpcPayload(launchMagnetPayload);
         }
         controller.setQmlReady();
     });

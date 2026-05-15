@@ -153,17 +153,21 @@ Stellar accepts IDM-compatible flags. Both `/d` and `-d` style prefixes work.
 ```
 Stellar /d URL [/p path] [/f filename] [/q] [/n] [/a]
 Stellar /s
+Stellar <file.torrent> [/p path] [/q] [/n] [/a]
+Stellar <magnet:?xt=urn:btih:...> [/p path] [/q] [/n] [/a]
 ```
 
 | Flag | Meaning |
 |------|---------|
-| `/d URL` | Download the URL |
+| `/d URL` | Download the URL (also accepts `.torrent` paths and `magnet:` URIs) |
 | `/p path` | Save to this directory |
 | `/f name` | Save as this filename |
 | `/q` | Quit after the download finishes |
 | `/n` | Silent: no dialogs, no foreground |
 | `/a` | Add to queue but do not start |
 | `/s` | Start the queue scheduler |
+
+`.torrent` files and `magnet:` URIs can also be passed directly as bare arguments (no `/d` needed).
 
 ## License 📜
 

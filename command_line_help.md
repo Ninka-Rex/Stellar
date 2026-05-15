@@ -7,13 +7,15 @@ Stellar supports IDM-compatible command line parameters for scripted and automat
 ```
 Stellar.exe /d URL [/p local_path] [/f local_file_name] [/q] [/n] [/a]
 Stellar.exe /s
+Stellar.exe <file.torrent> [/p local_path] [/q] [/n] [/a]
+Stellar.exe <magnet:?xt=urn:btih:...> [/p local_path] [/q] [/n] [/a]
 ```
 
 ## Parameters
 
 | Parameter | Description |
 |-----------|-------------|
-| `/d URL` | Download the file at `URL`. Required for all download operations. |
+| `/d URL` | Download the file at `URL`. Also accepts `.torrent` file paths and `magnet:` URIs. |
 | `/s` | Start the queue in scheduler (resumes all queued/paused downloads). |
 | `/p local_path` | Directory to save the file. Defaults to the configured save folder if omitted. |
 | `/f local_file_name` | Filename to save the file as. Overrides the server-supplied name. |
@@ -21,7 +23,7 @@ Stellar.exe /s
 | `/n` | Silent mode. Stellar will not show any dialog or bring its window to the foreground. |
 | `/a` | Add the file to the download queue but do not start downloading immediately. |
 
-Parameters `/a`, `/n`, `/q`, `/f`, and `/p` only apply when `/d URL` is also specified.
+Parameters `/a`, `/n`, `/q`, `/f`, and `/p` apply when `/d URL` is specified, or when a `.torrent` file or `magnet:` URI is passed as a bare argument.
 
 Both `/switch` and `-switch` prefix styles are accepted (e.g. `-d` and `/d` are equivalent).
 
@@ -76,10 +78,30 @@ Start the download queue (resume all queued downloads):
 Stellar.exe /s
 ```
 
+Open a `.torrent` file as a download:
+```
+Stellar.exe "C:\torrents\linux-distro.torrent"
+```
+
+Open a `.torrent` file silently, added to the queue without starting:
+```
+Stellar.exe "C:\torrents\movie.torrent" /n /a /p "D:\Movies"
+```
+
+Add a magnet link silently:
+```
+Stellar.exe /n /d "magnet:?xt=urn:btih:dd8255ecdc7ca55fb0bbf81323d87062db1f6d1c"
+```
+
+Add a magnet link directly (bare argument, same result):
+```
+Stellar.exe "magnet:?xt=urn:btih:dd8255ecdc7ca55fb0bbf81323d87062db1f6d1c" /p "D:\Downloads"
+```
+
 ## Notes
 
 - All parameters are case-insensitive.
 - URL values containing spaces must be enclosed in double quotes.
 - Local path values containing spaces must be enclosed in double quotes.
 - The `/q` flag only causes an exit when there are no other active downloads at the time the target download completes, matching IDM's documented "first copy" semantics.
-- Torrent and magnet link URLs passed via `/d` are handled by the torrent subsystem. The `/f`, `/q`, and `/a` flags are honoured where applicable.
+- Torrent (`.torrent`) files and magnet links can be passed as bare arguments or via `/d`. The torrent metadata dialog is shown interactively unless `/n` (silent mode) is used. The `/p`, `/q`, `/n`, and `/a` flags are honoured for torrent and magnet downloads where applicable. `/f` has no effect on torrents (filenames are determined by the torrent metadata).
