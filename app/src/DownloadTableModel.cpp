@@ -416,18 +416,20 @@ void DownloadTableModel::onItemProgressChanged() {
 
     // Speed-based filters (torrent_active / torrent_inactive) depend on upload/download
     // speed, which changes every tick. Only invoke the expensive onItemChanged() path
-    // when membership actually flips — otherwise just refresh the row in place.
+    // when membership actually flips — otherwise fall through to the volatile sort
+    // path below so active-tab rows re-sort when sorted by speed columns.
     if (m_filterCategory == QStringLiteral("torrent_active")
         || m_filterCategory == QStringLiteral("torrent_inactive")) {
         const bool shouldBeVisible = matchesFilter(item);
         const int visRow = m_visible.indexOf(item);
         if (shouldBeVisible != (visRow >= 0)) {
-            // Membership changed — fall through to the full insert/remove path.
+            // Membership changed — full insert/remove path.
             onItemChanged();
-        } else if (shouldBeVisible && visRow >= 0) {
-            emit dataChanged(index(visRow, ColProgress), index(visRow, ColTimeLeft));
+            return;
         }
-        return;
+        if (!shouldBeVisible)
+            return;
+        // Item stays visible — fall through to volatile sort logic below.
     }
 
     const int visRow = m_visible.indexOf(item);

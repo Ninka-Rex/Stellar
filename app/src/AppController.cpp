@@ -5844,6 +5844,16 @@ void AppController::watchItem(DownloadItem *item) {
             m_lastProgressPersistAt.remove(id);
         }
     });
+
+    // HTTP downloads never emit torrentBatchUpdated, so flushVolatileSort is
+    // never called for them. Connect speedChanged so the table re-sorts after
+    // each HTTP progress tick. Torrents are excluded — their speeds come through
+    // torrentStatsChanged which already triggers flushVolatileSort via
+    // torrentBatchUpdated in TorrentSessionManager.
+    connect(item, &DownloadItem::speedChanged, this, [this, item]() {
+        if (item && !item->isTorrent())
+            m_downloadModel->flushVolatileSort();
+    });
 }
 
 void AppController::pruneRecentErrorDownloads() {
