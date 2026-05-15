@@ -50,7 +50,7 @@ Grab the latest installer from the [Releases](../../releases) page.
 
 ## Building 🔨
 
-Requires CMake, Ninja, Qt 6 (Core, Quick, Network, QuickControls2, LinguistTools), Boost, and OpenSSL. libtorrent and libmaxminddb are **not bundled** — see [Third-party source dependencies](#third-party-source-dependencies) below for how to obtain them.
+Requires CMake, Ninja, Qt 6 (Core, Quick, Network, QuickControls2, LinguistTools), Boost, and OpenSSL. libtorrent and libmaxminddb are **not bundled** - see [Third-party source dependencies](#third-party-source-dependencies) below for how to obtain them.
 
 You will also need to download a GeoIP database for the torrent world map to work. See the [GeoIP database](#geoip-database) section below.
 
@@ -81,9 +81,9 @@ cmake --preset linux-debug -DLibtorrentRasterbar_DIR=/usr/lib/cmake/LibtorrentRa
 
 Without libtorrent, torrent and magnet downloads are disabled; everything else works.
 
-#### libmaxminddb (optional — enables GeoIP world map)
+#### libmaxminddb (optional - enables GeoIP world map)
 
-**Linux:** install the system package — no manual step needed:
+**Linux:** install the system package - no manual step needed:
 
 ```bash
 sudo apt install libmaxminddb-dev      # Debian / Ubuntu
@@ -94,12 +94,6 @@ sudo dnf install libmaxminddb-devel    # Fedora / RHEL
 
 ```bash
 git clone https://github.com/maxmind/libmaxminddb.git third_party/libmaxminddb
-```
-
-Or disable it entirely:
-
-```
-cmake --preset windows-debug -DENABLE_MAXMINDDB=OFF
 ```
 
 ### Linux 🐧
@@ -171,8 +165,6 @@ Stellar /s
 | `/a` | Add to queue but do not start |
 | `/s` | Start the queue scheduler |
 
-A second invocation forwards to the running instance over a local socket. See [command_line_help.md](command_line_help.md) for the full reference and edge cases.
-
 ## License 📜
 
 Copyright (C) 2026 Ninka_. Stellar is free software released under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html). You may redistribute and modify it under the terms of that license. See [LICENSE](LICENSE) for the full text.
@@ -181,10 +173,10 @@ Copyright (C) 2026 Ninka_. Stellar is free software released under the [GNU Gene
 
 Stellar bundles or invokes the following third-party components. Full license texts are in [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt).
 
-- **FFmpeg** (LGPL-2.1+ / GPL-2+) — Copyright (C) 2000-present the FFmpeg developers. Used for merging video and audio streams. FFmpeg is a trademark of Fabrice Bellard. <https://ffmpeg.org/>
-- **libtorrent** (BSD-3-Clause) — Copyright (C) Arvid Norberg and contributors. Used for BitTorrent protocol support. <https://libtorrent.org/>
-- **yt-dlp** (The Unlicense) — yt-dlp contributors, public-domain dedication. Used for video metadata extraction and media downloading. <https://github.com/yt-dlp/yt-dlp>
-- **Qt** (LGPL-3) — Copyright (C) The Qt Company Ltd. Used under the LGPL-3 with the Qt LGPL exception. <https://code.qt.io/>
-- **DB-IP City Lite** (CC BY 4.0) — Geolocation database distributed under Creative Commons Attribution 4.0. <https://db-ip.com/>
-- **Fluent UI System Icons** (MIT) — Copyright (C) Microsoft Corporation. UI icons used throughout the application. <https://github.com/microsoft/fluentui-system-icons>
-- **Microsoft Fluent Emoji** (MIT) — Copyright (C) Microsoft Corporation. 3D emoji-style icons used throughout the application. <https://github.com/microsoft/fluentui-emoji>
+- **FFmpeg** (LGPL-2.1+ / GPL-2+) - Copyright (C) 2000-present the FFmpeg developers. Used for merging video and audio streams. FFmpeg is a trademark of Fabrice Bellard. <https://ffmpeg.org/>
+- **libtorrent** (BSD-3-Clause) - Copyright (C) Arvid Norberg and contributors. Used for BitTorrent protocol support. <https://libtorrent.org/>
+- **yt-dlp** (The Unlicense) - yt-dlp contributors, public-domain dedication. Used for video metadata extraction and media downloading. <https://github.com/yt-dlp/yt-dlp>
+- **Qt** (LGPL-3) - Copyright (C) The Qt Company Ltd. Used under the LGPL-3 with the Qt LGPL exception. <https://code.qt.io/>
+- **DB-IP City Lite** (CC BY 4.0) - Geolocation database distributed under Creative Commons Attribution 4.0. <https://db-ip.com/>
+- **Fluent UI System Icons** (MIT) - Copyright (C) Microsoft Corporation. UI icons used throughout the application. <https://github.com/microsoft/fluentui-system-icons>
+- **Microsoft Fluent Emoji** (MIT) - Copyright (C) Microsoft Corporation. 3D emoji-style icons used throughout the application. <https://github.com/microsoft/fluentui-emoji>
