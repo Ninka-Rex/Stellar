@@ -514,6 +514,8 @@ URL:            https://stellardownloadmanager.org/
 BuildArch:      x86_64
 
 # All content is pre-staged in BUILDROOT — nothing to build here.
+# Qt runtime is bundled — don't auto-scan for library deps.
+AutoReqProv:    no
 %global debug_package %{nil}
 # Default __spec_install_pre wipes the buildroot before running %install.
 # Our files are already staged, so disable that wipe (keep env setup only).
