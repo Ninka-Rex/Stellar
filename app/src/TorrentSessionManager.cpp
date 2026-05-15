@@ -1808,6 +1808,7 @@ void TorrentSessionManager::resume(DownloadItem *item) {
     m_pausedIds.remove(item->id());
     handle.unset_flags(libtorrent::torrent_flags::auto_managed);
     handle.resume();
+    item->setLastTryAt(QDateTime::currentDateTime());
     updateItemFromStatus(item, handle);
 #else
     Q_UNUSED(item);
@@ -2676,6 +2677,8 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
     }
 
     item->setIsTorrent(true);
+    if (!startPaused)
+        item->setLastTryAt(QDateTime::currentDateTime());
     item->setStatus(startPaused ? DownloadItem::Status::Paused : DownloadItem::Status::Checking);
     updateItemFromStatus(item, handle);
 
