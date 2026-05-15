@@ -33,14 +33,17 @@ ApplicationWindow {
     minimumHeight: 500
     title: {
         const prefix = App.sessionPaused ? "[" + qsTr("PAUSED") + "] " : ""
+        const base = qsTr("Stellar Download Manager") + " " + App.appVersion
         if (!App.settings.speedInTitleBar)
-            return prefix + qsTr("Stellar Download Manager") + " " + App.appVersion
+            return prefix + base
         function fmt(bps) {
             if (bps >= 1024 * 1024)
                 return (bps / (1024 * 1024)).toFixed(1) + " MB/s"
-            return Math.round(bps / 1024) + " KB/s"
+            if (bps >= 1024)
+                return Math.round(bps / 1024) + " KB/s"
+            return bps + " B/s"
         }
-        return prefix + qsTr("Stellar  ↓ %1  ↑ %2").arg(fmt(App.totalDownSpeed)).arg(fmt(App.totalUpSpeed))
+        return prefix + "[↓ " + fmt(App.totalDownSpeed) + "  ↑ " + fmt(App.totalUpSpeed) + "] " + base
     }
 
     Material.theme: Material.Dark
