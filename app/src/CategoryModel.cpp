@@ -39,25 +39,25 @@ void CategoryModel::initDefaults() {
 
     m_categories = {
         { QStringLiteral("all"),        tr("All Downloads"),
-          QStringLiteral("icons/categories/all_downloads.png"), {},  {}, m_downloadsBase, true },
+          QStringLiteral("icons/categories/all_downloads.svg"), {},  {}, m_downloadsBase, true },
         { QStringLiteral("video"),     tr("Video"),
-          QStringLiteral("icons/categories/video.png"),
+          QStringLiteral("icons/categories/video.svg"),
           {"mp4","mkv","avi","mov","wmv","flv","webm","m4v","3gp","mpeg","mpg","ogv","rmvb","rm","qt"},
           {}, sub("Video"), true },
         { QStringLiteral("music"),      tr("Music"),
-          QStringLiteral("icons/categories/note.png"),
+          QStringLiteral("icons/categories/note.svg"),
           {"mp3","flac","wav","aac","ogg","m4a","wma","aif","ra","opus"},
           {}, sub("Music"), true },
         { QStringLiteral("documents"),  tr("Documents"),
-          QStringLiteral("icons/categories/documents.png"),
+          QStringLiteral("icons/categories/documents.svg"),
           {"pdf","doc","docx","xls","xlsx","ppt","pptx","odt","txt","epub","azw3","pps"},
           {}, sub("Documents"), true },
         { QStringLiteral("compressed"), tr("Compressed"),
-          QStringLiteral("icons/categories/compressed.png"),
+          QStringLiteral("icons/categories/compressed.svg"),
           {"zip","rar","7z","tar","gz","bz2","xz","zst","ace","sitx","sit","sea","lzh","z","r00","r01","unitypackage"},
           {}, sub("Compressed"), true },
         { QStringLiteral("programs"),   tr("Programs"),
-          QStringLiteral("icons/categories/programs.png"),
+          QStringLiteral("icons/categories/programs.svg"),
           {"exe","msi","msu","deb","rpm","appimage","dmg","pkg","apk"},
           {}, sub("Programs"), true },
     };
@@ -118,7 +118,7 @@ void CategoryModel::loadFromDisk() {
             Category cat;
             cat.id = id;
             cat.label = obj[QStringLiteral("label")].toString();
-            cat.iconPath = QStringLiteral("icons/folder.png");
+            cat.iconPath = QStringLiteral("icons/folder.svg");
             cat.builtIn = false;
             cat.defaultSavePath = obj[QStringLiteral("savePath")].toString();
             for (const auto &e : obj[QStringLiteral("extensions")].toArray()) cat.extensions << e.toString();
@@ -260,7 +260,7 @@ QString CategoryModel::addCategory(const QString &label) {
     Category cat;
     cat.id = QStringLiteral("user_") + QUuid::createUuid().toString(QUuid::WithoutBraces).left(8);
     cat.label = label.isEmpty() ? QStringLiteral("New Category") : label;
-    cat.iconPath = QStringLiteral("icons/folder.png");
+    cat.iconPath = QStringLiteral("icons/folder.svg");
     cat.defaultSavePath = m_downloadsBase;
     cat.builtIn = false;
 

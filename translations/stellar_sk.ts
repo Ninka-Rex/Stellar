@@ -4189,6 +4189,82 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Bezpečnosť torrentu</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Úložisko</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Režim alokácie</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Riedka</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Predalokovať</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Platí len pre nové torrenty. Predalokovanie okamžite rezervuje celý priestor; riedka alokuje podľa potreby.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Afinita rozsahov</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Sťahovať diely v 4 MiB susedných rozsahoch. Znižuje fragmentáciu pri malých dieloch.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Zlúčiť čítania</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Zlúčiť zápisy</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Zlúčenie spája malé I/O operácie do väčších vyrovnávacích pamätí pred zápisom. Môže zvýšiť priepustnosť pri fragmentovaných torrentoch.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Typ I/O disku</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Predvolené</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Mapované do pamäte</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Fronta zápisu na disk</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Mapované do pamäte: súbory sú priamo mapované do pamäte. Windows a Linux čítajú a zapisujú dáta torrentov cez vyrovnávaciu pamäť s minimálnym zaťažením CPU. Odporúčané pre väčšinu používateľov.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: čítanie a zápis prebieha cez štandardné súborové volania bez mapovania do pamäte. Používa menej adresného priestoru, čo môže pomôcť na 32-bitových systémoch alebo pri seedovaní mnohých veľkých torrentov súčasne.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Predvolené: Stellar automaticky vyberie najlepší režim pre vašu platformu.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Manuálne zákazné peerov sa aplikujú okamžite. Zablokované podstruny user-agenta, zablokované krajiny a možnosti automatického zakazovania sa aplikujú po kliknutí na Aplikovať alebo OK.</translation>
         </message>
@@ -4511,6 +4587,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar je softvér s voľným kódom: môžete ho šíriť a/upravovať podľa podmienok Licenčnej zmluvy GNU General Public License, verzia 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Tento program je šírený v nádeji, že bude užitočný, ale bez akejkoľvek záruky; dokonca aj bez predpokladanej záruky predajnosti alebo vhodnosti na konkrétny účel.</translation>
         </message>
         <message>
             <source>Third-party software</source>

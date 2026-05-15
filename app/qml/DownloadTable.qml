@@ -344,9 +344,10 @@ Rectangle {
         implicitHeight: 22
         height: 22
         topPadding: 0; bottomPadding: 0; verticalPadding: 0
-        leftPadding: 12; rightPadding: 12
+        leftPadding: 8; rightPadding: 12
         spacing: 0
         font.pixelSize: 12
+        property string iconSrc: ""
         indicator: Item { width: 0; height: 0 }
         arrow: Text {
             x: _ctxMi.width - width - 8
@@ -354,12 +355,26 @@ Rectangle {
             text: "▶"; font.pixelSize: 8; color: "#888888"
             visible: _ctxMi.subMenu !== null
         }
-        contentItem: Text {
-            text: _ctxMi.text
-            font: _ctxMi.font
-            color: _ctxMi.enabled ? "#d0d0d0" : "#666666"
-            verticalAlignment: Text.AlignVCenter
-            elide: Text.ElideRight
+        contentItem: Row {
+            spacing: 6
+            Image {
+                visible: _ctxMi.iconSrc !== ""
+                source: _ctxMi.iconSrc !== "" ? "icons/" + _ctxMi.iconSrc : ""
+                width: 14; height: 14
+                sourceSize.width: 14; sourceSize.height: 14
+                fillMode: Image.PreserveAspectFit
+                smooth: true
+                anchors.verticalCenter: parent.verticalCenter
+            }
+            Item { visible: _ctxMi.iconSrc === ""; width: 0; height: 14 }
+            Text {
+                text: _ctxMi.text
+                font: _ctxMi.font
+                color: _ctxMi.enabled ? "#d0d0d0" : "#666666"
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
+                anchors.verticalCenter: parent.verticalCenter
+            }
         }
         background: Rectangle {
             implicitHeight: 22
@@ -372,34 +387,38 @@ Rectangle {
         topPadding: 0; bottomPadding: 0
         CtxMenuItem {
             text: qsTr("Properties")
+            iconSrc: "properties.svg"
             onTriggered: { if (root._ctxItem) root.openPropertiesRequested(root._ctxItem) }
         }
-        CtxMenuItem { text: qsTr("Open File");   onTriggered: { if (root._ctxItem) App.openFile(root._ctxItem.id) } }
-        CtxMenuItem { text: qsTr("Open Folder"); onTriggered: { if (root._ctxItem) App.openFolderSelectFile(root._ctxItem.id) } }
+        CtxMenuItem { text: qsTr("Open File");   iconSrc: "page.svg";        onTriggered: { if (root._ctxItem) App.openFile(root._ctxItem.id) } }
+        CtxMenuItem { text: qsTr("Open Folder"); iconSrc: "folder_view.svg"; onTriggered: { if (root._ctxItem) App.openFolderSelectFile(root._ctxItem.id) } }
         MenuSeparator {}
         Repeater {
             model: (!!root._ctxItem && !!root._ctxItem.isTorrent) ? 1 : 0
             delegate: CtxMenuItem {
                 text: qsTr("Rename...")
+                iconSrc: "rename.svg"
                 onTriggered: { if (root._ctxItem) renameTorrentRootDialog.openFor(root._ctxItem) }
             }
         }
-        CtxMenuItem { text: qsTr("Copy Filename"); onTriggered: { if (root._ctxItem) App.copyDownloadFilename(root._ctxItem.id) } }
+        CtxMenuItem { text: qsTr("Copy Filename"); iconSrc: "copy.svg";   onTriggered: { if (root._ctxItem) App.copyDownloadFilename(root._ctxItem.id) } }
         CtxMenuItem {
             text: root._ctxItem && root._ctxItem.isTorrent ? qsTr("Copy Magnet Link") : qsTr("Copy URL")
+            iconSrc: root._ctxItem && root._ctxItem.isTorrent ? "magnet.svg" : "link.svg"
             onTriggered: root.copySelectedShareLinks()
         }
         Repeater {
             model: (!!root._ctxItem && !!root._ctxItem.isTorrent) ? 1 : 0
             delegate: CtxMenuItem {
                 text: qsTr("Export .torrent…")
+                iconSrc: "export_torrent.svg"
                 enabled: root.anyTorrentSelected
                 onTriggered: root.requestExportSelectedTorrents()
             }
         }
         MenuSeparator {}
-        CtxMenuItem { text: qsTr("Resume"); onTriggered: root.resumeSelected() }
-        CtxMenuItem { text: qsTr("Stop");   onTriggered: root.stopSelected()   }
+        CtxMenuItem { text: qsTr("Resume"); iconSrc: "resume.svg"; onTriggered: root.resumeSelected() }
+        CtxMenuItem { text: qsTr("Stop");   iconSrc: "pause.svg";  onTriggered: root.stopSelected()   }
         MenuSeparator {}
         CtxMenuItem {
             id: _moveToQueueItem
@@ -435,8 +454,8 @@ Rectangle {
             }
         }
         MenuSeparator {}
-        CtxMenuItem { text: qsTr("Redownload"); onTriggered: { if (root._ctxItem) App.redownload(root._ctxItem.id) } }
-        CtxMenuItem { text: qsTr("Delete");     onTriggered: { if (root._ctxItem) root._openDeleteDialog(root._ctxItem) } }
+        CtxMenuItem { text: qsTr("Redownload"); iconSrc: "update.svg"; onTriggered: { if (root._ctxItem) App.redownload(root._ctxItem.id) } }
+        CtxMenuItem { text: qsTr("Delete");     iconSrc: "delete.svg"; onTriggered: { if (root._ctxItem) root._openDeleteDialog(root._ctxItem) } }
     }
 
     // Bump _selectionVersion only when a SELECTED row's data changes so toolbar
@@ -1177,9 +1196,9 @@ Rectangle {
                         anchors.centerIn: parent
                         source: {
                             const q = rowRect.item ? rowRect.item.queueId : ""
-                            if (q === "main-download") return "qrc:/qt/qml/com/stellar/app/app/qml/icons/main_queue.png"
-                            if (q === "main-sync")     return "qrc:/qt/qml/com/stellar/app/app/qml/icons/synch_queue.png"
-                            return "qrc:/qt/qml/com/stellar/app/app/qml/icons/custom_queue.png"
+                            if (q === "main-download") return "qrc:/qt/qml/com/stellar/app/app/qml/icons/main_queue.svg"
+                            if (q === "main-sync")     return "qrc:/qt/qml/com/stellar/app/app/qml/icons/synch_queue.svg"
+                            return "qrc:/qt/qml/com/stellar/app/app/qml/icons/custom_queue.svg"
                         }
                         width: 14; height: 14
                         sourceSize: Qt.size(14, 14)

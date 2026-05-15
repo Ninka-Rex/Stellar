@@ -4197,6 +4197,82 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ความปลอดภัยของ Torrent</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>พื้นที่จัดเก็บข้อมูล</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>โหมดการจัดสรร</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>เบาบาง</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>จัดสรรล่วงหน้า</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>ใช้ได้กับทอร์เรนต์ใหม่เท่านั้น การจัดสรรแบบจองล่วงหน้าจะจองพื้นที่ดิสก์เต็มจำนวนทันที ส่วนการจัดสรรแบบเบาบางจะจองตามความต้องการ</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>ความสัมพันธ์ของขอบเขตชิ้นงาน</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>ดาวน์โหลดชิ้นส่วนในขอบเขตต่อเนื่องขนาด 4 MiB ลดการกระจายตัวของไฟล์ในทอร์เรนต์ที่มีขนาดชิ้นส่วนเล็ก</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>รวมการอ่านดิสก์</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>รวมการเขียนดิสก์</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>การรวมข้อมูลจะรวมการดำเนินการ I/O ขนาดเล็กเข้าเป็นบัฟเฟอร์ขนาดใหญ่ก่อนเขียนลงดิสก์ อาจช่วยเพิ่มปริมาณงานบนทอร์เรนต์ที่มีการแยกส่วน</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>ประเภท I/O ของดิสก์</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>ค่าเริ่มต้น</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>แมปหน่วยความจำ</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>คิวเขียนดิสก์</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>แมปหน่วยความจำ: ไฟล์ถูกแมปลงหน่วยความจำโดยตรง Windows และ Linux อ่านเขียนข้อมูลทอร์เรนต์ผ่านแคชเพจ ใช้ CPU น้อย แนะนำสำหรับผู้ใช้ส่วนใหญ่</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: อ่านเขียนผ่านการเรียกไฟล์มาตรฐาน ไม่ใช้การแมปหน่วยความจำ ใช้พื้นที่แอดเดรสน้อยกว่าแบบแมปหน่วยความจำ ช่วยในระบบ 32 บิต หรือเมื่อซีดทอร์เรนต์ใหญ่หลายตัวพร้อมกัน</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>ค่าเริ่มต้น: Stellar เลือกโหมดที่ดีที่สุดให้แพลตฟอร์มคุณอัตโนมัติ</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>การแบนเพื่อนแบบแมนนวลจะมีผลทันที ส่วนการบล็อก user-agent, ประเทศ และตัวเลือกการแบนอัตโนมัติจะมีผลเมื่อคุณคลิก Apply หรือ OK</translation>
         </message>
@@ -4519,6 +4595,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar เป็นซอฟต์แวร์เสรี: คุณสามารถแจกจ่ายและ/หรือแก้ไขภายใต้เงื่อนไขของใบอนุญาตสาธารณะทั่วไป GNU รุ่นที่ 3</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>โปรแกรมนี้แจกจ่ายโดยหวังว่าจะมีประโยชน์ แต่ไม่มีการรับประกันใดๆ แม้แต่การรับประกันโดยนัยด้านความสามารถเชิงพาณิชย์หรือความเหมาะสมสำหรับวัตถุประสงค์เฉพาะ</translation>
         </message>
         <message>
             <source>Third-party software</source>

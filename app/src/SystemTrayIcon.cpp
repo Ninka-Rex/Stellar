@@ -53,7 +53,7 @@ static QString psQuoted(const QString &value)
 }
 
 static QIcon createDownloadsTrayIcon() {
-    const QIcon icon(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/arrow_down.png"));
+    const QIcon icon(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/arrow_down.svg"));
     if (!icon.isNull())
         return icon;
     // Fallback: simple down-arrow drawn pixmap
@@ -114,28 +114,32 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
         "QMenu::separator { height:1px; background:#444; margin:2px 0; }"
     );
 
+    auto trayIcon = [](const char *name) {
+        return QIcon(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/") + QLatin1String(name));
+    };
+
     auto *openAction = m_menu->addAction(tr("Open Stellar"));
     openAction->setFont([&]{ QFont f; f.setBold(true); return f; }());
     connect(openAction, &QAction::triggered, this, &SystemTrayIcon::showRequested);
 
-    m_menu->addAction(tr("Add URL…"), this, &SystemTrayIcon::addUrlRequested);
+    auto *addUrlAction = m_menu->addAction(trayIcon("add_url.svg"), tr("Add URL…"), this, &SystemTrayIcon::addUrlRequested);
+    Q_UNUSED(addUrlAction)
     m_menu->addSeparator();
-    m_menu->addAction(tr("GitHub"), this, &SystemTrayIcon::githubRequested);
-    m_menu->addAction(tr("About Stellar"), this, &SystemTrayIcon::aboutRequested);
+    m_menu->addAction(trayIcon("globe.svg"),       tr("GitHub"),        this, &SystemTrayIcon::githubRequested);
+    m_menu->addAction(trayIcon("about.svg"),        tr("About Stellar"), this, &SystemTrayIcon::aboutRequested);
     m_menu->addSeparator();
 
-    m_speedLimiterAction = m_menu->addAction(tr("Speed Limiter"), this, [this] {
-        // Toggle: if checked currently active, disable; else enable.
+    m_speedLimiterAction = m_menu->addAction(trayIcon("clock.svg"), tr("Speed Limiter"), this, [this] {
         if (m_speedLimiterAction->isChecked())
             emit disableSpeedLimiterRequested();
         else
             emit enableSpeedLimiterRequested();
     });
     m_speedLimiterAction->setCheckable(true);
-    m_menu->addAction(tr("Speed Limiter Settings…"), this, &SystemTrayIcon::speedLimiterSettingsRequested);
+    m_menu->addAction(trayIcon("gear.svg"), tr("Speed Limiter Settings…"), this, &SystemTrayIcon::speedLimiterSettingsRequested);
     m_menu->addSeparator();
 
-    m_pauseSessionAction = m_menu->addAction(tr("Pause Session"), this, [this] {
+    m_pauseSessionAction = m_menu->addAction(trayIcon("pause.svg"), tr("Pause Session"), this, [this] {
         if (m_pauseSessionAction->isChecked())
             emit pauseSessionRequested();
         else
@@ -144,7 +148,7 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
     m_pauseSessionAction->setCheckable(true);
 
     m_menu->addSeparator();
-    m_menu->addAction(tr("Exit Stellar"), this, &SystemTrayIcon::quitRequested);
+    m_menu->addAction(trayIcon("exit.svg"), tr("Exit Stellar"), this, &SystemTrayIcon::quitRequested);
 
     m_tray->setContextMenu(m_menu);
 #endif

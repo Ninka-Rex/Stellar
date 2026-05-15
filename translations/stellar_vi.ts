@@ -4203,6 +4203,82 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <translation>Bảo mật torrent</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Lưu trữ</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Chế độ cấp phát</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Thưa</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Cấp trước</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Chỉ áp dụng cho torrent mới. Cấp trước chiếm toàn bộ dung lượng ngay; thưa cấp phát theo nhu cầu.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Ái lực mảnh</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Tải mảnh trong phạm vi 4 MiB liền kề. Giảm phân mảnh cho torrent có mảnh nhỏ.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Gộp đọc đĩa</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Gộp ghi đĩa</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Gộp thao tác I/O nhỏ vào bộ đệm lớn hơn trước khi ghi đĩa. Có thể cải thiện thông lượng với torrent phân mảnh.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Kiểu I/O đĩa</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Mặc định</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Ánh xạ bộ nhớ</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Hàng đợi ghi đĩa</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Ánh xạ bộ nhớ: tệp được ánh xạ trực tiếp vào bộ nhớ. Windows và Linux đọc/ghi dữ liệu torrent qua bộ đệm trang, tốn ít CPU. Khuyên dùng cho hầu hết người dùng.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: đọc/ghi qua lời gọi tệp chuẩn, không ánh xạ bộ nhớ. Dùng ít không gian địa chỉ hơn, hữu ích trên hệ 32-bit hoặc khi seed nhiều torrent lớn cùng lúc.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Mặc định: Stellar tự chọn chế độ tốt nhất cho nền tảng của bạn.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Cấm đồng nghiệp thủ công có hiệu lực ngay lập tức. Các chuỗi user-agent bị chặn, các quốc gia bị chặn và tùy chọn cấm tự động có hiệu lực khi bạn nhấp vào Áp dụng hoặc OK.</translation>
         </message>
@@ -4525,6 +4601,10 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar là phần mềm miễn phí: bạn có thể phân phối và/hoặc sửa đổi nó theo các điều khoản của Giấy phép Công cộng GNU phiên bản 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Chương trình được phân phối với hy vọng hữu ích, nhưng không có bảo hành; kể cả bảo hành ngụ ý về tính thương mại hay phù hợp mục đích cụ thể.</translation>
         </message>
         <message>
             <source>Third-party software</source>

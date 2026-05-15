@@ -623,13 +623,13 @@ Window {
                         spacing: 1
                         Repeater {
                             model: [
-                                { label: qsTr("Start\nExploring"),   action: "start",         icon: "resume.png",         btnWidth: 88 },
-                                { label: qsTr("Stop\nExploring"),    action: "stop",          icon: "pause.png",          btnWidth: 88 },
-                                { label: qsTr("Start\nDownloading"), action: "download",      icon: "arrow_down.png",     btnWidth: 96 },
-                                { label: qsTr("Stop\nDownloads"),    action: "stopDownloads", icon: "pause_orange.png",   btnWidth: 88 },
-                                { label: qsTr("Update\nAll"),        action: "update",        icon: "update.png",         btnWidth: 80 },
-                                { label: qsTr("Schedule\nProject"),  action: "schedule",      icon: "clock.png",          btnWidth: 88 },
-                                { label: qsTr("Statistics"),         action: "stats",         icon: "about.ico",          btnWidth: 84 }
+                                { label: qsTr("Start\nExploring"),   action: "start",         icon: "resume.svg",         btnWidth: 88 },
+                                { label: qsTr("Stop\nExploring"),    action: "stop",          icon: "pause.svg",          btnWidth: 88 },
+                                { label: qsTr("Start\nDownloading"), action: "download",      icon: "arrow_down.svg",     btnWidth: 96 },
+                                { label: qsTr("Stop\nDownloads"),    action: "stopDownloads", icon: "pause_orange.svg",   btnWidth: 88 },
+                                { label: qsTr("Update\nAll"),        action: "update",        icon: "update.svg",         btnWidth: 80 },
+                                { label: qsTr("Schedule\nProject"),  action: "schedule",      icon: "clock.svg",          btnWidth: 88 },
+                                { label: qsTr("Statistics"),         action: "stats",         icon: "bar_chart.svg",      btnWidth: 84 }
                             ]
                             delegate: ToolbarBtn {
                                 label: modelData.label
@@ -748,7 +748,7 @@ Window {
                                         spacing: 5
 
                                         Image {
-                                            source: "icons/categories/all_downloads.png"
+                                            source: "icons/categories/all_downloads.svg"
                                             width: 14; height: 14
                                             sourceSize.width: 14; sourceSize.height: 14
                                             fillMode: Image.PreserveAspectFit
@@ -786,7 +786,7 @@ Window {
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
-                                            source: "icons/cloud_copylink.ico"
+                                            source: "icons/cloud_copylink.svg"
                                             width: 14; height: 14
                                             sourceSize.width: 14; sourceSize.height: 14
                                             fillMode: Image.PreserveAspectFit
@@ -840,7 +840,7 @@ Window {
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
                                             Image {
-                                                source: modelData.isDomain ? "icons/globe.png" : "icons/page.ico"
+                                                source: modelData.isDomain ? "icons/globe.svg" : "icons/page.svg"
                                                 width: 14; height: 14
                                                 sourceSize.width: 14; sourceSize.height: 14
                                                 fillMode: Image.PreserveAspectFit
@@ -890,7 +890,7 @@ Window {
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
-                                            source: "icons/folder_view.ico"
+                                            source: "icons/folder_view.svg"
                                             width: 14; height: 14
                                             sourceSize.width: 14; sourceSize.height: 14
                                             fillMode: Image.PreserveAspectFit
@@ -944,7 +944,7 @@ Window {
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
                                             Image {
-                                                source: "icons/folder.png"
+                                                source: "icons/folder.svg"
                                                 width: 14; height: 14
                                                 sourceSize.width: 14; sourceSize.height: 14
                                                 fillMode: Image.PreserveAspectFit

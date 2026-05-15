@@ -59,32 +59,32 @@ Rectangle {
         anchors { fill: parent; leftMargin: 2 }
         spacing: 0
 
-        ToolbarBtn { label: qsTr("Add URL");        iconSrc: "icons/link.png";        onClicked: root.addClicked() }
+        ToolbarBtn { label: qsTr("Add URL");        iconSrc: "icons/link.svg";        onClicked: root.addClicked() }
         // selectedItemStatus is a string Q_PROPERTY on DownloadTable — it emits
         // selectedItemStatusChanged whenever the focused item's status changes,
         // making cross-component enabled bindings reliably reactive.
         ToolbarBtn {
-            label: qsTr("Resume"); iconSrc: "icons/resume.png"
+            label: qsTr("Resume"); iconSrc: "icons/resume.svg"
             enabled: downloadTable ? downloadTable.selectedItemStatus === "Paused" : false
             onClicked: root.resumeClicked()
         }
         ToolbarBtn {
-            label: qsTr("Stop"); iconSrc: "icons/pause.png"
+            label: qsTr("Stop"); iconSrc: "icons/pause.svg"
             enabled: downloadTable ? (downloadTable.selectedItemStatus === "Downloading"
                                    || downloadTable.selectedItemStatus === "Queued"
                                    || downloadTable.selectedItemStatus === "Seeding") : false
             onClicked: root.stopClicked()
         }
-        ToolbarBtn { label: qsTr("Stop All"); iconSrc: "icons/pause_orange.png"; enabled: App.activeDownloads > 0;                          onClicked: root.stopAllClicked() }
-        ToolbarBtn { label: qsTr("Delete");      iconSrc: "icons/trash.png"; enabled: downloadTable ? downloadTable.hasSelection : false; onClicked: root.deleteClicked() }
-        ToolbarBtn { label: qsTr("Delete Done"); iconSrc: "icons/trash.png";      onClicked: root.deleteCompletedClicked() }
-        ToolbarBtn { label: qsTr("Options");        iconSrc: "icons/tools.png";     onClicked: root.optionsClicked() }
-        ToolbarBtn { label: qsTr("Scheduler");      iconSrc: "icons/clock.png";     onClicked: root.schedulerClicked() }
+        ToolbarBtn { label: qsTr("Stop All"); iconSrc: "icons/pause_orange.svg"; enabled: App.activeDownloads > 0;                          onClicked: root.stopAllClicked() }
+        ToolbarBtn { label: qsTr("Delete");      iconSrc: "icons/trash.svg"; enabled: downloadTable ? downloadTable.hasSelection : false; onClicked: root.deleteClicked() }
+        ToolbarBtn { label: qsTr("Delete Done"); iconSrc: "icons/trash.svg";      onClicked: root.deleteCompletedClicked() }
+        ToolbarBtn { label: qsTr("Options");        iconSrc: "icons/tools.svg";     onClicked: root.optionsClicked() }
+        ToolbarBtn { label: qsTr("Scheduler");      iconSrc: "icons/clock.svg";     onClicked: root.schedulerClicked() }
 
         // Start Queue dropdown
         ToolbarDropdown {
             label: qsTr("Start Queue")
-            iconSrc: "icons/resume_purple.png"
+            iconSrc: "icons/start_queue.svg"
             queueModel: root.queueModel
             onQueueSelected: (queueId) => root.startQueueRequested(queueId)
         }
@@ -92,19 +92,19 @@ Rectangle {
         // Stop Queue dropdown
         ToolbarDropdown {
             label: qsTr("Stop Queue")
-            iconSrc: "icons/pause_purple.png"
+            iconSrc: "icons/stop_queue.svg"
             queueModel: root.queueModel
             onQueueSelected: (queueId) => root.stopQueueRequested(queueId)
         }
 
-        ToolbarBtn { label: qsTr("Grabber");        iconSrc: "icons/spider.png";         onClicked: root.grabberClicked() }
+        ToolbarBtn { label: qsTr("Grabber");        iconSrc: "icons/spider.svg";         onClicked: root.grabberClicked() }
         ToolbarBtn {
-            label: qsTr("Search Engine"); iconSrc: "icons/magnifying_glass.png"
+            label: qsTr("Search Engine"); iconSrc: "icons/magnifying_glass.svg"
             visible: App.settings.showSearchEngine
             onClicked: root.searchEngineClicked()
         }
         ToolbarBtn {
-            label: qsTr("RSS"); iconSrc: "icons/rss.png"
+            label: qsTr("RSS"); iconSrc: "icons/rss.svg"
             visible: App.settings.showRssReader
             onClicked: root.rssClicked()
         }

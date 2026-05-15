@@ -2803,7 +2803,7 @@ Window {
                                     Image {
                                         Layout.preferredWidth: 16
                                         Layout.preferredHeight: 16
-                                        source: "icons/rename.ico"
+                                        source: "icons/rename.svg"
                                         sourceSize: Qt.size(16, 16)
                                         fillMode: Image.PreserveAspectFit
                                         asynchronous: true
@@ -2952,7 +2952,7 @@ Window {
                                         anchors.leftMargin: 10
                                         width: 16
                                         height: 16
-                                        source: "icons/rename.ico"
+                                        source: "icons/rename.svg"
                                         sourceSize: Qt.size(16, 16)
                                         fillMode: Image.PreserveAspectFit
                                         asynchronous: true

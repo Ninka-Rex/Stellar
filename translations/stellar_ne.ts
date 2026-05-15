@@ -4236,39 +4236,39 @@ torrent प्रयोग गर्नु अघि तपाईंको IP ad
         </message>
         <message>
             <source>Disk I/O type</source>
-            <translation/>
+            <translation>डिस्क I/O प्रकार</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation/>
+            <translation>पूर्वनिर्धारित</translation>
         </message>
         <message>
             <source>Memory-mapped</source>
-            <translation/>
+            <translation>मेमोरी-म्याप्ड</translation>
         </message>
         <message>
             <source>POSIX</source>
-            <translation/>
+            <translation>POSIX</translation>
         </message>
         <message>
             <source>Disk write queue</source>
-            <translation/>
+            <translation>डिस्क लेखन कतार</translation>
         </message>
         <message>
             <source>MiB</source>
-            <translation/>
+            <translation>MiB</translation>
         </message>
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
-            <translation/>
+            <translation>मेमोरी-म्याप्ड: फाइलहरू सिधै मेमोरीमा म्याप गरिन्छ। Windows र Linux ले न्यूनतम CPU प्रयोगमा पृष्ठ क्यास मार्फत टोरेन्ट डेटा पढ्छन् र लेख्छन्। धेरैजसो प्रयोगकर्ताका लागि सिफारिस गरिन्छ।</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
-            <translation/>
+            <translation>POSIX: मेमोरी-म्यापिङ बिना मानक फाइल कलहरू मार्फत पढाइ र लेखाइ हुन्छ। मेमोरी-म्याप्ड भन्दा कम ठेगाना स्थान प्रयोग गर्छ, जसले 32-बिट प्रणाली वा एकैसाथ धेरै ठूला टोरेन्ट सिड गर्दा मद्दत गर्न सक्छ।</translation>
         </message>
         <message>
             <source>Default: Stellar picks the best mode for your platform automatically.</source>
-            <translation/>
+            <translation>पूर्वनिर्धारित: Stellar ले तपाईंको प्लेटफर्मको लागि स्वचालित रूपमा उत्तम मोड छान्छ।</translation>
         </message>
         <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
@@ -4596,7 +4596,7 @@ torrent प्रयोग गर्नु अघि तपाईंको IP ad
         </message>
         <message>
             <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
-            <translation/>
+            <translation>यो कार्यक्रम उपयोगी हुने आशामा वितरण गरिएको छ, तर कुनै वारेन्टी बिना; व्यापारिकता वा कुनै विशेष उद्देश्यको लागि उपयुक्तताको निहित वारेन्टी समेत बिना।</translation>
         </message>
         <message>
             <source>Third-party software</source>

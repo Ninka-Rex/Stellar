@@ -97,7 +97,35 @@ Website: https://www.sqlite.org/
 Copyright notice: https://www.sqlite.org/copyright.html
 
 ------------------------------------------------------------------------
-5. Stellar itself
+5. Fluent UI System Icons
+------------------------------------------------------------------------
+
+Stellar uses icons from the Microsoft Fluent UI System Icons project
+for its user interface.
+
+Copyright (c) Microsoft Corporation.
+
+Licensed under the MIT License.
+Full text: https://opensource.org/licenses/MIT
+
+Source: https://github.com/microsoft/fluentui-system-icons
+
+------------------------------------------------------------------------
+6. Microsoft Fluent Emoji
+------------------------------------------------------------------------
+
+Stellar uses emoji-style icons from the Microsoft Fluent Emoji project
+for its user interface.
+
+Copyright (c) Microsoft Corporation.
+
+Licensed under the MIT License.
+Full text: https://opensource.org/licenses/MIT
+
+Source: https://github.com/microsoft/fluentui-emoji
+
+------------------------------------------------------------------------
+7. Stellar itself
 ------------------------------------------------------------------------
 
 Stellar Download Manager

@@ -4210,6 +4210,82 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ටොරන්ට් ආරක්ෂාව</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>ගබඩාව</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>වෙන්කිරීමේ ආකාරය</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>විරල</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>පෙර-වෙන්කරන්න</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>නව ටොරන්ට් සඳහා පමණි. පෙර-වෙන්කිරීම සම්පූර්ණ තැටි ඉඩ වහාම වෙන් කරයි; විරල ඉල්ලුම මත වෙන් කරයි.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>කොටස් ප්‍රමාණ බැඳියාව</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>4 MiB යාබද ප්‍රමාණවලින් කොටස් බාගන්න. කුඩා කොටස් ප්‍රමාණ සහිත ටොරන්ට් වල ඛණ්ඩනය අඩු කරයි.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>තැටි කියවීම් ඒකාබද්ධ කරන්න</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>තැටි ලිවීම් ඒකාබද්ධ කරන්න</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>ඒකාබද්ධ කිරීම කුඩා I/O මෙහෙයුම් තැටියට ලිවීමට පෙර විශාල බෆරවලට ඒකාබද්ධ කරයි. ඛණ්ඩිත ටොරන්ට් වල ප්‍රතිදානය වැඩි දියුණු කළ හැක.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>තැටි I/O වර්ගය</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>පෙරනිමිය</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>මතක-සිතියම්ගත</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>තැටි ලිවීමේ පෝලිම</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>මිබ්</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>මතක-සිතියම්ගත: ගොනු සෘජුවම මතකයට සිතියම්ගත කෙරේ. වින්ඩෝස් සහ ලිනක්ස් අවම CPU භාවිතයෙන් පිටු හැඹිලිය හරහා ටොරන්ට් දත්ත කියවීම සහ ලිවීම සිදු කරයි. බොහෝ පරිශීලකයින් සඳහා නිර්දේශිතයි.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: කියවීම් සහ ලිවීම් මතක-සිතියම්කරණයකින් තොරව සම්මත ගොනු ඇමතුම් හරහා සිදු වේ. මතක-සිතියම්කරණයට වඩා අඩු ලිපින අවකාශයක් භාවිතා කරයි, එය 32-බිට් පද්ධතිවල හෝ එකවර විශාල ටොරන්ට් ගණනාවක් බීජ කරන විට උපකාරී විය හැක.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>පෙරනිමිය: ඔබගේ වේදිකාව සඳහා හොඳම මාදිලිය ස්ටෙලර් ස්වයංක්‍රීයව තෝරා ගනී.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>අතින් සම වයසේ තහනම් කිරීම් වහාම ක්‍රියාත්මක වේ. අවහිර කළ පරිශීලක-නියෝජිත උප තන්තු, අවහිර කළ රටවල්, සහ ස්වයං-තහනම් විකල්ප ඔබ යොදන්න හෝ හරි ක්ලික් කළ විට ක්‍රියාත්මක වේ.</translation>
         </message>
@@ -4532,6 +4608,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar නිදහස් මෘදුකාංගයකි: GNU General Public License, version 3 යටතේ ඔබට එය නැවත බෙදාහැරීමට සහ/හෝ වෙනස් කිරීමට හැකිය.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>මෙම වැඩසටහන ප්‍රයෝජනවත් වනු ඇතැයි යන බලාපොරොත්තුවෙන් බෙදා හරිනු ලැබේ, නමුත් කිසිදු වගකීමක් නොමැතිව; වෙළඳපොල යෝග්‍යතාව හෝ විශේෂිත අරමුණක් සඳහා යෝග්‍යතාව පිළිබඳ ඇඟවුම් කළ වගකීමක් පවා නොමැතිව.</translation>
         </message>
         <message>
             <source>Third-party software</source>

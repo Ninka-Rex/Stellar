@@ -4202,6 +4202,82 @@ Preporučuje se vezivanje Stellara za mrežni sučelje VPN-a i provera da li je 
             <translation>Bezbednost torrenta</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Складиште</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Режим алокације</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Ретко</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Пред-алоцирај</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Примењује се само на нове торенте. Пред-алоцирање одмах резервише сав простор; ретка алокација заузима по потреби.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Афинитет делова</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Преузимај делове у суседним опсезима од 4 MiB. Смањује фрагментацију код торената са малим деловима.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Обједини читања</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Обједини уписе</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Обједињавање спаја мале I/O операције у веће бафере пре уписа на диск. Може побољшати пропусност код фрагментираних торената.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Тип диск I/O</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Подразумевано</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Мапирано у меморију</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Ред за упис на диск</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Мапирано у меморију: фајлови се директно мапирају у меморију. Windows и Linux читају и уписују torrent податке преко кеша страница уз минимално CPU оптерећење. Препоручује се за већину корисника.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: читање и упис иду преко стандардних позива фајлова без мапирања у меморију. Користи мање адресног простора, што помаже на 32-битним системима или при сидовању много великих torrent-а истовремено.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Подразумевано: Stellar аутоматски бира најбољи режим за вашу платформу.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Ručno zabranjivanje vršaka odmah se primenjuje. Zabranjeni podnizovi korisničkih imena, zabranjene zemlje i opcije automatskog zabranjivanja se primenjuju kada kliknete na 'Primeni' ili 'U redu'.</translation>
         </message>
@@ -4524,6 +4600,10 @@ Preporučuje se vezivanje Stellara za mrežni sučelje VPN-a i provera da li je 
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar je besplatan softver: možete ga redistribuirati i/ili menjati pod uslovima GNU General Public License verzije 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Овај програм се дистрибуира у нади да ће бити користан, али без икакве гаранције; чак и без подразумеване гаранције за тржишну вредност или погодност за одређену намену.</translation>
         </message>
         <message>
             <source>Third-party software</source>

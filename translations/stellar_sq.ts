@@ -4200,6 +4200,82 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Torrent Security</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Ruajtje</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Modaliteti i shpërndarjes</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>I rrallë</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Para-cakto</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Zbatohet vetëm për torrentët e rinj. Para-ndarja rezervon hapësirë të plotë në disk menjëherë; ndarja e rrallë ndan sipas nevojës.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Shtrirja e pjesës afinitet</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Shkarko pjesë në shtrirje ngjitur prej 4 MiB. Zvogëlon fragmentimin në torrentë me madhësi të vogla pjesësh.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Bashkimi i leximeve të diskut</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Bashkoni shkrimet në disk</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Bashkimi i veprimeve të vogla hyrëse/dalëse në buferë më të mëdhenj para shkrimit në disk. Mund të përmirësojë xhiron në torrentët e fragmentuar.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Lloji I/O diskut</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Parazgjedhje</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Hartë memorie</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Radha e shkrimit në disk</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Hartë memorie: skedarët vendosen direkt në memorie. Windows dhe Linux lexojnë e shkruajnë të dhëna torrenti përmes cache-it të faqeve me përdorim minimal CPU. Rekomandohet për shumicën.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: leximet dhe shkrimet kalojnë përmes thirrjeve standarde pa hartë memorie. Përdor më pak hapësirë adresash, gjë që ndihmon në sisteme 32-bit ose kur ndahen shumë torrentë të mëdhenj njëkohësisht.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Parazgjedhje: Stellar zgjedh automatikisht mënyrën më të mirë për platformën tuaj.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</translation>
         </message>
@@ -4522,6 +4598,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar është softuer falas: mund ta ripërdorni dhe/ose ta modifikosh sipër kushteve të Licencës Publike të Përgjithshme GNU, versioni 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Ky program shpërndahet me shpresën se do të jetë i dobishëm, por pa asnjë garanci; madje edhe pa garancinë e nënkuptuar të tregtueshmërisë ose përshtatshmërisë për një qëllim të caktuar.</translation>
         </message>
         <message>
             <source>Third-party software</source>

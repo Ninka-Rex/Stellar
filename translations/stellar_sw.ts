@@ -4194,6 +4194,82 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <translation>Usalama wa BitTorrent</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Hifadhi</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Hali ya ugawaji</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Nafasi pungufu</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Gawa mapema</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Hutumika kwa mitiririko mipya pekee. Gawia mapema huhifadhi nafasi yote ya diski mara moja; nafasi pungufu hugawa inapohitajika.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Uhusiano wa vipande</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Pakua vipande katika maeneo ya 4 MiB yanayopakana. Hupunguza usambaratiko kwenye mitiririko yenye vipande vidogo.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Unganisha usomaji diski</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Unganisha uandikaji diski</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Unganishaji huunganisha shughuli ndogo za I/O kuwa vihifadhi vikubwa kabla ya kuandika kwenye diski. Huenda ikaboresha upitishaji kwenye mitiririko iliyosambaratika.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Aina ya I/O diski</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Chaguo-msingi</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Ramani-memory</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Foleni ya uandikaji diski</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Ramani-memory: faili hupangwa moja kwa moja kwenye kumbukumbu. Windows na Linux husoma na kuandika data ya mkondo kupitia kache ya ukurasa kwa matumizi madogo ya CPU. Inapendekezwa kwa watumiaji wengi.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: usomaji na uandikaji hupitia simu za kawaida za faili bila ramani-memory. Hutumia nafasi ndogo ya anwani kuliko ramani-memory, jambo linaloweza kusaidia kwenye mifumo ya 32-bit au wakati wa kusambaza mikondo mingi mikubwa kwa wakati mmoja.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Chaguo-msingi: Stellar huchagua hali bora kwa jukwaa lako kiotomatiki.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Mawasiliano ya kuzuia walezi yanafanywa mara moja. Sehemu zilizopigwa marufuku za user-agent, nchi zilizopigwa marufuku, na chaguzi za kuzuia kwa ajili ya kufanya hivyo peke yake zinatumika unapobonyeza Apply au OK.</translation>
         </message>
@@ -4516,6 +4592,10 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar ni programu huru: unaweza kuweka upya na/au kubadilisha chini ya masharti ya Lisensi ya Jumla ya GNU, toleo 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Programu hii inasambazwa kwa matumaini kuwa itakuwa na manufaa, lakini bila dhamana yoyote; hata bila dhamana inayodhaniwa ya kuuzika au kufaa kwa kusudi fulani.</translation>
         </message>
         <message>
             <source>Third-party software</source>

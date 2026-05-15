@@ -4209,6 +4209,82 @@ BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق �
             <translation>توررېنت بىخەتەرلىكى</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>ساقلاش</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>تەقسىملەش ھالىتى</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>سىيرەك</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>ئالدىن تەقسىملەش</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>پەقەت يېڭى توررېنتلارغا قوللىنىلىدۇ. ئالدىن تەقسىملەش دېسك بوشلۇقىنى دەرھال ئىگىلەيدۇ؛ سىيرەك ئېھتىياجغا قاراپ ئىگىلەيدۇ.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>پارچە دائىرىسى يېقىنلىقى</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>پارچىلارنى 4 مىب ئارىلىقتىكى دائىرىلەردە چۈشۈرۈش. كىچىك پارچە چوڭلۇقىدىكى توررېنتلاردا پارچىلىنىشنى ئازايتىدۇ.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>دېسك ئوقۇشنى بىرلەشتۈرۈش</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>دېسك يېزىشنى بىرلەشتۈرۈش</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>بىرلەشتۈرۈش كىچىك كىرگۈز-چىقىرىش مەشغۇلاتلىرىنى دېسكقا يېزىشتىن بۇرۇن چوڭ بۇفېرلارغا بىرلەشتۈرىدۇ. پارچىلانغان توررېنتلاردا ئۆتكۈزۈش ئۈنۈمىنى ئۆستۈرۈشى مۇمكىن.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>1. دىسك I/O تىپى</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>2. سۈكۈتتىكى</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>3. ئەسلىكە خەرىتىلەنگەن</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>4. POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>5. دىسك يېزىش نۆۋىتى</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>6. MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>7. ئەسلىكە خەرىتىلەنگەن: ھۆججەتلەر بىۋاسىتە ئەسلىكە خەرىتىلىنىدۇ. Windows ۋە Linux توررېنت سانلىق-مەلۇماتلىرىنى بەت كەش ئارقىلىق ئەڭ تۆۋەن CPU ئىشلىتىش بىلەن ئوقۇيدۇ ۋە يازىدۇ. كۆپ ئىشلەتكۈچىلەرگە تەۋسىيە قىلىنىدۇ.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>8. POSIX: ئوقۇش ۋە يېزىش ئەسلىكە خەرىتىلەشسىز ئۆلچەملىك ھۆججەت چاقىرىشلىرى ئارقىلىق ئېلىپ بېرىلىدۇ. ئەسلىكە خەرىتىلەنگەنگە قارىغاندا ئاز ئادرېس بوشلۇقى ئىشلىتىدۇ، بۇ 32-بىتلىق سىستېمىلاردا ياكى بىر ۋاقىتتا نۇرغۇن چوڭ توررېنتلارنى تارقىتىۋاتقاندا ياردەم بېرىدۇ.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>9. سۈكۈتتىكى: Stellar سۇپىڭىزغا ئەڭ ماس كېلىدىغان ھالەتنى ئاپتوماتىك تاللايدۇ.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>قولدا تەڭداش چەكلەش دەرھال كۈچكە ئىگە. چەكلەنگەن ئىشلەتكۈچى-ۋاكالەتچى تارماق تىزمىلىرى، چەكلەنگەن دۆلەتلەر ۋە ئاپتوماتىك چەكلەش تاللانمىلىرى 'قوللان' ياكى 'جەزملە' نى چەككەندە كۈچكە ئىگە.</translation>
         </message>
@@ -4531,6 +4607,10 @@ BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق �
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar ئەركىن يۇمشاق دېتال: GNU GPL 3-نەشرى بويىچە تارقىتىش ۋە ئۆزگەرتىش ھوقۇقىڭىز بار.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>10. بۇ پروگرامما پايدىلىق بولۇشى ئۈمىد قىلىنىپ تارقىتىلىدۇ، ئەمما ھېچقانداق كاپالەتسىز؛ ھەتتا سودىغا ياراملىقلىق ياكى مەلۇم مەقسەتكە ماسلىشىش كاپالىتىمۇ بېرىلمەيدۇ.</translation>
         </message>
         <message>
             <source>Third-party software</source>

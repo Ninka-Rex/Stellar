@@ -243,47 +243,56 @@ qt_add_qml_module(Stellar
         app/qml/icons/stop.svg
         app/qml/icons/delete.svg
         app/qml/icons/settings.svg
-        app/qml/icons/gear.ico
-        app/qml/icons/add_url.ico
-        app/qml/icons/files_x.png
-        app/qml/icons/pause_purple.png
-        app/qml/icons/resume_purple.png
-        app/qml/icons/pause_orange.png
-        app/qml/icons/tools.png
-        app/qml/icons/x_square.ico
-        app/qml/icons/download.ico
-        app/qml/icons/resume.ico
-        app/qml/icons/pause.ico
-        app/qml/icons/stop.ico
-        app/qml/icons/delete.ico
-        app/qml/icons/remove.ico
-        app/qml/icons/properties.ico
-        app/qml/icons/scheduler.png
-        app/qml/icons/help.ico
-        app/qml/icons/update.png
-        app/qml/icons/clock.png
-        app/qml/icons/arrow_down.png
-        app/qml/icons/arrow_up.ico
-        app/qml/icons/rename.ico
-        app/qml/icons/new_file.ico
-        app/qml/icons/arrow_right.ico
-        app/qml/icons/arrow_left.ico
-        app/qml/icons/exit.ico
-        app/qml/icons/add.ico
-        app/qml/icons/spider.png
-        app/qml/icons/wand.ico
-        app/qml/icons/magnifying_glass.png
-        app/qml/icons/search.ico
-        app/qml/icons/rss.png
-        app/qml/icons/cancel.ico
-        app/qml/icons/copy.ico
-        app/qml/icons/paste.ico
-        app/qml/icons/copy_file.ico
-        app/qml/icons/move_file.ico
+        app/qml/icons/gear.svg
+        app/qml/icons/add_url.svg
+        app/qml/icons/files_x.svg
+        app/qml/icons/pause_purple.svg
+        app/qml/icons/resume_purple.svg
+        app/qml/icons/start_queue.svg
+        app/qml/icons/stop_queue.svg
+        app/qml/icons/pause_orange.svg
+        app/qml/icons/tools.svg
+        app/qml/icons/x_square.svg
+        app/qml/icons/download.svg
+        app/qml/icons/resume.svg
+        app/qml/icons/pause.svg
+        app/qml/icons/stop.svg
+        app/qml/icons/delete.svg
+        app/qml/icons/remove.svg
+        app/qml/icons/properties.svg
+        app/qml/icons/scheduler.svg
+        app/qml/icons/help.svg
+        app/qml/icons/update.svg
+        app/qml/icons/clock.svg
+        app/qml/icons/bar_chart.svg
+        app/qml/icons/snail.svg
+        app/qml/icons/torrent_file.svg
+        app/qml/icons/export_torrent.svg
+        app/qml/icons/satellite_antenna.svg
+        app/qml/icons/columns.svg
+        app/qml/icons/hide_categories.svg
+        app/qml/icons/arrow_down.svg
+        app/qml/icons/arrow_up.svg
+        app/qml/icons/rename.svg
+        app/qml/icons/new_file.svg
+        app/qml/icons/arrow_right.svg
+        app/qml/icons/arrow_left.svg
+        app/qml/icons/exit.svg
+        app/qml/icons/add.svg
+        app/qml/icons/spider.svg
+        app/qml/icons/wand.svg
+        app/qml/icons/magnifying_glass.svg
+        app/qml/icons/search.svg
+        app/qml/icons/rss.svg
+        app/qml/icons/cancel.svg
+        app/qml/icons/copy.svg
+        app/qml/icons/paste.svg
+        app/qml/icons/copy_file.svg
+        app/qml/icons/move_file.svg
         app/qml/icons/milky-way.png
         app/qml/icons/milky-way.ico
         app/qml/icons/milky-way.gif
-        app/qml/icons/magnet.png
+        app/qml/icons/magnet.svg
         app/scripts/torrent_search_runner.py
         app/search_plugins/bitsearch.py
         app/search_plugins/limetorrents.py
@@ -311,46 +320,47 @@ qt_add_qml_module(Stellar
         app/qml/icons/torrent-client-logos/utorrent.png
         app/qml/icons/torrent-client-logos/vuze.png
         app/qml/icons/torrent-client-logos/XunLei.png
-        app/qml/icons/folder.png
-        app/qml/icons/arrow_download.ico
-        app/qml/icons/scheduler2.ico
-        app/qml/icons/add_url.png
-        app/qml/icons/categories/all_downloads.png
-        app/qml/icons/categories/compressed.png
-        app/qml/icons/categories/documents.png
-        app/qml/icons/categories/note.png
-        app/qml/icons/categories/programs.png
-        app/qml/icons/categories/video.png
-        app/qml/icons/resume.png
-        app/qml/icons/pause.png
-        app/qml/icons/exit.png
-        app/qml/icons/delete.png
-        app/qml/icons/remove.png
-        app/qml/icons/gear.png
-        app/qml/icons/download.png
-        app/qml/icons/checkmark.png
-        app/qml/icons/queues.png
-        app/qml/icons/main_queue.png
-        app/qml/icons/custom_queue.png
-        app/qml/icons/synch_queue.png
-        app/qml/icons/globe.png
-        app/qml/icons/information.png
-        app/qml/icons/link.png
-        app/qml/icons/trash.png
-        app/qml/icons/file_no_longer_available.png
+        app/qml/icons/folder.svg
+        app/qml/icons/arrow_download.svg
+        app/qml/icons/scheduler2.svg
+        app/qml/icons/add_url.svg
+        app/qml/icons/categories/all_downloads.svg
+        app/qml/icons/categories/compressed.svg
+        app/qml/icons/categories/documents.svg
+        app/qml/icons/categories/note.svg
+        app/qml/icons/categories/programs.svg
+        app/qml/icons/categories/video.svg
+        app/qml/icons/resume.svg
+        app/qml/icons/pause.svg
+        app/qml/icons/exit.svg
+        app/qml/icons/delete.svg
+        app/qml/icons/remove.svg
+        app/qml/icons/gear.svg
+        app/qml/icons/download.svg
+        app/qml/icons/checkmark.svg
+        app/qml/icons/queues.svg
+        app/qml/icons/main_queue.svg
+        app/qml/icons/custom_queue.svg
+        app/qml/icons/synch_queue.svg
+        app/qml/icons/globe.svg
+        app/qml/icons/information.svg
+        app/qml/icons/link.svg
+        app/qml/icons/trash.svg
+        app/qml/icons/file_no_longer_available.svg
         app/qml/icons/world-map.svg
-        app/qml/icons/page.ico
-        app/qml/icons/cloud_copylink.ico
-        app/qml/icons/folder_view.ico
-        app/qml/icons/about.ico
-        app/qml/icons/torrent-categories/all_torrents.png
-        app/qml/icons/torrent-categories/active.png
-        app/qml/icons/torrent-categories/checking.png
-        app/qml/icons/torrent-categories/downloading.png
-        app/qml/icons/torrent-categories/inactive.png
-        app/qml/icons/torrent-categories/moving.png
-        app/qml/icons/torrent-categories/seeding.png
-        app/qml/icons/torrent-categories/stopped.png
+        app/qml/icons/page.svg
+        app/qml/icons/cloud_copylink.svg
+        app/qml/icons/folder_view.svg
+        app/qml/icons/about.svg
+        app/qml/icons/torrent-categories/all_torrents.svg
+        app/qml/icons/torrent-categories/active.svg
+        app/qml/icons/torrent-categories/checking.svg
+        app/qml/icons/torrent-categories/downloading.svg
+        app/qml/icons/torrent-categories/inactive.svg
+        app/qml/icons/torrent-categories/moving.svg
+        app/qml/icons/torrent-categories/seeding.svg
+        app/qml/icons/torrent-categories/stopped.svg
+        app/qml/icons/torrent-categories/alarm-clock.svg
         tips.txt
 )
 

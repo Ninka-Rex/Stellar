@@ -187,7 +187,7 @@ Rectangle {
                                     color: "#999"; font.pixelSize: 12; width: 16
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
-                                Image { source: "icons/categories/all_downloads.png"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
+                                Image { source: "icons/categories/all_downloads.svg"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
                                 Text {
                                     text: qsTr("All Downloads")
                                     color: root.selectedIndex === 999 ? "#88bbff" : "#cccccc"
@@ -457,7 +457,7 @@ Rectangle {
                               anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 0 }
                               spacing: 5
                             Item { width: 3; height: 1 }
-                            Image { source: "icons/folder.png"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
+                            Image { source: "icons/folder.svg"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
                             Text { text: qsTr("Unfinished"); color: root.selectedIndex === -1 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
                         }
                         MouseArea {
@@ -527,7 +527,7 @@ Rectangle {
                               anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 0 }
                               spacing: 5
                             Item { width: 3; height: 1 }
-                            Image { source: "icons/folder.png"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
+                            Image { source: "icons/folder.svg"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
                             Text { text: qsTr("Finished"); color: root.selectedIndex === -2 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
                         }
                         MouseArea {
@@ -608,7 +608,7 @@ Rectangle {
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
                                 Image {
-                                    source: "icons/spider.png"
+                                    source: "icons/spider.svg"
                                     width: 16
                                     height: 16
                                     sourceSize.width: 16
@@ -716,7 +716,7 @@ Rectangle {
                                     anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 22 }
                                     spacing: 5
                                     Image {
-                                        source: "icons/folder.png"
+                                        source: "icons/folder.svg"
                                         width: 16
                                         height: 16
                                         sourceSize.width: 16
@@ -844,7 +844,7 @@ Rectangle {
                                 anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 4 }
                                 spacing: 2
                                 Text { text: root.torrentsExpanded ? "▼" : "▶"; color: "#999"; font.pixelSize: 12; width: 16; anchors.verticalCenter: parent.verticalCenter }
-                                Image { source: "icons/torrent-categories/all_torrents.png"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
+                                Image { source: "icons/torrent-categories/all_torrents.svg"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
                                 Text { text: qsTr("Torrents"); color: root.selectedIndex === -200 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; font.bold: root.selectedIndex === -200; anchors.verticalCenter: parent.verticalCenter }
                             }
 
@@ -927,14 +927,14 @@ Rectangle {
                                 }
                                 readonly property string subcatIcon: {
                                     switch (subcatId) {
-                                    case "torrent_downloading": return "icons/torrent-categories/downloading.png"
-                                    case "torrent_seeding":     return "icons/torrent-categories/seeding.png"
-                                    case "torrent_stopped":     return "icons/torrent-categories/stopped.png"
-                                    case "torrent_active":      return "icons/torrent-categories/active.png"
-                                    case "torrent_inactive":    return "icons/torrent-categories/inactive.png"
-                                    case "torrent_checking":    return "icons/torrent-categories/checking.png"
-                                    case "torrent_moving":      return "icons/torrent-categories/moving.png"
-                                    default:                    return "icons/folder.png"
+                                    case "torrent_downloading": return "icons/torrent-categories/downloading.svg"
+                                    case "torrent_seeding":     return "icons/torrent-categories/seeding.svg"
+                                    case "torrent_stopped":     return "icons/torrent-categories/stopped.svg"
+                                    case "torrent_active":      return "icons/torrent-categories/active.svg"
+                                    case "torrent_inactive":    return "icons/torrent-categories/inactive.svg"
+                                    case "torrent_checking":    return "icons/torrent-categories/checking.svg"
+                                    case "torrent_moving":      return "icons/torrent-categories/moving.svg"
+                                    default:                    return "icons/folder.svg"
                                     }
                                 }
                                 // selectedIndex for subcats: -201 .. -207
@@ -1081,7 +1081,7 @@ Rectangle {
                                 anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 4 }
                                 spacing: 2
                                 Text { text: root.queuesExpanded ? "▼" : "▶"; color: "#999"; font.pixelSize: 12; width: 16; anchors.verticalCenter: parent.verticalCenter }
-                                Image { width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; source: "qrc:/qt/qml/com/stellar/app/app/qml/icons/queues.png"; anchors.verticalCenter: parent.verticalCenter }
+                                Image { width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; source: "qrc:/qt/qml/com/stellar/app/app/qml/icons/queues.svg"; anchors.verticalCenter: parent.verticalCenter }
                                 Text { text: qsTr("Queues"); color: root.selectedIndex === -999 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
                             }
                             MouseArea {
@@ -1154,9 +1154,9 @@ Rectangle {
                                     spacing: 5
                                     Image {
                                         width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit
-                                        source: queueId === "main-download" ? "qrc:/qt/qml/com/stellar/app/app/qml/icons/main_queue.png"
-                                              : queueId === "main-sync"     ? "qrc:/qt/qml/com/stellar/app/app/qml/icons/synch_queue.png"
-                                              :                               "qrc:/qt/qml/com/stellar/app/app/qml/icons/custom_queue.png"
+                                        source: queueId === "main-download" ? "qrc:/qt/qml/com/stellar/app/app/qml/icons/main_queue.svg"
+                                              : queueId === "main-sync"     ? "qrc:/qt/qml/com/stellar/app/app/qml/icons/synch_queue.svg"
+                                              :                               "qrc:/qt/qml/com/stellar/app/app/qml/icons/custom_queue.svg"
                                     }
                                     Text { text: queueName || ""; color: root.selectedIndex === -100 - index ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
                                 }

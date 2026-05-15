@@ -4196,6 +4196,82 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <translation>Torrent xavfsizligi</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Saqlash</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Ajratish rejimi</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Siyrak</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Oldindan ajratish</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Faqat yangi torrentlarga taalluqli. Oldindan ajratish disk maydonini darhol band qiladi; siyrak esa talab bo‘yicha ajratadi.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Parcha joylashuv yaqinligi</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Parchalarni 4 MiB qo‘shni oraliqda yuklash. Kichik parcha o‘lchamli torrentlarda fragmentatsiyani kamaytiradi.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Disk o‘qishlarini birlashtirish</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Disk yozishlarini birlashtirish</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Birlashtirish kichik kiritish/chiqarish amallarini diskka yozishdan oldin kattaroq buferlarga birlashtiradi. Fragmentlangan torrentlarda o‘tkazuvchanlikni oshirishi mumkin.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Disk I/U turi</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Standart</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Xotiraga xaritalangan</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Diskka yozish navbati</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Xotiraga xaritalangan: fayllar to‘g‘ridan-to‘g‘ri xotiraga joylanadi. Windows va Linux torrent ma’lumotlarini sahifa keshi orqali minimal CPU ishlatib o‘qiydi va yozadi. Ko‘pchilik uchun tavsiya etiladi.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: o‘qish va yozish xotira xaritalashsiz standart fayl chaqiruvlari orqali amalga oshadi. Xotiraga xaritalangandan ko‘ra kamroq manzil maydoni ishlatadi, bu 32-bit tizimlarda yoki bir vaqtda ko‘p katta torrentlarni tarqatishda yordam berishi mumkin.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Standart: Stellar platformangiz uchun eng yaxshi rejimni avtomatik tanlaydi.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Qo'lda qo'shilgan bloklash darhol amalga oshiriladi. Bloklangan foydalanuvchi-agent qismlari, bloklangan mamlakatlar va avtomatik bloklash variantlari 'Qo'llash' yoki 'OK' tugmasini bosganda amalga oshiriladi.</translation>
         </message>
@@ -4518,6 +4594,10 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar — bepul dastur: siz uni GNU Umumiy Ijtimoiy Litsenziyasi, 3-nashr shartlariga binoan qayta taqsimlash va/o yoki o'zgartirishingiz mumkin.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Ushbu dastur foydali bo‘lishi umidida tarqatilgan, lekin hech qanday kafolatsiz; hatto sotuvchanlik yoki ma’lum maqsadga yaroqlilikning nazarda tutilgan kafolatisiz.</translation>
         </message>
         <message>
             <source>Third-party software</source>

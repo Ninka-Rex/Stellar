@@ -4209,6 +4209,82 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
             <translation>டொரன்ட் பாதுகாப்பு</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>சேமிப்பகம்</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>ஒதுக்கீட்டு முறை</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>அரிதான</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>முன் ஒதுக்கீடு</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>புதிய டொரண்டுகளுக்கு மட்டுமே பொருந்தும். முன்-ஒதுக்கீடு முழு வட்டு இடத்தையும் உடனடியாக ஒதுக்குகிறது; ஸ்பார்ஸ் தேவைக்கேற்ப ஒதுக்குகிறது.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>துண்டு அளவு தொடர்பு</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>4 MiB அருகருகே உள்ள பகுதிகளில் துண்டுகளைப் பதிவிறக்கவும். சிறிய துண்டு அளவுகள் கொண்ட டொரண்டுகளில் துண்டாக்கத்தைக் குறைக்கிறது.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>வட்டு வாசிப்புகளை ஒருங்கிணை</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>வட்டு எழுத்துகளை ஒருங்கிணை</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>சிறிய I/O செயல்பாடுகளை வட்டில் எழுதும் முன் பெரிய இடையகங்களாக ஒன்றிணைத்தல். துண்டாக்கப்பட்ட டொரண்டுகளில் செயல்திறனை மேம்படுத்தலாம்.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>வட்டு I/O வகை</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>இயல்புநிலை</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>நினைவக-வரைபடம்</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>பாசிக்ஸ்</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>வட்டு எழுது வரிசை</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>நினைவக-வரைபடம்: கோப்புகள் நேரடியாக நினைவகத்தில் வரைபடமாக்கப்படுகின்றன. விண்டோஸ் மற்றும் லினக்ஸ் குறைந்த CPU பயன்பாட்டுடன் பக்க தற்காலிக சேமிப்பு வழியாக டொரண்ட் தரவைப் படித்து எழுதுகின்றன. பெரும்பாலான பயனர்களுக்கு பரிந்துரைக்கப்படுகிறது.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: நினைவக-வரைபடமின்றி நிலையான கோப்பு அழைப்புகள் வழியாக படித்தல் மற்றும் எழுதுதல் நடைபெறும். நினைவக-வரைபடத்தை விட குறைவான முகவரி இடத்தைப் பயன்படுத்துகிறது, இது 32-பிட் அமைப்புகளில் அல்லது பல பெரிய டொரண்டுகளை ஒரே நேரத்தில் விதைக்கும்போது உதவியாக இருக்கும்.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>இயல்புநிலை: ஸ்டெல்லர் உங்கள் தளத்திற்கான சிறந்த பயன்முறையை தானாகவே தேர்ந்தெடுக்கும்.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>கைமுறை பியர் தடைகள் உடனடியாகப் பொருந்தும். தடுக்கப்பட்ட பயனர் முகவர் துணைச்சரங்கள், தடுக்கப்பட்ட நாடுகள் மற்றும் தானியங்கு தடை விருப்பங்கள், விண்ணப்பி அல்லது சரி என்பதைக் கிளிக் செய்யும்போது பொருந்தும்.</translation>
         </message>
@@ -4531,6 +4607,10 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar இலவச மென்பொருள்: GNU GPL v3ன் கீழ் மறுவிநியோகம்/மாற்றம் செய்யலாம்.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>இந்த நிரல் பயனுள்ளதாக இருக்கும் என்ற நம்பிக்கையில் விநியோகிக்கப்படுகிறது, ஆனால் எந்த உத்தரவாதமும் இன்றி; வணிகத்திற்கான அல்லது குறிப்பிட்ட நோக்கத்திற்கான மறைமுக உத்தரவாதம் கூட இன்றி.</translation>
         </message>
         <message>
             <source>Third-party software</source>

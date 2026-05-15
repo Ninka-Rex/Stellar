@@ -4205,6 +4205,82 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Безопасность BitTorrent</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Хранилище</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Режим распределения</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Разреженный</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Предварительно выделить</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Применяется только к новым торрентам. Предварительное выделение сразу резервирует всё дисковое пространство; разреженное выделение — по мере необходимости.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Сродство к объёму детали</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Загружать части в смежных экстентах по 4 МиБ. Уменьшает фрагментацию на торрентах с малым размером частей.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Объединить чтения с диска</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Объединить записи на диск</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Объединение мелких операций ввода-вывода в более крупные буферы перед записью на диск. Может улучшить пропускную способность на фрагментированных торрентах.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Тип дискового ввода-вывода</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>По умолчанию</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Отображение в память</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Очередь записи на диск</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>МиБ</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Отображение в память: файлы напрямую отображаются в память. Windows и Linux читают и записывают данные торрентов через страничный кеш с минимальной нагрузкой на ЦП. Рекомендуется большинству пользователей.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: чтение и запись через стандартные файловые вызовы без отображения в память. Использует меньше адресного пространства, что может помочь на 32-битных системах или при одновременной раздаче многих больших торрентов.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>По умолчанию: Stellar автоматически выбирает лучший режим для вашей платформы.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Ручные баны пиров применяются мгновенно. Блокировка по User-Agent, странам и автобан срабатывают при нажатии «Применить» или «ОК».</translation>
         </message>
@@ -4527,6 +4603,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar — свободное ПО: вы можете распространять и/или изменять его на условиях GNU General Public License версии 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Эта программа распространяется в надежде, что она будет полезна, но без каких-либо гарантий; даже без подразумеваемых гарантий товарной пригодности или пригодности для конкретной цели.</translation>
         </message>
         <message>
             <source>Third-party software</source>

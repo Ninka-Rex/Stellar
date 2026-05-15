@@ -471,7 +471,7 @@ Window {
             spacing: 8
 
             Image {
-                source: "icons/magnet.png"
+                source: "icons/magnet.svg"
                 width: 12; height: 12
                 sourceSize.width: 24; sourceSize.height: 24
                 fillMode: Image.PreserveAspectFit
@@ -1528,7 +1528,7 @@ Window {
                         Image {
                             Layout.preferredWidth: 16
                             Layout.preferredHeight: 16
-                            source: "icons/rename.ico"
+                            source: "icons/rename.svg"
                             sourceSize: Qt.size(16, 16)
                             fillMode: Image.PreserveAspectFit
                             asynchronous: true
@@ -1668,7 +1668,7 @@ Window {
                             anchors.leftMargin: 10
                             width: 16
                             height: 16
-                            source: "icons/rename.ico"
+                            source: "icons/rename.svg"
                             sourceSize: Qt.size(16, 16)
                             fillMode: Image.PreserveAspectFit
                             asynchronous: true

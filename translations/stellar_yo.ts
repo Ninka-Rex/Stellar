@@ -4211,6 +4211,82 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <translation>Ààbò Torrent</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Ibi ipamọ</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Iṣẹ ìpín</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Fẹẹrẹ</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Ṣàfipamọ́</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Ó kan àwọn torrent tuntun nìkan. Ṣàfipamọ́ ń fi ààyè dískì pamọ́ lẹ́sẹ̀kẹsẹ̀; fẹẹrẹ ń pín nígbà tó bá nílò.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Ìsúnmọ́ àgbègbè</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Ṣàgbasílẹ̀ àwọn apá ní 4 MiB tó wà nítòsí. Ó ń dín pípínká kù lórí torrent pẹ̀lú àwọn apá kékeré.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Dapọ̀ àwọn kíkà dískì</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Dapọ̀ àwọn kíkọ dískì</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Dídapọ̀ ń so àwọn iṣẹ́ I/O kékeré pọ̀ sínú àwọn ìpamọ́ tó tóbi ṣáájú kíkọ sórí dískì. Ó lè mú ìṣiṣẹ́ dára lórí torrent tó pínká.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Iru Dìsìkì I/O</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Àtìbẹ̀bẹ̀</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Ìṣàmìpamọ́-ìrántí</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Ìlà kíkọ dìsìkì</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Ìṣàmìpamọ́-ìrántí: fáìlì jẹ́ dídámọ̀ tààrà sínú ìrántí. Windows àti Linux ń ka àti kọ dátà torrent nípasẹ̀ káṣì ojú-ìwé pẹ̀lú lílo CPU tó kéré. A gbà á níṣìírí fún ọ̀pọ̀ àwọn olùmúlò.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: kíka àti kíkọ ń gba àwọn ìpè fáìlì tó wọ́pọ̀ kọjá láìsí ìṣàmìpamọ́-ìrántí. Ń lo ààyè àdírẹ́sì tó kéré ju ìṣàmìpamọ́-ìrántí lọ, èyí tó lè ṣèrànwọ́ lórí àwọn ètò 32-bit tàbí nígbà tí ń gbin ọ̀pọ̀ torrent ńlá lẹ́ẹ̀kan náà.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Àtìbẹ̀bẹ̀: Stellar yan ipò tó dára jù fún pèpéle rẹ láìfọwọ́sí.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Àwọn ìfòfindè ẹlẹgbẹ́ afọwọ́ṣe ń ṣiṣẹ́ lẹ́sẹ̀kẹsẹ̀. Àwọn ìlà-ìsàlẹ̀ aṣojú olùmúlò tí a dínà, àwọn orílẹ̀-èdè tí a dínà, àti àwọn àṣàyàn ìfòfindè aládàáṣe ń ṣiṣẹ́ nígbà tí o bá tẹ Fíìsílẹ̀ tàbí Ó Dára.</translation>
         </message>
@@ -4533,6 +4609,10 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar jẹ́ sọ́fútùwé ọ̀fẹ́: o lè tún pín tàbí ṣàtúnṣe rẹ̀ lábẹ́ àwọn ìlànà GNU GPL, ẹ̀yà 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>A pín ètò yìí pẹ̀lú ìrètí pé yóò wúlò, ṣùgbọ́n láìsí ìdánilójú kankan; láìsí àní ìdánilójú tí a sọ tàbí tí a mọ̀ nípa ọjà tàbí yíyẹ fún ète pàtó kan.</translation>
         </message>
         <message>
             <source>Third-party software</source>

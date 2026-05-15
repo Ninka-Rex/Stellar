@@ -4205,6 +4205,82 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Torrent 安全</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>存储</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>分配模式</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>稀疏</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>预分配</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>仅对新种子生效。预分配立即占用全部空间；稀疏按需分配。</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>区块范围亲和</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>以4 MiB相邻范围下载区块，减少小分块种子的碎片。</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>合并磁盘读取</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>合并磁盘写入</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>合并将小I/O操作整合为大缓冲区再写入磁盘，可提升碎片化种子的吞吐量。</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>磁盘 I/O 类型</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>默认</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>内存映射</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>磁盘写入队列</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>内存映射：文件直接映射到内存。Windows 和 Linux 通过页面缓存读写种子数据，CPU 占用极低。推荐大多数用户使用。</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX：通过标准文件调用读写，不使用内存映射。相比内存映射占用更少地址空间，适合 32 位系统或同时做种大量大文件时使用。</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>默认：Stellar 自动为您的平台选择最佳模式。</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>手动对等体封禁立即生效。被禁用的用户代理子串、被禁用的国家和自动封禁选项在点击“应用”或“确定”时生效。</translation>
         </message>
@@ -4527,6 +4603,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar 是自由软件：您可根据 GNU 通用公共许可证第 3 版的条款重新分发和/或修改它。</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>本程序分发时无任何担保，亦无对适销性或特定用途适用性的默示担保。</translation>
         </message>
         <message>
             <source>Third-party software</source>

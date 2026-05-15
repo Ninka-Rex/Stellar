@@ -4195,6 +4195,82 @@ Det rekommenderas starkt att binda Stellar till ett VPN-nätverksgränssnitt och
             <translation>Torrentsäkerhet</translation>
         </message>
         <message>
+            <source>Storage</source>
+            <translation>Lagring</translation>
+        </message>
+        <message>
+            <source>Allocation mode</source>
+            <translation>Allokeringsläge</translation>
+        </message>
+        <message>
+            <source>Sparse</source>
+            <translation>Gles</translation>
+        </message>
+        <message>
+            <source>Pre-allocate</source>
+            <translation>Förallokera</translation>
+        </message>
+        <message>
+            <source>Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.</source>
+            <translation>Gäller endast nya torrents. Förallokering reserverar hela diskutrymmet direkt; gles allokering sker vid behov.</translation>
+        </message>
+        <message>
+            <source>Piece extent affinity</source>
+            <translation>Extentaffinitet</translation>
+        </message>
+        <message>
+            <source>Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.</source>
+            <translation>Ladda ned bitar i 4 MiB intilliggande extents. Minskar fragmentering vid små bitstorlekar.</translation>
+        </message>
+        <message>
+            <source>Coalesce disk reads</source>
+            <translation>Sammanfoga läsningar</translation>
+        </message>
+        <message>
+            <source>Coalesce disk writes</source>
+            <translation>Sammanfoga skrivningar</translation>
+        </message>
+        <message>
+            <source>Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.</source>
+            <translation>Sammanfogning slår ihop små I/O-operationer till större buffertar före skrivning. Kan förbättra genomströmning vid fragmenterade torrents.</translation>
+        </message>
+        <message>
+            <source>Disk I/O type</source>
+            <translation>Disk-I/O-typ</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>Standard</translation>
+        </message>
+        <message>
+            <source>Memory-mapped</source>
+            <translation>Minnesmappad</translation>
+        </message>
+        <message>
+            <source>POSIX</source>
+            <translation>POSIX</translation>
+        </message>
+        <message>
+            <source>Disk write queue</source>
+            <translation>Disk-skrivkö</translation>
+        </message>
+        <message>
+            <source>MiB</source>
+            <translation>MiB</translation>
+        </message>
+        <message>
+            <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
+            <translation>Minnesmappad: filer mappas direkt i minnet. Windows och Linux läser/skriver torrentdata via sidcachen med minimal CPU-användning. Rekommenderas för de flesta.</translation>
+        </message>
+        <message>
+            <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
+            <translation>POSIX: läsning/skrivning sker via vanliga filanrop utan minnesmappning. Använder mindre adressutrymme, vilket kan hjälpa på 32-bitars system eller vid seedning av många stora torrents samtidigt.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar picks the best mode for your platform automatically.</source>
+            <translation>Standard: Stellar väljer automatiskt bästa läge för din plattform.</translation>
+        </message>
+        <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
             <translation>Manuella peerbannor tillämpas omedelbart. Blockerade user-agent-understrängar, blockerade länder och auto-ban-alternativ tillämpas när du klickar på Tillämpa eller OK.</translation>
         </message>
@@ -4517,6 +4593,10 @@ Det rekommenderas starkt att binda Stellar till ett VPN-nätverksgränssnitt och
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
             <translation>Stellar är fri mjukvara: du får redistribuera och/eller modifiera det under villkoren i GNU General Public License, version 3.</translation>
+        </message>
+        <message>
+            <source>This program is distributed in the hope that it will be useful, but without any warranty; without even the implied warranty of merchantability or fitness for a particular purpose.</source>
+            <translation>Detta program distribueras i hopp om att det ska vara användbart, men utan någon garanti; inte ens underförstådd garanti om säljbarhet eller lämplighet för ett specifikt ändamål.</translation>
         </message>
         <message>
             <source>Third-party software</source>
