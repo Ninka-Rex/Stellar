@@ -24,7 +24,7 @@ import QtQuick.Dialogs
 Window {
     id: root
     width: 780
-    height: 520
+    height: 500
     minimumWidth: 720
     minimumHeight: 460
     title: qsTr("Torrent Metadata")
@@ -618,11 +618,11 @@ Window {
             }
         }
 
-        // Second row: checkboxes + description (hidden while waiting for metadata)
+        // Second row: checkboxes + description
         RowLayout {
             Layout.fillWidth: true
             spacing: 8
-            visible: !!root.item && root.item.torrentHasMetadata
+            visible: !!root.item
 
             CheckBox {
                 id: customSavePathCheck
