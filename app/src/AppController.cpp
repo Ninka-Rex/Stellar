@@ -22,6 +22,7 @@
 #include "DownloadItem.h"
 #include "AppVersion.h"
 #include <QtConcurrent>
+#include <QThreadPool>
 #include <QLocalServer>
 #include <QLocalSocket>
 #include <QUuid>
@@ -4324,7 +4325,7 @@ void AppController::deleteDownload(const QString &id, int mode) {
     if (!isCompleted && !filename.isEmpty()) {
         QString tempDir = m_settings->temporaryDirectory().trimmed();
         if (tempDir.isEmpty()) tempDir = savePath;
-        QtConcurrent::run([tempDir, filename]() {
+        QThreadPool::globalInstance()->start([tempDir, filename]() {
             QDir d(tempDir);
             // Remove meta file
             QFile::remove(tempDir + QStringLiteral("/") + filename + QStringLiteral(".stellar-meta"));
@@ -4339,7 +4340,7 @@ void AppController::deleteDownload(const QString &id, int mode) {
     if (!filePath.isEmpty()) {
         // Run file deletion on a thread pool thread — never block the UI for disk IO.
         const int capturedMode = mode;
-        QtConcurrent::run([capturedMode, filePath]() {
+        QThreadPool::globalInstance()->start([capturedMode, filePath]() {
             // Defence-in-depth: verify the resolved path is a regular file before
             // touching it. QFile::moveToTrash() can trash entire directories on some
             // platforms, so we must never call it (or remove()) on a path that turned
@@ -5629,7 +5630,7 @@ QString AppController::buildTimeFormatted() const {
     const QString buildStr = QStringLiteral(STELLAR_BUILD_TIME);
     QDateTime utcTime = QDateTime::fromString(buildStr.left(16), QStringLiteral("yyyy-MM-dd HH:mm"));
     if (!utcTime.isValid()) return buildStr;
-    utcTime.setTimeSpec(Qt::UTC);
+    utcTime.setTimeZone(QTimeZone::UTC);
 
     // Convert to Eastern Time (ET = UTC - 5, EDT = UTC - 4)
     // For simplicity, assume daylight saving time based on month

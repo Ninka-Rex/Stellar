@@ -42,7 +42,8 @@ void NativeMessagingHost::start() {
 #else
     const int stdinFd = STDIN_FILENO;
 #endif
-    m_stdin.open(stdin, QIODevice::ReadOnly);
+    if (!m_stdin.open(stdin, QIODevice::ReadOnly))
+        qWarning() << "[NativeMessagingHost] Failed to open stdin";
     m_stdinNotifier = new QSocketNotifier(stdinFd, QSocketNotifier::Read, this);
     connect(m_stdinNotifier, &QSocketNotifier::activated, this, &NativeMessagingHost::readMessage);
 }
@@ -102,7 +103,10 @@ void NativeMessagingHost::writeMessage(const QByteArray &json) {
     quint32 len = static_cast<quint32>(json.size());
     // Native Messaging uses native byte order (little-endian on x86)
     QFile out;
-    out.open(stdout, QIODevice::WriteOnly);
+    if (!out.open(stdout, QIODevice::WriteOnly)) {
+        qWarning() << "[NativeMessagingHost] Failed to open stdout";
+        return;
+    }
     out.write(reinterpret_cast<const char *>(&len), 4);
     out.write(json);
     out.flush();

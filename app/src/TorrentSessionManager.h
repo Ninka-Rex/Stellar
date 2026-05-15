@@ -123,7 +123,13 @@ public:
         return {};
 #endif
     }
-    bool hasIncomingConnection() const { return m_hasIncomingConnection; }
+    bool hasIncomingConnection() const {
+#if defined(STELLAR_HAS_LIBTORRENT)
+        return m_hasIncomingConnection;
+#else
+        return false;
+#endif
+    }
     int listenPort() const;
     void setDetectedExternalAddress(const QString &ipAddress);
     void setDetectedExternalAddress(const QString &ipAddress, double latitude, double longitude, bool hasCoordinates);
