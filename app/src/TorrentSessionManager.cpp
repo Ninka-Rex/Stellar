@@ -4383,7 +4383,7 @@ void TorrentSessionManager::createTorrentFile(const QVariantMap &params) {
                 lt::add_files(fs, stdPath);
             }
 
-            if (fs.num_files() == 0) {
+            if (fs.num_files() == 0 || fs.total_size() == 0) {
                 QMetaObject::invokeMethod(self, [=]() {
                     if (self) emit self->torrentCreationFinished(false, QStringLiteral("No files found to hash"));
                 }, Qt::QueuedConnection);

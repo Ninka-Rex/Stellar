@@ -7689,9 +7689,11 @@ QVariantMap AppController::beginCreateTorrent(const QVariantMap &params) {
             lt::add_files(fs, p.toStdString());
     }
 
-    if (fs.num_files() > 0) {
+    if (fs.num_files() > 0 && fs.total_size() > 0) {
         lt::create_torrent creator(fs, pieceSizeArg);
-        result[QStringLiteral("pieceCount")] = creator.num_pieces();
+        // piece_length() == 0 when constructor bailed early (shouldn't happen
+        // given total_size > 0 guard above, but defend against it anyway)
+        result[QStringLiteral("pieceCount")] = creator.piece_length() > 0 ? creator.num_pieces() : 0;
         result[QStringLiteral("pieceSize")]  = creator.piece_length();
     } else {
         result[QStringLiteral("pieceCount")] = 0;

@@ -59,6 +59,16 @@ if(ENABLE_LIBTORRENT)
             endif()
             add_subdirectory("${LIBTORRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/_deps/libtorrent")
             cmake_policy(POP)
+            if(TARGET torrent-rasterbar)
+                # libtorrent unconditionally adds TORRENT_USE_ASSERTS for Debug
+                # builds (generator expression in its CMakeLists). Its internal
+                # assertions fire abort() when file_storage::num_pieces() is
+                # called on a magnet with no metadata yet — a normal transient
+                # state. Override with an explicit no-asserts definition so
+                # debug builds stay usable.
+                target_compile_definitions(torrent-rasterbar PUBLIC
+                    $<$<CONFIG:Debug>:TORRENT_USE_ASSERTS=0>)
+            endif()
             if(TARGET torrent-rasterbar AND NOT TARGET LibtorrentRasterbar::torrent-rasterbar)
                 add_library(LibtorrentRasterbar::torrent-rasterbar ALIAS torrent-rasterbar)
             endif()
@@ -498,7 +508,7 @@ qt_add_resources(Stellar "conf"
 # ── Platform-specific ─────────────────────────────────────────────────────────
 if(WIN32)
     set_target_properties(Stellar PROPERTIES
-        WIN32_EXECUTABLE TRUE
+        WIN32_EXECUTABLE FALSE
     )
     target_compile_definitions(Stellar PRIVATE STELLAR_WINDOWS)
 elseif(UNIX AND NOT APPLE)
