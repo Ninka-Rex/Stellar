@@ -92,7 +92,6 @@ Vendored at `third_party/libtorrent-rasterbar-2.0.12`, auto-detected by CMake. O
 
 **Configuration:**
 - `tips.txt` — One tip per line, displayed in status bar (cycles every 6 hours)
-- `packaging/flatpak/` — Flatpak manifest
 
 ## Key Patterns & Concepts
 
