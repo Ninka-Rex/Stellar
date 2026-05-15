@@ -69,6 +69,10 @@ need_tool cmake
 need_tool sha256sum
 need_tool ldd
 need_tool readelf
+# patchelf is mandatory: without RPATH on the bundled binaries the loader
+# falls back to system Qt at runtime (breaks on any distro whose system Qt
+# is older than the build host's, e.g. shipping Kubuntu builds to Fedora).
+need_tool patchelf
 
 resolve_binary() {
     local env_name="$1"
@@ -168,6 +172,28 @@ collect_binary_dependencies_recursive() {
 }
 
 qt_install_prefix() {
+    # Prefer the Qt that actually linked the Stellar binary — qmake6 on PATH may
+    # point at a different Qt (e.g. distro Qt vs. an online-installer Qt 6.10),
+    # which would cause us to bundle libs from the wrong tree and miss any
+    # 6.10-only modules (libQt6QuickControls2Material, etc.).
+    local stellar_bin="$ROOT/build/linux-release/Stellar"
+    if [[ -x "$stellar_bin" ]]; then
+        local qtcore
+        qtcore="$(ldd "$stellar_bin" 2>/dev/null | awk '/libQt6Core\.so/ {print $3; exit}')"
+        if [[ -n "$qtcore" && -e "$qtcore" ]]; then
+            qtcore="$(readlink -f "$qtcore")"
+            # qtcore = <prefix>/lib[/<triplet>]/libQt6Core.so.6.X.Y
+            local libdir prefix
+            libdir="$(dirname "$qtcore")"
+            prefix="$(dirname "$libdir")"
+            # Strip x86_64-linux-gnu multiarch layer if present.
+            if [[ "$(basename "$libdir")" == "x86_64-linux-gnu" ]]; then
+                prefix="$(dirname "$prefix")"
+            fi
+            printf '%s\n' "$prefix"
+            return
+        fi
+    fi
     if command -v qmake6 >/dev/null 2>&1; then
         qmake6 -query QT_INSTALL_PREFIX
         return
@@ -176,59 +202,74 @@ qt_install_prefix() {
         qmake -query QT_INSTALL_PREFIX
         return
     fi
-    local qtcore
-    qtcore="$(ldd "$ROOT/build/linux-release/Stellar" | awk '/libQt6Core/ {print $3; exit}')"
-    if [[ -n "$qtcore" ]]; then
-        dirname "$(dirname "$qtcore")"
-        return
-    fi
     echo "ERROR: Could not determine Qt install prefix." >&2
     exit 1
 }
 
-qt_install_plugins() {
-    if command -v qmake6 >/dev/null 2>&1; then
-        qmake6 -query QT_INSTALL_PLUGINS
-        return
-    fi
-    if command -v qmake >/dev/null 2>&1; then
-        qmake -query QT_INSTALL_PLUGINS
-        return
-    fi
-    for d in \
-        /usr/lib/x86_64-linux-gnu/qt6/plugins \
-        /usr/lib/qt6/plugins \
-        /usr/lib64/qt6/plugins \
-        "$(qt_install_prefix)/plugins"; do
-        if [[ -d "$d/platforms" ]]; then
-            printf '%s\n' "$d"
+# Lib directory of the Qt that actually linked Stellar. Used directly so we
+# never scan a different Qt's lib dir for the libQt6*.so.* glob.
+qt_install_libdir() {
+    local stellar_bin="$ROOT/build/linux-release/Stellar"
+    if [[ -x "$stellar_bin" ]]; then
+        local qtcore
+        qtcore="$(ldd "$stellar_bin" 2>/dev/null | awk '/libQt6Core\.so/ {print $3; exit}')"
+        if [[ -n "$qtcore" && -e "$qtcore" ]]; then
+            dirname "$(readlink -f "$qtcore")"
             return
         fi
-    done
-    echo "ERROR: Could not determine Qt plugin directory." >&2
-    exit 1
-}
-
-qt_install_qml() {
-    if command -v qmake6 >/dev/null 2>&1; then
-        qmake6 -query QT_INSTALL_QML
-        return
     fi
-    if command -v qmake >/dev/null 2>&1; then
-        qmake -query QT_INSTALL_QML
-        return
-    fi
-    for d in \
-        /usr/lib/x86_64-linux-gnu/qt6/qml \
-        /usr/lib/qt6/qml \
-        /usr/lib64/qt6/qml \
-        "$(qt_install_prefix)/qml"; do
+    local prefix
+    prefix="$(qt_install_prefix)"
+    for d in "$prefix/lib/x86_64-linux-gnu" "$prefix/lib"; do
         if [[ -d "$d" ]]; then
             printf '%s\n' "$d"
             return
         fi
     done
-    echo "ERROR: Could not determine Qt QML directory." >&2
+    echo "ERROR: Could not determine Qt lib directory." >&2
+    exit 1
+}
+
+qt_install_plugins() {
+    # Pin to the prefix of the Qt that actually linked Stellar.
+    local prefix
+    prefix="$(qt_install_prefix)"
+    for d in \
+        "$prefix/plugins" \
+        "$prefix/lib/x86_64-linux-gnu/qt6/plugins" \
+        "$prefix/lib/qt6/plugins" \
+        "$prefix/lib64/qt6/plugins"; do
+        if [[ -d "$d/platforms" ]]; then
+            printf '%s\n' "$d"
+            return
+        fi
+    done
+    if command -v qmake6 >/dev/null 2>&1; then
+        qmake6 -query QT_INSTALL_PLUGINS
+        return
+    fi
+    echo "ERROR: Could not determine Qt plugin directory under $prefix." >&2
+    exit 1
+}
+
+qt_install_qml() {
+    local prefix
+    prefix="$(qt_install_prefix)"
+    for d in \
+        "$prefix/qml" \
+        "$prefix/lib/x86_64-linux-gnu/qt6/qml" \
+        "$prefix/lib/qt6/qml" \
+        "$prefix/lib64/qt6/qml"; do
+        if [[ -d "$d/QtQuick" ]]; then
+            printf '%s\n' "$d"
+            return
+        fi
+    done
+    if command -v qmake6 >/dev/null 2>&1; then
+        qmake6 -query QT_INSTALL_QML
+        return
+    fi
+    echo "ERROR: Could not determine Qt QML directory under $prefix." >&2
     exit 1
 }
 
@@ -242,8 +283,7 @@ bundle_qt_runtime() {
     qt_prefix="$(qt_install_prefix)"
     qt_plugins="$(qt_install_plugins)"
     qt_qml="$(qt_install_qml)"
-    qt_lib="$(dirname "$qt_plugins")/../../lib/x86_64-linux-gnu"
-    [[ -d "$qt_lib" ]] || qt_lib="$qt_prefix/lib"
+    qt_lib="$(qt_install_libdir)"
 
     mkdir -p "$lib_dir" "$plugin_dir" "$qml_dir"
     log "Bundling Qt runtime from: $qt_prefix"
@@ -326,15 +366,48 @@ Libraries=lib
 Plugins=plugins
 QmlImports=qml
 EOF
+
+    # Verify every libQt6*/libqt* DT_NEEDED referenced by the bundled binary,
+    # plugins, and QML modules has a copy in lib/. Without this, the system
+    # loader silently falls back to the host distro's Qt at runtime — which
+    # produces "version 'Qt_6_PRIVATE_API' not found" when the host Qt is
+    # older than the build Qt (e.g. Fedora /lib64 vs. Kubuntu-built 6.10).
+    local missing=""
+    local scan_targets=("$app_dir/Stellar")
+    while read -r sofile; do
+        [[ -n "$sofile" ]] || continue
+        scan_targets+=("$sofile")
+    done < <(find "$plugin_dir" "$qml_dir" -type f -name '*.so' 2>/dev/null || true)
+
+    for target in "${scan_targets[@]}"; do
+        while read -r needed; do
+            [[ -n "$needed" ]] || continue
+            case "$needed" in
+                libQt6*|libqt*) ;;
+                *) continue ;;
+            esac
+            if [[ ! -e "$lib_dir/$needed" ]]; then
+                # Try to copy from qt_lib if present.
+                if [[ -e "$qt_lib/$needed" ]]; then
+                    copy_shared_object "$qt_lib/$needed" "$lib_dir"
+                fi
+                if [[ ! -e "$lib_dir/$needed" ]]; then
+                    missing="${missing}  $needed  (needed by $(basename "$target"))"$'\n'
+                fi
+            fi
+        done < <(readelf -d "$target" 2>/dev/null | awk -F'[][]' '/NEEDED/ {print $2}')
+    done
+
+    if [[ -n "$missing" ]]; then
+        echo "ERROR: Missing Qt libraries in bundle (would fall back to system Qt at runtime):" >&2
+        printf '%s' "$missing" >&2
+        echo "       Scanned Qt lib dir: $qt_lib" >&2
+        exit 1
+    fi
 }
 
 patch_bundled_rpaths() {
     local app_dir="$1"
-
-    if ! command -v patchelf >/dev/null 2>&1; then
-        warn "patchelf not found; skipping RPATH patching."
-        return
-    fi
 
     patchelf --set-rpath '$ORIGIN/lib' "$app_dir/Stellar"
 
