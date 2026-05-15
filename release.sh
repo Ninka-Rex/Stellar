@@ -338,6 +338,14 @@ patch_bundled_rpaths() {
 
     patchelf --set-rpath '$ORIGIN/lib' "$app_dir/Stellar"
 
+    # Bundled Qt libraries must find each other first, before any system Qt.
+    # Without this, a build-machine Qt that exports Qt_6_PRIVATE_API symbols
+    # will produce libs whose inter-dependencies leak out to /lib64 at runtime.
+    while read -r sofile; do
+        [[ -n "$sofile" ]] || continue
+        patchelf --set-rpath '$ORIGIN' "$sofile" || true
+    done < <(find "$app_dir/lib" -maxdepth 1 -type f -name '*.so*' 2>/dev/null || true)
+
     while read -r sofile; do
         [[ -n "$sofile" ]] || continue
         patchelf --set-rpath '$ORIGIN/../../lib:$ORIGIN/../../../lib:$ORIGIN/../../../../lib' "$sofile" || true
