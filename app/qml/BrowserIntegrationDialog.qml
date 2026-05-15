@@ -98,7 +98,7 @@ Window {
             anchors.fill: parent
             hoverEnabled: true
             cursorShape: Qt.PointingHandCursor
-            onClicked: Qt.openUrlExternally(ib.url)
+            onClicked: App.openExternalUrl(ib.url)
         }
     }
 
@@ -251,7 +251,7 @@ Window {
                                         anchors.fill: parent
                                         hoverEnabled: true
                                         cursorShape: Qt.PointingHandCursor
-                                        onClicked: Qt.openUrlExternally("https://www.mozilla.org/firefox/download/thanks/")
+                                        onClicked: App.openExternalUrl("https://www.mozilla.org/firefox/download/thanks/")
                                     }
                                 }
                             }

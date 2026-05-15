@@ -201,7 +201,7 @@ Window {
     function openSelectedArticle() {
         if (!isSafeWebUrl(selectedArticle.link)) return
         markSelectedArticleRead(true)
-        Qt.openUrlExternally(selectedArticle.link)
+        App.openExternalUrl(selectedArticle.link)
     }
 
     function triggerSelectedDownload() {
@@ -1138,7 +1138,7 @@ Window {
                                                 wrapMode: Text.WordWrap
                                                 onLinkActivated: function(link) {
                                     if (link.startsWith("https://") || link.startsWith("http://"))
-                                        Qt.openUrlExternally(link)
+                                        App.openExternalUrl(link)
                                 }
                                             }
                                         }

@@ -218,7 +218,7 @@ Window {
             text: qsTr("Open Description Page")
             onTriggered: {
                 var row = root.currentRowData()
-                if (row.descriptionUrl) Qt.openUrlExternally(row.descriptionUrl)
+                if (row.descriptionUrl) App.openExternalUrl(row.descriptionUrl)
             }
         }
         Action {

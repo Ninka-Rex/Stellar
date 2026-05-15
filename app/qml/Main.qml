@@ -517,7 +517,7 @@ ApplicationWindow {
             TrayMenuItem { label: qsTr("Open Stellar"); bold: true; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.requestActivate() } }
             TrayMenuItem { label: qsTr("Add URL…");     onClicked: { trayMenu.visible = false; root.show(); root.raise(); addUrlDialog.show(); addUrlDialog.raise() } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
-            TrayMenuItem { label: qsTr("GitHub");        onClicked: { trayMenu.visible = false; Qt.openUrlExternally("https://github.com/Ninka-Rex/Stellar") } }
+            TrayMenuItem { label: qsTr("GitHub");        onClicked: { trayMenu.visible = false; App.openExternalUrl("https://github.com/Ninka-Rex/Stellar") } }
             TrayMenuItem { label: qsTr("About Stellar"); onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageAbout) } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
             TrayMenuItem { label: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "") + qsTr("Speed Limiter"); onClicked: { trayMenu.visible = false; if (App.settings.globalSpeedLimitKBps > 0) App.disableSpeedLimiter(); else App.enableSpeedLimiter() } }
@@ -664,7 +664,7 @@ ApplicationWindow {
             completeDialog.raise()
         }
         function onTrayGithubRequested() {
-            Qt.openUrlExternally("https://github.com/Ninka-Rex/Stellar")
+            App.openExternalUrl("https://github.com/Ninka-Rex/Stellar")
         }
         function onTrayAboutRequested() {
             root.show(); root.raise()

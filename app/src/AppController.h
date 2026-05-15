@@ -318,6 +318,7 @@ public:
     Q_INVOKABLE void deleteDownload(const QString &id, int mode = 0);
     Q_INVOKABLE void openFile(const QString &id);
     Q_INVOKABLE void openFolder(const QString &id);
+    Q_INVOKABLE void openExternalUrl(const QUrl &url);
     Q_INVOKABLE void openFolderSelectFile(const QString &id);
     Q_INVOKABLE void openFileWith(const QString &id);
     Q_INVOKABLE void moveFileToDesktop(const QString &id);

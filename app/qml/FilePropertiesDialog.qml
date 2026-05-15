@@ -5438,7 +5438,7 @@ Window {
                                     text: qsTr("Open in browser")
                                     onTriggered: {
                                         if (webSeedCtxMenu.seedUrl.length > 0)
-                                            Qt.openUrlExternally(webSeedCtxMenu.seedUrl)
+                                            App.openExternalUrl(webSeedCtxMenu.seedUrl)
                                     }
                                 }
                                 MenuSeparator {}

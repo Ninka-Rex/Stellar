@@ -4453,6 +4453,17 @@ void AppController::openFolderSelectFile(const QString &id) {
 #endif
 }
 
+void AppController::openExternalUrl(const QUrl &url) {
+#if defined(STELLAR_WINDOWS)
+    QDesktopServices::openUrl(url);
+#else
+    // Bypass QDesktopServices::openUrl on Linux. On KDE it routes through KIO,
+    // which may try to "read" https:// URLs as files instead of launching the
+    // default browser. xdg-open reliably delegates to the right handler.
+    QProcess::startDetached(QStringLiteral("xdg-open"), {url.toString()});
+#endif
+}
+
 void AppController::openFileWith(const QString &id) {
     auto *item = m_downloadModel->itemById(id);
     if (!item || item->filename().isEmpty()) return;

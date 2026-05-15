@@ -2640,7 +2640,7 @@ Window {
                             DlgButton {
                                 text: qsTr("Get ffmpeg (gyan.dev)")
                                 visible: !App.ytdlpManager.ffmpegAvailable
-                                onClicked: Qt.openUrlExternally("https://www.gyan.dev/ffmpeg/builds/")
+                                onClicked: App.openExternalUrl("https://www.gyan.dev/ffmpeg/builds/")
                             }
                         }
 
@@ -4534,7 +4534,7 @@ Window {
                                 color: "#4488dd"; font.pixelSize: 11
                                 font.underline: true
                                 MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
-                                    onClicked: Qt.openUrlExternally("https://www.gnu.org/licenses/gpl-3.0.html") }
+                                    onClicked: App.openExternalUrl("https://www.gnu.org/licenses/gpl-3.0.html") }
                             }
                             Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
                             Text {
@@ -4542,7 +4542,7 @@ Window {
                                 color: "#4488dd"; font.pixelSize: 11
                                 font.underline: true
                                 MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
-                                    onClicked: Qt.openUrlExternally("https://stellardownloadmanager.org/") }
+                                    onClicked: App.openExternalUrl("https://stellardownloadmanager.org/") }
                             }
                             Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
                             Text {
@@ -4550,7 +4550,7 @@ Window {
                                 color: "#4488dd"; font.pixelSize: 11
                                 font.underline: true
                                 MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
-                                    onClicked: Qt.openUrlExternally("https://github.com/Ninka-Rex/Stellar") }
+                                    onClicked: App.openExternalUrl("https://github.com/Ninka-Rex/Stellar") }
                             }
                             Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
                             Text {
@@ -4558,7 +4558,7 @@ Window {
                                 color: "#4488dd"; font.pixelSize: 11
                                 font.underline: true
                                 MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
-                                    onClicked: Qt.openUrlExternally("https://github.com/Ninka-Rex/Stellar/releases") }
+                                    onClicked: App.openExternalUrl("https://github.com/Ninka-Rex/Stellar/releases") }
                             }
                         }
 
@@ -4617,14 +4617,14 @@ Window {
                                     text: "ffmpeg.org"
                                     color: "#4488dd"; font.pixelSize: 11; font.underline: true
                                     MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
-                                        onClicked: Qt.openUrlExternally("https://ffmpeg.org/") }
+                                        onClicked: App.openExternalUrl("https://ffmpeg.org/") }
                                 }
                                 Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
                                 Text {
                                     text: "Git source"
                                     color: "#4488dd"; font.pixelSize: 11; font.underline: true
                                     MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
-                                        onClicked: Qt.openUrlExternally("https://git.ffmpeg.org/ffmpeg.git") }
+                                        onClicked: App.openExternalUrl("https://git.ffmpeg.org/ffmpeg.git") }
                                 }
                             }
                         }
@@ -4655,14 +4655,14 @@ Window {
                                     text: "libtorrent.org"
                                     color: "#4488dd"; font.pixelSize: 11; font.underline: true
                                     MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
-                                        onClicked: Qt.openUrlExternally("https://libtorrent.org/") }
+                                        onClicked: App.openExternalUrl("https://libtorrent.org/") }
                                 }
                                 Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
                                 Text {
                                     text: "GitHub"
                                     color: "#4488dd"; font.pixelSize: 11; font.underline: true
                                     MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
-                                        onClicked: Qt.openUrlExternally("https://github.com/arvidn/libtorrent") }
+                                        onClicked: App.openExternalUrl("https://github.com/arvidn/libtorrent") }
                                 }
                             }
                         }
@@ -4693,14 +4693,14 @@ Window {
                                     text: "yt-dlp on GitHub"
                                     color: "#4488dd"; font.pixelSize: 11; font.underline: true
                                     MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
-                                        onClicked: Qt.openUrlExternally("https://github.com/yt-dlp/yt-dlp") }
+                                        onClicked: App.openExternalUrl("https://github.com/yt-dlp/yt-dlp") }
                                 }
                                 Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
                                 Text {
                                     text: "Unlicense"
                                     color: "#4488dd"; font.pixelSize: 11; font.underline: true
                                     MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
-                                        onClicked: Qt.openUrlExternally("http://unlicense.org/") }
+                                        onClicked: App.openExternalUrl("http://unlicense.org/") }
                                 }
                             }
                         }
@@ -4728,7 +4728,7 @@ Window {
                                 text: "code.qt.io"
                                 color: "#4488dd"; font.pixelSize: 11; font.underline: true
                                 MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
-                                    onClicked: Qt.openUrlExternally("https://code.qt.io/") }
+                                    onClicked: App.openExternalUrl("https://code.qt.io/") }
                             }
                         }
 
@@ -4755,7 +4755,7 @@ Window {
                                 text: "db-ip.com"
                                 color: "#4488dd"; font.pixelSize: 11; font.underline: true
                                 MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
-                                    onClicked: Qt.openUrlExternally("https://db-ip.com/") }
+                                    onClicked: App.openExternalUrl("https://db-ip.com/") }
                             }
                         }
 

@@ -476,7 +476,7 @@ Window {
                             DlgButton {
                                 text: qsTr("Get Deno")
                                 visible: !App.ytdlpManager.jsRuntimeAvailable
-                                onClicked: Qt.openUrlExternally("https://deno.com")
+                                onClicked: App.openExternalUrl("https://deno.com")
                             }
                             DlgButton {
                                 text: qsTr("Open Settings")
