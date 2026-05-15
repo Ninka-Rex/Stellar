@@ -121,13 +121,13 @@ Rectangle {
                     return "~" + Math.round(value)
                 }
                 if (!App.settings.torrentEnableDht)
-                    return qsTr("🔴 DHT off")
+                    return qsTr("DHT off")
                 if (App.estimatedOnlineUsers > 0) {
                     if (App.estimatedOnlineUsers > 25000000)
-                        return "🟡 " + fmtUsers(App.estimatedOnlineUsers) + qsTr(" online (low confidence)")
-                    return "🟢 " + fmtUsers(App.estimatedOnlineUsers) + qsTr(" online")
+                        return fmtUsers(App.estimatedOnlineUsers) + qsTr(" online (low confidence)")
+                    return "👤 " + fmtUsers(App.estimatedOnlineUsers) + qsTr(" online")
                 }
-                return qsTr("🟡 Estimating… (%1%)").arg(App.estimatedOnlineUsersWarmupPercent)
+                return qsTr("Estimating… (%1%)").arg(App.estimatedOnlineUsersWarmupPercent)
             }
             color: onlineUsersHover.hovered ? "#ffffff" : "#b0b0b0"
             font.pixelSize: 11
