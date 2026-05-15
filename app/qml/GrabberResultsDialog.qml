@@ -24,9 +24,9 @@ Window {
     id: root
     title: qsTr("Stellar Grabber")
     width: 1060
-    height: 570
+    height: 500
     minimumWidth: 1060
-    minimumHeight: 570
+    minimumHeight: 500
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint
     modality: Qt.ApplicationModal
@@ -425,53 +425,66 @@ Window {
             spacing: 0
 
             // ── Menu bar ──────────────────────────────────────────────────────
-            Rectangle {
+            MenuBar {
                 Layout.fillWidth: true
-                height: 28
-                color: "#222228"
 
-                Menu {
-                    id: mbProjectMenu
-                    Action { text: qsTr("Edit current project"); onTriggered: root.editProjectRequested(root.projectId) }
-                    Action { text: qsTr("Close"); onTriggered: root.close() }
-                }
-                Menu {
-                    id: mbOptionsMenu
-                    Action { text: qsTr("Grabber settings"); onTriggered: root.openGrabberSettings() }
+                background: Rectangle {
+                    color: "#252525"
+                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#383838" }
                 }
 
-                Row {
-                    anchors.fill: parent
-
-                    Repeater {
-                        model: [
-                            { label: qsTr("Project"), menu: mbProjectMenu },
-                            { label: qsTr("Options"), menu: mbOptionsMenu }
-                        ]
-                        delegate: Rectangle {
-                            required property var modelData
-                            width: mbLabel.implicitWidth + 20
-                            height: 28
-                            color: mbMa.containsMouse || modelData.menu.visible ? "#1e3a6e" : "transparent"
-
-                            Text {
-                                id: mbLabel
-                                anchors.centerIn: parent
-                                text: modelData.label
-                                color: "#d0d0d0"
-                                font.pixelSize: 12
-                            }
-                            MouseArea {
-                                id: mbMa
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                onClicked: modelData.menu.popup(0, parent.height)
-                            }
-                        }
+                component GrabberCompactMenuItem: MenuItem {
+                    id: _gcmi
+                    implicitHeight: 22
+                    height: 22
+                    topPadding: 0; bottomPadding: 0; verticalPadding: 0
+                    leftPadding: 8; rightPadding: 12
+                    spacing: 0
+                    font.pixelSize: 12
+                    indicator: Item { width: 0; height: 0 }
+                    arrow: Text {
+                        x: _gcmi.width - width - 8
+                        anchors.verticalCenter: parent ? parent.verticalCenter : undefined
+                        text: "▶"; font.pixelSize: 8; color: "#888888"
+                        visible: _gcmi.subMenu !== null
+                    }
+                    contentItem: Text {
+                        text: _gcmi.text; font: _gcmi.font
+                        color: _gcmi.enabled ? "#d0d0d0" : "#666666"
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
+                    }
+                    background: Rectangle {
+                        implicitHeight: 22
+                        color: _gcmi.highlighted ? "#1e3a6e" : "transparent"
                     }
                 }
 
-                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#333333" }
+                delegate: MenuBarItem {
+                    verticalPadding: 0; leftPadding: 12; rightPadding: 12
+                    contentItem: Text {
+                        text: parent.text; font: parent.font
+                        color: "#d0d0d0"; verticalAlignment: Text.AlignVCenter
+                    }
+                    background: Rectangle {
+                        implicitHeight: 20
+                        color: parent.highlighted ? "#1e3a6e" : "transparent"
+                    }
+                }
+
+                Menu {
+                    title: qsTr("Project")
+                    delegate: GrabberCompactMenuItem
+                    implicitWidth: 200; topPadding: 0; bottomPadding: 0
+                    GrabberCompactMenuItem { text: qsTr("Edit current project"); onTriggered: root.editProjectRequested(root.projectId) }
+                    GrabberCompactMenuItem { text: qsTr("Close"); onTriggered: root.close() }
+                }
+                Menu {
+                    title: qsTr("Options")
+                    delegate: GrabberCompactMenuItem
+                    implicitWidth: 200; topPadding: 0; bottomPadding: 0
+                    GrabberCompactMenuItem { text: qsTr("Grabber settings"); onTriggered: root.openGrabberSettings() }
+                }
             }
 
             // ── Project info / status strip ───────────────────────────────────
@@ -519,7 +532,7 @@ Window {
                                     id: statusDot
                                     width: 7; height: 7; radius: 4
                                     anchors.verticalCenter: parent.verticalCenter
-                                    color: App.grabberBusy ? "#55cc88" : "#444455"
+                                    color: App.grabberBusy ? "#55cc88" : "#444444"
 
                                     SequentialAnimation on opacity {
                                         id: dotAnim
@@ -533,7 +546,7 @@ Window {
 
                                 Text {
                                     text: App.grabberBusy ? qsTr("Running") : qsTr("Idle")
-                                    color: App.grabberBusy ? "#55cc88" : "#555566"
+                                    color: App.grabberBusy ? "#55cc88" : "#555555"
                                     font.pixelSize: 11
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
@@ -544,7 +557,7 @@ Window {
 
                             Text {
                                 text: qsTr("%1 files found").arg(totalCount)
-                                color: "#777788"
+                                color: "#777777"
                                 font.pixelSize: 11
                                 anchors.verticalCenter: parent.verticalCenter
                             }
@@ -553,14 +566,14 @@ Window {
 
                             Text {
                                 text: qsTr("%1 checked").arg(checkedCount)
-                                color: checkedCount > 0 ? "#88bbff" : "#555566"
+                                color: checkedCount > 0 ? "#4488dd" : "#555555"
                                 font.pixelSize: 11
                                 anchors.verticalCenter: parent.verticalCenter
                             }
 
                             Text {
                                 visible: App.grabberStatusText.length > 0
-                                text: "— " + App.grabberStatusText
+                                text: App.grabberStatusText
                                 color: "#556677"
                                 font.pixelSize: 11
                                 elide: Text.ElideRight
@@ -573,7 +586,7 @@ Window {
                     Rectangle {
                         visible: App.grabberBusy
                         width: 160; height: 4; radius: 2
-                        color: "#2a2a3a"
+                        color: "#2a2a2a"
                         Layout.alignment: Qt.AlignVCenter
 
                         Rectangle {
@@ -604,14 +617,13 @@ Window {
             // ── Toolbar ───────────────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
-                height: 64
+                height: 72
                 color: "#252525"
 
                 Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#2d2d2d" }
 
                 Flickable {
                     anchors.fill: parent
-                    anchors.topMargin: 2; anchors.bottomMargin: 2
                     clip: true
                     contentWidth: toolbarRow.implicitWidth
                     contentHeight: toolbarRow.implicitHeight
@@ -634,29 +646,14 @@ Window {
                             delegate: ToolbarBtn {
                                 label: modelData.label
                                 iconSrc: "icons/" + modelData.icon
-                                iconSize: 26
+                                iconSize: 32
                                 width: modelData.btnWidth
-                                height: 60
+                                height: 72
                                 enabled: {
                                     if (modelData.action === "stop") return App.grabberBusy
                                     if (modelData.action === "schedule" || modelData.action === "stats" || modelData.action === "update")
                                         return root.projectId.length > 0
                                     return true
-                                }
-                                background: Rectangle {
-                                    color: parent.pressed ? "#1e3a6e"
-                                         : parent.hovered ? "#2a2a3a"
-                                         : "transparent"
-                                    radius: 2
-                                    // Bottom accent line on hover
-                                    Rectangle {
-                                        visible: parent.parent.hovered || parent.parent.pressed
-                                        anchors.bottom: parent.bottom
-                                        anchors.left: parent.left; anchors.right: parent.right
-                                        height: 2
-                                        color: parent.parent.pressed ? "#4488dd" : "#334466"
-                                        radius: 0
-                                    }
                                 }
                                 onClicked: {
                                     var project = root.projectData()
@@ -734,7 +731,7 @@ Window {
                                 Rectangle {
                                     width: sidebarColumn.width
                                     height: 26
-                                    color: sideMode === "all" ? "#1e3a6e" : (allFilesHover.containsMouse ? "#232330" : "transparent")
+                                    color: sideMode === "all" ? "#1e3a6e" : (allFilesHover.containsMouse ? "#2a2a2a" : "transparent")
 
                                     // Selected left indicator
                                     Rectangle {
@@ -757,7 +754,7 @@ Window {
                                         }
                                         Text {
                                             text: qsTr("All Files")
-                                            color: sideMode === "all" ? "#88bbff" : "#b8b8b8"
+                                            color: sideMode === "all" ? "#4488dd" : "#b8b8b8"
                                             font.pixelSize: 12
                                             font.bold: sideMode === "all"
                                             anchors.verticalCenter: parent.verticalCenter
@@ -775,14 +772,14 @@ Window {
                                 Rectangle {
                                     width: sidebarColumn.width
                                     height: 24
-                                    color: "#212126"
+                                    color: "#202020"
 
                                     Row {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8 }
                                         spacing: 5
                                         Text {
                                             text: isSectionExpanded("link") ? "▾" : "▸"
-                                            color: "#6677aa"; font.pixelSize: 11; width: 12
+                                            color: "#668899"; font.pixelSize: 11; width: 12
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
@@ -795,10 +792,8 @@ Window {
                                         }
                                         Text {
                                             text: qsTr("Link View")
-                                            color: "#8899aa"
-                                            font.pixelSize: 10
-                                            font.bold: true
-                                            font.capitalization: Font.AllUppercase
+                                            color: "#888888"
+                                            font.pixelSize: 11
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                     }
@@ -820,7 +815,7 @@ Window {
                                         property bool isSelected: sideMode === "link" && sideFilterValue === modelData.id
                                         width: sidebarColumn.width
                                         height: 25
-                                        color: isSelected ? "#1e3a6e" : (linkItemHover.containsMouse ? "#232330" : "transparent")
+                                        color: isSelected ? "#1e3a6e" : (linkItemHover.containsMouse ? "#2a2a2a" : "transparent")
 
                                         Rectangle {
                                             visible: isSelected
@@ -835,7 +830,7 @@ Window {
                                                 width: 12
                                                 text: modelData.isDomain && modelData.hasChildren
                                                       ? (modelData.isExpanded ? "▾" : "▸") : ""
-                                                color: "#6677aa"; font.pixelSize: 11
+                                                color: "#668899"; font.pixelSize: 11
                                                 horizontalAlignment: Text.AlignHCenter
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
@@ -849,7 +844,7 @@ Window {
                                             }
                                             Text {
                                                 text: modelData.label
-                                                color: isSelected ? "#88bbff" : "#b0b8c4"
+                                                color: isSelected ? "#4488dd" : "#b0b8c4"
                                                 font.pixelSize: 11
                                                 font.bold: modelData.isDomain
                                                 elide: Text.ElideRight
@@ -879,14 +874,14 @@ Window {
                                 Rectangle {
                                     width: sidebarColumn.width
                                     height: 24
-                                    color: "#212126"
+                                    color: "#202020"
 
                                     Row {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8 }
                                         spacing: 5
                                         Text {
                                             text: isSectionExpanded("folder") ? "▾" : "▸"
-                                            color: "#6677aa"; font.pixelSize: 11; width: 12
+                                            color: "#668899"; font.pixelSize: 11; width: 12
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
@@ -899,10 +894,8 @@ Window {
                                         }
                                         Text {
                                             text: qsTr("Folder View")
-                                            color: "#8899aa"
-                                            font.pixelSize: 10
-                                            font.bold: true
-                                            font.capitalization: Font.AllUppercase
+                                            color: "#888888"
+                                            font.pixelSize: 11
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                     }
@@ -924,7 +917,7 @@ Window {
                                         property bool isSelected: sideMode === "folder" && sideFilterValue === modelData.id
                                         width: sidebarColumn.width
                                         height: 25
-                                        color: isSelected ? "#1e3a6e" : (folderItemHover.containsMouse ? "#232330" : "transparent")
+                                        color: isSelected ? "#1e3a6e" : (folderItemHover.containsMouse ? "#2a2a2a" : "transparent")
 
                                         Rectangle {
                                             visible: isSelected
@@ -939,7 +932,7 @@ Window {
                                                 width: 12
                                                 text: modelData.hasChildren
                                                       ? (root.isFolderExpanded(modelData.id) ? "▾" : "▸") : ""
-                                                color: "#6677aa"; font.pixelSize: 11
+                                                color: "#668899"; font.pixelSize: 11
                                                 horizontalAlignment: Text.AlignHCenter
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
@@ -953,7 +946,7 @@ Window {
                                             }
                                             Text {
                                                 text: modelData.label
-                                                color: isSelected ? "#88bbff" : "#b0b8c4"
+                                                color: isSelected ? "#4488dd" : "#b0b8c4"
                                                 font.pixelSize: 11
                                                 font.bold: modelData.depth === 0
                                                 elide: Text.ElideRight
@@ -1029,7 +1022,7 @@ Window {
                                         width: root.columnWidth(modelData.key)
                                         height: parent.height
                                         readonly property bool isSortable: modelData.key !== "check"
-                                        color: (isSortable && headerCellMouse.containsMouse) ? "#2a2a36" : "transparent"
+                                        color: (isSortable && headerCellMouse.containsMouse) ? "#2a2a2a" : "transparent"
 
                                         Item {
                                             anchors.fill: parent
@@ -1120,9 +1113,9 @@ Window {
                                 width: tableFlick.contentWidth
                                 height: rowVisible ? 26 : 0
                                 visible: height > 0
-                                color: root.isRowSelected(index) ? "#1e3250"
-                                     : rowMouse.containsMouse ? "#222230"
-                                     : index % 2 === 0 ? "#1c1c1c" : "#202024"
+                                color: root.isRowSelected(index) ? "#1e3a6e"
+                                     : rowMouse.containsMouse ? "#2a2a2a"
+                                     : index % 2 === 0 ? "#1c1c1c" : "#222222"
 
                                 // Selected left indicator
                                 Rectangle {
@@ -1170,20 +1163,20 @@ Window {
                                         }
                                     }
                                     Text { width: root.columnWidth("filename"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: filename; color: root.isRowSelected(index) ? "#e8e8ff" : "#d0d0d0"; elide: Text.ElideRight; font.pixelSize: 12 }
-                                    Text { width: root.columnWidth("filetype"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: fileTypeLabel(filename, url); color: root.isRowSelected(index) ? "#aabbcc" : "#6e7a88"; elide: Text.ElideRight; font.pixelSize: 11 }
-                                    Text { width: root.columnWidth("size"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: sizeText; color: root.isRowSelected(index) ? "#c8d8e8" : "#7a8898"; font.pixelSize: 11 }
+                                    Text { width: root.columnWidth("filetype"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: fileTypeLabel(filename, url); color: root.isRowSelected(index) ? "#c8d4e0" : "#aeb7c0"; elide: Text.ElideRight; font.pixelSize: 11 }
+                                    Text { width: root.columnWidth("size"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: sizeText; color: root.isRowSelected(index) ? "#c8d4e0" : "#aeb7c0"; font.pixelSize: 11 }
                                     Text {
                                         width: root.columnWidth("status"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter
                                         property string statusVal: computeStatus(url)
                                         text: statusVal
                                         color: root.isRowSelected(index) ? "#e0e8ff"
                                              : statusVal === "Ready" ? "#55bb77"
-                                             : statusVal === "Already in list" ? "#bb9944" : "#667788"
+                                             : statusVal === "Already in list" ? "#cc9944" : "#888899"
                                         elide: Text.ElideRight; font.pixelSize: 11
                                     }
-                                    Text { width: root.columnWidth("linktext"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: baseHost(sourcePage.length > 0 ? sourcePage : url); color: root.isRowSelected(index) ? "#aabbcc" : "#6e7a88"; elide: Text.ElideRight; font.pixelSize: 11 }
-                                    Text { width: root.columnWidth("downloadfrom"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: url; color: root.isRowSelected(index) ? "#88aadd" : "#445577"; elide: Text.ElideMiddle; font.pixelSize: 11 }
-                                    Text { width: root.columnWidth("saveto"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: saveToText(filename); color: root.isRowSelected(index) ? "#aabbcc" : "#556677"; elide: Text.ElideMiddle; font.pixelSize: 11 }
+                                    Text { width: root.columnWidth("linktext"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: baseHost(sourcePage.length > 0 ? sourcePage : url); color: root.isRowSelected(index) ? "#c8d4e0" : "#9aa6b2"; elide: Text.ElideRight; font.pixelSize: 11 }
+                                    Text { width: root.columnWidth("downloadfrom"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: url; color: root.isRowSelected(index) ? "#88aadd" : "#6688aa"; elide: Text.ElideMiddle; font.pixelSize: 11 }
+                                    Text { width: root.columnWidth("saveto"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: saveToText(filename); color: root.isRowSelected(index) ? "#c8d4e0" : "#7a8898"; elide: Text.ElideMiddle; font.pixelSize: 11 }
                                 }
 
                                 Rectangle {
@@ -1218,9 +1211,9 @@ Window {
             Rectangle {
                 Layout.fillWidth: true
                 height: 42
-                color: "#222228"
+                color: "#252525"
 
-                Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#2d2d36" }
+                Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#2d2d2d" }
 
                 RowLayout {
                     anchors.fill: parent
@@ -1237,8 +1230,8 @@ Window {
                     Rectangle {
                         visible: totalCount > 0
                         height: 18; radius: 3
-                        color: "#1a1a28"
-                        border.color: "#2a2a40"
+                        color: "#1e1e1e"
+                        border.color: "#3a3a3a"
                         width: countLabel.implicitWidth + 14
 
                         Text {

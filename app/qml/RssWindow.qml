@@ -263,7 +263,7 @@ Window {
     }
 
     Component.onCompleted: {
-        App.setWindowIcon(root, "qrc:/qt/qml/com/stellar/app/app/qml/icons/rss.svg")
+        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/rss.svg")
         syncFeedSelection(); ensureArticleSelection()
     }
 

@@ -264,10 +264,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/tools.svg
         app/qml/icons/x_square.svg
         app/qml/icons/download.svg
-        app/qml/icons/resume.svg
         app/qml/icons/pause.svg
-        app/qml/icons/stop.svg
-        app/qml/icons/delete.svg
         app/qml/icons/remove.svg
         app/qml/icons/properties.svg
         app/qml/icons/scheduler.svg
@@ -288,7 +285,6 @@ qt_add_qml_module(Stellar
         app/qml/icons/arrow_right.svg
         app/qml/icons/arrow_left.svg
         app/qml/icons/exit.svg
-        app/qml/icons/add.svg
         app/qml/icons/spider.svg
         app/qml/icons/wand.svg
         app/qml/icons/magnifying_glass.svg
@@ -333,20 +329,12 @@ qt_add_qml_module(Stellar
         app/qml/icons/folder.svg
         app/qml/icons/arrow_download.svg
         app/qml/icons/scheduler2.svg
-        app/qml/icons/add_url.svg
         app/qml/icons/categories/all_downloads.svg
         app/qml/icons/categories/compressed.svg
         app/qml/icons/categories/documents.svg
         app/qml/icons/categories/note.svg
         app/qml/icons/categories/programs.svg
         app/qml/icons/categories/video.svg
-        app/qml/icons/resume.svg
-        app/qml/icons/pause.svg
-        app/qml/icons/exit.svg
-        app/qml/icons/delete.svg
-        app/qml/icons/remove.svg
-        app/qml/icons/gear.svg
-        app/qml/icons/download.svg
         app/qml/icons/checkmark.svg
         app/qml/icons/queues.svg
         app/qml/icons/main_queue.svg
