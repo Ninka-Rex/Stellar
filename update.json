@@ -1,17 +1,17 @@
 {
-  "version": "0.7.1",
-  "installerUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/0.7.1/StellarSetup-0.7.1.exe",
-  "sha256": "6413ce7cb7f79f6eacf50c93594ee7e781b9c79c7b3e4b8449ec9be7525ee16e",
-  "linuxInstallerUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/0.7.1/stellar_0.7.1_amd64.deb",
-  "linuxSha256": "a2d971bbf4e9ec97ab68b6b4bb78b208d1b64f87175b303d6ac54ef2ca963e9c",
-  "linuxDebInstallerFilename": "stellar_0.7.1_amd64.deb",
-  "linuxDebSha256": "a2d971bbf4e9ec97ab68b6b4bb78b208d1b64f87175b303d6ac54ef2ca963e9c",
-  "linuxRpmInstallerFilename": "stellar-0.7.1-1.x86_64.rpm",
-  "linuxRpmSha256": "REPLACE_WITH_RPM_SHA256_AT_RELEASE_TIME",
+  "version": "0.8.0",
+  "installerUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/0.8.0/StellarSetup-0.8.0.exe",
+  "sha256": "448eb976ed6161b733643c3a94acc62df57e74db4fcef489f7cc50294d199977",
+  "linuxInstallerUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/0.8.0/stellar_0.8.0_amd64.deb",
+  "linuxSha256": "29caa2d054997015c683bfbff13596f2a111448d1cd85f3581c07046e3ca6dc9",
+  "linuxDebInstallerFilename": "stellar_0.8.0_amd64.deb",
+  "linuxDebSha256": "29caa2d054997015c683bfbff13596f2a111448d1cd85f3581c07046e3ca6dc9",
+  "linuxRpmInstallerFilename": "stellar-0.8.0-1.x86_64.rpm",
+  "linuxRpmSha256": "d352fb88e0401da6730437973d67ad1b7b7c23fcfaa12e34c617c40f25f65132",
   "motd": "",
   "ffmpegWindowsUrl": "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip",
   "ffmpegLinuxUrl": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz",
   "IPtoCityDB": "https://download.db-ip.com/free/dbip-city-lite-2026-04.mmdb.gz",
   "chromeExtensionUrl": "https://chromewebstore.google.com/detail/stellar-integration-modul/pppelmimeffdigknplngfmhefcbhfcbd",
-  "firefoxExtensionUrl": "https://addons.mozilla.org/firefox/downloads/file/4778694/533b75163b7b4c2e902d-0.1.7.xpi"
+  "firefoxExtensionUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/0.8.0/StellarFirefox-0.1.9.xpi"
 }
