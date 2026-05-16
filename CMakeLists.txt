@@ -250,25 +250,16 @@ qt_add_qml_module(Stellar
     RESOURCES
         app/qml/icons/add.svg
         app/qml/icons/resume.svg
-        app/qml/icons/stop.svg
         app/qml/icons/delete.svg
-        app/qml/icons/settings.svg
         app/qml/icons/gear.svg
         app/qml/icons/add_url.svg
-        app/qml/icons/files_x.svg
-        app/qml/icons/pause_purple.svg
-        app/qml/icons/resume_purple.svg
         app/qml/icons/start_queue.svg
         app/qml/icons/stop_queue.svg
         app/qml/icons/pause_orange.svg
         app/qml/icons/tools.svg
-        app/qml/icons/x_square.svg
-        app/qml/icons/download.svg
         app/qml/icons/pause.svg
-        app/qml/icons/remove.svg
         app/qml/icons/properties.svg
         app/qml/icons/scheduler.svg
-        app/qml/icons/help.svg
         app/qml/icons/update.svg
         app/qml/icons/clock.svg
         app/qml/icons/bar_chart.svg
@@ -279,22 +270,14 @@ qt_add_qml_module(Stellar
         app/qml/icons/columns.svg
         app/qml/icons/hide_categories.svg
         app/qml/icons/arrow_down.svg
-        app/qml/icons/arrow_up.svg
         app/qml/icons/rename.svg
         app/qml/icons/new_file.svg
-        app/qml/icons/arrow_right.svg
-        app/qml/icons/arrow_left.svg
         app/qml/icons/exit.svg
         app/qml/icons/spider.svg
         app/qml/icons/wand.svg
         app/qml/icons/magnifying_glass.svg
-        app/qml/icons/search.svg
         app/qml/icons/rss.svg
-        app/qml/icons/cancel.svg
         app/qml/icons/copy.svg
-        app/qml/icons/paste.svg
-        app/qml/icons/copy_file.svg
-        app/qml/icons/move_file.svg
         app/qml/icons/milky-way.png
         app/qml/icons/milky-way.ico
         app/qml/icons/milky-way.gif
@@ -327,8 +310,6 @@ qt_add_qml_module(Stellar
         app/qml/icons/torrent-client-logos/vuze.png
         app/qml/icons/torrent-client-logos/XunLei.png
         app/qml/icons/folder.svg
-        app/qml/icons/arrow_download.svg
-        app/qml/icons/scheduler2.svg
         app/qml/icons/categories/all_downloads.svg
         app/qml/icons/categories/compressed.svg
         app/qml/icons/categories/documents.svg
@@ -358,7 +339,6 @@ qt_add_qml_module(Stellar
         app/qml/icons/torrent-categories/moving.svg
         app/qml/icons/torrent-categories/seeding.svg
         app/qml/icons/torrent-categories/stopped.svg
-        app/qml/icons/torrent-categories/alarm-clock.svg
         tips.txt
 )
 
