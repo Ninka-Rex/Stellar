@@ -220,6 +220,13 @@ Window {
             var parts = root.pendingFilename.split('.')
             return parts.length > 1 ? parts[parts.length - 1] : ""
         }
+        nameFilters: {
+            var parts = root.pendingFilename.split('.')
+            var ext = parts.length > 1 ? parts[parts.length - 1].toLowerCase() : ""
+            if (ext.length > 0)
+                return [qsTr("%1 files (*.%2)").arg(ext.toUpperCase()).arg(ext), qsTr("All files (*)")]
+            return [qsTr("All files (*)")]
+        }
         onAccepted: {
             var path = pathFromFileUrl(selectedFile)
             if (path.length > 0) {
