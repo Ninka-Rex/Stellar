@@ -1871,7 +1871,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         if (item && item->id() == m_pendingIpToCityDbDownloadId) {
             const QString dbUpdateId = item->id();
             const QString archivePath = item->savePath() + QStringLiteral("/") + item->filename();
-            const QString targetDir = writableRuntimeDataDir();
+            const QString targetDir = StellarPaths::geoDir();
             QDir().mkpath(targetDir);
             if (m_torrentSession)
                 m_torrentSession->releaseGeoDatabaseForUpdate();
