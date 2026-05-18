@@ -1,5 +1,12 @@
 # Stellar Download Manager 🌌
 
+![GitHub Release](https://img.shields.io/github/v/release/Ninka-Rex/Stellar?style=flat-square&color=%234e2f69)
+![GitHub Repo stars](https://img.shields.io/github/stars/Ninka-Rex/Stellar?style=flat-square)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/Ninka-Rex/Stellar?style=flat-square)
+![GitHub License](https://img.shields.io/github/license/Ninka-Rex/Stellar?style=flat-square)
+
+
+
 A clean-room reimplementation of Internet Download Manager for Windows and Linux, with a built-in torrent client and yt-dlp support for downloading from YouTube and other video sites. Written in C++ and Qt.
 
 <details>

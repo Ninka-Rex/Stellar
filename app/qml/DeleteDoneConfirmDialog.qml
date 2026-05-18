@@ -24,11 +24,11 @@ Window {
     id: root
     title: qsTr("Delete Completed Downloads")
     property bool includeSeedingTorrents: false
-    width: 440
-    height: 236
+    width: 400
+    height: 188
     minimumWidth: 360
-    minimumHeight: 216
-    maximumHeight: 236
+    minimumHeight: 188
+    maximumHeight: 188
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
     modality: Qt.ApplicationModal
@@ -45,26 +45,49 @@ Window {
     }
 
     ColumnLayout {
-        anchors { fill: parent; margins: 20 }
-        spacing: 16
+        anchors { fill: parent; margins: 12 }
+        spacing: 6
 
-        Text {
-            text: qsTr("Are you sure you want to delete all completed downloads from Stellar's list of downloads?")
-            color: "#d0d0d0"; font.pixelSize: 13
-            wrapMode: Text.WordWrap; Layout.fillWidth: true
+        // Icon + message
+        RowLayout {
+            spacing: 10
+            Image {
+                source: "icons/delete.svg"
+                width: 22; height: 22
+                Layout.alignment: Qt.AlignVCenter
+                smooth: true
+                mipmap: true
+            }
+            ColumnLayout {
+                spacing: 2
+                Text {
+                    text: qsTr("Delete completed downloads?")
+                    color: "#ffffff"
+                    font.pixelSize: 13
+                    font.bold: true
+                }
+                Text {
+                    text: qsTr("Removes from list only. Files on disk are not deleted.")
+                    color: "#a0a0a0"
+                    font.pixelSize: 11
+                    wrapMode: Text.WordWrap
+                    Layout.fillWidth: true
+                }
+            }
         }
 
-        Text {
-            text: qsTr("Note: This will only remove them from the list. Files on disk will not be deleted.")
-            color: "#909090"; font.pixelSize: 12
-            wrapMode: Text.WordWrap; Layout.fillWidth: true
+        Rectangle {
+            Layout.fillWidth: true
+            height: 1
+            color: "#3a3a3a"
+            Layout.topMargin: 2
         }
 
         CheckBox {
             text: qsTr("Delete completed and seeding torrents")
             checked: root.includeSeedingTorrents
-            topPadding: 0
-            bottomPadding: 0
+            topPadding: 2
+            bottomPadding: 2
             onToggled: root.includeSeedingTorrents = checked
             contentItem: Text {
                 text: parent.text
@@ -81,19 +104,14 @@ Window {
             Layout.fillWidth: true
             spacing: 8
             Item { Layout.fillWidth: true }
-            Button {
-                text: qsTr("Yes")
-                implicitWidth: 80
-                background: Rectangle { color: "#1e3a6e"; radius: 3; border.color: "#4488dd"; border.width: 1 }
-                contentItem: Text { text: parent.text; color: "#ffffff"; font.pixelSize: 13; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
-                onClicked: { root.confirmed(root.includeSeedingTorrents); root.close() }
-            }
-            Button {
-                text: qsTr("No")
-                implicitWidth: 80
-                background: Rectangle { color: "#3a3a3a"; radius: 3; border.color: "#555"; border.width: 1 }
-                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+            DlgButton {
+                text: qsTr("Cancel")
                 onClicked: root.close()
+            }
+            DlgButton {
+                text: qsTr("Delete")
+                destructive: true
+                onClicked: { root.confirmed(root.includeSeedingTorrents); root.close() }
             }
         }
     }

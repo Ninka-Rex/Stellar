@@ -35,16 +35,12 @@ Window {
 
     signal confirmed(int deleteMode)
 
-    readonly property int _dialogHeight: (fileExists || hasTorrentSelection) ? 232 : 166
+    readonly property int _dialogHeight: (fileExists || hasTorrentSelection) ? 188 : 130
 
-    width: 420
-    // Material Button elements carry ~6px top/bottom insets, so the rendered button
-    // height is ~48px rather than the nominal 36px.  The original 160px was too small
-    // to fit icon row + spacing + buttons + margins, causing the button row to be
-    // clipped until the user manually resized the window.
+    width: 400
     height: _dialogHeight
-    minimumWidth: 380
-    maximumWidth: 560
+    minimumWidth: 360
+    maximumWidth: 520
     minimumHeight: _dialogHeight
     maximumHeight: _dialogHeight
     color: "#1e1e1e"
@@ -76,32 +72,33 @@ Window {
 
     ColumnLayout {
         id: contentColumn
-        anchors { fill: parent; margins: 16 }
-        spacing: 8
+        anchors { fill: parent; margins: 12 }
+        spacing: 6
 
         // Icon + message
         RowLayout {
-            spacing: 12
-            Text {
-                text: "\u26A0"
-                color: "#e0a040"
-                font.pixelSize: 28
-                Layout.alignment: Qt.AlignTop
+            spacing: 10
+            Image {
+                source: "icons/delete.svg"
+                width: 22; height: 22
+                Layout.alignment: Qt.AlignVCenter
+                smooth: true
+                mipmap: true
             }
             ColumnLayout {
-                spacing: 4
+                spacing: 2
                 Text {
                     text: qsTr("Remove download?")
                     color: "#ffffff"
-                    font.pixelSize: 14
+                    font.pixelSize: 13
                     font.bold: true
                 }
                 Text {
                     text: root.filename
                     color: "#a0a0a0"
-                    font.pixelSize: 12
+                    font.pixelSize: 11
                     elide: Text.ElideMiddle
-                    Layout.maximumWidth: 310
+                    Layout.maximumWidth: 300
                 }
             }
         }
@@ -109,12 +106,13 @@ Window {
         // File-on-disk options (only shown for completed downloads)
         ColumnLayout {
             visible: root.fileExists || root.hasTorrentSelection
-            spacing: 4
+            spacing: 2
 
             Rectangle {
                 Layout.fillWidth: true
                 height: 1
                 color: "#3a3a3a"
+                Layout.topMargin: 2
             }
 
             CheckBox {
@@ -123,8 +121,8 @@ Window {
                     ? qsTr("Also delete torrent files from disk")
                     : qsTr("Also delete file from disk")
                 checked: false
-                topPadding: 0
-                bottomPadding: 0
+                topPadding: 2
+                bottomPadding: 2
                 onToggled: { if (!checked) permDeleteChk.checked = false }
                 contentItem: Text {
                     text: parent.text
@@ -140,8 +138,8 @@ Window {
                 text: qsTr("Permanently delete (don't move to trash)")
                 checked: false
                 enabled: deleteFileChk.checked
-                topPadding: 0
-                bottomPadding: 0
+                topPadding: 2
+                bottomPadding: 2
                 contentItem: Text {
                     text: parent.text
                     color: permDeleteChk.enabled ? "#d0d0d0" : "#666666"
@@ -152,7 +150,7 @@ Window {
             }
         }
 
-        Item { Layout.fillHeight: true; Layout.maximumHeight: 6 }
+        Item { Layout.fillHeight: true }
 
         // Buttons
         RowLayout {
