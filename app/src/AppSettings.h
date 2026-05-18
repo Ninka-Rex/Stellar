@@ -164,6 +164,8 @@ class AppSettings : public QObject {
     Q_PROPERTY(QString rssDownloadRulesJson READ rssDownloadRulesJson WRITE setRssDownloadRulesJson NOTIFY rssDownloadRulesJsonChanged)
     // UI language locale code — empty string means "use system locale (English fallback)"
     Q_PROPERTY(QString uiLanguage READ uiLanguage WRITE setUiLanguage NOTIFY uiLanguageChanged)
+    // Tray icon style (Linux only): 0=Colored, 1=White, 2=Black
+    Q_PROPERTY(int trayIconStyle READ trayIconStyle WRITE setTrayIconStyle NOTIFY trayIconStyleChanged)
 
 public:
     explicit AppSettings(QObject *parent = nullptr);
@@ -290,6 +292,7 @@ public:
     QString rssSmartFiltersJson()     const { return m_rssSmartFiltersJson; }
     QString rssDownloadRulesJson()    const { return m_rssDownloadRulesJson; }
     QString uiLanguage()              const { return m_uiLanguage; }
+    int     trayIconStyle()           const { return m_trayIconStyle; }
     QString motdDismissedHash() const { return m_motdDismissedHash; }
     qint64 motdDismissedUntilUtcMs() const { return m_motdDismissedUntilUtcMs; }
 
@@ -424,6 +427,7 @@ public:
     void setRssSmartFiltersJson(const QString &v);
     void setRssDownloadRulesJson(const QString &v);
     void setUiLanguage(const QString &v);
+    void setTrayIconStyle(int v);
     void setMotdDismissal(const QString &hash, qint64 untilUtcMs);
     void clearMotdDismissal();
 
@@ -519,6 +523,7 @@ signals:
     void rssSmartFiltersJsonChanged();
     void rssDownloadRulesJsonChanged();
     void uiLanguageChanged();
+    void trayIconStyleChanged();
 
 private:
     int     m_maxConcurrent{3};
@@ -653,6 +658,8 @@ private:
     qint64      m_motdDismissedUntilUtcMs{0};
     // Empty = system default (English fallback), otherwise a locale code like "fr"
     QString     m_uiLanguage;
+    // 0=Colored (milky-way.png), 1=White, 2=Black — Linux tray icon style
+    int         m_trayIconStyle{0};
 
     // Apply or remove OS startup entry depending on v
     void applyStartupRegistration(bool v) const;

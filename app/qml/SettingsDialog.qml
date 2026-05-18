@@ -159,6 +159,8 @@ Window {
     property string editRssSmartFiltersJson:     "[]"
     // Language — empty string = English (default), "fr" = French, etc.
     property string editUiLanguage:             ""
+    // Tray icon style: 0=Colored, 1=White, 2=Black
+    property int    editTrayIconStyle:          0
 
     readonly property string defaultUserAgent: "Stellar/" + App.appVersion
     readonly property string displayedUserAgent: editUseCustomUserAgent
@@ -656,6 +658,7 @@ Window {
         }
         App.settings.minimizeToTray        = editMinimizeToTray
         App.settings.closeToTray           = editCloseToTray
+        App.settings.trayIconStyle         = editTrayIconStyle
         App.settings.showTips              = editShowTips
         App.settings.maxRetries            = editMaxRetries
         App.settings.connectionTimeoutSecs = editConnectionTimeoutSecs
@@ -755,6 +758,7 @@ Window {
         editSavedUploadLimitKBpsBaseline = editSavedUploadLimitKBps
         editMinimizeToTray        = App.settings.minimizeToTray
         editCloseToTray           = App.settings.closeToTray
+        editTrayIconStyle         = App.settings.trayIconStyle
         editShowTips              = App.settings.showTips
         editShowExceptionsDialog  = App.settings.showExceptionsDialog
         editMaxRetries            = App.settings.maxRetries
@@ -2365,6 +2369,36 @@ Window {
                             checked: root.editCloseToTray
                             onCheckedChanged: root.editCloseToTray = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+                        RowLayout {
+                            spacing: 10
+                            visible: Qt.platform.os === "linux"
+                            Text {
+                                text: qsTr("Tray icon style:")
+                                color: "#d0d0d0"
+                                font.pixelSize: 13
+                                Layout.alignment: Qt.AlignVCenter
+                            }
+                            ComboBox {
+                                id: trayIconStyleCombo
+                                implicitWidth: 130
+                                implicitHeight: 26
+                                model: [qsTr("Colored"), qsTr("White"), qsTr("Black")]
+                                currentIndex: root.editTrayIconStyle
+                                onActivated: root.editTrayIconStyle = currentIndex
+                                contentItem: Text {
+                                    leftPadding: 8
+                                    text: trayIconStyleCombo.displayText
+                                    color: "#d0d0d0"
+                                    font.pixelSize: 13
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                                background: Rectangle {
+                                    color: "#1b1b1b"
+                                    border.color: trayIconStyleCombo.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    radius: 2
+                                }
+                            }
                         }
                         CheckBox {
                             text: qsTr("Launch Stellar on startup")

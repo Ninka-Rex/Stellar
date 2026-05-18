@@ -2044,6 +2044,9 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_settings, &AppSettings::globalSpeedLimitKBpsChanged, this, [this] {
         m_tray->setSpeedLimiterActive(m_settings->globalSpeedLimitKBps() > 0 || m_settings->globalUploadLimitKBps() > 0);
     });
+    connect(m_settings, &AppSettings::trayIconStyleChanged, this, [this] {
+        m_tray->setTrayIconStyle(m_settings->trayIconStyle());
+    });
     connect(this, &AppController::sessionPausedChanged, this, [this] {
         m_tray->setSessionPaused(m_sessionPaused);
     });
@@ -2089,6 +2092,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         m_lastTrayTooltip = tip;
         m_tray->setToolTip(tip);
     }
+    m_tray->setTrayIconStyle(m_settings->trayIconStyle());
     m_tray->show();
 
     if (m_db->open()) {

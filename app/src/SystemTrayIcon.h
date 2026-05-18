@@ -40,6 +40,8 @@ public:
     // Called by AppController to keep native menu state in sync.
     void setSpeedLimiterActive(bool active);
     void setSessionPaused(bool paused);
+    // 0=Colored, 1=White, 2=Black — Linux only; no-op on Windows/macOS
+    void setTrayIconStyle(int style);
 
 signals:
     void showRequested();

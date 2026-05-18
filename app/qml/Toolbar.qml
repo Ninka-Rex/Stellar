@@ -77,7 +77,7 @@ Rectangle {
         }
         ToolbarBtn { label: qsTr("Stop All"); iconSrc: "icons/stop_all.svg"; enabled: App.activeDownloads > 0;                          onClicked: root.stopAllClicked() }
         ToolbarBtn { label: qsTr("Delete");      iconSrc: "icons/trash.svg"; enabled: downloadTable ? downloadTable.hasSelection : false; onClicked: root.deleteClicked() }
-        ToolbarBtn { label: qsTr("Delete Done"); iconSrc: "icons/trash.svg";      onClicked: root.deleteCompletedClicked() }
+        ToolbarBtn { label: qsTr("Delete Done"); iconSrc: "icons/delete_done.svg"; onClicked: root.deleteCompletedClicked() }
         ToolbarBtn { label: qsTr("Options");        iconSrc: "icons/tools.svg";     onClicked: root.optionsClicked() }
         ToolbarBtn { label: qsTr("Scheduler");      iconSrc: "icons/clock.svg";     onClicked: root.schedulerClicked() }
 

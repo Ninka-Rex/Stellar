@@ -5998,6 +5998,22 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <source>Select JavaScript runtime binary</source>
         <translation></translation>
     </message>
+    <message>
+        <source>Tray icon style:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Colored</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>White</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Black</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>Sidebar</name>

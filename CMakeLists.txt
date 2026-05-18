@@ -251,6 +251,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/add.svg
         app/qml/icons/resume.svg
         app/qml/icons/delete.svg
+        app/qml/icons/delete_done.svg
         app/qml/icons/gear.svg
         app/qml/icons/add_url.svg
         app/qml/icons/start_queue.svg
@@ -279,6 +280,8 @@ qt_add_qml_module(Stellar
         app/qml/icons/rss.svg
         app/qml/icons/copy.svg
         app/qml/icons/milky-way.png
+        app/qml/icons/milky-way-white.png
+        app/qml/icons/milky-way-black.png
         app/qml/icons/milky-way.ico
         app/qml/icons/milky-way.gif
         app/qml/icons/magnet.svg

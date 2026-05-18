@@ -71,12 +71,28 @@ static QIcon createDownloadsTrayIcon() {
     return QIcon(pm);
 }
 
+static QIcon trayIconForStyle(int style) {
+#if defined(Q_OS_LINUX)
+    static const char *kPaths[3] = {
+        ":/qt/qml/com/stellar/app/app/qml/icons/milky-way.png",
+        ":/qt/qml/com/stellar/app/app/qml/icons/milky-way-white.png",
+        ":/qt/qml/com/stellar/app/app/qml/icons/milky-way-black.png",
+    };
+    const int idx = (style >= 0 && style <= 2) ? style : 0;
+    const QIcon icon(QLatin1String(kPaths[idx]));
+    return icon.isNull() ? createDefaultIcon() : icon;
+#else
+    Q_UNUSED(style)
+    const QIcon icon(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way.ico"));
+    return icon.isNull() ? createDefaultIcon() : icon;
+#endif
+}
+
 SystemTrayIcon::SystemTrayIcon(QObject *parent)
     : QObject(parent)
 {
     m_tray = new QSystemTrayIcon(this);
-    const QIcon appIcon(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way.ico"));
-    m_tray->setIcon(appIcon.isNull() ? createDefaultIcon() : appIcon);
+    m_tray->setIcon(trayIconForStyle(0));
     m_tray->setToolTip(tr("Stellar Download Manager"));
 
     connect(m_tray, &QSystemTrayIcon::activated, this,
@@ -173,6 +189,10 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
 
 void SystemTrayIcon::setup(const QString &iconPath) {
     m_tray->setIcon(iconPath.isEmpty() ? createDefaultIcon() : QIcon(iconPath));
+}
+
+void SystemTrayIcon::setTrayIconStyle(int style) {
+    m_tray->setIcon(trayIconForStyle(style));
 }
 
 void SystemTrayIcon::show()  { m_tray->show(); }
