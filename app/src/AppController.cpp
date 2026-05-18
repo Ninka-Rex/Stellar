@@ -2282,6 +2282,32 @@ int AppController::activeDownloads() const {
     return count;
 }
 
+int AppController::totalDownloads() const {
+    return m_downloadModel->allItems().size();
+}
+
+int AppController::pausedCount() const {
+    int count = 0;
+    for (DownloadItem *item : m_downloadModel->allItems()) {
+        if (!item) continue;
+        if (item->statusEnum() == DownloadItem::Status::Paused
+            || item->statusEnum() == DownloadItem::Status::Queued)
+            ++count;
+    }
+    return count;
+}
+
+int AppController::checkingCount() const {
+    int count = 0;
+    for (DownloadItem *item : m_downloadModel->allItems()) {
+        if (!item) continue;
+        if (item->statusEnum() == DownloadItem::Status::Checking
+            || item->statusEnum() == DownloadItem::Status::Moving)
+            ++count;
+    }
+    return count;
+}
+
 QString AppController::torrentBindingStatusText() const {
     if (!m_settings)
         return {};

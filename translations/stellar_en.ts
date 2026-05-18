@@ -6146,35 +6146,13 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="../app/qml/StatusBar.qml" line="60"/>
-        <location filename="../app/qml/StatusBar.qml" line="65"/>
-        <source>🟦 1 active</source>
+        <location filename="../app/qml/StatusBar.qml" line="78"/>
+        <source>unlimited</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/StatusBar.qml" line="60"/>
-        <location filename="../app/qml/StatusBar.qml" line="65"/>
-        <source>🟦 %1 active</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/StatusBar.qml" line="68"/>
-        <source>📄 1 download</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/StatusBar.qml" line="68"/>
-        <source>📄 %1 downloads</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/StatusBar.qml" line="58"/>
-        <source>🟨 1 error</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/StatusBar.qml" line="58"/>
-        <source>🟨 %1 errors</source>
+        <location filename="../app/qml/StatusBar.qml" line="79"/>
+        <source>🛑 Speed limiter </source>
         <translation></translation>
     </message>
     <message>
@@ -6188,28 +6166,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/StatusBar.qml" line="79"/>
-        <source>🛑 Speed limiter </source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/StatusBar.qml" line="62"/>
-        <source>🟩 Ready</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/StatusBar.qml" line="71"/>
-        <source>🔍 1 selected</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/StatusBar.qml" line="71"/>
-        <source>🔍 %1 selected</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../app/qml/StatusBar.qml" line="124"/>
-        <source>🔴 DHT off</source>
+        <source>DHT off</source>
         <translation></translation>
     </message>
     <message>
@@ -6223,6 +6181,16 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <translation></translation>
     </message>
     <message>
+        <location filename="../app/qml/StatusBar.qml" line="130"/>
+        <source>Estimating… (%1%)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/StatusBar.qml" line="318"/>
+        <source>next &gt;&gt;</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/StatusBar.qml" line="348"/>
         <source>🟧 Queue runs in 1 minute</source>
         <translation></translation>
@@ -6233,24 +6201,9 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/StatusBar.qml" line="130"/>
-        <source>🟡 Estimating… (%1%)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/StatusBar.qml" line="318"/>
-        <source>next &gt;&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../app/qml/StatusBar.qml" line="167"/>
         <source>All-time share ratio
 Click to open Statistics</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/StatusBar.qml" line="240"/>
-        <source>Click to copy IP</source>
         <translation></translation>
     </message>
     <message>
@@ -6259,8 +6212,13 @@ Click to open Statistics</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/StatusBar.qml" line="237"/>
-        <source>Connection: Ethernet</source>
+        <location filename="../app/qml/StatusBar.qml" line="225"/>
+        <source>Listening port: </source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/StatusBar.qml" line="228"/>
+        <source>No incoming connections, network may be misconfigured</source>
         <translation></translation>
     </message>
     <message>
@@ -6274,13 +6232,13 @@ Click to open Statistics</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/StatusBar.qml" line="225"/>
-        <source>Listening port: </source>
+        <location filename="../app/qml/StatusBar.qml" line="237"/>
+        <source>Connection: Ethernet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/StatusBar.qml" line="228"/>
-        <source>No incoming connections, network may be misconfigured</source>
+        <location filename="../app/qml/StatusBar.qml" line="240"/>
+        <source>Click to copy IP</source>
         <translation></translation>
     </message>
 </context>

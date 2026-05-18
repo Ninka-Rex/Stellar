@@ -60,6 +60,9 @@ class AppController : public QObject {
     Q_PROPERTY(class QueueModel   *queueModel    READ queueModel    CONSTANT)
     Q_PROPERTY(AppSettings        *settings      READ settings      CONSTANT)
     Q_PROPERTY(int     activeDownloads    READ activeDownloads    NOTIFY activeDownloadsChanged)
+    Q_PROPERTY(int     totalDownloads     READ totalDownloads     NOTIFY activeDownloadsChanged)
+    Q_PROPERTY(int     pausedCount        READ pausedCount        NOTIFY activeDownloadsChanged)
+    Q_PROPERTY(int     checkingCount      READ checkingCount      NOTIFY activeDownloadsChanged)
     Q_PROPERTY(qint64  totalDownSpeed     READ totalDownSpeed     NOTIFY totalSpeedChanged)
     Q_PROPERTY(qint64  totalUpSpeed       READ totalUpSpeed       NOTIFY totalSpeedChanged)
     Q_PROPERTY(qint64  estimatedOnlineUsers READ estimatedOnlineUsers NOTIFY estimatedOnlineUsersChanged)
@@ -134,6 +137,9 @@ public:
     class QueueModel   *queueModel()    const { return m_queueModel; }
     AppSettings        *settings()      const { return m_settings; }
     int    activeDownloads() const;
+    int    totalDownloads()  const;
+    int    pausedCount()     const;
+    int    checkingCount()   const;
     qint64 totalDownSpeed()  const { return m_totalDownSpeed; }
     qint64 totalUpSpeed()    const { return m_totalUpSpeed; }
     qint64 estimatedOnlineUsers() const { return m_estimatedOnlineUsers; }

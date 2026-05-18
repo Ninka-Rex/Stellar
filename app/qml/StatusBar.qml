@@ -54,21 +54,27 @@ Rectangle {
             text: {
                 var parts = []
 
-                if (errorCount > 0)
-                    parts.push(errorCount === 1 ? qsTr("🟨 1 error") : qsTr("🟨 %1 errors").arg(errorCount))
-                else if (activeCount > 0)
-                    parts.push(activeCount === 1 ? qsTr("🟦 1 active") : qsTr("🟦 %1 active").arg(activeCount))
-                else
-                    parts.push(qsTr("🟩 Ready"))
+                // Download counts cluster — always shown together, hide each when 0
+                var total    = App.totalDownloads
+                var running  = App.activeDownloads
+                var seeding  = App.seedingCount
+                var paused   = App.pausedCount
+                var checking = App.checkingCount
+                var errors   = errorCount
 
-                if (activeCount > 0 && errorCount > 0)
-                    parts.push(activeCount === 1 ? qsTr("🟦 1 active") : qsTr("🟦 %1 active").arg(activeCount))
+                if (total > 0)    parts.push("💾 " + total)
+                if (running > 0)  parts.push("▶️ " + running)
+                if (seeding > 0)  parts.push("🌱 " + seeding)
+                if (paused > 0)   parts.push("⏸️ " + paused)
+                if (checking > 0) parts.push("🔬 " + checking)
+                if (errors > 0)   parts.push("⚠️ " + errors)
 
-                if (App.settings.showFinishedCount && completedCount > 0)
-                    parts.push(completedCount === 1 ? qsTr("📄 1 download") : qsTr("📄 %1 downloads").arg(completedCount))
-
-                if (selectedCount > 0)
-                    parts.push(selectedCount === 1 ? qsTr("🔍 1 selected") : qsTr("🔍 %1 selected").arg(selectedCount))
+                var hasSysStatus = App.settings.speedLimiterEnabled || App.proxyActive
+                    || App.checkingForUpdates
+                    || (App.updateStatusText && App.updateStatusText.length > 0 && !App.checkingForUpdates)
+                    || (App.torrentBindingStatusText && App.torrentBindingStatusText.length > 0)
+                if (parts.length > 0 && hasSysStatus)
+                    parts.push("|")
 
                 if (App.settings.speedLimiterEnabled) {
                     var limitParts = []
@@ -92,7 +98,7 @@ Rectangle {
                 if (App.torrentBindingStatusText && App.torrentBindingStatusText.length > 0)
                     parts.push(App.torrentBindingStatusText)
 
-                return parts.join("     ")
+                return parts.join("  ")
             }
             color: "#a0a0a0"
             font.pixelSize: 11
