@@ -1,9 +1,9 @@
 # Stellar Download Manager 🌌
 
 ![GitHub Release](https://img.shields.io/github/v/release/Ninka-Rex/Stellar?style=flat-square&color=%234e2f69)
-![GitHub Repo stars](https://img.shields.io/github/stars/Ninka-Rex/Stellar?style=flat-square)
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/Ninka-Rex/Stellar?style=flat-square)
-![GitHub License](https://img.shields.io/github/license/Ninka-Rex/Stellar?style=flat-square)
+![GitHub Repo stars](https://img.shields.io/github/stars/Ninka-Rex/Stellar?style=flat-square&color=%236b46c1)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/Ninka-Rex/Stellar?style=flat-square&color=%233b5bdb)
+![GitHub License](https://img.shields.io/github/license/Ninka-Rex/Stellar?style=flat-square&color=%235e60ce)
 
 
 
