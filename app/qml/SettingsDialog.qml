@@ -68,7 +68,7 @@ Window {
     property string editDefaultSavePath:       ""
     property string editTemporaryDirectory:    ""
     property string editTorrentCustomSavePath: ""
-    property int    editGlobalSpeedLimitKBps:  0
+    property bool   editGlobalSpeedLimitEnabled: false
     property bool   editMinimizeToTray:        false
     property bool   editCloseToTray:           false
     property bool   editShowTips:              true
@@ -78,7 +78,9 @@ Window {
     property int    editDuplicateAction:       0
     property bool   editStartImmediately:      false
     property bool   editSpeedLimiterOnStartup: false
-    property int    editGlobalUploadLimitKBps: 0
+    property int    editGlobalUploadLimitKBps:        0
+    property int    editSavedUploadLimitKBps:         0
+    property int    editSavedUploadLimitKBpsBaseline: 0
     property bool   editShowDownloadComplete:  true
     property bool   editShowCompletionNotification: true
     property bool   editShowErrorNotification: true
@@ -366,16 +368,6 @@ Window {
         }
     }
 
-    Connections {
-        target: App.settings
-        function onGlobalSpeedLimitKBpsChanged() {
-            root.editGlobalSpeedLimitKBps = App.settings.globalSpeedLimitKBps
-            if (root.editGlobalSpeedLimitKBps > 0 && root.editSavedSpeedLimitKBps === 0) {
-                root.editSavedSpeedLimitKBps = root.editGlobalSpeedLimitKBps
-            }
-        }
-    }
-
     // Track whether anything has been changed
     readonly property bool settingsChanged:
         editMaxConcurrent         !== App.settings.maxConcurrent        ||
@@ -383,7 +375,6 @@ Window {
         editDefaultSavePath       !== App.settings.defaultSavePath      ||
         editTemporaryDirectory    !== App.settings.temporaryDirectory   ||
         editTorrentCustomSavePath !== App.settings.torrentCustomSavePath ||
-        editGlobalSpeedLimitKBps  !== App.settings.globalSpeedLimitKBps ||
         editMinimizeToTray        !== App.settings.minimizeToTray       ||
         editCloseToTray           !== App.settings.closeToTray          ||
         editShowTips              !== App.settings.showTips             ||
@@ -392,7 +383,8 @@ Window {
         editDuplicateAction       !== App.settings.duplicateAction  ||
         editStartImmediately      !== App.settings.startImmediately ||
         editSpeedLimiterOnStartup !== App.settings.speedLimiterOnStartup ||
-        editGlobalUploadLimitKBps !== App.settings.globalUploadLimitKBps ||
+        editGlobalSpeedLimitEnabled !== App.settings.speedLimiterEnabled ||
+        editGlobalUploadLimitKBps !== editSavedUploadLimitKBpsBaseline ||
         editStartDownloadWhileFileInfo !== App.settings.startDownloadWhileFileInfo ||
         editShowSwarmMapWhileFetchingMetadata !== App.settings.showSwarmMapWhileFetchingMetadata ||
         editUseCustomUserAgent    !== App.settings.useCustomUserAgent ||
@@ -652,7 +644,16 @@ Window {
         App.settings.defaultSavePath       = editDefaultSavePath
         App.settings.temporaryDirectory    = editTemporaryDirectory
         App.settings.torrentCustomSavePath = editTorrentCustomSavePath
-        App.settings.globalSpeedLimitKBps  = editGlobalSpeedLimitKBps
+        App.settings.savedSpeedLimitKBps   = editSavedSpeedLimitKBps
+        App.settings.speedLimiterEnabled   = editGlobalSpeedLimitEnabled
+        if (editGlobalSpeedLimitEnabled) {
+            App.settings.globalSpeedLimitKBps  = editSavedSpeedLimitKBps
+            App.settings.globalUploadLimitKBps = editGlobalUploadLimitKBps
+        } else {
+            editSavedUploadLimitKBps = editGlobalUploadLimitKBps
+            App.settings.globalSpeedLimitKBps  = 0
+            App.settings.globalUploadLimitKBps = 0
+        }
         App.settings.minimizeToTray        = editMinimizeToTray
         App.settings.closeToTray           = editCloseToTray
         App.settings.showTips              = editShowTips
@@ -661,7 +662,6 @@ Window {
         App.settings.duplicateAction       = editDuplicateAction
         App.settings.startImmediately       = editStartImmediately
         App.settings.speedLimiterOnStartup  = editSpeedLimiterOnStartup
-        App.settings.globalUploadLimitKBps = editGlobalUploadLimitKBps
         App.settings.startDownloadWhileFileInfo = editStartDownloadWhileFileInfo
         App.settings.showSwarmMapWhileFetchingMetadata = editShowSwarmMapWhileFetchingMetadata
         App.settings.showQueueSelectionOnDownloadLater = editShowQueueSelectionOnDownloadLater
@@ -669,7 +669,6 @@ Window {
         App.settings.useCustomUserAgent    = editUseCustomUserAgent
         App.settings.customUserAgent       = editCustomUserAgent
         App.settings.bypassInterceptKey    = editBypassInterceptKey
-        App.settings.savedSpeedLimitKBps    = editSavedSpeedLimitKBps
         App.settings.showDownloadComplete   = editShowDownloadComplete
         App.settings.showCompletionNotification = editShowCompletionNotification
         App.settings.showErrorNotification  = editShowErrorNotification
@@ -747,7 +746,13 @@ Window {
         editDefaultSavePath       = App.settings.defaultSavePath
         editTemporaryDirectory    = App.settings.temporaryDirectory
         editTorrentCustomSavePath = App.settings.torrentCustomSavePath
-        editGlobalSpeedLimitKBps  = App.settings.globalSpeedLimitKBps
+        editSavedSpeedLimitKBps   = App.settings.savedSpeedLimitKBps
+        var activeUpload = App.settings.globalUploadLimitKBps
+        var activeDown   = App.settings.globalSpeedLimitKBps
+        if (activeDown > 0 || activeUpload > 0)
+            editSavedUploadLimitKBps = activeUpload
+        editGlobalUploadLimitKBps = editSavedUploadLimitKBps
+        editSavedUploadLimitKBpsBaseline = editSavedUploadLimitKBps
         editMinimizeToTray        = App.settings.minimizeToTray
         editCloseToTray           = App.settings.closeToTray
         editShowTips              = App.settings.showTips
@@ -757,7 +762,8 @@ Window {
         editDuplicateAction       = App.settings.duplicateAction
         editStartImmediately      = App.settings.startImmediately
         editSpeedLimiterOnStartup = App.settings.speedLimiterOnStartup
-        editGlobalUploadLimitKBps = App.settings.globalUploadLimitKBps
+        editGlobalSpeedLimitEnabled = App.settings.speedLimiterEnabled
+        globalLimitChk.checked = editGlobalSpeedLimitEnabled
         editStartDownloadWhileFileInfo = App.settings.startDownloadWhileFileInfo
         editShowSwarmMapWhileFetchingMetadata = App.settings.showSwarmMapWhileFetchingMetadata
         editShowQueueSelectionOnDownloadLater = App.settings.showQueueSelectionOnDownloadLater
@@ -765,7 +771,6 @@ Window {
         editUseCustomUserAgent    = App.settings.useCustomUserAgent
         editCustomUserAgent       = App.settings.customUserAgent
         editBypassInterceptKey    = App.settings.bypassInterceptKey
-        editSavedSpeedLimitKBps   = App.settings.savedSpeedLimitKBps
         editShowDownloadComplete  = App.settings.showDownloadComplete
         editShowCompletionNotification = App.settings.showCompletionNotification
         editShowErrorNotification = App.settings.showErrorNotification
@@ -1909,42 +1914,31 @@ Window {
 
                             CheckBox {
                                 id: globalLimitChk
-                                text: qsTr("Enable global speed limit")
+                                text: qsTr("Enable speed limiter")
                                 topPadding: 0; bottomPadding: 0
-                                checked: root.editGlobalSpeedLimitKBps > 0
-                                onToggled: { 
-                                    if (!checked) {
-                                        root.editGlobalSpeedLimitKBps = 0
-                                    } else {
-                                        root.editGlobalSpeedLimitKBps = root.editSavedSpeedLimitKBps
-                                    }
-                                }
+                                onCheckedChanged: root.editGlobalSpeedLimitEnabled = checked
                                 contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                             }
 
                             RowLayout {
                                 spacing: 8
-                                Text { text: qsTr("Maximum speed:"); color: "#a0a0a0"; font.pixelSize: 13 }
+                                Text { text: qsTr("Maximum download:"); color: "#a0a0a0"; font.pixelSize: 13 }
                                 TextField {
                                     id: speedLimitField
                                     implicitWidth: 90
-                                    color: "#d0d0d0"; font.pixelSize: 13
+                                    color: "#d0d0d0"
+                                    font.pixelSize: 13
                                     background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
 
-                                    // Populate once on load and whenever the settings are reset
                                     function syncFromModel() {
-                                        var val = root.editGlobalSpeedLimitKBps > 0
-                                            ? root.editGlobalSpeedLimitKBps
-                                            : root.editSavedSpeedLimitKBps
+                                        var val = root.editSavedSpeedLimitKBps
                                         if (parseInt(text) !== val)
                                             text = val.toString()
                                     }
                                     Component.onCompleted: syncFromModel()
                                     Connections {
                                         target: root
-                                        function onEditGlobalSpeedLimitKBpsChanged() { speedLimitField.syncFromModel() }
-                                        function onEditSavedSpeedLimitKBpsChanged()  {
-                                            // Only sync when the field isn't the one driving the change
+                                        function onEditSavedSpeedLimitKBpsChanged() {
                                             if (!speedLimitField.activeFocus)
                                                 speedLimitField.syncFromModel()
                                         }
@@ -1952,29 +1946,11 @@ Window {
 
                                     onTextEdited: {
                                         var v = parseInt(text)
-                                        if (!isNaN(v) && v > 0) {
-                                            if (globalLimitChk.checked)
-                                                root.editGlobalSpeedLimitKBps = v
+                                        if (!isNaN(v) && v >= 0)
                                             root.editSavedSpeedLimitKBps = v
-                                        }
                                     }
                                 }
                                 Text { text: qsTr("KB/s"); color: "#a0a0a0"; font.pixelSize: 13 }
-                            }
-
-                            CheckBox {
-                                id: globalUploadLimitChk
-                                text: qsTr("Enable global upload limit")
-                                topPadding: 0; bottomPadding: 0
-                                checked: root.editGlobalUploadLimitKBps > 0
-                                onToggled: {
-                                    if (!checked) {
-                                        root.editGlobalUploadLimitKBps = 0
-                                    } else if (root.editGlobalUploadLimitKBps <= 0) {
-                                        root.editGlobalUploadLimitKBps = 500
-                                    }
-                                }
-                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                             }
 
                             RowLayout {
@@ -1983,11 +1959,12 @@ Window {
                                 TextField {
                                     id: uploadLimitField
                                     implicitWidth: 90
-                                    color: "#d0d0d0"; font.pixelSize: 13
+                                    color: "#d0d0d0"
+                                    font.pixelSize: 13
                                     background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
 
                                     function syncFromModel() {
-                                        var val = root.editGlobalUploadLimitKBps > 0 ? root.editGlobalUploadLimitKBps : 500
+                                        var val = root.editGlobalUploadLimitKBps
                                         if (parseInt(text) !== val)
                                             text = val.toString()
                                     }
@@ -2001,7 +1978,7 @@ Window {
                                     }
                                     onTextEdited: {
                                         var v = parseInt(text)
-                                        if (!isNaN(v) && v > 0 && globalUploadLimitChk.checked)
+                                        if (!isNaN(v) && v >= 0)
                                             root.editGlobalUploadLimitKBps = v
                                     }
                                 }

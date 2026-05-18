@@ -290,9 +290,9 @@ Window {
     function compactSpeed(bps) {
         var n = Number(bps) || 0
         if (n <= 0) return "0 B/s"
-        if (n >= 1024 * 1024 * 1024) return (n / (1024 * 1024 * 1024)).toFixed(2) + " GB/s"
-        if (n >= 1024 * 1024) return (n / (1024 * 1024)).toFixed(1) + " MB/s"
-        if (n >= 1024) return (n / 1024).toFixed(1) + " KB/s"
+        if (n >= 1000000000) return (n / 1000000000).toFixed(2) + " GB/s"
+        if (n >= 1000000) return (n / 1000000).toFixed(1) + " MB/s"
+        if (n >= 1000) return (n / 1000).toFixed(1) + " KB/s"
         return Math.round(n) + " B/s"
     }
 

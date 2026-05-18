@@ -31,6 +31,7 @@ class AppSettings : public QObject {
     Q_PROPERTY(QString torrentCustomSavePath READ torrentCustomSavePath WRITE setTorrentCustomSavePath NOTIFY torrentCustomSavePathChanged)
     Q_PROPERTY(bool torrentUseCustomSavePathByDefault READ torrentUseCustomSavePathByDefault WRITE setTorrentUseCustomSavePathByDefault NOTIFY torrentCustomSavePathByDefaultChanged)
     Q_PROPERTY(int     globalSpeedLimitKBps READ globalSpeedLimitKBps WRITE setGlobalSpeedLimitKBps NOTIFY globalSpeedLimitKBpsChanged)
+    Q_PROPERTY(bool    speedLimiterEnabled  READ speedLimiterEnabled  WRITE setSpeedLimiterEnabled  NOTIFY speedLimiterEnabledChanged)
     Q_PROPERTY(bool    minimizeToTray       READ minimizeToTray       WRITE setMinimizeToTray       NOTIFY minimizeToTrayChanged)
     Q_PROPERTY(bool    closeToTray          READ closeToTray          WRITE setCloseToTray          NOTIFY closeToTrayChanged)
     Q_PROPERTY(int     maxRetries           READ maxRetries           WRITE setMaxRetries           NOTIFY maxRetriesChanged)
@@ -178,6 +179,7 @@ public:
     QString torrentCustomSavePath() const { return m_torrentCustomSavePath; }
     bool torrentUseCustomSavePathByDefault() const { return m_torrentUseCustomSavePathByDefault; }
     int     globalSpeedLimitKBps() const { return m_globalSpeedLimitKBps; }
+    bool    speedLimiterEnabled()  const { return m_speedLimiterEnabled; }
     bool    minimizeToTray()       const { return m_minimizeToTray; }
     bool    closeToTray()          const { return m_closeToTray; }
     int     maxRetries()           const { return m_maxRetries; }
@@ -298,6 +300,7 @@ public:
     void setTorrentCustomSavePath(const QString &v);
     void setTorrentUseCustomSavePathByDefault(bool v);
     void setGlobalSpeedLimitKBps(int v);
+    void setSpeedLimiterEnabled(bool v);
     void setMinimizeToTray(bool v);
     void setCloseToTray(bool v);
     void setMaxRetries(int v);
@@ -436,6 +439,7 @@ signals:
     void torrentCustomSavePathChanged();
     void torrentCustomSavePathByDefaultChanged();
     void globalSpeedLimitKBpsChanged();
+    void speedLimiterEnabledChanged();
     void minimizeToTrayChanged();
     void closeToTrayChanged();
     void maxRetriesChanged();
@@ -524,6 +528,7 @@ private:
     QString m_torrentCustomSavePath;
     bool    m_torrentUseCustomSavePathByDefault{false};
     int     m_globalSpeedLimitKBps{0};
+    bool    m_speedLimiterEnabled{false};
     bool    m_minimizeToTray{true};
     bool    m_closeToTray{true};
     int     m_maxRetries{3};

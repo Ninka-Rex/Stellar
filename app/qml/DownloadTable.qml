@@ -1333,9 +1333,9 @@ Rectangle {
                             if (bps <= 0) return ""
                             var limited = rowRect.item.speedLimitKBps > 0 || rowRect.item.perTorrentDownLimitKBps > 0
                             var suffix = limited ? "*" : ""
-                            if (bps >= 1073741824) return (bps / 1073741824).toFixed(2) + " GB/s" + suffix
-                            if (bps >= 1048576)    return (bps / 1048576).toFixed(2) + " MB/s" + suffix
-                            if (bps >= 1024)       return (bps / 1024).toFixed(1) + " KB/s" + suffix
+                            if (bps >= 1000000000) return (bps / 1000000000).toFixed(2) + " GB/s" + suffix
+                            if (bps >= 1000000)    return (bps / 1000000).toFixed(2) + " MB/s" + suffix
+                            if (bps >= 1000)       return (bps / 1000).toFixed(1) + " KB/s" + suffix
                             return bps + " B/s" + suffix
                         }
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
@@ -1359,9 +1359,9 @@ Rectangle {
                             var bps = rowRect.item.torrentUploadSpeed
                             var limited = rowRect.item.perTorrentUpLimitKBps > 0
                             var suffix = limited ? "*" : ""
-                            if (bps >= 1073741824) return (bps / 1073741824).toFixed(2) + " GB/s" + suffix
-                            if (bps >= 1048576)    return (bps / 1048576).toFixed(2) + " MB/s" + suffix
-                            if (bps >= 1024)       return (bps / 1024).toFixed(1) + " KB/s" + suffix
+                            if (bps >= 1000000000) return (bps / 1000000000).toFixed(2) + " GB/s" + suffix
+                            if (bps >= 1000000)    return (bps / 1000000).toFixed(2) + " MB/s" + suffix
+                            if (bps >= 1000)       return (bps / 1000).toFixed(1) + " KB/s" + suffix
                             return bps > 0 ? (bps + " B/s" + suffix) : ""
                         }
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"

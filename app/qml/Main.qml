@@ -37,10 +37,10 @@ ApplicationWindow {
         if (!App.settings.speedInTitleBar)
             return prefix + base
         function fmt(bps) {
-            if (bps >= 1024 * 1024)
-                return (bps / (1024 * 1024)).toFixed(1) + " MB/s"
-            if (bps >= 1024)
-                return Math.round(bps / 1024) + " KB/s"
+            if (bps >= 1000000)
+                return (bps / 1000000).toFixed(1) + " MB/s"
+            if (bps >= 1000)
+                return Math.round(bps / 1000) + " KB/s"
             return bps + " B/s"
         }
         return prefix + "[↓ " + fmt(App.totalDownSpeed) + "  ↑ " + fmt(App.totalUpSpeed) + "] " + base
@@ -520,7 +520,7 @@ ApplicationWindow {
             TrayMenuItem { label: qsTr("GitHub");        onClicked: { trayMenu.visible = false; App.openExternalUrl("https://github.com/Ninka-Rex/Stellar") } }
             TrayMenuItem { label: qsTr("About Stellar"); onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageAbout) } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
-            TrayMenuItem { label: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "") + qsTr("Speed Limiter"); onClicked: { trayMenu.visible = false; if (App.settings.globalSpeedLimitKBps > 0) App.disableSpeedLimiter(); else App.enableSpeedLimiter() } }
+            TrayMenuItem { label: ((App.settings.globalSpeedLimitKBps > 0 || App.settings.globalUploadLimitKBps > 0) ? "✓ " : "") + qsTr("Speed Limiter"); onClicked: { trayMenu.visible = false; if (App.settings.globalSpeedLimitKBps > 0 || App.settings.globalUploadLimitKBps > 0) App.disableSpeedLimiter(); else App.enableSpeedLimiter() } }
             TrayMenuItem { label: qsTr("Speed Limiter Settings…"); onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageSpeedLimiter) } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
             TrayMenuItem { label: (App.sessionPaused ? "✓ " : "") + qsTr("Pause Session"); onClicked: { trayMenu.visible = false; if (App.sessionPaused) App.resumeSession(); else App.pauseSession() } }
@@ -2368,8 +2368,8 @@ ApplicationWindow {
                     id: _speedLimiterMenu1
                     delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0
                     onAboutToHide: _sl1CloseTimer.stop()
-                    CompactMenuItem { text: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: App.enableSpeedLimiter() }
-                    CompactMenuItem { text: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: App.disableSpeedLimiter() }
+                    CompactMenuItem { text: (App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: { App.enableSpeedLimiter(); _speedLimiterMenu1.close() } }
+                    CompactMenuItem { text: (!App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: { App.disableSpeedLimiter(); _speedLimiterMenu1.close() } }
                     MenuSeparator {}
                     CompactMenuItem { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = root.settingsPageSpeedLimiter; settingsDialog.show() } }
                 }
@@ -2460,8 +2460,8 @@ ApplicationWindow {
                     id: _speedLimiterMenu2
                     delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0
                     onAboutToHide: _sl2CloseTimer.stop()
-                    CompactMenuItem { text: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: App.enableSpeedLimiter() }
-                    CompactMenuItem { text: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: App.disableSpeedLimiter() }
+                    CompactMenuItem { text: (App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: { App.enableSpeedLimiter(); _speedLimiterMenu2.close() } }
+                    CompactMenuItem { text: (!App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: { App.disableSpeedLimiter(); _speedLimiterMenu2.close() } }
                     MenuSeparator {}
                     CompactMenuItem { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = root.settingsPageSpeedLimiter; settingsDialog.show() } }
                 }

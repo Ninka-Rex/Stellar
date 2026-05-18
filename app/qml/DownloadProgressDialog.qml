@@ -149,9 +149,9 @@ Window {
 
     function fmtSpeed(bps) {
         if (!bps || bps <= 0) return "--"
-        if (bps >= 1073741824) return (bps / 1073741824).toFixed(2) + " GB/s"
-        if (bps >= 1048576)    return (bps / 1048576).toFixed(2) + " MB/s"
-        if (bps >= 1024)       return (bps / 1024).toFixed(1) + " KB/s"
+        if (bps >= 1000000000) return (bps / 1000000000).toFixed(2) + " GB/s"
+        if (bps >= 1000000)    return (bps / 1000000).toFixed(2) + " MB/s"
+        if (bps >= 1000)       return (bps / 1000).toFixed(1) + " KB/s"
         return bps + " B/s"
     }
 
@@ -385,7 +385,7 @@ Window {
                                         var limit = 0
                                         if (item.speedLimitKBps > 0)
                                             limit = item.speedLimitKBps
-                                        else if (App.settings.globalSpeedLimitKBps > 0)
+                                        else if (App.settings.speedLimiterEnabled && App.settings.globalSpeedLimitKBps > 0)
                                             limit = App.settings.globalSpeedLimitKBps
                                         if (limit > 0)
                                             speed += " " + qsTr("(Limited %1)").arg(root.fmtSpeed(limit * 1024))
@@ -663,7 +663,7 @@ Window {
                     CheckBox {
                         id: limitThisChk
                         text: qsTr("Enable per-download limit")
-                        enabled: App.settings.globalSpeedLimitKBps === 0
+                        enabled: !App.settings.speedLimiterEnabled
                         topPadding: 0
                         bottomPadding: 0
                         onCheckedChanged: root.applyPerDownloadSpeed()
@@ -687,10 +687,10 @@ Window {
                     Rectangle { Layout.fillWidth: true; height: 1; color: "#303030" }
 
                     Text {
-                        text: App.settings.globalSpeedLimitKBps > 0
-                            ? qsTr("Global limit active: %1 KB/s").arg(App.settings.globalSpeedLimitKBps)
+                        text: App.settings.speedLimiterEnabled
+                            ? (App.settings.globalSpeedLimitKBps > 0 ? qsTr("Global limit active: %1 KB/s").arg(App.settings.globalSpeedLimitKBps) : qsTr("Global limit active: unlimited"))
                             : qsTr("No global limit set")
-                        color: App.settings.globalSpeedLimitKBps > 0 ? "#ffcc88" : "#666"
+                        color: App.settings.speedLimiterEnabled ? "#ffcc88" : "#666"
                         font.pixelSize: 11
                         wrapMode: Text.WordWrap
                     }

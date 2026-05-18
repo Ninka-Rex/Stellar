@@ -166,6 +166,7 @@ void AppSettings::load() {
     m_torrentCustomSavePath = m_settings.value(QStringLiteral("torrentCustomSavePath"), m_defaultSavePath).toString();
     m_torrentUseCustomSavePathByDefault = m_settings.value(QStringLiteral("torrentUseCustomSavePathByDefault"), false).toBool();
     m_globalSpeedLimitKBps = m_settings.value(QStringLiteral("globalSpeedLimitKBps"), 0).toInt();
+    m_speedLimiterEnabled  = m_settings.value(QStringLiteral("speedLimiterEnabled"),  false).toBool();
     m_minimizeToTray       = m_settings.value(QStringLiteral("minimizeToTray"),       true).toBool();
     m_closeToTray          = m_settings.value(QStringLiteral("closeToTray"),          true).toBool();
     m_maxRetries           = m_settings.value(QStringLiteral("maxRetries"),           3).toInt();
@@ -339,6 +340,7 @@ void AppSettings::load() {
     emit torrentCustomSavePathChanged();
     emit torrentCustomSavePathByDefaultChanged();
     emit globalSpeedLimitKBpsChanged();
+    emit speedLimiterEnabledChanged();
     emit minimizeToTrayChanged();
     emit closeToTrayChanged();
     emit maxRetriesChanged();
@@ -431,6 +433,7 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("torrentCustomSavePath"), m_torrentCustomSavePath);
     m_settings.setValue(QStringLiteral("torrentUseCustomSavePathByDefault"), m_torrentUseCustomSavePathByDefault);
     m_settings.setValue(QStringLiteral("globalSpeedLimitKBps"),  m_globalSpeedLimitKBps);
+    m_settings.setValue(QStringLiteral("speedLimiterEnabled"),   m_speedLimiterEnabled);
     m_settings.setValue(QStringLiteral("minimizeToTray"),        m_minimizeToTray);
     m_settings.setValue(QStringLiteral("closeToTray"),           m_closeToTray);
     m_settings.setValue(QStringLiteral("maxRetries"),            m_maxRetries);
@@ -564,6 +567,7 @@ void AppSettings::setTemporaryDirectory(const QString &v) { if (m_temporaryDirec
 void AppSettings::setTorrentCustomSavePath(const QString &v) { if (m_torrentCustomSavePath != v) { m_torrentCustomSavePath = v; emit torrentCustomSavePathChanged(); save(); } }
 void AppSettings::setTorrentUseCustomSavePathByDefault(bool v) { if (m_torrentUseCustomSavePathByDefault != v) { m_torrentUseCustomSavePathByDefault = v; emit torrentCustomSavePathByDefaultChanged(); save(); } }
 void AppSettings::setGlobalSpeedLimitKBps(int v)  { if (m_globalSpeedLimitKBps != v) { m_globalSpeedLimitKBps = v; emit globalSpeedLimitKBpsChanged(); save(); } }
+void AppSettings::setSpeedLimiterEnabled(bool v)  { if (m_speedLimiterEnabled  != v) { m_speedLimiterEnabled  = v; emit speedLimiterEnabledChanged();  save(); } }
 void AppSettings::setMinimizeToTray(bool v)        { if (m_minimizeToTray      != v) { m_minimizeToTray       = v; emit minimizeToTrayChanged();       save(); } }
 void AppSettings::setCloseToTray(bool v)           { if (m_closeToTray         != v) { m_closeToTray          = v; emit closeToTrayChanged();          save(); } }
 void AppSettings::setMaxRetries(int v)             { if (m_maxRetries          != v) { m_maxRetries           = v; emit maxRetriesChanged();           save(); } }

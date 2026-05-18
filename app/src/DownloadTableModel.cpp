@@ -562,7 +562,7 @@ QString DownloadTableModel::formatSize(qint64 bytes) {
 }
 
 QString DownloadTableModel::formatSpeed(qint64 bps) {
-    if (bps < 1024)    return QStringLiteral("%1 B/s").arg(bps);
-    if (bps < 1<<20)   return QStringLiteral("%1 KB/s").arg(bps / 1024.0, 0, 'f', 1);
-    return                    QStringLiteral("%1 MB/s").arg(bps / double(1<<20), 0, 'f', 1);
+    if (bps < 1000)         return QStringLiteral("%1 B/s").arg(bps);
+    if (bps < 1000000)      return QStringLiteral("%1 KB/s").arg(bps / 1000.0, 0, 'f', 1);
+    return                         QStringLiteral("%1 MB/s").arg(bps / 1000000.0, 0, 'f', 1);
 }

@@ -39,8 +39,8 @@ Rectangle {
     signal statisticsRequested()
 
     function formatKBps(kbps) {
-        if (kbps >= 1024)
-            return (kbps / 1024).toFixed(kbps >= 10240 ? 0 : 1) + " MB/s"
+        if (kbps >= 1000)
+            return (kbps / 1000).toFixed(kbps >= 10000 ? 0 : 1) + " MB/s"
         return kbps + " KB/s"
     }
 
@@ -70,13 +70,14 @@ Rectangle {
                 if (selectedCount > 0)
                     parts.push(selectedCount === 1 ? qsTr("🔍 1 selected") : qsTr("🔍 %1 selected").arg(selectedCount))
 
-                if (App.settings.globalSpeedLimitKBps > 0 || App.settings.globalUploadLimitKBps > 0) {
+                if (App.settings.speedLimiterEnabled) {
                     var limitParts = []
                     if (App.settings.globalSpeedLimitKBps > 0)
                         limitParts.push("↓ " + formatKBps(App.settings.globalSpeedLimitKBps))
                     if (App.settings.globalUploadLimitKBps > 0)
                         limitParts.push("↑ " + formatKBps(App.settings.globalUploadLimitKBps))
-                    parts.push(qsTr("🛑 Speed limiter ") + limitParts.join(" / "))
+                    var limStr = limitParts.length > 0 ? limitParts.join(" / ") : qsTr("unlimited")
+                    parts.push(qsTr("🛑 Speed limiter ") + limStr)
                 }
 
                 if (App.proxyActive)
@@ -258,9 +259,9 @@ Rectangle {
             visible: App.settings.speedInStatusBar
             text: {
                 function fmt(bps) {
-                    if (bps >= 1024 * 1024)
-                        return (bps / (1024 * 1024)).toFixed(1) + " MB/s"
-                    return Math.round(bps / 1024) + " KB/s"
+                    if (bps >= 1000000)
+                        return (bps / 1000000).toFixed(1) + " MB/s"
+                    return Math.round(bps / 1000) + " KB/s"
                 }
                 return "↓ " + fmt(App.totalDownSpeed) + "  ↑ " + fmt(App.totalUpSpeed)
             }

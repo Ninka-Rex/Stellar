@@ -1337,9 +1337,9 @@ AppController::AppController(QObject *parent) : QObject(parent) {
 
         // ── Build tooltip string ──────────────────────────────────────────────
         auto fmtSpeed = [](qint64 bps) -> QString {
-            if (bps >= 1024LL * 1024)
-                return QStringLiteral("%1 MB/s").arg(double(bps) / (1024.0 * 1024.0), 0, 'f', 1);
-            return QStringLiteral("%1 KB/s").arg(double(bps) / 1024.0, 0, 'f', 0);
+            if (bps >= 1000000LL)
+                return QStringLiteral("%1 MB/s").arg(double(bps) / 1000000.0, 0, 'f', 1);
+            return QStringLiteral("%1 KB/s").arg(double(bps) / 1000.0, 0, 'f', 0);
         };
 
         const int active     = m_queue->activeCount();
@@ -2042,7 +2042,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
 
     // Keep native Linux tray menu state in sync with settings.
     connect(m_settings, &AppSettings::globalSpeedLimitKBpsChanged, this, [this] {
-        m_tray->setSpeedLimiterActive(m_settings->globalSpeedLimitKBps() > 0);
+        m_tray->setSpeedLimiterActive(m_settings->globalSpeedLimitKBps() > 0 || m_settings->globalUploadLimitKBps() > 0);
     });
     connect(this, &AppController::sessionPausedChanged, this, [this] {
         m_tray->setSessionPaused(m_sessionPaused);
@@ -2145,8 +2145,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                       startQueue(queue->id());
               }
               cleanupTemporaryDirectory();
-              if (m_settings->speedLimiterOnStartup() && m_settings->globalSpeedLimitKBps() == 0
-                      && m_settings->savedSpeedLimitKBps() > 0) {
+              if (m_settings->speedLimiterOnStartup() && !m_settings->speedLimiterEnabled()) {
+                  m_settings->setSpeedLimiterEnabled(true);
                   m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
               }
               if (m_qmlReady && !m_pendingIpcPayloads.isEmpty()) {
@@ -2241,8 +2241,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                       startQueue(queue->id());
               }
               cleanupTemporaryDirectory();
-              if (m_settings->speedLimiterOnStartup() && m_settings->globalSpeedLimitKBps() == 0
-                      && m_settings->savedSpeedLimitKBps() > 0) {
+              if (m_settings->speedLimiterOnStartup() && !m_settings->speedLimiterEnabled()) {
+                  m_settings->setSpeedLimiterEnabled(true);
                   m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
               }
               // Drain IPC payloads that arrived during restore. QML may have
@@ -2261,8 +2261,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             if (queue && queue->startOnIDMStartup() && queue->id() != QStringLiteral("download-limits"))
                 startQueue(queue->id());
         }
-        if (m_settings->speedLimiterOnStartup() && m_settings->globalSpeedLimitKBps() == 0
-                && m_settings->savedSpeedLimitKBps() > 0) {
+        if (m_settings->speedLimiterOnStartup() && !m_settings->speedLimiterEnabled()) {
+            m_settings->setSpeedLimiterEnabled(true);
             m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
         }
         cleanupTemporaryDirectory();
@@ -4551,15 +4551,16 @@ bool AppController::moveDownloadFile(const QString &id, const QString &newFilePa
 }
 
 void AppController::enableSpeedLimiter() {
-    int limit = m_settings->savedSpeedLimitKBps();
-    if (limit <= 0) limit = 500;
-    m_settings->setGlobalSpeedLimitKBps(limit);
+    m_settings->setSpeedLimiterEnabled(true);
+    m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
 }
 
 void AppController::disableSpeedLimiter() {
+    m_settings->setSpeedLimiterEnabled(false);
     const int current = m_settings->globalSpeedLimitKBps();
     if (current > 0) m_settings->setSavedSpeedLimitKBps(current);
     m_settings->setGlobalSpeedLimitKBps(0);
+    m_settings->setGlobalUploadLimitKBps(0);
 }
 
 QString AppController::torrentCurrentRootName(const QString &downloadId) const {

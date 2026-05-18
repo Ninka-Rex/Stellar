@@ -973,9 +973,9 @@ Window {
         if (speed <= 0)
             return 0
         var base = 1.5
-        if (speed >= 5 * 1024 * 1024)
+        if (speed >= 5 * 1000 * 1000)
             base = 4
-        else if (speed >= 1024 * 1024)
+        else if (speed >= 1000 * 1000)
             base = 3
         else if (speed >= 128 * 1024)
             base = 2
@@ -1022,10 +1022,10 @@ Window {
         if (speed <= 0)
             return "#00000000"
         var alpha = 0.22
-        if (speed >= 5 * 1024 * 1024)      alpha = 0.88
-        else if (speed >= 1024 * 1024)     alpha = 0.70
-        else if (speed >= 256 * 1024)      alpha = 0.52
-        else if (speed >= 32 * 1024)       alpha = 0.36
+        if (speed >= 5 * 1000 * 1000)      alpha = 0.88
+        else if (speed >= 1000 * 1000)     alpha = 0.70
+        else if (speed >= 250 * 1000)      alpha = 0.52
+        else if (speed >= 30 * 1000)       alpha = 0.36
         // download-only: blue; upload-only: green; both: purple
         if (dl > 0 && ul > 0)
             return Qt.rgba(0.6, 0.35, 0.9, alpha)   // purple
