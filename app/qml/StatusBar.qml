@@ -62,12 +62,13 @@ Rectangle {
                 var checking = App.checkingCount
                 var errors   = errorCount
 
-                if (total > 0)    parts.push("💾 " + total)
-                if (running > 0)  parts.push("▶️ " + running)
-                if (seeding > 0)  parts.push("🌱 " + seeding)
-                if (paused > 0)   parts.push("⏸️ " + paused)
-                if (checking > 0) parts.push("🔬 " + checking)
-                if (errors > 0)   parts.push("⚠️ " + errors)
+                if (total > 0)         parts.push("💾 " + total)
+                if (running > 0)       parts.push("▶️ " + running)
+                if (seeding > 0)       parts.push("🌱 " + seeding)
+                if (paused > 0)        parts.push("⏸️ " + paused)
+                if (checking > 0)      parts.push("🔬 " + checking)
+                if (errors > 0)        parts.push("⚠️ " + errors)
+                if (selectedCount > 0) parts.push("🔎 " + selectedCount)
 
                 var hasSysStatus = App.settings.speedLimiterEnabled || App.proxyActive
                     || App.checkingForUpdates
@@ -83,7 +84,7 @@ Rectangle {
                     if (App.settings.globalUploadLimitKBps > 0)
                         limitParts.push("↑ " + formatKBps(App.settings.globalUploadLimitKBps))
                     var limStr = limitParts.length > 0 ? limitParts.join(" / ") : qsTr("unlimited")
-                    parts.push(qsTr("🛑 Speed limiter ") + limStr)
+                    parts.push(qsTr("🐌 Speed limiter ") + limStr)
                 }
 
                 if (App.proxyActive)
