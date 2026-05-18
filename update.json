@@ -1,17 +1,15 @@
 {
   "version": "0.8.0",
-  "installerUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/0.8.0/StellarSetup-0.8.0.exe",
-  "sha256": "448eb976ed6161b733643c3a94acc62df57e74db4fcef489f7cc50294d199977",
-  "linuxInstallerUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/0.8.0/stellar_0.8.0_amd64.deb",
-  "linuxSha256": "29caa2d054997015c683bfbff13596f2a111448d1cd85f3581c07046e3ca6dc9",
-  "linuxDebInstallerFilename": "stellar_0.8.0_amd64.deb",
+  "windowsInstallerUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/v0.8.0/StellarSetup-0.8.0.exe",
+  "windowsSha256": "448eb976ed6161b733643c3a94acc62df57e74db4fcef489f7cc50294d199977",
+  "linuxDebUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/v0.8.0/stellar_0.8.0_amd64.deb",
   "linuxDebSha256": "29caa2d054997015c683bfbff13596f2a111448d1cd85f3581c07046e3ca6dc9",
-  "linuxRpmInstallerFilename": "stellar-0.8.0-1.x86_64.rpm",
+  "linuxRpmUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/v0.8.0/stellar-0.8.0-1.x86_64.rpm",
   "linuxRpmSha256": "d352fb88e0401da6730437973d67ad1b7b7c23fcfaa12e34c617c40f25f65132",
   "motd": "",
   "ffmpegWindowsUrl": "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip",
   "ffmpegLinuxUrl": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz",
   "IPtoCityDB": "https://download.db-ip.com/free/dbip-city-lite-2026-04.mmdb.gz",
   "chromeExtensionUrl": "https://chromewebstore.google.com/detail/stellar-integration-modul/pppelmimeffdigknplngfmhefcbhfcbd",
-  "firefoxExtensionUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/0.8.0/StellarFirefox-0.1.9.xpi"
+  "firefoxExtensionUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/v0.8.0/StellarFirefox-0.1.9.xpi"
 }

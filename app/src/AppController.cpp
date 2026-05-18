@@ -5006,59 +5006,29 @@ void AppController::applyUpdateMetadata(const QVariantMap &map, bool manual) {
 
     m_updateVersion = version;
 
-    // SECURITY: The release tag path is hardcoded to github.com/Ninka-Rex/Stellar/releases/download/v{version}/
-    // so the metadata endpoint can only change the version number and filename — it cannot redirect
-    // the download to a different repo, host, or release tag. The filename is read from the JSON
-    // so it can be changed in future releases without a client update.
-    // SHA-256 verification (required, enforced at install time) ensures the file at that URL
-    // hasn't been tampered with even if the filename or hash in the JSON is swapped.
-    static const QString kReleaseBase =
-        QStringLiteral("https://github.com/Ninka-Rex/Stellar/releases/download/v%1/");
+    // SECURITY: URLs are read directly from update.json but must resolve to
+    // github.com/Ninka-Rex/Stellar/releases/ — enforced by the URL validation
+    // in startUpdateInstall(). SHA-256 verification (required, enforced at
+    // install time) ensures the file hasn't been tampered with.
+    auto readSha256 = [&](const QString &key) {
+        QString v = map.value(key).toString().trimmed();
+        // Accept "sha256:<hex>" pasted directly from GitHub release pages.
+        if (v.startsWith(QStringLiteral("sha256:"), Qt::CaseInsensitive))
+            v = v.mid(7);
+        return v;
+    };
 #if defined(Q_OS_WIN)
-    const QString installerFilename = map.value(QStringLiteral("installerFilename")).toString().trimmed();
-    m_updateInstallerUrl = kReleaseBase.arg(version)
-        + (installerFilename.isEmpty()
-            ? QStringLiteral("StellarSetup-%1.exe").arg(version)
-            : installerFilename);
-    m_updateSha256 = map.value(QStringLiteral("sha256")).toString().trimmed();
+    m_updateInstallerUrl = map.value(QStringLiteral("windowsInstallerUrl")).toString().trimmed();
+    m_updateSha256       = readSha256(QStringLiteral("windowsSha256"));
 #else
-    // Pick the package format that matches the running distro. We accept
-    // separate per-format keys in update.json so a single metadata document
-    // can serve both Debian-family and RPM-family clients; if the per-format
-    // key is absent we fall back to the legacy linuxInstaller* keys (which
-    // historically pointed at the .deb) so older metadata still works.
-    const QString pkgFormat = AppController::linuxPackageFormat();
-    const bool wantRpm = (pkgFormat == QStringLiteral("rpm"));
-
-    const QString rpmFilename = map.value(QStringLiteral("linuxRpmInstallerFilename")).toString().trimmed();
-    const QString rpmSha      = map.value(QStringLiteral("linuxRpmSha256")).toString().trimmed();
-    const QString debFilename = map.value(QStringLiteral("linuxDebInstallerFilename"))
-        .toString().trimmed().isEmpty()
-        ? map.value(QStringLiteral("linuxInstallerFilename")).toString().trimmed()
-        : map.value(QStringLiteral("linuxDebInstallerFilename")).toString().trimmed();
-    const QString debSha = map.value(QStringLiteral("linuxDebSha256")).toString().trimmed().isEmpty()
-        ? map.value(QStringLiteral("linuxSha256")).toString().trimmed()
-        : map.value(QStringLiteral("linuxDebSha256")).toString().trimmed();
-
-    QString chosenFilename;
-    QString chosenSha;
-    if (wantRpm && (!rpmFilename.isEmpty() || !rpmSha.isEmpty())) {
-        chosenFilename = rpmFilename.isEmpty()
-            ? QStringLiteral("stellar-%1-1.x86_64.rpm").arg(version)
-            : rpmFilename;
-        chosenSha = rpmSha;
+    const bool wantRpm = (AppController::linuxPackageFormat() == QStringLiteral("rpm"));
+    if (wantRpm) {
+        m_updateInstallerUrl = map.value(QStringLiteral("linuxRpmUrl")).toString().trimmed();
+        m_updateSha256       = readSha256(QStringLiteral("linuxRpmSha256"));
     } else {
-        // Fall back to the .deb when we're on a Debian-family system OR
-        // when no RPM artifact was published for this release.
-        chosenFilename = debFilename.isEmpty()
-            ? QStringLiteral("stellar_%1_amd64.deb").arg(version)
-            : debFilename;
-        chosenSha = debSha.isEmpty()
-            ? map.value(QStringLiteral("sha256")).toString().trimmed()
-            : debSha;
+        m_updateInstallerUrl = map.value(QStringLiteral("linuxDebUrl")).toString().trimmed();
+        m_updateSha256       = readSha256(QStringLiteral("linuxDebSha256"));
     }
-    m_updateInstallerUrl = kReleaseBase.arg(version) + chosenFilename;
-    m_updateSha256 = chosenSha;
 #endif
     m_updateLinuxInstallerUrl.clear();
     m_updateLinuxSha256.clear();
