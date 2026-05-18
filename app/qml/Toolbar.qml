@@ -75,7 +75,7 @@ Rectangle {
                                    || downloadTable.selectedItemStatus === "Seeding") : false
             onClicked: root.stopClicked()
         }
-        ToolbarBtn { label: qsTr("Stop All"); iconSrc: "icons/pause_orange.svg"; enabled: App.activeDownloads > 0;                          onClicked: root.stopAllClicked() }
+        ToolbarBtn { label: qsTr("Stop All"); iconSrc: "icons/stop_all.svg"; enabled: App.activeDownloads > 0;                          onClicked: root.stopAllClicked() }
         ToolbarBtn { label: qsTr("Delete");      iconSrc: "icons/trash.svg"; enabled: downloadTable ? downloadTable.hasSelection : false; onClicked: root.deleteClicked() }
         ToolbarBtn { label: qsTr("Delete Done"); iconSrc: "icons/trash.svg";      onClicked: root.deleteCompletedClicked() }
         ToolbarBtn { label: qsTr("Options");        iconSrc: "icons/tools.svg";     onClicked: root.optionsClicked() }
@@ -97,7 +97,7 @@ Rectangle {
             onQueueSelected: (queueId) => root.stopQueueRequested(queueId)
         }
 
-        ToolbarBtn { label: qsTr("Grabber");        iconSrc: "icons/spider.svg";         onClicked: root.grabberClicked() }
+        ToolbarBtn { label: qsTr("Grabber");        iconSrc: "icons/grabber.svg";         onClicked: root.grabberClicked() }
         ToolbarBtn {
             label: qsTr("Search Engine"); iconSrc: "icons/magnifying_glass.svg"
             visible: App.settings.showSearchEngine

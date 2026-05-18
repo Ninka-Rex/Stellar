@@ -2302,7 +2302,7 @@ ApplicationWindow {
             implicitWidth: 200
             topPadding: 0; bottomPadding: 0
             CompactMenuItem { text: qsTr("Pause all");           iconSrc: "icons/pause.svg";         onTriggered: downloadTable.pauseAll() }
-            CompactMenuItem { text: qsTr("Stop all");            iconSrc: "icons/pause_orange.svg";  onTriggered: downloadTable.pauseAll() }
+            CompactMenuItem { text: qsTr("Stop all");            iconSrc: "icons/stop_all.svg";  onTriggered: downloadTable.pauseAll() }
             MenuSeparator {}
             CompactMenuItem { text: qsTr("Delete all completed"); iconSrc: "icons/trash.svg";        onTriggered: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() } }
             MenuSeparator {}

@@ -608,7 +608,7 @@ Rectangle {
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
                                 Image {
-                                    source: "icons/spider.svg"
+                                    source: "icons/grabber.svg"
                                     width: 16
                                     height: 16
                                     sourceSize.width: 16
