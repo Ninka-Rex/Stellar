@@ -3728,9 +3728,12 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
     item->setSpeed(st.download_payload_rate);
     item->setTorrentUploadSpeed(st.upload_payload_rate);
     item->setTorrentSeeders(st.num_seeds);
-    item->setTorrentListSeeders(st.list_seeds);
+    // num_complete/num_incomplete come from tracker scrape data (-1 = no scrape yet).
+    // list_seeds/list_peers count known peers in libtorrent's peer list, which is
+    // unrelated to what trackers report as the total swarm size.
+    item->setTorrentListSeeders(st.num_complete >= 0 ? st.num_complete : st.list_seeds);
     item->setTorrentPeers(st.num_peers);
-    item->setTorrentListPeers(st.list_peers);
+    item->setTorrentListPeers(st.num_incomplete >= 0 ? st.num_incomplete : st.list_peers);
     item->setTorrentUploaded(st.all_time_upload);
     item->setTorrentDownloaded(st.all_time_download);
     item->setTorrentRatio(st.all_time_download > 0
