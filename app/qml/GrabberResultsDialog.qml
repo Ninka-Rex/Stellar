@@ -357,7 +357,7 @@ Window {
     }
 
     Component.onCompleted: {
-        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/spider.png")
+        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/grabber.svg")
     }
 
     onClosing: (close) => {

@@ -327,7 +327,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/globe.svg
         app/qml/icons/information.svg
         app/qml/icons/link.svg
-        app/qml/icons/trash.svg
+        app/qml/icons/delete.svg
         app/qml/icons/file_no_longer_available.svg
         app/qml/icons/world-map.svg
         app/qml/icons/page.svg

@@ -2266,7 +2266,7 @@ ApplicationWindow {
             }
             CompactMenuItem {
                 text: qsTr("Remove")
-                iconSrc: "icons/trash.svg"
+                iconSrc: "icons/delete.svg"
                 enabled: root.selectedDownloadItem !== null
                 onTriggered: root.selectedDownloadItem ? downloadTable.deleteSelected() : null
             }
@@ -2304,7 +2304,7 @@ ApplicationWindow {
             CompactMenuItem { text: qsTr("Pause all");           iconSrc: "icons/pause.svg";         onTriggered: downloadTable.pauseAll() }
             CompactMenuItem { text: qsTr("Stop all");            iconSrc: "icons/stop_all.svg";  onTriggered: downloadTable.pauseAll() }
             MenuSeparator {}
-            CompactMenuItem { text: qsTr("Delete all completed"); iconSrc: "icons/trash.svg";        onTriggered: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() } }
+            CompactMenuItem { text: qsTr("Delete all completed"); iconSrc: "icons/delete.svg";        onTriggered: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() } }
             MenuSeparator {}
             CompactMenuItem { text: qsTr("Find…");               iconSrc: "icons/magnifying_glass.svg"; onTriggered: { root.findBarActive = true; findBarField.forceActiveFocus() } }
             CompactMenuItem { text: qsTr("Find Next");           iconSrc: "icons/magnifying_glass.svg"; onTriggered: downloadTable.findNextFiltered() }

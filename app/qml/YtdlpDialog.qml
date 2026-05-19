@@ -112,7 +112,7 @@ Window {
     onVisibleChanged: {
         if (visible) {
             _centerOnOwner()
-            App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/wand.ico")
+            App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/wand.svg")
             raise(); requestActivate()
             if (pendingUrl.length > 0) _startProbe()
         } else {

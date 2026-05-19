@@ -459,7 +459,7 @@ Window {
     }
 
     Component.onCompleted: {
-        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/spider.png")
+        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/grabber.svg")
         refreshRecentProjects()
         loadProject(root.projectId.length > 0
             ? App.grabberProjectData(root.projectId)

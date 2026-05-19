@@ -416,6 +416,15 @@ Rectangle {
                 onTriggered: root.requestExportSelectedTorrents()
             }
         }
+        Repeater {
+            model: (!!root._ctxItem && !!root._ctxItem.isTorrent) ? 1 : 0
+            delegate: CtxMenuItem {
+                text: qsTr("Verify Local Data")
+                iconSrc: "torrent-categories/checking.svg"
+                enabled: root._ctxItem && root._ctxItem.status !== "Checking" && root._ctxItem.status !== "Moving"
+                onTriggered: { if (root._ctxItem) App.forceRecheckTorrent(root._ctxItem.id) }
+            }
+        }
         MenuSeparator {}
         CtxMenuItem { text: qsTr("Resume"); iconSrc: "resume.svg"; onTriggered: root.resumeSelected() }
         CtxMenuItem { text: qsTr("Stop");   iconSrc: "pause.svg";  onTriggered: root.stopSelected()   }

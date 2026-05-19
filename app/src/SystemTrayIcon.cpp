@@ -72,13 +72,6 @@ static QIcon createDownloadsTrayIcon() {
 }
 
 static QIcon trayIconForStyle(int style) {
-#if defined(Q_OS_WIN)
-    if (style == 0) {
-        const QIcon ico(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way.ico"));
-        if (!ico.isNull())
-            return ico;
-    }
-#endif
     QString path;
     switch (style) {
     case 1:  path = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way-white.png"); break;

@@ -1197,6 +1197,11 @@ Click  Add URL  to start.</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../app/qml/DownloadTable.qml" line="419"/>
+        <source>Verify Local Data</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/DownloadTable.qml" line="389"/>
         <source>Copy URL</source>
         <translation></translation>
