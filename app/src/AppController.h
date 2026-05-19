@@ -70,6 +70,7 @@ class AppController : public QObject {
     Q_PROPERTY(QString estimatedOnlineUsersDebugText READ estimatedOnlineUsersDebugText NOTIFY estimatedOnlineUsersChanged)
     Q_PROPERTY(bool dhtCrawlInProgress READ dhtCrawlInProgress NOTIFY estimatedOnlineUsersChanged)
     Q_PROPERTY(int     seedingCount       READ seedingCount       NOTIFY seedingCountChanged)
+    Q_PROPERTY(int     activeSeedingCount READ activeSeedingCount NOTIFY seedingCountChanged)
     Q_PROPERTY(double  allTimeRatio       READ allTimeRatio       NOTIFY allTimeRatioChanged)
     Q_PROPERTY(QString selectedCategory  READ selectedCategory   WRITE setSelectedCategory NOTIFY selectedCategoryChanged)
     Q_PROPERTY(QString selectedQueue     READ selectedQueue      WRITE setSelectedQueue    NOTIFY selectedQueueChanged)
@@ -151,7 +152,8 @@ public:
     int estimatedOnlineUsersWarmupPercent() const { return m_estimatedOnlineUsersWarmupPercent; }
     QString estimatedOnlineUsersDebugText() const { return m_estimatedOnlineUsersDebugText; }
     bool dhtCrawlInProgress() const { return m_torrentSession && m_torrentSession->dhtCrawlInProgress(); }
-    int    seedingCount()    const { return m_seedingCount; }
+    int    seedingCount()       const { return m_seedingCount; }
+    int    activeSeedingCount() const { return m_activeSeedingCount; }
     double allTimeRatio()    const { return m_allTimeRatio; }
     QString selectedCategory() const { return m_selectedCategory; }
     QString selectedQueue() const    { return m_selectedQueue; }
@@ -552,6 +554,7 @@ private:
     int                     m_estimatedOnlineUsersWarmupPercent{0};
     QString                 m_estimatedOnlineUsersDebugText;
     int                     m_seedingCount{0};
+    int                     m_activeSeedingCount{0};
     double                  m_allTimeRatio{0.0};
     QString                 m_lastTrayTooltip;
     QLocalServer           *m_ipcServer{nullptr};

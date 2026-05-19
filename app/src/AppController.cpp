@@ -1291,13 +1291,18 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_speedTimer, &QTimer::timeout, this, [this] {
         qint64 downSpeed = 0;
         qint64 upSpeed   = 0;
-        int    seeding   = 0;
+        int    seeding       = 0;
+        int    activeSeeding = 0;
         for (DownloadItem *item : m_downloadModel->allItems()) {
             downSpeed += item->speed();
             if (item->isTorrent()) {
-                upSpeed += item->torrentUploadSpeed();
-                if (item->statusEnum() == DownloadItem::Status::Seeding)
+                qint64 upSpd = item->torrentUploadSpeed();
+                upSpeed += upSpd;
+                if (item->statusEnum() == DownloadItem::Status::Seeding) {
                     ++seeding;
+                    if (upSpd > 0)
+                        ++activeSeeding;
+                }
             }
         }
         if (m_totalDownSpeed != downSpeed || m_totalUpSpeed != upSpeed) {
@@ -1305,8 +1310,9 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             m_totalUpSpeed   = upSpeed;
             emit totalSpeedChanged();
         }
-        if (m_seedingCount != seeding) {
-            m_seedingCount = seeding;
+        if (m_seedingCount != seeding || m_activeSeedingCount != activeSeeding) {
+            m_seedingCount       = seeding;
+            m_activeSeedingCount = activeSeeding;
             emit seedingCountChanged();
         }
         const qint64 estimatedOnlineUsers =
@@ -2281,7 +2287,6 @@ int AppController::activeDownloads() const {
         if (!item)
             continue;
         if (item->statusEnum() == DownloadItem::Status::Downloading
-            || item->statusEnum() == DownloadItem::Status::Seeding
             || item->statusEnum() == DownloadItem::Status::Assembling)
             ++count;
     }

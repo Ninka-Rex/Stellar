@@ -57,14 +57,15 @@ Rectangle {
                 // Download counts cluster — always shown together, hide each when 0
                 var total    = App.totalDownloads
                 var running  = App.activeDownloads
-                var seeding  = App.seedingCount
+                var seeding       = App.seedingCount
+                var activeSeeding = App.activeSeedingCount
                 var paused   = App.pausedCount
                 var checking = App.checkingCount
                 var errors   = errorCount
 
                 if (total > 0)         parts.push("💾 " + total)
                 if (running > 0)       parts.push("▶️ " + running)
-                if (seeding > 0)       parts.push("🌱 " + seeding)
+                if (seeding > 0)       parts.push("🌱 " + activeSeeding + (activeSeeding !== seeding ? " (" + seeding + ")" : ""))
                 if (paused > 0)        parts.push("⏸️ " + paused)
                 if (checking > 0)      parts.push("🔬 " + checking)
                 if (errors > 0)        parts.push("⚠️ " + errors)
