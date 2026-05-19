@@ -111,7 +111,7 @@ Rectangle {
         Rectangle { width: 3; height: parent.height; color: "#5588cc" }
         Text {
             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8 }
-            text: qsTr("Categories"); color: "#d0d0d0"; font.pixelSize: 12; font.bold: true
+            text: qsTr("Categories"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true
         }
         Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
     }
@@ -184,14 +184,14 @@ Rectangle {
                                 spacing: 2
                                 Text {
                                     text: root.allDownloadsExpanded ? "▼" : "▶"
-                                    color: "#999"; font.pixelSize: 12; width: 16
+                                    color: "#999"; font.pixelSize: 12 * App.fontScale; width: 16
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
                                 Image { source: "icons/categories/all_downloads.svg"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
                                 Text {
                                     text: qsTr("All Downloads")
                                     color: root.selectedIndex === 999 ? "#88bbff" : "#cccccc"
-                                    font.pixelSize: 12; font.bold: root.selectedIndex === 999
+                                    font.pixelSize: 12 * App.fontScale; font.bold: root.selectedIndex === 999
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
                             }
@@ -329,7 +329,7 @@ Rectangle {
                                         Text {
                                             text: categoryLabel
                                             color: root.selectedIndex === index ? "#88bbff" : "#cccccc"
-                                            font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter
+                                            font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter
                                         }
                                     }
                                 }
@@ -458,7 +458,7 @@ Rectangle {
                               spacing: 5
                             Item { width: 3; height: 1 }
                             Image { source: "icons/folder.svg"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
-                            Text { text: qsTr("Unfinished"); color: root.selectedIndex === -1 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
+                            Text { text: qsTr("Unfinished"); color: root.selectedIndex === -1 ? "#88bbff" : "#cccccc"; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                         }
                         MouseArea {
                             id: unfinMa
@@ -528,7 +528,7 @@ Rectangle {
                               spacing: 5
                             Item { width: 3; height: 1 }
                             Image { source: "icons/folder.svg"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
-                            Text { text: qsTr("Finished"); color: root.selectedIndex === -2 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
+                            Text { text: qsTr("Finished"); color: root.selectedIndex === -2 ? "#88bbff" : "#cccccc"; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                         }
                         MouseArea {
                             id: finMa
@@ -603,7 +603,7 @@ Rectangle {
                                 Text {
                                     text: root.grabberExpanded ? "▼" : "▶"
                                     color: "#999"
-                                    font.pixelSize: 12
+                                    font.pixelSize: 12 * App.fontScale
                                     width: 16
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
@@ -619,7 +619,7 @@ Rectangle {
                                 Text {
                                     text: qsTr("Grabber Projects")
                                     color: "#cccccc"
-                                    font.pixelSize: 12
+                                    font.pixelSize: 12 * App.fontScale
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
                             }
@@ -726,7 +726,7 @@ Rectangle {
                                     Text {
                                         text: projectName || ""
                                         color: root.selectedIndex === -500 - index ? "#88bbff" : "#cccccc"
-                                        font.pixelSize: 12
+                                        font.pixelSize: 12 * App.fontScale
                                         anchors.verticalCenter: parent.verticalCenter
                                         elide: Text.ElideRight
                                         width: 126
@@ -843,9 +843,9 @@ Rectangle {
                             Row {
                                 anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 4 }
                                 spacing: 2
-                                Text { text: root.torrentsExpanded ? "▼" : "▶"; color: "#999"; font.pixelSize: 12; width: 16; anchors.verticalCenter: parent.verticalCenter }
+                                Text { text: root.torrentsExpanded ? "▼" : "▶"; color: "#999"; font.pixelSize: 12 * App.fontScale; width: 16; anchors.verticalCenter: parent.verticalCenter }
                                 Image { source: "icons/torrent-categories/all_torrents.svg"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
-                                Text { text: qsTr("Torrents"); color: root.selectedIndex === -200 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; font.bold: root.selectedIndex === -200; anchors.verticalCenter: parent.verticalCenter }
+                                Text { text: qsTr("Torrents"); color: root.selectedIndex === -200 ? "#88bbff" : "#cccccc"; font.pixelSize: 12 * App.fontScale; font.bold: root.selectedIndex === -200; anchors.verticalCenter: parent.verticalCenter }
                             }
 
                             MouseArea {
@@ -975,7 +975,7 @@ Rectangle {
                                         Text {
                                             text: torrentSubcatDelegate.subcatLabel
                                             color: root.selectedIndex === torrentSubcatDelegate.selIdx ? "#88bbff" : "#cccccc"
-                                            font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter
+                                            font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter
                                         }
                                     }
                                 }
@@ -1080,9 +1080,9 @@ Rectangle {
                             Row {
                                 anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 4 }
                                 spacing: 2
-                                Text { text: root.queuesExpanded ? "▼" : "▶"; color: "#999"; font.pixelSize: 12; width: 16; anchors.verticalCenter: parent.verticalCenter }
+                                Text { text: root.queuesExpanded ? "▼" : "▶"; color: "#999"; font.pixelSize: 12 * App.fontScale; width: 16; anchors.verticalCenter: parent.verticalCenter }
                                 Image { width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; source: "qrc:/qt/qml/com/stellar/app/app/qml/icons/queues.svg"; anchors.verticalCenter: parent.verticalCenter }
-                                Text { text: qsTr("Queues"); color: root.selectedIndex === -999 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
+                                Text { text: qsTr("Queues"); color: root.selectedIndex === -999 ? "#88bbff" : "#cccccc"; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                             }
                             MouseArea {
                                 id: queueHeaderMa
@@ -1158,7 +1158,7 @@ Rectangle {
                                               : queueId === "main-sync"     ? "qrc:/qt/qml/com/stellar/app/app/qml/icons/synch_queue.svg"
                                               :                               "qrc:/qt/qml/com/stellar/app/app/qml/icons/custom_queue.svg"
                                     }
-                                    Text { text: queueName || ""; color: root.selectedIndex === -100 - index ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
+                                    Text { text: queueName || ""; color: root.selectedIndex === -100 - index ? "#88bbff" : "#cccccc"; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                 }
                                 MouseArea {
                                     id: qMa

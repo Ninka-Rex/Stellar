@@ -200,16 +200,16 @@ Window {
                 Text {
                     visible: chkRow.checked
                     anchors.centerIn: parent
-                    text: "✓"; color: "#fff"; font.pixelSize: 11; font.bold: true
+                    text: "✓"; color: "#fff"; font.pixelSize: 11 * App.fontScale; font.bold: true
                 }
             }
             ColumnLayout {
                 spacing: 1
-                Text { id: chkLabel; color: chkRow.enabled ? "#c0c0c0" : "#666"; font.pixelSize: 12 }
+                Text { id: chkLabel; color: chkRow.enabled ? "#c0c0c0" : "#666"; font.pixelSize: 12 * App.fontScale }
                 Text {
                     id: chkSub
                     visible: text.length > 0
-                    color: "#7a8a9a"; font.pixelSize: 10
+                    color: "#7a8a9a"; font.pixelSize: 10 * App.fontScale
                 }
             }
         }
@@ -272,7 +272,7 @@ Window {
                         Text {
                             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
                             text: qsTr("Download Rules")
-                            color: "#c0c0c0"; font.pixelSize: 11; font.bold: true
+                            color: "#c0c0c0"; font.pixelSize: 11 * App.fontScale; font.bold: true
                         }
                         Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#333" }
                     }
@@ -305,7 +305,7 @@ Window {
                                     Layout.fillWidth: true
                                     text: modelData.name || "Unnamed"
                                     color: root.selectedRule === index ? "#ffffff" : "#cccccc"
-                                    font.pixelSize: 12
+                                    font.pixelSize: 12 * App.fontScale
                                     elide: Text.ElideRight
                                 }
                             }
@@ -384,7 +384,7 @@ Window {
                         Text {
                             anchors.centerIn: parent
                             text: qsTr("Click \"Add\" to create a download rule")
-                            color: "#555"; font.pixelSize: 13
+                            color: "#555"; font.pixelSize: 13 * App.fontScale
                         }
                     }
 
@@ -402,7 +402,7 @@ Window {
                                 id: ruleNameField
                                 Layout.fillWidth: true
                                 placeholderText: qsTr("Rule name")
-                                color: "#d0d0d0"; font.pixelSize: 13
+                                color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale
                                 leftPadding: 8; selectByMouse: true
                                 background: Rectangle {
                                     color: "#1b1b1b"
@@ -427,7 +427,7 @@ Window {
                                 anchors { fill: parent; margins: 10 }
                                 spacing: 10
 
-                                Text { text: qsTr("FILTER RULES"); color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+                                Text { text: qsTr("FILTER RULES"); color: "#8899aa"; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
                                 ChkRow {
                                     id: useRegexCheck
@@ -440,12 +440,12 @@ Window {
                                     columnSpacing: 10
                                     rowSpacing: 8
 
-                                    Text { text: qsTr("Must contain:"); color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Must contain:"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
                                     TextField {
                                         id: mustContainField
                                         Layout.fillWidth: true
                                         placeholderText: useRegexCheck.checked ? qsTr("regex pattern") : qsTr("keyword1 keyword2 | keyword3")
-                                        color: "#d0d0d0"; font.pixelSize: 12
+                                        color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                                         leftPadding: 6; selectByMouse: true
                                         background: Rectangle {
                                             color: "#1b1b1b"
@@ -453,12 +453,12 @@ Window {
                                         }
                                     }
 
-                                    Text { text: qsTr("Must not contain:"); color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Must not contain:"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
                                     TextField {
                                         id: mustNotContainField
                                         Layout.fillWidth: true
                                         placeholderText: useRegexCheck.checked ? qsTr("regex pattern") : qsTr("keyword1 keyword2")
-                                        color: "#d0d0d0"; font.pixelSize: 12
+                                        color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                                         leftPadding: 6; selectByMouse: true
                                         background: Rectangle {
                                             color: "#1b1b1b"
@@ -466,12 +466,12 @@ Window {
                                         }
                                     }
 
-                                    Text { text: qsTr("Episode filter:"); color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Episode filter:"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
                                     TextField {
                                         id: episodeFilterField
                                         Layout.fillWidth: true
                                         placeholderText: qsTr("e.g. 1x01-1x24  or  2x01;")
-                                        color: "#d0d0d0"; font.pixelSize: 12
+                                        color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                                         leftPadding: 6; selectByMouse: true
                                         background: Rectangle {
                                             color: "#1b1b1b"
@@ -488,20 +488,20 @@ Window {
 
                                 RowLayout {
                                     Layout.fillWidth: true; spacing: 8
-                                    Text { text: qsTr("Ignore subsequent matches for"); color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Ignore subsequent matches for"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
                                     TextField {
                                         id: ignoreDaysField
                                         implicitWidth: 64
                                         text: "0"
                                         validator: IntValidator { bottom: 0; top: 9999 }
-                                        color: "#d0d0d0"; font.pixelSize: 12
+                                        color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                                         leftPadding: 6; rightPadding: 6; selectByMouse: true
                                         background: Rectangle {
                                             color: "#1b1b1b"
                                             border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
                                         }
                                     }
-                                    Text { text: qsTr("days  (0 = disabled)"); color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("days  (0 = disabled)"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
                                     Item { Layout.fillWidth: true }
                                 }
                             }
@@ -518,7 +518,7 @@ Window {
                                 anchors { fill: parent; margins: 10 }
                                 spacing: 10
 
-                                Text { text: qsTr("DOWNLOAD SETTINGS"); color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+                                Text { text: qsTr("DOWNLOAD SETTINGS"); color: "#8899aa"; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
                                 GridLayout {
                                     Layout.fillWidth: true
@@ -526,14 +526,14 @@ Window {
                                     columnSpacing: 10
                                     rowSpacing: 8
 
-                                    Text { text: qsTr("Save at:"); color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Save at:"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
                                     RowLayout {
                                         Layout.fillWidth: true; spacing: 6
                                         TextField {
                                             id: savePathField
                                             Layout.fillWidth: true
                                             placeholderText: qsTr("Leave empty to use default save path")
-                                            color: "#d0d0d0"; font.pixelSize: 12
+                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                                             leftPadding: 6; selectByMouse: true
                                             background: Rectangle {
                                                 color: "#1b1b1b"
@@ -543,7 +543,7 @@ Window {
                                         DlgButton { text: qsTr("Browse..."); onClicked: folderDialog.open() }
                                     }
 
-                                    Text { text: qsTr("Category:"); color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Category:"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
                                     ComboBox {
                                         id: catCombo
                                         Layout.fillWidth: true
@@ -551,7 +551,7 @@ Window {
                                         contentItem: Text {
                                             leftPadding: 10
                                             text: catCombo.displayText
-                                            color: "#d0d0d0"; font.pixelSize: 12
+                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                                             verticalAlignment: Text.AlignVCenter
                                             elide: Text.ElideRight
                                         }
@@ -568,7 +568,7 @@ Window {
                                             contentItem: Text {
                                                 text: modelData
                                                 color: catCombo.currentIndex === index ? "#4488dd" : "#d0d0d0"
-                                                font.pixelSize: 12; leftPadding: 10
+                                                font.pixelSize: 12 * App.fontScale; leftPadding: 10
                                                 verticalAlignment: Text.AlignVCenter
                                             }
                                             background: Rectangle {
@@ -577,7 +577,7 @@ Window {
                                         }
                                     }
 
-                                    Text { text: qsTr("Queue:"); color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Queue:"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
                                     ComboBox {
                                         id: queueCombo
                                         Layout.fillWidth: true
@@ -585,7 +585,7 @@ Window {
                                         contentItem: Text {
                                             leftPadding: 10
                                             text: queueCombo.displayText
-                                            color: "#d0d0d0"; font.pixelSize: 12
+                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                                             verticalAlignment: Text.AlignVCenter
                                             elide: Text.ElideRight
                                         }
@@ -602,7 +602,7 @@ Window {
                                             contentItem: Text {
                                                 text: modelData
                                                 color: queueCombo.currentIndex === index ? "#4488dd" : "#d0d0d0"
-                                                font.pixelSize: 12; leftPadding: 10
+                                                font.pixelSize: 12 * App.fontScale; leftPadding: 10
                                                 verticalAlignment: Text.AlignVCenter
                                             }
                                             background: Rectangle {
@@ -625,12 +625,12 @@ Window {
                                 anchors { fill: parent; margins: 10 }
                                 spacing: 10
 
-                                Text { text: qsTr("TORRENT SHARE LIMITS"); color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+                                Text { text: qsTr("TORRENT SHARE LIMITS"); color: "#8899aa"; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
                                 // ── Ratio ─────────────────────────────────────
                                 ColumnLayout {
                                     Layout.fillWidth: true; spacing: 6
-                                    Text { text: qsTr("Ratio"); color: "#c0c0c0"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Ratio"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
                                     RowLayout {
                                         Layout.fillWidth: true; spacing: 6
                                         Repeater {
@@ -648,7 +648,7 @@ Window {
                                                     anchors.centerIn: parent
                                                     text: modelData
                                                     color: root.ratioMode === index ? "#88aaee" : "#888888"
-                                                    font.pixelSize: 11
+                                                    font.pixelSize: 11 * App.fontScale
                                                 }
                                                 MouseArea {
                                                     anchors.fill: parent
@@ -660,7 +660,7 @@ Window {
                                             id: ratioInput
                                             visible: root.ratioMode === 2
                                             implicitWidth: 80
-                                            color: "#d0d0d0"; font.pixelSize: 12
+                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                                             leftPadding: 6; rightPadding: 6; selectByMouse: true
                                             validator: DoubleValidator { bottom: 0.0; top: 9999.0; decimals: 2; notation: DoubleValidator.StandardNotation }
                                             background: Rectangle {
@@ -677,7 +677,7 @@ Window {
                                 // ── Seeding time ──────────────────────────────
                                 ColumnLayout {
                                     Layout.fillWidth: true; spacing: 6
-                                    Text { text: qsTr("Seeding time"); color: "#c0c0c0"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Seeding time"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
                                     RowLayout {
                                         Layout.fillWidth: true; spacing: 6
                                         Repeater {
@@ -695,7 +695,7 @@ Window {
                                                     anchors.centerIn: parent
                                                     text: modelData
                                                     color: root.seedMode === index ? "#88aaee" : "#888888"
-                                                    font.pixelSize: 11
+                                                    font.pixelSize: 11 * App.fontScale
                                                 }
                                                 MouseArea {
                                                     anchors.fill: parent
@@ -707,7 +707,7 @@ Window {
                                             id: seedInput
                                             visible: root.seedMode === 2
                                             implicitWidth: 80
-                                            color: "#d0d0d0"; font.pixelSize: 12
+                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                                             leftPadding: 6; rightPadding: 6; selectByMouse: true
                                             validator: IntValidator { bottom: 0; top: 999999 }
                                             background: Rectangle {
@@ -715,7 +715,7 @@ Window {
                                                 border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
                                             }
                                         }
-                                        Text { visible: root.seedMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 }
+                                        Text { visible: root.seedMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 * App.fontScale }
                                         Item { Layout.fillWidth: true }
                                     }
                                 }
@@ -725,7 +725,7 @@ Window {
                                 // ── Inactive seeding time ─────────────────────
                                 ColumnLayout {
                                     Layout.fillWidth: true; spacing: 6
-                                    Text { text: qsTr("Inactive seeding time"); color: "#c0c0c0"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Inactive seeding time"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
                                     RowLayout {
                                         Layout.fillWidth: true; spacing: 6
                                         Repeater {
@@ -743,7 +743,7 @@ Window {
                                                     anchors.centerIn: parent
                                                     text: modelData
                                                     color: root.inactMode === index ? "#88aaee" : "#888888"
-                                                    font.pixelSize: 11
+                                                    font.pixelSize: 11 * App.fontScale
                                                 }
                                                 MouseArea {
                                                     anchors.fill: parent
@@ -755,7 +755,7 @@ Window {
                                             id: inactInput
                                             visible: root.inactMode === 2
                                             implicitWidth: 80
-                                            color: "#d0d0d0"; font.pixelSize: 12
+                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                                             leftPadding: 6; rightPadding: 6; selectByMouse: true
                                             validator: IntValidator { bottom: 0; top: 999999 }
                                             background: Rectangle {
@@ -763,14 +763,14 @@ Window {
                                                 border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
                                             }
                                         }
-                                        Text { visible: root.inactMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 }
+                                        Text { visible: root.inactMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 * App.fontScale }
                                         Item { Layout.fillWidth: true }
                                     }
                                 }
 
                                 Text {
                                     text: qsTr("\"Default\" uses the global share limits set in Settings → Torrents.")
-                                    color: "#7f8a94"; font.pixelSize: 10
+                                    color: "#7f8a94"; font.pixelSize: 10 * App.fontScale
                                     wrapMode: Text.WordWrap; Layout.fillWidth: true
                                 }
                             }

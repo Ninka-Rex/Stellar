@@ -287,7 +287,7 @@ Window {
             implicitWidth: 180
             implicitHeight: 24
             leftPadding: 12
-            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; verticalAlignment: Text.AlignVCenter }
+            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; verticalAlignment: Text.AlignVCenter }
             background: Rectangle { color: parent.highlighted ? "#2a3f6a" : "transparent" }
         }
         implicitWidth: 180
@@ -325,7 +325,7 @@ Window {
             implicitWidth: 190
             implicitHeight: 24
             leftPadding: 12
-            contentItem: Text { text: parent.text; color: parent.enabled ? "#d0d0d0" : "#555"; font.pixelSize: 12; verticalAlignment: Text.AlignVCenter }
+            contentItem: Text { text: parent.text; color: parent.enabled ? "#d0d0d0" : "#555"; font.pixelSize: 12 * App.fontScale; verticalAlignment: Text.AlignVCenter }
             background: Rectangle { color: parent.highlighted ? "#2a3f6a" : "transparent" }
         }
         implicitWidth: 190
@@ -380,22 +380,22 @@ Window {
                 rowSpacing: 8
                 Layout.fillWidth: true
 
-                Text { text: qsTr("Name"); color: "#a0a0a0"; font.pixelSize: 12 }
+                Text { text: qsTr("Name"); color: "#a0a0a0"; font.pixelSize: 12 * App.fontScale }
                 TextField {
                     id: editFeedNameField
                     Layout.fillWidth: true
                     placeholderText: qsTr("Custom name (optional)")
-                    font.pixelSize: 12
+                    font.pixelSize: 12 * App.fontScale
                     color: "#d0d0d0"
                     background: Rectangle { color: "#2d2d2d"; border.color: activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3 }
                 }
 
-                Text { text: qsTr("URL"); color: "#a0a0a0"; font.pixelSize: 12 }
+                Text { text: qsTr("URL"); color: "#a0a0a0"; font.pixelSize: 12 * App.fontScale }
                 TextField {
                     id: editFeedUrlField
                     Layout.fillWidth: true
                     placeholderText: "https://..."
-                    font.pixelSize: 12
+                    font.pixelSize: 12 * App.fontScale
                     color: "#d0d0d0"
                     onAccepted: root.saveEditedFeed()
                     background: Rectangle { color: "#2d2d2d"; border.color: activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3 }
@@ -447,7 +447,7 @@ Window {
                         id: addFeedField
                         anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
                         verticalAlignment: Text.AlignVCenter
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                         color: "#d0d0d0"
                         clip: true
                         onAccepted: root.addSubscription()
@@ -456,7 +456,7 @@ Window {
                             anchors.verticalCenter: parent.verticalCenter
                             text: qsTr("Add RSS or Atom feed URL...")
                             color: "#555"
-                            font.pixelSize: 12
+                            font.pixelSize: 12 * App.fontScale
                             visible: !parent.text && !parent.activeFocus
                         }
                     }
@@ -532,7 +532,7 @@ Window {
                             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
                             text: qsTr("Subscriptions")
                             color: "#d0d0d0"
-                            font.pixelSize: 12
+                            font.pixelSize: 12 * App.fontScale
                             font.bold: true
                         }
                         Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
@@ -599,7 +599,7 @@ Window {
                                         Layout.fillWidth: true
                                         text: title || url
                                         color: root.selectedFeedRow === rowIndex ? "#88bbff" : "#cccccc"
-                                        font.pixelSize: 12
+                                        font.pixelSize: 12 * App.fontScale
                                         font.bold: unreadCount > 0
                                         elide: Text.ElideRight
                                     }
@@ -609,7 +609,7 @@ Window {
                                         visible: feedDelegate.updating
                                         text: "↻"
                                         color: "#5588cc"
-                                        font.pixelSize: 12
+                                        font.pixelSize: 12 * App.fontScale
                                     }
 
                                     // Unread badge
@@ -626,7 +626,7 @@ Window {
                                             anchors.centerIn: parent
                                             text: unreadCount
                                             color: "#88bbff"
-                                            font.pixelSize: 10
+                                            font.pixelSize: 10 * App.fontScale
                                             font.bold: true
                                         }
                                     }
@@ -709,7 +709,7 @@ Window {
                             anchors.centerIn: parent
                             text: qsTr("Mark All Read")
                             color: markAllReadMouse.containsMouse ? "#88bbff" : "#7a8a9a"
-                            font.pixelSize: 11
+                            font.pixelSize: 11 * App.fontScale
 
                             MouseArea {
                                 id: markAllReadMouse
@@ -771,14 +771,14 @@ Window {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: sortInd.left; rightMargin: 4 }
                                         text: modelData.title
                                         color: headerCell.isActive ? "#88bbff" : "#b0b0b0"
-                                        font.pixelSize: 12; font.bold: true
+                                        font.pixelSize: 12 * App.fontScale; font.bold: true
                                         elide: Text.ElideRight
                                     }
                                     Text {
                                         id: sortInd
                                         anchors { verticalCenter: parent.verticalCenter; right: resizeHandle.left; rightMargin: 4 }
                                         text: root.articleSortAscending ? "▲" : "▼"
-                                        color: "#88bbff"; font.pixelSize: 9
+                                        color: "#88bbff"; font.pixelSize: 9 * App.fontScale
                                         visible: headerCell.isActive
                                     }
 
@@ -934,7 +934,7 @@ Window {
                                             }
                                             return root.selectedArticleRow === index ? "#ffffff" : "#c0c0c0"
                                         }
-                                        font.pixelSize: 12
+                                        font.pixelSize: 12 * App.fontScale
                                         font.bold: root.visibleCols.length > 0 && root.visibleCols[0].key === "title"
                                                && !!articleDelegate.modelData.unread
                                         elide: Text.ElideRight
@@ -963,7 +963,7 @@ Window {
                                             }
                                             return root.selectedArticleRow === index ? "#ffffff" : "#888888"
                                         }
-                                        font.pixelSize: 12
+                                        font.pixelSize: 12 * App.fontScale
                                         font.bold: root.visibleCols.length > 1 && root.visibleCols[1].key === "title"
                                                && !!articleDelegate.modelData.unread
                                         elide: Text.ElideRight
@@ -992,7 +992,7 @@ Window {
                                             }
                                             return root.selectedArticleRow === index ? "#ffffff" : "#888888"
                                         }
-                                        font.pixelSize: 12
+                                        font.pixelSize: 12 * App.fontScale
                                         font.bold: root.visibleCols.length > 2 && root.visibleCols[2].key === "title"
                                                && !!articleDelegate.modelData.unread
                                         elide: Text.ElideRight
@@ -1042,7 +1042,7 @@ Window {
                                         Layout.fillWidth: true
                                         text: selectedArticle.title || qsTr("Select an article")
                                         color: selectedArticle.title ? "#f0f0f0" : "#555"
-                                        font.pixelSize: 13
+                                        font.pixelSize: 13 * App.fontScale
                                         font.bold: true
                                         elide: Text.ElideRight
                                     }
@@ -1077,7 +1077,7 @@ Window {
                                         ? selectedArticle.feedTitle + "  ·  " + (selectedArticle.publishedDisplay || "")
                                         : qsTr("Choose an article to view its summary.")
                                     color: "#5f7080"
-                                    font.pixelSize: 11
+                                    font.pixelSize: 11 * App.fontScale
                                     elide: Text.ElideRight
                                 }
 
@@ -1122,7 +1122,7 @@ Window {
                                                     : ((!selectedArticle.descriptionHtml || selectedArticle.descriptionHtml.length === 0)
                                                        ? (selectedArticle.title ? qsTr("No summary available.") : "") : "")
                                                 color: "#c0c0c0"
-                                                font.pixelSize: 11
+                                                font.pixelSize: 11 * App.fontScale
                                                 wrapMode: Text.WordWrap
                                                 visible: text.length > 0
                                             }
@@ -1134,7 +1134,7 @@ Window {
                                                 textFormat: Text.RichText
                                                 color: "#c0c0c0"
                                                 linkColor: "#7fb4ff"
-                                                font.pixelSize: 11
+                                                font.pixelSize: 11 * App.fontScale
                                                 wrapMode: Text.WordWrap
                                                 onLinkActivated: function(link) {
                                     if (link.startsWith("https://") || link.startsWith("http://"))
@@ -1165,7 +1165,7 @@ Window {
                 Text {
                     text: App.rssManager.statusText || ""
                     color: "#6a7a8a"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                     elide: Text.ElideRight
                     Layout.fillWidth: true
                 }
@@ -1174,7 +1174,7 @@ Window {
                     visible: App.rssManager.refreshInProgress
                     text: qsTr("Refreshing…")
                     color: "#5588cc"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                 }
 
                 Text {
@@ -1189,7 +1189,7 @@ Window {
                         return unread > 0 ? qsTr("%1 unread  ·  %2 items").arg(unread).arg(total) : qsTr("%1 items").arg(total)
                     }
                     color: "#4a5a6a"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                 }
             }
         }

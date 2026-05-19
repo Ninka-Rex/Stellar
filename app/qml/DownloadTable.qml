@@ -301,7 +301,7 @@ Rectangle {
                 id: nameInput
                 Layout.fillWidth: true
                 implicitHeight: 28
-                color: "#e0e0e0"; font.pixelSize: 12
+                color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
                 background: Rectangle { color: "#1b1b1b"; border.color: nameInput.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2 }
                 leftPadding: 6; topPadding: 0; bottomPadding: 0
                 Keys.onReturnPressed: confirmBtn.clicked()
@@ -346,13 +346,13 @@ Rectangle {
         topPadding: 0; bottomPadding: 0; verticalPadding: 0
         leftPadding: 8; rightPadding: 12
         spacing: 0
-        font.pixelSize: 12
+        font.pixelSize: 12 * App.fontScale
         property string iconSrc: ""
         indicator: Item { width: 0; height: 0 }
         arrow: Text {
             x: _ctxMi.width - width - 8
             anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-            text: "▶"; font.pixelSize: 8; color: "#888888"
+            text: "▶"; font.pixelSize: 8 * App.fontScale; color: "#888888"
             visible: _ctxMi.subMenu !== null
         }
         contentItem: Row {
@@ -820,13 +820,13 @@ Rectangle {
         topPadding: 0; bottomPadding: 0; verticalPadding: 0
         leftPadding: 28; rightPadding: 12
         spacing: 0
-        font.pixelSize: 12
+        font.pixelSize: 12 * App.fontScale
         indicator: Text {
             x: 8
             anchors.verticalCenter: parent ? parent.verticalCenter : undefined
             text: _colChkMi.checked ? "✓" : ""
             color: "#88bbff"
-            font.pixelSize: 11
+            font.pixelSize: 11 * App.fontScale
         }
         arrow: Item { width: 0; height: 0 }
         contentItem: Text {
@@ -921,7 +921,7 @@ Rectangle {
                         }
                         text: modelData.title
                         color: headerCell.isActive ? "#88bbff" : "#b0b0b0"
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                         font.bold: true
                         horizontalAlignment: modelData.key === "queue" ? Text.AlignHCenter : Text.AlignLeft
                         elide: Text.ElideRight
@@ -932,7 +932,7 @@ Rectangle {
                         anchors { verticalCenter: parent.verticalCenter; right: resizeHandle.left; rightMargin: 4 }
                         text: root.sortAscending ? "▲" : "▼"
                         color: "#88bbff"
-                        font.pixelSize: 9
+                        font.pixelSize: 9 * App.fontScale
                         visible: headerCell.isActive
                     }
 
@@ -1247,7 +1247,7 @@ Rectangle {
                         Text {
                             text: rowRect.item ? rowRect.item.filename : ""
                             color: rowRect._sel ? "#ffffff" : "#d0d0d0"
-                            font.pixelSize: 12
+                            font.pixelSize: 12 * App.fontScale
                             width: parent.parent.width - 42
                             elide: Text.ElideMiddle
                             anchors.verticalCenter: parent.verticalCenter
@@ -1267,7 +1267,7 @@ Rectangle {
                         verticalAlignment: Text.AlignVCenter
                         text: rowRect.item ? formatBytesShort(rowRect.item.totalBytes) : ""
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                     }
                 }
 
@@ -1294,7 +1294,7 @@ Rectangle {
                             return rowRect.item.statusText
                         }
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                     }
                 }
 
@@ -1310,7 +1310,7 @@ Rectangle {
                         verticalAlignment: Text.AlignVCenter
                         text: rowRect.item ? (rowRect.item.timeLeft || "") : ""
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                     }
                 }
 
@@ -1339,7 +1339,7 @@ Rectangle {
                             return bps + " B/s" + suffix
                         }
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                     }
                 }
 
@@ -1365,7 +1365,7 @@ Rectangle {
                             return bps > 0 ? (bps + " B/s" + suffix) : ""
                         }
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                     }
                 }
 
@@ -1386,7 +1386,7 @@ Rectangle {
                             return rowRect.item.torrentSeeders + " (" + rowRect.item.torrentListSeeders + ")"
                         }
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                     }
                 }
 
@@ -1406,7 +1406,7 @@ Rectangle {
                             return rowRect.item.torrentPeers + " (" + rowRect.item.torrentListPeers + ")"
                         }
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                     }
                 }
 
@@ -1421,7 +1421,7 @@ Rectangle {
                         verticalAlignment: Text.AlignVCenter
                         text: rowRect.item && rowRect.item.isTorrent ? rowRect.item.torrentRatio.toFixed(2) : ""
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                     }
                 }
 
@@ -1436,7 +1436,7 @@ Rectangle {
                         verticalAlignment: Text.AlignVCenter
                         text: rowRect.item && rowRect.item.isTorrent ? root.formatBytesShort(rowRect.item.torrentUploaded) : ""
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                     }
                 }
 
@@ -1451,7 +1451,7 @@ Rectangle {
                         verticalAlignment: Text.AlignVCenter
                         text: rowRect.item && rowRect.item.isTorrent ? root.formatBytesShort(rowRect.item.torrentDownloaded) : ""
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                     }
                 }
 
@@ -1467,7 +1467,7 @@ Rectangle {
                         verticalAlignment: Text.AlignVCenter
                         text: rowRect.addedDateStr
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 11
+                        font.pixelSize: 11 * App.fontScale
                     }
                 }
 
@@ -1483,7 +1483,7 @@ Rectangle {
                         verticalAlignment: Text.AlignVCenter
                         text: rowRect.lastTryDateStr
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 11
+                        font.pixelSize: 11 * App.fontScale
                     }
                 }
 
@@ -1499,7 +1499,7 @@ Rectangle {
                         verticalAlignment: Text.AlignVCenter
                         text: rowRect.item ? (rowRect.item.description || "--") : "--"
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 11
+                        font.pixelSize: 11 * App.fontScale
                     }
                 }
 
@@ -1515,7 +1515,7 @@ Rectangle {
                         verticalAlignment: Text.AlignVCenter
                         text: rowRect.item ? (rowRect.item.savePath || "--") : "--"
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 11
+                        font.pixelSize: 11 * App.fontScale
                     }
                 }
 
@@ -1531,7 +1531,7 @@ Rectangle {
                         verticalAlignment: Text.AlignVCenter
                         text: rowRect.item ? (rowRect.item.referrer || "--") : "--"
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 11
+                        font.pixelSize: 11 * App.fontScale
                     }
                 }
 
@@ -1547,7 +1547,7 @@ Rectangle {
                         verticalAlignment: Text.AlignVCenter
                         text: rowRect.item ? (rowRect.item.parentUrl || "--") : "--"
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 11
+                        font.pixelSize: 11 * App.fontScale
                     }
                 }
             } // Item (column layout)
@@ -1702,7 +1702,7 @@ Rectangle {
                 }
                 horizontalAlignment: Text.AlignHCenter
                 color: "#444444"
-                font.pixelSize: 14
+                font.pixelSize: 14 * App.fontScale
                 lineHeight: 1.6
             }
         }
@@ -1732,7 +1732,7 @@ Rectangle {
                 text: qsTr("Loading %n download(s)…", "", App.restoreTotalCount)
                 horizontalAlignment: Text.AlignHCenter
                 color: "#444444"
-                font.pixelSize: 14
+                font.pixelSize: 14 * App.fontScale
                 lineHeight: 1.6
             }
         }

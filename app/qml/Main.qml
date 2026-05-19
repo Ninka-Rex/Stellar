@@ -316,7 +316,7 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 text: qsTr("This YouTube download looks like it needs login cookies.")
                 color: "#e0e0e0"
-                font.pixelSize: 14
+                font.pixelSize: 14 * App.fontScale
                 font.weight: Font.Medium
                 wrapMode: Text.WordWrap
             }
@@ -325,7 +325,7 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 text: ytdlpCookieRetryDialog.errorReason
                 color: "#aaaaaa"
-                font.pixelSize: 11
+                font.pixelSize: 11 * App.fontScale
                 wrapMode: Text.WordWrap
             }
 
@@ -344,7 +344,7 @@ ApplicationWindow {
                     Text {
                         text: qsTr("Cookies from browser:")
                         color: "#8899bb"
-                        font.pixelSize: 11
+                        font.pixelSize: 11 * App.fontScale
                     }
 
                     ComboBox {
@@ -371,7 +371,7 @@ ApplicationWindow {
                             contentItem: Text {
                                 text: modelData
                                 color: "#d0d0d0"
-                                font.pixelSize: 11
+                                font.pixelSize: 11 * App.fontScale
                                 verticalAlignment: Text.AlignVCenter
                                 leftPadding: 8
                             }
@@ -397,7 +397,7 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 text: qsTr("Stellar will retry the same yt-dlp item with that browser's cookies.")
                 color: "#667788"
-                font.pixelSize: 10
+                font.pixelSize: 10 * App.fontScale
                 wrapMode: Text.WordWrap
             }
 
@@ -1271,7 +1271,7 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 text: App.ytdlpBatchLabel.length > 0 ? App.ytdlpBatchLabel : "Channel/Playlist"
                 color: "#d8d8d8"
-                font.pixelSize: 12
+                font.pixelSize: 12 * App.fontScale
                 elide: Text.ElideMiddle
             }
 
@@ -1304,7 +1304,7 @@ ApplicationWindow {
                       + "   " + qsTr("Queued: %1").arg(queuedCount)
                       + "   " + qsTr("Overall: %1%").arg(Math.round(avgProgress))
                 color: "#9fa9b8"
-                font.pixelSize: 11
+                font.pixelSize: 11 * App.fontScale
                 elide: Text.ElideRight
             }
 
@@ -1335,13 +1335,13 @@ ApplicationWindow {
                             Text {
                                 text: (modelData.index || (index + 1)) + "."
                                 color: "#8b8b8b"
-                                font.pixelSize: 11
+                                font.pixelSize: 11 * App.fontScale
                                 Layout.preferredWidth: 28
                             }
                             Text {
                                 text: modelData.title || ("Item " + (index + 1))
                                 color: "#d0d0d0"
-                                font.pixelSize: 11
+                                font.pixelSize: 11 * App.fontScale
                                 elide: Text.ElideMiddle
                                 Layout.fillWidth: true
                             }
@@ -1349,7 +1349,7 @@ ApplicationWindow {
                                 text: modelData.status || "Queued"
                                 color: modelData.status === "Completed" ? "#7bc67b"
                                       : modelData.status === "Downloading" ? "#88b4ff" : "#999999"
-                                font.pixelSize: 11
+                                font.pixelSize: 11 * App.fontScale
                                 Layout.preferredWidth: 90
                                 horizontalAlignment: Text.AlignRight
                             }
@@ -1452,7 +1452,7 @@ ApplicationWindow {
                 Text {
                     text: qsTr("Enable BitTorrent Support?")
                     color: "#ffffff"
-                    font.pixelSize: 15
+                    font.pixelSize: 15 * App.fontScale
                     font.bold: true
                 }
                 Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
@@ -1460,7 +1460,7 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     wrapMode: Text.WordWrap
                     color: "#c0c0c0"
-                    font.pixelSize: 12
+                    font.pixelSize: 12 * App.fontScale
                     lineHeight: 1.4
                     text: qsTr("BitTorrent support is currently disabled.\n\nWhen you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.\n\nAnything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.\n\nIt is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.")
                 }
@@ -1555,7 +1555,7 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 text: qsTr("You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the \"Download File Info\" dialog.\n\nYou can turn this off in Settings → Downloads.")
                 color: "#d0d0d0"
-                font.pixelSize: 13
+                font.pixelSize: 13 * App.fontScale
                 wrapMode: Text.WordWrap
                 lineHeight: 1.3
             }
@@ -1629,7 +1629,7 @@ ApplicationWindow {
                         Layout.fillWidth: true
                         text: qsTr("The file \u201c%1\u201d could not be downloaded.").arg(fileDeletedWarningDialog._filename)
                         color: "#e0e0e0"
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                         font.bold: true
                         wrapMode: Text.WordWrap
                     }
@@ -1638,7 +1638,7 @@ ApplicationWindow {
                         Layout.fillWidth: true
                         text: qsTr("The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata.")
                         color: "#c8c8c8"
-                        font.pixelSize: 11
+                        font.pixelSize: 11 * App.fontScale
                         wrapMode: Text.WordWrap
                         lineHeight: 1.3
                     }
@@ -1657,7 +1657,7 @@ ApplicationWindow {
                     anchors { fill: parent; margins: 8 }
                     text: qsTr("To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:\nStellar Options \u2192 Browser \u2192 Bypass Download Interception")
                     color: "#8899bb"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                     wrapMode: Text.WordWrap
                     lineHeight: 1.3
                 }
@@ -1743,7 +1743,7 @@ ApplicationWindow {
                 text: quickUpdateDialog.messageText
                 wrapMode: Text.WordWrap
                 color: "#d8d8d8"
-                font.pixelSize: 13
+                font.pixelSize: 13 * App.fontScale
             }
 
             Item { Layout.fillHeight: true }
@@ -1792,7 +1792,7 @@ ApplicationWindow {
             Text {
                 text: qsTr("Version %1 is available.").arg(App.updateVersion)
                 color: "#ffffff"
-                font.pixelSize: 16
+                font.pixelSize: 16 * App.fontScale
                 font.bold: true
             }
 
@@ -1809,7 +1809,7 @@ ApplicationWindow {
                         ? App.updateChangelog
                         : "No changelog is available for this update."
                     color: "#cfcfcf"
-                    font.pixelSize: 12
+                    font.pixelSize: 12 * App.fontScale
                     wrapMode: Text.WordWrap
                     textFormat: Text.PlainText
                 }
@@ -1876,7 +1876,7 @@ ApplicationWindow {
                     ? "Changelog"
                     : "What's New"
                 color: "#ffffff"
-                font.pixelSize: 16
+                font.pixelSize: 16 * App.fontScale
                 font.bold: true
             }
 
@@ -1893,7 +1893,7 @@ ApplicationWindow {
                         ? App.updateChangelog
                         : "No changelog is available."
                     color: "#cfcfcf"
-                    font.pixelSize: 12
+                    font.pixelSize: 12 * App.fontScale
                     wrapMode: Text.WordWrap
                     textFormat: Text.PlainText
                 }
@@ -2158,14 +2158,14 @@ ApplicationWindow {
             topPadding: 0; bottomPadding: 0; verticalPadding: 0
             leftPadding: 8; rightPadding: 12
             spacing: 0
-            font.pixelSize: 12
+            font.pixelSize: 12 * App.fontScale
             property string iconSrc: ""
             indicator: Item { width: 0; height: 0 }
             arrow: Text {
                 x: _cmi.width - width - 8
                 anchors.verticalCenter: parent ? parent.verticalCenter : undefined
                 text: "▶"
-                font.pixelSize: 8
+                font.pixelSize: 8 * App.fontScale
                 color: "#888888"
                 visible: _cmi.subMenu !== null
             }
@@ -2567,7 +2567,7 @@ ApplicationWindow {
             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8; right: parent.right; rightMargin: 8 }
             text: dragProxy.dragFilename
             color: "#ffffff"
-            font.pixelSize: 11
+            font.pixelSize: 11 * App.fontScale
             elide: Text.ElideMiddle
         }
     }
@@ -2608,7 +2608,7 @@ ApplicationWindow {
                 anchors.centerIn: parent
                 text: qsTr("Drop .torrent file to open torrent metadata")
                 color: "#f0f6ff"
-                font.pixelSize: 18
+                font.pixelSize: 18 * App.fontScale
                 font.weight: Font.Medium
             }
         }
@@ -2670,7 +2670,7 @@ ApplicationWindow {
                 Text {
                     text: qsTr("Find:")
                     color: "#9090a0"
-                    font.pixelSize: 12
+                    font.pixelSize: 12 * App.fontScale
                     verticalAlignment: Text.AlignVCenter
                     Layout.alignment: Qt.AlignVCenter
                 }
@@ -2679,7 +2679,7 @@ ApplicationWindow {
                     id: findBarField
                     Layout.fillWidth: true
                     implicitHeight: 24
-                    font.pixelSize: 12
+                    font.pixelSize: 12 * App.fontScale
                     color: "#d0d0d0"
                     background: Rectangle { color: "#2a2a3a"; border.color: "#4a4a6a"; radius: 3 }
                     leftPadding: 6
@@ -2705,7 +2705,7 @@ ApplicationWindow {
                         : -1
                     text: cnt < 0 ? "" : (cnt === 0 ? "No results" : cnt + " found")
                     color: cnt === 0 ? "#cc6666" : "#66bb88"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                     Layout.alignment: Qt.AlignVCenter
                     visible: downloadTable.filterText.length > 0
                 }
@@ -2716,7 +2716,7 @@ ApplicationWindow {
                     color: findBtnMa.containsMouse ? "#2a5faa" : "#1e3a6e"
                     border.color: "#4488dd"; border.width: 1
                     Layout.alignment: Qt.AlignVCenter
-                    Text { anchors.centerIn: parent; text: qsTr("Find"); color: "#ffffff"; font.pixelSize: 12; font.bold: true }
+                    Text { anchors.centerIn: parent; text: qsTr("Find"); color: "#ffffff"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                     MouseArea {
                         id: findBtnMa
                         anchors.fill: parent
@@ -2733,7 +2733,7 @@ ApplicationWindow {
                     color: findSettingsMa.containsMouse ? "#333345" : "#28283a"
                     border.color: "#4a4a6a"; border.width: 1
                     Layout.alignment: Qt.AlignVCenter
-                    Text { anchors.centerIn: parent; text: qsTr("Settings ▾"); color: "#b0b0c0"; font.pixelSize: 11 }
+                    Text { anchors.centerIn: parent; text: qsTr("Settings ▾"); color: "#b0b0c0"; font.pixelSize: 11 * App.fontScale }
                     MouseArea {
                         id: findSettingsMa
                         anchors.fill: parent
@@ -2755,28 +2755,28 @@ ApplicationWindow {
                             width: parent.width
                             spacing: 2
 
-                            Text { text: qsTr("Search in:"); color: "#808090"; font.pixelSize: 11; bottomPadding: 2 }
+                            Text { text: qsTr("Search in:"); color: "#808090"; font.pixelSize: 11 * App.fontScale; bottomPadding: 2 }
 
                             CheckBox {
                                 text: qsTr("File name or part of the name")
                                 checked: downloadTable.filterName
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: { downloadTable.filterName = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
-                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
+                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
                             }
                             CheckBox {
                                 text: qsTr("Description")
                                 checked: downloadTable.filterDesc
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: { downloadTable.filterDesc = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
-                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
+                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
                             }
                             CheckBox {
                                 text: qsTr("URL / referrer / parent web page")
                                 checked: downloadTable.filterLinks
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: { downloadTable.filterLinks = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
-                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
+                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
                             }
 
                             Rectangle { width: parent.width; height: 1; color: "#3a3a4a"; Layout.topMargin: 4; Layout.bottomMargin: 4 }
@@ -2786,14 +2786,14 @@ ApplicationWindow {
                                 checked: downloadTable.filterMatchCase
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: { downloadTable.filterMatchCase = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
-                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
+                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
                             }
                             CheckBox {
                                 text: qsTr("Match whole string only")
                                 checked: downloadTable.filterMatchWhole
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: { downloadTable.filterMatchWhole = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
-                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
+                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
                             }
                         }
                     }
@@ -2804,7 +2804,7 @@ ApplicationWindow {
                     implicitWidth: 22; implicitHeight: 22; radius: 3
                     color: closeFindMa.containsMouse ? "#553333" : "transparent"
                     Layout.alignment: Qt.AlignVCenter
-                    Text { anchors.centerIn: parent; text: "×"; color: "#a0a0a0"; font.pixelSize: 16 }
+                    Text { anchors.centerIn: parent; text: "×"; color: "#a0a0a0"; font.pixelSize: 16 * App.fontScale }
                     MouseArea {
                         id: closeFindMa
                         anchors.fill: parent

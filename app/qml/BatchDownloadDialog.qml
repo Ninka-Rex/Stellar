@@ -66,18 +66,18 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 4
-            Text { text: qsTr("Batch Download"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
-            Text { text: qsTr("Generate the links here, then continue to the review step."); color: "#a9a9a9"; font.pixelSize: 10; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+            Text { text: qsTr("Batch Download"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
+            Text { text: qsTr("Generate the links here, then continue to the review step."); color: "#a9a9a9"; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
         }
 
         RowLayout {
             Layout.fillWidth: true
             spacing: 8
-            Label { text: qsTr("Address:"); color: "#d0d0d0"; font.pixelSize: 12 }
+            Label { text: qsTr("Address:"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
             TextField {
                 id: addrField
                 Layout.fillWidth: true
-                font.pixelSize: 12
+                font.pixelSize: 12 * App.fontScale
                 color: "#e8edf5"
                 background: Rectangle { color: "#232323"; border.color: "#4a4a4a"; radius: 0 }
                 onTextChanged: root._refreshPreview()
@@ -87,7 +87,7 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 6
-            Text { text: qsTr("Replace asterisk with"); color: "#d6dbe4"; font.pixelSize: 11; font.bold: true }
+            Text { text: qsTr("Replace asterisk with"); color: "#d6dbe4"; font.pixelSize: 11 * App.fontScale; font.bold: true }
 
             RowLayout {
                 Layout.fillWidth: true
@@ -96,15 +96,15 @@ Window {
                     id: numBtn
                     text: qsTr("Numbers")
                     checked: true
-                    font.pixelSize: 11
-                    contentItem: Text { text: parent.text; color: "#d0d0d0"; leftPadding: 20; font.pixelSize: 11; verticalAlignment: Text.AlignVCenter }
+                    font.pixelSize: 11 * App.fontScale
+                    contentItem: Text { text: parent.text; color: "#d0d0d0"; leftPadding: 20; font.pixelSize: 11 * App.fontScale; verticalAlignment: Text.AlignVCenter }
                     onCheckedChanged: root._refreshPreview()
                 }
                 RadioButton {
                     id: letBtn
                     text: qsTr("Letters")
-                    font.pixelSize: 11
-                    contentItem: Text { text: parent.text; color: "#d0d0d0"; leftPadding: 20; font.pixelSize: 11; verticalAlignment: Text.AlignVCenter }
+                    font.pixelSize: 11 * App.fontScale
+                    contentItem: Text { text: parent.text; color: "#d0d0d0"; leftPadding: 20; font.pixelSize: 11 * App.fontScale; verticalAlignment: Text.AlignVCenter }
                     onCheckedChanged: root._refreshPreview()
                 }
             }
@@ -112,7 +112,7 @@ Window {
             RowLayout {
                 Layout.fillWidth: true
                 spacing: 6
-                Label { text: qsTr("From:"); color: "#d0d0d0"; font.pixelSize: 11 }
+                Label { text: qsTr("From:"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
                 TextField {
                     id: fromField
                     text: numBtn.checked ? "0" : "a"
@@ -121,7 +121,7 @@ Window {
                     color: "#e8edf5"
                     onTextChanged: root._refreshPreview()
                 }
-                Label { text: qsTr("To:"); color: "#d0d0d0"; font.pixelSize: 11 }
+                Label { text: qsTr("To:"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
                 TextField {
                     id: toField
                     text: numBtn.checked ? "100" : "z"
@@ -130,7 +130,7 @@ Window {
                     color: "#e8edf5"
                     onTextChanged: root._refreshPreview()
                 }
-                Label { text: qsTr("Wildcard size:"); color: "#d0d0d0"; font.pixelSize: 11; visible: numBtn.checked }
+                Label { text: qsTr("Wildcard size:"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; visible: numBtn.checked }
                 TextField {
                     id: sizeField
                     text: "2"
@@ -146,10 +146,10 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 4
-            Text { text: qsTr("Preview"); color: "#ffffff"; font.pixelSize: 12; font.bold: true }
-            Text { text: qsTr("First: %1").arg(root._firstLink.length ? root._firstLink : "--"); color: "#e0e0e0"; font.pixelSize: 10; elide: Text.ElideMiddle; Layout.fillWidth: true }
-            Text { text: qsTr("Second: %1").arg(root._secondLink.length ? root._secondLink : "--"); color: "#e0e0e0"; font.pixelSize: 10; elide: Text.ElideMiddle; Layout.fillWidth: true }
-            Text { text: qsTr("Last: %1").arg(root._lastLink.length ? root._lastLink : "--"); color: "#e0e0e0"; font.pixelSize: 10; elide: Text.ElideMiddle; Layout.fillWidth: true }
+            Text { text: qsTr("Preview"); color: "#ffffff"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+            Text { text: qsTr("First: %1").arg(root._firstLink.length ? root._firstLink : "--"); color: "#e0e0e0"; font.pixelSize: 10 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true }
+            Text { text: qsTr("Second: %1").arg(root._secondLink.length ? root._secondLink : "--"); color: "#e0e0e0"; font.pixelSize: 10 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true }
+            Text { text: qsTr("Last: %1").arg(root._lastLink.length ? root._lastLink : "--"); color: "#e0e0e0"; font.pixelSize: 10 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true }
         }
 
         RowLayout {
@@ -159,7 +159,7 @@ Window {
                 Layout.fillWidth: true
                 text: qsTr("Use the queue step after OK if you want these downloads grouped before they start.")
                 color: "#9a9a9a"
-                font.pixelSize: 9
+                font.pixelSize: 9 * App.fontScale
             }
             DlgButton {
                 text: qsTr("Cancel")

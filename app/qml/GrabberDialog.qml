@@ -71,13 +71,13 @@ Window {
 
     component StepLabel: Text {
         color: "#c0c0c0"
-        font.pixelSize: 13
+        font.pixelSize: 13 * App.fontScale
         verticalAlignment: Text.AlignVCenter
     }
 
     component HintText: Text {
         color: "#909090"
-        font.pixelSize: 11
+        font.pixelSize: 11 * App.fontScale
         wrapMode: Text.WordWrap
     }
 
@@ -90,7 +90,7 @@ Window {
 
     component WizardTextField: TextField {
         color: "#d0d0d0"
-        font.pixelSize: 13
+        font.pixelSize: 13 * App.fontScale
         selectionColor: "#4f5560"
         selectedTextColor: "#ffffff"
         leftPadding: 8
@@ -102,7 +102,7 @@ Window {
 
     component WizardTextArea: TextArea {
         color: "#d0d0d0"
-        font.pixelSize: 12
+        font.pixelSize: 12 * App.fontScale
         selectionColor: "#4f5560"
         selectedTextColor: "#ffffff"
         leftPadding: 8
@@ -114,7 +114,7 @@ Window {
     }
 
     component WizardCombo: ComboBox {
-        font.pixelSize: 13
+        font.pixelSize: 13 * App.fontScale
         background: FieldBox {}
         contentItem: Text {
             leftPadding: 8
@@ -157,7 +157,7 @@ Window {
         contentItem: Text {
             text: parent.text
             color: parent.enabled ? "#d0d0d0" : "#848a94"
-            font.pixelSize: 13
+            font.pixelSize: 13 * App.fontScale
             leftPadding: parent.indicator.width + parent.spacing
             verticalAlignment: Text.AlignVCenter
         }
@@ -190,7 +190,7 @@ Window {
         contentItem: Text {
             text: parent.text
             color: parent.enabled ? "#d0d0d0" : "#848a94"
-            font.pixelSize: 13
+            font.pixelSize: 13 * App.fontScale
             leftPadding: parent.indicator.width + parent.spacing
             verticalAlignment: Text.AlignVCenter
         }
@@ -552,7 +552,7 @@ Window {
             anchors.fill: parent
             anchors.margins: 12
             spacing: 10
-            Text { text: qsTr("Template name"); color: "#f1f4f8"; font.pixelSize: 14; font.bold: true }
+            Text { text: qsTr("Template name"); color: "#f1f4f8"; font.pixelSize: 14 * App.fontScale; font.bold: true }
             WizardTextField { id: templateNameField; Layout.fillWidth: true }
             RowLayout {
                 Layout.fillWidth: true
@@ -663,7 +663,7 @@ Window {
                                 anchors.centerIn: parent
                                 text: modelData.label
                                 color: "#d0d0d0"
-                                font.pixelSize: 13
+                                font.pixelSize: 13 * App.fontScale
                             }
 
                             MouseArea {
@@ -706,7 +706,7 @@ Window {
                     Text {
                         text: stepTitles[stepIndex]
                         color: "#f0f0f0"
-                        font.pixelSize: 14
+                        font.pixelSize: 14 * App.fontScale
                         font.bold: true
                         anchors.verticalCenter: parent.verticalCenter
                     }
@@ -728,7 +728,7 @@ Window {
                                 visible: index > 0
                                 text: "›"
                                 color: "#555"
-                                font.pixelSize: 14
+                                font.pixelSize: 14 * App.fontScale
                                 anchors.verticalCenter: parent.verticalCenter
                             }
 
@@ -754,7 +754,7 @@ Window {
                                     color: index === stepIndex ? "#88bbff"
                                          : index < stepIndex  ? "#66aa44"
                                          : "#888"
-                                    font.pixelSize: 11
+                                    font.pixelSize: 11 * App.fontScale
                                     font.bold: index === stepIndex
                                 }
                             }
@@ -791,7 +791,7 @@ Window {
                                     anchors.leftMargin: 16
                                     text: (index + 1) + ". " + modelData
                                     color: index === stepIndex ? "#ffffff" : "#c6cbd4"
-                                    font.pixelSize: 13
+                                    font.pixelSize: 13 * App.fontScale
                                     font.bold: index === stepIndex
                                 }
                                 MouseArea {
@@ -1035,7 +1035,7 @@ Window {
                                             Text {
                                                 text: qsTr("levels within the base site")
                                                 color: "#d4d4d4"
-                                                font.pixelSize: 12
+                                                font.pixelSize: 12 * App.fontScale
                                                 wrapMode: Text.WordWrap
                                                 Layout.preferredWidth: 140
                                             }
@@ -1046,7 +1046,7 @@ Window {
                                             Text {
                                                 text: qsTr("levels on other sites")
                                                 color: "#d4d4d4"
-                                                font.pixelSize: 12
+                                                font.pixelSize: 12 * App.fontScale
                                                 wrapMode: Text.WordWrap
                                                 Layout.preferredWidth: 180
                                             }
@@ -1054,7 +1054,7 @@ Window {
                                     }
                                 }
 
-                                Text { text: qsTr("What is the number of link levels?"); color: "#b0b0b0"; font.pixelSize: 12 }
+                                Text { text: qsTr("What is the number of link levels?"); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale }
                                 WizardCheckBox { id: ignorePopupChk; text: qsTr("Ignore popup windows"); checked: true }
                                 WizardCheckBox { id: dontExploreParentsChk; text: qsTr("Don't explore parent directories") }
                                 WizardCheckBox { id: exploreMainDomainChk; text: qsTr("Explore all sites within the main domain") }
@@ -1266,7 +1266,7 @@ Window {
                         Layout.fillWidth: true
                         text: App.grabberStatusText
                         color: App.grabberBusy ? "#d0d0d0" : "#c3cad5"
-                        font.pixelSize: 11
+                        font.pixelSize: 11 * App.fontScale
                         elide: Text.ElideRight
                     }
 

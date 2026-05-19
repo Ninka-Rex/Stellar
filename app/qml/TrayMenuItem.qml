@@ -40,7 +40,7 @@ Rectangle {
         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: root.iconSource !== "" ? 30 : 12 }
         text: root.label
         color: "#e0e0e0"
-        font.pixelSize: 12
+        font.pixelSize: 12 * App.fontScale
         font.bold: root.bold
     }
 

@@ -6014,6 +6014,26 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <source>Black</source>
         <translation></translation>
     </message>
+    <message>
+        <source>Appearance</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>UI scale:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Font size:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>System default</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>A restart is required for appearance changes to take effect. Restart now?</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>Sidebar</name>

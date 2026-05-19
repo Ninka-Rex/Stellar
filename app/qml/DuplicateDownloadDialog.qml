@@ -58,7 +58,7 @@ Window {
 
         Text {
             text: qsTr("This file already exists in your download list.")
-            color: "#e0e0e0"; font.pixelSize: 13; font.bold: true
+            color: "#e0e0e0"; font.pixelSize: 13 * App.fontScale; font.bold: true
             wrapMode: Text.WordWrap; Layout.fillWidth: true
         }
 
@@ -66,7 +66,7 @@ Window {
 
         Text {
             text: root.existingItem ? root.existingItem.filename : ""
-            color: "#4488dd"; font.pixelSize: 12
+            color: "#4488dd"; font.pixelSize: 12 * App.fontScale
             elide: Text.ElideMiddle; Layout.fillWidth: true
         }
 
@@ -76,7 +76,7 @@ Window {
 
         Text {
             text: qsTr("You may choose one of the following options, or press Cancel to skip the download.")
-            color: "#a0a0a0"; font.pixelSize: 11
+            color: "#a0a0a0"; font.pixelSize: 11 * App.fontScale
             wrapMode: Text.WordWrap; Layout.fillWidth: true
         }
 
@@ -116,7 +116,7 @@ Window {
         CheckBox {
             id: rememberChk
             text: qsTr("Remember my selection and don't show this dialog again.\nYou may change it in Options → Downloads at a later time.")
-            font.pixelSize: 11
+            font.pixelSize: 11 * App.fontScale
             contentItem: Text {
                 text: rememberChk.text; color: "#909090"; font: rememberChk.font
                 leftPadding: rememberChk.indicator.width + 6
@@ -169,7 +169,7 @@ Window {
             Text {
                 text: parent.parent.label
                 color: parent.parent.selected ? "#e0e0e0" : "#a0a0a0"
-                font.pixelSize: 12; Layout.fillWidth: true; wrapMode: Text.WordWrap
+                font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap
             }
         }
 

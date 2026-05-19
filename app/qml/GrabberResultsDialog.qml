@@ -440,12 +440,12 @@ Window {
                     topPadding: 0; bottomPadding: 0; verticalPadding: 0
                     leftPadding: 8; rightPadding: 12
                     spacing: 0
-                    font.pixelSize: 12
+                    font.pixelSize: 12 * App.fontScale
                     indicator: Item { width: 0; height: 0 }
                     arrow: Text {
                         x: _gcmi.width - width - 8
                         anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                        text: "▶"; font.pixelSize: 8; color: "#888888"
+                        text: "▶"; font.pixelSize: 8 * App.fontScale; color: "#888888"
                         visible: _gcmi.subMenu !== null
                     }
                     contentItem: Text {
@@ -516,7 +516,7 @@ Window {
                         Text {
                             text: projectName
                             color: "#e0e0e0"
-                            font.pixelSize: 13
+                            font.pixelSize: 13 * App.fontScale
                             font.bold: true
                         }
 
@@ -547,7 +547,7 @@ Window {
                                 Text {
                                     text: App.grabberBusy ? qsTr("Running") : qsTr("Idle")
                                     color: App.grabberBusy ? "#55cc88" : "#555555"
-                                    font.pixelSize: 11
+                                    font.pixelSize: 11 * App.fontScale
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
                             }
@@ -558,7 +558,7 @@ Window {
                             Text {
                                 text: qsTr("%1 files found").arg(totalCount)
                                 color: "#777777"
-                                font.pixelSize: 11
+                                font.pixelSize: 11 * App.fontScale
                                 anchors.verticalCenter: parent.verticalCenter
                             }
 
@@ -567,7 +567,7 @@ Window {
                             Text {
                                 text: qsTr("%1 checked").arg(checkedCount)
                                 color: checkedCount > 0 ? "#4488dd" : "#555555"
-                                font.pixelSize: 11
+                                font.pixelSize: 11 * App.fontScale
                                 anchors.verticalCenter: parent.verticalCenter
                             }
 
@@ -575,7 +575,7 @@ Window {
                                 visible: App.grabberStatusText.length > 0
                                 text: App.grabberStatusText
                                 color: "#556677"
-                                font.pixelSize: 11
+                                font.pixelSize: 11 * App.fontScale
                                 elide: Text.ElideRight
                                 anchors.verticalCenter: parent.verticalCenter
                             }
@@ -706,7 +706,7 @@ Window {
                             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
                             text: qsTr("Categories")
                             color: "#c8c8c8"
-                            font.pixelSize: 11
+                            font.pixelSize: 11 * App.fontScale
                             font.bold: true
                         }
                         Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#333333" }
@@ -755,7 +755,7 @@ Window {
                                         Text {
                                             text: qsTr("All Files")
                                             color: sideMode === "all" ? "#4488dd" : "#b8b8b8"
-                                            font.pixelSize: 12
+                                            font.pixelSize: 12 * App.fontScale
                                             font.bold: sideMode === "all"
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
@@ -779,7 +779,7 @@ Window {
                                         spacing: 5
                                         Text {
                                             text: isSectionExpanded("link") ? "▾" : "▸"
-                                            color: "#668899"; font.pixelSize: 11; width: 12
+                                            color: "#668899"; font.pixelSize: 11 * App.fontScale; width: 12
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
@@ -793,7 +793,7 @@ Window {
                                         Text {
                                             text: qsTr("Link View")
                                             color: "#888888"
-                                            font.pixelSize: 11
+                                            font.pixelSize: 11 * App.fontScale
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                     }
@@ -830,7 +830,7 @@ Window {
                                                 width: 12
                                                 text: modelData.isDomain && modelData.hasChildren
                                                       ? (modelData.isExpanded ? "▾" : "▸") : ""
-                                                color: "#668899"; font.pixelSize: 11
+                                                color: "#668899"; font.pixelSize: 11 * App.fontScale
                                                 horizontalAlignment: Text.AlignHCenter
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
@@ -845,7 +845,7 @@ Window {
                                             Text {
                                                 text: modelData.label
                                                 color: isSelected ? "#4488dd" : "#b0b8c4"
-                                                font.pixelSize: 11
+                                                font.pixelSize: 11 * App.fontScale
                                                 font.bold: modelData.isDomain
                                                 elide: Text.ElideRight
                                                 width: sidebarColumn.width - (10 + modelData.depth * 14 + 12 + 14 + 12)
@@ -881,7 +881,7 @@ Window {
                                         spacing: 5
                                         Text {
                                             text: isSectionExpanded("folder") ? "▾" : "▸"
-                                            color: "#668899"; font.pixelSize: 11; width: 12
+                                            color: "#668899"; font.pixelSize: 11 * App.fontScale; width: 12
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
@@ -895,7 +895,7 @@ Window {
                                         Text {
                                             text: qsTr("Folder View")
                                             color: "#888888"
-                                            font.pixelSize: 11
+                                            font.pixelSize: 11 * App.fontScale
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                     }
@@ -932,7 +932,7 @@ Window {
                                                 width: 12
                                                 text: modelData.hasChildren
                                                       ? (root.isFolderExpanded(modelData.id) ? "▾" : "▸") : ""
-                                                color: "#668899"; font.pixelSize: 11
+                                                color: "#668899"; font.pixelSize: 11 * App.fontScale
                                                 horizontalAlignment: Text.AlignHCenter
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
@@ -947,7 +947,7 @@ Window {
                                             Text {
                                                 text: modelData.label
                                                 color: isSelected ? "#4488dd" : "#b0b8c4"
-                                                font.pixelSize: 11
+                                                font.pixelSize: 11 * App.fontScale
                                                 font.bold: modelData.depth === 0
                                                 elide: Text.ElideRight
                                                 width: sidebarColumn.width - (10 + modelData.depth * 14 + 12 + 14 + 12)
@@ -1041,7 +1041,7 @@ Window {
                                             visible: modelData.key !== "check"
                                             text: modelData.title + root.sortIndicator(modelData.key)
                                             color: root.sortColumn === modelData.key ? "#6699cc" : "#888899"
-                                            font.bold: true; font.pixelSize: 11
+                                            font.bold: true; font.pixelSize: 11 * App.fontScale
                                         }
 
                                         MouseArea {
@@ -1162,9 +1162,9 @@ Window {
                                             onToggled: App.setGrabberResultChecked(index, checked)
                                         }
                                     }
-                                    Text { width: root.columnWidth("filename"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: filename; color: root.isRowSelected(index) ? "#e8e8ff" : "#d0d0d0"; elide: Text.ElideRight; font.pixelSize: 12 }
-                                    Text { width: root.columnWidth("filetype"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: fileTypeLabel(filename, url); color: root.isRowSelected(index) ? "#c8d4e0" : "#aeb7c0"; elide: Text.ElideRight; font.pixelSize: 11 }
-                                    Text { width: root.columnWidth("size"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: sizeText; color: root.isRowSelected(index) ? "#c8d4e0" : "#aeb7c0"; font.pixelSize: 11 }
+                                    Text { width: root.columnWidth("filename"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: filename; color: root.isRowSelected(index) ? "#e8e8ff" : "#d0d0d0"; elide: Text.ElideRight; font.pixelSize: 12 * App.fontScale }
+                                    Text { width: root.columnWidth("filetype"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: fileTypeLabel(filename, url); color: root.isRowSelected(index) ? "#c8d4e0" : "#aeb7c0"; elide: Text.ElideRight; font.pixelSize: 11 * App.fontScale }
+                                    Text { width: root.columnWidth("size"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: sizeText; color: root.isRowSelected(index) ? "#c8d4e0" : "#aeb7c0"; font.pixelSize: 11 * App.fontScale }
                                     Text {
                                         width: root.columnWidth("status"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter
                                         property string statusVal: computeStatus(url)
@@ -1172,11 +1172,11 @@ Window {
                                         color: root.isRowSelected(index) ? "#e0e8ff"
                                              : statusVal === "Ready" ? "#55bb77"
                                              : statusVal === "Already in list" ? "#cc9944" : "#888899"
-                                        elide: Text.ElideRight; font.pixelSize: 11
+                                        elide: Text.ElideRight; font.pixelSize: 11 * App.fontScale
                                     }
-                                    Text { width: root.columnWidth("linktext"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: baseHost(sourcePage.length > 0 ? sourcePage : url); color: root.isRowSelected(index) ? "#c8d4e0" : "#9aa6b2"; elide: Text.ElideRight; font.pixelSize: 11 }
-                                    Text { width: root.columnWidth("downloadfrom"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: url; color: root.isRowSelected(index) ? "#88aadd" : "#6688aa"; elide: Text.ElideMiddle; font.pixelSize: 11 }
-                                    Text { width: root.columnWidth("saveto"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: saveToText(filename); color: root.isRowSelected(index) ? "#c8d4e0" : "#7a8898"; elide: Text.ElideMiddle; font.pixelSize: 11 }
+                                    Text { width: root.columnWidth("linktext"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: baseHost(sourcePage.length > 0 ? sourcePage : url); color: root.isRowSelected(index) ? "#c8d4e0" : "#9aa6b2"; elide: Text.ElideRight; font.pixelSize: 11 * App.fontScale }
+                                    Text { width: root.columnWidth("downloadfrom"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: url; color: root.isRowSelected(index) ? "#88aadd" : "#6688aa"; elide: Text.ElideMiddle; font.pixelSize: 11 * App.fontScale }
+                                    Text { width: root.columnWidth("saveto"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: saveToText(filename); color: root.isRowSelected(index) ? "#c8d4e0" : "#7a8898"; elide: Text.ElideMiddle; font.pixelSize: 11 * App.fontScale }
                                 }
 
                                 Rectangle {
@@ -1195,12 +1195,12 @@ Window {
                             Text {
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 text: qsTr("No files found yet")
-                                color: "#4a4a5a"; font.pixelSize: 14; font.bold: true
+                                color: "#4a4a5a"; font.pixelSize: 14 * App.fontScale; font.bold: true
                             }
                             Text {
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 text: App.grabberBusy ? qsTr("Exploring…") : qsTr("Press Start Exploring to scan the URL.")
-                                color: "#3a3a4a"; font.pixelSize: 11
+                                color: "#3a3a4a"; font.pixelSize: 11 * App.fontScale
                             }
                         }
                     }
@@ -1238,7 +1238,7 @@ Window {
                             id: countLabel
                             anchors.centerIn: parent
                             color: "#556677"
-                            font.pixelSize: 10
+                            font.pixelSize: 10 * App.fontScale
                             text: {
                                 var visible = visibleRowCount()
                                 return visible === totalCount

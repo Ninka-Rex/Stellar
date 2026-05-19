@@ -257,7 +257,7 @@ Window {
                     width: parent.width; height: 22
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Files"); color: "#8899bb"; font.pixelSize: 11; font.weight: Font.Medium
+                        text: qsTr("Files"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium
                     }
                     Rectangle {
                         anchors { left: parent.left; right: parent.right
@@ -272,7 +272,7 @@ Window {
 
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Source:"); color: "#8899bb"; font.pixelSize: 11; width: root._lw
+                        text: qsTr("Source:"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
 
                     // Source display box
@@ -288,7 +288,7 @@ Window {
                         Text {
                             anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                             verticalAlignment: Text.AlignVCenter
-                            elide: Text.ElideLeft; font.pixelSize: 11
+                            elide: Text.ElideLeft; font.pixelSize: 11 * App.fontScale
                             color: inputFilesModel.count > 0 ? "#d0d0d0" : "#445566"
                             text: inputFilesModel.count > 0
                                 ? (inputFilesModel.get(0).path +
@@ -307,7 +307,7 @@ Window {
                             width: fileBtn.implicitWidth + 14; height: root._rh; radius: 2
                             color: fileBtnMa.containsMouse ? "#3a3a4a" : "#2d2d3a"
                             border.color: "#555566"
-                            Text { id: fileBtn; anchors.centerIn: parent; text: qsTr("File…"); color: "#d0d0d0"; font.pixelSize: 11 }
+                            Text { id: fileBtn; anchors.centerIn: parent; text: qsTr("File…"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
                             MouseArea {
                                 id: fileBtnMa; anchors.fill: parent; hoverEnabled: true
                                 cursorShape: Qt.PointingHandCursor
@@ -320,7 +320,7 @@ Window {
                             width: folderBtn.implicitWidth + 14; height: root._rh; radius: 2
                             color: folderBtnMa.containsMouse ? "#3a3a4a" : "#2d2d3a"
                             border.color: "#555566"
-                            Text { id: folderBtn; anchors.centerIn: parent; text: qsTr("Folder…"); color: "#d0d0d0"; font.pixelSize: 11 }
+                            Text { id: folderBtn; anchors.centerIn: parent; text: qsTr("Folder…"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
                             MouseArea {
                                 id: folderBtnMa; anchors.fill: parent; hoverEnabled: true
                                 cursorShape: Qt.PointingHandCursor
@@ -334,7 +334,7 @@ Window {
                             color: removeBtnMa.containsMouse && inputFilesModel.count > 0 ? "#3a2a2a" : "#2d2d3a"
                             border.color: "#555566"
                             opacity: inputFilesModel.count > 0 ? 1.0 : 0.4
-                            Text { id: removeBtn; anchors.centerIn: parent; text: qsTr("Remove"); color: "#d0d0d0"; font.pixelSize: 11 }
+                            Text { id: removeBtn; anchors.centerIn: parent; text: qsTr("Remove"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
                             MouseArea {
                                 id: removeBtnMa; anchors.fill: parent; hoverEnabled: true
                                 cursorShape: Qt.PointingHandCursor
@@ -350,7 +350,7 @@ Window {
                     width: parent.width; height: root._rh + 8
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Save to:"); color: "#8899bb"; font.pixelSize: 11; width: root._lw
+                        text: qsTr("Save to:"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Rectangle {
                         anchors {
@@ -365,7 +365,7 @@ Window {
                             id: saveDirField
                             anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                             verticalAlignment: TextInput.AlignVCenter
-                            color: "#d0d0d0"; font.pixelSize: 11; clip: true
+                            color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; clip: true
                             enabled: !root._creating
                             Text {
                                 anchors.fill: parent; verticalAlignment: Text.AlignVCenter
@@ -380,7 +380,7 @@ Window {
                         width: browseDirLbl.implicitWidth + 14; height: root._rh; radius: 2
                         color: browseDirMa.containsMouse ? "#3a3a4a" : "#2d2d3a"
                         border.color: "#555566"
-                        Text { id: browseDirLbl; anchors.centerIn: parent; text: qsTr("Browse…"); color: "#d0d0d0"; font.pixelSize: 11 }
+                        Text { id: browseDirLbl; anchors.centerIn: parent; text: qsTr("Browse…"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
                         MouseArea {
                             id: browseDirMa; anchors.fill: parent; hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
@@ -395,7 +395,7 @@ Window {
                     width: parent.width; height: root._rh + 8
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Name:"); color: "#8899bb"; font.pixelSize: 11; width: root._lw
+                        text: qsTr("Name:"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Rectangle {
                         anchors {
@@ -409,7 +409,7 @@ Window {
                             id: nameField
                             anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                             verticalAlignment: TextInput.AlignVCenter
-                            color: "#d0d0d0"; font.pixelSize: 11; clip: true
+                            color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; clip: true
                             enabled: !root._creating
                             Text {
                                 anchors.fill: parent; verticalAlignment: Text.AlignVCenter
@@ -426,7 +426,7 @@ Window {
                     width: parent.width; height: root._rh + 8
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Piece size:"); color: "#8899bb"; font.pixelSize: 11; width: root._lw
+                        text: qsTr("Piece size:"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Row {
                         anchors { left: parent.left; leftMargin: root._lm + root._lw; verticalCenter: parent.verticalCenter }
@@ -439,7 +439,7 @@ Window {
                             enabled: !root._creating
                             contentItem: Text {
                                 leftPadding: 7; text: pieceSizeCombo.displayText
-                                color: "#d0d0d0"; font.pixelSize: 11; verticalAlignment: Text.AlignVCenter
+                                color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; verticalAlignment: Text.AlignVCenter
                             }
                             background: Rectangle {
                                 color: "#1b1b1b"
@@ -449,7 +449,7 @@ Window {
                                 id: pszDel; width: pieceSizeCombo.width; height: 22
                                 contentItem: Text {
                                     text: model.label; color: "#d0d0d0"
-                                    font.pixelSize: 11; verticalAlignment: Text.AlignVCenter; leftPadding: 7
+                                    font.pixelSize: 11 * App.fontScale; verticalAlignment: Text.AlignVCenter; leftPadding: 7
                                 }
                                 background: Rectangle { color: pszDel.hovered ? "#2a3a5a" : "#1b1b1b" }
                             }
@@ -465,7 +465,7 @@ Window {
                             anchors.verticalCenter: parent.verticalCenter
                             visible: root._pieceCount > 0
                             text: qsTr("%1 pieces × %2").arg(root._pieceCount).arg(root._fmtBytes(root._pieceSize))
-                            color: "#556677"; font.pixelSize: 10
+                            color: "#556677"; font.pixelSize: 10 * App.fontScale
                         }
                     }
                 }
@@ -475,7 +475,7 @@ Window {
                     width: parent.width; height: 24
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Properties"); color: "#8899bb"; font.pixelSize: 11; font.weight: Font.Medium
+                        text: qsTr("Properties"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium
                     }
                     Rectangle {
                         anchors { left: parent.left; right: parent.right
@@ -489,7 +489,7 @@ Window {
                     width: parent.width; height: 80
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; top: parent.top; topMargin: 6 }
-                        text: qsTr("Trackers:"); color: "#8899bb"; font.pixelSize: 11; width: root._lw
+                        text: qsTr("Trackers:"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Rectangle {
                         anchors {
@@ -511,7 +511,7 @@ Window {
                                 // Fill the full viewport so clicks anywhere in the box land on the editor.
                                 width: trackerFlick.width
                                 height: Math.max(implicitHeight, trackerFlick.height)
-                                color: "#d0d0d0"; font.pixelSize: 11; font.family: "Consolas"
+                                color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; font.family: "Consolas"
                                 wrapMode: TextEdit.Wrap; enabled: !root._creating; selectByMouse: true
 
                                 Text {
@@ -530,7 +530,7 @@ Window {
                     width: parent.width; height: root._rh + 8
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Comment:"); color: "#8899bb"; font.pixelSize: 11; width: root._lw
+                        text: qsTr("Comment:"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Rectangle {
                         anchors {
@@ -544,7 +544,7 @@ Window {
                             id: commentField
                             anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                             verticalAlignment: TextInput.AlignVCenter
-                            color: "#d0d0d0"; font.pixelSize: 11; clip: true
+                            color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; clip: true
                             enabled: !root._creating
                             Text {
                                 anchors.fill: parent; verticalAlignment: Text.AlignVCenter
@@ -560,7 +560,7 @@ Window {
                     width: parent.width; height: 60
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; top: parent.top; topMargin: 6 }
-                        text: qsTr("Web seeds:"); color: "#8899bb"; font.pixelSize: 11; width: root._lw
+                        text: qsTr("Web seeds:"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Rectangle {
                         anchors {
@@ -581,7 +581,7 @@ Window {
                                 id: webSeedsField
                                 width: seedFlick.width
                                 height: Math.max(implicitHeight, seedFlick.height)
-                                color: "#d0d0d0"; font.pixelSize: 11; font.family: "Consolas"
+                                color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; font.family: "Consolas"
                                 wrapMode: TextEdit.Wrap; enabled: !root._creating; selectByMouse: true
 
                                 Text {
@@ -606,7 +606,7 @@ Window {
                         enabled: !root._creating
                         contentItem: Text {
                             leftPadding: privateCheck.indicator.width + 5
-                            text: privateCheck.text; color: "#d0d0d0"; font.pixelSize: 11
+                            text: privateCheck.text; color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale
                             verticalAlignment: Text.AlignVCenter
                         }
                     }
@@ -633,7 +633,7 @@ Window {
                                     .arg(root._progress).arg(root._pieceCount).arg(root._fmtBytes(root._pieceSize))
                             }
                             color: root._done ? (root._success ? "#66cc66" : "#cc6666") : "#7aabcc"
-                            font.pixelSize: 10; elide: Text.ElideRight
+                            font.pixelSize: 10 * App.fontScale; elide: Text.ElideRight
                         }
 
                         Rectangle {
@@ -667,7 +667,7 @@ Window {
                 topPadding: 0; bottomPadding: 0
                 contentItem: Text {
                     leftPadding: openWhenDoneCheck.indicator.width + 5
-                    text: openWhenDoneCheck.text; color: "#aaaaaa"; font.pixelSize: 11
+                    text: openWhenDoneCheck.text; color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale
                     verticalAlignment: Text.AlignVCenter
                 }
             }

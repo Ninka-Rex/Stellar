@@ -166,6 +166,10 @@ class AppSettings : public QObject {
     Q_PROPERTY(QString uiLanguage READ uiLanguage WRITE setUiLanguage NOTIFY uiLanguageChanged)
     // Tray icon style (Linux only): 0=Colored, 1=White, 2=Black
     Q_PROPERTY(int trayIconStyle READ trayIconStyle WRITE setTrayIconStyle NOTIFY trayIconStyleChanged)
+    // UI scale factor override (0.5–3.0, 0.0 = system default / no override)
+    Q_PROPERTY(double uiScaleFactor   READ uiScaleFactor   WRITE setUiScaleFactor   NOTIFY uiScaleFactorChanged)
+    // Base font point size override (6–32, 0 = system default / no override)
+    Q_PROPERTY(int    uiFontPointSize READ uiFontPointSize WRITE setUiFontPointSize NOTIFY uiFontPointSizeChanged)
 
 public:
     explicit AppSettings(QObject *parent = nullptr);
@@ -293,6 +297,8 @@ public:
     QString rssDownloadRulesJson()    const { return m_rssDownloadRulesJson; }
     QString uiLanguage()              const { return m_uiLanguage; }
     int     trayIconStyle()           const { return m_trayIconStyle; }
+    double  uiScaleFactor()           const { return m_uiScaleFactor; }
+    int     uiFontPointSize()         const { return m_uiFontPointSize; }
     QString motdDismissedHash() const { return m_motdDismissedHash; }
     qint64 motdDismissedUntilUtcMs() const { return m_motdDismissedUntilUtcMs; }
 
@@ -428,6 +434,8 @@ public:
     void setRssDownloadRulesJson(const QString &v);
     void setUiLanguage(const QString &v);
     void setTrayIconStyle(int v);
+    void setUiScaleFactor(double v);
+    void setUiFontPointSize(int v);
     void setMotdDismissal(const QString &hash, qint64 untilUtcMs);
     void clearMotdDismissal();
 
@@ -524,6 +532,8 @@ signals:
     void rssDownloadRulesJsonChanged();
     void uiLanguageChanged();
     void trayIconStyleChanged();
+    void uiScaleFactorChanged();
+    void uiFontPointSizeChanged();
 
 private:
     int     m_maxConcurrent{3};
@@ -660,6 +670,10 @@ private:
     QString     m_uiLanguage;
     // 0=Colored (milky-way.png), 1=White, 2=Black — tray icon style
     int         m_trayIconStyle{0};
+    // 0.0 = no override, otherwise QT_SCALE_FACTOR value applied at startup
+    double      m_uiScaleFactor{0.0};
+    // 0 = no override, otherwise QGuiApplication::setFont() point size at startup
+    int         m_uiFontPointSize{0};
 
     // Apply or remove OS startup entry depending on v
     void applyStartupRegistration(bool v) const;

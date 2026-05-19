@@ -66,7 +66,7 @@ Window {
 
         RowLayout {
             Layout.fillWidth: true
-            Text { text: qsTr("Installed Search Plugins"); color: "#fff"; font.pixelSize: 16; font.bold: true }
+            Text { text: qsTr("Installed Search Plugins"); color: "#fff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
             Item { Layout.fillWidth: true }
             DlgButton { text: qsTr("Refresh"); onClicked: App.torrentSearchManager.refreshPlugins() }
         }
@@ -100,10 +100,10 @@ Window {
                         anchors.leftMargin: 10
                         anchors.rightMargin: 10
                         spacing: 10
-                        Text { text: fileName; color: pluginEnabled ? "#f0f0f0" : "#7f7f7f"; Layout.preferredWidth: 150; elide: Text.ElideRight; font.pixelSize: 12 }
-                        Text { text: version.length > 0 ? version : qsTr("Unknown"); color: "#b9c3cd"; Layout.preferredWidth: 70; font.pixelSize: 12 }
-                        Text { text: url.length > 0 ? url : qsTr("Unknown"); color: "#8ea1b5"; Layout.fillWidth: true; elide: Text.ElideRight; font.pixelSize: 12 }
-                        Text { text: pluginEnabled ? qsTr("Enabled") : qsTr("Disabled"); color: pluginEnabled ? "#67bb7a" : "#c6a56d"; font.pixelSize: 12; font.bold: true }
+                        Text { text: fileName; color: pluginEnabled ? "#f0f0f0" : "#7f7f7f"; Layout.preferredWidth: 150; elide: Text.ElideRight; font.pixelSize: 12 * App.fontScale }
+                        Text { text: version.length > 0 ? version : qsTr("Unknown"); color: "#b9c3cd"; Layout.preferredWidth: 70; font.pixelSize: 12 * App.fontScale }
+                        Text { text: url.length > 0 ? url : qsTr("Unknown"); color: "#8ea1b5"; Layout.fillWidth: true; elide: Text.ElideRight; font.pixelSize: 12 * App.fontScale }
+                        Text { text: pluginEnabled ? qsTr("Enabled") : qsTr("Disabled"); color: pluginEnabled ? "#67bb7a" : "#c6a56d"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                     }
 
                     MouseArea {

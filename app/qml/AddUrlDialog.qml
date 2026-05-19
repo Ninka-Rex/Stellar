@@ -89,7 +89,7 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 2
-            Text { text: qsTr("URL"); color: "#aaaaaa"; font.pixelSize: 11 }
+            Text { text: qsTr("URL"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale }
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 22
@@ -104,7 +104,7 @@ Window {
                     anchors.rightMargin: 5
                     verticalAlignment: TextInput.AlignVCenter
                     color: "#d0d0d0"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                     selectByMouse: true
                     clip: true
                     Keys.onReturnPressed: root._submit()
@@ -119,7 +119,7 @@ Window {
             text: qsTr("Use Authorization")
             topPadding: 0; bottomPadding: 0
             contentItem: Text {
-                text: parent.text; color: "#c0c0c0"; font.pixelSize: 11
+                text: parent.text; color: "#c0c0c0"; font.pixelSize: 11 * App.fontScale
                 leftPadding: parent.indicator.width + 4
                 verticalAlignment: Text.AlignVCenter
             }
@@ -134,7 +134,7 @@ Window {
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 2
-                Text { text: qsTr("Login"); color: "#aaaaaa"; font.pixelSize: 11 }
+                Text { text: qsTr("Login"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale }
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 22
@@ -149,7 +149,7 @@ Window {
                         anchors.rightMargin: 5
                         verticalAlignment: TextInput.AlignVCenter
                         color: "#d0d0d0"
-                        font.pixelSize: 11
+                        font.pixelSize: 11 * App.fontScale
                         selectByMouse: true
                         clip: true
                         Keys.onReturnPressed: root._submit()
@@ -161,7 +161,7 @@ Window {
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 2
-                Text { text: qsTr("Password"); color: "#aaaaaa"; font.pixelSize: 11 }
+                Text { text: qsTr("Password"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale }
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 22
@@ -176,7 +176,7 @@ Window {
                         anchors.rightMargin: 5
                         verticalAlignment: TextInput.AlignVCenter
                         color: "#d0d0d0"
-                        font.pixelSize: 11
+                        font.pixelSize: 11 * App.fontScale
                         echoMode: TextInput.Password
                         selectByMouse: true
                         clip: true

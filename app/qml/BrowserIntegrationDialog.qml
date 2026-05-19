@@ -91,7 +91,7 @@ Window {
             anchors.centerIn: parent
             text: ib.label
             color: "#fff"
-            font.pixelSize: 11
+            font.pixelSize: 11 * App.fontScale
         }
         MouseArea {
             id: ibMa
@@ -115,7 +115,7 @@ Window {
             Text {
                 text: qsTr("Browser Extensions")
                 color: "#ffffff"
-                font.pixelSize: 15
+                font.pixelSize: 15 * App.fontScale
                 font.bold: true
             }
             Rectangle { Layout.fillWidth: true; height: 1; color: "#333" }
@@ -124,7 +124,7 @@ Window {
                 Layout.fillWidth: true
                 text: qsTr("Install the Stellar extension in your browser to intercept downloads and route them to Stellar automatically.")
                 color: "#b0b0b0"
-                font.pixelSize: 12
+                font.pixelSize: 12 * App.fontScale
                 wrapMode: Text.WordWrap
             }
 
@@ -143,12 +143,12 @@ Window {
 
                     RowLayout {
                         spacing: 8
-                        Text { text: qsTr("Chrome / Edge / Brave"); color: "#fff"; font.pixelSize: 13; font.bold: true }
+                        Text { text: qsTr("Chrome / Edge / Brave"); color: "#fff"; font.pixelSize: 13 * App.fontScale; font.bold: true }
                     }
                     Text {
                         Layout.fillWidth: true
                         text: qsTr("Install directly from the Chrome Web Store")
-                        color: "#999"; font.pixelSize: 12; wrapMode: Text.WordWrap
+                        color: "#999"; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap
                     }
                     InstallButton {
                         label: qsTr("Open Link")
@@ -170,11 +170,11 @@ Window {
                     anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
                     spacing: 6
 
-                    Text { text: qsTr("Firefox"); color: "#fff"; font.pixelSize: 13; font.bold: true }
+                    Text { text: qsTr("Firefox"); color: "#fff"; font.pixelSize: 13 * App.fontScale; font.bold: true }
                     Text {
                         Layout.fillWidth: true
                         text: qsTr("Install Firefox XPI, no automatic updates")
-                        color: "#999"; font.pixelSize: 12; wrapMode: Text.WordWrap
+                        color: "#999"; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap
                     }
                     InstallButton {
                         label: qsTr("Open Link")
@@ -204,16 +204,16 @@ Window {
 
                             RowLayout {
                                 spacing: 6
-                                Text { text: "⚠"; color: "#ddaa55"; font.pixelSize: 14 }
+                                Text { text: "⚠"; color: "#ddaa55"; font.pixelSize: 14 * App.fontScale }
                                 Text {
                                     text: qsTr("Snap Firefox detected — won't work with Stellar")
-                                    color: "#ddaa55"; font.pixelSize: 12; font.bold: true
+                                    color: "#ddaa55"; font.pixelSize: 12 * App.fontScale; font.bold: true
                                 }
                             }
                             Text {
                                 Layout.fillWidth: true
                                 text: qsTr("Snap Firefox runs in a confined sandbox and can't launch the Stellar host. Switch to the Firefox flatpak (recommended), Mozilla's official .deb, or use Chromium / Brave / Vivaldi instead.")
-                                color: "#ddc8a0"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                                color: "#ddc8a0"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
                             }
 
                             RowLayout {
@@ -225,7 +225,7 @@ Window {
                                     Text {
                                         anchors.centerIn: parent
                                         text: qsTr("Open Firefox flatpak in Discover")
-                                        color: "#fff"; font.pixelSize: 11
+                                        color: "#fff"; font.pixelSize: 11 * App.fontScale
                                     }
                                     MouseArea {
                                         id: discoverMa
@@ -244,7 +244,7 @@ Window {
                                     Text {
                                         anchors.centerIn: parent
                                         text: qsTr("Mozilla download page")
-                                        color: "#fff"; font.pixelSize: 11
+                                        color: "#fff"; font.pixelSize: 11 * App.fontScale
                                     }
                                     MouseArea {
                                         id: mozMa
@@ -259,13 +259,13 @@ Window {
                                 visible: root.portalLaunchStatus === "fail"
                                 Layout.fillWidth: true
                                 text: qsTr("Could not open Discover — search for \"Firefox\" manually in your store, or use the Mozilla download link.")
-                                color: "#cc7777"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                                color: "#cc7777"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
                             }
                             Text {
                                 visible: root.portalLaunchStatus === "ok"
                                 Layout.fillWidth: true
                                 text: qsTr("Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).")
-                                color: "#88cc88"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                                color: "#88cc88"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
                             }
                         }
                     }
@@ -287,16 +287,16 @@ Window {
 
                             RowLayout {
                                 spacing: 6
-                                Text { text: "⚠"; color: "#5599dd"; font.pixelSize: 14 }
+                                Text { text: "⚠"; color: "#5599dd"; font.pixelSize: 14 * App.fontScale }
                                 Text {
                                     text: qsTr("Flatpak Firefox needs an extra permission")
-                                    color: "#5599dd"; font.pixelSize: 12; font.bold: true
+                                    color: "#5599dd"; font.pixelSize: 12 * App.fontScale; font.bold: true
                                 }
                             }
                             Text {
                                 Layout.fillWidth: true
                                 text: qsTr("Firefox (Flatpak) runs in a sandbox and needs the org.freedesktop.Flatpak=talk permission to launch the Stellar native messaging host. Click the button below to grant it, then restart Firefox.")
-                                color: "#aac8e8"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                                color: "#aac8e8"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
                             }
 
                             RowLayout {
@@ -309,7 +309,7 @@ Window {
                                     Text {
                                         anchors.centerIn: parent
                                         text: qsTr("Grant permission")
-                                        color: "#fff"; font.pixelSize: 11
+                                        color: "#fff"; font.pixelSize: 11 * App.fontScale
                                     }
                                     MouseArea {
                                         id: grantMa
@@ -333,14 +333,14 @@ Window {
                                 visible: root.grantStatus === "ok"
                                 Layout.fillWidth: true
                                 text: qsTr("Permission granted. Restart Firefox for the change to take effect.")
-                                color: "#88cc88"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                                color: "#88cc88"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
                             }
                             Text {
                                 visible: root.grantStatus === "fail"
                                 Layout.fillWidth: true
                                 text: qsTr("Failed to grant permission: ") + root.actionMessage
                                       + qsTr("\n\nRun manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox")
-                                color: "#cc7777"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                                color: "#cc7777"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
                             }
                         }
                     }
@@ -360,11 +360,11 @@ Window {
                     anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
                     spacing: 6
 
-                    Text { text: qsTr("Native Messaging Host"); color: "#fff"; font.pixelSize: 13; font.bold: true }
+                    Text { text: qsTr("Native Messaging Host"); color: "#fff"; font.pixelSize: 13 * App.fontScale; font.bold: true }
                     Text {
                         Layout.fillWidth: true
                         text: qsTr("Stellar registers itself automatically so the extension can communicate with it.")
-                        color: "#999"; font.pixelSize: 12; wrapMode: Text.WordWrap
+                        color: "#999"; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap
                     }
 
                     RowLayout {
@@ -384,14 +384,14 @@ Window {
                             color: root.regState === "ok"    ? "#55cc55"
                                  : root.regState === "error" ? "#cc5555"
                                  : "#888"
-                            font.pixelSize: 12
+                            font.pixelSize: 12 * App.fontScale
                         }
 
                         Rectangle {
                             visible: root.regState !== "idle"
                             width: 68; height: 22; radius: 3
                             color: retryMa.containsMouse ? "#2a4a2a" : "#1e3a1e"
-                            Text { anchors.centerIn: parent; text: qsTr("Try again"); color: "#77cc77"; font.pixelSize: 10 }
+                            Text { anchors.centerIn: parent; text: qsTr("Try again"); color: "#77cc77"; font.pixelSize: 10 * App.fontScale }
                             MouseArea {
                                 id: retryMa
                                 anchors.fill: parent
@@ -415,21 +415,21 @@ Window {
                             id: errText
                             anchors { left: parent.left; right: parent.right; top: parent.top; margins: 6 }
                             text: root.regError
-                            color: "#dd8888"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                            color: "#dd8888"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
                         }
                     }
 
                     Text {
                         visible: root.regState === "error"
                         text: qsTr("Manual installation:")
-                        color: "#888"; font.pixelSize: 11; font.bold: true
+                        color: "#888"; font.pixelSize: 11 * App.fontScale; font.bold: true
                     }
 
                     Text {
                         visible: root.regState === "error" && Qt.platform.os === "windows"
                         Layout.fillWidth: true
                         text: qsTr("Run in Command Prompt (no admin required):")
-                        color: "#888"; font.pixelSize: 11
+                        color: "#888"; font.pixelSize: 11 * App.fontScale
                     }
 
                     // Inline copy row — reused twice; extracted as component here
@@ -444,14 +444,14 @@ Window {
                             id: crWinText
                             anchors { top: parent.top; topMargin: 8; left: parent.left; leftMargin: 8; right: crWinBtn.left; rightMargin: 6 }
                             text: "reg add \"HKCU\\Software\\Mozilla\\NativeMessagingHosts\\com.stellar.downloadmanager\" /ve /t REG_SZ /d \"" + root.manifestPath + "\" /f"
-                            color: "#88bbff"; font.pixelSize: 11; font.family: "monospace"; wrapMode: Text.WrapAnywhere
+                            color: "#88bbff"; font.pixelSize: 11 * App.fontScale; font.family: "monospace"; wrapMode: Text.WrapAnywhere
                         }
                         Rectangle {
                             id: crWinBtn
                             anchors { right: parent.right; rightMargin: 4; verticalCenter: parent.verticalCenter }
                             width: 46; height: 20; radius: 3
                             color: crWinMa.containsMouse ? "#2a4a7a" : "#1e3a5a"
-                            Text { id: crWinLabel; anchors.centerIn: parent; text: qsTr("Copy"); color: "#88bbff"; font.pixelSize: 10 }
+                            Text { id: crWinLabel; anchors.centerIn: parent; text: qsTr("Copy"); color: "#88bbff"; font.pixelSize: 10 * App.fontScale }
                             MouseArea {
                                 id: crWinMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
                                 onClicked: { App.copyToClipboard(crWinText.text); crWinLabel.text = qsTr("Copied"); crWinLabel.color = "#55cc55"; crWinReset.restart() }
@@ -464,18 +464,18 @@ Window {
                         visible: root.regState === "error" && Qt.platform.os !== "windows"
                         Layout.fillWidth: true
                         text: qsTr("Run in a terminal:")
-                        color: "#888"; font.pixelSize: 11
+                        color: "#888"; font.pixelSize: 11 * App.fontScale
                     }
 
                     Rectangle {
                         visible: root.regState === "error" && Qt.platform.os !== "windows"
                         Layout.fillWidth: true; height: 28; color: "#141420"; border.color: "#2e2e4a"; radius: 3
                         Text { anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8; right: crMkBtn.left; rightMargin: 6 }
-                               text: "mkdir -p ~/.mozilla/native-messaging-hosts"; color: "#88bbff"; font.pixelSize: 11; font.family: "monospace"; elide: Text.ElideRight }
+                               text: "mkdir -p ~/.mozilla/native-messaging-hosts"; color: "#88bbff"; font.pixelSize: 11 * App.fontScale; font.family: "monospace"; elide: Text.ElideRight }
                         Rectangle {
                             id: crMkBtn; anchors { right: parent.right; rightMargin: 4; verticalCenter: parent.verticalCenter }
                             width: 46; height: 20; radius: 3; color: crMkMa.containsMouse ? "#2a4a7a" : "#1e3a5a"
-                            Text { id: crMkLabel; anchors.centerIn: parent; text: qsTr("Copy"); color: "#88bbff"; font.pixelSize: 10 }
+                            Text { id: crMkLabel; anchors.centerIn: parent; text: qsTr("Copy"); color: "#88bbff"; font.pixelSize: 10 * App.fontScale }
                             MouseArea { id: crMkMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
                                 onClicked: { App.copyToClipboard("mkdir -p ~/.mozilla/native-messaging-hosts"); crMkLabel.text = qsTr("Copied"); crMkLabel.color = "#55cc55"; crMkReset.restart() } }
                             Timer { id: crMkReset; interval: 1500; onTriggered: { crMkLabel.text = qsTr("Copy"); crMkLabel.color = "#88bbff" } }
@@ -492,14 +492,14 @@ Window {
                             id: crCpText
                             anchors { top: parent.top; topMargin: 8; left: parent.left; leftMargin: 8; right: crCpBtn.left; rightMargin: 6 }
                             text: "cp \"" + root.manifestPath + "\" ~/.mozilla/native-messaging-hosts/com.stellar.downloadmanager.json"
-                            color: "#88bbff"; font.pixelSize: 11; font.family: "monospace"; wrapMode: Text.WrapAnywhere
+                            color: "#88bbff"; font.pixelSize: 11 * App.fontScale; font.family: "monospace"; wrapMode: Text.WrapAnywhere
                         }
                         Rectangle {
                             id: crCpBtn
                             anchors { right: parent.right; rightMargin: 4; verticalCenter: parent.verticalCenter }
                             width: 46; height: 20; radius: 3
                             color: crCpMa.containsMouse ? "#2a4a7a" : "#1e3a5a"
-                            Text { id: crCpLabel; anchors.centerIn: parent; text: qsTr("Copy"); color: "#88bbff"; font.pixelSize: 10 }
+                            Text { id: crCpLabel; anchors.centerIn: parent; text: qsTr("Copy"); color: "#88bbff"; font.pixelSize: 10 * App.fontScale }
                             MouseArea {
                                 id: crCpMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
                                 onClicked: { App.copyToClipboard(crCpText.text); crCpLabel.text = qsTr("Copied"); crCpLabel.color = "#55cc55"; crCpReset.restart() }

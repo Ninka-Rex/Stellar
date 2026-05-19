@@ -84,7 +84,7 @@ AbstractButton {
             width: root.width - 4
             text: root.label
             color: root.hovered ? "#ffffff" : "#d0d0d0"
-            font.pixelSize: 11
+            font.pixelSize: 11 * App.fontScale
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
             maximumLineCount: 2

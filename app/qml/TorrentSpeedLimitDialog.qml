@@ -142,16 +142,16 @@ Window {
                 Text {
                     visible: chk.checked
                     anchors.centerIn: parent
-                    text: "✓"; color: "#fff"; font.pixelSize: 9; font.bold: true
+                    text: "✓"; color: "#fff"; font.pixelSize: 9 * App.fontScale; font.bold: true
                 }
             }
         }
         ColumnLayout {
             Layout.fillWidth: true; spacing: 0
-            Text { text: chkRoot.label; color: chk.enabled ? "#d0d0d0" : "#666666"; font.pixelSize: 12 }
+            Text { text: chkRoot.label; color: chk.enabled ? "#d0d0d0" : "#666666"; font.pixelSize: 12 * App.fontScale }
             Text {
                 visible: chkRoot.subtext.length > 0
-                text: chkRoot.subtext; color: "#7a8a9a"; font.pixelSize: 10
+                text: chkRoot.subtext; color: "#7a8a9a"; font.pixelSize: 10 * App.fontScale
             }
         }
     }
@@ -182,11 +182,11 @@ Window {
                 Text {
                     Layout.fillWidth: true
                     text: root.torrentItem ? root.torrentItem.filename : ""
-                    color: "#e8e8e8"; font.pixelSize: 13; font.weight: Font.Medium; elide: Text.ElideMiddle
+                    color: "#e8e8e8"; font.pixelSize: 13 * App.fontScale; font.weight: Font.Medium; elide: Text.ElideMiddle
                 }
                 Text {
                     text: qsTr("Per-torrent speed, share limits, peer discovery, and download mode")
-                    color: "#8899aa"; font.pixelSize: 10
+                    color: "#8899aa"; font.pixelSize: 10 * App.fontScale
                 }
             }
         }
@@ -269,11 +269,11 @@ Window {
                         anchors { fill: parent; margins: 7 }
                         spacing: 7
 
-                        Text { text: qsTr("BANDWIDTH LIMITS"); color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+                        Text { text: qsTr("BANDWIDTH LIMITS"); color: "#8899aa"; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 8
-                            Text { text: qsTr("Download:"); color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 66 }
+                            Text { text: qsTr("Download:"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 66 }
                             Rectangle {
                                 Layout.preferredWidth: 86; height: 22; radius: 2
                                 color: "#1b1b1b"; border.color: downInput.activeFocus ? "#4488dd" : "#3a3a3a"
@@ -282,13 +282,13 @@ Window {
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     verticalAlignment: TextInput.AlignVCenter
                                     validator: IntValidator { bottom: 0; top: 1048576 }
-                                    color: "#d0d0d0"; font.pixelSize: 12; selectByMouse: true
+                                    color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; selectByMouse: true
                                     onTextChanged: { var n = parseInt(text, 10); root._editDown = isNaN(n) ? 0 : Math.max(0, n) }
                                 }
                             }
-                            Text { text: "KB/s"; color: "#666"; font.pixelSize: 12 }
+                            Text { text: "KB/s"; color: "#666"; font.pixelSize: 12 * App.fontScale }
                             Item { Layout.preferredWidth: 8 }
-                            Text { text: qsTr("Upload:"); color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 50 }
+                            Text { text: qsTr("Upload:"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 50 }
                             Rectangle {
                                 Layout.preferredWidth: 86; height: 22; radius: 2
                                 color: "#1b1b1b"; border.color: upInput.activeFocus ? "#4488dd" : "#3a3a3a"
@@ -297,11 +297,11 @@ Window {
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     verticalAlignment: TextInput.AlignVCenter
                                     validator: IntValidator { bottom: 0; top: 1048576 }
-                                    color: "#d0d0d0"; font.pixelSize: 12; selectByMouse: true
+                                    color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; selectByMouse: true
                                     onTextChanged: { var n = parseInt(text, 10); root._editUp = isNaN(n) ? 0 : Math.max(0, n) }
                                 }
                             }
-                            Text { text: "KB/s"; color: "#666"; font.pixelSize: 12 }
+                            Text { text: "KB/s"; color: "#666"; font.pixelSize: 12 * App.fontScale }
                             Item { Layout.fillWidth: true }
                         }
                     }
@@ -318,11 +318,11 @@ Window {
                         anchors { fill: parent; margins: 7 }
                         spacing: 7
 
-                        Text { text: qsTr("SHARE LIMITS"); color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+                        Text { text: qsTr("SHARE LIMITS"); color: "#8899aa"; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
-                            Text { text: qsTr("Ratio:"); color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 100 }
+                            Text { text: qsTr("Ratio:"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 100 }
                             Repeater {
                                 model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
                                 delegate: Rectangle {
@@ -330,7 +330,7 @@ Window {
                                     height: 21; implicitWidth: rl.implicitWidth + 12; radius: 2
                                     color: root._ratioMode === index ? "#1a3a6a" : "#252525"
                                     border.color: root._ratioMode === index ? "#4488dd" : "#3a3a3a"
-                                    Text { id: rl; anchors.centerIn: parent; text: modelData; font.pixelSize: 11
+                                    Text { id: rl; anchors.centerIn: parent; text: modelData; font.pixelSize: 11 * App.fontScale
                                            color: root._ratioMode === index ? "#88aaee" : "#888888" }
                                     MouseArea { anchors.fill: parent; onClicked: root._ratioMode = index }
                                 }
@@ -345,7 +345,7 @@ Window {
                                     verticalAlignment: TextInput.AlignVCenter
                                     text: root._ratioText
                                     validator: DoubleValidator { bottom: 0.0; top: 9999.0; decimals: 2; notation: DoubleValidator.StandardNotation }
-                                    color: "#d0d0d0"; font.pixelSize: 12; selectByMouse: true
+                                    color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; selectByMouse: true
                                     onTextChanged: root._ratioText = text
                                 }
                             }
@@ -354,7 +354,7 @@ Window {
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
-                            Text { text: qsTr("Seeding time:"); color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 100 }
+                            Text { text: qsTr("Seeding time:"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 100 }
                             Repeater {
                                 model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
                                 delegate: Rectangle {
@@ -362,7 +362,7 @@ Window {
                                     height: 21; implicitWidth: sl.implicitWidth + 12; radius: 2
                                     color: root._seedMode === index ? "#1a3a6a" : "#252525"
                                     border.color: root._seedMode === index ? "#4488dd" : "#3a3a3a"
-                                    Text { id: sl; anchors.centerIn: parent; text: modelData; font.pixelSize: 11
+                                    Text { id: sl; anchors.centerIn: parent; text: modelData; font.pixelSize: 11 * App.fontScale
                                            color: root._seedMode === index ? "#88aaee" : "#888888" }
                                     MouseArea { anchors.fill: parent; onClicked: root._seedMode = index }
                                 }
@@ -376,17 +376,17 @@ Window {
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     verticalAlignment: TextInput.AlignVCenter; text: root._seedText
                                     validator: IntValidator { bottom: 0; top: 999999 }
-                                    color: "#d0d0d0"; font.pixelSize: 12; selectByMouse: true
+                                    color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; selectByMouse: true
                                     onTextChanged: root._seedText = text
                                 }
                             }
-                            Text { visible: root._seedMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 }
+                            Text { visible: root._seedMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 * App.fontScale }
                             Item { Layout.fillWidth: true }
                         }
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
-                            Text { text: qsTr("Inactive time:"); color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 100 }
+                            Text { text: qsTr("Inactive time:"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 100 }
                             Repeater {
                                 model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
                                 delegate: Rectangle {
@@ -394,7 +394,7 @@ Window {
                                     height: 21; implicitWidth: il.implicitWidth + 12; radius: 2
                                     color: root._inactiveMode === index ? "#1a3a6a" : "#252525"
                                     border.color: root._inactiveMode === index ? "#4488dd" : "#3a3a3a"
-                                    Text { id: il; anchors.centerIn: parent; text: modelData; font.pixelSize: 11
+                                    Text { id: il; anchors.centerIn: parent; text: modelData; font.pixelSize: 11 * App.fontScale
                                            color: root._inactiveMode === index ? "#88aaee" : "#888888" }
                                     MouseArea { anchors.fill: parent; onClicked: root._inactiveMode = index }
                                 }
@@ -408,11 +408,11 @@ Window {
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     verticalAlignment: TextInput.AlignVCenter; text: root._inactiveText
                                     validator: IntValidator { bottom: 0; top: 999999 }
-                                    color: "#d0d0d0"; font.pixelSize: 12; selectByMouse: true
+                                    color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; selectByMouse: true
                                     onTextChanged: root._inactiveText = text
                                 }
                             }
-                            Text { visible: root._inactiveMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 }
+                            Text { visible: root._inactiveMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 * App.fontScale }
                             Item { Layout.fillWidth: true }
                         }
                     }
@@ -434,7 +434,7 @@ Window {
                             anchors { fill: parent; margins: 7 }
                             spacing: 7
 
-                            Text { text: qsTr("PEER DISCOVERY"); color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+                            Text { text: qsTr("PEER DISCOVERY"); color: "#8899aa"; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
                             InlineCheck {
                                 Layout.fillWidth: true
@@ -466,11 +466,11 @@ Window {
                                     id: pvtNote
                                     anchors { fill: parent; margins: 6 }
                                     spacing: 2
-                                    Text { text: qsTr("🔒 Private torrent"); color: "#cc9955"; font.pixelSize: 11; font.bold: true }
+                                    Text { text: qsTr("🔒 Private torrent"); color: "#cc9955"; font.pixelSize: 11 * App.fontScale; font.bold: true }
                                     Text {
                                         Layout.fillWidth: true
                                         text: qsTr("DHT and PeX disabled by libtorrent.")
-                                        color: "#a08040"; font.pixelSize: 10; wrapMode: Text.WordWrap
+                                        color: "#a08040"; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap
                                     }
                                 }
                             }
@@ -487,7 +487,7 @@ Window {
                             anchors { fill: parent; margins: 7 }
                             spacing: 7
 
-                            Text { text: qsTr("DOWNLOAD MODE"); color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+                            Text { text: qsTr("DOWNLOAD MODE"); color: "#8899aa"; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
                             InlineCheck {
                                 Layout.fillWidth: true

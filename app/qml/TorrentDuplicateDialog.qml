@@ -69,7 +69,7 @@ Window {
                 Text {
                     text: qsTr("Torrent already exists")
                     color: "#e0e0e0"
-                    font.pixelSize: 15
+                    font.pixelSize: 15 * App.fontScale
                     font.bold: true
                 }
 
@@ -78,7 +78,7 @@ Window {
                         ? qsTr("This torrent is already in your list. %n new tracker(s) found.", "", root.newTrackers.length)
                         : qsTr("This torrent is already in your list with the same trackers.")
                     color: "#aaaaaa"
-                    font.pixelSize: 12
+                    font.pixelSize: 12 * App.fontScale
                     wrapMode: Text.WordWrap
                     Layout.fillWidth: true
                 }
@@ -113,7 +113,7 @@ Window {
                     Text {
                         text: qsTr("%n new tracker(s)", "", root.newTrackers.length)
                         color: "#8899bb"
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                         font.bold: true
                     }
                 }
@@ -123,7 +123,7 @@ Window {
                     Text {
                         text: root.newTrackers[index]
                         color: "#7799cc"
-                        font.pixelSize: 11
+                        font.pixelSize: 11 * App.fontScale
                         elide: Text.ElideRight
                         Layout.fillWidth: true
                     }
@@ -133,7 +133,7 @@ Window {
                     visible: root.newTrackers.length > 4
                     text: qsTr("… and %1 more").arg(root.newTrackers.length - 4)
                     color: "#667799"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                 }
             }
         }

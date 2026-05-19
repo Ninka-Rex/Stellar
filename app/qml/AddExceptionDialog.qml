@@ -47,7 +47,7 @@ Window {
         Text {
             text: qsTr("Add to Address Exceptions?")
             color: "#ffffff"
-            font.pixelSize: 15
+            font.pixelSize: 15 * App.fontScale
             font.bold: true
         }
 
@@ -55,7 +55,7 @@ Window {
             Layout.fillWidth: true
             text: qsTr( "This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?")
             color: "#c0c0c0"
-            font.pixelSize: 12
+            font.pixelSize: 12 * App.fontScale
             wrapMode: Text.WordWrap
         }
 
@@ -70,7 +70,7 @@ Window {
                 anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8; right: parent.right; rightMargin: 8 }
                 text: root.url
                 color: "#4488dd"
-                font.pixelSize: 11
+                font.pixelSize: 11 * App.fontScale
                 elide: Text.ElideMiddle
             }
         }

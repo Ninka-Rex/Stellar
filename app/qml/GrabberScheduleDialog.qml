@@ -41,7 +41,7 @@ Window {
     // ── Shared sub-component styles ───────────────────────────────────────────
     component SLabel: Text {
         color: "#d0d0d0"
-        font.pixelSize: 12
+        font.pixelSize: 12 * App.fontScale
         verticalAlignment: Text.AlignVCenter
     }
 
@@ -50,7 +50,7 @@ Window {
         contentItem: Text {
             text: parent.text
             color: parent.enabled ? "#d0d0d0" : "#666666"
-            font.pixelSize: 12
+            font.pixelSize: 12 * App.fontScale
             leftPadding: parent.indicator.width + 6
             verticalAlignment: Text.AlignVCenter
         }
@@ -61,7 +61,7 @@ Window {
         contentItem: Text {
             text: parent.text
             color: parent.enabled ? "#d0d0d0" : "#666666"
-            font.pixelSize: 12
+            font.pixelSize: 12 * App.fontScale
             leftPadding: parent.indicator.width + 6
             verticalAlignment: Text.AlignVCenter
         }
@@ -86,7 +86,7 @@ Window {
         contentItem: TextInput {
             text: _spin.textFromValue(_spin.value)
             color: "#e0e0e0"
-            font.pixelSize: 12
+            font.pixelSize: 12 * App.fontScale
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             readOnly: !_spin.editable
@@ -97,13 +97,13 @@ Window {
             x: _spin.width - width; y: 0
             width: 18; height: _spin.height / 2
             color: _spin.up.pressed ? "#3a3a4a" : (_spin.up.hovered ? "#2d2d3a" : "#2a2a2a")
-            Text { anchors.centerIn: parent; text: "▲"; color: "#aaa"; font.pixelSize: 7 }
+            Text { anchors.centerIn: parent; text: "▲"; color: "#aaa"; font.pixelSize: 7 * App.fontScale }
         }
         down.indicator: Rectangle {
             x: _spin.width - width; y: _spin.height / 2
             width: 18; height: _spin.height / 2
             color: _spin.down.pressed ? "#3a3a4a" : (_spin.down.hovered ? "#2d2d3a" : "#2a2a2a")
-            Text { anchors.centerIn: parent; text: "▼"; color: "#aaa"; font.pixelSize: 7 }
+            Text { anchors.centerIn: parent; text: "▼"; color: "#aaa"; font.pixelSize: 7 * App.fontScale }
         }
         background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
     }
@@ -111,7 +111,7 @@ Window {
     // Dark-styled ComboBox
     component DarkCombo: ComboBox {
         implicitHeight: 26
-        font.pixelSize: 12
+        font.pixelSize: 12 * App.fontScale
         contentItem: Text {
             leftPadding: 8
             rightPadding: 24
@@ -131,7 +131,7 @@ Window {
             y: (parent.height - height) / 2
             text: "▼"
             color: "#888"
-            font.pixelSize: 8
+            font.pixelSize: 8 * App.fontScale
         }
         popup.background: Rectangle { color: "#2a2a2a"; border.color: "#444"; radius: 3 }
     }
@@ -280,8 +280,8 @@ Window {
             Column {
                 spacing: 2
                 anchors.verticalCenter: parent.verticalCenter
-                Text { text: qsTr("Project:"); color: "#888888"; font.pixelSize: 11 }
-                Text { text: projectName; color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
+                Text { text: qsTr("Project:"); color: "#888888"; font.pixelSize: 11 * App.fontScale }
+                Text { text: projectName; color: "#f0f0f0"; font.pixelSize: 14 * App.fontScale; font.bold: true }
             }
         }
 
@@ -374,7 +374,7 @@ Window {
                             enabled: startAtChk.checked
                             opacity: enabled ? 1.0 : 0.45
                             DarkSpin { id: startHourSpin;   minVal: 1; maxVal: 12; value: 11; implicitWidth: 50 }
-                            Text { text: ":"; color: "#aaa"; font.pixelSize: 13; anchors.verticalCenter: parent.verticalCenter; leftPadding: 1; rightPadding: 1 }
+                            Text { text: ":"; color: "#aaa"; font.pixelSize: 13 * App.fontScale; anchors.verticalCenter: parent.verticalCenter; leftPadding: 1; rightPadding: 1 }
                             DarkSpin { id: startMinuteSpin; minVal: 0; maxVal: 59; value: 0; zeroPad: true; implicitWidth: 50 }
                             Item { width: 4 }
                             DarkCombo { id: startAmpmCombo; model: ["AM","PM"]; currentIndex: 1; implicitWidth: 62 }
@@ -407,11 +407,11 @@ Window {
                                 opacity: enabled ? 1.0 : 0.45
                                 Text {
                                     text: dayOfWeekName()
-                                    color: "#aaaaaa"; font.pixelSize: 11
+                                    color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale
                                     anchors.verticalCenter: parent.verticalCenter
                                     width: 68; elide: Text.ElideRight
                                 }
-                                Text { text: ","; color: "#888"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
+                                Text { text: ","; color: "#888"; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                 DarkCombo {
                                     id: onceDateMonthCombo
                                     model: [qsTr("January"),qsTr("February"),qsTr("March"),qsTr("April"),qsTr("May"),qsTr("June"),
@@ -425,7 +425,7 @@ Window {
                                     value: new Date().getDate()
                                     implicitWidth: 50
                                 }
-                                Text { text: ","; color: "#888"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
+                                Text { text: ","; color: "#888"; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                 DarkSpin {
                                     id: onceDateYearSpinbox
                                     minVal: 2025; maxVal: 2040
@@ -465,7 +465,7 @@ Window {
                         TextField {
                             id: everyHoursField
                             implicitWidth: 52; implicitHeight: 26
-                            text: "2"; color: "#e0e0e0"; font.pixelSize: 12; leftPadding: 8
+                            text: "2"; color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale; leftPadding: 8
                             validator: IntValidator { bottom: 0; top: 999 }
                             background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
                         }
@@ -473,7 +473,7 @@ Window {
                         TextField {
                             id: everyMinutesField
                             implicitWidth: 52; implicitHeight: 26
-                            text: "0"; color: "#e0e0e0"; font.pixelSize: 12; leftPadding: 8
+                            text: "0"; color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale; leftPadding: 8
                             validator: IntValidator { bottom: 0; top: 59 }
                             background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
                         }
@@ -490,7 +490,7 @@ Window {
                             enabled: stopEnabledChk.checked
                             opacity: enabled ? 1.0 : 0.45
                             DarkSpin { id: stopHourSpin;   minVal: 1; maxVal: 12; value: 7;  implicitWidth: 50 }
-                            Text { text: ":"; color: "#aaa"; font.pixelSize: 13; anchors.verticalCenter: parent.verticalCenter; leftPadding: 1; rightPadding: 1 }
+                            Text { text: ":"; color: "#aaa"; font.pixelSize: 13 * App.fontScale; anchors.verticalCenter: parent.verticalCenter; leftPadding: 1; rightPadding: 1 }
                             DarkSpin { id: stopMinuteSpin; minVal: 0; maxVal: 59; value: 30; zeroPad: true; implicitWidth: 50 }
                             Item { width: 4 }
                             DarkCombo { id: stopAmpmCombo; model: ["AM","PM"]; currentIndex: 0; implicitWidth: 62 }
@@ -509,7 +509,7 @@ Window {
                             anchors { fill: parent; margins: 8 }
                             text: qsTr("Note: Stellar should be running in the system tray at the specified time to start a scheduled project.")
                             color: "#8899bb"
-                            font.pixelSize: 11
+                            font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
                     }

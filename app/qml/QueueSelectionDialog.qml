@@ -86,13 +86,13 @@ Window {
         anchors.margins: 16
         spacing: 10
 
-        Text { text: qsTr("Put files into a queue?"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
-        Text { text: qsTr("Choose an existing queue or create a new one."); color: "#aab3c2"; font.pixelSize: 11; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+        Text { text: qsTr("Put files into a queue?"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
+        Text { text: qsTr("Choose an existing queue or create a new one."); color: "#aab3c2"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
 
         RowLayout {
             Layout.fillWidth: true
             spacing: 8
-            Text { text: qsTr("Queue"); color: "#c7cfdb"; font.pixelSize: 12; Layout.preferredWidth: 44 }
+            Text { text: qsTr("Queue"); color: "#c7cfdb"; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 44 }
             ComboBox {
                 id: queueCombo
                 Layout.fillWidth: true
@@ -105,7 +105,7 @@ Window {
                 implicitWidth: 32
                 implicitHeight: 30
                 background: Rectangle { color: "#2d3440"; border.color: "#4a5a72"; radius: 4 }
-                contentItem: Text { text: parent.text; color: "#ffffff"; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; font.pixelSize: 16; font.bold: true }
+                contentItem: Text { text: parent.text; color: "#ffffff"; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; font.pixelSize: 16 * App.fontScale; font.bold: true }
                 onClicked: createQueuePopup.open()
             }
         }
@@ -114,17 +114,17 @@ Window {
             id: startChk
             text: qsTr("Start queue processing")
             topPadding: 0; bottomPadding: 0
-            contentItem: Text { text: parent.text; color: "#d6dbe4"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4 }
+            contentItem: Text { text: parent.text; color: "#d6dbe4"; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4 }
         }
 
         CheckBox {
             id: askChk
             text: qsTr("Don't ask me again")
             topPadding: 0; bottomPadding: 0
-            contentItem: Text { text: parent.text; color: "#d6dbe4"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4 }
+            contentItem: Text { text: parent.text; color: "#d6dbe4"; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4 }
         }
 
-        Text { Layout.fillWidth: true; text: root.noteText; color: "#8e97a8"; font.pixelSize: 10; wrapMode: Text.WordWrap }
+        Text { Layout.fillWidth: true; text: root.noteText; color: "#8e97a8"; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap }
 
         Item { Layout.fillHeight: true }
 
@@ -158,7 +158,7 @@ Window {
             anchors.fill: parent
             anchors.margins: 12
             spacing: 8
-            Text { text: qsTr("Enter queue name"); color: "#ffffff"; font.pixelSize: 12; font.bold: true }
+            Text { text: qsTr("Enter queue name"); color: "#ffffff"; font.pixelSize: 12 * App.fontScale; font.bold: true }
             TextField {
                 id: newQueueField
                 Layout.fillWidth: true

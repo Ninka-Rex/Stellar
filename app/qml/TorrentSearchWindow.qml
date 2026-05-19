@@ -270,7 +270,7 @@ Window {
             visible: text.length > 0
             text: App.torrentSearchManager.statusText
             color: "#9aa6b2"
-            font.pixelSize: 11
+            font.pixelSize: 11 * App.fontScale
             elide: Text.ElideRight
         }
 
@@ -305,7 +305,7 @@ Window {
                                 anchors { left: parent.left; leftMargin: 6; right: parent.right; rightMargin: 12; verticalCenter: parent.verticalCenter }
                                 text: modelData.title + (root.sortKey === modelData.key ? (root.sortAscending ? " ▲" : " ▼") : "")
                                 color: "#d7d7d7"
-                                font.pixelSize: 12
+                                font.pixelSize: 12 * App.fontScale
                                 font.bold: true
                                 elide: Text.ElideRight
                             }
@@ -442,7 +442,7 @@ Window {
                             leftPadding: 6
                             text: name
                             color: "#f0f0f0"
-                            font.pixelSize: 12
+                            font.pixelSize: 12 * App.fontScale
                             elide: Text.ElideMiddle
                         }
                         Text {
@@ -452,7 +452,7 @@ Window {
                             leftPadding: 6
                             text: sizeText.length > 0 ? sizeText : qsTr("Unknown")
                             color: "#b6c0ca"
-                            font.pixelSize: 12
+                            font.pixelSize: 12 * App.fontScale
                             elide: Text.ElideRight
                         }
                         Text {
@@ -462,7 +462,7 @@ Window {
                             leftPadding: 6
                             text: seeders >= 0 ? String(seeders) : "—"
                             color: "#f0f0f0"
-                            font.pixelSize: 12
+                            font.pixelSize: 12 * App.fontScale
                         }
                         Text {
                             x: root.colXMap["leechers"] || 0
@@ -471,7 +471,7 @@ Window {
                             leftPadding: 6
                             text: leechers >= 0 ? String(leechers) : "—"
                             color: "#f0f0f0"
-                            font.pixelSize: 12
+                            font.pixelSize: 12 * App.fontScale
                         }
                         Text {
                             x: root.colXMap["engine"] || 0
@@ -480,7 +480,7 @@ Window {
                             leftPadding: 6
                             text: engine
                             color: "#9ab3cb"
-                            font.pixelSize: 12
+                            font.pixelSize: 12 * App.fontScale
                             elide: Text.ElideRight
                         }
                         Text {
@@ -490,7 +490,7 @@ Window {
                             leftPadding: 6
                             text: publishedOn.length > 0 ? publishedOn : "—"
                             color: "#a6adb6"
-                            font.pixelSize: 12
+                            font.pixelSize: 12 * App.fontScale
                             elide: Text.ElideRight
                         }
 
@@ -518,7 +518,7 @@ Window {
                         visible: resultList.count === 0 && !App.torrentSearchManager.searchInProgress
                         text: qsTr("No search results yet")
                         color: "#666"
-                        font.pixelSize: 13
+                        font.pixelSize: 13 * App.fontScale
                     }
                 }
             }

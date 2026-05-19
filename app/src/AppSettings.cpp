@@ -305,6 +305,8 @@ void AppSettings::load() {
     m_rssDownloadRulesJson    = m_settings.value(QStringLiteral("rssDownloadRulesJson"), QStringLiteral("[]")).toString();
     m_uiLanguage              = m_settings.value(QStringLiteral("uiLanguage"), QString()).toString();
     m_trayIconStyle           = m_settings.value(QStringLiteral("trayIconStyle"), 0).toInt();
+    m_uiScaleFactor           = m_settings.value(QStringLiteral("uiScaleFactor"),   0.0).toDouble();
+    m_uiFontPointSize         = m_settings.value(QStringLiteral("uiFontPointSize"), 0).toInt();
     m_motdDismissedHash = m_settings.value(QStringLiteral("motdDismissedHash"), QString()).toString().trimmed();
     m_motdDismissedUntilUtcMs = m_settings.value(QStringLiteral("motdDismissedUntilUtcMs"), 0LL).toLongLong();
     const qint64 nowUtcMs = QDateTime::currentMSecsSinceEpoch();
@@ -419,6 +421,8 @@ void AppSettings::load() {
     emit rssDownloadRulesJsonChanged();
     emit uiLanguageChanged();
     emit trayIconStyleChanged();
+    emit uiScaleFactorChanged();
+    emit uiFontPointSizeChanged();
 
     // Reconcile OS startup entry with the stored setting.  Without this, the
     // registry key (Windows) or .desktop file (Linux) may be absent even though
@@ -553,6 +557,8 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("rssDownloadRulesJson"),     m_rssDownloadRulesJson);
     m_settings.setValue(QStringLiteral("uiLanguage"),               m_uiLanguage);
     m_settings.setValue(QStringLiteral("trayIconStyle"),            m_trayIconStyle);
+    m_settings.setValue(QStringLiteral("uiScaleFactor"),            m_uiScaleFactor);
+    m_settings.setValue(QStringLiteral("uiFontPointSize"),          m_uiFontPointSize);
     if (!m_motdDismissedHash.isEmpty() && m_motdDismissedUntilUtcMs > QDateTime::currentMSecsSinceEpoch()) {
         m_settings.setValue(QStringLiteral("motdDismissedHash"), m_motdDismissedHash);
         m_settings.setValue(QStringLiteral("motdDismissedUntilUtcMs"), m_motdDismissedUntilUtcMs);
@@ -848,6 +854,8 @@ void AppSettings::setRssSmartFiltersJson(const QString &v) { if (m_rssSmartFilte
 void AppSettings::setRssDownloadRulesJson(const QString &v) { if (m_rssDownloadRulesJson != v) { m_rssDownloadRulesJson = v; emit rssDownloadRulesJsonChanged(); save(); } }
 void AppSettings::setUiLanguage(const QString &v)           { if (m_uiLanguage          != v) { m_uiLanguage          = v; emit uiLanguageChanged();          save(); } }
 void AppSettings::setTrayIconStyle(int v)                   { if (m_trayIconStyle        != v) { m_trayIconStyle        = v; emit trayIconStyleChanged();        save(); } }
+void AppSettings::setUiScaleFactor(double v)                { if (m_uiScaleFactor        != v) { m_uiScaleFactor        = v; emit uiScaleFactorChanged();        save(); } }
+void AppSettings::setUiFontPointSize(int v)                 { if (m_uiFontPointSize      != v) { m_uiFontPointSize      = v; emit uiFontPointSizeChanged();      save(); } }
 void AppSettings::setMotdDismissal(const QString &hash, qint64 untilUtcMs) {
     const QString trimmedHash = hash.trimmed();
     if (trimmedHash.isEmpty() || untilUtcMs <= QDateTime::currentMSecsSinceEpoch()) {

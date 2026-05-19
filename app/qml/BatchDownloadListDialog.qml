@@ -383,11 +383,11 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 4
-            Text { text: qsTr("Batch download review"); color: "#f0f0f0"; font.pixelSize: 16; font.bold: true }
+            Text { text: qsTr("Batch download review"); color: "#f0f0f0"; font.pixelSize: 16 * App.fontScale; font.bold: true }
             Text {
                 text: qsTr("Review links before adding them. Columns can be sorted, resized, and dragged to reorder.")
                 color: "#aeb7c0"
-                font.pixelSize: 11
+                font.pixelSize: 11 * App.fontScale
                 wrapMode: Text.WordWrap
                 Layout.fillWidth: true
             }
@@ -408,7 +408,7 @@ Window {
                 Text {
                     text: qsTr("Replace filenames with wildcard pattern (*)")
                     color: "#d0d0d0"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                     font.weight: Font.Medium
                     Layout.fillWidth: true
                 }
@@ -430,7 +430,7 @@ Window {
         RowLayout {
             Layout.fillWidth: true
             spacing: 8
-            Text { text: qsTr("Files"); color: "#d0d0d0"; font.pixelSize: 12; font.bold: true }
+            Text { text: qsTr("Files"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
             Item { Layout.fillWidth: true }
             DlgButton { text: qsTr("Check all"); onClicked: setAllSelected(true) }
             DlgButton { text: qsTr("Uncheck all"); onClicked: setAllSelected(false) }
@@ -510,7 +510,7 @@ Window {
                                     anchors.rightMargin: 4
                                     text: modelData.title
                                     color: root.sortColumn === modelData.key ? "#88bbff" : "#b0b0b0"
-                                    font.pixelSize: 11
+                                    font.pixelSize: 11 * App.fontScale
                                     font.bold: true
                                     elide: Text.ElideRight
                                 }
@@ -523,7 +523,7 @@ Window {
                                     anchors.rightMargin: 5
                                     text: root.sortIndicator(modelData.key)
                                     color: "#88bbff"
-                                    font.pixelSize: 9
+                                    font.pixelSize: 9 * App.fontScale
                                 }
 
                                 MouseArea {
@@ -700,7 +700,7 @@ Window {
                                 verticalAlignment: Text.AlignVCenter
                                 text: modelData ? safeString(modelData.displayName) : ""
                                 color: "#e0e0e0"
-                                font.pixelSize: 12
+                                font.pixelSize: 12 * App.fontScale
                                 elide: Text.ElideRight
                             }
 
@@ -711,7 +711,7 @@ Window {
                                 verticalAlignment: Text.AlignVCenter
                                 text: modelData ? safeString(modelData.sizeText) : ""
                                 color: "#b8c4d0"
-                                font.pixelSize: 11
+                                font.pixelSize: 11 * App.fontScale
                                 elide: Text.ElideRight
                             }
 
@@ -723,7 +723,7 @@ Window {
                                 text: modelData ? safeString(modelData.rowStatus) : ""
                                 color: modelData && modelData.rowStatus === "Found" ? "#78c28b"
                                     : (modelData && modelData.rowStatus === "Checking..." ? "#aeb7c0" : "#d08f8f")
-                                font.pixelSize: 11
+                                font.pixelSize: 11 * App.fontScale
                                 elide: Text.ElideRight
                             }
 
@@ -734,7 +734,7 @@ Window {
                                 verticalAlignment: Text.AlignVCenter
                                 text: modelData ? safeString(modelData.sourceUrl) : ""
                                 color: "#9aa6b2"
-                                font.pixelSize: 11
+                                font.pixelSize: 11 * App.fontScale
                                 elide: Text.ElideMiddle
                             }
                         }
@@ -757,7 +757,7 @@ Window {
                 Layout.fillWidth: true
                 text: qsTr("Only links marked Found are selectable. Queue assignment still happens after OK.")
                 color: "#8899bb"
-                font.pixelSize: 10
+                font.pixelSize: 10 * App.fontScale
                 wrapMode: Text.WordWrap
             }
             DlgButton { text: qsTr("Cancel"); onClicked: root.close() }

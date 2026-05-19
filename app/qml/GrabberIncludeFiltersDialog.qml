@@ -129,7 +129,7 @@ Window {
                                 verticalAlignment: Text.AlignVCenter
                                 text: qsTr("Filter name")
                                 color: "#f0f0f0"
-                                font.pixelSize: 12
+                                font.pixelSize: 12 * App.fontScale
                                 font.bold: true
                             }
                             Text {
@@ -139,7 +139,7 @@ Window {
                                 verticalAlignment: Text.AlignVCenter
                                 text: qsTr("Mask")
                                 color: "#f0f0f0"
-                                font.pixelSize: 12
+                                font.pixelSize: 12 * App.fontScale
                                 font.bold: true
                             }
                         }
@@ -170,7 +170,7 @@ Window {
                                     verticalAlignment: Text.AlignVCenter
                                     text: modelData.name || ""
                                     color: "#d8d8d8"
-                                    font.pixelSize: 12
+                                    font.pixelSize: 12 * App.fontScale
                                     elide: Text.ElideRight
                                 }
                                 Text {
@@ -180,7 +180,7 @@ Window {
                                     verticalAlignment: Text.AlignVCenter
                                     text: modelData.mask || ""
                                     color: "#d8d8d8"
-                                    font.pixelSize: 12
+                                    font.pixelSize: 12 * App.fontScale
                                     elide: Text.ElideRight
                                 }
                             }
@@ -256,9 +256,9 @@ Window {
             anchors.margins: 12
             spacing: 10
 
-            Text { text: editingCustomIndex >= 0 ? qsTr("Edit filter") : qsTr("New filter"); color: "#f0f0f0"; font.pixelSize: 13; font.bold: true }
+            Text { text: editingCustomIndex >= 0 ? qsTr("Edit filter") : qsTr("New filter"); color: "#f0f0f0"; font.pixelSize: 13 * App.fontScale; font.bold: true }
 
-            Text { text: qsTr("Filter name"); color: "#d4d4d4"; font.pixelSize: 12 }
+            Text { text: qsTr("Filter name"); color: "#d4d4d4"; font.pixelSize: 12 * App.fontScale }
             TextField {
                 id: filterNameField
                 Layout.fillWidth: true
@@ -268,7 +268,7 @@ Window {
                 background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 0 }
             }
 
-            Text { text: qsTr("Mask"); color: "#d4d4d4"; font.pixelSize: 12 }
+            Text { text: qsTr("Mask"); color: "#d4d4d4"; font.pixelSize: 12 * App.fontScale }
             TextField {
                 id: filterMaskField
                 Layout.fillWidth: true
@@ -282,7 +282,7 @@ Window {
                 Layout.fillWidth: true
                 visible: categoryEnabled
                 spacing: 6
-                Text { text: qsTr("Category"); color: "#d4d4d4"; font.pixelSize: 12 }
+                Text { text: qsTr("Category"); color: "#d4d4d4"; font.pixelSize: 12 * App.fontScale }
                 ComboBox {
                     id: categoryCombo
                     Layout.fillWidth: true

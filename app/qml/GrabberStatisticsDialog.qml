@@ -75,38 +75,38 @@ Window {
             Text {
                 text: qsTr("Status: %1").arg(stats.status || qsTr("Idle"))
                 color: "#eef2f7"
-                font.pixelSize: 14
+                font.pixelSize: 14 * App.fontScale
                 font.bold: true
                 Layout.fillWidth: true
             }
             Rectangle { Layout.fillWidth: true; height: 1; color: "#343434" }
 
-            Text { text: qsTr("Web pages processed"); color: "#aab3c2"; font.pixelSize: 12; font.bold: true }
+            Text { text: qsTr("Web pages processed"); color: "#aab3c2"; font.pixelSize: 12 * App.fontScale; font.bold: true }
             GridLayout {
                 columns: 2
                 columnSpacing: 20
                 rowSpacing: 6
-                Text { text: qsTr("Simple"); color: "#dce2eb"; font.pixelSize: 12 }
-                Text { text: String(stats.webPagesProcessed || 0); color: "#f4f7fb"; font.pixelSize: 12 }
-                Text { text: qsTr("Advanced"); color: "#dce2eb"; font.pixelSize: 12 }
-                Text { text: String(stats.advancedPagesProcessed || 0); color: "#f4f7fb"; font.pixelSize: 12 }
+                Text { text: qsTr("Simple"); color: "#dce2eb"; font.pixelSize: 12 * App.fontScale }
+                Text { text: String(stats.webPagesProcessed || 0); color: "#f4f7fb"; font.pixelSize: 12 * App.fontScale }
+                Text { text: qsTr("Advanced"); color: "#dce2eb"; font.pixelSize: 12 * App.fontScale }
+                Text { text: String(stats.advancedPagesProcessed || 0); color: "#f4f7fb"; font.pixelSize: 12 * App.fontScale }
             }
 
             Rectangle { Layout.fillWidth: true; height: 1; color: "#343434" }
 
-            Text { text: qsTr("Files"); color: "#aab3c2"; font.pixelSize: 12; font.bold: true }
+            Text { text: qsTr("Files"); color: "#aab3c2"; font.pixelSize: 12 * App.fontScale; font.bold: true }
             GridLayout {
                 columns: 2
                 columnSpacing: 20
                 rowSpacing: 6
-                Text { text: qsTr("Total"); color: "#dce2eb"; font.pixelSize: 12 }
-                Text { text: String(stats.filesTotal || 0); color: "#f4f7fb"; font.pixelSize: 12 }
-                Text { text: qsTr("Explored"); color: "#dce2eb"; font.pixelSize: 12 }
-                Text { text: String(stats.filesExplored || 0); color: "#f4f7fb"; font.pixelSize: 12 }
-                Text { text: qsTr("Matched"); color: "#dce2eb"; font.pixelSize: 12 }
-                Text { text: String(stats.filesMatched || 0); color: "#f4f7fb"; font.pixelSize: 12 }
-                Text { text: qsTr("Downloaded"); color: "#dce2eb"; font.pixelSize: 12 }
-                Text { text: String(stats.filesDownloaded || 0); color: "#f4f7fb"; font.pixelSize: 12 }
+                Text { text: qsTr("Total"); color: "#dce2eb"; font.pixelSize: 12 * App.fontScale }
+                Text { text: String(stats.filesTotal || 0); color: "#f4f7fb"; font.pixelSize: 12 * App.fontScale }
+                Text { text: qsTr("Explored"); color: "#dce2eb"; font.pixelSize: 12 * App.fontScale }
+                Text { text: String(stats.filesExplored || 0); color: "#f4f7fb"; font.pixelSize: 12 * App.fontScale }
+                Text { text: qsTr("Matched"); color: "#dce2eb"; font.pixelSize: 12 * App.fontScale }
+                Text { text: String(stats.filesMatched || 0); color: "#f4f7fb"; font.pixelSize: 12 * App.fontScale }
+                Text { text: qsTr("Downloaded"); color: "#dce2eb"; font.pixelSize: 12 * App.fontScale }
+                Text { text: String(stats.filesDownloaded || 0); color: "#f4f7fb"; font.pixelSize: 12 * App.fontScale }
             }
 
             Item { Layout.fillHeight: true }

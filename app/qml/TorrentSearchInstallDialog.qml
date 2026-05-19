@@ -46,7 +46,7 @@ Window {
         Text {
             text: qsTr("Install a new search plugin")
             color: "#ffffff"
-            font.pixelSize: 16
+            font.pixelSize: 16 * App.fontScale
             font.bold: true
         }
 
@@ -96,7 +96,7 @@ Window {
                 text: qsTr("Choose a local .py search plugin file to copy into the search_plugins folder.")
                 color: "#aeb7c0"
                 wrapMode: Text.WordWrap
-                font.pixelSize: 12
+                font.pixelSize: 12 * App.fontScale
             }
         }
     }
@@ -108,7 +108,7 @@ Window {
             Text {
                 text: qsTr("Paste a direct URL to a .py plugin file.")
                 color: "#aeb7c0"
-                font.pixelSize: 12
+                font.pixelSize: 12 * App.fontScale
             }
             TextField {
                 Layout.fillWidth: true

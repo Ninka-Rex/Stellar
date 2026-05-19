@@ -1175,6 +1175,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     // ── 1. Components ────────────────────────────────────────────────────────────
     m_nam           = new QNetworkAccessManager(this);
     m_settings      = new AppSettings(this);
+    connect(m_settings, &AppSettings::uiFontPointSizeChanged,
+            this,       &AppController::fontScaleChanged);
     // Start the session uptime clock — elapsed time is flushed to settings on destruction.
     m_sessionTimer.start();
     DownloadItem::configureDateTimeFormat(
@@ -5667,6 +5669,19 @@ QString AppController::buildTimeFormatted() const {
         .arg(tzName);
 }
 QString AppController::qtVersion()   const { return QString::fromLatin1(qVersion()); }
+
+// Multiplier applied to every hardcoded font.pixelSize in QML. Baseline is 10
+// because the bulk of the UI's hardcoded sizes (11px body / 12-13px headings)
+// were authored against a ~10pt default font — picking 10pt therefore reads
+// as "no change", and any other choice scales the whole UI proportionally.
+// uiFontPointSize == 0 maps to 1.0 ("System default", no scaling).
+double AppController::fontScale() const
+{
+    const int pt = m_settings ? m_settings->uiFontPointSize() : 0;
+    if (pt <= 0)
+        return 1.0;
+    return double(pt) / 10.0;
+}
 
 QString AppController::clipboardUrl() const {
     const QString text = QGuiApplication::clipboard()->text().trimmed();

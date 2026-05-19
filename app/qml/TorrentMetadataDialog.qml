@@ -544,7 +544,7 @@ Window {
                       ? root.item.filename
                       : (root.pendingSourceLabel.length > 0 ? root.pendingSourceLabel : qsTr("Torrent Metadata"))
                 color: "#ffffff"
-                font.pixelSize: 15
+                font.pixelSize: 15 * App.fontScale
                 font.bold: true
                 Layout.fillWidth: true
                 elide: Text.ElideRight
@@ -554,7 +554,7 @@ Window {
                 visible: !!root.item && root.item.status === "Error"
                 text: root.item ? root.item.errorString : ""
                 color: "#e07b7b"
-                font.pixelSize: 12
+                font.pixelSize: 12 * App.fontScale
                 elide: Text.ElideRight
                 Layout.maximumWidth: 260
             }
@@ -565,7 +565,7 @@ Window {
             Layout.fillWidth: true
             spacing: 6
 
-            Text { text: qsTr("Save to"); color: "#a5a5a5"; font.pixelSize: 12 }
+            Text { text: qsTr("Save to"); color: "#a5a5a5"; font.pixelSize: 12 * App.fontScale }
 
             TextField {
                 id: savePathField
@@ -594,7 +594,7 @@ Window {
             // Separator
             Rectangle { width: 1; height: 22; color: "#343434" }
 
-            Text { text: qsTr("Category"); color: "#a5a5a5"; font.pixelSize: 12 }
+            Text { text: qsTr("Category"); color: "#a5a5a5"; font.pixelSize: 12 * App.fontScale }
 
             ComboBox {
                 id: categoryCombo
@@ -612,7 +612,7 @@ Window {
                     verticalAlignment: Text.AlignVCenter
                     leftPadding: 6
                     elide: Text.ElideRight
-                    font.pixelSize: 12
+                    font.pixelSize: 12 * App.fontScale
                 }
                 background: Rectangle { color: "#171717"; border.color: "#303030"; radius: 3 }
             }
@@ -641,7 +641,7 @@ Window {
                     }
                 }
                 contentItem: Text {
-                    text: parent.text; color: "#d0d0d0"; font.pixelSize: 12
+                    text: parent.text; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                     leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter
                 }
             }
@@ -654,7 +654,7 @@ Window {
                 onToggled: root.rememberCustomSavePath = checked
                 contentItem: Text {
                     text: parent.text
-                    color: parent.enabled ? "#d0d0d0" : "#6f6f6f"; font.pixelSize: 12
+                    color: parent.enabled ? "#d0d0d0" : "#6f6f6f"; font.pixelSize: 12 * App.fontScale
                     leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter
                 }
             }
@@ -662,7 +662,7 @@ Window {
             Text {
                 text: qsTr("Use category folder")
                 color: root.useCustomSavePath ? "#66aaff" : "#5f5f5f"
-                font.pixelSize: 12; font.underline: root.useCustomSavePath
+                font.pixelSize: 12 * App.fontScale; font.underline: root.useCustomSavePath
                 MouseArea {
                     anchors.fill: parent
                     enabled: root.useCustomSavePath
@@ -677,7 +677,7 @@ Window {
 
             Rectangle { width: 1; height: 18; color: "#343434" }
 
-            Text { text: qsTr("Description"); color: "#a5a5a5"; font.pixelSize: 12 }
+            Text { text: qsTr("Description"); color: "#a5a5a5"; font.pixelSize: 12 * App.fontScale }
             TextField {
                 Layout.fillWidth: true
                 implicitHeight: 26
@@ -686,7 +686,7 @@ Window {
                 background: Rectangle { color: "#171717"; border.color: "#303030"; radius: 3 }
                 leftPadding: 6; rightPadding: 6; topPadding: 0; bottomPadding: 0
                 verticalAlignment: TextInput.AlignVCenter
-                font.pixelSize: 12
+                font.pixelSize: 12 * App.fontScale
                 onTextChanged: root.description = text
             }
         }
@@ -790,7 +790,7 @@ Window {
                         anchors.horizontalCenter: parent.horizontalCenter
                         text: root.item ? root.metadataPeerStatusText() : qsTr("Opening torrent...")
                         color: "#8ea1b5"
-                        font.pixelSize: 13
+                        font.pixelSize: 13 * App.fontScale
                     }
                 }
             }
@@ -826,7 +826,7 @@ Window {
                             anchors.verticalCenter: parent.verticalCenter
                             text: root.item ? root.metadataPeerStatusText() : qsTr("Opening torrent...")
                             color: "#8ea1b5"
-                            font.pixelSize: 12
+                            font.pixelSize: 12 * App.fontScale
                         }
                     }
 
@@ -836,11 +836,11 @@ Window {
                         spacing: 10
 
                         Rectangle { width: 10; height: 10; radius: 5; color: "#5f93c9"; anchors.verticalCenter: parent.verticalCenter }
-                        Text { text: qsTr("Peer"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                        Text { text: qsTr("Peer"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                         Rectangle { width: 10; height: 10; radius: 5; color: "#4caf7d"; anchors.verticalCenter: parent.verticalCenter }
-                        Text { text: qsTr("Seed"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                        Text { text: qsTr("Seed"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                         Rectangle { width: 10; height: 10; radius: 5; color: "#9959e6"; anchors.verticalCenter: parent.verticalCenter }
-                        Text { text: qsTr("You"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                        Text { text: qsTr("You"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                     }
                 }
 
@@ -1138,14 +1138,14 @@ Window {
                                 spacing: 5; width: parent.width
                                 Text {
                                     text: root.metaMapHoverEndpoint
-                                    color: "#f0f5fb"; font.pixelSize: 13; font.bold: true
+                                    color: "#f0f5fb"; font.pixelSize: 13 * App.fontScale; font.bold: true
                                     elide: Text.ElideRight
                                     width: Math.min(implicitWidth, parent.width - metaTipPort.implicitWidth - 5)
                                 }
                                 Text {
                                     id: metaTipPort
                                     text: root.metaMapHoverPort
-                                    color: "#6a8099"; font.pixelSize: 13; font.bold: true
+                                    color: "#6a8099"; font.pixelSize: 13 * App.fontScale; font.bold: true
                                     anchors.baseline: parent.children[0].baseline
                                 }
                             }
@@ -1153,14 +1153,14 @@ Window {
                             Text {
                                 visible: root.metaMapHoverClient.length > 0
                                 text: root.metaMapHoverClient
-                                color: "#c5d2de"; font.pixelSize: 12
+                                color: "#c5d2de"; font.pixelSize: 12 * App.fontScale
                                 elide: Text.ElideRight; width: parent.width
                             }
 
                             Text {
                                 visible: root.metaMapHoverCountryCode.length > 0
                                 text: root.metaPeerPlaceText(root.metaMapHoverCountryCode, root.metaMapHoverRegionCode, root.metaMapHoverRegionName, root.metaMapHoverCityName)
-                                color: "#95a9bb"; font.pixelSize: 11
+                                color: "#95a9bb"; font.pixelSize: 11 * App.fontScale
                                 elide: Text.ElideRight; width: parent.width
                             }
 
@@ -1180,7 +1180,7 @@ Window {
                                             id: tipBadge
                                             anchors.centerIn: parent
                                             text: modelData; color: "white"
-                                            font.pixelSize: 9; font.bold: true
+                                            font.pixelSize: 9 * App.fontScale; font.bold: true
                                         }
                                     }
                                 }
@@ -1188,14 +1188,14 @@ Window {
 
                             Text {
                                 text: qsTr("↓ %1  ↑ %2").arg(root.compactSpeed(root.metaMapHoverDownSpeed)).arg(root.compactSpeed(root.metaMapHoverUpSpeed))
-                                color: "#9fb6c8"; font.pixelSize: 11; width: parent.width
+                                color: "#9fb6c8"; font.pixelSize: 11 * App.fontScale; width: parent.width
                             }
 
                             Text {
                                 text: qsTr("RTT %1  %2% done")
                                     .arg(root.metaMapHoverRtt > 0 ? (root.metaMapHoverRtt + " ms") : "—")
                                     .arg(Math.round(root.metaMapHoverProgress * 100))
-                                color: "#9fb6c8"; font.pixelSize: 11; width: parent.width
+                                color: "#9fb6c8"; font.pixelSize: 11 * App.fontScale; width: parent.width
                             }
                         }
                     }
@@ -1218,12 +1218,12 @@ Window {
                 Layout.rightMargin: 10
                 Layout.topMargin: 8
                 Layout.bottomMargin: 4
-                Text { text: qsTr("Files"); color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
+                Text { text: qsTr("Files"); color: "#f0f0f0"; font.pixelSize: 14 * App.fontScale; font.bold: true }
                 Item { Layout.fillWidth: true }
                 Text {
                     text: metaFileList ? qsTr("%n item(s)", "", metaFileList.count) : ""
                     color: "#808080"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                 }
             }
 
@@ -1272,7 +1272,7 @@ Window {
                                     anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: parent.right; rightMargin: 12 }
                                     text: qsTr("Name")
                                     color: "#b0b0b0"
-                                    font.pixelSize: 12
+                                    font.pixelSize: 12 * App.fontScale
                                     font.bold: true
                                     elide: Text.ElideRight
                                 }
@@ -1305,7 +1305,7 @@ Window {
                                     anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: parent.right; rightMargin: 12 }
                                     text: qsTr("Progress")
                                     color: "#b0b0b0"
-                                    font.pixelSize: 12
+                                    font.pixelSize: 12 * App.fontScale
                                     font.bold: true
                                     elide: Text.ElideRight
                                 }
@@ -1335,7 +1335,7 @@ Window {
                                     anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: parent.right; rightMargin: 12 }
                                     text: qsTr("Size")
                                     color: "#b0b0b0"
-                                    font.pixelSize: 12
+                                    font.pixelSize: 12 * App.fontScale
                                     font.bold: true
                                     elide: Text.ElideRight
                                 }
@@ -1361,7 +1361,7 @@ Window {
                             visible: parent.count === 0
                             text: qsTr("No file information available")
                             color: "#666666"
-                            font.pixelSize: 12
+                            font.pixelSize: 12 * App.fontScale
                         }
 
                 delegate: Rectangle {
@@ -1404,7 +1404,7 @@ Window {
                                 anchors.centerIn: parent
                                 text: expanded ? "▾" : "▸"
                                 color: "#888"
-                                font.pixelSize: 11
+                                font.pixelSize: 11 * App.fontScale
                             }
                             MouseArea {
                                 visible: isFolder
@@ -1429,7 +1429,7 @@ Window {
                                     anchors.centerIn: parent
                                     text: "✓"
                                     color: "#fff"
-                                    font.pixelSize: 10
+                                    font.pixelSize: 10 * App.fontScale
                                     font.bold: true
                                 }
                             }
@@ -1460,7 +1460,7 @@ Window {
                             anchors.verticalCenter: parent.verticalCenter
                             text: name
                             color: !wanted ? "#555" : (isFolder ? "#e0e0e0" : "#d0d0d0")
-                            font.pixelSize: 12
+                            font.pixelSize: 12 * App.fontScale
                             font.bold: isFolder
                             elide: Text.ElideMiddle
                         }
@@ -1474,7 +1474,7 @@ Window {
                                 anchors { left: parent.left; leftMargin: 6; verticalCenter: parent.verticalCenter }
                                 text: parent.showProgress ? (Math.round(root.clampPct(progress) * 100) + "%") : qsTr("Pending")
                                 color: wanted ? "#b0b0b0" : "#555"
-                                font.pixelSize: 11
+                                font.pixelSize: 11 * App.fontScale
                                 width: 46
                             }
 
@@ -1503,7 +1503,7 @@ Window {
                             anchors.verticalCenter: parent.verticalCenter
                             text: root.formatBytes(size)
                             color: wanted ? "#b0b0b0" : "#555"
-                            font.pixelSize: 11
+                            font.pixelSize: 11 * App.fontScale
                             horizontalAlignment: Text.AlignLeft
                             elide: Text.ElideRight
                         }
@@ -1593,13 +1593,13 @@ Window {
                             fillMode: Image.PreserveAspectFit
                             asynchronous: true
                         }
-                        Text { text: qsTr("Rename item"); color: "#e0e0e0"; font.pixelSize: 14; font.bold: true }
+                        Text { text: qsTr("Rename item"); color: "#e0e0e0"; font.pixelSize: 14 * App.fontScale; font.bold: true }
                     }
-                    Text { text: qsTr("Enter a new file or folder name:"); color: "#aaaaaa"; font.pixelSize: 12 }
+                    Text { text: qsTr("Enter a new file or folder name:"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale }
                     TextField {
                         id: metaRenameInput
                         Layout.fillWidth: true
-                        color: "#d0d0d0"; font.pixelSize: 12
+                        color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                         selectByMouse: true; leftPadding: 8
                         background: Rectangle {
                             color: "#1b1b1b"
@@ -1685,7 +1685,7 @@ Window {
                                     anchors.centerIn: parent
                                     text: "✓"
                                     color: "#fff"
-                                    font.pixelSize: 10
+                                    font.pixelSize: 10 * App.fontScale
                                     font.bold: true
                                 }
                             }
@@ -1693,7 +1693,7 @@ Window {
                             Text {
                                 text: qsTr("Download")
                                 color: "#e0e0e0"
-                                font.pixelSize: 12
+                                font.pixelSize: 12 * App.fontScale
                             }
                         }
 
@@ -1739,7 +1739,7 @@ Window {
                             anchors.leftMargin: 32
                             text: qsTr("Rename...")
                             color: "#e0e0e0"
-                            font.pixelSize: 12
+                            font.pixelSize: 12 * App.fontScale
                         }
 
                         MouseArea {

@@ -63,13 +63,13 @@ Window {
                 Text {
                     text: qsTr("Delete completed downloads?")
                     color: "#ffffff"
-                    font.pixelSize: 13
+                    font.pixelSize: 13 * App.fontScale
                     font.bold: true
                 }
                 Text {
                     text: qsTr("Removes from list only. Files on disk are not deleted.")
                     color: "#a0a0a0"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                     wrapMode: Text.WordWrap
                     Layout.fillWidth: true
                 }
@@ -92,7 +92,7 @@ Window {
             contentItem: Text {
                 text: parent.text
                 color: "#d0d0d0"
-                font.pixelSize: 12
+                font.pixelSize: 12 * App.fontScale
                 leftPadding: parent.indicator.width + 6
                 verticalAlignment: Text.AlignVCenter
             }

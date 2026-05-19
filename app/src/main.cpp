@@ -46,6 +46,7 @@
 #include "TorrentSearchManager.h"
 #include "TorrentSearchPluginModel.h"
 #include "TorrentSearchResultModel.h"
+#include <QFont>
 #include <QQuickWindow>
 
 #if defined(Q_OS_WIN)
@@ -650,9 +651,42 @@ int main(int argc, char *argv[])
         return runNativeMessagingHost(argc, argv);
     }
 
+    // Set application/organization names early so StellarPaths::root() (which
+    // depends on QStandardPaths::AppLocalDataLocation and on the org/app name
+    // for its suffix-stripping) resolves to the real settings directory below.
+    // Without this, the pre-QApplication QSettings reads fall back to a
+    // different path and the scale/font overrides silently never apply on
+    // Linux. These are static setters and don't require a QApplication.
+    QCoreApplication::setApplicationName(QStringLiteral("Stellar"));
+    QCoreApplication::setOrganizationName(QStringLiteral("Stellar"));
+
+    // Apply UI scale factor before QApplication — Qt reads QT_SCALE_FACTOR
+    // at construction time and ignores it afterwards. Always unset first so a
+    // restart (which inherits the parent process's environment via
+    // QProcess::startDetached) doesn't keep a previously-set scale when the
+    // user picks "System default".
+    {
+        QSettings s(StellarPaths::settingsFile(), QSettings::IniFormat);
+        const double scale = s.value(QStringLiteral("uiScaleFactor"), 0.0).toDouble();
+        qunsetenv("QT_SCALE_FACTOR");
+        if (scale >= 0.5 && scale <= 3.0)
+            qputenv("QT_SCALE_FACTOR", QString::number(scale, 'f', 2).toUtf8());
+    }
+
     nmLog(QStringLiteral("Constructing QGuiApplication..."));
     QApplication app(argc, argv);
     nmLog(QStringLiteral("QGuiApplication constructed."));
+
+    // Apply base font size — must be after QApplication construction.
+    {
+        QSettings s(StellarPaths::settingsFile(), QSettings::IniFormat);
+        const int fontSize = s.value(QStringLiteral("uiFontPointSize"), 0).toInt();
+        if (fontSize >= 6 && fontSize <= 32) {
+            QFont f = app.font();
+            f.setPointSize(fontSize);
+            app.setFont(f);
+        }
+    }
     
     app.setApplicationName(QStringLiteral("Stellar"));
     app.setApplicationVersion(QStringLiteral("0.1.0"));

@@ -1549,7 +1549,7 @@ Window {
             anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
             verticalAlignment: TextInput.AlignVCenter
             color: parent.textColor
-            font.pixelSize: 12
+            font.pixelSize: 12 * App.fontScale
             readOnly: true; selectByMouse: true; clip: true
         }
     }
@@ -1707,12 +1707,12 @@ Window {
                         Layout.fillWidth: true; spacing: 4
                         Text {
                             text: root.item ? safeStr(root.item.filename) : ""
-                            color: "#ffffff"; font.pixelSize: 14; font.bold: true
+                            color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true
                             elide: Text.ElideMiddle; Layout.fillWidth: true
                         }
                         Text {
                             text: ""
-                            color: "#8ea1b5"; font.pixelSize: 10
+                            color: "#8ea1b5"; font.pixelSize: 10 * App.fontScale
                             elide: Text.ElideRight; Layout.fillWidth: true
                             visible: false
                         }
@@ -1726,12 +1726,12 @@ Window {
                                      : root.item && safeStr(root.item.status) === "Completed" ? "#67bb7a"
                                      : root.item && safeStr(root.item.status) === "Error" ? "#d97b7b"
                                      : "#aeb6bf"
-                                font.pixelSize: 11
+                                font.pixelSize: 11 * App.fontScale
                                 font.bold: true
                             }
                             Text {
                                 text: root.item ? root.compactBytes(root.item.totalBytes) : "--"
-                                color: "#8f98a1"; font.pixelSize: 11
+                                color: "#8f98a1"; font.pixelSize: 11 * App.fontScale
                                 elide: Text.ElideRight; Layout.fillWidth: true
                             }
                         }
@@ -1752,13 +1752,13 @@ Window {
                         Layout.fillWidth: true
                         columns: 2; columnSpacing: 8; rowSpacing: 6
 
-                        Text { text: qsTr("Status");  color: "#8899aa"; font.pixelSize: 12; font.bold: true }
-                        Text { text: root.item ? safeStr(root.item.statusText) : "--"; color: "#c8c8c8"; font.pixelSize: 12; Layout.fillWidth: true }
+                        Text { text: qsTr("Status");  color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: root.item ? safeStr(root.item.statusText) : "--"; color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true }
 
-                        Text { text: qsTr("Size");    color: "#8899aa"; font.pixelSize: 12; font.bold: true }
-                        Text { text: root.item ? root.formatBytes(root.item.totalBytes) : "--"; color: "#c8c8c8"; font.pixelSize: 12 }
+                        Text { text: qsTr("Size");    color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: root.item ? root.formatBytes(root.item.totalBytes) : "--"; color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale }
 
-                        Text { text: qsTr("Save to"); color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: qsTr("Save to"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
                             ReadOnlyField {
@@ -1773,51 +1773,51 @@ Window {
                             DlgButton { text: qsTr("Move"); enabled: !!root.item; onClicked: { if (root._isTorrent) moveTorrentDialog.open(); else moveFileDialog.open() } }
                         }
 
-                        Text { text: qsTr("Address"); color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: qsTr("Address"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         ReadOnlyField {
                             Layout.fillWidth: true
                             fieldText: root.item ? safeStr(root.item.url) : "--"
                             textColor: "#4488dd"
                         }
 
-                        Text { text: qsTr("Web page"); color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: qsTr("Web page"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         Text {
                             text: { var p = root.item ? safeStr(root.item.parentUrl) : ""; return p || "(unknown)" }
-                            color: "#c8c8c8"; font.pixelSize: 12; elide: Text.ElideMiddle; Layout.fillWidth: true
+                            color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true
                         }
 
-                        Text { text: qsTr("Referer"); color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: qsTr("Referer"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         Text {
                             text: { var r = root.item ? safeStr(root.item.referrer) : ""; return r || "(none)" }
-                            color: "#c8c8c8"; font.pixelSize: 12; elide: Text.ElideMiddle; Layout.fillWidth: true
+                            color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true
                         }
 
-                        Text { text: qsTr("Description"); color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: qsTr("Description"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         TextField {
                             Layout.fillWidth: true; implicitHeight: 26
                             text: root.item ? safeStr(root.item.description) : ""
-                            color: "#d0d0d0"; font.pixelSize: 12
+                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                             background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2 }
                             leftPadding: 6; topPadding: 0; bottomPadding: 0
                             onTextChanged: if (root.item && text !== root.item.description) App.setDownloadDescription(root.item.id, text)
                         }
 
-                        Text { text: qsTr("Login"); color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: qsTr("Login"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         TextField {
                             Layout.fillWidth: true; implicitHeight: 26
                             text: root.item ? safeStr(root.item.username) : ""
-                            color: "#d0d0d0"; font.pixelSize: 12
+                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                             background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2 }
                             leftPadding: 6; topPadding: 0; bottomPadding: 0
                             onTextChanged: if (root.item && text !== root.item.username) App.setDownloadUsername(root.item.id, text)
                         }
 
-                        Text { text: qsTr("Password"); color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: qsTr("Password"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         TextField {
                             Layout.fillWidth: true; implicitHeight: 26
                             text: root.item ? safeStr(root.item.password) : ""
                             echoMode: TextInput.Password
-                            color: "#d0d0d0"; font.pixelSize: 12
+                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                             background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2 }
                             leftPadding: 6; topPadding: 0; bottomPadding: 0
                             onTextChanged: if (root.item && text !== root.item.password) App.setDownloadPassword(root.item.id, text)
@@ -1871,14 +1871,14 @@ Window {
 
                         Text {
                             text: root.item ? safeStr(root.item.filename) : ""
-                            color: "#ffffff"; font.pixelSize: 13; font.bold: true
+                            color: "#ffffff"; font.pixelSize: 13 * App.fontScale; font.bold: true
                             elide: Text.ElideMiddle; Layout.fillWidth: true
                         }
 
                         Text {
                             text: root.torrentStatusLabel()
                             color: "#ffffff"
-                            font.pixelSize: 11
+                            font.pixelSize: 11 * App.fontScale
                             font.bold: true
                         }
 
@@ -1894,7 +1894,7 @@ Window {
                             visible: !_isCompleteState && _eta.length > 0
                             text: qsTr("ETA: %1").arg(_eta)
                             color: "#8f98a1"
-                            font.pixelSize: 11
+                            font.pixelSize: 11 * App.fontScale
                             elide: Text.ElideRight
                         }
                     }
@@ -1904,7 +1904,7 @@ Window {
                         Layout.fillWidth: true; spacing: 8
                         Text {
                             text: root.item ? Math.round(root.clampPct(root.item.progress) * 100) + "%" : "0%"
-                            color: "#ffffff"; font.pixelSize: 12; font.bold: true
+                            color: "#ffffff"; font.pixelSize: 12 * App.fontScale; font.bold: true
                             Layout.preferredWidth: 38
                         }
                         // Have / total bytes (e.g. "123 MB / 3.2 GB"). Hidden until
@@ -1914,7 +1914,7 @@ Window {
                             text: root.item
                                 ? root.compactBytes(root.item.doneBytes) + " / " + root.compactBytes(root.item.totalBytes)
                                 : ""
-                            color: "#ffffff"; font.pixelSize: 11
+                            color: "#ffffff"; font.pixelSize: 11 * App.fontScale
                         }
                         Rectangle {
                             Layout.fillWidth: true; height: 5; radius: 2
@@ -1927,22 +1927,22 @@ Window {
                         // ↓ down speed
                         Text {
                             text: "↓ " + (root.item ? root.compactSpeed(root.item.speed) : "0 B/s")
-                            color: "#ffffff"; font.pixelSize: 11
+                            color: "#ffffff"; font.pixelSize: 11 * App.fontScale
                         }
                         // ↑ up speed
                         Text {
                             text: "↑ " + (root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "0 B/s")
-                            color: "#ffffff"; font.pixelSize: 11
+                            color: "#ffffff"; font.pixelSize: 11 * App.fontScale
                         }
                         // Seeders: connected (total)
                         Text {
                             text: root.item ? qsTr("Seeds: %1 (%2)").arg(root.item.torrentSeeders | 0).arg(root.item.torrentListSeeders | 0) : qsTr("Seeds: %1 (%2)").arg(0).arg(0)
-                            color: "#c8c8c8"; font.pixelSize: 11
+                            color: "#c8c8c8"; font.pixelSize: 11 * App.fontScale
                         }
                         // Peers: connected (total)
                         Text {
                             text: root.item ? qsTr("Peers: %1 (%2)").arg(root.item.torrentPeers | 0).arg(root.item.torrentListPeers | 0) : qsTr("Peers: %1 (%2)").arg(0).arg(0)
-                            color: "#c8c8c8"; font.pixelSize: 11
+                            color: "#c8c8c8"; font.pixelSize: 11 * App.fontScale
                         }
                     }
                 }
@@ -1968,7 +1968,7 @@ Window {
                                 id: tabLbl; anchors.centerIn: parent
                                 text: modelData
                                 color: root.currentTab === index ? "#ffffff" : "#909090"
-                                font.pixelSize: 12
+                                font.pixelSize: 12 * App.fontScale
                             }
                             Rectangle {
                                 anchors.bottom: parent.bottom
@@ -2018,7 +2018,7 @@ Window {
                                 property real lw: 68
 
                                 // Source
-                                Text { text: qsTr("Source"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Source"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
                                 ReadOnlyField {
                                     Layout.fillWidth: true
                                     fieldText: root.item ? safeStr(root.item.torrentSource) : ""
@@ -2026,7 +2026,7 @@ Window {
                                 }
 
                                 // Info hash — sized to fit a SHA1/SHA256 hash; badge + Copy follow inline.
-                                Text { text: qsTr("Info hash"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Info hash"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
                                 RowLayout {
                                     Layout.fillWidth: true
                                     spacing: 8
@@ -2048,7 +2048,7 @@ Window {
                                             anchors.centerIn: parent
                                             text: parent.hasMetadata ? qsTr("✓ Metadata") : qsTr("Fetching…")
                                             color: parent.hasMetadata ? "#5eaa6e" : "#c09a50"
-                                            font.pixelSize: 11
+                                            font.pixelSize: 11 * App.fontScale
                                             font.bold: true
                                         }
                                     }
@@ -2061,7 +2061,7 @@ Window {
                                 }
 
                                 // Save to
-                                Text { text: qsTr("Save to"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Save to"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
                                 RowLayout {
                                     Layout.fillWidth: true
                                     spacing: 8
@@ -2074,7 +2074,7 @@ Window {
                                 }
 
                                 // Category
-                                Text { text: qsTr("Category"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Category"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
                                 ComboBox {
                                     id: categoryCombo
                                     Layout.preferredWidth: 180
@@ -2083,7 +2083,7 @@ Window {
                                     model: App.categoryModel
                                     textRole: "categoryLabel"
                                     valueRole: "categoryId"
-                                    font.pixelSize: 11
+                                    font.pixelSize: 11 * App.fontScale
                                     property bool _syncing: false
                                     function _syncFromItem() {
                                         if (!root.item) return
@@ -2112,12 +2112,12 @@ Window {
                                 }
 
                                 // Note
-                                Text { text: qsTr("Note"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Note"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
                                 TextField {
                                     Layout.fillWidth: true
                                     implicitHeight: 26
                                     text: root.item ? safeStr(root.item.description) : ""
-                                    color: "#d0d0d0"; font.pixelSize: 11
+                                    color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale
                                     background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2 }
                                     leftPadding: 7; topPadding: 0; bottomPadding: 0
                                     onTextChanged: if (root.item && text !== root.item.description) App.setDownloadDescription(root.item.id, text)
@@ -2133,32 +2133,32 @@ Window {
                                 columns: 6; columnSpacing: 8; rowSpacing: 5
                                 property real lw: 80
 
-                                Text { text: qsTr("Downloaded");  color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.compactBytes(root.item.torrentDownloaded) : "—"; color: "#c8d0d8"; font.pixelSize: 11; Layout.fillWidth: true }
-                                Text { text: qsTr("Uploaded");    color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.compactBytes(root.item.torrentUploaded) : "—";   color: "#c8d0d8"; font.pixelSize: 11; Layout.fillWidth: true }
-                                Text { text: qsTr("Wasted");      color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Downloaded");  color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.compactBytes(root.item.torrentDownloaded) : "—"; color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
+                                Text { text: qsTr("Uploaded");    color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.compactBytes(root.item.torrentUploaded) : "—";   color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
+                                Text { text: qsTr("Wasted");      color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
                                 Text {
                                     text: { if (!root.item) return "—"; var w = root.item.torrentWastedBytes; return (w > 0) ? root.compactBytes(w) : "—" }
                                     color: (root.item && root.item.torrentWastedBytes > 0) ? "#b8924a" : "#c8d0d8"
-                                    font.pixelSize: 11; Layout.fillWidth: true
+                                    font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true
                                 }
 
-                                Text { text: qsTr("Down speed");  color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.compactSpeed(root.item.speed) : "—"; color: "#4ea2ff"; font.pixelSize: 11; Layout.fillWidth: true }
-                                Text { text: qsTr("Up speed");    color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "—"; color: "#4cc87a"; font.pixelSize: 11; Layout.fillWidth: true }
-                                Text { text: qsTr("Connections"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? String(root.item.torrentConnections | 0) : "—"; color: "#c8d0d8"; font.pixelSize: 11; Layout.fillWidth: true }
+                                Text { text: qsTr("Down speed");  color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.compactSpeed(root.item.speed) : "—"; color: "#4ea2ff"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
+                                Text { text: qsTr("Up speed");    color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "—"; color: "#4cc87a"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
+                                Text { text: qsTr("Connections"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? String(root.item.torrentConnections | 0) : "—"; color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
 
-                                Text { text: qsTr("Share ratio"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Share ratio"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
                                 Text {
                                     text: root.item ? root.ratioText(root.item.torrentRatio) : "—"
                                     color: { if (!root.item) return "#c8d0d8"; var r = Number(root.item.torrentRatio); return r >= 1.0 ? "#5eaa6e" : r >= 0.5 ? "#c09a50" : "#c8d0d8" }
-                                    font.pixelSize: 11; Layout.fillWidth: true
+                                    font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true
                                 }
                                 // Pieces + Availability on their own row — piece text can be long
-                                Text { text: qsTr("Pieces");      color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw; Layout.columnSpan: 1 }
+                                Text { text: qsTr("Pieces");      color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.columnSpan: 1 }
                                 Text {
                                     text: {
                                         if (!root.item) return "—"
@@ -2167,39 +2167,39 @@ Window {
                                         if (total <= 0) return done > 0 ? String(done) : "—"
                                         return done + " / " + total + " (" + Math.round(done / total * 100) + "%)"
                                     }
-                                    color: "#c8d0d8"; font.pixelSize: 11; Layout.fillWidth: true; Layout.columnSpan: 1
+                                    color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 1
                                 }
-                                Text { text: qsTr("Availability"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Availability"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
                                 Text {
                                     text: { if (!root.item) return "—"; var av = root.item.torrentAvailability; return (typeof av === "number" && av > 0) ? av.toFixed(2) : "—" }
-                                    color: "#c8d0d8"; font.pixelSize: 11; Layout.fillWidth: true
+                                    color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true
                                 }
 
-                                Text { text: qsTr("Active time"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "—";   color: "#c8d0d8"; font.pixelSize: 11; Layout.fillWidth: true }
-                                Text { text: qsTr("Seed time");   color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "—"; color: "#c8d0d8"; font.pixelSize: 11; Layout.fillWidth: true }
+                                Text { text: qsTr("Active time"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "—";   color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
+                                Text { text: qsTr("Seed time");   color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "—"; color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
                                 // Padding item to complete the 6-column row before metadata rows
                                 Item { Layout.columnSpan: 2; Layout.fillWidth: true
                                     visible: !!root.item && (safeStr(root.item.torrentComment).length > 0 || safeStr(root.item.torrentCreator).length > 0 || safeStr(root.item.torrentCreatedOn).length > 0) }
 
                                 // Each metadata field gets its own full row (label + 5-col value)
-                                Text { text: qsTr("Description"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
+                                Text { text: qsTr("Description"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
                                     visible: !!root.item && safeStr(root.item.torrentComment).length > 0 }
-                                Text { text: root.item ? safeStr(root.item.torrentComment) : ""; color: "#c8d0d8"; font.pixelSize: 11; Layout.fillWidth: true; Layout.columnSpan: 5; wrapMode: Text.WordWrap
+                                Text { text: root.item ? safeStr(root.item.torrentComment) : ""; color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 5; wrapMode: Text.WordWrap
                                     visible: !!root.item && safeStr(root.item.torrentComment).length > 0 }
 
-                                Text { text: qsTr("Created by"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
+                                Text { text: qsTr("Created by"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
                                     visible: !!root.item && safeStr(root.item.torrentCreator).length > 0 }
-                                Text { text: root.item ? safeStr(root.item.torrentCreator) : ""; color: "#c8d0d8"; font.pixelSize: 11; Layout.fillWidth: true; Layout.columnSpan: 5; wrapMode: Text.WordWrap
+                                Text { text: root.item ? safeStr(root.item.torrentCreator) : ""; color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 5; wrapMode: Text.WordWrap
                                     visible: !!root.item && safeStr(root.item.torrentCreator).length > 0 }
 
-                                Text { text: qsTr("Created on"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
+                                Text { text: qsTr("Created on"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
                                     visible: !!root.item && safeStr(root.item.torrentCreatedOn).length > 0 }
-                                Text { text: root.item ? safeStr(root.item.torrentCreatedOn) : ""; color: "#c8d0d8"; font.pixelSize: 11; Layout.fillWidth: true; Layout.columnSpan: 5
+                                Text { text: root.item ? safeStr(root.item.torrentCreatedOn) : ""; color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 5
                                     visible: !!root.item && safeStr(root.item.torrentCreatedOn).length > 0 }
                                 Text {
-                                    text: qsTr("Speed limit"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw
+                                    text: qsTr("Speed limit"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw
                                     visible: !!root.item && (root.item.perTorrentDownLimitKBps > 0 || root.item.perTorrentUpLimitKBps > 0)
                                 }
                                 Text {
@@ -2212,7 +2212,7 @@ Window {
                                         if (u > 0) parts.push("↑ " + u + " KB/s")
                                         return parts.join("  ·  ")
                                     }
-                                    color: "#d09040"; font.pixelSize: 11; Layout.fillWidth: true
+                                    color: "#d09040"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true
                                     visible: !!root.item && (root.item.perTorrentDownLimitKBps > 0 || root.item.perTorrentUpLimitKBps > 0)
                                 }
                             }
@@ -2478,23 +2478,23 @@ Window {
                                     Text {
                                         text: speedHoverTip._point ? root.formatClockTime(speedHoverTip._point.t) : ""
                                         color: "#dbe8f6"
-                                        font.pixelSize: 11
+                                        font.pixelSize: 11 * App.fontScale
                                         font.bold: true
                                     }
                                     Text {
                                         text: speedHoverTip._point ? root.formatAgoNatural(speedHoverTip._ageSec) : ""
                                         color: "#a8b8c8"
-                                        font.pixelSize: 10
+                                        font.pixelSize: 10 * App.fontScale
                                     }
                                     Text {
                                         text: speedHoverTip._point ? ("↓ " + root.compactSpeed(speedHoverTip._point.down)) : ""
                                         color: "#7ab8f5"
-                                        font.pixelSize: 11
+                                        font.pixelSize: 11 * App.fontScale
                                     }
                                     Text {
                                         text: speedHoverTip._point ? ("↑ " + root.compactSpeed(speedHoverTip._point.up)) : ""
                                         color: "#82d4a0"
-                                        font.pixelSize: 11
+                                        font.pixelSize: 11 * App.fontScale
                                     }
                                 }
                             }
@@ -2518,18 +2518,18 @@ Window {
 
                                 // Legend dots
                                 Rectangle { width: 8; height: 8; radius: 4; color: "#4490e8" }
-                                Text { text: qsTr("Down"); color: "#5a6a7a"; font.pixelSize: 11 }
-                                Text { text: root.compactSpeed(speedStatsCard._down.current); color: "#4ea2ff"; font.bold: true; font.pixelSize: 12 }
-                                Text { text: "avg"; color: "#4a5a6a"; font.pixelSize: 10 }
-                                Text { text: root.compactSpeed(speedStatsCard._down.avg); color: "#7ba8d0"; font.pixelSize: 11 }
-                                Text { text: "peak " + root.compactSpeed(speedStatsCard._down.max); color: "#445566"; font.pixelSize: 10 }
+                                Text { text: qsTr("Down"); color: "#5a6a7a"; font.pixelSize: 11 * App.fontScale }
+                                Text { text: root.compactSpeed(speedStatsCard._down.current); color: "#4ea2ff"; font.bold: true; font.pixelSize: 12 * App.fontScale }
+                                Text { text: "avg"; color: "#4a5a6a"; font.pixelSize: 10 * App.fontScale }
+                                Text { text: root.compactSpeed(speedStatsCard._down.avg); color: "#7ba8d0"; font.pixelSize: 11 * App.fontScale }
+                                Text { text: "peak " + root.compactSpeed(speedStatsCard._down.max); color: "#445566"; font.pixelSize: 10 * App.fontScale }
 
                                 Rectangle { width: 8; height: 8; radius: 4; color: "#3dba6a" }
-                                Text { text: qsTr("Up"); color: "#5a6a7a"; font.pixelSize: 11 }
-                                Text { text: root.compactSpeed(speedStatsCard._up.current); color: "#4cc87a"; font.bold: true; font.pixelSize: 12 }
-                                Text { text: "avg"; color: "#4a5a6a"; font.pixelSize: 10 }
-                                Text { text: root.compactSpeed(speedStatsCard._up.avg); color: "#7abf9a"; font.pixelSize: 11 }
-                                Text { text: "peak " + root.compactSpeed(speedStatsCard._up.max); color: "#445566"; font.pixelSize: 10 }
+                                Text { text: qsTr("Up"); color: "#5a6a7a"; font.pixelSize: 11 * App.fontScale }
+                                Text { text: root.compactSpeed(speedStatsCard._up.current); color: "#4cc87a"; font.bold: true; font.pixelSize: 12 * App.fontScale }
+                                Text { text: "avg"; color: "#4a5a6a"; font.pixelSize: 10 * App.fontScale }
+                                Text { text: root.compactSpeed(speedStatsCard._up.avg); color: "#7abf9a"; font.pixelSize: 11 * App.fontScale }
+                                Text { text: "peak " + root.compactSpeed(speedStatsCard._up.max); color: "#445566"; font.pixelSize: 10 * App.fontScale }
                             }
 
                             Item { Layout.fillWidth: true }
@@ -2537,14 +2537,14 @@ Window {
                             // Time span selector — compact, bottom-right
                             RowLayout {
                                 spacing: 6
-                                Text { text: qsTr("Span"); color: "#4a5a6a"; font.pixelSize: 11 }
+                                Text { text: qsTr("Span"); color: "#4a5a6a"; font.pixelSize: 11 * App.fontScale }
                                 ComboBox {
                                     implicitWidth: 90
                                     implicitHeight: 24
                                     model: root.speedSpanOptions.map(function(o){ return o.label })
                                     currentIndex: root.speedSpanIndex
                                     onActivated: root.speedSpanIndex = currentIndex
-                                    font.pixelSize: 11
+                                    font.pixelSize: 11 * App.fontScale
                                     contentItem: Text {
                                         leftPadding: 8
                                         text: parent.displayText
@@ -2586,7 +2586,7 @@ Window {
                                     height: parent.height
                                     Text {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 44 }
-                                        text: qsTr("Name"); color: "#b0b0b0"; font.pixelSize: 12; font.bold: true
+                                        text: qsTr("Name"); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale; font.bold: true
                                     }
                                     Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: "#3a3a3a" }
                                     Item {
@@ -2608,7 +2608,7 @@ Window {
                                     width: root.fileColProgress; height: parent.height
                                     Text {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: fProgRh.left; rightMargin: 2 }
-                                        text: qsTr("Progress"); color: "#b0b0b0"; font.pixelSize: 12; font.bold: true; elide: Text.ElideRight
+                                        text: qsTr("Progress"); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale; font.bold: true; elide: Text.ElideRight
                                     }
                                     Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: "#3a3a3a" }
                                     Item {
@@ -2630,7 +2630,7 @@ Window {
                                     width: root.fileColSize; height: parent.height
                                     Text {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: fSizeRh.left; rightMargin: 2 }
-                                        text: qsTr("Size"); color: "#b0b0b0"; font.pixelSize: 12; font.bold: true; elide: Text.ElideRight
+                                        text: qsTr("Size"); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale; font.bold: true; elide: Text.ElideRight
                                     }
                                     Item {
                                         id: fSizeRh; width: 10; height: parent.height; anchors.right: parent.right; z: 10
@@ -2662,7 +2662,7 @@ Window {
                                 anchors.centerIn: parent
                                 visible: fileList.count === 0
                                 text: qsTr("No file information available")
-                                color: "#666666"; font.pixelSize: 12
+                                color: "#666666"; font.pixelSize: 12 * App.fontScale
                             }
 
                             delegate: Rectangle {
@@ -2694,7 +2694,7 @@ Window {
                                         Text {
                                             visible: fd.isFolder; anchors.centerIn: parent
                                             text: fd.expanded ? "▾" : "▸"
-                                            color: "#888"; font.pixelSize: 11
+                                            color: "#888"; font.pixelSize: 11 * App.fontScale
                                         }
                                         MouseArea {
                                             visible: fd.isFolder; anchors.fill: parent
@@ -2715,7 +2715,7 @@ Window {
                                             Text {
                                                 visible: fd.wanted; anchors.centerIn: parent
                                                 text: "✓"; color: "#fff"
-                                                font.pixelSize: 10; font.bold: true
+                                                font.pixelSize: 10 * App.fontScale; font.bold: true
                                             }
                                         }
                                         MouseArea {
@@ -2749,7 +2749,7 @@ Window {
                                         anchors.verticalCenter: parent.verticalCenter
                                         text: safeStr(fd.name)
                                         color: !fd.wanted ? "#555" : (fd.isFolder ? "#e0e0e0" : "#d0d0d0")
-                                        font.pixelSize: 12; font.bold: fd.isFolder
+                                        font.pixelSize: 12 * App.fontScale; font.bold: fd.isFolder
                                         elide: Text.ElideMiddle
                                     }
 
@@ -2762,7 +2762,7 @@ Window {
                                             anchors { left: parent.left; verticalCenter: parent.verticalCenter }
                                             text: Math.round(root.clampPct(fd.progress) * 100) + "%"
                                             color: fd.wanted ? "#b0b0b0" : "#555"
-                                            font.pixelSize: 11
+                                            font.pixelSize: 11 * App.fontScale
                                             width: 34
                                         }
 
@@ -2787,7 +2787,7 @@ Window {
                                         width: root.fileColSize; anchors.verticalCenter: parent.verticalCenter
                                         text: root.compactBytes(fd.size)
                                         color: fd.wanted ? "#b0b0b0" : "#555"
-                                        font.pixelSize: 12; horizontalAlignment: Text.AlignLeft
+                                        font.pixelSize: 12 * App.fontScale; horizontalAlignment: Text.AlignLeft
                                     }
                                 }
 
@@ -2871,17 +2871,17 @@ Window {
                                     }
                                     Text {
                                         text: qsTr("Rename item")
-                                        color: "#e0e0e0"; font.pixelSize: 14; font.bold: true
+                                        color: "#e0e0e0"; font.pixelSize: 14 * App.fontScale; font.bold: true
                                     }
                                 }
                                 Text {
                                     text: qsTr("Enter a new file or folder name:")
-                                    color: "#aaaaaa"; font.pixelSize: 12
+                                    color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale
                                 }
                                 TextField {
                                     id: renameInput
                                     Layout.fillWidth: true
-                                    color: "#d0d0d0"; font.pixelSize: 12
+                                    color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                                     selectByMouse: true
                                     leftPadding: 8
                                     background: Rectangle {
@@ -2970,7 +2970,7 @@ Window {
                                                 anchors.centerIn: parent
                                                 text: "✓"
                                                 color: "#fff"
-                                                font.pixelSize: 10
+                                                font.pixelSize: 10 * App.fontScale
                                                 font.bold: true
                                             }
                                         }
@@ -2978,7 +2978,7 @@ Window {
                                         Text {
                                             text: qsTr("Download")
                                             color: "#e0e0e0"
-                                            font.pixelSize: 12
+                                            font.pixelSize: 12 * App.fontScale
                                         }
                                     }
 
@@ -3024,7 +3024,7 @@ Window {
                                         anchors.leftMargin: 32
                                         text: qsTr("Rename...")
                                         color: "#e0e0e0"
-                                        font.pixelSize: 12
+                                        font.pixelSize: 12 * App.fontScale
                                     }
 
                                     MouseArea {
@@ -3093,7 +3093,7 @@ Window {
                                             }
                                             text: modelData.title
                                             color: root.peerSortKey === modelData.sortKey ? "#88bbff" : "#b0b0b0"
-                                            font.pixelSize: 12; font.bold: true
+                                            font.pixelSize: 12 * App.fontScale; font.bold: true
                                             elide: Text.ElideRight
                                         }
 
@@ -3101,7 +3101,7 @@ Window {
                                             id: sortArrow
                                             anchors { verticalCenter: parent.verticalCenter; right: rh.left; rightMargin: 4 }
                                             text: root.peerSortAscending ? "▲" : "▼"
-                                            color: "#88bbff"; font.pixelSize: 9
+                                            color: "#88bbff"; font.pixelSize: 9 * App.fontScale
                                             visible: root.peerSortKey === modelData.sortKey
                                         }
 
@@ -3241,7 +3241,7 @@ Window {
                                 anchors.centerIn: parent
                                 visible: peerListView.count === 0
                                 text: qsTr("No peers connected")
-                                color: "#666"; font.pixelSize: 12
+                                color: "#666"; font.pixelSize: 12 * App.fontScale
                             }
 
                             Popup {
@@ -3278,7 +3278,7 @@ Window {
                                             anchors.leftMargin: 10
                                             text: qsTr("Peer Info")
                                             color: peerCtxMenu.endpoint.length > 0 ? "#e0e0e0" : "#777777"
-                                            font.pixelSize: 12
+                                            font.pixelSize: 12 * App.fontScale
                                         }
 
                                         MouseArea {
@@ -3306,7 +3306,7 @@ Window {
                                             anchors.leftMargin: 10
                                             text: qsTr("Ban peer")
                                             color: (!!root.item && peerCtxMenu.endpoint.length > 0) ? "#e0e0e0" : "#777777"
-                                            font.pixelSize: 12
+                                            font.pixelSize: 12 * App.fontScale
                                         }
 
                                         MouseArea {
@@ -3412,7 +3412,7 @@ Window {
                                                         Text {
                                                             text: root.safeStr(peerInfoDialog.peerData.endpoint) || "--"
                                                             color: "#f0f0f0"
-                                                            font.pixelSize: 15
+                                                            font.pixelSize: 15 * App.fontScale
                                                             font.bold: true
                                                             elide: Text.ElideRight
                                                             anchors.verticalCenter: parent.verticalCenter
@@ -3420,21 +3420,21 @@ Window {
                                                         Text {
                                                             text: String(peerInfoDialog.peerData.port || 0)
                                                             color: "#8d8d8d"
-                                                            font.pixelSize: 15
+                                                            font.pixelSize: 15 * App.fontScale
                                                             anchors.verticalCenter: parent.verticalCenter
                                                         }
                                                     }
                                                     Text {
                                                         text: root.safeStr(peerInfoDialog.peerData.client) || "Unknown client"
                                                         color: "#8fb4d9"
-                                                        font.pixelSize: 12
+                                                        font.pixelSize: 12 * App.fontScale
                                                         elide: Text.ElideRight
                                                         Layout.fillWidth: true
                                                     }
                                                     Text {
                                                         text: root.peerLocationLabel(peerInfoDialog.peerData.countryCode, peerInfoDialog.peerData.regionName, peerInfoDialog.peerData.cityName)
                                                         color: "#9eb0c2"
-                                                        font.pixelSize: 11
+                                                        font.pixelSize: 11 * App.fontScale
                                                         elide: Text.ElideRight
                                                         Layout.fillWidth: true
                                                     }
@@ -3469,11 +3469,11 @@ Window {
                                                     anchors.margins: 10
                                                     spacing: 6
 
-                                                    Text { text: qsTr("Connection"); color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
-                                                    Text { text: qsTr("Source: %1").arg(root.safeStr(peerInfoDialog.peerData.source) || "Unknown"); color: "#d0d0d0"; font.pixelSize: 12 }
-                                                    Text { text: qsTr("Role: %1").arg(peerInfoDialog.peerData.isSeed ? qsTr("Seeder") : qsTr("Peer")); color: "#d0d0d0"; font.pixelSize: 12 }
-                                                    Text { text: qsTr("Ping: %1").arg((Number(peerInfoDialog.peerData.rtt) || 0) > 0 ? (String(peerInfoDialog.peerData.rtt) + " ms") : "--"); color: "#d0d0d0"; font.pixelSize: 12 }
-                                                    Text { text: qsTr("Progress: %1%").arg(Math.round(root.clampPct(peerInfoDialog.peerData.progress) * 100)); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: qsTr("Connection"); color: "#f0f0f0"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                                                    Text { text: qsTr("Source: %1").arg(root.safeStr(peerInfoDialog.peerData.source) || "Unknown"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Role: %1").arg(peerInfoDialog.peerData.isSeed ? qsTr("Seeder") : qsTr("Peer")); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Ping: %1").arg((Number(peerInfoDialog.peerData.rtt) || 0) > 0 ? (String(peerInfoDialog.peerData.rtt) + " ms") : "--"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Progress: %1%").arg(Math.round(root.clampPct(peerInfoDialog.peerData.progress) * 100)); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
                                                 }
                                             }
 
@@ -3488,11 +3488,11 @@ Window {
                                                     anchors.margins: 10
                                                     spacing: 6
 
-                                                    Text { text: qsTr("Transfer"); color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
-                                                    Text { text: qsTr("Down: %1").arg(root.compactSpeed(peerInfoDialog.peerData.downSpeed)); color: "#d0d0d0"; font.pixelSize: 12 }
-                                                    Text { text: qsTr("Up: %1").arg(root.compactSpeed(peerInfoDialog.peerData.upSpeed)); color: "#d0d0d0"; font.pixelSize: 12 }
-                                                    Text { text: qsTr("Total down: %1").arg(root.compactBytes(peerInfoDialog.peerData.downloaded)); color: "#d0d0d0"; font.pixelSize: 12 }
-                                                    Text { text: qsTr("Total up: %1").arg(root.compactBytes(peerInfoDialog.peerData.uploaded)); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: qsTr("Transfer"); color: "#f0f0f0"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                                                    Text { text: qsTr("Down: %1").arg(root.compactSpeed(peerInfoDialog.peerData.downSpeed)); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Up: %1").arg(root.compactSpeed(peerInfoDialog.peerData.upSpeed)); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Total down: %1").arg(root.compactBytes(peerInfoDialog.peerData.downloaded)); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Total up: %1").arg(root.compactBytes(peerInfoDialog.peerData.uploaded)); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
                                                 }
                                             }
 
@@ -3507,11 +3507,11 @@ Window {
                                                     anchors.margins: 10
                                                     spacing: 6
 
-                                                    Text { text: qsTr("Location"); color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
-                                                    Text { text: root.peerLocationLabel(peerInfoDialog.peerData.countryCode, peerInfoDialog.peerData.regionName, peerInfoDialog.peerData.cityName); color: "#d0d0d0"; font.pixelSize: 12; wrapMode: Text.WordWrap; width: parent.width }
-                                                    Text { text: qsTr("Distance: %1").arg(root.distanceSummary(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)); color: "#d0d0d0"; font.pixelSize: 12; wrapMode: Text.WordWrap; width: parent.width }
-                                                    Text { text: qsTr("Country: %1").arg(root.safeStr(peerInfoDialog.peerData.countryCode) || "--"); color: "#d0d0d0"; font.pixelSize: 12 }
-                                                    Text { text: qsTr("Client: %1").arg(root.safeStr(peerInfoDialog.peerData.client) || "Unknown"); color: "#d0d0d0"; font.pixelSize: 12; elide: Text.ElideRight; width: parent.width }
+                                                    Text { text: qsTr("Location"); color: "#f0f0f0"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                                                    Text { text: root.peerLocationLabel(peerInfoDialog.peerData.countryCode, peerInfoDialog.peerData.regionName, peerInfoDialog.peerData.cityName); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap; width: parent.width }
+                                                    Text { text: qsTr("Distance: %1").arg(root.distanceSummary(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap; width: parent.width }
+                                                    Text { text: qsTr("Country: %1").arg(root.safeStr(peerInfoDialog.peerData.countryCode) || "--"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Client: %1").arg(root.safeStr(peerInfoDialog.peerData.client) || "Unknown"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight; width: parent.width }
                                                 }
                                             }
                                         }
@@ -3590,8 +3590,8 @@ Window {
 
                                                         Rectangle { visible: parent.hasLocal; x: parent.baseMapX + parent.localX - 4; y: parent.localY - 4; width: 8; height: 8; radius: 4; color: "#8a63ff"; border.color: "#ffffff"; border.width: 1 }
                                                         Rectangle { visible: parent.hasPeer; x: parent.baseMapX + parent.peerX - 4; y: parent.peerY - 4; width: 8; height: 8; radius: 4; color: peerInfoDialog.peerData.isSeed ? "#67bb7a" : "#62a8ff"; border.color: "#ffffff"; border.width: 1 }
-                                                        Text { visible: parent.hasLocal; x: parent.baseMapX + parent.localX + 6; y: parent.localY - 9; text: qsTr("You"); color: "#f6f6f6"; font.pixelSize: 10; font.bold: true }
-                                                        Text { visible: parent.hasPeer; x: parent.baseMapX + parent.peerX + 6; y: parent.peerY - 9; text: qsTr("Peer"); color: "#f6f6f6"; font.pixelSize: 10; font.bold: true }
+                                                        Text { visible: parent.hasLocal; x: parent.baseMapX + parent.localX + 6; y: parent.localY - 9; text: qsTr("You"); color: "#f6f6f6"; font.pixelSize: 10 * App.fontScale; font.bold: true }
+                                                        Text { visible: parent.hasPeer; x: parent.baseMapX + parent.peerX + 6; y: parent.peerY - 9; text: qsTr("Peer"); color: "#f6f6f6"; font.pixelSize: 10 * App.fontScale; font.bold: true }
                                                     }
                                                 }
 
@@ -3609,7 +3609,7 @@ Window {
                                                 Text {
                                                     text: qsTr("Flags")
                                                     color: "#9eb0c2"
-                                                    font.pixelSize: 11
+                                                    font.pixelSize: 11 * App.fontScale
                                                     font.bold: true
                                                     visible: root.peerFlagsList(peerInfoDialog.peerData.flags).length > 0
                                                 }
@@ -3659,7 +3659,7 @@ Window {
                                                                 anchors.centerIn: parent
                                                                 text: modelData
                                                                 color: "white"
-                                                                font.pixelSize: 9
+                                                                font.pixelSize: 9 * App.fontScale
                                                                 font.bold: true
                                                             }
 
@@ -3794,7 +3794,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: safeStr(pd.endpoint); color: "#d0d0d0"; font.pixelSize: 12; elide: Text.ElideRight
+                                            text: safeStr(pd.endpoint); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                         }
                                     }
                                     Item {
@@ -3804,7 +3804,7 @@ Window {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
                                             text: pd.port > 0 ? String(pd.port) : ""
-                                            color: "#d0d0d0"; font.pixelSize: 12; elide: Text.ElideRight
+                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                         }
                                     }
                                     Item {
@@ -3826,7 +3826,7 @@ Window {
                                                     leftMargin: clientIcon.visible ? 6 : 0
                                                     right: parent.right; verticalCenter: parent.verticalCenter
                                                 }
-                                                text: pd.client; color: "#b0b0b0"; font.pixelSize: 12; elide: Text.ElideRight
+                                                text: pd.client; color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                             }
                                         }
                                     }
@@ -3837,7 +3837,7 @@ Window {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
                                             text: Math.round(root.clampPct(pd.progress) * 100) + "%"
-                                            color: "#b0b0b0"; font.pixelSize: 12
+                                            color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale
                                         }
                                     }
                                     Item {
@@ -3846,7 +3846,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: root.compactSpeed(pd.downSpeed); color: "#ffffff"; font.pixelSize: 12
+                                            text: root.compactSpeed(pd.downSpeed); color: "#ffffff"; font.pixelSize: 12 * App.fontScale
                                         }
                                     }
                                     Item {
@@ -3855,7 +3855,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: root.compactSpeed(pd.upSpeed); color: "#ffffff"; font.pixelSize: 12
+                                            text: root.compactSpeed(pd.upSpeed); color: "#ffffff"; font.pixelSize: 12 * App.fontScale
                                         }
                                     }
                                     Item {
@@ -3864,7 +3864,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: root.compactBytes(pd.downloaded); color: "#d9d9d9"; font.pixelSize: 12
+                                            text: root.compactBytes(pd.downloaded); color: "#d9d9d9"; font.pixelSize: 12 * App.fontScale
                                         }
                                     }
                                     Item {
@@ -3873,7 +3873,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: root.compactBytes(pd.uploaded); color: "#d9d9d9"; font.pixelSize: 12
+                                            text: root.compactBytes(pd.uploaded); color: "#d9d9d9"; font.pixelSize: 12 * App.fontScale
                                         }
                                     }
                                     Item {
@@ -3898,7 +3898,7 @@ Window {
                                                         id: badgeLbl
                                                         anchors.centerIn: parent
                                                         text: modelData; color: "white"
-                                                        font.pixelSize: 9; font.bold: true
+                                                        font.pixelSize: 9 * App.fontScale; font.bold: true
                                                     }
                                                 }
                                             }
@@ -3959,7 +3959,7 @@ Window {
                             Text {
                                 text: qsTr("Legend:")
                                 color: "#ffffff"
-                                font.pixelSize: 10
+                                font.pixelSize: 10 * App.fontScale
                                 anchors.verticalCenter: parent.verticalCenter
                             }
 
@@ -3993,7 +3993,7 @@ Window {
                                         anchors.centerIn: parent
                                         text: modelData.flag
                                         color: "white"
-                                        font.pixelSize: 9
+                                        font.pixelSize: 9 * App.fontScale
                                         font.bold: true
                                     }
 
@@ -4028,7 +4028,7 @@ Window {
                                         ? qsTr("%1 known peers").arg(root.activePeerMapModel.rowCount())
                                         : qsTr("0 known peers")
                                     color: "#8ea1b5"
-                                    font.pixelSize: 11
+                                    font.pixelSize: 11 * App.fontScale
                                 }
                                 Item { Layout.fillWidth: true }
 
@@ -4045,11 +4045,11 @@ Window {
                                             width: 14; height: 14; radius: 2
                                             color: inactiveCheck.checked ? "#4488dd" : "#1b1b1b"
                                             border.color: inactiveCheck.checked ? "#4488dd" : "#3a3a3a"
-                                            Text { visible: inactiveCheck.checked; text: "✓"; color: "#fff"; font.pixelSize: 10; anchors.centerIn: parent }
+                                            Text { visible: inactiveCheck.checked; text: "✓"; color: "#fff"; font.pixelSize: 10 * App.fontScale; anchors.centerIn: parent }
                                         }
                                         contentItem: Item {}
                                     }
-                                    Text { text: qsTr("Inactive"); color: "#8ea1b5"; font.pixelSize: 11 }
+                                    Text { text: qsTr("Inactive"); color: "#8ea1b5"; font.pixelSize: 11 * App.fontScale }
                                 }
 
                                 // Tracker dots toggle
@@ -4065,11 +4065,11 @@ Window {
                                             width: 14; height: 14; radius: 2
                                             color: trackerDotsCheck.checked ? "#4488dd" : "#1b1b1b"
                                             border.color: trackerDotsCheck.checked ? "#4488dd" : "#3a3a3a"
-                                            Text { visible: trackerDotsCheck.checked; text: "✓"; color: "#fff"; font.pixelSize: 10; anchors.centerIn: parent }
+                                            Text { visible: trackerDotsCheck.checked; text: "✓"; color: "#fff"; font.pixelSize: 10 * App.fontScale; anchors.centerIn: parent }
                                         }
                                         contentItem: Item {}
                                     }
-                                    Text { text: qsTr("Trackers"); color: "#8ea1b5"; font.pixelSize: 11 }
+                                    Text { text: qsTr("Trackers"); color: "#8ea1b5"; font.pixelSize: 11 * App.fontScale }
                                 }
 
                                 Rectangle {
@@ -4083,20 +4083,20 @@ Window {
                                         anchors.centerIn: parent
                                         spacing: 10
                                         Rectangle { width: 10; height: 10; radius: 5; color: "#5f93c9"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: qsTr("Peer"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("Peer"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle { width: 10; height: 10; radius: 5; color: "#4caf7d"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: qsTr("Seed"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("Seed"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle { width: 10; height: 10; radius: 5; color: "#9959e6"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: qsTr("You"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("You"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle { width: 8; height: 8; radius: 4; color: "#e8d57a"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: qsTr("Tracker"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("Tracker"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         // Line type legend
                                         Rectangle { width: 18; height: 2; color: "#5f93c9"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: qsTr("DL"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("DL"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle { width: 18; height: 2; color: "#4caf7d"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: qsTr("UL"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("UL"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle { width: 18; height: 2; color: "#9959e6"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: qsTr("Both"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("Both"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                     }
                                 }
                             }
@@ -4241,12 +4241,12 @@ Window {
                                                     anchors.margins: 5
                                                     spacing: 2
 
-                                                    Text { text: endpoint + ":" + port; color: "#f0f5fb"; font.pixelSize: 11; font.bold: true; elide: Text.ElideRight; width: parent.width }
-                                                    Text { text: client; color: "#c5d2de"; font.pixelSize: 11; elide: Text.ElideRight; width: parent.width }
-                                                    Text { text: root.peerPlaceText(parent.parent); color: "#95a9bb"; font.pixelSize: 10; elide: Text.ElideRight; width: parent.width }
-                                                    Text { text: (isSeed ? qsTr("Seed") : qsTr("Peer")) + " • " + source; color: isSeed ? "#f6b84c" : "#56d27f"; font.pixelSize: 10; width: parent.width }
-                                                    Text { text: qsTr("Down %1  Up %2").arg(root.compactSpeed(downSpeed)).arg(root.compactSpeed(upSpeed)); color: "#9fb6c8"; font.pixelSize: 10; width: parent.width }
-                                                    Text { text: qsTr("RTT %1").arg(rtt > 0 ? (rtt + " ms") : "--"); color: "#9fb6c8"; font.pixelSize: 10; width: parent.width }
+                                                    Text { text: endpoint + ":" + port; color: "#f0f5fb"; font.pixelSize: 11 * App.fontScale; font.bold: true; elide: Text.ElideRight; width: parent.width }
+                                                    Text { text: client; color: "#c5d2de"; font.pixelSize: 11 * App.fontScale; elide: Text.ElideRight; width: parent.width }
+                                                    Text { text: root.peerPlaceText(parent.parent); color: "#95a9bb"; font.pixelSize: 10 * App.fontScale; elide: Text.ElideRight; width: parent.width }
+                                                    Text { text: (isSeed ? qsTr("Seed") : qsTr("Peer")) + " • " + source; color: isSeed ? "#f6b84c" : "#56d27f"; font.pixelSize: 10 * App.fontScale; width: parent.width }
+                                                    Text { text: qsTr("Down %1  Up %2").arg(root.compactSpeed(downSpeed)).arg(root.compactSpeed(upSpeed)); color: "#9fb6c8"; font.pixelSize: 10 * App.fontScale; width: parent.width }
+                                                    Text { text: qsTr("RTT %1").arg(rtt > 0 ? (rtt + " ms") : "--"); color: "#9fb6c8"; font.pixelSize: 10 * App.fontScale; width: parent.width }
                                                 }
                                             }
 
@@ -4374,7 +4374,7 @@ Window {
                                                 Text {
                                                     text: root.peerMapHoverEndpoint
                                                     color: "#f0f5fb"
-                                                    font.pixelSize: 13
+                                                    font.pixelSize: 13 * App.fontScale
                                                     font.bold: true
                                                     elide: Text.ElideRight
                                                     width: Math.min(implicitWidth, parent.width - portLbl.width - 5)
@@ -4383,7 +4383,7 @@ Window {
                                                     id: portLbl
                                                     text: root.peerMapHoverPort
                                                     color: "#6a8099"
-                                                    font.pixelSize: 13
+                                                    font.pixelSize: 13 * App.fontScale
                                                     font.bold: true
                                                     anchors.baseline: parent.children[0].baseline
                                                 }
@@ -4405,7 +4405,7 @@ Window {
                                                 Text {
                                                     text: root.peerMapHoverClient
                                                     color: "#c5d2de"
-                                                    font.pixelSize: 12
+                                                    font.pixelSize: 12 * App.fontScale
                                                     elide: Text.ElideRight
                                                     width: parent.width - (parent.children[0].visible ? 19 : 0)
                                                     anchors.verticalCenter: parent.verticalCenter
@@ -4432,7 +4432,7 @@ Window {
                                                         cityName: root.peerMapHoverCityName
                                                     })
                                                     color: "#95a9bb"
-                                                    font.pixelSize: 11
+                                                    font.pixelSize: 11 * App.fontScale
                                                     elide: Text.ElideRight
                                                     width: parent.width - 21
                                                     anchors.verticalCenter: parent.verticalCenter
@@ -4467,7 +4467,7 @@ Window {
                                                             anchors.centerIn: parent
                                                             text: modelData
                                                             color: "white"
-                                                            font.pixelSize: 9
+                                                            font.pixelSize: 9 * App.fontScale
                                                             font.bold: true
                                                         }
                                                     }
@@ -4478,7 +4478,7 @@ Window {
                                             Text {
                                                 text: qsTr("↓ %1  ↑ %2").arg(root.compactSpeed(root.peerMapHoverDownSpeed)).arg(root.compactSpeed(root.peerMapHoverUpSpeed))
                                                 color: "#9fb6c8"
-                                                font.pixelSize: 11
+                                                font.pixelSize: 11 * App.fontScale
                                                 width: parent.width
                                             }
 
@@ -4486,7 +4486,7 @@ Window {
                                             Text {
                                                 text: qsTr("Ping %1  %2% done").arg(root.peerMapHoverRtt > 0 ? (root.peerMapHoverRtt + " ms") : "—").arg(Math.round(root.peerMapHoverProgress * 100))
                                                 color: "#9fb6c8"
-                                                font.pixelSize: 11
+                                                font.pixelSize: 11 * App.fontScale
                                                 width: parent.width
                                             }
                                         }
@@ -4522,7 +4522,7 @@ Window {
                                                 Text {
                                                     text: root.peerMapTrackerHoverHost
                                                     color: "#f0f5fb"
-                                                    font.pixelSize: 13
+                                                    font.pixelSize: 13 * App.fontScale
                                                     font.bold: true
                                                     elide: Text.ElideRight
                                                     width: parent.width - 14
@@ -4534,7 +4534,7 @@ Window {
                                                 visible: root.peerMapTrackerHoverCountry.length > 0
                                                 text: root.peerMapTrackerHoverCountry
                                                 color: "#95a9bb"
-                                                font.pixelSize: 11
+                                                font.pixelSize: 11 * App.fontScale
                                                 width: parent.width
                                             }
 
@@ -4544,7 +4544,7 @@ Window {
                                             // Status
                                             Row {
                                                 spacing: 4
-                                                Text { text: qsTr("Status"); color: "#6a8099"; font.pixelSize: 11 }
+                                                Text { text: qsTr("Status"); color: "#6a8099"; font.pixelSize: 11 * App.fontScale }
                                                 Text {
                                                     text: root.peerMapTrackerHoverStatus || qsTr("Unknown")
                                                     color: {
@@ -4553,7 +4553,7 @@ Window {
                                                         if (s === "not contacted") return "#888"
                                                         return "#e8a35c"
                                                     }
-                                                    font.pixelSize: 11
+                                                    font.pixelSize: 11 * App.fontScale
                                                     font.bold: true
                                                 }
                                             }
@@ -4562,17 +4562,17 @@ Window {
                                             Row {
                                                 visible: root.peerMapTrackerHoverTier >= 0
                                                 spacing: 4
-                                                Text { text: qsTr("Tier"); color: "#6a8099"; font.pixelSize: 11 }
-                                                Text { text: String(root.peerMapTrackerHoverTier); color: "#c5d2de"; font.pixelSize: 11 }
+                                                Text { text: qsTr("Tier"); color: "#6a8099"; font.pixelSize: 11 * App.fontScale }
+                                                Text { text: String(root.peerMapTrackerHoverTier); color: "#c5d2de"; font.pixelSize: 11 * App.fontScale }
                                             }
 
                                             // Peers reported
                                             Row {
                                                 spacing: 4
-                                                Text { text: qsTr("Peers"); color: "#6a8099"; font.pixelSize: 11 }
+                                                Text { text: qsTr("Peers"); color: "#6a8099"; font.pixelSize: 11 * App.fontScale }
                                                 Text {
                                                     text: root.peerMapTrackerHoverCount > 0 ? String(root.peerMapTrackerHoverCount) : "—"
-                                                    color: "#c5d2de"; font.pixelSize: 11
+                                                    color: "#c5d2de"; font.pixelSize: 11 * App.fontScale
                                                 }
                                             }
                                         }
@@ -4610,7 +4610,7 @@ Window {
                                                 Text {
                                                     text: root.torrentPeerModel ? root.torrentPeerModel.localIp : ""
                                                     color: "#f0f5fb"
-                                                    font.pixelSize: 13
+                                                    font.pixelSize: 13 * App.fontScale
                                                     font.bold: true
                                                     elide: Text.ElideRight
                                                     width: Math.min(implicitWidth, parent.width - youPortLbl.width - 5)
@@ -4619,7 +4619,7 @@ Window {
                                                     id: youPortLbl
                                                     text: root.torrentPeerModel ? root.torrentPeerModel.localPort : ""
                                                     color: "#6a8099"
-                                                    font.pixelSize: 13
+                                                    font.pixelSize: 13 * App.fontScale
                                                     font.bold: true
                                                     visible: root.torrentPeerModel && root.torrentPeerModel.localPort > 0
                                                 }
@@ -4640,7 +4640,7 @@ Window {
                                                           ? root.torrentPeerModel.localClientName
                                                           : ("Stellar/" + App.appVersion)
                                                     color: "#c5d2de"
-                                                    font.pixelSize: 12
+                                                    font.pixelSize: 12 * App.fontScale
                                                     anchors.verticalCenter: parent.verticalCenter
                                                 }
                                             }
@@ -4673,7 +4673,7 @@ Window {
                                                         return parts.join(", ")
                                                     }
                                                     color: "#95a9bb"
-                                                    font.pixelSize: 11
+                                                    font.pixelSize: 11 * App.fontScale
                                                     elide: Text.ElideRight
                                                     width: parent.width - 21
                                                     anchors.verticalCenter: parent.verticalCenter
@@ -4683,14 +4683,14 @@ Window {
                                             Text {
                                                 text: qsTr("You (this client)")
                                                 color: "#66a7ff"
-                                                font.pixelSize: 11
+                                                font.pixelSize: 11 * App.fontScale
                                                 width: parent.width
                                             }
                                             Text {
                                                 visible: !!root.item
                                                 text: Math.round((root.item ? root.item.progress : 0) * 100) + "% done"
                                                 color: "#9fb6c8"
-                                                font.pixelSize: 11
+                                                font.pixelSize: 11 * App.fontScale
                                                 width: parent.width
                                             }
                                         }
@@ -4735,7 +4735,7 @@ Window {
                                         visible: !root.activePeerMapModel || mapCanvas.plottedPeerCount === 0
                                         text: qsTr("No connected peers to plot")
                                         color: "#708396"
-                                        font.pixelSize: 12
+                                        font.pixelSize: 12 * App.fontScale
                                     }
 
                                     Text {
@@ -4743,7 +4743,7 @@ Window {
                                         visible: !!root.activePeerMapModel && root.activePeerMapModel.rowCount() > 0 && !root.activePeerMapModel.hasLocalLocation
                                         text: qsTr("Waiting for your public IP so the local map position can be shown")
                                         color: "#708396"
-                                        font.pixelSize: 12
+                                        font.pixelSize: 12 * App.fontScale
                                     }
 
                                 }
@@ -4803,11 +4803,11 @@ Window {
                                 anchors { fill: parent; leftMargin: 10; rightMargin: 10 }
                                 Text {
                                     text: qsTr("Trackers")
-                                    color: "#e0e0e0"; font.pixelSize: 12; font.bold: true
+                                    color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale; font.bold: true
                                 }
                                 Text {
                                     text: qsTr("%n tracker(s)", "", trackerList.count)
-                                    color: "#666"; font.pixelSize: 11
+                                    color: "#666"; font.pixelSize: 11 * App.fontScale
                                     leftPadding: 8
                                 }
                                 Item { Layout.fillWidth: true }
@@ -4815,7 +4815,7 @@ Window {
                                 Text {
                                     id: reannounceStatusTxt
                                     text: ""
-                                    color: "#6aaa6a"; font.pixelSize: 11
+                                    color: "#6aaa6a"; font.pixelSize: 11 * App.fontScale
                                     Layout.alignment: Qt.AlignVCenter
                                     opacity: 0
                                     Behavior on opacity { NumberAnimation { duration: 200 } }
@@ -4877,7 +4877,7 @@ Window {
 
                                 Text {
                                     text: qsTr("Paste tracker URLs - one per line. Lines starting with # are ignored.")
-                                    color: "#8899bb"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                                    color: "#8899bb"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
                                     Layout.fillWidth: true
                                 }
 
@@ -4892,7 +4892,7 @@ Window {
                                             id: trackerInput
                                             placeholderText: "udp://tracker.opentrackr.org:1337/announce\nhttps://tracker.example.org/announce"
                                             color: "#d0d0d0"; placeholderTextColor: "#444"
-                                            font.pixelSize: 11; wrapMode: TextArea.NoWrap
+                                            font.pixelSize: 11 * App.fontScale; wrapMode: TextArea.NoWrap
                                             selectByMouse: true; background: null; padding: 6
                                         }
                                     }
@@ -4902,7 +4902,7 @@ Window {
                                     Layout.fillWidth: true; spacing: 6
                                     Text {
                                         id: addStatusTxt; text: ""
-                                        color: "#6aaa6a"; font.pixelSize: 11
+                                        color: "#6aaa6a"; font.pixelSize: 11 * App.fontScale
                                     }
                                     Item { Layout.fillWidth: true }
                                     DlgButton {
@@ -4964,13 +4964,13 @@ Window {
                                             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: trkSortArrow.left; rightMargin: 2 }
                                             text: modelData.title
                                             color: root.trkSortKey === modelData.sortKey ? "#88bbff" : "#b0b0b0"
-                                            font.pixelSize: 12; font.bold: true; elide: Text.ElideRight
+                                            font.pixelSize: 12 * App.fontScale; font.bold: true; elide: Text.ElideRight
                                         }
                                         Text {
                                             id: trkSortArrow
                                             anchors { verticalCenter: parent.verticalCenter; right: trkRh.left; rightMargin: 4 }
                                             text: root.trkSortAscending ? "▲" : "▼"
-                                            color: "#88bbff"; font.pixelSize: 9
+                                            color: "#88bbff"; font.pixelSize: 9 * App.fontScale
                                             visible: root.trkSortKey === modelData.sortKey
                                         }
                                         Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: "#3a3a3a" }
@@ -5060,7 +5060,7 @@ Window {
                                 anchors.centerIn: parent
                                 visible: trackerList.count === 0
                                 text: qsTr("No trackers")
-                                color: "#666"; font.pixelSize: 12
+                                color: "#666"; font.pixelSize: 12 * App.fontScale
                             }
 
                             delegate: Rectangle {
@@ -5101,7 +5101,7 @@ Window {
                                         Text {
                                             anchors { fill: parent }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: safeStr(trd.url); color: "#d0d0d0"; font.pixelSize: 12; elide: Text.ElideRight
+                                            text: safeStr(trd.url); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                         }
                                     }
                                     Item {
@@ -5119,7 +5119,7 @@ Window {
                                                 if (s.indexOf("announcing") >= 0 || s.indexOf("reannouncing") >= 0) return "#c0a54a"
                                                 return "#b0b0b0"
                                             }
-                                            font.pixelSize: 12; elide: Text.ElideRight
+                                            font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                         }
                                     }
                                     Item {
@@ -5128,7 +5128,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: safeStr(trd.source); color: "#b0b0b0"; font.pixelSize: 12; elide: Text.ElideRight
+                                            text: safeStr(trd.source); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                         }
                                     }
                                     Item {
@@ -5137,7 +5137,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: String(trd.seeders | 0); color: "#c0a54a"; font.pixelSize: 12
+                                            text: String(trd.seeders | 0); color: "#c0a54a"; font.pixelSize: 12 * App.fontScale
                                         }
                                     }
                                     Item {
@@ -5146,7 +5146,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: String(trd.peers | 0); color: "#b0b0b0"; font.pixelSize: 12
+                                            text: String(trd.peers | 0); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale
                                         }
                                     }
                                     Item {
@@ -5155,7 +5155,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            color: "#b0b0b0"; font.pixelSize: 12
+                                            color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale
                                             text: {
                                                 if (trd.isSystemEntry) return ""
                                                 var s = trd.nextAnnounceSecs | 0
@@ -5184,7 +5184,7 @@ Window {
                                                 return s === "Idle" ? qsTr("Waiting to announce") : ""
                                             }
                                             color: safeStr(trd.message).length > 0 ? "#8ea1b5" : "#4a5a6a"
-                                            font.pixelSize: 12; elide: Text.ElideRight
+                                            font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                         }
                                     }
                                 }
@@ -5247,11 +5247,11 @@ Window {
                                 anchors { fill: parent; leftMargin: 10; rightMargin: 10 }
                                 Text {
                                     text: qsTr("Web Seeds")
-                                    color: "#e0e0e0"; font.pixelSize: 12; font.bold: true
+                                    color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale; font.bold: true
                                 }
                                 Text {
                                     text: qsTr("%n seed(s)", "", webSeedModel.count)
-                                    color: "#666"; font.pixelSize: 11
+                                    color: "#666"; font.pixelSize: 11 * App.fontScale
                                     leftPadding: 8
                                 }
                                 Item { Layout.fillWidth: true }
@@ -5282,7 +5282,7 @@ Window {
 
                                 Text {
                                     text: qsTr("Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.")
-                                    color: "#8899bb"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                                    color: "#8899bb"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
                                     Layout.fillWidth: true
                                 }
 
@@ -5297,7 +5297,7 @@ Window {
                                             id: webSeedInput
                                             placeholderText: "https://example.com/files/\nhttps://mirror.example.org/files/"
                                             color: "#d0d0d0"; placeholderTextColor: "#444"
-                                            font.pixelSize: 11; wrapMode: TextArea.NoWrap
+                                            font.pixelSize: 11 * App.fontScale; wrapMode: TextArea.NoWrap
                                             selectByMouse: true; background: null; padding: 6
                                         }
                                     }
@@ -5307,7 +5307,7 @@ Window {
                                     Layout.fillWidth: true; spacing: 6
                                     Text {
                                         id: webSeedAddStatusTxt; text: ""
-                                        color: "#6aaa6a"; font.pixelSize: 11
+                                        color: "#6aaa6a"; font.pixelSize: 11 * App.fontScale
                                     }
                                     Item { Layout.fillWidth: true }
                                     DlgButton {
@@ -5348,11 +5348,11 @@ Window {
                                 Text {
                                     width: webSeedList.width * 0.72
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: qsTr("URL"); color: "#b0b0b0"; font.pixelSize: 12; font.bold: true; elide: Text.ElideRight
+                                    text: qsTr("URL"); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale; font.bold: true; elide: Text.ElideRight
                                 }
                                 Text {
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: qsTr("Type"); color: "#b0b0b0"; font.pixelSize: 12; font.bold: true
+                                    text: qsTr("Type"); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale; font.bold: true
                                 }
                             }
                         }
@@ -5373,7 +5373,7 @@ Window {
                                 anchors.centerIn: parent
                                 visible: webSeedList.count === 0
                                 text: qsTr("No web seeds")
-                                color: "#666"; font.pixelSize: 12
+                                color: "#666"; font.pixelSize: 12 * App.fontScale
                             }
 
                             delegate: Rectangle {
@@ -5405,7 +5405,7 @@ Window {
                                             anchors { fill: parent }
                                             verticalAlignment: Text.AlignVCenter
                                             text: wsd.url
-                                            color: "#d0d0d0"; font.pixelSize: 12; elide: Text.ElideRight
+                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                         }
                                     }
                                     Item {
@@ -5416,7 +5416,7 @@ Window {
                                             verticalAlignment: Text.AlignVCenter
                                             text: wsd.seedType
                                             color: wsd.seedType === "URL Seed" ? "#6aaa6a" : "#c0a54a"
-                                            font.pixelSize: 12
+                                            font.pixelSize: 12 * App.fontScale
                                         }
                                     }
                                 }
@@ -5569,7 +5569,7 @@ Window {
 
                             Text {
                                 text: qsTr("Legend:")
-                                color: "#6a8099"; font.pixelSize: 11
+                                color: "#6a8099"; font.pixelSize: 11 * App.fontScale
                                 anchors.verticalCenter: parent.verticalCenter
                             }
 
@@ -5594,7 +5594,7 @@ Window {
                                         anchors.verticalCenter: parent.verticalCenter
                                     }
                                     Text {
-                                        text: modelData.label; color: "#b0b0b0"; font.pixelSize: 11
+                                        text: modelData.label; color: "#b0b0b0"; font.pixelSize: 11 * App.fontScale
                                         anchors.verticalCenter: parent.verticalCenter
                                     }
                                 }
@@ -5604,7 +5604,7 @@ Window {
 
                             Text {
                                 id: pieceSummaryText
-                                color: "#6a8099"; font.pixelSize: 11
+                                color: "#6a8099"; font.pixelSize: 11 * App.fontScale
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: {
                                     var d = pieceMapTab.pieceData

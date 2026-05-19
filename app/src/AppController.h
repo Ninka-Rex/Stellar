@@ -77,6 +77,11 @@ class AppController : public QObject {
     Q_PROPERTY(QString buildTime    READ buildTime    CONSTANT)
     Q_PROPERTY(QString buildTimeFormatted READ buildTimeFormatted CONSTANT)
     Q_PROPERTY(QString qtVersion    READ qtVersion    CONSTANT)
+    // Global multiplier applied to every hardcoded font.pixelSize in QML so the
+    // "Font size" setting in Settings → General actually scales the UI text.
+    // 1.0 = unchanged (matches uiFontPointSize == 0, "System default"). Live
+    // binding — changes immediately when uiFontPointSize changes, no restart.
+    Q_PROPERTY(double fontScale     READ fontScale    NOTIFY fontScaleChanged)
     Q_PROPERTY(bool grabberBusy READ grabberBusy NOTIFY grabberBusyChanged)
     Q_PROPERTY(QString grabberStatusText READ grabberStatusText NOTIFY grabberStatusTextChanged)
     Q_PROPERTY(int minutesUntilNextQueue READ minutesUntilNextQueue NOTIFY minutesUntilNextQueueChanged)
@@ -156,6 +161,7 @@ public:
     QString buildTime() const;
     QString buildTimeFormatted() const;
     QString qtVersion() const;
+    double  fontScale() const;
     bool grabberBusy() const { return m_grabberBusy; }
     QString grabberStatusText() const { return m_grabberStatusText; }
     int minutesUntilNextQueue() const;
@@ -445,6 +451,7 @@ signals:
     void estimatedOnlineUsersChanged();
     void seedingCountChanged();
     void allTimeRatioChanged();
+    void fontScaleChanged();
     void selectedCategoryChanged();
     void selectedQueueChanged();
     void errorOccurred(const QString &message);

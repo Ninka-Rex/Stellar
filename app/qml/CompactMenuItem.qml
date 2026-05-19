@@ -28,7 +28,7 @@ T.MenuItem {
     contentItem: Text {
         text:    parent.text
         color:   parent.enabled ? (parent.highlighted ? "#ffffff" : "#d0d0d0") : "#666666"
-        font.pixelSize: 12
+        font.pixelSize: 12 * App.fontScale
         verticalAlignment: Text.AlignVCenter
         leftPadding: 12
     }

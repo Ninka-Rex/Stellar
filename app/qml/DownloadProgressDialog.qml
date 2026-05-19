@@ -237,7 +237,7 @@ Window {
                             anchors.centerIn: parent
                             text: modelData
                             color: tabStack.currentIndex === index ? "#ffffff" : "#909090"
-                            font.pixelSize: 11
+                            font.pixelSize: 11 * App.fontScale
                         }
 
                         // Active underline
@@ -268,7 +268,7 @@ Window {
                     anchors.centerIn: parent
                     text: qsTr(">>  Send to Tray")
                     color: minTrayMa.containsMouse ? "#cccccc" : "#888888"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                 }
 
                 // Active underline matching tab style
@@ -326,7 +326,7 @@ Window {
                                 width: parent.width
                                 text: item ? item.url.toString() : ""
                                 color: "#6688bb"
-                                font.pixelSize: 13
+                                font.pixelSize: 13 * App.fontScale
                                 elide: Text.ElideMiddle
                                 bottomPadding: 7
                             }
@@ -345,7 +345,7 @@ Window {
                                 Text {
                                     text: qsTr("Status")
                                     color: "#666"
-                                    font.pixelSize: 12
+                                    font.pixelSize: 12 * App.fontScale
                                     width: 120
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
@@ -353,7 +353,7 @@ Window {
                                 Text {
                                     text: root.statusLabel()
                                     color: item ? root.statusColor(item.status) : "#b0b0b0"
-                                    font.pixelSize: 12
+                                    font.pixelSize: 12 * App.fontScale
                                     font.bold: true
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
@@ -364,20 +364,20 @@ Window {
                             // Data rows — individual bindings so they react to item changes
                             Row {
                                 spacing: 0; width: parent.width; height: 18
-                                Text { text: qsTr("File size");  color: "#666"; font.pixelSize: 12; width: 120 }
-                                Text { text: item ? root.fmtBytes(item.totalBytes) : "--"; color: "#c8c8c8"; font.pixelSize: 12 }
+                                Text { text: qsTr("File size");  color: "#666"; font.pixelSize: 12 * App.fontScale; width: 120 }
+                                Text { text: item ? root.fmtBytes(item.totalBytes) : "--"; color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale }
                             }
                             Row {
                                 spacing: 0; width: parent.width; height: 18
-                                Text { text: qsTr("Downloaded"); color: "#666"; font.pixelSize: 12; width: 120 }
+                                Text { text: qsTr("Downloaded"); color: "#666"; font.pixelSize: 12 * App.fontScale; width: 120 }
                                 Text {
                                     text: item ? qsTr("%1  ( %2% )").arg(root.fmtBytes(item.doneBytes)).arg(Math.round(item.progress * 100)) : "--"
-                                    color: "#c8c8c8"; font.pixelSize: 12
+                                    color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale
                                 }
                             }
                             Row {
                                 spacing: 0; width: parent.width; height: 18
-                                Text { text: qsTr("Transfer rate"); color: "#666"; font.pixelSize: 12; width: 120 }
+                                Text { text: qsTr("Transfer rate"); color: "#666"; font.pixelSize: 12 * App.fontScale; width: 120 }
                                 Text {
                                     text: {
                                         if (!item) return "--"
@@ -392,21 +392,21 @@ Window {
                                         return speed
                                     }
                                     color: "#c8c8c8"
-                                    font.pixelSize: 12
+                                    font.pixelSize: 12 * App.fontScale
                                 }
                             }
                             Row {
                                 spacing: 0; width: parent.width; height: 18
-                                Text { text: qsTr("Time left");  color: "#666"; font.pixelSize: 12; width: 120 }
-                                Text { text: item ? item.timeLeft : "--"; color: "#c8c8c8"; font.pixelSize: 12 }
+                                Text { text: qsTr("Time left");  color: "#666"; font.pixelSize: 12 * App.fontScale; width: 120 }
+                                Text { text: item ? item.timeLeft : "--"; color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale }
                             }
                             Row {
                                 spacing: 0; width: parent.width; height: 18
-                                Text { text: qsTr("Resume capability"); color: "#666"; font.pixelSize: 12; width: 120 }
+                                Text { text: qsTr("Resume capability"); color: "#666"; font.pixelSize: 12 * App.fontScale; width: 120 }
                                 Text {
                                     text: (item && item.resumeCapable) ? qsTr("Yes") : qsTr("No")
                                     color: (item && item.resumeCapable) ? "#c8c8c8" : "#c8c8c8"
-                                    font.pixelSize: 12
+                                    font.pixelSize: 12 * App.fontScale
                                 }
                             }
 
@@ -414,11 +414,11 @@ Window {
                             Row {
                                 visible: item && item.status === "Error" && item.errorString !== ""
                                 spacing: 0; width: parent.width
-                                Text { text: qsTr("Error detail"); color: "#666"; font.pixelSize: 12; width: 120; topPadding: 2 }
+                                Text { text: qsTr("Error detail"); color: "#666"; font.pixelSize: 12 * App.fontScale; width: 120; topPadding: 2 }
                                 Text {
                                     text: item ? item.errorString : ""
                                     color: "#dd5555"
-                                    font.pixelSize: 11
+                                    font.pixelSize: 11 * App.fontScale
                                     width: parent.width - 120
                                     wrapMode: Text.WrapAnywhere
                                 }
@@ -457,7 +457,7 @@ Window {
                                 return pct + "%"
                             }
                             color: "white"
-                            font.pixelSize: 10
+                            font.pixelSize: 10 * App.fontScale
                             font.bold: true
                         }
                     }
@@ -480,7 +480,7 @@ Window {
                                 anchors.centerIn: parent
                                 text: root.detailsVisible ? qsTr("« Hide details") : qsTr("» Show details")
                                 color: "#aaaaaa"
-                                font.pixelSize: 12
+                                font.pixelSize: 12 * App.fontScale
                             }
 
                             MouseArea {
@@ -532,7 +532,7 @@ Window {
                                 anchors.centerIn: parent
                                 text: qsTr("Start positions and download progress by connections")
                                 color: "#606060"
-                                font.pixelSize: 11
+                                font.pixelSize: 11 * App.fontScale
                             }
                         }
 
@@ -606,9 +606,9 @@ Window {
                                     Row {
                                         anchors { fill: parent; leftMargin: 8 }
                                         spacing: 0
-                                        Text { width: 34;  text: qsTr("N.");         color: "#888"; font.pixelSize: 11; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { width: 110; text: qsTr("Downloaded"); color: "#888"; font.pixelSize: 11; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
-                                        Text {             text: qsTr("Info");       color: "#888"; font.pixelSize: 11; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { width: 34;  text: qsTr("N.");         color: "#888"; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { width: 110; text: qsTr("Downloaded"); color: "#888"; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                        Text {             text: qsTr("Info");       color: "#888"; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
                                     }
                                 }
 
@@ -635,9 +635,9 @@ Window {
                                         Row {
                                             anchors { fill: parent; leftMargin: 8 }
                                             spacing: 0
-                                            Text { width: 34;  text: (index + 1) + ".";       color: "#999";    font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
-                                            Text { width: 110; text: root.fmtBytes(received); color: "#cccccc"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
-                                            Text {             text: info ?? "";              color: "#e0e0e0"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                            Text { width: 34;  text: (index + 1) + ".";       color: "#999";    font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                            Text { width: 110; text: root.fmtBytes(received); color: "#cccccc"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                            Text {             text: info ?? "";              color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         }
                                     }
                                 }
@@ -656,7 +656,7 @@ Window {
                     Text {
                         text: qsTr("Limit transfer rate for this download")
                         color: "#cccccc"
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                         font.bold: true
                     }
 
@@ -691,14 +691,14 @@ Window {
                             ? (App.settings.globalSpeedLimitKBps > 0 ? qsTr("Global limit active: %1 KB/s").arg(App.settings.globalSpeedLimitKBps) : qsTr("Global limit active: unlimited"))
                             : qsTr("No global limit set")
                         color: App.settings.speedLimiterEnabled ? "#ffcc88" : "#666"
-                        font.pixelSize: 11
+                        font.pixelSize: 11 * App.fontScale
                         wrapMode: Text.WordWrap
                     }
 
                     Text {
                         text: qsTr("Global speed limiter settings…")
                         color: "#4488dd"
-                        font.pixelSize: 11
+                        font.pixelSize: 11 * App.fontScale
                         font.underline: true
 
                         MouseArea {
@@ -720,7 +720,7 @@ Window {
                     Text {
                         text: qsTr("Options On Completion")
                         color: "#cccccc"
-                        font.pixelSize: 12
+                        font.pixelSize: 12 * App.fontScale
                         font.bold: true
                     }
                     CheckBox {
@@ -748,7 +748,7 @@ Window {
                         Layout.fillWidth: true
                         text: qsTr("These options are temporary for this download only and start unchecked each time.")
                         color: "#909090"
-                        font.pixelSize: 11
+                        font.pixelSize: 11 * App.fontScale
                         wrapMode: Text.WordWrap
                     }
                     Item { Layout.fillHeight: true }

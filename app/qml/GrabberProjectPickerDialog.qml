@@ -50,7 +50,7 @@ Window {
             anchors.margins: 12
             spacing: 10
 
-            Text { text: qsTr("Saved projects"); color: "#f1f4f8"; font.pixelSize: 16; font.bold: true }
+            Text { text: qsTr("Saved projects"); color: "#f1f4f8"; font.pixelSize: 16 * App.fontScale; font.bold: true }
 
             Rectangle {
                 Layout.fillWidth: true
@@ -83,8 +83,8 @@ Window {
                             anchors.rightMargin: 8
                             anchors.verticalCenter: parent.verticalCenter
                             spacing: 2
-                            Text { text: projectName; color: "#eef2f7"; font.pixelSize: 13; font.bold: true }
-                            Text { text: projectStartUrl; color: "#98a2b3"; font.pixelSize: 11; elide: Text.ElideRight; width: parent.width }
+                            Text { text: projectName; color: "#eef2f7"; font.pixelSize: 13 * App.fontScale; font.bold: true }
+                            Text { text: projectStartUrl; color: "#98a2b3"; font.pixelSize: 11 * App.fontScale; elide: Text.ElideRight; width: parent.width }
                         }
 
                         MouseArea {

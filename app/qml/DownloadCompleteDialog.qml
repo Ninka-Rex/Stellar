@@ -100,13 +100,13 @@ Window {
                 Text {
                     text: qsTr("Download complete")
                     color: "#e0e0e0"
-                    font.pixelSize: 13
+                    font.pixelSize: 13 * App.fontScale
                     font.bold: true
                 }
                 Text {
                     text: item ? qsTr("Downloaded %1 (%2 Bytes)").arg(root.fmtBytes(item.totalBytes)).arg((item.totalBytes || 0).toLocaleString(Qt.locale("en_US"), "f", 0)) : ""
                     color: "#aaaaaa"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                 }
             }
         }
@@ -115,7 +115,7 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 2
-            Text { text: qsTr("Address"); color: "#aaaaaa"; font.pixelSize: 11 }
+            Text { text: qsTr("Address"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale }
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 22
@@ -130,7 +130,7 @@ Window {
                     anchors.rightMargin: 5
                     verticalAlignment: TextInput.AlignVCenter
                     color: "#d0d0d0"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                     readOnly: true
                     selectByMouse: true
                     clip: true
@@ -143,7 +143,7 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 2
-            Text { text: qsTr("The file saved as"); color: "#aaaaaa"; font.pixelSize: 11 }
+            Text { text: qsTr("The file saved as"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale }
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 22
@@ -158,7 +158,7 @@ Window {
                     anchors.rightMargin: 5
                     verticalAlignment: TextInput.AlignVCenter
                     color: root.fileMoved ? "#888888" : "#d0d0d0"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                     font.italic: root.fileMoved
                     readOnly: true
                     selectByMouse: !root.fileMoved
@@ -218,7 +218,7 @@ Window {
                 contentItem: Text {
                     text: parent.text
                     color: "#c0c0c0"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                     leftPadding: parent.indicator.width + 4
                     verticalAlignment: Text.AlignVCenter
                 }

@@ -90,13 +90,13 @@ Window {
                 Text {
                     text: qsTr("Remove download?")
                     color: "#ffffff"
-                    font.pixelSize: 13
+                    font.pixelSize: 13 * App.fontScale
                     font.bold: true
                 }
                 Text {
                     text: root.filename
                     color: "#a0a0a0"
-                    font.pixelSize: 11
+                    font.pixelSize: 11 * App.fontScale
                     elide: Text.ElideMiddle
                     Layout.maximumWidth: 300
                 }
@@ -127,7 +127,7 @@ Window {
                 contentItem: Text {
                     text: parent.text
                     color: "#d0d0d0"
-                    font.pixelSize: 12
+                    font.pixelSize: 12 * App.fontScale
                     leftPadding: parent.indicator.width + 6
                     verticalAlignment: Text.AlignVCenter
                 }
@@ -143,7 +143,7 @@ Window {
                 contentItem: Text {
                     text: parent.text
                     color: permDeleteChk.enabled ? "#d0d0d0" : "#666666"
-                    font.pixelSize: 12
+                    font.pixelSize: 12 * App.fontScale
                     leftPadding: parent.indicator.width + 6
                     verticalAlignment: Text.AlignVCenter
                 }

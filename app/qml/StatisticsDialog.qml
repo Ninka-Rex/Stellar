@@ -87,13 +87,13 @@ Window {
             id: lbl
             text: parent.label
             color: "#8899aa"
-            font.pixelSize: 11
+            font.pixelSize: 11 * App.fontScale
             anchors.left: parent.left
         }
         Text {
             text: parent.value
             color: parent.valueColor
-            font.pixelSize: 11
+            font.pixelSize: 11 * App.fontScale
             font.bold: parent.valueBold
             // Fixed offset so both panels align their value column identically.
             anchors.left: parent.left
@@ -109,7 +109,7 @@ Window {
         Text {
             text: qsTr("Stellar Statistics")
             color: "#d0d0d0"
-            font.pixelSize: 13
+            font.pixelSize: 13 * App.fontScale
             font.bold: true
         }
 
@@ -128,7 +128,7 @@ Window {
                 anchors { fill: parent; margins: 6 }
                 spacing: 2
 
-                Text { text: qsTr("ALL TIME"); color: "#445566"; font.pixelSize: 9; font.bold: true; font.letterSpacing: 1 }
+                Text { text: qsTr("ALL TIME"); color: "#445566"; font.pixelSize: 9 * App.fontScale; font.bold: true; font.letterSpacing: 1 }
 
                 StatRow { label: qsTr("Downloaded");   value: root.formatBytes(root.stats.downloadedBytes) }
                 StatRow { label: qsTr("Uploaded");     value: root.formatBytes(root.stats.uploadedBytes) }
@@ -158,7 +158,7 @@ Window {
                 anchors { fill: parent; margins: 6 }
                 spacing: 2
 
-                Text { text: qsTr("THIS SESSION"); color: "#445566"; font.pixelSize: 9; font.bold: true; font.letterSpacing: 1 }
+                Text { text: qsTr("THIS SESSION"); color: "#445566"; font.pixelSize: 9 * App.fontScale; font.bold: true; font.letterSpacing: 1 }
 
                 StatRow { label: qsTr("Downloaded");  value: root.formatBytes(root.stats.sessionDownloaded) }
                 StatRow { label: qsTr("Uploaded");    value: root.formatBytes(root.stats.sessionUploaded) }

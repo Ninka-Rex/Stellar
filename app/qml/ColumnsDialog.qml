@@ -71,10 +71,10 @@ Window {
         anchors { fill: parent; margins: 16 }
         spacing: 10
 
-        Text { text: qsTr("Columns"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+        Text { text: qsTr("Columns"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
         Text {
             text: qsTr("Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.")
-            color: "#909090"; font.pixelSize: 12
+            color: "#909090"; font.pixelSize: 12 * App.fontScale
             wrapMode: Text.WordWrap; Layout.fillWidth: true
         }
         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
@@ -121,7 +121,7 @@ Window {
                             Text {
                                 text: modelData.title
                                 color: colListView.currentIndex === index ? "#ffffff" : "#d0d0d0"
-                                font.pixelSize: 13
+                                font.pixelSize: 13 * App.fontScale
                                 Layout.fillWidth: true
                             }
                         }
@@ -145,7 +145,7 @@ Window {
                     color: moveUpMa.containsMouse && colListView.currentIndex > 0 ? "#1e3a6e" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
                     opacity: colListView.currentIndex > 0 ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Move Up"); color: "#d0d0d0"; font.pixelSize: 12 }
+                    Text { anchors.centerIn: parent; text: qsTr("Move Up"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: moveUpMa
                         anchors.fill: parent
@@ -163,7 +163,7 @@ Window {
                     color: moveDownMa.containsMouse && colListView.currentIndex < root.localDefs.length - 1 ? "#1e3a6e" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
                     opacity: colListView.currentIndex < root.localDefs.length - 1 ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Move Down"); color: "#d0d0d0"; font.pixelSize: 12 }
+                    Text { anchors.centerIn: parent; text: qsTr("Move Down"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: moveDownMa
                         anchors.fill: parent
@@ -186,7 +186,7 @@ Window {
                     color: showMa.containsMouse && canShow ? "#1e3a6e" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
                     opacity: canShow ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Show"); color: "#d0d0d0"; font.pixelSize: 12 }
+                    Text { anchors.centerIn: parent; text: qsTr("Show"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: showMa
                         anchors.fill: parent
@@ -210,7 +210,7 @@ Window {
                     color: hideMa.containsMouse && canHide ? "#1e3a6e" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
                     opacity: canHide ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Hide"); color: "#d0d0d0"; font.pixelSize: 12 }
+                    Text { anchors.centerIn: parent; text: qsTr("Hide"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: hideMa
                         anchors.fill: parent
@@ -230,7 +230,7 @@ Window {
                     width: 100; height: 28; radius: 3
                     color: resetMa.containsMouse ? "#443020" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
-                    Text { anchors.centerIn: parent; text: qsTr("Reset"); color: "#e09060"; font.pixelSize: 12 }
+                    Text { anchors.centerIn: parent; text: qsTr("Reset"); color: "#e09060"; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: resetMa
                         anchors.fill: parent
@@ -250,14 +250,14 @@ Window {
             spacing: 8
             Text {
                 text: qsTr("The selected column should be")
-                color: "#909090"; font.pixelSize: 12
+                color: "#909090"; font.pixelSize: 12 * App.fontScale
             }
             TextField {
                 implicitWidth: 60; implicitHeight: 26
                 text: colListView.currentIndex >= 0 && root.localDefs.length > colListView.currentIndex
                       ? (root.localDefs[colListView.currentIndex].widthPx || 120).toString()
                       : "120"
-                color: "#d0d0d0"; font.pixelSize: 12
+                color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
                 background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
                 leftPadding: 6
                 validator: IntValidator { bottom: 30; top: 1200 }
@@ -270,7 +270,7 @@ Window {
                     }
                 }
             }
-            Text { text: qsTr("pixels wide"); color: "#909090"; font.pixelSize: 12 }
+            Text { text: qsTr("pixels wide"); color: "#909090"; font.pixelSize: 12 * App.fontScale }
         }
 
         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }

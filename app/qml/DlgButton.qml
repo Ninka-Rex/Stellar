@@ -53,7 +53,7 @@ Button {
     contentItem: Text {
         text:               parent.text
         color:              !parent.enabled ? "#8e8e8e" : ((primary || destructive) ? "#ffffff" : "#d0d0d0")
-        font.pixelSize:     13
+        font.pixelSize: 13 * App.fontScale
         font.bold:          primary || destructive
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment:   Text.AlignVCenter

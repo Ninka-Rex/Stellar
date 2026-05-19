@@ -102,7 +102,7 @@ Rectangle {
                 return parts.join("  ")
             }
             color: "#a0a0a0"
-            font.pixelSize: 11
+            font.pixelSize: 11 * App.fontScale
             Layout.fillHeight: true
             verticalAlignment: Text.AlignVCenter
         }
@@ -138,7 +138,7 @@ Rectangle {
                 return qsTr("Estimating… (%1%)").arg(App.estimatedOnlineUsersWarmupPercent)
             }
             color: onlineUsersHover.hovered ? "#ffffff" : "#b0b0b0"
-            font.pixelSize: 11
+            font.pixelSize: 11 * App.fontScale
             Layout.fillHeight: true
             verticalAlignment: Text.AlignVCenter
 
@@ -164,7 +164,7 @@ Rectangle {
             visible: App.settings.ratioInStatusBar
             text: "☯ " + App.allTimeRatio.toFixed(3)
             color: ratioHover.hovered ? "#ffffff" : "#b0b0b0"
-            font.pixelSize: 11
+            font.pixelSize: 11 * App.fontScale
             Layout.fillHeight: true
             verticalAlignment: Text.AlignVCenter
 
@@ -214,7 +214,7 @@ Rectangle {
                 return (ip && ip.length > 0) ? ip : "—"
             }
             color: ipHover.hovered ? "#ffffff" : "#b0b0b0"
-            font.pixelSize: 11
+            font.pixelSize: 11 * App.fontScale
             Layout.fillHeight: true
             verticalAlignment: Text.AlignVCenter
 
@@ -273,7 +273,7 @@ Rectangle {
                 return "↓ " + fmt(App.totalDownSpeed) + "  ↑ " + fmt(App.totalUpSpeed)
             }
             color: "#b0b0b0"
-            font.pixelSize: 11
+            font.pixelSize: 11 * App.fontScale
             Layout.fillHeight: true
             verticalAlignment: Text.AlignVCenter
         }
@@ -285,7 +285,7 @@ Rectangle {
             Text {
                 text: motdText
                 color: "#b0b0b0"
-                font.pixelSize: 11
+                font.pixelSize: 11 * App.fontScale
                 wrapMode: Text.NoWrap
                 elide: Text.ElideRight
                 horizontalAlignment: Text.AlignRight
@@ -294,7 +294,7 @@ Rectangle {
             Text {
                 text: "✕"
                 color: "#888888"
-                font.pixelSize: 12
+                font.pixelSize: 12 * App.fontScale
                 MouseArea {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
@@ -313,7 +313,7 @@ Rectangle {
             Text {
                 text: tipsArray.length > currentTipIndex ? "💡 Tip: " + tipsArray[currentTipIndex] : ""
                 color: "#b0b0b0"
-                font.pixelSize: 11
+                font.pixelSize: 11 * App.fontScale
                 wrapMode: Text.NoWrap
                 elide: Text.ElideRight
                 horizontalAlignment: Text.AlignRight
@@ -325,7 +325,7 @@ Rectangle {
                 Text {
                     text: qsTr("next >>")
                     color: "#5588cc"
-                    font.pixelSize: 10
+                    font.pixelSize: 10 * App.fontScale
                     font.underline: true
                     MouseArea {
                         anchors.fill: parent
@@ -337,7 +337,7 @@ Rectangle {
                 Text {
                     text: "✕"
                     color: "#888888"
-                    font.pixelSize: 12
+                    font.pixelSize: 12 * App.fontScale
                     MouseArea {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
@@ -356,7 +356,7 @@ Rectangle {
                 ? qsTr("🟧 Queue runs in 1 minute")
                 : (App.minutesUntilNextQueue > 0 ? qsTr("🟧 Queue runs in %1 minutes").arg(App.minutesUntilNextQueue) : "")
             color: "#a0a0a0"
-            font.pixelSize: 11
+            font.pixelSize: 11 * App.fontScale
         }
     }
 
