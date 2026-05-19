@@ -447,7 +447,8 @@ void DownloadTableModel::onItemProgressChanged() {
         QStringLiteral("upspeed"),   QStringLiteral("progress"),
         QStringLiteral("timeleft"),  QStringLiteral("ratio"),
         QStringLiteral("uploaded"),  QStringLiteral("downloaded"),
-        QStringLiteral("seeders"),   QStringLiteral("peers")
+        QStringLiteral("seeders"),   QStringLiteral("peers"),
+        QStringLiteral("status")  // doneBytes secondary sort within Downloading
     };
     if (kVolatileSortCols.contains(m_sortColumn)) {
         // Mark dirty; flushVolatileSort() is called synchronously by AppController
@@ -512,8 +513,23 @@ int DownloadTableModel::compareItems(DownloadItem *a, DownloadItem *b, const QSt
         cmpResult = a->filename().toLower().compare(b->filename().toLower());
     else if (column == QStringLiteral("size"))
         cmpResult = a->totalBytes() < b->totalBytes() ? -1 : (a->totalBytes() > b->totalBytes() ? 1 : 0);
-    else if (column == QStringLiteral("status"))
-        cmpResult = statusSortKey(a->status()) - statusSortKey(b->status());
+    else if (column == QStringLiteral("status")) {
+        // Status sort has a fixed ordering (Downloading always first) that must not
+        // be reversed by the ascending/descending flag — so return early, bypassing
+        // the `ascending ? cmpResult : -cmpResult` flip at line 550.
+        int sk = statusSortKey(a->status()) - statusSortKey(b->status());
+        if (sk != 0)
+            return sk;
+        // Within two Downloading HTTP items, most-downloaded first (always descending).
+        if (a->status() == QStringLiteral("Downloading")
+                && !a->isTorrent() && !b->isTorrent()) {
+            int dc = a->doneBytes() > b->doneBytes() ? -1
+                   : a->doneBytes() < b->doneBytes() ?  1 : 0;
+            if (dc != 0) return dc;
+        }
+        // Tie-break by id for stability.
+        return a->id() < b->id() ? -1 : (a->id() > b->id() ? 1 : 0);
+    }
     else if (column == QStringLiteral("timeleft"))
         cmpResult = a->timeLeft().compare(b->timeLeft());
     else if (column == QStringLiteral("speed") || column == QStringLiteral("downspeed"))
