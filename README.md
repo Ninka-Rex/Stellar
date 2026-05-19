@@ -5,6 +5,7 @@
 ![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/Ninka-Rex/Stellar?style=flat-square&color=%233b5bdb)
 ![GitHub License](https://img.shields.io/github/license/Ninka-Rex/Stellar?style=flat-square&color=%235e60ce)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Ninka-Rex/Stellar?style=flat-square&color=%236b46c1)
+![GitHub Release Date](https://img.shields.io/github/release-date/Ninka-Rex/Stellar?style=flat-square&color=%230984e3)
 
 A clean-room reimplementation of Internet Download Manager for Windows and Linux, with a built-in torrent client and yt-dlp support for downloading from YouTube and other video sites. Written in C++ and Qt.
 
