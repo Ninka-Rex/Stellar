@@ -640,7 +640,7 @@ Window {
                                 { label: qsTr("Start\nDownloading"), action: "download",      icon: "arrow_down.svg",     btnWidth: 96 },
                                 { label: qsTr("Stop\nDownloads"),    action: "stopDownloads", icon: "stop_all.svg",   btnWidth: 88 },
                                 { label: qsTr("Update\nAll"),        action: "update",        icon: "update.svg",         btnWidth: 80 },
-                                { label: qsTr("Schedule\nProject"),  action: "schedule",      icon: "clock.svg",          btnWidth: 88 },
+                                { label: qsTr("Schedule\nProject"),  action: "schedule",      icon: "scheduler.svg",          btnWidth: 88 },
                                 { label: qsTr("Statistics"),         action: "stats",         icon: "bar_chart.svg",      btnWidth: 84 }
                             ]
                             delegate: ToolbarBtn {

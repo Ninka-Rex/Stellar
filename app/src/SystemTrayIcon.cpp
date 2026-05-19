@@ -139,7 +139,7 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
     m_menu->addAction(trayIcon("about.svg"),        tr("About Stellar"), this, &SystemTrayIcon::aboutRequested);
     m_menu->addSeparator();
 
-    m_speedLimiterAction = m_menu->addAction(trayIcon("clock.svg"), tr("Speed Limiter"), this, [this] {
+    m_speedLimiterAction = m_menu->addAction(trayIcon("snail.svg"), tr("Speed Limiter"), this, [this] {
         if (m_speedLimiterAction->isChecked())
             emit disableSpeedLimiterRequested();
         else

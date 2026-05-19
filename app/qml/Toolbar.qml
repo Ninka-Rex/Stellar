@@ -79,7 +79,7 @@ Rectangle {
         ToolbarBtn { label: qsTr("Delete");      iconSrc: "icons/delete.svg"; enabled: downloadTable ? downloadTable.hasSelection : false; onClicked: root.deleteClicked() }
         ToolbarBtn { label: qsTr("Delete Done"); iconSrc: "icons/delete.svg"; onClicked: root.deleteCompletedClicked() }
         ToolbarBtn { label: qsTr("Options");        iconSrc: "icons/tools.svg";     onClicked: root.optionsClicked() }
-        ToolbarBtn { label: qsTr("Scheduler");      iconSrc: "icons/clock.svg";     onClicked: root.schedulerClicked() }
+        ToolbarBtn { label: qsTr("Scheduler");      iconSrc: "icons/scheduler.svg";     onClicked: root.schedulerClicked() }
 
         // Start Queue dropdown
         ToolbarDropdown {

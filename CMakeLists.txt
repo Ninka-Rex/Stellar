@@ -262,7 +262,6 @@ qt_add_qml_module(Stellar
         app/qml/icons/properties.svg
         app/qml/icons/scheduler.svg
         app/qml/icons/update.svg
-        app/qml/icons/clock.svg
         app/qml/icons/bar_chart.svg
         app/qml/icons/snail.svg
         app/qml/icons/torrent_file.svg
