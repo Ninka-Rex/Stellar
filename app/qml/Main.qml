@@ -749,6 +749,12 @@ ApplicationWindow {
             var name = (filename.length > 0 ? filename.split(/[/\\]/).pop() : "") ||
                        url.split("/").pop().split("?")[0] || "download"
             var _cookies  = App.takePendingCookies(url)
+            // No cookies from extension — read from browser profiles on disk.
+            if (_cookies.length === 0)
+                _cookies = App.cookiesForUrl(url)
+            // Store back so takePendingCookies() works at confirm time (addUrl path).
+            if (_cookies.length > 0)
+                App.setPendingCookies(url, _cookies)
             var _referrer = App.takePendingReferrer(url)
             var _pageUrl  = App.takePendingPageUrl(url)
             fileInfoDialog.pendingUrl      = url
@@ -1043,6 +1049,12 @@ ApplicationWindow {
         }
 
         var _cookies2  = App.takePendingCookies(url)
+        // No cookies from extension — read from browser profiles on disk.
+        if (_cookies2.length === 0)
+            _cookies2 = App.cookiesForUrl(url)
+        // Store back so takePendingCookies() works at confirm time (addUrl path).
+        if (_cookies2.length > 0)
+            App.setPendingCookies(url, _cookies2)
         var _referrer2 = App.takePendingReferrer(url)
         var _pageUrl2  = App.takePendingPageUrl(url)
         fileInfoDialog.pendingUrl      = url

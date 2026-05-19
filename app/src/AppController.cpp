@@ -4006,6 +4006,10 @@ QString AppController::takePendingPageUrl(const QString &url) {
     return m_pendingPageUrls.take(url);
 }
 
+QString AppController::cookiesForUrl(const QString &url) const {
+    return BrowserCookieReader::cookiesForUrl(QUrl(url));
+}
+
 void AppController::deleteAllCompleted(int mode, bool includeSeedingTorrents) {
     QStringList toDelete;
     const auto items = m_downloadModel->allItems();

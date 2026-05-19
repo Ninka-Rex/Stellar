@@ -38,6 +38,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     QuickDialogs2
     Widgets
     Concurrent
+    Sql
 )
 find_package(Qt6 OPTIONAL_COMPONENTS LinguistTools)
 
@@ -155,6 +156,7 @@ set(BACKEND_SOURCES
     app/src/TorrentSearchResultModel.cpp
     app/src/TorrentSearchManager.cpp
     app/src/NetworkInfo.cpp
+    app/src/BrowserCookieReader.cpp
 )
 
 set(BACKEND_HEADERS
@@ -190,6 +192,7 @@ set(BACKEND_HEADERS
     app/src/TorrentSearchResultModel.h
     app/src/TorrentSearchManager.h
     app/src/NetworkInfo.h
+    app/src/BrowserCookieReader.h
 )
 
 # ── QML Resources ──────────────────────────────────────────────────────────────
@@ -452,10 +455,16 @@ target_link_libraries(Stellar PRIVATE
     Qt6::QuickDialogs2
     Qt6::Widgets
     Qt6::Concurrent
+    Qt6::Sql
 )
 
 if(WIN32)
     target_link_libraries(Stellar PRIVATE wlanapi)
+endif()
+
+if(UNIX AND NOT APPLE)
+    # dlopen/dlsym for dynamic libcrypto loading (Chromium cookie decryption)
+    target_link_libraries(Stellar PRIVATE dl)
 endif()
 
 if(ENABLE_LIBTORRENT AND LibtorrentRasterbar_FOUND)
@@ -478,7 +487,7 @@ qt_add_resources(Stellar "conf"
 # ── Platform-specific ─────────────────────────────────────────────────────────
 if(WIN32)
     set_target_properties(Stellar PROPERTIES
-        WIN32_EXECUTABLE TRUE
+        WIN32_EXECUTABLE FALSE
     )
     target_compile_definitions(Stellar PRIVATE STELLAR_WINDOWS)
 elseif(UNIX AND NOT APPLE)

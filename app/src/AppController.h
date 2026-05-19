@@ -50,6 +50,7 @@
 #include "YtdlpTransfer.h"
 #include "TorrentSessionManager.h"
 #include "NetworkInfo.h"
+#include "BrowserCookieReader.h"
 
 class AppController : public QObject {
     Q_OBJECT
@@ -382,6 +383,10 @@ public:
     Q_INVOKABLE QString takePendingCookies(const QString &url);
     Q_INVOKABLE QString takePendingReferrer(const QString &url);
     Q_INVOKABLE QString takePendingPageUrl(const QString &url);
+    // Reads matching cookies from all detected browser profiles on disk (Firefox,
+    // Chrome, Edge, Brave, etc.) for the given URL. Returns a semicolon-delimited
+    // "name=value" string ready for use as a Cookie header. Empty if none found.
+    Q_INVOKABLE QString cookiesForUrl(const QString &url) const;
     Q_INVOKABLE QString  registerNativeHost() const;
     Q_INVOKABLE QString  nativeHostManifestPath() const;
     Q_INVOKABLE QString  nativeHostDiagnostics() const;
