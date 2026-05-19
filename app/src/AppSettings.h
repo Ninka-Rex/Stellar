@@ -658,7 +658,7 @@ private:
     qint64      m_motdDismissedUntilUtcMs{0};
     // Empty = system default (English fallback), otherwise a locale code like "fr"
     QString     m_uiLanguage;
-    // 0=Colored (milky-way.png), 1=White, 2=Black — Linux tray icon style
+    // 0=Colored (milky-way.png), 1=White, 2=Black — tray icon style
     int         m_trayIconStyle{0};
 
     // Apply or remove OS startup entry depending on v

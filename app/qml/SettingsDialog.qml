@@ -84,7 +84,6 @@ Window {
     property bool   editShowDownloadComplete:  true
     property bool   editShowCompletionNotification: true
     property bool   editShowErrorNotification: true
-    property bool   editShowFinishedCount:     true
     property bool   editSpeedInTrayTooltip:    true
     property bool   editSpeedInTitleBar:       false
     property bool   editSpeedInStatusBar:      false
@@ -398,7 +397,6 @@ Window {
         editShowDownloadComplete  !== App.settings.showDownloadComplete ||
         editShowCompletionNotification !== App.settings.showCompletionNotification ||
         editShowErrorNotification !== App.settings.showErrorNotification ||
-        editShowFinishedCount     !== App.settings.showFinishedCount ||
         editSpeedInTrayTooltip    !== App.settings.speedInTrayTooltip ||
         editSpeedInTitleBar       !== App.settings.speedInTitleBar ||
         editSpeedInStatusBar      !== App.settings.speedInStatusBar ||
@@ -455,7 +453,8 @@ Window {
         editRssAutoDownloadEnabled    !== App.settings.rssAutoDownloadEnabled  ||
         editRssSmartFilterRepack      !== App.settings.rssSmartFilterRepack    ||
         editRssSmartFiltersJson       !== App.settings.rssSmartFiltersJson     ||
-        editUiLanguage                !== App.settings.uiLanguage
+        editUiLanguage                !== App.settings.uiLanguage ||
+        editTrayIconStyle             !== App.settings.trayIconStyle
 
     property bool catDirty:       false
     property bool loadingCategory: false   // suppresses onTextChanged during programmatic load
@@ -675,7 +674,6 @@ Window {
         App.settings.showDownloadComplete   = editShowDownloadComplete
         App.settings.showCompletionNotification = editShowCompletionNotification
         App.settings.showErrorNotification  = editShowErrorNotification
-        App.settings.showFinishedCount      = editShowFinishedCount
         App.settings.speedInTrayTooltip     = editSpeedInTrayTooltip
         App.settings.speedInTitleBar        = editSpeedInTitleBar
         App.settings.speedInStatusBar       = editSpeedInStatusBar
@@ -778,7 +776,6 @@ Window {
         editShowDownloadComplete  = App.settings.showDownloadComplete
         editShowCompletionNotification = App.settings.showCompletionNotification
         editShowErrorNotification = App.settings.showErrorNotification
-        editShowFinishedCount     = App.settings.showFinishedCount
         editSpeedInTrayTooltip    = App.settings.speedInTrayTooltip
         editSpeedInTitleBar       = App.settings.speedInTitleBar
         editSpeedInStatusBar      = App.settings.speedInStatusBar
@@ -2370,9 +2367,22 @@ Window {
                             onCheckedChanged: root.editCloseToTray = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
+                        CheckBox {
+                            text: qsTr("Launch Stellar on startup")
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editLaunchOnStartup
+                            onCheckedChanged: root.editLaunchOnStartup = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+                        CheckBox {
+                            text: qsTr("Show tips in bottom bar")
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editShowTips
+                            onCheckedChanged: root.editShowTips = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
                         RowLayout {
                             spacing: 10
-                            visible: Qt.platform.os === "linux"
                             Text {
                                 text: qsTr("Tray icon style:")
                                 color: "#d0d0d0"
@@ -2399,27 +2409,6 @@ Window {
                                     radius: 2
                                 }
                             }
-                        }
-                        CheckBox {
-                            text: qsTr("Launch Stellar on startup")
-                            topPadding: 0; bottomPadding: 0
-                            checked: root.editLaunchOnStartup
-                            onCheckedChanged: root.editLaunchOnStartup = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
-                        }
-                        CheckBox {
-                            text: qsTr("Show tips in bottom bar")
-                            topPadding: 0; bottomPadding: 0
-                            checked: root.editShowTips
-                            onCheckedChanged: root.editShowTips = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
-                        }
-                        CheckBox {
-                            text: qsTr("Show finished download count in status bar")
-                            topPadding: 0; bottomPadding: 0
-                            checked: root.editShowFinishedCount
-                            onCheckedChanged: root.editShowFinishedCount = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }

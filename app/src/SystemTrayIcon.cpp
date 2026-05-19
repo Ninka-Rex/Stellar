@@ -72,20 +72,21 @@ static QIcon createDownloadsTrayIcon() {
 }
 
 static QIcon trayIconForStyle(int style) {
-#if defined(Q_OS_LINUX)
-    static const char *kPaths[3] = {
-        ":/qt/qml/com/stellar/app/app/qml/icons/milky-way.png",
-        ":/qt/qml/com/stellar/app/app/qml/icons/milky-way-white.png",
-        ":/qt/qml/com/stellar/app/app/qml/icons/milky-way-black.png",
-    };
-    const int idx = (style >= 0 && style <= 2) ? style : 0;
-    const QIcon icon(QLatin1String(kPaths[idx]));
-    return icon.isNull() ? createDefaultIcon() : icon;
-#else
-    Q_UNUSED(style)
-    const QIcon icon(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way.ico"));
-    return icon.isNull() ? createDefaultIcon() : icon;
+#if defined(Q_OS_WIN)
+    if (style == 0) {
+        const QIcon ico(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way.ico"));
+        if (!ico.isNull())
+            return ico;
+    }
 #endif
+    QString path;
+    switch (style) {
+    case 1:  path = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way-white.png"); break;
+    case 2:  path = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way-black.png"); break;
+    default: path = QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way.png");       break;
+    }
+    const QIcon icon(path);
+    return icon.isNull() ? createDefaultIcon() : icon;
 }
 
 SystemTrayIcon::SystemTrayIcon(QObject *parent)
