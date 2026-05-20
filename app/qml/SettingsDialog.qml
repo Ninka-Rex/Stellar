@@ -4265,8 +4265,9 @@ Window {
                 // Language
                 Item {
                     ColumnLayout {
+                        width: parent.width
                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
-                        spacing: 14
+                        spacing: 10
 
                         Text { text: qsTr("Interface Language"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
@@ -4279,7 +4280,7 @@ Window {
                             Layout.fillWidth: true
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
                         RowLayout {
                             spacing: 10

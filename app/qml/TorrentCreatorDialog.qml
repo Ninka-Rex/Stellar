@@ -257,7 +257,7 @@ Window {
                     width: parent.width; height: 22
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Files"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium
+                        text: qsTr("Files"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium
                     }
                     Rectangle {
                         anchors { left: parent.left; right: parent.right
@@ -272,7 +272,7 @@ Window {
 
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Source:"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; width: root._lw
+                        text: qsTr("Source:"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
 
                     // Source display box
@@ -305,8 +305,8 @@ Window {
                         // File… button
                         Rectangle {
                             width: fileBtn.implicitWidth + 14; height: root._rh; radius: 2
-                            color: fileBtnMa.containsMouse ? "#3a3a4a" : "#2d2d3a"
-                            border.color: "#555566"
+                            color: fileBtnMa.containsMouse ? "#3a3a3a" : "#2d2d2d"
+                            border.color: "#4a4a4a"
                             Text { id: fileBtn; anchors.centerIn: parent; text: qsTr("File…"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
                             MouseArea {
                                 id: fileBtnMa; anchors.fill: parent; hoverEnabled: true
@@ -318,8 +318,8 @@ Window {
                         // Folder… button
                         Rectangle {
                             width: folderBtn.implicitWidth + 14; height: root._rh; radius: 2
-                            color: folderBtnMa.containsMouse ? "#3a3a4a" : "#2d2d3a"
-                            border.color: "#555566"
+                            color: folderBtnMa.containsMouse ? "#3a3a3a" : "#2d2d2d"
+                            border.color: "#4a4a4a"
                             Text { id: folderBtn; anchors.centerIn: parent; text: qsTr("Folder…"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
                             MouseArea {
                                 id: folderBtnMa; anchors.fill: parent; hoverEnabled: true
@@ -331,8 +331,8 @@ Window {
                         // Remove button
                         Rectangle {
                             width: removeBtn.implicitWidth + 14; height: root._rh; radius: 2
-                            color: removeBtnMa.containsMouse && inputFilesModel.count > 0 ? "#3a2a2a" : "#2d2d3a"
-                            border.color: "#555566"
+                            color: removeBtnMa.containsMouse && inputFilesModel.count > 0 ? "#3a2a2a" : "#2d2d2d"
+                            border.color: "#4a4a4a"
                             opacity: inputFilesModel.count > 0 ? 1.0 : 0.4
                             Text { id: removeBtn; anchors.centerIn: parent; text: qsTr("Remove"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
                             MouseArea {
@@ -350,7 +350,7 @@ Window {
                     width: parent.width; height: root._rh + 8
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Save to:"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; width: root._lw
+                        text: qsTr("Save to:"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Rectangle {
                         anchors {
@@ -378,8 +378,8 @@ Window {
                         id: browseDirBtn
                         anchors { right: parent.right; rightMargin: root._rm; verticalCenter: parent.verticalCenter }
                         width: browseDirLbl.implicitWidth + 14; height: root._rh; radius: 2
-                        color: browseDirMa.containsMouse ? "#3a3a4a" : "#2d2d3a"
-                        border.color: "#555566"
+                        color: browseDirMa.containsMouse ? "#3a3a3a" : "#2d2d2d"
+                        border.color: "#4a4a4a"
                         Text { id: browseDirLbl; anchors.centerIn: parent; text: qsTr("Browse…"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
                         MouseArea {
                             id: browseDirMa; anchors.fill: parent; hoverEnabled: true
@@ -395,7 +395,7 @@ Window {
                     width: parent.width; height: root._rh + 8
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Name:"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; width: root._lw
+                        text: qsTr("Name:"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Rectangle {
                         anchors {
@@ -426,7 +426,7 @@ Window {
                     width: parent.width; height: root._rh + 8
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Piece size:"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; width: root._lw
+                        text: qsTr("Piece size:"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Row {
                         anchors { left: parent.left; leftMargin: root._lm + root._lw; verticalCenter: parent.verticalCenter }
@@ -475,7 +475,7 @@ Window {
                     width: parent.width; height: 24
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Properties"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium
+                        text: qsTr("Properties"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium
                     }
                     Rectangle {
                         anchors { left: parent.left; right: parent.right
@@ -489,7 +489,7 @@ Window {
                     width: parent.width; height: 80
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; top: parent.top; topMargin: 6 }
-                        text: qsTr("Trackers:"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; width: root._lw
+                        text: qsTr("Trackers:"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Rectangle {
                         anchors {
@@ -530,7 +530,7 @@ Window {
                     width: parent.width; height: root._rh + 8
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Comment:"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; width: root._lw
+                        text: qsTr("Comment:"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Rectangle {
                         anchors {
@@ -560,7 +560,7 @@ Window {
                     width: parent.width; height: 60
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; top: parent.top; topMargin: 6 }
-                        text: qsTr("Web seeds:"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; width: root._lw
+                        text: qsTr("Web seeds:"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Rectangle {
                         anchors {
