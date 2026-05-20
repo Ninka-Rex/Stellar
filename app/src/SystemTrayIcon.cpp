@@ -85,7 +85,10 @@ static QIcon trayIconForStyle(int style) {
 SystemTrayIcon::SystemTrayIcon(QObject *parent)
     : QObject(parent)
 {
-    m_tray = new QSystemTrayIcon(this);
+    // No parent — tray icon must outlive the Qt object tree so it
+    // stays visible until the process fully exits. Windows cleans up
+    // notification icons automatically when the owning process terminates.
+    m_tray = new QSystemTrayIcon();
     m_tray->setIcon(trayIconForStyle(0));
     m_tray->setToolTip(tr("Stellar Download Manager"));
 
@@ -108,8 +111,8 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
         }
     });
 
-    // Downloads tray icon
-    m_downloadsTray = new QSystemTrayIcon(this);
+    // Downloads tray icon (no parent — same reason as m_tray)
+    m_downloadsTray = new QSystemTrayIcon();
     m_downloadsTray->setIcon(createDownloadsTrayIcon());
     m_downloadsTray->setToolTip(tr("SDM downloads"));
 

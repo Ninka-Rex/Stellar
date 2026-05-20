@@ -478,7 +478,8 @@ ApplicationWindow {
 
     function quitApp() {
         isQuitting = true
-        Qt.quit()
+        root.hide()
+        App.requestQuit()
     }
 
     // ── Tray context menu (standalone window so it works when main window is hidden) ──

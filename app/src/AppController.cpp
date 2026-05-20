@@ -915,6 +915,19 @@ void AppController::setQmlReady() {
         handleIpcPayload(p);
 }
 
+void AppController::requestQuit() {
+    // Set the shutdown tooltip before the event loop starts winding down.
+    // aboutToQuit also sets it, but by then the OS may have already removed
+    // the tray icon.  Setting it here ensures the user sees the tooltip
+    // for the entire shutdown duration.
+    if (m_tray) {
+        m_tray->setToolTip(tr("Stellar is shutting down..."));
+    }
+    // Let the tooltip render before the window-close cascade begins.
+    QCoreApplication::processEvents();
+    QCoreApplication::quit();
+}
+
 void AppController::checkUrl(const QString &url, QJSValue callback) {
     QNetworkRequest request(QUrl::fromUserInput(url));
     const QString customUserAgent = m_settings ? m_settings->customUserAgent().trimmed() : QString();
@@ -2034,7 +2047,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         addUrl(url, {}, {}, {}, true, cookies, referrer);
     });
     connect(m_tray, &SystemTrayIcon::showRequested,        this, &AppController::showWindowRequested);
-    connect(m_tray, &SystemTrayIcon::quitRequested,        &QCoreApplication::quit);
+    connect(m_tray, &SystemTrayIcon::quitRequested,        this, &AppController::requestQuit);
     connect(m_tray, &SystemTrayIcon::addUrlRequested,      this, [this]() { emit showWindowRequested(); });
     connect(m_tray, &SystemTrayIcon::githubRequested,       this, &AppController::trayGithubRequested);
     connect(m_tray, &SystemTrayIcon::aboutRequested,        this, &AppController::trayAboutRequested);

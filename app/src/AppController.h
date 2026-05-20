@@ -220,6 +220,7 @@ public:
     // are wired.  Drains any IPC payloads that arrived before QML was ready.
     Q_INVOKABLE void setQmlReady();
 
+    Q_INVOKABLE void requestQuit();
     Q_INVOKABLE bool isLikelyYtdlpUrl(const QString &url) const;
 
     // Asynchronously probe the URL with "yt-dlp --dump-json".
