@@ -203,6 +203,7 @@ void AppSettings::load() {
         m_settings.value(QStringLiteral("estimatedOnlineUsersInStatusBar"), false).toBool();
     m_ratioInStatusBar        = m_settings.value(QStringLiteral("ratioInStatusBar"), false).toBool();
     m_showPublicIpInStatusBar = m_settings.value(QStringLiteral("showPublicIpInStatusBar"), false).toBool();
+    m_toolbarButtonDefs       = m_settings.value(QStringLiteral("toolbarButtonDefs"), QString()).toString();
     m_showSearchEngine        = m_settings.value(QStringLiteral("showSearchEngine"), false).toBool();
     m_showRssReader           = m_settings.value(QStringLiteral("showRssReader"), false).toBool();
     m_startDownloadWhileFileInfo = m_settings.value(QStringLiteral("startDownloadWhileFileInfo"), true).toBool();
@@ -375,6 +376,7 @@ void AppSettings::load() {
     emit useCustomUserAgentChanged();
     emit customUserAgentChanged();
     emit downloadTableColumnsChanged();
+    emit toolbarButtonDefsChanged();
     emit grabberFilesToExploreAtOnceChanged();
     emit grabberFilesToDownloadAtOnceChanged();
     emit grabberUseLinkTextAsDescriptionChanged();
@@ -467,6 +469,7 @@ void AppSettings::save() {
                         m_estimatedOnlineUsersInStatusBar);
     m_settings.setValue(QStringLiteral("ratioInStatusBar"),            m_ratioInStatusBar);
     m_settings.setValue(QStringLiteral("showPublicIpInStatusBar"),     m_showPublicIpInStatusBar);
+    m_settings.setValue(QStringLiteral("toolbarButtonDefs"),           m_toolbarButtonDefs);
     m_settings.setValue(QStringLiteral("showSearchEngine"),            m_showSearchEngine);
     m_settings.setValue(QStringLiteral("showRssReader"),               m_showRssReader);
     m_settings.setValue(QStringLiteral("startDownloadWhileFileInfo"),  m_startDownloadWhileFileInfo);
@@ -617,6 +620,7 @@ void AppSettings::setShowQueueSelectionOnBatchDownload(bool v) { if (m_showQueue
 void AppSettings::setUseCustomUserAgent(bool v)     { if (m_useCustomUserAgent     != v) { m_useCustomUserAgent     = v; emit useCustomUserAgentChanged();     save(); } }
 void AppSettings::setCustomUserAgent(const QString &v) { if (m_customUserAgent != v) { m_customUserAgent = v; emit customUserAgentChanged(); save(); } }
 void AppSettings::setDownloadTableColumns(const QString &v) { if (m_downloadTableColumns != v) { m_downloadTableColumns = v; emit downloadTableColumnsChanged(); save(); } }
+void AppSettings::setToolbarButtonDefs(const QString &v) { if (m_toolbarButtonDefs != v) { m_toolbarButtonDefs = v; emit toolbarButtonDefsChanged(); save(); } }
 void AppSettings::setGrabberFilesToExploreAtOnce(int v) { if (m_grabberFilesToExploreAtOnce != v) { m_grabberFilesToExploreAtOnce = v; emit grabberFilesToExploreAtOnceChanged(); save(); } }
 void AppSettings::setGrabberFilesToDownloadAtOnce(int v) { if (m_grabberFilesToDownloadAtOnce != v) { m_grabberFilesToDownloadAtOnce = v; emit grabberFilesToDownloadAtOnceChanged(); save(); } }
 void AppSettings::setGrabberUseLinkTextAsDescription(bool v) { if (m_grabberUseLinkTextAsDescription != v) { m_grabberUseLinkTextAsDescription = v; emit grabberUseLinkTextAsDescriptionChanged(); save(); } }

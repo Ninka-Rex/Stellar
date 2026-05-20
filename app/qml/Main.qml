@@ -2095,6 +2095,41 @@ ApplicationWindow {
         }
     }
 
+    // ── Toolbar Dialog ────────────────────────────────────────────────────────
+    ToolbarDialog {
+        id: toolbarDialog
+        transientParent: root
+        onLocalDefsChanged: {
+            // Real-time preview: update toolbar immediately without saving
+            toolbar.buttonDefs = toolbarDialog.localDefs.slice()
+        }
+        onToolbarChanged: (defs) => {
+            if (defs === null) {
+                var defaults = toolbarDialog._defaultDefs()
+                toolbar.buttonDefs = defaults
+                toolbarDialog.buttonDefs = defaults
+                toolbarDialog.localDefs = defaults.slice()
+                App.settings.toolbarButtonDefs = ""
+            } else {
+                toolbar.buttonDefs = defs
+                App.settings.toolbarButtonDefs = JSON.stringify(defs)
+                // Sync View menu toggles with toolbar dialog state for search/rss
+                var foundSearch = false, foundRss = false
+                for (var ti = 0; ti < defs.length; ti++) {
+                    if (defs[ti].key === "search_engine") {
+                        foundSearch = true
+                        App.settings.showSearchEngine = !!defs[ti].enabled
+                    }
+                    if (defs[ti].key === "rss") {
+                        foundRss = true
+                        App.settings.showRssReader = !!defs[ti].enabled
+                    }
+                }
+                // If entry removed from defs entirely, keep View menu toggle as-is
+            }
+        }
+    }
+
     // ── Tips timer and display ────────────────────────────────────────────────
     property var tipsArray: []
     property int currentTipIndex: 0
@@ -2498,6 +2533,12 @@ ApplicationWindow {
                 columnsDialog.columnDefs = downloadTable.columnDefs.slice()
                 columnsDialog.show()
                 columnsDialog.raise()
+            }}
+            CompactMenuItem { text: qsTr("Toolbar…"); iconSrc: "icons/toolbar.svg"; onTriggered: {
+                var saved = App.settings.toolbarButtonDefs
+                toolbarDialog.buttonDefs = saved ? JSON.parse(saved) : toolbarDialog._defaultDefs()
+                toolbarDialog.show()
+                toolbarDialog.raise()
             }}
         }
         Menu {

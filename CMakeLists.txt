@@ -227,6 +227,7 @@ qt_add_qml_module(Stellar
         app/qml/FilePropertiesDialog.qml
         app/qml/FindDialog.qml
         app/qml/ColumnsDialog.qml
+        app/qml/ToolbarDialog.qml
         app/qml/DeleteDoneConfirmDialog.qml
         app/qml/BatchDownloadDialog.qml
         app/qml/BatchDownloadListDialog.qml
@@ -262,6 +263,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/stop_queue.svg
         app/qml/icons/stop_all.svg
         app/qml/icons/tools.svg
+        app/qml/icons/toolbar.svg
         app/qml/icons/pause.svg
         app/qml/icons/properties.svg
         app/qml/icons/scheduler.svg

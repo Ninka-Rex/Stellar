@@ -6418,6 +6418,125 @@ Click to open Statistics</source>
     </message>
 </context>
 <context>
+    <name>ToolbarDialog</name>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="24"/>
+        <location filename="../app/qml/ToolbarDialog.qml" line="105"/>
+        <source>Toolbar</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="107"/>
+        <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="47"/>
+        <source>Add URL</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="48"/>
+        <source>Resume</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="49"/>
+        <source>Stop</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="50"/>
+        <source>Stop All</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="51"/>
+        <source>Delete</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="52"/>
+        <source>Delete Done</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="53"/>
+        <source>Options</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="54"/>
+        <source>Scheduler</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="55"/>
+        <source>Start Queue</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="56"/>
+        <source>Stop Queue</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="57"/>
+        <source>Grabber</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="58"/>
+        <source>Search Engine</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="59"/>
+        <source>RSS</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="199"/>
+        <source>Move Up</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="217"/>
+        <source>Move Down</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="238"/>
+        <source>Enable</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="260"/>
+        <source>Disable</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="282"/>
+        <source>Add Separator</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="303"/>
+        <source>Reset</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="325"/>
+        <source>OK</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ToolbarDialog.qml" line="333"/>
+        <source>Cancel</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>TorrentDuplicateDialog</name>
     <message>
         <location filename="../app/qml/TorrentDuplicateDialog.qml" line="23"/>

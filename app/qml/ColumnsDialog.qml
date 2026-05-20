@@ -112,9 +112,15 @@ Window {
                                 checked: modelData.visible
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: {
-                                    var defs = root.localDefs.slice()
-                                    defs[index] = Object.assign({}, defs[index], { visible: checked })
-                                    root.localDefs = defs
+                                    var idx = index
+                                    var val = checked
+                                    var savedY = colListView.contentY
+                                    Qt.callLater(function() {
+                                        var defs = root.localDefs.slice()
+                                        defs[idx] = Object.assign({}, defs[idx], { visible: val })
+                                        root.localDefs = defs
+                                        colListView.contentY = savedY
+                                    })
                                 }
                             }
 
@@ -194,9 +200,11 @@ Window {
                         cursorShape: parent.canShow ? Qt.PointingHandCursor : Qt.ArrowCursor
                         onClicked: {
                             if (parent.canShow) {
+                                var savedY = colListView.contentY
                                 var defs = root.localDefs.slice()
                                 defs[colListView.currentIndex] = Object.assign({}, defs[colListView.currentIndex], { visible: true })
                                 root.localDefs = defs
+                                colListView.contentY = savedY
                             }
                         }
                     }
@@ -218,9 +226,11 @@ Window {
                         cursorShape: parent.canHide ? Qt.PointingHandCursor : Qt.ArrowCursor
                         onClicked: {
                             if (parent.canHide) {
+                                var savedY = colListView.contentY
                                 var defs = root.localDefs.slice()
                                 defs[colListView.currentIndex] = Object.assign({}, defs[colListView.currentIndex], { visible: false })
                                 root.localDefs = defs
+                                colListView.contentY = savedY
                             }
                         }
                     }

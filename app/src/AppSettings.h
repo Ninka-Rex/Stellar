@@ -67,6 +67,7 @@ class AppSettings : public QObject {
     Q_PROPERTY(bool useCustomUserAgent READ useCustomUserAgent WRITE setUseCustomUserAgent NOTIFY useCustomUserAgentChanged)
     Q_PROPERTY(QString customUserAgent READ customUserAgent WRITE setCustomUserAgent NOTIFY customUserAgentChanged)
     Q_PROPERTY(QString downloadTableColumns READ downloadTableColumns WRITE setDownloadTableColumns NOTIFY downloadTableColumnsChanged)
+    Q_PROPERTY(QString toolbarButtonDefs READ toolbarButtonDefs WRITE setToolbarButtonDefs NOTIFY toolbarButtonDefsChanged)
     Q_PROPERTY(int grabberFilesToExploreAtOnce READ grabberFilesToExploreAtOnce WRITE setGrabberFilesToExploreAtOnce NOTIFY grabberFilesToExploreAtOnceChanged)
     Q_PROPERTY(int grabberFilesToDownloadAtOnce READ grabberFilesToDownloadAtOnce WRITE setGrabberFilesToDownloadAtOnce NOTIFY grabberFilesToDownloadAtOnceChanged)
     Q_PROPERTY(bool grabberUseLinkTextAsDescription READ grabberUseLinkTextAsDescription WRITE setGrabberUseLinkTextAsDescription NOTIFY grabberUseLinkTextAsDescriptionChanged)
@@ -220,6 +221,7 @@ public:
     bool useCustomUserAgent()     const { return m_useCustomUserAgent; }
     QString customUserAgent()     const { return m_customUserAgent; }
     QString downloadTableColumns() const { return m_downloadTableColumns; }
+    QString toolbarButtonDefs() const { return m_toolbarButtonDefs; }
     int grabberFilesToExploreAtOnce() const { return m_grabberFilesToExploreAtOnce; }
     int grabberFilesToDownloadAtOnce() const { return m_grabberFilesToDownloadAtOnce; }
     bool grabberUseLinkTextAsDescription() const { return m_grabberUseLinkTextAsDescription; }
@@ -344,6 +346,7 @@ public:
     void setUseCustomUserAgent(bool v);
     void setCustomUserAgent(const QString &v);
     void setDownloadTableColumns(const QString &v);
+    void setToolbarButtonDefs(const QString &v);
     void setGrabberFilesToExploreAtOnce(int v);
     void setGrabberFilesToDownloadAtOnce(int v);
     void setGrabberUseLinkTextAsDescription(bool v);
@@ -486,6 +489,7 @@ signals:
     void useCustomUserAgentChanged();
     void customUserAgentChanged();
     void downloadTableColumnsChanged();
+    void toolbarButtonDefsChanged();
     void grabberFilesToExploreAtOnceChanged();
     void grabberFilesToDownloadAtOnceChanged();
     void grabberUseLinkTextAsDescriptionChanged();
@@ -578,6 +582,7 @@ private:
     bool        m_useCustomUserAgent{false};
     QString     m_customUserAgent;
     QString     m_downloadTableColumns;
+    QString     m_toolbarButtonDefs;
     int         m_grabberFilesToExploreAtOnce{4};
     int         m_grabberFilesToDownloadAtOnce{4};
     bool        m_grabberUseLinkTextAsDescription{true};
