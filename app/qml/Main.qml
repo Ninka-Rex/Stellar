@@ -2886,6 +2886,7 @@ ApplicationWindow {
                 id: sidebarDivider
                 width: 4
                 height: parent.height
+                visible: sidebar.visible
                 // On the right side of the sidebar when sidebar is on the left,
                 // on the left side when sidebar is on the right.
                 x: App.settings.sidebarOnRight
@@ -2955,8 +2956,8 @@ ApplicationWindow {
             DownloadTable {
                 id: downloadTable
                 height: parent.height
-                x: App.settings.sidebarOnRight ? 0 : App.settings.sidebarWidth + sidebarDivider.width
-                width: parent.width - App.settings.sidebarWidth - sidebarDivider.width
+                x: sidebar.visible && !App.settings.sidebarOnRight ? App.settings.sidebarWidth + sidebarDivider.width : 0
+                width: parent.width - (sidebar.visible ? App.settings.sidebarWidth + sidebarDivider.width : 0)
                 categoryDragProxy: dragProxy
                 onExportTorrentsRequested: (downloadIds) => {
                     root.pendingTorrentExportIds = downloadIds
