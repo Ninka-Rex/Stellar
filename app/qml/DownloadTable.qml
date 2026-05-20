@@ -707,6 +707,23 @@ Rectangle {
         _findRow   = -1
     }
 
+    function deselectAll() {
+        _setSelection({})
+        _anchorRow = -1
+    }
+
+    function openSelectedFile() {
+        var item = _selectedItem()
+        if (item && item.status === "Completed")
+            App.openFile(item.id)
+    }
+
+    function openFolderForSelected() {
+        var item = _selectedItem()
+        if (item && item.status === "Completed")
+            App.openFolder(item.id)
+    }
+
     function itemMatchesActiveFilter(item) {
         return filterText.length === 0
             || _itemMatchesFind(item, filterText, filterName, filterDesc,
@@ -1123,6 +1140,18 @@ Rectangle {
                 }
                 root._setSelection(r)
                 root._anchorRow = Object.keys(r).length > 0 ? parseInt(Object.keys(r).pop()) : -1
+                e.accepted = true
+            } else if (e.key === Qt.Key_Delete) {
+                root.deleteSelected()
+                e.accepted = true
+            } else if (e.key === Qt.Key_Return || e.key === Qt.Key_Enter) {
+                if (e.modifiers & Qt.ControlModifier)
+                    root.openFolderForSelected()
+                else
+                    root.openSelectedFile()
+                e.accepted = true
+            } else if (e.key === Qt.Key_D && (e.modifiers & Qt.ControlModifier)) {
+                root.deselectAll()
                 e.accepted = true
             }
         }

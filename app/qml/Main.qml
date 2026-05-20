@@ -73,6 +73,13 @@ ApplicationWindow {
         downloadTable.clearFilter()
     }
 
+    function toggleSessionPause() {
+        if (App.sessionPaused)
+            App.resumeSession()
+        else
+            App.pauseSession()
+    }
+
     function showSettingsPage(page) {
         settingsDialog.initialPage = page
         settingsDialog.show()
@@ -2173,7 +2180,18 @@ ApplicationWindow {
             spacing: 0
             font.pixelSize: 12 * App.fontScale
             property string iconSrc: ""
-            indicator: Item { width: 0; height: 0 }
+            property string shortcutDisplay: ""
+            indicator: Item {
+                width: _cmi.checkable ? 16 : 0
+                height: _cmi.checkable ? 16 : 0
+                Text {
+                    text: "✓"
+                    visible: _cmi.checkable && _cmi.checked
+                    color: "#4488dd"
+                    font.pixelSize: 12 * App.fontScale
+                    anchors.centerIn: parent
+                }
+            }
             arrow: Text {
                 x: _cmi.width - width - 8
                 anchors.verticalCenter: parent ? parent.verticalCenter : undefined
@@ -2182,7 +2200,7 @@ ApplicationWindow {
                 color: "#888888"
                 visible: _cmi.subMenu !== null
             }
-            contentItem: Row {
+            contentItem: RowLayout {
                 spacing: 6
                 anchors.verticalCenter: parent ? parent.verticalCenter : undefined
                 Image {
@@ -2192,16 +2210,25 @@ ApplicationWindow {
                     sourceSize.width: 14; sourceSize.height: 14
                     fillMode: Image.PreserveAspectFit
                     smooth: true
-                    anchors.verticalCenter: parent.verticalCenter
+                    Layout.preferredWidth: visible ? 14 : 0
+                    Layout.preferredHeight: 14
                 }
-                Item { visible: _cmi.iconSrc === ""; width: 0; height: 14 }
+                Item { visible: _cmi.iconSrc === ""; Layout.preferredWidth: 0; Layout.preferredHeight: 14 }
                 Text {
                     text: _cmi.text
                     font: _cmi.font
                     color: _cmi.enabled ? "#d0d0d0" : "#666666"
                     verticalAlignment: Text.AlignVCenter
                     elide: Text.ElideRight
-                    anchors.verticalCenter: parent.verticalCenter
+                    Layout.fillWidth: true
+                }
+                Text {
+                    text: _cmi.shortcutDisplay
+                    color: "#888888"
+                    font.pixelSize: 11 * App.fontScale
+                    visible: text !== ""
+                    verticalAlignment: Text.AlignVCenter
+                    Layout.leftMargin: 12
                 }
             }
             background: Rectangle {
@@ -2235,31 +2262,39 @@ ApplicationWindow {
         Action { shortcut: "Ctrl+F";       onTriggered: { root.findBarActive = true; findBarField.forceActiveFocus() } }
         Action { shortcut: "F3";           onTriggered: downloadTable.findNextFiltered() }
         Action { shortcut: "Ctrl+,";       onTriggered: settingsDialog.show() }
+        Action { shortcut: "Ctrl+S";       onTriggered: downloadTable.resumeSelected() }
+        Action { shortcut: "Ctrl+Shift+P"; onTriggered: root.toggleSessionPause() }
+        Action { shortcut: "Ctrl+I";       onTriggered: { statisticsDialog.show(); statisticsDialog.raise(); statisticsDialog.requestActivate() } }
+        Action { shortcut: "Ctrl+Shift+C"; onTriggered: { torrentCreatorDialog.show(); torrentCreatorDialog.raise(); torrentCreatorDialog.requestActivate() } }
+        Action { shortcut: "Ctrl+D";       onTriggered: downloadTable.deselectAll() }
+        Action { shortcut: "Alt+O";        onTriggered: settingsDialog.show() }
 
         Menu {
             title: qsTr("Tasks")
             delegate: CompactMenuItem
-            implicitWidth: 200
+            implicitWidth: 260
             topPadding: 0; bottomPadding: 0
             CompactMenuItem { text: qsTr("Add URL…");          iconSrc: "icons/add_url.svg";  onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
             CompactMenuItem { text: qsTr("Add Torrent File…"); iconSrc: "icons/torrent_file.svg";   onTriggered: addTorrentFileDialog.open() }
             CompactMenuItem { text: qsTr("Add Batch URLs…");   iconSrc: "icons/add.svg";      onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
             MenuSeparator {}
-            CompactMenuItem { text: qsTr("Exit");               iconSrc: "icons/exit.svg";     onTriggered: root.quitApp() }
+            CompactMenuItem { text: qsTr("Exit"); shortcutDisplay: "Ctrl+Q"; iconSrc: "icons/exit.svg"; onTriggered: root.quitApp() }
         }
         Menu {
             title: qsTr("File")
             delegate: CompactMenuItem
-            implicitWidth: 200
+            implicitWidth: 260
             topPadding: 0; bottomPadding: 0
             CompactMenuItem {
                 text: qsTr("Open Folder")
+                shortcutDisplay: "Ctrl+Enter"
                 iconSrc: "icons/folder_view.svg"
                 enabled: root.selectedDownloadItem && root.selectedDownloadItem.status === "Completed"
                 onTriggered: { var item = root.selectedDownloadItem; if (item && item.status === "Completed") App.openFolder(item.id) }
             }
             CompactMenuItem {
                 text: qsTr("Open File")
+                shortcutDisplay: "Enter"
                 iconSrc: "icons/page.svg"
                 enabled: root.selectedDownloadItem && root.selectedDownloadItem.status === "Completed"
                 onTriggered: { var item = root.selectedDownloadItem; if (item && item.status === "Completed") App.openFile(item.id) }
@@ -2267,6 +2302,7 @@ ApplicationWindow {
             MenuSeparator {}
             CompactMenuItem {
                 text: qsTr("Download Now")
+                shortcutDisplay: "Ctrl+S"
                 iconSrc: "icons/resume.svg"
                 enabled: root.selectedDownloadItem && root.selectedDownloadItem.status === "Paused"
                 onTriggered: { var item = root.selectedDownloadItem; if (item && item.status === "Paused") App.resumeDownload(item.id) }
@@ -2279,6 +2315,7 @@ ApplicationWindow {
             }
             CompactMenuItem {
                 text: qsTr("Remove")
+                shortcutDisplay: "Del"
                 iconSrc: "icons/delete.svg"
                 enabled: root.selectedDownloadItem !== null
                 onTriggered: root.selectedDownloadItem ? downloadTable.deleteSelected() : null
@@ -2301,6 +2338,7 @@ ApplicationWindow {
             }
             CompactMenuItem {
                 text: qsTr("Create Torrent…")
+                shortcutDisplay: "Ctrl+Shift+C"
                 iconSrc: "icons/new_file.svg"
                 onTriggered: {
                     torrentCreatorDialog.show()
@@ -2312,15 +2350,15 @@ ApplicationWindow {
         Menu {
             title: qsTr("Downloads")
             delegate: CompactMenuItem
-            implicitWidth: 200
+            implicitWidth: 260
             topPadding: 0; bottomPadding: 0
-            CompactMenuItem { text: qsTr("Pause all");           iconSrc: "icons/pause.svg";         onTriggered: downloadTable.pauseAll() }
+            CompactMenuItem { text: qsTr("Pause all"); shortcutDisplay: "Ctrl+P"; iconSrc: "icons/pause.svg"; onTriggered: downloadTable.pauseAll() }
             CompactMenuItem { text: qsTr("Stop all");            iconSrc: "icons/stop_all.svg";  onTriggered: downloadTable.pauseAll() }
             MenuSeparator {}
             CompactMenuItem { text: qsTr("Delete all completed"); iconSrc: "icons/delete.svg";        onTriggered: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() } }
             MenuSeparator {}
-            CompactMenuItem { text: qsTr("Find…");               iconSrc: "icons/magnifying_glass.svg"; onTriggered: { root.findBarActive = true; findBarField.forceActiveFocus() } }
-            CompactMenuItem { text: qsTr("Find Next");           iconSrc: "icons/magnifying_glass.svg"; onTriggered: downloadTable.findNextFiltered() }
+            CompactMenuItem { text: qsTr("Find…"); shortcutDisplay: "Ctrl+F"; iconSrc: "icons/magnifying_glass.svg"; onTriggered: { root.findBarActive = true; findBarField.forceActiveFocus() } }
+            CompactMenuItem { text: qsTr("Find Next"); shortcutDisplay: "F3"; iconSrc: "icons/magnifying_glass.svg"; onTriggered: downloadTable.findNextFiltered() }
             MenuSeparator {}
             CompactMenuItem { text: qsTr("Scheduler"); iconSrc: "icons/scheduler.svg"; onTriggered: schedulerDialog.show() }
             CompactMenuItem {
@@ -2333,7 +2371,7 @@ ApplicationWindow {
                 }
                 Menu {
                     id: _startQueueMenu
-                    delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0
+                    delegate: CompactMenuItem; implicitWidth: 260; topPadding: 0; bottomPadding: 0
                     onAboutToHide: _sqCloseTimer.stop()
                     Repeater {
                         model: App.queueModel
@@ -2355,7 +2393,7 @@ ApplicationWindow {
                 }
                 Menu {
                     id: _stopQueueMenu
-                    delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0
+                    delegate: CompactMenuItem; implicitWidth: 260; topPadding: 0; bottomPadding: 0
                     onAboutToHide: _stqCloseTimer.stop()
                     Repeater {
                         model: App.queueModel
@@ -2379,7 +2417,7 @@ ApplicationWindow {
                 }
                 Menu {
                     id: _speedLimiterMenu1
-                    delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0
+                    delegate: CompactMenuItem; implicitWidth: 260; topPadding: 0; bottomPadding: 0
                     onAboutToHide: _sl1CloseTimer.stop()
                     CompactMenuItem { text: (App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: { App.enableSpeedLimiter(); _speedLimiterMenu1.close() } }
                     CompactMenuItem { text: (!App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: { App.disableSpeedLimiter(); _speedLimiterMenu1.close() } }
@@ -2388,13 +2426,21 @@ ApplicationWindow {
                 }
                 Timer { id: _sl1CloseTimer; interval: 300; onTriggered: { if (!_speedLimiterMenu1.activeFocus) _speedLimiterMenu1.close() } }
             }
+            CompactMenuItem {
+                iconSrc: "icons/pause.svg"
+                text: qsTr("Pause Session")
+                shortcutDisplay: "Ctrl+Shift+P"
+                checkable: true
+                checked: App.sessionPaused
+                onTriggered: App.sessionPaused ? App.resumeSession() : App.pauseSession()
+            }
             MenuSeparator {}
-            CompactMenuItem { text: qsTr("Options…"); iconSrc: "icons/gear.svg"; onTriggered: settingsDialog.show() }
+            CompactMenuItem { text: qsTr("Options…"); shortcutDisplay: "Alt+O"; iconSrc: "icons/gear.svg"; onTriggered: settingsDialog.show() }
         }
         Menu {
             title: qsTr("View")
             delegate: CompactMenuItem
-            implicitWidth: 200
+            implicitWidth: 260
             topPadding: 0; bottomPadding: 0
             CompactMenuItem {
                 text: (sidebar && sidebar.visible) ? qsTr("Hide Categories") : qsTr("Show Categories")
@@ -2416,6 +2462,7 @@ ApplicationWindow {
             MenuSeparator {}
             CompactMenuItem {
                 text: qsTr("Statistics…")
+                shortcutDisplay: "Ctrl+I"
                 iconSrc: "icons/bar_chart.svg"
                 onTriggered: { statisticsDialog.show(); statisticsDialog.raise(); statisticsDialog.requestActivate() }
             }
@@ -2430,7 +2477,7 @@ ApplicationWindow {
                 }
                 Menu {
                     id: _arrangeFilesMenu
-                    delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0
+                    delegate: CompactMenuItem; implicitWidth: 260; topPadding: 0; bottomPadding: 0
                     onAboutToHide: _arrangeFilesCloseTimer.stop()
                     CompactMenuItem { text: qsTr("By Order Of Addition");  onTriggered: App.sortDownloads("added", true) }
                     CompactMenuItem { text: qsTr("By File Name");          onTriggered: App.sortDownloads("name", true) }
@@ -2456,7 +2503,7 @@ ApplicationWindow {
         Menu {
             title: qsTr("Options")
             delegate: CompactMenuItem
-            implicitWidth: 200
+            implicitWidth: 260
             topPadding: 0; bottomPadding: 0
             CompactMenuItem { text: qsTr("Preferences…"); iconSrc: "icons/gear.svg";      onTriggered: settingsDialog.show() }
             CompactMenuItem { text: qsTr("Scheduler");    iconSrc: "icons/scheduler.svg"; onTriggered: schedulerDialog.show() }
@@ -2471,7 +2518,7 @@ ApplicationWindow {
                 }
                 Menu {
                     id: _speedLimiterMenu2
-                    delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0
+                    delegate: CompactMenuItem; implicitWidth: 260; topPadding: 0; bottomPadding: 0
                     onAboutToHide: _sl2CloseTimer.stop()
                     CompactMenuItem { text: (App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: { App.enableSpeedLimiter(); _speedLimiterMenu2.close() } }
                     CompactMenuItem { text: (!App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: { App.disableSpeedLimiter(); _speedLimiterMenu2.close() } }
@@ -2490,7 +2537,7 @@ ApplicationWindow {
             id: rssMenuBarMenu
             title: qsTr("RSS")
             delegate: CompactMenuItem
-            implicitWidth: 210
+            implicitWidth: 260
             topPadding: 0; bottomPadding: 0
             CompactMenuItem { text: qsTr("Open RSS Reader");      iconSrc: "icons/rss.svg";    onTriggered: root.showRssWindow() }
             CompactMenuItem { text: qsTr("Refresh All Feeds");    iconSrc: "icons/update.svg"; onTriggered: App.rssManager.refreshAll() }
@@ -2520,7 +2567,7 @@ ApplicationWindow {
         Menu {
             title: qsTr("Help")
             delegate: CompactMenuItem
-            implicitWidth: 200
+            implicitWidth: 260
             topPadding: 0; bottomPadding: 0
             CompactMenuItem { text: qsTr("Check for Updates"); iconSrc: "icons/satellite_antenna.svg"; onTriggered: App.checkForUpdates(true) }
             MenuSeparator {}
@@ -2536,7 +2583,7 @@ ApplicationWindow {
                 }
                 Menu {
                     id: _browserIntMenu
-                    delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0
+                    delegate: CompactMenuItem; implicitWidth: 260; topPadding: 0; bottomPadding: 0
                     onAboutToHide: _browserIntCloseTimer.stop()
                     CompactMenuItem { text: qsTr("Browser Extensions…"); onTriggered: { browserIntegrationDialog.show(); browserIntegrationDialog.raise(); browserIntegrationDialog.requestActivate() } }
                     MenuSeparator {}
@@ -2936,7 +2983,7 @@ ApplicationWindow {
 
                     Menu {
                         id: sidebarPositionMenu
-                        implicitWidth: 200
+                        implicitWidth: 260
                         topPadding: 0
                         bottomPadding: 0
                         delegate: CompactMenuItem {}
