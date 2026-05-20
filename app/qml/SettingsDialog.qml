@@ -4530,7 +4530,7 @@ Window {
                                     spacing: 10
 
                                     Text {
-                                        text: qsTr("Version %1").arg(App.appVersion)
+                                        text: qsTr("Version %1 Beta").arg(App.appVersion)
                                         color: "#4488dd"; font.pixelSize: 12 * App.fontScale
                                     }
 

@@ -280,6 +280,7 @@ void YtdlpTransfer::start() {
             this, &YtdlpTransfer::onProcessError);
 
     // Mark the item as actively downloading and capable of being resumed
+    m_item->setLastTryAt(QDateTime::currentDateTime());
     m_item->setStatus(DownloadItem::Status::Downloading);
     m_item->setResumeCapable(true);
 

@@ -33,7 +33,7 @@ ApplicationWindow {
     minimumHeight: 500
     title: {
         const prefix = App.sessionPaused ? "[" + qsTr("PAUSED") + "] " : ""
-        const base = qsTr("Stellar Download Manager") + " " + App.appVersion
+        const base = qsTr("Stellar Download Manager") + " " + App.appVersion + " Beta"
         if (!App.settings.speedInTitleBar)
             return prefix + base
         function fmt(bps) {

@@ -5980,7 +5980,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     </message>
     <message>
         <location filename="../app/qml/SettingsDialog.qml" line="4251"/>
-        <source>Version %1</source>
+        <source>Version %1 Beta</source>
         <translation></translation>
     </message>
     <message>

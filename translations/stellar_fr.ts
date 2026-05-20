@@ -4708,8 +4708,8 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
             <translation>L'URL de la source n'est pas encore mise en cache. Utilisez Vérifier les mises à jour pour mettre en cache IPtoCityDB depuis update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Version %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Version %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
