@@ -950,6 +950,10 @@ Klik op URL toevoegen om te starten.</translation>
             <translation>Magnet-link kopiëren</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Verifieer lokale data</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL kopiëren</translation>
         </message>
@@ -4701,8 +4705,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Bron-URL nog niet geïncacheerd. Gebruik 'Updates controleren' om IPtoCityDB te incachen vanuit update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Versie %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Versie %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4719,6 +4723,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JS-runtime selecteren</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Systeemvakpictogram:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Gekleurd</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Wit</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Zwart</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Weergave</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI-schaal:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Lettergrootte:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Systeemstandaard</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Herstart vereist voor weergavewijzigingen. Nu herstarten?</translation>
         </message>
     </context>
     <context>
@@ -4838,28 +4878,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 actief</translation>
+            <source>unlimited</source>
+            <translation>onbeperkt</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 actief</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 download</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 downloads</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 fout</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 fouten</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Snelheidsbeperking</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4870,24 +4894,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 Update controleren</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Snelheidsbeperking</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Klaar</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 geselecteerd</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 geselecteerd</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT uit</translation>
+            <source>DHT off</source>
+            <translation>DHT uit</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4898,6 +4906,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation> online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Schatten… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>volgende &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Wachtlijn klaar in 1 minuut</translation>
         </message>
@@ -4906,29 +4922,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 Wachtlijn start over %1 minuten</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Schatting… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>volgende &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Totaal share ratio</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Klik om statistieken te openen</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>Klik om IP te kopiëren</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Publiek IP:</translation>
+            <source>Listening port: </source>
+            <translation>Signaal:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Geen netwerkverbinding gedetecteerd</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Luistertijd:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4939,12 +4951,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Signaal:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Publiek IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Luistertijd:</translation>
+            <source>Click to copy IP</source>
+            <translation>Klik om statistieken te openen</translation>
         </message>
     </context>
     <context>
@@ -5047,6 +5059,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Werkbalk</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Werkbalkknoppen aanpassen. Gebruik Omhoog en Omlaag om te herordenen. Vink aan om in te schakelen, uit om uit te schakelen.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL toevoegen</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Hervatten</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Stoppen</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Alles stoppen</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Verwijderen</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Klaar verwijderen</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Opties</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Planner</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Wachtrij starten</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Wachtrij stoppen</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Grabber</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Zoekmachine</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Omhoog</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Omlaag</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Inschakelen</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Uitschakelen</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Scheiding toevoegen</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Herstellen</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Annuleren</translation>
         </message>
     </context>
     <context>

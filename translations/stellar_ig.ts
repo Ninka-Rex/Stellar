@@ -949,6 +949,10 @@ Click  Add URL  to start.</source>
             <translation>ṅomiri Njikọ Magnet</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Nyochaa data mpaghara</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>ṅomiri URL</translation>
         </message>
@@ -4714,8 +4718,8 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
             <translation>Edebeghị URL isi mmalite. Jiri Lelee maka mmelite iji debe IPtoCityDB site na update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Ụdị %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Ụdị %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4732,6 +4736,42 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Họrọ faịlụ runtime JavaScript</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Ụdị akara tray:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Agba</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Ọcha</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Oji</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Ọdịdị</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Ọ̀tụ̀tụ̀ UI:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Nha mkpụrụedemede:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Ndabere sistemụ</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Mwegharị dị mkpa ka mgbanwe ọdịdị wee rụọ ọrụ. Mwegharị ugbu a?</translation>
         </message>
     </context>
     <context>
@@ -4851,28 +4891,12 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 na-arụ ọrụ</translation>
+            <source>unlimited</source>
+            <translation>enweghị oke</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 na-arụ ọrụ</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 nbudata</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 nbudata</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 njehie</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 njehie</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Ihe mgbochi ọsọ</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4883,24 +4907,8 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
             <translation>📡 Na-enyocha mmelite</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Ihe mgbochi ọsọ</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Njikere</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 ahọpụtara</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 ahọpụtara</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT gbanyụrụ</translation>
+            <source>DHT off</source>
+            <translation>DHT gbanyụrụ</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4911,6 +4919,14 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
             <translation>n'ịntanetị</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Na-atụle… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>ọzọ &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Kwụ n'ahịrị na-agba n'ime nkeji 1</translation>
         </message>
@@ -4919,30 +4935,26 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
             <translation>🟧 Kwụ n'ahịrị na-agba n'ime nkeji %1</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Na-atụle… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>ọzọ &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Oke nkekọrịta oge niile
 Pịa imeghe Ọnụọgụ</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>Pịa iṅomi IP</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>IP Ọha: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Njikọ: Ethernet</translation>
+            <source>Listening port: </source>
+            <translation>Ọdụ ụgbọ mmiri na-ege ntị:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Ahụghị njikọ netwọk</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Enweghị njikọ na-abata, netwọk nwere ike ịbụ na-ahazighị</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4953,12 +4965,12 @@ Pịa imeghe Ọnụọgụ</translation>
             <translation>Mgbama: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Ọdụ ụgbọ mmiri na-ege ntị:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Njikọ: Ethernet</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Enweghị njikọ na-abata, netwọk nwere ike ịbụ na-ahazighị</translation>
+            <source>Click to copy IP</source>
+            <translation>Pịa iṅomi IP</translation>
         </message>
     </context>
     <context>
@@ -5061,6 +5073,101 @@ Pịa imeghe Ọnụọgụ</translation>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Ogwe ngwaọrụ</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Hazie bọtịnụ ogwe ngwaọrụ. Jiri Bulie Elu na Wetuo Ala megharịa. Tinye akara iji gbanye, wepụ akara iji gbanyụọ.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Tinye URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Gaa n'ihu</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Kwụsị</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Kwụsị Ha Niile</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Hichapụ</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Hichapụ Emechara</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Nhọrọ</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Nhazi Oge</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Malite Kwụụ</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Kwụsị Kwụụ</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Nnara</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Njikọ Ọchụchọ</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Bulie elu</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Weda ala</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Gbanye</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Gbanyụọ</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Tinye nkewa</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Tọgharịa</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Ọ dị mma</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Kagbuo</translation>
         </message>
     </context>
     <context>

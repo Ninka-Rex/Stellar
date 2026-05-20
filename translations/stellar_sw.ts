@@ -950,6 +950,10 @@ Bonyeza  Onyesha URL  kuanza.</translation>
             <translation>Sogelea kwenye Mzunguko</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Thibitisha Data ya Ndani</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Nakili Mkondo wa Magnet</translation>
         </message>
@@ -4698,8 +4702,8 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <translation>URL ya chanzo haijapashwa. Tumia Angalia mipya ili kupashwa IPtoCityDB kutoka update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Sifa %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Toleo %1 la Majaribio</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4716,6 +4720,42 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Chagua mbinu ya JavaScript</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Mtindo wa ikoni ya trei:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Rangi</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Nyeupe</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Nyeusi</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Mwonekano</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Kiwango cha UI:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Ukubwa wa fonti:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Chaguo-msingi cha mfumo</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Kuwasha upya kunahitajika ili mabadiliko ya mwonekano yaanze. Washa upya sasa?</translation>
         </message>
     </context>
     <context>
@@ -4835,28 +4875,12 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 kazi</translation>
+            <source>unlimited</source>
+            <translation>bila kikomo</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 zimekamilika</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 kupakua</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 kupakuliwa</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 makosa</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 makosa</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Kizuizi cha kasi</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4867,24 +4891,8 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <translation>📡 Kutafuta majaribio</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Kizuizi cha kasi</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Iko tayari</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 imechaguliwa</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 imechaguliwa</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT imeziba</translation>
+            <source>DHT off</source>
+            <translation>DHT imezimwa</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4895,6 +4903,14 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <translation> online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Inakadiriwa… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>kisha &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Mzunguko utafanyika dakika 1</translation>
         </message>
@@ -4903,29 +4919,25 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <translation>🟧 Mzunguko utafanyika dakika %1</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Inakokotoa… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>kisha &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Sehemu ya jumla</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Fungua takwimu</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>Nakili IP</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>IP ya umma:</translation>
+            <source>Listening port: </source>
+            <translation>Miali:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Hakuna muunganisho wa mtandao uliotambuliwa</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Porti ya kusikiliza:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4936,12 +4948,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Miali:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>IP ya umma:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Porti ya kusikiliza:</translation>
+            <source>Click to copy IP</source>
+            <translation>Fungua takwimu</translation>
         </message>
     </context>
     <context>
@@ -5044,6 +5056,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Upau wa zana</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Geuza vitufe vya upau wa zana. Tumia Sogeza Juu na Sogeza Chini kupanga upya. Weka tiki kuwasha, ondoa tiki kuzima.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Ongeza URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Endelea</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Simamisha</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Simamisha Zote</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Futa</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Futa Zilizomalizika</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Chaguo</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Ratiba</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Anzisha Foleni</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Simamisha Foleni</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Kishikaji</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Injini ya Utafutaji</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Sogeza Juu</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Sogeza Chini</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Wezesha</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Zima</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Ongeza Kitenganishi</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Weka Upya</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
         </message>
     </context>
     <context>

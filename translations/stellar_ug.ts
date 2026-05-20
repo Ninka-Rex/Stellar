@@ -950,6 +950,10 @@ Click  Add URL  to start.</source>
             <translation>ماگنىت ئۇلانمىسىنى كۆچۈرۈش</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>1. يەرلىك سانلىق-مەلۇماتنى دەلىللەش</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL نى كۆچۈرۈش</translation>
         </message>
@@ -4713,8 +4717,8 @@ BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق �
             <translation>مەنبە URL تېخى كەشلەنمىدى. IPtoCityDB نى update.json دىن كەشلەش ئۈچۈن يېڭىلانمىلارنى تەكشۈرۈشنى ئىشلىتىڭ.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>نەشرى %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>2. نەشرى %1 سىناق</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4731,6 +4735,42 @@ BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق �
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JavaScript ئىجرا مۇھىتى ھۆججىتىنى تاللاڭ</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>3. تەخسە سىنبەلگە ئۇسلۇبى:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>4. رەڭلىك</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>5. ئاق</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>6. قارا</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>7. كۆرۈنۈش</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>8. UI نىسبىتى:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>9. خەت چوڭلۇقى:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>10. سىستېما سۈكۈت</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>كۆرۈنۈش ئۆزگەرتىشلىرى كۈچكە ئىگە بولۇشى ئۈچۈن قايتا قوزغىتىش كېرەك. ھازىر قايتا قوزغىتامسىز؟</translation>
         </message>
     </context>
     <context>
@@ -4850,28 +4890,12 @@ BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق �
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 ئاكتىپ</translation>
+            <source>unlimited</source>
+            <translation>چەكسىز</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 ئاكتىپ</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 چۈشۈرۈش</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 چۈشۈرۈش</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 خاتالىق</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 خاتالىق</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 سۈرئەت چەكلىگۈچ</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4882,24 +4906,8 @@ BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق �
             <translation>📡 يېڭىلانمىلارنى تەكشۈرۈۋاتىدۇ</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 سۈرئەت چەكلىگۈچ</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 تەييار</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 تاللاندى</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 تاللاندى</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT ئوچۇق ئەمەس</translation>
+            <source>DHT off</source>
+            <translation>DHT ئۆچۈك</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4910,6 +4918,14 @@ BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق �
             <translation>توردا</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>مۆلچەرلىنىۋاتىدۇ… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>كېيىنكى &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 نۆۋەت 1 مىنۇتتا ئىجرا قىلىنىدۇ</translation>
         </message>
@@ -4918,30 +4934,26 @@ BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق �
             <translation>🟧 نۆۋەت %1 مىنۇتتا ئىجرا قىلىنىدۇ</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 مۆلچەرلەۋاتىدۇ… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>كېيىنكى &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>ئومۇمىي ئۇلىشىش نىسبىتى
 ستاتىستىكىنى ئېچىش ئۈچۈن چېكىڭ</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>IP نى كۆچۈرۈش ئۈچۈن چېكىڭ</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>ئاشكارا IP: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>ئۇلىنىش: Ethernet</translation>
+            <source>Listening port: </source>
+            <translation>ئاڭلاش پورتى:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>تور باغلىنىشى بايقالمىدى</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>كىرىدىغان ئۇلىنىش يوق، تور تەڭشىكى خاتا بولۇشى مۇمكىن</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4952,12 +4964,12 @@ Click to open Statistics</source>
             <translation>سىگنال: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>ئاڭلاش پورتى:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>ئۇلىنىش: Ethernet</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>كىرىدىغان ئۇلىنىش يوق، تور تەڭشىكى خاتا بولۇشى مۇمكىن</translation>
+            <source>Click to copy IP</source>
+            <translation>IP نى كۆچۈرۈش ئۈچۈن چېكىڭ</translation>
         </message>
     </context>
     <context>
@@ -5060,6 +5072,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>قورال بالدىقى</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>قورال بالداق كۇنۇپكىلىرىنى خاسلاشتۇرۇڭ. تەرتىپنى ئۆزگەرتىش ئۈچۈن يۇقىرىغا يۆتكەش ۋە تۆۋەنگە يۆتكەشنى ئىشلىتىڭ. قوزغىتىش ئۈچۈن بەلگە قويۇڭ، چەكلەش ئۈچۈن بەلگىنى ئېلىڭ.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL قوشۇش</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>داۋاملاشتۇر</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>توختات</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>ھەممىنى توختات</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ئۆچۈر</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>تاماملانغاننى ئۆچۈر</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>تەڭشەكلەر</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>ۋاقىتلىغۇچ</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>نۆۋەتنى باشلا</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>نۆۋەتنى توختات</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>تۇتقۇچ</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>ئىزدەش ماتورى</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>1. يۇقىرىغا يۆتكەش</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>2. تۆۋەنگە يۆتكەش</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>3. قوزغىتىش</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>4. چەكلەش</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>5. ئايرىغۇچ قوشۇش</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>6. ئەسلىگە قايتۇرۇش</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>7. جەزملەش</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>8. ۋاز كېچىش</translation>
         </message>
     </context>
     <context>

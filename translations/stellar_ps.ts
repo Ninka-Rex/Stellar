@@ -951,6 +951,10 @@ URL اضافه کړئ ترڅو پیل شي.</translation>
             <translation>مګنټ لینک کاپي کړئ</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>محلي معلومات تایید کړئ</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL کاپي کړئ</translation>
         </message>
@@ -4707,8 +4711,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>سرچینه URL اوس مهال کیچ نه دی. IPtoCityDB د update.json څخه کیچ کولو لپاره د تازه کولو چیک وکاروئ.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>نسخه %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>نسخه %1 بیټا</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4725,6 +4729,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>د جاواسکریپت رنټایم باینري وټاکئ</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>د ټرې آیکون بڼه:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>رنګین</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>سپین</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>تور</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>ښکاره بڼه</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>د UI کچه:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>د فونټ اندازه:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>سیسټم ډیفالټ</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>د بڼې بدلونونو لپاره بیا پیل ته اړتیا ده. همدا اوس بیا پیل کړو؟</translation>
         </message>
     </context>
     <context>
@@ -4844,28 +4884,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 ۱ فعال</translation>
+            <source>unlimited</source>
+            <translation>بې حده</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 فعال</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 ۱ ډاونلوډ</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 ډاونلوډونه</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 ۱ تېروتنه</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 تېروتنې</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 د سرعت محدودونکی</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4876,24 +4900,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 تازه کول وګورئ</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 د سرعت محدودونکی</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 چمتو</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 ۱ غوره شوی</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 ټاکل شوي</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT غیر فعال</translation>
+            <source>DHT off</source>
+            <translation>DHT بند</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4904,6 +4912,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>آنلاین</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>اټکل کېږي… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>بل &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 قطار په ۱ دقیق کې پیل کیږي</translation>
         </message>
@@ -4912,29 +4928,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 کتار په %1 دقیقو کې پیلېږي</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 اټکل کېږي… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>بل &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>د شریکونو تناسب</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>د احصایو لپاره کلیک وکړئ</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>د IP کاپي لپاره کلیک وکړئ</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>عمومي IP: </translation>
+            <source>Listening port: </source>
+            <translation>د اورېدو پورټ:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>هیڅ شبکه یي اړیکه ونه موندل شوه</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>تېښتې نښلونې نشته، شبکه غلط تنظیم شوې</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4945,12 +4957,12 @@ Click to open Statistics</source>
             <translation>WiFi: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>د اورېدو پورټ:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>عمومي IP: </translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>تېښتې نښلونې نشته، شبکه غلط تنظیم شوې</translation>
+            <source>Click to copy IP</source>
+            <translation>د احصایو لپاره کلیک وکړئ</translation>
         </message>
     </context>
     <context>
@@ -5053,6 +5065,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>3. RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>وسیلپټه</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>د وسیلپټې تڼۍ تنظیم کړئ. د بیا ترتیب لپاره پورته او ښکته وکاروئ. د فعالولو لپاره نښه کړئ، د غیر فعالولو لپاره نښه لرې کړئ.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL ورګډ کړئ</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>بیا پیل</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>درول</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>ټول ودروئ</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ړنګول</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>ترسره شوي ړنګول</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>اختیارونه</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>مهالوېش</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>کتار پیل</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>کتار ودروئ</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>نیوونکی</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>لټون ماشین</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>پورته یوسه</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>ښکته یوسه</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>فعالول</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>غیرفعالول</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>بېلوونکی اضافه کړئ</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>بیا تنظیمول</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
         </message>
     </context>
     <context>

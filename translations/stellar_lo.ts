@@ -950,6 +950,10 @@ Click  Add URL  to start.</source>
             <translation>ສຳເນົາລິ້ງແມ່ເຫຼັກ</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>ກວດສອບຂໍ້ມູນທ້ອງຖິ່ນ</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>ສຳເນົາ URL</translation>
         </message>
@@ -4716,8 +4720,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>3. URL ແຫຼ່ງຍັງບໍ່ຖືກເກັບໄວ້. ໃຊ້ ກວດສອບອັບເດດ ເພື່ອເກັບ IPtoCityDB ຈາກ update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>4. ເວີຊັນ %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>ເວີຊັນ %1 ເບຕ້າ</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4734,6 +4738,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>8. ເລືອກໄບນາຣີຣັນໄທມ໌ JS</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>ຮູບແບບໄອຄອນຖາດ:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>ມີສີ</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>ຂາວ</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>ດຳ</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>ຮູບລັກສະນະ</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>ຂະໜາດ UI:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>ຂະໜາດຟອນ:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>ຄ່າເລີ່ມຕົ້ນລະບົບ</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>1. ຕ້ອງຣີສະຕາດເພື່ອໃຫ້ການປ່ຽນຮູບລັກມີຜົນ. ຣີສະຕາດດຽວນີ້ບໍ?</translation>
         </message>
     </context>
     <context>
@@ -4853,28 +4893,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 ກຳລັງເຮັດວຽກ</translation>
+            <source>unlimited</source>
+            <translation>2. ບໍ່ຈຳກັດ</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 ກຳລັງເຮັດວຽກ</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 ດາວໂຫຼດ</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 ດາວໂຫຼດ</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 ຂໍ້ຜິດພາດ</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 ຂໍ້ຜິດພາດ</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 ຈຳກັດຄວາມໄວ</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4885,24 +4909,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 ກຳລັງກວດສອບອັບເດດ</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 ຈຳກັດຄວາມໄວ</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 ພ້ອມ</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 ຖືກເລືອກ</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 ຖືກເລືອກ</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT ປິດ</translation>
+            <source>DHT off</source>
+            <translation>3. DHT ປິດ</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4913,6 +4921,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation> ອອນລາຍ</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>4. ກຳລັງຄາດຄະເນ… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>4. ຕໍ່ໄປ &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>1. 🟧 ແຖວຈະເລີ່ມໃນ 1 ນາທີ</translation>
         </message>
@@ -4921,30 +4937,26 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>2. 🟧 ແຖວຈະເລີ່ມໃນ %1 ນາທີ</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>3. 🟡 ກຳລັງປະເມີນ… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>4. ຕໍ່ໄປ &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>5. ອັດຕາສ່ວນແບ່ງປັນທັງໝົດ
 ຄລິກເພື່ອເປີດສະຖິຕິ</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>6. ຄລິກເພື່ອສຳເນົາ IP</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>7. IP ສາທາລະນະ: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>8. ການເຊື່ອມຕໍ່: ອີເທີເນັດ</translation>
+            <source>Listening port: </source>
+            <translation>11. ພອດຮັບຟັງ: </translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>5. ບໍ່ພົບການເຊື່ອມຕໍ່ເຄືອຂ່າຍ</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>12. ບໍ່ມີການເຊື່ອມຕໍ່ຂາເຂົ້າ, ເຄືອຂ່າຍອາດຕັ້ງຄ່າຜິດ</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4955,12 +4967,12 @@ Click to open Statistics</source>
             <translation>10. ສັນຍານ: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>11. ພອດຮັບຟັງ: </translation>
+            <source>Connection: Ethernet</source>
+            <translation>8. ການເຊື່ອມຕໍ່: ອີເທີເນັດ</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>12. ບໍ່ມີການເຊື່ອມຕໍ່ຂາເຂົ້າ, ເຄືອຂ່າຍອາດຕັ້ງຄ່າຜິດ</translation>
+            <source>Click to copy IP</source>
+            <translation>6. ຄລິກເພື່ອສຳເນົາ IP</translation>
         </message>
     </context>
     <context>
@@ -5063,6 +5075,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>6. ແຖບເຄື່ອງມື</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>7. ປັບແຕ່ງປຸ່ມແຖບເຄື່ອງມື. ໃຊ້ ຍ້າຍຂຶ້ນ ແລະ ຍ້າຍລົງ ເພື່ອຈັດລຽງ. ໝາຍຖືກເພື່ອເປີດ, ບໍ່ໝາຍຖືກເພື່ອປິດ.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>8. ເພີ່ມ URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>9. ສືບຕໍ່</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>10. ຢຸດ</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>ຢຸດທັງໝົດ</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ລຶບ</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>ລຶບສຳເລັດ</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>ຕົວເລືອກ</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>ຕາຕະລາງ</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>ເລີ່ມຄິວ</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>ຢຸດຄິວ</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>ຕົວຈັບ</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>ເຄື່ອງຄົ້ນຫາ</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>ຍ້າຍຂຶ້ນ</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>ຍ້າຍລົງ</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>ເປີດ</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>ປິດ</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>ເພີ່ມຕົວແຍກ</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>ຣີເຊັດ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ຕົກລົງ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ຍົກເລີກ</translation>
         </message>
     </context>
     <context>

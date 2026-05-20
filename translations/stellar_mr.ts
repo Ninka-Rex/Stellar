@@ -950,6 +950,10 @@ Click  Add URL  to start.</source>
             <translation>मॅग्नेट लिंक कॉपी करा</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>स्थानिक डेटा तपासा</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL कॉपी करा</translation>
         </message>
@@ -4705,8 +4709,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>स्त्रोत URL अद्याप काशेड नाही. update.json मधून IPtoCityDB काशेड करण्यासाठी 'अद्ययावत तपासा' वापरा.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>व्हर्जन %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>आवृत्ती %1 बीटा</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4723,6 +4727,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JavaScript रनटाइम बायनरी निवडा</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>ट्रे चिन्ह शैली:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>रंगीत</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>पांढरा</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>काळा</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>देखावा</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI स्केल:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>फॉन्ट आकार:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>सिस्टम डीफॉल्ट</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>स्वरूप बदल लागू होण्यासाठी रीस्टार्ट आवश्यक आहे. आता रीस्टार्ट करायचे?</translation>
         </message>
     </context>
     <context>
@@ -4842,28 +4882,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 १ सक्रिय</translation>
+            <source>unlimited</source>
+            <translation>अमर्यादित</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 सक्रिय</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 १ डाउनलोड</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 डाउनलोड</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 १ त्रुटी</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 त्रुटी</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 वेग मर्यादित</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4874,24 +4898,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 अपडेट तपासत आहे</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 वेग मर्यादित</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 तयार</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 १ निवडले</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 निवडले</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT बंद</translation>
+            <source>DHT off</source>
+            <translation>DHT बंद</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4902,6 +4910,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ऑनलाइन</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>अंदाज करत आहे… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>पुढे &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 क्वी १ मिनिटात सुरू होईल</translation>
         </message>
@@ -4910,29 +4926,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 क्वी %1 मिनिटांत सुरू होईल</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 अंदाज करत आहे… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>पुढे &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>एकूण शेअर गुणोत्तर</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>IP कॉपी करा</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>सार्वजनिक IP:</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>कनेक्शन: इथरनेट</translation>
+            <source>Listening port: </source>
+            <translation>लिसनिंग पोर्ट:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>नेटवर्क कनेक्टिव्हिटी आढळली नाही</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>कोणतेही इनकमिंग कनेक्शन नाही, नेटवर्क चुकीचे सेटअप असू शकते</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4943,12 +4955,12 @@ Click to open Statistics</source>
             <translation>सिग्नल:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>लिसनिंग पोर्ट:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>कनेक्शन: इथरनेट</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>कोणतेही इनकमिंग कनेक्शन नाही, नेटवर्क चुकीचे सेटअप असू शकते</translation>
+            <source>Click to copy IP</source>
+            <translation>IP कॉपी करा</translation>
         </message>
     </context>
     <context>
@@ -5051,6 +5063,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>टूलबार</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>टूलबार बटणे सानुकूलित करा. पुनर्क्रमित करण्यासाठी वर हलवा आणि खाली हलवा वापरा. सक्षम करण्यासाठी चेक करा, अक्षम करण्यासाठी अनचेक करा.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL जोडा</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>पुन्हा सुरू करा</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>थांबवा</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>सर्व थांबवा</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>हटवा</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>पूर्ण झालेले हटवा</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>पर्याय</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>वेळापत्रक</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>रांग सुरू करा</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>रांग थांबवा</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>ग्रॅबर</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>शोध इंजिन</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>आरएसएस</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>वर हलवा</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>खाली हलवा</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>सक्षम करा</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>अक्षम करा</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>विभाजक जोडा</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>रीसेट करा</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ठीक आहे</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>रद्द करा</translation>
         </message>
     </context>
     <context>

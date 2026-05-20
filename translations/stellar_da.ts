@@ -949,6 +949,10 @@ Klik Tilføj URL for at starte.</translation>
             <translation>Kopiér Magnet-link</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Bekræft lokale data</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Kopiér URL</translation>
         </message>
@@ -4708,8 +4712,8 @@ Det anbefales stærkt at binde Stellar til et VPN-netværksinterface og verifice
             <translation>Kilde-URL ikke cachelagret endnu. Brug Tjek for opdateringer for at cachelagre IPtoCityDB fra update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Version %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Version %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4726,6 +4730,42 @@ Det anbefales stærkt at binde Stellar til et VPN-netværksinterface og verifice
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Vælg JavaScript-kørselsmiljø-binær</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Bakkeikon-stil:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Farvet</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Hvid</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Sort</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Udseende</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI-skala:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Skriftstørrelse:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Systemstandard</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>En genstart er nødvendig for at udseendesændringer træder i kraft. Genstart nu?</translation>
         </message>
     </context>
     <context>
@@ -4845,28 +4885,12 @@ Det anbefales stærkt at binde Stellar til et VPN-netværksinterface og verifice
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktiv</translation>
+            <source>unlimited</source>
+            <translation>ubegrænset</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktiv</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 download</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 downloads</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 fejl</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 fejl</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Hastighedsbegrænser</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4877,24 +4901,8 @@ Det anbefales stærkt at binde Stellar til et VPN-netværksinterface og verifice
             <translation>📡 Tjekker opdateringer</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Hastighedsbegrænser</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Klar</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 valgt</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 valgt</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT slået fra</translation>
+            <source>DHT off</source>
+            <translation>DHT fra</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4905,6 +4913,14 @@ Det anbefales stærkt at binde Stellar til et VPN-netværksinterface og verifice
             <translation>online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Estimerer… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>næste &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Kø kører om 1 minut</translation>
         </message>
@@ -4913,30 +4929,26 @@ Det anbefales stærkt at binde Stellar til et VPN-netværksinterface og verifice
             <translation>🟧 Kø kører om %1 minutter</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Beregner… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>næste &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Samlet delingsforhold
 Klik for at åbne Statistik</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>Klik for at kopiere IP</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>Offentlig IP: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Forbindelse: Ethernet</translation>
+            <source>Listening port: </source>
+            <translation>Lyttestilling: </translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Ingen netværksforbindelse registreret</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Inkommande forbindelser, netværket kan være forkert konfigureret</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4947,12 +4959,12 @@ Klik for at åbne Statistik</translation>
             <translation>Signal: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Lyttestilling: </translation>
+            <source>Connection: Ethernet</source>
+            <translation>Forbindelse: Ethernet</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Inkommande forbindelser, netværket kan være forkert konfigureret</translation>
+            <source>Click to copy IP</source>
+            <translation>Klik for at kopiere IP</translation>
         </message>
     </context>
     <context>
@@ -5055,6 +5067,101 @@ Klik for at åbne Statistik</translation>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Værktøjslinje</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Tilpas værktøjslinjeknapper. Brug Flyt op og Flyt ned til at omarrangere. Afkryds for at aktivere, fjern afkrydsning for at deaktivere.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Tilføj URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Genoptag</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Stop</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Stop alle</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Slet</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Slet færdige</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Indstillinger</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Planlægning</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Start kø</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Stop kø</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Grabber</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Søgemaskine</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Flyt op</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Flyt ned</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Aktivér</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Deaktivér</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Tilføj separator</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Nulstil</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Annuller</translation>
         </message>
     </context>
     <context>

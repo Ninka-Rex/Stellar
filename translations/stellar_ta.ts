@@ -949,6 +949,10 @@ Click  Add URL  to start.</source>
             <translation>காந்த இணைப்பை நகலெடு</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>உள்ளூர் தரவைச் சரிபார்</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL-ஐ நகலெடு</translation>
         </message>
@@ -4713,8 +4717,8 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
             <translation>மூல URL இன்னும் தற்காலிகமாக சேமிக்கப்படவில்லை. update.json-இலிருந்து IPtoCityDB-ஐ தற்காலிகமாக சேமிக்க புதுப்பிப்புகளைச் சரிபார்க்கவும்.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>பதிப்பு %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>பதிப்பு %1 பீட்டா</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4731,6 +4735,42 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>ஜாவாஸ்கிரிப்ட் இயக்க நேர இருமத்தைத் தேர்ந்தெடு</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>தட்டு சின்ன பாணி:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>வண்ணமயமான</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>வெள்ளை</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>கருப்பு</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>தோற்றம்</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI அளவு:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>எழுத்துரு அளவு:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>கணினி இயல்புநிலை</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>தோற்ற மாற்றங்களுக்கு மறுதொடக்கம் தேவை. இப்போது மறுதொடக்கம் செய்யவா?</translation>
         </message>
     </context>
     <context>
@@ -4850,28 +4890,12 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 செயலில்</translation>
+            <source>unlimited</source>
+            <translation>வரம்பற்ற</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 செயலில்</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 பதிவிறக்கம்</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 பதிவிறக்கங்கள்</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 பிழை</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 பிழைகள்</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 வேக வரம்பு</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4882,24 +4906,8 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
             <translation>📡 புதுப்பிப்புகளைச் சரிபார்க்கிறது</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 வேக வரம்பு</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 தயார்</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 தேர்ந்தெடுக்கப்பட்டது</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 தேர்ந்தெடுக்கப்பட்டன</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT முடக்கப்பட்டது</translation>
+            <source>DHT off</source>
+            <translation>DHT முடக்கு</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4910,6 +4918,14 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
             <translation>இணைப்பில்</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>மதிப்பிடுகிறது… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>அடுத்து &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 1 நிமிடத்தில் வரிசை இயங்கும்</translation>
         </message>
@@ -4918,30 +4934,26 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
             <translation>🟧 %1 நிமிடங்களில் வரிசை இயங்கும்</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 மதிப்பிடுகிறது… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>அடுத்து &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>எல்லா கால பகிர்வு விகிதம்
 புள்ளிவிவரங்களைத் திறக்க கிளிக் செய்க</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>IP நகலெடுக்க கிளிக் செய்க</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>பொது IP:</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>இணைப்பு: ஈதர்நெட்</translation>
+            <source>Listening port: </source>
+            <translation>1. கேட்கும் துறை:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>நெட்வொர்க் இணைப்பு இல்லை</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>2. உள்வரும் இணைப்புகள் இல்லை, பிணையம் தவறாக உள்ளமைக்கப்பட்டிருக்கலாம்</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4952,12 +4964,12 @@ Click to open Statistics</source>
             <translation>சமிக்ஞை:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>1. கேட்கும் துறை:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>இணைப்பு: ஈதர்நெட்</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>2. உள்வரும் இணைப்புகள் இல்லை, பிணையம் தவறாக உள்ளமைக்கப்பட்டிருக்கலாம்</translation>
+            <source>Click to copy IP</source>
+            <translation>IP நகலெடுக்க கிளிக் செய்க</translation>
         </message>
     </context>
     <context>
@@ -5060,6 +5072,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>கருவிப்பட்டை</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>கருவிப்பட்டை பொத்தான்களை தனிப்பயனாக்கு. வரிசை மாற்ற மேலே/கீழே நகர்த்து. இயக்க தேர்வு செய், முடக்க தேர்வு நீக்கு.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL சேர்</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>தொடர்</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>நிறுத்து</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>அனைத்தையும் நிறுத்து</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>நீக்கு</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>முடிந்ததை நீக்கு</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>விருப்பங்கள்</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>திட்டமிடுபவர்</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>வரிசையைத் தொடங்கு</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>வரிசையை நிறுத்து</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>பிடிப்பான்</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>தேடுபொறி</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>மேலே நகர்த்து</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>கீழே நகர்த்து</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>இயக்கு</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>முடக்கு</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>பிரிப்பான் சேர்</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>மீட்டமை</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>சரி</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ரத்துசெய்</translation>
         </message>
     </context>
     <context>

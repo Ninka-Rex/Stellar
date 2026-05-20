@@ -950,6 +950,10 @@ Klicka på Lägg till URL för att börja.</translation>
             <translation>Kopiera magnetlänk</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Verifiera lokal data</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Kopiera URL</translation>
         </message>
@@ -4699,8 +4703,8 @@ Det rekommenderas starkt att binda Stellar till ett VPN-nätverksgränssnitt och
             <translation>Käll-URL:n är inte cachad än. Använd Kontrollera uppdateringar för att cachera IPtoCityDB från update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Version %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Version %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4717,6 +4721,42 @@ Det rekommenderas starkt att binda Stellar till ett VPN-nätverksgränssnitt och
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Välj JavaScript-runtime-binär</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Ikonstil i aktivitetsfältet:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Färgad</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Vit</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Svart</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Utseende</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI-skala:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Teckenstorlek:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Systemstandard</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Starta om för att utseendeändringar ska gälla. Starta om nu?</translation>
         </message>
     </context>
     <context>
@@ -4836,28 +4876,12 @@ Det rekommenderas starkt att binda Stellar till ett VPN-nätverksgränssnitt och
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktiv</translation>
+            <source>unlimited</source>
+            <translation>obegränsat</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktiva</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 nedladdning</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 nedladdningar</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 fel</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 fel</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Hastighetsbegränsare</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4868,24 +4892,8 @@ Det rekommenderas starkt att binda Stellar till ett VPN-nätverksgränssnitt och
             <translation>📡 Kontrollera uppdateringar</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Hastighetsbegränsare</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Klar</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 vald</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 valda</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT av</translation>
+            <source>DHT off</source>
+            <translation>DHT av</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4896,6 +4904,14 @@ Det rekommenderas starkt att binda Stellar till ett VPN-nätverksgränssnitt och
             <translation> online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Uppskattar… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>nästa &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Kö körs om 1 minut</translation>
         </message>
@@ -4904,29 +4920,25 @@ Det rekommenderas starkt att binda Stellar till ett VPN-nätverksgränssnitt och
             <translation>🟧 Kö körs om %1 minuter</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Uppskattar… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>nästa &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Total delningsratio</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Klicka för statistik</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>Klicka för att kopiera IP</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Publikt IP:</translation>
+            <source>Listening port: </source>
+            <translation>Signal:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Ingen nätverksanslutning</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Lyssnande port:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4937,12 +4949,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Signal:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Publikt IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Lyssnande port:</translation>
+            <source>Click to copy IP</source>
+            <translation>Klicka för statistik</translation>
         </message>
     </context>
     <context>
@@ -5045,6 +5057,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Verktygsfält</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Anpassa verktygsfält. Använd Flytta upp/ned för ordning. Kryssa för aktivera, avmarkera inaktivera.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Lägg till URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Återuppta</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Stopp</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Stoppa alla</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Radera</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Radera klara</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Alternativ</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Schemaläggare</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Starta kö</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Stoppa kö</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Hämtare</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Sökmotor</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Flytta upp</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Flytta ner</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Aktivera</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Inaktivera</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Lägg till avgränsare</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Återställ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Avbryt</translation>
         </message>
     </context>
     <context>

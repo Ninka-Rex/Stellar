@@ -949,6 +949,10 @@ URL əlavə et düyməsini basın.</translation>
             <translation>Magnet linkini kopyala</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Yerli məlumatı yoxla</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL-ni kopyala</translation>
         </message>
@@ -4706,8 +4710,8 @@ IP ünvanınızın aşkarlanmasından qorunmaq üçün Stellar-ı VPN şəbəkə
             <translation>Mənbə URL-si hələ önbelleklənməyib. IPtoCityDB-ni update.json-dan önbellekləmək üçün Yenilikləri yoxla istifadə edin.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Versiya %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Versiya %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4724,6 +4728,42 @@ IP ünvanınızın aşkarlanmasından qorunmaq üçün Stellar-ı VPN şəbəkə
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JavaScript runtime ikili faylını seçin</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Tepsi ikon stili:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Rəngli</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Ağ</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Qara</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Görünüş</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>İnterfeys miqyası:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Şrift ölçüsü:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Sistem standartı</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Görünüş dəyişikliklərinin qüvvəyə minməsi üçün yenidən başlatma lazımdır. İndi yenidən başlatılsın?</translation>
         </message>
     </context>
     <context>
@@ -4843,28 +4883,12 @@ IP ünvanınızın aşkarlanmasından qorunmaq üçün Stellar-ı VPN şəbəkə
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktiv</translation>
+            <source>unlimited</source>
+            <translation>limitsiz</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktiv</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 endirmə</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 endirmə</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 xəta</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 xəta</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Sürət məhdudlaşdırıcı</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4875,24 +4899,8 @@ IP ünvanınızın aşkarlanmasından qorunmaq üçün Stellar-ı VPN şəbəkə
             <translation>📡 Yeniləmələr yoxlanılır</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Sürət məhdudlaşdırıcı</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Hazırdır</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 seçilib</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 seçilib</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT bağlı</translation>
+            <source>DHT off</source>
+            <translation>DHT sönülü</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4903,6 +4911,14 @@ IP ünvanınızın aşkarlanmasından qorunmaq üçün Stellar-ı VPN şəbəkə
             <translation>onlayn</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Qiymətləndirilir… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>növbəti &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Növbə 1 dəqiqədən sonra işə düşəcək</translation>
         </message>
@@ -4911,29 +4927,25 @@ IP ünvanınızın aşkarlanmasından qorunmaq üçün Stellar-ı VPN şəbəkə
             <translation>🟧 Növbə %1 dəqiqədən sonra işə düşəcək</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Hesablanır… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>növbəti &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Ümumi paylaşım nisbəti</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Statistikaya baxmaq üçün klikləyin</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>IP-ni kopyalamaq üçün klikləyin</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>İctimai IP: </translation>
+            <source>Listening port: </source>
+            <translation>Siqnal: </translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Şəbəkə bağlantısı aşkarlanmadı</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Dinləmə portu: </translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4944,12 +4956,12 @@ Click to open Statistics</source>
             <translation>WiFi: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Siqnal: </translation>
+            <source>Connection: Ethernet</source>
+            <translation>İctimai IP: </translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Dinləmə portu: </translation>
+            <source>Click to copy IP</source>
+            <translation>Statistikaya baxmaq üçün klikləyin</translation>
         </message>
     </context>
     <context>
@@ -5052,6 +5064,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Alətlər paneli</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Alətlər paneli düymələrini fərdiləşdirin. Sıranı dəyişmək üçün Yuxarı və Aşağı daşı funksiyalarından istifadə edin. Aktiv etmək üçün işarələyin, söndürmək üçün işarəni qaldırın.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL əlavə et</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Davam et</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Dayandır</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Hamısını dayandır</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Sil</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Bitmişləri sil</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Seçimlər</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Planlayıcı</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Növbəni başlat</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Növbəni dayandır</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Toplayıcı</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Axtarış motoru</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Yuxarı daşı</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Aşağı daşı</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Aktiv et</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Deaktiv et</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Ayırıcı əlavə et</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Sıfırla</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ləğv et</translation>
         </message>
     </context>
     <context>

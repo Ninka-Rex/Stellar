@@ -949,6 +949,10 @@ Click  Add URL  to start.</source>
             <translation>مگنٹ لنک کاپی کریں</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>مقامی ڈیٹا کی تصدیق کریں</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>یو آر ایل کاپی کریں</translation>
         </message>
@@ -4700,8 +4704,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ماخذ URL ابھی کشش میں نہیں ہے۔ update.json سے IPtoCityDB کو cache کرنے کے لیے Check for updates استعمال کریں۔</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>ورژن %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>ورژن %1 بیٹا</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4718,6 +4722,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JavaScript رن ٹائم بائنری منتخب کریں</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>ٹرے آئیکن اسٹائل:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>رنگین</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>سفید</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>سیاہ</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>ظاہریت</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI اسکیل:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>فونٹ سائز:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>سسٹم ڈیفالٹ</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>ظاہری تبدیلیوں کے اثر کے لیے دوبارہ آغاز ضروری ہے۔ ابھی کریں؟</translation>
         </message>
     </context>
     <context>
@@ -4837,28 +4877,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 فعال</translation>
+            <source>unlimited</source>
+            <translation>لا محدود</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 فعال</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 ڈاؤن لوڈ</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 ڈاؤن لوڈز</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 غلطی</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 غلطیاں</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 رفتار محدود کرنا</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4869,24 +4893,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 اپ ڈیٹ چیک کر رہا ہے</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 رفتار محدود کرنا</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 تیار</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 منتخب</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 منتخب</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT بند</translation>
+            <source>DHT off</source>
+            <translation>DHT بند</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4897,6 +4905,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation> online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>تخمینہ… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>اگلا &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 قطار 1 منٹ میں چلے گی</translation>
         </message>
@@ -4905,29 +4921,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 قطار %1 منٹ میں چلے گی</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 اندازہ لگانے میں… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>اگلا &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>کل شیئر تناسب</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>آمار کھولنے کے لیے کلک کریں</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>IP کاپی کرنے کے لیے کلک کریں</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>عوامی IP:</translation>
+            <source>Listening port: </source>
+            <translation>سیگنل:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>کوئی نیٹ ورک کنکشن نہیں ملا</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>سننے والی پورٹ:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4938,12 +4950,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>سیگنل:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>عوامی IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>سننے والی پورٹ:</translation>
+            <source>Click to copy IP</source>
+            <translation>آمار کھولنے کے لیے کلک کریں</translation>
         </message>
     </context>
     <context>
@@ -5046,6 +5058,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>ٹول بار</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>ٹول بار بٹن ترتیب دیں۔ ترتیب کے لیے اوپر نیچے کریں۔ فعال کے لیے نشان لگائیں۔</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL شامل کریں</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>جاری رکھیں</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>روکیں</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>سب روکیں</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>حذف کریں</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>مکمل حذف کریں</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>اختیارات</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>شیڈولر</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>قطار شروع کریں</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>قطار روکیں</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>گرابر</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>تلاش انجن</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>آر ایس ایس</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>اوپر لے جائیں</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>نیچے لے جائیں</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>فعال کریں</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>غیر فعال کریں</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>جداکار شامل کریں</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>ری سیٹ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ٹھیک ہے</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>منسوخ کریں</translation>
         </message>
     </context>
     <context>

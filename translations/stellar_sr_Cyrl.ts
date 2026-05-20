@@ -950,6 +950,10 @@ Kliknite na Dodaj URL za početak.</translation>
             <translation>Kopiraj magnet link</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Провери локалне податке</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Kopiraj URL</translation>
         </message>
@@ -4706,8 +4710,8 @@ Preporučuje se vezivanje Stellara za mrežni sučelje VPN-a i provera da li je 
             <translation>URL izvora još nije keširan. Koristite Proverite ažuriranja za keširanje IPtoCityDB iz update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Verzija %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Верзија %1 Бета</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4724,6 +4728,42 @@ Preporučuje se vezivanje Stellara za mrežni sučelje VPN-a i provera da li je 
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Odabir JavaScript runtime binarne datoteke</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Стил иконе у палети:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>У боји</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Бела</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Црна</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Изглед</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Размера корисничког интерфејса:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Величина фонта:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Системски подразумевано</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Потребно је поновно покретање за примену промена изгледа. Поново сада?</translation>
         </message>
     </context>
     <context>
@@ -4843,28 +4883,12 @@ Preporučuje se vezivanje Stellara za mrežni sučelje VPN-a i provera da li je 
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 активно</translation>
+            <source>unlimited</source>
+            <translation>неограничено</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 активно</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 преузимање</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 преузимања</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 грешка</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 грешака</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Ограничач брзине</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4875,24 +4899,8 @@ Preporučuje se vezivanje Stellara za mrežni sučelje VPN-a i provera da li je 
             <translation>📡 Провера ажурирања</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Ограничач брзине</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟦 Spreman</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 izabrano</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 izabrano</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT isključen</translation>
+            <source>DHT off</source>
+            <translation>DHT искљ.</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4903,6 +4911,14 @@ Preporučuje se vezivanje Stellara za mrežni sučelje VPN-a i provera da li je 
             <translation>online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Процена… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>dalje &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Red se pokreće za 1 minut</translation>
         </message>
@@ -4911,29 +4927,25 @@ Preporučuje se vezivanje Stellara za mrežni sučelje VPN-a i provera da li je 
             <translation>🟧 Red se pokreće za %1 minuta</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Procena… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>dalje &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Ukupni odnos</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Klik za statistiku</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>Kopiraj IP</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Javni IP:</translation>
+            <source>Listening port: </source>
+            <translation>Signal:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Није откривена мрежна повезаност</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Slušajući port:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4944,12 +4956,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Signal:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Javni IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Slušajući port:</translation>
+            <source>Click to copy IP</source>
+            <translation>Klik za statistiku</translation>
         </message>
     </context>
     <context>
@@ -5052,6 +5064,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Трака алата</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Прилагоди дугмад траке. Користи Помери горе и Помери доле за редослед. Означи за укључивање, одзначи за искључивање.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Додај URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Настави</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Заустави</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Заустави све</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Обриши</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Обрисано</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Опције</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Распоред</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Покрени ред</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Заустави ред</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Преузимач</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Претраживач</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>РСС</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Помери горе</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Помери доле</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Омогући</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Онемогући</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Додај раздвајач</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Ресетуј</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>У реду</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Откажи</translation>
         </message>
     </context>
     <context>

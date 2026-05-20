@@ -949,6 +949,10 @@ Klik Tambah URL untuk memulai.</translation>
             <translation>Salin Link Magnet</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Verifikasi Data Lokal</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Salin URL</translation>
         </message>
@@ -4705,8 +4709,8 @@ Sangat disarankan untuk mengikat Stellar ke antarmuka jaringan VPN dan memverifi
             <translation>URL sumber belum di-cache. Gunakan Periksa pembaruan untuk meng-cache IPtoCityDB dari update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Versi %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Versi %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4723,6 +4727,42 @@ Sangat disarankan untuk mengikat Stellar ke antarmuka jaringan VPN dan memverifi
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Pilih biner runtime JavaScript</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Gaya ikon baki:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Berwarna</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Putih</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Hitam</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Tampilan</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Skala UI:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Ukuran font:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Default sistem</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Mulai ulang diperlukan agar perubahan tampilan diterapkan. Mulai ulang sekarang?</translation>
         </message>
     </context>
     <context>
@@ -4842,28 +4882,12 @@ Sangat disarankan untuk mengikat Stellar ke antarmuka jaringan VPN dan memverifi
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktif</translation>
+            <source>unlimited</source>
+            <translation>tak terbatas</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktif</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 unduhan</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 unduhan</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 error</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 error</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Pembatas kecepatan</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4874,24 +4898,8 @@ Sangat disarankan untuk mengikat Stellar ke antarmuka jaringan VPN dan memverifi
             <translation>📡 Cek pembaruan</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Pembatas kecepatan</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Siap</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 dipilih</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 dipilih</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT mati</translation>
+            <source>DHT off</source>
+            <translation>DHT mati</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4902,6 +4910,14 @@ Sangat disarankan untuk mengikat Stellar ke antarmuka jaringan VPN dan memverifi
             <translation> online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Memperkirakan… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>selanjutnya &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Antrian berjalan dalam 1 menit</translation>
         </message>
@@ -4910,29 +4926,25 @@ Sangat disarankan untuk mengikat Stellar ke antarmuka jaringan VPN dan memverifi
             <translation>🟧 Antrian berjalan dalam %1 menit</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Menghitung… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>selanjutnya &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Rasio berbagi total</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Klik untuk membuka Statistik</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>Klik untuk menyalin IP</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>IP Publik:</translation>
+            <source>Listening port: </source>
+            <translation>Sinyal:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Tidak ada koneksi jaringan terdeteksi</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Port mendengarkan:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4943,12 +4955,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Sinyal:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>IP Publik:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Port mendengarkan:</translation>
+            <source>Click to copy IP</source>
+            <translation>Klik untuk membuka Statistik</translation>
         </message>
     </context>
     <context>
@@ -5051,6 +5063,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Bilah alat</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Sesuaikan tombol bilah alat. Gunakan Pindah ke Atas dan Pindah ke Bawah untuk mengurutkan. Centang untuk mengaktifkan, hapus centang untuk menonaktifkan.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Tambah URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Lanjutkan</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Hentikan</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Hentikan Semua</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Hapus</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Hapus Selesai</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Opsi</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Penjadwal</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Mulai Antrean</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Hentikan Antrean</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Pengambil</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Mesin Pencari</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Naikkan</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Turunkan</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Aktifkan</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Nonaktifkan</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Tambah Pemisah</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Reset</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Batal</translation>
         </message>
     </context>
     <context>

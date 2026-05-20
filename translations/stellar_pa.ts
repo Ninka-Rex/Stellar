@@ -950,6 +950,10 @@ Click  Add URL  to start.</source>
             <translation>ਮੈਗਨੈਟ ਲਿੰਕ ਕਾਪੀ ਕਰੋ</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>ਸਥਾਨਕ ਡਾਟਾ ਪੜਤਾਲ</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL ਕਾਪੀ ਕਰੋ</translation>
         </message>
@@ -4702,8 +4706,8 @@ Stellar ਨੂੰ VPN ਨੈੱਟਵਰਕ ਇੰਟਰਫੇਸ ਨਾਲ ਬ�
             <translation>ਸੋਰਸ URL ਕੈਸ਼ ਵਿੱਚ ਨਹੀਂ ਹੈ. IPtoCityDB ਨੂੰ ਕੈਸ਼ ਕਰਨ ਲਈ Check for updates ਦੀ ਵਰਤੋਂ ਕਰੋ.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>ਵਰਜਨ %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>ਵਰਜਨ %1 ਬੀਟਾ</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4720,6 +4724,42 @@ Stellar ਨੂੰ VPN ਨੈੱਟਵਰਕ ਇੰਟਰਫੇਸ ਨਾਲ ਬ�
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>ਜਾਵਾਸਕ੍ਰਿਪਟ ਰਨਟਾਈਮ ਬਾਈਨਰੀ ਚੁਣੋ</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>ਟਰੇ ਆਈਕਨ ਸਟਾਈਲ:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>ਰੰਗੀਨ</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>ਚਿੱਟਾ</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>ਕਾਲਾ</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>ਦਿੱਖ</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI ਸਕੇਲ:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>ਫੌਂਟ ਆਕਾਰ:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>ਸਿਸਟਮ ਮੂਲ</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>ਦਿੱਖ ਬਦਲਾਵਾਂ ਲਈ ਮੁੜ-ਚਾਲੂ ਕਰਨਾ ਲੋੜੀਂਦਾ ਹੈ। ਹੁਣੇ ਮੁੜ-ਚਾਲੂ ਕਰੀਏ?</translation>
         </message>
     </context>
     <context>
@@ -4839,28 +4879,12 @@ Stellar ਨੂੰ VPN ਨੈੱਟਵਰਕ ਇੰਟਰਫੇਸ ਨਾਲ ਬ�
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 ਸਰਗਰਮ</translation>
+            <source>unlimited</source>
+            <translation>ਬੇਅੰਤ</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 ਸਰਗਰਮ</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 ਡਾਊਨਲੋਡ</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 ਡਾਊਨਲੋਡਸ</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 ਗਲਤੀ</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 ਗਲਤੀਆਂ</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 ਸਪੀਡ ਲਿਮਿਟਰ</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4871,24 +4895,8 @@ Stellar ਨੂੰ VPN ਨੈੱਟਵਰਕ ਇੰਟਰਫੇਸ ਨਾਲ ਬ�
             <translation>📡 ਅਪਡੇਟਾਂ ਦੀ ਜਾਂਚ ਕਰ ਰਿਹਾ ਹੈ</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 ਸਪੀਡ ਲਿਮਿਟਰ</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 ਤਿਆਰ</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 ਚੁਣਿਆ</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 ਚੁਣੇ ਗਏ</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT ਬੰਦ</translation>
+            <source>DHT off</source>
+            <translation>DHT ਬੰਦ</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4899,6 +4907,14 @@ Stellar ਨੂੰ VPN ਨੈੱਟਵਰਕ ਇੰਟਰਫੇਸ ਨਾਲ ਬ�
             <translation>online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>ਅਨੁਮਾਨ ਲਗਾਇਆ ਜਾ ਰਿਹਾ… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>ਅਗਲਾ &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 ਕਤਾਰ 1 ਮਿੰਟ ਵਿੱਚ ਚੱਲੇਗੀ</translation>
         </message>
@@ -4907,29 +4923,25 @@ Stellar ਨੂੰ VPN ਨੈੱਟਵਰਕ ਇੰਟਰਫੇਸ ਨਾਲ ਬ�
             <translation>🟧 ਕਤਾਰ %1 ਮਿੰਟਾਂ ਵਿੱਚ ਚੱਲੇਗੀ</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 ਅੰਦਾਜ਼ਾ ਲਗਾ ਰਹੇ ਹਾਂ… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>ਅਗਲਾ &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>ਸਾਰੇ ਸਮੇਂ ਦਾ ਸਾਂਝਾ ਅਨੁਪਾਤ</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>ਸਟੈਟਿਸਟਿਕਸ ਖੋਲ੍ਹਣ ਲਈ ਕਲਿੱਕ ਕਰੋ</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>IP ਨਕਲ ਕਰਨ ਲਈ ਕਲਿੱਕ ਕਰੋ</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>ਸੰਬੰਧਿਤ IP:</translation>
+            <source>Listening port: </source>
+            <translation>ਸਿਗਨਲ:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>ਕੋਈ ਨੈੱਟਵਰਕ ਕਨੈਕਟੀਵਿਟੀ ਨਹੀਂ ਮਿਲੀ</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>ਸੁਣਦਾ ਹੋਇਆ ਪੋਰਟ:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4940,12 +4952,12 @@ Click to open Statistics</source>
             <translation>ਵਾਈ-ਫਾਈ:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>ਸਿਗਨਲ:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>ਸੰਬੰਧਿਤ IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>ਸੁਣਦਾ ਹੋਇਆ ਪੋਰਟ:</translation>
+            <source>Click to copy IP</source>
+            <translation>ਸਟੈਟਿਸਟਿਕਸ ਖੋਲ੍ਹਣ ਲਈ ਕਲਿੱਕ ਕਰੋ</translation>
         </message>
     </context>
     <context>
@@ -5048,6 +5060,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>ਟੂਲਬਾਰ</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>ਟੂਲਬਾਰ ਬਟਨਾਂ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਓ। ਮੁੜ-ਕ੍ਰਮ ਲਈ ਉੱਪਰ ਜਾਓ ਅਤੇ ਹੇਠਾਂ ਜਾਓ ਵਰਤੋਂ। ਚਾਲੂ ਕਰਨ ਲਈ ਨਿਸ਼ਾਨ ਲਗਾਓ, ਬੰਦ ਕਰਨ ਲਈ ਹਟਾਓ।</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL ਜੋੜੋ</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>ਮੁੜ-ਸ਼ੁਰੂ</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>ਰੋਕੋ</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>ਸਭ ਰੋਕੋ</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ਹਟਾਓ</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>ਮੁਕੰਮਲ ਹਟਾਓ</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>ਵਿਕਲਪ</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>ਸਮਾਂ-ਸਾਰਣੀ</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>ਕਤਾਰ ਸ਼ੁਰੂ</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>ਕਤਾਰ ਰੋਕੋ</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>ਗ੍ਰੈਬਰ</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>ਖੋਜ ਇੰਜਣ</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>ਉੱਪਰ ਭੇਜੋ</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>ਹੇਠਾਂ ਭੇਜੋ</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>ਚਾਲੂ</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>ਬੰਦ</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>ਵਿਭਾਜਕ ਜੋੜੋ</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>ਰੀਸੈੱਟ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ਠੀਕ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ਰੱਦ ਕਰੋ</translation>
         </message>
     </context>
     <context>

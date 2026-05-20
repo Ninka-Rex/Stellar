@@ -109,7 +109,7 @@ Window {
                             spacing: 8
 
                             CheckBox {
-                                checked: modelData.visible
+                                checked: modelData.visible !== false
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: {
                                     var idx = index

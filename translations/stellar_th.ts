@@ -950,6 +950,10 @@ Click  Add URL  to start.</source>
             <translation>คัดลอกลิงก์ Magnet</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>ตรวจสอบข้อมูลในเครื่อง</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>คัดลอก URL</translation>
         </message>
@@ -4701,8 +4705,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ยังไม่มี URL แหล่งที่มาในแคช ใช้ 'ตรวจสอบการอัปเดต' เพื่อบันทึก IPtoCityDB จาก update.json</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>เวอร์ชัน %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>เวอร์ชัน %1 เบต้า</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4719,6 +4723,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>เลือกไฟล์รันไทม์ JavaScript</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>รูปแบบไอคอนถาด:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>มีสี</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>ขาว</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>ดำ</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>ลักษณะที่ปรากฏ</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>ขนาด UI:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>ขนาดตัวอักษร:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>ค่าเริ่มต้นระบบ</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>ต้องรีสตาร์ทเพื่อให้การเปลี่ยนรูปลักษณ์มีผล รีสตาร์ทเลยไหม</translation>
         </message>
     </context>
     <context>
@@ -4838,28 +4878,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 ใช้งาน 1</translation>
+            <source>unlimited</source>
+            <translation>ไม่จำกัด</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 ใช้งาน</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 ดาวน์โหลด 1</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 ดาวน์โหลด %1</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 ผิดพลาด 1</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 ผิดพลาด %1</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 จำกัดความเร็ว</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4870,24 +4894,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 ตรวจสอบการอัปเดต</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 จำกัดความเร็ว</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 พร้อม</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 เลือก 1</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 เลือก %1</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 ปิด DHT</translation>
+            <source>DHT off</source>
+            <translation>ปิด DHT</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4898,6 +4906,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ออนไลน์</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>กำลังประมาณ… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>ถัดไป &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 คิวทำงานใน 1 นาที</translation>
         </message>
@@ -4906,29 +4922,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 คิวทำงานใน %1 นาที</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 กำลังประเมิน… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>ถัดไป &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>อัตราส่วนการแชร์ตลอดกาล</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>คลิกเพื่อดูสถิติ</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>คลิกเพื่อคัดลอก IP</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>IP สาธารณะ:</translation>
+            <source>Listening port: </source>
+            <translation>สัญญาณ:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>ไม่พบการเชื่อมต่อเครือข่าย</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>พอร์ตรับ:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4939,12 +4951,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>สัญญาณ:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>IP สาธารณะ:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>พอร์ตรับ:</translation>
+            <source>Click to copy IP</source>
+            <translation>คลิกเพื่อดูสถิติ</translation>
         </message>
     </context>
     <context>
@@ -5047,6 +5059,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>แถบเครื่องมือ</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>ปรับแต่งปุ่มแถบเครื่องมือ ใช้เลื่อนขึ้นและลงเพื่อเรียงลำดับ ติ๊กเพื่อเปิด ไม่ติ๊กเพื่อปิด</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>เพิ่ม URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>ทำต่อ</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>หยุด</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>หยุดทั้งหมด</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ลบ</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>ลบที่เสร็จ</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>ตัวเลือก</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>ตัวจัดตาราง</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>เริ่มคิว</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>หยุดคิว</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>ตัวดึง</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>เครื่องมือค้นหา</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>เลื่อนขึ้น</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>เลื่อนลง</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>เปิดใช้งาน</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>ปิดใช้งาน</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>เพิ่มตัวคั่น</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>รีเซ็ต</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ตกลง</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ยกเลิก</translation>
         </message>
     </context>
     <context>

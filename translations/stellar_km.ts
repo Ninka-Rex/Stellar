@@ -951,6 +951,10 @@ Click  Add URL  to start.</source>
             <translation>ចម្លងតំណ Magnet</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>ផ្ទៀងផ្ទាត់ទិន្នន័យក្នុងតំបន់</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>ចម្លង URL</translation>
         </message>
@@ -4715,8 +4719,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>URL ប្រភពមិនទាន់ឃ្លាំង។ ប្រើពិនិត្យបច្ចុប្បន្នភាពដើម្បីឃ្លាំង IPtoCityDB ពី update.json។</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>កំណែ %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>កំណែ %1 បេតា</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4733,6 +4737,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>ជ្រើសរើស JS runtime binary</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>រចនាប័ទ្មរូបតំណាងថាស:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>ពណ៌</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>ស</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>ខ្មៅ</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>រូបរាង</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>មាត្រដ្ឋាន UI:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>ទំហំពុម្ពអក្សរ:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>លំនាំដើមប្រព័ន្ធ</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>ត្រូវចាប់ផ្ដើមឡើងវិញដើម្បីឱ្យការផ្លាស់ប្ដូររូបរាងមានប្រសិទ្ធភាព។ ចាប់ផ្ដើមឡើងវិញឥឡូវនេះ?</translation>
         </message>
     </context>
     <context>
@@ -4852,28 +4892,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 សកម្ម</translation>
+            <source>unlimited</source>
+            <translation>គ្មានដែនកំណត់</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 សកម្ម</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 ទាញយក</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 ទាញយក</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 កំហុស</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 កំហុស</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 កំណត់ល្បឿន</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4884,24 +4908,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 កំពុងពិនិត្យអាប់ដេត</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 កំណត់ល្បឿន</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 រួចរាល់</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 បានជ្រើស</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 បានជ្រើស</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT បិទ</translation>
+            <source>DHT off</source>
+            <translation>DHT បិទ</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4912,6 +4920,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation> លើបណ្ដាញ</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>កំពុងប៉ាន់ស្មាន… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>បន្ទាប់ &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 ជួរនឹងដំណើរការក្នុង 1 នាទី</translation>
         </message>
@@ -4920,30 +4936,26 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 ជួរនឹងដំណើរការក្នុង %1 នាទី</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 កំពុងប៉ាន់ស្មាន… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>បន្ទាប់ &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>សមាមាត្រចែករំលែកសរុប
 ចុចដើម្បីបើកស្ថិតិ</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>ចុចដើម្បីចម្លង IP</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>IP សាធារណៈ៖</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>ការតភ្ជាប់៖ អ៊ីសឺណិត</translation>
+            <source>Listening port: </source>
+            <translation>ច្រកស្តាប់៖</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>រកមិនឃើញការតភ្ជាប់បណ្ដាញ</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>គ្មានការតភ្ជាប់ចូល បណ្តាញអាចកំណត់រចនាសម្ព័ន្ធមិនត្រឹមត្រូវ</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4954,12 +4966,12 @@ Click to open Statistics</source>
             <translation>សញ្ញា៖</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>ច្រកស្តាប់៖</translation>
+            <source>Connection: Ethernet</source>
+            <translation>ការតភ្ជាប់៖ អ៊ីសឺណិត</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>គ្មានការតភ្ជាប់ចូល បណ្តាញអាចកំណត់រចនាសម្ព័ន្ធមិនត្រឹមត្រូវ</translation>
+            <source>Click to copy IP</source>
+            <translation>ចុចដើម្បីចម្លង IP</translation>
         </message>
     </context>
     <context>
@@ -5062,6 +5074,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>របារឧបករណ៍</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>ប្ដូរប៊ូតុងរបារឧបករណ៍តាមបំណង។ ប្រើផ្លាស់ទីឡើងលើ និងផ្លាស់ទីចុះក្រោមដើម្បីតម្រៀបឡើងវិញ។ ធីកដើម្បីបើក ដោះធីកដើម្បីបិទ។</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>បន្ថែម URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>បន្ត</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>បញ្ឈប់</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>បញ្ឈប់ទាំងអស់</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>លុប</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>លុបរួចរាល់</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>ជម្រើស</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>កម្មវិធីកំណត់ពេល</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>ចាប់ផ្ដើមជួរ</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>បញ្ឈប់ជួរ</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>ឧបករណ៍ចាប់យក</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>ម៉ាស៊ីនស្វែងរក</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>ផ្លាស់ទីឡើង</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>ផ្លាស់ទីចុះ</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>បើក</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>បិទ</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>បន្ថែមសញ្ញាបំបែក</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>កំណត់ឡើងវិញ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>យល់ព្រម</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>បោះបង់</translation>
         </message>
     </context>
     <context>

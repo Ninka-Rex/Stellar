@@ -950,6 +950,10 @@ URL যোগ করুন শুরু করতে।</translation>
             <translation>ম্যাগনেট লিংক কপি</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>স্থানীয় ডেটা যাচাই করুন</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL কপি</translation>
         </message>
@@ -4709,8 +4713,8 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <translation>উৎস URL এখনও ক্যাশে নেই। update.json থেকে IPtoCityDB ক্যাশ করতে আপডেট পরীক্ষা করুন।</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>সংস্করণ %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>সংস্করণ %1 বিটা</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4727,6 +4731,42 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>জাভাস্ক্রিপ্ট রানটাইম বাইনারি নির্বাচন করুন</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>ট্রে আইকন শৈলী:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>রঙিন</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>সাদা</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>কালো</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>চেহারা</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI স্কেল:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>ফন্ট আকার:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>সিস্টেম ডিফল্ট</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>চেহারা পরিবর্তন কার্যকর করতে পুনরায় চালু করা প্রয়োজন। এখনই পুনরায় চালু করবেন?</translation>
         </message>
     </context>
     <context>
@@ -4846,28 +4886,12 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 ১ সক্রিয়</translation>
+            <source>unlimited</source>
+            <translation>সীমাহীন</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 সক্রিয়</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 ১ ডাউনলোড</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 ডাউনলোড</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 ১ ত্রুটি</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 ত্রুটি</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 গতি সীমাকারী</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4878,24 +4902,8 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <translation>📡 আপডেট চেক করা হচ্ছে</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 গতি সীমাকারী</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 প্রস্তুত</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 ১টি নির্বাচিত</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 নির্বাচিত</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT বন্ধ</translation>
+            <source>DHT off</source>
+            <translation>ডিএইচটি বন্ধ</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4906,6 +4914,14 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <translation>অনলাইন</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>আনুমানিক হিসাব করা হচ্ছে… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>পরবর্তী &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 ১ মিনিটে কিউ চলবে</translation>
         </message>
@@ -4914,30 +4930,26 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <translation>🟧 কুইউ %1 মিনিটে চলবে</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 অনুমান করা হচ্ছে… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>পরবর্তী &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>সর্বকালের শেয়ার অনুপাত
 পরিসংখ্যান খুলতে ক্লিক করুন</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>IP কপি করতে ক্লিক করুন</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>পাবলিক IP: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>সংযোগ: ইথারনেট</translation>
+            <source>Listening port: </source>
+            <translation>শোনা পোর্ট: </translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>নেটওয়ার্ক সংযোগ সনাক্ত করা যায়নি</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>কোনো ইনকামিং সংযোগ নেই, নেটওয়ার্ক ভুল কনফিগারড হতে পারে</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4948,12 +4960,12 @@ Click to open Statistics</source>
             <translation>সিগন্যাল: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>শোনা পোর্ট: </translation>
+            <source>Connection: Ethernet</source>
+            <translation>সংযোগ: ইথারনেট</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>কোনো ইনকামিং সংযোগ নেই, নেটওয়ার্ক ভুল কনফিগারড হতে পারে</translation>
+            <source>Click to copy IP</source>
+            <translation>IP কপি করতে ক্লিক করুন</translation>
         </message>
     </context>
     <context>
@@ -5056,6 +5068,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>টুলবার</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>টুলবার বোতাম কাস্টমাইজ করুন। পুনর্বিন্যাস করতে উপরে সরান এবং নিচে সরান ব্যবহার করুন। সক্রিয় করতে চেক করুন, নিষ্ক্রিয় করতে আনচেক করুন।</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL যোগ করুন</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>পুনরায় শুরু করুন</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>থামুন</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>সব বন্ধ করুন</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>মুছুন</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>সম্পন্ন মুছুন</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>বিকল্প</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>সময়সূচী</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>সারি শুরু</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>সারি বন্ধ</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>গ্র্যাবার</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>অনুসন্ধান ইঞ্জিন</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>উপরে সরান</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>নিচে সরান</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>সক্রিয়</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>নিষ্ক্রিয়</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>বিভাজক যোগ</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>রিসেট</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
         </message>
     </context>
     <context>

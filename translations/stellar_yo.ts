@@ -950,6 +950,10 @@ Tẹ  Fi URL kún  láti bẹ̀rẹ̀.</translation>
             <translation>Da ọ̀já Magnet</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Ṣayẹwo data agbegbe</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Da URL</translation>
         </message>
@@ -4715,8 +4719,8 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <translation>URL orísun kò tì pamọ́. Lo Ṣàyẹ̀wo àwọn ìmúdòjuìwọ̀n láti pamọ́ IPtoCityDB láti update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Ẹ̀yà %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Ẹ̀yà %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4733,6 +4737,42 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Yan JavaScript runtime binary</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Ọ̀nà àmì atẹ́:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Aláwọ̀</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Funfun</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Dúdú</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Ìrísí</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Ìwọ̀n UI:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Ìwọ̀n lẹ́tà:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Àtúnṣe ètò</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Àtúnbẹ̀rẹ̀ nílò fún àwọn ìyípadà ìrísí láti ṣiṣẹ́. Ṣé kí a tún bẹ̀rẹ̀ báyìí?</translation>
         </message>
     </context>
     <context>
@@ -4852,28 +4892,12 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 ń ṣiṣẹ́</translation>
+            <source>unlimited</source>
+            <translation>àìlópin</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 ń ṣiṣẹ́</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 ìgbàjáde</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 ìgbàjáde</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 àṣìṣe</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 àṣìṣe</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Ìdínà ìyára</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4884,24 +4908,8 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <translation>📡 Ńṣàyẹ̀wò àwọn ìmúdójúìwọ̀n</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Ìdínà ìyára</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Ṣe tán</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 yàn</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 yàn</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT pa</translation>
+            <source>DHT off</source>
+            <translation>DHT pa</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4912,6 +4920,14 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <translation> orí ayélujára</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Ńṣèrò… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>àtẹ̀lé &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Ìlà yóò ṣiṣẹ́ ní ìṣẹ́jú 1</translation>
         </message>
@@ -4920,30 +4936,26 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <translation>🟧 Ìlà yóò ṣiṣẹ́ ní ìṣẹ́jú %1</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Ńṣèṣirò… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>àtẹ̀lé &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Ìpín pínpín gbogbo ìgbà
 Tẹ láti ṣí Ìṣirò</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>Tẹ láti da IP</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>IP gbogbogbò: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Ìsopọ̀: Ethernet</translation>
+            <source>Listening port: </source>
+            <translation>1. Èbútè ìgbọ́rọ̀:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Kò sí ìsopọ̀ nẹ́tíwọ́ọ̀kì</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>2. Kò sí ìsopọ̀ tí ń wọlé, ìṣètò nẹ́tíwọ́ọ̀kì lè jẹ́ àṣìṣe</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4954,12 +4966,12 @@ Tẹ láti ṣí Ìṣirò</translation>
             <translation>Àmì: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>1. Èbútè ìgbọ́rọ̀:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Ìsopọ̀: Ethernet</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>2. Kò sí ìsopọ̀ tí ń wọlé, ìṣètò nẹ́tíwọ́ọ̀kì lè jẹ́ àṣìṣe</translation>
+            <source>Click to copy IP</source>
+            <translation>Tẹ láti da IP</translation>
         </message>
     </context>
     <context>
@@ -5062,6 +5074,101 @@ Tẹ láti ṣí Ìṣirò</translation>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Pẹpẹ irinṣẹ́</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Ṣàtúnṣe àwọn bọ́tìnì pẹpẹ irinṣẹ́. Lo Gbé Sókè àti Gbé Sísàlẹ̀ láti tún tò. Ṣàmì láti mú ṣiṣẹ́, yọ àmì láti dá dúró.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Fi URL kún</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Tún bẹ̀rẹ̀</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Dá dúró</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Dá Gbogbo Dúró</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Parẹ́</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Parẹ́ Tó Ti Ṣe</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Àwọn Àṣàyàn</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Ètò Àkókò</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Bẹ̀rẹ̀ Ìlà</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Dá Ìlà Dúró</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Amúnilọ́wọ́</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Ẹ̀rọ Ìṣàwárí</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Gbe Soke</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Gbe Isalẹ</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Mu Ṣiṣẹ</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Dá Dúró</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Fi Ìpín Kun</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Tún Bẹ̀rẹ̀</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Ó Dára</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Fagilé</translation>
         </message>
     </context>
     <context>

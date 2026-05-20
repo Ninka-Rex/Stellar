@@ -950,6 +950,10 @@ Click  Add URL  to start.</source>
             <translation>Копирай магнитен линк</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Проверка на локални данни</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Копирай URL</translation>
         </message>
@@ -4709,8 +4713,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>URL на източника все още не е кеширан. Използвайте Проверка за актуализации.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Версия %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Версия %1 Бета</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4727,6 +4731,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Изберете двоичен файл на JavaScript runtime</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Стил на иконата в трея:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Цветна</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Бяла</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Черна</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Изглед</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Мащаб на интерфейса:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Размер на шрифта:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Системна по подразбиране</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Необходимо е рестартиране за прилагане на промените. Рестартиране сега?</translation>
         </message>
     </context>
     <context>
@@ -4846,28 +4886,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 активен</translation>
+            <source>unlimited</source>
+            <translation>неограничен</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 активни</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 изтегляне</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 изтегляния</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 грешка</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 грешки</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Ограничител на скоростта</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4878,24 +4902,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 Проверка за актуализации</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Ограничител на скоростта</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Готов</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 Избран: 1</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 Избрани: %1</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT изключен</translation>
+            <source>DHT off</source>
+            <translation>DHT изкл.</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4906,6 +4914,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>онлайн</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Оценяване… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>следващ &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Опашката ще стартира за 1 минута</translation>
         </message>
@@ -4914,30 +4930,26 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 Опашката ще стартира за %1 минути</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Изчислява се… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>следващ &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Общ дял за цялото време
 Кликнете за статистика</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>Кликнете за копиране на IP</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>Публичен IP: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Връзка: Ethernet</translation>
+            <source>Listening port: </source>
+            <translation>Порт за слушане: </translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Няма мрежова свързаност</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Няма входящи връзки, мрежата може да е неправилно конфигурирана</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4948,12 +4960,12 @@ Click to open Statistics</source>
             <translation>Сигнал: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Порт за слушане: </translation>
+            <source>Connection: Ethernet</source>
+            <translation>Връзка: Ethernet</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Няма входящи връзки, мрежата може да е неправилно конфигурирана</translation>
+            <source>Click to copy IP</source>
+            <translation>Кликнете за копиране на IP</translation>
         </message>
     </context>
     <context>
@@ -5056,6 +5068,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Лента с инструменти</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Персонализиране на бутоните. Използвай Нагоре и Надолу за пренареждане. Отметни за включване, размаркирай за изключване.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Добави URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Продължи</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Спри</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Спри всички</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Изтрий</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Изтрий готовите</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Настройки</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Планировчик</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Старт опашка</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Спри опашка</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Грабител</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Търсачка</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Премести нагоре</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Премести надолу</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Включи</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Изключи</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Добави разделител</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Нулиране</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ОК</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Отказ</translation>
         </message>
     </context>
     <context>

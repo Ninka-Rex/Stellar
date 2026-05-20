@@ -950,6 +950,10 @@ Click  Add URL  to start.</source>
             <translation>Αντιγραφή συνδέσμου Magnet</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Επαλήθευση τοπικών δεδομένων</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Αντιγραφή URL</translation>
         </message>
@@ -4709,8 +4713,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Η διεύθυνση URL πηγής δεν έχει προσωρινά αποθηκευτεί. Χρησιμοποιήστε Έλεγχος ενημερώσεων.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Έκδοση %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Έκδοση %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4727,6 +4731,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Επιλογή εκτελέσιμου JavaScript</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Στυλ εικονιδίου συστήματος:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Έγχρωμο</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Λευκό</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Μαύρο</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Εμφάνιση</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Κλίμακα UI:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Μέγεθος γραμματοσειράς:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Προεπιλογή συστήματος</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Απαιτείται επανεκκίνηση για αλλαγές εμφάνισης. Επανεκκίνηση τώρα;</translation>
         </message>
     </context>
     <context>
@@ -4846,28 +4886,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 ενεργό</translation>
+            <source>unlimited</source>
+            <translation>απεριόριστο</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 ενεργά</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 λήψη</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 λήψεις</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 σφάλμα</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 σφάλματα</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Περιοριστής ταχύτητας</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4878,24 +4902,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 Έλεγχος ενημερώσεων</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Περιοριστής ταχύτητας</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Έτοιμο</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 Επιλεγμένο: 1</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 Επιλεγμένα: %1</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT απενεργοποιημένο</translation>
+            <source>DHT off</source>
+            <translation>DHT ανενεργό</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4906,6 +4914,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation> online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Εκτίμηση… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>επόμενο &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Η ουρά θα εκτελεστεί σε 1 λεπτό</translation>
         </message>
@@ -4914,30 +4930,26 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 Η ουρά θα εκτελεστεί σε %1 λεπτά</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Υπολογισμός… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>επόμενο &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Συνολικός λόγος κοινοποίησης
 Κλικ για στατιστικά</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>Κλικ για αντιγραφή IP</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>Δημόσια IP: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Σύνδεση: Ethernet</translation>
+            <source>Listening port: </source>
+            <translation>Θύρα ακρόασης: </translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Δεν εντοπίστηκε σύνδεση δικτύου</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Καμία εισερχόμενη σύνδεση, το δίκτυο μπορεί να είναι λανθασμένα διαμορφωμένο</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4948,12 +4960,12 @@ Click to open Statistics</source>
             <translation>Σήμα: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Θύρα ακρόασης: </translation>
+            <source>Connection: Ethernet</source>
+            <translation>Σύνδεση: Ethernet</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Καμία εισερχόμενη σύνδεση, το δίκτυο μπορεί να είναι λανθασμένα διαμορφωμένο</translation>
+            <source>Click to copy IP</source>
+            <translation>Κλικ για αντιγραφή IP</translation>
         </message>
     </context>
     <context>
@@ -5056,6 +5068,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Γραμμή εργαλείων</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Προσαρμογή κουμπιών. Χρήση Μετακίνηση Πάνω/Κάτω για σειρά. Ενεργοποίηση με ✔.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Προσθήκη URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Συνέχιση</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Διακοπή</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Διακοπή όλων</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Διαγραφή</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Διαγραφή ολοκληρωμένων</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Επιλογές</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Χρονοπρογραμματιστής</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Έναρξη ουράς</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Διακοπή ουράς</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Συλλέκτης</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Μηχανή αναζήτησης</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Μετακίνηση πάνω</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Μετακίνηση κάτω</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Ενεργοποίηση</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Απενεργοποίηση</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Προσθήκη διαχωριστικού</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Επαναφορά</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Άκυρο</translation>
         </message>
     </context>
     <context>

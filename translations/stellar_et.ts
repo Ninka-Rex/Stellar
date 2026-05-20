@@ -965,6 +965,10 @@ Click  Add URL  to start.</source>
             <translation>Kopeeri magnetlink</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Kontrolli kohalikke andmeid</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Kopeeri URL</translation>
         </message>
@@ -4715,8 +4719,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Allika URL-i ei ole veel vahetatud. Kasuta 'Uuenduste kontrollimist', et vahetada IPtoCityDB failist update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Versioon %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Versioon %1 beeta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4733,6 +4737,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Vali JS runtime binaar</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Süsteemisalve ikooni stiil:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Värviline</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Valge</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Must</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Välimus</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Liidese skaala:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Fondi suurus:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Süsteemi vaikeseade</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Välimuse muudatuste jõustumiseks on vaja taaskäivitada. Taaskäivitada kohe?</translation>
         </message>
     </context>
     <context>
@@ -4852,28 +4892,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktiivne</translation>
+            <source>unlimited</source>
+            <translation>piiramatu</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktiivne</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 allalaadimine</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 allalaadimist</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 viga</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 vigu</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Kiiruse piiraja</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4884,24 +4908,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 Uuenduste kontrollimine</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Kiiruse piiraja</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Valmis</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 valitud</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 valitud</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT välja</translation>
+            <source>DHT off</source>
+            <translation>DHT väljas</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4912,6 +4920,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation> online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Hindamine… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>järgmine &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Lõpuks 1 minut</translation>
         </message>
@@ -4920,29 +4936,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 Lõpuks %1 minutit</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Arvestamine… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>järgmine &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Koguaja jagamisprotsent</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Kopeeri IP</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>Üldine IP:</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Ühendus: Ethernet</translation>
+            <source>Listening port: </source>
+            <translation>Kuuluvusport:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Võrguühendust ei tuvastatud</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Sissetulevaid ühendusi pole, võrk võib olla valesti seadistatud</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4953,12 +4965,12 @@ Click to open Statistics</source>
             <translation>Signaal:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Kuuluvusport:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Ühendus: Ethernet</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Sissetulevaid ühendusi pole, võrk võib olla valesti seadistatud</translation>
+            <source>Click to copy IP</source>
+            <translation>Kopeeri IP</translation>
         </message>
     </context>
     <context>
@@ -5061,6 +5073,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Tööriistariba</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Kohanda tööriistariba nuppe. Kasuta liigutamiseks üles ja alla. Märgi lubamiseks, eemalda märge keelamiseks.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Lisa URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Jätka</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Peata</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Peata kõik</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Kustuta</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Kustuta lõpetatud</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Valikud</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Ajastaja</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Käivita järjekord</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Peata järjekord</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Haaraja</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Otsingumootor</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Liiguta üles</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Liiguta alla</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Luba</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Keela</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Lisa eraldaja</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Lähtesta</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Tühista</translation>
         </message>
     </context>
     <context>

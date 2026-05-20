@@ -951,6 +951,10 @@ Click  Add URL  to start.</source>
             <translation>મેગ્નેટ લિંક નકલ કરો</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>સ્થાનિક ડેટા ચકાસો</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL નકલ કરો</translation>
         </message>
@@ -4703,8 +4707,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>સ્રોત URL હજુ કેશમાં નથી. update.json માંથી IPtoCityDB કેશ કરવા માટે 'અપડેટ ચેક' વાપરો.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>વર્ઝન %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>આવૃત્તિ %1 બીટા</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4721,6 +4725,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>જાવાસ્ક્રિપ્ટ રનટાઈમ બાયનરી પસંદ કરો</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>ટ્રે આઇકન શૈલી:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>રંગીન</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>સફેદ</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>કાળો</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>દેખાવ</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI સ્કેલ:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>ફોન્ટ માપ:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>સિસ્ટમ ડિફોલ્ટ</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>દેખાવમાં ફેરફારો અમલમાં આવે તે માટે પુનઃપ્રારંભ જરૂરી છે. હવે પુનઃપ્રારંભ કરશો?</translation>
         </message>
     </context>
     <context>
@@ -4840,28 +4880,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 સક્રિય</translation>
+            <source>unlimited</source>
+            <translation>અમર્યાદિત</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 સક્રિય</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 ડાઉનલોડ</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 ડાઉનલોડ્સ</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 ભૂલ</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 ભૂલો</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 સ્પીડ લિમિટર</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4872,24 +4896,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 અપડેટ ચકાસી રહ્યું છે</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 સ્પીડ લિમિટર</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 તૈયાર</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 ૧ પસંદ કરેલ</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 પસંદ કરેલ</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT બંધ</translation>
+            <source>DHT off</source>
+            <translation>DHT બંધ</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4900,6 +4908,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>અંદાજ લગાવી રહ્યા છીએ… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>next &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 ક્યુ ૧ મિનિટમાં ચાલશે</translation>
         </message>
@@ -4908,29 +4924,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 ક્યુ %1 મિનિટમાં ચાલશે</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 અંદાજીત… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>next &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>કુલ શેર ગુણોત્તર</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>સ્ટેટિસ્ટિક્સ ખોલવા માટે ક્લિક કરો</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>IP નકલ કરવા માટે ક્લિક કરો</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>જાહેર IP:</translation>
+            <source>Listening port: </source>
+            <translation>સિગ્નલ:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>નેટવર્ક કનેક્ટિવિટી મળી નથી</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>લિસ્ટનિંગ પોર્ટ:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4941,12 +4953,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>સિગ્નલ:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>જાહેર IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>લિસ્ટનિંગ પોર્ટ:</translation>
+            <source>Click to copy IP</source>
+            <translation>સ્ટેટિસ્ટિક્સ ખોલવા માટે ક્લિક કરો</translation>
         </message>
     </context>
     <context>
@@ -5049,6 +5061,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>ટૂલબાર</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>ટૂલબાર બટનોને કસ્ટમાઇઝ કરો. ફરીથી ગોઠવવા માટે ઉપર ખસેડો અને નીચે ખસેડોનો ઉપયોગ કરો. સક્ષમ કરવા માટે ચેક કરો, અક્ષમ કરવા માટે અનચેક કરો.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL ઉમેરો</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>ફરી શરૂ કરો</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>રોકો</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>બધા રોકો</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>કાઢી નાખો</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>પૂર્ણ થયેલ કાઢો</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>વિકલ્પો</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>સમયપત્રક</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>કતાર શરૂ કરો</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>કતાર રોકો</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>ગ્રેબર</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>શોધ એન્જિન</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>ઉપર ખસેડો</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>નીચે ખસેડો</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>સક્રિય કરો</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>નિષ્ક્રિય કરો</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>વિભાજક ઉમેરો</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>રીસેટ કરો</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ઠીક</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>રદ કરો</translation>
         </message>
     </context>
     <context>

@@ -950,6 +950,10 @@ Klikk Legg til URL for å starte.</translation>
             <translation>Kopier magnetlenke</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Verifiser lokale data</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Kopier URL</translation>
         </message>
@@ -4701,8 +4705,8 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <translation>Kilde-URL er ikke lagret ennå. Bruk Sjekk oppdateringer for å lagre IPtoCityDB fra update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Versjon %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Versjon %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4719,6 +4723,42 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Velg JavaScript-runtime-binær</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Skuffikonstil:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Farget</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Hvit</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Svart</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Utseende</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI-skala:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Skriftstørrelse:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Systemstandard</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>En omstart kreves for at utseendet skal tre i kraft. Starte på nytt nå?</translation>
         </message>
     </context>
     <context>
@@ -4838,28 +4878,12 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktiv</translation>
+            <source>unlimited</source>
+            <translation>ubegrenset</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktive</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 nedlasting</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 nedlastinger</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 feil</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 feil</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Hastighetsbegrensning</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4870,24 +4894,8 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <translation>📡 Sjekk oppdateringer</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Hastighetsbegrensning</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Klar</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 valgt</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 valgt</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT av</translation>
+            <source>DHT off</source>
+            <translation>DHT av</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4898,6 +4906,14 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <translation> online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Anslår… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>neste &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Kø kjører på 1 minutt</translation>
         </message>
@@ -4906,29 +4922,25 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <translation>🟧 kø kjører om %1 minutter</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Estimerer… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>neste &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Total delingsratio</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Klikk for å åpne statistikk</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>Klikk for å kopiere IP</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Publisert IP:</translation>
+            <source>Listening port: </source>
+            <translation>Signal:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Ingen nettverkstilkobling funnet</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Lyttende port:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4939,12 +4951,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Signal:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Publisert IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Lyttende port:</translation>
+            <source>Click to copy IP</source>
+            <translation>Klikk for å åpne statistikk</translation>
         </message>
     </context>
     <context>
@@ -5047,6 +5059,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Verktøylinje</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Tilpass verktøylinjeknapper. Bruk Flytt opp og Flytt ned for å endre rekkefølge. Kryss av for å aktivere, fjern avkrysning for å deaktivere.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Legg til URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Fortsett</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Stopp</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Stopp alle</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Slett</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Slett fullførte</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Valg</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Planlegger</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Start kø</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Stopp kø</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Grabber</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Søkemotor</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Flytt opp</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Flytt ned</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Aktiver</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Deaktiver</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Legg til skillelinje</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Tilbakestill</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Avbryt</translation>
         </message>
     </context>
     <context>

@@ -949,6 +949,10 @@ Noklikšķiniet uz Pievienot URL, lai sāktu.</translation>
             <translation>Kopēt magnet saiti</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Pārbaudīt lokālos datus</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Kopēt URL</translation>
         </message>
@@ -4708,8 +4712,8 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <translation>Avota URL vēl nav kešatmiņā. Izmantojo 'Pārbaudīt atjauninājumus', lai kešatmiņā ielādētu IPtoCityDB no update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Versija %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Versija %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4726,6 +4730,42 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Izvēlieties JavaScript izpildes vides bināro failu</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Teknes ikonas stils:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Krāsaina</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Balta</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Melna</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Izskats</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI mērogs:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Fonta izmērs:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Sistēmas noklusējums</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Lai izmaiņas stātos spēkā, nepieciešama restartēšana. Restartēt tagad?</translation>
         </message>
     </context>
     <context>
@@ -4845,28 +4885,12 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktīvs</translation>
+            <source>unlimited</source>
+            <translation>neierobežots</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktīvi</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 lejupielāde</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 lejupielādes</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 kļūda</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 kļūdas</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Ātruma ierobežotājs</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4877,24 +4901,8 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <translation>📡 Pārbauda atjauninājumus</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Ātruma ierobežotājs</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Gatavs</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 Atlasīta 1</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 Atlasīti %1</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT izsl.</translation>
+            <source>DHT off</source>
+            <translation>DHT izslēgts</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4905,6 +4913,14 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <translation>online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Aprēķina… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>nākamais &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Rinda tiks apstrādāta pēc 1 min.</translation>
         </message>
@@ -4913,30 +4929,26 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <translation>🟧 Rinda tiks apstrādāta pēc %1 min.</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Aprēķina… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>nākamais &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Visu laiku dalīšanās koeficients
 Noklikšķiniet, lai atvērtu statistiku</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>Noklikšķiniet, lai nokopētu IP</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>Publiskais IP:</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Savienojums: Ethernet</translation>
+            <source>Listening port: </source>
+            <translation>Klausīšanās ports:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Nav tīkla savienojuma</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Nav ienākošu savienojumu, tīkls var būt nepareizi konfigurēts</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4947,12 +4959,12 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
             <translation>Signāls:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Klausīšanās ports:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Savienojums: Ethernet</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Nav ienākošu savienojumu, tīkls var būt nepareizi konfigurēts</translation>
+            <source>Click to copy IP</source>
+            <translation>Noklikšķiniet, lai nokopētu IP</translation>
         </message>
     </context>
     <context>
@@ -5055,6 +5067,101 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Rīkjosla</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Pielāgot rīkjoslas pogas. Izmantojiet Pārvietot augšup un Pārvietot lejup, lai pārkārtotu. Atzīmējiet, lai iespējotu, noņemiet atzīmi, lai atspējotu.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Pievienot URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Atsākt</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Apturēt</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Apturēt visu</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Dzēst</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Dzēst pabeigtos</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Opcijas</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Plānotājs</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Sākt rindu</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Apturēt rindu</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Tvērējs</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Meklētājs</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Pārvietot augšup</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Pārvietot lejup</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Iespējot</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Atspējot</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Pievienot atdalītāju</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Atiestatīt</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Labi</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Atcelt</translation>
         </message>
     </context>
     <context>

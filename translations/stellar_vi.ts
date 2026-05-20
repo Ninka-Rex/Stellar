@@ -950,6 +950,10 @@ Nhấn Thêm URL để bắt đầu.</translation>
             <translation>Sao chép liên kết Magnet</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Xác minh dữ liệu cục bộ</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Sao chép URL</translation>
         </message>
@@ -4707,8 +4711,8 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <translation>URL nguồn chưa được lưu cache. Sử dụng Kiểm tra cập nhật để lưu cache IPtoCityDB từ update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Phiên bản %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Phiên bản %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4725,6 +4729,42 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Chọn runtime JS</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Kiểu biểu tượng khay:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Có màu</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Trắng</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Đen</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Giao diện</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Tỉ lệ giao diện:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Cỡ chữ:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Mặc định hệ thống</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Cần khởi động lại để thay đổi giao diện. Khởi động ngay?</translation>
         </message>
     </context>
     <context>
@@ -4844,28 +4884,12 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 hoạt động</translation>
+            <source>unlimited</source>
+            <translation>vô hạn</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 hoạt động</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 tải xuống</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 tải xuống</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 lỗi</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 lỗi</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Giới hạn tốc độ</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4876,24 +4900,8 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <translation>📡 Kiểm tra cập nhật</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Giới hạn tốc độ</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Sẵn sàng</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 đã chọn</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 đã chọn</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 Tắt DHT</translation>
+            <source>DHT off</source>
+            <translation>Tắt DHT</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4904,6 +4912,14 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <translation>  trực tuyến</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Đang ước tính… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>Tiếp theo &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Hàng đợi chạy trong 1 phút</translation>
         </message>
@@ -4912,30 +4928,26 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <translation>🟧 Hàng đợi chạy trong %1 phút</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Ước tính… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>Tiếp theo &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Tỷ lệ chia sẻ mọi thời đại
 Nhấp để xem thống kê</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>Nhấp để sao chép IP</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>IP công cộng:</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Kết nối: Ethernet</translation>
+            <source>Listening port: </source>
+            <translation>Cổng lắng nghe:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Không phát hiện kết nối mạng</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Không có kết nối đến, mạng có thể cấu hình sai</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4946,12 +4958,12 @@ Nhấp để xem thống kê</translation>
             <translation>Tín hiệu:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Cổng lắng nghe:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Kết nối: Ethernet</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Không có kết nối đến, mạng có thể cấu hình sai</translation>
+            <source>Click to copy IP</source>
+            <translation>Nhấp để sao chép IP</translation>
         </message>
     </context>
     <context>
@@ -5054,6 +5066,101 @@ Nhấp để xem thống kê</translation>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Thanh công cụ</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Tùy chỉnh nút. Dùng Lên/Xuống để sắp xếp. Tích để bật, bỏ tích để tắt.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Thêm URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Tiếp tục</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Dừng</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Dừng tất cả</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Xóa</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Xóa xong</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Tùy chọn</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Lịch</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Chạy hàng đợi</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Dừng hàng đợi</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Trình bắt</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Máy tìm kiếm</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Di lên</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Di xuống</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Bật</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Tắt</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Thêm phân cách</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Đặt lại</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Hủy</translation>
         </message>
     </context>
     <context>

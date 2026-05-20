@@ -949,6 +949,10 @@ Klicken Sie auf URL hinzufügen, um zu beginnen.</translation>
             <translation>Magnet-Link kopieren</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Lokale Daten prüfen</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL kopieren</translation>
         </message>
@@ -4707,8 +4711,8 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <translation>Quell-URL noch nicht zwischengespeichert. Nutzen Sie 'Auf Updates prüfen', um IPtoCityDB aus update.json zu zwischenspeichern.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Version %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Version %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4725,6 +4729,42 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JavaScript-Laufzeitumgebung auswählen</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Taskleistensymbol-Stil:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Farbig</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Weiß</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Schwarz</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Erscheinungsbild</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI-Skalierung:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Schriftgröße:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Systemstandard</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Neustart nötig für Designänderungen. Jetzt neu starten?</translation>
         </message>
     </context>
     <context>
@@ -4844,28 +4884,12 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktiv</translation>
+            <source>unlimited</source>
+            <translation>unbegrenzt</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktiv</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 Download</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 Downloads</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 Fehler</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 Fehler</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Geschwindigkeitsbegrenzer</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4876,24 +4900,8 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <translation>📡 Prüfe auf Updates</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Geschwindigkeitsbegrenzer</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Bereit</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 ausgewählt</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 ausgewählt</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT aus</translation>
+            <source>DHT off</source>
+            <translation>DHT aus</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4904,6 +4912,14 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <translation>online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Schätze… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>nächste &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Warteschlange startet in 1 Minute</translation>
         </message>
@@ -4912,30 +4928,26 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <translation>🟧 Warteschlange startet in %1 Minuten</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Schätze… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>nächste &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Gesamt-Share-Ratio
 Klicken für Statistiken</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>Klicken für IP kopieren</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>Öffentliche IP: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Verbindung: Ethernet</translation>
+            <source>Listening port: </source>
+            <translation>Hör-Port: </translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Keine Netzwerkverbindung</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Keine eingehenden Verbindungen, Netzwerk möglicherweise falsch konfiguriert</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4946,12 +4958,12 @@ Klicken für Statistiken</translation>
             <translation>Signal: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Hör-Port: </translation>
+            <source>Connection: Ethernet</source>
+            <translation>Verbindung: Ethernet</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Keine eingehenden Verbindungen, Netzwerk möglicherweise falsch konfiguriert</translation>
+            <source>Click to copy IP</source>
+            <translation>Klicken für IP kopieren</translation>
         </message>
     </context>
     <context>
@@ -5054,6 +5066,101 @@ Klicken für Statistiken</translation>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Symbolleiste</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Symbolleiste anpassen. Mit Nach oben/unten sortieren. Aktivieren zum Anzeigen.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL hinzufügen</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Fortsetzen</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Stopp</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Alle stoppen</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Löschen</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Fertige löschen</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Optionen</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Planer</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Warteschlange starten</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Warteschlange stoppen</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Sammler</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Suchmaschine</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Nach oben</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Nach unten</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Aktivieren</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Deaktivieren</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Trennlinie hinzufügen</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Zurücksetzen</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
         </message>
     </context>
     <context>

@@ -953,6 +953,10 @@ Click  Add URL  to start.</source>
             <translation>URL कॉपी करें</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>स्थानीय डेटा जाँचें</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL कॉपी करें</translation>
         </message>
@@ -4722,8 +4726,8 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <translation>Source URL अभी कैश नहीं हुआ है। update.json से IPtoCityDB कैश करने के लिए 'Check for updates' का उपयोग करें।</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>वर्जन %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>संस्करण %1 बीटा</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4740,6 +4744,42 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JS रनटाइम बाइनरी चुनें</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>ट्रे आइकन शैली:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>रंगीन</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>सफ़ेद</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>काला</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>दिखावट</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI स्केल:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>फ़ॉन्ट आकार:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>सिस्टम डिफ़ॉल्ट</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>रूप बदलाव के लिए पुनः आरंभ ज़रूरी है। अभी करें?</translation>
         </message>
     </context>
     <context>
@@ -4859,28 +4899,12 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 सक्रिय</translation>
+            <source>unlimited</source>
+            <translation>असीमित</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 सक्रिय</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 डाउनलोड</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 डाउनलोड</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 त्रुटि</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 त्रुटियाँ</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 स्पीड लिमिटर</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4891,24 +4915,8 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <translation>📡 अपडेट की जाँच हो रही है</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 स्पीड लिमिटर</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 तैयार</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 चुना गया</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 चुना गया</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT बंद है</translation>
+            <source>DHT off</source>
+            <translation>DHT बंद</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4919,6 +4927,15 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <translation>ऑनलाइन</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>अनुमान… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>अगला &gt;&gt;
+सांख्यिकी खोलने के लिए क्लिक करें</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 कतार 1 मिनट में चलेगी</translation>
         </message>
@@ -4927,30 +4944,25 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <translation>🟧 कतार %1 मिनट में चलेगी</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 अनुमान लगाया जा रहा है… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>अगला &gt;&gt;
-सांख्यिकी खोलने के लिए क्लिक करें</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>IP कॉपी करने के लिए क्लिक करें</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>पब्लिक IP: </translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>कनेक्शन: Ethernet</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>WiFi: </translation>
+            <source>Listening port: </source>
+            <translation>कोई इनकमिंग कनेक्शन नहीं, नेटवर्क गलत हो सकता है</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>कोई नेटवर्क कनेक्टिविटी नहीं</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Stellar Download Manager</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4961,12 +4973,12 @@ Click to open Statistics</source>
             <translation>लिसनिंग पोर्ट: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>कोई इनकमिंग कनेक्शन नहीं, नेटवर्क गलत हो सकता है</translation>
+            <source>Connection: Ethernet</source>
+            <translation>WiFi: </translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Stellar Download Manager</translation>
+            <source>Click to copy IP</source>
+            <translation>पब्लिक IP: </translation>
         </message>
     </context>
     <context>
@@ -5069,6 +5081,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>टूलबार</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>टूलबार बटन अनुकूलित करें। क्रम बदलने के लिए ऊपर/नीचे करें। सक्षम करने के लिए चेक करें।</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL जोड़ें</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>फिर शुरू करें</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>रोकें</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>सब रोकें</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>हटाएँ</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>पूर्ण हटाएँ</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>विकल्प</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>अनुसूचक</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>कतार शुरू</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>कतार रोकें</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>ग्रैबर</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>खोज इंजन</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>ऊपर करें</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>नीचे करें</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>सक्षम करें</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>अक्षम करें</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>विभाजक जोड़ें</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>रीसेट</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ठीक</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>रद्द करें</translation>
         </message>
     </context>
     <context>

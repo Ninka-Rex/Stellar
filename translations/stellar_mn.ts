@@ -949,6 +949,10 @@ Click  Add URL  to start.</source>
             <translation>URL хуулах</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Орон нутгийн өгөгдлийг шалгах</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL-г хуурах</translation>
         </message>
@@ -4698,8 +4702,8 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <translation>Эх үүсвэрийн URL-ийг хадгалаагүй. IPtoCityDB-г хадгалахын тулд Check for updates-г ашиглана.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Хувилбар %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Хувилбар %1 Бета</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4716,6 +4720,42 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JavaScript хөдөлгүүрийн бинарийг сонгох</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Тавиурын дүрсний загвар:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Өнгөтэй</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Цагаан</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Хар</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Гадаад байдал</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI масштаб:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Фонтын хэмжээ:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Системийн үндсэн</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Гадаад төрхийн өөрчлөлт хүчин төгөлдөр болохын тулд дахин эхлүүлэх шаардлагатай. Одоо дахин эхлүүлэх үү?</translation>
         </message>
     </context>
     <context>
@@ -4835,28 +4875,12 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 идэвхтэй</translation>
+            <source>unlimited</source>
+            <translation>хязгааргүй</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 идэвхтэй</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 татах</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 татах</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 алдаа</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 алдаа</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Хурдны хязгаарлагч</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4867,24 +4891,8 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <translation>📡 шинжилгээ хийж байна</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Хурдны хязгаарлагч</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟦 Бэлэн</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 сонгогдсон</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 сонгогдсон</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT ажилгүй</translation>
+            <source>DHT off</source>
+            <translation>DHT унтраалттай</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4895,6 +4903,14 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <translation>online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Тооцоолж байна… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>next &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 1 минутын дараа ажиллана</translation>
         </message>
@@ -4903,29 +4919,25 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <translation>🟧 %1 минутын дараа ажиллана</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Тооцоолож байна… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>next &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Нийт хуваарь</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Статистикийг нээх</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>IP хуулбарлах</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Олон нийтийн IP:</translation>
+            <source>Listening port: </source>
+            <translation>Сигнал:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Сүлжээний холболт илрээгүй</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Нээлттэй порт:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4936,12 +4948,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Сигнал:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Олон нийтийн IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Нээлттэй порт:</translation>
+            <source>Click to copy IP</source>
+            <translation>Статистикийг нээх</translation>
         </message>
     </context>
     <context>
@@ -5044,6 +5056,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Хэрэгслийн самбар</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Хэрэгслийн самбарын товчлууруудыг тохируулна уу. Дээш зөөх ба Доош зөөх-ийг ашиглан эрэмбэлнэ үү. Идэвхжүүлэхэд тэмдэглэ, идэвхгүйжүүлэхэд тэмдэглэлтийг арилга.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL нэмэх</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Үргэлжлүүлэх</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Зогсоох</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Бүгдийг зогсоох</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Устгах</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Дууссан устгах</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Тохиргоо</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Хуваарьлагч</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Дараалал эхлүүлэх</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Дараалал зогсоох</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Татагч</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Хайлтын систем</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Дээш зөөх</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Доош зөөх</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Идэвхжүүлэх</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Идэвхгүйжүүлэх</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Тусгаарлагч нэмэх</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Дахин тохируулах</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
         </message>
     </context>
     <context>

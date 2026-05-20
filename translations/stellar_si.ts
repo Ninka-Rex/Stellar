@@ -950,6 +950,10 @@ Click  Add URL  to start.</source>
             <translation>චුම්බක සබැඳිය පිටපත් කරන්න</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>දේශීය දත්ත සත්‍යාපනය කරන්න</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL පිටපත් කරන්න</translation>
         </message>
@@ -4714,8 +4718,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>මූලාශ්ර URL තවමත් හැඹිලිගත නොවී. update.json වෙතින් IPtoCityDB හැඹිලිගත කිරීමට යාවත්කාලීන පරීක්ෂා කරන්න.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>අනුවාදය %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>අනුවාදය %1 බීටා</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4732,6 +4736,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JavaScript ධාවන කාල ද්විමය තෝරන්න</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>තැටි නිරූපක විලාසය:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>වර්ණවත්</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>සුදු</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>කළු</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>පෙනුම</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI පරිමාණය:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>අකුරු ප්‍රමාණය:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>පද්ධති පෙරනිමිය</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>පෙනුම වෙනස්කම් ක්‍රියාත්මක වීමට නැවත ආරම්භ කිරීම අවශ්‍යයි. දැන් නැවත ආරම්භ කරන්නද?</translation>
         </message>
     </context>
     <context>
@@ -4851,28 +4891,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 ක්රියාකාරී</translation>
+            <source>unlimited</source>
+            <translation>අසීමිත</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>%1 ක්‍රියාකාරීයි</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>බාගැනීම් 1</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 බාගැනීම්</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 දෝෂ 1ක්</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>%1 දෝෂ</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>වේග සීමාකය</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4883,24 +4907,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 යාවත්කාලීන කිරීම් සඳහා පරීක්ෂා කරමින්</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>වේග සීමාකය</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 සූදානම්</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 තෝරා ඇත</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>%1 තෝරාගෙන ඇත</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT අක්‍රියයි</translation>
+            <source>DHT off</source>
+            <translation>DHT අක්‍රියයි</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4911,6 +4919,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>සබැඳි</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>ඇස්තමේන්තු කරමින්… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>ඊළඟ &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 පෝලිම විනාඩි 1කින් ක්‍රියාත්මක වේ</translation>
         </message>
@@ -4919,30 +4935,26 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 පෝලිම විනාඩි %1කින් ක්‍රියාත්මක වේ</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 ඇස්තමේන්තු කරමින්… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>ඊළඟ &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>සියලු කාල බෙදාගැනීමේ අනුපාතය
 සංඛ්‍යාලේඛන විවෘත කිරීමට ක්ලික් කරන්න</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>IP පිටපත් කිරීමට ක්ලික් කරන්න</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>පොදු IP: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>සම්බන්ධතාව: ඊතර්නෙට්</translation>
+            <source>Listening port: </source>
+            <translation>සවන්දීමේ තොට: </translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>ජාල සම්බන්ධතාවයක් හමු නොවීය</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>එන සම්බන්ධතා නැත, ජාලය වැරදි ලෙස වින්‍යාස කර තිබිය හැක</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4953,12 +4965,12 @@ Click to open Statistics</source>
             <translation>සංඥා: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>සවන්දීමේ තොට: </translation>
+            <source>Connection: Ethernet</source>
+            <translation>සම්බන්ධතාව: ඊතර්නෙට්</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>එන සම්බන්ධතා නැත, ජාලය වැරදි ලෙස වින්‍යාස කර තිබිය හැක</translation>
+            <source>Click to copy IP</source>
+            <translation>IP පිටපත් කිරීමට ක්ලික් කරන්න</translation>
         </message>
     </context>
     <context>
@@ -5061,6 +5073,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>මෙවලම් තීරුව</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>මෙවලම් තීරු බොත්තම් අභිරුචිකරණය කරන්න. නැවත අනුපිළිවෙලට ඉහළට ගෙනයන්න සහ පහළට ගෙනයන්න භාවිතා කරන්න. සක්‍රිය කිරීමට සලකුණු කරන්න, අක්‍රිය කිරීමට සලකුණු ඉවත් කරන්න.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL එකතු කරන්න</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>නැවත ආරම්භ කරන්න</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>නවත්වන්න</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>සියල්ල නවත්වන්න</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>මකන්න</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>අවසන් වූ දෑ මකන්න</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>විකල්ප</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>කාලසටහන</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>පෝලිම අරඹන්න</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>පෝලිම නවත්වන්න</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>ග්‍රාබර්</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>සෙවුම් යන්ත්‍රය</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>ඉහළට ගෙනයන්න</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>පහළට ගෙනයන්න</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>සක්‍රීය කරන්න</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>අක්‍රීය කරන්න</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>වෙන් කිරීමක් එක් කරන්න</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>නැවත සකසන්න</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>හරි</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>අවලංගු කරන්න</translation>
         </message>
     </context>
     <context>

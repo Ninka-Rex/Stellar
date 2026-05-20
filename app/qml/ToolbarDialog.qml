@@ -161,7 +161,7 @@ Window {
 
                             CheckBox {
                                 id: chkBox
-                                checked: modelData.enabled
+                                checked: modelData.enabled !== false
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: {
                                     var idx = index
@@ -307,12 +307,13 @@ Window {
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
                         onClicked: {
-                            // Insert separator after current item
+                            var savedY = btnListView.contentY
                             const i = btnListView.currentIndex >= 0 ? btnListView.currentIndex + 1 : root.localDefs.length
                             var defs = root.localDefs.slice()
                             defs.splice(i, 0, { key: "separator" })
                             root.localDefs = defs
                             btnListView.currentIndex = i
+                            Qt.callLater(function() { btnListView.contentY = savedY })
                         }
                     }
                 }
@@ -330,10 +331,12 @@ Window {
                         cursorShape: root._selectedIsSeparator() ? Qt.PointingHandCursor : Qt.ArrowCursor
                         onClicked: {
                             if (root._selectedIsSeparator()) {
+                                var savedY = btnListView.contentY
                                 var defs = root.localDefs.slice()
                                 defs.splice(btnListView.currentIndex, 1)
                                 root.localDefs = defs
                                 btnListView.currentIndex = Math.min(btnListView.currentIndex, defs.length - 1)
+                                btnListView.contentY = savedY
                             }
                         }
                     }

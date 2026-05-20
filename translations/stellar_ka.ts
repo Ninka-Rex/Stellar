@@ -955,6 +955,10 @@ Click  Add URL  to start.</source>
             <translation>Magnet ბმულის კოპირება</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>მონაცემების შემოწმება</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL-ის კოპირება</translation>
         </message>
@@ -4717,8 +4721,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>წყაროს URL ჯერ კეშირებული არ არის. გამოიყენეთ განახლებების შემოწმება IPtoCityDB-ის კეშირებისთვის update.json-დან.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>ვერსია %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>ვერსია %1 ბეტა</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4735,6 +4739,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JavaScript რანტაიმის ბინარული ფაილის არჩევა</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>სისტ. ხატულის სტილი:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>ფერადი</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>თეთრი</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>შავი</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>გარეგნობა</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI მასშტაბი:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>შრიფტის ზომა:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>სისტემის ნაგულისხმევი</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>გარეგნობის ცვლილებების ასამოქმედებლად გადატვირთვაა საჭირო. გადატვირთოთ ახლა?</translation>
         </message>
     </context>
     <context>
@@ -4854,28 +4894,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 აქტიური</translation>
+            <source>unlimited</source>
+            <translation>უსაზღვრო</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 აქტიური</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 ჩამოტვირთვა</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 ჩამოტვირთვა</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 შეცდომა</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 შეცდომა</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 სიჩქარის ლიმიტი</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4886,24 +4910,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 განახლებების შემოწმება</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 სიჩქარის ლიმიტი</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 მზადაა</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 არჩეული</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 არჩეული</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT გამორთული</translation>
+            <source>DHT off</source>
+            <translation>DHT გამორთული</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4914,6 +4922,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ონლაინში</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>შეფასება… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>შემდეგი &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 რიგი 1 წუთში გაშვდება</translation>
         </message>
@@ -4922,30 +4938,26 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 რიგი %1 წუთში გაშვდება</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 შეფასება… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>შემდეგი &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>ყოველდღიური გაზიარების კოეფიციენტი
 დაწკაპუნეთ სტატისტიკის გასახსნელად</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>დაწკაპუნეთ IP-ის ასლისთვის</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>საჯარო IP: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>კავშირი: Ethernet</translation>
+            <source>Listening port: </source>
+            <translation>მსმენელი პორტი:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>ქსელთან კავშირი არ არის</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>შემომავალი კავშირები არ არის, ქსელი შეიძლება არასწორად იყოს კონფიგურირებული</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4956,12 +4968,12 @@ Click to open Statistics</source>
             <translation>სიგნალი:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>მსმენელი პორტი:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>კავშირი: Ethernet</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>შემომავალი კავშირები არ არის, ქსელი შეიძლება არასწორად იყოს კონფიგურირებული</translation>
+            <source>Click to copy IP</source>
+            <translation>დაწკაპუნეთ IP-ის ასლისთვის</translation>
         </message>
     </context>
     <context>
@@ -5064,6 +5076,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>ხელსაწყოთა პანელი</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>ხელსაწყოთა ღილაკების მორგება. გადაადგილებისთვის გამოიყენეთ ზემოთ/ქვემოთ. მონიშნეთ ჩართვისთვის, მოხსენით გამორთვისთვის.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL-ის დამატება</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>გაგრძელება</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>შეჩერება</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>ყველას გაჩერება</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>წაშლა</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>დასრულებულის წაშლა</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>პარამეტრები</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>განრიგი</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>რიგის დაწყება</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>რიგის გაჩერება</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>ამომღები</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>საძიებო სისტემა</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>1. ზემოთ</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>2. ქვემოთ</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>3. ჩართვა</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>4. გამორთვა</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>5. გამყოფი</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>6. აღდგენა</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>7. კარგი</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>8. გაუქმება</translation>
         </message>
     </context>
     <context>

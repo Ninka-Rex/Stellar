@@ -949,6 +949,10 @@ Cliciwch  Ychwanegu URL  i ddechrau.</translation>
             <translation>Copïo Dolen Magnet</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Gwirio Data Lleol</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Copïo URL</translation>
         </message>
@@ -4714,8 +4718,8 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <translation>URL ffynhonnell heb ei storio eto. Defnyddiwch Gwirio am ddiweddariadau i storio IPtoCityDB o update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Fersiwn %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Fersiwn %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4732,6 +4736,42 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Dewis deuaidd amser rhedeg JS</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Arddull eicon hambwrdd:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Lliw</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Gwyn</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Du</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Ymddangosiad</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Graddfa UI:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Maint ffont:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Diofyn system</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Mae angen ailgychwyn i newidiadau golwg ddod i rym. Ailgychwyn nawr?</translation>
         </message>
     </context>
     <context>
@@ -4851,28 +4891,12 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 gweithredol</translation>
+            <source>unlimited</source>
+            <translation>diderfyn</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 gweithredol</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 lawrlwythiad</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 lawrlwythiad</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 gwall</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 gwall</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Cyfyngydd cyflymder</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4883,24 +4907,8 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <translation>📡 Gwirio am ddiweddariadau</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Cyfyngydd cyflymder</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Barod</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 wedi'i ddewis</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 wedi'u dewis</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT i ffwrdd</translation>
+            <source>DHT off</source>
+            <translation>DHT i ffwrdd</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4911,6 +4919,14 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <translation> ar-lein</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Wrthi'n amcangyfrif… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>nesaf &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Ciw yn rhedeg mewn 1 munud</translation>
         </message>
@@ -4919,30 +4935,26 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <translation>🟧 Ciw yn rhedeg mewn %1 munud</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Amcangyfrif… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>nesaf &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Cymhareb rhannu erioed
 Cliciwch i agor Ystadegau</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>Cliciwch i gopïo IP</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>IP Cyhoeddus: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Cysylltiad: Ethernet</translation>
+            <source>Listening port: </source>
+            <translation>Porth gwrando:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Dim cysylltedd rhwydwaith wedi'i ganfod</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Dim cysylltiadau sy'n dod i mewn, efallai bod y rhwydwaith wedi'i gamgyflunio</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4953,12 +4965,12 @@ Cliciwch i agor Ystadegau</translation>
             <translation>Signal: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Porth gwrando:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Cysylltiad: Ethernet</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Dim cysylltiadau sy'n dod i mewn, efallai bod y rhwydwaith wedi'i gamgyflunio</translation>
+            <source>Click to copy IP</source>
+            <translation>Cliciwch i gopïo IP</translation>
         </message>
     </context>
     <context>
@@ -5061,6 +5073,101 @@ Cliciwch i agor Ystadegau</translation>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Bar offer</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Addasu botymau'r bar offer. Defnyddiwch Symud i Fyny a Symud i Lawr i aildrefnu. Ticiwch i alluogi, dad-diciwch i analluogi.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Ychwanegu URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Ailgychwyn</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Stopio</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Stopio Popeth</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Dileu</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Dileu Wedi'i Wneud</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Dewisiadau</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Atodlennydd</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Dechrau Ciw</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Stopio Ciw</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Cipiwr</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Peiriant Chwilio</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Symud i Fyny</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Symud i Lawr</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Galluogi</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Analluogi</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Ychwanegu Gwahanydd</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Ailosod</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Iawn</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Canslo</translation>
         </message>
     </context>
     <context>

@@ -949,6 +949,10 @@ Click  Add URL  to start.</source>
             <translation>자석 링크 복사</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>로컬 데이터 확인</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL 복사</translation>
         </message>
@@ -4699,8 +4703,8 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <translation>출처 URL 캐시되지 않았습니다. update.json 에서 IPtoCityDB 를 캐시하려면 업데이트 확인을 사용하세요.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>버전 %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>버전 %1 베타</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4717,6 +4721,42 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JS 런타임 이진 파일 선택</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>트레이 아이콘 스타일:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>컬러</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>화이트</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>블랙</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>외관</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI 배율:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>글꼴 크기:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>시스템 기본값</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>외관 변경을 적용하려면 재시작이 필요합니다. 지금 재시작할까요?</translation>
         </message>
     </context>
     <context>
@@ -4836,28 +4876,12 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 개 활성화</translation>
+            <source>unlimited</source>
+            <translation>무제한</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 개 활성화</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 개 다운로드</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 개 다운로드</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 개 오류</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 개 오류</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 속도 제한기</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4868,24 +4892,8 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <translation>📡 업데이트 확인 중</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 속도 제한기</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 준비됨</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 개 선택됨</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 개 선택됨</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT 끔</translation>
+            <source>DHT off</source>
+            <translation>DHT 꺼짐</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4896,6 +4904,14 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <translation>온라인</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>예상 중… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>다음 &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 큐 1 분 후 실행</translation>
         </message>
@@ -4904,29 +4920,25 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <translation>🟧 큐 %1 분 후 실행</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 추정 중… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>다음 &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>전체 공유 비율</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>통계 보기</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>IP 복사</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>공용 IP:</translation>
+            <source>Listening port: </source>
+            <translation>신호:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>네트워크 연결 없음</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>청취 포트:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4937,12 +4949,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>신호:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>공용 IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>청취 포트:</translation>
+            <source>Click to copy IP</source>
+            <translation>통계 보기</translation>
         </message>
     </context>
     <context>
@@ -5045,6 +5057,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>도구 모음</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>도구 모음 버튼을 사용자 지정하세요. 위/아래로 이동해 순서를 바꾸고, 체크하면 활성화, 해제하면 비활성화됩니다.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL 추가</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>재개</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>중지</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>모두 중지</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>삭제</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>완료 삭제</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>옵션</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>스케줄러</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>큐 시작</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>큐 중지</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>그래버</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>검색 엔진</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>위로 이동</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>아래로 이동</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>활성화</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>비활성화</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>구분선 추가</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>초기화</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>확인</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>취소</translation>
         </message>
     </context>
     <context>

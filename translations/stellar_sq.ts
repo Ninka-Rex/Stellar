@@ -950,6 +950,10 @@ Kliko Shto URL për të nisur.</translation>
             <translation>Kopjo Lidhjen Magnet</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Verifiko të dhënat lokale</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Kopjo URL</translation>
         </message>
@@ -4704,8 +4708,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>URL burimi nuk është memorizuar ende. Përdur Kontrollo përditësimet për të memorizuar IPtoCityDB nga update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Versioni %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Versioni %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4722,6 +4726,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Zgjidhni binarin e runtime për JavaScript</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Stili i ikonës në tabaka:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Me ngjyra</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>E bardhë</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>E zezë</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Pamja</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Shkalla e ndërfaqes:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Madhësia e shkronjave:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Parazgjedhja e sistemit</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Kërkohet rinisje për ndryshimet vizuale. Të riniset tani?</translation>
         </message>
     </context>
     <context>
@@ -4841,28 +4881,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktiv</translation>
+            <source>unlimited</source>
+            <translation>e pakufizuar</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktiv</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 shkarkim</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 shkarkime</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 gabim</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 gabime</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Kufizues shpejtësie</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4873,24 +4897,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 Kërkim për përditësime</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Kufizues shpejtësie</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Gati</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 zgjedhur</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 të zgjedhur</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT i çaktivizuar</translation>
+            <source>DHT off</source>
+            <translation>DHT çaktivizuar</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4901,6 +4909,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation> online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Duke vlerësuar… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>tjetri &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Fila nis në 1 minutë</translation>
         </message>
@@ -4909,29 +4925,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 Fila nis në %1 minuta</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Vlerësohet… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>tjetri &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Raport i përdorimit</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Kliko për statistika</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>Kliko për kopim IP</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>IP Publik:</translation>
+            <source>Listening port: </source>
+            <translation>Sinal:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Nuk u zbulua lidhje rrjeti</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Port i dërgimit:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4942,12 +4954,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Sinal:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>IP Publik:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Port i dërgimit:</translation>
+            <source>Click to copy IP</source>
+            <translation>Kliko për statistika</translation>
         </message>
     </context>
     <context>
@@ -5050,6 +5062,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Shirit veglash</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Personalizo butonat. Përdor Ngjit Lart e Poshtë për renditje. Zgjidh për aktivizim, hiq për çaktivizim.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Shto URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Vazhdo</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Ndalo</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Ndalo të gjitha</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Fshi</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Fshi të përfunduarat</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Opsione</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Planifikues</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Nis radhën</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Ndalo radhën</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Grumbullues</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Motor kërkimi</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Ngjitu lart</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Zbrit poshtë</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Aktivizo</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Çaktivizo</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Shto ndarës</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Rivendos</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulo</translation>
         </message>
     </context>
     <context>

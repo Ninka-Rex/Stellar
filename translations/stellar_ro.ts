@@ -950,6 +950,10 @@ Apăsați Adaugă URL pentru a începe.</translation>
             <translation>Copiază link Magnet</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Verifică date locale</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Copiază URL</translation>
         </message>
@@ -4698,8 +4702,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>URL-ul sursei nu este încă în cache. Folosiți Verificare actualizări pentru a încărca IPtoCityDB din update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Versiune %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Versiunea %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4716,6 +4720,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Selectați binar runtime JS</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Stil pictogramă tavă:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Colorat</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Alb</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Negru</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Aspect</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Scară UI:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Dimensiune font:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Implicit sistem</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Este necesară o repornire pentru aplicarea modificărilor de aspect. Reporniți acum?</translation>
         </message>
     </context>
     <context>
@@ -4835,28 +4875,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 activ</translation>
+            <source>unlimited</source>
+            <translation>nelimitat</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 active</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 descărcare</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 descărcări</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 eroare</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 erori</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Limitator viteză</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4867,24 +4891,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 Verificare actualizări</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Limitator viteză</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Gata</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 selectat</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 selectate</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT oprit</translation>
+            <source>DHT off</source>
+            <translation>DHT oprit</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4895,6 +4903,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Estimare… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>următor &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Coada rulează în 1 minut</translation>
         </message>
@@ -4903,29 +4919,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 Coada rulează în %1 minute</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Estimare… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>următor &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Raport partajare</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Click pentru statistici</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>Click pentru IP</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>IP public:</translation>
+            <source>Listening port: </source>
+            <translation>Semnal:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Nicio conexiune de rețea detectată</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Port ascultare:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4936,12 +4948,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Semnal:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>IP public:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Port ascultare:</translation>
+            <source>Click to copy IP</source>
+            <translation>Click pentru statistici</translation>
         </message>
     </context>
     <context>
@@ -5044,6 +5056,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Bară unelte</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Personalizați butoanele barei. Folosiți Mută sus și Mută jos pentru reordonare. Bifați pentru activare, debifați pentru dezactivare.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Adăugare URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Reluare</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Stop</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Oprește tot</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Șterge</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Șterge finalizate</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Opțiuni</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Programator</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Pornește coada</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Oprește coada</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Capturator</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Motor căutare</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Mută sus</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Mută jos</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Activează</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Dezactivează</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Adaugă separator</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Resetează</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
         </message>
     </context>
     <context>

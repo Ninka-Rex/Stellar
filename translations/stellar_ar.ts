@@ -949,6 +949,10 @@ Click  Add URL  to start.</source>
             <translation>نسخ رابط المغناطيس</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>التحقق من البيانات المحلية</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>نسخ عنوان URL</translation>
         </message>
@@ -4709,8 +4713,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>لم يتم تخزين عنوان URL للمصدر بعد. استخدم التحقق من التحديثات لتخزين IPtoCityDB من update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>الإصدار %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>الإصدار %1 تجريبي</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4727,6 +4731,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>تحديد ملف وقت تشغيل JavaScript الثنائي</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>نمط أيقونة الشريط:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>ملون</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>أبيض</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>أسود</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>المظهر</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>مقياس الواجهة:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>حجم الخط:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>افتراضي النظام</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>يلزم إعادة التشغيل لتطبيق تغييرات المظهر. أعد التشغيل الآن؟</translation>
         </message>
     </context>
     <context>
@@ -4846,28 +4886,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 نشط واحد</translation>
+            <source>unlimited</source>
+            <translation>غير محدود</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 نشط</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 تحميل واحد</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 تحميلات</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 خطأ واحد</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 أخطاء</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 مُقيّد السرعة</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4878,24 +4902,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 التحقق من التحديثات</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 مُقيّد السرعة</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 جاهز</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 محدد واحد</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 محدد</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT معطّل</translation>
+            <source>DHT off</source>
+            <translation>DHT متوقف</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4906,6 +4914,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>متصل</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>جارٍ التقدير… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>التالي &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 القائمة ستعمل بعد دقيقة</translation>
         </message>
@@ -4914,29 +4930,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 القائمة ستعمل بعد %1 دقائق</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 جارٍ التقييم… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>التالي &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>نسبة المشاركة طوال الوقت</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>انقر لفتح الإحصائيات</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>انقر لنسخ عنوان IP</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>عنوان IP العام: </translation>
+            <source>Listening port: </source>
+            <translation>الإشارة: </translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>لم يُكتشف اتصال بالشبكة</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>منفذ الاستماع: </translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4947,12 +4959,12 @@ Click to open Statistics</source>
             <translation>واي فاي: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>الإشارة: </translation>
+            <source>Connection: Ethernet</source>
+            <translation>عنوان IP العام: </translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>منفذ الاستماع: </translation>
+            <source>Click to copy IP</source>
+            <translation>انقر لفتح الإحصائيات</translation>
         </message>
     </context>
     <context>
@@ -5055,6 +5067,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>شريط الأدوات</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>تخصيص أزرار شريط الأدوات. استخدم تحريك لأعلى وتحريك لأسفل لإعادة الترتيب. علّم للتمكين، ألغِ التعليم للتعطيل.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>أضف رابط</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>استئناف</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>إيقاف</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>إيقاف الكل</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>حذف</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>حذف المكتمل</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>خيارات</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>المجدول</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>بدء الطابور</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>إيقاف الطابور</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>الملتقط</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>محرك البحث</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>تحريك لأعلى</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>تحريك لأسفل</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>تمكين</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>تعطيل</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>إضافة فاصل</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>إعادة تعيين</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
         </message>
     </context>
     <context>

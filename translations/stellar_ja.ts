@@ -948,6 +948,10 @@ Click  Add URL  to start.</source>
             <translation>マグネットリンクをコピー</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>ローカルデータを検証</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL をコピー</translation>
         </message>
@@ -4702,8 +4706,8 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
             <translation>ソース URL のキャッシュがありません。update.json から IPtoCityDB をキャッシュするには「更新を確認」を使用してください。</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>バージョン %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>バージョン %1 ベータ</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4720,6 +4724,42 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JS ランタイムバイナリを選択</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>トレイアイコンのスタイル:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>カラー</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>白</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>黒</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>外観</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UIスケール:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>フォントサイズ:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>システム既定</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>外観の変更を反映するには再起動が必要です。今すぐ再起動しますか？</translation>
         </message>
     </context>
     <context>
@@ -4839,28 +4879,12 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 アクティブ 1</translation>
+            <source>unlimited</source>
+            <translation>無制限</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 アクティブ %1</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 ダウンロード 1</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 ダウンロード %1</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 エラー 1</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 エラー %1</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 速度制限</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4871,24 +4895,8 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
             <translation>📡 更新確認中</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 速度制限</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 準備完了</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 件選択</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 件選択</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT 無効</translation>
+            <source>DHT off</source>
+            <translation>DHTオフ</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4899,6 +4907,14 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
             <translation>オンライン</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>推定中… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>次へ &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 キューが 1 分後に実行</translation>
         </message>
@@ -4907,29 +4923,25 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
             <translation>🟧 キューが %1 分後に実行</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 推定中… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>次へ &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>総共有率</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>統計を開く</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>IP をコピー</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>公開 IP:</translation>
+            <source>Listening port: </source>
+            <translation>信号:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>ネットワーク接続が検出されません</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>リスニングポート:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4940,12 +4952,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>信号:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>公開 IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>リスニングポート:</translation>
+            <source>Click to copy IP</source>
+            <translation>統計を開く</translation>
         </message>
     </context>
     <context>
@@ -5048,6 +5060,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>ツールバー</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>ツールバーボタンをカスタマイズ。上下移動で並べ替え、チェックで有効化。</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URLを追加</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>再開</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>停止</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>すべて停止</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>削除</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>完了を削除</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>オプション</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>スケジューラー</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>キュー開始</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>キュー停止</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>グラバー</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>検索エンジン</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>上へ移動</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>下へ移動</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>有効化</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>無効化</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>区切り線を追加</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>リセット</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>キャンセル</translation>
         </message>
     </context>
     <context>

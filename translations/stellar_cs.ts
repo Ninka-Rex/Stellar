@@ -950,6 +950,10 @@ Klikněte na Přidat URL pro spuštění.</translation>
             <translation>Kopírovat magnetický odkaz</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Ověřit lokální data</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Kopírovat URL</translation>
         </message>
@@ -4709,8 +4713,8 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <translation>Zdroj URL ještě není v mezipaměti. Použijte Zkontrolovat aktualizace pro uložení IPtoCityDB z update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Verze %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Verze %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4727,6 +4731,42 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Vybrat binárku JS runtime</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Styl ikony v liště:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Barevná</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Bílá</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Černá</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Vzhled</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Měřítko UI:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Velikost písma:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Výchozí systémové</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Pro změnu vzhledu je nutný restart. Restartovat nyní?</translation>
         </message>
     </context>
     <context>
@@ -4846,28 +4886,12 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktivní</translation>
+            <source>unlimited</source>
+            <translation>neomezeno</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktivní</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 stažení</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 stažení</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 chyba</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 chyb</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Omezení rychlosti</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4878,24 +4902,8 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <translation>📡 Kontrola aktualizací</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Omezení rychlosti</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Připraveno</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 Vybrána 1 položka</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 Vybráno %1</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT vypnuto</translation>
+            <source>DHT off</source>
+            <translation>DHT vypnuto</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4906,6 +4914,14 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <translation>online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Odhad… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>další &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Fronta se spustí za 1 minutu</translation>
         </message>
@@ -4914,30 +4930,26 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <translation>🟧 Fronta se spustí za %1 minut</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Vyhodnocování… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>další &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Celkový poměr sdílení
 Klikněte pro otevření Statistiky</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>Klikněte pro zkopírování IP</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>Veřejná IP: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Připojení: Ethernet</translation>
+            <source>Listening port: </source>
+            <translation>Poslouchací port: </translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Nebylo zjištěno síťové připojení</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Žádná příchozí připojení, síť může být špatně nakonfigurována</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4948,12 +4960,12 @@ Klikněte pro otevření Statistiky</translation>
             <translation>Signál: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Poslouchací port: </translation>
+            <source>Connection: Ethernet</source>
+            <translation>Připojení: Ethernet</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Žádná příchozí připojení, síť může být špatně nakonfigurována</translation>
+            <source>Click to copy IP</source>
+            <translation>Klikněte pro zkopírování IP</translation>
         </message>
     </context>
     <context>
@@ -5056,6 +5068,101 @@ Klikněte pro otevření Statistiky</translation>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Panel nástrojů</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Upravit tlačítka panelu. Pro změnu pořadí použijte Posunout nahoru a dolů. Zaškrtněte pro zapnutí, zrušte pro vypnutí.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Přidat URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Pokračovat</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Zastavit</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Zastavit vše</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Smazat</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Smazat hotové</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Možnosti</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Plánovač</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Spustit frontu</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Zastavit frontu</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Grabber</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Vyhledávač</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Posunout nahoru</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Posunout dolů</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Povolit</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Zakázat</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Přidat oddělovač</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Obnovit</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Zrušit</translation>
         </message>
     </context>
     <context>

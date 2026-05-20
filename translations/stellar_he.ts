@@ -950,6 +950,10 @@ Click  Add URL  to start.</source>
             <translation>העתק קישור מגנט</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>אמת נתונים מקומיים</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>העתק כתובת URL</translation>
         </message>
@@ -4694,8 +4698,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>כתובת המקור לא נשמעה עדיין. השתמש ב'בדיקת עדכונים' כדי לשמור את IPtoCityDB מ-update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>גרסה %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>גרסה %1 בטא</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4712,6 +4716,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>בחירת ביניאר ריצוי JS</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>סגנון סמל מגש:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>צבעוני</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>לבן</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>שחור</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>מראה</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>קנ&quot;מ ממשק:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>גודל גופן:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>ברירת מערכת</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>נדרשת הפעלה מחדש לשינויי תצוגה. להפעיל עכשיו?</translation>
         </message>
     </context>
     <context>
@@ -4831,28 +4871,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 פעיל אחד</translation>
+            <source>unlimited</source>
+            <translation>ללא הגבלה</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 פעילים</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 הורדה אחת</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 הורדות</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 שגיאה אחת</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 שגיאות</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 מגביל מהירות</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4863,24 +4887,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 בדיקת עדכונים</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 מגביל מהירות</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟦 מוכן</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 נבחר</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 נבחר</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT כבוי</translation>
+            <source>DHT off</source>
+            <translation>DHT כבוי</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4891,6 +4899,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>מעריך… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>הבא &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 תור ירוק בעוד דקה</translation>
         </message>
@@ -4899,29 +4915,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 תור ירוק בעוד %1 דקות</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 חישוב… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>הבא &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>نسبة المشاركة الكليّة</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>اضغط لفتح الإحصائيات</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>اضغط لنسخ IP</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>IP العام:</translation>
+            <source>Listening port: </source>
+            <translation>إشارة:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>לא זוהה חיבור רשת</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>منفذ الاستماع:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4932,12 +4944,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>إشارة:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>IP العام:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>منفذ الاستماع:</translation>
+            <source>Click to copy IP</source>
+            <translation>اضغط لفتح الإحصائيات</translation>
         </message>
     </context>
     <context>
@@ -5040,6 +5052,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>סרגל כלים</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>התאמת כפתורים. השתמש ב'העלה' ו'הורד' לסידור. סמן להפעלה, בטל להסתרה.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>הוסף URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>המשך</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>עצור</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>עצור הכל</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>מחק</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>מחק גמורים</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>אפשרויות</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>מתזמן</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>התחל תור</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>עצור תור</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>תופס</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>מנוע חיפוש</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>העלה</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>הורד</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>הפעל</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>השבת</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>הוסף מפריד</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>אפס</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
         </message>
     </context>
     <context>

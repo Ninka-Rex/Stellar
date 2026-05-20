@@ -949,6 +949,10 @@ Click  Add URL  to start.</source>
             <translation>మాగ్నెట్ లింక్ కాపీ చేయి</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>స్థానిక డేటాను ధృవీకరించు</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL కాపీ చేయి</translation>
         </message>
@@ -4714,8 +4718,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>మూల URL ఇంకా కాష్ కాలేదు. update.json నుండి IPtoCityDB కాష్ చేయడానికి నవీకరణల కోసం తనిఖీ చేయండి.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>వెర్షన్ %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>వెర్షన్ %1 బీటా</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4732,6 +4736,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>జావాస్క్రిప్ట్ రన్టైమ్ బైనరీని ఎంచుకోండి</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>ట్రే చిహ్నం శైలి:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>రంగుతో</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>తెలుపు</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>నలుపు</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>దృశ్యరూపం</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI స్కేల్:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>ఫాంట్ పరిమాణం:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>సిస్టమ్ డిఫాల్ట్</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>రూపురేఖల మార్పులకు పునఃప్రారంభం అవసరం. ఇప్పుడే పునఃప్రారంభించాలా?</translation>
         </message>
     </context>
     <context>
@@ -4851,28 +4891,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 సక్రియం</translation>
+            <source>unlimited</source>
+            <translation>అపరిమితం</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 సక్రియం</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 డౌన్‌లోడ్</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 డౌన్‌లోడ్‌లు</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 లోపం</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 లోపాలు</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 వేగ పరిమితి</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4883,24 +4907,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 నవీకరణల కోసం తనిఖీ</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 వేగ పరిమితి</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 సిద్ధం</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 ఎంచుకోబడింది</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 ఎంచుకోబడ్డాయి</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT ఆఫ్</translation>
+            <source>DHT off</source>
+            <translation>DHT ఆఫ్</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4911,6 +4919,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ఆన్‌లైన్</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>అంచనా వేస్తోంది… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>తదుపరి &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 1 నిమిషంలో క్యూ నడుస్తుంది</translation>
         </message>
@@ -4919,30 +4935,26 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 %1 నిమిషాల్లో క్యూ నడుస్తుంది</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 అంచనా వేస్తోంది… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>తదుపరి &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>మొత్తం షేర్ రేషియో
 గణాంకాలు తెరవడానికి క్లిక్ చేయండి</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>IP కాపీ చేయడానికి క్లిక్ చేయండి</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>పబ్లిక్ IP:</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>కనెక్షన్: ఈథర్నెట్</translation>
+            <source>Listening port: </source>
+            <translation>1. వినే పోర్ట్:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>నెట్‌వర్క్ కనెక్టివిటీ కనుగొనబడలేదు</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>2. ఇన్కమింగ్ కనెక్షన్లు లేవు, నెట్వర్క్ తప్పుగా కాన్ఫిగర్ చేయబడి ఉండవచ్చు</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4953,12 +4965,12 @@ Click to open Statistics</source>
             <translation>సిగ్నల్:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>1. వినే పోర్ట్:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>కనెక్షన్: ఈథర్నెట్</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>2. ఇన్కమింగ్ కనెక్షన్లు లేవు, నెట్వర్క్ తప్పుగా కాన్ఫిగర్ చేయబడి ఉండవచ్చు</translation>
+            <source>Click to copy IP</source>
+            <translation>IP కాపీ చేయడానికి క్లిక్ చేయండి</translation>
         </message>
     </context>
     <context>
@@ -5061,6 +5073,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>టూల్‌బార్</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>టూల్‌బార్ బటన్‌లను అనుకూలీకరించండి. క్రమాన్ని మార్చడానికి పైకి తరలించు మరియు కిందికి తరలించు ఉపయోగించండి. ప్రారంభించడానికి చెక్ చేయండి, నిలిపివేయడానికి అన్‌చెక్ చేయండి.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL జోడించు</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>తిరిగి ప్రారంభించు</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>ఆపు</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>అన్నీ ఆపు</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>తొలగించు</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>పూర్తయినవి తొలగించు</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>ఎంపికలు</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>షెడ్యూలర్</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>క్యూ ప్రారంభించు</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>క్యూ ఆపు</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>గ్రాబర్</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>శోధన యంత్రం</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>పైకి తరలించు</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>కిందికి తరలించు</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>ప్రారంభించు</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>నిలిపివేయి</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>విభజన జోడించు</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>రీసెట్</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>సరే</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>రద్దు</translation>
         </message>
     </context>
     <context>

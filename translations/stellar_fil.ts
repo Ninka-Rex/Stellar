@@ -950,6 +950,10 @@ I-click ang Add URL upang magsimula.</translation>
             <translation>Kopyahin ang Magnet Link</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>I-verify ang lokal na data</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Kopyahin ang URL</translation>
         </message>
@@ -4703,8 +4707,8 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
             <translation>Hindi pa na-cache ang Source URL. Gamitin ang Check for updates para ma-cache ang IPtoCityDB mula sa update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Bersyon %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Bersyon %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4721,6 +4725,42 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Piliin ang JavaScript runtime binary</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Estilo ng tray icon:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>May kulay</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Puti</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Itim</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Hitsura</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Sukat ng UI:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Laki ng font:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Default ng system</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Kailangan ang restart para mag-apply ang pagbabago sa hitsura. I-restart ngayon?</translation>
         </message>
     </context>
     <context>
@@ -4840,28 +4880,12 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktibo</translation>
+            <source>unlimited</source>
+            <translation>walang limitasyon</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktibo</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 pag-download</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 pag-download</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 error</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 errors</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Limitador ng bilis</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4872,24 +4896,8 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
             <translation>📡 Paghahanap ng updates</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Limitador ng bilis</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Handa</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 napili</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 napili</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 I-off ang DHT</translation>
+            <source>DHT off</source>
+            <translation>Naka-off ang DHT</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4900,6 +4908,14 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
             <translation>online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Tinatantiya… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>susunod &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Nasa 1 minuto ang Queue</translation>
         </message>
@@ -4908,29 +4924,25 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
             <translation>🟧 Nasa %1 minuto ang Queue</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Binubuo… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>susunod &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Ratyo ng pagbabahagi (lahat ng panahon)</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>I-click para buksan ang Statistics</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>I-click para kopyahin ang IP</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Public IP:</translation>
+            <source>Listening port: </source>
+            <translation>Signal:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Walang nakitang koneksyon sa network</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Listening port:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4941,12 +4953,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Signal:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Public IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Listening port:</translation>
+            <source>Click to copy IP</source>
+            <translation>I-click para buksan ang Statistics</translation>
         </message>
     </context>
     <context>
@@ -5049,6 +5061,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Toolbar</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>I-customize ang mga button ng toolbar. Gamitin ang Move Up at Move Down para ayusin. Lagyan ng check para paganahin, alisin para i-disable.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Magdagdag ng URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Ituloy</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Itigil</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Itigil Lahat</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Burahin</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Burahin Tapos</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Opsyon</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Iskedyul</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Simulan Pila</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Itigil Pila</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Tagakuha</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Search Engine</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Itaas</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Ibaba</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Paganahin</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Huwag paganahin</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Magdagdag ng separator</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>I-reset</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Kanselahin</translation>
         </message>
     </context>
     <context>

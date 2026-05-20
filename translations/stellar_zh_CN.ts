@@ -950,6 +950,10 @@ Click  Add URL  to start.</source>
             <translation>复制磁力链接</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>验证本地数据</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>复制 URL</translation>
         </message>
@@ -4709,8 +4713,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>来源 URL 尚未缓存。请使用“检查更新”缓存 IPtoCityDB 至 update.json</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>版本 %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>版本 %1 测试版</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4727,6 +4731,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>选择 JS 运行时二进制文件</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>托盘图标样式：</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>彩色</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>白色</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>黑色</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>外观</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>界面缩放：</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>字号：</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>系统默认</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>外观更改需重启生效，立即重启？</translation>
         </message>
     </context>
     <context>
@@ -4846,28 +4886,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 个活动</translation>
+            <source>unlimited</source>
+            <translation>无限制</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 个活动</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 个下载</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 个下载</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 个错误</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 个错误</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 限速器</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4878,24 +4902,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 检查更新</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 限速器</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 就绪</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 已选 1</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 已选 %1</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 关闭 DHT</translation>
+            <source>DHT off</source>
+            <translation>DHT 已关闭</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4906,6 +4914,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>在线</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>正在估算… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>下一步 &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 队列将在 1 分钟后运行</translation>
         </message>
@@ -4914,29 +4930,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 队列将在 %1 分钟后运行</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 估算中… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>下一步 &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>历史分享率</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>点击打开统计</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>点击复制IP</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>公网IP:</translation>
+            <source>Listening port: </source>
+            <translation>信号:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>未检测到网络连接</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>监听端口:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4947,12 +4959,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>信号:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>公网IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>监听端口:</translation>
+            <source>Click to copy IP</source>
+            <translation>点击打开统计</translation>
         </message>
     </context>
     <context>
@@ -5055,6 +5067,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>工具栏</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>自定义工具栏按钮。使用上移和下移调整顺序。勾选启用，取消勾选禁用。</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>添加 URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>恢复</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>停止</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>停止全部</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>删除</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>删除已完成</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>选项</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>计划任务</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>开始队列</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>停止队列</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>抓取器</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>搜索引擎</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>上移</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>下移</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>启用</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>禁用</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>添加分隔符</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>重置</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>确定</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
         </message>
     </context>
     <context>

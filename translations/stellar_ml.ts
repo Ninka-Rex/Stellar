@@ -949,6 +949,10 @@ URL ചേർക്കുക ആരംഭിക്കാൻ.</translation>
             <translation>മാഗ്നറ്റ് ലിങ്ക് പകർത്തുക</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>പ്രാദേശിക ഡാറ്റ പരിശോധിക്കുക</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL പകർത്തുക</translation>
         </message>
@@ -4710,8 +4714,8 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <translation>ഉറവിട URL ഇനിയും കാഷ് ചെയ്തിട്ടില്ല. update.json-ൽ നിന്ന് IPtoCityDB കാഷ് ചെയ്യാൻ അപ്ഡേറ്റ് പരിശോധിക്കുക ഉപയോഗിക്കുക.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>പതിപ്പ് %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>പതിപ്പ് %1 ബീറ്റ</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4728,6 +4732,42 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>ജാവാസ്ക്രിപ്റ്റ് റൺടൈം ബൈനറി തിരഞ്ഞെടുക്കുക</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>ട്രേ ഐക്കൺ ശൈലി:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>നിറമുള്ള</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>വെള്ള</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>കറുപ്പ്</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>രൂപഭാവം</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI സ്കെയിൽ:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>ഫോണ്ട് വലുപ്പം:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>സിസ്റ്റം ഡിഫോൾട്ട്</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>രൂപമാറ്റങ്ങൾ പ്രാബല്യത്തിൽ വരാൻ പുനരാരംഭം ആവശ്യമാണ്. ഇപ്പോൾ പുനരാരംഭിക്കണോ?</translation>
         </message>
     </context>
     <context>
@@ -4847,28 +4887,12 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 സജീവം</translation>
+            <source>unlimited</source>
+            <translation>പരിധിയില്ലാത്ത</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 സജീവം</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 ഡൗൺലോഡ്</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 ഡൗൺലോഡുകൾ</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 പിശക്</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 പിശകുകൾ</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 വേഗത പരിമിതി</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4879,24 +4903,8 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <translation>📡 അപ്ഡേറ്റുകൾ പരിശോധിക്കുന്നു</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 വേഗത പരിമിതി</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 തയ്യാർ</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 തിരഞ്ഞെടുത്തു</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 തിരഞ്ഞെടുത്തു</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT അപ്രാപ്തം</translation>
+            <source>DHT off</source>
+            <translation>DHT ഓഫ്</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4907,6 +4915,14 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <translation>ഓൺലൈൻ</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>കണക്കാക്കുന്നു… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>അടുത്തത് &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 ക്യൂ 1 മിനിറ്റിൽ പ്രവർത്തിക്കും</translation>
         </message>
@@ -4915,30 +4931,26 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <translation>🟧 ക്യൂ %1 മിനിറ്റിൽ പ്രവർത്തിക്കും</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 കണക്കാക്കുന്നു… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>അടുത്തത് &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>എല്ലാ സമയത്തെയും ഷെയർ റേഷ്യോ
 സ്റ്റാറ്റിസ്റ്റിക്സ് തുറക്കാൻ ക്ലിക്ക് ചെയ്യുക</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>IP പകർത്താൻ ക്ലിക്ക് ചെയ്യുക</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>പൊതു IP:</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>ബന്ധം: ഇഥർനെറ്റ്</translation>
+            <source>Listening port: </source>
+            <translation>ലിസ്റ്റണിംഗ് പോർട്ട്:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>നെറ്റ്‌വർക്ക് കണക്റ്റിവിറ്റി കണ്ടെത്തിയില്ല</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>ഉൾപ്പെടുന്ന ബന്ധങ്ങളില്ല, നെറ്റ്‌വർക്ക് തെറ്റായി ക്രമീകരിച്ചിരിക്കാം</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4949,12 +4961,12 @@ Click to open Statistics</source>
             <translation>സിഗ്നൽ:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>ലിസ്റ്റണിംഗ് പോർട്ട്:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>ബന്ധം: ഇഥർനെറ്റ്</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>ഉൾപ്പെടുന്ന ബന്ധങ്ങളില്ല, നെറ്റ്‌വർക്ക് തെറ്റായി ക്രമീകരിച്ചിരിക്കാം</translation>
+            <source>Click to copy IP</source>
+            <translation>IP പകർത്താൻ ക്ലിക്ക് ചെയ്യുക</translation>
         </message>
     </context>
     <context>
@@ -5057,6 +5069,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>ടൂൾബാർ</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>ടൂൾബാർ ബട്ടണുകൾ ഇഷ്ടാനുസൃതമാക്കുക. ക്രമം മാറ്റാൻ മുകളിലേക്ക് നീക്കുക, താഴേക്ക് നീക്കുക ഉപയോഗിക്കുക. പ്രവർത്തനക്ഷമമാക്കാൻ ചെക്ക് ചെയ്യുക, നിർജ്ജീവമാക്കാൻ അൺചെക്ക് ചെയ്യുക.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL ചേർക്കുക</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>പുനരാരംഭിക്കുക</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>നിർത്തുക</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>എല്ലാം നിർത്തുക</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ഇല്ലാതാക്കുക</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>പൂർത്തിയായവ ഇല്ലാതാക്കുക</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>ഓപ്ഷനുകൾ</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>ഷെഡ്യൂളർ</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>ക്യൂ ആരംഭിക്കുക</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>ക്യൂ നിർത്തുക</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>ഗ്രാബർ</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>സെർച്ച് എഞ്ചിൻ</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>മുകളിലേക്ക് നീക്കുക</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>താഴേക്ക് നീക്കുക</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>പ്രവർത്തനക്ഷമമാക്കുക</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>പ്രവർത്തനരഹിതമാക്കുക</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>വിഭജനം ചേർക്കുക</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>പുനഃസജ്ജമാക്കുക</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ശരി</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>റദ്ദാക്കുക</translation>
         </message>
     </context>
     <context>

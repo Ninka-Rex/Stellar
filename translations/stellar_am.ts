@@ -950,6 +950,10 @@ Click  Add URL  to start.</source>
             <translation>ማግኔት አገናኝ ቅዳ</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>1. የአካባቢ ውሂብ አረጋግጥ</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>አድራሻ ቅዳ</translation>
         </message>
@@ -4713,8 +4717,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>የምንጭ URL እስካሁን አልተቀመጠም። ማሻሻያ ካለ አረጋግጥ ተጠቀም</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>ስሪት %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>2. ስሪት %1 ቤታ</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4731,6 +4735,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>የJS ራንታይም ሁለትዮሽ ምረጥ</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>3. የትሪ አዶ ዘይቤ</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>4. ባለቀለም</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>5. ነጭ</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>6. ጥቁር</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>7. መልክ</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>8. የUI ልኬት</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>9. የቅርጸ-ቁምፊ መጠን</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>10. የስርዓት ነባሪ</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>የቁምነገር ለውጦች እንዲተገበሩ ዳግም ማስጀመር ያስፈልጋል። አሁን ዳግም አስጀምር?</translation>
         </message>
     </context>
     <context>
@@ -4850,28 +4890,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 ንቁ</translation>
+            <source>unlimited</source>
+            <translation>ያልተገደበ</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 ንቁ</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 ማውረድ</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 ማውረዶች</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 ስህተት</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 ስህተቶች</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 ፍጥነት ገዳቢ</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4882,24 +4906,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 ዝማኔዎችን በመፈተሽ ላይ</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 ፍጥነት ገዳቢ</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 ዝግጁ</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 ተመርጧል</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 ተመርጠዋል</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT ጠፍቷል</translation>
+            <source>DHT off</source>
+            <translation>DHT ጠፍቷል</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4910,6 +4918,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation> መስመር ላይ</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>በመገመት ላይ… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>ቀጣይ &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 ወረፋ በ1 ደቂቃ ይጀምራል</translation>
         </message>
@@ -4918,30 +4934,26 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 ወረፋ በ%1 ደቂቃ ይጀምራል</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 በመገመት ላይ… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>ቀጣይ &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>የሁሉም-ጊዜ ማጋሪያ ጥምርታ
 ስታቲስቲክስ ለመክፈት ጠቅ ያድርጉ</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>IP ለመቅዳት ጠቅ ያድርጉ</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>የአደባባይ IP፦</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>ግንኙነት፦ ኤተርኔት</translation>
+            <source>Listening port: </source>
+            <translation>የማዳመጫ ወደብ</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>የአውታረ መረብ ግንኙነት አልተገኘም</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>የሚመጡ ግንኙነቶች የሉም፣ አውታረ መረብ ተሳስቶ ሊሆን ይችላል</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4952,12 +4964,12 @@ Click to open Statistics</source>
             <translation>ምልክት፦</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>የማዳመጫ ወደብ</translation>
+            <source>Connection: Ethernet</source>
+            <translation>ግንኙነት፦ ኤተርኔት</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>የሚመጡ ግንኙነቶች የሉም፣ አውታረ መረብ ተሳስቶ ሊሆን ይችላል</translation>
+            <source>Click to copy IP</source>
+            <translation>IP ለመቅዳት ጠቅ ያድርጉ</translation>
         </message>
     </context>
     <context>
@@ -5060,6 +5072,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>3. RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>የመሳሪያ አሞሌ</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>የመሳሪያ አሞሌ አዝራሮችን አብጅ። እንደገና ለማደራጀት ወደላይ እና ወደታች አንቀሳቅስ ይጠቀሙ። ለማንቃት ምልክት አድርግ፣ ለማሰናከል ምልክቱን አንሳ።</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL አክል</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>ቀጥል</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>አቁም</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>ሁሉንም አቁም</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>አጥፋ</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>የተጠናቀቀውን አጥፋ</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>አማራጮች</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>መርሐግብር</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>ወረፋ ጀምር</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>ወረፋ አቁም</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>ያዥ</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>ፍለጋ ሞተር</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>ወደላይ አንቀሳቅስ</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>ወደታች አንቀሳቅስ</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>አንቃ</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>አሰናክል</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>መለያ ጨምር</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>ዳግም አስጀምር</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>እሺ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ይቅር</translation>
         </message>
     </context>
     <context>

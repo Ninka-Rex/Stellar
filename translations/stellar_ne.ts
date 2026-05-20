@@ -949,6 +949,10 @@ Click  Add URL  to start.</source>
             <translation>म्याग्नेट लिंक प्रतिलिपि गर्नुहोस्</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>स्थानीय डेटा जाँच्नुहोस्</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL प्रतिलिपि गर्नुहोस्</translation>
         </message>
@@ -4699,8 +4703,8 @@ torrent प्रयोग गर्नु अघि तपाईंको IP ad
             <translation>स्रोत URL अझै कास नै छैन। update.json बाट IPtoCityDB कास गर्न Check for updates प्रयोग गर्नुहोस्</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>वर्जन %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>संस्करण %1 बिटा</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4717,6 +4721,42 @@ torrent प्रयोग गर्नु अघि तपाईंको IP ad
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JavaScript रनटाइम बाइनरी छान्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>ट्रे आइकन शैली:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>रंगीन</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>सेतो</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>कालो</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>देखावट</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI माप:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>फन्ट आकार:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>प्रणाली पूर्वनिर्धारित</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>रूप परिवर्तन लागू गर्न पुनः सुरु गर्नुपर्छ। अहिले पुनः सुरु गर्नुहुन्छ?</translation>
         </message>
     </context>
     <context>
@@ -4836,28 +4876,12 @@ torrent प्रयोग गर्नु अघि तपाईंको IP ad
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 १ सक्रिय</translation>
+            <source>unlimited</source>
+            <translation>असीमित</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 सक्रिय</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 १ डाउनलोड</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 डाउनलोडहरू</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 १ त्रुटि</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>%1 त्रुटिहरू</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>गति सीमा</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4868,23 +4892,7 @@ torrent प्रयोग गर्नु अघि तपाईंको IP ad
             <translation>अपडेट जाँचिँदै</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>गति सीमा</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>तयार</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>१ चयन</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>%1 चयन</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
+            <source>DHT off</source>
             <translation>DHT बन्द</translation>
         </message>
         <message>
@@ -4896,6 +4904,14 @@ torrent प्रयोग गर्नु अघि तपाईंको IP ad
             <translation>सक्रिय</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>अनुमान गर्दै… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>अर्को &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>१ मिनेटमा क्वीच सुरु हुनेछ</translation>
         </message>
@@ -4904,29 +4920,25 @@ torrent प्रयोग गर्नु अघि तपाईंको IP ad
             <translation>%1 मिनेटमा क्वीच सुरु हुनेछ</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>अनुमान गरिँदै… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>अर्को &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>कुल साझेदारी अनुपात</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>IP प्रतिलिपि गर्नुहोस्</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>सार्वजनिक IP:</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>सम्पर्क: इथरनेट</translation>
+            <source>Listening port: </source>
+            <translation>सुनेको पोर्ट:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>नेटवर्क जडान भेटिएन</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>कुनै आगमन सम्पर्क छैन, नेटवर्क गलत रूपमा सेट गरिएको हुन सक्छ</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4937,12 +4949,12 @@ Click to open Statistics</source>
             <translation>सिग्नल:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>सुनेको पोर्ट:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>सम्पर्क: इथरनेट</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>कुनै आगमन सम्पर्क छैन, नेटवर्क गलत रूपमा सेट गरिएको हुन सक्छ</translation>
+            <source>Click to copy IP</source>
+            <translation>IP प्रतिलिपि गर्नुहोस्</translation>
         </message>
     </context>
     <context>
@@ -5045,6 +5057,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>उपकरणपट्टी</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>उपकरणपट्टी बटन अनुकूलन गर्नुहोस्। पुन: क्रमबद्ध गर्न माथि सार्नुहोस् र तल सार्नुहोस् प्रयोग गर्नुहोस्। सक्षम गर्न जाँच गर्नुहोस्, असक्षम गर्न अनचेक गर्नुहोस्।</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL थप्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>पुनः सुरु गर्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>रोक्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>सबै रोक्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>मेटाउनुहोस्</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>सम्पन्न मेटाउनुहोस्</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>विकल्पहरू</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>समयतालिका</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>लाम सुरु गर्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>लाम रोक्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>ग्राबर</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>खोज इन्जिन</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>माथि सार्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>तल सार्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>सक्रिय गर्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>निष्क्रिय गर्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>विभाजक थप्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>रिसेट</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ठीक छ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
     </context>
     <context>

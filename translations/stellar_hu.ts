@@ -949,6 +949,10 @@ Kattintson az Add URL gombra az indításhoz.</translation>
             <translation>Magnet link másolása</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Helyi adatok ellenőrzése</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL másolása</translation>
         </message>
@@ -4696,8 +4700,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Forrás URL nincs gyorsítótárazva. Használja a Frissítés ellenőrzése opciót az IPtoCityDB gyorsítótárazásához az update.json-ből.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Verzió %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>%1 béta verzió</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4714,6 +4718,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JS futtatókörnyezet bináris kiválasztása</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Tálcaikon stílusa:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Színes</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Fehér</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Fekete</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Megjelenés</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Felület mérete:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Betűméret:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Rendszer alapértelmezett</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>A megjelenés módosításához újraindítás szükséges. Újraindítja most?</translation>
         </message>
     </context>
     <context>
@@ -4833,28 +4873,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktív</translation>
+            <source>unlimited</source>
+            <translation>korlátlan</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktív</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 letöltés</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 letöltés</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 hiba</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 hiba</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Sebességkorlátozó</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4865,24 +4889,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 Frissítés keresése</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Sebességkorlátozó</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Kész</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 kiválasztva</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 kiválasztva</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT ki</translation>
+            <source>DHT off</source>
+            <translation>DHT ki</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4893,6 +4901,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation> online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Becslés… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>következő &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Sorban 1 perc</translation>
         </message>
@@ -4901,29 +4917,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 Sorban %1 perc</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Becslés… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>következő &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Összes arány</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Statisztikák megnyitása</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>IP másolása</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Nyilvános IP:</translation>
+            <source>Listening port: </source>
+            <translation>Jel:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Nincs hálózati kapcsolat</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Hallgatási port:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4934,12 +4946,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Jel:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Nyilvános IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Hallgatási port:</translation>
+            <source>Click to copy IP</source>
+            <translation>Statisztikák megnyitása</translation>
         </message>
     </context>
     <context>
@@ -5042,6 +5054,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Eszköztár</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Eszköztár gombok testreszabása. Átrendezéshez használja a Fel és Le gombokat. Jelölje be az engedélyezéshez, vegye ki a letiltáshoz.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL hozzáadása</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Folytatás</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Leállítás</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Mind leállít</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Törlés</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Kész törlése</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Beállítások</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Ütemező</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Sor indítása</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Sor leállítása</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Gyűjtő</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Keresőmotor</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Feljebb</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Lejjebb</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Engedélyezés</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Letiltás</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Elválasztó hozzáadása</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Visszaállítás</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Mégse</translation>
         </message>
     </context>
     <context>

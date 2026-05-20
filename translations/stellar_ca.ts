@@ -949,6 +949,10 @@ Fes clic a Afegeix URL per començar.</translation>
             <translation>Copia l'enllaç Magnet</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Verifica dades locals</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Copia l'URL</translation>
         </message>
@@ -4709,8 +4713,8 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <translation>URL de la font no emmagatzemada en caché. Fes servir Comprova actualitzacions per emmagatzemar IPtoCityDB des d'update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Versió %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Versió %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4727,6 +4731,42 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Selecciona el binari del temps d'execució de JavaScript</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Estil icona safata:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Color</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Blanc</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Negre</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Aparença</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Escala IU:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Mida lletra:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Per defecte</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Cal reiniciar per aplicar els canvis d'aparença. Voleu reiniciar ara?</translation>
         </message>
     </context>
     <context>
@@ -4846,28 +4886,12 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 actiu</translation>
+            <source>unlimited</source>
+            <translation>il·limitat</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 actius</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 descàrrega</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 descàrregues</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 error</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 errors</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Limitador de velocitat</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4878,24 +4902,8 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <translation>📡 Comprovant actualitzacions</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Limitador de velocitat</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Preparat</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 seleccionat</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 seleccionats</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT desactivat</translation>
+            <source>DHT off</source>
+            <translation>DHT desactivat</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4906,6 +4914,14 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <translation>en línia</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>S'estima… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>següent &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 La cua s'executarà en 1 minut</translation>
         </message>
@@ -4914,30 +4930,26 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <translation>🟧 La cua s'executarà en %1 minuts</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Calculant… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>següent &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Ratio de compartició històric
 Fes clic per obrir les estadístiques</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>Fes clic per copiar la IP</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>IP pública: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Connexió: Ethernet</translation>
+            <source>Listening port: </source>
+            <translation>Port d'escolta: </translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>No s'ha detectat connectivitat de xarxa</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Sense connexions entrants; la xarxa pot estar mal configurada</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4948,12 +4960,12 @@ Fes clic per obrir les estadístiques</translation>
             <translation>Senyal: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Port d'escolta: </translation>
+            <source>Connection: Ethernet</source>
+            <translation>Connexió: Ethernet</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Sense connexions entrants; la xarxa pot estar mal configurada</translation>
+            <source>Click to copy IP</source>
+            <translation>Fes clic per copiar la IP</translation>
         </message>
     </context>
     <context>
@@ -5056,6 +5068,101 @@ Fes clic per obrir les estadístiques</translation>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Barra d'eines</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Personalitzeu els botons de la barra d'eines. Useu Mou amunt i Mou avall per reordenar. Marqueu per activar, desmarqueu per desactivar.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Afegeix URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Reprèn</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Atura</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Atura-ho tot</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Suprimeix</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Suprimeix completats</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Opcions</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Planificador</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Inicia cua</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Atura cua</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Capturador</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Motor de cerca</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Mou amunt</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Mou avall</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Activa</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Desactiva</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Afegeix separador</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Restableix</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>D'acord</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Cancel·la</translation>
         </message>
     </context>
     <context>

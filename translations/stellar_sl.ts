@@ -949,6 +949,10 @@ Kliknite Dodaj URL za začetek.</translation>
             <translation>Kopiraj magnetno povezavo</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Preveri lokalne podatke</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Kopiraj URL</translation>
         </message>
@@ -4694,8 +4698,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>URL vira še ni v predpomnilniku. Uporabite Preveri posodobitve za predpomnilnik IPtoCityDB iz update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Različica %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Različica %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4712,6 +4716,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Izberi JS runtime</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Slog ikone v opravilni vrstici:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Barvna</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Bela</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Črna</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Videz</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Merilo uporabniškega vmesnika:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Velikost pisave:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Sistemsko privzeto</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Za uveljavitev sprememb videza je potreben ponovni zagon. Želite zdaj znova zagnati?</translation>
         </message>
     </context>
     <context>
@@ -4831,28 +4871,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktivno</translation>
+            <source>unlimited</source>
+            <translation>neomejeno</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktivnih</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 prenos</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 prenosov</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 napaka</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 napak</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Omejitev hitrosti</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4863,24 +4887,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 Preverjanje posodobitev</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Omejitev hitrosti</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟦 Pripravljen</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 izbrano</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 izbranih</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT izklopljen</translation>
+            <source>DHT off</source>
+            <translation>DHT izklopljen</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4891,6 +4899,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation> online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Ocenjevanje … (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>naslednji &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Vrsta teče v 1 minuti</translation>
         </message>
@@ -4899,29 +4915,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 Vrsta teče v %1 minutah</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Ocena… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>naslednji &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Skupni delež</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Statistika</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>Kopiraj IP</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Javna IP:</translation>
+            <source>Listening port: </source>
+            <translation>Signal:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Omrežna povezava ni zaznana</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Poslušalna vrata:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4932,12 +4944,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Signal:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Javna IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Poslušalna vrata:</translation>
+            <source>Click to copy IP</source>
+            <translation>Statistika</translation>
         </message>
     </context>
     <context>
@@ -5040,6 +5052,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Orodna vrstica</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Prilagodite gumbe orodne vrstice. Za prerazporeditev uporabite Premakni gor in Premakni dol. Označite za omogočanje, počistite za onemogočanje.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Dodaj URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Nadaljuj</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Ustavi</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Ustavi vse</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Izbriši</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Izbriši končane</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Možnosti</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Razporejevalnik</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Zaženi vrsto</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Ustavi vrsto</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Pobiralec</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Iskalnik</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Premakni gor</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Premakni dol</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Omogoči</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Onemogoči</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Dodaj ločilo</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Ponastavi</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>V redu</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Prekliči</translation>
         </message>
     </context>
     <context>

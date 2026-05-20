@@ -966,6 +966,10 @@ URL ಸೇರಿಸಿ ಪ್ರಾರಂಭಿಸಿ.</translation>
             <translation>ಮ್ಯಾಗ್ನೆಟ್ ಲಿಂಕ್ ನಕಲು ಮಾಡಿ</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>ಸ್ಥಳೀಯ ಡೇಟಾ ಪರಿಶೀಲಿಸಿ</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL ನಕಲು ಮಾಡಿ</translation>
         </message>
@@ -4730,8 +4734,8 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <translation>ಮೂಲ URL ಇನ್ನೂ ಕ್ಯಾಶ್ ಆಗಿಲ್ಲ. update.json ರಿಂದ IPtoCityDB ಅನ್ನು ಕ್ಯಾಶ್ ಮಾಡಲು ನವೀಕರಣವನ್ನು ಪರಿಶೀಲಿಸಿ ಬಳಸಿ.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>ಆವೃತ್ತಿ %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>ಆವೃತ್ತಿ %1 ಬೀಟಾ</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4748,6 +4752,42 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>ಜಾವಾಸ್ಕ್ರಿಪ್ಟ್ ರನ್‌ಟೈಮ್ ಬೈನರಿ ಆಯ್ಕೆ ಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>ಟ್ರೇ ಐಕಾನ್ ಶೈಲಿ:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>ಬಣ್ಣದ</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>ಬಿಳಿ</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>ಕಪ್ಪು</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>ದೃಶ್ಯ ವಿನ್ಯಾಸ</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI ಪ್ರಮಾಣ:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>ಅಕ್ಷರ ಗಾತ್ರ:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>ಸಿಸ್ಟಮ್ ಡೀಫಾಲ್ಟ್</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>ನೋಟ ಬದಲಾವಣೆಗಳಿಗೆ ಮರುಪ್ರಾರಂಭ ಅಗತ್ಯ. ಈಗಲೇ ಮರುಪ್ರಾರಂಭಿಸುವುದೇ?</translation>
         </message>
     </context>
     <context>
@@ -4867,28 +4907,12 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 ಸಕ್ರಿಯ</translation>
+            <source>unlimited</source>
+            <translation>ಅಪರಿಮಿತ</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 ಸಕ್ರಿಯ</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 ಡೌನ್‌ಲೋಡ್</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 ಡೌನ್‌ಲೋಡ್‌ಗಳು</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 ದೋಷ</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 ದೋಷಗಳು</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 ವೇಗ ನಿರ್ಬಂಧಕ</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4899,24 +4923,8 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <translation>📡 ನವೀಕರಣಗಳನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 ವೇಗ ನಿರ್ಬಂಧಕ</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 ಸಿದ್ಧ</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 ಆಯ್ಕೆ</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 ಆಯ್ಕೆ</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT ಆಫ್</translation>
+            <source>DHT off</source>
+            <translation>DHT ಆಫ್</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4927,6 +4935,14 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <translation>ಆನ್‌ಲೈನ್</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>ಅಂದಾಜಿಸಲಾಗುತ್ತಿದೆ… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>ಮುಂದಿನ &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 ಕ್ಯೂ 1 ನಿಮಿಷದಲ್ಲಿ ಚಾಲನೆ</translation>
         </message>
@@ -4935,30 +4951,26 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <translation>🟧 ಕ್ಯೂ %1 ನಿಮಿಷಗಳಲ್ಲಿ ಚಾಲನೆ</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 ಅಂದಾಜು… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>ಮುಂದಿನ &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>ಎಲ್ಲಾ ಸಮಯದ ಹಂಚಿಕೆ ಅನುಪಾತ
 ಸಂಖ್ಯಾಶಾಸ್ತ್ರ ತೆರೆಯಲು ಕ್ಲಿಕ್ ಮಾಡಿ</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>IP ನಕಲಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>ಸಾರ್ವಜನಿಕ IP: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>ಸಂಪರ್ಕ: ಎಥರ್ನೆಟ್</translation>
+            <source>Listening port: </source>
+            <translation>ಲಿಸ್ಟನಿಂಗ್ ಪೋರ್ಟ್: </translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>ನೆಟ್ವರ್ಕ್ ಸಂಪರ್ಕ ಪತ್ತೆಯಾಗಿಲ್ಲ</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>ಒಳಬರುವ ಸಂಪರ್ಕಗಳಿಲ್ಲ, ನೆಟ್‌ವರ್ಕ್ ತಪ್ಪಾಗಿ ಕಾನ್ಫಿಗರ್ ಆಗಿರಬಹುದು</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4969,12 +4981,12 @@ Click to open Statistics</source>
             <translation>ಸಿಗ್ನಲ್: </translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>ಲಿಸ್ಟನಿಂಗ್ ಪೋರ್ಟ್: </translation>
+            <source>Connection: Ethernet</source>
+            <translation>ಸಂಪರ್ಕ: ಎಥರ್ನೆಟ್</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>ಒಳಬರುವ ಸಂಪರ್ಕಗಳಿಲ್ಲ, ನೆಟ್‌ವರ್ಕ್ ತಪ್ಪಾಗಿ ಕಾನ್ಫಿಗರ್ ಆಗಿರಬಹುದು</translation>
+            <source>Click to copy IP</source>
+            <translation>IP ನಕಲಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ</translation>
         </message>
     </context>
     <context>
@@ -5077,6 +5089,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>3. RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>ಟೂಲ್ಬಾರ್</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>ಟೂಲ್ಬಾರ್ ಬಟನ್ಗಳನ್ನು ಕಸ್ಟಮೈಸ್ ಮಾಡಿ. ಮರುಕ್ರಮಗೊಳಿಸಲು ಮೇಲೆ ಸರಿಸು ಮತ್ತು ಕೆಳಗೆ ಸರಿಸು ಬಳಸಿ. ಸಕ್ರಿಯಗೊಳಿಸಲು ಟಿಕ್ ಮಾಡಿ, ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು ಟಿಕ್ ತೆಗೆಯಿರಿ.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL ಸೇರಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>ಮುಂದುವರಿಸು</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>ನಿಲ್ಲಿಸು</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>ಎಲ್ಲಾ ನಿಲ್ಲಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ಅಳಿಸು</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>ಮುಗಿದಿದೆ ಅಳಿಸು</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>ಆಯ್ಕೆಗಳು</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>ವೇಳಾಪಟ್ಟಿ</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>ಸರದಿ ಆರಂಭಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>ಸರದಿ ನಿಲ್ಲಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>ಗ್ರಾಬರ್</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>ಹುಡುಕು ಎಂಜಿನ್</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>ಮೇಲೆ ಸರಿಸು</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>ಕೆಳಗೆ ಸರಿಸು</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>ಸಕ್ರಿಯಗೊಳಿಸು</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>ನಿಷ್ಕ್ರಿಯಗೊಳಿಸು</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>ವಿಭಾಜಕ ಸೇರಿಸು</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>ಮರುಹೊಂದಿಸು</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದು</translation>
         </message>
     </context>
     <context>

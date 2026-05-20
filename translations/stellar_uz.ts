@@ -950,6 +950,10 @@ Boshlash uchun URL qo'shing.</translation>
             <translation>Magnet havolasini nusxalash</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Mahalliy ma'lumotlarni tekshirish</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL ni nusxalash</translation>
         </message>
@@ -4700,8 +4704,8 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <translation>Manba URL hali kesh qilinmagan. IPtoCityDB ni update.json dan kesh qilish uchun Yangilanishlarni tekshirishdan foydalaning.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Versiya %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Versiya %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4718,6 +4722,42 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JavaScript ishga tushirish muhitini tanlang</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Tepadagi belgi uslubi:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Rangli</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Oq</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Qora</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Ko'rinish</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI masshtabi:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Shrift o'lchami:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Tizim standarti</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Ko‘rinish o‘zgarishlari uchun qayta ishga tushirish kerak. Hozir qayta ishga tushirilsinmi?</translation>
         </message>
     </context>
     <context>
@@ -4837,28 +4877,12 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 faol</translation>
+            <source>unlimited</source>
+            <translation>cheksiz</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 faol</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 yuklab olish</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 yuklab olish</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 xato</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 xato</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Tezlik cheklovi</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4869,24 +4893,8 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <translation>📡 Yangilanishlar tekshirilmoqda</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Tezlik cheklovi</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Tayyor</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 ta tanlangan</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 ta tanlangan</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT o'chirilgan</translation>
+            <source>DHT off</source>
+            <translation>DHT o‘chiq</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4897,6 +4905,14 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <translation>online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Baholanmoqda… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>keyingi &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Qator 1 daqiqa ichida ishlaydi</translation>
         </message>
@@ -4905,29 +4921,25 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <translation>🟧 Qator %1 daqiqada ishlaydi</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Baholash... (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>keyingi &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Uslubiy ulashuv</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Statistika</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>IP nusxalash</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Ommaviy IP:</translation>
+            <source>Listening port: </source>
+            <translation>Signal:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Tarmoq aloqasi topilmadi</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Eshitish porti:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4938,12 +4950,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Signal:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Ommaviy IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Eshitish porti:</translation>
+            <source>Click to copy IP</source>
+            <translation>Statistika</translation>
         </message>
     </context>
     <context>
@@ -5046,6 +5058,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Asboblar paneli</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Asboblar paneli tugmalarini moslang. Tartibni o‘zgartirish uchun Yuqoriga va Pastga tugmalaridan foydalaning. Yoqish uchun belgilang, o‘chirish uchun belgini olib tashlang.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL qo‘shish</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Davom ettirish</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>To‘xtatish</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Hammasini to‘xtatish</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>O‘chirish</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Bajarilganlarni o‘chirish</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Sozlamalar</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Rejalashtirgich</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Navbatni boshlash</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Navbatni to‘xtatish</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Tutgich</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Qidiruv tizimi</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Yuqoriga ko‘chirish</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Pastga ko‘chirish</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Yoqish</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>O‘chirish</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Ajratgich qo‘shish</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Qayta tiklash</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
         </message>
     </context>
     <context>

@@ -949,6 +949,10 @@ Klikkaa Lisää URL aloittaaksesi.</translation>
             <translation>Kopioi magnet-linkki</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Tarkista paikalliset tiedot</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Kopioi URL</translation>
         </message>
@@ -4704,8 +4708,8 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <translation>Lähde-URL ei ole väliaikaisesti tallennettu. Käytä Päivitä tarkistaa IPtoCityDB:n.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Versio %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Versio %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4722,6 +4726,42 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Valitse JavaScript-ytimeen</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Ilmaisinalueen kuvaketyyli:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Värillinen</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Valkoinen</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Musta</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Ulkoasu</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Käyttöliittymän skaalaus:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Fonttikoko:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Järjestelmän oletus</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Ulkoasumuutokset vaativat uudelleenkäynnistyksen. Käynnistä nyt?</translation>
         </message>
     </context>
     <context>
@@ -4841,28 +4881,12 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktiivinen</translation>
+            <source>unlimited</source>
+            <translation>rajoittamaton</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktiivista</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 lataus</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 latausta</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 virhe</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 virhettä</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Nopeusrajoitin</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4873,24 +4897,8 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <translation>📡 Päivitettyjen tarkistus</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Nopeusrajoitin</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Valmis</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 valittu</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 valittu</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT pois päältä</translation>
+            <source>DHT off</source>
+            <translation>DHT pois</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4901,6 +4909,14 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <translation> online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Arvioidaan… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>seuraava &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Jono käynnistyy 1 minuutissa</translation>
         </message>
@@ -4909,29 +4925,25 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <translation>🟧 Jono käynnistyy %1 minuutissa</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Arvioidaan… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>seuraava &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Kaikkien aikojen jakosuhteet</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Avaa tilastot</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>Kopioi IP</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Julkinen IP:</translation>
+            <source>Listening port: </source>
+            <translation>Signaali:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Ei verkkoyhteyttä</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Kuunteluportti:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4942,12 +4954,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Signaali:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Julkinen IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Kuunteluportti:</translation>
+            <source>Click to copy IP</source>
+            <translation>Avaa tilastot</translation>
         </message>
     </context>
     <context>
@@ -5050,6 +5062,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Työkalupalkki</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Mukauta työkalupalkin painikkeita. Järjestä Siirrä ylös ja Siirrä alas -painikkeilla. Valitse ottaaksesi käyttöön, poista valinta poistaaksesi käytöstä.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Lisää URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Jatka</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Pysäytä</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Pysäytä kaikki</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Poista</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Poista valmiit</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Asetukset</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Ajastin</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Käynnistä jono</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Pysäytä jono</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Kaappari</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Hakukone</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Siirrä ylös</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Siirrä alas</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Ota käyttöön</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Poista käytöstä</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Lisää erotin</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Palauta</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
         </message>
     </context>
     <context>

@@ -950,6 +950,10 @@ Danna  Ƙara URL  don farawa.</translation>
             <translation>Kwafi Magnet Link</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Tabbatar da Bayanan Gida</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Kwafi URL</translation>
         </message>
@@ -4714,8 +4718,8 @@ An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabb
             <translation>Tushen URL ɗin bai ɓoye ba tukuna. Yi amfani da Duba sabuntawa don ɓoye IPtoCityDB daga update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Sigar %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Sigar %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4732,6 +4736,42 @@ An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabb
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Zaɓi binary ɗin runtime ɗin JavaScript</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Salon gunkin tire:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Mai launi</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Fari</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Baƙi</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Bayyanar</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Ma'aunin UI:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Girman rubutu:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Tsarin asali</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Sake kunnawa ake buƙata don canje-canjen su yi tasiri. Sake kunna yanzu?</translation>
         </message>
     </context>
     <context>
@@ -4851,28 +4891,12 @@ An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabb
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 yana aiki</translation>
+            <source>unlimited</source>
+            <translation>marar iyaka</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 suna aiki</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 saukewa</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 saukewa</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 kuskure</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 kurakurai %1</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Mai iyakance gudu</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4883,24 +4907,8 @@ An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabb
             <translation>📡 Ana duba sabuntawa</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Mai iyakance gudu</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Shirye</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 zaɓaɓɓe</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 zaɓaɓɓu</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT a kashe</translation>
+            <source>DHT off</source>
+            <translation>DHT a kashe</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4911,6 +4919,14 @@ An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabb
             <translation>a layi</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Ana ƙididdigewa… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>gaba &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Jerin zai fara nan da minti 1</translation>
         </message>
@@ -4919,30 +4935,26 @@ An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabb
             <translation>🟧 Jerin zai fara nan da minti %1</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Ana ƙididdigewa… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>gaba &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Rabon rabawa na kowane lokaci
 Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>Danna don kwafi IP</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>IP na jama'a:</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Haɗi: Ethernet</translation>
+            <source>Listening port: </source>
+            <translation>Tashar sauraro:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Ba a gano haɗin yanar gizo ba</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Babu haɗi mai shigowa, cibiyar sadarwa na iya zama ba daidai ba</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4953,12 +4965,12 @@ Danna don buɗe Ƙididdiga</translation>
             <translation>Sigina:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Tashar sauraro:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Haɗi: Ethernet</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Babu haɗi mai shigowa, cibiyar sadarwa na iya zama ba daidai ba</translation>
+            <source>Click to copy IP</source>
+            <translation>Danna don kwafi IP</translation>
         </message>
     </context>
     <context>
@@ -5061,6 +5073,101 @@ Danna don buɗe Ƙididdiga</translation>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Kayan aiki</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Keɓance maɓallan kayan aiki. Yi amfani da Matsar da Sama da Matsar da Ƙasa don sake tsari. Sa alama don kunna, cire alama don kashe.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Ƙara URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Ci gaba</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Tsaya</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Dakatar da Duka</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Share</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Share Abin da Aka Gama</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Zaɓuɓɓuka</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Tsara Lokaci</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Fara Jeri</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Dakatar da Jeri</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Mai Kama</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Injin Bincike</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Matsar sama</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Matsar ƙasa</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Kunna</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Kashe</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Ƙara mai raba</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Sake saiti</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Soke</translation>
         </message>
     </context>
     <context>

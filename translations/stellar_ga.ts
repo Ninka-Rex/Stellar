@@ -949,6 +949,10 @@ Cliceáil Cuir URL leis chun tosú.</translation>
             <translation>Cóipeáil Nasc Mhaignéit</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Fíoraigh Sonraí Áitiúla</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Cóipeáil URL</translation>
         </message>
@@ -4707,8 +4711,8 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <translation>Níl an URL foinse caighdeánaithe fós. Úsáid Seiceáil nuashonruithe chun IPtoCityDB a chaighdeánú ó update.json.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Leagan %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Leagan %1 Béite</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4725,6 +4729,42 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Roghnaigh comhexe rithchóireála JavaScript</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Stíl deilbhín tráidire:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Daite</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Bán</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Dubh</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Cuma</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Scála Chomhéadain:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Clómhéid:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Réamhshocrú córais</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Tá atosú ag teastáil chun athruithe cuma a chur i bhfeidhm. Atosaigh anois?</translation>
         </message>
     </context>
     <context>
@@ -4844,28 +4884,12 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 gníomhach</translation>
+            <source>unlimited</source>
+            <translation>gan teorainn</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 gníomhach</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 íoslódáil</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 íoslódáil</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 earráid</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 earráid</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Teorannaithe Luais</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4876,24 +4900,8 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <translation>📡 Ag seiceáil nuashonruithe</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Teorannaithe Luais</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Réidh</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 roghnaithe</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 roghnaithe</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT as</translation>
+            <source>DHT off</source>
+            <translation>DHT múchta</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4904,6 +4912,14 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <translation> ar líne</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Á mheas… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation> ar aghaidh &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Rithfidh an ciúna in aon nóiméad</translation>
         </message>
@@ -4912,29 +4928,25 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <translation>🟧 Rithfidh an ciúna i %1 nóiméad</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Ag meastachán… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation> ar aghaidh &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Cóimheas roinnte go léir</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Cliceáil chun Staitisticí a oscailt</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>Cliceáil chun IP a chóipeáil</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>IP Poiblí: </translation>
+            <source>Listening port: </source>
+            <translation>Port éisteachta:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Níor braitheadh nascacht líonra</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Gan ceangail isteach, b’fhéidir go bhfuil an líonra mí-chumraithe</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4945,12 +4957,12 @@ Click to open Statistics</source>
             <translation>Comhartha:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Port éisteachta:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>IP Poiblí: </translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Gan ceangail isteach, b’fhéidir go bhfuil an líonra mí-chumraithe</translation>
+            <source>Click to copy IP</source>
+            <translation>Cliceáil chun Staitisticí a oscailt</translation>
         </message>
     </context>
     <context>
@@ -5053,6 +5065,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Barra uirlisí</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Saincheap cnaipí an bharra uirlisí. Úsáid Bog Suas agus Bog Síos chun athordú. Ticeáil chun cumasú, díthiceáil chun díchumasú.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Cuir URL leis</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Atosaigh</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Stop</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Stop Uile</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Scrios</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Scriosta Déanta</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Roghanna</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Sceidealóir</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Tosaigh Ciú</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Stop Ciú</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Grabálaí</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Inneall Cuardaigh</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Bog suas</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Bog síos</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Cumasaigh</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Díchumasaigh</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Cuir deighilteoir leis</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Athshocraigh</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Cealaigh</translation>
         </message>
     </context>
     <context>

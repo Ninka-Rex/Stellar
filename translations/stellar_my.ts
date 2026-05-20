@@ -949,6 +949,10 @@ Click  Add URL  to start.</source>
             <translation>19. Magnet လင့်ခ်ကူးယူ</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>ဒေသတွင်းဒေတာစစ်ဆေးရန်</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>20. URL ကူးယူ</translation>
         </message>
@@ -4713,8 +4717,8 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
             <translation>ရင်းမြစ် URL ကို ကက်ရှ်မသိမ်းရသေး။ IPtoCityDB ကို update.json မှ ကက်ရှ်သိမ်းရန် အပ်ဒိတ်စစ်ဆေးရန် သုံးပါ။</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>ဗားရှင်း %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>ဗားရှင်း %1 ဘီတာ</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4731,6 +4735,42 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JS ရန်တိုင်း ဘိုင်နရီ ရွေးပါ</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>စနစ်ဗန်းအိုင်ကွန်ပုံစံ:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>အရောင်ပါ</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>အဖြူ</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>အနက်</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>အသွင်အပြင်</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>UI စကေး:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>စာလုံးအရွယ်:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>စနစ်မူလ</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>အသွင်အပြင်ပြောင်းလဲမှုများ အကျိုးသက်ရောက်ရန် ပြန်လည်စတင်ရန် လိုအပ်သည်။ ယခုပြန်စမလား။</translation>
         </message>
     </context>
     <context>
@@ -4850,28 +4890,12 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 ၁ ခု လှုပ်ရှား</translation>
+            <source>unlimited</source>
+            <translation>အကန့်အသတ်မရှိ</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 ခု လှုပ်ရှား</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 ၁ ခု ဒေါင်းလုဒ်</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 ခု ဒေါင်းလုဒ်</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 ၁ ခု အမှား</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 ခု အမှား</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 မြန်နှုန်း ကန့်သတ်</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4882,24 +4906,8 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
             <translation>📡 အပ်ဒိတ် စစ်ဆေးနေ</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 မြန်နှုန်း ကန့်သတ်</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 အဆင်သင့်</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 ၁ ခု ရွေးထား</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 ခု ရွေးထား</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT ပိတ်</translation>
+            <source>DHT off</source>
+            <translation>DHT ပိတ်</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4910,6 +4918,14 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
             <translation>အွန်လိုင်း</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>ခန့်မှန်းနေသည်… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>နောက်တစ်ခု &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 တန်းစီမှုကို ၁ မိနစ်အတွင်း လုပ်ဆောင်မည်</translation>
         </message>
@@ -4918,30 +4934,26 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
             <translation>🟧 တန်းစီမှုကို %1 မိနစ်အတွင်း လုပ်ဆောင်မည်</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 ခန့်မှန်းနေသည်… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>နောက်တစ်ခု &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>အချိန်တစ်လျှောက် မျှဝေမှုအချိုး
 စာရင်းဇယားဖွင့်ရန် နှိပ်ပါ</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>IP ကူးယူရန် နှိပ်ပါ</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>အများသုံး IP-</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>ချိတ်ဆက်မှု- အီသာနက်</translation>
+            <source>Listening port: </source>
+            <translation>နားထောင်ပို့တ်-</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>ကွန်ရက်ချိတ်ဆက်မှု မတွေ့ပါ</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>အဝင်ချိတ်ဆက်မှုမရှိ၊ ကွန်ရက်ဖွဲ့စည်းမှု မှားယွင်းနေနိုင်သည်</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4952,12 +4964,12 @@ Click to open Statistics</source>
             <translation>အချက်ပြ-</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>နားထောင်ပို့တ်-</translation>
+            <source>Connection: Ethernet</source>
+            <translation>ချိတ်ဆက်မှု- အီသာနက်</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>အဝင်ချိတ်ဆက်မှုမရှိ၊ ကွန်ရက်ဖွဲ့စည်းမှု မှားယွင်းနေနိုင်သည်</translation>
+            <source>Click to copy IP</source>
+            <translation>IP ကူးယူရန် နှိပ်ပါ</translation>
         </message>
     </context>
     <context>
@@ -5060,6 +5072,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>ကိရိယာဘား</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>ကိရိယာဘားခလုတ်များ စိတ်ကြိုက်ပြင်ဆင်ပါ။ အပေါ်ရွှေ့ နှင့် အောက်ရွှေ့ ကိုသုံး၍ အစဉ်လိုက်ပြောင်းပါ။ ဖွင့်ရန် အမှန်ခြစ်၊ ပိတ်ရန် အမှန်ခြစ်ဖြုတ်ပါ။</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL ထည့်ပါ</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>ပြန်စပါ</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>ရပ်ပါ</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>အားလုံးရပ်</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ဖျက်မည်</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>ပြီးသည်များဖျက်</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>ရွေးချယ်မှုများ</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>အချိန်စာရင်း</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>တန်းစီစတင်</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>တန်းစီရပ်</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>ဖမ်းကိရိယာ</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>ရှာဖွေရေးအင်ဂျင်</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>အပေါ်ရွှေ့</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>အောက်ရွှေ့</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>ဖွင့်</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>ပိတ်</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>ခွဲကြောင်းထည့်</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>ပြန်သတ်မှတ်</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>အိုကေ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>မလုပ်တော့</translation>
         </message>
     </context>
     <context>

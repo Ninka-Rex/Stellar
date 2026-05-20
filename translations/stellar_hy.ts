@@ -949,6 +949,10 @@ Click  Add URL  to start.</source>
             <translation>Պատճենել մագնիսական հղումը</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Ստուգել տեղային տվյալները</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Պատճենել URL-ը</translation>
         </message>
@@ -4700,8 +4704,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Աղբյուրի URL-ը դեռ չի կաշվածվել։ Օգտագործեք «Ստուգել թարմացումները»՝ IPtoCityDB-ն update.json-ից կաշվածելու համար։</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Տարբերակ %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Տարբերակ %1 Բետա</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4718,6 +4722,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Ընտրել JavaScript ռունտայիմի բինարը</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Սկուտեղի պատկերակի ոճ՝</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Գունավոր</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Սպիտակ</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Սև</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Արտաքին տեսք</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>ՄԻ սանդղակ՝</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Տառաչափ՝</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Համակարգի լռելյայն</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Արտաքին տեսքի փոփոխությունների համար վերագործարկում է պահանջվում: Վերագործարկե՞լ հիմա:</translation>
         </message>
     </context>
     <context>
@@ -4837,28 +4877,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 ակտիվ</translation>
+            <source>unlimited</source>
+            <translation>անսահմանափակ</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 ակտիվ</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 ներբեռնում</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 ներբեռնում</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 սխալ</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 սխալ</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Արագության սահմանափակող</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4869,24 +4893,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📍 Թարմացումների ստուգում</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Արագության սահմանափակող</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Պատրաստ է</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 ընտրված</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 ընտրված</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT-ն անջատված է</translation>
+            <source>DHT off</source>
+            <translation>DHT անջատված</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4897,6 +4905,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>  առցանց</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Գնահատվում է… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation> հաջորդ &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Հերթը կսկսվի 1 րոպեից</translation>
         </message>
@@ -4905,30 +4921,26 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 Հերթը կսկսվի %1 րոպեից</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Հաշվարկվում է… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation> հաջորդ &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Բաժնեկցման հարաբերակցությունը բոլոր ժամանակների ընթացքում
 Սեղմեք վիճակագրությունը բացելու համար</translation>
         </message>
         <message>
-            <source>Click to copy IP</source>
-            <translation>Սեղմեք IP հասցեն պատճենելու համար</translation>
-        </message>
-        <message>
             <source>Public IP: </source>
             <translation>Հանրային IP: </translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Կապը. Էթերնետ</translation>
+            <source>Listening port: </source>
+            <translation>Լսելու դուռը</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Ցանցային կապ չի հայտնաբերվել</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Մուտքային կապեր չկան, ցանցը սխալ կարգավորված է</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4939,12 +4951,12 @@ Click to open Statistics</source>
             <translation>Սիգնալ:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Լսելու դուռը</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Կապը. Էթերնետ</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Մուտքային կապեր չկան, ցանցը սխալ կարգավորված է</translation>
+            <source>Click to copy IP</source>
+            <translation>Սեղմեք IP հասցեն պատճենելու համար</translation>
         </message>
     </context>
     <context>
@@ -5047,6 +5059,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Գործիքագոտի</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Հարմարեցրեք գործիքագոտու կոճակները: Օգտագործեք Վերև և Ներքև՝ վերադասավորելու համար: Նշեք միացնելու, ապանշեք անջատելու համար:</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Ավելացնել URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Շարունակել</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Դադարեցնել</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Դադարեցնել բոլորը</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Ջնջել</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Ջնջել ավարտվածները</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Կարգավորումներ</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Ժամանակացույց</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Սկսել հերթը</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Դադարեցնել հերթը</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Գրաբեր</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Որոնողական համակարգ</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Վերև տեղափոխել</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Ներքև տեղափոխել</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Միացնել</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Անջատել</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Ավելացնել բաժանարար</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Վերակայել</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
         </message>
     </context>
     <context>

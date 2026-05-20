@@ -950,6 +950,10 @@ Spauskite  Pridėti URL  pradžiai.</translation>
             <translation>Kopijuoti magnetinį nuorodą</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Tikrinti vietinius duomenis</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>Kopijuoti URL</translation>
         </message>
@@ -4703,8 +4707,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Šaltinio URL dar nėra įkeltas. Naudokite „Patikrinti atnaujinimus</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Versija %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>%1 Beta versija</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4721,6 +4725,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>Pasirinkite JS runtime</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Sistemos dėklo piktogramos stilius:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Spalvota</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Balta</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Juoda</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Išvaizda</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Sąsajos mastelis:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Šrifto dydis:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Sistemos numatytasis</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Norint pritaikyti išvaizdos pakeitimus, reikia paleisti iš naujo. Paleisti dabar?</translation>
         </message>
     </context>
     <context>
@@ -4840,28 +4880,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktyvus</translation>
+            <source>unlimited</source>
+            <translation>neribotas</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktyvūs</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 atsisiuntimas</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 atsisiuntimų</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 klaida</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 klaidų</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Greičio ribotuvas</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4872,24 +4896,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 Atnaujinimų tikrinimas</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Greičio ribotuvas</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟩 Paruošta</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 pasirinkta</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 pasirinkta</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT išjungta</translation>
+            <source>DHT off</source>
+            <translation>DHT išjungta</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4900,6 +4908,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation> online</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Apskaičiuojama… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>toliau &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Eilė veiks per 1 min.</translation>
         </message>
@@ -4908,29 +4924,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 Eilė veiks per %1 min.</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Skaičiuojama… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>toliau &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Viso laiko dalinimosi santykis</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>Atidaryti statistikos</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>Kopijuoti IP</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Viešasis IP:</translation>
+            <source>Listening port: </source>
+            <translation>Signalas:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Nerasta tinklo ryšio</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Išgirstas portas:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4941,12 +4953,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Signalas:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Viešasis IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Išgirstas portas:</translation>
+            <source>Click to copy IP</source>
+            <translation>Atidaryti statistikos</translation>
         </message>
     </context>
     <context>
@@ -5049,6 +5061,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Įrankių juosta</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Tinkinkite įrankių juostos mygtukus. Naudokite „Pakelti aukštyn“ ir „Nuleisti žemyn“ norėdami pertvarkyti. Pažymėkite, kad įjungtumėte, atžymėkite, kad išjungtumėte.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>Pridėti URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Atnaujinti</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Sustabdyti</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Sustabdyti viską</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Ištrinti</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Ištrinti baigtus</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Nustatymai</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Planuoklė</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Pradėti eilę</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Sustabdyti eilę</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Griebtuvas</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Paieškos variklis</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Aukštyn</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Žemyn</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Įjungti</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Išjungti</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Pridėti skirtuką</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Atstatyti</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Gerai</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Atšaukti</translation>
         </message>
     </context>
     <context>

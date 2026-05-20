@@ -951,6 +951,10 @@ Başlatmak için URL Ekle'ye tıklayın.</translation>
             <translation>Manyetik Bağlantı Kopyala</translation>
         </message>
         <message>
+            <source>Verify Local Data</source>
+            <translation>Veriyi Doğrula</translation>
+        </message>
+        <message>
             <source>Copy URL</source>
             <translation>URL Kopyala</translation>
         </message>
@@ -4694,8 +4698,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Kaynak URL henüz önbelleğe alınmadı. IPtoCityDB'yi önbelleğe almak için Güncellemeleri kontrol et.</translation>
         </message>
         <message>
-            <source>Version %1</source>
-            <translation>Sürüm %1</translation>
+            <source>Version %1 Beta</source>
+            <translation>Sürüm %1 Beta</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4712,6 +4716,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Select JavaScript runtime binary</source>
             <translation>JS runtime ikilisini seç</translation>
+        </message>
+        <message>
+            <source>Tray icon style:</source>
+            <translation>Tepsi simgesi stili:</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Renkli</translation>
+        </message>
+        <message>
+            <source>White</source>
+            <translation>Beyaz</translation>
+        </message>
+        <message>
+            <source>Black</source>
+            <translation>Siyah</translation>
+        </message>
+        <message>
+            <source>Appearance</source>
+            <translation>Görünüm</translation>
+        </message>
+        <message>
+            <source>UI scale:</source>
+            <translation>Arayüz ölçeği:</translation>
+        </message>
+        <message>
+            <source>Font size:</source>
+            <translation>Yazı boyutu:</translation>
+        </message>
+        <message>
+            <source>System default</source>
+            <translation>Sistem varsayılanı</translation>
+        </message>
+        <message>
+            <source>A restart is required for appearance changes to take effect. Restart now?</source>
+            <translation>Görünüm değişiklikleri için yeniden başlatma gerekli. Şimdi yeniden başlatılsın mı?</translation>
         </message>
     </context>
     <context>
@@ -4831,28 +4871,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <context>
         <name>StatusBar</name>
         <message>
-            <source>🟦 1 active</source>
-            <translation>🟦 1 aktif</translation>
+            <source>unlimited</source>
+            <translation>sınırsız</translation>
         </message>
         <message>
-            <source>🟦 %1 active</source>
-            <translation>🟦 %1 aktif</translation>
-        </message>
-        <message>
-            <source>📄 1 download</source>
-            <translation>📄 1 indirme</translation>
-        </message>
-        <message>
-            <source>📄 %1 downloads</source>
-            <translation>📄 %1 indirme</translation>
-        </message>
-        <message>
-            <source>🟨 1 error</source>
-            <translation>🟨 1 hata</translation>
-        </message>
-        <message>
-            <source>🟨 %1 errors</source>
-            <translation>🟨 %1 hata</translation>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 Hız sınırlayıcı</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
@@ -4863,24 +4887,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>📡 Güncelleme kontrol ediliyor</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Hız sınırlayıcı</translation>
-        </message>
-        <message>
-            <source>🟩 Ready</source>
-            <translation>🟦 Hazır</translation>
-        </message>
-        <message>
-            <source>🔍 1 selected</source>
-            <translation>🔍 1 seçildi</translation>
-        </message>
-        <message>
-            <source>🔍 %1 selected</source>
-            <translation>🔍 %1 seçildi</translation>
-        </message>
-        <message>
-            <source>🔴 DHT off</source>
-            <translation>🔴 DHT kapalı</translation>
+            <source>DHT off</source>
+            <translation>DHT kapalı</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -4891,6 +4899,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>çevrimiçi</translation>
         </message>
         <message>
+            <source>Estimating… (%1%)</source>
+            <translation>Tahmin ediliyor… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>sonraki &gt;&gt;</translation>
+        </message>
+        <message>
             <source>🟧 Queue runs in 1 minute</source>
             <translation>🟧 Kuyruk 1 dakikada çalışacak</translation>
         </message>
@@ -4899,29 +4915,25 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>🟧 Kuyruk %1 dakikada çalışacak</translation>
         </message>
         <message>
-            <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Tahmin ediliyor… (%1%)</translation>
-        </message>
-        <message>
-            <source>next &gt;&gt;</source>
-            <translation>sonraki &gt;&gt;</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Toplam Pay Oranı</translation>
-        </message>
-        <message>
-            <source>Click to copy IP</source>
-            <translation>İstatistikleri Aç</translation>
         </message>
         <message>
             <source>Public IP: </source>
             <translation>IP Kopyala</translation>
         </message>
         <message>
-            <source>Connection: Ethernet</source>
-            <translation>Kamu IP:</translation>
+            <source>Listening port: </source>
+            <translation>Sinyal:</translation>
+        </message>
+        <message>
+            <source>No network connectivity detected</source>
+            <translation>Ağ bağlantısı algılanmadı</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>Dinlenen Port:</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -4932,12 +4944,12 @@ Click to open Statistics</source>
             <translation>WiFi:</translation>
         </message>
         <message>
-            <source>Listening port: </source>
-            <translation>Sinyal:</translation>
+            <source>Connection: Ethernet</source>
+            <translation>Kamu IP:</translation>
         </message>
         <message>
-            <source>No incoming connections, network may be misconfigured</source>
-            <translation>Dinlenen Port:</translation>
+            <source>Click to copy IP</source>
+            <translation>İstatistikleri Aç</translation>
         </message>
     </context>
     <context>
@@ -5040,6 +5052,101 @@ Click to open Statistics</source>
         <message>
             <source>RSS</source>
             <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>ToolbarDialog</name>
+        <message>
+            <source>Toolbar</source>
+            <translation>Araç çubuğu</translation>
+        </message>
+        <message>
+            <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
+            <translation>Araç çubuğu düğmelerini özelleştir. Sıralamak için Yukarı Taşı ve Aşağı Taşı’yı kullan. Etkinleştirmek için işaretle, devre dışı bırakmak için işareti kaldır.</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL ekle</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Sürdür</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Durdur</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>Tümünü Durdur</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Sil</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>Tamamlananları Sil</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Seçenekler</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Zamanlayıcı</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Kuyruğu Başlat</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Kuyruğu Durdur</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>Yakalayıcı</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>Arama Motoru</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>Yukarı Taşı</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>Aşağı Taşı</translation>
+        </message>
+        <message>
+            <source>Enable</source>
+            <translation>Etkinleştir</translation>
+        </message>
+        <message>
+            <source>Disable</source>
+            <translation>Devre Dışı Bırak</translation>
+        </message>
+        <message>
+            <source>Add Separator</source>
+            <translation>Ayraç Ekle</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>Sıfırla</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Tamam</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>İptal</translation>
         </message>
     </context>
     <context>
