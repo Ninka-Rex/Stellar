@@ -4265,16 +4265,11 @@ Window {
                 // Language
                 Item {
                     ColumnLayout {
-                        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 20 }
+                        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 14
 
-                        Text {
-                            text: qsTr("Interface Language")
-                            color: "#e0e0e0"
-                            font.pixelSize: 15 * App.fontScale
-                            font.bold: true
-                            Layout.topMargin: 8
-                        }
+                        Text { text: qsTr("Interface Language"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
                         Text {
                             text: qsTr("Select the language used throughout the Stellar interface. A restart is required for all text to update.")
