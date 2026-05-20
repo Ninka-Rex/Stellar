@@ -65,7 +65,7 @@ Rectangle {
         // making cross-component enabled bindings reliably reactive.
         ToolbarBtn {
             label: qsTr("Resume"); iconSrc: "icons/resume.svg"
-            enabled: downloadTable ? downloadTable.selectedItemStatus === "Paused" : false
+            enabled: downloadTable ? (downloadTable.selectedItemStatus === "Paused" || downloadTable.selectedItemStatus === "Error") : false
             onClicked: root.resumeClicked()
         }
         ToolbarBtn {
