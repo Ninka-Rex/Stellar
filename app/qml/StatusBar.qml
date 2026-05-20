@@ -212,7 +212,9 @@ Rectangle {
             text: {
                 if (!App.settings.showPublicIpInStatusBar) return ""
                 var ip = App.publicIp
-                return (ip && ip.length > 0) ? ip : "—"
+                if (!ip || ip.length === 0) return "🔴 —"
+                if (!App.hasIncomingConnections) return "🟡 " + ip
+                return "🌎 " + ip
             }
             color: ipHover.hovered ? "#ffffff" : "#b0b0b0"
             font.pixelSize: 11 * App.fontScale
@@ -229,21 +231,25 @@ Rectangle {
             ToolTip.text: {
                 var lines = []
                 var ip = App.publicIp
-                lines.push(qsTr("Public IP: ") + (ip && ip.length > 0 ? ip : "(detecting…)"))
-                if (App.publicIpListenPort > 0)
-                    lines.push(qsTr("Listening port: ") + App.publicIpListenPort)
-                if (!App.hasIncomingConnections) {
-                    lines.push("")
-                    lines.push(qsTr("No incoming connections, network may be misconfigured"))
-                }
-                if (publicIpText._ifaceType === 1 && publicIpText._wifiOk) {
-                    lines.push("")
-                    lines.push(qsTr("WiFi: ") + publicIpText._wifiSsid)
-                    lines.push(qsTr("Signal: ") + publicIpText._wifiPct + "%  ("
-                               + publicIpText._wifiRssi + " dBm)")
-                } else if (publicIpText._ifaceType === 2) {
-                    lines.push("")
-                    lines.push(qsTr("Connection: Ethernet"))
+                if (!ip || ip.length === 0) {
+                    lines.push(qsTr("No network connectivity detected"))
+                } else {
+                    lines.push(qsTr("Public IP: ") + ip)
+                    if (App.publicIpListenPort > 0)
+                        lines.push(qsTr("Listening port: ") + App.publicIpListenPort)
+                    if (!App.hasIncomingConnections) {
+                        lines.push("")
+                        lines.push(qsTr("No incoming connections, network may be misconfigured"))
+                    }
+                    if (publicIpText._ifaceType === 1 && publicIpText._wifiOk) {
+                        lines.push("")
+                        lines.push(qsTr("WiFi: ") + publicIpText._wifiSsid)
+                        lines.push(qsTr("Signal: ") + publicIpText._wifiPct + "%  ("
+                                   + publicIpText._wifiRssi + " dBm)")
+                    } else if (publicIpText._ifaceType === 2) {
+                        lines.push("")
+                        lines.push(qsTr("Connection: Ethernet"))
+                    }
                 }
                 lines.push("")
                 lines.push(qsTr("Click to copy IP"))

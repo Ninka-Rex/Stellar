@@ -6248,37 +6248,42 @@ Click to open Statistics</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/StatusBar.qml" line="223"/>
+        <location filename="../app/qml/StatusBar.qml" line="237"/>
         <source>Public IP: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/StatusBar.qml" line="225"/>
+        <location filename="../app/qml/StatusBar.qml" line="239"/>
         <source>Listening port: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/StatusBar.qml" line="228"/>
+        <location filename="../app/qml/StatusBar.qml" line="235"/>
+        <source>No network connectivity detected</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/StatusBar.qml" line="242"/>
         <source>No incoming connections, network may be misconfigured</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/StatusBar.qml" line="232"/>
+        <location filename="../app/qml/StatusBar.qml" line="246"/>
         <source>WiFi: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/StatusBar.qml" line="233"/>
+        <location filename="../app/qml/StatusBar.qml" line="247"/>
         <source>Signal: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/StatusBar.qml" line="237"/>
+        <location filename="../app/qml/StatusBar.qml" line="251"/>
         <source>Connection: Ethernet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/StatusBar.qml" line="240"/>
+        <location filename="../app/qml/StatusBar.qml" line="255"/>
         <source>Click to copy IP</source>
         <translation></translation>
     </message>

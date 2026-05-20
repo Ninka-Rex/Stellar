@@ -2835,9 +2835,38 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
             }
         }
         emit torrentBatchUpdated();
-        if (m_didInspectPeersThisTick && m_hasIncomingPending != m_hasIncomingConnection) {
-            m_hasIncomingConnection = m_hasIncomingPending;
-            emit hasIncomingConnectionChanged();
+
+        // Full peer inspection skipped (no dialog open, no auto-ban rules).
+        // Still check incoming connections via one active handle so the
+        // status-bar indicator doesn't require opening properties dialog.
+        if (!m_didInspectPeersThisTick) {
+            for (const auto &st : update->status) {
+                if (st.num_peers > 0) {
+                    std::vector<libtorrent::peer_info> infos;
+                    st.handle.get_peer_info(infos);
+                    for (const auto &peer : infos) {
+                        if ((peer.flags & libtorrent::peer_info::local_connection) == libtorrent::peer_flags_t{}) {
+                            m_hasIncomingPending = true;
+                            break;
+                        }
+                    }
+                    break; // one handle sufficient
+                }
+            }
+        }
+
+        if (m_hasIncomingPending != m_hasIncomingConnection) {
+            if (m_hasIncomingPending) {
+                // false → true: single-handle scan reliable enough
+                m_hasIncomingConnection = true;
+                emit hasIncomingConnectionChanged();
+            } else if (m_didInspectPeersThisTick) {
+                // true → false: only from full inspection (all torrents),
+                // never from lightweight one-handle scan — avoids flicker
+                // when the single checked handle has no peers transiently.
+                m_hasIncomingConnection = false;
+                emit hasIncomingConnectionChanged();
+            }
         }
         return;
     }
