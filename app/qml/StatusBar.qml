@@ -163,7 +163,7 @@ Rectangle {
             id: ratioText
             Layout.leftMargin: 12
             visible: App.settings.ratioInStatusBar
-            text: "☯ " + App.allTimeRatio.toFixed(3)
+            text: "☯️ " + App.allTimeRatio.toFixed(3)
             color: ratioHover.hovered ? "#ffffff" : "#b0b0b0"
             font.pixelSize: 11 * App.fontScale
             Layout.fillHeight: true
