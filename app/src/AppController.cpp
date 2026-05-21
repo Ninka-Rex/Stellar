@@ -1402,21 +1402,10 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         }
 
         // Recheck bind interface availability every 5 s so the status bar reflects
-        // VPN connect/disconnect without requiring a settings change.  Also re-apply
-        // torrent settings when the interface transitions between present/absent so
-        // libtorrent picks up (or drops) the binding automatically.
-        if (m_settings && !m_settings->torrentBindInterface().trimmed().isEmpty()) {
-            const QNetworkInterface iface =
-                QNetworkInterface::interfaceFromName(m_settings->torrentBindInterface().trimmed());
-            const bool nowAvailable = iface.isValid()
-                && iface.flags().testFlag(QNetworkInterface::IsUp)
-                && iface.flags().testFlag(QNetworkInterface::IsRunning);
-            if (nowAvailable != m_bindInterfaceWasAvailable) {
-                m_bindInterfaceWasAvailable = nowAvailable;
-                m_torrentSession->applySettings(m_settings);
-            }
-            emit torrentBindingStatusTextChanged();
-        }
+        // VPN connect/disconnect, and the libtorrent session is suspended when the
+        // bound interface goes away (otherwise traffic leaks via the default route
+        // — libtorrent treats an empty listen_interfaces as "bind to 0.0.0.0").
+        reconcileTorrentBindState();
     });
     m_tooltipTimer->start();
 
@@ -1572,8 +1561,15 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     });
     m_torrentSession->applySettings(m_settings);
     m_torrentSession->setDhtEstimatorEnabled(m_settings->estimatedOnlineUsersInStatusBar());
+    // If the user already had a bind interface configured but it's not up at
+    // startup (e.g. VPN client not yet connected), suspend the session now so
+    // we don't leak traffic in the window before the periodic check fires.
+    reconcileTorrentBindState();
     connect(m_settings, &AppSettings::torrentSettingsChanged, this, [this]() {
         m_torrentSession->applySettings(m_settings);
+        // Bind target may have just changed, or the user may have toggled
+        // settings while the session is suspended for an unavailable interface.
+        reconcileTorrentBindState();
     });
     connect(m_settings, &AppSettings::torrentEnabledChanged, this, [this]() {
         if (m_settings->torrentEnabled()) {
@@ -2358,6 +2354,31 @@ int AppController::checkingCount() const {
     return count;
 }
 
+void AppController::reconcileTorrentBindState() {
+    if (!m_settings || !m_torrentSession || !m_torrentSession->available())
+        return;
+
+    const QString target = m_settings->torrentBindInterface().trimmed();
+    const bool wantBind = !target.isEmpty();
+    const bool available = wantBind ? m_torrentSession->isBindInterfaceAvailable(target) : true;
+    const bool shouldSuspend = wantBind && !available;
+
+    if (shouldSuspend && !m_torrentSessionSuspendedForBind) {
+        // Suspend FIRST so no peer/tracker/DHT traffic can leak in the window
+        // between us noticing and libtorrent reacting to the new settings.
+        m_torrentSession->suspendSession();
+        m_torrentSessionSuspendedForBind = true;
+    } else if (!shouldSuspend && m_torrentSessionSuspendedForBind) {
+        // Re-apply settings so libtorrent rebinds to whatever address the
+        // interface now has (VPN reconnects often hand out a fresh IP).
+        m_torrentSession->applySettings(m_settings);
+        m_torrentSession->unsuspendSession();
+        m_torrentSessionSuspendedForBind = false;
+    }
+
+    emit torrentBindingStatusTextChanged();
+}
+
 QString AppController::torrentBindingStatusText() const {
     if (!m_settings)
         return {};
@@ -2366,18 +2387,22 @@ QString AppController::torrentBindingStatusText() const {
     if (bindTarget.isEmpty())
         return {};
 
+    const bool available = m_torrentSession && m_torrentSession->isBindInterfaceAvailable(bindTarget);
+
+    QString label = bindTarget;
     const QList<QNetworkInterface> interfaces = QNetworkInterface::allInterfaces();
     for (const QNetworkInterface &iface : interfaces) {
         if (iface.name() != bindTarget)
             continue;
-
-        const QString label = iface.humanReadableName().trimmed().isEmpty()
-            ? iface.name()
-            : iface.humanReadableName().trimmed();
-        return tr("🛡️ Bound to %1").arg(label);
+        const QString human = iface.humanReadableName().trimmed();
+        if (!human.isEmpty())
+            label = human;
+        break;
     }
 
-    return tr("🛡️ Bound to %1").arg(bindTarget);
+    if (!available)
+        return tr("⚠️ Bound to %1 (offline — torrents paused)").arg(label);
+    return tr("🛡️ Bound to %1").arg(label);
 }
 
 void AppController::setTorrentPortTestState(bool inProgress, const QString &status, const QString &message) {

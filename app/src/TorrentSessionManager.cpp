@@ -1831,6 +1831,14 @@ void TorrentSessionManager::resume(DownloadItem *item) {
 #endif
 }
 
+bool TorrentSessionManager::isBindInterfaceAvailable(const QString &bindTarget) const {
+    const QString trimmed = bindTarget.trimmed();
+    if (trimmed.isEmpty())
+        return true; // no constraint configured → always "available"
+    const QNetworkInterface iface = findNetworkInterfaceForBinding(trimmed);
+    return !interfaceBindAddresses(iface).isEmpty();
+}
+
 void TorrentSessionManager::suspendSession() {
 #if defined(STELLAR_HAS_LIBTORRENT)
     if (m_session)

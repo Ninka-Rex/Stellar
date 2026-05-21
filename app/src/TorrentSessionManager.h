@@ -147,6 +147,13 @@ public:
     // Suspend/resume the entire libtorrent session — zero network traffic.
     void suspendSession();
     void unsuspendSession();
+    // True iff the user-supplied bind target resolves to a usable, up+running
+    // network interface with at least one bindable IP. Used by AppController to
+    // detect VPN connect/disconnect so the libtorrent session can be suspended
+    // when the bound interface goes away (otherwise traffic leaks through the
+    // default route, because libtorrent treats an empty listen_interfaces as
+    // "bind to 0.0.0.0").
+    bool isBindInterfaceAvailable(const QString &bindTarget) const;
 
 signals:
     void externalAddressChanged();

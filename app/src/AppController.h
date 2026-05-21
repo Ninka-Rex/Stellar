@@ -537,6 +537,10 @@ signals:
 
 private:
     QString generateId() const;
+    // Bring the libtorrent session's suspended/active state in line with
+    // whether the configured torrent bind interface is currently available.
+    // Idempotent — safe to call from a timer and from settings-change handlers.
+    void reconcileTorrentBindState();
     DownloadQueue          *m_queue{nullptr};
     DownloadTableModel     *m_downloadModel{nullptr};
     CategoryModel          *m_categoryModel{nullptr};
@@ -563,7 +567,12 @@ private:
     int                     m_activeSeedingCount{0};
     double                  m_allTimeRatio{0.0};
     QString                 m_lastTrayTooltip;
-    bool                    m_bindInterfaceWasAvailable{false};
+    // When the user has bound torrents to a specific interface and that
+    // interface is currently down/missing (e.g. VPN disconnected), the
+    // libtorrent session is suspended so no traffic leaks via the default
+    // route. This flag tracks whether the suspension was caused by that
+    // mechanism (vs. user-driven), so we only unsuspend what we suspended.
+    bool                    m_torrentSessionSuspendedForBind{false};
     QLocalServer           *m_ipcServer{nullptr};
     bool                    m_qmlReady{false};
     QList<QByteArray>       m_pendingIpcPayloads; // buffered until QML is ready
