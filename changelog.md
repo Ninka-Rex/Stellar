@@ -2,6 +2,32 @@
 
 ---
 
+## Version 0.8.1 Beta - May 21, 2026
+
+### New
+- Toolbar customization - Click View > Toolbar to add/remove/rearrange buttons
+- New keyboard shortcuts, Ctrl+D download, Ctrl+Q scheduler, and more
+- UI scale and font size controls in Settings > General
+- Browser cookie import, Stellar uses cookies from Chrome/Firefox when manually adding downloads like IDM
+- Verify Local Data on torrents from the right-click menu
+
+### Improved
+- Status bar now shows running, seeding, paused, and checking counts
+- New icons
+- Speed limiter settings streamlined
+- Grabber results dialog visual overhaul
+- Downloading torrents sort to top when status column is active
+
+### Fixed
+- VPN binding on Linux
+- Geo IP database auto-discovers filename (no more hardcoded date)
+- Resume button not enabled on errored downloads
+- Sidebar hide not expanding download table
+- Last try date not set for yt-dlp downloads
+- Torrent seeders always showing as 0
+
+---
+
 ## Version 0.8.0 Beta - May 14, 2026
 
 ### New
