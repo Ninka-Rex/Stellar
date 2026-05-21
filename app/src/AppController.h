@@ -563,6 +563,7 @@ private:
     int                     m_activeSeedingCount{0};
     double                  m_allTimeRatio{0.0};
     QString                 m_lastTrayTooltip;
+    bool                    m_bindInterfaceWasAvailable{false};
     QLocalServer           *m_ipcServer{nullptr};
     bool                    m_qmlReady{false};
     QList<QByteArray>       m_pendingIpcPayloads; // buffered until QML is ready

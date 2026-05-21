@@ -1400,6 +1400,23 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             m_allTimeRatio = ratio;
             emit allTimeRatioChanged();
         }
+
+        // Recheck bind interface availability every 5 s so the status bar reflects
+        // VPN connect/disconnect without requiring a settings change.  Also re-apply
+        // torrent settings when the interface transitions between present/absent so
+        // libtorrent picks up (or drops) the binding automatically.
+        if (m_settings && !m_settings->torrentBindInterface().trimmed().isEmpty()) {
+            const QNetworkInterface iface =
+                QNetworkInterface::interfaceFromName(m_settings->torrentBindInterface().trimmed());
+            const bool nowAvailable = iface.isValid()
+                && iface.flags().testFlag(QNetworkInterface::IsUp)
+                && iface.flags().testFlag(QNetworkInterface::IsRunning);
+            if (nowAvailable != m_bindInterfaceWasAvailable) {
+                m_bindInterfaceWasAvailable = nowAvailable;
+                m_torrentSession->applySettings(m_settings);
+            }
+            emit torrentBindingStatusTextChanged();
+        }
     });
     m_tooltipTimer->start();
 

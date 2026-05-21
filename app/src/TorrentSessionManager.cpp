@@ -2397,7 +2397,15 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
     const QString bindTarget = settings->torrentBindInterface().trimmed();
     if (!bindTarget.isEmpty()) {
         const QNetworkInterface iface = findNetworkInterfaceForBinding(bindTarget);
-        applyInterfaceBinding(pack, interfaceBindAddresses(iface), settings->torrentListenPort());
+        const QStringList addrs = interfaceBindAddresses(iface);
+        if (addrs.isEmpty()) {
+            // Interface configured but not available (e.g. VPN disconnected) — bind to
+            // nothing rather than falling back to all interfaces, which would leak traffic.
+            pack.set_str(libtorrent::settings_pack::listen_interfaces, std::string());
+            pack.set_str(libtorrent::settings_pack::outgoing_interfaces, std::string());
+        } else {
+            applyInterfaceBinding(pack, addrs, settings->torrentListenPort());
+        }
     } else {
         const QNetworkInterface vpnIface = findPreferredVpnInterface();
         applyInterfaceBinding(pack, interfaceBindAddresses(vpnIface), settings->torrentListenPort());
