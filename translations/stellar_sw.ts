@@ -4594,6 +4594,34 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>Tovuti ya Stellar</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>Matoleo</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>Chanzo cha Git</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>yt-dlp kwenye GitHub</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>Unlicense</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>Asante kwa kutumia Stellar 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

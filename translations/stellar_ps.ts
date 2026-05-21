@@ -4603,6 +4603,34 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>سټلر ویب‌پاڼه</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>ګیټ‌هب</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>خپرونې</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>ګیټ سرچینه</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>په ګیټ‌هب کې yt-dlp</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>بې جوازه</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>له سټلر څخه د کارونې مننه 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

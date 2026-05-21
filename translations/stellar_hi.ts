@@ -4618,6 +4618,34 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>स्टेलर वेबसाइट</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>गिटहब</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>रिलीज़</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>गिट स्रोत</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>गिटहब पर yt-dlp</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>अनलाइसेंस</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>स्टेलर उपयोग के लिए धन्यवाद 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

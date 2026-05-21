@@ -4611,6 +4611,34 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>Oju-iwe Stellar</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>Awọn idasilẹ</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>Orisun Git</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>yt-dlp lori GitHub</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>Unlicense</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>O ṣeun fun lilo Stellar 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

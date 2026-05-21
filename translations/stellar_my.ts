@@ -4609,6 +4609,34 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>Stellar ဝက်ဘ်ဆိုက်</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>ထုတ်ဝေမှုများ</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>Git ရင်းမြစ်</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>GitHub ပေါ်က yt-dlp</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>Unlicense</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>Stellar သုံးတဲ့အတွက် ကျေးဇူးပါ 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

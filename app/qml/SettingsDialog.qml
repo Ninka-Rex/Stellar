@@ -4624,7 +4624,7 @@ Window {
                             }
                             Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 * App.fontScale }
                             Text {
-                                text: "stellardownloadmanager.org"
+                                text: qsTr("Stellar Website")
                                 color: "#4488dd"; font.pixelSize: 11 * App.fontScale
                                 font.underline: true
                                 MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
@@ -4632,7 +4632,7 @@ Window {
                             }
                             Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 * App.fontScale }
                             Text {
-                                text: "GitHub"
+                                text: qsTr("GitHub")
                                 color: "#4488dd"; font.pixelSize: 11 * App.fontScale
                                 font.underline: true
                                 MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
@@ -4640,7 +4640,7 @@ Window {
                             }
                             Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 * App.fontScale }
                             Text {
-                                text: "Releases"
+                                text: qsTr("Releases")
                                 color: "#4488dd"; font.pixelSize: 11 * App.fontScale
                                 font.underline: true
                                 MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
@@ -4707,7 +4707,7 @@ Window {
                                 }
                                 Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 * App.fontScale }
                                 Text {
-                                    text: "Git source"
+                                    text: qsTr("Git source")
                                     color: "#4488dd"; font.pixelSize: 11 * App.fontScale; font.underline: true
                                     MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
                                         onClicked: App.openExternalUrl("https://git.ffmpeg.org/ffmpeg.git") }
@@ -4776,14 +4776,14 @@ Window {
                             RowLayout {
                                 spacing: 12
                                 Text {
-                                    text: "yt-dlp on GitHub"
+                                    text: qsTr("yt-dlp on GitHub")
                                     color: "#4488dd"; font.pixelSize: 11 * App.fontScale; font.underline: true
                                     MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
                                         onClicked: App.openExternalUrl("https://github.com/yt-dlp/yt-dlp") }
                                 }
                                 Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 * App.fontScale }
                                 Text {
-                                    text: "Unlicense"
+                                    text: qsTr("Unlicense")
                                     color: "#4488dd"; font.pixelSize: 11 * App.fontScale; font.underline: true
                                     MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
                                         onClicked: App.openExternalUrl("http://unlicense.org/") }

@@ -4598,6 +4598,34 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>1. Stellar公式サイト</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>2. GitHub</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>3. リリース</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>4. Gitソース</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>5. yt-dlp on GitHub</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>6. Unlicense</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>7. Stellarをご利用いただきありがとうございます💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

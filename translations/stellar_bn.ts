@@ -4605,6 +4605,34 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>স্টেলার ওয়েবসাইট</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>গিটহাব</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>রিলিজ</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>গিট সোর্স</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>গিটহাবে yt-dlp</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>আনলাইসেন্স</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>স্টেলার ব্যবহারের জন্য ধন্যবাদ 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

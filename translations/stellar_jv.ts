@@ -4609,6 +4609,34 @@ Disaranaké banget kanggo naleni Stellar nèng antarmuka jaringan VPN lan verifi
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>Situs Stellar</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>Rilis</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>Sumber Git</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>yt-dlp ing GitHub</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>Tanpa Lisensi</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>Matur nuwun nganggo Stellar 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

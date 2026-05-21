@@ -4597,6 +4597,34 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>Stellar-nettsted</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>Utgivelser</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>Git-kilde</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>yt-dlp på GitHub</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>Unlicense</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>Takk for at du bruker Stellar 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

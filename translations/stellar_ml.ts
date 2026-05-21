@@ -4606,6 +4606,34 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>സ്റ്റെല്ലാർ വെബ്സൈറ്റ്</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>ഗിറ്റ്ഹബ്</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>റിലീസുകൾ</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>ഗിറ്റ് സോഴ്സ്</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>ഗിറ്റ്ഹബിൽ yt-dlp</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>അൺലൈസൻസ്</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>സ്റ്റെല്ലാർ ഉപയോഗിച്ചതിന് നന്ദി 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

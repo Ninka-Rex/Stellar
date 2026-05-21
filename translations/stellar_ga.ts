@@ -4603,6 +4603,34 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>Suíomh Stellar</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>Eisiúintí</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>Foinse Git</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>yt-dlp ar GitHub</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>Gan Cheadúnas</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>Go raibh maith agat as Stellar a úsáid 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

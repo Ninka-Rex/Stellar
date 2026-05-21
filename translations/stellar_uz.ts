@@ -4596,6 +4596,34 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>Stellar sayti</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>Relizlar</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>Git manbasi</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>GitHub’da yt-dlp</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>Litsenziyasiz</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>Stellar’dan foydalanganingiz uchun rahmat 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

@@ -4594,6 +4594,34 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>Стеллар вэбсайт</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>Хувилбарууд</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>Git эх үүсвэр</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>GitHub дээрх yt-dlp</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>Unlicense</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>Стеллар ашигласанд баярлалаа 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

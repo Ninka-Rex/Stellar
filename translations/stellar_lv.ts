@@ -4604,6 +4604,34 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>Stellar vietne</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>Laidieni</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>Git avots</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>yt-dlp GitHub</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>Bezlicences</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>Paldies, ka izmanto Stellar 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

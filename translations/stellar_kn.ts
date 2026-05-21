@@ -4626,6 +4626,34 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>ಸ್ಟೆಲ್ಲಾರ್ ವೆಬ್‌ಸೈಟ್</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>ಗಿಟ್‌ಹಬ್</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>ಬಿಡುಗಡೆಗಳು</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>ಗಿಟ್ ಮೂಲ</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>ಗಿಟ್‌ಹಬ್‌ನಲ್ಲಿ yt-dlp</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>ಅನ್‌ಲೈಸೆನ್ಸ್</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>ಸ್ಟೆಲ್ಲಾರ್ ಬಳಸಿದ್ದಕ್ಕೆ ಧನ್ಯವಾದಗಳು 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

@@ -4604,6 +4604,34 @@ Toplo se preporučuje da povežete Stellar na mrežni interfejs VPN-a i proverit
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>Stellar veb-sajt</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>Izdanja</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>Git izvor</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>yt-dlp na GitHub-u</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>Bez licence</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>Hvala što koristite Stellar 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

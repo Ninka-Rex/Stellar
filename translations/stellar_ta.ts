@@ -4609,6 +4609,34 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
             <translation>மேக்ஓஎஸ்</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>ஸ்டெல்லார் வலைத்தளம்</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>கிட்ஹப்</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>வெளியீடுகள்</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>கிட் மூலம்</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>கிட்ஹப்பில் yt-dlp</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>உரிமமற்றது</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>ஸ்டெல்லார் பயன்படுத்தியதற்கு நன்றி 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

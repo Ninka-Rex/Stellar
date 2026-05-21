@@ -4610,6 +4610,34 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>Ebe nrụọrụ weebụ Stellar</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>Mweghachi</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>Isi mmalite Git</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>yt-dlp na GitHub</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>Enweghị ikike</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>Daalụ maka iji Stellar 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>

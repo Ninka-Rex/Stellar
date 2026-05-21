@@ -4596,6 +4596,34 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>میک اوس</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>اسٹیلر ویب سائٹ</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>گٹ ہب</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>ریلیز</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>گٹ سورس</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>گٹ ہب پر yt-dlp</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>ان لائسنس</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>اسٹیلر استعمال کرنے کا شکریہ 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>جنو GPL v3.0</translation>
         </message>

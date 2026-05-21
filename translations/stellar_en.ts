@@ -5843,6 +5843,42 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <translation></translation>
     </message>
     <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="4627"/>
+        <source>Stellar Website</source>
+        <translation>Stellar Website</translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="4635"/>
+        <location filename="../app/qml/SettingsDialog.qml" line="4748"/>
+        <source>GitHub</source>
+        <translation>GitHub</translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="4643"/>
+        <source>Releases</source>
+        <translation>Releases</translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="4710"/>
+        <source>Git source</source>
+        <translation>Git source</translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="4779"/>
+        <source>yt-dlp on GitHub</source>
+        <translation>yt-dlp on GitHub</translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="4786"/>
+        <source>Unlicense</source>
+        <translation>Unlicense</translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="4859"/>
+        <source>Thanks for using Stellar 💙</source>
+        <translation>Thanks for using Stellar 💙</translation>
+    </message>
+    <message>
         <location filename="../app/qml/SettingsDialog.qml" line="4340"/>
         <source>GNU GPL v3.0</source>
         <translation></translation>

@@ -4595,6 +4595,34 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <translation>macOS</translation>
         </message>
         <message>
+            <source>Stellar Website</source>
+            <translation>스텔라 웹사이트</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>Releases</source>
+            <translation>릴리스</translation>
+        </message>
+        <message>
+            <source>Git source</source>
+            <translation>Git 소스</translation>
+        </message>
+        <message>
+            <source>yt-dlp on GitHub</source>
+            <translation>GitHub의 yt-dlp</translation>
+        </message>
+        <message>
+            <source>Unlicense</source>
+            <translation>Unlicense</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar 💙</source>
+            <translation>스텔라 이용 감사 💙</translation>
+        </message>
+        <message>
             <source>GNU GPL v3.0</source>
             <translation>GNU GPL v3.0</translation>
         </message>
