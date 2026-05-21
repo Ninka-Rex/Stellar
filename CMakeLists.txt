@@ -519,9 +519,14 @@ endif()
 file(COPY "${CMAKE_SOURCE_DIR}/tips.txt"
     DESTINATION "${CMAKE_BINARY_DIR}"
 )
-file(COPY "${CMAKE_SOURCE_DIR}/app/data/dbip-city-lite-2026-04.mmdb"
-    DESTINATION "${CMAKE_BINARY_DIR}/data"
-)
+file(GLOB geo_db_files "${CMAKE_SOURCE_DIR}/app/data/dbip-city-lite-*.mmdb")
+if(geo_db_files)
+    list(GET geo_db_files 0 geo_db_file)
+    file(COPY "${geo_db_file}" DESTINATION "${CMAKE_BINARY_DIR}/data")
+    message(STATUS "Geo IP database: ${geo_db_file}")
+else()
+    message(STATUS "Geo IP database not found in app/data/ — build will proceed without it")
+endif()
 
 # ── Install ────────────────────────────────────────────────────────────────────
 install(TARGETS Stellar
@@ -531,6 +536,10 @@ install(TARGETS Stellar
 install(FILES "${CMAKE_SOURCE_DIR}/tips.txt"
     DESTINATION "${CMAKE_INSTALL_BINDIR}"
 )
-install(FILES "${CMAKE_SOURCE_DIR}/app/data/dbip-city-lite-2026-04.mmdb"
-    DESTINATION "${CMAKE_INSTALL_BINDIR}/data"
-)
+file(GLOB geo_db_install_files "${CMAKE_SOURCE_DIR}/app/data/dbip-city-lite-*.mmdb")
+if(geo_db_install_files)
+    list(GET geo_db_install_files 0 geo_db_install_file)
+    install(FILES "${geo_db_install_file}"
+        DESTINATION "${CMAKE_INSTALL_BINDIR}/data"
+    )
+endif()

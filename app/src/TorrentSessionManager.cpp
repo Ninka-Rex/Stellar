@@ -350,18 +350,34 @@ void applyInterfaceBinding(libtorrent::settings_pack &pack, const QStringList &b
     pack.set_str(libtorrent::settings_pack::outgoing_interfaces, std::string());
 }
 
+// Scan a directory for any dbip-city-lite-*.mmdb file, sort newest first.
+static QStringList geoDbFilesInDir(const QString &dirPath) {
+    QDir dir(dirPath);
+    const QStringList filters = {QStringLiteral("dbip-city-lite-*.mmdb")};
+    QStringList entries = dir.entryList(filters, QDir::Files | QDir::Readable, QDir::Name);
+    // Name sort ascending (2026-04 < 2026-05); reverse so newest comes first.
+    std::reverse(entries.begin(), entries.end());
+    QStringList result;
+    result.reserve(entries.size());
+    for (const QString &entry : entries)
+        result.append(dir.absoluteFilePath(entry));
+    return result;
+}
+
 QStringList geoDbCandidates() {
     const QString appDir = QCoreApplication::applicationDirPath();
     // Primary: the unified geo/ directory under the Stellar data root.
     // Fallbacks cover side-by-side installs and Flatpak bundle layouts.
-    return {
-        StellarPaths::geoDir() + QStringLiteral("/dbip-city-lite-2026-04.mmdb"),
-        appDir + QStringLiteral("/data/dbip-city-lite-2026-04.mmdb"),
-        appDir + QStringLiteral("/dbip-city-lite-2026-04.mmdb"),
-        appDir + QStringLiteral("/../data/dbip-city-lite-2026-04.mmdb"),
-        QDir::cleanPath(appDir + QStringLiteral("/../../app/data/dbip-city-lite-2026-04.mmdb")),
-        QDir::cleanPath(appDir + QStringLiteral("/../../../app/data/dbip-city-lite-2026-04.mmdb"))
-    };
+    // Each directory is scanned for any dbip-city-lite-*.mmdb so that
+    // monthly DB updates don't require a code change.
+    QStringList candidates;
+    candidates.append(geoDbFilesInDir(StellarPaths::geoDir()));
+    candidates.append(geoDbFilesInDir(appDir + QStringLiteral("/data")));
+    candidates.append(geoDbFilesInDir(appDir));
+    candidates.append(geoDbFilesInDir(appDir + QStringLiteral("/../data")));
+    candidates.append(geoDbFilesInDir(QDir::cleanPath(appDir + QStringLiteral("/../../app/data"))));
+    candidates.append(geoDbFilesInDir(QDir::cleanPath(appDir + QStringLiteral("/../../../app/data"))));
+    return candidates;
 }
 
 QString defaultTorrentUserAgent(const AppSettings *settings) {

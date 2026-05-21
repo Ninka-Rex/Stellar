@@ -476,7 +476,11 @@ stage_app() {
     cp "$ytdlp_path"                                           "$app_dir/yt-dlp"
     cp "$ffmpeg_path"                                          "$app_dir/ffmpeg"
     cp "$ffprobe_path"                                         "$app_dir/ffprobe"
-    cp "$ROOT/app/data/dbip-city-lite-2026-04.mmdb"           "$app_dir/dbip-city-lite-2026-04.mmdb"
+    for geo_db in "$ROOT"/app/data/dbip-city-lite-*.mmdb; do
+        [[ -f "$geo_db" ]] || continue
+        cp "$geo_db" "$app_dir/"
+        break
+    done
     cp "$ROOT/tips.txt"                                        "$app_dir/tips.txt"
     cp -R "$ROOT/extensions"                                   "$app_dir/extensions"
 

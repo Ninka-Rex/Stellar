@@ -1902,7 +1902,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             if (targetName.endsWith(QStringLiteral(".gz"), Qt::CaseInsensitive))
                 targetName.chop(3);
             if (targetName.isEmpty())
-                targetName = QStringLiteral("dbip-city-lite-2026-04.mmdb");
+                targetName = QStringLiteral("dbip-city-lite.mmdb");
             const QString targetPath = targetDir + QStringLiteral("/") + targetName;
 
             bool installOk = false;
@@ -1921,6 +1921,15 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             if (installOk) {
                 m_ipToCityDbUpdateStatus = QStringLiteral("IP-to-city database updated successfully.");
                 refreshIpToCityDbInfo();
+                // Remove stale geo DB files, keep only newly installed one
+                const QDir geoDirClean(targetDir);
+                const QStringList oldFiles = geoDirClean.entryList(
+                    {QStringLiteral("dbip-city-lite-*.mmdb")}, QDir::Files);
+                for (const auto &oldFile : oldFiles) {
+                    const QString oldPath = geoDirClean.absoluteFilePath(oldFile);
+                    if (oldPath != targetPath)
+                        QFile::remove(oldPath);
+                }
             } else {
                 m_ipToCityDbUpdateStatus = failureReason.isEmpty()
                     ? QStringLiteral("IP-to-city database update failed.")
@@ -5582,7 +5591,7 @@ void AppController::updateIpToCityDbFromCachedUrl() {
 
     QString filename = QFileInfo(QUrl(m_ipToCityDbUpdateUrl).path()).fileName();
     if (filename.isEmpty())
-        filename = QStringLiteral("dbip-city-lite-2026-04.mmdb.gz");
+        filename = QStringLiteral("dbip-city-lite.mmdb.gz");
 
     DownloadItem *item = createDownloadItem(
         m_ipToCityDbUpdateUrl,

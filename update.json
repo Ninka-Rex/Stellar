@@ -9,7 +9,7 @@
   "motd": "",
   "ffmpegWindowsUrl": "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip",
   "ffmpegLinuxUrl": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz",
-  "IPtoCityDB": "https://download.db-ip.com/free/dbip-city-lite-2026-04.mmdb.gz",
+  "IPtoCityDB": "https://download.db-ip.com/free/dbip-city-lite-2026-05.mmdb.gz",
   "chromeExtensionUrl": "https://chromewebstore.google.com/detail/stellar-integration-modul/pppelmimeffdigknplngfmhefcbhfcbd",
   "firefoxExtensionUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/v0.8.0/StellarFirefox-0.1.9.xpi"
 }

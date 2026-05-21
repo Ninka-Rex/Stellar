@@ -88,7 +88,7 @@ Source: "{#BuildDir}\qml\*";                    DestDir: "{app}\qml";           
 Source: "{#BuildDir}\tips.txt";                  DestDir: "{app}";                      Flags: ignoreversion skipifsourcedoesntexist
 
 ; Bundled IP-to-city database (free DB-IP lite, updated periodically)
-Source: "{#BuildDir}\data\dbip-city-lite-2026-04.mmdb"; DestDir: "{app}\data"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "{#BuildDir}\data\dbip-city-lite-*.mmdb"; DestDir: "{app}\data"; Flags: ignoreversion skipifsourcedoesntexist
 
 ; Third-party license notices (required for LGPL/GPL compliance — FFmpeg, Qt, SQLite)
 Source: "..\..\THIRD-PARTY-NOTICES.txt";         DestDir: "{app}";                      Flags: ignoreversion
