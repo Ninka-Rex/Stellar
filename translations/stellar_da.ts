@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ Bundet til %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ Bundet til %1 (offline — torrenter sat på pause)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

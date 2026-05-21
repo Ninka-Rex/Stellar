@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ Привязка к %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ Привязан к %1 (офлайн — торренты приостановлены)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

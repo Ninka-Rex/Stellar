@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ Imegawanywa na %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ Imefungwa kwa %1 (nje ya mtandao — torrenti zimesitishwa)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ %1-ലേക്ക് ബന്ധിപ്പിച്ചു</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ %1-ലേക്ക് ബന്ധിപ്പിച്ചിരിക്കുന്നു (ഓഫ്‌ലൈൻ — ടോറന്റുകൾ താൽക്കാലികമായി നിർത്തി)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

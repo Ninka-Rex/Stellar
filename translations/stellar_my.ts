@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ %1 သို့ ချိတ်ဆက်ထားသည်</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ %1 သို့ ချိတ်ဆက်ထားသည် (အော့ဖ်လိုင်း — တိုရန့်များ ခေတ္တရပ်)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

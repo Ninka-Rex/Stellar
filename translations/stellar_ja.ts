@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ %1 にバインド済み</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ %1 にバインド中 (オフライン — トレント一時停止)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

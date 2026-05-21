@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ Nakakabit sa %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ Nakatali sa %1 (offline — naka-pause ang torrents)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

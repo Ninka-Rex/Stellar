@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ So mọ́ %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ So mọ́ %1 (offline — torrents dá dúró)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

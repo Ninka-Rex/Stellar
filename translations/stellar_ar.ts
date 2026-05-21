@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ مرتبط بـ %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ مرتبط بـ %1 (غير متصل — التورنت متوقف)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ Gắn vào %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ Ràng buộc với %1 (ngoại tuyến — torrent bị tạm dừng)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

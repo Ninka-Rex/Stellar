@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ Terikat ke %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ Terikat ke %1 (offline — torrent dijeda)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

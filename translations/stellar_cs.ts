@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ Připojeno k %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ Vázáno na %1 (offline — torrenty pozastaveny)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ Vinculado a %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ Vinculado a %1 (offline — torrents pausados)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

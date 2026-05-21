@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>22. 🛡️ ຜູກກັບ %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ ຜູກກັບ %1 (ອອບລາຍ — ຢຸດ torrents)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

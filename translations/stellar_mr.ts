@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ %1 ला बाँड केले</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ %1 शी बांधलेले (ऑफलाइन — टोरेंट थांबले)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ Wedi'i rwymo i %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ Wedi'i rwymo i %1 (all-lein — torrents wedi'u hoedi)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

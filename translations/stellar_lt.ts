@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ Surinkta %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ Susietas su %1 (atsijungęs — torrentai pristabdyti)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

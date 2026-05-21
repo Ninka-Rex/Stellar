@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ Συνδεδεμένο με %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ Συνδεδεμένο στο %1 (εκτός σύνδεσης — torrents σε παύση)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ Ceangailte le %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ Ceangailte le %1 (as líne — torentaí curtha ar sos)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

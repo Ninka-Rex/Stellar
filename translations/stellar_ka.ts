@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ მიბმულია %1-თან</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ მიბმულია %1-ზე (ოფლაინი — ტორენტები შეჩერებულია)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

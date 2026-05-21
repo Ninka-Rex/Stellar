@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>22. 🛡️ ចងភ្ជាប់ទៅ %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ ភ្ជាប់ទៅ %1 (គ្មានអ៊ីនធឺណិត — ផ្អាក torrent)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

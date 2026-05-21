@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ Saistīts ar %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ Piesaistīts %1 (bezsaistē — straumes apturētas)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>

@@ -72,6 +72,10 @@
             <source>🛡️ Bound to %1</source>
             <translation>🛡️ Sidottu %1</translation>
         </message>
+        <message>
+            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+            <translation>⚠️ Sidottu %1 (offline — torrentit pysäytetty)</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>
