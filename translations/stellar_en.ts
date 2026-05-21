@@ -89,6 +89,11 @@
         <source>🛡️ Bound to %1</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="2278"/>
+        <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>BatchDownloadDialog</name>
