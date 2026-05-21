@@ -4,6 +4,8 @@
 
 ## Version 0.8.1 Beta - May 21, 2026
 
+### Important: This release breaks the auto-update feature. A manual update is required.
+
 ### New
 - Toolbar customization - Click View > Toolbar to add/remove/rearrange buttons
 - New keyboard shortcuts, Ctrl+D download, Ctrl+Q scheduler, and more
