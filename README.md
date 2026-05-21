@@ -189,5 +189,4 @@ Stellar bundles or invokes the following third-party components. Full license te
 - **yt-dlp** (The Unlicense) - yt-dlp contributors, public-domain dedication. Used for video metadata extraction and media downloading. <https://github.com/yt-dlp/yt-dlp>
 - **Qt** (LGPL-3) - Copyright (C) The Qt Company Ltd. Used under the LGPL-3 with the Qt LGPL exception. <https://code.qt.io/>
 - **DB-IP City Lite** (CC BY 4.0) - Geolocation database distributed under Creative Commons Attribution 4.0. <https://db-ip.com/>
-- **Fluent UI System Icons** (MIT) - Copyright (C) Microsoft Corporation. UI icons used throughout the application. <https://github.com/microsoft/fluentui-system-icons>
 - **Microsoft Fluent Emoji** (MIT) - Copyright (C) Microsoft Corporation. 3D emoji-style icons used throughout the application. <https://github.com/microsoft/fluentui-emoji>
