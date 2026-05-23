@@ -206,8 +206,6 @@ public:
     NetworkInfo *networkInfo() const { return m_networkInfo; }
     bool sessionPaused() const { return m_sessionPaused; }
 
-    // ── yt-dlp public API ────────────────────────────────────────────────────────
-    // Returns true if the URL looks like a site supported by yt-dlp (YouTube, Vimeo, etc.)
     // Set the icon of a QML Window (QQuickWindow) from a QRC resource path.
     // Called from QML as App.setWindowIcon(root, ":/path/to/icon.ico").
     Q_INVOKABLE void setWindowIcon(QObject *window, const QString &iconPath);
@@ -221,6 +219,9 @@ public:
     Q_INVOKABLE void setQmlReady();
 
     Q_INVOKABLE void requestQuit();
+
+    // ── yt-dlp public API ────────────────────────────────────────────────────────
+    // Returns true if the URL looks like a site supported by yt-dlp (YouTube, Vimeo, etc.)
     Q_INVOKABLE bool isLikelyYtdlpUrl(const QString &url) const;
 
     // Asynchronously probe the URL with "yt-dlp --dump-json".
