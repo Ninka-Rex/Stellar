@@ -4197,7 +4197,9 @@ QVariantList TorrentSessionManager::torrentPieceMap(const QString &downloadId) c
     std::vector<int> avail;
     try {
         handle.piece_availability(avail);
-    } catch (...) {}
+    } catch (...) {
+        qWarning() << "[Torrent] piece_availability query failed";
+    }
     // In seed mode libtorrent returns an empty availability vector because it
     // no longer tracks per-piece peer counts. Treat that as fully seeded.
     const bool seedMode = avail.empty();
@@ -4211,7 +4213,9 @@ QVariantList TorrentSessionManager::torrentPieceMap(const QString &downloadId) c
     std::vector<libtorrent::download_priority_t> priorities;
     try {
         priorities = handle.get_piece_priorities();
-    } catch (...) {}
+    } catch (...) {
+        qWarning() << "[Torrent] get_piece_priorities query failed";
+    }
     const bool hasPriorities = (static_cast<int>(priorities.size()) == total);
 
     QVariantList out;
@@ -4247,7 +4251,9 @@ QVariantList TorrentSessionManager::torrentPieceMap(const QString &downloadId) c
             const int pct    = (blocks > 0) ? qBound(0, done * 100 / blocks, 99) : 0;
             out[idx] = -(4 + pct);
         }
-    } catch (...) {}
+    } catch (...) {
+        qWarning() << "[Torrent] get_download_queue query failed";
+    }
 
     return out;
 #else
