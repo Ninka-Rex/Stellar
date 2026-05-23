@@ -5050,18 +5050,7 @@ int AppController::compareVersionStrings(const QString &lhs, const QString &rhs)
 }
 
 void AppController::applyUpdateMetadata(const QVariantMap &map, bool manual) {
-    applyMotdFromMetadata(map);
     const QString version = map.value(QStringLiteral("version")).toString().trimmed();
-    cacheIpToCityDbUpdateUrl(map);
-    cacheFfmpegUpdateMetadata(map);
-
-    const QString chromeUrl  = map.value(QStringLiteral("chromeExtensionUrl")).toString().trimmed();
-    const QString firefoxUrl = map.value(QStringLiteral("firefoxExtensionUrl")).toString().trimmed();
-    if (chromeUrl != m_chromeExtensionUrl || firefoxUrl != m_firefoxExtensionUrl) {
-        m_chromeExtensionUrl  = chromeUrl;
-        m_firefoxExtensionUrl = firefoxUrl;
-        emit extensionUrlsChanged();
-    }
     if (version.isEmpty()) {
         return;
     }
@@ -5178,6 +5167,15 @@ void AppController::checkForUpdates(bool manual) {
         applyMotdFromMetadata(metadata);
         cacheIpToCityDbUpdateUrl(metadata);
         cacheFfmpegUpdateMetadata(metadata);
+
+        const QString chromeUrl  = metadata.value(QStringLiteral("chromeExtensionUrl")).toString().trimmed();
+        const QString firefoxUrl = metadata.value(QStringLiteral("firefoxExtensionUrl")).toString().trimmed();
+        if (chromeUrl != m_chromeExtensionUrl || firefoxUrl != m_firefoxExtensionUrl) {
+            m_chromeExtensionUrl  = chromeUrl;
+            m_firefoxExtensionUrl = firefoxUrl;
+            emit extensionUrlsChanged();
+        }
+
         const QString version = metadata.value(QStringLiteral("version")).toString().trimmed();
         const bool available = !version.isEmpty() && compareVersionStrings(version, appVersion()) > 0;
         if (!available) {

@@ -47,7 +47,7 @@ Window {
 
     // These are populated from update.json once the app fetches it;
     // fall back to known stable store URLs so the dialog is never empty.
-    readonly property string chromeUrl:  App.chromeExtensionUrl  || "https://chromewebstore.google.com/detail/stellar-download-manager/TODO"
+    readonly property string chromeUrl:  App.chromeExtensionUrl  || "https://chromewebstore.google.com/detail/stellar-integration-modul/pppelmimeffdigknplngfmhefcbhfcbd"
     readonly property string firefoxUrl: App.firefoxExtensionUrl || "https://addons.mozilla.org/firefox/addon/stellar-download-manager/"
 
     function runRegister() {
