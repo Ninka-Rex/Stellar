@@ -209,7 +209,11 @@ qt_add_qml_module(Stellar
         app/qml/Main.qml
         app/qml/Toolbar.qml
         app/qml/Sidebar.qml
+        app/qml/SidebarItemDragHandler.qml
+        app/qml/SidebarSectionDragHandler.qml
         app/qml/DownloadTable.qml
+        app/qml/DownloadTableHeader.qml
+        app/qml/DownloadTableRow.qml
         app/qml/StatusBar.qml
         app/qml/AddUrlDialog.qml
         app/qml/ToolbarBtn.qml
