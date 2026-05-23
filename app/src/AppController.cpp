@@ -1445,7 +1445,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     // ── 2. IPC Server ──────────────────────────────────────────────────────────
     m_ipcServer = new QLocalServer(this);
     if (!m_ipcServer->listen(QStringLiteral("StellarDownloadManager"))) {
-        qDebug() << "[IPC] FAILED to listen on StellarDownloadManager";
+        qWarning() << "[IPC] FAILED to listen on StellarDownloadManager";
     }
 
     connect(m_ipcServer, &QLocalServer::newConnection, this, [this]() {
@@ -2119,8 +2119,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
 
     // ── 5. Finalization ──────────────────────────────────────────────────────────
     QString err = registerNativeHost();
-    if (err.isEmpty()) qDebug() << "[NativeHost] registered OK";
-    else qDebug() << "[NativeHost] registration FAILED:" << err;
+    if (err.isEmpty()) qInfo() << "[NativeHost] registered OK";
+    else qWarning() << "[NativeHost] registration FAILED:" << err;
 
     // Show a "starting up" tooltip immediately. The tooltip-timer (5 s
     // cadence) won't tick for several seconds, and the cold-start restore
@@ -5842,9 +5842,9 @@ void AppController::moveFileToDesktop(const QString &id) {
 
     // Copy file to desktop
     if (QFile::copy(sourceFile, destFile)) {
-        qDebug() << "File moved to desktop:" << destFile;
+        qInfo() << "File moved to desktop:" << destFile;
     } else {
-        qDebug() << "Failed to move file to desktop";
+        qWarning() << "Failed to move file to desktop";
     }
 }
 
@@ -6164,7 +6164,7 @@ void AppController::enforceQueueDownloadLimits(const QString &queueId)
         if (queue->warnBeforeStopping() && m_tray)
             m_tray->showNotification(QStringLiteral("Queue Limit Reached"), message);
         else
-            qDebug() << "[QueueLimit]" << message;
+            qInfo() << "[QueueLimit]" << message;
     }
 }
 
@@ -6546,7 +6546,7 @@ void AppController::startQueue(const QString &queueId)
     // Now trigger scheduleNext to start up to maxConcurrent downloads
     m_queue->scheduleNext();
 
-    qDebug() << "Starting queue" << queueId << q->name() << "- queued" << queuedCount << "downloads";
+    qInfo() << "Starting queue" << queueId << q->name() << "- queued" << queuedCount << "downloads";
 }
 
 void AppController::setTrayTooltip(const QString &tip) {
@@ -6590,7 +6590,7 @@ void AppController::stopQueue(const QString &queueId)
         }
     }
 
-    qDebug() << "Stopping queue" << queueId << q->name() << "- paused" << stoppedCount << "downloads";
+    qInfo() << "Stopping queue" << queueId << q->name() << "- paused" << stoppedCount << "downloads";
 }
 
 bool AppController::shutdownComputer() const
@@ -7049,7 +7049,9 @@ QString AppController::beginYtdlpInfo(const QString &url, const QString &cookies
     proc->setArguments(args);
     proc->setProcessChannelMode(QProcess::SeparateChannels);
 
+#ifndef QT_NO_DEBUG_OUTPUT
     qDebug() << "[YtdlpProbe] starting:" << proc->program() << args;
+#endif
 
     m_ytdlpProbes[probeId] = { proc, url, QByteArray() };
 
@@ -7071,8 +7073,11 @@ QString AppController::beginYtdlpInfo(const QString &url, const QString &cookies
 #else
         const QString text = QString::fromUtf8(data).trimmed();
 #endif
-        if (!text.isEmpty())
+        if (!text.isEmpty()) {
+#ifndef QT_NO_DEBUG_OUTPUT
             qDebug() << "[YtdlpProbe]" << text;
+#endif
+        }
     });
 
     connect(proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
@@ -7087,8 +7092,10 @@ QString AppController::beginYtdlpInfo(const QString &url, const QString &cookies
         QByteArray stderrAccum = it->stderrOutput;
         m_ytdlpProbes.erase(it);
 
+#ifndef QT_NO_DEBUG_OUTPUT
         qDebug() << "[YtdlpProbe] finished, exitCode:" << exitCode
                  << "stdout bytes:" << raw.size();
+#endif
 
         if (exitCode != 0) {
             // stderr was accumulated by readyReadStandardError into stderrAccum.
@@ -7107,7 +7114,9 @@ QString AppController::beginYtdlpInfo(const QString &url, const QString &cookies
 #endif
                 if (errOutput == QLatin1String("null")) errOutput.clear();
             }
+#ifndef QT_NO_DEBUG_OUTPUT
             qDebug() << "[YtdlpProbe] error:" << errOutput;
+#endif
             proc->deleteLater();
             emit ytdlpInfoFailed(probeId, url,
                 errOutput.isEmpty()
