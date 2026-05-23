@@ -2061,12 +2061,11 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         emit fileDeletedWarningDetected(item->id(), filename);
     });
     connect(m_nativeHost, &NativeMessagingHost::downloadRequested, this, [this](const QString &url, const QString &filename, const QString &referrer, const QString &cookies, int modifierKey) {
-        Q_UNUSED(filename);
         // Skip interception if bypass modifier key is active and matches user's configured key
         if (modifierKey > 0 && modifierKey == m_settings->bypassInterceptKey()) {
             return;  // Let the browser download the file
         }
-        addUrl(url, {}, {}, {}, true, cookies, referrer);
+        addUrl(url, {}, {}, {}, true, cookies, referrer, {}, {}, {}, filename);
     });
     connect(m_tray, &SystemTrayIcon::showRequested,        this, &AppController::showWindowRequested);
     connect(m_tray, &SystemTrayIcon::quitRequested,        this, &AppController::requestQuit);
