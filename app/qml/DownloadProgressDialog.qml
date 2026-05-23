@@ -156,9 +156,9 @@ Window {
     }
 
     function statusColor(s) {
-        if (s === "Downloading") return "#4488dd"   // blue
-        if (s === "Assembling")  return "#cc9933"   // amber
-        if (s === "Error")       return "#dd5555"   // red
+        if (s === "Downloading") return "#4488dd"
+        if (s === "Assembling")  return "#4488dd"
+        if (s === "Error")       return "#dd5555"
         return "#c8c8c8"
     }
 
@@ -435,15 +435,10 @@ Window {
                         radius: 2
                         clip: true
 
-                        readonly property bool assembling: item && item.status === "Assembling"
-
-                        // Progress fill — amber during assembly, green otherwise.
-                        // During assembly, doneBytes is reset to 0 in C++ and updated
-                        // as bytes are concatenated, so item.progress reflects real progress.
                         Rectangle {
                             width: item ? Math.max(0, item.progress * progressBarRect.width) : 0
                             height: progressBarRect.height
-                            color: progressBarRect.assembling ? "#cc9933" : "#33bb44"
+                            color: "#4488dd"
                             radius: 3
                             Behavior on width { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
                         }
