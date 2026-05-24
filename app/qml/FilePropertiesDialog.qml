@@ -1755,13 +1755,13 @@ Window {
                         Layout.fillWidth: true
                         columns: 2; columnSpacing: 8; rowSpacing: 6
 
-                        Text { text: qsTr("Status");  color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Status");  color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         Text { text: root.item ? safeStr(root.item.statusText) : "--"; color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true }
 
-                        Text { text: qsTr("Size");    color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Size");    color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         Text { text: root.item ? root.formatBytes(root.item.totalBytes) : "--"; color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale }
 
-                        Text { text: qsTr("Save to"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Save to"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
                             ReadOnlyField {
@@ -1776,26 +1776,26 @@ Window {
                             DlgButton { text: qsTr("Move"); enabled: !!root.item; onClicked: { if (root._isTorrent) moveTorrentDialog.open(); else moveFileDialog.open() } }
                         }
 
-                        Text { text: qsTr("Address"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Address"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         ReadOnlyField {
                             Layout.fillWidth: true
                             fieldText: root.item ? safeStr(root.item.url) : "--"
                             textColor: "#4488dd"
                         }
 
-                        Text { text: qsTr("Web page"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Web page"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         Text {
                             text: { var p = root.item ? safeStr(root.item.parentUrl) : ""; return p || "(unknown)" }
                             color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true
                         }
 
-                        Text { text: qsTr("Referer"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Referer"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         Text {
                             text: { var r = root.item ? safeStr(root.item.referrer) : ""; return r || "(none)" }
                             color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true
                         }
 
-                        Text { text: qsTr("Description"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Description"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         TextField {
                             Layout.fillWidth: true; implicitHeight: 26
                             text: root.item ? safeStr(root.item.description) : ""
@@ -1805,7 +1805,7 @@ Window {
                             onTextChanged: if (root.item && text !== root.item.description) App.setDownloadDescription(root.item.id, text)
                         }
 
-                        Text { text: qsTr("Login"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Login"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         TextField {
                             Layout.fillWidth: true; implicitHeight: 26
                             text: root.item ? safeStr(root.item.username) : ""
@@ -1815,7 +1815,7 @@ Window {
                             onTextChanged: if (root.item && text !== root.item.username) App.setDownloadUsername(root.item.id, text)
                         }
 
-                        Text { text: qsTr("Password"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Password"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         TextField {
                             Layout.fillWidth: true; implicitHeight: 26
                             text: root.item ? safeStr(root.item.password) : ""
