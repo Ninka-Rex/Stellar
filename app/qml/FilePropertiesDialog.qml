@@ -47,8 +47,11 @@ Window {
     // expensive piece-granularity scan entirely.
     readonly property bool fileUpdatesActive: visible && _isTorrent && currentTab === 2
     onFileUpdatesActiveChanged: {
-        if (torrentFileModel)
+        if (torrentFileModel) {
             torrentFileModel.setLiveUpdatesEnabled(fileUpdatesActive)
+            if (fileUpdatesActive && item)
+                App.refreshTorrentModelsNow(item.id)
+        }
     }
     readonly property bool trackerTabActive:  visible && _isTorrent && currentTab === 5
     // Gate tracker model rebuilds (QUrl parse + geo-IP + status snapshot lookups
