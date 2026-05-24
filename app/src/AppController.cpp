@@ -6928,6 +6928,13 @@ static const QStringList kYtdlpDomains = {
     QStringLiteral("cnn.com"),
 };
 
+// Returns true when urlStr is a page that yt-dlp should handle.  Domain matching
+// has been reordered to happen *before* the static-asset / API-transport path
+// exclusions so that known media sites (reddit.com, tiktok.com, ...) are never
+// rejected by broad substring matches like contains("/_/") or startsWith("/s/").
+// Those exclusions now only filter URLs whose host is NOT in kYtdlpDomains,
+// because they are aimed at CDNs, image hosts, and Google transport endpoints
+// that are never yt-dlp targets.
 bool AppController::isLikelyYtdlpUrl(const QString &urlStr) const {
     const QUrl url(urlStr);
     if (!url.isValid()) return false;
@@ -6940,9 +6947,38 @@ bool AppController::isLikelyYtdlpUrl(const QString &urlStr) const {
         host = host.mid(4);
     const QString path = url.path().toLower();
 
-    // Never treat obvious static assets or API transport endpoints as media URLs.
+    // YouTube requires content-style URL shapes; host-only matching is too broad
+    // and would also match navigation pages like /account, /premium, etc.
+    if (host == QLatin1String("youtube.com") || host.endsWith(QLatin1String(".youtube.com"))) {
+        const bool looksLikeContent = path == QLatin1String("/watch")
+            || path.startsWith(QLatin1String("/shorts/"))
+            || path.startsWith(QLatin1String("/live/"))
+            || path.startsWith(QLatin1String("/playlist"))
+            || path.startsWith(QLatin1String("/clip/"))
+            || path.startsWith(QLatin1String("/embed/"))
+            || path.startsWith(QLatin1String("/@"));
+        return looksLikeContent;
+    }
+    if (host == QLatin1String("youtu.be")) {
+        const QString p = path.trimmed();
+        return p.length() > 1 && p != QLatin1String("/");
+    }
+
+    // Known yt-dlp media domains: route to yt-dlp regardless of path shape.
+    // Page content is determined by yt-dlp's extractor, not by substring guesses
+    // on the URL (which break on emoji-only Reddit titles producing "/_/" in the
+    // path, TikTok "/@user/video/ID" containing "/video/", etc.).
+    for (const QString &domain : kYtdlpDomains) {
+        if (host == domain || host.endsWith(QLatin1Char('.') + domain))
+            return true;
+    }
+
+    // For hosts NOT in kYtdlpDomains, reject obvious static assets and API
+    // transport endpoints.  The /_/ guard (Google transport pages like
+    // accounts.google.com/_/identifier) and /s/ guard (Google CDN short URLs)
+    // are safe here because Google domains are never in the known list.
     if (path.contains(QLatin1String("/api/"))
-        || path.contains(QLatin1String("/_/"))
+        || path.startsWith(QLatin1String("/_/"))
         || path.startsWith(QLatin1String("/s/"))
         || path.startsWith(QLatin1String("/yts/"))
         || path.startsWith(QLatin1String("/images/"))
@@ -6963,26 +6999,6 @@ bool AppController::isLikelyYtdlpUrl(const QString &urlStr) const {
         || path.endsWith(QLatin1String(".ico")))
         return false;
 
-    // YouTube requires content-style URL shapes; host-only matching is too broad.
-    if (host == QLatin1String("youtube.com") || host.endsWith(QLatin1String(".youtube.com"))) {
-        const bool looksLikeContent = path == QLatin1String("/watch")
-            || path.startsWith(QLatin1String("/shorts/"))
-            || path.startsWith(QLatin1String("/live/"))
-            || path.startsWith(QLatin1String("/playlist"))
-            || path.startsWith(QLatin1String("/clip/"))
-            || path.startsWith(QLatin1String("/embed/"))
-            || path.startsWith(QLatin1String("/@"));
-        return looksLikeContent;
-    }
-    if (host == QLatin1String("youtu.be")) {
-        const QString p = path.trimmed();
-        return p.length() > 1 && p != QLatin1String("/");
-    }
-
-    for (const QString &domain : kYtdlpDomains) {
-        if (host == domain || host.endsWith(QLatin1Char('.') + domain))
-            return true;
-    }
     return false;
 }
 

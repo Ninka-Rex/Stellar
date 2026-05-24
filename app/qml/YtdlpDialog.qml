@@ -59,15 +59,80 @@ Window {
     property bool   _accepted:   false
     property bool   advancedExpanded: false
 
+    // Channel/playlist detection is host-aware so single-item pages on sites
+    // that use "/@" in their URL structure (TikTok, Odysee, Instagram) are not
+    // misidentified as channels.
+    //
+    // TikTok: /@username/video/ID and /@username/photo/ID are single items.
+    //         /@username alone is the channel/profile page.
+    // YouTube/Odysee/Instagram/Rumble/Bitchute: /@ or /channel/ or /c/ or
+    //         /user/ in path reliably indicates a channel or profile page.
     readonly property bool _isChannelUrl: {
-        var u = pendingUrl.toLowerCase()
-        return u.indexOf("/@") >= 0
-            || u.indexOf("/channel/") >= 0
-            || u.indexOf("/c/") >= 0
-            || u.indexOf("/user/") >= 0
-            || u.indexOf("playlist?list=") >= 0
-            || u.indexOf("&list=") >= 0
+        var u = (pendingUrl || "").trim()
+        if (!u) return false
+
+        // --------------- parse host and path from the URL string ---------------
+        var schemeEnd = u.indexOf("://")
+        var hostStart = schemeEnd >= 0 ? schemeEnd + 3 : 0
+        var pathStart = u.indexOf("/", hostStart)
+        if (pathStart < 0) {
+            // No path at all, e.g. "https://example.com"
+            pathStart = u.length
+        }
+        var host = u.substring(hostStart, pathStart).toLowerCase()
+        if (host.startsWith("www."))
+            host = host.substring(4)
+
+        var queryPart = u.substring(pathStart).toLowerCase()
+
+        // --------- generic playlist indicators (site-agnostic) ---------
+        // "list=" is used by YouTube, SoundCloud, and many other sites to
+        // identify a playlist.  It is never present in single-item URLs.
+        if (queryPart.indexOf("list=") >= 0)
+            return true
+
+        // Extract the path (everything between the first slash and ? or #)
+        var qs = queryPart.indexOf("?")
+        var hs = queryPart.indexOf("#")
+        var end = queryPart.length
+        if (qs >= 0 && qs < end) end = qs
+        if (hs >= 0 && hs < end) end = hs
+        var path = queryPart.substring(0, end)
+
+        // --------- host-specific channel patterns ---------
+
+        // TikTok: /@username alone = channel.  /@username/video/ID and
+        // /@username/photo/ID are single-item pages, not channels.
+        if (host === "tiktok.com" || host.endsWith(".tiktok.com")) {
+            var hasTkHandle = path.indexOf("/@") >= 0
+            if (!hasTkHandle)
+                return false
+            var isTkSingle = path.indexOf("/video/") >= 0
+                          || path.indexOf("/photo/") >= 0
+            return !isTkSingle
+        }
+
+        // YouTube, Odysee, Instagram, Twitter/X, and most other sites: /@ in
+        // the path reliably indicates a channel or profile page.  Individual
+        // content pages on these sites use distinct path patterns
+        // (/watch, /p/, /status/, /reel/, etc.) that do not contain /@.
+        if (path.indexOf("/@") >= 0)
+            return true
+
+        // Other common channel/profile-indicating path segments.  These are
+        // never present in single-video pages on any site in kYtdlpDomains.
+        if (path.indexOf("/channel/") >= 0)
+            return true
+        if (path.indexOf("/c/") >= 0)
+            return true
+        if (path.indexOf("/user/") >= 0)
+            return true
+
+        return false
     }
+    // YouTube-specific channel-root check: only true for raw channel landing
+    // pages (e.g. youtube.com/@channel), not for sub-tabs (videos/shorts/live)
+    // and not for playlist URLs.  This gates the Scope picker in the UI.
     readonly property bool _isYoutubeChannelRootUrl: {
         var u = pendingUrl.toLowerCase()
         var isYt = (u.indexOf("youtube.com/") >= 0 || u.indexOf("youtu.be/") >= 0)
