@@ -792,6 +792,7 @@ Window {
                                     RadioButton {
                                         id: _rb
                                         required property var modelData
+                                        ButtonGroup.group: allVideosGroup
                                         checked: modelData.id === "allV"
                                         text: modelData.t; font.pixelSize: 11 * App.fontScale
                                         topPadding: 0; bottomPadding: 0
