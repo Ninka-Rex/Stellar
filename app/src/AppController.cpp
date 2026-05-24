@@ -2321,7 +2321,9 @@ int AppController::activeDownloads() const {
         if (!item)
             continue;
         if (item->statusEnum() == DownloadItem::Status::Downloading
-            || item->statusEnum() == DownloadItem::Status::Assembling)
+            || item->statusEnum() == DownloadItem::Status::Assembling
+            || item->statusEnum() == DownloadItem::Status::Queued
+            || item->statusEnum() == DownloadItem::Status::Seeding)
             ++count;
     }
     return count;
