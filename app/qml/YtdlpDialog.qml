@@ -279,18 +279,14 @@ Window {
             root._probing = false
             root._title = title
             root._probeError = ""
-            root._formats = (formats && formats.length > 0) ? formats : [{
-                id: "bv*+ba/b",
-                label: "Best quality",
-                ext: "mp4",
-                width: 0,
-                height: 1,
-                fps: 0,
-                tbr: 0,
-                vcodec: "",
-                acodec: "",
-                filesize: 0
-            }]
+            // When probe returns no format info (e.g. channel URLs where yt-dlp
+            // returns flat entries without formats), provide fallback entries so
+            // the user can still pick container and download.  Empty id means
+            // YtdlpTransfer omits -f and lets yt-dlp use its default selector.
+            root._formats = (formats && formats.length > 0) ? formats : [
+                { id: "",                    label: qsTr("Best quality"), ext: "mp4", width: 0, height: 480, fps: 0, tbr: 0, vcodec: "", acodec: "", filesize: 0 },
+                { id: "bestaudio/best",       label: qsTr("Audio only"),   ext: "mp3", width: 0, height: 0,   fps: 0, tbr: 0, vcodec: "", acodec: "", filesize: 0 }
+            ]
             var idx = 0
             for (var i = 0; i < root._formats.length; ++i) {
                 var fid = (root._formats[i] && root._formats[i].id) ? String(root._formats[i].id) : ""
@@ -1242,8 +1238,13 @@ Window {
                     root._accepted = true
                     var fmt      = root._formats[formatList.currentIndex]
                     var formatId = (fmt && fmt.id) ? String(fmt.id) : ""
-                    if (formatId.length === 0 || formatId === "best")
+                    if (formatId.length === 0) {
+                        // Empty = no format selector — YtdlpTransfer skips -f,
+                        // yt-dlp uses default (bestvideo+bestaudio/best).
+                        // Used for fallback entries when probe returned no formats.
+                    } else if (formatId === "best") {
                         formatId = "bv*+ba/b"
+                    }
                     var container= containerCombo.currentText || "mp4"
                     var savePath = savePathField.text.trim()
                     while (savePath.endsWith("/") || savePath.endsWith("\\")) savePath = savePath.slice(0, -1)

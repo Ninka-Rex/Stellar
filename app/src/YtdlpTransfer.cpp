@@ -142,8 +142,12 @@ void YtdlpTransfer::start() {
         args << QStringLiteral("--no-playlist");
     }
     args << QStringLiteral("--newline")
-         << QStringLiteral("--no-warnings")
-         << QStringLiteral("-f")  << m_formatSel;
+         << QStringLiteral("--no-warnings");
+    // Empty format selector means "let yt-dlp decide" — used when probe returned
+    // no format info (e.g. channel URLs).  Skip -f entirely so yt-dlp uses its
+    // built-in default (bestvideo+bestaudio/best), which is correct for channels.
+    if (!m_formatSel.isEmpty())
+        args << QStringLiteral("-f") << m_formatSel;
 
     if (isAudioOnly) {
         // Extract and re-encode to the requested audio format.

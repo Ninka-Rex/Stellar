@@ -7023,7 +7023,11 @@ QString AppController::beginYtdlpInfo(const QString &url, const QString &cookies
         QStringLiteral("--no-warnings"),
     };
     if (isPlaylistLike) {
-        args << QStringLiteral("--yes-playlist")
+        // --no-flat-playlist ensures yt-dlp extracts full video metadata
+        // (including the formats array) for the requested entry, even when
+        // the extractor defaults to flat extraction (YouTube channels, etc.).
+        args << QStringLiteral("--no-flat-playlist")
+             << QStringLiteral("--yes-playlist")
              << QStringLiteral("--playlist-items")
              << QStringLiteral("1");
     } else {
