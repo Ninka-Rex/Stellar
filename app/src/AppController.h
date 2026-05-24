@@ -452,6 +452,7 @@ public:
     // Returns {pieceCount, pieceSize} for immediate display before hashing starts.
     Q_INVOKABLE QVariantMap beginCreateTorrent(const QVariantMap &params);
     Q_INVOKABLE void cancelCreateTorrent();
+    Q_INVOKABLE qint64 totalInputSize(const QStringList &paths) const;
 
 signals:
     void restartRequested();

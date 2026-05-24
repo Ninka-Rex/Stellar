@@ -26,7 +26,7 @@ Window {
     id: root
 
     width:        500
-    height:       490
+    height:       522
     minimumWidth: 460
     maximumWidth: 700
     title: qsTr("Create Torrent")
@@ -49,6 +49,42 @@ Window {
     property string _errorText:  ""
     property int    _pieceCount: 0
     property int    _pieceSize:  0
+    property double _totalInputBytes: 0
+
+    // Piece sizes indexed by slider position: 0=Auto, 1=16KiB, …, 11=16MiB
+    property var _pieceSizes: [0, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4194304, 8388608, 16777216]
+    property var _pieceSizeLabels: [qsTr("Auto"), "16K", "32K", "64K", "128K", "256K", "512K", "1M", "2M", "4M", "8M", "16M"]
+
+    function _sliderPieceSizeBytes() {
+        return _pieceSizes[pieceSizeSlider.value]
+    }
+
+    function _estimateAutoPieceSize(totalSize) {
+        if (totalSize <= 0) return 0
+        var s = 16384
+        while (s * 1500 < totalSize && s < 16777216) s *= 2
+        return s
+    }
+
+    function _effectivePieceSize() {
+        var sel = _sliderPieceSizeBytes()
+        if (sel === 0 && _totalInputBytes > 0)
+            return _estimateAutoPieceSize(_totalInputBytes)
+        return sel
+    }
+
+    function _estimatedPieceCount() {
+        var sz = _effectivePieceSize()
+        if (sz <= 0 || _totalInputBytes <= 0) return 0
+        return Math.ceil(_totalInputBytes / sz)
+    }
+
+    function _refreshTotalSize() {
+        var paths = []
+        for (var i = 0; i < inputFilesModel.count; i++)
+            paths.push(inputFilesModel.get(i).path)
+        _totalInputBytes = paths.length > 0 ? App.totalInputSize(paths) : 0
+    }
 
     // ── Helpers ───────────────────────────────────────────────────────────────
     function _fmtBytes(b) {
@@ -111,8 +147,7 @@ Window {
         for (var i = 0; i < inputFilesModel.count; i++)
             paths.push(inputFilesModel.get(i).path)
 
-        var pieceSizeVal = pieceSizeCombo.currentIndex > 0
-            ? pieceSizeModel.get(pieceSizeCombo.currentIndex).bytes : 0
+        var pieceSizeVal = _sliderPieceSizeBytes()
 
         var trackerLines = trackersField.text.split("\n")
             .map(function(l){return l.trim()}).filter(function(l){return l.length>0})
@@ -149,7 +184,7 @@ Window {
         nameField.text = ""; commentField.text = ""
         trackersField.text = ""; webSeedsField.text = ""
         privateCheck.checked = false; openWhenDoneCheck.checked = false
-        pieceSizeCombo.currentIndex = 0
+        pieceSizeSlider.value = 0
     }
 
     // ── Connections ───────────────────────────────────────────────────────────
@@ -170,22 +205,6 @@ Window {
     // ── Models ────────────────────────────────────────────────────────────────
     ListModel { id: inputFilesModel }
 
-    ListModel {
-        id: pieceSizeModel
-        ListElement { label: qsTr("Auto"); bytes: 0 }
-        ListElement { label: "16 KiB";  bytes: 16384   }
-        ListElement { label: "32 KiB";  bytes: 32768   }
-        ListElement { label: "64 KiB";  bytes: 65536   }
-        ListElement { label: "128 KiB"; bytes: 131072  }
-        ListElement { label: "256 KiB"; bytes: 262144  }
-        ListElement { label: "512 KiB"; bytes: 524288  }
-        ListElement { label: "1 MiB";   bytes: 1048576 }
-        ListElement { label: "2 MiB";   bytes: 2097152 }
-        ListElement { label: "4 MiB";   bytes: 4194304 }
-        ListElement { label: "8 MiB";   bytes: 8388608 }
-        ListElement { label: "16 MiB";  bytes: 16777216 }
-    }
-
     // ── File dialogs ──────────────────────────────────────────────────────────
     FileDialog {
         id: addFilesDialog
@@ -202,6 +221,7 @@ Window {
             }
             if (nameField.text.trim().length === 0)
                 nameField.text = root._defaultName()
+            root._refreshTotalSize()
         }
     }
 
@@ -217,6 +237,7 @@ Window {
             if (!dup) inputFilesModel.append({"path": p})
             if (nameField.text.trim().length === 0)
                 nameField.text = root._defaultName()
+            root._refreshTotalSize()
         }
     }
 
@@ -339,7 +360,7 @@ Window {
                                 id: removeBtnMa; anchors.fill: parent; hoverEnabled: true
                                 cursorShape: Qt.PointingHandCursor
                                 enabled: !root._creating && inputFilesModel.count > 0
-                                onClicked: { inputFilesModel.remove(inputFilesModel.count - 1) }
+                                onClicked: { inputFilesModel.remove(inputFilesModel.count - 1); root._refreshTotalSize() }
                             }
                         }
                     }
@@ -423,49 +444,108 @@ Window {
 
                 // Piece size row
                 Item {
-                    width: parent.width; height: root._rh + 8
+                    width: parent.width; height: ((root._rh + 8) + 32)
                     Text {
-                        anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
+                        anchors { left: parent.left; leftMargin: root._lm; top: parent.top; topMargin: 4 }
                         text: qsTr("Piece size:"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
-                    Row {
-                        anchors { left: parent.left; leftMargin: root._lm + root._lw; verticalCenter: parent.verticalCenter }
-                        spacing: 10
+                    Column {
+                        anchors { left: parent.left; leftMargin: root._lm + root._lw
+                                  right: parent.right; rightMargin: root._rm; top: parent.top; topMargin: 2 }
+                        spacing: 1
 
-                        ComboBox {
-                            id: pieceSizeCombo
-                            width: 110; implicitHeight: root._rh
-                            model: pieceSizeModel; textRole: "label"
-                            enabled: !root._creating
-                            contentItem: Text {
-                                leftPadding: 7; text: pieceSizeCombo.displayText
-                                color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; verticalAlignment: Text.AlignVCenter
-                            }
-                            background: Rectangle {
-                                color: "#1b1b1b"
-                                border.color: pieceSizeCombo.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
-                            }
-                            delegate: ItemDelegate {
-                                id: pszDel; width: pieceSizeCombo.width; height: 22
-                                contentItem: Text {
-                                    text: model.label; color: "#d0d0d0"
-                                    font.pixelSize: 11 * App.fontScale; verticalAlignment: Text.AlignVCenter; leftPadding: 7
+                        // Slider + value label
+                        Row {
+                            width: parent.width
+                            spacing: 6
+
+                            Text {
+                                anchors.verticalCenter: parent.verticalCenter
+                                width: 44
+                                text: {
+                                    var sel = root._sliderPieceSizeBytes()
+                                    return sel === 0 ? qsTr("Auto") : root._fmtBytes(sel)
                                 }
-                                background: Rectangle { color: pszDel.hovered ? "#2a3a5a" : "#1b1b1b" }
+                                color: "#aaaaaa"; font.pixelSize: 10 * App.fontScale
+                                horizontalAlignment: Text.AlignRight
                             }
-                            popup: Popup {
-                                y: pieceSizeCombo.height + 2; width: pieceSizeCombo.width
-                                implicitHeight: contentItem.implicitHeight + 4; padding: 2
-                                background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
-                                contentItem: ListView { implicitHeight: contentHeight; clip: true; model: pieceSizeCombo.delegateModel }
+
+                            Slider {
+                                id: pieceSizeSlider
+                                width: parent.width - 44 - 6  // minus label width and spacing
+                                from: 0; to: 11; stepSize: 1
+                                snapMode: Slider.SnapAlways
+                                value: 0
+                                enabled: !root._creating
+                                background: Rectangle {
+                                    x: pieceSizeSlider.leftPadding
+                                    y: pieceSizeSlider.topPadding + pieceSizeSlider.availableHeight / 2 - 2
+                                    implicitWidth: 200; implicitHeight: 4
+                                    width: pieceSizeSlider.availableWidth; height: 4
+                                    radius: 2
+                                    color: "#2d2d2d"
+                                    Rectangle {
+                                        width: pieceSizeSlider.visualPosition * parent.width
+                                        height: parent.height
+                                        color: "#666666"
+                                        radius: 2
+                                    }
+                                }
+                                handle: Rectangle {
+                                    x: pieceSizeSlider.leftPadding + pieceSizeSlider.visualPosition
+                                       * (pieceSizeSlider.availableWidth - width)
+                                    y: pieceSizeSlider.topPadding + pieceSizeSlider.availableHeight / 2 - height / 2
+                                    implicitWidth: 14; implicitHeight: 14
+                                    radius: 7
+                                    color: pieceSizeSlider.enabled
+                                        ? (pieceSizeSlider.pressed ? "#888888" : "#777777")
+                                        : "#555555"
+                                    border.color: pieceSizeSlider.enabled
+                                        ? (pieceSizeSlider.hovered ? "#999999" : "#777777")
+                                        : "#666666"
+                                    border.width: 2
+                                }
                             }
                         }
 
-                        Text {
-                            anchors.verticalCenter: parent.verticalCenter
-                            visible: root._pieceCount > 0
-                            text: qsTr("%1 pieces × %2").arg(root._pieceCount).arg(root._fmtBytes(root._pieceSize))
-                            color: "#556677"; font.pixelSize: 10 * App.fontScale
+                        // Legend + estimate, indented to align with slider
+                        Item {
+                            width: parent.width; height: legendCol.implicitHeight
+                            Column {
+                                id: legendCol
+                                anchors { left: parent.left; leftMargin: 50; right: parent.right }
+                                spacing: 1
+
+                                // Size legend
+                                Row {
+                                    id: legendRow
+                                    width: parent.width
+                                    Repeater {
+                                        model: root._pieceSizeLabels
+                                        Text {
+                                            width: legendRow.width / 12
+                                            text: modelData
+                                            horizontalAlignment: Text.AlignHCenter
+                                            color: "#556677"; font.pixelSize: 7 * App.fontScale
+                                        }
+                                    }
+                                }
+
+                                // Estimate
+                                Text {
+                                    width: parent.width
+                                    visible: root._totalInputBytes > 0
+                                    text: {
+                                        var est = root._estimatedPieceCount()
+                                        var eff = root._effectivePieceSize()
+                                        var sel = root._sliderPieceSizeBytes()
+                                        if (sel === 0)
+                                            return qsTr("~%1 pieces × %2").arg(est).arg(root._fmtBytes(eff))
+                                        return qsTr("%1 pieces × %2").arg(est).arg(root._fmtBytes(eff))
+                                    }
+                                    color: "#778899"; font.pixelSize: 10 * App.fontScale; elide: Text.ElideRight
+                                }
+                            }
                         }
                     }
                 }

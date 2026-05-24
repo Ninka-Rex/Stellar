@@ -7861,3 +7861,20 @@ QVariantMap AppController::beginCreateTorrent(const QVariantMap &params) {
 void AppController::cancelCreateTorrent() {
     m_torrentSession->cancelTorrentCreation();
 }
+
+qint64 AppController::totalInputSize(const QStringList &paths) const {
+    qint64 total = 0;
+    for (const QString &path : paths) {
+        QFileInfo fi(path);
+        if (fi.isDir()) {
+            QDirIterator it(path, QDir::Files | QDir::NoDotAndDotDot, QDirIterator::Subdirectories);
+            while (it.hasNext()) {
+                it.next();
+                total += it.fileInfo().size();
+            }
+        } else if (fi.isFile()) {
+            total += fi.size();
+        }
+    }
+    return total;
+}
