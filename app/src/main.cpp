@@ -21,6 +21,7 @@
 #include <QIcon>
 #include <QLocalSocket>
 #include <QLocalServer>
+#include <QSharedMemory>
 #include <QSettings>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -728,11 +729,14 @@ int main(int argc, char *argv[])
             : makeMagnetPlainPayload(launchMagnetUri);
     }
 
-    // Single-instance guard: try to reach an already-running instance first.
-    // Only remove stale server entries when connect is explicitly refused.
+    // Single-instance guard.
+    // QLocalSocket alone has a race: two processes launched simultaneously
+    // both see no server and both proceed. QSharedMemory::create() is atomic
+    // at the OS level — only one caller can succeed.
     const QString kServerName = QStringLiteral("StellarDownloadManager");
-    {
-        nmLog(QStringLiteral("Connecting to existing instance socket..."));
+    QSharedMemory shm(QStringLiteral("StellarSingleInstance"));
+    if (!shm.create(1) && shm.error() == QSharedMemory::AlreadyExists) {
+        nmLog(QStringLiteral("Another instance running. Forwarding args..."));
         QLocalSocket sock;
         sock.connectToServer(kServerName);
         if (sock.waitForConnected(500)) {
@@ -755,14 +759,12 @@ int main(int argc, char *argv[])
                       : QStringLiteral("Focus message sent, exiting."));
             return 0;
         }
-
-        if (sock.error() == QLocalSocket::ConnectionRefusedError) {
-            nmLog(QStringLiteral("Found stale single-instance socket, removing it."));
-            QLocalServer::removeServer(kServerName);
-        } else {
-            nmLog(QStringLiteral("No existing instance found."));
-        }
+        nmLog(QStringLiteral("Cannot reach existing instance. Exiting."));
+        return 1;
     }
+    // First instance — shm stays alive on main()'s stack until app.exec() returns.
+    // Clean up any stale server socket from a previous crashed instance.
+    QLocalServer::removeServer(kServerName);
 
     // Install the saved translator before AppController is constructed so
     // QObject-based defaults created during controller/model setup (like

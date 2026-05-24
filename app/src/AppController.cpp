@@ -1445,7 +1445,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     // ── 2. IPC Server ──────────────────────────────────────────────────────────
     m_ipcServer = new QLocalServer(this);
     if (!m_ipcServer->listen(QStringLiteral("StellarDownloadManager"))) {
-        qWarning() << "[IPC] FAILED to listen on StellarDownloadManager";
+        qCritical() << "[IPC] FAILED to listen on StellarDownloadManager — another instance may be running. Quitting.";
+        QTimer::singleShot(0, qApp, []() { QCoreApplication::quit(); });
     }
 
     connect(m_ipcServer, &QLocalServer::newConnection, this, [this]() {
