@@ -7619,15 +7619,19 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
         while (m_activeYtdlpBatchItems.size() < total) {
             QVariantMap blank;
             blank[QStringLiteral("index")] = m_activeYtdlpBatchItems.size() + 1;
-            blank[QStringLiteral("title")] = QStringLiteral("Item %1").arg(m_activeYtdlpBatchItems.size() + 1);
+            blank[QStringLiteral("title")] = QString();
             blank[QStringLiteral("status")] = QStringLiteral("Queued");
             blank[QStringLiteral("progress")] = 0.0;
+            blank[QStringLiteral("totalBytes")] = 0;
+            blank[QStringLiteral("timeLeft")] = QString();
             m_activeYtdlpBatchItems.append(blank);
         }
         QVariantMap row = m_activeYtdlpBatchItems[index - 1].toMap();
         row[QStringLiteral("index")] = index;
         if (!title.trimmed().isEmpty())
             row[QStringLiteral("title")] = title.trimmed();
+        else if (row[QStringLiteral("title")].toString().isEmpty())
+            row[QStringLiteral("title")] = QStringLiteral("Item %1").arg(index);
         row[QStringLiteral("status")] = QStringLiteral("Downloading");
         m_activeYtdlpBatchItems[index - 1] = row;
         emit ytdlpBatchChanged();
@@ -7643,6 +7647,21 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
         m_activeYtdlpBatchItems[index - 1] = row;
         emit ytdlpBatchChanged();
     });
+    connect(worker, &YtdlpTransfer::playlistItemProgressData, this,
+            [this, item](int index, double percent, qint64 totalBytes,
+                         qint64 speedBps, const QString &eta) {
+        if (!item || item->id() != m_activeYtdlpBatchId || index <= 0 || index > m_activeYtdlpBatchItems.size())
+            return;
+        QVariantMap row = m_activeYtdlpBatchItems[index - 1].toMap();
+        row[QStringLiteral("progress")] = percent;
+        if (totalBytes > 0)
+            row[QStringLiteral("totalBytes")] = static_cast<qlonglong>(totalBytes);
+        row[QStringLiteral("timeLeft")] = eta;
+        row[QStringLiteral("status")] = percent >= 99.5 ? QStringLiteral("Completed")
+                                                        : QStringLiteral("Downloading");
+        m_activeYtdlpBatchItems[index - 1] = row;
+        emit ytdlpBatchChanged();
+    });
     connect(worker, &YtdlpTransfer::playlistItemFinished, this,
             [this, item](int index) {
         if (!item || item->id() != m_activeYtdlpBatchId || index <= 0 || index > m_activeYtdlpBatchItems.size())
@@ -7650,6 +7669,7 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
         QVariantMap row = m_activeYtdlpBatchItems[index - 1].toMap();
         row[QStringLiteral("status")] = QStringLiteral("Completed");
         row[QStringLiteral("progress")] = 100.0;
+        row[QStringLiteral("timeLeft")] = QString();
         m_activeYtdlpBatchItems[index - 1] = row;
         emit ytdlpBatchChanged();
     });

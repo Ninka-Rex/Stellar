@@ -350,13 +350,17 @@ void YtdlpTransfer::onReadyReadStdout() {
 void YtdlpTransfer::handleLine(const QString &line) {
     if (m_playlistMode) {
         static const QRegularExpression kItemRe(
-            QStringLiteral(R"(\[download\]\s+Downloading item\s+(\d+)\s+of\s+(\d+))"),
+            QStringLiteral(R"(\[download\]\s+Downloading item\s+(\d+)\s+of\s+(\d+)(?::\s*(.*))?)"),
             QRegularExpression::CaseInsensitiveOption);
         const QRegularExpressionMatch itemMatch = kItemRe.match(line);
         if (itemMatch.hasMatch()) {
             m_playlistCurrentIndex = itemMatch.captured(1).toInt();
             m_playlistTotalItems = itemMatch.captured(2).toInt();
-            emit playlistItemStarted(m_playlistCurrentIndex, m_playlistTotalItems, QString());
+            const QString capturedTitle = itemMatch.captured(3).trimmed();
+            qDebug() << "[YtdlpTransfer] downloading item" << m_playlistCurrentIndex
+                     << "of" << m_playlistTotalItems << "title:" << capturedTitle;
+            emit playlistItemStarted(m_playlistCurrentIndex, m_playlistTotalItems,
+                                     capturedTitle);
         }
     }
 
@@ -373,13 +377,11 @@ void YtdlpTransfer::handleLine(const QString &line) {
         const QString path = line.mid(kDestPrefix.size()).trimmed();
         const int sep = qMax(path.lastIndexOf(QLatin1Char('/')),
                              path.lastIndexOf(QLatin1Char('\\')));
-        if (sep >= 0) {
-            const QString filename = path.mid(sep + 1);
-            if (!filename.isEmpty()) {
-                m_item->setFilename(filename);
-                if (m_playlistMode && m_playlistCurrentIndex > 0)
-                    emit playlistItemStarted(m_playlistCurrentIndex, m_playlistTotalItems, filename);
-            }
+        const QString filename = (sep >= 0) ? path.mid(sep + 1) : path;
+        if (!filename.isEmpty()) {
+            m_item->setFilename(filename);
+            if (m_playlistMode && m_playlistCurrentIndex > 0)
+                emit playlistItemStarted(m_playlistCurrentIndex, m_playlistTotalItems, filename);
         }
         return;
     }
@@ -430,8 +432,11 @@ void YtdlpTransfer::handleLine(const QString &line) {
             const int sep = qMax(path.lastIndexOf(QLatin1Char('/')),
                                  path.lastIndexOf(QLatin1Char('\\')));
             const QString filename = (sep >= 0) ? path.mid(sep + 1) : path;
-            if (!filename.isEmpty())
+            if (!filename.isEmpty()) {
                 m_item->setFilename(filename);
+                if (m_playlistMode && m_playlistCurrentIndex > 0)
+                    emit playlistItemStarted(m_playlistCurrentIndex, m_playlistTotalItems, filename);
+            }
         }
 
         qDebug() << "[YtdlpTransfer] merging:" << line;
@@ -456,7 +461,7 @@ bool YtdlpTransfer::tryParseProgressLine(const QString &line) {
 
     static const QRegularExpression kProgressRe(
         QStringLiteral(
-            R"(\[download\]\s+([\d.]+)%\s+of\s+~?\s*([\d.]+)\s*([A-Za-z]+)\s+at\s+~?\s*([\d.]+)\s*([A-Za-z]+)/s)"
+            R"(\[download\]\s+([\d.]+)%\s+of\s+~?\s*([\d.]+)\s*([A-Za-z]+)\s+at\s+~?\s*([\d.]+)\s*([A-Za-z]+)/s(?:\s+ETA\s+(\S+))?)"
         ),
         QRegularExpression::CaseInsensitiveOption);
 
@@ -469,6 +474,7 @@ bool YtdlpTransfer::tryParseProgressLine(const QString &line) {
     const QString totalUnit  = m.captured(3);
     const double  speedVal   = m.captured(4).toDouble();
     const QString speedUnit  = m.captured(5);
+    const QString eta        = m.captured(6);
 
     const qint64 phaseTotal = parseSizeToBytes(totalVal, totalUnit);
     const qint64 speedBps   = parseSizeToBytes(speedVal, speedUnit);
@@ -514,6 +520,8 @@ bool YtdlpTransfer::tryParseProgressLine(const QString &line) {
     emit progressChanged(overallDone, overallTotal, speedBps);
     if (m_playlistMode && m_playlistCurrentIndex > 0) {
         emit playlistItemProgress(m_playlistCurrentIndex, pct);
+        emit playlistItemProgressData(m_playlistCurrentIndex, pct, phaseTotal,
+                                      speedBps, eta);
         if (pct >= 99.5)
             emit playlistItemFinished(m_playlistCurrentIndex);
     }

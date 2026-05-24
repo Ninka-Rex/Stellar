@@ -3757,6 +3757,31 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../app/qml/Main.qml" line="1260"/>
+        <source>File Name</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="1261"/>
+        <source>Size</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="1262"/>
+        <source>Status</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="1263"/>
+        <source>Time left</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="1321"/>
+        <source>Item %1</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/Main.qml" line="1516"/>
         <source>Download Later</source>
         <translation></translation>

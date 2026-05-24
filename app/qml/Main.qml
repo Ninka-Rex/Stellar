@@ -1254,8 +1254,9 @@ ApplicationWindow {
         transientParent: root
         width: 760
         height: 520
-        minimumWidth: 620
-        minimumHeight: 420
+        minimumWidth: 520
+        minimumHeight: 360
+        maximumHeight: 500
         title: qsTr("Channel Download Progress")
         color: "#1e1e1e"
         modality: Qt.NonModal
@@ -1266,8 +1267,6 @@ ApplicationWindow {
             if (visible) {
                 x = root.x + Math.round((root.width  - width)  / 2)
                 y = root.y + Math.round((root.height - height) / 2)
-            } else if (!visible && App.ytdlpBatchActive) {
-                // keep it dockable; user can close while it continues in background
             }
         }
 
@@ -1282,11 +1281,178 @@ ApplicationWindow {
             }
         }
 
+        // ── Column definitions ──────────────────────────────────────────────────
+        readonly property var _defaultCols: [
+            { title: "#",           key: "index",    widthPx: 40,  visible: true },
+            { title: qsTr("File Name"), key: "filename", widthPx: 320, visible: true },
+            { title: qsTr("Size"),      key: "size",     widthPx: 80,  visible: true },
+            { title: qsTr("Status"),    key: "status",   widthPx: 110, visible: true },
+            { title: qsTr("Time left"), key: "timeleft", widthPx: 90,  visible: true }
+        ]
+        property var columnDefs: {
+            var defs = []
+            for (var i = 0; i < _defaultCols.length; i++)
+                defs.push(Object.assign({}, _defaultCols[i]))
+            return defs
+        }
+
+        function makeVisibleCols() {
+            var r = []
+            for (var i = 0; i < columnDefs.length; i++)
+                if (columnDefs[i].visible) r.push(columnDefs[i])
+            return r
+        }
+        property var visibleCols: makeVisibleCols()
+        onColumnDefsChanged: {
+            visibleCols = makeVisibleCols()
+            visibleContentWidth = totalVisibleWidth()
+        }
+
+        function colWidth(key) {
+            if (_resizingColumnKey === key) return _resizingColumnWidth
+            for (var i = 0; i < columnDefs.length; i++) {
+                if (columnDefs[i].key === key)
+                    return columnDefs[i].widthPx || 100
+            }
+            return 0
+        }
+
+        function _colVisible(key) {
+            for (var i = 0; i < columnDefs.length; i++)
+                if (columnDefs[i].key === key) return columnDefs[i].visible
+            return false
+        }
+
+        function totalVisibleWidth() {
+            var total = 0
+            for (var i = 0; i < visibleCols.length; i++)
+                total += colWidth(visibleCols[i].key)
+            return total
+        }
+
+        function minColWidth(key) {
+            if (key === "index") return 30
+            return 24
+        }
+
+        function formatBytesShort(bytes) {
+            if (!bytes || bytes <= 0) return ""
+            if (bytes >= 1073741824) return (bytes / 1073741824).toFixed(2) + " GB"
+            if (bytes >= 1048576) return (bytes / 1048576).toFixed(1) + " MB"
+            if (bytes >= 1024) return (bytes / 1024).toFixed(1) + " KB"
+            return bytes + " B"
+        }
+
+        function formatTimeLeft(etaStr) {
+            if (!etaStr || etaStr === "") return ""
+            // yt-dlp ETA: "HH:MM:SS" or "MM:SS"
+            var parts = etaStr.split(":")
+            var seconds = 0
+            if (parts.length === 3)
+                seconds = parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60 + parseInt(parts[2])
+            else if (parts.length === 2)
+                seconds = parseInt(parts[0]) * 60 + parseInt(parts[1])
+            else
+                seconds = parseInt(parts[0]) || 0
+            if (seconds <= 0) return ""
+            if (seconds < 60) return seconds + " sec"
+            var units = [
+                [31557600, "year", "years"],
+                [2629800, "month", "months"],
+                [86400, "day", "days"],
+                [3600, "hour", "hours"],
+                [60, "min", "min"]
+            ]
+            var partsOut = []
+            var rem = seconds
+            for (var i = 0; i < units.length; i++) {
+                if (rem < units[i][0]) continue
+                var count = Math.floor(rem / units[i][0])
+                rem %= units[i][0]
+                partsOut.push(count + " " + (count === 1 ? units[i][1] : units[i][2]))
+                if (partsOut.length === 2) break
+            }
+            if (partsOut.length === 0)
+                return Math.ceil(seconds / 60) + " min"
+            return partsOut.join(" ")
+        }
+
+        property real visibleContentWidth: totalVisibleWidth()
+        onVisibleColsChanged: visibleContentWidth = totalVisibleWidth()
+
+        property string _resizingColumnKey: ""
+        property real _resizingColumnWidth: 0
+
+        property var _colXMap: {
+            visibleContentWidth
+            return _buildColXMap()
+        }
+        function _buildColXMap() {
+            var map = {}
+            var x = 0
+            for (var i = 0; i < visibleCols.length; i++) {
+                var col = visibleCols[i]
+                map[col.key] = x
+                x += colWidth(col.key)
+            }
+            return map
+        }
+
+        property string _colDragFromKey:          ""
+        property string _colDragInsertBeforeKey:  ""
+        property bool   _colDragging:             false
+
+        function _applyColReorder() {
+            if (!_colDragFromKey) return
+            var defs = columnDefs.slice()
+            var fromIdx = -1
+            for (var i = 0; i < defs.length; i++) { if (defs[i].key === _colDragFromKey) { fromIdx = i; break } }
+            if (fromIdx < 0) return
+            var toIdx
+            if (_colDragInsertBeforeKey === "__end__") {
+                toIdx = defs.length
+            } else {
+                toIdx = -1
+                for (var j = 0; j < defs.length; j++) { if (defs[j].key === _colDragInsertBeforeKey) { toIdx = j; break } }
+            }
+            if (toIdx < 0 || toIdx === fromIdx) return
+            var moved = defs.splice(fromIdx, 1)[0]
+            if (toIdx > fromIdx) toIdx--
+            defs.splice(toIdx, 0, moved)
+            columnDefs = defs
+        }
+
+        // ── Aggregate stats ─────────────────────────────────────────────────────
+        property int _statsTotal: {
+            return App.ytdlpBatchItems.length
+        }
+        property int _statsDone: {
+            var c = 0
+            for (var i = 0; i < App.ytdlpBatchItems.length; ++i)
+                if ((App.ytdlpBatchItems[i].status || "") === "Completed") c++
+            return c
+        }
+        property int _statsActive: {
+            var c = 0
+            for (var i = 0; i < App.ytdlpBatchItems.length; ++i)
+                if ((App.ytdlpBatchItems[i].status || "") === "Downloading") c++
+            return c
+        }
+        property int _statsQueued: Math.max(0, _statsTotal - _statsDone - _statsActive)
+        property int _statsAvgProgress: {
+            if (App.ytdlpBatchItems.length === 0) return 0
+            var sum = 0.0
+            for (var i = 0; i < App.ytdlpBatchItems.length; ++i)
+                sum += (App.ytdlpBatchItems[i].progress || 0)
+            return Math.round(sum / App.ytdlpBatchItems.length)
+        }
+
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 6
+            anchors.margins: 8
             spacing: 6
 
+            // ── Title ───────────────────────────────────────────────────────────
             Text {
                 Layout.fillWidth: true
                 text: App.ytdlpBatchLabel.length > 0 ? App.ytdlpBatchLabel : "Channel/Playlist"
@@ -1295,95 +1461,394 @@ ApplicationWindow {
                 elide: Text.ElideMiddle
             }
 
+            // ── Summary stats ───────────────────────────────────────────────────
             Text {
+                id: summaryText
                 Layout.fillWidth: true
-                property int totalCount: App.ytdlpBatchItems.length
-                property int doneCount: {
-                    var c = 0
-                    for (var i = 0; i < App.ytdlpBatchItems.length; ++i)
-                        if ((App.ytdlpBatchItems[i].status || "") === "Completed") c++
-                    return c
-                }
-                property int activeCount: {
-                    var c = 0
-                    for (var i = 0; i < App.ytdlpBatchItems.length; ++i)
-                        if ((App.ytdlpBatchItems[i].status || "") === "Downloading") c++
-                    return c
-                }
-                property int queuedCount: Math.max(0, totalCount - doneCount - activeCount)
-                property real avgProgress: {
-                    if (App.ytdlpBatchItems.length === 0) return 0
-                    var sum = 0
-                    for (var i = 0; i < App.ytdlpBatchItems.length; ++i)
-                        sum += (App.ytdlpBatchItems[i].progress || 0)
-                    return sum / App.ytdlpBatchItems.length
-                }
-                text: qsTr("Total: %1").arg(totalCount)
-                      + "   " + qsTr("Completed: %1").arg(doneCount)
-                      + "   " + qsTr("Downloading: %1").arg(activeCount)
-                      + "   " + qsTr("Queued: %1").arg(queuedCount)
-                      + "   " + qsTr("Overall: %1%").arg(Math.round(avgProgress))
+                text: qsTr("Total: %1").arg(ytdlpBatchWindow._statsTotal)
+                      + "   " + qsTr("Completed: %1").arg(ytdlpBatchWindow._statsDone)
+                      + "   " + qsTr("Downloading: %1").arg(ytdlpBatchWindow._statsActive)
+                      + "   " + qsTr("Queued: %1").arg(ytdlpBatchWindow._statsQueued)
+                      + "   " + qsTr("Overall: %1%").arg(ytdlpBatchWindow._statsAvgProgress)
                 color: "#9fa9b8"
                 font.pixelSize: 11 * App.fontScale
                 elide: Text.ElideRight
             }
 
+            // ── Table ───────────────────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 color: "#181818"
                 border.color: "#313131"
                 radius: 4
+                clip: true
 
-                ListView {
-                    anchors.fill: parent
-                    anchors.margins: 1
+                // ── Header ──────────────────────────────────────────────────────
+                Rectangle {
+                    id: batchHeader
+                    anchors { top: parent.top; left: parent.left; right: parent.right }
+                    height: 26
+                    color: "#2d2d2d"
                     clip: true
+
+                    Row {
+                        x: -batchListView.contentX
+                        width: ytdlpBatchWindow.visibleContentWidth
+                        height: parent.height
+
+                        Repeater {
+                            id: hdrRepeater
+                            model: ytdlpBatchWindow.visibleCols
+                            delegate: Rectangle {
+                                id: hdrCell
+                                width: ytdlpBatchWindow.colWidth(modelData.key)
+                                height: parent.height
+                                color: (hdrMouse.containsMouse && !ytdlpBatchWindow._colDragging) ? "#383838" : "transparent"
+                                opacity: (ytdlpBatchWindow._colDragging && ytdlpBatchWindow._colDragFromKey === modelData.key) ? 0.5 : 1.0
+
+                                // Drop insert-line LEFT of this column
+                                Rectangle {
+                                    visible: ytdlpBatchWindow._colDragging && ytdlpBatchWindow._colDragInsertBeforeKey === modelData.key
+                                    width: 2; height: parent.height
+                                    anchors.left: parent.left
+                                    color: "#4488dd"
+                                    z: 20
+                                }
+
+                                // Insert-line at END of header
+                                Rectangle {
+                                    visible: ytdlpBatchWindow._colDragging
+                                          && ytdlpBatchWindow._colDragInsertBeforeKey === "__end__"
+                                          && index === hdrRepeater.count - 1
+                                    width: 2; height: parent.height
+                                    anchors.right: parent.right
+                                    color: "#4488dd"
+                                    z: 20
+                                }
+
+                                Text {
+                                    anchors {
+                                        verticalCenter: parent.verticalCenter
+                                        left: parent.left
+                                        leftMargin: modelData.key === "index" ? 0 : 6
+                                        right: parent.right
+                                        rightMargin: 12
+                                    }
+                                    text: modelData.title
+                                    color: "#b0b0b0"
+                                    font.pixelSize: 12 * App.fontScale
+                                    font.bold: true
+                                    horizontalAlignment: modelData.key === "index" ? Text.AlignHCenter : Text.AlignLeft
+                                    elide: Text.ElideRight
+                                }
+
+                                // Column reorder drag
+                                MouseArea {
+                                    id: hdrMouse
+                                    anchors { fill: parent; rightMargin: 10 }
+                                    hoverEnabled: true
+                                    preventStealing: true
+                                    cursorShape: ytdlpBatchWindow._colDragging ? Qt.ClosedHandCursor : Qt.ArrowCursor
+
+                                    property real _pressX:  0
+                                    property bool _didDrag: false
+
+                                    onPressed:  { _pressX = mouseX; _didDrag = false }
+
+                                    onPositionChanged: {
+                                        if (!(pressedButtons & Qt.LeftButton)) return
+                                        if (!ytdlpBatchWindow._colDragging && Math.abs(mouseX - _pressX) > 8) {
+                                            ytdlpBatchWindow._colDragFromKey = modelData.key
+                                            ytdlpBatchWindow._colDragging = true
+                                            _didDrag = true
+                                        }
+                                        if (ytdlpBatchWindow._colDragging && ytdlpBatchWindow._colDragFromKey === modelData.key) {
+                                            var cursorX = hdrMouse.mapToItem(batchHeaderRow, mouseX, 0).x
+                                            var insertBefore = "__end__"
+                                            var xAcc = 0
+                                            for (var k = 0; k < ytdlpBatchWindow.visibleCols.length; k++) {
+                                                var colW = ytdlpBatchWindow.colWidth(ytdlpBatchWindow.visibleCols[k].key)
+                                                if (cursorX < xAcc + colW / 2) {
+                                                    insertBefore = ytdlpBatchWindow.visibleCols[k].key
+                                                    break
+                                                }
+                                                xAcc += colW
+                                            }
+                                            ytdlpBatchWindow._colDragInsertBeforeKey = insertBefore
+                                        }
+                                    }
+
+                                    onReleased: {
+                                        var didDrag = _didDrag
+                                        var win = ytdlpBatchWindow
+                                        Qt.callLater(function() {
+                                            if (didDrag) win._applyColReorder()
+                                            win._colDragging = false
+                                            win._colDragFromKey = ""
+                                            win._colDragInsertBeforeKey = ""
+                                        })
+                                        _didDrag = false
+                                        _pressX = 0
+                                    }
+                                }
+
+                                // Column separator
+                                Rectangle {
+                                    anchors.right: parent.right
+                                    width: 1; height: parent.height
+                                    color: "#3a3a3a"
+                                }
+
+                                // Column resize handle
+                                Item {
+                                    id: batchResizeHandle
+                                    width: 10
+                                    height: parent.height
+                                    anchors.right: parent.right
+                                    z: 10
+
+                                    property real _startWidthPx: 0
+
+                                    Rectangle {
+                                        anchors.right: parent.right
+                                        width: 2
+                                        height: parent.height
+                                        color: (batchResizeDrag.active || batchResizeHover.hovered) ? "#6aa0ff" : "transparent"
+                                        opacity: batchResizeDrag.active ? 1.0 : 0.75
+                                    }
+
+                                    HoverHandler {
+                                        id: batchResizeHover
+                                        cursorShape: Qt.SizeHorCursor
+                                    }
+
+                                    DragHandler {
+                                        id: batchResizeDrag
+                                        target: null
+                                        xAxis.enabled: true
+                                        yAxis.enabled: false
+                                        cursorShape: Qt.SizeHorCursor
+
+                                        onActiveChanged: {
+                                            if (active) {
+                                                batchResizeHandle._startWidthPx = modelData.widthPx || 100
+                                                ytdlpBatchWindow._resizingColumnKey = modelData.key
+                                                ytdlpBatchWindow._resizingColumnWidth = batchResizeHandle._startWidthPx
+                                                return
+                                            }
+                                            if (ytdlpBatchWindow._resizingColumnKey === modelData.key) {
+                                                var defs = ytdlpBatchWindow.columnDefs.slice()
+                                                for (var j = 0; j < defs.length; j++) {
+                                                    if (defs[j].key === modelData.key) {
+                                                        defs[j] = Object.assign({}, defs[j], { widthPx: ytdlpBatchWindow._resizingColumnWidth })
+                                                        break
+                                                    }
+                                                }
+                                                ytdlpBatchWindow._resizingColumnKey = ""
+                                                ytdlpBatchWindow._resizingColumnWidth = 0
+                                                ytdlpBatchWindow.columnDefs = defs
+                                            }
+                                        }
+
+                                        onTranslationChanged: {
+                                            if (!active) return
+                                            ytdlpBatchWindow._resizingColumnWidth = Math.max(ytdlpBatchWindow.minColWidth(modelData.key),
+                                                Math.round(batchResizeHandle._startWidthPx + translation.x))
+                                            ytdlpBatchWindow.visibleContentWidth = ytdlpBatchWindow.totalVisibleWidth()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Bottom border
+                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
+                }
+
+                Item {
+                    id: batchHeaderRow
+                    visible: false
+                }
+
+                // ── Rows ────────────────────────────────────────────────────────
+                ListView {
+                    id: batchListView
+                    anchors { top: batchHeader.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
                     model: App.ytdlpBatchItems
+                    clip: true
+                    contentWidth: ytdlpBatchWindow.visibleContentWidth
+                    cacheBuffer: 300
+                    reuseItems: true
+
+                    ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
+                    ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AsNeeded }
+
+                    WheelHandler {
+                        orientation: Qt.Vertical
+                        acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
+                        onWheel: function(e) {
+                            batchListView.contentY = Math.max(0,
+                                Math.min(batchListView.contentY - e.angleDelta.y / 2,
+                                         Math.max(0, batchListView.contentHeight - batchListView.height)))
+                            e.accepted = true
+                        }
+                    }
+
+                    WheelHandler {
+                        orientation: Qt.Horizontal
+                        acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
+                        onWheel: function(e) {
+                            batchListView.contentX = Math.max(0,
+                                Math.min(batchListView.contentX - e.angleDelta.x / 2,
+                                         Math.max(0, batchListView.contentWidth - batchListView.width)))
+                            e.accepted = true
+                        }
+                    }
 
                     delegate: Rectangle {
-                        width: ListView.view.width
-                        height: 34
-                        color: index % 2 === 0 ? "#1d1d1d" : "#191919"
+                        id: batchRow
+                        required property int index
+                        required property var modelData
+                        width: batchListView.contentWidth
+                        height: 28
+                        color: batchRowIndex % 2 === 0 ? "#1c1c1c" : "#222222"
+                        clip: true
 
-                        RowLayout {
-                            anchors.fill: parent
-                            anchors.leftMargin: 10
-                            anchors.rightMargin: 10
-                            spacing: 8
+                        readonly property int batchRowIndex: index
+                        readonly property var itemData: modelData
 
-                            Text {
-                                text: (modelData.index || (index + 1)) + "."
-                                color: "#8b8b8b"
-                                font.pixelSize: 11 * App.fontScale
-                                Layout.preferredWidth: 28
+                        Row {
+                            // ── # column ─────────────────────────────────────────
+                            Item {
+                                visible: ytdlpBatchWindow._colVisible("index")
+                                x: ytdlpBatchWindow._colXMap["index"] || 0
+                                width: ytdlpBatchWindow.colWidth("index")
+                                height: batchRow.height - 1
+                                clip: true
+                                Text {
+                                    anchors { fill: parent; leftMargin: 0 }
+                                    horizontalAlignment: Text.AlignHCenter
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: batchRow.itemData.index || (batchRow.batchRowIndex + 1)
+                                    color: "#8b8b8b"
+                                    font.pixelSize: 11 * App.fontScale
+                                }
                             }
-                            Text {
-                                text: modelData.title || ("Item " + (index + 1))
-                                color: "#d0d0d0"
-                                font.pixelSize: 11 * App.fontScale
-                                elide: Text.ElideMiddle
-                                Layout.fillWidth: true
+
+                            // ── Filename column ──────────────────────────────────
+                            Item {
+                                visible: ytdlpBatchWindow._colVisible("filename")
+                                x: ytdlpBatchWindow._colXMap["filename"] || 0
+                                width: ytdlpBatchWindow.colWidth("filename")
+                                height: batchRow.height - 1
+                                clip: true
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6 }
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: {
+                                        var t = batchRow.itemData.title
+                                        if (t === undefined || t === null || t === "") return qsTr("Item %1").arg(batchRow.batchRowIndex + 1)
+                                        return t
+                                    }
+                                    color: "#d0d0d0"
+                                    font.pixelSize: 12 * App.fontScale
+                                    elide: Text.ElideMiddle
+                                }
                             }
-                            Text {
-                                text: modelData.status || "Queued"
-                                color: modelData.status === "Completed" ? "#7bc67b"
-                                      : modelData.status === "Downloading" ? "#88b4ff" : "#999999"
-                                font.pixelSize: 11 * App.fontScale
-                                Layout.preferredWidth: 90
-                                horizontalAlignment: Text.AlignRight
+
+                            // ── Size column ──────────────────────────────────────
+                            Item {
+                                visible: ytdlpBatchWindow._colVisible("size")
+                                x: ytdlpBatchWindow._colXMap["size"] || 0
+                                width: ytdlpBatchWindow.colWidth("size")
+                                height: batchRow.height - 1
+                                clip: true
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6 }
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: {
+                                        var tb = batchRow.itemData.totalBytes
+                                        if (!tb || tb <= 0) return ""
+                                        return ytdlpBatchWindow.formatBytesShort(tb)
+                                    }
+                                    color: "#b0b0b0"
+                                    font.pixelSize: 12 * App.fontScale
+                                }
                             }
-                            ProgressBar {
-                                from: 0
-                                to: 100
-                                value: Math.max(0, Math.min(100, modelData.progress || 0))
-                                Layout.preferredWidth: 140
+
+                            // ── Status column ────────────────────────────────────
+                            Item {
+                                visible: ytdlpBatchWindow._colVisible("status")
+                                x: ytdlpBatchWindow._colXMap["status"] || 0
+                                width: ytdlpBatchWindow.colWidth("status")
+                                height: batchRow.height - 1
+                                clip: true
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6 }
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: {
+                                        var st = batchRow.itemData.status || "Queued"
+                                        var pct = batchRow.itemData.progress || 0
+                                        if (st === "Downloading" && pct > 0)
+                                            return st + " (" + pct.toFixed(1) + "%)"
+                                        if (st === "Completed")
+                                            return st + " (100%)"
+                                        return st
+                                    }
+                                    color: "#b0b0b0"
+                                    font.pixelSize: 12 * App.fontScale
+                                }
                             }
+
+                            // ── Time left column ─────────────────────────────────
+                            Item {
+                                visible: ytdlpBatchWindow._colVisible("timeleft")
+                                x: ytdlpBatchWindow._colXMap["timeleft"] || 0
+                                width: ytdlpBatchWindow.colWidth("timeleft")
+                                height: batchRow.height - 1
+                                clip: true
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6 }
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: {
+                                        var st = batchRow.itemData.status || ""
+                                        if (st !== "Downloading") return ""
+                                        var eta = batchRow.itemData.timeLeft || ""
+                                        if (eta === "") return ""
+                                        return ytdlpBatchWindow.formatTimeLeft(eta)
+                                    }
+                                    color: "#b0b0b0"
+                                    font.pixelSize: 12 * App.fontScale
+                                }
+                            }
+                        }
+
+                        // Progress bar
+                        Rectangle {
+                            anchors { bottom: parent.bottom; bottomMargin: 1 }
+                            width: {
+                                var pct = Math.max(0, Math.min(100, batchRow.itemData.progress || 0))
+                                return pct / 100 * Math.max(0, Math.min(batchListView.width, batchRow.width - batchListView.contentX))
+                            }
+                            height: 2
+                            color: "#4488dd"
+                            visible: (batchRow.itemData.status || "") === "Downloading"
+                        }
+
+                        // Row separator
+                        Rectangle {
+                            anchors.bottom: parent.bottom
+                            width: parent.width
+                            height: 1
+                            color: "#2e2e2e"
                         }
                     }
                 }
             }
 
+            // ── Buttons ──────────────────────────────────────────────────────────
             RowLayout {
                 Layout.fillWidth: true
                 Item { Layout.fillWidth: true }

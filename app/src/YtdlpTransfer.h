@@ -217,6 +217,8 @@ signals:
     void failed(const QString &reason); // non-zero exit or process error
     void playlistItemStarted(int index, int total, const QString &title);
     void playlistItemProgress(int index, double percent);
+    void playlistItemProgressData(int index, double percent, qint64 totalBytes,
+                                  qint64 speedBps, const QString &eta);
     void playlistItemFinished(int index);
 
 private slots:
