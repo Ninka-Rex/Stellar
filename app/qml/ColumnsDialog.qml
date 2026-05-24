@@ -240,7 +240,7 @@ Window {
                     width: 100; height: 28; radius: 3
                     color: resetMa.containsMouse ? "#443020" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
-                    Text { anchors.centerIn: parent; text: qsTr("Reset"); color: "#e09060"; font.pixelSize: 12 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Reset"); color: "#ffffff"; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: resetMa
                         anchors.fill: parent

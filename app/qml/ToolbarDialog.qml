@@ -323,7 +323,7 @@ Window {
                     color: removeSepMa.containsMouse && root._selectedIsSeparator() ? "#442020" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
                     opacity: root._selectedIsSeparator() ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Remove"); color: "#e06060"; font.pixelSize: 12 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Remove"); color: "#ffffff"; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: removeSepMa
                         anchors.fill: parent
@@ -346,7 +346,7 @@ Window {
                     width: 110; height: 28; radius: 3
                     color: resetMa.containsMouse ? "#443020" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
-                    Text { anchors.centerIn: parent; text: qsTr("Reset"); color: "#e09060"; font.pixelSize: 12 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Reset"); color: "#ffffff"; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: resetMa
                         anchors.fill: parent
