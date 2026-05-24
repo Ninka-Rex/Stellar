@@ -334,15 +334,23 @@ qt_add_qml_module(Stellar
         app/qml/icons/custom_queue.svg
         app/qml/icons/synch_queue.svg
         app/qml/icons/globe.svg
+        app/qml/icons/globe_showing_americas.svg
         app/qml/icons/information.svg
         app/qml/icons/link.svg
-        app/qml/icons/delete.svg
         app/qml/icons/file_no_longer_available.svg
         app/qml/icons/world-map.svg
         app/qml/icons/page.svg
         app/qml/icons/cloud_copylink.svg
         app/qml/icons/folder_view.svg
         app/qml/icons/about.svg
+        app/qml/icons/floppy_disk.svg
+        app/qml/icons/light_bulb.svg
+        app/qml/icons/hourglass_not_done.svg
+        app/qml/icons/person.svg
+        app/qml/icons/red_circle.svg
+        app/qml/icons/warning.svg
+        app/qml/icons/yellow_circle.svg
+        app/qml/icons/yin_yang.svg
         app/qml/icons/torrent-categories/all_torrents.svg
         app/qml/icons/torrent-categories/active.svg
         app/qml/icons/torrent-categories/checking.svg
