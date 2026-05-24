@@ -4103,7 +4103,7 @@ void AppController::deleteDownloads(const QStringList &ids, int mode) {
 void AppController::pauseAllDownloads() {
     const auto items = m_downloadModel->allItems();
     for (auto *item : items) {
-        if (item->status() != QStringLiteral("Downloading") && item->status() != QStringLiteral("Queued"))
+        if (item->status() != QStringLiteral("Downloading") && item->status() != QStringLiteral("Queued") && item->status() != QStringLiteral("Seeding"))
             continue;
         if (item->isTorrent()) {
             m_torrentSession->pause(item->id());
@@ -4657,12 +4657,15 @@ bool AppController::moveDownloadFile(const QString &id, const QString &newFilePa
 void AppController::enableSpeedLimiter() {
     m_settings->setSpeedLimiterEnabled(true);
     m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
+    m_settings->setGlobalUploadLimitKBps(m_settings->savedUploadLimitKBps());
 }
 
 void AppController::disableSpeedLimiter() {
     m_settings->setSpeedLimiterEnabled(false);
-    const int current = m_settings->globalSpeedLimitKBps();
-    if (current > 0) m_settings->setSavedSpeedLimitKBps(current);
+    const int currentDl = m_settings->globalSpeedLimitKBps();
+    if (currentDl > 0) m_settings->setSavedSpeedLimitKBps(currentDl);
+    const int currentUl = m_settings->globalUploadLimitKBps();
+    if (currentUl > 0) m_settings->setSavedUploadLimitKBps(currentUl);
     m_settings->setGlobalSpeedLimitKBps(0);
     m_settings->setGlobalUploadLimitKBps(0);
 }

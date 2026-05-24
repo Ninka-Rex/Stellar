@@ -653,12 +653,12 @@ Rectangle {
 
     function openSelectedFile() {
         var item = _selectedItem()
-        if (item && item.status === "Completed") App.openFile(item.id)
+        if (item && (item.status === "Completed" || item.status === "Seeding")) App.openFile(item.id)
     }
 
     function openFolderForSelected() {
         var item = _selectedItem()
-        if (item && item.status === "Completed") App.openFolder(item.id)
+        if (item && (item.status === "Completed" || item.status === "Seeding")) App.openFolder(item.id)
     }
 
     function itemMatchesActiveFilter(item) {

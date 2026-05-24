@@ -83,6 +83,7 @@
     /* ── Speed limiter scheduler ── */ \
     X(bool, bool, speedLimiterOnStartup, SpeedLimiterOnStartup, false, "speedLimiterOnStartup", N) \
     X(int, int, savedSpeedLimitKBps, SavedSpeedLimitKBps, 500, "savedSpeedLimitKBps", N) \
+    X(int, int, savedUploadLimitKBps, SavedUploadLimitKBps, 0, "savedUploadLimitKBps", N) \
     X(bool, bool, speedScheduleEnabled, SpeedScheduleEnabled, false, "speedScheduleEnabled", N) \
     X(QString, const QString &, speedScheduleJson, SpeedScheduleJson, QString(), "speedScheduleJson", N) \
     /* ── Clipboard monitor ── */ \
