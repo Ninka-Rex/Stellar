@@ -355,7 +355,7 @@ Rectangle {
                 StatusIcon {
                     source: {
                         if (!App.publicIp || App.publicIp.length === 0) return "icons/red_circle.svg"
-                        if (!App.hasIncomingConnections) return "icons/yellow_circle.svg"
+                        if (!App.hasIncomingConnections) return "icons/fire.svg"
                         return "icons/globe_showing_americas.svg"
                     }
                 }
