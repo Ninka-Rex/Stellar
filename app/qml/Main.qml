@@ -2770,7 +2770,7 @@ ApplicationWindow {
         Action { shortcut: "Alt+O";        onTriggered: settingsDialog.show() }
         Action { shortcut: "Ctrl+K";       onTriggered: downloadTable.pauseAll() }
         Action { shortcut: "Ctrl+Shift+W"; onTriggered: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() } }
-        Action { shortcut: "Ctrl+P";       onTriggered: { var item = root.selectedDownloadItem; if (item && (item.status === "Downloading" || item.status === "Queued")) App.pauseDownload(item.id) } }
+        Action { shortcut: "Ctrl+P";       onTriggered: { var item = root.selectedDownloadItem; if (item && (item.status === "Downloading" || item.status === "Queued" || item.status === "Seeding")) App.pauseDownload(item.id) } }
         Action { shortcut: "Ctrl+R";       onTriggered: { var item = root.selectedDownloadItem; if (item) App.redownload(item.id) } }
         Action { shortcut: "Ctrl+/";       onTriggered: root.showSettingsPage(root.settingsPageAbout) }
         Action { shortcut: "Ctrl+Shift+L"; onTriggered: { if (App.settings.speedLimiterEnabled) App.disableSpeedLimiter(); else App.enableSpeedLimiter() } }
@@ -2817,8 +2817,8 @@ ApplicationWindow {
                 text: qsTr("Stop Download")
                 shortcutDisplay: "Ctrl+P"
                 iconSrc: "icons/pause.svg"
-                enabled: root.selectedDownloadItem && (root.selectedDownloadItem.status === "Downloading" || root.selectedDownloadItem.status === "Queued")
-                onTriggered: { var item = root.selectedDownloadItem; if (item && (item.status === "Downloading" || item.status === "Queued")) App.pauseDownload(item.id) }
+                enabled: root.selectedDownloadItem && (root.selectedDownloadItem.status === "Downloading" || root.selectedDownloadItem.status === "Queued" || root.selectedDownloadItem.status === "Seeding")
+                onTriggered: { var item = root.selectedDownloadItem; if (item && (item.status === "Downloading" || item.status === "Queued" || item.status === "Seeding")) App.pauseDownload(item.id) }
             }
             CompactMenuItem {
                 text: qsTr("Remove")
