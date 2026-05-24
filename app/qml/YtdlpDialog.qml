@@ -459,7 +459,7 @@ Window {
                     Text {
                         width: parent.width
                         text: root.pendingUrl
-                        color: "#4a6a9a"; font.pixelSize: 11 * App.fontScale
+                        color: "#888888"; font.pixelSize: 11 * App.fontScale
                         elide: Text.ElideMiddle
                     }
                 }
@@ -564,7 +564,7 @@ Window {
                         anchors.centerIn: parent
                         spacing: 8
 
-                        Text { text: qsTr("Cookies from browser:"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale }
+                        Text { text: qsTr("Cookies from browser:"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale }
 
                         ComboBox {
                             id: errCookieCombo
@@ -777,7 +777,7 @@ Window {
                     Layout.fillWidth: true
                     visible: root._isChannelUrl
                     implicitHeight: chRow.implicitHeight + 18
-                    radius: 3; color: "#1a2030"; border.color: "#2a3a5a"
+                    radius: 3; color: "#252525"; border.color: "#3a3a3a"
 
                     ColumnLayout {
                         id: chRow
@@ -786,7 +786,7 @@ Window {
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 8
-                            Text { text: qsTr("Channel / Playlist"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium }
+                            Text { text: qsTr("Channel / Playlist"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium }
                             Item { Layout.fillWidth: true }
 
                             RowLayout {
@@ -833,7 +833,7 @@ Window {
                                         onActiveFocusChanged: if (activeFocus) selectAll()
                                     }
                                 }
-                                Text { text: qsTr("videos"); color: "#667788"; font.pixelSize: 11 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("videos"); color: "#888888"; font.pixelSize: 11 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
                             }
                         }
 
@@ -842,20 +842,20 @@ Window {
                             text: root._isYoutubeChannelRootUrl
                                   ? qsTr("YouTube channel URLs include all uploads by default. Use Scope to target one tab.")
                                   : qsTr("Videos will be saved in a subfolder named after the channel.")
-                            color: "#5a6a8a"; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap
+                            color: "#aaaaaa"; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap
                         }
 
                         Rectangle {
                             Layout.fillWidth: true
                             visible: root._isYoutubeChannelRootUrl
-                            radius: 3; color: "#162236"; border.color: "#28456f"
+                            radius: 3; color: "#1e1e1e"; border.color: "#333333"
                             implicitHeight: scopeRow.implicitHeight + 12
 
                             RowLayout {
                                 id: scopeRow
                                 anchors { fill: parent; margins: 6 }
                                 spacing: 6
-                                Text { text: qsTr("Scope:"); color: "#89a6d4"; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium }
+                                Text { text: qsTr("Scope:"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium }
                                 ButtonGroup { id: scopeGroup }
                                 Repeater {
                                     model: [{id:"scopeAll",t:qsTr("All uploads"),chk:true},{id:"scopeVid",t:qsTr("Videos")},{id:"scopeSho",t:qsTr("Shorts")},{id:"scopeLiv",t:qsTr("Live")}]
@@ -877,7 +877,7 @@ Window {
                                             Rectangle { width: 5; height: 5; radius: 3; anchors.centerIn: parent; color: "#4488dd"; visible: scopeRb.checked }
                                         }
                                         contentItem: Text {
-                                            leftPadding: 4; text: scopeRb.text; color: "#c0c0d8"
+                                            leftPadding: 4; text: scopeRb.text; color: "#c0c0c0"
                                             font: scopeRb.font; verticalAlignment: Text.AlignVCenter
                                         }
                                     }
@@ -892,8 +892,8 @@ Window {
                     Layout.fillWidth: true
                     implicitHeight: subsInner.implicitHeight + 12
                     radius: 3
-                    color: "#181e18"
-                    border.color: subsCheck.checked ? "#336633" : "#2a2a2a"
+                    color: "#252525"
+                    border.color: "#3a3a3a"
 
                     ColumnLayout {
                         id: subsInner
@@ -905,13 +905,12 @@ Window {
                             InlineCheck {
                                 id: subsCheck
                                 label: qsTr("Subtitles")
-                                accentColor: "#55cc55"; accentBg: "#1a3a1a"
                                 tip: qsTr("Download subtitle files alongside the video")
                             }
                             Item { Layout.fillWidth: true }
                             RowLayout {
                                 visible: subsCheck.checked; spacing: 5
-                                Text { text: qsTr("Language:"); color: "#778877"; font.pixelSize: 11 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Language:"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
                                 Rectangle {
                                     width: 68; height: 20; radius: 2; color: "#1b1b1b"
                                     border.color: subLangsField.activeFocus ? "#4488dd" : "#3a3a3a"
@@ -946,7 +945,7 @@ Window {
                 Rectangle {
                     Layout.fillWidth: true
                     implicitHeight: ppRow.implicitHeight + 12
-                    radius: 3; color: "#1a1a22"; border.color: "#2a2a2a"
+                    radius: 3; color: "#252525"; border.color: "#3a3a3a"
 
                     RowLayout {
                         id: ppRow
@@ -956,7 +955,6 @@ Window {
                         InlineCheck { id: embedMetaCheck;   label: qsTr("Embed metadata");  tip: qsTr("Write title, uploader, chapters etc. into the container metadata") }
                         InlineCheck {
                             id: sponsorBlockCheck; label: qsTr("SponsorBlock")
-                            accentColor: "#aa77ee"; accentBg: "#2a1a40"
                             tip: qsTr("Remove sponsored segments, intros, outros and self-promotion\n(YouTube only · requires ffmpeg)")
                         }
                         Item { Layout.fillWidth: true }
@@ -984,14 +982,14 @@ Window {
 
                     Rectangle {
                         Layout.fillWidth: true; implicitHeight: 28; radius: 3
-                        color: advMouse.containsMouse ? "#23232e" : "#1d1d28"
-                        border.color: "#2e2e44"
+                        color: advMouse.containsMouse ? "#2a2a2a" : "#252525"
+                        border.color: "#3a3a3a"
 
                         RowLayout {
                             anchors { fill: parent; leftMargin: 9; rightMargin: 9 }
                             spacing: 6
-                            Text { text: root.advancedExpanded ? "▼" : "▶"; color: "#6677aa"; font.pixelSize: 9 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
-                            Text { text: qsTr("Advanced"); color: "#8899bb"; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium; Layout.alignment: Qt.AlignVCenter }
+                            Text { text: root.advancedExpanded ? "▼" : "▶"; color: "#888888"; font.pixelSize: 9 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
+                            Text { text: qsTr("Advanced"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium; Layout.alignment: Qt.AlignVCenter }
                             Item { Layout.fillWidth: true }
                             Text {
                                 visible: !root.advancedExpanded
@@ -1012,7 +1010,7 @@ Window {
                                     if (rateLimitField.text.trim().length > 0) p.push(qsTr("rate limit"))
                                     return p.join(" · ")
                                 }
-                                text: s; color: "#445577"; font.pixelSize: 10 * App.fontScale; Layout.alignment: Qt.AlignVCenter
+                                text: s; color: "#888888"; font.pixelSize: 10 * App.fontScale; Layout.alignment: Qt.AlignVCenter
                             }
                         }
                         MouseArea { id: advMouse; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor; onClicked: root.advancedExpanded = !root.advancedExpanded }
@@ -1022,23 +1020,23 @@ Window {
                         Layout.fillWidth: true
                         visible: root.advancedExpanded
                         implicitHeight: advGrid.implicitHeight + 18
-                        radius: 3; color: "#181820"; border.color: "#28283c"
+                        radius: 3; color: "#252525"; border.color: "#3a3a3a"
 
                         GridLayout {
                             id: advGrid
                             anchors { fill: parent; margins: 10 }
                             columns: 2; rowSpacing: 8; columnSpacing: 10
 
-                            Text { text: qsTr("After date:"); color: "#7788aa"; font.pixelSize: 11 * App.fontScale; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
+                            Text { text: qsTr("After date:"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
                             RowLayout { spacing: 6
                                 Rectangle { width: 100; height: 20; radius: 2; color: "#1b1b1b"; border.color: dateAfterField.activeFocus ? "#4488dd" : "#3a3a3a"
-                                    Text { anchors.left: parent.left; anchors.leftMargin: 5; anchors.verticalCenter: parent.verticalCenter; text: "YYYY-MM-DD"; color: "#383848"; font.pixelSize: 11 * App.fontScale; visible: dateAfterField.text.length === 0 }
+                                    Text { anchors.left: parent.left; anchors.leftMargin: 5; anchors.verticalCenter: parent.verticalCenter; text: "YYYY-MM-DD"; color: "#555555"; font.pixelSize: 11 * App.fontScale; visible: dateAfterField.text.length === 0 }
                                     TextInput { id: dateAfterField; anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5; color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; verticalAlignment: Text.AlignVCenter; selectByMouse: true }
                                 }
-                                Text { text: qsTr("Only videos uploaded on or after this date"); color: "#445566"; font.pixelSize: 10 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Only videos uploaded on or after this date"); color: "#888888"; font.pixelSize: 10 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
                             }
 
-                            Text { text: qsTr("Cookies:"); color: "#7788aa"; font.pixelSize: 11 * App.fontScale; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
+                            Text { text: qsTr("Cookies:"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
                             RowLayout { spacing: 6
                                 ComboBox {
                                     id: cookiesBrowserCombo; implicitWidth: 100; implicitHeight: 24; font.pixelSize: 11 * App.fontScale; currentIndex: 0
@@ -1057,10 +1055,10 @@ Window {
                                         contentItem: ListView { implicitHeight: contentHeight; clip: true; model: cookiesBrowserCombo.delegateModel }
                                     }
                                 }
-                                Text { text: qsTr("Load cookies for members-only / age-restricted content"); color: "#445566"; font.pixelSize: 10 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Load cookies for members-only / age-restricted content"); color: "#888888"; font.pixelSize: 10 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
                             }
 
-                            Text { text: qsTr("Rate limit:"); color: "#7788aa"; font.pixelSize: 11 * App.fontScale; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
+                            Text { text: qsTr("Rate limit:"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
                             RowLayout { spacing: 6
                                 Rectangle { width: 68; height: 20; radius: 2; color: "#1b1b1b"; border.color: rateLimitField.activeFocus ? "#4488dd" : "#3a3a3a"
                                     TextInput {
@@ -1072,16 +1070,16 @@ Window {
                                         onActiveFocusChanged: if (activeFocus) selectAll()
                                     }
                                 }
-                                Text { text: qsTr("KB/s  (blank = use global speed limit)"); color: "#445566"; font.pixelSize: 10 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("KB/s  (blank = use global speed limit)"); color: "#888888"; font.pixelSize: 10 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
                             }
 
-                            Text { text: qsTr("Time range:"); color: "#7788aa"; font.pixelSize: 11 * App.fontScale; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
+                            Text { text: qsTr("Time range:"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
                             RowLayout { spacing: 6
                                 Rectangle { width: 128; height: 20; radius: 2; color: "#1b1b1b"; border.color: sectionsField.activeFocus ? "#4488dd" : "#3a3a3a"
-                                    Text { anchors.left: parent.left; anchors.leftMargin: 5; anchors.verticalCenter: parent.verticalCenter; text: "*00:30-02:45"; color: "#383848"; font.pixelSize: 11 * App.fontScale; visible: sectionsField.text.length === 0 }
+                                    Text { anchors.left: parent.left; anchors.leftMargin: 5; anchors.verticalCenter: parent.verticalCenter; text: "*00:30-02:45"; color: "#555555"; font.pixelSize: 11 * App.fontScale; visible: sectionsField.text.length === 0 }
                                     TextInput { id: sectionsField; anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5; color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; verticalAlignment: Text.AlignVCenter; selectByMouse: true }
                                 }
-                                Text { text: qsTr("Download only this section, e.g. *01:30-03:00"); color: "#445566"; font.pixelSize: 10 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Download only this section, e.g. *01:30-03:00"); color: "#888888"; font.pixelSize: 10 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
                             }
 
                             Item { Layout.columnSpan: 2; implicitHeight: 2 }
@@ -1107,7 +1105,7 @@ Window {
                             }
 
                             // ── Wait for scheduled stream ──────────────────────
-                            Text { text: qsTr("Wait for stream:"); color: "#7788aa"; font.pixelSize: 11 * App.fontScale; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
+                            Text { text: qsTr("Wait for stream:"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
                             RowLayout { spacing: 6
                                 InlineCheck {
                                     id: waitForVideoCheck
@@ -1130,14 +1128,14 @@ Window {
                                         onActiveFocusChanged: if (activeFocus) selectAll()
                                     }
                                 }
-                                Text { text: qsTr("s retry interval  (for scheduled/upcoming streams)"); color: "#445566"; font.pixelSize: 10 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("s retry interval  (for scheduled/upcoming streams)"); color: "#888888"; font.pixelSize: 10 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
                             }
 
                             // ── Concurrent DASH/HLS fragments ─────────────────
-                            Text { text: qsTr("Parallel frags:"); color: "#7788aa"; font.pixelSize: 11 * App.fontScale; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
+                            Text { text: qsTr("Parallel frags:"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
                             RowLayout { spacing: 6
                                 Rectangle { width: 44; height: 20; radius: 2; color: "#1b1b1b"; border.color: concFragField.activeFocus ? "#4488dd" : "#3a3a3a"
-                                    Text { anchors.left: parent.left; anchors.leftMargin: 5; anchors.verticalCenter: parent.verticalCenter; text: "1"; color: "#383848"; font.pixelSize: 11 * App.fontScale; visible: concFragField.text.length === 0 }
+                                    Text { anchors.left: parent.left; anchors.leftMargin: 5; anchors.verticalCenter: parent.verticalCenter; text: "1"; color: "#555555"; font.pixelSize: 11 * App.fontScale; visible: concFragField.text.length === 0 }
                                     TextInput {
                                         id: concFragField
                                         anchors { fill: parent; leftMargin: 5; rightMargin: 5 }
@@ -1147,7 +1145,7 @@ Window {
                                         onActiveFocusChanged: if (activeFocus) selectAll()
                                     }
                                 }
-                                Text { text: qsTr("Concurrent DASH/HLS fragments (blank = 1, max 16)"); color: "#445566"; font.pixelSize: 10 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Concurrent DASH/HLS fragments (blank = 1, max 16)"); color: "#888888"; font.pixelSize: 10 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
                             }
                         }
                     }
