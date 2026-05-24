@@ -2780,7 +2780,7 @@ ApplicationWindow {
             delegate: CompactMenuItem
             implicitWidth: 260
             topPadding: 0; bottomPadding: 0
-            CompactMenuItem { text: qsTr("Add URL…");          iconSrc: "icons/add_url.svg";  onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
+            CompactMenuItem { text: qsTr("Add URL…"); shortcutDisplay: "Ctrl+N"; iconSrc: "icons/add_url.svg";  onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
             CompactMenuItem { text: qsTr("Add Torrent File…"); iconSrc: "icons/torrent_file.svg";   onTriggered: addTorrentFileDialog.open() }
             CompactMenuItem { text: qsTr("Add Batch URLs…");   iconSrc: "icons/add.svg";      onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
             MenuSeparator {}
