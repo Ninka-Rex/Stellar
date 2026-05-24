@@ -2323,11 +2323,22 @@ int AppController::activeDownloads() const {
             continue;
         if (item->statusEnum() == DownloadItem::Status::Downloading
             || item->statusEnum() == DownloadItem::Status::Assembling
-            || item->statusEnum() == DownloadItem::Status::Queued
-            || item->statusEnum() == DownloadItem::Status::Seeding)
+            || item->statusEnum() == DownloadItem::Status::Queued)
             ++count;
     }
     return count;
+}
+
+bool AppController::canPauseAll() const {
+    for (DownloadItem *item : m_downloadModel->allItems()) {
+        if (!item)
+            continue;
+        if (item->statusEnum() == DownloadItem::Status::Downloading
+            || item->statusEnum() == DownloadItem::Status::Queued
+            || item->statusEnum() == DownloadItem::Status::Seeding)
+            return true;
+    }
+    return false;
 }
 
 int AppController::totalDownloads() const {

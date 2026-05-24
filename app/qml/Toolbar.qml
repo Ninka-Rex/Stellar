@@ -117,7 +117,7 @@ Rectangle {
         switch (key) {
             case "resume":    return downloadTable ? (downloadTable.selectedItemStatus === "Paused" || downloadTable.selectedItemStatus === "Error") : false
             case "stop":      return downloadTable ? (downloadTable.selectedItemStatus === "Downloading" || downloadTable.selectedItemStatus === "Queued" || downloadTable.selectedItemStatus === "Seeding") : false
-            case "stop_all":  return App.activeDownloads > 0
+            case "stop_all":  return App.canPauseAll
             case "delete":    return downloadTable ? downloadTable.hasSelection : false
             default:          return true
         }
