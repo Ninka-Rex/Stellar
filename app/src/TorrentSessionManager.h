@@ -58,9 +58,9 @@ public:
     bool available() const;
     bool isTorrentUri(const QString &value) const;
     void applySettings(const AppSettings *settings);
-    bool addMagnet(DownloadItem *item, bool startPaused);
-    bool addTorrentFile(DownloadItem *item, const QString &torrentFilePath, bool startPaused);
-    bool restoreTorrent(DownloadItem *item);
+    bool addMagnet(DownloadItem *item, bool startPaused, bool deferModels = false);
+    bool addTorrentFile(DownloadItem *item, const QString &torrentFilePath, bool startPaused, bool deferModels = false);
+    bool restoreTorrent(DownloadItem *item, bool deferModels = false);
     void pause(const QString &downloadId);
     void resume(DownloadItem *item);
     void remove(const QString &downloadId, bool deleteFiles = false);
@@ -214,7 +214,7 @@ private:
                       bool forceTrackerUpdate = false, bool trackerOnly = false);
     void requestIpFilterRebuild(); // coalesced via m_ipFilterRebuildPending
     void flushIpFilterRebuild();
-    bool addTorrentInternal(DownloadItem *item, bool startPaused, const QString &torrentFilePath);
+    bool addTorrentInternal(DownloadItem *item, bool startPaused, const QString &torrentFilePath, bool deferModels);
     void checkShareLimits(const QString &id, DownloadItem *item, const AppSettings *settings);
     void refreshPeerBanRules(const AppSettings *settings);
     void rebuildIpFilter();

@@ -2167,14 +2167,24 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         // by the singleShot queue.
         const int itemCount = static_cast<int>(items.size());
         m_restoreTotalCount = itemCount;
+        // Bulk-add mode: addItem() defers per-row insertRows + signal
+        // wiring. A single beginResetModel/endResetModel in endBulkAdd
+        // replaces 40 individual insert notifications, avoiding QML
+        // delegate creation churn during restore.
+        m_downloadModel->beginBulkAdd();
         // Emit immediately so the QML empty-state can show "Loading N
         // downloads…" the moment the window paints, rather than briefly
         // showing "Click Add URL to start" before the first per-item restore
         // lambda fires.
         emit restoreProgressChanged();
         auto finalizeRestore = [this]() {
+            m_downloadModel->endBulkAdd();
             m_restoring = false;
             emit restoreProgressChanged();
+            // Connect persistence signal handlers now that all set*() calls
+            // from addTorrentInternal are done — avoids cascading signal storms.
+            for (auto *item : m_downloadModel->allItems())
+                watchItem(item);
             // Clear the cached "starting up" tooltip so the next 5 s tooltip-
             // timer tick replaces it with the live download stats. We don't
             // setToolTip("") here â€” that would briefly blank the tooltip
@@ -2224,17 +2234,19 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             restoreTimer->setInterval(1);
             int restoreIndex = 0;
             connect(restoreTimer, &QTimer::timeout, this, [this, items, itemCount, restoreTimer, restoreIndex, finalizeRestore]() mutable {
-                constexpr int kRestoreBatchSize = 128;
+                constexpr int kRestoreBatchSize = 1;
                 for (int batchCount = 0; batchCount < kRestoreBatchSize && restoreIndex < itemCount; ++batchCount, ++restoreIndex) {
                     DownloadItem *item = items.at(restoreIndex);
                     m_queue->enqueueRestored(item);
-                    watchItem(item);
+                    // watchItem deferred to finalizeRestore — connecting
+                    // signal handlers here makes them fire during
+                    // addTorrentInternal's set*() cascade.
                     if (item->isTorrent()) {
                         const auto s = item->statusEnum();
                         if (s == DownloadItem::Status::Seeding
                                 || s == DownloadItem::Status::Completed)
                             m_restoredSeedingIds.insert(item->id());
-                        m_torrentSession->restoreTorrent(item);
+                        m_torrentSession->restoreTorrent(item, true);
                         applyPerTorrentSpeedLimits(m_torrentSession, item);
                     }
                 }

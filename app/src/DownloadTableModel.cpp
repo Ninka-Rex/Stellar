@@ -105,10 +105,7 @@ QHash<int, QByteArray> DownloadTableModel::roleNames() const {
     return roles;
 }
 
-void DownloadTableModel::addItem(DownloadItem *item) {
-    m_items.append(item);
-    
-    // Relay item change signals to model updates
+void DownloadTableModel::connectItemSignals(DownloadItem *item) {
     connect(item, &DownloadItem::filenameChanged,   this, &DownloadTableModel::onItemChanged);
     connect(item, &DownloadItem::totalBytesChanged, this, &DownloadTableModel::onItemChanged);
     connect(item, &DownloadItem::statusChanged,      this, &DownloadTableModel::onItemChanged);
@@ -116,10 +113,17 @@ void DownloadTableModel::addItem(DownloadItem *item) {
     connect(item, &DownloadItem::torrentChanged,     this, &DownloadTableModel::onItemChanged);
     connect(item, &DownloadItem::categoryChanged,    this, &DownloadTableModel::onItemChanged);
     connect(item, &DownloadItem::queueIdChanged,     this, &DownloadTableModel::onItemChanged);
-    // High-frequency tick signals — only progress/speed/ETA columns change.
     connect(item, &DownloadItem::doneBytesChanged,    this, &DownloadTableModel::onItemProgressChanged);
     connect(item, &DownloadItem::speedChanged,        this, &DownloadTableModel::onItemProgressChanged);
     connect(item, &DownloadItem::torrentStatsChanged, this, &DownloadTableModel::onItemProgressChanged);
+}
+
+void DownloadTableModel::addItem(DownloadItem *item) {
+    m_items.append(item);
+    if (m_bulkAdding)
+        return;
+
+    connectItemSignals(item);
 
     // Add to visible if it matches current filter
     if (matchesFilter(item)) {
@@ -166,6 +170,31 @@ void DownloadTableModel::beginBulkRemove() {
 
 void DownloadTableModel::endBulkRemove() {
     m_bulkRemoving = false;
+    endResetModel();
+}
+
+void DownloadTableModel::beginBulkAdd() {
+    m_bulkAdding = true;
+}
+
+void DownloadTableModel::endBulkAdd() {
+    m_bulkAdding = false;
+
+    for (DownloadItem *item : m_items)
+        connectItemSignals(item);
+
+    m_visible.clear();
+    m_visible.reserve(m_items.size());
+    for (DownloadItem *item : m_items) {
+        if (matchesFilter(item))
+            m_visible.append(item);
+    }
+    std::sort(m_visible.begin(), m_visible.end(),
+        [this](DownloadItem *a, DownloadItem *b) {
+            return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
+        });
+
+    beginResetModel();
     endResetModel();
 }
 

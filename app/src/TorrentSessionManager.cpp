@@ -1693,28 +1693,30 @@ QString TorrentSessionManager::dhtEstimateDebugText() const {
 #endif
 }
 
-bool TorrentSessionManager::addMagnet(DownloadItem *item, bool startPaused) {
+bool TorrentSessionManager::addMagnet(DownloadItem *item, bool startPaused, bool deferModels) {
 #if defined(STELLAR_HAS_LIBTORRENT)
-    return addTorrentInternal(item, startPaused, QString());
+    return addTorrentInternal(item, startPaused, QString(), deferModels);
 #else
     Q_UNUSED(item);
     Q_UNUSED(startPaused);
+    Q_UNUSED(deferModels);
     return false;
 #endif
 }
 
-bool TorrentSessionManager::addTorrentFile(DownloadItem *item, const QString &torrentFilePath, bool startPaused) {
+bool TorrentSessionManager::addTorrentFile(DownloadItem *item, const QString &torrentFilePath, bool startPaused, bool deferModels) {
 #if defined(STELLAR_HAS_LIBTORRENT)
-    return addTorrentInternal(item, startPaused, torrentFilePath);
+    return addTorrentInternal(item, startPaused, torrentFilePath, deferModels);
 #else
     Q_UNUSED(item);
     Q_UNUSED(torrentFilePath);
     Q_UNUSED(startPaused);
+    Q_UNUSED(deferModels);
     return false;
 #endif
 }
 
-bool TorrentSessionManager::restoreTorrent(DownloadItem *item) {
+bool TorrentSessionManager::restoreTorrent(DownloadItem *item, bool deferModels) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     if (!item || !item->isTorrent())
         return false;
@@ -1735,10 +1737,11 @@ bool TorrentSessionManager::restoreTorrent(DownloadItem *item) {
         m_firedFinishedIds.insert(item->id());
     const bool paused = s == DownloadItem::Status::Paused;
     if (item->torrentSource().startsWith(QStringLiteral("magnet:?"), Qt::CaseInsensitive))
-        return addMagnet(item, paused);
-    return addTorrentFile(item, item->torrentSource(), paused);
+        return addMagnet(item, paused, deferModels);
+    return addTorrentFile(item, item->torrentSource(), paused, deferModels);
 #else
     Q_UNUSED(item);
+    Q_UNUSED(deferModels);
     return false;
 #endif
 }
@@ -2560,7 +2563,7 @@ QString TorrentSessionManager::idForHandle(const libtorrent::torrent_handle &han
     return m_handleToId.value(handle);
 }
 
-bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPaused, const QString &torrentFilePath) {
+bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPaused, const QString &torrentFilePath, bool deferModels) {
     if (!item)
         return false;
 
@@ -2717,7 +2720,7 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
     // For .torrent files the metadata is already present — populate the file
     // model immediately so the metadata dialog shows files without waiting for
     // the first alert tick (which previously made it appear to "ping the swarm").
-    if (!torrentFilePath.isEmpty())
+    if (!torrentFilePath.isEmpty() && !deferModels)
         updateModels(item->id(), handle, false);
 
     return true;
