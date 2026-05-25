@@ -119,12 +119,12 @@ Rectangle {
         clip: true
 
         Column {
-            id: sidebarColumn
+            id: _sidebarCol
             width: mainScroll.width
             spacing: 0
 
             Repeater {
-                id: sectionRepeater
+                id: _sectionRepeater
                 model: App.settings.sidebarOrder
 
                 delegate: Item {
@@ -191,8 +191,8 @@ Rectangle {
                                 id: allDlMouse
                                 sectionIndex: sectionDelegate.secIdx
                                 sidebarRoot: root
-                                sidebarColumn: sidebarColumn
-                                sectionRepeater: sectionRepeater
+                                sidebarColumn: _sidebarCol
+                                sectionRepeater: _sectionRepeater
                                 onClicked:       { root.selectedIndex = 999; root.categorySelected("all") }
                                 onDoubleClicked: { root.allDownloadsExpanded = !root.allDownloadsExpanded }
                             }
@@ -268,7 +268,7 @@ Rectangle {
                                     dragState: _catDragState
                                     repeater: catRepeater
                                     rowCount: App.categoryModel.rowCount()
-                                    sidebarColumn: sidebarColumn
+                                    sidebarColumn: _sidebarCol
                                     applyReorder: function(from, target) {
                                         var toRow = (from < target) ? target - 1 : target
                                         if (toRow !== from && toRow >= 1)
@@ -326,8 +326,8 @@ Rectangle {
                             id: unfinMa
                             sectionIndex: sectionDelegate.secIdx
                             sidebarRoot: root
-                            sidebarColumn: sidebarColumn
-                            sectionRepeater: sectionRepeater
+                            sidebarColumn: _sidebarCol
+                            sectionRepeater: _sectionRepeater
                             onClicked: { root.selectedIndex = -1; root.categorySelected("status_active") }
                         }
                     }
@@ -352,8 +352,8 @@ Rectangle {
                             id: finMa
                             sectionIndex: sectionDelegate.secIdx
                             sidebarRoot: root
-                            sidebarColumn: sidebarColumn
-                            sectionRepeater: sectionRepeater
+                            sidebarColumn: _sidebarCol
+                            sectionRepeater: _sectionRepeater
                             onClicked: { root.selectedIndex = -2; root.categorySelected("status_completed") }
                         }
                     }
@@ -381,8 +381,8 @@ Rectangle {
                                 id: grabberHeaderMa
                                 sectionIndex: sectionDelegate.secIdx
                                 sidebarRoot: root
-                                sidebarColumn: sidebarColumn
-                                sectionRepeater: sectionRepeater
+                                sidebarColumn: _sidebarCol
+                                sectionRepeater: _sectionRepeater
                                 onClicked: { root.grabberExpanded = !root.grabberExpanded }
                             }
                         }
@@ -428,7 +428,7 @@ Rectangle {
                                     dragState: _grabberDragState
                                     repeater: grabberRepeater
                                     rowCount: App.grabberProjectModel.rowCount()
-                                    sidebarColumn: sidebarColumn
+                                    sidebarColumn: _sidebarCol
                                     acceptedButtons: Qt.LeftButton | Qt.RightButton
                                     applyReorder: function(from, target) {
                                         var toRow = (from < target) ? target - 1 : target
@@ -484,8 +484,8 @@ Rectangle {
                                 id: torrentHeaderMa
                                 sectionIndex: sectionDelegate.secIdx
                                 sidebarRoot: root
-                                sidebarColumn: sidebarColumn
-                                sectionRepeater: sectionRepeater
+                                sidebarColumn: _sidebarCol
+                                sectionRepeater: _sectionRepeater
                                 onClicked:       { root.selectedIndex = -200; root.categorySelected("torrent_all") }
                                 onDoubleClicked: { root.torrentsExpanded = !root.torrentsExpanded }
                             }
@@ -569,7 +569,7 @@ Rectangle {
                                     dragState: _torrentSubcatDragState
                                     repeater: torrentSubcatRepeater
                                     rowCount: App.settings.torrentSubcatOrder.length
-                                    sidebarColumn: sidebarColumn
+                                    sidebarColumn: _sidebarCol
                                     applyReorder: function(from, target) {
                                         root._applyTorrentSubcatReorder()
                                     }
@@ -618,8 +618,8 @@ Rectangle {
                                 id: queueHeaderMa
                                 sectionIndex: sectionDelegate.secIdx
                                 sidebarRoot: root
-                                sidebarColumn: sidebarColumn
-                                sectionRepeater: sectionRepeater
+                                sidebarColumn: _sidebarCol
+                                sectionRepeater: _sectionRepeater
                                 onClicked:       { root.selectedIndex = -999; root.queueSelected("queue_any") }
                                 onDoubleClicked: { root.queuesExpanded = !root.queuesExpanded }
                             }
