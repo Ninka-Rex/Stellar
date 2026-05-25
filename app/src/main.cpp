@@ -32,6 +32,7 @@
 #include <QFile>
 #include <QDir>
 #include <QUrl>
+#include <QUrlQuery>
 #include <QTextStream>
 #include <QStandardPaths>
 #include <QLibraryInfo>
@@ -262,10 +263,17 @@ static QByteArray makeTorrentPlainPayload(const QString &filePath)
 
 static QByteArray makeMagnetPlainPayload(const QString &magnetUri)
 {
+    QString filename = QStringLiteral("Magnetized transfer");
+    if (magnetUri.startsWith(QStringLiteral("magnet:?"), Qt::CaseInsensitive)) {
+        QUrlQuery query(QUrl(magnetUri).query());
+        const QString dn = query.queryItemValue(QStringLiteral("dn"));
+        if (!dn.isEmpty())
+            filename = dn.trimmed();
+    }
     return QJsonDocument(QJsonObject{
         {QStringLiteral("type"),     QStringLiteral("download")},
         {QStringLiteral("url"),      magnetUri},
-        {QStringLiteral("filename"), QStringLiteral("Magnetized transfer")}
+        {QStringLiteral("filename"), filename}
     }).toJson(QJsonDocument::Compact);
 }
 

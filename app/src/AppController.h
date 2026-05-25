@@ -295,14 +295,16 @@ public:
     Q_INVOKABLE QString beginTorrentMetadataDownload(const QString &source, const QString &savePath = {},
                                                      const QString &category = {}, const QString &description = {},
                                                      bool startWhenReady = true);
-    void silentlyAddTorrent(const QString &source, const QString &savePath = {},
-                            const QString &category = {}, const QString &description = {},
-                            const QString &queueId = {});
+    Q_INVOKABLE void silentlyAddTorrent(const QString &source, const QString &savePath = {},
+                                        const QString &category = {}, const QString &description = {},
+                                        bool startNow = true, const QString &queueId = {});
     Q_INVOKABLE bool confirmTorrentDownload(const QString &downloadId, const QString &savePath = {},
                                             const QString &category = {}, const QString &description = {},
                                             bool startNow = true, const QString &queueId = {});
     Q_INVOKABLE void discardTorrentDownload(const QString &downloadId);
 
+    Q_INVOKABLE bool writeTextFile(const QString &path, const QString &content);
+    Q_INVOKABLE QString readTextFile(const QString &path);
     Q_INVOKABLE void checkUrl(const QString &url, QJSValue callback);
     Q_INVOKABLE void probeFileInfo(const QString &url, const QString &cookies,
                                    const QString &referrer, QJSValue callback);

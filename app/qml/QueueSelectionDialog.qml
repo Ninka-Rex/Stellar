@@ -199,8 +199,21 @@ Window {
         var queueId = queueIds[queueCombo.currentIndex] || ""
         if (pendingContext === "batch") {
             App.settings.showQueueSelectionOnBatchDownload = !askChk.checked
-            for (var i = 0; i < pendingBatchUrls.length; ++i)
-                App.addUrl(pendingBatchUrls[i].url, "", "", "", true, "", "", "", "", "", pendingBatchUrls[i].filename, queueId)
+            for (var i = 0; i < pendingBatchUrls.length; ++i) {
+                var _qb = pendingBatchUrls[i]
+                var _qburl = _qb.url
+                var _qbl = _qburl.toLowerCase()
+                var sp = _qb.savePath || ""
+                var cat = _qb.category || ""
+                var desc = _qb.description || ""
+                var ref = _qb.referer || ""
+                var uname = _qb.username || ""
+                var pword = _qb.password || ""
+                if (_qbl.startsWith("magnet:?") || _qbl.endsWith(".torrent"))
+                    App.silentlyAddTorrent(_qburl, sp, cat, desc, true, queueId)
+                else
+                    App.addUrl(_qburl, sp, cat, desc, true, "", ref, "", uname, pword, _qb.filename, queueId)
+            }
             if (queueId.length > 0 && startChk.checked)
                 App.startQueue(queueId)
         } else if (pendingContext === "grabber" && pendingGrabberProjectId.length > 0) {
@@ -254,8 +267,21 @@ Window {
     function _addWithoutQueue() {
         if (pendingContext === "batch") {
             App.settings.showQueueSelectionOnBatchDownload = !askChk.checked
-            for (var i = 0; i < pendingBatchUrls.length; ++i)
-                App.addUrl(pendingBatchUrls[i].url, "", "", "", startChk.checked, "", "", "", "", "", pendingBatchUrls[i].filename)
+            for (var i = 0; i < pendingBatchUrls.length; ++i) {
+                var _qb2 = pendingBatchUrls[i]
+                var _qburl2 = _qb2.url
+                var _qbl2 = _qburl2.toLowerCase()
+                var sp2 = _qb2.savePath || ""
+                var cat2 = _qb2.category || ""
+                var desc2 = _qb2.description || ""
+                var ref2 = _qb2.referer || ""
+                var uname2 = _qb2.username || ""
+                var pword2 = _qb2.password || ""
+                if (_qbl2.startsWith("magnet:?") || _qbl2.endsWith(".torrent"))
+                    App.silentlyAddTorrent(_qburl2, sp2, cat2, desc2, startChk.checked)
+                else
+                    App.addUrl(_qburl2, sp2, cat2, desc2, startChk.checked, "", ref2, "", uname2, pword2, _qb2.filename)
+            }
         } else if (pendingContext === "grabber" && pendingGrabberProjectId.length > 0) {
             App.downloadGrabberResults(pendingGrabberProjectId, startChk.checked)
         } else if (pendingContext === "later" && pendingLaterUrl.length > 0) {

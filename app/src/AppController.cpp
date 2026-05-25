@@ -1231,7 +1231,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         if (isTorrent) {
             // Silent add: stage then immediately confirm so no dialog is shown.
             silentlyAddTorrent(url, savePath, category,
-                               QStringLiteral("RSS auto-download"), queueId);
+                               QStringLiteral("RSS auto-download"), true, queueId);
         } else {
             addUrl(url, savePath, category, QStringLiteral("RSS auto-download"),
                    true, {}, {}, {}, {}, {}, {}, queueId);
@@ -2549,6 +2549,15 @@ DownloadItem *AppController::createDownloadItem(const QString &url, const QStrin
     return item;
 }
 
+static QString magnetDisplayName(const QString &uri) {
+    if (!uri.startsWith(QStringLiteral("magnet:?"), Qt::CaseInsensitive))
+        return {};
+    QUrl url(uri);
+    QUrlQuery query(url.query());
+    QString dn = query.queryItemValue(QStringLiteral("dn"));
+    return dn.isEmpty() ? QStringLiteral("Magnetized transfer") : dn.trimmed();
+}
+
 DownloadItem *AppController::createTorrentItem(const QString &source, const QString &savePath,
                                                const QString &category, const QString &description,
                                                bool startNow, const QString &queueId, bool emitUiSignal,
@@ -2564,7 +2573,7 @@ DownloadItem *AppController::createTorrentItem(const QString &source, const QStr
     item->setTorrentSource(trimmed);
 
     const QString filename = trimmed.startsWith(QStringLiteral("magnet:?"), Qt::CaseInsensitive)
-        ? QStringLiteral("Magnetized transfer")
+        ? magnetDisplayName(trimmed)
         : QFileInfo(trimmed).completeBaseName();
     if (!filename.isEmpty()) {
         item->setFilename(filename);
@@ -3112,7 +3121,7 @@ QString AppController::beginTorrentMetadataDownload(const QString &source, const
 // so the item goes straight to the queue without user interaction.
 void AppController::silentlyAddTorrent(const QString &source, const QString &savePath,
                                        const QString &category, const QString &description,
-                                       const QString &queueId)
+                                       bool startNow, const QString &queueId)
 {
     if (!m_torrentSession || !m_torrentSession->available())
         return;
@@ -3125,7 +3134,7 @@ void AppController::silentlyAddTorrent(const QString &source, const QString &sav
     if (isTorrentUri(trimmed)) {
         const QString id = addMagnetLink(trimmed, savePath, category, description, false, {});
         if (!id.isEmpty())
-            confirmTorrentDownload(id, savePath, category, description, true, queueId);
+            confirmTorrentDownload(id, savePath, category, description, startNow, queueId);
         return;
     }
 
@@ -3142,9 +3151,10 @@ void AppController::silentlyAddTorrent(const QString &source, const QString &sav
         const QString cat  = category;
         const QString desc = description;
         const QString qid  = queueId;
+        const bool    sn   = startNow;
 
         QNetworkReply *reply = m_nam->get(torrentReq);
-        connect(reply, &QNetworkReply::finished, this, [this, reply, sp, cat, desc, qid]() {
+        connect(reply, &QNetworkReply::finished, this, [this, reply, sp, cat, desc, qid, sn]() {
             reply->deleteLater();
             if (reply->error() != QNetworkReply::NoError)
                 return; // Silently drop — auto-downloads are best-effort.
@@ -3163,7 +3173,7 @@ void AppController::silentlyAddTorrent(const QString &source, const QString &sav
             const QString id = addTorrentFile(tempPath, sp, cat, desc, false, {});
             QFile::remove(tempPath);
             if (!id.isEmpty())
-                confirmTorrentDownload(id, sp, cat, desc, true, qid);
+                confirmTorrentDownload(id, sp, cat, desc, sn, qid);
         });
         return;
     }
@@ -3171,7 +3181,7 @@ void AppController::silentlyAddTorrent(const QString &source, const QString &sav
     // Local .torrent file path.
     const QString id = addTorrentFile(trimmed, savePath, category, description, false, {});
     if (!id.isEmpty())
-        confirmTorrentDownload(id, savePath, category, description, true, queueId);
+        confirmTorrentDownload(id, savePath, category, description, startNow, queueId);
 }
 
 bool AppController::confirmTorrentDownload(const QString &downloadId, const QString &savePath,
@@ -7935,4 +7945,26 @@ qint64 AppController::totalInputSize(const QStringList &paths) const {
         }
     }
     return total;
+}
+
+bool AppController::writeTextFile(const QString &path, const QString &content)
+{
+    QFile f(path);
+    if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate))
+        return false;
+    f.write(content.toUtf8());
+    f.close();
+    return true;
+}
+
+QString AppController::readTextFile(const QString &path)
+{
+    QFile f(path);
+    if (!f.open(QIODevice::ReadOnly))
+        return {};
+    QByteArray data = f.readAll();
+    // Strip UTF-8 BOM if present
+    if (data.startsWith('\xEF\xBB\xBF'))
+        data = data.mid(3);
+    return QString::fromUtf8(data);
 }

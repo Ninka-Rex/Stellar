@@ -181,6 +181,23 @@ ApplicationWindow {
         return App.normalizeTorrentSaveDirectory(pathText || "")
     }
 
+    function extractMagnetDisplayName(url) {
+        var s = (url === undefined || url === null) ? "" : String(url)
+        if (!s.toLowerCase().startsWith("magnet:?"))
+            return ""
+        var q = s.indexOf("?")
+        if (q < 0) return ""
+        var params = s.substring(q + 1).split("&")
+        for (var i = 0; i < params.length; i++) {
+            var eq = params[i].indexOf("=")
+            if (eq > 0 && params[i].substring(0, eq).toLowerCase() === "dn") {
+                var raw = params[i].substring(eq + 1)
+                try { return decodeURIComponent(raw.replace(/\+/g, " ")) } catch(e) { return raw }
+            }
+        }
+        return ""
+    }
+
     function showTorrentMetadataDialog(downloadId, startWhenReady) {
         if (!downloadId || downloadId.length === 0)
             return
@@ -1026,6 +1043,148 @@ ApplicationWindow {
         onRejected: root.pendingTorrentExportIds = []
     }
 
+    // ── Import / Export file dialogs ──────────────────────────────────────────
+
+    FileDialog {
+        id: exportEf2Dialog
+        title: qsTr("Export Downloads")
+        fileMode: FileDialog.SaveFile
+        nameFilters: [qsTr("SDM Export File (*.ef2)")]
+        defaultSuffix: "ef2"
+        onAccepted: {
+            var rawPath = selectedFile.toString()
+                .replace(/^file:\/\/\//, "")
+                .replace(/^file:\/\//, "")
+            var items = root._pendingExportItems || []
+            var content = ""
+            for (var ei = 0; ei < items.length; ei++) {
+                var it = items[ei]
+                var url = it.url ? it.url.toString() : ""
+                if (url.length === 0) continue
+                content += "<\r\n" + url + "\r\n"
+                var ref = it.referrer || ""
+                if (ref.length > 0) content += "referer: " + ref + "\r\n"
+                content += "User-Agent: Stellar/1.0\r\n>\r\n"
+            }
+            if (content.length > 0)
+                App.writeTextFile(rawPath, content)
+        }
+    }
+
+    FileDialog {
+        id: exportTxtDialog
+        title: qsTr("Export Downloads")
+        fileMode: FileDialog.SaveFile
+        nameFilters: [qsTr("Text file (*.txt)")]
+        defaultSuffix: "txt"
+        onAccepted: {
+            var rawPath = selectedFile.toString()
+                .replace(/^file:\/\/\//, "")
+                .replace(/^file:\/\//, "")
+            var items = root._pendingExportItems || []
+            var content = ""
+            for (var ei = 0; ei < items.length; ei++) {
+                var it = items[ei]
+                var url = it.url ? it.url.toString() : ""
+                if (url.length === 0) continue
+                content += url + "\r\n"
+            }
+            if (content.length > 0)
+                App.writeTextFile(rawPath, content)
+        }
+    }
+
+    FileDialog {
+        id: importEf2Dialog
+        title: qsTr("Import Downloads")
+        fileMode: FileDialog.OpenFile
+        nameFilters: [qsTr("SDM Export File (*.ef2)")]
+        onAccepted: {
+            var rawPath = selectedFile.toString()
+                .replace(/^file:\/\/\//, "")
+                .replace(/^file:\/\//, "")
+            var text = App.readTextFile(rawPath)
+            if (text.length === 0)
+                return
+            var urls = []
+            // Parse .ef2: entries delimited by < ... >
+            var entries = text.split('\n')
+            var inEntry = false
+            for (var ei = 0; ei < entries.length; ei++) {
+                var line = entries[ei].replace(/\r$/, '').trim()
+                if (line === '<') {
+                    inEntry = true
+                    continue
+                }
+                if (line === '>') {
+                    inEntry = false
+                    continue
+                }
+                if (inEntry && line.length > 0
+                    && line.indexOf('referer:') !== 0
+                    && line.indexOf('User-Agent:') !== 0) {
+                    urls.push(line)
+                    inEntry = false
+                }
+            }
+            if (urls.length === 0)
+                return
+            var fileObjs = []
+            for (var ui = 0; ui < urls.length; ui++) {
+                var _url = urls[ui]
+                var _name = ""
+                if (_url.toLowerCase().startsWith("magnet:?"))
+                    _name = extractMagnetDisplayName(_url)
+                if (_name.length === 0)
+                    _name = _url.split('/').pop().split('?')[0]
+                fileObjs.push({ name: _name, url: _url })
+            }
+            batchDownloadListDialog.files = fileObjs
+            batchDownloadListDialog.isImport = true
+            batchDownloadListDialog.show()
+            batchDownloadListDialog.raise()
+        }
+    }
+
+    FileDialog {
+        id: importTxtDialog
+        title: qsTr("Import Downloads")
+        fileMode: FileDialog.OpenFile
+        nameFilters: [qsTr("Text file (*.txt)")]
+        onAccepted: {
+            var rawPath = selectedFile.toString()
+                .replace(/^file:\/\/\//, "")
+                .replace(/^file:\/\//, "")
+            var text = App.readTextFile(rawPath)
+            if (text.length === 0)
+                return
+            var urls = []
+            // Parse .txt: one URL per line
+            var lines = text.split(/\r?\n/)
+            for (var ti = 0; ti < lines.length; ti++) {
+                var trimmed = lines[ti].trim()
+                if (trimmed.length > 0 && trimmed.indexOf('referer:') !== 0 && trimmed.indexOf('User-Agent:') !== 0)
+                    urls.push(trimmed)
+            }
+            if (urls.length === 0)
+                return
+            var fileObjs = []
+            for (var ui = 0; ui < urls.length; ui++) {
+                var _url2 = urls[ui]
+                var _name2 = ""
+                if (_url2.toLowerCase().startsWith("magnet:?"))
+                    _name2 = extractMagnetDisplayName(_url2)
+                if (_name2.length === 0)
+                    _name2 = _url2.split('/').pop().split('?')[0]
+                fileObjs.push({ name: _name2, url: _url2 })
+            }
+            batchDownloadListDialog.files = fileObjs
+            batchDownloadListDialog.isImport = true
+            batchDownloadListDialog.show()
+            batchDownloadListDialog.raise()
+        }
+    }
+
     // Open the yt-dlp format picker for a video site URL.
     // No DownloadItem is created here — it only appears in the list once the
     // user confirms a format and App.finalizeYtdlpDownload() runs.
@@ -1124,6 +1283,9 @@ ApplicationWindow {
     property var _pendingBatchUrls: []
     property var _pendingLaterRequest: null
     property string _pendingQueueContext: ""
+    property string _pendingExportPath: ""
+    property string _pendingExportFormat: ""
+    property var _pendingExportItems: []
     property var _afterDownloadLaterWarning: null
 
     // ── Download File Info dialog (step 2) ────────────────────────────────────
@@ -2419,10 +2581,17 @@ ApplicationWindow {
             var fileObjs = []
             for(var i=0; i<urlList.length; i++) {
                 var rawUrl = (urlList[i] === undefined || urlList[i] === null) ? "" : String(urlList[i]).trim()
-                if(rawUrl.length > 0)
-                    fileObjs.push({ name: rawUrl.split('/').pop(), url: rawUrl })
+                if(rawUrl.length > 0) {
+                    var _name3 = ""
+                    if (rawUrl.toLowerCase().startsWith("magnet:?"))
+                        _name3 = extractMagnetDisplayName(rawUrl)
+                    if (_name3.length === 0)
+                        _name3 = rawUrl.split('/').pop()
+                    fileObjs.push({ name: _name3, url: rawUrl })
+                }
             }
             batchDownloadListDialog.files = fileObjs
+            batchDownloadListDialog.isImport = false
             batchDownloadListDialog.show()
             batchDownloadListDialog.raise()
         }
@@ -2444,7 +2613,19 @@ ApplicationWindow {
                 queueSelectionDialog.raise()
             } else {
                 for (var i = 0; i < files.length; ++i) {
-                    App.addUrl(files[i].url, "", "", "", true, "", "", "", "", "", files[i].filename)
+                    var f = files[i]
+                    var _burl = f.url
+                    var _bl = _burl.toLowerCase()
+                    var sp = f.savePath || ""
+                    var cat = f.category || ""
+                    var desc = f.description || ""
+                    var ref = f.referer || ""
+                    var uname = f.username || ""
+                    var pword = f.password || ""
+                    if (_bl.startsWith("magnet:?") || _bl.endsWith(".torrent"))
+                        App.silentlyAddTorrent(_burl, sp, cat, desc, true)
+                    else
+                        App.addUrl(_burl, sp, cat, desc, true, "", ref, "", uname, pword, f.filename)
                 }
             }
         }
@@ -2536,6 +2717,37 @@ ApplicationWindow {
 
     // ── Statistics Dialog ─────────────────────────────────────────────────────
     StatisticsDialog { id: statisticsDialog; transientParent: root }
+    ExportDialog {
+        id: exportDialog
+        transientParent: root
+        downloadTableRef: downloadTable
+        onAccepted: (mode) => {
+            var items = []
+            if (mode === "selected") {
+                items = downloadTable._selectedItems()
+            } else if (mode === "queue") {
+                var queueId = App.selectedQueue || ""
+                for (var qi = 0; qi < App.downloadModel.rowCount(); qi++) {
+                    var qitem = App.downloadModel.itemAt(qi)
+                    if (qitem && qitem.queueId === queueId)
+                        items.push(qitem)
+                }
+            } else {
+                for (var ai = 0; ai < App.downloadModel.rowCount(); ai++) {
+                    var aitem = App.downloadModel.itemAt(ai)
+                    if (aitem)
+                        items.push(aitem)
+                }
+            }
+            if (items.length === 0)
+                return
+            root._pendingExportItems = items
+            if (root._pendingExportFormat === "txt")
+                exportTxtDialog.open()
+            else
+                exportEf2Dialog.open()
+        }
+    }
 
     // ── Browser Integration Dialog ────────────────────────────────────────────
     BrowserIntegrationDialog { id: browserIntegrationDialog; transientParent: root }
@@ -2790,6 +3002,61 @@ ApplicationWindow {
             CompactMenuItem { text: qsTr("Add URL…"); shortcutDisplay: "Ctrl+N"; iconSrc: "icons/add_url.svg";  onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
             CompactMenuItem { text: qsTr("Add Torrent File…"); iconSrc: "icons/torrent_file.svg";   onTriggered: addTorrentFileDialog.open() }
             CompactMenuItem { text: qsTr("Add Batch URLs…");   iconSrc: "icons/add.svg";      onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
+            MenuSeparator {}
+            CompactMenuItem {
+                id: _exportMenuItem
+                text: qsTr("Export") + "  ▶"
+                onTriggered: _exportMenu.popup(_exportMenuItem.width, 0)
+                onHoveredChanged: {
+                    if (hovered) { _exportMenu.popup(_exportMenuItem.width, 0) }
+                    else { _exportCloseTimer.restart() }
+                }
+                Menu {
+                    id: _exportMenu
+                    delegate: CompactMenuItem; implicitWidth: 260; topPadding: 0; bottomPadding: 0
+                    onAboutToHide: _exportCloseTimer.stop()
+                    CompactMenuItem {
+                        text: qsTr("To SDM Export File (.ef2)…")
+                        onTriggered: {
+                            root._pendingExportFormat = "ef2"
+                            exportDialog.show()
+                            exportDialog.raise()
+                        }
+                    }
+                    CompactMenuItem {
+                        text: qsTr("To Text File…")
+                        onTriggered: {
+                            root._pendingExportFormat = "txt"
+                            exportDialog.show()
+                            exportDialog.raise()
+                        }
+                    }
+                }
+                Timer { id: _exportCloseTimer; interval: 300; onTriggered: { if (!_exportMenu.activeFocus) _exportMenu.close() } }
+            }
+            CompactMenuItem {
+                id: _importMenuItem
+                text: qsTr("Import") + "  ▶"
+                onTriggered: _importMenu.popup(_importMenuItem.width, 0)
+                onHoveredChanged: {
+                    if (hovered) { _importMenu.popup(_importMenuItem.width, 0) }
+                    else { _importCloseTimer.restart() }
+                }
+                Menu {
+                    id: _importMenu
+                    delegate: CompactMenuItem; implicitWidth: 260; topPadding: 0; bottomPadding: 0
+                    onAboutToHide: _importCloseTimer.stop()
+                    CompactMenuItem {
+                        text: qsTr("From SDM Export File (.ef2)…")
+                        onTriggered: importEf2Dialog.open()
+                    }
+                    CompactMenuItem {
+                        text: qsTr("From Text File…")
+                        onTriggered: importTxtDialog.open()
+                    }
+                }
+                Timer { id: _importCloseTimer; interval: 300; onTriggered: { if (!_importMenu.activeFocus) _importMenu.close() } }
+            }
             MenuSeparator {}
             CompactMenuItem { text: qsTr("Exit"); shortcutDisplay: "Ctrl+Q"; iconSrc: "icons/exit.svg"; onTriggered: root.quitApp() }
         }

@@ -19,24 +19,26 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
+import QtQuick.Dialogs
 
 Window {
     id: root
-    title: qsTr("Batch download review")
+    title: root.isImport ? qsTr("Import links to SDM") : qsTr("Batch download review")
     width: 980
-    height: 620
+    height: 500
     minimumWidth: 820
-    minimumHeight: 480
-    color: "#1e1e1e"
+    minimumHeight: 400
+    color: "#232323"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
     modality: Qt.ApplicationModal
 
     Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.background: "#232323"
     Material.accent: "#4488dd"
 
     property var files: []
     property var reviewRows: []
+    onReviewRowsChanged: _applyFilters()
     property string sortColumn: "name"
     property bool sortAscending: true
     property string resizingColumnKey: ""
@@ -45,6 +47,18 @@ Window {
     property string colDragFromKey: ""
     property string colDragInsertBeforeKey: ""
     property int probeGeneration: 0
+    property bool isImport: false
+    property string saveMode: "perCategory"
+    property string selectedCategoryId: ""
+    property string selectedDirectory: ""
+    property bool hideHtmlFiles: false
+    property bool hideRepeatedFiles: false
+    property var fileOverrides: ({})
+    property int selectedRowIndex: -1
+    property var _filteredIndices: []
+    property int _rowCount: 0
+
+    ButtonGroup { id: saveModeGroup }
 
     signal batchAccepted(var files)
 
@@ -61,8 +75,30 @@ Window {
         return (v === undefined || v === null) ? "" : String(v)
     }
 
+    function extractMagnetDisplayName(url) {
+        var s = safeString(url)
+        if (!s.toLowerCase().startsWith("magnet:?"))
+            return ""
+        var q = s.indexOf("?")
+        if (q < 0) return ""
+        var params = s.substring(q + 1).split("&")
+        for (var i = 0; i < params.length; i++) {
+            var eq = params[i].indexOf("=")
+            if (eq > 0 && params[i].substring(0, eq).toLowerCase() === "dn") {
+                var raw = params[i].substring(eq + 1)
+                try { return decodeURIComponent(raw.replace(/\+/g, " ")) } catch(e) { return raw }
+            }
+        }
+        return ""
+    }
+
     function baseName(url) {
-        var tail = safeString(url).split("/").pop()
+        var s = safeString(url)
+        if (s.toLowerCase().startsWith("magnet:?")) {
+            var dn = extractMagnetDisplayName(s)
+            if (dn.length > 0) return dn
+        }
+        var tail = s.split("/").pop()
         return tail.split("?")[0]
     }
 
@@ -124,12 +160,39 @@ Window {
         return 2
     }
 
+    function _applyFilters() {
+        var indices = []
+        var seenUrls = {}
+        for (var i = 0; i < reviewRows.length; ++i) {
+            var row = reviewRows[i]
+            if (!row) continue
+            if (root.hideHtmlFiles) {
+                var u = (row.sourceUrl || "").toLowerCase()
+                if (u.endsWith(".html") || u.endsWith(".htm"))
+                    continue
+            }
+            if (root.hideRepeatedFiles) {
+                var key = (row.sourceUrl || "").toLowerCase()
+                if (seenUrls[key] !== undefined)
+                    continue
+                seenUrls[key] = true
+            }
+            indices.push(i)
+        }
+        _filteredIndices = indices
+        _rowCount = indices.length
+        if (root.selectedRowIndex >= 0 && indices.indexOf(root.selectedRowIndex) < 0)
+            root.selectedRowIndex = -1
+    }
+
     function rowCount() {
-        return reviewRows ? reviewRows.length : 0
+        return _filteredIndices.length
     }
 
     function rowAt(index) {
-        return (reviewRows && index >= 0 && index < reviewRows.length) ? reviewRows[index] : null
+        if (index < 0 || index >= _filteredIndices.length)
+            return null
+        return reviewRows[_filteredIndices[index]]
     }
 
     function setRowProperty(index, key, value) {
@@ -212,16 +275,19 @@ Window {
                 initialName = baseName(f && f.url)
             if (initialName.length === 0)
                 initialName = "download"
+            var _url = safeString(f && f.url).toLowerCase()
+            var _isMagnet = _url.startsWith("magnet:?")
+            var _isTorrent = _url.endsWith(".torrent")
             rows.push({
                 rowIndex: i,
                 baseName: initialName,
                 displayName: initialName,
                 sourceUrl: safeString(f && f.url),
-                rowStatus: "Checking...",
-                statusRank: statusRank("Checking..."),
+                rowStatus: (_isMagnet || _isTorrent) ? "Found" : "Checking...",
+                statusRank: statusRank((_isMagnet || _isTorrent) ? "Found" : "Checking..."),
                 selected: true,
-                sizeBytes: -1,
-                sizeText: "",
+                sizeBytes: _isMagnet ? -1 : (_isTorrent ? -1 : -1),
+                sizeText: _isMagnet ? "" : (_isTorrent ? "" : ""),
                 iconSource: iconSourceForName(initialName)
             })
         }
@@ -236,6 +302,8 @@ Window {
         for (var i = 0; i < rowCount(); ++i) {
             (function(idx) {
                 var row = rowAt(idx)
+                if (!row || row.rowStatus !== "Checking...")
+                    return
                 var url = row ? row.sourceUrl : ""
                 App.probeFileInfo(url, "", "", function(info) {
                     if (generation !== probeGeneration || idx >= rowCount())
@@ -276,9 +344,10 @@ Window {
 
     function setAllSelected(selected) {
         var rows = reviewRows.slice()
-        for (var i = 0; i < rows.length; ++i) {
-            if (rows[i].rowStatus === "Found")
-                rows[i] = Object.assign({}, rows[i], { selected: selected })
+        for (var i = 0; i < rowCount(); ++i) {
+            var row = rowAt(i)
+            if (row && row.rowStatus === "Found")
+                rows[row.rowIndex] = Object.assign({}, rows[row.rowIndex], { selected: selected })
         }
         reviewRows = rows
     }
@@ -287,8 +356,29 @@ Window {
         var accepted = []
         for (var i = 0; i < rowCount(); ++i) {
             var row = rowAt(i)
-            if (row && row.selected && row.rowStatus === "Found")
-                accepted.push({ url: row.sourceUrl, filename: row.displayName })
+            if (!row || !row.selected || row.rowStatus !== "Found")
+                continue
+            var ov = root.fileOverrides[row.rowIndex] || {}
+            var url = ov.customUrl || row.sourceUrl
+            var sp = ov.savePath || ""
+            var cat = ""
+            if (root.saveMode === "oneCategory") {
+                cat = root.selectedCategoryId
+                if (!sp)
+                    sp = App.categoryModel.savePathForCategory(cat)
+            } else if (root.saveMode === "oneDirectory") {
+                sp = root.selectedDirectory
+            }
+            accepted.push({
+                url: url,
+                filename: row.displayName,
+                savePath: sp,
+                category: cat,
+                description: ov.description || "",
+                referer: ov.referer || "",
+                username: ov.username || "",
+                password: ov.password || ""
+            })
         }
         root.batchAccepted(accepted)
         root.close()
@@ -377,23 +467,32 @@ Window {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 14
-        spacing: 10
+        anchors.margins: 10
+        spacing: 6
 
-        ColumnLayout {
+        RowLayout {
             Layout.fillWidth: true
-            spacing: 4
-            Text { text: qsTr("Batch download review"); color: "#f0f0f0"; font.pixelSize: 16 * App.fontScale; font.bold: true }
+            spacing: 10
             Text {
-                text: qsTr("Review links before adding them. Columns can be sorted, resized, and dragged to reorder.")
-                color: "#aeb7c0"
-                font.pixelSize: 11 * App.fontScale
-                wrapMode: Text.WordWrap
+                text: root.isImport ? qsTr("Import links to SDM") : qsTr("Batch download review")
+                color: "#f0f0f0"
+                font.pixelSize: 16 * App.fontScale
+                font.bold: true
+            }
+            Text {
+                visible: root.isImport
                 Layout.fillWidth: true
+                text: qsTr("Check the links you want to add to the download list and click OK.")
+                color: "#7a8a9a"
+                font.pixelSize: 10 * App.fontScale
+                wrapMode: Text.NoWrap
+                elide: Text.ElideRight
+                verticalAlignment: Text.AlignVCenter
             }
         }
 
         Rectangle {
+            visible: !root.isImport
             Layout.fillWidth: true
             color: "#1a2030"
             border.color: "#2a3a5a"
@@ -402,13 +501,13 @@ Window {
 
             ColumnLayout {
                 anchors.fill: parent
-                anchors.margins: 10
-                spacing: 6
+                anchors.margins: 6
+                spacing: 4
 
                 Text {
                     text: qsTr("Replace filenames with wildcard pattern (*)")
                     color: "#d0d0d0"
-                    font.pixelSize: 11 * App.fontScale
+                    font.pixelSize: 10 * App.fontScale
                     font.weight: Font.Medium
                     Layout.fillWidth: true
                 }
@@ -425,15 +524,6 @@ Window {
                     onTextChanged: refreshNames()
                 }
             }
-        }
-
-        RowLayout {
-            Layout.fillWidth: true
-            spacing: 8
-            Text { text: qsTr("Files"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
-            Item { Layout.fillWidth: true }
-            DlgButton { text: qsTr("Check all"); onClicked: setAllSelected(true) }
-            DlgButton { text: qsTr("Uncheck all"); onClicked: setAllSelected(false) }
         }
 
         Rectangle {
@@ -497,8 +587,8 @@ Window {
                                     anchors.centerIn: parent
                                     topPadding: 0
                                     bottomPadding: 0
-                                    checked: root.allFoundSelected()
-                                    onToggled: root.setAllSelected(checked)
+                                    Binding on checked { value: root.allFoundSelected() }
+                                    onClicked: root.setAllSelected(!checked)
                                 }
 
                                 Text {
@@ -649,7 +739,7 @@ Window {
                     y: headerBar.height
                     width: tableFlick.contentWidth
                     height: Math.max(0, tableFlick.height - headerBar.height)
-                    model: root.rowCount()
+                    model: root._rowCount
                     clip: true
                     spacing: 0
                     boundsBehavior: Flickable.StopAtBounds
@@ -659,9 +749,10 @@ Window {
                         required property int index
                         readonly property var modelData: root.rowAt(index)
                         readonly property int rowIndex: modelData && modelData.rowIndex !== undefined ? modelData.rowIndex : 0
+                        readonly property bool isSelected: root.selectedRowIndex === rowIndex
                         width: tableFlick.contentWidth
                         height: 28
-                        color: rowIndex % 2 === 0 ? "#1c1c1c" : "#222222"
+                        color: isSelected ? "#2a3a5a" : (rowIndex % 2 === 0 ? "#1c1c1c" : "#222222")
 
                         Row {
                             anchors.fill: parent
@@ -675,8 +766,8 @@ Window {
                                     topPadding: 0
                                     bottomPadding: 0
                                     enabled: !!(modelData && modelData.rowStatus === "Found")
-                                    checked: !!(modelData && modelData.selected)
-                                    onCheckedChanged: root.setRowProperty(rowIndex, "selected", checked)
+                                    Binding on checked { value: !!(modelData && modelData.selected) }
+                                    onClicked: root.setRowProperty(rowIndex, "selected", !checked)
                                 }
                             }
 
@@ -739,6 +830,13 @@ Window {
                             }
                         }
 
+                        TapHandler {
+                            onTapped: {
+                                root.selectedRowIndex = rowIndex
+                                fileList.currentIndex = index
+                            }
+                        }
+
                         Rectangle {
                             anchors.bottom: parent.bottom
                             width: parent.width
@@ -752,16 +850,368 @@ Window {
 
         RowLayout {
             Layout.fillWidth: true
-            spacing: 8
-            Text {
+            spacing: 10
+
+            Rectangle {
                 Layout.fillWidth: true
-                text: qsTr("Only links marked Found are selectable. Queue assignment still happens after OK.")
-                color: "#8899bb"
-                font.pixelSize: 10 * App.fontScale
-                wrapMode: Text.WordWrap
+                Layout.maximumWidth: 560
+                Layout.minimumWidth: 300
+                color: "#1e1e1e"
+                border.color: "#3a3a3a"
+                radius: 4
+                height: saveModeCol.height + 16
+
+                Column {
+                    id: saveModeCol
+                    x: 8; y: 8
+                    width: parent.width - 16
+                    spacing: 6
+
+                    Text {
+                        text: qsTr("Save to:")
+                        color: "#d0d0d0"
+                        font.pixelSize: 11 * App.fontScale
+                        font.weight: Font.Medium
+                    }
+
+                    RadioButton {
+                        id: perCategoryRadio
+                        ButtonGroup.group: saveModeGroup
+                        width: parent.width
+                        text: qsTr("Every file to the directory according to the category of the file")
+                        checked: root.saveMode === "perCategory"
+                        font.pixelSize: 11 * App.fontScale
+                        padding: 0
+                        spacing: 8
+                        topPadding: 2; bottomPadding: 2
+                        contentItem: Text {
+                            text: parent.text
+                            font: parent.font
+                            color: "#d6dbe4"
+                            verticalAlignment: Text.AlignVCenter
+                            wrapMode: Text.WordWrap
+                            leftPadding: parent.indicator.width + parent.spacing
+                        }
+                        onCheckedChanged: if (checked) root.saveMode = "perCategory"
+                    }
+
+                    RadioButton {
+                        id: oneCategoryRadio
+                        ButtonGroup.group: saveModeGroup
+                        width: parent.width
+                        text: qsTr("All files to one category")
+                        checked: root.saveMode === "oneCategory"
+                        font.pixelSize: 11 * App.fontScale
+                        padding: 0
+                        spacing: 8
+                        topPadding: 2; bottomPadding: 2
+                        contentItem: Text {
+                            text: parent.text
+                            font: parent.font
+                            color: "#d6dbe4"
+                            verticalAlignment: Text.AlignVCenter
+                            wrapMode: Text.WordWrap
+                            leftPadding: parent.indicator.width + parent.spacing
+                        }
+                        onCheckedChanged: {
+                            if (checked) {
+                                root.saveMode = "oneCategory"
+                                if (!root.selectedCategoryId)
+                                    root.selectedCategoryId = (categoryCombo.currentIndex >= 0 ? categoryCombo.currentValue : "") || "all"
+                            }
+                        }
+                    }
+
+                    Item {
+                        width: parent.width
+                        height: visible ? categoryCombo.implicitHeight : 0
+                        visible: root.saveMode === "oneCategory"
+                        ComboBox {
+                            id: categoryCombo
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.leftMargin: 28
+                            model: App.categoryModel
+                            textRole: "categoryLabel"
+                            valueRole: "categoryId"
+                            implicitHeight: 28
+                            background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
+                            contentItem: Text { leftPadding: 8; text: categoryCombo.displayText; color: "#e8edf5"; font: categoryCombo.font; verticalAlignment: Text.AlignVCenter }
+                            onActivated: root.selectedCategoryId = currentValue
+                            Component.onCompleted: currentIndex = indexOfValue(root.selectedCategoryId)
+                        }
+                    }
+
+                    RadioButton {
+                        id: oneDirRadio
+                        ButtonGroup.group: saveModeGroup
+                        width: parent.width
+                        text: qsTr("All files to one directory")
+                        checked: root.saveMode === "oneDirectory"
+                        font.pixelSize: 11 * App.fontScale
+                        padding: 0
+                        spacing: 8
+                        topPadding: 2; bottomPadding: 2
+                        contentItem: Text {
+                            text: parent.text
+                            font: parent.font
+                            color: "#d6dbe4"
+                            verticalAlignment: Text.AlignVCenter
+                            wrapMode: Text.WordWrap
+                            leftPadding: parent.indicator.width + parent.spacing
+                        }
+                        onCheckedChanged: if (checked) root.saveMode = "oneDirectory"
+                    }
+
+                    Item {
+                        width: parent.width
+                        height: visible ? dirRow.implicitHeight : 0
+                        visible: root.saveMode === "oneDirectory"
+                        RowLayout {
+                            id: dirRow
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.leftMargin: 28
+                            spacing: 6
+                            TextField {
+                                id: dirField
+                                Layout.fillWidth: true
+                                readOnly: true
+                                text: root.selectedDirectory
+                                color: "#e8edf5"
+                                font.pixelSize: 11 * App.fontScale
+                                implicitHeight: 28
+                                background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
+                            }
+                            DlgButton {
+                                text: qsTr("Browse...")
+                                onClicked: saveDirDialog.open()
+                            }
+                        }
+                    }
+                }
             }
+
+            ColumnLayout {
+                spacing: 6
+                Layout.preferredWidth: 300
+                Layout.minimumWidth: 280
+
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 6
+                    DlgButton {
+                        text: qsTr("Edit...")
+                        enabled: root.selectedRowIndex >= 0 && root._filteredIndices.indexOf(root.selectedRowIndex) >= 0
+                        onClicked: editWindow.open(root.selectedRowIndex)
+                    }
+                    Item { Layout.fillWidth: true }
+                    DlgButton { text: qsTr("Check all"); onClicked: setAllSelected(true) }
+                    DlgButton { text: qsTr("Uncheck all"); onClicked: setAllSelected(false) }
+                }
+
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 6
+                    CheckBox {
+                        id: hideHtmlChk
+                        text: qsTr("Hide HTML files")
+                        topPadding: 0; bottomPadding: 0
+                        checked: root.hideHtmlFiles
+                        contentItem: Text { text: parent.text; color: "#d6dbe4"; font.pixelSize: 11 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                        onToggled: { root.hideHtmlFiles = checked; root._applyFilters() }
+                    }
+                    CheckBox {
+                        id: hideRepeatChk
+                        text: qsTr("Hide repeated files")
+                        topPadding: 0; bottomPadding: 0
+                        checked: root.hideRepeatedFiles
+                        contentItem: Text { text: parent.text; color: "#d6dbe4"; font.pixelSize: 11 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                        onToggled: { root.hideRepeatedFiles = checked; root._applyFilters() }
+                    }
+                    Item { Layout.fillWidth: true }
+                }
+            }
+        }
+
+        RowLayout {
+            Layout.fillWidth: true
+            spacing: 8
+            Item { Layout.fillWidth: true }
             DlgButton { text: qsTr("Cancel"); onClicked: root.close() }
             DlgButton { text: qsTr("OK"); primary: true; onClicked: root.acceptRows() }
+        }
+    }
+
+    FolderDialog {
+        id: saveDirDialog
+        title: qsTr("Select save directory")
+        onAccepted: {
+            var path = selectedFolder.toString()
+                .replace(/^file:\/\/\//, "")
+                .replace(/^file:\/\//, "")
+            root.selectedDirectory = path
+            dirField.text = path
+        }
+    }
+
+    FileDialog {
+        id: editSaveFileDialog
+        title: qsTr("Select save path")
+        fileMode: FileDialog.SaveFile
+        onAccepted: {
+            var path = selectedFile.toString()
+                .replace(/^file:\/\/\//, "")
+                .replace(/^file:\/\//, "")
+            editSaveField.text = path
+        }
+    }
+
+    Window {
+        id: editWindow
+        title: qsTr("Edit File")
+        width: 500
+        height: editWindowCol.implicitHeight + 32
+        minimumWidth: 420
+        color: "#232323"
+        flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+        modality: Qt.ApplicationModal
+        transientParent: root
+
+        Material.theme: Material.Dark
+        Material.background: "#232323"
+        Material.accent: "#4488dd"
+
+        property int rowIndex: -1
+        property var rowData: null
+
+        function open(rowIdx) {
+            editWindow.rowIndex = rowIdx
+            editWindow.rowData = (root.reviewRows && rowIdx >= 0 && rowIdx < root.reviewRows.length) ? root.reviewRows[rowIdx] : null
+            var ov = root.fileOverrides[rowIdx] || {}
+            editSaveField.text = ov.savePath || ""
+            editUrlField.text = ov.customUrl || (editWindow.rowData ? editWindow.rowData.sourceUrl : "")
+            editDescField.text = ov.description || ""
+            editRefererField.text = ov.referer || ""
+            editLoginField.text = ov.username || ""
+            editPassField.text = ov.password || ""
+            editWindow.show()
+            editWindow.raise()
+            editWindow.requestActivate()
+        }
+
+        ColumnLayout {
+            id: editWindowCol
+            anchors.fill: parent
+            anchors.margins: 12
+            spacing: 8
+
+            Text { text: qsTr("Edit File"); color: "#ffffff"; font.pixelSize: 13 * App.fontScale; font.bold: true }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 6
+                Text { text: qsTr("Save to:"); color: "#c7cfdb"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
+                TextField {
+                    id: editSaveField
+                    Layout.fillWidth: true
+                    color: "#e8edf5"
+                    font.pixelSize: 11 * App.fontScale
+                    background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
+                }
+                DlgButton {
+                    text: qsTr("Browse...")
+                    implicitWidth: 72
+                    onClicked: editSaveFileDialog.open()
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 6
+                Text { text: qsTr("URL:"); color: "#c7cfdb"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
+                TextField {
+                    id: editUrlField
+                    Layout.fillWidth: true
+                    color: "#e8edf5"
+                    font.pixelSize: 11 * App.fontScale
+                    background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 6
+                Text { text: qsTr("Description:"); color: "#c7cfdb"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
+                TextField {
+                    id: editDescField
+                    Layout.fillWidth: true
+                    color: "#e8edf5"
+                    font.pixelSize: 11 * App.fontScale
+                    background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 6
+                Text { text: qsTr("Referer:"); color: "#c7cfdb"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
+                TextField {
+                    id: editRefererField
+                    Layout.fillWidth: true
+                    color: "#e8edf5"
+                    font.pixelSize: 11 * App.fontScale
+                    background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 6
+                Text { text: qsTr("Login:"); color: "#c7cfdb"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
+                TextField {
+                    id: editLoginField
+                    Layout.fillWidth: true
+                    color: "#e8edf5"
+                    font.pixelSize: 11 * App.fontScale
+                    background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 6
+                Text { text: qsTr("Password:"); color: "#c7cfdb"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
+                TextField {
+                    id: editPassField
+                    Layout.fillWidth: true
+                    echoMode: TextInput.Password
+                    color: "#e8edf5"
+                    font.pixelSize: 11 * App.fontScale
+                    background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Item { Layout.fillWidth: true }
+                DlgButton { text: qsTr("Cancel"); onClicked: editWindow.close() }
+                DlgButton {
+                    text: qsTr("Save")
+                    primary: true
+                    onClicked: {
+                        var ov = root.fileOverrides[editWindow.rowIndex] || {}
+                        ov.savePath = editSaveField.text
+                        ov.customUrl = editUrlField.text
+                        ov.description = editDescField.text
+                        ov.referer = editRefererField.text
+                        ov.username = editLoginField.text
+                        ov.password = editPassField.text
+                        root.fileOverrides[editWindow.rowIndex] = ov
+                        editWindow.close()
+                    }
+                }
+            }
         }
     }
 }

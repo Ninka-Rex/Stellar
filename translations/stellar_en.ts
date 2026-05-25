@@ -242,6 +242,79 @@
         <source>Batch download review</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../app/qml/BatchDownloadListDialog.qml" line="25"/>
+        <source>Import links to SDM</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Save to:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Every file to the directory according to the category of the file</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>All files to one category</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>All files to one directory</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Browse...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Edit...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Hide HTML files</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Hide repeated files</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Edit File</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Select save directory</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Select save path</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>URL:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Description:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Referer:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Login:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>BrowserIntegrationDialog</name>
@@ -1272,6 +1345,44 @@ You may change it in Options → Downloads at a later time.</source>
         <location filename="../app/qml/DuplicateDownloadDialog.qml" line="139"/>
         <source>OK</source>
         <translation type="unfinished">OK</translation>
+    </message>
+</context>
+<context>
+    <name>ExportDialog</name>
+    <message>
+        <location filename="../app/qml/ExportDialog.qml" line="28"/>
+        <source>Export Downloads</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ExportDialog.qml" line="69"/>
+        <source>Select items to export:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ExportDialog.qml" line="76"/>
+        <source>Export downloads in the selected queue</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ExportDialog.qml" line="89"/>
+        <source>Export selected downloads</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ExportDialog.qml" line="101"/>
+        <source>Export all downloads</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ExportDialog.qml" line="119"/>
+        <source>Cancel</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/ExportDialog.qml" line="124"/>
+        <source>OK</source>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3819,6 +3930,46 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <message>
         <location filename="../app/qml/Main.qml" line="1843"/>
         <source>What&apos;s New in Stellar</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2876"/>
+        <source>Export</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2887"/>
+        <source>Import</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2895"/>
+        <source>To SDM Export File (.ef2)…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2902"/>
+        <source>To Text File…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2910"/>
+        <source>From SDM Export File (.ef2)…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2917"/>
+        <source>From Text File…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="1030"/>
+        <source>Export Downloads</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="1042"/>
+        <source>Import Downloads</source>
         <translation></translation>
     </message>
 </context>
