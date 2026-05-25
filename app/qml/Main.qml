@@ -754,8 +754,12 @@ ApplicationWindow {
                 return
             }
             // Firefox passes the full local save path as filename — extract basename only.
-            var name = (filename.length > 0 ? filename.split(/[/\\]/).pop() : "") ||
-                       url.split("/").pop().split("?")[0] || "download"
+            var urlName = url.split("/").pop().split("?")[0] || "download"
+            var hasExt = urlName.indexOf('.') > 0
+            var name = (filename.length > 0 ? filename.split(/[/\\]/).pop() : "")
+                    || (hasExt ? urlName : "")
+            // Display placeholder even when URL guess is bad — dialog needs a label.
+            var displayName = name || urlName
             var _cookies  = App.takePendingCookies(url)
             // No cookies from extension — read from browser profiles on disk.
             if (_cookies.length === 0)
@@ -766,7 +770,7 @@ ApplicationWindow {
             var _referrer = App.takePendingReferrer(url)
             var _pageUrl  = App.takePendingPageUrl(url)
             fileInfoDialog.pendingUrl      = url
-            fileInfoDialog.pendingFilename = name
+            fileInfoDialog.pendingFilename = displayName
             fileInfoDialog.pendingSize     = ""
             fileInfoDialog.pendingSavePath = App.settings.defaultSavePath
             fileInfoDialog.pendingCookies  = _cookies
@@ -1043,11 +1047,14 @@ ApplicationWindow {
             showTorrentMetadataDialog(torrentId, true)
             return
         }
+        var urlName2 = url.split("/").pop().split("?")[0] || "download"
+        var hasExt2 = urlName2.indexOf('.') > 0
         var filename = filenameOverride.length > 0
             ? filenameOverride
             : (App.isTorrentUri(url)
                 ? "Magnetized Transfer"
-                : (url.split("/").pop().split("?")[0] || "download"))
+                : (hasExt2 ? urlName2 : ""))
+        var displayFilename = filename || urlName2
         // Discard any pre-fetch that was started by a previous _showFileInfoDialog
         // call for this same URL (e.g. when the user picks "Add Numbered" after a
         // duplicate warning — we'd otherwise leak a running download in temp).
@@ -1066,7 +1073,7 @@ ApplicationWindow {
         var _referrer2 = App.takePendingReferrer(url)
         var _pageUrl2  = App.takePendingPageUrl(url)
         fileInfoDialog.pendingUrl      = url
-        fileInfoDialog.pendingFilename = filename
+        fileInfoDialog.pendingFilename = displayFilename
         fileInfoDialog.pendingSize     = ""
         fileInfoDialog.pendingSavePath = App.settings.defaultSavePath
         fileInfoDialog.filenameOverride = filenameOverride

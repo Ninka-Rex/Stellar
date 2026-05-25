@@ -115,6 +115,16 @@ Window {
         }
     }
 
+    Connections {
+        target: App
+        function onPendingDownloadFilenameChanged(downloadId, newFilename) {
+            if (downloadId === root.pendingDownloadId && newFilename
+                && newFilename !== root.pendingFilename) {
+                root.pendingFilename = newFilename
+            }
+        }
+    }
+
     function categoryIndexForUrl(url, name) {
         var catId = App.categoryModel.categoryForUrl(url, name)
         for (var i = 0; i < categoryIds.length; i++)
@@ -152,6 +162,11 @@ Window {
                 descField.text = desc
             if (info.contentLength > 0 && root.pendingSize.length === 0)
                 root.pendingSize = _formatSize(info.contentLength)
+            // Server may have resolved a real filename from Content-Disposition
+            // or the final redirect URL (e.g. "x64" → "LM-Studio-0.4.14-4-x64.deb").
+            if (info.filename && info.filename !== root.pendingFilename) {
+                root.pendingFilename = info.filename
+            }
         })
     }
 

@@ -64,6 +64,10 @@ public:
     void setTemporaryDirectory(const QString &path);
     void setMaxConnectionsPerHost(int v);
 
+    // Parse Content-Disposition header for filename (RFC 5987 + plain).
+    // Returns empty string if no filename found. Public so probeFileInfo() can
+    // extract filenames from HEAD responses without a full SegmentedTransfer.
+    static QString parseContentDispositionFilename(const QByteArray &header);
 
 signals:
     void started();
@@ -121,7 +125,6 @@ private:
 
     void updateSegmentDataOnItem();
     void updateFilenameFromReply(QNetworkReply *reply);
-    static QString parseContentDispositionFilename(const QByteArray &header);
     bool isConfirmPageUrl(const QUrl &url) const;
     void handleConfirmPage(const QByteArray &html);
     void applyRequestHeaders(QNetworkRequest &req, const QUrl &url) const;

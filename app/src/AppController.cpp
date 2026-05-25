@@ -57,6 +57,7 @@
 #include "YtdlpManager.h"
 #include "TorrentFileModel.h"
 #include "YtdlpTransfer.h"
+#include "SegmentedTransfer.h"
 #if defined(STELLAR_WINDOWS)
 #  include <windows.h>
 #  include <shellapi.h>
@@ -1082,6 +1083,20 @@ void AppController::probeFileInfo(const QString &url, const QString &cookies,
         qint64  cl = head->header(QNetworkRequest::ContentLengthHeader).toLongLong();
         bool acceptsRanges = QString::fromUtf8(head->rawHeader("Accept-Ranges"))
                                  .trimmed().toLower() != QStringLiteral("none");
+
+        // Resolve filename from server: try Content-Disposition first, then
+        // fall back to final redirect URL path when it looks like a real file.
+        QString probeFilename = SegmentedTransfer::parseContentDispositionFilename(
+            head->rawHeader("Content-Disposition"));
+        if (probeFilename.isEmpty()) {
+            const QUrl finalUrl = head->url();
+            const QString pathName = QFileInfo(finalUrl.path()).fileName();
+            if (!pathName.isEmpty() && pathName != QStringLiteral("download"))
+                probeFilename = pathName;
+        }
+        if (!probeFilename.isEmpty())
+            info[QStringLiteral("filename")] = probeFilename;
+
         head->deleteLater();
 
         info[QStringLiteral("ok")]            = true;
@@ -5888,6 +5903,10 @@ void AppController::watchItem(DownloadItem *item) {
     connect(item, &DownloadItem::resumeCapableChanged, this, sched);
     connect(item, &DownloadItem::savePathChanged,      this, sched);
     connect(item, &DownloadItem::filenameChanged,      this, sched);
+    connect(item, &DownloadItem::filenameChanged,      this, [this, item]() {
+        if (item && m_pendingFileInfoDownloads.contains(item->id()))
+            emit pendingDownloadFilenameChanged(item->id(), item->filename());
+    });
     connect(item, &DownloadItem::torrentChanged,       this, sched);
 
     // Resume-data blobs are written directly to their own .resume file without

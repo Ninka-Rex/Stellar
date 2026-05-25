@@ -62,6 +62,25 @@ bool copyFileContents(QIODevice &src, QIODevice &dst) {
     return true;
 }
 
+// Returns false for strings that are clearly not a real filename (no extension,
+// too long an extension, non-alphanumeric extension). Used to distinguish a URL
+// path segment like "x64" from a genuine filename like "file.zip".
+static bool isPlausibleFilename(const QString &name) {
+    if (name.isEmpty() || name == QStringLiteral("download"))
+        return false;
+    int dot = name.lastIndexOf('.');
+    if (dot <= 0 || dot == name.length() - 1)
+        return false;
+    const QString ext = name.mid(dot + 1);
+    if (ext.length() > 10)
+        return false;
+    for (const QChar &ch : ext) {
+        if (!ch.isLetterOrNumber() && ch != '_')
+            return false;
+    }
+    return true;
+}
+
 // Strip characters that are invalid in filenames on Windows (and also
 // problematic on Linux if the file is later copied to a FAT/NTFS drive).
 // The caller owns uniqueness — this function only cares about legality.
@@ -1345,10 +1364,14 @@ void SegmentedTransfer::updateFilenameFromReply(QNetworkReply *reply) {
     QString filename = parseContentDispositionFilename(
         reply->rawHeader("Content-Disposition"));
 
-    // Only fall back to the URL path when we have no filename yet — if the item
-    // already has one (e.g. a redownload), a server-side redirect to an error/
-    // deletion page would otherwise overwrite it with something like "already-downloaded".
-    if (filename.isEmpty() && m_item->filename().isEmpty()) {
+    // Only fall back to the URL path when we have no plausible filename yet.
+    // If the item already has a real filename (e.g. a redownload with
+    // "file.zip"), a server-side redirect to an error/deletion page would
+    // otherwise overwrite it with something like "already-downloaded". But if
+    // the current filename is just a URL path segment guess ("x64", "latest"),
+    // allow the redirect URL to supply the real name.
+    if (filename.isEmpty() && !m_item->isFilenameManuallySet()
+        && !isPlausibleFilename(m_item->filename())) {
         QUrl finalUrl = reply->url();
         QString pathName = QFileInfo(finalUrl.path()).fileName();
         if (!pathName.isEmpty() && pathName != QStringLiteral("download"))

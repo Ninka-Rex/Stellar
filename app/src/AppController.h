@@ -513,6 +513,10 @@ signals:
     // Emitted when clipboard monitoring is on and a matching URL is detected.
     // url is the full URL string; the QML side shows the Add URL dialog.
     void clipboardUrlDetected(const QString &url);
+    // Emitted when a pending file-info download's filename is resolved from the
+    // server (Content-Disposition or redirect URL). downloadId matches the ID
+    // returned by beginPendingDownload().
+    void pendingDownloadFilenameChanged(const QString &downloadId, const QString &newFilename);
 
     // Emitted when a download finishes but the file turns out to be a tiny HTML
     // error page — the host deleted the file between HEAD and GET.
