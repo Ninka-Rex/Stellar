@@ -34,7 +34,13 @@
 #include <QNetworkCookieJar>
 #include <QNetworkCookie>
 #include <algorithm>
+#include <cstring>
 #include <QDebug>
+
+#ifdef Q_OS_LINUX
+#include <fcntl.h>   // fallocate
+#include <cerrno>    // errno
+#endif
 
 static const QString kUserAgent =
     QStringLiteral("Stellar/%1").arg(QStringLiteral(STELLAR_VERSION));
@@ -50,14 +56,55 @@ QString resolvedUserAgent(bool useCustomUserAgent, const QString &customUserAgen
     return browserStyleFallback ? kBrowserUserAgent : kUserAgent;
 }
 
-bool copyFileContents(QIODevice &src, QIODevice &dst) {
+bool copyFileContents(QIODevice &src, QIODevice &dst, qint64 maxBytes = -1,
+                      QString *errorOut = nullptr) {
     static constexpr qint64 kChunkSize = 1024 * 1024;
-    while (!src.atEnd()) {
-        const QByteArray chunk = src.read(kChunkSize);
-        if (chunk.isEmpty())
+    qint64 remaining = maxBytes;
+    while (maxBytes < 0 || remaining > 0) {
+        const qint64 toRead = (maxBytes < 0) ? kChunkSize : std::min(remaining, kChunkSize);
+        const QByteArray chunk = src.read(toRead);
+        if (chunk.isEmpty()) break;
+        if (dst.write(chunk) != chunk.size()) {
+            if (errorOut)
+                *errorOut = dst.errorString();
             return false;
-        if (dst.write(chunk) != chunk.size())
+        }
+        if (maxBytes >= 0) remaining -= chunk.size();
+    }
+    return true;
+}
+
+static constexpr qint64 kMapWindow = 256LL * 1024 * 1024;
+
+bool mappedRangeCopy(QFile &src, qint64 srcOff, qint64 size,
+                     QFile &dst, qint64 dstOff, QString *errorOut = nullptr)
+{
+    qint64 remaining = size;
+    while (remaining > 0) {
+        const qint64 window = std::min(remaining, kMapWindow);
+        uchar *srcPtr = src.map(srcOff, window);
+        if (!srcPtr) {
+            if (src.seek(srcOff) && dst.seek(dstOff))
+                return copyFileContents(src, dst, window, errorOut);
+            if (errorOut)
+                *errorOut = QStringLiteral("Cannot map source at %1: %2")
+                    .arg(srcOff).arg(src.errorString());
             return false;
+        }
+        uchar *dstPtr = dst.map(dstOff, window);
+        if (!dstPtr) {
+            src.unmap(srcPtr);
+            if (errorOut)
+                *errorOut = QStringLiteral("Cannot map output at %1: %2")
+                    .arg(dstOff).arg(dst.errorString());
+            return false;
+        }
+        std::memcpy(dstPtr, srcPtr, static_cast<size_t>(window));
+        src.unmap(srcPtr);
+        dst.unmap(dstPtr);
+        srcOff += window;
+        dstOff += window;
+        remaining -= window;
     }
     return true;
 }
@@ -482,14 +529,73 @@ void SegmentedTransfer::startAllSegments() {
 }
 
 void SegmentedTransfer::startSegment(Segment &seg) {
-    // Open part file for appending
+    // Open part file for reading and writing (needed for pre-allocation and
+    // memory-mapped I/O).  ReadWrite gives us explicit control over the write
+    // cursor; Append would force all writes to end-of-file regardless of seek.
     if (!seg.file) {
         seg.file = new QFile(longPath(seg.partPath));
     }
     if (!seg.file->isOpen()) {
-        if (!seg.file->open(QIODevice::Append)) {
-            emit failed(QStringLiteral("Cannot open part file: %1").arg(seg.partPath));
+        if (!seg.file->open(QIODevice::ReadWrite)) {
+            emit failed(QStringLiteral("Cannot open part file: %1 (%2)")
+                        .arg(seg.partPath, seg.file->errorString()));
             return;
+        }
+
+        if (seg.endOffset >= 0) {
+            // Known segment size: pre-allocate the full range so the filesystem
+            // can reserve contiguous space up front.  On Windows, QFile::resize()
+            // calls SetEndOfFile (NTFS lazy-zero-fill, no I/O overhead).  On
+            // Linux, ftruncate creates a sparse file; fallocate() below converts
+            // it to a physically-allocated file in one metadata operation.
+            const qint64 expectedSize = seg.endOffset - seg.startOffset + 1;
+
+            if (seg.file->resize(expectedSize)) {
+#ifdef Q_OS_LINUX
+                int fd = seg.file->handle();
+                if (fd >= 0) {
+                    int ret = fallocate(fd, 0, 0, static_cast<off_t>(expectedSize));
+                    if (ret != 0 && errno != EOPNOTSUPP && errno != ENOSYS
+                        && errno != EINVAL) {
+                        qDebug() << "[ST] segment" << seg.index
+                                 << "fallocate failed (non-fatal):"
+                                 << strerror(errno);
+                    }
+                }
+#endif
+                if (seg.received > 0) {
+                    if (!seg.file->seek(seg.received)) {
+                        emit failed(QStringLiteral("Cannot seek in part file: %1 (%2)")
+                                    .arg(seg.partPath, seg.file->errorString()));
+                        return;
+                    }
+                } else {
+                    seg.file->seek(0);
+                }
+            } else {
+                // resize() failed (FAT32 >4GB, network drive, etc.).
+                // Fall back to Append mode — pre-allocation is an optimisation,
+                // not a correctness requirement.
+                qDebug() << "[ST] segment" << seg.index
+                         << "pre-allocation failed:" << seg.file->errorString()
+                         << "— falling back to Append";
+                seg.file->close();
+                if (!seg.file->open(QIODevice::Append)) {
+                    emit failed(QStringLiteral("Cannot open part file: %1 (%2)")
+                                .arg(seg.partPath, seg.file->errorString()));
+                    return;
+                }
+            }
+        } else {
+            // Unknown segment size (endOffset == -1): cannot pre-allocate.
+            // For resumed segments, advance the write cursor past existing data.
+            if (seg.received > 0) {
+                if (!seg.file->seek(seg.received)) {
+                    emit failed(QStringLiteral("Cannot seek in part file: %1 (%2)")
+                                .arg(seg.partPath, seg.file->errorString()));
+                    return;
+                }
+            }
         }
     }
 
@@ -1272,7 +1378,6 @@ void SegmentedTransfer::mergeAndFinish() {
 
     auto *itemPtr = m_item;
     watcher->setFuture(QtConcurrent::run([singleNoRange, parts, outPath, itemPtr, totalForAssembly]() -> QString {
-        static constexpr qint64 kChunkSize = 1024 * 1024; // 1 MB copy chunks
         // Reports current assembled-bytes count to the main thread via a queued
         // invocation — safe to call from the worker thread.
         auto reportProgress = [&](qint64 written) {
@@ -1290,39 +1395,41 @@ void SegmentedTransfer::mergeAndFinish() {
             }
 
             // Rename failed (cross-device or permission denied on destination).
-            // Fall back to copy+delete with progress reporting.
+            // Fall back to memory-mapped copy + delete.
             QFile src(partSrc);
             if (!src.open(QIODevice::ReadOnly))
                 return QStringLiteral("Cannot open part file for reading: %1 (%2)")
                     .arg(partSrc, src.errorString());
 
             QFile dst(outPath);
-            if (!dst.open(QIODevice::WriteOnly | QIODevice::Truncate))
+            if (!dst.open(QIODevice::ReadWrite | QIODevice::Truncate))
                 return QStringLiteral("Cannot create output file: %1 (%2)")
                     .arg(outPath, dst.errorString());
 
-            qint64 written = 0;
-            while (!src.atEnd()) {
-                const QByteArray chunk = src.read(kChunkSize);
-                if (chunk.isEmpty()) break;
-                if (dst.write(chunk) != chunk.size()) {
-                    const QString err = dst.errorString();
-                    dst.close();
-                    QFile::remove(outPath);
-                    return QStringLiteral("Write failed while assembling: %1").arg(err);
-                }
-                written += chunk.size();
-                reportProgress(written);
+            const qint64 srcSize = src.size();
+            dst.resize(srcSize);
+
+            QString mapErr;
+            if (!mappedRangeCopy(src, 0, srcSize, dst, 0, &mapErr)) {
+                dst.close();
+                QFile::remove(outPath);
+                return mapErr;
             }
+            reportProgress(srcSize);
             dst.close();
             QFile::remove(partSrc);
             return {};
         }
 
-        // Multi-segment: concatenate in startOffset order with per-chunk progress.
+        // Multi-segment: assemble in startOffset order via memory-mapped copy.
+        // Pre-size the output file so the mapping covers the full range.
         QFile outFile(outPath);
-        if (!outFile.open(QIODevice::WriteOnly | QIODevice::Truncate))
+        if (!outFile.open(QIODevice::ReadWrite | QIODevice::Truncate))
             return QStringLiteral("Cannot create output file: %1 (%2)")
+                .arg(outPath, outFile.errorString());
+
+        if (totalForAssembly > 0 && !outFile.resize(totalForAssembly))
+            return QStringLiteral("Cannot pre-allocate output file: %1 (%2)")
                 .arg(outPath, outFile.errorString());
 
         qint64 written = 0;
@@ -1334,17 +1441,27 @@ void SegmentedTransfer::mergeAndFinish() {
                 return QStringLiteral("Cannot open part file for reading: %1 (%2)")
                     .arg(part.path, partFile.errorString());
             }
-            while (!partFile.atEnd()) {
-                const QByteArray chunk = partFile.read(kChunkSize);
-                if (chunk.isEmpty()) break;
-                if (outFile.write(chunk) != chunk.size()) {
-                    const QString err = outFile.errorString();
+
+            const qint64 partSize = partFile.size();
+            qint64 partOff = 0;
+            qint64 outOff  = part.startOffset;
+            qint64 remaining = partSize;
+
+            while (remaining > 0) {
+                const qint64 window = std::min(remaining, kMapWindow);
+                QString mapErr;
+                if (!mappedRangeCopy(partFile, partOff, window,
+                                     outFile, outOff, &mapErr))
+                {
                     partFile.close();
                     outFile.close();
                     QFile::remove(outPath);
-                    return QStringLiteral("Write failed while assembling: %1").arg(err);
+                    return mapErr;
                 }
-                written += chunk.size();
+                partOff   += window;
+                outOff    += window;
+                remaining -= window;
+                written   += window;
                 reportProgress(written);
             }
             partFile.close();
@@ -1352,7 +1469,8 @@ void SegmentedTransfer::mergeAndFinish() {
 
         outFile.close();
         if (outFile.error() != QFileDevice::NoError)
-            return QStringLiteral("Output file error after assembly: %1").arg(outFile.errorString());
+            return QStringLiteral("Output file error after assembly: %1")
+                .arg(outFile.errorString());
 
         return {};
     }));
@@ -1752,15 +1870,26 @@ bool SegmentedTransfer::relocateOutput(const QString &newSavePath, const QString
         if (QFile::exists(oldPartPath)) {
             if (!QFile::rename(oldPartPath, newPartPath)) {
                 if (wasOpen && seg.file)
-                    seg.file->open(QIODevice::Append);
+                    seg.file->open(QIODevice::ReadWrite);
                 return false;
             }
         }
 
         if (seg.file)
             seg.file->setFileName(newPartPath);
-        if (wasOpen && seg.file)
-            seg.file->open(QIODevice::Append);
+        if (wasOpen && seg.file) {
+            if (!seg.file->open(QIODevice::ReadWrite)) {
+                qDebug() << "[ST] relocateOutput: cannot reopen segment"
+                         << seg.index << seg.file->errorString();
+                return false;
+            }
+            if (seg.endOffset >= 0 && !seg.done) {
+                const qint64 expectedSize = seg.endOffset - seg.startOffset + 1;
+                seg.file->resize(expectedSize);
+            }
+            if (seg.received > 0)
+                seg.file->seek(seg.received);
+        }
         seg.partPath = newPartPath;
     }
 
