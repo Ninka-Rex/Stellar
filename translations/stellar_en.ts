@@ -5016,6 +5016,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="2400"/>
+        <source>Pause torrents on startup</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/SettingsDialog.qml" line="2376"/>
         <source>Show tips in bottom bar</source>
         <translation></translation>

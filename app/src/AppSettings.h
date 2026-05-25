@@ -155,7 +155,9 @@
     X(bool, bool, torrentCoalesceReads, TorrentCoalesceReads, false, "torrentCoalesceReads", T) \
     X(bool, bool, torrentCoalesceWrites, TorrentCoalesceWrites, false, "torrentCoalesceWrites", T) \
     X(int, int, torrentDiskIoType, TorrentDiskIoType, 0, "torrentDiskIoType", T) \
-    X(int, int, torrentDiskWriteQueueMiB, TorrentDiskWriteQueueMiB, 64, "torrentDiskWriteQueueMiB", T)
+    X(int, int, torrentDiskWriteQueueMiB, TorrentDiskWriteQueueMiB, 64, "torrentDiskWriteQueueMiB", T) \
+    /* ── Torrent: startup behavior ── */ \
+    X(bool, bool, torrentStopOnStartup, TorrentStopOnStartup, false, "torrentStopOnStartup", N)
 
 
 class AppSettings : public QObject {

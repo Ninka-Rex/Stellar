@@ -99,6 +99,7 @@ Window {
     property int    editSavedSpeedLimitKBps:   500
     property int    editBypassInterceptKey:    0
     property bool   editLaunchOnStartup:       false
+    property bool   editTorrentStopOnStartup:  false
     property bool   editClipboardMonitorEnabled: false
     property int    editDoubleClickAction:     0
     property bool   editSpeedScheduleEnabled:  false
@@ -408,6 +409,7 @@ Window {
         editRatioInStatusBar      !== App.settings.ratioInStatusBar ||
         editShowPublicIpInStatusBar !== App.settings.showPublicIpInStatusBar ||
         editLaunchOnStartup       !== App.settings.launchOnStartup ||
+        editTorrentStopOnStartup  !== App.settings.torrentStopOnStartup ||
         editClipboardMonitorEnabled !== App.settings.clipboardMonitorEnabled ||
         editDoubleClickAction     !== App.settings.doubleClickAction ||
         editSpeedScheduleEnabled  !== App.settings.speedScheduleEnabled ||
@@ -689,6 +691,7 @@ Window {
         App.settings.ratioInStatusBar       = editRatioInStatusBar
         App.settings.showPublicIpInStatusBar = editShowPublicIpInStatusBar
         App.settings.launchOnStartup        = editLaunchOnStartup
+        App.settings.torrentStopOnStartup   = editTorrentStopOnStartup
         App.settings.clipboardMonitorEnabled = editClipboardMonitorEnabled
         App.settings.doubleClickAction      = editDoubleClickAction
         App.settings.speedScheduleEnabled   = editSpeedScheduleEnabled
@@ -800,6 +803,7 @@ Window {
         editRatioInStatusBar      = App.settings.ratioInStatusBar
         editShowPublicIpInStatusBar = App.settings.showPublicIpInStatusBar
         editLaunchOnStartup       = App.settings.launchOnStartup
+        editTorrentStopOnStartup  = App.settings.torrentStopOnStartup
         editClipboardMonitorEnabled = App.settings.clipboardMonitorEnabled
         editDoubleClickAction     = App.settings.doubleClickAction
         editSpeedScheduleEnabled  = App.settings.speedScheduleEnabled
@@ -2391,6 +2395,13 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editLaunchOnStartup
                             onCheckedChanged: root.editLaunchOnStartup = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                        }
+                        CheckBox {
+                            text: qsTr("Pause torrents on startup")
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editTorrentStopOnStartup
+                            onCheckedChanged: root.editTorrentStopOnStartup = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {

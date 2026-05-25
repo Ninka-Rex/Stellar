@@ -2221,6 +2221,13 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                   m_settings->setSpeedLimiterEnabled(true);
                   m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
               }
+              // Pause all torrents on startup when setting enabled (VPN leak protection).
+              if (m_settings->torrentStopOnStartup() && m_torrentSession) {
+                  for (auto *item : m_downloadModel->allItems()) {
+                      if (item && item->isTorrent())
+                          m_torrentSession->pause(item->id());
+                  }
+              }
               if (m_qmlReady && !m_pendingIpcPayloads.isEmpty()) {
                   const QList<QByteArray> pending = std::exchange(m_pendingIpcPayloads, {});
                   for (const QByteArray &p : pending)
@@ -2340,6 +2347,12 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
         }
         cleanupTemporaryDirectory();
+        if (m_settings->torrentStopOnStartup() && m_torrentSession) {
+            for (auto *item : m_downloadModel->allItems()) {
+                if (item && item->isTorrent())
+                    m_torrentSession->pause(item->id());
+            }
+        }
     }
 }
 
