@@ -7479,13 +7479,14 @@ void AppController::finalizeYtdlpDownload(const QString &url,
 
     const QString container = containerFormat.isEmpty() ? QStringLiteral("mp4") : containerFormat;
 
-    // When the user chose "Add Numbered", compute a collision-free output template
-    // using the video title already known from the --dump-json probe.
-    // Scan the save directory for any file whose base name matches the title and
-    // find the first unused _2/_3/_N suffix.  Pure filesystem check — no extra
-    // yt-dlp subprocess needed.
+    // Always scan the save directory for a base-name collision before launching
+    // yt-dlp.  Without this, yt-dlp's default behaviour is to skip an existing
+    // file silently ("has already been downloaded") and exit 0, which makes the
+    // app report a successful download when nothing was actually downloaded.
+    // If a collision is found, append _2/_3/…_N until the name is free.
+    // Pure filesystem check — no extra yt-dlp subprocess needed.
     QString outputTemplate = QStringLiteral("%(title)s.%(ext)s");
-    if (uniqueFilename && !videoTitle.isEmpty()) {
+    if (!videoTitle.isEmpty()) {
         QDir dir(saveDir);
         dir.mkpath(saveDir);
 
