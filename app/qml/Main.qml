@@ -2659,7 +2659,6 @@ ApplicationWindow {
 
     GrabberDialog {
         id: grabberDialog
-        transientParent: root
         onResultsRequested: (projectId) => {
             grabberResultsDialog.projectId = projectId
             grabberResultsDialog.show()
@@ -2670,7 +2669,6 @@ ApplicationWindow {
 
     GrabberResultsDialog {
         id: grabberResultsDialog
-        transientParent: root
         onFilesAddedToDownloadList: {
             grabberResultsDialog.close()
             root.show()
@@ -2713,10 +2711,10 @@ ApplicationWindow {
 
     GrabberScheduleDialog { id: grabberScheduleDialog; transientParent: root }
 
-    GrabberStatisticsDialog { id: grabberStatisticsDialog; transientParent: root }
+    GrabberStatisticsDialog { id: grabberStatisticsDialog }
 
     // ── Statistics Dialog ─────────────────────────────────────────────────────
-    StatisticsDialog { id: statisticsDialog; transientParent: root }
+    StatisticsDialog { id: statisticsDialog }
     ExportDialog {
         id: exportDialog
         transientParent: root

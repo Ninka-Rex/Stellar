@@ -15,45 +15,28 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import QtQuick
-import QtQuick.Window
+import QtQuick.Layouts
 import QtQuick.Controls
 import QtQuick.Controls.Material
-import QtQuick.Layouts
 
 Window {
     id: root
     title: qsTr("Grabber Statistics")
-    width: 320
-    height: 260
-    minimumWidth: 300
-    minimumHeight: 240
+    width: 270
+    height: mainCol.implicitHeight + 16
+    minimumWidth: 270
     color: "#1e1e1e"
-    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
-    modality: Qt.ApplicationModal
+    flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.MSWindowsFixedSizeDialogHint
 
     Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
     Material.accent: "#4488dd"
 
     property string projectId: ""
     property var stats: ({})
 
-    function refreshStats() {
-        stats = App.grabberStatistics(projectId)
-    }
+    function refreshStats() { stats = App.grabberStatistics(projectId) }
 
-    function _centerOnOwner() {
-        var owner = root.transientParent
-        if (owner) {
-            x = owner.x + Math.round((owner.width  - width)  / 2)
-            y = owner.y + Math.round((owner.height - height) / 2)
-            return
-        }
-        x = Math.round((Screen.width  - width)  / 2)
-        y = Math.round((Screen.height - height) / 2)
-    }
-
-    onVisibleChanged: if (visible) { _centerOnOwner(); refreshStats() }
+    onVisibleChanged: if (visible) refreshStats()
 
     Timer {
         interval: 1000
@@ -62,60 +45,95 @@ Window {
         onTriggered: root.refreshStats()
     }
 
-    Rectangle {
-        anchors.fill: parent
-        color: "#1e1e1e"
-        border.color: "#343434"
+    component StatRow: Item {
+        property string label: ""
+        property string value: ""
+        property color valueColor: "#c8c8c8"
+        property bool valueBold: false
+        implicitHeight: 16
+        Layout.fillWidth: true
 
-        ColumnLayout {
-            anchors.fill: parent
-            anchors.margins: 12
-            spacing: 10
+        Text {
+            id: lbl
+            text: parent.label
+            color: "#8899aa"
+            font.pixelSize: 11 * App.fontScale
+            anchors.left: parent.left
+        }
+        Text {
+            text: parent.value
+            color: parent.valueColor
+            font.pixelSize: 11 * App.fontScale
+            font.bold: parent.valueBold
+            anchors.left: lbl.right
+            anchors.leftMargin: 6
+        }
+    }
 
-            Text {
-                text: qsTr("Status: %1").arg(stats.status || qsTr("Idle"))
-                color: "#eef2f7"
-                font.pixelSize: 14 * App.fontScale
-                font.bold: true
-                Layout.fillWidth: true
-            }
-            Rectangle { Layout.fillWidth: true; height: 1; color: "#343434" }
+    ColumnLayout {
+        id: mainCol
+        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
+        spacing: 6
 
-            Text { text: qsTr("Web pages processed"); color: "#aab3c2"; font.pixelSize: 12 * App.fontScale; font.bold: true }
-            GridLayout {
-                columns: 2
-                columnSpacing: 20
-                rowSpacing: 6
-                Text { text: qsTr("Simple"); color: "#dce2eb"; font.pixelSize: 12 * App.fontScale }
-                Text { text: String(stats.webPagesProcessed || 0); color: "#f4f7fb"; font.pixelSize: 12 * App.fontScale }
-                Text { text: qsTr("Advanced"); color: "#dce2eb"; font.pixelSize: 12 * App.fontScale }
-                Text { text: String(stats.advancedPagesProcessed || 0); color: "#f4f7fb"; font.pixelSize: 12 * App.fontScale }
-            }
+        Text {
+            text: qsTr("Grabber Statistics")
+            color: "#d0d0d0"
+            font.pixelSize: 13 * App.fontScale
+            font.bold: true
+        }
 
-            Rectangle { Layout.fillWidth: true; height: 1; color: "#343434" }
+        Rectangle { Layout.fillWidth: true; height: 1; color: "#2d2d2d" }
 
-            Text { text: qsTr("Files"); color: "#aab3c2"; font.pixelSize: 12 * App.fontScale; font.bold: true }
-            GridLayout {
-                columns: 2
-                columnSpacing: 20
-                rowSpacing: 6
-                Text { text: qsTr("Total"); color: "#dce2eb"; font.pixelSize: 12 * App.fontScale }
-                Text { text: String(stats.filesTotal || 0); color: "#f4f7fb"; font.pixelSize: 12 * App.fontScale }
-                Text { text: qsTr("Explored"); color: "#dce2eb"; font.pixelSize: 12 * App.fontScale }
-                Text { text: String(stats.filesExplored || 0); color: "#f4f7fb"; font.pixelSize: 12 * App.fontScale }
-                Text { text: qsTr("Matched"); color: "#dce2eb"; font.pixelSize: 12 * App.fontScale }
-                Text { text: String(stats.filesMatched || 0); color: "#f4f7fb"; font.pixelSize: 12 * App.fontScale }
-                Text { text: qsTr("Downloaded"); color: "#dce2eb"; font.pixelSize: 12 * App.fontScale }
-                Text { text: String(stats.filesDownloaded || 0); color: "#f4f7fb"; font.pixelSize: 12 * App.fontScale }
-            }
-
-            Item { Layout.fillHeight: true }
+        // ── All stats in one card ────────────────────────────────────────────────
+        Rectangle {
+            Layout.fillWidth: true
+            color: "#181818"
+            border.color: "#2d2d2d"
+            radius: 3
+            implicitHeight: panelRow.implicitHeight + 10
 
             RowLayout {
-                Layout.fillWidth: true
-                Item { Layout.fillWidth: true }
-                DlgButton { text: qsTr("Close"); primary: true; onClicked: root.close() }
+                id: panelRow
+                anchors { fill: parent; margins: 6 }
+                spacing: 64
+
+                // Status + Web pages column
+                ColumnLayout {
+                    Layout.fillWidth: false
+                    Layout.alignment: Qt.AlignTop
+                    spacing: 2
+
+                    Text { text: qsTr("STATUS"); color: "#445566"; font.pixelSize: 9 * App.fontScale; font.bold: true; font.letterSpacing: 1 }
+                    StatRow { label: qsTr("State"); value: stats.status || qsTr("Idle") }
+
+                    Item { implicitHeight: 4 }
+
+                    Text { text: qsTr("WEB PAGES"); color: "#445566"; font.pixelSize: 9 * App.fontScale; font.bold: true; font.letterSpacing: 1 }
+                    StatRow { label: qsTr("Simple");   value: String(stats.webPagesProcessed || 0) }
+                    StatRow { label: qsTr("Advanced"); value: String(stats.advancedPagesProcessed || 0) }
+                }
+
+                // Files column
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignTop
+                    spacing: 2
+
+                    Text { text: qsTr("FILES"); color: "#445566"; font.pixelSize: 9 * App.fontScale; font.bold: true; font.letterSpacing: 1 }
+                    StatRow { label: qsTr("Total");      value: String(stats.filesTotal || 0) }
+                    StatRow { label: qsTr("Explored");   value: String(stats.filesExplored || 0) }
+                    StatRow { label: qsTr("Matched");    value: String(stats.filesMatched || 0) }
+                    StatRow { label: qsTr("Downloaded"); value: String(stats.filesDownloaded || 0) }
+                }
             }
         }
+
+        RowLayout {
+            Layout.fillWidth: true
+            Item { Layout.fillWidth: true }
+            DlgButton { text: qsTr("Close"); onClicked: root.close() }
+        }
+
+        Item { implicitHeight: 2 }
     }
 }

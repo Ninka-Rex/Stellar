@@ -28,8 +28,7 @@ Window {
     minimumWidth: 1060
     minimumHeight: 500
     color: "#1e1e1e"
-    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint
-    modality: Qt.ApplicationModal
+    flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint
 
     Material.theme: Material.Dark
     Material.background: "#1e1e1e"

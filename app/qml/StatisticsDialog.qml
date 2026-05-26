@@ -162,7 +162,7 @@ Window {
             RowLayout {
                 id: panelRow
                 anchors { fill: parent; margins: 6 }
-                spacing: 32
+                spacing: 64
 
                 // All-time column
                 ColumnLayout {
