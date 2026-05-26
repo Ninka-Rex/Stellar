@@ -23,9 +23,9 @@ Window {
     id: root
     title: qsTr("Statistics")
     // Height is driven by content — no filler space.
-    width: 280
+    width: 320
     height: mainCol.implicitHeight + 16
-    minimumWidth: 280
+    minimumWidth: 320
     color: "#1e1e1e"
     flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.MSWindowsFixedSizeDialogHint
 
@@ -67,10 +67,47 @@ Window {
         return parts.join(" ")
     }
 
+    // Ratio colour ramp:
+    //   0.0  → red     (#ff5555)
+    //   0.5  → orange  (#ff9944)
+    //   1.0  → green   (#55cc66)
+    //   2.0  → lime    (#99ee55)
+    //   4.0  → cyan    (#44ddcc)
+    //   6.0  → blue    (#4499ff)
+    //   8.0  → purple  (#aa55ff)
+    //  10.0+ → magenta (#ff44cc)
     function ratioColor(r) {
-        if (r >= 1.0) return "#7bd88f"
-        if (r >= 0.5) return "#f0c060"
-        return "#ff8a80"
+        r = r || 0
+        function lerp(a, b, t) {
+            return Math.round(a + (b - a) * Math.max(0, Math.min(1, t)))
+        }
+        function rgb(hr, hg, hb) {
+            return "#" + ("0" + hr.toString(16)).slice(-2)
+                       + ("0" + hg.toString(16)).slice(-2)
+                       + ("0" + hb.toString(16)).slice(-2)
+        }
+        // stops: [ratio, r, g, b]
+        var stops = [
+            [0.0,  255, 85,  85],
+            [0.5,  255, 153, 68],
+            [1.0,  85,  204, 102],
+            [2.0,  153, 238, 85],
+            [4.0,  68,  221, 204],
+            [6.0,  68,  153, 255],
+            [8.0,  170, 85,  255],
+            [10.0, 255, 68,  204]
+        ]
+        if (r <= stops[0][0]) return rgb(stops[0][1], stops[0][2], stops[0][3])
+        if (r >= stops[stops.length-1][0]) return rgb(stops[stops.length-1][1], stops[stops.length-1][2], stops[stops.length-1][3])
+        for (var i = 1; i < stops.length; i++) {
+            if (r <= stops[i][0]) {
+                var t = (r - stops[i-1][0]) / (stops[i][0] - stops[i-1][0])
+                return rgb(lerp(stops[i-1][1], stops[i][1], t),
+                           lerp(stops[i-1][2], stops[i][2], t),
+                           lerp(stops[i-1][3], stops[i][3], t))
+            }
+        }
+        return "#ff44cc"
     }
 
     // Stats row helper: label on left, value on right, value left-aligned after label.
@@ -95,9 +132,8 @@ Window {
             color: parent.valueColor
             font.pixelSize: 11 * App.fontScale
             font.bold: parent.valueBold
-            // Fixed offset so both panels align their value column identically.
-            anchors.left: parent.left
-            anchors.leftMargin: 90
+            anchors.left: lbl.right
+            anchors.leftMargin: 6
         }
     }
 
@@ -115,54 +151,55 @@ Window {
 
         Rectangle { Layout.fillWidth: true; height: 1; color: "#2d2d2d" }
 
-        // ── All-time panel ───────────────────────────────────────────────────────
+        // ── All-time + This session in one card ──────────────────────────────────
         Rectangle {
             Layout.fillWidth: true
             color: "#181818"
             border.color: "#2d2d2d"
             radius: 3
-            implicitHeight: atCol.implicitHeight + 10
+            implicitHeight: panelRow.implicitHeight + 10
 
-            ColumnLayout {
-                id: atCol
+            RowLayout {
+                id: panelRow
                 anchors { fill: parent; margins: 6 }
-                spacing: 2
+                spacing: 32
 
-                Text { text: qsTr("ALL TIME"); color: "#445566"; font.pixelSize: 9 * App.fontScale; font.bold: true; font.letterSpacing: 1 }
+                // All-time column
+                ColumnLayout {
+                    id: atCol
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignTop
+                    spacing: 2
 
-                StatRow { label: qsTr("Downloaded");   value: root.formatBytes(root.stats.downloadedBytes) }
-                StatRow { label: qsTr("Uploaded");     value: root.formatBytes(root.stats.uploadedBytes) }
-                StatRow { label: qsTr("Share Ratio");  value: (root.stats.ratio || 0).toFixed(3); valueColor: root.ratioColor(root.stats.ratio || 0); valueBold: true }
-                StatRow { label: qsTr("Uptime");       value: root.formatUptime(root.stats.totalUptimeSecs) }
-                StatRow {
-                    label: qsTr("Install Date")
-                    value: {
-                        var d = root.stats.installDate || ""
-                        return d ? new Date(d).toLocaleDateString(Qt.locale(), "MMM d, yyyy") : "—"
+                    Text { text: qsTr("ALL TIME"); color: "#445566"; font.pixelSize: 9 * App.fontScale; font.bold: true; font.letterSpacing: 1 }
+
+                    StatRow { label: qsTr("Downloaded");   value: root.formatBytes(root.stats.downloadedBytes) }
+                    StatRow { label: qsTr("Uploaded");     value: root.formatBytes(root.stats.uploadedBytes) }
+                    StatRow { label: qsTr("Share Ratio");  value: (root.stats.ratio || 0).toFixed(3); valueColor: root.ratioColor(root.stats.ratio || 0); valueBold: true }
+                    StatRow { label: qsTr("Uptime");       value: root.formatUptime(root.stats.totalUptimeSecs) }
+                    StatRow {
+                        label: qsTr("Install Date")
+                        value: {
+                            var d = root.stats.installDate || ""
+                            return d ? new Date(d).toLocaleDateString(Qt.locale(), "MMM d, yyyy") : "—"
+                        }
                     }
+                    StatRow { label: qsTr("Startups");     value: (root.stats.totalStartups || 0).toString() }
                 }
-                StatRow { label: qsTr("Startups");     value: (root.stats.totalStartups || 0).toString() }
-            }
-        }
 
-        // ── This session panel ───────────────────────────────────────────────────
-        Rectangle {
-            Layout.fillWidth: true
-            color: "#181818"
-            border.color: "#2d2d2d"
-            radius: 3
-            implicitHeight: sesCol.implicitHeight + 10
+                // This session column
+                ColumnLayout {
+                    id: sesCol
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignTop
+                    spacing: 2
 
-            ColumnLayout {
-                id: sesCol
-                anchors { fill: parent; margins: 6 }
-                spacing: 2
+                    Text { text: qsTr("THIS SESSION"); color: "#445566"; font.pixelSize: 9 * App.fontScale; font.bold: true; font.letterSpacing: 1 }
 
-                Text { text: qsTr("THIS SESSION"); color: "#445566"; font.pixelSize: 9 * App.fontScale; font.bold: true; font.letterSpacing: 1 }
-
-                StatRow { label: qsTr("Downloaded");  value: root.formatBytes(root.stats.sessionDownloaded) }
-                StatRow { label: qsTr("Uploaded");    value: root.formatBytes(root.stats.sessionUploaded) }
-                StatRow { label: qsTr("Uptime");      value: root.formatUptime(root.stats.sessionUptimeSecs) }
+                    StatRow { label: qsTr("Downloaded");  value: root.formatBytes(root.stats.sessionDownloaded) }
+                    StatRow { label: qsTr("Uploaded");    value: root.formatBytes(root.stats.sessionUploaded) }
+                    StatRow { label: qsTr("Uptime");      value: root.formatUptime(root.stats.sessionUptimeSecs) }
+                }
             }
         }
 
