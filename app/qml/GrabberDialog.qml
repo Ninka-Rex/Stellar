@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: qsTr("Stellar Grabber – Step %1 of %2: %3").arg(stepIndex + 1).arg(stepTitles.length).arg(stepTitles[stepIndex])
+    title: qsTr("Stellar Grabber â€“ Step %1 of %2: %3").arg(stepIndex + 1).arg(stepTitles.length).arg(stepTitles[stepIndex])
     width: 700
     height: 540
     minimumWidth: 700
@@ -584,101 +584,111 @@ Window {
             anchors.margins: 0
             spacing: 0
 
-            // Menu bar — plain Row of custom items so we own the height completely.
-            // MenuBar inside a non-ApplicationWindow uses Material's internal height
-            // which ignores delegate implicitHeight and clips descenders.
-            Rectangle {
+            // Menu bar â€” real MenuBar (not ApplicationWindow, but works standalone)
+            MenuBar {
                 Layout.fillWidth: true
-                height: 30
-                color: "#252525"
 
-                Rectangle {
-                    anchors.bottom: parent.bottom
-                    width: parent.width; height: 1
-                    color: "#383838"
+                background: Rectangle {
+                    color: "#252525"
+                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#383838" }
                 }
 
-                // Menus declared here so the Row delegates can reference them by id.
+                component CompactMenuItem: MenuItem {
+                    id: _cmi
+                    implicitHeight: 22; height: 22
+                    topPadding: 0; bottomPadding: 0; verticalPadding: 0
+                    leftPadding: 8; rightPadding: 12; spacing: 0
+                    font.pixelSize: 12 * App.fontScale
+                    indicator: Item {
+                        width: _cmi.checkable ? 16 : 0; height: _cmi.checkable ? 16 : 0
+                        Text {
+                            text: "âœ“"; visible: _cmi.checkable && _cmi.checked
+                            color: "#4488dd"; font.pixelSize: 12 * App.fontScale
+                            anchors.centerIn: parent
+                        }
+                    }
+                    arrow: Text {
+                        x: _cmi.width - width - 8
+                        anchors.verticalCenter: parent ? parent.verticalCenter : undefined
+                        text: "â–¶"; font.pixelSize: 8 * App.fontScale; color: "#888888"
+                        visible: _cmi.subMenu !== null
+                    }
+                    contentItem: RowLayout {
+                        spacing: 6
+                        anchors.verticalCenter: parent ? parent.verticalCenter : undefined
+                        Item { Layout.preferredWidth: 0; Layout.preferredHeight: 14 }
+                        Text {
+                            text: _cmi.text; font: _cmi.font
+                            color: _cmi.enabled ? "#d0d0d0" : "#666666"
+                            verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight
+                            Layout.fillWidth: true
+                        }
+                    }
+                    background: Rectangle {
+                        implicitHeight: 22
+                        color: _cmi.highlighted ? "#1e3a6e" : "transparent"
+                    }
+                }
+
+                delegate: MenuBarItem {
+                    verticalPadding: 0; leftPadding: 12; rightPadding: 12
+                    contentItem: Text {
+                        text: parent.text; font: parent.font
+                        color: "#d0d0d0"; verticalAlignment: Text.AlignVCenter
+                    }
+                    background: Rectangle {
+                        implicitHeight: 20
+                        color: parent.highlighted ? "#1e3a6e" : "transparent"
+                    }
+                }
+
                 Menu {
-                    id: projectMenu
-                    Action {
-                        text: qsTr("New")
-                        onTriggered: {
-                            root.projectId = ""
-                            loadProject({ savePath: App.settings.defaultSavePath, ignorePopupWindows: true, exploreThisLevels: 2, hideDuplicateFiles: true })
-                        }
-                    }
-                    Action {
-                        text: qsTr("Load")
-                        onTriggered: {
-                            projectPickerDialog.selectedProjectId = ""
-                            projectPickerDialog.show()
-                            projectPickerDialog.raise()
-                        }
-                    }
-                    Action { text: qsTr("Save"); onTriggered: saveProjectOnly() }
-                    Action { text: qsTr("Save current settings as a template"); onTriggered: saveTemplatePopup.open() }
+                    title: qsTr("Project")
+                    delegate: CompactMenuItem
+                    implicitWidth: 240; padding: 0
+                    CompactMenuItem { text: qsTr("New");  onTriggered: { root.projectId = ""; loadProject({ savePath: App.settings.defaultSavePath, ignorePopupWindows: true, exploreThisLevels: 2, hideDuplicateFiles: true }) } }
+                    CompactMenuItem { text: qsTr("Load"); onTriggered: { projectPickerDialog.selectedProjectId = ""; projectPickerDialog.show(); projectPickerDialog.raise() } }
+                    CompactMenuItem { text: qsTr("Save"); onTriggered: saveProjectOnly() }
+                    CompactMenuItem { text: qsTr("Save current settings as a template"); onTriggered: saveTemplatePopup.open() }
                     MenuSeparator {}
-                    Menu {
-                        id: recentProjectsMenu
-                        title: qsTr("Recent Projects")
-                        Instantiator {
-                            model: root.recentProjectRows
-                            delegate: MenuItem {
-                                text: modelData.name || "Project"
-                                onTriggered: loadProjectById(modelData.id)
+                    CompactMenuItem {
+                        id: _recentProjectsItem
+                        text: qsTr("Recent Projects") + "  ▶"
+                        onTriggered: _recentProjectsMenu.popup(_recentProjectsItem.width, 0)
+                        onHoveredChanged: {
+                            if (hovered) _recentProjectsMenu.popup(_recentProjectsItem.width, 0)
+                            else _recentProjectsCloseTimer.restart()
+                        }
+                        Menu {
+                            id: _recentProjectsMenu
+                            delegate: CompactMenuItem
+                            implicitWidth: 220; padding: 0
+                            onAboutToHide: _recentProjectsCloseTimer.stop()
+                            Instantiator {
+                                model: root.recentProjectRows
+                                delegate: CompactMenuItem {
+                                    text: modelData.name || "Project"
+                                    onTriggered: loadProjectById(modelData.id)
+                                }
+                                onObjectAdded:   function(index, object) { _recentProjectsMenu.insertItem(index, object) }
+                                onObjectRemoved: function(index, object) { _recentProjectsMenu.removeItem(object) }
                             }
-                            onObjectAdded:   function(index, object) { recentProjectsMenu.insertItem(index, object) }
-                            onObjectRemoved: function(index, object) { recentProjectsMenu.removeItem(object) }
                         }
+                        Timer { id: _recentProjectsCloseTimer; interval: 300; onTriggered: { if (!_recentProjectsMenu.activeFocus) _recentProjectsMenu.close() } }
                     }
                     MenuSeparator {}
-                    Action { text: qsTr("Close"); onTriggered: root.close() }
+                    CompactMenuItem { text: qsTr("Close"); onTriggered: root.close() }
                 }
-
                 Menu {
-                    id: optionsMenu
-                    Action {
-                        text: qsTr("Grabber settings")
-                        onTriggered: { grabberSettingsDialog.show(); grabberSettingsDialog.raise() }
-                    }
+                    title: qsTr("Options")
+                    delegate: CompactMenuItem
+                    implicitWidth: 200; padding: 0
+                    CompactMenuItem { text: qsTr("Grabber settings"); onTriggered: { grabberSettingsDialog.show(); grabberSettingsDialog.raise() } }
                 }
 
-                Row {
-                    anchors.fill: parent
-                    spacing: 0
-
-                    Repeater {
-                        model: [
-                            { label: qsTr("Project"), menu: projectMenu },
-                            { label: qsTr("Options"), menu: optionsMenu }
-                        ]
-                        delegate: Rectangle {
-                            width: mbLabel.implicitWidth + 20
-                            height: parent.height
-                            color: mbMa.containsMouse || modelData.menu.visible ? "#1e3a6e" : "transparent"
-
-                            Text {
-                                id: mbLabel
-                                anchors.centerIn: parent
-                                text: modelData.label
-                                color: "#d0d0d0"
-                                font.pixelSize: 13 * App.fontScale
-                            }
-
-                            MouseArea {
-                                id: mbMa
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: modelData.menu.popup(0, parent.height)
-                            }
-                        }
-                    }
-                }
             }
 
-            // Step header — icon + title + breadcrumb pill
+            // Step header â€” icon + title + breadcrumb pill
             Rectangle {
                 Layout.fillWidth: true
                 height: 46
@@ -712,7 +722,7 @@ Window {
                     }
                 }
 
-                // Step breadcrumb — right side
+                // Step breadcrumb â€” right side
                 Row {
                     anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 14 }
                     spacing: 4
@@ -726,7 +736,7 @@ Window {
                             // Chevron separator (not before first)
                             Text {
                                 visible: index > 0
-                                text: "›"
+                                text: "â€º"
                                 color: "#555"
                                 font.pixelSize: 14 * App.fontScale
                                 anchors.verticalCenter: parent.verticalCenter
@@ -1321,3 +1331,4 @@ Window {
         }
     }
 }
+

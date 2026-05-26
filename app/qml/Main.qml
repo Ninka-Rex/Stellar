@@ -2995,8 +2995,7 @@ ApplicationWindow {
         Menu {
             title: qsTr("Tasks")
             delegate: CompactMenuItem
-            implicitWidth: 260
-            topPadding: 0; bottomPadding: 0
+            implicitWidth: 260; padding: 0
             CompactMenuItem { text: qsTr("Add URL…"); shortcutDisplay: "Ctrl+N"; iconSrc: "icons/add_url.svg";  onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
             CompactMenuItem { text: qsTr("Add Torrent File…"); iconSrc: "icons/torrent_file.svg";   onTriggered: addTorrentFileDialog.open() }
             CompactMenuItem { text: qsTr("Add Batch URLs…");   iconSrc: "icons/add.svg";      onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
@@ -3061,8 +3060,7 @@ ApplicationWindow {
         Menu {
             title: qsTr("File")
             delegate: CompactMenuItem
-            implicitWidth: 260
-            topPadding: 0; bottomPadding: 0
+            implicitWidth: 260; padding: 0
             CompactMenuItem {
                 text: qsTr("Open Folder")
                 shortcutDisplay: "Ctrl+Enter"
@@ -3130,8 +3128,7 @@ ApplicationWindow {
         Menu {
             title: qsTr("Downloads")
             delegate: CompactMenuItem
-            implicitWidth: 260
-            topPadding: 0; bottomPadding: 0
+            implicitWidth: 260; padding: 0
             CompactMenuItem { text: qsTr("Stop all"); shortcutDisplay: "Ctrl+K"; iconSrc: "icons/stop_all.svg";  onTriggered: downloadTable.pauseAll() }
             MenuSeparator {}
             CompactMenuItem { text: qsTr("Delete all completed"); shortcutDisplay: "Ctrl+Shift+W"; iconSrc: "icons/delete.svg";        onTriggered: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() } }
@@ -3220,8 +3217,7 @@ ApplicationWindow {
         Menu {
             title: qsTr("View")
             delegate: CompactMenuItem
-            implicitWidth: 260
-            topPadding: 0; bottomPadding: 0
+            implicitWidth: 260; padding: 0
             CompactMenuItem {
                 text: (sidebar && sidebar.visible) ? qsTr("Hide Categories") : qsTr("Show Categories")
                 iconSrc: "icons/hide_categories.svg"
@@ -3289,8 +3285,7 @@ ApplicationWindow {
         Menu {
             title: qsTr("Options")
             delegate: CompactMenuItem
-            implicitWidth: 260
-            topPadding: 0; bottomPadding: 0
+            implicitWidth: 260; padding: 0
             CompactMenuItem { text: qsTr("Preferences…"); shortcutDisplay: "Ctrl+,"; iconSrc: "icons/gear.svg";      onTriggered: settingsDialog.show() }
             CompactMenuItem { text: qsTr("Scheduler");    iconSrc: "icons/scheduler.svg"; onTriggered: schedulerDialog.show() }
             CompactMenuItem {
@@ -3324,8 +3319,7 @@ ApplicationWindow {
             id: rssMenuBarMenu
             title: qsTr("RSS")
             delegate: CompactMenuItem
-            implicitWidth: 260
-            topPadding: 0; bottomPadding: 0
+            implicitWidth: 260; padding: 0
             CompactMenuItem { text: qsTr("Open RSS Reader");      iconSrc: "icons/rss.svg";    onTriggered: root.showRssWindow() }
             CompactMenuItem { text: qsTr("Refresh All Feeds");    iconSrc: "icons/update.svg"; onTriggered: App.rssManager.refreshAll() }
             CompactMenuItem { text: qsTr("Mark All Items Read");  iconSrc: "icons/checkmark.svg"; onTriggered: App.rssManager.markAllRead() }
@@ -3354,8 +3348,7 @@ ApplicationWindow {
         Menu {
             title: qsTr("Help")
             delegate: CompactMenuItem
-            implicitWidth: 260
-            topPadding: 0; bottomPadding: 0
+            implicitWidth: 260; padding: 0
             CompactMenuItem { text: qsTr("Check for Updates"); iconSrc: "icons/satellite_antenna.svg"; onTriggered: App.checkForUpdates(true) }
             MenuSeparator {}
             CompactMenuItem { text: qsTr("About Stellar"); shortcutDisplay: "Ctrl+/"; iconSrc: "icons/information.svg"; onTriggered: root.showSettingsPage(root.settingsPageAbout) }

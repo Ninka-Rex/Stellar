@@ -432,30 +432,40 @@ Window {
                     Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#383838" }
                 }
 
-                component GrabberCompactMenuItem: MenuItem {
-                    id: _gcmi
-                    implicitHeight: 22
-                    height: 22
+                component CompactMenuItem: MenuItem {
+                    id: _cmi
+                    implicitHeight: 22; height: 22
                     topPadding: 0; bottomPadding: 0; verticalPadding: 0
-                    leftPadding: 8; rightPadding: 12
-                    spacing: 0
+                    leftPadding: 8; rightPadding: 12; spacing: 0
                     font.pixelSize: 12 * App.fontScale
-                    indicator: Item { width: 0; height: 0 }
+                    indicator: Item {
+                        width: _cmi.checkable ? 16 : 0; height: _cmi.checkable ? 16 : 0
+                        Text {
+                            text: "✓"; visible: _cmi.checkable && _cmi.checked
+                            color: "#4488dd"; font.pixelSize: 12 * App.fontScale
+                            anchors.centerIn: parent
+                        }
+                    }
                     arrow: Text {
-                        x: _gcmi.width - width - 8
+                        x: _cmi.width - width - 8
                         anchors.verticalCenter: parent ? parent.verticalCenter : undefined
                         text: "▶"; font.pixelSize: 8 * App.fontScale; color: "#888888"
-                        visible: _gcmi.subMenu !== null
+                        visible: _cmi.subMenu !== null
                     }
-                    contentItem: Text {
-                        text: _gcmi.text; font: _gcmi.font
-                        color: _gcmi.enabled ? "#d0d0d0" : "#666666"
-                        verticalAlignment: Text.AlignVCenter
-                        elide: Text.ElideRight
+                    contentItem: RowLayout {
+                        spacing: 6
+                        anchors.verticalCenter: parent ? parent.verticalCenter : undefined
+                        Item { Layout.preferredWidth: 0; Layout.preferredHeight: 14 }
+                        Text {
+                            text: _cmi.text; font: _cmi.font
+                            color: _cmi.enabled ? "#d0d0d0" : "#666666"
+                            verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight
+                            Layout.fillWidth: true
+                        }
                     }
                     background: Rectangle {
                         implicitHeight: 22
-                        color: _gcmi.highlighted ? "#1e3a6e" : "transparent"
+                        color: _cmi.highlighted ? "#1e3a6e" : "transparent"
                     }
                 }
 
@@ -473,16 +483,16 @@ Window {
 
                 Menu {
                     title: qsTr("Project")
-                    delegate: GrabberCompactMenuItem
-                    implicitWidth: 200; topPadding: 0; bottomPadding: 0
-                    GrabberCompactMenuItem { text: qsTr("Edit current project"); onTriggered: root.editProjectRequested(root.projectId) }
-                    GrabberCompactMenuItem { text: qsTr("Close"); onTriggered: root.close() }
+                    delegate: CompactMenuItem
+                    implicitWidth: 200; padding: 0
+                    CompactMenuItem { text: qsTr("Edit current project"); onTriggered: root.editProjectRequested(root.projectId) }
+                    CompactMenuItem { text: qsTr("Close"); onTriggered: root.close() }
                 }
                 Menu {
                     title: qsTr("Options")
-                    delegate: GrabberCompactMenuItem
-                    implicitWidth: 200; topPadding: 0; bottomPadding: 0
-                    GrabberCompactMenuItem { text: qsTr("Grabber settings"); onTriggered: root.openGrabberSettings() }
+                    delegate: CompactMenuItem
+                    implicitWidth: 200; padding: 0
+                    CompactMenuItem { text: qsTr("Grabber settings"); onTriggered: root.openGrabberSettings() }
                 }
             }
 
