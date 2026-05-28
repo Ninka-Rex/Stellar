@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>تۈركۈملەپ چۈشۈرۈشنى تەكشۈرۈش</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>ئۇلانمىلارنى SDM غا ئەكىر</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>ساقلاش ئورنى:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>ھەر ھۆججەت تۈرىگە ئاساسەن مۇندەرىجىگە</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>بارلىق ھۆججەتلەر بىر تۈرگە</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>بارلىق ھۆججەتلەر بىر مۇندەرىجىگە</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>كۆرۈش...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>تەھرىرلەش...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML ھۆججەتلەرنى يوشۇر</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>تەكرار ھۆججەتلەرنى يوشۇر</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>ھۆججەت تەھرىرلەش</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>1. ساقلاش ھۆججەتخانىسىنى تاللاڭ</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>2. ساقلاش يولىنى تاللاڭ</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>3. URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>4. چۈشەندۈرۈش:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>5. كېلىش مەنبەسى:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>6. كىرىش:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>7. پارول:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>8. ساقلاش</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1008,6 +1080,37 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>OK</source>
             <translation>ماقۇل</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>9. چۈشۈرۈشلەرنى ئېكسپورت قىلىش</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>10. ئېكسپورت قىلىدىغان تۈرلەرنى تاللاڭ:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>تاللانغان نۆۋەتتىكى چۈشۈرۈشلەرنى چىقار</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>تاللانغان چۈشۈرۈشلەرنى چىقار</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>بارلىق چۈشۈرۈشلەرنى چىقار</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>بىكار قىل</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>جەزملە</translation>
         </message>
     </context>
     <context>
@@ -2966,6 +3069,26 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
             <translation>قانال چۈشۈرۈش جەريانى</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>ھۆججەت ئاتى</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>چوڭلۇقى</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>ھالىتى</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>قالغان ۋاقىت</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>تۈر %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>كېيىن چۈشۈرۈش</translation>
         </message>
@@ -2996,6 +3119,38 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
         <message>
             <source>What's New in Stellar</source>
             <translation>Stellar دىكى يېڭىلىقلار</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>ئېكسپورت</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>ئىمپورت</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM ئېكسپورت ھۆججىتىگە (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>تېكىست ھۆججىتىگە…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM ئېكسپورت ھۆججىتىدىن (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>تېكىست ھۆججىتىدىن…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>چۈشۈرۈشلەرنى ئېكسپورت</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>چۈشۈرۈشلەرنى ئىمپورت</translation>
         </message>
     </context>
     <context>
@@ -3923,6 +4078,10 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Stellar نى قوزغىلىشتا ئىجرا قىل</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>باشلانغاندا توررېنتنى توختات</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

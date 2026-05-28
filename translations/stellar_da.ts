@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Gennemse batch-download</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Importer links til SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Gem til:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Hver fil til mappe efter filkategori</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Alle filer til én kategori</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Alle filer til én mappe</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Gennemse...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Rediger...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Skjul HTML-filer</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Skjul gentagne filer</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Rediger fil</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>1. Vælg gemmemappe</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>2. Vælg gemmesti</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>3. URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>4. Beskrivelse:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>5. Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>6. Login:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>7. Adgangskode:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>8. Gem</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Klik Tilføj URL for at starte.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Husk mit valg og vis ikke denne dialogboks igen.
 Du kan ændre det i Indstillinger → Downloads senere.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Annuller</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>9. Eksportér downloads</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>10. Vælg emner til eksport:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Eksporter downloads i valgt kø</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Eksporter valgte downloads</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Eksporter alle downloads</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2961,6 +3064,26 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
             <translation>Kanaldownloadfremdrift</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Filnavn</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Str.</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Status</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Tid tilbage</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Element %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Download senere</translation>
         </message>
@@ -2991,6 +3114,38 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
         <message>
             <source>What's New in Stellar</source>
             <translation>Nyheder i Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Eksportér</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Importér</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Til SDM-eksportfil (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Til tekstfil…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Fra SDM-eksportfil (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Fra tekstfil…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Eksportér downloads</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Importér downloads</translation>
         </message>
     </context>
     <context>
@@ -3918,6 +4073,10 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Start Stellar ved opstart</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Pause torrents ved opstart</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

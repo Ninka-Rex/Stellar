@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>ਸਰਬਸੰਗਤੀ ਡਾਊਨਲੋਡ ਦੀ ਜਾਂਚ</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>SDM ਵਿੱਚ ਲਿੰਕ ਆਯਾਤ ਕਰੋ</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>ਇੱਥੇ ਸੰਭਾਲੋ:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>ਹਰ ਫ਼ਾਈਲ ਨੂੰ ਫ਼ਾਈਲ ਦੀ ਸ਼੍ਰੇਣੀ ਅਨੁਸਾਰ ਡਾਇਰੈਕਟਰੀ ਵਿੱਚ</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>ਸਾਰੀਆਂ ਫ਼ਾਈਲਾਂ ਇੱਕ ਸ਼੍ਰੇਣੀ ਵਿੱਚ</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>ਸਾਰੀਆਂ ਫ਼ਾਈਲਾਂ ਇੱਕ ਡਾਇਰੈਕਟਰੀ ਵਿੱਚ</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>ਬ੍ਰਾਊਜ਼...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>ਸੋਧੋ...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML ਫ਼ਾਈਲਾਂ ਲੁਕਾਓ</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>ਦੁਹਰਾਈਆਂ ਫ਼ਾਈਲਾਂ ਲੁਕਾਓ</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>ਫ਼ਾਈਲ ਸੋਧੋ</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>ਸੇਵ ਡਾਇਰੈਕਟਰੀ ਚੁਣੋ</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>ਸੇਵ ਪਾਥ ਚੁਣੋ</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>ਵੇਰਵਾ:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>ਰੈਫਰਰ:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>ਲਾਗਇਨ:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>ਪਾਸਵਰਡ:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>ਸੇਵ ਕਰੋ</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1001,6 +1073,37 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>ਮੇਰੀ ਚੋਣ ਨੂੰ ਯਾਦ ਰੱਖੋ ਅਤੇ ਇਸ ਡਾਇਲਾਗ ਨੂੰ ਦੁਬਾਰਾ ਨਾ ਦਿਖਾਓ।
 ਤੁਸੀਂ ਇਸਨੂੰ ਬਾਅਦ ਵਿੱਚ Options → Downloads ਵਿੱਚ ਬਦਲ ਸਕਦੇ ਹੋ।</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ਰੱਦ ਕਰੋ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ਠੀਕ</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ਡਾਊਨਲੋਡ ਐਕਸਪੋਰਟ ਕਰੋ</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>ਐਕਸਪੋਰਟ ਲਈ ਆਈਟਮਾਂ ਚੁਣੋ:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>ਚੁਣੀ ਕਤਾਰ 'ਚੋਂ ਡਾਊਨਲੋਡ ਐਕਸਪੋਰਟ ਕਰੋ</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>ਚੁਣੇ ਡਾਊਨਲੋਡ ਐਕਸਪੋਰਟ ਕਰੋ</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>ਸਾਰੇ ਡਾਊਨਲੋਡ ਐਕਸਪੋਰਟ ਕਰੋ</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2955,6 +3058,26 @@ Stellar ਓਪਸ਼ਨਸ → ਬ੍ਰਾਊਜ਼ਰ → ਡਾਊਨਲੋ�
             <translation>ਚੈਨਲ ਡਾਊਨਲੋਡ ਪ੍ਰਗਤੀ</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>ਫਾਈਲ ਨਾਂ</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ਆਕਾਰ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>ਸਥਿਤੀ</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>ਬਾਕੀ ਸਮਾਂ</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>ਆਈਟਮ %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>ਬਾਅਦ 'ਚ ਡਾਊਨਲੋਡ</translation>
         </message>
@@ -2985,6 +3108,38 @@ Stellar ਓਪਸ਼ਨਸ → ਬ੍ਰਾਊਜ਼ਰ → ਡਾਊਨਲੋ�
         <message>
             <source>What's New in Stellar</source>
             <translation>ਸਟੈਲਰ ਵਿੱਚ ਕੀ ਨਵਾਂ ਹੈ</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>ਬਰਾਮਦ</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>ਦਰਾਮਦ</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM ਬਰਾਮਦ ਫ਼ਾਈਲ (.ef2) ਵਿੱਚ…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>ਟੈਕਸਟ ਫ਼ਾਈਲ ਵਿੱਚ…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM ਬਰਾਮਦ ਫ਼ਾਈਲ (.ef2) ਤੋਂ…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>ਟੈਕਸਟ ਫ਼ਾਈਲ ਤੋਂ…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ਡਾਊਨਲੋਡ ਬਰਾਮਦ ਕਰੋ</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>ਡਾਊਨਲੋਡ ਦਰਾਮਦ ਕਰੋ</translation>
         </message>
     </context>
     <context>
@@ -3912,6 +4067,10 @@ Stellar ਓਪਸ਼ਨਸ → ਬ੍ਰਾਊਜ਼ਰ → ਡਾਊਨਲੋ�
         <message>
             <source>Launch Stellar on startup</source>
             <translation>ਸਟਾਰਟਅੱਪ 'ਤੇ ਸਟੈਲਰ ਚਲਾਓ</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>ਚਾਲੂ ਹੋਣ 'ਤੇ ਟੋਰੈਂਟ ਰੋਕੋ</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

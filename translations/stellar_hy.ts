@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Խմբային ներբեռնման վերանայում</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Ներմուծել հղումներ SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Պահպանել՝</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Ամեն ֆայլ ըստ կատեգորիայի</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Բոլորը մեկ կատեգորիայում</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Բոլորը մեկ պանակում</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Դիտել...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Խմբագրել...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Թաքցնել HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Թաքցնել կրկնվողները</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Խմբագրել ֆայլը</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Ընտրել պահպանման թղթապանակ</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Ընտրել պահպանման ուղի</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Նկարագրություն:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Մուտք:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Գաղտնաբառ:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Պահպանել</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -999,6 +1071,37 @@ Click  Add URL  to start.</source>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>Հիշել իմ ընտրությունը և այլևս չցույց տալ այս զրույցը: Կարող եք փոխել այն հետագայում Տարբերակներ → Ներբեռնումներ բաժնում:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Արտահանել ներբեռնումները</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Ընտրել արտահանվող տարրերը:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Արտահանել ընտրված հերթի ներբեռնումները</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Արտահանել ընտրված ներբեռնումները</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Արտահանել բոլոր ներբեռնումները</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2959,6 +3062,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Ալիքի ներբեռնման ընթացքը</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Ֆայլի անուն</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Չափ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Կարգավիճակ</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Մնաց ժամ</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Տարր %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Հետո ներբեռնել</translation>
         </message>
@@ -2989,6 +3112,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Ինչ է նորը Stellar-ում</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Արտահանել</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Ներմուծել</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM արտահանման ֆայլ (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Տեքստային ֆայլ…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM արտահանման ֆայլից (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Տեքստային ֆայլից…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Արտահանել ներբեռնումները</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Ներմուծել ներբեռնումները</translation>
         </message>
     </context>
     <context>
@@ -3916,6 +4071,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Մեկնարկել Stellar-ը մեկնարկի ժամանակ</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Դադարեցնել թորենտները գործարկման ժամանակ</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

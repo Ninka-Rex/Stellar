@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Partijas lejupielādes pārskats</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Importēt saites uz SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Saglabāt uz:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Katru failu direktorijā pēc kategorijas</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Visus failus vienā kategorijā</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Visus failus vienā direktorijā</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Pārlūkot...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Rediģēt...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Slēpt HTML failus</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Slēpt atkārtotus failus</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Rediģēt failu</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Izvēlēties saglabāšanas mapi</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Izvēlēties saglabāšanas ceļu</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Apraksts:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Atsauce:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Lietotājvārds:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Parole:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Saglabāt</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Noklikšķiniet uz Pievienot URL, lai sāktu.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Atcerēties manu izvēli un nerādīt šo dialogu vairāk.
 To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Atcelt</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Labi</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Eksportēt lejupielādes</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Izvēlēties eksportējamos vienumus:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Eksportēt atlasītās rindas lejupielādes</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Eksportēt atlasītās lejupielādes</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Eksportēt visas lejupielādes</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2961,6 +3064,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kanāla lejupielādes progress</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Faila nosaukums</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Izmērs</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Statuss</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Atlikušais laiks</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Vienums %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Lejupielādēt vēlāk</translation>
         </message>
@@ -2991,6 +3114,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Jaunās funkcijas Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Eksportēt</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Importēt</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Uz SDM eksporta failu (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Uz teksta failu…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>No SDM eksporta faila (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>No teksta faila…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Eksportēt lejupielādes</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Importēt lejupielādes</translation>
         </message>
     </context>
     <context>
@@ -3918,6 +4073,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Palaidīt Stellar startējot</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Apturēt torrentus startējot</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

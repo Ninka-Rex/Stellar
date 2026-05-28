@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>批量下载审查</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>导入链接到 SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>保存到：</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>按类别分目录存放</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>所有文件归入同一类别</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>所有文件存入同一目录</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>浏览...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>编辑...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>隐藏 HTML 文件</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>隐藏重复文件</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>编辑文件</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>选择保存目录</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>选择保存路径</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL：</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>描述：</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer：</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>登录：</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>密码：</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>保存</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1001,6 +1073,37 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>记住我的选择，不再显示此对话框
 可在 选项 → 下载 中修改</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>确定</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>导出下载</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>选择导出项：</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>导出所选队列中的下载</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>导出所选下载</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>导出所有下载</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2962,6 +3065,26 @@ Stellar 选项 → 浏览器 → 绕过下载拦截</translation>
             <translation>频道下载进度</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>文件名</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>大小</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>状态</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>剩余时间</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>项目 %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>稍后下载</translation>
         </message>
@@ -2992,6 +3115,38 @@ Stellar 选项 → 浏览器 → 绕过下载拦截</translation>
         <message>
             <source>What's New in Stellar</source>
             <translation>Stellar 更新日志</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>导出</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>导入</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>导出为 SDM 文件 (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>导出为文本文件…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>从 SDM 文件 (.ef2) 导入…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>从文本文件导入…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>导出下载</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>导入下载</translation>
         </message>
     </context>
     <context>
@@ -3919,6 +4074,10 @@ Stellar 选项 → 浏览器 → 绕过下载拦截</translation>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>启动时运行 Stellar</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>启动时暂停种子</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

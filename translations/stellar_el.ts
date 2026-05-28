@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Επισκόπηση ομαδικής λήψης</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Εισαγωγή συνδέσμων στο SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Αποθήκευση σε:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Κάθε αρχείο στον φάκελο ανά κατηγορία</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Όλα σε μία κατηγορία</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Όλα σε έναν φάκελο</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Περιήγηση...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Επεξεργασία...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Απόκρυψη HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Απόκρυψη διπλότυπων</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Επεξεργασία αρχείου</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Επιλογή φακέλου αποθήκευσης</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Επιλογή διαδρομής αποθήκευσης</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Περιγραφή:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Σύνδεση:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Κωδικός:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Αποθήκευση</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1005,6 +1077,37 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Cancel</source>
             <translation>Ακύρωση</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Εξαγωγή λήψεων</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Επιλογή στοιχείων για εξαγωγή:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Εξαγωγή λήψεων στην επιλεγμένη ουρά</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Εξαγωγή επιλεγμένων λήψεων</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Εξαγωγή όλων των λήψεων</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Άκυρο</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2962,6 +3065,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Πρόοδος λήψης καναλιού</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Όνομα αρχείου</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Μέγεθος</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Κατάσταση</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Υπολ. χρόνος</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Στοιχείο %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Λήψη αργότερα</translation>
         </message>
@@ -2992,6 +3115,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Τι νέο υπάρχει στο Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Εξαγωγή</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Εισαγωγή</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Σε αρχείο SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Σε αρχείο κειμένου…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Από αρχείο SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Από αρχείο κειμένου…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Εξαγωγή λήψεων</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Εισαγωγή λήψεων</translation>
         </message>
     </context>
     <context>
@@ -3919,6 +4074,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Εκκίνηση του Stellar στην εκκίνηση</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Παύση torrent κατά την εκκίνηση</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

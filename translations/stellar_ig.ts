@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Nyochaa nbudata otutu</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Bubata njikọ na SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Chekwaa na:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Faịlụ ọ bụla na ndekọ dịka udi faịlụ</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Faịlụ niile n'otu udi</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Faịlụ niile n'otu ndekọ</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Chọgharịa...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Dezie...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Zochi faịlụ HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Zochi faịlụ ugboro ugboro</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Dezie Faịlụ</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Họrọ ebe nchekwa</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Họrọ ụzọ nchekwa</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Nkọwa:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Nbanye:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Okwuntughe:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Chekwa</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1008,6 +1080,37 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>OK</source>
             <translation>Ọ dị mma</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Bupụta Nbudata</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Họrọ ihe ị ga-ebupụta:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Bupụta nbudata n'usoro ahọpụtara</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Bupụta nbudata ahọpụtara</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Bupụta nbudata niile</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Kagbuo</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Ọ DỊ MMA</translation>
         </message>
     </context>
     <context>
@@ -2967,6 +3070,26 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
             <translation>Ọganihu Nbudata Ọwa</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Aha Faịlụ</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Nha</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Ọnọdụ</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Oge fọdụrụ</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Ihe %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Budata ma emechaa</translation>
         </message>
@@ -2997,6 +3120,38 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
         <message>
             <source>What's New in Stellar</source>
             <translation>Ihe Ọhụrụ na Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Bupu</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Bubata</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Gaa na faịlụ mbupụ SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Gaa na faịlụ ederede…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Site na faịlụ mbupụ SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Site na faịlụ ederede…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Bupu nbudata</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Bubata nbudata</translation>
         </message>
     </context>
     <context>
@@ -3924,6 +4079,10 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Malite Stellar na mmalite</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Kwụsị torrents na mmalite</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

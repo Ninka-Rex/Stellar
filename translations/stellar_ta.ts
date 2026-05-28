@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>தொகுப்புப் பதிவிறக்க மதிப்பாய்வு</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>SDM-க்கு இணைப்புகளை இறக்கு</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>இங்கு சேமி:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>ஒவ்வொரு கோப்பும் அதன் வகைப்படி கோப்பகத்தில்</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>அனைத்து கோப்புகளும் ஒரே வகைக்கு</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>அனைத்து கோப்புகளும் ஒரே கோப்பகத்தில்</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>உலாவு...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>தொகு...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML கோப்புகளை மறை</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>மீண்டும் வரும் கோப்புகளை மறை</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>கோப்பைத் தொகு</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>சேமிப்பு கோப்பகத்தைத் தேர்ந்தெடு</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>சேமிப்பு பாதையைத் தேர்ந்தெடு</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>விளக்கம்:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>குறிப்பான்:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>உள்நுழை:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>கடவுச்சொல்:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>சேமி</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>எனது தேர்வை நினைவில் கொள்; இந்த உரையாடலை மீண்டும் காட்டாதே.
 பின்னர் விருப்பங்கள் → பதிவிறக்கங்களில் இதை மாற்றலாம்.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ரத்துசெய்</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>சரி</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>பதிவிறக்கங்களை ஏற்றுமதி செய்</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>ஏற்றுமதி செய்ய உருப்படிகளைத் தேர்ந்தெடு:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>தேர்ந்தெடுத்த வரிசையில் பதிவிறக்கங்களை ஏற்றுமதி செய்</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>தேர்ந்தெடுத்த பதிவிறக்கங்களை ஏற்றுமதி செய்</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>அனைத்து பதிவிறக்கங்களையும் ஏற்றுமதி செய்</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2966,6 +3069,26 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <translation>சேனல் பதிவிறக்க முன்னேற்றம்</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>கோப்பு பெயர்</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>அளவு</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>நிலை</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>மீதி நேரம்</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>உருப்படி %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>பின்னர் பதிவிறக்கு</translation>
         </message>
@@ -2996,6 +3119,38 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
         <message>
             <source>What's New in Stellar</source>
             <translation>ஸ்டெல்லாரில் புதியவை</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>ஏற்றுமதி</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>இறக்குமதி</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM ஏற்றுமதி கோப்பு (.ef2)க்கு…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>உரை கோப்புக்கு…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM ஏற்றுமதி கோப்பிலிருந்து (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>உரை கோப்பிலிருந்து…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>பதிவிறக்கங்களை ஏற்றுமதி</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>பதிவிறக்கங்களை இறக்குமதி</translation>
         </message>
     </context>
     <context>
@@ -3923,6 +4078,10 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
         <message>
             <source>Launch Stellar on startup</source>
             <translation>தொடக்கத்தில் ஸ்டெல்லாரைத் துவக்கு</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>தொடக்கத்தில் டொரெண்டுகளை இடைநிறுத்து</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

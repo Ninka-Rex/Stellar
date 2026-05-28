@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Adolygiad lawrlwytho swp</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Mewnforio dolenni i SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Cadw i:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Pob ffeil i'r cyfeiriadur yn ôl categori'r ffeil</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Pob ffeil i un categori</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Pob ffeil i un cyfeiriadur</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Pori...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Golygu...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Cuddio ffeiliau HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Cuddio ffeiliau ailadroddus</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Golygu Ffeil</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Dewis cyfeiriadur cadw</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Dewis llwybr cadw</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Disgrifiad:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Cyfeirydd:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Mewngofnodi:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Cyfrinair:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Cadw</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Cliciwch  Ychwanegu URL  i ddechrau.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Cofiwch fy newis a pheidiwch â dangos y deialog hwn eto.
 Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Canslo</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Iawn</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Allforio lawrlwythiadau</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Dewis eitemau i'w hallforio:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Allforio lawrlwythiadau yn y ciw dewisol</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Allforio lawrlwythiadau dewisol</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Allforio pob lawrlwythiad</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2967,6 +3070,26 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <translation>Cynnydd Llwytho Sianel</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Enw Ffeil</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Maint</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Statws</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Amser ar ôl</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Eitem %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Llwytho'n hwyrach</translation>
         </message>
@@ -2997,6 +3120,38 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
         <message>
             <source>What's New in Stellar</source>
             <translation>Beth sy'n Newydd yn Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Allforio</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Mewnforio</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>I Ffeil Allforio SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>I Ffeil Testun…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>O Ffeil Allforio SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>O Ffeil Testun…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Allforio Lawrlwythiadau</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Mewnforio Lawrlwythiadau</translation>
         </message>
     </context>
     <context>
@@ -3924,6 +4079,10 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Lansio Stellar wrth gychwyn</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Oedi torrents wrth gychwyn</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Pregled serijalnog preuzimanja</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Увези линкове у SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Сачувај у:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Сваки фајл у директоријум према категорији</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Сви фајлови у једну категорију</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Сви фајлови у један директоријум</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Прегледај...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Уреди...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Сакриј HTML фајлове</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Сакриј дуплиране фајлове</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Уреди фајл</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Изабери фасциклу за чување</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Изабери путању за чување</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Опис:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Реферер:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Корисничко име:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Лозинка:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Сачувај</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1001,6 +1073,37 @@ Kliknite na Dodaj URL za početak.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Zapamti izbor i ne prikazuj ovaj dijalog ponovo.
 Možete promeniti u Opcije → Preuzimanja kasnije.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Откажи</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>У реду</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Извези преузимања</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Изабери ставке за извоз:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Извези преузимања из изабраног реда</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Извези изабрана преузимања</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Извези сва преузимања</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2959,6 +3062,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Напредак преузимања канала</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Назив датотеке</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Величина</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Статус</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Преостало време</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Ставка %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Преузми касније</translation>
         </message>
@@ -2989,6 +3112,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Што је ново у Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Извоз</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Увоз</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>У EF2 датотеку (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>У текстуалну датотеку…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Из EF2 датотеке (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Из текстуалне датотеке…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Извези преузимања</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Увези преузимања</translation>
         </message>
     </context>
     <context>
@@ -3916,6 +4071,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Pokreni Stellar pri pokretanju.</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Паузирај торенте при покретању</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

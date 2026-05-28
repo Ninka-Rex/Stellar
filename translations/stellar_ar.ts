@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>مراجعة التنزيلات الجماعية</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>استيراد روابط إلى SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>حفظ إلى:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>كل ملف إلى مجلد حسب فئته</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>كل الملفات إلى فئة واحدة</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>كل الملفات إلى مجلد واحد</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>تصفح...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>تحرير...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>إخفاء ملفات HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>إخفاء الملفات المكررة</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>تحرير ملف</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>اختر مجلد الحفظ</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>اختر مسار الحفظ</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>الرابط:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>الوصف:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>المُحيل:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>تسجيل الدخول:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>كلمة المرور:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>حفظ</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>تذكر اختياري وعدم عرض هذا المربع مرة أخرى.
 يمكنك تغييره لاحقًا في الخيارات → التنزيلات.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>تصدير التحميلات</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>اختر عناصر للتصدير:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>تصدير التنزيلات في الطابور المحدد</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>تصدير التنزيلات المحددة</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>تصدير كل التنزيلات</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2962,6 +3065,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>تقدم تنزيل القناة</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>اسم الملف</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>الحجم</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>الحالة</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>الوقت المتبقي</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>عنصر %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>تحميل لاحقًا</translation>
         </message>
@@ -2992,6 +3115,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>ما الجديد في ستيلار</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>تصدير</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>استيراد</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>إلى ملف SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>إلى ملف نصي…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>من ملف SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>من ملف نصي…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>تصدير التنزيلات</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>استيراد التنزيلات</translation>
         </message>
     </context>
     <context>
@@ -3919,6 +4074,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>تشغيل Stellar عند بدء التشغيل</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>إيقاف التورنت عند البدء</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

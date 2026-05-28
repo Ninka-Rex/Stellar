@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>ব্যাচ ডাউনলোড পর্যালোচনা</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>SDM-এ লিংক ইম্পোর্ট</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>সংরক্ষণ করুন:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>প্রতিটি ফাইল ক্যাটাগরি অনুযায়ী ডিরেক্টরিতে</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>সব ফাইল এক ক্যাটাগরিতে</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>সব ফাইল এক ডিরেক্টরিতে</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>ব্রাউজ...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>সম্পাদনা...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML ফাইল লুকান</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>পুনরাবৃত্ত ফাইল লুকান</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>ফাইল সম্পাদনা</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>সংরক্ষণের ফোল্ডার নির্বাচন করুন</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>সংরক্ষণের পথ নির্বাচন করুন</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>বিবরণ:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>রেফারার:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>লগইন:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>পাসওয়ার্ড:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>সংরক্ষণ</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1001,6 +1073,37 @@ URL যোগ করুন শুরু করতে।</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>আমার নির্বাচন মনে রাখুন এবং আর এই ডায়লগ দেখাবেন না।
 পরে Options → Downloads এ এটি পরিবর্তন করতে পারবেন।</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ডাউনলোড রপ্তানি</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>রপ্তানির জন্য আইটেম নির্বাচন করুন:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>নির্বাচিত সারির ডাউনলোড রপ্তানি করুন</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>নির্বাচিত ডাউনলোড রপ্তানি করুন</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>সব ডাউনলোড রপ্তানি করুন</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2962,6 +3065,26 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <translation>চ্যানেল ডাউনলোড অগ্রগতি</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>ফাইলের নাম</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>আকার</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>অবস্থা</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>বাকি সময়</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>আইটেম %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>পরে ডাউনলোড</translation>
         </message>
@@ -2992,6 +3115,38 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
         <message>
             <source>What's New in Stellar</source>
             <translation>স্টেলারে নতুন কী</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>রপ্তানি</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>আমদানি</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM রপ্তানি ফাইল (.ef2) এ…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>টেক্সট ফাইলে…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM রপ্তানি ফাইল (.ef2) থেকে…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>টেক্সট ফাইল থেকে…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ডাউনলোড রপ্তানি</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>ডাউনলোড আমদানি</translation>
         </message>
     </context>
     <context>
@@ -3919,6 +4074,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
         <message>
             <source>Launch Stellar on startup</source>
             <translation>স্টার্টআপে Stellar চালু করুন</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>শুরুতে টরেন্ট থামাও</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

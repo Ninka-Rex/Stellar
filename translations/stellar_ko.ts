@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>배치 다운로드 검토</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>SDM으로 링크 가져오기</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>저장 위치:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>파일 분류별 디렉터리에 저장</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>모든 파일을 한 분류로</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>모든 파일을 한 디렉터리로</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>찾아보기...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>편집...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML 파일 숨기기</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>중복 파일 숨기기</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>파일 편집</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>저장 폴더 선택</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>저장 경로 선택</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>설명:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>리퍼러:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>로그인:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>비밀번호:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>저장</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -999,6 +1071,37 @@ Click  Add URL  to start.</source>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>선택 기억 및 대화상자 다시 표시 안 함. 나중에 옵션 → 다운로드에서 변경할 수 있습니다.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>취소</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>확인</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>다운로드 내보내기</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>내보낼 항목 선택:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>선택한 큐 다운로드 내보내기</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>선택한 다운로드 내보내기</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>전체 다운로드 내보내기</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2954,6 +3057,26 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <translation>채널 다운로드 진행</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>파일명</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>크기</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>상태</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>남은 시간</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>항목 %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>나중에 다운로드</translation>
         </message>
@@ -2984,6 +3107,38 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
         <message>
             <source>What's New in Stellar</source>
             <translation>Stellar 업데이트 내용</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>내보내기</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>가져오기</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM 내보내기 파일(.ef2)로…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>텍스트 파일로…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM 내보내기 파일(.ef2)에서…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>텍스트 파일에서…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>다운로드 내보내기</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>다운로드 가져오기</translation>
         </message>
     </context>
     <context>
@@ -3911,6 +4066,10 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
         <message>
             <source>Launch Stellar on startup</source>
             <translation>시작 시 Stellar 실행</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>시작 시 토렌트 일시정지</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

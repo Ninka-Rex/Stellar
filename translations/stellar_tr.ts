@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Toplu indirme incelemesi</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Bağlantıları SDM'ye aktar</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Kayıt yeri:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Her dosyayı kategorisine göre dizine</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Tüm dosyaları tek kategoriye</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Tüm dosyaları tek dizine</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Gözat...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Düzenle...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML dosyalarını gizle</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Yinelenen dosyaları gizle</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Dosyayı Düzenle</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Kayıt dizini seç</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Kayıt yolu seç</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Açıklama:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Yönlendiren:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Kullanıcı:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Parola:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Kaydet</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1001,6 +1073,37 @@ Başlatmak için URL Ekle'ye tıklayın.</translation>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>Seçimi hatırla ve bu iletişim kutusunu tekrar gösterme.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>İptal</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Tamam</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>İndirilenleri dışa aktar</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Dışa aktarılacak öğeleri seç:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Seçili kuyruktaki indirmeleri dışa aktar</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Seçili indirmeleri dışa aktar</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Tüm indirmeleri dışa aktar</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2953,6 +3056,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kanal İndirme İlerlemesi</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Dosya Adı</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Boyut</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Durum</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Kalan süre</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Öğe %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Daha Sonra İndir</translation>
         </message>
@@ -2983,6 +3106,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Stellar'da Ne Yenilik Var</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Dışa aktar</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>İçe aktar</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM dosyasına (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Metin dosyasına…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM dosyasından (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Metin dosyasından…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>İndirilenleri dışa aktar</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>İndirilenleri içe aktar</translation>
         </message>
     </context>
     <context>
@@ -3910,6 +4065,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Başlangıçta Stellar'ı başlat</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Başlangıçta torrentleri duraklat</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

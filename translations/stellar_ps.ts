@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>د ګډوډي ډاونلوډ بیاکتنه</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>SDM ته لېنکونه راوړل</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>خوندي کول:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>هر فایل د هغه کټګورۍ سره سم ډایرکټرۍ ته</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>ټول فایلونه یوې کټګورۍ ته</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>ټول فایلونه یوې ډایرکټرۍ ته</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>لټون...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>سمون...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML فایلونه پټول</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>تکرار فایلونه پټول</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>فایل سمول</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>خوندي ځای غوره کړئ</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>خوندي لار غوره کړئ</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>څرګندونه:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>ریفرر:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>ننوتل:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>پټ نوم:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>خوندي کړئ</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1001,6 +1073,37 @@ URL اضافه کړئ ترڅو پیل شي.</translation>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>زما انتخاب یاد ساتئ او دا دیالوګ بیا ونه ښایاست.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ډاونلوډونه صادر کړئ</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>د صادرولو لپاره توکي غوره کړئ:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>په ټاکلې کتار کې ډاونلوډونه صادر کړئ</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>ټاکل شوي ډاونلوډونه صادر کړئ</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>ټول ډاونلوډونه صادر کړئ</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2962,6 +3065,26 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <translation>چینل ڈاؤنلوڈ کی پیشرفت</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>د فایل نوم</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>اندازه</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>حالت</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>پاتې وخت</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>توکی %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>وروسته ډاونلوډ</translation>
         </message>
@@ -2992,6 +3115,38 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
         <message>
             <source>What's New in Stellar</source>
             <translation>سٹیلر میں نیا کیا ہے</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>صادرول</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>واردول</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM صادراتي فایل (.ef2) ته…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>متن فایل ته…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM صادراتي فایل (.ef2) څخه…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>متن فایل څخه…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ډاونلوډونه صادرول</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>ډاونلوډونه واردول</translation>
         </message>
     </context>
     <context>
@@ -3919,6 +4074,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
         <message>
             <source>Launch Stellar on startup</source>
             <translation>پیل کې Stellar چالان کړئ</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>پیل کې ټورنټونه ودروئ</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

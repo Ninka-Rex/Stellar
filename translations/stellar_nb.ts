@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Gjennomgå batchnedlasting</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Importer lenker til SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Lagre til:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Hver fil til mappe etter filkategori</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Alle filer til én kategori</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Alle filer til én mappe</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Bla gjennom...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Rediger...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Skjul HTML-filer</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Skjul duplikater</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Rediger fil</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Velg lagringsmappe</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Velg lagringssti</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Beskrivelse:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Brukernavn:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Passord:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Lagre</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Klikk Legg til URL for å starte.</translation>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>Husk mitt valg og vis ikke denne dialogen igjen.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Avbryt</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Eksporter nedlastinger</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Velg elementer å eksportere:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Eksporter nedlastinger i valgt kø</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Eksporter valgte nedlastinger</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Eksporter alle nedlastinger</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2954,6 +3057,26 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <translation>Kanalen laster ned</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Filnavn</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Str.</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Status</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Tid igjen</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Element %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Last ned senere</translation>
         </message>
@@ -2984,6 +3107,38 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
         <message>
             <source>What's New in Stellar</source>
             <translation>Hva er nytt i Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Eksporter</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Importer</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Til SDM-eksportfil (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Til tekstfil…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Fra SDM-eksportfil (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Fra tekstfil…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Eksporter nedlastinger</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Importer nedlastinger</translation>
         </message>
     </context>
     <context>
@@ -3911,6 +4066,10 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Start Stellar ved oppstart</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Pause torrenter ved oppstart</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

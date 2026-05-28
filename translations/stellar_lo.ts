@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>ກວດສອບດາວໂຫຼດແບບຊຸດ</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>ນຳເຂົ້າລິ້ງໃສ່ SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>ບັນທຶກໃສ່:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>ທຸກໄຟລ໌ໃສ່ໂຟນເດີຕາມປະເພດ</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>ທຸກໄຟລ໌ໃສ່ປະເພດດຽວ</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>ທຸກໄຟລ໌ໃສ່ໂຟນເດີດຽວ</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>ເລືອກ...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>ແກ້ໄຂ...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>ເຊື່ອງໄຟລ໌ HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>ເຊື່ອງໄຟລ໌ຊ້ຳ</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>ແກ້ໄຂໄຟລ໌</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>ເລືອກໂຟນເດີບັນທຶກ</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>ເລືອກທາງບັນທຶກ</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>ລາຍລະອຽດ:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>ເຂົ້າສູ່ລະບົບ:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>ລະຫັດຜ່ານ:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>ບັນທຶກ</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1001,6 +1073,37 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>4. ຈື່ການເລືອກ ແລະບໍ່ສະແດງກ່ອງນີ້ອີກ.
 ປ່ຽນໄດ້ພາຍຫຼັງໃນ ຕົວເລືອກ → ດາວໂຫຼດ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ຍົກເລີກ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ຕົກລົງ</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ສົ່ງອອກດາວໂຫຼດ</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>ເລືອກລາຍການທີ່ຈະສົ່ງອອກ:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>ສົ່ງອອກດາວໂຫຼດໃນຄິວທີ່ເລືອກ</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>ສົ່ງອອກດາວໂຫຼດທີ່ເລືອກ</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>ສົ່ງອອກດາວໂຫຼດທັງໝົດ</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2969,6 +3072,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ຄວາມຄືບໜ້າດາວໂຫຼດຊ່ອງ</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>ຊື່ໄຟລ໌</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ຂະໜາດ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>ສະຖານະ</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>ເວລາທີ່ເຫຼືອ</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>ລາຍການ %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>ດາວໂຫຼດພາຍຫຼັງ</translation>
         </message>
@@ -2999,6 +3122,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>ມີຫຍັງໃໝ່ໃນ Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>ສົ່ງອອກ</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>ນຳເຂົ້າ</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>ໄປຍັງໄຟລ໌ SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>ໄປຍັງໄຟລ໌ຂໍ້ຄວາມ…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>ຈາກໄຟລ໌ SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>ຈາກໄຟລ໌ຂໍ້ຄວາມ…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ສົ່ງອອກດາວໂຫຼດ</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>ນຳເຂົ້າດາວໂຫຼດ</translation>
         </message>
     </context>
     <context>
@@ -3926,6 +4081,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>ເປີດ Stellar ຕອນເລີ່ມຕົ້ນ</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>ຢຸດທໍເຣັນຕອນເລີ່ມ</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Revisão de download em lote</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Importar links para SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Salvar em:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Cada arquivo no diretório conforme categoria</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Todos arquivos em uma categoria</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Todos arquivos em um diretório</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Procurar...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Editar...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Ocultar arquivos HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Ocultar arquivos repetidos</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Editar arquivo</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>1. Selecionar pasta de destino</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>2. Selecionar caminho</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>3. URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>4. Descrição:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>5. Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>6. Login:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>7. Senha:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>8. Salvar</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1001,6 +1073,37 @@ Clique em Adicionar URL para começar.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Lembrar da minha escolha e não mostrar este diálogo novamente.
 Você pode alterá-lo em Opções → Downloads mais tarde.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Cancelar</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>9. Exportar downloads</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>10. Selecionar itens:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Exportar transferências na fila selecionada</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Exportar transferências selecionadas</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Exportar todas as transferências</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2956,6 +3059,26 @@ Opções do Stellar → Navegador → Ignorar Intercepção de Downloads</transl
             <translation>Progresso de Download do Canal</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Nome</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Tam.</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Estado</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Tempo rest.</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Item %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Baixar depois</translation>
         </message>
@@ -2986,6 +3109,38 @@ Opções do Stellar → Navegador → Ignorar Intercepção de Downloads</transl
         <message>
             <source>What's New in Stellar</source>
             <translation>O que há de novo no Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Exportar</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Importar</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Para ficheiro SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Para ficheiro de texto…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>De ficheiro SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>De ficheiro de texto…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Exportar descargas</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Importar descargas</translation>
         </message>
     </context>
     <context>
@@ -3913,6 +4068,10 @@ Opções do Stellar → Navegador → Ignorar Intercepção de Downloads</transl
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Lançar o Stellar na inicialização</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Pausar torrents ao iniciar</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

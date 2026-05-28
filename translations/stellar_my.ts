@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>အစုလိုက် ဒေါင်းလုဒ် ပြန်စစ်ခြင်း</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>လင့်ခ်များ SDM သို့ထည့်ပါ</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>သိမ်းရန်:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>ဖိုင်အမျိုးအစားအလိုက် ဖိုင်တိုင်းကို ဖိုဒါထဲသို့</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>ဖိုင်အားလုံး အမျိုးအစားတစ်ခုထဲသို့</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>ဖိုင်အားလုံး ဖိုဒါတစ်ခုထဲသို့</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>ရှာဖွေပါ...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>တည်းဖြတ်ပါ...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML ဖိုင်များ ဝှက်ပါ</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>ထပ်နေသောဖိုင်များ ဝှက်ပါ</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>ဖိုင်တည်းဖြတ်ပါ</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>သိမ်းဆည်းမည့်ဖိုဒါ ရွေးပါ</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>သိမ်းဆည်းမည့်လမ်းကြောင်း ရွေးပါ</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>ဖော်ပြချက်:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>ရည်ညွှန်းချက်:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>အကောင့်:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>စကားဝှက်:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>သိမ်းမည်</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>ကျွန်ုပ်၏ရွေးချယ်မှုကို မှတ်ထားပြီး ဤဒိုင်ယာလော့ခ်ကို နောက်တစ်ကြိမ် မပြတော့ပါ။
 နောက်ပိုင်းတွင် ရွေးချယ်စရာများ → ဒေါင်းလုဒ်များ တွင် ပြောင်းလဲနိုင်သည်။</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ပယ်ဖျက်မည်</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>အိုကေ</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ဒေါင်းလုဒ်များ ထုတ်ယူမည်</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>ထုတ်ယူမည့်အရာများ ရွေးပါ:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>ရွေးထားသော တန်းစီမှ ဒေါင်းလုဒ်များ ထုတ်ယူမည်</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>ရွေးထားသော ဒေါင်းလုဒ်များ ထုတ်ယူမည်</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>ဒေါင်းလုဒ်အားလုံး ထုတ်ယူမည်</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2966,6 +3069,26 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
             <translation>18. ချန်နယ် ဒေါင်းလုဒ် တိုးတက်မှု</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>ဖိုင်အမည်</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>အရွယ်</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>အခြေအနေ</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>ကျန်ချိန်</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>အကြောင်းအရာ %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>နောက်မှဒေါင်းလုဒ်လုပ်မည်</translation>
         </message>
@@ -2996,6 +3119,38 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         <message>
             <source>What's New in Stellar</source>
             <translation>25. Stellar တွင် အသစ်အဆန်းများ</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>ထုတ်ယူ</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>သွင်းယူ</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM ဖိုင်သို့ (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>စာသားဖိုင်သို့…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM ဖိုင်မှ (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>စာသားဖိုင်မှ…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ဒေါင်းလုဒ်များ ထုတ်ယူ</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>ဒေါင်းလုဒ်များ သွင်းယူ</translation>
         </message>
     </context>
     <context>
@@ -3923,6 +4078,10 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         <message>
             <source>Launch Stellar on startup</source>
             <translation>စတင်ချိန်တွင် Stellar ဖွင့်ပါ</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>စတင်ချိန်တွင် တိုရန့်များ ခေတ္တရပ်</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

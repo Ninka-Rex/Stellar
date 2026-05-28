@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Kütləvi yükləmə nəzərdən keçirmə</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>SDM-ə keçidləri idxal et</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Saxlanılacaq yer:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Hər faylı kateqoriyasına görə qovluğa</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Bütün faylları bir kateqoriyaya</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Bütün faylları bir qovluğa</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Gözdən keçir...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Redaktə et...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML faylları gizlət</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Təkrarlanan faylları gizlət</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Faylı redaktə et</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Saxlama qovluğunu seç</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Saxlama yolunu seç</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Təsvir:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Giriş:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Şifrə:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Saxla</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -999,6 +1071,37 @@ URL əlavə et düyməsini basın.</translation>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>Seçimimi yadda saxla və bu dialoqu bir daha göstərmə. Sonradan Parametrlər → Endirmələr bölməsində dəyişə bilərsiniz.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ləğv et</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Endirmələri ixrac et</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>İxrac üçün element seç:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Seçilmiş növbədəki endirmələri ixrac et</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Seçilmiş endirmələri ixrac et</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Bütün endirmələri ixrac et</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2961,6 +3064,26 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
             <translation>Kanal yükləmə irəliləyişi</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Fayl adı</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Ölçü</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Status</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Qalan vaxt</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Element %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Sonra endir</translation>
         </message>
@@ -2991,6 +3114,38 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
         <message>
             <source>What's New in Stellar</source>
             <translation>Stellarda yeniliklər</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>İxrac</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>İdxal</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM ixrac faylına (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Mətn faylına…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM ixrac faylından (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Mətn faylından…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Endirmələri ixrac et</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Endirmələri idxal et</translation>
         </message>
     </context>
     <context>
@@ -3918,6 +4073,10 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Başlanğıcda Stellar-ı işə sal</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Başlanğıcda torrentləri dayandır</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Massaviy yuklashni tekshirish</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>SDM ga havolalarni import qilish</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Saqlash joyi:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Har bir faylni toifasiga qarab jildga</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Barcha fayllar bir toifaga</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Barcha fayllar bir jildga</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Ko‘rib chiqish...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Tahrirlash...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML fayllarni yashirish</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Takroriy fayllarni yashirish</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Faylni tahrirlash</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Saqlash jildini tanlang</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Saqlash yo'lini tanlang</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Tavsif:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Login:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Parol:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Saqlash</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1001,6 +1073,37 @@ Boshlash uchun URL qo'shing.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Tanlovimni eslab qoling va bu oynani keyinchalik ko'rsatmang.
 Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Yuklamalarni eksport</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Eksport uchun tanlang:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Tanlangan navbatdagi yuklamalarni eksport qilish</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Tanlangan yuklamalarni eksport qilish</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Barcha yuklamalarni eksport qilish</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2953,6 +3056,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kanallar yuklashi</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Fayl nomi</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Hajmi</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Holat</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Qolgan vaqt</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>%1-element</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Keyinroq yuklash</translation>
         </message>
@@ -2983,6 +3106,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Stellar-da nimalar o'zgardi</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Eksport</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Import</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM eksport fayliga (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Matn fayliga…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM eksport faylidan (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Matn faylidan…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Yuklashlarni eksport</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Yuklashlarni import</translation>
         </message>
     </context>
     <context>
@@ -3910,6 +4065,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Stellar dasturini ishga tushirish</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Ishga tushganda torrentlarni to‘xtatish</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

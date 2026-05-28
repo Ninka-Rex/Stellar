@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Angalia uwanjaji wa kupakua kwa kiasi kikubwa</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Ingiza viungo kwa SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Hifadhi kwa:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Kila faili kwenye saraka kulingana na aina</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Faili zote kwa aina moja</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Faili zote kwenye saraka moja</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Vinjari...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Hariri...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Ficha faili za HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Ficha faili zilizorudiwa</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Hariri Faili</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Chagua saraka ya kuhifadhi</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Chagua njia ya kuhifadhi</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Maelezo:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Rejea:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Kuingia:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Nenosiri:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Hifadhi</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1001,6 +1073,37 @@ Bonyeza  Onyesha URL  kuanza.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Kumbuka chaguo langu na usionyeshe dhana hii tena.
 Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Hamisha vipakuliwa</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Chagua vipengee vya kuhamisha:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Hamisha vipakuliwa kwenye foleni iliyochaguliwa</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Hamisha vipakuliwa vilivyochaguliwa</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Hamisha vipakuliwa vyote</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2953,6 +3056,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Mwendo wa Kupakua Channel</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Jina la Faili</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Ukubwa</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Hali</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Muda uliobaki</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Kipengee %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Pakua Baadaye</translation>
         </message>
@@ -2983,6 +3106,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Nini Jipya kwenye Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Hamisha</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Ingiza</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Kwa Faili ya SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Kwa Faili ya Maandishi…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Kutoka Faili ya SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Kutoka Faili ya Maandishi…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Hamisha Vipakuliwa</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Ingiza Vipakuliwa</translation>
         </message>
     </context>
     <context>
@@ -3910,6 +4065,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Anza Stellar wakati wa kuanzisha</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Simamisha vipakuzi wakati wa kuanza</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

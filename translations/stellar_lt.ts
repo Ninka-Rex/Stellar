@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Masinis atsisiuntimo peržiūra</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Importuoti nuorodas į SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Išsaugoti į:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Kiekvieną failą į katalogą pagal kategoriją</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Visi failai į vieną kategoriją</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Visi failai į vieną katalogą</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Naršyti...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Redaguoti...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Slėpti HTML failus</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Slėpti pasikartojančius failus</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Redaguoti failą</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Pasirinkti išsaugojimo katalogą</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Pasirinkti išsaugojimo kelią</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Aprašymas:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Prisijungimas:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Slaptažodis:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Išsaugoti</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Spauskite  Pridėti URL  pradžiai.</translation>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>Atsiminkite mano pasirinkimą ir daugiau nerodykite šio dialogo.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Atšaukti</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Gerai</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Eksportuoti atsisiuntimus</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Pasirinkti eksportui:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Eksportuoti pasirinktos eilės atsisiuntimus</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Eksportuoti pasirinktus atsisiuntimus</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Eksportuoti visus atsisiuntimus</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2961,6 +3064,26 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <translation>Kanalo atsisiuntimo progresas</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Failo vardas</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Dydis</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Būsena</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Likęs laikas</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Įrašas %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Atsisiųsti vėliau</translation>
         </message>
@@ -2991,6 +3114,38 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
         <message>
             <source>What's New in Stellar</source>
             <translation>Kas naujo Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Eksportuoti</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Importuoti</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Į SDM eksporto failą (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Į tekstinį failą…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Iš SDM eksporto failo (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Iš tekstinio failo…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Eksportuoti siuntinius</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Importuoti siuntinius</translation>
         </message>
     </context>
     <context>
@@ -3918,6 +4073,10 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Paleisti Stellar paleidžiant sistemą</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Pristabdyti torrentus paleidus</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

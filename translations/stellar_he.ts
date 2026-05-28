@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>בדיקת הורדה בקבצים</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>ייבא קישורים ל-SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>שמור אל:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>כל קובץ לתיקייה לפי קטגוריה</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>כל הקבצים לקטגוריה אחת</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>כל הקבצים לתיקייה אחת</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>עיון...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>עריכה...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>הסתר קבצי HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>הסתר קבצים חוזרים</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>ערוך קובץ</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>בחר תיקיית שמירה</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>בחר נתיב שמירה</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>כתובת:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>תיאור:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>מפנה:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>התחברות:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>סיסמה:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>שמור</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Click  Add URL  to start.</source>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>זכור את הבחירה שלי ולא להציג את הדיאלוג הזה שוב.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ייצא הורדות</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>בחר פריטים לייצוא:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>ייצא הורדות בתור הנבחר</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>ייצא הורדות נבחרות</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>ייצא כל ההורדות</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2952,6 +3055,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>תקדמות הורדת ערוץ</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>שם קובץ</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>גודל</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>סטטוס</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>זמן נותר</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>פריט %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>הורד מאוחר יותר</translation>
         </message>
@@ -2982,6 +3105,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>מה חדש ב-Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>ייצוא</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>ייבוא</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>לקובץ ייצוא SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>לקובץ טקסט…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>מקובץ ייצוא SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>מקובץ טקסט…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ייצוא הורדות</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>ייבוא הורדות</translation>
         </message>
     </context>
     <context>
@@ -3909,6 +4064,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>הפעל את Stellar בעת ההתחלה</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>השהה טורנטים בהפעלה</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

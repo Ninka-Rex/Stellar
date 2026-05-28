@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Àtúnyẹ̀wò ìgbàsílẹ̀ àkójọpọ̀</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Ṣàgbékalẹ̀ àwọn ìjápọ̀ sí SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Fipamọ́ sí:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Gbogbo fáìlì sí ìkàlẹ̀ gẹ́gẹ́ bí ìsọ̀rí fáìlì</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Gbogbo fáìlì sí ìsọ̀rí kan</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Gbogbo fáìlì sí ìkàlẹ̀ kan</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Ṣàwárí...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Ṣàtúnṣe...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Fi àwọn fáìlì HTML pamọ́</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Fi àwọn fáìlì àtúnṣe pamọ́</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Ṣàtúnṣe fáìlì</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Yan folda ipamọ</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Yan ọna ipamọ</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Apejuwe:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Olutọka:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Wọle:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Ọrọigbaniwọle:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Fipamọ</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1001,6 +1073,37 @@ Tẹ  Fi URL kún  láti bẹ̀rẹ̀.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Rántí àṣàyàn mi, má sì ṣe fi àtẹ yìí hàn mọ́.
 O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkókò mìíràn.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Fagilé</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Ó dára</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Ṣe àgbéjáde àwọn igbasilẹ</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Yan àwọn nkan láti ṣe àgbéjáde:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Ṣàkójá àwọn ìgbàsílẹ̀ nínú ìlà tí a yàn</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Ṣàkójá àwọn ìgbàsílẹ̀ tí a yàn</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Ṣàkójá gbogbo àwọn ìgbàsílẹ̀</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2968,6 +3071,26 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <translation>Ìlọsíwájú Ìgbarisilẹ̀ Ikanni</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Orúkọ Fáìlì</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Ìwọ̀n</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Ipò</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Àkókò tó kù</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Nǹkan %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Ṣe igbasilẹ nigbamii</translation>
         </message>
@@ -2998,6 +3121,38 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
         <message>
             <source>What's New in Stellar</source>
             <translation>Ohun Tuntun nínú Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Ìjáde</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Ìwọlé</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Sí fáìlì SDM Export (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Sí fáìlì ọ̀rọ̀…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Láti fáìlì SDM Export (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Láti fáìlì ọ̀rọ̀…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Ìjáde àwọn ìgbàlódì</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Ìwọlé àwọn ìgbàlódì</translation>
         </message>
     </context>
     <context>
@@ -3925,6 +4080,10 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Ṣe ìfilọ́lẹ̀ Stellar nígbà ìbẹ̀rẹ̀</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Dá àwọn torrents dúró ní ìbẹ̀rẹ̀</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

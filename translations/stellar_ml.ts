@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>ബാച്ച് ഡൗൺലോഡ് അവലോകനം</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>SDM-ലേക്ക് ലിങ്കുകൾ ഇറക്കുമതി ചെയ്യുക</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>ഇവിടെ സംരക്ഷിക്കുക:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>ഫയലിന്റെ വിഭാഗമനുസരിച്ച് എല്ലാ ഫയലും ഡയറക്ടറിയിലേക്ക്</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>എല്ലാ ഫയലുകളും ഒരു വിഭാഗത്തിലേക്ക്</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>എല്ലാ ഫയലുകളും ഒരു ഡയറക്ടറിയിലേക്ക്</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>ബ്രൗസ് ചെയ്യുക...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>എഡിറ്റ് ചെയ്യുക...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML ഫയലുകൾ മറയ്ക്കുക</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>ആവർത്തിച്ചുള്ള ഫയലുകൾ മറയ്ക്കുക</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>ഫയൽ എഡിറ്റ് ചെയ്യുക</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>സേവ് ഡയറക്ടറി തിരഞ്ഞെടുക്കുക</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>സേവ് പാത തിരഞ്ഞെടുക്കുക</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>വിവരണം:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>റഫറർ:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>ലോഗിൻ:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>പാസ്‌വേഡ്:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>സേവ്</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -999,6 +1071,37 @@ URL ചേർക്കുക ആരംഭിക്കാൻ.</translation>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>എന്റെ തിരഞ്ഞെടുപ്പ് ഓർക്കുക, ഈ ഡയലോഗ് വീണ്ടും കാണിക്കരുത്. പിന്നീട് ഓപ്ഷനുകൾ → ഡൗൺലോഡുകൾ എന്നിവിടെ മാറ്റാം.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>റദ്ദാക്കുക</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ശരി</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ഡൗൺലോഡുകൾ എക്‌സ്‌പോർട്ട് ചെയ്യുക</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>എക്‌സ്‌പോർട്ട് ചെയ്യാനുള്ള ഇനങ്ങൾ തിരഞ്ഞെടുക്കുക:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>തിരഞ്ഞെടുത്ത ക്യൂവിലെ ഡൗൺലോഡുകൾ എക്സ്പോർട്ട് ചെയ്യുക</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>തിരഞ്ഞെടുത്ത ഡൗൺലോഡുകൾ എക്സ്പോർട്ട് ചെയ്യുക</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>എല്ലാ ഡൗൺലോഡുകളും എക്സ്പോർട്ട് ചെയ്യുക</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2965,6 +3068,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ചാനൽ ഡൗൺലോഡ് പ്രോഗ്രസ്</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>ഫയൽ നാമം</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>വലിപ്പം</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>നില</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>ശേഷിക്കുന്ന സമയം</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>ഇനം %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>പിന്നീട് ഡൗൺലോഡ്</translation>
         </message>
@@ -2995,6 +3118,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>സ്റ്റല്ലറിൽ പുതിയത് എന്താണ്</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>കയറ്റുമതി</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>ഇറക്കുമതി</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM കയറ്റുമതി ഫയലിലേക്ക് (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>ടെക്സ്റ്റ് ഫയലിലേക്ക്…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM കയറ്റുമതി ഫയലിൽ നിന്ന് (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>ടെക്സ്റ്റ് ഫയലിൽ നിന്ന്…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ഡൗൺലോഡുകൾ കയറ്റുമതി ചെയ്യുക</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>ഡൗൺലോഡുകൾ ഇറക്കുമതി ചെയ്യുക</translation>
         </message>
     </context>
     <context>
@@ -3922,6 +4077,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>ആരംഭത്തിൽ Stellar പ്രവർത്തിപ്പിക്കുക</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>ആരംഭത്തിൽ ടോറന്റുകൾ താൽക്കാലികമായി നിർത്തുക</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

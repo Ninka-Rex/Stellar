@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Granska batchhämtning</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Importera länkar till SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Spara till:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Varje fil till katalogen enligt filens kategori</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Alla filer till en kategori</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Alla filer till en katalog</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Bläddra...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Redigera...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Dölj HTML-filer</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Dölj upprepade filer</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Redigera fil</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>1. Välj sparmapp</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>2. Välj sparsökväg</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>3. URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>4. Beskrivning:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>5. Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>6. Inloggning:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>7. Lösenord:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>8. Spara</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Klicka på Lägg till URL för att börja.</translation>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>Kom ihåg valet</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Avbryt</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>9. Exportera nerladdningar</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>10. Välj objekt att exportera:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Exportera köns nedladdningar</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Exportera valda nedladdningar</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Exportera alla nedladdningar</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2952,6 +3055,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kanalkonfiguration</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Filnamn</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Storlek</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Status</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Återstående tid</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Objekt %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Ladda ner senare</translation>
         </message>
@@ -2982,6 +3105,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Nyheter i Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Exportera</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Importera</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Till SDM-exportfil (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Till textfil…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Från SDM-exportfil (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Från textfil…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Exportera nerladdningar</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Importera nerladdningar</translation>
         </message>
     </context>
     <context>
@@ -3909,6 +4064,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Starta Stellar vid start</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Pausa torrents vid start</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

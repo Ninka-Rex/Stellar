@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Batch-downloadcontrole</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Importeer links naar SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Opslaan in:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Elk bestand in map volgens categorie</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Alle bestanden in één categorie</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Alle bestanden in één map</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Bladeren...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Bewerken...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML-bestanden verbergen</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Dubbele bestanden verbergen</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Bestand bewerken</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>1. Kies opslagmap</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>2. Kies opslagpad</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>3. URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>4. Beschrijving:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>5. Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>6. Login:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>7. Wachtwoord:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>8. Opslaan</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1001,6 +1073,37 @@ Klik op URL toevoegen om te starten.</translation>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>Onthoud mijn keuze en toon dit dialoog niet meer.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Annuleren</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>9. Downloads exporteren</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>10. Selecteer items om te exporteren:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Exporteer downloads in geselecteerde wachtrij</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Exporteer geselecteerde downloads</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Exporteer alle downloads</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2959,6 +3062,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kanaal-downloadvoortgang</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Bestandsnaam</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Grootte</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Status</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Resterende tijd</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Item %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Later downloaden</translation>
         </message>
@@ -2989,6 +3112,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Wat is nieuw in Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Exporteren</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Importeren</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Naar SDM-exportbestand (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Naar tekstbestand…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Van SDM-exportbestand (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Van tekstbestand…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Downloads exporteren</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Downloads importeren</translation>
         </message>
     </context>
     <context>
@@ -3916,6 +4071,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Stellar opstarten bij systeemstart</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Torrents pauzeren bij opstart</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

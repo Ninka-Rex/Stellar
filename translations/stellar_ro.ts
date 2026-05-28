@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Verificare descărcare în lot</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Importă linkuri în SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Salvează în:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Fiecare fișier în directorul categoriei</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Toate fișierele într-o categorie</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Toate fișierele într-un director</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Răsfoiește...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Editează...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Ascunde fișiere HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Ascunde fișiere duplicate</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Editează fișier</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Selectează directorul de salvare</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Selectează calea de salvare</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Descriere:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Utilizator:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Parolă:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Salvează</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Apăsați Adaugă URL pentru a începe.</translation>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>Amintește selecția și nu mai arăta acest dialog.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Exportă descărcări</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Selectează elementele de exportat:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Exportă descărcările din coada selectată</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Exportă descărcările selectate</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Exportă toate descărcările</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2955,6 +3058,26 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <translation>Progres descărcare canal</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Nume fișier</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Mărime</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Stare</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Timp rămas</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Element %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Descarcă mai târziu</translation>
         </message>
@@ -2985,6 +3108,38 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
         <message>
             <source>What's New in Stellar</source>
             <translation>Ce este nou în Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Exportă</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Importă</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>În fișier SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>În fișier text…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Din fișier SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Din fișier text…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Exportă descărcări</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Importă descărcări</translation>
         </message>
     </context>
     <context>
@@ -3912,6 +4067,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Lansează Stellar la pornire</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Pauză torrente la pornire</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

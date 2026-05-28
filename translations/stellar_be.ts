@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Праверка партыйнага загрузкі</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Імпартаваць спасылкі ў SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Захаваць у:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Кожны файл у каталог паводле катэгорыі</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Усе файлы ў адну катэгорыю</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Усе файлы ў адзін каталог</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Агляд...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Рэдагаваць...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Схаваць HTML-файлы</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Схаваць паўторныя файлы</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Рэдагаваць файл</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Выбраць тэчку захавання</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Выбраць шлях захавання</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Апісанне:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Логін:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Пароль:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Захаваць</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Запомніць мой выбар і больш не паказваць гэты дыялог.
 Гэта можна змяніць у Налады → Спампы пазней.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ОК</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Экспарт спамповак</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Выбраць элементы для экспарту:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Экспартаваць загрузкі з абранай чаргі</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Экспартаваць абраныя загрузкі</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Экспартаваць усе загрузкі</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2961,6 +3064,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Прагрэс сцягавання канала</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Назва файла</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Памер</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Стан</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Засталося часу</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Элемент %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Спампаваць пазней</translation>
         </message>
@@ -2991,6 +3114,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Што новага ў Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Экспарт</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Імпарт</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>У файл SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>У тэкставы файл…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>З файла SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>З тэкставага файла…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Экспарт спамповак</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Імпарт спамповак</translation>
         </message>
     </context>
     <context>
@@ -3918,6 +4073,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Запускаць Stellar пры загрузцы</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Прыпыняць торэнты пры запуску</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

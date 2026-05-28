@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>بررسی دانلود دسته‌ای</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>وارد کردن لینک‌ها به SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>ذخیره در:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>هر فایل در پوشه بر اساس دسته‌بندی</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>همه فایل‌ها در یک دسته</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>همه فایل‌ها در یک پوشه</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>مرور...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>ویرایش...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>مخفی کردن فایل‌های HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>مخفی کردن فایل‌های تکراری</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>ویرایش فایل</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>انتخاب پوشه ذخیره</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>انتخاب مسیر ذخیره</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>نشانی:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>توضیحات:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>ارجاعدهنده:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>ورود:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>رمز:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>ذخیره</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1008,6 +1080,37 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>OK</source>
             <translation>باشه</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>خروجی دانلودها</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>انتخاب موارد برای خروجی:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>خروجی دانلودهای صف انتخابی</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>خروجی دانلودهای انتخابی</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>خروجی همه دانلودها</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>لغو</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>تأیید</translation>
         </message>
     </context>
     <context>
@@ -2958,6 +3061,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>پیشرفت دانلود کانال</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>نام فایل</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>حجم</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>وضعیت</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>زمان باقیمانده</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>مورد %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>بعداً دانلود کن</translation>
         </message>
@@ -2988,6 +3111,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>تغییرات جدید در استلار</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>صدور</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>وارد کردن</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>به فایل SDM (.ef2)...</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>به فایل متنی...</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>از فایل SDM (.ef2)...</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>از فایل متنی...</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>صدور دانلودها</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>وارد کردن دانلودها</translation>
         </message>
     </context>
     <context>
@@ -3915,6 +4070,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>اجرای Stellar هنگام راه‌اندازی</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>توقف تورنت در آغاز</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

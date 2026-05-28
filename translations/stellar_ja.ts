@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>バッチダウンロード確認</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>リンクをSDMにインポート</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>保存先:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>ファイルをカテゴリ別に保存</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>全ファイルを1カテゴリに</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>全ファイルを1フォルダに</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>参照...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>編集...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTMLファイルを隠す</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>重複ファイルを隠す</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>ファイルを編集</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>保存先を選択</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>保存パスを選択</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>説明:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>リファラ:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>ログイン:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>パスワード:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>保存</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -998,6 +1070,37 @@ Click  Add URL  to start.</source>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>選択を記憶し、このダイアログを再度表示しない。後から [オプション] → [ダウンロード] で変更できます</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>キャンセル</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>DLをエクスポート</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>エクスポート項目を選択:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>選択キュー内のダウンロードをエクスポート</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>選択したダウンロードをエクスポート</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>全ダウンロードをエクスポート</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2955,6 +3058,26 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
             <translation>チャンネルのダウンロード進捗</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>ファイル名</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>サイズ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>状態</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>残り時間</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>項目 %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>後でDL</translation>
         </message>
@@ -2985,6 +3108,38 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
         <message>
             <source>What's New in Stellar</source>
             <translation>Stellar の新機能</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>エクスポート</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>インポート</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDMエクスポートファイル(.ef2)に出力…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>テキストファイルに出力…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDMエクスポートファイル(.ef2)から入力…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>テキストファイルから入力…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ダウンロードをエクスポート</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>ダウンロードをインポート</translation>
         </message>
     </context>
     <context>
@@ -3912,6 +4067,10 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
         <message>
             <source>Launch Stellar on startup</source>
             <translation>起動時に Stellar を起動</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>起動時にトレントを一時停止</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

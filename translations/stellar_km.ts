@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>ពិនិត្យទាញយកជាក្រុម</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>នាំចូលតំណទៅ SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>រក្សាទុកទៅ៖</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>ឯកសារនីមួយៗទៅថតតាមប្រភេទ</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>ឯកសារទាំងអស់ទៅប្រភេទមួយ</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>ឯកសារទាំងអស់ទៅថតមួយ</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>រកមើល...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>កែសម្រួល...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>លាក់ឯកសារ HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>លាក់ឯកសារដដែលៗ</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>កែសម្រួលឯកសារ</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>ជ្រើសរើសថតរក្សាទុក</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>ជ្រើសរើសទីតាំងរក្សាទុក</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL៖</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>ការពិពណ៌នា៖</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer៖</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>ចូលប្រើ៖</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>ពាក្យសម្ងាត់៖</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>រក្សាទុក</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1002,6 +1074,37 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>ចងចាំជម្រើសរបស់ខ្ញុំ ហើយកុំបង្ហាញប្រអប់នេះម្តងទៀត។
 អ្នកអាចផ្លាស់ប្តូរវានៅក្នុង ជម្រើស → ការទាញយក នៅពេលក្រោយ។</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>បោះបង់</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>យល់ព្រម</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>នាំចេញការទាញយក</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>ជ្រើសរើសធាតុដើម្បីនាំចេញ៖</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>នាំចេញការទាញយកក្នុងជួរដែលបានជ្រើស</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>នាំចេញការទាញយកដែលបានជ្រើស</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>នាំចេញការទាញយកទាំងអស់</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2968,6 +3071,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>វឌ្ឍនភាពទាញយកឆានែល</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>ឈ្មោះឯកសារ</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ទំហំ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>ស្ថានភាព</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>ពេលនៅសល់</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>ធាតុ %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>ទាញយកពេលក្រោយ</translation>
         </message>
@@ -2998,6 +3121,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>អ្វីថ្មីនៅក្នុង Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>នាំចេញ</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>នាំចូល</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>ទៅឯកសារ SDM (.ef2)...</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>ទៅឯកសារអត្ថបទ...</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>ពីឯកសារ SDM (.ef2)...</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>ពីឯកសារអត្ថបទ...</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>នាំចេញការទាញយក</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>នាំចូលការទាញយក</translation>
         </message>
     </context>
     <context>
@@ -3925,6 +4080,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>បើក Stellar ពេលចាប់ផ្ដើម</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>ផ្អាក torrent ពេលចាប់ផ្ដើម</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Hromadná kontrola stahování</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Importovat odkazy do SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Uložit do:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Každý soubor do složky dle kategorie</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Všechny soubory do jedné kategorie</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Všechny soubory do jedné složky</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Procházet...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Upravit...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Skrýt HTML soubory</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Skrýt duplicitní soubory</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Upravit soubor</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Vybrat složku</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Vybrat cestu</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Popis:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Login:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Heslo:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Uložit</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1001,6 +1073,37 @@ Klikněte na Přidat URL pro spuštění.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Zapamatovat si výběr a již nezobrazovat tento dialog.
 Lze změnit v Možnosti → Stahování.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Zrušit</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Exportovat stahování</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Vybrat položky:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Exportovat stahování ve vybrané frontě</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Exportovat vybraná stahování</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Exportovat všechna stahování</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2962,6 +3065,26 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <translation>Postup stahování kanálu</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Název souboru</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Velikost</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Stav</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Zbývající čas</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Položka %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Stáhnout později</translation>
         </message>
@@ -2992,6 +3115,38 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
         <message>
             <source>What's New in Stellar</source>
             <translation>Co je nového ve Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Exportovat</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Importovat</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Do souboru SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Do textového souboru…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Ze souboru SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Z textového souboru…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Exportovat stahování</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Importovat stahování</translation>
         </message>
     </context>
     <context>
@@ -3919,6 +4074,10 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Spustit Stellar při startu</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Pozastavit torrenty při spuštění</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

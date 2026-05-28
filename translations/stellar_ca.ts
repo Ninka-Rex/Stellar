@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Revisió de descàrrega massiva</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Importa enllaços a SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Desa a:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Cada fitxer al directori segons la categoria</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Tots els fitxers a una categoria</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Tots els fitxers a un directori</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Navega...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Edita...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Amaga fitxers HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Amaga fitxers repetits</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Edita fitxer</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>1. Tria directori</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>2. Tria ruta</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>3. URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>4. Descripció:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>5. Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>6. Usuari:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>7. Contrasenya:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>8. Desa</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Fes clic a Afegeix URL per començar.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Recorda la meva selecció i no mostris aquest diàleg de nou.
 Podeu canviar-ho a Opcions → Descàrregues més tard.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Cancel·la</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>D'acord</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>9. Exporta descàrregues</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>10. Tria elements:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Exporta les descàrregues seleccionades a la cua</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Exporta les descàrregues seleccionades</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Exporta totes les descàrregues</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2962,6 +3065,26 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <translation>Progrés de la descàrrega del canal</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Nom del fitxer</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Mida</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Estat</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Temps restant</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Element %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Descarregar després</translation>
         </message>
@@ -2992,6 +3115,38 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
         <message>
             <source>What's New in Stellar</source>
             <translation>Què hi ha de nou a Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Exporta</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Importa</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>A fitxer SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>A fitxer de text…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Des de fitxer SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Des de fitxer de text…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Exporta baixades</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Importa baixades</translation>
         </message>
     </context>
     <context>
@@ -3919,6 +4074,10 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Inicia Stellar en arrencar</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Pausa torrents en iniciar</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

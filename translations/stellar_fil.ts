@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Suriin ang batch download</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>I-import ang mga link sa SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>I-save sa:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Bawat file sa direktoryo ayon sa kategorya ng file</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Lahat ng file sa isang kategorya</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Lahat ng file sa isang direktoryo</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Mag-browse...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>I-edit...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Itago ang mga HTML file</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Itago ang mga paulit-ulit na file</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>I-edit ang File</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Piliin ang save directory</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Piliin ang save path</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Deskripsyon:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Login:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Password:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>I-save</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1001,6 +1073,37 @@ I-click ang Add URL upang magsimula.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Alalahanin ang aking pagpili at huwag ipakita ang dialog na ito muli.
 Maaari mong baguhin ito sa Options → Downloads sa ibang oras.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Kanselahin</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>I-export ang Downloads</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Pumili ng items na ie-export:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>I-export ang mga download sa napiling pila</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>I-export ang mga napiling download</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>I-export ang lahat ng download</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2956,6 +3059,26 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>Progress ng Pag-download</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Pangalan ng File</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Laki</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Estado</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Natitirang oras</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Item %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>I-download Mamaya</translation>
         </message>
@@ -2986,6 +3109,38 @@ Stellar Options → Browser → Bypass Download Interception</translation>
         <message>
             <source>What's New in Stellar</source>
             <translation>Ano ang Bagong Mayroon sa Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>I-export</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>I-import</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Sa SDM Export File (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Sa Text File…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Mula sa SDM Export File (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Mula sa Text File…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>I-export ang mga Download</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>I-import ang mga Download</translation>
         </message>
     </context>
     <context>
@@ -3913,6 +4068,10 @@ Stellar Options → Browser → Bypass Download Interception</translation>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Ilunsad ang Stellar sa startup</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>I-pause ang torrents sa startup</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

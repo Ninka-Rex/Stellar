@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Eräladattujen linkkien tarkistus</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Tuo linkit SDM:ään</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Tallenna kohteeseen:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Jokainen tiedosto luokan mukaiseen hakemistoon</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Kaikki tiedostot yhteen luokkaan</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Kaikki tiedostot yhteen hakemistoon</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Selaa...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Muokkaa...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Piilota HTML-tiedostot</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Piilota toistuvat tiedostot</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Muokkaa tiedostoa</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Valitse tallennuskansio</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Valitse tallennuspolku</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Kuvaus:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Viittaaja:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Käyttäjätunnus:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Salasana:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Tallenna</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -999,6 +1071,37 @@ Klikkaa Lisää URL aloittaaksesi.</translation>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>Muista valintani ja älä näytä tätä ikkunaa enää. Voit muuttaa asetuksia myöhemmin Asetukset → Lataukset.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Vie lataukset</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Valitse vietävät kohteet:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Vie valitun jonon lataukset</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Vie valitut lataukset</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Vie kaikki lataukset</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2957,6 +3060,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kanavan latausedistys</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Tiedostonimi</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Koko</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Tila</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Aikaa jäljellä</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Kohde %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Lataa myöhemmin</translation>
         </message>
@@ -2987,6 +3110,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Mitä uutta Stellarissa</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Vie</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Tuo</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM-vientitiedostoon (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Tekstitiedostoon…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM-vientitiedostosta (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Tekstitiedostosta…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Vie lataukset</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Tuo lataukset</translation>
         </message>
     </context>
     <context>
@@ -3914,6 +4069,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Käynnistä Stellar käynnistyksessä</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Keskeytä torrentit käynnistyksessä</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

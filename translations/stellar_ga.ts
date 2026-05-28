@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Athbhreithniú íoslódála baitsí</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Iompórtáil naisc go SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Sábháil go:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Gach comhad chuig an eolaire de réir chatagóir an chomhaid</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Gach comhad chuig catagóir amháin</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Gach comhad chuig eolaire amháin</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Brabhsáil...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Cuir in eagar...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Folaigh comhaid HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Folaigh comhaid athuair</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Cuir comhad in eagar</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Roghnaigh fillteán sábhála</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Roghnaigh cosán sábhála</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Cur síos:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Atreoraí:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Logáil isteach:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Pasfhocal:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Sábháil</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1007,6 +1079,37 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>OK</source>
             <translation>Ceart go leor</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Easpórtáil íoslódálacha</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Roghnaigh míreanna le heaspórtáil:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Easpórtáil íoslódálacha sa scuaine roghnaithe</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Easpórtáil íoslódálacha roghnaithe</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Easpórtáil gach íoslódáil</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Cealaigh</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
     <context>
@@ -2960,6 +3063,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Dul chun cinn íoslódála na sraithe</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Ainm Comhaid</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Méid</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Stádas</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Am fágtha</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Mír %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Íoslódáil Níos Déanaí</translation>
         </message>
@@ -2990,6 +3113,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Cad atá nua i Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Easpórtáil</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Iompórtáil</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Go Comhad Easpórtála SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Go Comhad Téacs…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Ó Chomhad Easpórtála SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Ó Chomhad Téacs…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Easpórtáil Íoslódálacha</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Iompórtáil Íoslódálacha</translation>
         </message>
     </context>
     <context>
@@ -3917,6 +4072,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Seol Stellar ag tosú</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Sos torrentaí ar thosú</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

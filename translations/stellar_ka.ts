@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>ჯგუფური ჩამოტვირთვის მიმოხილვა</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>ბმულების იმპორტი SDM-ში</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>შენახვა:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>ყველა ფაილი დირექტორიაში კატეგორიის მიხედვით</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>ყველა ფაილი ერთ კატეგორიაში</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>ყველა ფაილი ერთ დირექტორიაში</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>დათვალიერება...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>რედაქტირება...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML ფაილების დამალვა</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>განმეორებადი ფაილების დამალვა</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>ფაილის რედაქტირება</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>აირჩიეთ შენახვის დირექტორია</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>აირჩიეთ შენახვის მისამართი</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>აღწერა:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>რეფერერი:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>ლოგინი:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>პაროლი:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>შენახვა</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1013,6 +1085,37 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>OK</source>
             <translation>1. კარგი</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ჩამოტვირთვების ექსპორტი</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>აირჩიეთ ექსპორტის ელემენტები:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>ექსპორტი არჩეულ რიგში</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>ექსპორტი არჩეულები</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>ყველას ექსპორტი</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>კარგი</translation>
         </message>
     </context>
     <context>
@@ -2970,6 +3073,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>არხის ჩამოტვირთვის პროგრესი</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>ფაილის სახელი</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ზომა</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>სტატუსი</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>დარჩ. დრო</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>ელემენტი %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>მოგვიანებით ჩამოტვირთვა</translation>
         </message>
@@ -3000,6 +3123,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>რაც ახალია Stellar-ში</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>ექსპორტი</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>იმპორტი</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM ექსპორტის ფაილში (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>ტექსტურ ფაილში…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM ექსპორტის ფაილიდან (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>ტექსტური ფაილიდან…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ჩამოტვირთვების ექსპორტი</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>ჩამოტვირთვების იმპორტი</translation>
         </message>
     </context>
     <context>
@@ -3927,6 +4082,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Stellar-ის გაშვება სტარტზე</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>ტორენტების პაუზა გაშვებისას</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>批次下載檢視</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>匯入連結至 SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>儲存至：</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>依檔案類別歸入目錄</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>所有檔案歸為一類</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>所有檔案歸入同一目錄</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>瀏覽...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>編輯...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>隱藏 HTML 檔案</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>隱藏重複檔案</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>編輯檔案</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>選擇儲存目錄</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>選擇儲存路徑</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL：</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>描述：</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>參照頁：</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>登入：</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>密碼：</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>儲存</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -999,6 +1071,37 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>記住我的選擇，不再顯示此對話框。
 您可在「選項 → 下載」中稍後修改。</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>匯出下載</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>選擇匯出項目：</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>匯出所選佇列中的下載項目</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>匯出所選下載項目</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>匯出所有下載項目</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2953,6 +3056,26 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <translation>頻道下載進度</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>檔名</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>大小</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>狀態</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>剩餘時間</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>項目 %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>稍後下載</translation>
         </message>
@@ -2983,6 +3106,38 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
         <message>
             <source>What's New in Stellar</source>
             <translation>Stellar 新功能</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>匯出</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>匯入</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>匯出為 SDM 檔案 (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>匯出為文字檔…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>從 SDM 檔案 (.ef2) 匯入…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>從文字檔匯入…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>匯出下載項目</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>匯入下載項目</translation>
         </message>
     </context>
     <context>
@@ -3910,6 +4065,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>啟動時開啟 Stellar</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>啟動時暫停種子</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

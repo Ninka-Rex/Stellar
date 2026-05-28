@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Перевірка пакетного завантаження</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Імпорт посилань до SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Зберегти до:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Кожен файл у теку за категорією</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Всі файли в одну категорію</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Всі файли в одну теку</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Огляд...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Змінити...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Сховати HTML-файли</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Сховати повторні файли</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Змінити файл</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Вибрати каталог</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Вибрати шлях</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Опис:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Реферер:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Логін:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Пароль:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Зберегти</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1008,6 +1080,37 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>OK</source>
             <translation>Гаразд</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Експорт завантажень</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Вибрати для експорту:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Експорт завантажень з обраної черги</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Експорт обраних завантажень</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Експорт усіх завантажень</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Скасувати</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ОК</translation>
         </message>
     </context>
     <context>
@@ -2962,6 +3065,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Прогрес завантаження каналу</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Назва файлу</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Розмір</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Стан</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Залишилось часу</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Елемент %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Завантажити пізніше</translation>
         </message>
@@ -2992,6 +3115,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Що нового у Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Експорт</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Імпорт</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>У файл SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>У текстовий файл…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>З файлу SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>З текстового файлу…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Експорт завантажень</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Імпорт завантажень</translation>
         </message>
     </context>
     <context>
@@ -3919,6 +4074,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Запускати Stellar при старті</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Пауза торентів при запуску</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

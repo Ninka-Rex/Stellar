@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Shqyrto ngarkesën tërthore</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Importo lidhjet në SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Ruaj në:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Çdo skedar në dosje sipas kategorisë</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Të gjithë skedarët në një kategori</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Të gjithë skedarët në një dosje</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Shfleto...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Ndrysho...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Fshih skedarët HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Fshih skedarët e përsëritur</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Ndrysho skedarin</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Zgjidh dosjen e ruajtjes</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Zgjidh shtegun e ruajtjes</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Përshkrimi:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referuesi:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Hyrja:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Fjalëkalimi:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Ruaj</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1001,6 +1073,37 @@ Kliko Shto URL për të nisur.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Kujto zgjedhjen time dhe mos trego këtë dialog më tej.
 E mundon në Opsione → Shkarkime më vonë.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulo</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Eksporto shkarkimet</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Zgjidh artikujt për eksport:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Eksporto shkarkimet në radhën e zgjedhur</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Eksporto shkarkimet e zgjedhura</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Eksporto të gjitha shkarkimet</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2959,6 +3062,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Progresi i Kanaleve</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Emri i skedarit</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Madhësia</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Statusi</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Koha e mbetur</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Artikulli %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Shkarko më vonë</translation>
         </message>
@@ -2989,6 +3112,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Çfarë të ri në Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Eksporto</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Importo</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Në skedar SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Në skedar teksti…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Nga skedar SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Nga skedar teksti…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Eksporto shkarkimet</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Importo shkarkimet</translation>
         </message>
     </context>
     <context>
@@ -3916,6 +4071,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Lanço Stellar në nisje</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Ndalo torrentët në nisje</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

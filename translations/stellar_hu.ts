@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Tömeges letöltés áttekintése</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Hivatkozások importálása SDM-be</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Mentés ide:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Minden fájl a kategóriájának megfelelő könyvtárba</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Minden fájl egy kategóriába</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Minden fájl egy könyvtárba</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Tallózás...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Szerkesztés...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML fájlok elrejtése</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Ismétlődő fájlok elrejtése</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Fájl szerkesztése</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>1. Mentési mappa kiválasztása</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>2. Mentési útvonal kiválasztása</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>3. URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>4. Leírás:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>5. Hivatkozó:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>6. Bejelentkezés:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>7. Jelszó:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>8. Mentés</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Kattintson az Add URL gombra az indításhoz.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Emlékezzen a választásra és ne mutassa újra ezt az ablakot.
 Később az Opciók → Letöltések menüpontban módosíthatja.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Mégse</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>9. Letöltések exportálása</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>10. Exportálandó elemek kiválasztása:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Kijelölt sor letöltéseinek exportálása</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Kijelölt letöltések exportálása</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Összes letöltés exportálása</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2955,6 +3058,26 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <translation>Csatorna Letöltés Halad</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Fájlnév</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Méret</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Állapot</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Hátralévő idő</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>%1. elem</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Letöltés később</translation>
         </message>
@@ -2985,6 +3108,38 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
         <message>
             <source>What's New in Stellar</source>
             <translation>Újdonságok a Stellarben</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Exportálás</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Importálás</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM exportfájlba (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Szövegfájlba…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM exportfájlból (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Szövegfájlból…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Letöltések exportálása</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Letöltések importálása</translation>
         </message>
     </context>
     <context>
@@ -3912,6 +4067,10 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Stellar indítása indításkor</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Torrentek szüneteltetése induláskor</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

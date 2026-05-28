@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>කණ්ඩායම් බාගැනීම් සමාලෝචනය</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>SDM වෙත සබැඳි ආයාත කරන්න</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>සුරකින්න:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>ගොනු වර්ගය අනුව නාමාවලියට</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>සියලු ගොනු එක් වර්ගයකට</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>සියලු ගොනු එක් නාමාවලියකට</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>පිරික්සන්න...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>සංස්කරණය...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML ගොනු සඟවන්න</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>පුනරාවර්තී ගොනු සඟවන්න</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>ගොනුව සංස්කරණය</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>ගබඩා බහලුම තෝරන්න</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>ගබඩා මාර්ගය තෝරන්න</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>විස්තරය:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>යොමුකරු:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>පිවිසුම:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>මුරපදය:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>සුරකින්න</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1005,6 +1077,37 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Cancel</source>
             <translation>අවලංගු කරන්න</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>හරි</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>බාගැනීම් අපනයනය</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>අපනයන අයිතම තෝරන්න:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>තෝරාගත් පෝලිමේ බාගැනීම් අපනයනය කරන්න</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>තෝරාගත් බාගැනීම් අපනයනය කරන්න</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>සියලු බාගැනීම් අපනයනය කරන්න</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>අවලංගු</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2967,6 +3070,26 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <translation>නාලිකා බාගැනීම් ප්‍රගතිය</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>ගොනු නම</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ප්‍රමාණය</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>තත්ත්වය</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>ඉතිරි කාලය</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>අයිතමය %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>පසුව බාගන්න</translation>
         </message>
@@ -2997,6 +3120,38 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
         <message>
             <source>What's New in Stellar</source>
             <translation>Stellar හි අලුත් දෑ</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>අපනයනය</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>ආනයනය</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM අපනයන ගොනුවට (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>පෙළ ගොනුවට…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM අපනයන ගොනුවෙන් (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>පෙළ ගොනුවෙන්…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>බාගැනීම් අපනයනය</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>බාගැනීම් ආනයනය</translation>
         </message>
     </context>
     <context>
@@ -3924,6 +4079,10 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
         <message>
             <source>Launch Stellar on startup</source>
             <translation>ආරම්භයේදී Stellar දියත් කරන්න</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>ආරම්භයේදී ටොරන්ට් විරාම කරන්න</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Šarvážová kontrola stiahnutia</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Importovať odkazy do SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Uložiť do:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Každý súbor do adresára podľa kategórie</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Všetky súbory do jednej kategórie</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Všetky súbory do jedného adresára</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Prehľadávať...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Upraviť...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Skryť HTML súbory</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Skryť duplicitné súbory</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Upraviť súbor</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Vybrať priečinok</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Vybrať cestu</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Popis:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Prihlásenie:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Heslo:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Uložiť</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -998,6 +1070,37 @@ Click  Add URL  to start.</source>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>Zapamätať si moju voľbu a už tento dialóg nezobrazovať. Môžete si ho zmeniť v Možnosti → Stiahnutia neskôr.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Zrušiť</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Export sťahovaní</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Vybrať položky na export:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Exportovať sťahovania vo vybranej fronte</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Exportovať vybrané sťahovania</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Exportovať všetky sťahovania</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2950,6 +3053,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Pokroč download kanála</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Názov súboru</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Veľkosť</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Stav</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Zostávajúci čas</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Položka %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Stiahnuť neskôr</translation>
         </message>
@@ -2980,6 +3103,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Čo je nové v Stellari</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Exportovať</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Importovať</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Do súboru SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Do textového súboru…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Zo súboru SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Z textového súboru…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Exportovať sťahovania</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Importovať sťahovania</translation>
         </message>
     </context>
     <context>
@@ -3907,6 +4062,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Spustiť Stellar pri štarte</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Pozastaviť torrenty pri štarte</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

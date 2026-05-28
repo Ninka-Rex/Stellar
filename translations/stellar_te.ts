@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>సమీక్షను బ్యాచ్ డౌన్లోడ్ చేయండి</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>SDMకి లింకులను దిగుమతి చేయండి</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>ఇక్కడ భద్రపరచు:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>ప్రతి ఫైల్ దాని వర్గానికి తగిన డైరెక్టరీలో</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>అన్ని ఫైళ్ళు ఒకే వర్గంలో</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>అన్ని ఫైళ్ళు ఒకే డైరెక్టరీలో</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>బ్రౌజ్ చేయండి...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>సవరించు...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML ఫైళ్ళను దాచు</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>పునరావృత ఫైళ్ళను దాచు</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>ఫైల్‌ను సవరించు</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>సేవ్ డైరెక్టరీ ఎంచుకోండి</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>సేవ్ పాత్ ఎంచుకోండి</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>వివరణ:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>రెఫరర్:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>లాగిన్:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>పాస్వర్డ్:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>సేవ్</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>నా ఎంపికను గుర్తుంచుకో మరియు ఈ డైలాగ్‌ను మళ్లీ చూపించవద్దు.
 మీరు తర్వాత ఎంపికలు → డౌన్‌లోడ్‌లలో దీన్ని మార్చవచ్చు.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>రద్దు</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>సరే</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>డౌన్‌లోడ్లు ఎగుమతి</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>ఎగుమతికి అంశాలు ఎంచుకోండి:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>ఎంచుకున్న క్యూలో డౌన్‌లోడ్‌లను ఎగుమతి చేయి</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>ఎంచుకున్న డౌన్‌లోడ్‌లను ఎగుమతి చేయి</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>అన్ని డౌన్‌లోడ్‌లను ఎగుమతి చేయి</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2967,6 +3070,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ఛానెల్ డౌన్‌లోడ్ పురోగతి</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>ఫైల్ పేరు</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>పరిమాణం</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>స్థితి</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>మిగిలిన సమయం</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>అంశం %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>తర్వాత డౌన్లోడ్</translation>
         </message>
@@ -2997,6 +3120,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>స్టెల్లార్‌లో కొత్తవి</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>ఎగుమతి</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>దిగుమతి</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM ఎగుమతి ఫైల్‌కు (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>టెక్స్ట్ ఫైల్‌కు…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM ఎగుమతి ఫైల్ నుండి (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>టెక్స్ట్ ఫైల్ నుండి…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>డౌన్‌లోడ్‌లను ఎగుమతి చేయి</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>డౌన్‌లోడ్‌లను దిగుమతి చేయి</translation>
         </message>
     </context>
     <context>
@@ -3924,6 +4079,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>ప్రారంభంలో Stellar ప్రారంభించు</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>ప్రారంభంలో టొరెంట్‌లను నిలిపివేయి</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

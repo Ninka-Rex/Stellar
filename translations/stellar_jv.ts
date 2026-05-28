@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Tinjau unduhan massal</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Impor pranala menyang SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Simpen menyang:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Saben berkas menyang direktori miturut kategori berkas</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Kabeh berkas menyang siji kategori</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Kabeh berkas menyang siji direktori</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Telusuri...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Sunting...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Singidaken berkas HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Singidaken berkas rangkep</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Sunting Berkas</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Pilih direktori simpen</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Pilih path simpen</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Katrangan:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Login:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Sandi:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Simpen</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Klik Tambah URL kanggo miwiti.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Elingi pilihanku lan ojo tampilake dialog iki maneh.
 Sampeyan bisa ngubah ing Opsi → Unduhan mengko.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Batal</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Ekspor unduhan</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Pilih item sing diekspor:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Èkspor unduhan ing antrian kapilih</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Èkspor unduhan kapilih</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Èkspor kabèh unduhan</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2966,6 +3069,26 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
             <translation>Progres Unduh Saluran</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Jeneng Berkas</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Ukuran</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Status</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Wektu sisa</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Item %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Unduh Mengko</translation>
         </message>
@@ -2996,6 +3119,38 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
         <message>
             <source>What's New in Stellar</source>
             <translation>Anyaran ing Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Èkspor</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Impor</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Menyang Berkas Èkspor SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Menyang Berkas Tèks…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Saka Berkas Èkspor SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Saka Berkas Tèks…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Èkspor Unduhan</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Impor Unduhan</translation>
         </message>
     </context>
     <context>
@@ -3923,6 +4078,10 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Bukak Stellar nalika wiwitan</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Ngaso torrent nalika wiwitan</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

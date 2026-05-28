@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>የቡድን ማውረድ ግምገማ</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>አገናኞችን ወደ SDM አስመጣ</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>አስቀምጥበት፦</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>እያንዳንዱን ፋይል እንደየምድቡ ወደ ዕፀ ፋይሉ</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>ሁሉንም ፋይሎች ወደ አንድ ምድብ</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>ሁሉንም ፋይሎች ወደ አንድ ዕፀ ፋይል</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>አስስ...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>አርትዕ...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>የHTML ፋይሎችን ደብቅ</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>የተደገሙ ፋይሎችን ደብቅ</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>ፋይል አርትዕ</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>ማስቀመጫ ማውጫ ምረጥ</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>ማስቀመጫ መንገድ ምረጥ</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>መግለጫ:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>ሪፈረር:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>መግቢያ:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>የይለፍ ቃል:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>አስቀምጥ</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Click  Add URL  to start.</source>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>ምርጫዬን አስታውስ እና ይህን ንግግር ደግሞ አታሳይ። በኋላ በአማራጮች → ውርዶች መቀየር ትችላለህ።</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ይቅር</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>እሺ</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ውርዶችን ላክ</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>ወደ ውጭ የሚላኩትን ምረጥ:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>በተመረጠው ወረፋ ውስጥ የሚገኙ ማውረዶችን ላክ</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>የተመረጡ ማውረዶችን ላክ</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>ሁሉንም ማውረዶች ላክ</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2966,6 +3069,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>3. የሰርጥ ማውረድ ሂደት</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>የፋይል ስም</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>መጠን</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>ሁኔታ</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>የቀረ ጊዜ</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>ንጥል %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>በኋላ አውርድ</translation>
         </message>
@@ -2996,6 +3119,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>10. በስቴላር ውስጥ አዲስ ምን አለ</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>ወደ ውጪ ላክ</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>አስመጣ</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>ወደ SDM ኤክስፖርት ፋይል (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>ወደ ጽሑፍ ፋይል…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>ከ SDM ኤክስፖርት ፋይል (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>ከ ጽሑፍ ፋይል…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ውርዶችን ላክ</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>ውርዶችን አስመጣ</translation>
         </message>
     </context>
     <context>
@@ -3923,6 +4078,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>ሲጀመር Stellarን አስጀምር</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>ሲጀምር ቶረንቶችን አቁም</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

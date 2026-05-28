@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Bitar saukar da yawa</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Shigo da hanyoyin haɗi zuwa SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Ajiye zuwa:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Kowane fayil zuwa babban fayil bisa nau'in fayil ɗin</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Duk fayiloli zuwa nau'i ɗaya</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Duk fayiloli zuwa babban fayil ɗaya</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Bincika...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Gyara...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Ɓoye fayilolin HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Ɓoye fayiloli masu maimaitawa</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Gyara Fayil</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Zaɓi wurin ajiya</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Zaɓi hanyar ajiya</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Bayani:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Mai nuni:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Shiga:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Kalmar sirri:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Ajiye</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Danna  Ƙara URL  don farawa.</translation>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>Tuna zaɓina kuma kar a sake nuna wannan maganganun. Za ku iya canza shi a Zaɓuɓɓuka → Zazzagewa daga baya.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Soke</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Ok</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Fitar da zazzagewa</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Zaɓi abubuwan fitarwa:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Fitar da abubuwan da aka zaɓa a jerin</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Fitar da zaɓaɓɓun abubuwa</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Fitar da duk abubuwan</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2967,6 +3070,26 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
             <translation>Ci gaban Zazzagewar Tasha</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Sunan fayil</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Girma</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Matsayi</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Lokaci ya rage</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Abu %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Sauke Daga Baya</translation>
         </message>
@@ -2997,6 +3120,38 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
         <message>
             <source>What's New in Stellar</source>
             <translation>Sababbin Abubuwa a Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Fitarwa</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Shigo</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>Zuwa Fayil ɗin Fitarwa na SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Zuwa Fayil ɗin Rubutu…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Daga Fayil ɗin Fitarwa na SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Daga Fayil ɗin Rubutu…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Fitar da Zazzagewa</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Shigo da Zazzagewa</translation>
         </message>
     </context>
     <context>
@@ -3924,6 +4079,10 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Bude Stellar lokacin farawa</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Dakatar torrents a farawa</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

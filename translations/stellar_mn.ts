@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Нэгдүгээр шалгалт</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>SDM-д холбоос импортлох</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Хадгалах:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Файлын төрлөөр хавтсанд</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Бүх файлыг нэг төрөлд</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Бүх файлыг нэг хавтсанд</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Хайх...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Засварлах...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML файл нуух</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Давхардсан файл нуух</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Файл засварлах</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Хадгалах хавтас сонгох</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Хадгалах зам сонгох</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Тайлбар:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Реферер:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Нэвтрэх:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Нууц үг:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Хадгалах</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -999,6 +1071,37 @@ Click  Add URL  to start.</source>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>Сонголтыг минь санаж, энэ цонхыг дахин харуулахгүй. Үүнийг хожим 'Сонголт → Татах'-д өөрчлөх боломжтой.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Таталтуудыг экспортлох</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Экспортлох зүйлс сонгох:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Сонгосон дарааллаас татаж авах</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Сонгосон таталтуудыг экспортлох</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Бүх таталтыг экспортлох</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2951,6 +3054,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Зурвасын татах явц</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Файлын нэр</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Хэмжээ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Төлөв</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Үлдсэн хугацаа</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Зүйл %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Дараа татах</translation>
         </message>
@@ -2981,6 +3104,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Stellar-д шинэчлэлтүүд</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Экспорт</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Импорт</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM экспорт файл (.ef2) руу…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Текст файл руу…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM экспорт файлаас (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Текст файлаас…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Таталтуудыг экспортлох</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Таталтуудыг импортлох</translation>
         </message>
     </context>
     <context>
@@ -3908,6 +4063,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Stell-ийг ачаалалд хийх</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Эхлэхэд торрентуудыг түр зогсоох</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

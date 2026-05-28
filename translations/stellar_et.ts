@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Partiiladi ülevaade</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Impordi lingid SDM-i</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Salvesta:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Iga fail kategooria järgi kausta</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Kõik failid ühte kategooriasse</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Kõik failid ühte kausta</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Sirvi...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Muuda...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Peida HTML-failid</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Peida korduvad failid</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Muuda faili</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Vali salvestuskaust</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Vali salvestustee</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Kirjeldus:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Viitaja:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Kasutaja:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Parool:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Salvesta</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1015,6 +1087,37 @@ Click  Add URL  to start.</source>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>Mäleta minu valikut ja ära näita seda dialoogi enam.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Tühista</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Ekspordi allalaadimised</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Vali eksporditavad kirjed:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Ekspordi valitud järjekorra allalaadimised</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Ekspordi valitud allalaadimised</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Ekspordi kõik allalaadimised</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2973,6 +3076,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kanali allalaadimise edenemine</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Failinimi</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Suurus</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Olek</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Aega jäänud</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Üksus %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Laadi hiljem</translation>
         </message>
@@ -3003,6 +3126,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>Mis on uues Stellaris</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Ekspordi</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Impordi</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM ekspordifaili (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>Tekstifaili…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM ekspordifailist (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Tekstifailist…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Ekspordi allalaadimised</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Impordi allalaadimised</translation>
         </message>
     </context>
     <context>
@@ -3930,6 +4085,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Stellar käivitamine käivitumisel</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Peata torrentid käivitamisel</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

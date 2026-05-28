@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>ตรวจสอบการดาวน์โหลดแบบกลุ่ม</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>นำเข้าลิงก์ไปยัง SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>บันทึกไปที่:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>ทุกไฟล์ไปยังไดเรกทอรีตามหมวดหมู่</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>ทุกไฟล์ไปยังหมวดหมู่เดียว</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>ทุกไฟล์ไปยังไดเรกทอรีเดียว</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>เรียกดู...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>แก้ไข...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>ซ่อนไฟล์ HTML</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>ซ่อนไฟล์ซ้ำ</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>แก้ไขไฟล์</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>1. เลือกโฟลเดอร์บันทึก</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>2. เลือกพาธบันทึก</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>3. URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>4. คำอธิบาย:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>5. Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>6. เข้าสู่ระบบ:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>7. รหัสผ่าน:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>8. บันทึก</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Click  Add URL  to start.</source>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
             <translation>จดจำการเลือกและไม่แสดงหน้าต่างนี้อีก</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ยกเลิก</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ตกลง</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>9. ส่งออกดาวน์โหลด</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>10. เลือกรายการที่จะส่งออก:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>ส่งออกดาวน์โหลดในคิวที่เลือก</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>ส่งออกที่เลือก</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>ส่งออกทั้งหมด</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2956,6 +3059,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ความคืบหน้าการดาวน์โหลดช่อง</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>ชื่อไฟล์</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ขนาด</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>สถานะ</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>เวลาคงเหลือ</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>รายการ %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>ดาวน์โหลดทีหลัง</translation>
         </message>
@@ -2986,6 +3109,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>สิ่งใหม่ใน Stellar</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>ส่งออก</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>นำเข้า</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>เป็นไฟล์ SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>เป็นไฟล์ข้อความ…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>จากไฟล์ SDM (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>จากไฟล์ข้อความ…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ส่งออกดาวน์โหลด</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>นำเข้าดาวน์โหลด</translation>
         </message>
     </context>
     <context>
@@ -3913,6 +4068,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>เปิด Stellar เมื่อเริ่มระบบ</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>หยุดทอร์เรนต์เมื่อเริ่ม</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

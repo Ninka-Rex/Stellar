@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>بچٹ ڈاؤن لوڈ جائزہ</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>SDM میں روابط درآمد کریں</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>محفوظ کریں:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>ہر فائل زمرے کے مطابق ڈائریکٹری میں</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>تمام فائلیں ایک زمرے میں</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>تمام فائلیں ایک ڈائریکٹری میں</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>براؤز...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>ترمیم...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML فائلیں چھپائیں</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>دہرائی گئی فائلیں چھپائیں</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>فائل میں ترمیم</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>محفوظ کرنے کی ڈائریکٹری منتخب کریں</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>محفوظ کرنے کا راستہ منتخب کریں</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>یو آر ایل:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>تفصیل:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>حوالہ:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>لاگ ان:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>پاس ورڈ:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>محفوظ کریں</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1007,6 +1079,37 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>OK</source>
             <translation>ٹھیک ہے</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ڈاؤن لوڈز برآمد کریں</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>برآمد کرنے کے لیے اشیاء منتخب کریں:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>منتخب قطار میں ڈاؤن لوڈ برآمد کریں</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>منتخب ڈاؤن لوڈ برآمد کریں</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>تمام ڈاؤن لوڈ برآمد کریں</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>منسوخ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ٹھیک</translation>
         </message>
     </context>
     <context>
@@ -2954,6 +3057,26 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>Channel Download Progress</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>فائل نام</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>حجم</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>حیثیت</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>باقی وقت</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>آئٹم %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>بعد میں ڈاؤن لوڈ</translation>
         </message>
@@ -2984,6 +3107,38 @@ Stellar Options → Browser → Bypass Download Interception</translation>
         <message>
             <source>What's New in Stellar</source>
             <translation>Stellar What's New</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>برآمد</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>درآمد</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM برآمد فائل (.ef2) میں…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>متن فائل میں…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM برآمد فائل (.ef2) سے…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>متن فائل سے…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ڈاؤن لوڈ برآمد کریں</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>ڈاؤن لوڈ درآمد کریں</translation>
         </message>
     </context>
     <context>
@@ -3911,6 +4066,10 @@ Stellar Options → Browser → Bypass Download Interception</translation>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>شروعات پر Stellar چلائیں۔</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>شروع پر ٹورنٹ روکیں</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

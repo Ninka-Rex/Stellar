@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>Pregled serije preuzimanja</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>Uvezi linkove u SDM</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Sačuvaj u:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>Svaki fajl u direktorijum prema kategoriji</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>Svi fajlovi u jednu kategoriju</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>Svi fajlovi u jedan direktorijum</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>Pregledaj...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>Izmeni...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>Sakrij HTML fajlove</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>Sakrij duplikate</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>Izmeni fajl</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>Izaberi direktorijum</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>Izaberi putanju</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>Opis:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>Referer:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>Korisnik:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>Lozinka:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Sačuvaj</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1000,6 +1072,37 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Zapamti izbor i ne prikazuj ovaj dijalog ponovo.
 Možete promeniti u Opcije → Preuzimanja kasnije.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Otkaži</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>U redu</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Izvezi preuzimanja</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>Izaberi stavke za izvoz:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>Izvezi preuzimanja u izabranom redu</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>Izvezi izabrana preuzimanja</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>Izvezi sva preuzimanja</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2961,6 +3064,26 @@ Podešavanja Stellara → Pretraživač → Zaobiđi prekid preuzimanja</transla
             <translation>Napredak preuzimanja kanala</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>Ime datoteke</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Veličina</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Status</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Preostalo</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>Stavka %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>Preuzmi kasnije</translation>
         </message>
@@ -2991,6 +3114,38 @@ Podešavanja Stellara → Pretraživač → Zaobiđi prekid preuzimanja</transla
         <message>
             <source>What's New in Stellar</source>
             <translation>Šta je novo u Stellaru</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>Izvezi</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>Uvezi</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>U SDM izvoznu datoteku (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>U tekstualnu datoteku…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>Iz SDM izvozne datoteke (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>Iz tekstualne datoteke…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>Izvezi preuzimanja</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>Uvezi preuzimanja</translation>
         </message>
     </context>
     <context>
@@ -3918,6 +4073,10 @@ Podešavanja Stellara → Pretraživač → Zaobiđi prekid preuzimanja</transla
         <message>
             <source>Launch Stellar on startup</source>
             <translation>Pokreni Stellar pri pokretanju.</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>Pauziraj torrente pri pokretanju</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

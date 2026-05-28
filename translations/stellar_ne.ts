@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>ब्याच डाउनलोड समीक्षा</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>SDM मा लिङ्क आयात गर्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>यसमा सङ्ग्रह गर्नुहोस्:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>प्रत्येक फाइललाई फाइलको श्रेणी अनुसार डाइरेक्टरीमा</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>सबै फाइलहरू एउटै श्रेणीमा</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>सबै फाइलहरू एउटै डाइरेक्टरीमा</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>ब्राउज...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>सम्पादन...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML फाइलहरू लुकाउनुहोस्</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>दोहोरिएका फाइलहरू लुकाउनुहोस्</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>फाइल सम्पादन गर्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>सुरक्षित गर्ने डाइरेक्टरी छान्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>सुरक्षित गर्ने पथ छान्नुहोस्</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>विवरण:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>रेफरर:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>लगइन:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>पासवर्ड:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>सुरक्षित गर्नुहोस्</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1008,6 +1080,37 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>OK</source>
             <translation>ठिक छ</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>डाउनलोडहरू निर्यात गर्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>निर्यात गर्न वस्तुहरू छान्नुहोस्:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>चयनित लाममा डाउनलोड निर्यात गर्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>चयनित डाउनलोड निर्यात गर्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>सबै डाउनलोड निर्यात गर्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>रद्द गर्नुहोस्</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ठीक छ</translation>
         </message>
     </context>
     <context>
@@ -2952,6 +3055,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>च्यानल डाउनलोड प्रगति</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>फाइल नाम</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>साइज</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>स्थिति</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>बाँकी समय</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>वस्तु %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>पछि डाउनलोड</translation>
         </message>
@@ -2982,6 +3105,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>स्टेलरमा के नयाँ छ</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>निर्यात</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>आयात</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM निर्यात फाइल (.ef2) मा…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>पाठ फाइलमा…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM निर्यात फाइल (.ef2) बाट…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>पाठ फाइलबाट…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>डाउनलोड निर्यात</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>डाउनलोड आयात</translation>
         </message>
     </context>
     <context>
@@ -3909,6 +4064,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>स्टेलरलाई सुरुवातमा सुरु गर्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>सुरुमा टोरेन्ट रोक्नुहोस्</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>

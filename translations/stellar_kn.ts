@@ -194,6 +194,78 @@
             <source>Batch download review</source>
             <translation>ಬ್ಯಾಚ್ ಡೌನ್‌ಲೋಡ್ ಪರಿಶೀಲನೆ</translation>
         </message>
+        <message>
+            <source>Import links to SDM</source>
+            <translation>SDM ಗೆ ಲಿಂಕ್‌ಗಳನ್ನು ಆಮದು ಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>ಇಲ್ಲಿ ಉಳಿಸಿ:</translation>
+        </message>
+        <message>
+            <source>Every file to the directory according to the category of the file</source>
+            <translation>ಪ್ರತಿ ಫೈಲ್ ಅನ್ನು ಅದರ ವರ್ಗದ ಪ್ರಕಾರ ಡೈರೆಕ್ಟರಿಗೆ</translation>
+        </message>
+        <message>
+            <source>All files to one category</source>
+            <translation>ಎಲ್ಲಾ ಫೈಲ್‌ಗಳನ್ನು ಒಂದು ವರ್ಗಕ್ಕೆ</translation>
+        </message>
+        <message>
+            <source>All files to one directory</source>
+            <translation>ಎಲ್ಲಾ ಫೈಲ್‌ಗಳನ್ನು ಒಂದು ಡೈರೆಕ್ಟರಿಗೆ</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>ಬ್ರೌಸ್ ಮಾಡಿ...</translation>
+        </message>
+        <message>
+            <source>Edit...</source>
+            <translation>ಸಂಪಾದಿಸಿ...</translation>
+        </message>
+        <message>
+            <source>Hide HTML files</source>
+            <translation>HTML ಫೈಲ್‌ಗಳನ್ನು ಮರೆಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Hide repeated files</source>
+            <translation>ಪುನರಾವರ್ತಿತ ಫೈಲ್‌ಗಳನ್ನು ಮರೆಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Edit File</source>
+            <translation>ಫೈಲ್ ಸಂಪಾದಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Select save directory</source>
+            <translation>1. ಉಳಿಸುವ ಡೈರೆಕ್ಟರಿ ಆಯ್ಕೆಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Select save path</source>
+            <translation>2. ಉಳಿಸುವ ಮಾರ್ಗ ಆಯ್ಕೆಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>URL:</source>
+            <translation>3. URL:</translation>
+        </message>
+        <message>
+            <source>Description:</source>
+            <translation>4. ವಿವರಣೆ:</translation>
+        </message>
+        <message>
+            <source>Referer:</source>
+            <translation>5. ರೆಫರರ್:</translation>
+        </message>
+        <message>
+            <source>Login:</source>
+            <translation>6. ಲಾಗಿನ್:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>7. ಪಾಸ್ವರ್ಡ್:</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>8. ಉಳಿಸು</translation>
+        </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
@@ -1021,6 +1093,37 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Cancel</source>
             <translation>ರದ್ದು</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
+    </context>
+    <context>
+        <name>ExportDialog</name>
+        <message>
+            <source>Export Downloads</source>
+            <translation>9. ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ರಫ್ತು ಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Select items to export:</source>
+            <translation>10. ರಫ್ತು ಮಾಡಲು ಐಟಂಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ:</translation>
+        </message>
+        <message>
+            <source>Export downloads in the selected queue</source>
+            <translation>ಆಯ್ಕೆಮಾಡಿದ ಸರದಿಯ ಡೌನ್ಲೋಡ್ಗಳನ್ನು ರಫ್ತುಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Export selected downloads</source>
+            <translation>ಆಯ್ಕೆಮಾಡಿದ ಡೌನ್ಲೋಡ್ಗಳನ್ನು ರಫ್ತುಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Export all downloads</source>
+            <translation>ಎಲ್ಲಾ ಡೌನ್ಲೋಡ್ಗಳನ್ನು ರಫ್ತುಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡಿ</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2983,6 +3086,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ಚಾನೆಲ್ ಡೌನ್‌ಲೋಡ್ ಪ್ರಗತಿ</translation>
         </message>
         <message>
+            <source>File Name</source>
+            <translation>ಫೈಲ್ ಹೆಸರು</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ಗಾತ್ರ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>ಸ್ಥಿತಿ</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>ಉಳಿದ ಸಮಯ</translation>
+        </message>
+        <message>
+            <source>Item %1</source>
+            <translation>ಐಟಂ %1</translation>
+        </message>
+        <message>
             <source>Download Later</source>
             <translation>ನಂತರ ಡೌನ್ಲೋಡ್ ಮಾಡಿ</translation>
         </message>
@@ -3013,6 +3136,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>What's New in Stellar</source>
             <translation>ಸ್ಟೆಲ್ಲರ್‌ನಲ್ಲಿ ಹೊಸದೇನು?</translation>
+        </message>
+        <message>
+            <source>Export</source>
+            <translation>ರಫ್ತು</translation>
+        </message>
+        <message>
+            <source>Import</source>
+            <translation>ಆಮದು</translation>
+        </message>
+        <message>
+            <source>To SDM Export File (.ef2)…</source>
+            <translation>SDM ರಫ್ತು ಫೈಲ್‌ಗೆ (.ef2)…</translation>
+        </message>
+        <message>
+            <source>To Text File…</source>
+            <translation>ಪಠ್ಯ ಫೈಲ್‌ಗೆ…</translation>
+        </message>
+        <message>
+            <source>From SDM Export File (.ef2)…</source>
+            <translation>SDM ರಫ್ತು ಫೈಲ್‌ನಿಂದ (.ef2)…</translation>
+        </message>
+        <message>
+            <source>From Text File…</source>
+            <translation>ಪಠ್ಯ ಫೈಲ್‌ನಿಂದ…</translation>
+        </message>
+        <message>
+            <source>Export Downloads</source>
+            <translation>ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ರಫ್ತು ಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Import Downloads</source>
+            <translation>ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಆಮದು ಮಾಡಿ</translation>
         </message>
     </context>
     <context>
@@ -3940,6 +4095,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Launch Stellar on startup</source>
             <translation>ಪ್ರಾರಂಭದಲ್ಲಿ Stellar ಪ್ರಾರಂಭಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Pause torrents on startup</source>
+            <translation>ಪ್ರಾರಂಭದಲ್ಲಿ ಟೊರೆಂಟ್‌ಗಳನ್ನು ವಿರಮಿಸು</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>
