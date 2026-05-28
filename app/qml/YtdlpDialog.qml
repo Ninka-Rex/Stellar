@@ -43,7 +43,7 @@ Window {
     minimumWidth: 520
     title:       qsTr("Video Download")
     color:       "#1e1e1e"
-    modality:    Qt.ApplicationModal
+    modality:    Qt.NonModal
     flags:       Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
     Material.theme:      Material.Dark

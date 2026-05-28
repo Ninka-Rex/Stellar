@@ -43,7 +43,7 @@ Window {
     height: mainCol.implicitHeight + 24
     color: "#1e1e1e"
     title: qsTr("Download complete")
-    flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.MSWindowsFixedSizeDialogHint | Qt.WindowStaysOnTopHint
+    flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.MSWindowsFixedSizeDialogHint
     Material.theme: Material.Dark
     Material.background: "#1e1e1e"
     Material.accent: "#4488dd"
