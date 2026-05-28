@@ -534,7 +534,14 @@ file(COPY "${CMAKE_SOURCE_DIR}/tips.txt"
 )
 file(GLOB geo_db_files "${CMAKE_SOURCE_DIR}/app/data/dbip-city-lite-*.mmdb")
 if(geo_db_files)
-    list(GET geo_db_files 0 geo_db_file)
+    list(SORT geo_db_files)
+    list(POP_BACK geo_db_files geo_db_file)
+    # Remove stale geo DB files from build dir so Inno Setup wildcard
+    # doesn't pick up outdated copies from previous builds.
+    file(GLOB _stale_geo "${CMAKE_BINARY_DIR}/data/dbip-city-lite-*.mmdb")
+    if(_stale_geo)
+        file(REMOVE ${_stale_geo})
+    endif()
     file(COPY "${geo_db_file}" DESTINATION "${CMAKE_BINARY_DIR}/data")
     message(STATUS "Geo IP database: ${geo_db_file}")
 else()
@@ -551,7 +558,8 @@ install(FILES "${CMAKE_SOURCE_DIR}/tips.txt"
 )
 file(GLOB geo_db_install_files "${CMAKE_SOURCE_DIR}/app/data/dbip-city-lite-*.mmdb")
 if(geo_db_install_files)
-    list(GET geo_db_install_files 0 geo_db_install_file)
+    list(SORT geo_db_install_files)
+    list(POP_BACK geo_db_install_files geo_db_install_file)
     install(FILES "${geo_db_install_file}"
         DESTINATION "${CMAKE_INSTALL_BINDIR}/data"
     )

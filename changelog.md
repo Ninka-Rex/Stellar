@@ -13,6 +13,7 @@
 - Status Bar emojies now use SVG icons for consistency across linux distros
 - Improved performance of part file pre-allocation
 - Improved yt-dlp downloader
+- Minor UI improvements
 
 ### Fixed
 - Fixed tons of miscellaneous bugs
