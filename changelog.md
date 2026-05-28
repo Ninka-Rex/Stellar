@@ -2,6 +2,23 @@
 
 ---
 
+## Version 0.8.2 Beta - May 28, 2026
+
+### New
+- Ability to import and export file list, queues, and selected downloads (compatible with IDM .ef2 format)
+- Settings to stop all torrents on startup
+- Lots of new keyboard shortcuts
+
+### Improved
+- Status Bar emojies now use SVG icons for consistency across linux distros
+- Improved performance of part file pre-allocation
+- Improved yt-dlp downloader
+
+### Fixed
+- Fixed tons of miscellaneous bugs
+
+---
+
 ## Version 0.8.1 Beta - May 21, 2026
 
 ### Important: This release breaks the auto-update feature. A manual update is required.
