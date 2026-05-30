@@ -61,6 +61,28 @@ jobs:
         with:
           arch: x64
 
+      - name: Download third-party sources (Windows)
+        shell: bash
+        run: |
+          mkdir -p third_party
+          # libtorrent-rasterbar 2.0.12
+          if [ ! -f third_party/libtorrent-rasterbar-2.0.12/CMakeLists.txt ]; then
+            curl -fsSL \
+              "https://github.com/arvidn/libtorrent/releases/download/v2.0.12/libtorrent-rasterbar-2.0.12.tar.gz" \
+              -o libtorrent.tar.gz
+            tar -xzf libtorrent.tar.gz -C third_party/
+            rm libtorrent.tar.gz
+          fi
+          # libmaxminddb (Windows uses vendored build)
+          if [ ! -f third_party/libmaxminddb/CMakeLists.txt ]; then
+            curl -fsSL \
+              "https://github.com/maxmind/libmaxminddb/archive/refs/heads/main.tar.gz" \
+              -o libmaxminddb.tar.gz
+            mkdir -p third_party/libmaxminddb
+            tar -xzf libmaxminddb.tar.gz -C third_party/libmaxminddb --strip-components=1
+            rm libmaxminddb.tar.gz
+          fi
+
       - name: Set Boost environment (windows-latest pre-installed)
         shell: bash
         run: |
@@ -221,9 +243,8 @@ jobs:
           sudo apt-get install -y --no-install-recommends \
             ninja-build \
             libssl-dev \
-            libboost-dev \
-            libboost-system-dev \
-            libboost-random-dev \
+            libboost-all-dev \
+            libmaxminddb-dev \
             patchelf \
             dpkg-dev \
             rpm \
@@ -259,6 +280,19 @@ jobs:
           # install-qt-action sets Qt6_DIR to the arch root (e.g. .../gcc_64)
           QTDIR=$(cd "$Qt6_DIR" && pwd)
           echo "QTDIR=$QTDIR" >> "$GITHUB_ENV"
+
+      - name: Download third-party sources (Linux)
+        run: |
+          mkdir -p third_party
+          # libtorrent-rasterbar 2.0.12
+          if [ ! -f third_party/libtorrent-rasterbar-2.0.12/CMakeLists.txt ]; then
+            curl -fsSL \
+              "https://github.com/arvidn/libtorrent/releases/download/v2.0.12/libtorrent-rasterbar-2.0.12.tar.gz" \
+              -o libtorrent.tar.gz
+            tar -xzf libtorrent.tar.gz -C third_party/
+            rm libtorrent.tar.gz
+          fi
+          # libmaxminddb on Linux is installed via apt (libmaxminddb-dev); no source needed
 
       - name: Download and decompress db-ip GeoIP database
         run: |
