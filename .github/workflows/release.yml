@@ -62,8 +62,8 @@ jobs:
       - name: Set QTDIR from Qt6_DIR
         shell: bash
         run: |
-          # install-qt-action sets Qt6_DIR to the arch root (e.g. .../msvc2022_64)
-          QTDIR=$(cd "$Qt6_DIR" && pwd -W)
+          # install-qt-action v4 exposes the arch root as QT_ROOT_DIR (v3 used Qt6_DIR).
+          QTDIR=$(cd "$QT_ROOT_DIR" && pwd -W)
           echo "QTDIR=$QTDIR" >> "$GITHUB_ENV"
 
       - name: Set up MSVC x64 environment
@@ -300,8 +300,8 @@ jobs:
 
       - name: Set QTDIR from Qt6_DIR
         run: |
-          # install-qt-action sets Qt6_DIR to the arch root (e.g. .../gcc_64)
-          QTDIR=$(cd "$Qt6_DIR" && pwd)
+          # install-qt-action v4 exposes the arch root as QT_ROOT_DIR (v3 used Qt6_DIR).
+          QTDIR=$(cd "$QT_ROOT_DIR" && pwd)
           echo "QTDIR=$QTDIR" >> "$GITHUB_ENV"
 
       - name: Download third-party sources (Linux)
