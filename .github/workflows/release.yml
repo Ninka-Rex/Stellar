@@ -52,8 +52,8 @@ jobs:
       - name: Set QTDIR from Qt6_DIR
         shell: bash
         run: |
-          # Qt6_DIR = .../msvc2022_64/lib/cmake/Qt6  →  QTDIR = .../msvc2022_64
-          QTDIR=$(cd "$Qt6_DIR/../../.." && pwd -W)
+          # install-qt-action sets Qt6_DIR to the arch root (e.g. .../msvc2022_64)
+          QTDIR=$(cd "$Qt6_DIR" && pwd -W)
           echo "QTDIR=$QTDIR" >> "$GITHUB_ENV"
 
       - name: Set up MSVC x64 environment
@@ -256,7 +256,8 @@ jobs:
 
       - name: Set QTDIR from Qt6_DIR
         run: |
-          QTDIR=$(cd "$Qt6_DIR/../../.." && pwd)
+          # install-qt-action sets Qt6_DIR to the arch root (e.g. .../gcc_64)
+          QTDIR=$(cd "$Qt6_DIR" && pwd)
           echo "QTDIR=$QTDIR" >> "$GITHUB_ENV"
 
       - name: Download and decompress db-ip GeoIP database
@@ -280,17 +281,27 @@ jobs:
             -o /usr/local/bin/yt-dlp
           sudo chmod +x /usr/local/bin/yt-dlp
 
-      - name: Download ffmpeg static (Linux)
+      - name: Download ffmpeg + ffprobe (BtbN Linux)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          curl -fsSL \
-            "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz" \
-            -o ffmpeg-static.tar.xz
+          ASSET_URL=$(curl -fsSL \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            "https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest" \
+            | python3 -c "
+          import sys, json
+          data = json.load(sys.stdin)
+          for a in data['assets']:
+              if a['name'] == 'ffmpeg-master-latest-linux64-gpl.tar.xz':
+                  print(a['browser_download_url']); break
+          ")
+          curl -fsSL "$ASSET_URL" -o ffmpeg-linux.tar.xz
           mkdir ffmpeg-extract
-          tar -xf ffmpeg-static.tar.xz -C ffmpeg-extract --strip-components=1
-          sudo cp ffmpeg-extract/ffmpeg  /usr/local/bin/ffmpeg
-          sudo cp ffmpeg-extract/ffprobe /usr/local/bin/ffprobe
+          tar -xf ffmpeg-linux.tar.xz -C ffmpeg-extract --strip-components=1
+          sudo cp ffmpeg-extract/bin/ffmpeg  /usr/local/bin/ffmpeg
+          sudo cp ffmpeg-extract/bin/ffprobe /usr/local/bin/ffprobe
           sudo chmod +x /usr/local/bin/ffmpeg /usr/local/bin/ffprobe
-          rm -rf ffmpeg-extract ffmpeg-static.tar.xz
+          rm -rf ffmpeg-extract ffmpeg-linux.tar.xz
 
       - name: Configure (linux-release)
         run: cmake --preset linux-release
