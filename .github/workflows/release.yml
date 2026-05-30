@@ -64,7 +64,7 @@ jobs:
           # OpenSSL 3 runtime DLLs (libssl-3-x64 / libcrypto-3-x64) that Qt's TLS
           # backend loads at runtime. windeployqt does NOT copy these, so without
           # bundling them the app fails with "libssl-3-x64.dll was not found".
-          tools: 'tools_openssl_x64'
+          tools: 'tools_opensslv3_x64'
           cache: true
           cache-key-prefix: qt-win-msvc2022-6.8
 
@@ -204,11 +204,11 @@ jobs:
         run: |
           # Qt loads OpenSSL dynamically; windeployqt doesn't bundle it. installer.iss
           # globs build/windows-release/*.dll, so dropping them there is enough.
-          # install-qt-action's tools_openssl_x64 lands under $IQTA_TOOLS.
+          # install-qt-action's tools_opensslv3_x64 unpacks to Tools/OpenSSLv3/Win_x64,
+          # and $IQTA_TOOLS already points at that "Tools" dir.
           DST="build/windows-release"
           FOUND=0
           for dir in \
-            "$IQTA_TOOLS/Tools/OpenSSLv3/Win_x64/bin" \
             "$IQTA_TOOLS/OpenSSLv3/Win_x64/bin" \
             "$QT_ROOT_DIR/../../Tools/OpenSSLv3/Win_x64/bin"; do
             if [ -f "$dir/libssl-3-x64.dll" ]; then
