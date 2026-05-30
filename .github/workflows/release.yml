@@ -7,6 +7,15 @@ on:
         description: 'Version to release (blank = read from CMakeLists.txt)'
         required: false
         default: ''
+      platform:
+        description: 'Which platforms to build'
+        type: choice
+        required: false
+        default: both
+        options:
+          - both
+          - windows
+          - linux
       dry_run:
         description: 'Dry run — build and package but skip GitHub release creation and update.json commit'
         type: boolean
@@ -21,10 +30,11 @@ jobs:
   # ────────────────────────────────────────────────────────────────────────────
   build-windows:
     runs-on: windows-latest
+    if: ${{ inputs.platform == 'both' || inputs.platform == 'windows' }}
     outputs:
       version: ${{ steps.version.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -40,7 +50,7 @@ jobs:
           fi
 
       - name: Install Qt 6.8 (MSVC 2022)
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: '6.8.*'
           host: 'windows'
@@ -196,7 +206,10 @@ jobs:
           [[ -n "$ISCC" ]] || { echo "ERROR: iscc not found"; exit 1; }
 
           mkdir -p packaging/windows/output
-          "$ISCC" \
+          # Git Bash (MSYS) rewrites args that look like Unix paths, so "/DAppVersion=..."
+          # gets mangled into a second bare filename -> ISCC errors "more than one script
+          # filename". Disable that conversion for this native Windows tool.
+          MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL='*' "$ISCC" \
             "/DAppVersion=$VERSION" \
             "/DOutputDirOverride=$(pwd -W)/packaging/windows/output" \
             "/DOutputBaseFilenameOverride=StellarSetup-$VERSION" \
@@ -218,7 +231,7 @@ jobs:
           echo "Windows installer SHA256: sha256:${SHA}"
 
       - name: Upload Windows artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: windows-artifacts
           path: |
@@ -229,10 +242,11 @@ jobs:
   # ────────────────────────────────────────────────────────────────────────────
   build-linux:
     runs-on: ubuntu-22.04
+    if: ${{ inputs.platform == 'both' || inputs.platform == 'linux' }}
     outputs:
       version: ${{ steps.version.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -275,7 +289,7 @@ jobs:
             libglu1-mesa-dev
 
       - name: Install Qt 6.8 (Linux GCC)
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: '6.8.*'
           host: 'linux'
@@ -380,7 +394,7 @@ jobs:
           echo "rpm SHA256: sha256:${RPM_SHA}"
 
       - name: Upload Linux artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: linux-artifacts
           path: |
@@ -393,10 +407,21 @@ jobs:
   release:
     runs-on: ubuntu-22.04
     needs: [build-windows, build-linux]
+    # A skipped build (single-platform run) leaves its need in the "skipped" state,
+    # which would otherwise skip this job too. Run as long as nothing actually failed
+    # and at least one build produced something.
+    if: >-
+      ${{
+        always()
+        && !cancelled()
+        && needs.build-windows.result != 'failure'
+        && needs.build-linux.result != 'failure'
+        && (needs.build-windows.result == 'success' || needs.build-linux.result == 'success')
+      }}
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -427,13 +452,15 @@ jobs:
           cat release-body.md
 
       - name: Download Windows artifacts
-        uses: actions/download-artifact@v4
+        if: ${{ needs.build-windows.result == 'success' }}
+        uses: actions/download-artifact@v5
         with:
           name: windows-artifacts
           path: release-artifacts/windows
 
       - name: Download Linux artifacts
-        uses: actions/download-artifact@v4
+        if: ${{ needs.build-linux.result == 'success' }}
+        uses: actions/download-artifact@v5
         with:
           name: linux-artifacts
           path: release-artifacts/linux
@@ -441,15 +468,22 @@ jobs:
       - name: Read SHA256 values
         id: hashes
         run: |
-          WIN_SHA=$(cat release-artifacts/windows/windows-sha256.txt)
-          DEB_SHA=$(grep '^deb:' release-artifacts/linux/linux-sha256.txt | cut -d: -f2-)
-          RPM_SHA=$(grep '^rpm:' release-artifacts/linux/linux-sha256.txt | cut -d: -f2-)
+          # A platform skipped for this run leaves its sha empty; downstream steps
+          # only touch update.json fields / release assets for platforms that built.
+          WIN_SHA=""; DEB_SHA=""; RPM_SHA=""
+          if [ -f release-artifacts/windows/windows-sha256.txt ]; then
+            WIN_SHA=$(cat release-artifacts/windows/windows-sha256.txt)
+          fi
+          if [ -f release-artifacts/linux/linux-sha256.txt ]; then
+            DEB_SHA=$(grep '^deb:' release-artifacts/linux/linux-sha256.txt | cut -d: -f2-)
+            RPM_SHA=$(grep '^rpm:' release-artifacts/linux/linux-sha256.txt | cut -d: -f2-)
+          fi
           echo "win_sha=$WIN_SHA" >> "$GITHUB_OUTPUT"
           echo "deb_sha=$DEB_SHA" >> "$GITHUB_OUTPUT"
           echo "rpm_sha=$RPM_SHA" >> "$GITHUB_OUTPUT"
-          echo "Windows : $WIN_SHA"
-          echo "deb     : $DEB_SHA"
-          echo "rpm     : $RPM_SHA"
+          echo "Windows : ${WIN_SHA:-(skipped)}"
+          echo "deb     : ${DEB_SHA:-(skipped)}"
+          echo "rpm     : ${RPM_SHA:-(skipped)}"
 
       - name: Show update.json preview (dry run)
         run: |
@@ -462,19 +496,22 @@ jobs:
           python3 - "$VERSION" "$WIN_SHA" "$DEB_SHA" "$RPM_SHA" "$YM" <<'PYEOF'
           import json, sys
           version, win_sha, deb_sha, rpm_sha, ym = sys.argv[1:]
-          BASE = f"https://github.com/Ninka-Rex/Stellar/releases/download"
+          BASE = "https://github.com/Ninka-Rex/Stellar/releases/download"
           with open('update.json', encoding='utf-8') as f:
               data = json.load(f)
-          data.update({
-              'version':             version,
-              'windowsInstallerUrl': f"{BASE}/{version}/StellarSetup-{version}.exe",
-              'windowsSha256':       win_sha,
-              'linuxDebUrl':         f"{BASE}/{version}/stellar_{version}_amd64.deb",
-              'linuxDebSha256':      deb_sha,
-              'linuxRpmUrl':         f"{BASE}/{version}/stellar-{version}-1.x86_64.rpm",
-              'linuxRpmSha256':      rpm_sha,
-              'IPtoCityDB':          f"https://download.db-ip.com/free/dbip-city-lite-{ym}.mmdb.gz",
-          })
+          data['version']    = version
+          data['IPtoCityDB'] = f"https://download.db-ip.com/free/dbip-city-lite-{ym}.mmdb.gz"
+          # Only touch fields for platforms that actually built this run, so a
+          # single-platform release doesn't wipe the other platform's URL/sha.
+          if win_sha:
+              data['windowsInstallerUrl'] = f"{BASE}/{version}/StellarSetup-{version}.exe"
+              data['windowsSha256']       = win_sha
+          if deb_sha:
+              data['linuxDebUrl']    = f"{BASE}/{version}/stellar_{version}_amd64.deb"
+              data['linuxDebSha256'] = deb_sha
+          if rpm_sha:
+              data['linuxRpmUrl']    = f"{BASE}/{version}/stellar-{version}-1.x86_64.rpm"
+              data['linuxRpmSha256'] = rpm_sha
           print("--- update.json preview ---")
           print(json.dumps(data, indent=2))
           PYEOF
@@ -487,17 +524,20 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VERSION="${{ steps.version.outputs.version }}"
-          WIN_EXE=$(ls release-artifacts/windows/StellarSetup-*.exe | head -1)
-          DEB_PKG=$(ls release-artifacts/linux/stellar_*.deb | head -1)
-          RPM_PKG=$(ls release-artifacts/linux/stellar-*.rpm | head -1)
+          # Only attach assets for platforms built this run.
+          ASSETS=()
+          for f in release-artifacts/windows/StellarSetup-*.exe \
+                   release-artifacts/linux/stellar_*.deb \
+                   release-artifacts/linux/stellar-*.rpm; do
+            [ -f "$f" ] && ASSETS+=("$f")
+          done
+          [ "${#ASSETS[@]}" -gt 0 ] || { echo "ERROR: no release assets found"; exit 1; }
           gh release create "$VERSION" \
             --repo "${{ github.repository }}" \
             --title "Stellar Download Manager $VERSION" \
             --notes-file release-body.md \
             --target master \
-            "$WIN_EXE" \
-            "$DEB_PKG" \
-            "$RPM_PKG"
+            "${ASSETS[@]}"
 
       - name: Update update.json
         if: ${{ !inputs.dry_run }}
@@ -514,16 +554,19 @@ jobs:
           BASE = "https://github.com/Ninka-Rex/Stellar/releases/download"
           with open('update.json', encoding='utf-8') as f:
               data = json.load(f)
-          data.update({
-              'version':             version,
-              'windowsInstallerUrl': f"{BASE}/{version}/StellarSetup-{version}.exe",
-              'windowsSha256':       win_sha,
-              'linuxDebUrl':         f"{BASE}/{version}/stellar_{version}_amd64.deb",
-              'linuxDebSha256':      deb_sha,
-              'linuxRpmUrl':         f"{BASE}/{version}/stellar-{version}-1.x86_64.rpm",
-              'linuxRpmSha256':      rpm_sha,
-              'IPtoCityDB':          f"https://download.db-ip.com/free/dbip-city-lite-{ym}.mmdb.gz",
-          })
+          data['version']    = version
+          data['IPtoCityDB'] = f"https://download.db-ip.com/free/dbip-city-lite-{ym}.mmdb.gz"
+          # Only touch fields for platforms that actually built this run, so a
+          # single-platform release doesn't wipe the other platform's URL/sha.
+          if win_sha:
+              data['windowsInstallerUrl'] = f"{BASE}/{version}/StellarSetup-{version}.exe"
+              data['windowsSha256']       = win_sha
+          if deb_sha:
+              data['linuxDebUrl']    = f"{BASE}/{version}/stellar_{version}_amd64.deb"
+              data['linuxDebSha256'] = deb_sha
+          if rpm_sha:
+              data['linuxRpmUrl']    = f"{BASE}/{version}/stellar-{version}-1.x86_64.rpm"
+              data['linuxRpmSha256'] = rpm_sha
           with open('update.json', 'w', encoding='utf-8') as f:
               json.dump(data, f, indent=2, ensure_ascii=False)
               f.write('\n')
