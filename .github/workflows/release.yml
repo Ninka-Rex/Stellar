@@ -83,17 +83,26 @@ jobs:
             rm libmaxminddb.tar.gz
           fi
 
-      - name: Set Boost environment (windows-latest pre-installed)
+      - name: Install Boost (headers only)
         shell: bash
         run: |
-          BOOST_DIR=$(ls -d C:/local/boost_* 2>/dev/null | sort -V | tail -1)
-          if [[ -z "$BOOST_DIR" ]]; then
-            echo "WARNING: No pre-installed Boost found at C:/local/boost_*" >&2
-          else
-            echo "BOOST_ROOT=$BOOST_DIR"       >> "$GITHUB_ENV"
-            echo "BOOST_INCLUDEDIR=$BOOST_DIR" >> "$GITHUB_ENV"
-            echo "Using Boost: $BOOST_DIR"
-          fi
+          # libtorrent 2.0.12 needs only Boost::headers + header-only Boost.System,
+          # so the headers package alone is sufficient — no compiled libs required.
+          # The windows-latest image no longer ships a pre-installed Boost at
+          # C:/local/boost_*, so fetch a pinned headers archive deterministically.
+          BOOST_VER=1.88.0
+          BOOST_UND=${BOOST_VER//./_}
+          BOOST_DIR="C:/local/boost_${BOOST_UND}"
+          URL="https://archives.boost.io/release/${BOOST_VER}/source/boost_${BOOST_UND}.7z"
+          echo "Downloading Boost ${BOOST_VER} headers..."
+          curl -fsSL "$URL" -o boost.7z
+          mkdir -p C:/local
+          7z x boost.7z -oC:/local >/dev/null
+          [ -d "$BOOST_DIR/boost" ] || { echo "ERROR: Boost extraction failed"; exit 1; }
+          rm boost.7z
+          echo "BOOST_ROOT=$BOOST_DIR"       >> "$GITHUB_ENV"
+          echo "BOOST_INCLUDEDIR=$BOOST_DIR" >> "$GITHUB_ENV"
+          echo "Using Boost: $BOOST_DIR"
 
       - name: Configure (windows-release)
         shell: bash
@@ -292,7 +301,18 @@ jobs:
             tar -xzf libtorrent.tar.gz -C third_party/
             rm libtorrent.tar.gz
           fi
-          # libmaxminddb on Linux is installed via apt (libmaxminddb-dev); no source needed
+          # libmaxminddb: build from source under third_party/ (same as Windows).
+          # CMakeLists only wires GeoIP via the vendored source tree (maxminddb::maxminddb);
+          # the apt libmaxminddb-dev package is never picked up, so without this the
+          # Linux build silently ships with STELLAR_HAS_MAXMINDDB undefined (no world map).
+          if [ ! -f third_party/libmaxminddb/CMakeLists.txt ]; then
+            curl -fsSL \
+              "https://github.com/maxmind/libmaxminddb/archive/refs/heads/main.tar.gz" \
+              -o libmaxminddb.tar.gz
+            mkdir -p third_party/libmaxminddb
+            tar -xzf libmaxminddb.tar.gz -C third_party/libmaxminddb --strip-components=1
+            rm libmaxminddb.tar.gz
+          fi
 
       - name: Download and decompress db-ip GeoIP database
         run: |
