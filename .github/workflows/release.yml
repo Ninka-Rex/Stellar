@@ -1,0 +1,484 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_override:
+        description: 'Version to release (blank = read from CMakeLists.txt)'
+        required: false
+        default: ''
+      dry_run:
+        description: 'Dry run — build and package but skip GitHub release creation and update.json commit'
+        type: boolean
+        required: false
+        default: false
+
+# Default to read-only; the release job upgrades to write for its own scope.
+permissions:
+  contents: read
+
+jobs:
+  # ────────────────────────────────────────────────────────────────────────────
+  build-windows:
+    runs-on: windows-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract version
+        id: version
+        shell: bash
+        run: |
+          if [[ -n "${{ github.event.inputs.version_override }}" ]]; then
+            echo "version=${{ github.event.inputs.version_override }}" >> "$GITHUB_OUTPUT"
+          else
+            ver=$(grep -oP 'project\s*\(\s*\w+\s+VERSION\s+\K[\d.]+' CMakeLists.txt | head -1)
+            echo "version=$ver" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install Qt 6.8 (MSVC 2022)
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.8.*'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_msvc2022_64'
+          cache: true
+          cache-key-prefix: qt-win-msvc2022-6.8
+
+      - name: Set QTDIR from Qt6_DIR
+        shell: bash
+        run: |
+          # Qt6_DIR = .../msvc2022_64/lib/cmake/Qt6  →  QTDIR = .../msvc2022_64
+          QTDIR=$(cd "$Qt6_DIR/../../.." && pwd -W)
+          echo "QTDIR=$QTDIR" >> "$GITHUB_ENV"
+
+      - name: Set up MSVC x64 environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Set Boost environment (windows-latest pre-installed)
+        shell: bash
+        run: |
+          BOOST_DIR=$(ls -d C:/local/boost_* 2>/dev/null | sort -V | tail -1)
+          if [[ -z "$BOOST_DIR" ]]; then
+            echo "WARNING: No pre-installed Boost found at C:/local/boost_*" >&2
+          else
+            echo "BOOST_ROOT=$BOOST_DIR"       >> "$GITHUB_ENV"
+            echo "BOOST_INCLUDEDIR=$BOOST_DIR" >> "$GITHUB_ENV"
+            echo "Using Boost: $BOOST_DIR"
+          fi
+
+      - name: Configure (windows-release)
+        shell: bash
+        run: cmake --preset windows-release
+
+      - name: Build (windows-release)
+        shell: bash
+        run: cmake --build --preset windows-release --config Release
+
+      - name: Download yt-dlp
+        shell: bash
+        run: |
+          curl -fsSL \
+            "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe" \
+            -o "build/windows-release/yt-dlp.exe"
+
+      - name: Download ffmpeg + ffprobe (BtbN GPL)
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ASSET_URL=$(curl -fsSL \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            "https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest" \
+            | python3 -c "
+          import sys, json
+          data = json.load(sys.stdin)
+          for a in data['assets']:
+              if a['name'] == 'ffmpeg-master-latest-win64-gpl.zip':
+                  print(a['browser_download_url']); break
+          ")
+          curl -fsSL "$ASSET_URL" -o ffmpeg-win.zip
+          python3 -c "
+          import zipfile, shutil, os
+          with zipfile.ZipFile('ffmpeg-win.zip') as z:
+              for name in z.namelist():
+                  base = os.path.basename(name)
+                  if base in ('ffmpeg.exe', 'ffprobe.exe'):
+                      with z.open(name) as src, open(f'build/windows-release/{base}', 'wb') as dst:
+                          shutil.copyfileobj(src, dst)
+          "
+          rm ffmpeg-win.zip
+
+      - name: Download and decompress db-ip GeoIP database
+        shell: bash
+        run: |
+          YM=$(date -u +%Y-%m)
+          DB_URL="https://download.db-ip.com/free/dbip-city-lite-${YM}.mmdb.gz"
+          mkdir -p build/windows-release/data
+          curl -fsSL "$DB_URL" -o "build/windows-release/data/dbip-city-lite-${YM}.mmdb.gz"
+          python3 -c "
+          import gzip, shutil
+          src = 'build/windows-release/data/dbip-city-lite-${YM}.mmdb.gz'
+          with gzip.open(src, 'rb') as f_in, open(src[:-3], 'wb') as f_out:
+              shutil.copyfileobj(f_in, f_out)
+          "
+          rm "build/windows-release/data/dbip-city-lite-${YM}.mmdb.gz"
+
+      - name: Run windeployqt
+        shell: bash
+        run: |
+          windeployqt \
+            --release \
+            --qmldir app/qml \
+            --no-translations \
+            "build/windows-release/Stellar.exe"
+
+      - name: Copy QtQuick.Dialogs (windeployqt gap)
+        shell: bash
+        run: |
+          SRC="$QTDIR/qml/QtQuick/Dialogs"
+          DST="build/windows-release/qml/QtQuick/Dialogs"
+          if [ -d "$SRC" ]; then
+            mkdir -p "$DST"
+            cp -r "$SRC/." "$DST/"
+          fi
+
+      - name: Build installer (Inno Setup 6)
+        shell: bash
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          ISCC=""
+          for candidate in \
+            "iscc" \
+            "C:/Program Files (x86)/Inno Setup 6/ISCC.exe" \
+            "C:/Program Files/Inno Setup 6/ISCC.exe"; do
+            if command -v "$candidate" &>/dev/null || [ -f "$candidate" ]; then
+              ISCC="$candidate"; break
+            fi
+          done
+          [[ -n "$ISCC" ]] || { echo "ERROR: iscc not found"; exit 1; }
+
+          mkdir -p packaging/windows/output
+          "$ISCC" \
+            "/DAppVersion=$VERSION" \
+            "/DOutputDirOverride=$(pwd -W)/packaging/windows/output" \
+            "/DOutputBaseFilenameOverride=StellarSetup-$VERSION" \
+            "packaging/windows/installer.iss"
+
+      - name: Compute SHA256 of installer
+        shell: bash
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          INSTALLER="packaging/windows/output/StellarSetup-${VERSION}.exe"
+          SHA=$(python3 -c "
+          import hashlib, sys
+          h = hashlib.sha256()
+          with open(sys.argv[1], 'rb') as f:
+              for chunk in iter(lambda: f.read(65536), b''): h.update(chunk)
+          print(h.hexdigest())
+          " "$INSTALLER")
+          echo "sha256:${SHA}" > windows-sha256.txt
+          echo "Windows installer SHA256: sha256:${SHA}"
+
+      - name: Upload Windows artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-artifacts
+          path: |
+            packaging/windows/output/StellarSetup-*.exe
+            windows-sha256.txt
+          retention-days: 1
+
+  # ────────────────────────────────────────────────────────────────────────────
+  build-linux:
+    runs-on: ubuntu-22.04
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract version
+        id: version
+        run: |
+          if [[ -n "${{ github.event.inputs.version_override }}" ]]; then
+            echo "version=${{ github.event.inputs.version_override }}" >> "$GITHUB_OUTPUT"
+          else
+            ver=$(grep -oP 'project\s*\(\s*\w+\s+VERSION\s+\K[\d.]+' CMakeLists.txt | head -1)
+            echo "version=$ver" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            ninja-build \
+            libssl-dev \
+            libboost-dev \
+            libboost-system-dev \
+            libboost-random-dev \
+            patchelf \
+            dpkg-dev \
+            rpm \
+            libxcb-cursor0 \
+            libxcb-cursor-dev \
+            libx11-dev \
+            libxkbcommon-x11-dev \
+            libxcb-icccm4-dev \
+            libxcb-image0-dev \
+            libxcb-keysyms1-dev \
+            libxcb-render-util0-dev \
+            libxcb-xinerama0-dev \
+            libxcb-xkb-dev \
+            libxcb-randr0-dev \
+            libxcb-shape0-dev \
+            libxcb-shm0-dev \
+            libxcb-sync-dev \
+            libgl-dev \
+            libglu1-mesa-dev
+
+      - name: Install Qt 6.8 (Linux GCC)
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.8.*'
+          host: 'linux'
+          target: 'desktop'
+          arch: 'linux_gcc_64'
+          cache: true
+          cache-key-prefix: qt-linux-gcc64-6.8
+
+      - name: Set QTDIR from Qt6_DIR
+        run: |
+          QTDIR=$(cd "$Qt6_DIR/../../.." && pwd)
+          echo "QTDIR=$QTDIR" >> "$GITHUB_ENV"
+
+      - name: Download and decompress db-ip GeoIP database
+        run: |
+          YM=$(date -u +%Y-%m)
+          DB_URL="https://download.db-ip.com/free/dbip-city-lite-${YM}.mmdb.gz"
+          mkdir -p app/data
+          curl -fsSL "$DB_URL" -o "app/data/dbip-city-lite-${YM}.mmdb.gz"
+          python3 -c "
+          import gzip, shutil
+          src = 'app/data/dbip-city-lite-${YM}.mmdb.gz'
+          with gzip.open(src, 'rb') as f_in, open(src[:-3], 'wb') as f_out:
+              shutil.copyfileobj(f_in, f_out)
+          "
+          rm "app/data/dbip-city-lite-${YM}.mmdb.gz"
+
+      - name: Download yt-dlp (Linux static)
+        run: |
+          sudo curl -fsSL \
+            "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux" \
+            -o /usr/local/bin/yt-dlp
+          sudo chmod +x /usr/local/bin/yt-dlp
+
+      - name: Download ffmpeg static (Linux)
+        run: |
+          curl -fsSL \
+            "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz" \
+            -o ffmpeg-static.tar.xz
+          mkdir ffmpeg-extract
+          tar -xf ffmpeg-static.tar.xz -C ffmpeg-extract --strip-components=1
+          sudo cp ffmpeg-extract/ffmpeg  /usr/local/bin/ffmpeg
+          sudo cp ffmpeg-extract/ffprobe /usr/local/bin/ffprobe
+          sudo chmod +x /usr/local/bin/ffmpeg /usr/local/bin/ffprobe
+          rm -rf ffmpeg-extract ffmpeg-static.tar.xz
+
+      - name: Configure (linux-release)
+        run: cmake --preset linux-release
+
+      - name: Build (linux-release)
+        run: cmake --build --preset linux-release
+
+      - name: Package .deb and .rpm
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          bash release.sh --version "$VERSION" --skip-build --parallel
+
+      - name: Compute SHA256 of packages
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          DEB="dist/linux/stellar_${VERSION}_amd64.deb"
+          RPM="dist/linux/stellar-${VERSION}-1.x86_64.rpm"
+          DEB_SHA=$(sha256sum "$DEB" | awk '{print $1}')
+          RPM_SHA=$(sha256sum "$RPM" | awk '{print $1}')
+          printf 'deb:sha256:%s\nrpm:sha256:%s\n' "$DEB_SHA" "$RPM_SHA" > linux-sha256.txt
+          echo "deb SHA256: sha256:${DEB_SHA}"
+          echo "rpm SHA256: sha256:${RPM_SHA}"
+
+      - name: Upload Linux artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-artifacts
+          path: |
+            dist/linux/stellar_*.deb
+            dist/linux/stellar-*.rpm
+            linux-sha256.txt
+          retention-days: 1
+
+  # ────────────────────────────────────────────────────────────────────────────
+  release:
+    runs-on: ubuntu-22.04
+    needs: [build-windows, build-linux]
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract version
+        id: version
+        run: |
+          if [[ -n "${{ github.event.inputs.version_override }}" ]]; then
+            echo "version=${{ github.event.inputs.version_override }}" >> "$GITHUB_OUTPUT"
+          else
+            ver=$(grep -oP 'project\s*\(\s*\w+\s+VERSION\s+\K[\d.]+' CMakeLists.txt | head -1)
+            echo "version=$ver" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Extract changelog section
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          python3 - "$VERSION" changelog.md > release-body.md <<'PYEOF'
+          import sys, re
+          version = sys.argv[1]
+          text    = open(sys.argv[2], encoding='utf-8').read()
+          m = re.search(
+              rf'## Version {re.escape(version)}.*?(?=\n## Version |\Z)',
+              text, re.DOTALL)
+          print(m.group(0).strip() if m else f"Release {version}")
+          PYEOF
+          echo "--- release body ---"
+          cat release-body.md
+
+      - name: Download Windows artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-artifacts
+          path: release-artifacts/windows
+
+      - name: Download Linux artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: linux-artifacts
+          path: release-artifacts/linux
+
+      - name: Read SHA256 values
+        id: hashes
+        run: |
+          WIN_SHA=$(cat release-artifacts/windows/windows-sha256.txt)
+          DEB_SHA=$(grep '^deb:' release-artifacts/linux/linux-sha256.txt | cut -d: -f2-)
+          RPM_SHA=$(grep '^rpm:' release-artifacts/linux/linux-sha256.txt | cut -d: -f2-)
+          echo "win_sha=$WIN_SHA" >> "$GITHUB_OUTPUT"
+          echo "deb_sha=$DEB_SHA" >> "$GITHUB_OUTPUT"
+          echo "rpm_sha=$RPM_SHA" >> "$GITHUB_OUTPUT"
+          echo "Windows : $WIN_SHA"
+          echo "deb     : $DEB_SHA"
+          echo "rpm     : $RPM_SHA"
+
+      - name: Show update.json preview (dry run)
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          YM=$(date -u +%Y-%m)
+          WIN_SHA="${{ steps.hashes.outputs.win_sha }}"
+          DEB_SHA="${{ steps.hashes.outputs.deb_sha }}"
+          RPM_SHA="${{ steps.hashes.outputs.rpm_sha }}"
+          BASE="https://github.com/Ninka-Rex/Stellar/releases/download"
+          python3 - "$VERSION" "$WIN_SHA" "$DEB_SHA" "$RPM_SHA" "$YM" <<'PYEOF'
+          import json, sys
+          version, win_sha, deb_sha, rpm_sha, ym = sys.argv[1:]
+          BASE = f"https://github.com/Ninka-Rex/Stellar/releases/download"
+          with open('update.json', encoding='utf-8') as f:
+              data = json.load(f)
+          data.update({
+              'version':             version,
+              'windowsInstallerUrl': f"{BASE}/{version}/StellarSetup-{version}.exe",
+              'windowsSha256':       win_sha,
+              'linuxDebUrl':         f"{BASE}/{version}/stellar_{version}_amd64.deb",
+              'linuxDebSha256':      deb_sha,
+              'linuxRpmUrl':         f"{BASE}/{version}/stellar-{version}-1.x86_64.rpm",
+              'linuxRpmSha256':      rpm_sha,
+              'IPtoCityDB':          f"https://download.db-ip.com/free/dbip-city-lite-{ym}.mmdb.gz",
+          })
+          print("--- update.json preview ---")
+          print(json.dumps(data, indent=2))
+          PYEOF
+
+      # ── Steps below are skipped on dry run ───────────────────────────────────
+
+      - name: Create GitHub Release and upload assets
+        if: ${{ !inputs.dry_run }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          WIN_EXE=$(ls release-artifacts/windows/StellarSetup-*.exe | head -1)
+          DEB_PKG=$(ls release-artifacts/linux/stellar_*.deb | head -1)
+          RPM_PKG=$(ls release-artifacts/linux/stellar-*.rpm | head -1)
+          gh release create "$VERSION" \
+            --repo "${{ github.repository }}" \
+            --title "Stellar Download Manager $VERSION" \
+            --notes-file release-body.md \
+            --target master \
+            "$WIN_EXE" \
+            "$DEB_PKG" \
+            "$RPM_PKG"
+
+      - name: Update update.json
+        if: ${{ !inputs.dry_run }}
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          YM=$(date -u +%Y-%m)
+          python3 - "$VERSION" \
+            "${{ steps.hashes.outputs.win_sha }}" \
+            "${{ steps.hashes.outputs.deb_sha }}" \
+            "${{ steps.hashes.outputs.rpm_sha }}" \
+            "$YM" <<'PYEOF'
+          import json, sys
+          version, win_sha, deb_sha, rpm_sha, ym = sys.argv[1:]
+          BASE = "https://github.com/Ninka-Rex/Stellar/releases/download"
+          with open('update.json', encoding='utf-8') as f:
+              data = json.load(f)
+          data.update({
+              'version':             version,
+              'windowsInstallerUrl': f"{BASE}/{version}/StellarSetup-{version}.exe",
+              'windowsSha256':       win_sha,
+              'linuxDebUrl':         f"{BASE}/{version}/stellar_{version}_amd64.deb",
+              'linuxDebSha256':      deb_sha,
+              'linuxRpmUrl':         f"{BASE}/{version}/stellar-{version}-1.x86_64.rpm",
+              'linuxRpmSha256':      rpm_sha,
+              'IPtoCityDB':          f"https://download.db-ip.com/free/dbip-city-lite-{ym}.mmdb.gz",
+          })
+          with open('update.json', 'w', encoding='utf-8') as f:
+              json.dump(data, f, indent=2, ensure_ascii=False)
+              f.write('\n')
+          PYEOF
+
+      - name: Commit and push update.json
+        if: ${{ !inputs.dry_run }}
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add update.json
+          git diff --cached --quiet || \
+            git commit -m "chore: bump update.json to $VERSION"
+          git push origin HEAD:master
+
+      - name: Dry run summary
+        if: ${{ inputs.dry_run }}
+        run: |
+          echo ""
+          echo "DRY RUN complete. Artifacts built and packaged successfully."
+          echo "Skipped: gh release create, update.json commit, git push."
+          echo "To release for real, re-run with 'Dry run' unchecked."
