@@ -26,6 +26,11 @@ on:
 permissions:
   contents: read
 
+# Some pinned action releases still ship a Node 20 entrypoint. Force the Node 24
+# runtime now so they don't emit deprecation warnings / break after the cutoff.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   # ────────────────────────────────────────────────────────────────────────────
   build-windows:
@@ -56,6 +61,10 @@ jobs:
           host: 'windows'
           target: 'desktop'
           arch: 'win64_msvc2022_64'
+          # OpenSSL 3 runtime DLLs (libssl-3-x64 / libcrypto-3-x64) that Qt's TLS
+          # backend loads at runtime. windeployqt does NOT copy these, so without
+          # bundling them the app fails with "libssl-3-x64.dll was not found".
+          tools: 'tools_openssl_x64'
           cache: true
           cache-key-prefix: qt-win-msvc2022-6.8
 
@@ -189,6 +198,27 @@ jobs:
             mkdir -p "$DST"
             cp -r "$SRC/." "$DST/"
           fi
+
+      - name: Copy OpenSSL runtime DLLs
+        shell: bash
+        run: |
+          # Qt loads OpenSSL dynamically; windeployqt doesn't bundle it. installer.iss
+          # globs build/windows-release/*.dll, so dropping them there is enough.
+          # install-qt-action's tools_openssl_x64 lands under $IQTA_TOOLS.
+          DST="build/windows-release"
+          FOUND=0
+          for dir in \
+            "$IQTA_TOOLS/Tools/OpenSSLv3/Win_x64/bin" \
+            "$IQTA_TOOLS/OpenSSLv3/Win_x64/bin" \
+            "$QT_ROOT_DIR/../../Tools/OpenSSLv3/Win_x64/bin"; do
+            if [ -f "$dir/libssl-3-x64.dll" ]; then
+              cp "$dir/libssl-3-x64.dll" "$dir/libcrypto-3-x64.dll" "$DST/"
+              echo "Copied OpenSSL DLLs from: $dir"
+              FOUND=1
+              break
+            fi
+          done
+          [ "$FOUND" = 1 ] || { echo "ERROR: OpenSSL DLLs not found (searched IQTA_TOOLS=$IQTA_TOOLS)"; exit 1; }
 
       - name: Build installer (Inno Setup 6)
         shell: bash
