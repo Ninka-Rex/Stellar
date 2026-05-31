@@ -49,6 +49,7 @@
 #include "NativeMessagingHost.h"
 #include "SystemTrayIcon.h"
 #include "DownloadDatabase.h"
+#include "DataPortability.h"
 #include "GrabberCrawler.h"
 #include "GrabberProjectModel.h"
 #include "GrabberResultModel.h"
@@ -7862,8 +7863,13 @@ void AppController::applyUiLanguage(const QString &locale)
 
 void AppController::restartApp()
 {
-    const QString exe      = QCoreApplication::applicationFilePath();
-    const QStringList args = QCoreApplication::arguments().mid(1);
+    const QString exe = QCoreApplication::applicationFilePath();
+    QStringList args = QCoreApplication::arguments().mid(1);
+
+    // Tag the relaunch so the new process waits for this one's single-instance
+    // segment to clear instead of treating itself as a duplicate and exiting.
+    if (!args.contains(QStringLiteral("--relaunch")))
+        args << QStringLiteral("--relaunch");
 
     // Release the single-instance socket now so the new process can claim it.
     if (m_ipcServer) {
@@ -7871,9 +7877,11 @@ void AppController::restartApp()
         QLocalServer::removeServer(QStringLiteral("StellarDownloadManager"));
     }
 
+    const QString workDir = QFileInfo(exe).absolutePath();
     QObject::connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit,
-                     [exe, args]() {
-        QProcess::startDetached(exe, args);
+                     [exe, args, workDir]() {
+        if (!QProcess::startDetached(exe, args, workDir))
+            qWarning() << "[restartApp] Failed to relaunch:" << exe << args;
     });
 
     emit restartRequested();
@@ -7968,4 +7976,51 @@ QString AppController::readTextFile(const QString &path)
     if (data.startsWith('\xEF\xBB\xBF'))
         data = data.mid(3);
     return QString::fromUtf8(data);
+}
+
+void AppController::exportAllData(const QString &destPath)
+{
+    if (destPath.isEmpty()) {
+        emit errorOccurred(tr("No destination was chosen for the backup."));
+        return;
+    }
+
+    // Make sure the on-disk files we are about to bundle are current.
+    flushDirty();
+    flushTorrentStats();
+    if (m_db)
+        m_db->flush();
+    if (m_settings)
+        m_settings->save();
+
+    // Ask libtorrent to persist the latest fast-resume blob for every active
+    // torrent so share ratios / piece state in the backup are up to date.
+    // The blobs are written asynchronously; any already on disk are used if a
+    // fresh one has not landed yet (acceptable — they only lag by seconds).
+    if (m_torrentSession) {
+        for (DownloadItem *item : m_queue->items()) {
+            if (item && item->isTorrent())
+                m_torrentSession->saveResumeData(item->id());
+        }
+    }
+
+    const DataPortability::Result r = DataPortability::exportTo(destPath);
+    if (r.ok)
+        emit dataExported(destPath);
+    else
+        emit errorOccurred(r.error);
+}
+
+void AppController::importAllData(const QString &srcPath, bool backupExisting)
+{
+    if (srcPath.isEmpty()) {
+        emit errorOccurred(tr("No backup file was chosen to import."));
+        return;
+    }
+
+    const DataPortability::Result r = DataPortability::importFrom(srcPath, backupExisting);
+    if (r.ok)
+        emit dataImported();
+    else
+        emit errorOccurred(r.error);
 }

@@ -33,7 +33,7 @@
 //   ├── data/
 //   │   ├── downloads.json        ← download list (no inline resume blobs)
 //   │   ├── queues.json
-//   │   ├── categories.json
+//   │   ├── categories.json       ← download categories (extensions, site rules, save paths)
 //   │   └── grabber_projects.json
 //   ├── resume/
 //   │   └── <download-id>.resume  ← one bencoded libtorrent resume blob per torrent
@@ -102,6 +102,9 @@ QString downloadsFile();
 
 // <root>/data/queues.json
 QString queuesFile();
+
+// <root>/data/categories.json
+QString categoriesFile();
 
 // <root>/data/grabber_projects.json
 QString grabberProjectsFile();

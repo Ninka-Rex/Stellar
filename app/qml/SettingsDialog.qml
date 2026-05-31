@@ -621,6 +621,130 @@ Window {
         }
     }
 
+    // Backup & Restore: export all data to / import all data from a .stellarbackup file
+    FileDialog {
+        id: exportBackupDlg
+        title: qsTr("Export Stellar Backup")
+        fileMode: FileDialog.SaveFile
+        defaultSuffix: "stellarbackup"
+        nameFilters: ["Stellar backup (*.stellarbackup)", "All files (*)"]
+        onAccepted: App.exportAllData(root.pathFromFileUrl(selectedFile))
+    }
+
+    FileDialog {
+        id: importBackupDlg
+        title: qsTr("Import Stellar Backup")
+        fileMode: FileDialog.OpenFile
+        nameFilters: ["Stellar backup (*.stellarbackup)", "All files (*)"]
+        onAccepted: App.importAllData(root.pathFromFileUrl(selectedFile), true)
+    }
+
+    // Result feedback for backup/restore.
+    Connections {
+        target: App
+        function onDataExported(path) {
+            exportResultDlg.promptText =
+                qsTr("Your data was exported to:\n%1").arg(path)
+            exportResultDlg.open()
+        }
+        function onDataImported() {
+            importResultDlg.open()
+        }
+    }
+
+    // Themed export-success dialog (in-app Window, matches the rest of the UI).
+    Window {
+        id: exportResultDlg
+        title: qsTr("Backup Complete")
+        width: 360
+        height: exportResultCol.implicitHeight + 24
+        flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
+        modality: Qt.WindowModal
+        transientParent: root
+        color: "#1e1e1e"
+        Material.theme: Material.Dark
+        Material.background: "#1e1e1e"
+        Material.accent: "#4488dd"
+
+        property string promptText: ""
+
+        function open() {
+            x = root.x + Math.round((root.width  - width)  / 2)
+            y = root.y + Math.round((root.height - height) / 2)
+            show(); raise(); requestActivate()
+        }
+
+        ColumnLayout {
+            id: exportResultCol
+            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 16 }
+            spacing: 16
+
+            Text {
+                Layout.fillWidth: true
+                text: exportResultDlg.promptText
+                color: "#d0d0d0"
+                font.pixelSize: 12 * App.fontScale
+                wrapMode: Text.WordWrap
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Item { Layout.fillWidth: true }
+                DlgButton {
+                    text: qsTr("OK")
+                    primary: true
+                    onClicked: exportResultDlg.close()
+                }
+            }
+        }
+    }
+
+    // Themed import-success dialog. The restart is triggered by the button click
+    // (not automatically) so the user keeps control and the relaunch is reliable.
+    Window {
+        id: importResultDlg
+        title: qsTr("Import Complete")
+        width: 380
+        height: importResultCol.implicitHeight + 24
+        flags: Qt.Dialog | Qt.WindowTitleHint | Qt.MSWindowsFixedSizeDialogHint
+        modality: Qt.WindowModal
+        transientParent: root
+        color: "#1e1e1e"
+        Material.theme: Material.Dark
+        Material.background: "#1e1e1e"
+        Material.accent: "#4488dd"
+
+        function open() {
+            x = root.x + Math.round((root.width  - width)  / 2)
+            y = root.y + Math.round((root.height - height) / 2)
+            show(); raise(); requestActivate()
+        }
+
+        ColumnLayout {
+            id: importResultCol
+            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 16 }
+            spacing: 16
+
+            Text {
+                Layout.fillWidth: true
+                text: qsTr("Your data was restored successfully. Stellar needs to restart to apply it.")
+                color: "#d0d0d0"
+                font.pixelSize: 12 * App.fontScale
+                wrapMode: Text.WordWrap
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Item { Layout.fillWidth: true }
+                DlgButton {
+                    text: qsTr("Restart Now")
+                    primary: true
+                    onClicked: App.restartApp()
+                }
+            }
+        }
+    }
+
     function applySettings() {
         // Always flush the current category form
         if (catPage.catEditId !== "") {
@@ -2609,6 +2733,35 @@ Window {
                             wrapMode: Text.WordWrap
                             Layout.fillWidth: true
                             visible: root.editClipboardMonitorEnabled
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+
+                        Text { text: qsTr("Backup & Restore"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+
+                        Text {
+                            text: qsTr("Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.")
+                            color: "#909090"; font.pixelSize: 12 * App.fontScale
+                            wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
+                        }
+
+                        RowLayout {
+                            spacing: 8
+                            DlgButton {
+                                text: qsTr("Export All Data…")
+                                primary: true
+                                onClicked: {
+                                    exportBackupDlg.currentFile = root.fileUrlFromPath(
+                                        (App.settings.defaultSavePath || "") + "/stellar-backup-"
+                                        + Qt.formatDate(new Date(), "yyyyMMdd") + ".stellarbackup")
+                                    exportBackupDlg.open()
+                                }
+                            }
+                            DlgButton {
+                                text: qsTr("Import Data…")
+                                onClicked: importBackupDlg.open()
+                            }
                         }
 
                         Item { Layout.fillHeight: true }

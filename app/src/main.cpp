@@ -637,11 +637,14 @@ int main(int argc, char *argv[])
 
     bool forceGui = false;
     bool startMinimized = false;
+    bool isRelaunch = false;
     for (int i = 1; i < argc; ++i) {
         if (qstrcmp(argv[i], "--gui") == 0)
             forceGui = true;
         else if (qstrcmp(argv[i], "--minimized") == 0)
             startMinimized = true;
+        else if (qstrcmp(argv[i], "--relaunch") == 0)
+            isRelaunch = true;
     }
 
     // Parse IDM-compatible CLI switches.  If any are present and --gui was not
@@ -743,7 +746,23 @@ int main(int argc, char *argv[])
     // at the OS level — only one caller can succeed.
     const QString kServerName = QStringLiteral("StellarDownloadManager");
     QSharedMemory shm(QStringLiteral("StellarSingleInstance"));
-    if (!shm.create(1) && shm.error() == QSharedMemory::AlreadyExists) {
+    bool weOwnSegment = shm.create(1);
+
+    // Restart path: this process was spawned by App.restartApp() while the old
+    // instance was still tearing down, so its single-instance segment may still
+    // be held for a moment. Wait for the parent to release it instead of
+    // mistaking ourselves for a duplicate and exiting. The segment is freed by
+    // the OS once the old process closes its last handle.
+    if (!weOwnSegment && isRelaunch && shm.error() == QSharedMemory::AlreadyExists) {
+        nmLog(QStringLiteral("Relaunch: waiting for previous instance to exit..."));
+        for (int waited = 0; waited < 10000 && !weOwnSegment; waited += 100) {  // up to 10 s
+            QThread::msleep(100);
+            weOwnSegment = shm.create(1);       // succeeds once the parent frees it
+        }
+        QLocalServer::removeServer(kServerName); // drop the parent's stale socket
+    }
+
+    if (!weOwnSegment && shm.error() == QSharedMemory::AlreadyExists) {
         nmLog(QStringLiteral("Another instance running. Forwarding args..."));
         QLocalSocket sock;
         sock.connectToServer(kServerName);

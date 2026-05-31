@@ -133,6 +133,11 @@ QString queuesFile()
     return dataDir() + QStringLiteral("/queues.json");
 }
 
+QString categoriesFile()
+{
+    return dataDir() + QStringLiteral("/categories.json");
+}
+
 QString grabberProjectsFile()
 {
     return dataDir() + QStringLiteral("/grabber_projects.json");
@@ -252,8 +257,7 @@ void migrateIfNeeded()
     // ── JSON databases ────────────────────────────────────────────────────────
     migrateFile(legacyBase + QStringLiteral("/downloads.json"),        downloadsFile());
     migrateFile(legacyBase + QStringLiteral("/queues.json"),           queuesFile());
-    migrateFile(legacyBase + QStringLiteral("/categories.json"),
-                dataDir()  + QStringLiteral("/categories.json"));
+    migrateFile(legacyBase + QStringLiteral("/categories.json"), categoriesFile());
     migrateFile(legacyBase + QStringLiteral("/grabber_projects.json"), grabberProjectsFile());
     migrateFile(legacyBase + QStringLiteral("/rss_feeds.json"), rssFeedsFile());
 

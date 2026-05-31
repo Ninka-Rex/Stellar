@@ -15,6 +15,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "CategoryModel.h"
+#include "StellarPaths.h"
 #include <QFileInfo>
 #include <QDir>
 #include <QFile>
@@ -66,12 +67,23 @@ void CategoryModel::initDefaults() {
 // ── Persistence ──────────────────────────────────────────────────────────────
 
 QString CategoryModel::categoriesFilePath() const {
-    const QString dir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    QDir().mkpath(dir);
-    return dir + QDir::separator() + QStringLiteral("categories.json");
+    return StellarPaths::categoriesFile();
 }
 
 void CategoryModel::loadFromDisk() {
+    // One-time forward-migration: older builds stored categories.json directly under
+    // QStandardPaths::AppDataLocation (Roaming on Windows), outside the Stellar root.
+    // If the canonical StellarPaths copy is missing but a legacy copy exists, copy it
+    // forward once so existing installs keep their customised categories.
+    if (!QFile::exists(categoriesFilePath())) {
+        const QString legacyDir =
+            QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+        const QString legacyPath = legacyDir + QDir::separator()
+                                   + QStringLiteral("categories.json");
+        if (QFile::exists(legacyPath))
+            QFile::copy(legacyPath, categoriesFilePath());
+    }
+
     QFile file(categoriesFilePath());
     if (!file.exists()) return;
     if (!file.open(QIODevice::ReadOnly)) return;

@@ -305,6 +305,11 @@ public:
 
     Q_INVOKABLE bool writeTextFile(const QString &path, const QString &content);
     Q_INVOKABLE QString readTextFile(const QString &path);
+
+    // Backup & restore: bundle every user-data file into a single .stellarbackup
+    // container / restore one onto this install (restart required after import).
+    Q_INVOKABLE void exportAllData(const QString &destPath);
+    Q_INVOKABLE void importAllData(const QString &srcPath, bool backupExisting = true);
     Q_INVOKABLE void checkUrl(const QString &url, QJSValue callback);
     Q_INVOKABLE void probeFileInfo(const QString &url, const QString &cookies,
                                    const QString &referrer, QJSValue callback);
@@ -469,6 +474,9 @@ signals:
     void selectedCategoryChanged();
     void selectedQueueChanged();
     void errorOccurred(const QString &message);
+    // Backup & restore results (QML shows a success popup / triggers a restart).
+    void dataExported(const QString &path);
+    void dataImported();
     void showWindowRequested();
     void torrentMetadataRequested(const QString &downloadId, bool startWhenReady);
     void torrentDuplicateDetected(const QString &existingId, const QStringList &newTrackers);
