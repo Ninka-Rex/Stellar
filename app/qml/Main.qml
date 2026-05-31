@@ -3276,8 +3276,9 @@ ApplicationWindow {
                 columnsDialog.raise()
             }}
             CompactMenuItem { text: qsTr("Toolbar…"); iconSrc: "icons/toolbar.svg"; onTriggered: {
-                var saved = App.settings.toolbarButtonDefs
-                toolbarDialog.buttonDefs = saved ? JSON.parse(saved) : toolbarDialog._defaultDefs()
+                // Rehydrate via Toolbar so saved labels are replaced with fresh
+                // translated ones (saved JSON holds stale English labels).
+                toolbarDialog.buttonDefs = toolbar._loadButtonDefs()
                 toolbarDialog.show()
                 toolbarDialog.raise()
             }}

@@ -46,9 +46,32 @@ Rectangle {
         ]
     }
 
+    // Canonical (translated) def for a key. Labels are never trusted from saved
+    // JSON -- only the user's order/enabled state is persisted by key. A saved
+    // English label baked into settings would otherwise bypass qsTr() forever.
+    function _defForKey(key) {
+        var defs = _defaultDefs()
+        for (var i = 0; i < defs.length; ++i)
+            if (defs[i].key === key) return defs[i]
+        return null
+    }
+
+    // Merge persisted defs (order + enabled, by key) with fresh translated
+    // label/icon. Shared by Toolbar and ToolbarDialog.
+    function _rehydrateDefs(saved) {
+        if (!saved || !saved.map) return _defaultDefs()
+        return saved.map(function(s) {
+            if (s.key === "separator") return {key:"separator"}
+            var def = _defForKey(s.key)
+            if (!def) return null  // unknown/removed key
+            return {key: s.key, label: def.label, iconSrc: def.iconSrc,
+                    enabled: s.enabled !== false}
+        }).filter(function(d) { return d !== null })
+    }
+
     function _loadButtonDefs() {
         if (App && App.settings && App.settings.toolbarButtonDefs) {
-            try { return JSON.parse(App.settings.toolbarButtonDefs) } catch(e) {}
+            try { return _rehydrateDefs(JSON.parse(App.settings.toolbarButtonDefs)) } catch(e) {}
         }
         return _defaultDefs()
     }
@@ -175,5 +198,13 @@ Rectangle {
 
     Component.onCompleted: {
         buttonDefs = _loadButtonDefs()
+    }
+
+    // Re-pull translated labels when UI language changes so a live switch
+    // re-localises the toolbar without a customize round-trip.
+    Connections {
+        target: App.settings
+        ignoreUnknownSignals: true
+        function onUiLanguageChanged() { root.buttonDefs = root._loadButtonDefs() }
     }
 }
