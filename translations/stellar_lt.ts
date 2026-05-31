@@ -73,6 +73,14 @@
             <translation>🛡️ Surinkta %1</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>Nepasirinkta atsarginės kopijos paskirties vieta.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>Nepasirinktas importuojamas atsarginės kopijos failas.</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ Susietas su %1 (atsijungęs — torrentai pristabdyti)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>Būsena</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Patikrinkite nuorodas prieš pridėjimą. Stulpeliai gali būti rūšiuojami, keičiantys dydį ir traukiami norint keisti tvarką.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>Pakeiskite failų pavadinimus su laukiniu simboliu (*)</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>Nepažymėti visko</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Pasirinkti tik nuorodas, pažymėtas kaip Rasta. Eilutės priskyrimas vis tiek vyksta po spaudimo OK.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>Atšaukti</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>Importuoti nuorodas į SDM</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>Pažymėkite norimas pridėti nuorodas ir spustelėkite Gerai.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -335,13 +339,13 @@
         </message>
         <message>
             <source>Failed to grant permission: </source>
-            <translation>1. Nepavyko suteikti leidimo:</translation>
+            <translation>Nepavyko suteikti leidimo:</translation>
         </message>
         <message>
             <source>
 
 Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
-            <translation>2. 
+            <translation>
 Paleiskite rankiniu būdu: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
@@ -505,20 +509,24 @@ Paleiskite rankiniu būdu: flatpak override --user --talk-name=org.freedesktop.F
             <translation>Ištrinti baigtus atsisiuntimus</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Ar tikrai norite ištrinti visus Stellar atsisiuntimų sąraše esančius baigtus atsisiuntimus?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>Ištrinti baigtus atsisiuntimus?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Pastaba: Tai pašalins juos tik iš sąrašo. Disko failai neištrinami.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>Pašalina tik iš sąrašo. Failai diske neištrinami.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Atšaukti</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Ištrinti</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>Ištrinti baigtus ir sėjančius torrentus</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>Taip</translation>
         </message>
         <message>
             <source>No</source>
@@ -581,6 +589,14 @@ Paleiskite rankiniu būdu: flatpak override --user --talk-name=org.freedesktop.F
         <message>
             <source>Download File Info</source>
             <translation>Apskųti failo informacija</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 failai (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Visi failai (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -837,6 +853,10 @@ Paleiskite rankiniu būdu: flatpak override --user --talk-name=org.freedesktop.F
             <translation>Globalus limitas aktyvus: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>Bendras limitas aktyvus: neribotas</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>Globalus limitas neįjungtas</translation>
         </message>
@@ -896,10 +916,6 @@ Paleiskite rankiniu būdu: flatpak override --user --talk-name=org.freedesktop.F
             <translation>Kopijuoti failo pavadinimą</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>Eksportuoti .torrent...</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>Tęsti</translation>
         </message>
@@ -926,6 +942,10 @@ Paleiskite rankiniu būdu: flatpak override --user --talk-name=org.freedesktop.F
         <message>
             <source>File Name</source>
             <translation>Failo pavadinimas</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>Eksportuoti .torrent...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -968,6 +988,10 @@ Paleiskite rankiniu būdu: flatpak override --user --talk-name=org.freedesktop.F
             <translation>Atsiųsta</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>Pridėjimo data</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>Paskutinio bandymo data</translation>
         </message>
@@ -986,18 +1010,6 @@ Paleiskite rankiniu būdu: flatpak override --user --talk-name=org.freedesktop.F
         <message>
             <source>Parent web page</source>
             <translation>Tėvinė svetainė</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Laukiama</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (Sustabdyta)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>Patikrinama (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1036,6 +1048,25 @@ Spauskite  Pridėti URL  pradžiai.</translation>
         <message>
             <source>%n selected downloads</source>
             <translation>%n pasirinkti atsisiuntimai</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>Laukiama</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (Sustabdytas)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>Tikrinama (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n failas(-ai)</translation>
         </message>
     </context>
     <context>
@@ -1196,20 +1227,12 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Kopijuoti</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>Meta duomenys</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Aprašas</translation>
-        </message>
-        <message>
             <source>Created by</source>
-            <translation>3. Sukūrė</translation>
+            <translation>Sukūrė</translation>
         </message>
         <message>
             <source>Created on</source>
-            <translation>4. Sukurta</translation>
+            <translation>Sukurta</translation>
         </message>
         <message>
             <source>Category</source>
@@ -1300,8 +1323,16 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Dalelių žemėlapis</translation>
         </message>
         <message>
+            <source>✓ Metadata</source>
+            <translation>✓ Metaduomenys</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>Gaunama…</translation>
+        </message>
+        <message>
             <source>Move...</source>
-            <translation>5. Perkelti...</translation>
+            <translation>Perkelti...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -1620,10 +1651,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Greitis</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>Prieinami</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>Atstumas: %1</translation>
         </message>
@@ -1667,10 +1694,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>Pridėti dalintoją</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>Gaunama iš stiebo...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1775,10 +1798,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>Reikalingas projekto pavadinimas ir pradinė puslapis.</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – %1 iš %2 žingsnis: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>Nustatyti pradinį puslapį</translation>
         </message>
@@ -1861,6 +1880,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>Projektas</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – %1 žingsnis iš %2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2342,7 +2365,7 @@ Project</source>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>1. Pasirinkite tipą</translation>
+            <translation>Pasirinkite tipą</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
@@ -2354,7 +2377,7 @@ Project</source>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>2. Pasirinkite veiksmą</translation>
+            <translation>Pasirinkite veiksmą</translation>
         </message>
         <message>
             <source>Explore only</source>
@@ -2559,16 +2582,8 @@ Project</source>
             <translation>Statistika</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>Būsena: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>Laukiama</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>Apdoroti puslapiai</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2581,6 +2596,22 @@ Project</source>
         <message>
             <source>Files</source>
             <translation>Failai</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>BŪSENA</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>Būsena</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>ŽINIATINKLIO PUSLAPIAI</translation>
+        </message>
+        <message>
+            <source>FILES</source>
+            <translation>FAILAI</translation>
         </message>
         <message>
             <source>Total</source>
@@ -2672,6 +2703,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>Visi failai (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>SDM eksporto failas (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>Tekstinis failas (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2813,15 +2852,11 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
         </message>
         <message>
             <source>Create Torrent…</source>
-            <translation>6. Kurti Torrent…</translation>
+            <translation>Kurti Torrent…</translation>
         </message>
         <message>
             <source>Downloads</source>
             <translation>Atsisiuntimai</translation>
-        </message>
-        <message>
-            <source>Pause all</source>
-            <translation>Pauzė visiems</translation>
         </message>
         <message>
             <source>Stop all</source>
@@ -2942,6 +2977,10 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
         <message>
             <source>Columns…</source>
             <translation>Stulpeliai…</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>Įrankių juosta…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3102,10 +3141,6 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
         <message>
             <source>Stellar Download Manager</source>
             <translation>Stellar atsisiuntimo tvarkyklė</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar ↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3863,20 +3898,8 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <translation>Greičio ribotuvas</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>Įjungti bendrą greičio ribą</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>Maksimalus greitis:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>Įjungti bendrą siuntimo ribą</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3925,6 +3948,28 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
         <message>
             <source>General</source>
             <translation>Bendra</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>Eksportuoti Stellar atsarginę kopiją</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>Importuoti Stellar atsarginę kopiją</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>Atsarginė kopija baigta</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>Jūsų duomenys eksportuoti į:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>Importavimas baigtas</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4059,6 +4104,14 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <translation>Nėra</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>Įjungti greičio ribotuvą</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>Maks. atsisiuntimas:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Spauskite dienos tabletį, kad jį įjungtumėte. Taisyklės vertinamos kas minutę; taikoma pirmoji sutampanti taisyklė. Numatyti atsisiuntimo ir siuntimo limitai automatiškai išvalomi, kai nėra aktyvių taisyklių</translation>
         </message>
@@ -4081,10 +4134,6 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
         <message>
             <source>Show tips in bottom bar</source>
             <translation>Rodyti patarimus apačioje juostoje</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>Rodyti baigtų atsisiuntimų skaičių būsenos juostoje</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4141,6 +4190,22 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>Kopijuojant URL, atitinkantį stebimą failo tipą, Stellar paklaus, ar norite jį atsisiųsti. Tik failai, išvardyti skirtuko 'Naršyklė' &gt; 'Automatiškai pradėti atsisiųsti šiuos failo tipus', bus apdoroti.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>Atsarginė kopija ir atkūrimas</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Eksportuoti viską – nustatymus, atsisiuntimus, torrentus (su dalijimosi santykiais), eiles, kategorijas ir statistiką – į vieną atsarginę kopiją. Vėliau importuokite į naują Stellar diegimą, kad viską atkurtumėte. Importavimas pakeičia dabartinius duomenis (išsaugoma kopija su laiko žyma) ir iš naujo paleidžia Stellar.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>Eksportuoti visus duomenis…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>Importuoti duomenis…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4432,6 +4497,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>Atmintyje atvaizduotas: failai tiesiogiai atvaizduojami atmintyje. Windows ir Linux torrentų duomenis skaito ir rašo per puslapio podėlį, naudodami minimaliai procesoriaus. Rekomenduojama daugumai vartotojų.</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>Duomenys sėkmingai atkurti. Stellar turi būti paleistas iš naujo, kad pritaikytų pakeitimus.</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5075,18 +5144,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>neribotas</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Greičio ribotuvas</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 Proksis įjungtas</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 Atnaujinimų tikrinimas</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT išjungta</translation>
         </message>
@@ -5107,14 +5164,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>toliau &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 Eilė veiks per 1 min.</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 Eilė veiks per %1 min.</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Viso laiko dalinimosi santykis</translation>
@@ -5130,6 +5179,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>Nerasta tinklo ryšio</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>Greičio ribotuvas</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>Tarpinis serveris įjungtas</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Tikrinami atnaujinimai</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5151,6 +5212,14 @@ Click to open Statistics</source>
             <source>Click to copy IP</source>
             <translation>Atidaryti statistikos</translation>
         </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>Eilė po 1 minutės</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>Eilė po %1 minučių</translation>
+        </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
@@ -5164,19 +5233,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>7. Atverti Stellar</translation>
+            <translation>Atverti Stellar</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>8. Pridėti URL…</translation>
+            <translation>Pridėti URL…</translation>
         </message>
         <message>
             <source>GitHub</source>
-            <translation>9. GitHub</translation>
+            <translation>GitHub</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation>10. Apie Stellar</translation>
+            <translation>Apie Stellar</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
@@ -5337,6 +5406,10 @@ Click to open Statistics</source>
             <translation>Pridėti skirtuką</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>Pašalinti</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>Atstatyti</translation>
         </message>
@@ -5347,6 +5420,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>Atšaukti</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Sukurti torrentą</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Pašalinti</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Išsaugoti į:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Naršyti…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Pavadinimas:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Dalies dydis:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>Pasirinkti išvesties aplanką</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>Failai</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>Šaltinis:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 daugiau)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>Nepasirinktas šaltinis</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>Failas…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>Aplankas…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>Išvesties aplankas…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>Torrento pavadinimas (neprivaloma)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 dalys × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 dalys × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>Savybės</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>Sekikliai:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>Neprivaloma</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>Žiniatinklio sėklos:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>Vienas URL eilutėje (neprivaloma)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>Privatus torrentas (išjungia DHT ir PeX)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ Baigta — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>Maišoma… %1%  (%2 dalys × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>Atverti baigus</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Komentaras:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Klaida: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Atšaukta</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Atšaukti</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Uždaryti</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Kuriama…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Atverti torrentą</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Pridėti failus</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Pridėti aplanką</translation>
         </message>
     </context>
     <context>
@@ -5806,6 +6026,14 @@ Click to open Statistics</source>
             <translation>Gaunama vaizdo informacija…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>Geriausia kokybė</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>Tik garsas</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>Nepavyko gauti vaizdo informacijos</translation>
         </message>
@@ -6138,177 +6366,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Vaizdo įrašo atsisiuntimas</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>Sukurti torrentą</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>Šaltinio failai / aplankai</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ Failai</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ Aplankas</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Pašalinti</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>Vilkite failus ar aplankus čia arba naudokite mygtukus viršuje</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>Išvestis</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>Išsaugoti į:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>Kelias .torrent failui išsaugoti…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>Naršyti…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>Pavadinimas:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>Neprivaloma — pagal numatytuosius aplanko/failo pavadinimas</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>Dalies dydis:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>Auto</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 dalys × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>Metaduomenys</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>Komentaras:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>Pasirinktinis komentaras .torrent faile</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>Aprašas:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>Pasirinktinis išplėstinis aprašas</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>Sukūrė:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>Privatus torrent (DHT ir PEX išjungti)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>Sekikliai</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>Vienas URL eilutėje</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>Žiniatinklio sėklos (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>Atidaryti sukūrus</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ Torrentas sėkmingai sukurtas: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ Klaida: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>Atšaukta</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>Maišomos dalys… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 dalys × %2 vienai</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Uždaryti</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>Kuriama…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>Atverti torrentą</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>Sukurti torrentą…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>Pridėti failus</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>Pridėti aplanką</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>Išsaugoti .torrent</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>Torrent failai (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>Visi failai (*)</translation>
         </message>
     </context>
 </TS>

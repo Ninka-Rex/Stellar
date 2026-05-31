@@ -357,8 +357,19 @@ def parse_llm_response(response_text, expected_count):
     return None
 
 
+# Leading list artefacts a model may prepend to a value: "1. ", "2) ", "3 - ",
+# "- ", "• ". Defensive net so a stray index never reaches the .ts file even if
+# the model ignores the prompt rule.
+_LIST_PREFIX_RE = re.compile(r'^\s*(?:\d+\s*[.)\]:\-–]\s*|[-–•*]\s+)')
+
+def _strip_list_prefix(s: str) -> str:
+    if not isinstance(s, str):
+        return s
+    return _LIST_PREFIX_RE.sub("", s, count=1).strip()
+
+
 def _pad_or_truncate(items, target):
-    result = list(items[:target])
+    result = [_strip_list_prefix(x) for x in items[:target]]
     while len(result) < target:
         result.append("")
     return result
@@ -369,7 +380,10 @@ def translate_batch(lang_name: str, sources: List[str]) -> List[str]:
     if not sources:
         return []
 
-    numbered = "\n".join(f"{i+1}. {s}" for i, s in enumerate(sources))
+    # Send sources as a JSON array, NOT a numbered list. A numbered input list
+    # caused weaker models to echo the "1." / "2." prefixes back inside the
+    # translated strings (e.g. "5. Ajouter URL" appearing on toolbar buttons).
+    sources_json = json.dumps(sources, ensure_ascii=False)
 
     system_prompt = (
         f"You are a professional localisation translator. "
@@ -385,11 +399,20 @@ def translate_batch(lang_name: str, sources: List[str]) -> List[str]:
         f"For example: use '↓' for download speed, '↑' for upload speed, "
         f"'Taille' not 'Taille du fichier', 'Ratio' not 'Rapport de partage'. "
         f"If the English source is 1-2 words, the translation must also be 1-2 words max.\n"
+        f"- Do NOT add list numbers, bullets, indices, or any prefix to a "
+        f"translation. Never output text like \"1. \", \"2) \", \"- \" in front of "
+        f"a value. Translate ONLY the words, nothing else.\n"
+        f"- The output array must have exactly {len(sources)} items in the same "
+        f"order as the input.\n"
         f"- Return ONLY a JSON array: [\"trans1\", \"trans2\", ...]\n"
         f"- No markdown, no explanations, no code fences."
     )
 
-    user_msg = f"{numbered}\n\nReturn JSON array of {len(sources)} {lang_name} translations:"
+    user_msg = (
+        f"Input is a JSON array of {len(sources)} English strings:\n"
+        f"{sources_json}\n\n"
+        f"Return JSON array of {len(sources)} {lang_name} translations:"
+    )
 
     for attempt in range(1, MAX_RETRIES_PER_BATCH + 1):
         response = call_llm([

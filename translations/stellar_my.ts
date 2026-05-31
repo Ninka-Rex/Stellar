@@ -73,6 +73,14 @@
             <translation>🛡️ %1 သို့ ချိတ်ဆက်ထားသည်</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>အရန်အတွက် ဦးတည်ရာမရွေးခဲ့ပါ။</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>သွင်းရန် အရန်ဖိုင်မရွေးခဲ့ပါ။</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ %1 သို့ ချိတ်ဆက်ထားသည် (အော့ဖ်လိုင်း — တိုရန့်များ ခေတ္တရပ်)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>အခြေအနေ</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>လင့်ခ်များ မထည့်မီ ပြန်စစ်ပါ။ ကော်လံများကို စီနိုင်၊ အရွယ်ပြောင်းနိုင်၊ ဆွဲ၍ ပြန်စီနိုင်သည်။</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>ဖိုင်အမည်များကို အစားထိုးအမှတ် (*) ဖြင့် အစားထိုး</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>အားလုံး အမှန်ခြစ်ဖြုတ်</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>တွေ့ရှိဟု မှတ်သားထားသော လင့်ခ်များသာ ရွေးနိုင်သည်။ တန်းစီသတ်မှတ်မှုသည် OK ပြီးနောက်မှ သက်ရောက်သည်။</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>ပယ်ဖျက်</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>လင့်ခ်များ SDM သို့ထည့်ပါ</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>ဒေါင်းလုဒ်စာရင်းထဲထည့်မည့် လင့်များကိုရွေး၍ OK နှိပ်ပါ။</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -504,20 +508,24 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ပြီးဆုံးသော ဒေါင်းလုဒ်များကို ဖျက်ပါ</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Stellar ၏ ဒေါင်းလုဒ်စာရင်းမှ ပြီးဆုံးသော ဒေါင်းလုဒ်အားလုံးကို ဖျက်လိုသည်မှာ သေချာပါသလား။</translation>
+            <source>Delete completed downloads?</source>
+            <translation>ပြီးသောဒေါင်းလုဒ်များ ဖျက်မလား။</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>မှတ်ချက်- ၎င်းတို့ကို စာရင်းမှသာ ဖယ်ရှားမည်။ ဒစ်ခ်ပေါ်ရှိ ဖိုင်များကို ဖျက်မည်မဟုတ်ပါ။</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>စာရင်းမှသာဖယ်ရှားသည်။ ဒစ်ပေါ်ရှိဖိုင်များ မဖျက်ပါ။</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>မလုပ်တော့</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ဖျက်မည်</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>ပြီးဆုံး၍ မျှဝေနေသော တိုရန့်များကို ဖျက်ပါ</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>ဟုတ်ကဲ့</translation>
         </message>
         <message>
             <source>No</source>
@@ -580,6 +588,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>ဒေါင်းလုဒ်ဖိုင်အချက်အလက်</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 ဖိုင်များ (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>ဖိုင်အားလုံး (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -836,6 +852,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ကမ္ဘာလုံးဆိုင်ရာ ကန့်သတ်ချက် လှုပ်ရှားနေ: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>ကမ္ဘာလုံးဆိုင်ရာ ကန့်သတ်ချက် အသုံးပြုနေသည်- အကန့်အသတ်မရှိ</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>ကမ္ဘာလုံးဆိုင်ရာ ကန့်သတ်ချက် မသတ်မှတ်ထား</translation>
         </message>
@@ -895,10 +915,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ဖိုင်အမည် ကူးယူ</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent ထုတ်ယူ...</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>ပြန်စ</translation>
         </message>
@@ -927,6 +943,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ဖိုင်အမည်</translation>
         </message>
         <message>
+            <source>Export .torrent...</source>
+            <translation>.torrent ထုတ်ရန်...</translation>
+        </message>
+        <message>
             <source>Size</source>
             <translation>အရွယ်</translation>
         </message>
@@ -948,27 +968,31 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         </message>
         <message>
             <source>Seeders</source>
-            <translation>1. မျိုးစေ့ချသူများ</translation>
+            <translation>မျိုးစေ့ချသူများ</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation>2. သက်တူရွယ်တူများ</translation>
+            <translation>သက်တူရွယ်တူများ</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation>3. အချိုး</translation>
+            <translation>အချိုး</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>4. တင်ထားပြီး</translation>
+            <translation>တင်ထားပြီး</translation>
         </message>
         <message>
             <source>Downloaded</source>
             <translation>ဒေါင်းပြီး</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>ထည့်သည့်ရက်</translation>
+        </message>
+        <message>
             <source>Last try date</source>
-            <translation>6. နောက်ဆုံးကြိုးစားသည့်ရက်</translation>
+            <translation>နောက်ဆုံးကြိုးစားသည့်ရက်</translation>
         </message>
         <message>
             <source>Description</source>
@@ -976,53 +1000,41 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         </message>
         <message>
             <source>Save to</source>
-            <translation>8. သိမ်းရန်</translation>
+            <translation>သိမ်းရန်</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation>9. ညွှန်းဆို</translation>
+            <translation>ညွှန်းဆို</translation>
         </message>
         <message>
             <source>Parent web page</source>
-            <translation>10. မူရင်းဝက်ဘ်စာမျက်နှာ</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>11. ဆိုင်းငံ့</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>12. %1% (ရပ်ထား)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>13. စစ်ဆေးနေသည် (%1%)</translation>
+            <translation>မူရင်းဝက်ဘ်စာမျက်နှာ</translation>
         </message>
         <message>
             <source>%n file(s)</source>
-            <translation>14. ဖိုင် %n ခု</translation>
+            <translation>ဖိုင် %n ခု</translation>
         </message>
         <message>
             <source>No matching downloads.</source>
-            <translation>15. ကိုက်ညီသော ဒေါင်းလုဒ်များ မရှိပါ။</translation>
+            <translation>ကိုက်ညီသော ဒေါင်းလုဒ်များ မရှိပါ။</translation>
         </message>
         <message>
             <source>No downloads yet.
 Click  Add URL  to start.</source>
-            <translation>16. ဒေါင်းလုဒ်များ မရှိသေးပါ။
+            <translation>ဒေါင်းလုဒ်များ မရှိသေးပါ။
 စတင်ရန်  Add URL  ကိုနှိပ်ပါ။</translation>
         </message>
         <message>
             <source>Loading %n download(s)…</source>
-            <translation>17. ဒေါင်းလုဒ် %n ခု ဖွင့်နေသည်…</translation>
+            <translation>ဒေါင်းလုဒ် %n ခု ဖွင့်နေသည်…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
-            <translation>18. တန်းစီသို့ရွှေ့</translation>
+            <translation>တန်းစီသို့ရွှေ့</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation>19. Magnet လင့်ခ်ကူးယူ</translation>
+            <translation>Magnet လင့်ခ်ကူးယူ</translation>
         </message>
         <message>
             <source>Verify Local Data</source>
@@ -1030,30 +1042,49 @@ Click  Add URL  to start.</source>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation>20. URL ကူးယူ</translation>
+            <translation>URL ကူးယူ</translation>
         </message>
         <message>
             <source>%n selected downloads</source>
-            <translation>21. ရွေးထားသော ဒေါင်းလုဒ် %n ခု</translation>
+            <translation>ရွေးထားသော ဒေါင်းလုဒ် %n ခု</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>ဆိုင်းငံ့</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (ရပ်ထား)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>စစ်ဆေးနေ (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>ဖိုင် %n ခု</translation>
         </message>
     </context>
     <context>
         <name>DuplicateDownloadDialog</name>
         <message>
             <source>Duplicate Download Link</source>
-            <translation>22. ထပ်နေသော ဒေါင်းလုဒ်လင့်ခ်</translation>
+            <translation>ထပ်နေသော ဒေါင်းလုဒ်လင့်ခ်</translation>
         </message>
         <message>
             <source>This file already exists in your download list.</source>
-            <translation>23. ဤဖိုင်သည် သင့်ဒေါင်းလုဒ်စာရင်းတွင် ရှိပြီးသားဖြစ်သည်။</translation>
+            <translation>ဤဖိုင်သည် သင့်ဒေါင်းလုဒ်စာရင်းတွင် ရှိပြီးသားဖြစ်သည်။</translation>
         </message>
         <message>
             <source>You may choose one of the following options, or press Cancel to skip the download.</source>
-            <translation>24. အောက်ပါရွေးချယ်စရာများထဲမှ တစ်ခုကိုရွေးပါ၊ သို့မဟုတ် ဒေါင်းလုဒ်ကိုကျော်ရန် Cancel ကိုနှိပ်ပါ။</translation>
+            <translation>အောက်ပါရွေးချယ်စရာများထဲမှ တစ်ခုကိုရွေးပါ၊ သို့မဟုတ် ဒေါင်းလုဒ်ကိုကျော်ရန် Cancel ကိုနှိပ်ပါ။</translation>
         </message>
         <message>
             <source>Add the duplicate with a numbered file name</source>
-            <translation>25. နံပါတ်တပ်ထားသော ဖိုင်အမည်ဖြင့် ထပ်ထည့်ပါ</translation>
+            <translation>နံပါတ်တပ်ထားသော ဖိုင်အမည်ဖြင့် ထပ်ထည့်ပါ</translation>
         </message>
         <message>
             <source>Add the duplicate and overwrite the existing file</source>
@@ -1196,14 +1227,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ကူးယူ</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>မက်တာဒေတာ</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>ဖော်ပြချက်</translation>
-        </message>
-        <message>
             <source>Created by</source>
             <translation>ဖန်တီးသူ</translation>
         </message>
@@ -1298,6 +1321,14 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>အပိုင်းမြေပုံ</translation>
+        </message>
+        <message>
+            <source>✓ Metadata</source>
+            <translation>✓ မက်တာဒေတာ</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>ရယူနေ...</translation>
         </message>
         <message>
             <source>Move...</source>
@@ -1620,10 +1651,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>မြန်နှုန်း</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>ရရှိနိုင်</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>အကွာအဝေး: %1</translation>
         </message>
@@ -1667,10 +1694,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>seed ထည့်ရန်...</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>swarm မှရယူနေသည်...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1775,10 +1798,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>ပရောဂျက်အမည်နှင့် စာမျက်နှာစ လိုအပ်သည်။</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – အဆင့် %1/%2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>စာမျက်နှာစ သတ်မှတ်</translation>
         </message>
@@ -1861,6 +1880,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>ပရောဂျက်</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – အဆင့် %1/%2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2564,16 +2587,8 @@ Project</source>
             <translation>Grabber စာရင်းအင်း</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>အခြေအနေ - %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>ရပ်နား</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>ဝဘ်စာမျက်နှာများ လုပ်ဆောင်ပြီး</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2585,6 +2600,22 @@ Project</source>
         </message>
         <message>
             <source>Files</source>
+            <translation>ဖိုင်များ</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>အခြေအနေ</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>အခြေအနေ</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>ဝဘ်စာမျက်နှာများ</translation>
+        </message>
+        <message>
+            <source>FILES</source>
             <translation>ဖိုင်များ</translation>
         </message>
         <message>
@@ -2677,6 +2708,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>ဖိုင်အားလုံး (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>SDM ထုတ်ယူဖိုင် (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>စာသားဖိုင် (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2825,10 +2864,6 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
             <translation>ဒေါင်းလုဒ်များ</translation>
         </message>
         <message>
-            <source>Pause all</source>
-            <translation>အားလုံးခေတ္တရပ်</translation>
-        </message>
-        <message>
             <source>Stop all</source>
             <translation>အားလုံးရပ်</translation>
         </message>
@@ -2949,6 +2984,10 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
             <translation>ကော်လံများ…</translation>
         </message>
         <message>
+            <source>Toolbar…</source>
+            <translation>ကိရိယာဘား…</translation>
+        </message>
+        <message>
             <source>Options</source>
             <translation>ရွေးချယ်စရာများ</translation>
         </message>
@@ -3010,7 +3049,7 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         </message>
         <message>
             <source>URL / referrer / parent web page</source>
-            <translation>4. URL / ရည်ညွှန်းချက် / မူရင်းဝက်ဘ်စာမျက်နှာ</translation>
+            <translation>URL / ရည်ညွှန်းချက် / မူရင်းဝက်ဘ်စာမျက်နှာ</translation>
         </message>
         <message>
             <source>Match case</source>
@@ -3022,51 +3061,51 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         </message>
         <message>
             <source>Move sidebar to left</source>
-            <translation>7. ဘေးဘားကို ဘယ်ဘက်သို့ရွှေ့</translation>
+            <translation>ဘေးဘားကို ဘယ်ဘက်သို့ရွှေ့</translation>
         </message>
         <message>
             <source>Move sidebar to right</source>
-            <translation>8. ဘေးဘားကို ညာဘက်သို့ရွှေ့</translation>
+            <translation>ဘေးဘားကို ညာဘက်သို့ရွှေ့</translation>
         </message>
         <message>
             <source>Reset sidebar width</source>
-            <translation>9. ဘေးဘားအကျယ် ပြန်သတ်မှတ်</translation>
+            <translation>ဘေးဘားအကျယ် ပြန်သတ်မှတ်</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation>10. Stellar အကြောင်း</translation>
+            <translation>Stellar အကြောင်း</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation>11. ဘရောက်ဆာ ပေါင်းစည်းမှု</translation>
+            <translation>ဘရောက်ဆာ ပေါင်းစည်းမှု</translation>
         </message>
         <message>
             <source>Browser Extensions…</source>
-            <translation>12. ဘရောက်ဆာ တိုးချဲ့မှုများ…</translation>
+            <translation>ဘရောက်ဆာ တိုးချဲ့မှုများ…</translation>
         </message>
         <message>
             <source>Browser Settings…</source>
-            <translation>13. ဘရောက်ဆာ ဆက်တင်များ…</translation>
+            <translation>ဘရောက်ဆာ ဆက်တင်များ…</translation>
         </message>
         <message>
             <source>Stellar</source>
-            <translation>14. Stellar</translation>
+            <translation>Stellar</translation>
         </message>
         <message>
             <source>Browser Cookies Required</source>
-            <translation>15. ဘရောက်ဆာ ကွတ်ကီးများ လိုအပ်</translation>
+            <translation>ဘရောက်ဆာ ကွတ်ကီးများ လိုအပ်</translation>
         </message>
         <message>
             <source>Add Torrent File</source>
-            <translation>16. Torrent ဖိုင်ထည့်ရန်</translation>
+            <translation>Torrent ဖိုင်ထည့်ရန်</translation>
         </message>
         <message>
             <source>Export .torrent Files</source>
-            <translation>17. .torrent ဖိုင်များ ထုတ်ယူ</translation>
+            <translation>.torrent ဖိုင်များ ထုတ်ယူ</translation>
         </message>
         <message>
             <source>Channel Download Progress</source>
-            <translation>18. ချန်နယ် ဒေါင်းလုဒ် တိုးတက်မှု</translation>
+            <translation>ချန်နယ် ဒေါင်းလုဒ် တိုးတက်မှု</translation>
         </message>
         <message>
             <source>File Name</source>
@@ -3094,11 +3133,11 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         </message>
         <message>
             <source>File No Longer Available</source>
-            <translation>20. ဖိုင် မရရှိနိုင်တော့ပါ</translation>
+            <translation>ဖိုင် မရရှိနိုင်တော့ပါ</translation>
         </message>
         <message>
             <source>Quick Update</source>
-            <translation>21. အမြန် အပ်ဒိတ်</translation>
+            <translation>အမြန် အပ်ဒိတ်</translation>
         </message>
         <message>
             <source>PAUSED</source>
@@ -3106,19 +3145,15 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         </message>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>22. Stellar ဒေါင်းလုဒ် မန်နေဂျာ</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>23. Stellar  ↓ %1  ↑ %2</translation>
+            <translation>Stellar ဒေါင်းလုဒ် မန်နေဂျာ</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
-            <translation>24. Stellar ဒေါင်းလုဒ် မန်နေဂျာ ဗားရှင်းသစ် ရရှိနိုင်</translation>
+            <translation>Stellar ဒေါင်းလုဒ် မန်နေဂျာ ဗားရှင်းသစ် ရရှိနိုင်</translation>
         </message>
         <message>
             <source>What's New in Stellar</source>
-            <translation>25. Stellar တွင် အသစ်အဆန်းများ</translation>
+            <translation>Stellar တွင် အသစ်အဆန်းများ</translation>
         </message>
         <message>
             <source>Export</source>
@@ -3157,31 +3192,31 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         <name>QueueSelectionDialog</name>
         <message>
             <source>Queue Selection</source>
-            <translation>1. စီစီရွေးချယ်မှု</translation>
+            <translation>စီစီရွေးချယ်မှု</translation>
         </message>
         <message>
             <source>Put files into a queue?</source>
-            <translation>2. ဖိုင်များကို စီစီထဲထည့်မလား။</translation>
+            <translation>ဖိုင်များကို စီစီထဲထည့်မလား။</translation>
         </message>
         <message>
             <source>Choose an existing queue or create a new one.</source>
-            <translation>3. ရှိပြီးသားစီစီကိုရွေးပါ သို့မဟုတ် အသစ်ဖန်တီးပါ။</translation>
+            <translation>ရှိပြီးသားစီစီကိုရွေးပါ သို့မဟုတ် အသစ်ဖန်တီးပါ။</translation>
         </message>
         <message>
             <source>Queue</source>
-            <translation>4. စီစီ</translation>
+            <translation>စီစီ</translation>
         </message>
         <message>
             <source>Start queue processing</source>
-            <translation>5. စီစီလုပ်ဆောင်မှုစတင်ပါ</translation>
+            <translation>စီစီလုပ်ဆောင်မှုစတင်ပါ</translation>
         </message>
         <message>
             <source>Don't ask me again</source>
-            <translation>6. နောက်တစ်ခါမမေးပါနဲ့</translation>
+            <translation>နောက်တစ်ခါမမေးပါနဲ့</translation>
         </message>
         <message>
             <source>Don't add to queue</source>
-            <translation>7. စီစီထဲမထည့်ပါနဲ့</translation>
+            <translation>စီစီထဲမထည့်ပါနဲ့</translation>
         </message>
         <message>
             <source>OK</source>
@@ -3189,7 +3224,7 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         </message>
         <message>
             <source>Enter queue name</source>
-            <translation>9. စီစီအမည်ထည့်ပါ</translation>
+            <translation>စီစီအမည်ထည့်ပါ</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -3197,18 +3232,18 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         </message>
         <message>
             <source>Create</source>
-            <translation>11. ဖန်တီးပါ</translation>
+            <translation>ဖန်တီးပါ</translation>
         </message>
     </context>
     <context>
         <name>RssDownloadRulesDialog</name>
         <message>
             <source>(Default)</source>
-            <translation>12. (မူလ)</translation>
+            <translation>(မူလ)</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>13. ဒေါင်းလုဒ်စည်းမျဉ်းများ</translation>
+            <translation>ဒေါင်းလုဒ်စည်းမျဉ်းများ</translation>
         </message>
         <message>
             <source>Add</source>
@@ -3220,43 +3255,43 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
-            <translation>16. ဒေါင်းလုဒ်စည်းမျဉ်းဖန်တီးရန် &quot;ထည့်ပါ&quot; ကိုနှိပ်ပါ</translation>
+            <translation>ဒေါင်းလုဒ်စည်းမျဉ်းဖန်တီးရန် &quot;ထည့်ပါ&quot; ကိုနှိပ်ပါ</translation>
         </message>
         <message>
             <source>Rule name</source>
-            <translation>17. စည်းမျဉ်းအမည်</translation>
+            <translation>စည်းမျဉ်းအမည်</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>18. ဖွင့်ထားသည်</translation>
+            <translation>ဖွင့်ထားသည်</translation>
         </message>
         <message>
             <source>FILTER RULES</source>
-            <translation>19. စစ်ထုတ်စည်းမျဉ်းများ</translation>
+            <translation>စစ်ထုတ်စည်းမျဉ်းများ</translation>
         </message>
         <message>
             <source>Use regular expressions</source>
-            <translation>20. ရက်ဂျက်စ်သုံးပါ</translation>
+            <translation>ရက်ဂျက်စ်သုံးပါ</translation>
         </message>
         <message>
             <source>Must contain:</source>
-            <translation>21. ပါဝင်ရမည်:</translation>
+            <translation>ပါဝင်ရမည်:</translation>
         </message>
         <message>
             <source>regex pattern</source>
-            <translation>22. ရက်ဂျက်စ်ပုံစံ</translation>
+            <translation>ရက်ဂျက်စ်ပုံစံ</translation>
         </message>
         <message>
             <source>keyword1 keyword2 | keyword3</source>
-            <translation>23. သော့ချက်စာ၁ သော့ချက်စာ၂ | သော့ချက်စာ၃</translation>
+            <translation>သော့ချက်စာ၁ သော့ချက်စာ၂ | သော့ချက်စာ၃</translation>
         </message>
         <message>
             <source>Must not contain:</source>
-            <translation>24. မပါဝင်ရ:</translation>
+            <translation>မပါဝင်ရ:</translation>
         </message>
         <message>
             <source>keyword1 keyword2</source>
-            <translation>25. သော့ချက်စာ၁ သော့ချက်စာ၂</translation>
+            <translation>သော့ချက်စာ၁ သော့ချက်စာ၂</translation>
         </message>
         <message>
             <source>Episode filter:</source>
@@ -3463,11 +3498,11 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         </message>
         <message>
             <source>Untitled</source>
-            <translation>1. ခေါင်းစဉ်မဲ့</translation>
+            <translation>ခေါင်းစဉ်မဲ့</translation>
         </message>
         <message>
             <source>Select an article</source>
-            <translation>2. ဆောင်းပါးရွေးပါ</translation>
+            <translation>ဆောင်းပါးရွေးပါ</translation>
         </message>
         <message>
             <source>Open</source>
@@ -3475,46 +3510,46 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         </message>
         <message>
             <source>Mark Read</source>
-            <translation>4. ဖတ်ပြီးအမှတ်</translation>
+            <translation>ဖတ်ပြီးအမှတ်</translation>
         </message>
         <message>
             <source>Mark Unread</source>
-            <translation>5. မဖတ်ရသေးအမှတ်</translation>
+            <translation>မဖတ်ရသေးအမှတ်</translation>
         </message>
         <message>
             <source>Choose an article to view its summary.</source>
-            <translation>6. အကျဉ်းချုပ်ကြည့်ရန် ဆောင်းပါးရွေးပါ။</translation>
+            <translation>အကျဉ်းချုပ်ကြည့်ရန် ဆောင်းပါးရွေးပါ။</translation>
         </message>
         <message>
             <source>No summary available.</source>
-            <translation>7. အကျဉ်းချုပ်မရှိပါ။</translation>
+            <translation>အကျဉ်းချုပ်မရှိပါ။</translation>
         </message>
         <message>
             <source>%1 unread  ·  %2 items</source>
-            <translation>8. %1 မဖတ်ရသေး  ·  %2 ခု</translation>
+            <translation>%1 မဖတ်ရသေး  ·  %2 ခု</translation>
         </message>
         <message>
             <source>%1 items</source>
-            <translation>9. %1 ခု</translation>
+            <translation>%1 ခု</translation>
         </message>
         <message>
             <source>RSS Feeds</source>
-            <translation>10. RSS Feeds</translation>
+            <translation>RSS Feeds</translation>
         </message>
         <message>
             <source>Edit Subscription</source>
-            <translation>11. စာရင်းသွင်းမှုပြင်ဆင်ရန်</translation>
+            <translation>စာရင်းသွင်းမှုပြင်ဆင်ရန်</translation>
         </message>
     </context>
     <context>
         <name>SchedulerDialog</name>
         <message>
             <source>Queues</source>
-            <translation>12. တန်းစီများ</translation>
+            <translation>တန်းစီများ</translation>
         </message>
         <message>
             <source>New queue</source>
-            <translation>13. တန်းစီအသစ်</translation>
+            <translation>တန်းစီအသစ်</translation>
         </message>
         <message>
             <source>Delete</source>
@@ -3522,15 +3557,15 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         </message>
         <message>
             <source>Schedule</source>
-            <translation>15. အချိန်ဇယား</translation>
+            <translation>အချိန်ဇယား</translation>
         </message>
         <message>
             <source>Files in the queue</source>
-            <translation>16. တန်းစီထဲရှိဖိုင်များ</translation>
+            <translation>တန်းစီထဲရှိဖိုင်များ</translation>
         </message>
         <message>
             <source>One-time downloading</source>
-            <translation>17. တစ်ကြိမ်တည်းဒေါင်းလုဒ်</translation>
+            <translation>တစ်ကြိမ်တည်းဒေါင်းလုဒ်</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
@@ -3538,7 +3573,7 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         </message>
         <message>
             <source>Start download on Stellar startup</source>
-            <translation>19. Stellar စတင်ချိန်တွင် ဒေါင်းလုဒ်စတင်ပါ</translation>
+            <translation>Stellar စတင်ချိန်တွင် ဒေါင်းလုဒ်စတင်ပါ</translation>
         </message>
         <message>
             <source>Start download at</source>
@@ -3554,7 +3589,7 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         </message>
         <message>
             <source>Start again every</source>
-            <translation>23. ထပ်စတင်ချိန်</translation>
+            <translation>ထပ်စတင်ချိန်</translation>
         </message>
         <message>
             <source>hours</source>
@@ -3868,20 +3903,8 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
             <translation>အမြန်နှုန်း ကန့်သတ်ချက်</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>ကမ္ဘာလုံးဆိုင်ရာ အမြန်နှုန်းကန့်သတ်ချက်ဖွင့်</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>အမြင့်ဆုံးအမြန်နှုန်း:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>ကမ္ဘာလုံးဆိုင်ရာ အပ်လုဒ်ကန့်သတ်ချက်ဖွင့်</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3930,6 +3953,28 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         <message>
             <source>General</source>
             <translation>အထွေထွေ</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>Stellar Backup ထုတ်ယူ</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>Stellar Backup သွင်းယူ</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>အရန်ကူးပြီး</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>သင့်ဒေတာကို ဤနေရာသို့ ထုတ်ယူပြီးပါပြီ:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>သွင်းယူမှုပြီးပါပြီ</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4064,6 +4109,14 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
             <translation>မရှိ</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>အမြန်နှုန်းကန့်သတ်ချက်ဖွင့်ရန်</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>အများဆုံးဒေါင်းလုဒ်:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>နေ့ရက်တစ်ခုကို အဖွင့်အပိတ်လုပ်ရန် ၎င်းကိုနှိပ်ပါ။ စည်းမျဉ်းများကို တစ်မိနစ်တိုင်း အကဲဖြတ်သည်၊ ပထမဆုံးကိုက်ညီသော စည်းမျဉ်းက အနိုင်ရသည်။ စည်းမျဉ်းတစ်ခုမျှ မလှုပ်ရှားသည့်အခါ အချိန်ဇယားဆွဲထားသော ဒေါင်းလုဒ်နှင့် အပ်လုဒ်ကန့်သတ်ချက်များကို အလိုအလျောက် ရှင်းလင်းပါမည်။</translation>
         </message>
@@ -4086,10 +4139,6 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         <message>
             <source>Show tips in bottom bar</source>
             <translation>အောက်ဘားတွင် အကြံပြုချက်များ ပြပါ</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>အခြေအနေဘားတွင် ပြီးဆုံးသည့် ဒေါင်းလုဒ်အရေအတွက် ပြပါ</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4146,6 +4195,22 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>စောင့်ကြည့်ထားသော ဖိုင်အမျိုးအစားနှင့် ကိုက်ညီသည့် URL တစ်ခုကို ကလစ်ဘုတ်သို့ ကူးယူသောအခါ၊ Stellar က ၎င်းကို ဒေါင်းလုဒ်လုပ်လိုသလားဟု မေးမြန်းပါလိမ့်မည်။ ဘရောက်ဆာ › အောက်ပါဖိုင်အမျိုးအစားများကို အလိုအလျောက် ဒေါင်းလုဒ်စတင်ပါ အောက်တွင် ဖော်ပြထားသော ဖိုင်အမျိုးအစားများကိုသာ ကောက်ယူပါသည်။</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>အရန်သိမ်းခြင်းနှင့်ပြန်လည်ရယူခြင်း</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>ဆက်တင်များ၊ ဒေါင်းလုဒ်များ၊ တိုရန့်များ (၎င်းတို့၏မျှဝေမှုအချိုးများနှင့်အတူ)၊ တန်းစီများ၊ အမျိုးအစားများနှင့် စာရင်းအင်းများအားလုံးကို အရန်ဖိုင်တစ်ခုတည်းသို့ ထုတ်ယူပါ။ အားလုံးပြန်လည်ရယူရန် ၎င်းကို Stellar အသစ်တပ်ဆင်မှုတစ်ခုသို့ နောက်မှသွင်းယူပါ။ သွင်းယူခြင်းသည် လက်ရှိဒေတာကိုအစားထိုးပြီး (အချိန်တံဆိပ်တပ်ထားသောအရန်ကိုသိမ်းထားသည်) Stellar ကိုပြန်လည်စတင်ပါသည်။</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>ဒေတာအားလုံးထုတ်ယူရန်…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>ဒေတာသွင်းယူရန်…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4442,6 +4507,10 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>မှတ်ဉာဏ်မြေပုံ- ဖိုင်များကို မှတ်ဉာဏ်ထဲသို့ တိုက်ရိုက်မြေပုံဆွဲသည်။ Windows နှင့် Linux တွင် torrent ဒေတာကို စာမျက်နှာ cache မှတစ်ဆင့် CPU သုံးစွဲမှုနည်းစွာဖြင့် ဖတ်ရေးလုပ်သည်။ သုံးစွဲသူအများစုအတွက် အကြံပြုသည်။</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>သင့်ဒေတာကိုအောင်မြင်စွာပြန်လည်ရယူပြီးပါပြီ။ အသုံးပြုရန် Stellar ပြန်လည်စတင်ရန်လိုအပ်ပါသည်။</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5085,18 +5154,6 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
             <translation>အကန့်အသတ်မရှိ</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 မြန်နှုန်း ကန့်သတ်</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 ပရောက်စီ ဖွင့်</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 အပ်ဒိတ် စစ်ဆေးနေ</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT ပိတ်</translation>
         </message>
@@ -5117,14 +5174,6 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
             <translation>နောက်တစ်ခု &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 တန်းစီမှုကို ၁ မိနစ်အတွင်း လုပ်ဆောင်မည်</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 တန်းစီမှုကို %1 မိနစ်အတွင်း လုပ်ဆောင်မည်</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>အချိန်တစ်လျှောက် မျှဝေမှုအချိုး
@@ -5141,6 +5190,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>ကွန်ရက်ချိတ်ဆက်မှု မတွေ့ပါ</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>အမြန်နှုန်းကန့်သတ်ချက်</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>ပရောက်စီဖွင့်ရန်</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>အပ်ဒိတ်စစ်ဆေးနေသည်</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5161,6 +5222,14 @@ Click to open Statistics</source>
         <message>
             <source>Click to copy IP</source>
             <translation>IP ကူးယူရန် နှိပ်ပါ</translation>
+        </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>တန်းစီမှု ၁ မိနစ်အတွင်း လည်ပတ်မည်</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>တန်းစီမှု %1 မိနစ်အတွင်း လည်ပတ်မည်</translation>
         </message>
     </context>
     <context>
@@ -5348,6 +5417,10 @@ Click to open Statistics</source>
             <translation>ခွဲကြောင်းထည့်</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>ဖယ်ရှား</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>ပြန်သတ်မှတ်</translation>
         </message>
@@ -5358,6 +5431,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>မလုပ်တော့</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>တိုရန့်ဖန်တီးမည်</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>ဖယ်ရှားမည်</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>သိမ်းရန်:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>ရှာဖွေ…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>အမည်:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>အပိုင်းအရွယ်:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>အော်တို</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>ထုတ်ရန်ဖိုဒါ ရွေးပါ</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>ဖိုင်များ</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>ရင်းမြစ်:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 ခုထပ်မံ)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>ရင်းမြစ်မရွေးထား</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>ဖိုင်…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>ဖိုဒါ…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>ထုတ်ရန်ဖိုဒါ…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>တိုရန့်အမည် (ချန်လှပ်နိုင်)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 အပိုင်း × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 အပိုင်း × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>ဂုဏ်သတ္တိများ</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>ခြေရာခံများ:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>ချန်လှပ်နိုင်</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>ဝဘ်မျိုးစေ့များ:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>စာကြောင်းတစ်ခုလျှင် URL တစ်ခု (ချန်လှပ်နိုင်)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>သီးသန့်တိုရန့် (DHT နှင့် PeX ပိတ်မည်)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ ပြီးပါပြီ — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>Hash တွက်နေသည်… %1%  (%2 အပိုင်း × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>ပြီးလျှင်ဖွင့်ပါ</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>မှတ်ချက်:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ အမှား: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>ပယ်ဖျက်ပြီး</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ပယ်ဖျက်မည်</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>ပိတ်မည်</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>ဖန်တီးနေသည်…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>ဖွင့်မည်</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ဖိုင်ထည့်မည်</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>ဖိုလ်ဒါထည့်မည်</translation>
         </message>
     </context>
     <context>
@@ -5817,6 +6037,14 @@ Click to open Statistics</source>
             <translation>ဗီဒီယိုအချက်အလက် ရယူနေသည်…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>အကောင်းဆုံးအရည်အသွေး</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>အသံသီးသန့်</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>ဗီဒီယိုအချက်အလက် မရယူနိုင်ပါ</translation>
         </message>
@@ -6150,177 +6378,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ဗီဒီယိုဒေါင်းလုဒ်</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>တိုရန့်ဖန်တီးမည်</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>ရင်းမြစ်ဖိုင်/ဖိုလ်ဒါများ</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ ဖိုင်များ</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ ဖိုလ်ဒါ</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>ဖယ်ရှားမည်</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>ဖိုင်များ သို့မဟုတ် ဖိုလ်ဒါများကို ဤနေရာသို့ ဆွဲချပါ၊ သို့မဟုတ် အပေါ်က ခလုတ်များကို သုံးပါ</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>ထုတ်လုပ်မှု</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>သိမ်းရန်:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>.torrent ဖိုင်သိမ်းမည့်လမ်းကြောင်း…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>ရှာဖွေ…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>အမည်:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>ချန်လှပ်နိုင်သည် — ဖိုလ်ဒါ/ဖိုင်အမည်ကို မူလအတိုင်းသုံး</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>အပိုင်းအရွယ်:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>အော်တို</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 အပိုင်း × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>မက်တာဒေတာ</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>မှတ်ချက်:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>.torrent တွင် ထည့်သွင်းနိုင်သော မှတ်ချက်</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>ဖော်ပြချက်:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>ထပ်တိုးဖော်ပြချက်</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>ဖန်တီးသူ:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>သီးသန့်တိုးရင့် (ဤတိုးရင့်အတွက် DHT နှင့် PEX ပိတ်ထား)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>ခြေရာခံကိရိယာများ</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>တစ်ကြောင်းလျှင် URL တစ်ခု</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>ဝဘ်မျိုးစေ့များ (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>ဖန်တီးပြီးပါက torrent ဖွင့်ပါ</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ Torrent ဖန်တီးပြီး: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ အမှား: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>ပယ်ဖျက်ပြီး</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>အပိုင်းများ hash လုပ်နေသည်… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 အပိုင်း × တစ်ပိုင်းလျှင် %2</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ပယ်ဖျက်မည်</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>ပိတ်မည်</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>ဖန်တီးနေသည်…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>ဖွင့်မည်</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>ဖန်တီးမည်…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>ဖိုင်ထည့်မည်</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>ဖိုလ်ဒါထည့်မည်</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>.torrent သိမ်းမည်</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>*.torrent</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>*.*</translation>
         </message>
     </context>
 </TS>

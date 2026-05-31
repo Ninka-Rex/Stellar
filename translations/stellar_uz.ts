@@ -73,6 +73,14 @@
             <translation>%1 ga ulandi</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>Zaxira uchun manzil tanlanmagan.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>Import uchun zaxira fayli tanlanmagan.</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ %1 ga bog‘langan (oflayn — torrentlar to‘xtatilgan)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>Holat</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Havolalarni qo'shishdan oldin tekshiring. Ustunlar saralab, o'lchami o'zgartirilishi va tartibini o'zgartirish uchun tortilishi mumkin.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>Fayl nomlarini universal belgi (*) bilan almashtirish</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>Barchasini belgilashni olib tashlash</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Faqat 'Topildi' deb belgilangan havolalar tanlanadi. Qatorga qo'shish 'OK' bosgandan so'ng amalga oshiriladi.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>Bekor qilish</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>SDM ga havolalarni import qilish</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>Yuklab olish ro‘yxatiga qo‘shmoqchi bo‘lgan havolalarni belgilang va OK tugmasini bosing.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -335,13 +339,13 @@
         </message>
         <message>
             <source>Failed to grant permission: </source>
-            <translation>1. Ruxsat berilmadi:</translation>
+            <translation>Ruxsat berilmadi:</translation>
         </message>
         <message>
             <source>
 
 Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
-            <translation>2. 
+            <translation>
 Qo‘lda ishga tushiring: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
@@ -505,20 +509,24 @@ Qo‘lda ishga tushiring: flatpak override --user --talk-name=org.freedesktop.Fl
             <translation>Tayyor yuklamalarni o'chirish</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Stellar yuklamalari ro'yxatidan barcha tayyor yuklamalarni o'chirmoqchimisiz?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>Tugallangan yuklamalar o‘chirilsinmi?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Eslatma: Bu ularni faqat ro'yxatdan olib tashlaydi. Diskdagi fayllar o'chirilmaydi.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>Faqat ro‘yxatdan olib tashlanadi. Diskdagi fayllar o‘chirilmaydi.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>O‘chirish</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>Yuklangan va tarqatuvchi torrentlarni o'chirish</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>Ha</translation>
         </message>
         <message>
             <source>No</source>
@@ -581,6 +589,14 @@ Qo‘lda ishga tushiring: flatpak override --user --talk-name=org.freedesktop.Fl
         <message>
             <source>Download File Info</source>
             <translation>Ma'lumotlarni yuklash</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 fayllar (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Barcha fayllar (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -837,6 +853,10 @@ Qo‘lda ishga tushiring: flatpak override --user --talk-name=org.freedesktop.Fl
             <translation>Global limit faol: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>Global chegara faol: cheksiz</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>Global limit o'rnatilmagan</translation>
         </message>
@@ -896,10 +916,6 @@ Qo‘lda ishga tushiring: flatpak override --user --talk-name=org.freedesktop.Fl
             <translation>Fayl nomini nusxalash</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent eksport qilish...</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>Davom ettirish</translation>
         </message>
@@ -926,6 +942,10 @@ Qo‘lda ishga tushiring: flatpak override --user --talk-name=org.freedesktop.Fl
         <message>
             <source>File Name</source>
             <translation>Fayl nomi</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>Export .torrent...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -968,6 +988,10 @@ Qo‘lda ishga tushiring: flatpak override --user --talk-name=org.freedesktop.Fl
             <translation>Yuklab olingan</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>Qo‘shilgan sana</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>Oxirgi urinish</translation>
         </message>
@@ -986,18 +1010,6 @@ Qo‘lda ishga tushiring: flatpak override --user --talk-name=org.freedesktop.Fl
         <message>
             <source>Parent web page</source>
             <translation>Ota sahifa</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Kutilmoqda</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (Toxtatilgan)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>Tekshirilmoqda (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1036,6 +1048,25 @@ Boshlash uchun URL qo'shing.</translation>
         <message>
             <source>%n selected downloads</source>
             <translation>%n yuklab olingan</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>Kutilmoqda</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (To‘xtatilgan)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>Tekshirilmoqda (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n fayl</translation>
         </message>
     </context>
     <context>
@@ -1197,20 +1228,12 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
             <translation>Nusxalash</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>Metadannalar</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Tavsif</translation>
-        </message>
-        <message>
             <source>Created by</source>
-            <translation>3. Yaratuvchi</translation>
+            <translation>Yaratuvchi</translation>
         </message>
         <message>
             <source>Created on</source>
-            <translation>4. Yaratilgan sana</translation>
+            <translation>Yaratilgan sana</translation>
         </message>
         <message>
             <source>Category</source>
@@ -1301,8 +1324,16 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
             <translation>Qismlar xaritasi</translation>
         </message>
         <message>
+            <source>✓ Metadata</source>
+            <translation>✓ Metama’lumot</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>Olinmoqda…</translation>
+        </message>
+        <message>
             <source>Move...</source>
-            <translation>5. Ko‘chirish…</translation>
+            <translation>Ko‘chirish…</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -1621,10 +1652,6 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
             <translation>Tezlik</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>Mavjud</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>Masofa: %1</translation>
         </message>
@@ -1668,10 +1695,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>Nusxa qo'shish</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>Swarmdan olish...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1776,10 +1799,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>Loyiha nomi va bosh sahifa kerak.</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – %2 dan %1: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>Bosh sahifani o'rnatish</translation>
         </message>
@@ -1862,6 +1881,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>Loyiha</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – %1/%2 qadam: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2343,7 +2366,7 @@ Project</source>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>1. Tur tanlang</translation>
+            <translation>Tur tanlang</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
@@ -2355,7 +2378,7 @@ Project</source>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>2. Amal tanlang</translation>
+            <translation>Amal tanlang</translation>
         </message>
         <message>
             <source>Explore only</source>
@@ -2560,16 +2583,8 @@ Project</source>
             <translation>Statistika</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>Holat: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>Kutish</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>Web sahifalar</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2582,6 +2597,22 @@ Project</source>
         <message>
             <source>Files</source>
             <translation>Fayllar</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>HOLAT</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>Holat</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>VEB SAHIFALAR</translation>
+        </message>
+        <message>
+            <source>FILES</source>
+            <translation>FAYLLAR</translation>
         </message>
         <message>
             <source>Total</source>
@@ -2673,6 +2704,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>Barcha fayllar (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>SDM eksport fayli (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>Matn fayli (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2805,15 +2844,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Create Torrent…</source>
-            <translation>6. Torrent yaratish…</translation>
+            <translation>Torrent yaratish…</translation>
         </message>
         <message>
             <source>Downloads</source>
             <translation>Yuklab olishlar</translation>
-        </message>
-        <message>
-            <source>Pause all</source>
-            <translation>Barchasini to'xtatish</translation>
         </message>
         <message>
             <source>Stop all</source>
@@ -2934,6 +2969,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Columns…</source>
             <translation>Ustunlar...</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>Asboblar paneli…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3094,10 +3133,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stellar Download Manager</source>
             <translation>Stellar yuklash boshqaruvchisi</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar ↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3855,20 +3890,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Tezlik cheklagich</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>Umumiy yuklash cheklovini yoqish</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>Maksimal sur'at:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>Umumiy yuklash cheklovini yoqish</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3917,6 +3940,28 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>General</source>
             <translation>Umumiy</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>Stellar zaxirasini eksport qilish</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>Stellar zaxirasini import qilish</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>Zaxiralash yakunlandi</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>Ma'lumotlaringiz bu yerga eksport qilindi:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>Import tugallandi</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4051,6 +4096,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Hech narsa</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>Tezlik cheklovchisini yoqish</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>Maksimal yuklab olish</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Kun pillasini bosib o'zgartiring. Qoidalar har daqiqada tekshiriladi; birinchi mos keluvchi qoida amalga oshiriladi. Hech qanday qoida faol bo'lmaganda, rejalashtirilgan yuklash va yukatish limitlari avtomatik tozalanadi.</translation>
         </message>
@@ -4073,10 +4126,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Show tips in bottom bar</source>
             <translation>Pastki panelga maslahatlar ko'rsatish</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>Holat paneliga yakunlangan yuklashlar sonini ko'rsatish</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4133,6 +4182,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>URL fayl turi mos kelganda Stellar yuklab olishni so'raydi. Faqat 'Brauzer › Fayl turlarini avtomatik yuklab olish' ro'yxatidagi fayllar qabul qilinadi.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>Zaxiralash va tiklash</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Sozlamalar, yuklab olinganlar, torrentlar (ulashish nisbatlari bilan), navbatlar, toifalar va statistikani — hammasini bitta zaxira fayliga eksport qiling. Keyin uni yangi Stellar o‘rnatmasiga import qilib, barchasini tiklang. Import qilish joriy ma’lumotlarni almashtiradi (vaqt tamg‘ali zaxira saqlanadi) va Stellar qayta ishga tushadi.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>Barcha ma'lumotlarni eksport qilish…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>Maʼlumotlarni import qilish…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4429,6 +4494,10 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>Xotiraga xaritalangan: fayllar to‘g‘ridan-to‘g‘ri xotiraga joylanadi. Windows va Linux torrent ma’lumotlarini sahifa keshi orqali minimal CPU ishlatib o‘qiydi va yozadi. Ko‘pchilik uchun tavsiya etiladi.</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>Maʼlumotlaringiz muvaffaqiyatli tiklandi. Stellar uni qoʻllash uchun qayta ishga tushishi kerak.</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5072,18 +5141,6 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <translation>cheksiz</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Tezlik cheklovi</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 Proksi yoqilgan</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 Yangilanishlar tekshirilmoqda</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT o‘chiq</translation>
         </message>
@@ -5104,14 +5161,6 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <translation>keyingi &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 Qator 1 daqiqa ichida ishlaydi</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 Qator %1 daqiqada ishlaydi</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Uslubiy ulashuv</translation>
@@ -5127,6 +5176,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>Tarmoq aloqasi topilmadi</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>Tezlik cheklagich</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>Proksi yoqilgan</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Yangilanishlar tekshirilmoqda</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5148,6 +5209,14 @@ Click to open Statistics</source>
             <source>Click to copy IP</source>
             <translation>Statistika</translation>
         </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>Navbat 1 daqiqada ishga tushadi</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>Navbat %1 daqiqada ishga tushadi</translation>
+        </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
@@ -5161,19 +5230,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>7. Stellarni ochish</translation>
+            <translation>Stellarni ochish</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>8. URL qo‘shish…</translation>
+            <translation>URL qo‘shish…</translation>
         </message>
         <message>
             <source>GitHub</source>
-            <translation>9. GitHub</translation>
+            <translation>GitHub</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation>10. Stellar haqida</translation>
+            <translation>Stellar haqida</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
@@ -5334,6 +5403,10 @@ Click to open Statistics</source>
             <translation>Ajratgich qo‘shish</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>Olib tashlash</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>Qayta tiklash</translation>
         </message>
@@ -5344,6 +5417,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>Bekor qilish</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Torrent yaratish</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Olib tashlash</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Saqlash joyi:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Ko‘rib chiqish…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Nomi:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Bo‘lak hajmi:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Avto</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>Chiqish jildini tanlang</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>Fayllar</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>Manba:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 ta ko‘proq)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>Manba tanlanmagan</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>Fayl…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>Jild…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>Chiqish jildi…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>Torrent nomi (ixtiyoriy)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 qism × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 bo‘lak × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>Xususiyatlar</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>Trekerlar:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>Ixtiyoriy</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>Veb-sidlar:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>Har qatorga bitta URL (ixtiyoriy)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>Shaxsiy torrent (DHT va PeX o‘chiriladi)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ Tayyor — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>Xeshlanmoqda… %1%  (%2 qism × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>Tugagach ochish</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Izoh:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Xato: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Bekor qilindi</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Yopish</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Yaratilmoqda…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Torrentni ochish</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Fayllar qo‘shish</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Jild qo‘shish</translation>
         </message>
     </context>
     <context>
@@ -5803,6 +6023,14 @@ Click to open Statistics</source>
             <translation>Video ma'lumotlar olinmoqda...</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>Eng yaxshi sifat</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>Faqat audio</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>Video ma'lumotlari olinmadi</translation>
         </message>
@@ -6135,177 +6363,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Video yuklab olish</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>Torrent yaratish</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>Manba fayllar/papkalar</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ Fayllar</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ Papka</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Olib tashlash</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>Fayl yoki papkalarni shu yerga sudrang yoki yuqoridagi tugmalardan foydalaning</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>Chiqish</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>Saqlash joyi:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>.torrent faylni saqlash yo‘li…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>Ko‘rib chiqish…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>Nomi:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>Ixtiyoriy — sukut bo‘yicha papka/fayl nomi</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>Bo‘lak hajmi:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>Avto</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 bo‘lak × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>Metadata</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>Izoh:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>.torrent ichiga joylangan ixtiyoriy izoh</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>Tavsif:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>Ixtiyoriy kengaytirilgan tavsif</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>Yaratuvchi:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>Maxfiy torrent (ushbu torrent uchun DHT va PEX o‘chirilgan)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>Trekerlar</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>Har bir satrga bitta URL</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>Veb-sidlar (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>Yaratilganda ochish</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ Torrent yaratildi: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ Xato: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>Bekor qilindi</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>Bo‘laklar xeshlanmoqda… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 bo‘lak × %2/bo‘lak</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Bekor qilish</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Yopish</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>Yaratilmoqda…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>Torrentni ochish</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>Torrent yaratish…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>Fayllar qo‘shish</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>Jild qo‘shish</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>.torrent faylni saqlash</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>Torrent fayllar (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>Barcha fayllar (*)</translation>
         </message>
     </context>
 </TS>

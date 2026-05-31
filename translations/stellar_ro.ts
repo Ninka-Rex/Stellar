@@ -73,6 +73,14 @@
             <translation>🛡️ Legat de %1</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>Nicio destinație aleasă pentru backup.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>Niciun fișier de backup ales pentru import.</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ Legat de %1 (offline — torrente oprite)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>Stare</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Verifică link-urile înainte de adăugare. Coloanele pot fi sortate, redimensionate și trase pentru reordonare.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>Înlocuiește numele fișierelor cu modelul de wildcard (*)</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>Debifează tot</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Doar link-urile marcate ca Găsite sunt selectabile. Alocarea cozii are loc tot după OK.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>Anulare</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>Importă linkuri în SDM</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>Bifați linkurile dorite și apăsați OK.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -505,20 +509,24 @@ Rulează manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org
             <translation>Șterge descărcările finalizate</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Sigur dorești să ștergi toate descărcările finalizate din lista Stellar?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>Ștergeți descărcările finalizate?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Notă: Acest lucru le va șterge doar din listă. Fișierele de pe disc nu vor fi șterse.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>Șterge doar din listă. Fișierele de pe disc rămân.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulare</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Ștergere</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>Șterge torrent-urile finalizate și de seedat</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>Da</translation>
         </message>
         <message>
             <source>No</source>
@@ -581,6 +589,14 @@ Rulează manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org
         <message>
             <source>Download File Info</source>
             <translation>Info fișier descărcat</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 fișiere (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Toate fișierele (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -837,6 +853,10 @@ Rulează manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org
             <translation>Limită globală activă: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>Limită globală activă: nelimitat</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>Nicio limită globală setată</translation>
         </message>
@@ -896,10 +916,6 @@ Rulează manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org
             <translation>Copiază nume fișier</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>Exportă .torrent...</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>Reia</translation>
         </message>
@@ -926,6 +942,10 @@ Rulează manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org
         <message>
             <source>File Name</source>
             <translation>Nume fișier</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>Exportă .torrent...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -968,6 +988,10 @@ Rulează manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org
             <translation>Descărcat</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>Adăugat la</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>Ultima încercare</translation>
         </message>
@@ -986,18 +1010,6 @@ Rulează manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org
         <message>
             <source>Parent web page</source>
             <translation>Pagină web părinte</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>În așteptare</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (Oprit)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>Verificare (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1036,6 +1048,25 @@ Apăsați Adaugă URL pentru a începe.</translation>
         <message>
             <source>%n selected downloads</source>
             <translation>%n descărcări selectate</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>În așteptare</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (Oprit)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>Verificare (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n fișier(e)</translation>
         </message>
     </context>
     <context>
@@ -1196,14 +1227,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Copiere</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>Meta date</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Descriere</translation>
-        </message>
-        <message>
             <source>Created by</source>
             <translation>Creat de</translation>
         </message>
@@ -1298,6 +1321,14 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>Hartă Bucată</translation>
+        </message>
+        <message>
+            <source>✓ Metadata</source>
+            <translation>✓ Metadate</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>Se preia…</translation>
         </message>
         <message>
             <source>Move...</source>
@@ -1620,10 +1651,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Viteză</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>Disponibil</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>Distanță: %1</translation>
         </message>
@@ -1667,10 +1694,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>Adaugă sursă…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>Se descarcă de la grup…</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1775,10 +1798,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>Numele proiectului și pagina de start sunt necesare.</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – Pasul %1 din %2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>Setează pagina de start</translation>
         </message>
@@ -1861,6 +1880,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>Proiect</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – Pasul %1 din %2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2342,7 +2365,7 @@ Project</source>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>1. Tip</translation>
+            <translation>Tip</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
@@ -2354,7 +2377,7 @@ Project</source>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>2. Acțiune</translation>
+            <translation>Acțiune</translation>
         </message>
         <message>
             <source>Explore only</source>
@@ -2559,16 +2582,8 @@ Project</source>
             <translation>Statistici Grabber</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>Stare: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>Inactiv</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>Pagini web procesate</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2581,6 +2596,22 @@ Project</source>
         <message>
             <source>Files</source>
             <translation>Fișiere</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>STARE</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>Stare</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>PAGINI WEB</translation>
+        </message>
+        <message>
+            <source>FILES</source>
+            <translation>FIȘIERE</translation>
         </message>
         <message>
             <source>Total</source>
@@ -2672,6 +2703,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>Toate fișiere (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>Fișier export SDM (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>Fișier text (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2814,10 +2853,6 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <translation>Descărcări</translation>
         </message>
         <message>
-            <source>Pause all</source>
-            <translation>Pauză toate</translation>
-        </message>
-        <message>
             <source>Stop all</source>
             <translation>Oprește toate</translation>
         </message>
@@ -2936,6 +2971,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
         <message>
             <source>Columns…</source>
             <translation>Coloane...</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>Bară unelte…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3096,10 +3135,6 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
         <message>
             <source>Stellar Download Manager</source>
             <translation>Stellar Download Manager</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar ↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3857,20 +3892,8 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <translation>Limitator viteză</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>Activează limită globală descărcare</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>Viteză maximă:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>Activează limită globală încărcare</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3919,6 +3942,28 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
         <message>
             <source>General</source>
             <translation>General</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>Exportă backup Stellar</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>Importă backup Stellar</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>Backup complet</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>Datele au fost exportate în:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>Import finalizat</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4053,6 +4098,14 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <translation>Niciunul</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>Activează limitator viteză</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>Descărcare maximă:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Fă clic pe o pastilă de zi pentru a o comuta. Reguli evaluate la fiecare minut; prima regulă care se potrivește câștigă. Limitele de descărcare și încărcare programate sunt șterse automat când nu există o regulă activă.</translation>
         </message>
@@ -4075,10 +4128,6 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
         <message>
             <source>Show tips in bottom bar</source>
             <translation>Afișează sfaturi în bara inferioară</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>Afișează numărul de descărcări finalizate în bara de stare</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4135,6 +4184,22 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>Stellar îți va întreba dacă vrei să descarci. Se aplică doar tipurile de fișier listate în Browser › Începe descărcarea automată a următoarelor tipuri de fișier.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>Backup și restaurare</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Exportă tot — setări, descărcări, torrente (cu rapoarte), cozi, categorii și statistici — într-un singur fișier de backup. Importă-l ulterior într-o instalare Stellar nouă pentru a restaura totul. Importul înlocuiește datele curente (se păstrează un backup datat) și repornește Stellar.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>Exportă toate datele…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>Importă date…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4427,6 +4492,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>Mapare memorie: fișierele sunt mapate direct în memorie. Windows și Linux citesc/scriu datele torrent prin cache-ul de pagini, cu utilizare minimă CPU. Recomandat pentru majoritatea utilizatorilor.</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>Datele au fost restaurate. Stellar trebuie să repornească.</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5070,18 +5139,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>nelimitat</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Limitator viteză</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 Proxy activ</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 Verificare actualizări</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT oprit</translation>
         </message>
@@ -5102,14 +5159,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>următor &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 Coada rulează în 1 minut</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 Coada rulează în %1 minute</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Raport partajare</translation>
@@ -5125,6 +5174,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>Nicio conexiune de rețea detectată</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>Limitator viteză</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>Proxy activ</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Verific actualizări</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5145,6 +5206,14 @@ Click to open Statistics</source>
         <message>
             <source>Click to copy IP</source>
             <translation>Click pentru statistici</translation>
+        </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>Coada pornește în 1 minut</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>Coada pornește în %1 minute</translation>
         </message>
     </context>
     <context>
@@ -5332,6 +5401,10 @@ Click to open Statistics</source>
             <translation>Adaugă separator</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>Elimină</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>Resetează</translation>
         </message>
@@ -5342,6 +5415,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>Anulează</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Creare torent</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Eliminare</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Salvare în:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Răsfoire…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Nume:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Dimensiune piesă:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>Alege folder destinație</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>Fișiere</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>Sursă:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 în plus)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>Nicio sursă selectată</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>Fișier…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>Folder…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>Folder ieșire…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>Nume torrent (opțional)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 bucăți × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 piese × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>Proprietăți</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>Trackere:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>Opțional</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>Web seeds:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>Un URL pe linie (opțional)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>Torrent privat (dezactivează DHT și PeX)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ Terminat — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>Se hash-uieste… %1%  (%2 bucăți × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>Deschide când e gata</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Comentariu:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Eroare: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Anulat</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Închide</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Se creează…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Deschide torrent</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Adaugă fișiere</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Adaugă folder</translation>
         </message>
     </context>
     <context>
@@ -5801,6 +6021,14 @@ Click to open Statistics</source>
             <translation>Se încarcă informațiile videoclipului…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>Calitate maximă</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>Doar audio</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>Nu s-au putut încărca informațiile videoclipului</translation>
         </message>
@@ -6133,177 +6361,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Descarcă video</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>Creare torent</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>Fișiere / dosare sursă</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ Fișiere</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ Dosar</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Eliminare</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>Trageți fișiere sau foldere aici sau folosiți butoanele de mai sus</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>Ieșire</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>Salvare în:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>Calea fișierului .torrent…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>Răsfoire…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>Nume:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>Opțional — implicit nume folder/fișier</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>Dimensiune piesă:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>Auto</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 piese × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>Metadate</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>Comentariu:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>Comentariu opțional inclus în .torrent</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>Descriere:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>Descriere extinsă opțională</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>Creat de:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>Torrent privat (DHT și PEX dezactivate)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>Trackere</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>Un URL pe linie</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>Web Seeds (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>Deschide la creare</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ Torrent creat: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ Eroare: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>Anulat</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>Verificare piese… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 piese × %2 per piesă</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Anulează</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Închide</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>Se creează…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>Deschide torrent</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>Creează torrent…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>Adaugă fișiere</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>Adaugă folder</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>Salvează .torrent</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>Fișiere torrent (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>Toate fișierele (*)</translation>
         </message>
     </context>
 </TS>

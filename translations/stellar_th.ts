@@ -73,6 +73,14 @@
             <translation>🛡️ ผูกกับ %1</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>ไม่ได้เลือกปลายทางสำหรับสำรองข้อมูล</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>ไม่ได้เลือกไฟล์สำรองเพื่อนำเข้า</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ ผูกกับ %1 (ออฟไลน์ — หยุดทอร์เรนต์ชั่วคราว)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>สถานะ</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>ตรวจสอบลิงก์ก่อนเพิ่ม</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>แทนที่ชื่อไฟล์ด้วยรูปแบบ (*)</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>ยกเลิกการเลือกทั้งหมด</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>เลือกเฉพาะลิงก์ที่พบ</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>ยกเลิก</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>นำเข้าลิงก์ไปยัง SDM</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>เลือกลิงก์ที่ต้องการเพิ่มในรายการดาวน์โหลดแล้วคลิก ตกลง</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -236,35 +240,35 @@
         </message>
         <message>
             <source>Select save directory</source>
-            <translation>1. เลือกโฟลเดอร์บันทึก</translation>
+            <translation>เลือกโฟลเดอร์บันทึก</translation>
         </message>
         <message>
             <source>Select save path</source>
-            <translation>2. เลือกพาธบันทึก</translation>
+            <translation>เลือกพาธบันทึก</translation>
         </message>
         <message>
             <source>URL:</source>
-            <translation>3. URL:</translation>
+            <translation>URL:</translation>
         </message>
         <message>
             <source>Description:</source>
-            <translation>4. คำอธิบาย:</translation>
+            <translation>คำอธิบาย:</translation>
         </message>
         <message>
             <source>Referer:</source>
-            <translation>5. Referer:</translation>
+            <translation>Referer:</translation>
         </message>
         <message>
             <source>Login:</source>
-            <translation>6. เข้าสู่ระบบ:</translation>
+            <translation>เข้าสู่ระบบ:</translation>
         </message>
         <message>
             <source>Password:</source>
-            <translation>7. รหัสผ่าน:</translation>
+            <translation>รหัสผ่าน:</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>8. บันทึก</translation>
+            <translation>บันทึก</translation>
         </message>
     </context>
     <context>
@@ -505,20 +509,24 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ลบการดาวน์โหลดที่เสร็จสิ้น</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>คุณต้องการลบการดาวน์โหลดที่เสร็จสิ้นทั้งหมดจากรายการ Stellar ใช่หรือไม่</translation>
+            <source>Delete completed downloads?</source>
+            <translation>ลบรายการที่ดาวน์โหลดเสร็จ?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>หมายเหตุ: การดำเนินการนี้จะลบออกจากรายการเท่านั้น ไฟล์บนดิสก์จะไม่ถูกลบ</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>ลบเฉพาะรายการ ไฟล์ในดิสก์จะไม่ถูกลบ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ยกเลิก</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ลบ</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>ลบทอร์เรนต์ที่ดาวน์โหลดเสร็จสิ้นและกำลังแบ่งปัน</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>ใช่</translation>
         </message>
         <message>
             <source>No</source>
@@ -581,6 +589,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>ข้อมูลไฟล์ดาวน์โหลด</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>ไฟล์ %1 (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>ไฟล์ทั้งหมด (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -837,6 +853,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>จำกัดความเร็วทั่วโลก: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>จำกัดรวมทำงาน: ไม่จำกัด</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>ไม่มีการจำกัดความเร็วทั่วโลก</translation>
         </message>
@@ -896,10 +916,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>คัดลอกชื่อไฟล์</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>ส่งออก .torrent...</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>ต่อ</translation>
         </message>
@@ -926,6 +942,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>File Name</source>
             <translation>ชื่อไฟล์</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>ส่งออก .torrent...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -968,6 +988,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ดาวน์โหลดแล้ว</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>วันที่เพิ่ม</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>Last try date</translation>
         </message>
@@ -986,18 +1010,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Parent web page</source>
             <translation>Parent web page</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>รอดำเนินการ</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (หยุด)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>ตรวจสอบ (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1036,6 +1048,25 @@ Click  Add URL  to start.</source>
         <message>
             <source>%n selected downloads</source>
             <translation>%n ดาวน์โหลดที่เลือก</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>รอดำเนินการ</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (หยุดแล้ว)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>กำลังตรวจสอบ (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n ไฟล์</translation>
         </message>
     </context>
     <context>
@@ -1086,11 +1117,11 @@ You may change it in Options → Downloads at a later time.</source>
         <name>ExportDialog</name>
         <message>
             <source>Export Downloads</source>
-            <translation>9. ส่งออกดาวน์โหลด</translation>
+            <translation>ส่งออกดาวน์โหลด</translation>
         </message>
         <message>
             <source>Select items to export:</source>
-            <translation>10. เลือกรายการที่จะส่งออก:</translation>
+            <translation>เลือกรายการที่จะส่งออก:</translation>
         </message>
         <message>
             <source>Export downloads in the selected queue</source>
@@ -1196,14 +1227,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>คัดลอก</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>ข้อมูล</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>คำอธิบาย</translation>
-        </message>
-        <message>
             <source>Created by</source>
             <translation>สร้างโดย</translation>
         </message>
@@ -1298,6 +1321,14 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>แผนที่ชิ้นส่วน</translation>
+        </message>
+        <message>
+            <source>✓ Metadata</source>
+            <translation>✓ ข้อมูลเมตา</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>กำลังดึงข้อมูล…</translation>
         </message>
         <message>
             <source>Move...</source>
@@ -1620,10 +1651,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ความเร็ว</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>พร้อมใช้งาน</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>ระยะทาง: %1</translation>
         </message>
@@ -1667,10 +1694,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>เพิ่มผู้ seeding…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>กำลังดึงจากฝูงชน...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1775,10 +1798,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>ชื่อโปรเจกต์และหน้าแรกจำเป็น</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – ขั้นตอนที่ %1 จาก %2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>ตั้งค่าหน้าแรก</translation>
         </message>
@@ -1861,6 +1880,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>โครงการ</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – ขั้นตอนที่ %1 จาก %2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2343,7 +2366,7 @@ Project</source>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>1. เลือกประเภท</translation>
+            <translation>เลือกประเภท</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
@@ -2355,7 +2378,7 @@ Project</source>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>2. เลือกการกระทำ</translation>
+            <translation>เลือกการกระทำ</translation>
         </message>
         <message>
             <source>Explore only</source>
@@ -2560,16 +2583,8 @@ Project</source>
             <translation>สถิติ Grabber</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>สถานะ: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>ว่าง</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>หน้าเว็บที่ประมวลผล</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2581,6 +2596,22 @@ Project</source>
         </message>
         <message>
             <source>Files</source>
+            <translation>ไฟล์</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>สถานะ</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>สถานะ</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>หน้าเว็บ</translation>
+        </message>
+        <message>
+            <source>FILES</source>
             <translation>ไฟล์</translation>
         </message>
         <message>
@@ -2673,6 +2704,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>ไฟล์ทั้งหมด (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>ไฟล์ส่งออก SDM (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>ไฟล์ข้อความ (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2815,10 +2854,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ดาวน์โหลด</translation>
         </message>
         <message>
-            <source>Pause all</source>
-            <translation>หยุดทั้งหมด</translation>
-        </message>
-        <message>
             <source>Stop all</source>
             <translation>ยกเลิกทั้งหมด</translation>
         </message>
@@ -2937,6 +2972,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Columns…</source>
             <translation>คอลัมน์...</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>แถบเครื่องมือ…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3097,10 +3136,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stellar Download Manager</source>
             <translation>Stellar Download Manager</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar ↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3858,20 +3893,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>จำกัดความเร็ว</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>เปิดใช้งานขีดจำกัดความเร็วทั่วโลก</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>ความเร็วสูงสุด:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>เปิดใช้งานขีดจำกัดอัปโหลดทั่วโลก</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3920,6 +3943,28 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>General</source>
             <translation>ทั่วไป</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>ส่งออกข้อมูลสำรอง Stellar</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>นำเข้าข้อมูลสำรอง Stellar</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>สำรองข้อมูลเสร็จสมบูรณ์</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>ข้อมูลของคุณถูกส่งออกไปที่:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>นำเข้าเสร็จสมบูรณ์</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4054,6 +4099,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ไม่มี</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>เปิดใช้งานตัวจำกัดความเร็ว</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>ดาวน์โหลดสูงสุด:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>คลิกแท็บวันเพื่อเปิด/ปิด กฎถูกประเมินทุกนาที กฎแรกที่ตรงกันจะชนะ ลิมิตการดาวน์โหลดและอัปโหลดที่กำหนดเวลาจะถูกล้างอัตโนมัติเมื่อไม่มีกฎที่ใช้งาน</translation>
         </message>
@@ -4076,10 +4129,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Show tips in bottom bar</source>
             <translation>แสดงคำแนะนำในแถบด้านล่าง</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>แสดงจำนวนการดาวน์โหลดที่เสร็จสิ้นในแถบสถานะ</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4136,6 +4185,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>เมื่อคัดลอก URL ที่ตรงกับประเภทไฟล์ที่ตรวจสอบ Stellar จะถามว่าต้องการดาวน์โหลดหรือไม่ (เลือกประเภทไฟล์ได้ที่ Browser › เริ่มต้นดาวน์โหลดอัตโนมัติสำหรับประเภทไฟล์ต่อไปนี้)</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>สำรองและกู้คืน</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>ส่งออกทุกอย่าง — การตั้งค่า, ไฟล์ที่ดาวน์โหลด, ทอร์เรนต์ (พร้อมอัตราการแชร์), คิว, หมวดหมู่ และสถิติ — ไปยังไฟล์สำรองข้อมูลเดียว นำเข้ามาในภายหลังในการติดตั้ง Stellar ใหม่เพื่อกู้คืนทั้งหมด การนำเข้าจะแทนที่ข้อมูลปัจจุบัน (ไฟล์สำรองข้อมูลที่มีการประทับเวลาจะถูกเก็บไว้) และรีสตาร์ท Stellar</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>ส่งออกข้อมูลทั้งหมด...</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>นำเข้าข้อมูล...</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4430,6 +4495,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>แมปหน่วยความจำ: ไฟล์ถูกแมปลงหน่วยความจำโดยตรง Windows และ Linux อ่านเขียนข้อมูลทอร์เรนต์ผ่านแคชเพจ ใช้ CPU น้อย แนะนำสำหรับผู้ใช้ส่วนใหญ่</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>ข้อมูลของคุณถูกกู้คืนสำเร็จแล้ว Stellar จำเป็นต้องรีสตาร์ทเพื่อให้การเปลี่ยนแปลงมีผล</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5073,18 +5142,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ไม่จำกัด</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 จำกัดความเร็ว</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 ใช้พร็อกซี</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 ตรวจสอบการอัปเดต</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>ปิด DHT</translation>
         </message>
@@ -5105,14 +5162,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ถัดไป &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 คิวทำงานใน 1 นาที</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 คิวทำงานใน %1 นาที</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>อัตราส่วนการแชร์ตลอดกาล</translation>
@@ -5128,6 +5177,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>ไม่พบการเชื่อมต่อเครือข่าย</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>ตัวจำกัดความเร็ว</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>พร็อกซีเปิด</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>กำลังตรวจสอบอัปเดต</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5148,6 +5209,14 @@ Click to open Statistics</source>
         <message>
             <source>Click to copy IP</source>
             <translation>คลิกเพื่อดูสถิติ</translation>
+        </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>คิวเริ่มใน 1 นาที</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>คิวเริ่มใน %1 นาที</translation>
         </message>
     </context>
     <context>
@@ -5335,6 +5404,10 @@ Click to open Statistics</source>
             <translation>เพิ่มตัวคั่น</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>ลบ</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>รีเซ็ต</translation>
         </message>
@@ -5345,6 +5418,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>ยกเลิก</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>สร้างทอร์เรนต์</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>ลบ</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>บันทึกไปที่:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>เรียกดู…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>ชื่อ:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>ขนาดชิ้น:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>อัตโนมัติ</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>เลือกโฟลเดอร์ปลายทาง</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>ไฟล์</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>แหล่งที่มา:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+อีก %1)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>ไม่ได้เลือกแหล่งที่มา</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>ไฟล์…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>โฟลเดอร์…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>โฟลเดอร์ปลายทาง…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>ชื่อทอร์เรนต์ (ไม่จำเป็น)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 ชิ้น × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 ชิ้น × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>คุณสมบัติ</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>แทร็กเกอร์:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>ไม่จำเป็น</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>เว็บซีด:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>หนึ่ง URL ต่อบรรทัด (ไม่จำเป็น)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>ทอร์เรนต์ส่วนตัว (ปิด DHT และ PeX)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ เสร็จ — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>กำลังแฮช… %1%  (%2 ชิ้น × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>เปิดเมื่อเสร็จ</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>ความคิดเห็น:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ ข้อผิดพลาด: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>ยกเลิกแล้ว</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ยกเลิก</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>ปิด</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>กำลังสร้าง…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>เปิดทอร์เรนต์</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>เพิ่มไฟล์</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>เพิ่มโฟลเดอร์</translation>
         </message>
     </context>
     <context>
@@ -5804,6 +6024,14 @@ Click to open Statistics</source>
             <translation>กำลังดึงข้อมูลวิดีโอ…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>คุณภาพดีที่สุด</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>เสียงเท่านั้น</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>ไม่สามารถดึงข้อมูลวิดีโอได้</translation>
         </message>
@@ -6067,43 +6295,43 @@ and audio streams merged by ffmpeg after download.</source>
         </message>
         <message>
             <source>Skip errors</source>
-            <translation>1. ข้ามข้อผิดพลาด</translation>
+            <translation>ข้ามข้อผิดพลาด</translation>
         </message>
         <message>
             <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
-            <translation>2. ดาวน์โหลดเพลย์ลิสต์ต่อเมื่อวิดีโอล้มเหลว</translation>
+            <translation>ดาวน์โหลดเพลย์ลิสต์ต่อเมื่อวิดีโอล้มเหลว</translation>
         </message>
         <message>
             <source>Wait for stream:</source>
-            <translation>3. รอสตรีม:</translation>
+            <translation>รอสตรีม:</translation>
         </message>
         <message>
             <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
-            <translation>4. รอสตรีมตามกำหนด เริ่มใหม่ทุก N วินาที</translation>
+            <translation>รอสตรีมตามกำหนด เริ่มใหม่ทุก N วินาที</translation>
         </message>
         <message>
             <source>s retry interval  (for scheduled/upcoming streams)</source>
-            <translation>5. ช่วงลองใหม่ (วิ)</translation>
+            <translation>ช่วงลองใหม่ (วิ)</translation>
         </message>
         <message>
             <source>Parallel frags:</source>
-            <translation>6. แฟรกเมนต์พร้อมกัน:</translation>
+            <translation>แฟรกเมนต์พร้อมกัน:</translation>
         </message>
         <message>
             <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
-            <translation>7. แฟรกเมนต์ DASH/HLS พร้อมกัน (ว่าง=1, สูงสุด 16)</translation>
+            <translation>แฟรกเมนต์ DASH/HLS พร้อมกัน (ว่าง=1, สูงสุด 16)</translation>
         </message>
         <message>
             <source>reversed</source>
-            <translation>8. ย้อนกลับ</translation>
+            <translation>ย้อนกลับ</translation>
         </message>
         <message>
             <source>skip errors</source>
-            <translation>9. ข้ามข้อผิดพลาด</translation>
+            <translation>ข้ามข้อผิดพลาด</translation>
         </message>
         <message>
             <source>wait for stream</source>
-            <translation>10. รอสตรีม</translation>
+            <translation>รอสตรีม</translation>
         </message>
         <message>
             <source>parallel frags</source>
@@ -6136,177 +6364,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ดาวน์โหลดวิดีโอ</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>สร้างทอร์เรนต์</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>ไฟล์/โฟลเดอร์ต้นทาง</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ ไฟล์</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ โฟลเดอร์</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>ลบ</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>ลากไฟล์หรือโฟลเดอร์มาที่นี่ หรือใช้ปุ่มด้านบน</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>ผลลัพธ์</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>บันทึกไปที่:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>เส้นทางบันทึกไฟล์ .torrent…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>เรียกดู…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>ชื่อ:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>ไม่บังคับ — ค่าเริ่มต้นเป็นชื่อโฟลเดอร์/ไฟล์</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>ขนาดชิ้น:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>อัตโนมัติ</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 ชิ้น × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>ข้อมูลเมตา</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>ความคิดเห็น:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>ความคิดเห็นเสริมที่ฝังใน .torrent</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>คำอธิบาย:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>คำอธิบายเพิ่มเติม</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>สร้างโดย:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>ทอร์เรนต์ส่วนตัว (ปิด DHT และ PEX)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>แทร็กเกอร์</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>หนึ่ง URL ต่อบรรทัด</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>เว็บซีด (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>เปิดทอร์เรนต์เมื่อสร้าง</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ สร้างทอร์เรนต์สำเร็จ: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ ข้อผิดพลาด: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>ยกเลิกแล้ว</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>กำลังแฮชชิ้นส่วน… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 ชิ้น × %2 ต่อชิ้น</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>ปิด</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>กำลังสร้าง…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>เปิดทอร์เรนต์</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>สร้างทอร์เรนต์…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>เพิ่มไฟล์</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>เพิ่มโฟลเดอร์</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>บันทึก .torrent</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>ไฟล์ทอร์เรนต์ (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>ไฟล์ทั้งหมด (*)</translation>
         </message>
     </context>
 </TS>

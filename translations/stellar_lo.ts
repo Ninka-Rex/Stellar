@@ -4,54 +4,54 @@
         <name>AddExceptionDialog</name>
         <message>
             <source>Add to Address Exceptions?</source>
-            <translation>1. ເພີ່ມໃສ່ຂໍ້ຍົກເວັ້ນທີ່ຢູ່ບໍ?</translation>
+            <translation>ເພີ່ມໃສ່ຂໍ້ຍົກເວັ້ນທີ່ຢູ່ບໍ?</translation>
         </message>
         <message>
             <source>This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?</source>
-            <translation>2. ທີ່ຢູ່ນີ້ຖືກຍົກເລີກສອງຄັ້ງ. ທ່ານຕ້ອງການເພີ່ມມັນໃສ່ລາຍຊື່ຂໍ້ຍົກເວັ້ນເພື່ອ Stellar ຈະບໍ່ດັກຈັບມັນອັດຕະໂນມັດບໍ?</translation>
+            <translation>ທີ່ຢູ່ນີ້ຖືກຍົກເລີກສອງຄັ້ງ. ທ່ານຕ້ອງການເພີ່ມມັນໃສ່ລາຍຊື່ຂໍ້ຍົກເວັ້ນເພື່ອ Stellar ຈະບໍ່ດັກຈັບມັນອັດຕະໂນມັດບໍ?</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>3. ບໍ່</translation>
+            <translation>ບໍ່</translation>
         </message>
         <message>
             <source>Add Exception</source>
-            <translation>4. ເພີ່ມຂໍ້ຍົກເວັ້ນ</translation>
+            <translation>ເພີ່ມຂໍ້ຍົກເວັ້ນ</translation>
         </message>
         <message>
             <source>Add Address Exception</source>
-            <translation>5. ເພີ່ມຂໍ້ຍົກເວັ້ນທີ່ຢູ່</translation>
+            <translation>ເພີ່ມຂໍ້ຍົກເວັ້ນທີ່ຢູ່</translation>
         </message>
     </context>
     <context>
         <name>AddUrlDialog</name>
         <message>
             <source>URL</source>
-            <translation>6. URL</translation>
+            <translation>URL</translation>
         </message>
         <message>
             <source>Use Authorization</source>
-            <translation>7. ໃຊ້ການອະນຸຍາດ</translation>
+            <translation>ໃຊ້ການອະນຸຍາດ</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>8. ເຂົ້າສູ່ລະບົບ</translation>
+            <translation>ເຂົ້າສູ່ລະບົບ</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>9. ລະຫັດຜ່ານ</translation>
+            <translation>ລະຫັດຜ່ານ</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>10. ຍົກເລີກ</translation>
+            <translation>ຍົກເລີກ</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>11. ຕົກລົງ</translation>
+            <translation>ຕົກລົງ</translation>
         </message>
         <message>
             <source>Add URL</source>
-            <translation>12. ເພີ່ມ URL</translation>
+            <translation>ເພີ່ມ URL</translation>
         </message>
     </context>
     <context>
@@ -62,15 +62,23 @@
         </message>
         <message>
             <source>Stellar is shutting down...</source>
-            <translation>20. Stellar ກຳລັງປິດ...</translation>
+            <translation>Stellar ກຳລັງປິດ...</translation>
         </message>
         <message>
             <source>Stellar is starting up...</source>
-            <translation>21. Stellar ກຳລັງເລີ່ມ...</translation>
+            <translation>Stellar ກຳລັງເລີ່ມ...</translation>
         </message>
         <message>
             <source>🛡️ Bound to %1</source>
-            <translation>22. 🛡️ ຜູກກັບ %1</translation>
+            <translation>🛡️ ຜູກກັບ %1</translation>
+        </message>
+        <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>ບໍ່ໄດ້ເລືອກປາຍທາງສຳລັບການສຳຮອງ.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>ບໍ່ໄດ້ເລືອກໄຟລ໌ສຳຮອງເພື່ອນຳເຂົ້າ.</translation>
         </message>
         <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
@@ -81,15 +89,15 @@
         <name>BatchDownloadDialog</name>
         <message>
             <source>Batch Download</source>
-            <translation>23. ດາວໂຫຼດເປັນຊຸດ</translation>
+            <translation>ດາວໂຫຼດເປັນຊຸດ</translation>
         </message>
         <message>
             <source>Generate the links here, then continue to the review step.</source>
-            <translation>24. ສ້າງລິ້ງທີ່ນີ້, ຈາກນັ້ນສືບຕໍ່ໄປຂັ້ນຕອນກວດສອບ.</translation>
+            <translation>ສ້າງລິ້ງທີ່ນີ້, ຈາກນັ້ນສືບຕໍ່ໄປຂັ້ນຕອນກວດສອບ.</translation>
         </message>
         <message>
             <source>Address:</source>
-            <translation>25. ທີ່ຢູ່:</translation>
+            <translation>ທີ່ຢູ່:</translation>
         </message>
         <message>
             <source>Replace asterisk with</source>
@@ -159,10 +167,6 @@
             <translation>ສະຖານະ</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>ກວດສອບລິ້ງກ່ອນເພີ່ມ. ຖັນສາມາດຈັດລຽງ, ປັບຂະໜາດ ແລະ ລາກຈັດລຳດັບໃໝ່ໄດ້.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>ແທນຊື່ໄຟລ໌ດ້ວຍຮູບແບບຕົວແທນ (*)</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>ຍົກເລີກທັງໝົດ</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>ສະເພາະລິ້ງທີ່ພົບເຫັນເທົ່ານັ້ນທີ່ເລືອກໄດ້. ການກຳນົດຄິວຍັງເກີດຂຶ້ນຫຼັງກົດ ຕົກລົງ.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>ຍົກເລີກ</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>ນຳເຂົ້າລິ້ງໃສ່ SDM</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>ໝາຍລິ້ງທີ່ຕ້ອງການເພີ່ມໃສ່ລາຍການດາວໂຫຼດ ແລ້ວກົດ ຕົກລົງ.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -335,13 +339,13 @@
         </message>
         <message>
             <source>Failed to grant permission: </source>
-            <translation>1. ບໍ່ສາມາດອະນຸຍາດ: </translation>
+            <translation>ບໍ່ສາມາດອະນຸຍາດ: </translation>
         </message>
         <message>
             <source>
 
 Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
-            <translation>2. 
+            <translation>
 ແລ່ນດ້ວຍຕົນເອງ: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
@@ -428,35 +432,35 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         </message>
         <message>
             <source>Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.</source>
-            <translation>1. ເລືອກຖັນທີ່ຕ້ອງການສະແດງ. ໃຊ້ປຸ່ມເລື່ອນຂຶ້ນ/ລົງເພື່ອຈັດລຽງ.</translation>
+            <translation>ເລືອກຖັນທີ່ຕ້ອງການສະແດງ. ໃຊ້ປຸ່ມເລື່ອນຂຶ້ນ/ລົງເພື່ອຈັດລຽງ.</translation>
         </message>
         <message>
             <source>Move Up</source>
-            <translation>2. ເລື່ອນຂຶ້ນ</translation>
+            <translation>ເລື່ອນຂຶ້ນ</translation>
         </message>
         <message>
             <source>Move Down</source>
-            <translation>3. ເລື່ອນລົງ</translation>
+            <translation>ເລື່ອນລົງ</translation>
         </message>
         <message>
             <source>Show</source>
-            <translation>4. ສະແດງ</translation>
+            <translation>ສະແດງ</translation>
         </message>
         <message>
             <source>Hide</source>
-            <translation>5. ເຊື່ອງ</translation>
+            <translation>ເຊື່ອງ</translation>
         </message>
         <message>
             <source>Reset</source>
-            <translation>6. ຣີເຊັດ</translation>
+            <translation>ຣີເຊັດ</translation>
         </message>
         <message>
             <source>The selected column should be</source>
-            <translation>7. ຖັນທີ່ເລືອກຄວນກວ້າງ</translation>
+            <translation>ຖັນທີ່ເລືອກຄວນກວ້າງ</translation>
         </message>
         <message>
             <source>pixels wide</source>
-            <translation>8. ພິກເຊລ</translation>
+            <translation>ພິກເຊລ</translation>
         </message>
         <message>
             <source>OK</source>
@@ -471,23 +475,23 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <name>DeleteConfirmDialog</name>
         <message>
             <source>Confirm Delete</source>
-            <translation>11. ຢືນຢັນການລຶບ</translation>
+            <translation>ຢືນຢັນການລຶບ</translation>
         </message>
         <message>
             <source>Remove download?</source>
-            <translation>12. ລຶບດາວໂຫຼດ?</translation>
+            <translation>ລຶບດາວໂຫຼດ?</translation>
         </message>
         <message>
             <source>Also delete torrent files from disk</source>
-            <translation>13. ລຶບໄຟລ໌ທໍເຣັນຈາກດິສກ໌ນຳ</translation>
+            <translation>ລຶບໄຟລ໌ທໍເຣັນຈາກດິສກ໌ນຳ</translation>
         </message>
         <message>
             <source>Also delete file from disk</source>
-            <translation>14. ລຶບໄຟລ໌ຈາກດິສກ໌ນຳ</translation>
+            <translation>ລຶບໄຟລ໌ຈາກດິສກ໌ນຳ</translation>
         </message>
         <message>
             <source>Permanently delete (don't move to trash)</source>
-            <translation>15. ລຶບຖາວອນ (ບໍ່ຍ້າຍໄປຖັງຂີ້ເຫຍື້ອ)</translation>
+            <translation>ລຶບຖາວອນ (ບໍ່ຍ້າຍໄປຖັງຂີ້ເຫຍື້ອ)</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -495,30 +499,34 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         </message>
         <message>
             <source>Delete</source>
-            <translation>17. ລຶບ</translation>
+            <translation>ລຶບ</translation>
         </message>
     </context>
     <context>
         <name>DeleteDoneConfirmDialog</name>
         <message>
             <source>Delete Completed Downloads</source>
-            <translation>18. ລຶບດາວໂຫຼດທີ່ສຳເລັດແລ້ວ</translation>
+            <translation>ລຶບດາວໂຫຼດທີ່ສຳເລັດແລ້ວ</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>19. ທ່ານແນ່ໃຈບໍ່ວ່າຕ້ອງການລຶບດາວໂຫຼດທີ່ສຳເລັດທັງໝົດອອກຈາກລາຍການຂອງ Stellar?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>ລຶບດາວໂຫຼດທີ່ສຳເລັດແລ້ວບໍ?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>20. ໝາຍເຫດ: ນີ້ຈະລຶບພວກມັນອອກຈາກລາຍການເທົ່ານັ້ນ. ໄຟລ໌ໃນດິສກ໌ຈະບໍ່ຖືກລຶບ.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>ລຶບອອກຈາກລາຍການເທົ່ານັ້ນ. ໄຟລ໌ໃນດິສກ໌ຈະບໍ່ຖືກລຶບ.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ຍົກເລີກ</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ລຶບ</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
-            <translation>21. ລຶບທໍເຣັນທີ່ສຳເລັດ ແລະ ກຳລັງແຈກຢາຍ</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>22. ແມ່ນ</translation>
+            <translation>ລຶບທໍເຣັນທີ່ສຳເລັດ ແລະ ກຳລັງແຈກຢາຍ</translation>
         </message>
         <message>
             <source>No</source>
@@ -529,11 +537,11 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <name>DownloadCompleteDialog</name>
         <message>
             <source>Download complete</source>
-            <translation>24. ດາວໂຫຼດສຳເລັດ</translation>
+            <translation>ດາວໂຫຼດສຳເລັດ</translation>
         </message>
         <message>
             <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>25. ດາວໂຫຼດແລ້ວ %1 (%2 ໄບຕ໌)</translation>
+            <translation>ດາວໂຫຼດແລ້ວ %1 (%2 ໄບຕ໌)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -581,6 +589,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>ຂໍ້ມູນໄຟລ໌ດາວໂຫຼດ</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>ໄຟລ໌ %1 (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>ໄຟລ໌ທັງໝົດ (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -837,6 +853,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ຈຳກັດລວມທີ່ໃຊ້ງານ: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>ຂີດຈຳກັດລວມເປີດໃຊ້ງານ: ບໍ່ຈຳກັດ</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>ບໍ່ມີຈຳກັດລວມ</translation>
         </message>
@@ -896,10 +916,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ສຳເນົາຊື່ໄຟລ໌</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>ສົ່ງອອກ .torrent...</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>ດຳເນີນການຕໍ່</translation>
         </message>
@@ -926,6 +942,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>File Name</source>
             <translation>ຊື່ໄຟລ໌</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>ສົ່ງອອກ .torrent...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -968,6 +988,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ດາວໂຫຼດແລ້ວ</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>ວັນທີເພີ່ມ</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>ລອງຫຼ້າສຸດ</translation>
         </message>
@@ -986,18 +1010,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Parent web page</source>
             <translation>ໜ້າເວັບຫຼັກ</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>ລໍຖ້າ</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (ຢຸດ)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>ກຳລັງກວດ (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1039,6 +1051,25 @@ Click  Add URL  to start.</source>
         </message>
     </context>
     <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>ກຳລັງລໍຖ້າ</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (ຢຸດແລ້ວ)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>ກຳລັງກວດສອບ (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n ໄຟລ໌</translation>
+        </message>
+    </context>
+    <context>
         <name>DuplicateDownloadDialog</name>
         <message>
             <source>Duplicate Download Link</source>
@@ -1058,20 +1089,20 @@ Click  Add URL  to start.</source>
         </message>
         <message>
             <source>Add the duplicate and overwrite the existing file</source>
-            <translation>1. ເພີ່ມສຳເນົາ ແລະຂຽນທັບໄຟລ໌ເກົ່າ</translation>
+            <translation>ເພີ່ມສຳເນົາ ແລະຂຽນທັບໄຟລ໌ເກົ່າ</translation>
         </message>
         <message>
             <source>The existing file is complete - show the download complete dialog</source>
-            <translation>2. ໄຟລ໌ເກົ່າຄົບຖ້ວນ - ສະແດງກ່ອງດາວໂຫຼດສຳເລັດ</translation>
+            <translation>ໄຟລ໌ເກົ່າຄົບຖ້ວນ - ສະແດງກ່ອງດາວໂຫຼດສຳເລັດ</translation>
         </message>
         <message>
             <source>Resume the existing download</source>
-            <translation>3. ສືບຕໍ່ດາວໂຫຼດເກົ່າ</translation>
+            <translation>ສືບຕໍ່ດາວໂຫຼດເກົ່າ</translation>
         </message>
         <message>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
-            <translation>4. ຈື່ການເລືອກ ແລະບໍ່ສະແດງກ່ອງນີ້ອີກ.
+            <translation>ຈື່ການເລືອກ ແລະບໍ່ສະແດງກ່ອງນີ້ອີກ.
 ປ່ຽນໄດ້ພາຍຫຼັງໃນ ຕົວເລືອກ → ດາວໂຫຼດ</translation>
         </message>
         <message>
@@ -1118,11 +1149,11 @@ You may change it in Options → Downloads at a later time.</source>
         <name>FilePropertiesDialog</name>
         <message>
             <source>Move Torrent Data To...</source>
-            <translation>7. ຍ້າຍຂໍ້ມູນທໍເຣັນໄປ...</translation>
+            <translation>ຍ້າຍຂໍ້ມູນທໍເຣັນໄປ...</translation>
         </message>
         <message>
             <source>Move File To...</source>
-            <translation>8. ຍ້າຍໄຟລ໌ໄປ...</translation>
+            <translation>ຍ້າຍໄຟລ໌ໄປ...</translation>
         </message>
         <message>
             <source>Start</source>
@@ -1138,7 +1169,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Open file</source>
-            <translation>12. ເປີດໄຟລ໌</translation>
+            <translation>ເປີດໄຟລ໌</translation>
         </message>
         <message>
             <source>Close</source>
@@ -1158,7 +1189,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Move</source>
-            <translation>17. ຍ້າຍ</translation>
+            <translation>ຍ້າຍ</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1166,7 +1197,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Web page</source>
-            <translation>19. ໜ້າເວັບ</translation>
+            <translation>ໜ້າເວັບ</translation>
         </message>
         <message>
             <source>Referer</source>
@@ -1186,31 +1217,23 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Source</source>
-            <translation>24. ແຫຼ່ງ</translation>
+            <translation>ແຫຼ່ງ</translation>
         </message>
         <message>
             <source>Info hash</source>
-            <translation>25. ແຮຊຂໍ້ມູນ</translation>
+            <translation>ແຮຊຂໍ້ມູນ</translation>
         </message>
         <message>
             <source>Copy</source>
             <translation>ສຳເນົາ</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>ຂໍ້ມູນເມຕາ</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>ລາຍລະອຽດ</translation>
-        </message>
-        <message>
             <source>Created by</source>
-            <translation>3. ສ້າງໂດຍ</translation>
+            <translation>ສ້າງໂດຍ</translation>
         </message>
         <message>
             <source>Created on</source>
-            <translation>4. ສ້າງເມື່ອ</translation>
+            <translation>ສ້າງເມື່ອ</translation>
         </message>
         <message>
             <source>Category</source>
@@ -1301,8 +1324,16 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ແຜນທີ່ຊິ້ນສ່ວນ</translation>
         </message>
         <message>
+            <source>✓ Metadata</source>
+            <translation>✓ ເມຕາເດຕ້າ</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>ກຳລັງດຶງຂໍ້ມູນ…</translation>
+        </message>
+        <message>
             <source>Move...</source>
-            <translation>5. ຍ້າຍ...</translation>
+            <translation>ຍ້າຍ...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -1621,10 +1652,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ຄວາມໄວ</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>ມີຢູ່</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>ໄລຍະທາງ: %1</translation>
         </message>
@@ -1669,10 +1696,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>ເພີ່ມ seed...</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>ກຳລັງດຶງຈາກ swarm...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1777,10 +1800,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>ຕ້ອງມີຊື່ໂຄງການ ແລະໜ້າເລີ່ມຕົ້ນ</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – ຂັ້ນຕອນ %1 ຈາກ %2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>ຕັ້ງໜ້າເລີ່ມ</translation>
         </message>
@@ -1863,6 +1882,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>ໂຄງການ</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – ຂັ້ນຕອນທີ %1 ຈາກ %2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2370,103 +2393,103 @@ Project</source>
         </message>
         <message>
             <source>Explore site and download matched files</source>
-            <translation>1. ສຳຫຼວດເວັບ ແລະດາວໂຫຼດໄຟລ໌ທີ່ກົງກັນ</translation>
+            <translation>ສຳຫຼວດເວັບ ແລະດາວໂຫຼດໄຟລ໌ທີ່ກົງກັນ</translation>
         </message>
         <message>
             <source>Download checked files</source>
-            <translation>2. ດາວໂຫຼດໄຟລ໌ທີ່ເລືອກ</translation>
+            <translation>ດາວໂຫຼດໄຟລ໌ທີ່ເລືອກ</translation>
         </message>
         <message>
             <source>After completion</source>
-            <translation>3. ຫຼັງສຳເລັດ</translation>
+            <translation>ຫຼັງສຳເລັດ</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>4. ອອກຈາກ Stellar ເມື່ອສຳເລັດ</translation>
+            <translation>ອອກຈາກ Stellar ເມື່ອສຳເລັດ</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>5. ປິດຄອມພິວເຕີເມື່ອສຳເລັດ</translation>
+            <translation>ປິດຄອມພິວເຕີເມື່ອສຳເລັດ</translation>
         </message>
         <message>
             <source>Shut down</source>
-            <translation>6. ປິດເຄື່ອງ</translation>
+            <translation>ປິດເຄື່ອງ</translation>
         </message>
         <message>
             <source>Restart</source>
-            <translation>7. ຣີສະຕາດ</translation>
+            <translation>ຣີສະຕາດ</translation>
         </message>
         <message>
             <source>Sleep</source>
-            <translation>8. ພັກໜ້າຈໍ</translation>
+            <translation>ພັກໜ້າຈໍ</translation>
         </message>
         <message>
             <source>Hibernate</source>
-            <translation>9. ຈຳສີນລະພາບ</translation>
+            <translation>ຈຳສີນລະພາບ</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>10. ບັງຄັບປິດໂປຣແກຣມ</translation>
+            <translation>ບັງຄັບປິດໂປຣແກຣມ</translation>
         </message>
         <message>
             <source>Step 3.  Schedule</source>
-            <translation>11. ຂັ້ນຕອນທີ 3. ຕາຕະລາງ</translation>
+            <translation>ຂັ້ນຕອນທີ 3. ຕາຕະລາງ</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation>12. ເລີ່ມດາວໂຫຼດເວລາ</translation>
+            <translation>ເລີ່ມດາວໂຫຼດເວລາ</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>13. ຄັ້ງດຽວເວລາ</translation>
+            <translation>ຄັ້ງດຽວເວລາ</translation>
         </message>
         <message>
             <source>January</source>
-            <translation>14. ມັງກອນ</translation>
+            <translation>ມັງກອນ</translation>
         </message>
         <message>
             <source>February</source>
-            <translation>15. ກຸມພາ</translation>
+            <translation>ກຸມພາ</translation>
         </message>
         <message>
             <source>March</source>
-            <translation>16. ມີນາ</translation>
+            <translation>ມີນາ</translation>
         </message>
         <message>
             <source>April</source>
-            <translation>17. ເມສາ</translation>
+            <translation>ເມສາ</translation>
         </message>
         <message>
             <source>May</source>
-            <translation>18. ພຶດສະພາ</translation>
+            <translation>ພຶດສະພາ</translation>
         </message>
         <message>
             <source>June</source>
-            <translation>19. ມິຖຸນາ</translation>
+            <translation>ມິຖຸນາ</translation>
         </message>
         <message>
             <source>July</source>
-            <translation>20. ກໍລະກົດ</translation>
+            <translation>ກໍລະກົດ</translation>
         </message>
         <message>
             <source>August</source>
-            <translation>21. ສິງຫາ</translation>
+            <translation>ສິງຫາ</translation>
         </message>
         <message>
             <source>September</source>
-            <translation>22. ກັນຍາ</translation>
+            <translation>ກັນຍາ</translation>
         </message>
         <message>
             <source>October</source>
-            <translation>23. ຕຸລາ</translation>
+            <translation>ຕຸລາ</translation>
         </message>
         <message>
             <source>November</source>
-            <translation>24. ພະຈິກ</translation>
+            <translation>ພະຈິກ</translation>
         </message>
         <message>
             <source>December</source>
-            <translation>25. ທັນວາ</translation>
+            <translation>ທັນວາ</translation>
         </message>
         <message>
             <source>Daily</source>
@@ -2567,40 +2590,48 @@ Project</source>
             <translation>ສະຖິຕິ Grabber</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>ສະຖານະ: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>ຫວ່າງ</translation>
         </message>
         <message>
-            <source>Web pages processed</source>
-            <translation>1. ໜ້າເວັບທີ່ປະມວນຜົນ</translation>
-        </message>
-        <message>
             <source>Simple</source>
-            <translation>2. ແບບງ່າຍ</translation>
+            <translation>ແບບງ່າຍ</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>3. ຂັ້ນສູງ</translation>
+            <translation>ຂັ້ນສູງ</translation>
         </message>
         <message>
             <source>Files</source>
             <translation>ໄຟລ໌</translation>
         </message>
         <message>
+            <source>STATUS</source>
+            <translation>ສະຖານະ</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>ສະຖານະ</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>ໜ້າເວັບ</translation>
+        </message>
+        <message>
+            <source>FILES</source>
+            <translation>ໄຟລ໌</translation>
+        </message>
+        <message>
             <source>Total</source>
-            <translation>5. ທັງໝົດ</translation>
+            <translation>ທັງໝົດ</translation>
         </message>
         <message>
             <source>Explored</source>
-            <translation>6. ສຳຫຼວດແລ້ວ</translation>
+            <translation>ສຳຫຼວດແລ້ວ</translation>
         </message>
         <message>
             <source>Matched</source>
-            <translation>7. ກົງກັນ</translation>
+            <translation>ກົງກັນ</translation>
         </message>
         <message>
             <source>Downloaded</source>
@@ -2615,27 +2646,27 @@ Project</source>
         <name>Main</name>
         <message>
             <source>Tasks</source>
-            <translation>10. ໜ້າວຽກ</translation>
+            <translation>ໜ້າວຽກ</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>11. ເພີ່ມ URL…</translation>
+            <translation>ເພີ່ມ URL…</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>12. ດາວໂຫຼດ SDM</translation>
+            <translation>ດາວໂຫຼດ SDM</translation>
         </message>
         <message>
             <source>This YouTube download looks like it needs login cookies.</source>
-            <translation>13. ການດາວໂຫຼດ YouTube ນີ້ຄືວ່າຕ້ອງການຄຸກກີ້ເຂົ້າສູ່ລະບົບ.</translation>
+            <translation>ການດາວໂຫຼດ YouTube ນີ້ຄືວ່າຕ້ອງການຄຸກກີ້ເຂົ້າສູ່ລະບົບ.</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>14. ຄຸກກີ້ຈາກບຣາວເຊີ:</translation>
+            <translation>ຄຸກກີ້ຈາກບຣາວເຊີ:</translation>
         </message>
         <message>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
-            <translation>15. Stellar ຈະລອງໃໝ່ກັບລາຍການ yt-dlp ດຽວກັນດ້ວຍຄຸກກີ້ຂອງບຣາວເຊີນັ້ນ.</translation>
+            <translation>Stellar ຈະລອງໃໝ່ກັບລາຍການ yt-dlp ດຽວກັນດ້ວຍຄຸກກີ້ຂອງບຣາວເຊີນັ້ນ.</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2643,15 +2674,15 @@ Project</source>
         </message>
         <message>
             <source>Retry Download</source>
-            <translation>17. ລອງດາວໂຫຼດໃໝ່</translation>
+            <translation>ລອງດາວໂຫຼດໃໝ່</translation>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>18. ເປີດ Stellar</translation>
+            <translation>ເປີດ Stellar</translation>
         </message>
         <message>
             <source>GitHub</source>
-            <translation>19. GitHub</translation>
+            <translation>GitHub</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
@@ -2659,7 +2690,7 @@ Project</source>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
-            <translation>22. ຕັ້ງຄ່າຈຳກັດຄວາມໄວ…</translation>
+            <translation>ຕັ້ງຄ່າຈຳກັດຄວາມໄວ…</translation>
         </message>
         <message>
             <source>Pause Session</source>
@@ -2671,15 +2702,23 @@ Project</source>
         </message>
         <message>
             <source>Exit Stellar</source>
-            <translation>23. ອອກຈາກ Stellar</translation>
+            <translation>ອອກຈາກ Stellar</translation>
         </message>
         <message>
             <source>Torrent files (*.torrent)</source>
-            <translation>24. ໄຟລ໌ທໍເຣັນ (*.torrent)</translation>
+            <translation>ໄຟລ໌ທໍເຣັນ (*.torrent)</translation>
         </message>
         <message>
             <source>All files (*)</source>
-            <translation>25. ໄຟລ໌ທັງໝົດ (*)</translation>
+            <translation>ໄຟລ໌ທັງໝົດ (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>ໄຟລ໌ SDM Export (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>ໄຟລ໌ຂໍ້ຄວາມ (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2821,15 +2860,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Create Torrent…</source>
-            <translation>6. ສ້າງ Torrent…</translation>
+            <translation>ສ້າງ Torrent…</translation>
         </message>
         <message>
             <source>Downloads</source>
             <translation>ດາວໂຫຼດ</translation>
-        </message>
-        <message>
-            <source>Pause all</source>
-            <translation>ຢຸດທັງໝົດ</translation>
         </message>
         <message>
             <source>Stop all</source>
@@ -2950,6 +2985,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Columns…</source>
             <translation>ຖັນ…</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>ແຖບເຄື່ອງມື…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3112,10 +3151,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Stellar ຕົວຈັດການດາວໂຫຼດ</translation>
         </message>
         <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar  ↓ %1  ↑ %2</translation>
-        </message>
-        <message>
             <source>New version of Stellar Download Manager is available</source>
             <translation>ເວີຊັນໃໝ່ຂອງ Stellar ຕົວຈັດການດາວໂຫຼດ ພ້ອມໃຊ້ແລ້ວ</translation>
         </message>
@@ -3160,31 +3195,31 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <name>QueueSelectionDialog</name>
         <message>
             <source>Queue Selection</source>
-            <translation>1. ການເລືອກຄິວ</translation>
+            <translation>ການເລືອກຄິວ</translation>
         </message>
         <message>
             <source>Put files into a queue?</source>
-            <translation>2. ເອົາໄຟລ໌ໃສ່ຄິວບໍ?</translation>
+            <translation>ເອົາໄຟລ໌ໃສ່ຄິວບໍ?</translation>
         </message>
         <message>
             <source>Choose an existing queue or create a new one.</source>
-            <translation>3. ເລືອກຄິວທີ່ມີຢູ່ ຫຼື ສ້າງໃໝ່</translation>
+            <translation>ເລືອກຄິວທີ່ມີຢູ່ ຫຼື ສ້າງໃໝ່</translation>
         </message>
         <message>
             <source>Queue</source>
-            <translation>4. ຄິວ</translation>
+            <translation>ຄິວ</translation>
         </message>
         <message>
             <source>Start queue processing</source>
-            <translation>5. ເລີ່ມປະມວນຜົນຄິວ</translation>
+            <translation>ເລີ່ມປະມວນຜົນຄິວ</translation>
         </message>
         <message>
             <source>Don't ask me again</source>
-            <translation>6. ຢ່າຖາມອີກ</translation>
+            <translation>ຢ່າຖາມອີກ</translation>
         </message>
         <message>
             <source>Don't add to queue</source>
-            <translation>7. ຢ່າເພີ່ມໃສ່ຄິວ</translation>
+            <translation>ຢ່າເພີ່ມໃສ່ຄິວ</translation>
         </message>
         <message>
             <source>OK</source>
@@ -3192,7 +3227,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Enter queue name</source>
-            <translation>9. ປ້ອນຊື່ຄິວ</translation>
+            <translation>ປ້ອນຊື່ຄິວ</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -3200,18 +3235,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Create</source>
-            <translation>11. ສ້າງ</translation>
+            <translation>ສ້າງ</translation>
         </message>
     </context>
     <context>
         <name>RssDownloadRulesDialog</name>
         <message>
             <source>(Default)</source>
-            <translation>12. (ຄ່າເລີ່ມຕົ້ນ)</translation>
+            <translation>(ຄ່າເລີ່ມຕົ້ນ)</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>13. ກົດດາວໂຫຼດ</translation>
+            <translation>ກົດດາວໂຫຼດ</translation>
         </message>
         <message>
             <source>Add</source>
@@ -3223,43 +3258,43 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
-            <translation>16. ກົດ &quot;ເພີ່ມ&quot; ເພື່ອສ້າງກົດດາວໂຫຼດ</translation>
+            <translation>ກົດ &quot;ເພີ່ມ&quot; ເພື່ອສ້າງກົດດາວໂຫຼດ</translation>
         </message>
         <message>
             <source>Rule name</source>
-            <translation>17. ຊື່ກົດ</translation>
+            <translation>ຊື່ກົດ</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>18. ເປີດໃຊ້</translation>
+            <translation>ເປີດໃຊ້</translation>
         </message>
         <message>
             <source>FILTER RULES</source>
-            <translation>19. ກົດກອງ</translation>
+            <translation>ກົດກອງ</translation>
         </message>
         <message>
             <source>Use regular expressions</source>
-            <translation>20. ໃຊ້ນິພົດປົກກະຕິ</translation>
+            <translation>ໃຊ້ນິພົດປົກກະຕິ</translation>
         </message>
         <message>
             <source>Must contain:</source>
-            <translation>21. ຕ້ອງມີ:</translation>
+            <translation>ຕ້ອງມີ:</translation>
         </message>
         <message>
             <source>regex pattern</source>
-            <translation>22. ຮູບແບບ regex</translation>
+            <translation>ຮູບແບບ regex</translation>
         </message>
         <message>
             <source>keyword1 keyword2 | keyword3</source>
-            <translation>23. ຄຳ1 ຄຳ2 | ຄຳ3</translation>
+            <translation>ຄຳ1 ຄຳ2 | ຄຳ3</translation>
         </message>
         <message>
             <source>Must not contain:</source>
-            <translation>24. ຕ້ອງບໍ່ມີ:</translation>
+            <translation>ຕ້ອງບໍ່ມີ:</translation>
         </message>
         <message>
             <source>keyword1 keyword2</source>
-            <translation>25. ຄຳ1 ຄຳ2</translation>
+            <translation>ຄຳ1 ຄຳ2</translation>
         </message>
         <message>
             <source>Episode filter:</source>
@@ -3466,11 +3501,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Untitled</source>
-            <translation>1. ບໍ່ມີຊື່</translation>
+            <translation>ບໍ່ມີຊື່</translation>
         </message>
         <message>
             <source>Select an article</source>
-            <translation>2. ເລືອກບົດຄວາມ</translation>
+            <translation>ເລືອກບົດຄວາມ</translation>
         </message>
         <message>
             <source>Open</source>
@@ -3478,46 +3513,46 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Mark Read</source>
-            <translation>4. ໝາຍວ່າອ່ານແລ້ວ</translation>
+            <translation>ໝາຍວ່າອ່ານແລ້ວ</translation>
         </message>
         <message>
             <source>Mark Unread</source>
-            <translation>5. ໝາຍວ່າຍັງບໍ່ໄດ້ອ່ານ</translation>
+            <translation>ໝາຍວ່າຍັງບໍ່ໄດ້ອ່ານ</translation>
         </message>
         <message>
             <source>Choose an article to view its summary.</source>
-            <translation>6. ເລືອກບົດຄວາມເພື່ອເບິ່ງສະຫຼຸບ.</translation>
+            <translation>ເລືອກບົດຄວາມເພື່ອເບິ່ງສະຫຼຸບ.</translation>
         </message>
         <message>
             <source>No summary available.</source>
-            <translation>7. ບໍ່ມີສະຫຼຸບ.</translation>
+            <translation>ບໍ່ມີສະຫຼຸບ.</translation>
         </message>
         <message>
             <source>%1 unread  ·  %2 items</source>
-            <translation>8. %1 ຍັງບໍ່ໄດ້ອ່ານ  ·  %2 ລາຍການ</translation>
+            <translation>%1 ຍັງບໍ່ໄດ້ອ່ານ  ·  %2 ລາຍການ</translation>
         </message>
         <message>
             <source>%1 items</source>
-            <translation>9. %1 ລາຍການ</translation>
+            <translation>%1 ລາຍການ</translation>
         </message>
         <message>
             <source>RSS Feeds</source>
-            <translation>10. ຟີດ RSS</translation>
+            <translation>ຟີດ RSS</translation>
         </message>
         <message>
             <source>Edit Subscription</source>
-            <translation>11. ແກ້ໄຂການຕິດຕາມ</translation>
+            <translation>ແກ້ໄຂການຕິດຕາມ</translation>
         </message>
     </context>
     <context>
         <name>SchedulerDialog</name>
         <message>
             <source>Queues</source>
-            <translation>12. ຄິວ</translation>
+            <translation>ຄິວ</translation>
         </message>
         <message>
             <source>New queue</source>
-            <translation>13. ຄິວໃໝ່</translation>
+            <translation>ຄິວໃໝ່</translation>
         </message>
         <message>
             <source>Delete</source>
@@ -3525,15 +3560,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Schedule</source>
-            <translation>15. ຕາຕະລາງ</translation>
+            <translation>ຕາຕະລາງ</translation>
         </message>
         <message>
             <source>Files in the queue</source>
-            <translation>16. ໄຟລ໌ໃນຄິວ</translation>
+            <translation>ໄຟລ໌ໃນຄິວ</translation>
         </message>
         <message>
             <source>One-time downloading</source>
-            <translation>17. ດາວໂຫຼດຄັ້ງດຽວ</translation>
+            <translation>ດາວໂຫຼດຄັ້ງດຽວ</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
@@ -3541,7 +3576,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Start download on Stellar startup</source>
-            <translation>19. ເລີ່ມດາວໂຫຼດເມື່ອ Stellar ເປີດ</translation>
+            <translation>ເລີ່ມດາວໂຫຼດເມື່ອ Stellar ເປີດ</translation>
         </message>
         <message>
             <source>Start download at</source>
@@ -3557,7 +3592,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Start again every</source>
-            <translation>23. ເລີ່ມໃໝ່ທຸກໆ</translation>
+            <translation>ເລີ່ມໃໝ່ທຸກໆ</translation>
         </message>
         <message>
             <source>hours</source>
@@ -3871,20 +3906,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ຈຳກັດຄວາມໄວ</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>ເປີດຈຳກັດຄວາມໄວທົ່ວໂລກ</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>ຄວາມໄວສູງສຸດ:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>ເປີດຈຳກັດອັບໂຫຼດທົ່ວໂລກ</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3933,6 +3956,28 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>General</source>
             <translation>ທົ່ວໄປ</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>ສົ່ງອອກຂໍ້ມູນສຳຮອງ Stellar</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>ນຳເຂົ້າຂໍ້ມູນສຳຮອງ Stellar</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>ສຳຮອງສຳເລັດ</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>ຂໍ້ມູນຂອງທ່ານຖືກສົ່ງອອກໄປທີ່:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>ນຳເຂົ້າສຳເລັດ</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4067,6 +4112,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ບໍ່ມີ</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>ເປີດຈຳກັດຄວາມໄວ</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>ດາວໂຫຼດສູງສຸດ:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>ຄລິກເມັດມື້ເພື່ອປິດ/ເປີດ. ກົດຖືກປະເມີນທຸກໆນາທີ; ກົດທຳອິດທີ່ກົງກັນຈະຊະນະ. ຂີດຈຳກັດການດາວໂຫຼດ ແລະ ອັບໂຫຼດຕາມຕາຕະລາງຈະຖືກລຶບອັດຕະໂນມັດເມື່ອບໍ່ມີກົດໃດເຮັດວຽກ.</translation>
         </message>
@@ -4089,10 +4142,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Show tips in bottom bar</source>
             <translation>ສະແດງຄຳແນະນຳໃນແຖບລຸ່ມ</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>ສະແດງຈຳນວນດາວໂຫຼດສຳເລັດໃນແຖບສະຖານະ</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4149,6 +4198,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>ເມື່ອ URL ທີ່ກົງກັບປະເພດໄຟລ໌ທີ່ຕິດຕາມຖືກສຳເນົາໃສ່ຄລິບບອດ, Stellar ຈະຖາມວ່າທ່ານຕ້ອງການດາວໂຫຼດມັນຫຼືບໍ່. ສະເພາະປະເພດໄຟລ໌ທີ່ລະບຸໄວ້ພາຍໃຕ້ ບຣາວເຊີ › ເລີ່ມດາວໂຫຼດປະເພດໄຟລ໌ຕໍ່ໄປນີ້ອັດຕະໂນມັດ ເທົ່ານັ້ນທີ່ຖືກເກັບ.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>ສຳຮອງ ແລະ ກູ້ຄືນ</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>ສົ່ງອອກທຸກຢ່າງ — ການຕັ້ງຄ່າ, ດາວໂຫຼດ, ທໍເຣັນ (ພ້ອມອັດຕາສ່ວນແບ່ງປັນ), ຄິວ, ໝວດໝູ່ ແລະ ສະຖິຕິ — ເປັນໄຟລ໌ສຳຮອງດຽວ. ນຳເຂົ້າມັນພາຍຫຼັງໃສ່ Stellar ທີ່ຕິດຕັ້ງໃໝ່ ເພື່ອກູ້ຄືນທັງໝົດ. ການນຳເຂົ້າຈະແທນທີ່ຂໍ້ມູນປັດຈຸບັນ (ສຳຮອງເວລາໄວ້) ແລະ ເລີ່ມ Stellar ໃໝ່.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>ສົ່ງອອກຂໍ້ມູນທັງໝົດ…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>ນຳເຂົ້າຂໍ້ມູນ…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4447,6 +4512,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ແມັບໜ່ວຍຄວາມຈຳ: ໄຟລ໌ຖືກແມັບໃສ່ໜ່ວຍຄວາມຈຳໂດຍກົງ. Windows ແລະ Linux ອ່ານຂຽນຂໍ້ມູນທໍເຣັນຜ່ານແຄສໜ້າເວັບ ໃຊ້ CPU ໜ້ອຍ. ແນະນຳສຳລັບຜູ້ໃຊ້ສ່ວນໃຫຍ່.</translation>
         </message>
         <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>ກູ້ຄືນຂໍ້ມູນສຳເລັດ. Stellar ຕ້ອງເລີ່ມໃໝ່ເພື່ອນຳໃຊ້.</translation>
+        </message>
+        <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
             <translation>POSIX: ອ່ານຂຽນຜ່ານຟັງກ໌ຊັນໄຟລ໌ມາດຕະຖານ ບໍ່ແມັບໜ່ວຍຄວາມຈຳ. ໃຊ້ພື້ນທີ່ແອັດເດຣສໜ້ອຍກວ່າ ເໝາະສຳລັບລະບົບ 32-bit ຫຼື ເວລາຊີດທໍເຣັນໃຫຍ່ຫຼາຍໆພ້ອອມກັນ.</translation>
         </message>
@@ -4668,103 +4737,103 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>These regular expressions are used to extract season/episode numbers for smart duplicate detection.</source>
-            <translation>1. ນິພົດປົກກະຕິເຫຼົ່ານີ້ໃຊ້ສຳລັບດຶງເລກຊີຊັນ/ຕອນ ເພື່ອກວດຫາຊ້ຳແບບສະຫຼາດ.</translation>
+            <translation>ນິພົດປົກກະຕິເຫຼົ່ານີ້ໃຊ້ສຳລັບດຶງເລກຊີຊັນ/ຕອນ ເພື່ອກວດຫາຊ້ຳແບບສະຫຼາດ.</translation>
         </message>
         <message>
             <source>Make Stellar the default app for .torrent files and magnet links. On Windows 10/11, click the button then confirm the change in the Windows Default Apps settings page that opens.</source>
-            <translation>2. ຕັ້ງ Stellar ເປັນແອັບເລີ່ມຕົ້ນສຳລັບໄຟລ໌ .torrent ແລະລິ້ງ magnet. ໃນ Windows 10/11, ຄລິກປຸ່ມ ແລ້ວຢືນຢັນການປ່ຽນແປງໃນໜ້າຕັ້ງຄ່າແອັບເລີ່ມຕົ້ນຂອງ Windows ທີ່ເປີດຂຶ້ນ.</translation>
+            <translation>ຕັ້ງ Stellar ເປັນແອັບເລີ່ມຕົ້ນສຳລັບໄຟລ໌ .torrent ແລະລິ້ງ magnet. ໃນ Windows 10/11, ຄລິກປຸ່ມ ແລ້ວຢືນຢັນການປ່ຽນແປງໃນໜ້າຕັ້ງຄ່າແອັບເລີ່ມຕົ້ນຂອງ Windows ທີ່ເປີດຂຶ້ນ.</translation>
         </message>
         <message>
             <source>.torrent files</source>
-            <translation>3. ໄຟລ໌ .torrent</translation>
+            <translation>ໄຟລ໌ .torrent</translation>
         </message>
         <message>
             <source>Currently handled by Stellar</source>
-            <translation>4. ຈັດການໂດຍ Stellar ໃນປັດຈຸບັນ</translation>
+            <translation>ຈັດການໂດຍ Stellar ໃນປັດຈຸບັນ</translation>
         </message>
         <message>
             <source>Stellar is not the current default</source>
-            <translation>5. Stellar ບໍ່ແມ່ນຄ່າເລີ່ມຕົ້ນປັດຈຸບັນ</translation>
+            <translation>Stellar ບໍ່ແມ່ນຄ່າເລີ່ມຕົ້ນປັດຈຸບັນ</translation>
         </message>
         <message>
             <source>Set .torrent Default</source>
-            <translation>6. ຕັ້ງ .torrent ເປັນຄ່າເລີ່ມຕົ້ນ</translation>
+            <translation>ຕັ້ງ .torrent ເປັນຄ່າເລີ່ມຕົ້ນ</translation>
         </message>
         <message>
             <source>Refresh Status</source>
-            <translation>7. ຣີເຟຣດສະຖານະ</translation>
+            <translation>ຣີເຟຣດສະຖານະ</translation>
         </message>
         <message>
             <source>magnet: links</source>
-            <translation>8. ລິ້ງ magnet:</translation>
+            <translation>ລິ້ງ magnet:</translation>
         </message>
         <message>
             <source>Set Magnet Default</source>
-            <translation>9. ຕັ້ງ Magnet ເປັນຄ່າເລີ່ມຕົ້ນ</translation>
+            <translation>ຕັ້ງ Magnet ເປັນຄ່າເລີ່ມຕົ້ນ</translation>
         </message>
         <message>
             <source>If your desktop environment overrides the app-level association, refresh the status after the system finishes applying the change.</source>
-            <translation>10. ຖ້າສະພາບແວດລ້ອມເດສທັອບຂອງທ່ານຂຽນທັບການຕັ້ງຄ່າລະດັບແອັບ, ໃຫ້ຣີເຟຣດສະຖານະຫຼັງຈາກລະບົບນຳໃຊ້ການປ່ຽນແປງສຳເລັດ.</translation>
+            <translation>ຖ້າສະພາບແວດລ້ອມເດສທັອບຂອງທ່ານຂຽນທັບການຕັ້ງຄ່າລະດັບແອັບ, ໃຫ້ຣີເຟຣດສະຖານະຫຼັງຈາກລະບົບນຳໃຊ້ການປ່ຽນແປງສຳເລັດ.</translation>
         </message>
         <message>
             <source>Interface Language</source>
-            <translation>11. ພາສາອິນເຕີເຟສ</translation>
+            <translation>ພາສາອິນເຕີເຟສ</translation>
         </message>
         <message>
             <source>Select the language used throughout the Stellar interface. A restart is required for all text to update.</source>
-            <translation>12. ເລືອກພາສາທີ່ໃຊ້ທົ່ວອິນເຕີເຟສ Stellar. ຕ້ອງຣີສະຕາດເພື່ອໃຫ້ຂໍ້ຄວາມທັງໝົດອັບເດດ.</translation>
+            <translation>ເລືອກພາສາທີ່ໃຊ້ທົ່ວອິນເຕີເຟສ Stellar. ຕ້ອງຣີສະຕາດເພື່ອໃຫ້ຂໍ້ຄວາມທັງໝົດອັບເດດ.</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation>13. ພາສາ:</translation>
+            <translation>ພາສາ:</translation>
         </message>
         <message>
             <source>A restart is required after changing the language.</source>
-            <translation>14. ຕ້ອງຣີສະຕາດຫຼັງຈາກປ່ຽນພາສາ.</translation>
+            <translation>ຕ້ອງຣີສະຕາດຫຼັງຈາກປ່ຽນພາສາ.</translation>
         </message>
         <message>
             <source>Restart Required</source>
-            <translation>15. ຕ້ອງຣີສະຕາດ</translation>
+            <translation>ຕ້ອງຣີສະຕາດ</translation>
         </message>
         <message>
             <source>A restart is required for the language change to take effect. Restart now?</source>
-            <translation>16. ຕ້ອງຣີສະຕາດເພື່ອໃຫ້ການປ່ຽນພາສາມີຜົນ. ຣີສະຕາດຕອນນີ້ບໍ?</translation>
+            <translation>ຕ້ອງຣີສະຕາດເພື່ອໃຫ້ການປ່ຽນພາສາມີຜົນ. ຣີສະຕາດຕອນນີ້ບໍ?</translation>
         </message>
         <message>
             <source>Restart Now</source>
-            <translation>17. ຣີສະຕາດຕອນນີ້</translation>
+            <translation>ຣີສະຕາດຕອນນີ້</translation>
         </message>
         <message>
             <source>Later</source>
-            <translation>18. ພາຍຫຼັງ</translation>
+            <translation>ພາຍຫຼັງ</translation>
         </message>
         <message>
             <source>Check for updates</source>
-            <translation>19. ກວດສອບອັບເດດ</translation>
+            <translation>ກວດສອບອັບເດດ</translation>
         </message>
         <message>
             <source>What's New</source>
-            <translation>20. ມີຫຍັງໃໝ່</translation>
+            <translation>ມີຫຍັງໃໝ່</translation>
         </message>
         <message>
             <source>Build date</source>
-            <translation>21. ວັນທີສ້າງ</translation>
+            <translation>ວັນທີສ້າງ</translation>
         </message>
         <message>
             <source>Qt version</source>
-            <translation>22. ເວີຊັນ Qt</translation>
+            <translation>ເວີຊັນ Qt</translation>
         </message>
         <message>
             <source>Platform</source>
-            <translation>23. ແພລດຟອມ</translation>
+            <translation>ແພລດຟອມ</translation>
         </message>
         <message>
             <source>Windows</source>
-            <translation>24. Windows</translation>
+            <translation>Windows</translation>
         </message>
         <message>
             <source>Linux</source>
-            <translation>25. Linux</translation>
+            <translation>Linux</translation>
         </message>
         <message>
             <source>macOS</source>
@@ -4900,7 +4969,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Available but not loaded</source>
-            <translation>1. ມີແຕ່ບໍ່ໄດ້ໂຫຼດ</translation>
+            <translation>ມີແຕ່ບໍ່ໄດ້ໂຫຼດ</translation>
         </message>
         <message>
             <source>Source: %1</source>
@@ -4908,7 +4977,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>3. URL ແຫຼ່ງຍັງບໍ່ຖືກເກັບໄວ້. ໃຊ້ ກວດສອບອັບເດດ ເພື່ອເກັບ IPtoCityDB ຈາກ update.json.</translation>
+            <translation>URL ແຫຼ່ງຍັງບໍ່ຖືກເກັບໄວ້. ໃຊ້ ກວດສອບອັບເດດ ເພື່ອເກັບ IPtoCityDB ຈາກ update.json.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -4916,19 +4985,19 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Update available: %1</source>
-            <translation>5. ອັບເດດມີ: %1</translation>
+            <translation>ອັບເດດມີ: %1</translation>
         </message>
         <message>
             <source>Stellar Preferences</source>
-            <translation>6. ການຕັ້ງຄ່າ Stellar</translation>
+            <translation>ການຕັ້ງຄ່າ Stellar</translation>
         </message>
         <message>
             <source>Select yt-dlp binary</source>
-            <translation>7. ເລືອກໄບນາຣີ yt-dlp</translation>
+            <translation>ເລືອກໄບນາຣີ yt-dlp</translation>
         </message>
         <message>
             <source>Select JavaScript runtime binary</source>
-            <translation>8. ເລືອກໄບນາຣີຣັນໄທມ໌ JS</translation>
+            <translation>ເລືອກໄບນາຣີຣັນໄທມ໌ JS</translation>
         </message>
         <message>
             <source>Tray icon style:</source>
@@ -4964,14 +5033,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>A restart is required for appearance changes to take effect. Restart now?</source>
-            <translation>1. ຕ້ອງຣີສະຕາດເພື່ອໃຫ້ການປ່ຽນຮູບລັກມີຜົນ. ຣີສະຕາດດຽວນີ້ບໍ?</translation>
+            <translation>ຕ້ອງຣີສະຕາດເພື່ອໃຫ້ການປ່ຽນຮູບລັກມີຜົນ. ຣີສະຕາດດຽວນີ້ບໍ?</translation>
         </message>
     </context>
     <context>
         <name>Sidebar</name>
         <message>
             <source>Edit Project</source>
-            <translation>9. ແກ້ໄຂໂຄງການ</translation>
+            <translation>ແກ້ໄຂໂຄງການ</translation>
         </message>
         <message>
             <source>Delete Project</source>
@@ -4987,15 +5056,15 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Unfinished</source>
-            <translation>13. ບໍ່ສຳເລັດ</translation>
+            <translation>ບໍ່ສຳເລັດ</translation>
         </message>
         <message>
             <source>Finished</source>
-            <translation>14. ສຳເລັດ</translation>
+            <translation>ສຳເລັດ</translation>
         </message>
         <message>
             <source>Grabber Projects</source>
-            <translation>15. ໂຄງການ Grabber</translation>
+            <translation>ໂຄງການ Grabber</translation>
         </message>
         <message>
             <source>Torrents</source>
@@ -5085,23 +5154,11 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <name>StatusBar</name>
         <message>
             <source>unlimited</source>
-            <translation>2. ບໍ່ຈຳກັດ</translation>
-        </message>
-        <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 ຈຳກັດຄວາມໄວ</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 Proxy ເປີດ</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 ກຳລັງກວດສອບອັບເດດ</translation>
+            <translation>ບໍ່ຈຳກັດ</translation>
         </message>
         <message>
             <source>DHT off</source>
-            <translation>3. DHT ປິດ</translation>
+            <translation>DHT ປິດ</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
@@ -5113,57 +5170,69 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Estimating… (%1%)</source>
-            <translation>4. ກຳລັງຄາດຄະເນ… (%1%)</translation>
+            <translation>ກຳລັງຄາດຄະເນ… (%1%)</translation>
         </message>
         <message>
             <source>next &gt;&gt;</source>
-            <translation>4. ຕໍ່ໄປ &gt;&gt;</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>1. 🟧 ແຖວຈະເລີ່ມໃນ 1 ນາທີ</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>2. 🟧 ແຖວຈະເລີ່ມໃນ %1 ນາທີ</translation>
+            <translation>ຕໍ່ໄປ &gt;&gt;</translation>
         </message>
         <message>
             <source>All-time share ratio
 Click to open Statistics</source>
-            <translation>5. ອັດຕາສ່ວນແບ່ງປັນທັງໝົດ
+            <translation>ອັດຕາສ່ວນແບ່ງປັນທັງໝົດ
 ຄລິກເພື່ອເປີດສະຖິຕິ</translation>
         </message>
         <message>
             <source>Public IP: </source>
-            <translation>7. IP ສາທາລະນະ: </translation>
+            <translation>IP ສາທາລະນະ: </translation>
         </message>
         <message>
             <source>Listening port: </source>
-            <translation>11. ພອດຮັບຟັງ: </translation>
+            <translation>ພອດຮັບຟັງ: </translation>
         </message>
         <message>
             <source>No network connectivity detected</source>
-            <translation>5. ບໍ່ພົບການເຊື່ອມຕໍ່ເຄືອຂ່າຍ</translation>
+            <translation>ບໍ່ພົບການເຊື່ອມຕໍ່ເຄືອຂ່າຍ</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>ຈຳກັດຄວາມໄວ</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>ເປີດພຣັອກຊີ</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>ກຳລັງກວດສອບອັບເດດ</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
-            <translation>12. ບໍ່ມີການເຊື່ອມຕໍ່ຂາເຂົ້າ, ເຄືອຂ່າຍອາດຕັ້ງຄ່າຜິດ</translation>
+            <translation>ບໍ່ມີການເຊື່ອມຕໍ່ຂາເຂົ້າ, ເຄືອຂ່າຍອາດຕັ້ງຄ່າຜິດ</translation>
         </message>
         <message>
             <source>WiFi: </source>
-            <translation>9. WiFi: </translation>
+            <translation>WiFi: </translation>
         </message>
         <message>
             <source>Signal: </source>
-            <translation>10. ສັນຍານ: </translation>
+            <translation>ສັນຍານ: </translation>
         </message>
         <message>
             <source>Connection: Ethernet</source>
-            <translation>8. ການເຊື່ອມຕໍ່: ອີເທີເນັດ</translation>
+            <translation>ການເຊື່ອມຕໍ່: ອີເທີເນັດ</translation>
         </message>
         <message>
             <source>Click to copy IP</source>
-            <translation>6. ຄລິກເພື່ອສຳເນົາ IP</translation>
+            <translation>ຄລິກເພື່ອສຳເນົາ IP</translation>
+        </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>ຄິວເລີ່ມໃນ 1 ນາທີ</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>ຄິວເລີ່ມໃນ %1 ນາທີ</translation>
         </message>
     </context>
     <context>
@@ -5178,19 +5247,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>7. ເປີດ Stellar</translation>
+            <translation>ເປີດ Stellar</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>8. ເພີ່ມ URL…</translation>
+            <translation>ເພີ່ມ URL…</translation>
         </message>
         <message>
             <source>GitHub</source>
-            <translation>9. GitHub</translation>
+            <translation>GitHub</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation>10. ກ່ຽວກັບ Stellar</translation>
+            <translation>ກ່ຽວກັບ Stellar</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
@@ -5229,7 +5298,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Stop All</source>
-            <translation>18. ຢຸດທັງໝົດ</translation>
+            <translation>ຢຸດທັງໝົດ</translation>
         </message>
         <message>
             <source>Delete</source>
@@ -5237,7 +5306,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Delete Done</source>
-            <translation>20. ລຶບທີ່ສຳເລັດ</translation>
+            <translation>ລຶບທີ່ສຳເລັດ</translation>
         </message>
         <message>
             <source>Options</source>
@@ -5257,7 +5326,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Grabber</source>
-            <translation>25. ຕົວດຶງ</translation>
+            <translation>ຕົວດຶງ</translation>
         </message>
         <message>
             <source>Search Engine</source>
@@ -5272,23 +5341,23 @@ Click to open Statistics</source>
         <name>ToolbarDialog</name>
         <message>
             <source>Toolbar</source>
-            <translation>6. ແຖບເຄື່ອງມື</translation>
+            <translation>ແຖບເຄື່ອງມື</translation>
         </message>
         <message>
             <source>Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.</source>
-            <translation>7. ປັບແຕ່ງປຸ່ມແຖບເຄື່ອງມື. ໃຊ້ ຍ້າຍຂຶ້ນ ແລະ ຍ້າຍລົງ ເພື່ອຈັດລຽງ. ໝາຍຖືກເພື່ອເປີດ, ບໍ່ໝາຍຖືກເພື່ອປິດ.</translation>
+            <translation>ປັບແຕ່ງປຸ່ມແຖບເຄື່ອງມື. ໃຊ້ ຍ້າຍຂຶ້ນ ແລະ ຍ້າຍລົງ ເພື່ອຈັດລຽງ. ໝາຍຖືກເພື່ອເປີດ, ບໍ່ໝາຍຖືກເພື່ອປິດ.</translation>
         </message>
         <message>
             <source>Add URL</source>
-            <translation>8. ເພີ່ມ URL</translation>
+            <translation>ເພີ່ມ URL</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>9. ສືບຕໍ່</translation>
+            <translation>ສືບຕໍ່</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>10. ຢຸດ</translation>
+            <translation>ຢຸດ</translation>
         </message>
         <message>
             <source>Stop All</source>
@@ -5351,6 +5420,10 @@ Click to open Statistics</source>
             <translation>ເພີ່ມຕົວແຍກ</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>ລຶບ</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>ຣີເຊັດ</translation>
         </message>
@@ -5361,6 +5434,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>ຍົກເລີກ</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>ສ້າງ Torrent</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>ລຶບ</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>ບັນທຶກໃສ່:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>ເລືອກ…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>ຊື່:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>ຂະໜາດຊິ້ນ:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>ອັດຕະໂນມັດ</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>ເລືອກໂຟນເດີຜົນລັບ</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>ໄຟລ໌</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>ແຫຼ່ງ:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 ເພີ່ມ)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>ບໍ່ໄດ້ເລືອກແຫຼ່ງ</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>ໄຟລ໌…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>ໂຟນເດີ...</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>ໂຟນເດີຜົນລັບ...</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>ຊື່ທໍເຣັນ (ບໍ່ຈຳເປັນ)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 ຊິ້ນ × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 ຊິ້ນ × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>ຄຸນສົມບັດ</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>ຕົວຕິດຕາມ:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>ບໍ່ຈຳເປັນ</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>ເວັບຊີດ:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>ໜຶ່ງ URL ຕໍ່ແຖວ (ບໍ່ຈຳເປັນ)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>ທໍເຣັນສ່ວນຕົວ (ປິດ DHT ແລະ PeX)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ ສຳເລັດ — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>ກຳລັງແຮດ… %1%  (%2 ຊິ້ນ × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>ເປີດເມື່ອສຳເລັດ</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>ຄຳເຫັນ:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ ຜິດພາດ: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>ຍົກເລີກ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ຍົກເລີກ</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>ປິດ</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>ກຳລັງສ້າງ…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>ເປີດ Torrent</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ເພີ່ມໄຟລ໌</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>ເພີ່ມໂຟນເດີ</translation>
         </message>
     </context>
     <context>
@@ -5820,6 +6040,14 @@ Click to open Statistics</source>
             <translation>ກຳລັງດຶງຂໍ້ມູນວິດີໂອ...</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>ຄຸນນະພາບດີທີ່ສຸດ</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>ສຽງເທົ່ານັ້ນ</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>ບໍ່ສາມາດດຶງຂໍ້ມູນວິດີໂອ</translation>
         </message>
@@ -5878,43 +6106,43 @@ and audio streams merged by ffmpeg after download.</source>
         </message>
         <message>
             <source>videos</source>
-            <translation>1. ວິດີໂອ</translation>
+            <translation>ວິດີໂອ</translation>
         </message>
         <message>
             <source>YouTube channel URLs include all uploads by default. Use Scope to target one tab.</source>
-            <translation>2. URL ຊ່ອງ YouTube ລວມທຸກການອັບໂຫຼດຕາມຄ່າເລີ່ມຕົ້ນ. ໃຊ້ຂອບເຂດເພື່ອເລືອກແທັບດຽວ.</translation>
+            <translation>URL ຊ່ອງ YouTube ລວມທຸກການອັບໂຫຼດຕາມຄ່າເລີ່ມຕົ້ນ. ໃຊ້ຂອບເຂດເພື່ອເລືອກແທັບດຽວ.</translation>
         </message>
         <message>
             <source>Videos will be saved in a subfolder named after the channel.</source>
-            <translation>3. ວິດີໂອຈະຖືກບັນທຶກໃນໂຟນເດີຍ່ອຍທີ່ຕັ້ງຊື່ຕາມຊ່ອງ.</translation>
+            <translation>ວິດີໂອຈະຖືກບັນທຶກໃນໂຟນເດີຍ່ອຍທີ່ຕັ້ງຊື່ຕາມຊ່ອງ.</translation>
         </message>
         <message>
             <source>Scope:</source>
-            <translation>4. ຂອບເຂດ:</translation>
+            <translation>ຂອບເຂດ:</translation>
         </message>
         <message>
             <source>All uploads</source>
-            <translation>5. ທຸກການອັບໂຫຼດ</translation>
+            <translation>ທຸກການອັບໂຫຼດ</translation>
         </message>
         <message>
             <source>Videos</source>
-            <translation>6. ວິດີໂອ</translation>
+            <translation>ວິດີໂອ</translation>
         </message>
         <message>
             <source>Shorts</source>
-            <translation>7. Shorts</translation>
+            <translation>Shorts</translation>
         </message>
         <message>
             <source>Live</source>
-            <translation>8. ສົດ</translation>
+            <translation>ສົດ</translation>
         </message>
         <message>
             <source>Subtitles</source>
-            <translation>9. ຄຳບັນຍາຍ</translation>
+            <translation>ຄຳບັນຍາຍ</translation>
         </message>
         <message>
             <source>Download subtitle files alongside the video</source>
-            <translation>10. ດາວໂຫຼດໄຟລ໌ຄຳບັນຍາຍພ້ອມວິດີໂອ</translation>
+            <translation>ດາວໂຫຼດໄຟລ໌ຄຳບັນຍາຍພ້ອມວິດີໂອ</translation>
         </message>
         <message>
             <source>Language:</source>
@@ -5922,61 +6150,61 @@ and audio streams merged by ffmpeg after download.</source>
         </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
-            <translation>12. ລະຫັດພາສາ ເຊັ່ນ: en  ·  en.*,ja  ·  all</translation>
+            <translation>ລະຫັດພາສາ ເຊັ່ນ: en  ·  en.*,ja  ·  all</translation>
         </message>
         <message>
             <source>Auto-generated</source>
-            <translation>13. ສ້າງອັດຕະໂນມັດ</translation>
+            <translation>ສ້າງອັດຕະໂນມັດ</translation>
         </message>
         <message>
             <source>Include auto-generated captions when available</source>
-            <translation>14. ລວມຄຳບັນຍາຍທີ່ສ້າງອັດຕະໂນມັດເມື່ອມີ</translation>
+            <translation>ລວມຄຳບັນຍາຍທີ່ສ້າງອັດຕະໂນມັດເມື່ອມີ</translation>
         </message>
         <message>
             <source>Embed in video</source>
-            <translation>15. ຝັງໃນວິດີໂອ</translation>
+            <translation>ຝັງໃນວິດີໂອ</translation>
         </message>
         <message>
             <source>Embed subtitles into the video container</source>
-            <translation>16. ຝັງຄຳບັນຍາຍໃສ່ຄອນເທນເນີວິດີໂອ</translation>
+            <translation>ຝັງຄຳບັນຍາຍໃສ່ຄອນເທນເນີວິດີໂອ</translation>
         </message>
         <message>
             <source>Embedding requires mp4, mkv, or webm</source>
-            <translation>17. ການຝັງຕ້ອງໃຊ້ mp4, mkv ຫຼື webm</translation>
+            <translation>ການຝັງຕ້ອງໃຊ້ mp4, mkv ຫຼື webm</translation>
         </message>
         <message>
             <source>Embed thumbnail</source>
-            <translation>18. ຝັງຮູບຕົວຢ່າງ</translation>
+            <translation>ຝັງຮູບຕົວຢ່າງ</translation>
         </message>
         <message>
             <source>Embed cover art thumbnail into the video file (requires ffmpeg)</source>
-            <translation>19. ຝັງຮູບປົກໃສ່ໄຟລ໌ວິດີໂອ (ຕ້ອງໃຊ້ ffmpeg)</translation>
+            <translation>ຝັງຮູບປົກໃສ່ໄຟລ໌ວິດີໂອ (ຕ້ອງໃຊ້ ffmpeg)</translation>
         </message>
         <message>
             <source>Embed metadata</source>
-            <translation>20. ຝັງເມຕາເດຕ້າ</translation>
+            <translation>ຝັງເມຕາເດຕ້າ</translation>
         </message>
         <message>
             <source>Write title, uploader, chapters etc. into the container metadata</source>
-            <translation>21. ຂຽນຊື່, ຜູ້ອັບໂຫຼດ, ບົດ ແລະອື່ນໆ ໃສ່ເມຕາເດຕ້າຄອນເທນເນີ</translation>
+            <translation>ຂຽນຊື່, ຜູ້ອັບໂຫຼດ, ບົດ ແລະອື່ນໆ ໃສ່ເມຕາເດຕ້າຄອນເທນເນີ</translation>
         </message>
         <message>
             <source>SponsorBlock</source>
-            <translation>22. SponsorBlock</translation>
+            <translation>SponsorBlock</translation>
         </message>
         <message>
             <source>Remove sponsored segments, intros, outros and self-promotion
 (YouTube only · requires ffmpeg)</source>
-            <translation>23. ລຶບສ່ວນສະປອນເຊີ, ບົດນຳ, ບົດສົ່ງທ້າຍ ແລະ ໂປຣໂມດຕົນເອງ
+            <translation>ລຶບສ່ວນສະປອນເຊີ, ບົດນຳ, ບົດສົ່ງທ້າຍ ແລະ ໂປຣໂມດຕົນເອງ
 (YouTube ເທົ່ານັ້ນ · ຕ້ອງໃຊ້ ffmpeg)</translation>
         </message>
         <message>
             <source>KB/s  (blank = use global speed limit)</source>
-            <translation>24. KB/s  (ຫວ່າງ = ໃຊ້ຈຳກັດຄວາມໄວລວມ)</translation>
+            <translation>KB/s  (ຫວ່າງ = ໃຊ້ຈຳກັດຄວາມໄວລວມ)</translation>
         </message>
         <message>
             <source>Download Channel</source>
-            <translation>25. ດາວໂຫຼດຊ່ອງ</translation>
+            <translation>ດາວໂຫຼດຊ່ອງ</translation>
         </message>
         <message>
             <source>Download</source>
@@ -6153,177 +6381,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ດາວໂຫຼດວິດີໂອ</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>ສ້າງ Torrent</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>ໄຟລ໌ / ໂຟນເດີ້ຕົ້ນທາງ</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ ໄຟລ໌</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ ໂຟນເດີ້</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>ລຶບ</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>ລາກໄຟລ໌ ຫຼື ໂຟນເດີ້ມາທີ່ນີ້ ຫຼື ໃຊ້ປຸ່ມຂ້າງເທິງ</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>ຜົນລັບ</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>ບັນທຶກໃສ່:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>ທາງບັນທຶກໄຟລ໌ .torrent…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>ເລືອກ…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>ຊື່:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>ທາງເລືອກ — ຄ່າເລີ່ມຕົ້ນແມ່ນຊື່ໂຟນເດີ້/ໄຟລ໌</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>ຂະໜາດຊິ້ນ:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>ອັດຕະໂນມັດ</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 ຊິ້ນ × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>ຂໍ້ມູນເມຕາ</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>ຄຳເຫັນ:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>ຄຳເຫັນທາງເລືອກທີ່ຝັງໃນ .torrent</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>ຄຳອະທິບາຍ:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>ຄຳອະທິບາຍຂະຫຍາຍທາງເລືອກ</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>ສ້າງໂດຍ:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>ທໍເຣັນສ່ວນຕົວ (ປິດ DHT ແລະ PEX)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>ຕົວຕິດຕາມ</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>ໜຶ່ງ URL ຕໍ່ແຖວ</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>Web Seeds (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>1. https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>2. ເປີດ torrent ເມື່ອສ້າງ</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>3. ✓ ສ້າງ torrent ສຳເລັດ: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>4. ✗ ຜິດພາດ: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>5. ຍົກເລີກ</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>6. ກຳລັງ hash… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>7. %1 ຊິ້ນ × %2 ຕໍ່ຊິ້ນ</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>8. ຍົກເລີກ</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>9. ປິດ</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>10. ກຳລັງສ້າງ…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>ເປີດ Torrent</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>ສ້າງ Torrent…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>ເພີ່ມໄຟລ໌</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>ເພີ່ມໂຟນເດີ</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>ບັນທຶກ .torrent</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>ໄຟລ໌ Torrent (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>ທຸກໄຟລ໌ (*)</translation>
         </message>
     </context>
 </TS>

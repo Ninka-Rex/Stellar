@@ -73,6 +73,14 @@
             <translation>🛡️ %1 ला बाँड केले</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>बॅकअपसाठी कोणतेही गंतव्य निवडले नाही.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>आयात करण्यासाठी कोणतीही बॅकअप फाइल निवडली नाही.</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ %1 शी बांधलेले (ऑफलाइन — टोरेंट थांबले)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>स्थिती</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>जोडण्यापूर्वी लिंक्स तपासा. स्तंभ क्रमानुसार, आकारानुसार आणि पुनर्रचना करण्यासाठी खेचता येतात.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>फाइल नावांना व्हिलडकार्ड पॅटर्न (*) ने बदला</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>सर्व निवड रद्द करा</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>फक्त 'आढळले' असे चिन्हीत लिंक्स निवडता येतील. 'OK' दाबल्यानंतरही क्वी्यू नियुक्ती होईल.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>रद्द करा</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>SDM मध्ये लिंक आयात करा</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>डाउनलोड सूचीत जोडायचे दुवे तपासा आणि ओके क्लिक करा.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -335,13 +339,13 @@
         </message>
         <message>
             <source>Failed to grant permission: </source>
-            <translation>1. परवानगी देण्यात अयशस्वी: </translation>
+            <translation>परवानगी देण्यात अयशस्वी: </translation>
         </message>
         <message>
             <source>
 
 Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
-            <translation>2. 
+            <translation>
 
 व्यक्तिचलितपणे चालवा: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
@@ -506,20 +510,24 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>पूर्ण डाउनलोड मिळवा</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>क्या आपण स्टेलरच्या डाउनलोड यादीतील सर्व पूर्ण झालेल्या डाउनलोड्स मिळवू इच्छिता?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>पूर्ण डाउनलोड हटवायचे?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>टीप: हे फक्त यादीतून त्यांना हटवेल. डिस्कवरील फाईल्स मिळवल्या जात नाहीत.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>फक्त सूचीतून काढते. डिस्कवरील फाइल्स हटवल्या जात नाहीत.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>रद्द करा</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>हटवा</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>पूर्ण आणि सीडिंग टॉरेंट्स मिळवा</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>हो</translation>
         </message>
         <message>
             <source>No</source>
@@ -582,6 +590,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>फाईल माहिती</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 फाइल्स (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>सर्व फाइल्स (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -838,6 +854,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>वैश्विक मर्यादा सक्रिय: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>जागतिक मर्यादा सक्रिय: अमर्यादित</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>कोणतीही वैश्विक मर्यादा नाही</translation>
         </message>
@@ -897,10 +917,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>फाईल नाव कॉपी करा</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent निर्यात करा...</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>नवीनतम करा</translation>
         </message>
@@ -927,6 +943,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>File Name</source>
             <translation>फाईल नाव</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>निर्यात .torrent...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -969,6 +989,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>डाउनलोड केले</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>जोडल्याची तारीख</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>शेवटचा प्रयत्न</translation>
         </message>
@@ -987,18 +1011,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Parent web page</source>
             <translation>मूळ वेबपान</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>अडकलेले</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (रुकलेले)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>तपासत आहे (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1036,6 +1048,25 @@ Click  Add URL  to start.</source>
         <message>
             <source>%n selected downloads</source>
             <translation>%n निवडलेल्या डाउनलोड(े)</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>प्रलंबित</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (थांबले)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>तपासत आहे (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n फाइल(स)</translation>
         </message>
     </context>
     <context>
@@ -1196,20 +1227,12 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>कॉपी</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>मेटाडेटा</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>वर्णन</translation>
-        </message>
-        <message>
             <source>Created by</source>
-            <translation>3. निर्माता</translation>
+            <translation>निर्माता</translation>
         </message>
         <message>
             <source>Created on</source>
-            <translation>4. निर्मिती दिनांक</translation>
+            <translation>निर्मिती दिनांक</translation>
         </message>
         <message>
             <source>Category</source>
@@ -1300,8 +1323,16 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>पिस मॅप</translation>
         </message>
         <message>
+            <source>✓ Metadata</source>
+            <translation>✓ मेटाडेटा</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>आणत आहे…</translation>
+        </message>
+        <message>
             <source>Move...</source>
-            <translation>5. हलवा...</translation>
+            <translation>हलवा...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -1620,10 +1651,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>गती</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>उपलब्ध</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>अंतर: %1</translation>
         </message>
@@ -1667,10 +1694,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>बीज जोडा...</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>स्वार्मवरून घेतले...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1775,10 +1798,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>प्रकल्प नाव आणि सुरुवातीची पाने आवश्यक आहेत</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>स्टेलर ग्रॅबर – पायरी %1/%2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>सुरुवातीची पाना सेट करा</translation>
         </message>
@@ -1861,6 +1880,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>प्रकल्प</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>स्टेलर ग्रॅबर – पायरी %1 पैकी %2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2559,16 +2582,8 @@ Project</source>
             <translation>स्टॅटिस्टिक्स</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>स्थिती: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>निष्क्रिय</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>वेब पाने प्रक्रिया केली</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2580,6 +2595,22 @@ Project</source>
         </message>
         <message>
             <source>Files</source>
+            <translation>फाइल्स</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>स्थिती</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>स्थिती</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>वेब पृष्ठे</translation>
+        </message>
+        <message>
+            <source>FILES</source>
             <translation>फाइल्स</translation>
         </message>
         <message>
@@ -2672,6 +2703,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>सर्व फाईल्स (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>SDM निर्यात फाइल (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>मजकूर फाइल (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2812,15 +2851,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Create Torrent…</source>
-            <translation>6. टोरेंट तयार करा…</translation>
+            <translation>टोरेंट तयार करा…</translation>
         </message>
         <message>
             <source>Downloads</source>
             <translation>डाउनलोड</translation>
-        </message>
-        <message>
-            <source>Pause all</source>
-            <translation>सर्व थांबवा</translation>
         </message>
         <message>
             <source>Stop all</source>
@@ -2941,6 +2976,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Columns…</source>
             <translation>स्तंभ...</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>साधनपट्टी…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3101,10 +3140,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stellar Download Manager</source>
             <translation>स्टेलर डाउनलोड मॅनेजर</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>स्टेलर  ↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3862,20 +3897,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>गती मर्यादक</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>वैश्विक गती मर्यादा चालू करा</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>अधिकतम गती:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>वैश्विक अपलोड मर्यादा चालू करा</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3924,6 +3947,28 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>General</source>
             <translation>सामान्य</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>Stellar बॅकअप निर्यात करा</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>Stellar बॅकअप आयात करा</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>बॅकअप पूर्ण</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>तुमचा डेटा येथे निर्यात झाला:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>आयात पूर्ण</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4058,6 +4103,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>कोणतेही नाही</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>स्पीड लिमिटर सक्षम करा</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>जास्तीत जास्त डाउनलोड</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>एक दिवस गोळी दाबून टॉगल करा. नियम प्रत्येक मिनिटात तपासले जातात; पहिला जुळणारा नियम जिंकतो. नियम सक्रिय नसताना डाउनलोड आणि अपलोड मर्यादा स्वयंचलितपणे रद्द होतात.</translation>
         </message>
@@ -4080,10 +4133,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Show tips in bottom bar</source>
             <translation>खाली बारमध्ये टिप्स दाखवा</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>स्थिती बारमध्ये पूर्ण झालेल्या डाउनलोडची संख्या दाखवा</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4140,6 +4189,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>जेव्हा एखादा URL मॉनिटर केलेल्या फाइल प्रकारशी जुळतो तेव्हा तो क्लिपबोर्डमध्ये कॉपी केल्यावर Stellar डाउनलोड करण्याचा प्रश्न विचारेल. फक्त Browser › स्वयंचलितपणे खालील फाइल प्रकार डाउनलोड करा याखाली सूचीबद्ध फाइल प्रकार पकडले जातात.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>बॅकअप आणि पुनर्संचयित करा</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>सर्व काही निर्यात करा — सेटिंग्ज, डाउनलोड्स, टॉरेंट्स (त्यांच्या शेअर रेशोसह), रांगा, श्रेण्या आणि आकडेवारी — एकाच बॅकअप फाइलमध्ये. नंतर ती नवीन स्टेलर इंस्टॉलेशनमध्ये आयात करून सर्व पुनर्संचयित करा. आयात केल्याने सध्याचा डेटा बदलला जातो (टाइमस्टॅम्प केलेला बॅकअप ठेवला जातो) आणि स्टेलर रीस्टार्ट होते.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>सर्व डेटा निर्यात करा…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>डेटा आयात करा...</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4434,6 +4499,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>मेमरी-मॅप्ड: फाइल्स थेट मेमरीत मॅप केल्या जातात. विंडोज आणि लिनक्स कमी CPU वापरासह पेज कॅशेद्वारे टोरेंट डेटा वाचतात आणि लिहितात. बहुतेक वापरकर्त्यांसाठी शिफारस केलेले.</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>तुमचा डेटा यशस्वीरित्या पुनर्संचयित झाला. तो लागू करण्यासाठी स्टेलरला पुन्हा सुरू करावे लागेल.</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5077,18 +5146,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>अमर्यादित</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 वेग मर्यादित</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 प्रॉक्सी चालू</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 अपडेट तपासत आहे</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT बंद</translation>
         </message>
@@ -5109,14 +5166,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>पुढे &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 क्वी १ मिनिटात सुरू होईल</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 क्वी %1 मिनिटांत सुरू होईल</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>एकूण शेअर गुणोत्तर</translation>
@@ -5132,6 +5181,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>नेटवर्क कनेक्टिव्हिटी आढळली नाही</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>वेग मर्यादक</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>પ્રોક્સી ચાલુ</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>अद्यतने तपासत आहे</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5153,6 +5214,14 @@ Click to open Statistics</source>
             <source>Click to copy IP</source>
             <translation>IP कॉपी करा</translation>
         </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>रांग 1 मिनिटात चालेल</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>रांग %1 मिनिटांत चालेल</translation>
+        </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
@@ -5166,19 +5235,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>7. Stellar उघडा</translation>
+            <translation>Stellar उघडा</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>8. URL जोडा…</translation>
+            <translation>URL जोडा…</translation>
         </message>
         <message>
             <source>GitHub</source>
-            <translation>9. GitHub</translation>
+            <translation>GitHub</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation>10. Stellar बद्दल</translation>
+            <translation>Stellar बद्दल</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
@@ -5339,6 +5408,10 @@ Click to open Statistics</source>
             <translation>विभाजक जोडा</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>काढा</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>रीसेट करा</translation>
         </message>
@@ -5349,6 +5422,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>रद्द करा</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>टॉरेंट तयार करा</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>काढा</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>येथे सेव्ह करा:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>ब्राउझ करा…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>नाव:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>पीस आकार:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>ऑटो</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>आउटपुट फोल्डर निवडा</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>फाइल्स</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>स्रोत:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 अधिक)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>कोणताही स्रोत निवडलेला नाही</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>फाइल…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>फोल्डर…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>आउटपुट फोल्डर…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>टोरेंट नाव (पर्यायी)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 तुकडे × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 पीस × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>गुणधर्म</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>ट्रॅकर्स:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>पर्यायी</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>वेब सीड्स:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>प्रति ओळ एक URL (पर्यायी)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>खाजगी टोरेंट (DHT आणि PeX अक्षम करते)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ पूर्ण — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>हॅशिंग… %1%  (%2 तुकडे × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>पूर्ण झाल्यावर उघडा</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>टिप्पणी:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ त्रुटी: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>रद्द केले</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>रद्द करा</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>बंद करा</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>तयार करत आहे…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>टोरेंट उघडा</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>फाइल्स जोडा</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>फोल्डर जोडा</translation>
         </message>
     </context>
     <context>
@@ -5808,6 +6028,14 @@ Click to open Statistics</source>
             <translation>व्हिडिओ माहिती मिळवत आहे…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>सर्वोत्तम गुणवत्ता</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>फक्त ऑडिओ</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>व्हिडिओ माहिती मिळवू शकले नाही</translation>
         </message>
@@ -6140,177 +6368,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>व्हिडिओ डाउनलोड</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>टॉरेंट तयार करा</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>स्रोत फाइल्स / फोल्डर्स</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ फाइल्स</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ फोल्डर</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>काढा</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>फाइल्स किंवा फोल्डर्स इथे ड्रॅग करा किंवा वरील बटणे वापरा</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>आउटपुट</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>येथे सेव्ह करा:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>.torrent फाइल सेव्ह करण्याचा मार्ग…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>ब्राउझ करा…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>नाव:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>पर्यायी — फोल्डर/फाइल नावावर डीफॉल्ट</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>पीस आकार:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>ऑटो</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 पीस × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>मेटाडेटा</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>टिप्पणी:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>.torrent मध्ये एम्बेड केलेली पर्यायी टिप्पणी</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>वर्णन:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>पर्यायी विस्तारित वर्णन</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>तयार करणारा:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>खाजगी टॉरेंट (या टॉरेंटसाठी DHT आणि PEX अक्षम)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>ट्रॅकर्स</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>प्रति ओळ एक URL</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>वेब सीड्स (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>तयार झाल्यावर टोरेंट उघडा</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ टोरेंट यशस्वीरित्या तयार झाले: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ त्रुटी: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>रद्द केले</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>तुकडे हॅश होत आहेत… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 तुकडे × %2 प्रति तुकडा</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करा</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>बंद करा</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>तयार करत आहे…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>टोरेंट उघडा</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>टोरेंट तयार करा…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>फाइल्स जोडा</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>फोल्डर जोडा</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>.torrent फाइल सेव्ह करा</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>टोरेंट फाइल्स (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>सर्व फाइल्स (*)</translation>
         </message>
     </context>
 </TS>

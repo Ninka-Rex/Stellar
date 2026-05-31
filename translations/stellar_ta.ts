@@ -73,6 +73,14 @@
             <translation>🛡️ %1 உடன் இணைக்கப்பட்டது</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>காப்புப்படி இலக்கு தேர்வு செய்யப்படவில்லை.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>இறக்குமதி செய்ய காப்புப்படி கோப்பு தேர்வு செய்யப்படவில்லை.</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ %1 உடன் இணைக்கப்பட்டது (ஆஃப்லைன் — டொரண்டுகள் இடைநிறுத்தப்பட்டுள்ளன)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>நிலை</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>இணைப்புகளைச் சேர்ப்பதற்கு முன் மதிப்பாய்வு செய்க. நெடுவரிசைகளை வரிசைப்படுத்தலாம், மறுஅளவிடலாம், இழுத்து மறுவரிசைப்படுத்தலாம்.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>கோப்புப் பெயர்களை வைல்டுகார்டு வடிவத்தால் (*) மாற்று</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>அனைத்து தேர்வையும் விலக்கு</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>கண்டுபிடிக்கப்பட்டதாகக் குறிக்கப்பட்ட இணைப்புகள் மட்டுமே தேர்ந்தெடுக்கக்கூடியவை. சரி என்பதற்குப் பிறகு வரிசை ஒதுக்கீடு நிகழும்.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>ரத்து</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>SDM-க்கு இணைப்புகளை இறக்கு</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>பதிவிறக்க பட்டியலில் சேர்க்க விரும்பும் இணைப்புகளைத் தேர்வுசெய்து சரி என்பதைக் கிளிக் செய்யவும்.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -504,20 +508,24 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>முடிந்த பதிவிறக்கங்களை நீக்கு</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>ஸ்டெல்லரின் பதிவிறக்கப் பட்டியலில் உள்ள அனைத்து முடிந்த பதிவிறக்கங்களையும் நீக்க விரும்புகிறீர்களா?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>முடிந்த பதிவிறக்கங்களை நீக்கவா?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>குறிப்பு: இது பட்டியலிலிருந்து மட்டுமே நீக்கும். வட்டில் உள்ள கோப்புகள் நீக்கப்படாது.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>பட்டியலிலிருந்து மட்டும் நீக்கும். வட்டில் உள்ள கோப்புகள் நீக்கப்படாது.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ரத்துசெய்</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>நீக்கு</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>முடிந்த மற்றும் விதைக்கும் டொரண்டுகளை நீக்கு</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>ஆம்</translation>
         </message>
         <message>
             <source>No</source>
@@ -580,6 +588,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>கோப்புத் தகவலைப் பதிவிறக்கு</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 கோப்புகள் (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>அனைத்து கோப்புகளும் (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -836,6 +852,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>உலகளாவிய வரம்பு செயலில்: %1 கி.பை/வி</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>உலகளாவிய வரம்பு செயலில்: வரம்பற்றது</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>உலகளாவிய வரம்பு அமைக்கப்படவில்லை</translation>
         </message>
@@ -895,10 +915,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>கோப்புப் பெயரை நகலெடு</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent ஏற்றுமதி...</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>தொடர்</translation>
         </message>
@@ -925,6 +941,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>File Name</source>
             <translation>கோப்பு பெயர்</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>.torrent ஏற்றுமதி...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -967,6 +987,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>பதிவிறக்கம்</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>சேர்க்கப்பட்ட தேதி</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>கடைசி முயற்சி</translation>
         </message>
@@ -985,18 +1009,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Parent web page</source>
             <translation>மூலப்பக்கம்</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>நிலுவையில்</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (நிறுத்தப்பட்டது)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>சரிபார்க்கிறது (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1035,6 +1047,25 @@ Click  Add URL  to start.</source>
         <message>
             <source>%n selected downloads</source>
             <translation>%n தேர்ந்தெடுக்கப்பட்ட பதிவிறக்கங்கள்</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>நிலுவையில்</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (நிறுத்தப்பட்டது)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>சரிபார்க்கிறது (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n கோப்பு(கள்)</translation>
         </message>
     </context>
     <context>
@@ -1196,14 +1227,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>நகலெடு</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>மீதரவு</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>விளக்கம்</translation>
-        </message>
-        <message>
             <source>Created by</source>
             <translation>உருவாக்கியவர்</translation>
         </message>
@@ -1298,6 +1321,14 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>துண்டு வரைபடம்</translation>
+        </message>
+        <message>
+            <source>✓ Metadata</source>
+            <translation>✓ மெட்டாடேட்டா</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>பெறுகிறது…</translation>
         </message>
         <message>
             <source>Move...</source>
@@ -1620,10 +1651,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>வேகம்</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>கிடைக்கும்</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>தூரம்: %1</translation>
         </message>
@@ -1667,10 +1694,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>விதையைச் சேர்…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>கூட்டத்திலிருந்து பெறுகிறது...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1775,10 +1798,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>திட்டப் பெயர் மற்றும் தொடக்கப் பக்கம் தேவை.</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>ஸ்டெல்லர் கிராப்பர் – படி %1 / %2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>தொடக்கப் பக்கம் அமை</translation>
         </message>
@@ -1861,6 +1880,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>திட்டம்</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>ஸ்டெல்லர் கிராப்பர் - படி %1 / %2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2347,43 +2370,43 @@ Project</source>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>1. படி 1. வகையைத் தேர்ந்தெடு</translation>
+            <translation>படி 1. வகையைத் தேர்ந்தெடு</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
-            <translation>2. ஒருமுறை ஆய்வு/பதிவிறக்கம்</translation>
+            <translation>ஒருமுறை ஆய்வு/பதிவிறக்கம்</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>3. காலமுறை ஒத்திசைவு</translation>
+            <translation>காலமுறை ஒத்திசைவு</translation>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>4. படி 2. செயலைத் தேர்ந்தெடு</translation>
+            <translation>படி 2. செயலைத் தேர்ந்தெடு</translation>
         </message>
         <message>
             <source>Explore only</source>
-            <translation>5. ஆய்வு மட்டும்</translation>
+            <translation>ஆய்வு மட்டும்</translation>
         </message>
         <message>
             <source>Explore site and download matched files</source>
-            <translation>6. தளத்தை ஆய்ந்து பொருந்திய கோப்புகளைப் பதிவிறக்கு</translation>
+            <translation>தளத்தை ஆய்ந்து பொருந்திய கோப்புகளைப் பதிவிறக்கு</translation>
         </message>
         <message>
             <source>Download checked files</source>
-            <translation>7. தேர்ந்த கோப்புகளைப் பதிவிறக்கு</translation>
+            <translation>தேர்ந்த கோப்புகளைப் பதிவிறக்கு</translation>
         </message>
         <message>
             <source>After completion</source>
-            <translation>8. முடிந்த பிறகு</translation>
+            <translation>முடிந்த பிறகு</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>9. முடிந்ததும் ஸ்டெல்லாரிலிருந்து வெளியேறு</translation>
+            <translation>முடிந்ததும் ஸ்டெல்லாரிலிருந்து வெளியேறு</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>10. முடிந்ததும் கணினியை அணை</translation>
+            <translation>முடிந்ததும் கணினியை அணை</translation>
         </message>
         <message>
             <source>Shut down</source>
@@ -2564,16 +2587,8 @@ Project</source>
             <translation>கிராபர் புள்ளிவிவரம்</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>நிலை: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>செயலற்று</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>செயலாக்கப்பட்ட பக்கங்கள்</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2588,16 +2603,32 @@ Project</source>
             <translation>கோப்புகள்</translation>
         </message>
         <message>
+            <source>STATUS</source>
+            <translation>நிலை</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>நிலை</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>வலைப் பக்கங்கள்</translation>
+        </message>
+        <message>
+            <source>FILES</source>
+            <translation>கோப்புகள்</translation>
+        </message>
+        <message>
             <source>Total</source>
             <translation>மொத்தம்</translation>
         </message>
         <message>
             <source>Explored</source>
-            <translation>1. ஆராயப்பட்டது</translation>
+            <translation>ஆராயப்பட்டது</translation>
         </message>
         <message>
             <source>Matched</source>
-            <translation>2. பொருந்தியது</translation>
+            <translation>பொருந்தியது</translation>
         </message>
         <message>
             <source>Downloaded</source>
@@ -2612,27 +2643,27 @@ Project</source>
         <name>Main</name>
         <message>
             <source>Tasks</source>
-            <translation>5. பணிகள்</translation>
+            <translation>பணிகள்</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>6. URL சேர்…</translation>
+            <translation>URL சேர்…</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>7. SDM பதிவிறக்கங்கள்</translation>
+            <translation>SDM பதிவிறக்கங்கள்</translation>
         </message>
         <message>
             <source>This YouTube download looks like it needs login cookies.</source>
-            <translation>8. இந்த YouTube பதிவிறக்கத்திற்கு உள்நுழைவு குக்கிகள் தேவை.</translation>
+            <translation>இந்த YouTube பதிவிறக்கத்திற்கு உள்நுழைவு குக்கிகள் தேவை.</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>9. உலாவியிலிருந்து குக்கிகள்:</translation>
+            <translation>உலாவியிலிருந்து குக்கிகள்:</translation>
         </message>
         <message>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
-            <translation>10. Stellar அந்த உலாவியின் குக்கிகளுடன் அதே yt-dlp உருப்படியை மீண்டும் முயற்சிக்கும்.</translation>
+            <translation>Stellar அந்த உலாவியின் குக்கிகளுடன் அதே yt-dlp உருப்படியை மீண்டும் முயற்சிக்கும்.</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2677,6 +2708,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>அனைத்து கோப்புகளும் (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>SDM ஏற்றுமதி கோப்பு (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>உரை கோப்பு (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2825,10 +2864,6 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <translation>பதிவிறக்கங்கள்</translation>
         </message>
         <message>
-            <source>Pause all</source>
-            <translation>அனைத்தையும் இடைநிறுத்து</translation>
-        </message>
-        <message>
             <source>Stop all</source>
             <translation>அனைத்தையும் நிறுத்து</translation>
         </message>
@@ -2947,6 +2982,10 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
         <message>
             <source>Columns…</source>
             <translation>நெடுவரிசைகள்…</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>கருவிப்பட்டை…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3107,10 +3146,6 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
         <message>
             <source>Stellar Download Manager</source>
             <translation>ஸ்டெல்லார் பதிவிறக்க மேலாளர்</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>ஸ்டெல்லார்  ↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3868,20 +3903,8 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <translation>வேக வரம்பு</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>உலகளாவிய வேக வரம்பை இயக்கு</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>அதிகபட்ச வேகம்:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>கி.பை/வி</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>உலகளாவிய பதிவேற்ற வரம்பை இயக்கு</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3930,6 +3953,28 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
         <message>
             <source>General</source>
             <translation>பொது</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>ஸ்டெல்லார் காப்பு ஏற்றுமதி</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>ஸ்டெல்லார் காப்பு இறக்குமதி</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>காப்பு முடிந்தது</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>உங்கள் தரவு ஏற்றுமதி செய்யப்பட்டது:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>இறக்குமதி முடிந்தது</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4064,6 +4109,14 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <translation>ஏதுமில்லை</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>வேக வரம்பை இயக்கு</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>அதிகபட்ச பதிவிறக்கம்:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>நாள் பொத்தானைக் கிளிக் செய்து மாற்றவும். விதிகள் ஒவ்வொரு நிமிடமும் மதிப்பிடப்படும்; முதல் பொருந்தும் விதியே வெல்லும். எந்த விதியும் செயலில் இல்லாதபோது திட்டமிடப்பட்ட பதிவிறக்க மற்றும் பதிவேற்ற வரம்புகள் தானாகவே அழிக்கப்படும்.</translation>
         </message>
@@ -4086,10 +4139,6 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
         <message>
             <source>Show tips in bottom bar</source>
             <translation>கீழ்ப்பட்டையில் குறிப்புகளைக் காட்டு</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>நிலைப்பட்டையில் முடிந்த பதிவிறக்க எண்ணிக்கையைக் காட்டு</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4146,6 +4195,22 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>கண்காணிக்கும் கோப்பு வகை URL நகலெடுக்கப்பட்டால், பதிவிறக்க வேண்டுமா என Stellar கேட்கும். உலாவி › தானியங்கு பதிவிறக்க கோப்பு வகைகளில் உள்ளவை மட்டுமே கண்டறியப்படும்.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>காப்பு &amp; மீட்டமை</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>எல்லாவற்றையும் — அமைப்புகள், பதிவிறக்கங்கள், டொரண்டுகள் (பகிர்வு விகிதங்களுடன்), வரிசைகள், வகைகள் மற்றும் புள்ளிவிவரங்கள் — ஒரே காப்பு கோப்பில் ஏற்றுமதி செய்க. புதிய Stellar நிறுவலில் இறக்குமதி செய்து அனைத்தையும் மீட்டமைக்கவும். இறக்குமதி செய்வது தற்போதைய தரவை மாற்றும் (நேரமுத்திரையிட்ட காப்பு வைக்கப்படும்) மற்றும் Stellar மறுதொடக்கம் செய்யும்.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>எல்லா தரவையும் ஏற்றுமதி செய்…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>தரவை இறக்குமதி செய்…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4444,6 +4509,10 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
             <translation>நினைவக-வரைபடம்: கோப்புகள் நேரடியாக நினைவகத்தில் வரைபடமாக்கப்படுகின்றன. விண்டோஸ் மற்றும் லினக்ஸ் குறைந்த CPU பயன்பாட்டுடன் பக்க தற்காலிக சேமிப்பு வழியாக டொரண்ட் தரவைப் படித்து எழுதுகின்றன. பெரும்பாலான பயனர்களுக்கு பரிந்துரைக்கப்படுகிறது.</translation>
         </message>
         <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>உங்கள் தரவு வெற்றிகரமாக மீட்டமைக்கப்பட்டது. அதைப் பயன்படுத்த Stellar மறுதொடக்கம் செய்ய வேண்டும்.</translation>
+        </message>
+        <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
             <translation>POSIX: நினைவக-வரைபடமின்றி நிலையான கோப்பு அழைப்புகள் வழியாக படித்தல் மற்றும் எழுதுதல் நடைபெறும். நினைவக-வரைபடத்தை விட குறைவான முகவரி இடத்தைப் பயன்படுத்துகிறது, இது 32-பிட் அமைப்புகளில் அல்லது பல பெரிய டொரண்டுகளை ஒரே நேரத்தில் விதைக்கும்போது உதவியாக இருக்கும்.</translation>
         </message>
@@ -4705,43 +4774,43 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
         </message>
         <message>
             <source>Interface Language</source>
-            <translation>1. இடைமுக மொழி</translation>
+            <translation>இடைமுக மொழி</translation>
         </message>
         <message>
             <source>Select the language used throughout the Stellar interface. A restart is required for all text to update.</source>
-            <translation>2. ஸ்டெல்லர் இடைமுகம் முழுவதும் பயன்படுத்தப்படும் மொழியைத் தேர்ந்தெடுக்கவும். அனைத்து உரைகளும் புதுப்பிக்க மறுதொடக்கம் தேவை.</translation>
+            <translation>ஸ்டெல்லர் இடைமுகம் முழுவதும் பயன்படுத்தப்படும் மொழியைத் தேர்ந்தெடுக்கவும். அனைத்து உரைகளும் புதுப்பிக்க மறுதொடக்கம் தேவை.</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation>3. மொழி:</translation>
+            <translation>மொழி:</translation>
         </message>
         <message>
             <source>A restart is required after changing the language.</source>
-            <translation>4. மொழியை மாற்றிய பின் மறுதொடக்கம் தேவை.</translation>
+            <translation>மொழியை மாற்றிய பின் மறுதொடக்கம் தேவை.</translation>
         </message>
         <message>
             <source>Restart Required</source>
-            <translation>5. மறுதொடக்கம் தேவை</translation>
+            <translation>மறுதொடக்கம் தேவை</translation>
         </message>
         <message>
             <source>A restart is required for the language change to take effect. Restart now?</source>
-            <translation>6. மொழி மாற்றம் நடைமுறைக்கு வர மறுதொடக்கம் தேவை. இப்போது மறுதொடக்கம் செய்யவா?</translation>
+            <translation>மொழி மாற்றம் நடைமுறைக்கு வர மறுதொடக்கம் தேவை. இப்போது மறுதொடக்கம் செய்யவா?</translation>
         </message>
         <message>
             <source>Restart Now</source>
-            <translation>7. இப்போது மறுதொடக்கம்</translation>
+            <translation>இப்போது மறுதொடக்கம்</translation>
         </message>
         <message>
             <source>Later</source>
-            <translation>8. பின்னர்</translation>
+            <translation>பின்னர்</translation>
         </message>
         <message>
             <source>Check for updates</source>
-            <translation>9. புதுப்பிப்புகளைச் சரிபார்</translation>
+            <translation>புதுப்பிப்புகளைச் சரிபார்</translation>
         </message>
         <message>
             <source>What's New</source>
-            <translation>10. புதியவை</translation>
+            <translation>புதியவை</translation>
         </message>
         <message>
             <source>Build date</source>
@@ -5085,18 +5154,6 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
             <translation>வரம்பற்ற</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 வேக வரம்பு</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 ப்ராக்ஸி இயக்கத்தில்</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 புதுப்பிப்புகளைச் சரிபார்க்கிறது</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT முடக்கு</translation>
         </message>
@@ -5117,14 +5174,6 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
             <translation>அடுத்து &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 1 நிமிடத்தில் வரிசை இயங்கும்</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 %1 நிமிடங்களில் வரிசை இயங்கும்</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>எல்லா கால பகிர்வு விகிதம்
@@ -5136,15 +5185,27 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Listening port: </source>
-            <translation>1. கேட்கும் துறை:</translation>
+            <translation>கேட்கும் துறை:</translation>
         </message>
         <message>
             <source>No network connectivity detected</source>
             <translation>நெட்வொர்க் இணைப்பு இல்லை</translation>
         </message>
         <message>
+            <source>Speed limiter </source>
+            <translation>வேக வரம்பி</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>ப்ராக்ஸி இயக்கு</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>புதுப்பிப்புகளைச் சரிபார்க்கிறது</translation>
+        </message>
+        <message>
             <source>No incoming connections, network may be misconfigured</source>
-            <translation>2. உள்வரும் இணைப்புகள் இல்லை, பிணையம் தவறாக உள்ளமைக்கப்பட்டிருக்கலாம்</translation>
+            <translation>உள்வரும் இணைப்புகள் இல்லை, பிணையம் தவறாக உள்ளமைக்கப்பட்டிருக்கலாம்</translation>
         </message>
         <message>
             <source>WiFi: </source>
@@ -5161,6 +5222,14 @@ Click to open Statistics</source>
         <message>
             <source>Click to copy IP</source>
             <translation>IP நகலெடுக்க கிளிக் செய்க</translation>
+        </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>1 நிமிடத்தில் வரிசை இயங்கும்</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>%1 நிமிடங்களில் வரிசை இயங்கும்</translation>
         </message>
     </context>
     <context>
@@ -5226,7 +5295,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Stop All</source>
-            <translation>8. அனைத்தையும் நிறுத்து</translation>
+            <translation>அனைத்தையும் நிறுத்து</translation>
         </message>
         <message>
             <source>Delete</source>
@@ -5234,7 +5303,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Delete Done</source>
-            <translation>10. முடிந்ததை நீக்கு</translation>
+            <translation>முடிந்ததை நீக்கு</translation>
         </message>
         <message>
             <source>Options</source>
@@ -5348,6 +5417,10 @@ Click to open Statistics</source>
             <translation>பிரிப்பான் சேர்</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>நீக்கு</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>மீட்டமை</translation>
         </message>
@@ -5358,6 +5431,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>ரத்துசெய்</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>டொரண்ட் உருவாக்கு</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>நீக்கு</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>சேமி:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>உலாவு…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>பெயர்:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>துண்டு அளவு:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>தானி</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>வெளியீட்டு கோப்புறையைத் தேர்ந்தெடு</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>கோப்புகள்</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>மூலம்:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 மேலும்)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>மூலம் தேர்ந்தெடுக்கப்படவில்லை</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>கோப்பு…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>கோப்புறை…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>வெளியீட்டு கோப்புறை…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>டொரண்ட் பெயர் (விருப்பம்)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 துண்டுகள் × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 துண்டுகள் × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>பண்புகள்</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>கண்காணிப்பான்கள்:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>விருப்பம்</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>வலை விதைகள்:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>ஒரு வரிக்கு ஒரு URL (விருப்பம்)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>தனிப்பட்ட டொரண்ட் (DHT மற்றும் PeX முடக்கும்)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ முடிந்தது — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>ஹாஷிங்… %1%  (%2 துண்டுகள் × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>முடிந்ததும் திற</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>கருத்து:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ பிழை: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>ரத்துசெய்யப்பட்டது</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ரத்துசெய்</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>மூடு</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>உருவாக்குகிறது…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>திற</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>கோப்புகளைச் சேர்</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>கோப்புறை சேர்</translation>
         </message>
     </context>
     <context>
@@ -5817,6 +6037,14 @@ Click to open Statistics</source>
             <translation>வீடியோ தகவல் பெறுகிறது…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>சிறந்த தரம்</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>ஆடியோ மட்டும்</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>வீடியோ தகவலைப் பெற முடியவில்லை</translation>
         </message>
@@ -6150,177 +6378,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>வீடியோ பதிவிறக்கம்</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>டொரண்ட் உருவாக்கு</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>மூல கோப்புகள் / கோப்புறைகள்</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ கோப்புகள்</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ கோப்புறை</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>நீக்கு</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>கோப்புகள்/கோப்புறைகளை இழுத்து விடவும் அல்லது மேலே உள்ள பொத்தான்களைப் பயன்படுத்தவும்</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>வெளியீடு</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>சேமி:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>.torrent கோப்பைச் சேமிக்கும் பாதை…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>உலாவு…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>பெயர்:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>விருப்பம் — கோப்புறை/கோப்பின் பெயருக்கு இயல்பாகும்</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>துண்டு அளவு:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>தானி</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 துண்டுகள் × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>மீதரவு</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>கருத்து:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>.torrent-இல் உட்பொதிக்கப்பட்ட விருப்ப கருத்து</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>விளக்கம்:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>விருப்ப விரிவான விளக்கம்</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>உருவாக்கியவர்:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>தனியார் டொரண்ட் (இந்த டொரண்டிற்கு DHT மற்றும் PEX முடக்கப்பட்டுள்ளது)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>கண்காணிப்பான்கள்</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>ஒரு வரிக்கு ஒரு URL</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>வலை விதைகள் (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>உருவாக்கும்போது திற</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ டொரன்ட் வெற்றியாக உருவாக்கப்பட்டது: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ பிழை: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>ரத்துசெய்யப்பட்டது</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>துண்டுகளை ஹேஷ் செய்கிறது… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 துண்டுகள் × %2/துண்டு</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ரத்துசெய்</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>மூடு</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>உருவாக்குகிறது…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>திற</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>உருவாக்கு…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>கோப்புகளைச் சேர்</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>கோப்புறை சேர்</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>.torrent சேமி</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>Torrent கோப்புகள் (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>அனைத்து கோப்புகள் (*)</translation>
         </message>
     </context>
 </TS>

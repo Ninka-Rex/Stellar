@@ -73,6 +73,14 @@
             <translation>🛡️ Kapcsolva: %1</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>Nincs kiválasztott cél a biztonsági mentéshez.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>Nincs kiválasztott biztonsági mentés fájl az importáláshoz.</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ %1-hez kötve (offline — torrentek szüneteltetve)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>Státusz</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Néze a linkeket hozzáadás előtt. Az oszlopok rendezhetők, méretezhetők és húzhatók.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>Fájlnév helyett kódszimbólum (*) használata</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>Jelölések törlése</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Csak a 'Talált' linkek választhatók. A sorozat hozzáadása az OK után történik.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>Mégse</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>Hivatkozások importálása SDM-be</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>Jelöld be a letöltési listához adandó linkeket, majd kattints az OK gombra.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -236,35 +240,35 @@
         </message>
         <message>
             <source>Select save directory</source>
-            <translation>1. Mentési mappa kiválasztása</translation>
+            <translation>Mentési mappa kiválasztása</translation>
         </message>
         <message>
             <source>Select save path</source>
-            <translation>2. Mentési útvonal kiválasztása</translation>
+            <translation>Mentési útvonal kiválasztása</translation>
         </message>
         <message>
             <source>URL:</source>
-            <translation>3. URL:</translation>
+            <translation>URL:</translation>
         </message>
         <message>
             <source>Description:</source>
-            <translation>4. Leírás:</translation>
+            <translation>Leírás:</translation>
         </message>
         <message>
             <source>Referer:</source>
-            <translation>5. Hivatkozó:</translation>
+            <translation>Hivatkozó:</translation>
         </message>
         <message>
             <source>Login:</source>
-            <translation>6. Bejelentkezés:</translation>
+            <translation>Bejelentkezés:</translation>
         </message>
         <message>
             <source>Password:</source>
-            <translation>7. Jelszó:</translation>
+            <translation>Jelszó:</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>8. Mentés</translation>
+            <translation>Mentés</translation>
         </message>
     </context>
     <context>
@@ -504,20 +508,24 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Fejezett letöltések törlése</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Biztosan törli az összes fejezett letöltést a Stellar listájáról?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>Törlöd a befejezett letöltéseket?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Megjegyzés: Csak a listáról távolítja el őket. A lemezen lévő fájlok nem kerülnek törlésre.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>Csak listából távolítja el. A lemezen lévő fájlok nem törlődnek.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Mégse</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Törlés</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>Fejezett és magolási torrentek törlése</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>Igen</translation>
         </message>
         <message>
             <source>No</source>
@@ -580,6 +588,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>Fájl letöltése</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 fájl (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Minden fájl (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -836,6 +852,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Globális korlát aktív: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>Globális korlát aktív: korlátlan</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>Nincs globális korlát</translation>
         </message>
@@ -895,10 +915,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Név másolása</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent exportálása...</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>Folytatás</translation>
         </message>
@@ -925,6 +941,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>File Name</source>
             <translation>Fájlnév</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>.torrent exportálása…</translation>
         </message>
         <message>
             <source>Size</source>
@@ -967,6 +987,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Letöltve</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>Hozzáadva</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>Utolsó próbálkozás</translation>
         </message>
@@ -985,18 +1009,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Parent web page</source>
             <translation>Szülő weboldal</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Függőben</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1%% (Leállítva)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>Ellenőrzés (%1%%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1035,6 +1047,25 @@ Kattintson az Add URL gombra az indításhoz.</translation>
         <message>
             <source>%n selected downloads</source>
             <translation>%n letöltés kiválasztva</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>Függőben</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (Leállítva)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>Ellenőrzés (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n fájl</translation>
         </message>
     </context>
     <context>
@@ -1086,11 +1117,11 @@ Később az Opciók → Letöltések menüpontban módosíthatja.</translation>
         <name>ExportDialog</name>
         <message>
             <source>Export Downloads</source>
-            <translation>9. Letöltések exportálása</translation>
+            <translation>Letöltések exportálása</translation>
         </message>
         <message>
             <source>Select items to export:</source>
-            <translation>10. Exportálandó elemek kiválasztása:</translation>
+            <translation>Exportálandó elemek kiválasztása:</translation>
         </message>
         <message>
             <source>Export downloads in the selected queue</source>
@@ -1196,14 +1227,6 @@ Később az Opciók → Letöltések menüpontban módosíthatja.</translation>
             <translation>Másolás</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>Metaadatok</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Leírás</translation>
-        </message>
-        <message>
             <source>Created by</source>
             <translation>Készítette</translation>
         </message>
@@ -1298,6 +1321,14 @@ Később az Opciók → Letöltések menüpontban módosíthatja.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Darab térkép</translation>
+        </message>
+        <message>
+            <source>✓ Metadata</source>
+            <translation>✓ Metaadat</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>Letöltés…</translation>
         </message>
         <message>
             <source>Move...</source>
@@ -1620,10 +1651,6 @@ Később az Opciók → Letöltések menüpontban módosíthatja.</translation>
             <translation>Sebesség</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>Elérhető</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>Távolság: %1</translation>
         </message>
@@ -1667,10 +1694,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>Csírázó hozzáadása…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>Származás lekérése…</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1775,10 +1798,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>A projektnevet és az induló oldalt meg kell adni.</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – %1. lépés %2-ből: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>Induló oldal beállítása</translation>
         </message>
@@ -1861,6 +1880,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>Projekt</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – %1/%2. lépés: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2342,7 +2365,7 @@ Project</source>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>1. Típus kiválasztása</translation>
+            <translation>Típus kiválasztása</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
@@ -2354,7 +2377,7 @@ Project</source>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>2. Akció kiválasztása</translation>
+            <translation>Akció kiválasztása</translation>
         </message>
         <message>
             <source>Explore only</source>
@@ -2402,7 +2425,7 @@ Project</source>
         </message>
         <message>
             <source>Step 3.  Schedule</source>
-            <translation>3. Lépés: Naptár</translation>
+            <translation>Lépés: Naptár</translation>
         </message>
         <message>
             <source>Start download at</source>
@@ -2559,16 +2582,8 @@ Project</source>
             <translation>Szúrógép statisztika</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>Állapot: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>Tétlen</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>Feldolgozott weboldalak</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2581,6 +2596,22 @@ Project</source>
         <message>
             <source>Files</source>
             <translation>Fájlok</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>ÁLLAPOT</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>Állapot</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>WEBOLDALAK</translation>
+        </message>
+        <message>
+            <source>FILES</source>
+            <translation>FÁJLOK</translation>
         </message>
         <message>
             <source>Total</source>
@@ -2672,6 +2703,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>Minden fájl (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>SDM exportfájl (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>Szövegfájl (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2814,10 +2853,6 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <translation>Letöltések</translation>
         </message>
         <message>
-            <source>Pause all</source>
-            <translation>Szüneteltetés</translation>
-        </message>
-        <message>
             <source>Stop all</source>
             <translation>Megállítás</translation>
         </message>
@@ -2936,6 +2971,10 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
         <message>
             <source>Columns…</source>
             <translation>Oszlopok...</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>Eszköztár…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3096,10 +3135,6 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
         <message>
             <source>Stellar Download Manager</source>
             <translation>Stellar Letöltés Kezelő</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar ↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3857,20 +3892,8 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <translation>Sebességkorlát</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>Globális letöltési korlát engedélyezése</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>Maximális letöltés:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>Globális feltöltési korlát engedélyezése</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3919,6 +3942,28 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
         <message>
             <source>General</source>
             <translation>Általános</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>Stellar biztonsági mentés exportálása</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>Stellar biztonsági mentés importálása</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>Biztonsági mentés kész</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>Adatok exportálva ide:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>Importálás kész</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4053,6 +4098,14 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <translation>Nincs</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>Sebességkorlát be</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>Max. letöltés:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Nap pillájának kattintásával kapcsolhatja be/kikapcsolhatja. A szabályok minden percben értékelődnek; az első egyezést tartalmazó szabály érvényes. A tervezett letöltési és feltöltési korlátok automatikusan törlődnek, ha nincs aktív szabály.</translation>
         </message>
@@ -4075,10 +4128,6 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
         <message>
             <source>Show tips in bottom bar</source>
             <translation>Tippok megjelenítése alsó sávban</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>Kész letöltések száma megjelenítése státuszszávon</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4135,6 +4184,22 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>Stellar kérdezni fogja a letöltést. Csak a 'Browser › Letöltés' listában szereplő fájltípusok.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>Bizt. mentés és visszaállítás</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Minden exportálása — beállítások, letöltések, torrentek (megosztási arányokkal), sorok, kategóriák és statisztikák — egyetlen biztonsági fájlba. Később importálhatja egy friss Stellar telepítésbe a teljes visszaállításhoz. Az importálás felülírja a jelenlegi adatokat (időbélyeges biztonsági mentés megmarad) és újraindítja a Stellart.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>Összes adat exportálása…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>Adatok importálása…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4425,6 +4490,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>Memóriába képezett: a fájlok közvetlenül a memóriába kerülnek. A Windows és Linux a lapgyorsítótáron át kezeli a torrent adatokat, minimális CPU-használattal. A legtöbb felhasználónak ajánlott.</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>Az adatok visszaállítása sikerült. A Stellar újraindul az alkalmazáshoz.</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5068,18 +5137,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>korlátlan</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Sebességkorlátozó</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 Proxy bekapcsolva</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 Frissítés keresése</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT ki</translation>
         </message>
@@ -5100,14 +5157,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>következő &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 Sorban 1 perc</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 Sorban %1 perc</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Összes arány</translation>
@@ -5123,6 +5172,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>Nincs hálózati kapcsolat</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>Sebességkorlát</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>Proxy be</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Frissítések keresése</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5143,6 +5204,14 @@ Click to open Statistics</source>
         <message>
             <source>Click to copy IP</source>
             <translation>Statisztikák megnyitása</translation>
+        </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>Sor 1 perc múlva fut</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>Sor %1 perc múlva fut</translation>
         </message>
     </context>
     <context>
@@ -5330,6 +5399,10 @@ Click to open Statistics</source>
             <translation>Elválasztó hozzáadása</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>Eltávolítás</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>Visszaállítás</translation>
         </message>
@@ -5340,6 +5413,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>Mégse</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Torrent létrehozása</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Eltávolítás</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Mentés helye:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Tallózás…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Név:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Darabméret:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Automatikus</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>Kimeneti mappa választása</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>Fájlok</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>Forrás:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 további)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>Nincs forrás kiválasztva</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>Fájl…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>Mappa…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>Kimeneti mappa…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>Torrent név (opcionális)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 darab × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 darab × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>Tulajdonságok</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>Követők:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>Opcionális</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>Web seedek:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>Egy URL soronként (opcionális)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>Privát torrent (DHT és PeX kikapcsolva)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ Kész — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>Hashelés… %1%  (%2 darab × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>Megnyitás ha kész</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Megjegyzés:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Hiba: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Megszakítva</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Mégse</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Bezárás</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Létrehozás…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Torrent megnyitása</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Fájlok hozzáadása</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Mappa hozzáadása</translation>
         </message>
     </context>
     <context>
@@ -5800,6 +6020,14 @@ Click to open Statistics</source>
             <translation>Videó adatok lekérése…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>Legjobb minőség</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>Csak hang</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>Nem sikerült lekérni a videó adatait</translation>
         </message>
@@ -6132,177 +6360,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Videó letöltése</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>Torrent létrehozása</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>Forrásfájlok / mappák</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ Fájlok</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ Mappa</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Eltávolítás</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>Húzzon ide fájlokat vagy mappákat, vagy használja a fenti gombokat</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>Kimenet</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>Mentés helye:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>.torrent fájl mentési útvonala…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>Tallózás…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>Név:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>Opcionális — alapértelmezés: mappa/fájlnév</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>Darabméret:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>Automatikus</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 darab × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>Metaadatok</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>Megjegyzés:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>Opcionális megjegyzés a .torrent fájlban</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>Leírás:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>Opcionális bővebb leírás</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>Készítette:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>Privát torrent (DHT és PEX letiltva)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>Trackerek</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>Soronként egy URL</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>Web seed-ek (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>Megnyitás létrehozás után</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ Torrent létrehozva: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ Hiba: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>Megszakítva</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>Darabok hashelése… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 darab × %2 / darab</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Mégse</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Bezárás</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>Létrehozás…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>Torrent megnyitása</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>Torrent létrehozása…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>Fájlok hozzáadása</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>Mappa hozzáadása</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>.torrent mentése</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>Torrent fájlok (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>Minden fájl (*)</translation>
         </message>
     </context>
 </TS>

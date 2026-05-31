@@ -73,6 +73,14 @@
             <translation>🛡️ Ejikọtara na %1</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>Ọ nweghị ebe nchekwa ahọpụtara maka ndabere.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>Ọ nweghị faịlụ ndabere ahọpụtara ibubata.</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ Ejikọtara na %1 (anọghị n'ịntanetị — torrents kwụsịrị)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>Ọnọdụ</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Nyochaa njikọ tupu ịgbakwunye. Enwere ike ịhazi kọlụm, gbanwee nha, ma dọrọ iji megharịa.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>Jiri akara ọhịa (*) dochie aha faịlụ</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>Wepụ nlele niile</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Naanị njikọ akara 'Achọtara' ka a na-ahọrọ. Ịnye n'ahịrị ka na-eme mgbe Ọ DỊ MMA.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>Kagbuo</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>Bubata njikọ na SDM</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>Lelee njikọ ndị ịchọrọ itinye na ndepụta nbudata wee pịa ỌDỊMMA.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -505,20 +509,24 @@ Jiri aka gị mee: flatpak override --user --talk-name=org.freedesktop.Flatpak o
             <translation>Hichapụ Nbudata Emechara</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Ị ji n'aka na ị chọrọ ihichapụ nbudata niile emechara na ndepụta nbudata Stellar?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>Hichapụ nbudata emechara?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Mara: Nke a ga-ewepụ ha naanị na ndepụta ahụ. A gaghị ehichapụ faịlụ dị na diski.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>Na-ewepụ naanị na ndepụta. Faịlụ dị na diski anaghị ehichapụ.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Kagbuo</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Hichapụ</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>Hichapụ torrent emechara na nke na-ekesa</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>Ee</translation>
         </message>
         <message>
             <source>No</source>
@@ -581,6 +589,14 @@ Jiri aka gị mee: flatpak override --user --talk-name=org.freedesktop.Flatpak o
         <message>
             <source>Download File Info</source>
             <translation>Ozi faịlụ ebudatara</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>Faịlụ %1 (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Faịlụ niile (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -837,6 +853,10 @@ Jiri aka gị mee: flatpak override --user --talk-name=org.freedesktop.Flatpak o
             <translation>Oke zuru ụwa ọnụ na-arụ ọrụ: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>Oke zuru ụwa ọnụ na-arụ ọrụ: enweghị oke</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>Enweghị oke zuru ụwa ọnụ</translation>
         </message>
@@ -896,10 +916,6 @@ Jiri aka gị mee: flatpak override --user --talk-name=org.freedesktop.Flatpak o
             <translation>Detuo aha faịlụ</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>Bupụ .torrent…</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>Gaa n'ihu</translation>
         </message>
@@ -926,6 +942,10 @@ Jiri aka gị mee: flatpak override --user --talk-name=org.freedesktop.Flatpak o
         <message>
             <source>File Name</source>
             <translation>Aha Faịlụ</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>Bupụta .torrent...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -968,6 +988,10 @@ Jiri aka gị mee: flatpak override --user --talk-name=org.freedesktop.Flatpak o
             <translation>Ebudatara</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>Ụbọchị agbakwunyere</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>Ụbọchị nnwale ikpeazụ</translation>
         </message>
@@ -986,18 +1010,6 @@ Jiri aka gị mee: flatpak override --user --talk-name=org.freedesktop.Flatpak o
         <message>
             <source>Parent web page</source>
             <translation>Ibe weebụ nne na nna</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Na-echere</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (Akwụsịla)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>Na-enyocha (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1035,6 +1047,25 @@ Click  Add URL  to start.</source>
         <message>
             <source>%n selected downloads</source>
             <translation>%n nbudata ahọpụtara</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>Na-echere</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (Akwụsịla)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>Na-enyocha (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>Faịlụ %n</translation>
         </message>
     </context>
     <context>
@@ -1196,14 +1227,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ṅomi</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>Metadata</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Nkọwa</translation>
-        </message>
-        <message>
             <source>Created by</source>
             <translation>Onye kere</translation>
         </message>
@@ -1298,6 +1321,14 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>Mapụ Iberibe</translation>
+        </message>
+        <message>
+            <source>✓ Metadata</source>
+            <translation>✓ Metadata</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>Na-eweta…</translation>
         </message>
         <message>
             <source>Move...</source>
@@ -1620,10 +1651,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Ọsọ</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>Dị</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>Ebe dị anya: %1</translation>
         </message>
@@ -1667,10 +1694,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>Tinye mkpụrụ…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>Na-eweta site na ìgwè...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1775,10 +1798,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>Aha ọrụ na ibe mmalite dị mkpa.</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – Nzọụkwụ %1 n'ime %2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>Tinye ibe mmalite</translation>
         </message>
@@ -1861,6 +1880,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>Ọrụ</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – Nzọụkwụ %1 nke %2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2565,16 +2588,8 @@ Project</source>
             <translation>Ọnụọgụgụ Grabber</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>Ọnọdụ: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>Nọrọ nkịtị</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>Ibe weebụ a haziri</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2587,6 +2602,22 @@ Project</source>
         <message>
             <source>Files</source>
             <translation>Faịlụ</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>ỌNỌDỤ</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>Ọnọdụ</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>IBE WEBỤ</translation>
+        </message>
+        <message>
+            <source>FILES</source>
+            <translation>FAỊLỤ</translation>
         </message>
         <message>
             <source>Total</source>
@@ -2680,6 +2711,14 @@ Project</source>
             <translation>Faịlụ niile (*)</translation>
         </message>
         <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>Faịlụ Mbupụ SDM (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>Faịlụ ederede (*.txt)</translation>
+        </message>
+        <message>
             <source>Total: %1</source>
             <translation>Ngụkọta: %1</translation>
         </message>
@@ -2733,13 +2772,13 @@ A na-atụ aro ka ị kechie Stellar na netwọk VPN ma nyochaa na VPN gị na-a
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>1. Aghọtara m, Gbanye</translation>
+            <translation>Aghọtara m, Gbanye</translation>
         </message>
         <message>
             <source>You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the &quot;Download File Info&quot; dialog.
 
 You can turn this off in Settings → Downloads.</source>
-            <translation>2. Ị pịa bọtịnụ 'Budata Emechaa', mana Stellar amalitelarị ibudata akụkụ nke faịlụ ahụ. Stellar na-amalite ibudata mgbe ọ na-egosi mkparịtaụka 'Budata Ozi Faịlụ'.
+            <translation>Ị pịa bọtịnụ 'Budata Emechaa', mana Stellar amalitelarị ibudata akụkụ nke faịlụ ahụ. Stellar na-amalite ibudata mgbe ọ na-egosi mkparịtaụka 'Budata Ozi Faịlụ'.
 
 Ị nwere ike ịgbanyụ nke a na Ntọala → Nbudata.</translation>
         </message>
@@ -2749,33 +2788,33 @@ You can turn this off in Settings → Downloads.</source>
         </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
-            <translation>4. Enweghị ike ibudata faịlụ “%1”.</translation>
+            <translation>Enweghị ike ibudata faịlụ “%1”.</translation>
         </message>
         <message>
             <source>The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata.</source>
-            <translation>5. Ihe nkesa weghachiri ibe weebụ kama faịlụ a tụrụ anya ya. Ụfọdụ saịtị na-ehichapụ faịlụ ozugbo Stellar jụrụ metadata ha.</translation>
+            <translation>Ihe nkesa weghachiri ibe weebụ kama faịlụ a tụrụ anya ya. Ụfọdụ saịtị na-ehichapụ faịlụ ozugbo Stellar jụrụ metadata ha.</translation>
         </message>
         <message>
             <source>To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:
 Stellar Options → Browser → Bypass Download Interception</source>
-            <translation>6. Ka ihe nchọgharị gị budata ozugbo, jide igodo mgbanwe (Alt, Ctrl, ma ọ bụ Shift) ka ị na-pịa njikọ ahụ. Hazie igodo ahụ na:
+            <translation>Ka ihe nchọgharị gị budata ozugbo, jide igodo mgbanwe (Alt, Ctrl, ma ọ bụ Shift) ka ị na-pịa njikọ ahụ. Hazie igodo ahụ na:
 Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
         </message>
         <message>
             <source>Open Browser Settings</source>
-            <translation>7. Mepee Ntọala Ihe Nchọgharị</translation>
+            <translation>Mepee Ntọala Ihe Nchọgharị</translation>
         </message>
         <message>
             <source>Version %1 is available.</source>
-            <translation>8. Ụdị %1 dị.</translation>
+            <translation>Ụdị %1 dị.</translation>
         </message>
         <message>
             <source>Update Now</source>
-            <translation>9. Melite Ugbu a</translation>
+            <translation>Melite Ugbu a</translation>
         </message>
         <message>
             <source>Add Torrent File…</source>
-            <translation>10. Tinye Faịlụ Torrent…</translation>
+            <translation>Tinye Faịlụ Torrent…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
@@ -2824,10 +2863,6 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
         <message>
             <source>Downloads</source>
             <translation>Nbudata</translation>
-        </message>
-        <message>
-            <source>Pause all</source>
-            <translation>Kwụsịtụ niile</translation>
         </message>
         <message>
             <source>Stop all</source>
@@ -2948,6 +2983,10 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
         <message>
             <source>Columns…</source>
             <translation>Kọlụm…</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>Ogwe ngwaọrụ…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3108,10 +3147,6 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
         <message>
             <source>Stellar Download Manager</source>
             <translation>Njikwa Nbudata Stellar</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar  ↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3869,20 +3904,8 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
             <translation>Oke Ọsọ</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>Gbanye oke ọsọ zuru ụwa ọnụ</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>Ọsọ kachasị:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>Gbanye oke nnyefe zuru ụwa ọnụ</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3931,6 +3954,28 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
         <message>
             <source>General</source>
             <translation>Izugbe</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>Bupụta Nchekwa Stellar</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>Bubata Nchekwa Stellar</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>Nchekwa Emechara</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>Ebupụtara data gị na:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>Mbubata Emechara</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4065,6 +4110,14 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
             <translation>Ọ dịghị</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>Gbanye ihe mgbochi ọsọ</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>Nbudata kachasị:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Pịa mkpụrụ ụbọchị iji gbanwee ya. A na-enyocha iwu kwa nkeji; iwu mbụ dabara na-emeri. A na-ekpochapụ oke nbudata na nnyefe akwadoro na-akpaghị aka mgbe ọ nweghị iwu na-arụ ọrụ.</translation>
         </message>
@@ -4087,10 +4140,6 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
         <message>
             <source>Show tips in bottom bar</source>
             <translation>Gosi ndụmọdụ na ogwe ala</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>Gosi ọnụọgụ nbudata emechara na ogwe ọkwa</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4147,6 +4196,22 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>Mgbe e depụtaghachiri URL dabara na ụdị faịlụ a na-enyocha na klipbọọdụ, Stellar ga-ajụ ma ị chọrọ ibudata ya. Naanị ụdị faịlụ ndị edepụtara n'okpuru Ihe Nchọgharị › Malite ibudata ụdị faịlụ ndị a na-akpaghị aka ka a na-eburu.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>Nchekwa &amp; Weghachi</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Bupụ ihe niile — ntọala, nbudata, torrents (yana oke nkekọrịta ha), kwụ n'ahịrị, ngalaba na ọnụọgụ — gaa n'otu faịlụ nchekwa. Bubata ya ma emechaa n'ime nrụnye Stellar ọhụrụ iji weghachi ya niile. Mbubata na-edochi data dị ugbu a (a na-edobe nchekwa nwere akara oge) ma malitegharịa Stellar.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>Bupụ Data Niile…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>Bubata Data…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4445,6 +4510,10 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
             <translation>Ebe nchekwa eserese: faịlụ na-abanye ozugbo na ebe nchekwa. Windows na Linux na-agụ ma na-ede data torrent site na cache peeji na-eji CPU pere mpe. A na-atụ aro maka ọtụtụ ndị ọrụ.</translation>
         </message>
         <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>E weghachiri data gị nke ọma. Stellar kwesịrị ịmalitegharị iji tinye ya.</translation>
+        </message>
+        <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
             <translation>POSIX: ọgụgụ na ederede na-aga site na oku faịlụ ọkọlọtọ na-enweghị eserese ebe nchekwa. Na-eji ohere adreesị dị nta karịa eserese ebe nchekwa, nke nwere ike inye aka na sistemụ 32-bit ma ọ bụ mgbe ị na-ekesa ọtụtụ nnukwu torrent n'otu oge.</translation>
         </message>
@@ -4466,39 +4535,39 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
         </message>
         <message>
             <source>Require encryption</source>
-            <translation>1. Chọọ izo ya ezo</translation>
+            <translation>Chọọ izo ya ezo</translation>
         </message>
         <message>
             <source>Allow encryption</source>
-            <translation>2. Kwe ka izo ya ezo</translation>
+            <translation>Kwe ka izo ya ezo</translation>
         </message>
         <message>
             <source>Blocked user agents</source>
-            <translation>3. Ndị ọrụ mgbochi</translation>
+            <translation>Ndị ọrụ mgbochi</translation>
         </message>
         <message>
             <source>One substring per line. If a peer client string contains any line above, Stellar auto-bans that peer until the matching line is removed and the settings are applied.</source>
-            <translation>4. Otu nkebi n'ahịrị. Ọ bụrụ na eriri ndị ọgbọ nwere ahịrị ọ bụla dị n'elu, Stellar na-akpaghị aka machibido onye ọgbọ ahụ ruo mgbe ewepụrụ ahịrị dabara adaba ma tinye ntọala.</translation>
+            <translation>Otu nkebi n'ahịrị. Ọ bụrụ na eriri ndị ọgbọ nwere ahịrị ọ bụla dị n'elu, Stellar na-akpaghị aka machibido onye ọgbọ ahụ ruo mgbe ewepụrụ ahịrị dabara adaba ma tinye ntọala.</translation>
         </message>
         <message>
             <source>Manually ban peer</source>
-            <translation>5. Jiri aka machibido onye ọgbọ</translation>
+            <translation>Jiri aka machibido onye ọgbọ</translation>
         </message>
         <message>
             <source>IP address, for example 203.0.113.42</source>
-            <translation>6. Adreesị IP, dịka ọmụmaatụ 203.0.113.42</translation>
+            <translation>Adreesị IP, dịka ọmụmaatụ 203.0.113.42</translation>
         </message>
         <message>
             <source>Ban</source>
-            <translation>7. Machibido</translation>
+            <translation>Machibido</translation>
         </message>
         <message>
             <source>Manual bans are permanent until you remove them from the banned peers list below.</source>
-            <translation>8. Mmachibido aka na-adịgide adịgide ruo mgbe iwepụrụ ha na ndepụta ndị ọgbọ amachibidoro n'okpuru.</translation>
+            <translation>Mmachibido aka na-adịgide adịgide ruo mgbe iwepụrụ ha na ndepụta ndị ọgbọ amachibidoro n'okpuru.</translation>
         </message>
         <message>
             <source>Block peers by country</source>
-            <translation>9. Gbochie ndị ọgbọ site na mba</translation>
+            <translation>Gbochie ndị ọgbọ site na mba</translation>
         </message>
         <message>
             <source>Add</source>
@@ -5086,18 +5155,6 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
             <translation>enweghị oke</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Ihe mgbochi ọsọ</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 Proxy gbanyere</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 Na-enyocha mmelite</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT gbanyụrụ</translation>
         </message>
@@ -5118,14 +5175,6 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
             <translation>ọzọ &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 Kwụ n'ahịrị na-agba n'ime nkeji 1</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 Kwụ n'ahịrị na-agba n'ime nkeji %1</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Oke nkekọrịta oge niile
@@ -5142,6 +5191,18 @@ Pịa imeghe Ọnụọgụ</translation>
         <message>
             <source>No network connectivity detected</source>
             <translation>Ahụghị njikọ netwọk</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>Ihe mgbochi ọsọ</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>Proxy gbanyere</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Na-enyocha mmelite</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5162,6 +5223,14 @@ Pịa imeghe Ọnụọgụ</translation>
         <message>
             <source>Click to copy IP</source>
             <translation>Pịa iṅomi IP</translation>
+        </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>Usoro ga-amalite n'ime nkeji 1</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>Usoro ga-amalite n'ime nkeji %1</translation>
         </message>
     </context>
     <context>
@@ -5349,6 +5418,10 @@ Pịa imeghe Ọnụọgụ</translation>
             <translation>Tinye nkewa</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>Wepụ</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>Tọgharịa</translation>
         </message>
@@ -5359,6 +5432,153 @@ Pịa imeghe Ọnụọgụ</translation>
         <message>
             <source>Cancel</source>
             <translation>Kagbuo</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Mepụta Torrent</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Wepụ</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Chekwaa na:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Chọgharịa…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Aha:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Nha iberibe:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Akpaka</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>Họrọ nchekwa mmepụta</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>Faịlụ</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>Isi iyi:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 ọzọ)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>Ọ nweghị isi iyi ahọpụtara</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>Faịlụ…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>Nchekwa…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>Nchekwa mmepụta…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>Aha torrent (nhọrọ)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 iberibe × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 iberibe × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>Njirimara</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>Ndị nsochi:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>Nhọrọ</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>Mkpụrụ weebụ:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>Otu URL n'ahịrị (nhọrọ)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>Torrent nzuzo (na-agbanyụ DHT na PeX)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ Emechara — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>Na-ahapụ… %1%  (%2 iberibe × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>Mepee mgbe emechara</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Okwu nkọwa:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Njehie: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Akagbuola</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Kagbuo</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Mechie</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Na-emepụta…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Mepee Torrent</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Tinye Faịlụ</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Tinye Nchekwa</translation>
         </message>
     </context>
     <context>
@@ -5818,6 +6038,14 @@ Pịa imeghe Ọnụọgụ</translation>
             <translation>Na-eweta ozi vidiyo…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>Ogo kacha mma</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>Naanị ụda</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>Enweghị ike iweta ozi vidiyo</translation>
         </message>
@@ -6150,177 +6378,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Nbudata Vidiyo</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>Mepụta Torrent</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>Faịlụ / Nchekwa isi</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ Faịlụ</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ Nchekwa</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Wepụ</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>Dọrọ faịlụ ma ọ bụ nchekwa ebe a, ma ọ bụ jiri bọtịnụ dị n'elu</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>Mpụta</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>Chekwaa na:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>Ụzọ ichekwa faịlụ .torrent…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>Chọgharịa…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>Aha:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>Nhọrọ — na-adaba na aha nchekwa/faịlụ</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>Nha iberibe:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>Akpaka</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 iberibe × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>Metadata</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>Okwu nkọwa:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>Okwu nkọwa nhọrọ etinyere na .torrent</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>Nkọwa:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>Nkọwa gbasaa nhọrọ</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>Onye mepụtara:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>Torrent nzuzo (DHT na PEX agbanyụrụ maka torrent a)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>Ndị na-eso ụzọ</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>Otu URL n'ahịrị</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>Mkpụrụ Weebụ (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>1. https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>2. Mepee torrent mgbe emepụtara</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>3. ✓ Torrent emepụtara nke ọma: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>4. ✗ Njehie: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>5. Akagbuola</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>6. Na-ahazi iberibe… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>7. %1 iberibe × %2 n'otu iberibe</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>8. Kagbuo</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>9. Mechie</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>10. Na-emepụta…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>Mepee Torrent</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>Mepụta Torrent…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>Tinye Faịlụ</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>Tinye Nchekwa</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>Chekwaa faịlụ .torrent</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>Faịlụ Torrent (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>Faịlụ niile (*)</translation>
         </message>
     </context>
 </TS>

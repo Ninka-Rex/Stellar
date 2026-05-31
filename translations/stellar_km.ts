@@ -4,54 +4,54 @@
         <name>AddExceptionDialog</name>
         <message>
             <source>Add to Address Exceptions?</source>
-            <translation>1. បន្ថែមទៅករណីលើកលែងអាសយដ្ឋាន?</translation>
+            <translation>បន្ថែមទៅករណីលើកលែងអាសយដ្ឋាន?</translation>
         </message>
         <message>
             <source>This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?</source>
-            <translation>2. អាសយដ្ឋាននេះត្រូវបានបោះបង់ពីរដង។ តើអ្នកចង់បន្ថែមវាទៅក្នុងបញ្ជីករណីលើកលែងដើម្បីកុំឱ្យ Stellar ស្ទាក់ចាប់វាដោយស្វ័យប្រវត្តិទេ?</translation>
+            <translation>អាសយដ្ឋាននេះត្រូវបានបោះបង់ពីរដង។ តើអ្នកចង់បន្ថែមវាទៅក្នុងបញ្ជីករណីលើកលែងដើម្បីកុំឱ្យ Stellar ស្ទាក់ចាប់វាដោយស្វ័យប្រវត្តិទេ?</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>3. ទេ</translation>
+            <translation>ទេ</translation>
         </message>
         <message>
             <source>Add Exception</source>
-            <translation>4. បន្ថែមករណីលើកលែង</translation>
+            <translation>បន្ថែមករណីលើកលែង</translation>
         </message>
         <message>
             <source>Add Address Exception</source>
-            <translation>5. បន្ថែមករណីលើកលែងអាសយដ្ឋាន</translation>
+            <translation>បន្ថែមករណីលើកលែងអាសយដ្ឋាន</translation>
         </message>
     </context>
     <context>
         <name>AddUrlDialog</name>
         <message>
             <source>URL</source>
-            <translation>6. URL</translation>
+            <translation>URL</translation>
         </message>
         <message>
             <source>Use Authorization</source>
-            <translation>7. ប្រើការអនុញ្ញាត</translation>
+            <translation>ប្រើការអនុញ្ញាត</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>8. ចូល</translation>
+            <translation>ចូល</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>9. ពាក្យសម្ងាត់</translation>
+            <translation>ពាក្យសម្ងាត់</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>10. បោះបង់</translation>
+            <translation>បោះបង់</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>11. យល់ព្រម</translation>
+            <translation>យល់ព្រម</translation>
         </message>
         <message>
             <source>Add URL</source>
-            <translation>12. បន្ថែម URL</translation>
+            <translation>បន្ថែម URL</translation>
         </message>
     </context>
     <context>
@@ -62,15 +62,23 @@
         </message>
         <message>
             <source>Stellar is shutting down...</source>
-            <translation>20. Stellar កំពុងបិទ...</translation>
+            <translation>Stellar កំពុងបិទ...</translation>
         </message>
         <message>
             <source>Stellar is starting up...</source>
-            <translation>21. Stellar កំពុងចាប់ផ្ដើម...</translation>
+            <translation>Stellar កំពុងចាប់ផ្ដើម...</translation>
         </message>
         <message>
             <source>🛡️ Bound to %1</source>
-            <translation>22. 🛡️ ចងភ្ជាប់ទៅ %1</translation>
+            <translation>🛡️ ចងភ្ជាប់ទៅ %1</translation>
+        </message>
+        <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>មិនបានជ្រើសទិសដៅសម្រាប់ការបម្រុងទុកទេ។</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>មិនបានជ្រើសឯកសារបម្រុងទុកដើម្បីនាំចូលទេ។</translation>
         </message>
         <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
@@ -81,15 +89,15 @@
         <name>BatchDownloadDialog</name>
         <message>
             <source>Batch Download</source>
-            <translation>23. ទាញយកជាក្រុម</translation>
+            <translation>ទាញយកជាក្រុម</translation>
         </message>
         <message>
             <source>Generate the links here, then continue to the review step.</source>
-            <translation>24. បង្កើតតំណនៅទីនេះ បន្ទាប់មកបន្តទៅជំហានពិនិត្យឡើងវិញ។</translation>
+            <translation>បង្កើតតំណនៅទីនេះ បន្ទាប់មកបន្តទៅជំហានពិនិត្យឡើងវិញ។</translation>
         </message>
         <message>
             <source>Address:</source>
-            <translation>25. អាសយដ្ឋាន៖</translation>
+            <translation>អាសយដ្ឋាន៖</translation>
         </message>
         <message>
             <source>Replace asterisk with</source>
@@ -159,10 +167,6 @@
             <translation>ស្ថានភាព</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>ពិនិត្យតំណមុនពេលបន្ថែម។ ជួរឈរអាចតម្រៀប ប្ដូរទំហំ និងអូសដើម្បីរៀបចំឡើងវិញ។</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>ជំនួសឈ្មោះឯកសារដោយគំរូសញ្ញាផ្កាយ (*)</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>ដកធីកទាំងអស់</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>មានតែតំណដែលសម្គាល់ថារកឃើញប៉ុណ្ណោះដែលអាចជ្រើសរើសបាន។ ការដាក់ចូលជួរនៅតែកើតឡើងបន្ទាប់ពីយល់ព្រម។</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>បោះបង់</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>នាំចូលតំណទៅ SDM</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>ពិនិត្យតំណដែលអ្នកចង់បន្ថែមទៅបញ្ជីទាញយក ហើយចុច យល់ព្រម។</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -271,27 +275,27 @@
         <name>BrowserIntegrationDialog</name>
         <message>
             <source>Install the Stellar extension in your browser to intercept downloads and route them to Stellar automatically.</source>
-            <translation>1. ដំឡើងផ្នែកបន្ថែម Stellar ក្នុងកម្មវិធីរុករក ដើម្បីចាប់យកការទាញយក និងបញ្ជូនទៅ Stellar ដោយស្វ័យប្រវត្តិ។</translation>
+            <translation>ដំឡើងផ្នែកបន្ថែម Stellar ក្នុងកម្មវិធីរុករក ដើម្បីចាប់យកការទាញយក និងបញ្ជូនទៅ Stellar ដោយស្វ័យប្រវត្តិ។</translation>
         </message>
         <message>
             <source>Chrome / Edge / Brave</source>
-            <translation>2. Chrome / Edge / Brave</translation>
+            <translation>Chrome / Edge / Brave</translation>
         </message>
         <message>
             <source>Install directly from the Chrome Web Store</source>
-            <translation>3. ដំឡើងដោយផ្ទាល់ពី Chrome Web Store</translation>
+            <translation>ដំឡើងដោយផ្ទាល់ពី Chrome Web Store</translation>
         </message>
         <message>
             <source>Open Link</source>
-            <translation>4. បើកតំណ</translation>
+            <translation>បើកតំណ</translation>
         </message>
         <message>
             <source>Firefox</source>
-            <translation>5. Firefox</translation>
+            <translation>Firefox</translation>
         </message>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
-            <translation>6. ដំឡើង Firefox XPI គ្មានការអាប់ដេតស្វ័យប្រវត្តិ</translation>
+            <translation>ដំឡើង Firefox XPI គ្មានការអាប់ដេតស្វ័យប្រវត្តិ</translation>
         </message>
         <message>
             <source>Snap Firefox detected — won't work with Stellar</source>
@@ -347,85 +351,85 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         </message>
         <message>
             <source>Native Messaging Host</source>
-            <translation>7. ម៉ាស៊ីនផ្ញើសារដើម</translation>
+            <translation>ម៉ាស៊ីនផ្ញើសារដើម</translation>
         </message>
         <message>
             <source>Stellar registers itself automatically so the extension can communicate with it.</source>
-            <translation>8. Stellar ចុះឈ្មោះខ្លួនឯងដោយស្វ័យប្រវត្តិ ដើម្បីឲ្យផ្នែកបន្ថែមអាចទំនាក់ទំនងជាមួយវាបាន។</translation>
+            <translation>Stellar ចុះឈ្មោះខ្លួនឯងដោយស្វ័យប្រវត្តិ ដើម្បីឲ្យផ្នែកបន្ថែមអាចទំនាក់ទំនងជាមួយវាបាន។</translation>
         </message>
         <message>
             <source>Registered successfully.</source>
-            <translation>9. បានចុះឈ្មោះដោយជោគជ័យ។</translation>
+            <translation>បានចុះឈ្មោះដោយជោគជ័យ។</translation>
         </message>
         <message>
             <source>Registration failed — see details below.</source>
-            <translation>10. ការចុះឈ្មោះបរាជ័យ — សូមមើលព័ត៌មានលម្អិតខាងក្រោម។</translation>
+            <translation>ការចុះឈ្មោះបរាជ័យ — សូមមើលព័ត៌មានលម្អិតខាងក្រោម។</translation>
         </message>
         <message>
             <source>Registering…</source>
-            <translation>11. កំពុងចុះឈ្មោះ…</translation>
+            <translation>កំពុងចុះឈ្មោះ…</translation>
         </message>
         <message>
             <source>Try again</source>
-            <translation>12. ព្យាយាមម្តងទៀត</translation>
+            <translation>ព្យាយាមម្តងទៀត</translation>
         </message>
         <message>
             <source>Manual installation:</source>
-            <translation>13. ការដំឡើងដោយដៃ៖</translation>
+            <translation>ការដំឡើងដោយដៃ៖</translation>
         </message>
         <message>
             <source>Run in Command Prompt (no admin required):</source>
-            <translation>14. រត់ក្នុង Command Prompt (មិនត្រូវការអ្នកគ្រប់គ្រង)៖</translation>
+            <translation>រត់ក្នុង Command Prompt (មិនត្រូវការអ្នកគ្រប់គ្រង)៖</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation>15. ចម្លង</translation>
+            <translation>ចម្លង</translation>
         </message>
         <message>
             <source>Copied</source>
-            <translation>16. បានចម្លង</translation>
+            <translation>បានចម្លង</translation>
         </message>
         <message>
             <source>Run in a terminal:</source>
-            <translation>17. រត់ក្នុងស្ថានីយ៖</translation>
+            <translation>រត់ក្នុងស្ថានីយ៖</translation>
         </message>
         <message>
             <source>Browser Extensions</source>
-            <translation>18. ផ្នែកបន្ថែមកម្មវិធីរុករក</translation>
+            <translation>ផ្នែកបន្ថែមកម្មវិធីរុករក</translation>
         </message>
     </context>
     <context>
         <name>CategoryModel</name>
         <message>
             <source>All Downloads</source>
-            <translation>19. រាល់ការទាញយក</translation>
+            <translation>រាល់ការទាញយក</translation>
         </message>
         <message>
             <source>Video</source>
-            <translation>20. វីដេអូ</translation>
+            <translation>វីដេអូ</translation>
         </message>
         <message>
             <source>Music</source>
-            <translation>21. តន្ត្រី</translation>
+            <translation>តន្ត្រី</translation>
         </message>
         <message>
             <source>Documents</source>
-            <translation>22. ឯកសារ</translation>
+            <translation>ឯកសារ</translation>
         </message>
         <message>
             <source>Compressed</source>
-            <translation>23. បង្រួម</translation>
+            <translation>បង្រួម</translation>
         </message>
         <message>
             <source>Programs</source>
-            <translation>24. កម្មវិធី</translation>
+            <translation>កម្មវិធី</translation>
         </message>
     </context>
     <context>
         <name>ColumnsDialog</name>
         <message>
             <source>Columns</source>
-            <translation>25. ជួរឈរ</translation>
+            <translation>ជួរឈរ</translation>
         </message>
         <message>
             <source>Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.</source>
@@ -506,20 +510,24 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>លុបការទាញយកដែលបានបញ្ចប់</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>តើអ្នកប្រាកដថាចង់លុបការទាញយកដែលបានបញ្ចប់ទាំងអស់ពីបញ្ជីទាញយករបស់ Stellar ដែរឬទេ?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>លុបការទាញយកដែលបានបញ្ចប់?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>ចំណាំ៖ វានឹងគ្រាន់តែលុបពួកវាចេញពីបញ្ជីប៉ុណ្ណោះ។ ឯកសារនៅលើថាសនឹងមិនត្រូវបានលុបទេ។</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>ដកចេញពីបញ្ជីតែប៉ុណ្ណោះ។ ឯកសារនៅលើថាសមិនត្រូវបានលុបទេ។</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>បោះបង់</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>លុប</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>លុប torrent ដែលបានបញ្ចប់ និងកំពុងផ្សព្វផ្សាយ</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>បាទ/ចាស</translation>
         </message>
         <message>
             <source>No</source>
@@ -582,6 +590,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>ព័ត៌មានឯកសារទាញយក</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>ឯកសារ %1 (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>ឯកសារទាំងអស់ (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -838,6 +854,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>កំណត់សកលសកម្ម៖ %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>ដែនកំណត់សកលសកម្ម៖ គ្មានដែនកំណត់</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>គ្មានកំណត់សកល</translation>
         </message>
@@ -897,10 +917,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ចម្លងឈ្មោះឯកសារ</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>នាំចេញ .torrent…</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>បន្ត</translation>
         </message>
@@ -927,6 +943,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>File Name</source>
             <translation>ឈ្មោះឯកសារ</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>នាំចេញ .torrent...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -969,6 +989,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>បានទាញយក</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>កាលបរិច្ឆេទបន្ថែម</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>កាលបរិច្ឆេទសាកចុងក្រោយ</translation>
         </message>
@@ -987,18 +1011,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Parent web page</source>
             <translation>ទំព័រមេ</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>កំពុងរង់ចាំ</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (បានបញ្ឈប់)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>កំពុងពិនិត្យ (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1037,6 +1049,25 @@ Click  Add URL  to start.</source>
         <message>
             <source>%n selected downloads</source>
             <translation>%n ការទាញយកដែលបានជ្រើស</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>កំពុងរង់ចាំ</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (បានបញ្ឈប់)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>កំពុងពិនិត្យ (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n ឯកសារ</translation>
         </message>
     </context>
     <context>
@@ -1198,14 +1229,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ចម្លង</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>ទិន្នន័យមេតា</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>ការពិពណ៌នា</translation>
-        </message>
-        <message>
             <source>Created by</source>
             <translation>បង្កើតដោយ</translation>
         </message>
@@ -1300,6 +1323,14 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>ផែនទីដុំ</translation>
+        </message>
+        <message>
+            <source>✓ Metadata</source>
+            <translation>✓ ទិន្នន័យមេតា</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>កំពុងទាញយក…</translation>
         </message>
         <message>
             <source>Move...</source>
@@ -1611,80 +1642,72 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>DL</source>
-            <translation>1. ទាញយក</translation>
+            <translation>ទាញយក</translation>
         </message>
         <message>
             <source>Both</source>
-            <translation>2. ទាំងពីរ</translation>
+            <translation>ទាំងពីរ</translation>
         </message>
         <message>
             <source>Speed</source>
-            <translation>3. ល្បឿន</translation>
-        </message>
-        <message>
-            <source>Available</source>
-            <translation>4. មាន</translation>
+            <translation>ល្បឿន</translation>
         </message>
         <message>
             <source>Distance: %1</source>
-            <translation>5. ចម្ងាយ៖ %1</translation>
+            <translation>ចម្ងាយ៖ %1</translation>
         </message>
         <message>
             <source>Country: %1</source>
-            <translation>6. ប្រទេស៖ %1</translation>
+            <translation>ប្រទេស៖ %1</translation>
         </message>
         <message>
             <source>%1 known peers</source>
-            <translation>7. %1 ភៀរដែលស្គាល់</translation>
+            <translation>%1 ភៀរដែលស្គាល់</translation>
         </message>
         <message>
             <source>%n tracker(s)</source>
-            <translation>8. %n ត្រាកឃ័រ</translation>
+            <translation>%n ត្រាកឃ័រ</translation>
         </message>
         <message>
             <source>Tell every tracker you're here right now, instead of waiting for the
 normal announce interval. Useful if your peer count suddenly dropped.</source>
-            <translation>9. ប្រាប់គ្រប់ត្រាកឃ័រថាអ្នកនៅទីនេះឥឡូវនេះ ជំនួសឱ្យការរង់ចាំចន្លោះពេលប្រកាសធម្មតា។ មានប្រយោជន៍ប្រសិនបើចំនួនភៀររបស់អ្នកធ្លាក់ចុះភ្លាមៗ។</translation>
+            <translation>ប្រាប់គ្រប់ត្រាកឃ័រថាអ្នកនៅទីនេះឥឡូវនេះ ជំនួសឱ្យការរង់ចាំចន្លោះពេលប្រកាសធម្មតា។ មានប្រយោជន៍ប្រសិនបើចំនួនភៀររបស់អ្នកធ្លាក់ចុះភ្លាមៗ។</translation>
         </message>
         <message>
             <source>Reannouncing...</source>
-            <translation>10. កំពុងប្រកាសឡើងវិញ...</translation>
+            <translation>កំពុងប្រកាសឡើងវិញ...</translation>
         </message>
         <message>
             <source>Add trackers…</source>
-            <translation>11. បន្ថែមត្រាកឃ័រ…</translation>
+            <translation>បន្ថែមត្រាកឃ័រ…</translation>
         </message>
         <message>
             <source>%1 added</source>
-            <translation>12. %1 បានបន្ថែម</translation>
+            <translation>%1 បានបន្ថែម</translation>
         </message>
         <message>
             <source>%1 added, %2 failed</source>
-            <translation>13. %1 បានបន្ថែម, %2 បរាជ័យ</translation>
+            <translation>%1 បានបន្ថែម, %2 បរាជ័យ</translation>
         </message>
         <message>
             <source>%n seed(s)</source>
-            <translation>14. %n ស៊ីដ</translation>
+            <translation>%n ស៊ីដ</translation>
         </message>
         <message>
             <source>Add seed…</source>
-            <translation>15. បន្ថែមស៊ីដ…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>16. កំពុងទាញយកពីស្វម...</translation>
+            <translation>បន្ថែមស៊ីដ…</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
-            <translation>17. លក្ខណៈសម្បត្តិតូរ៉ង់</translation>
+            <translation>លក្ខណៈសម្បត្តិតូរ៉ង់</translation>
         </message>
         <message>
             <source>Checking files</source>
-            <translation>18. កំពុងពិនិត្យឯកសារ</translation>
+            <translation>កំពុងពិនិត្យឯកសារ</translation>
         </message>
         <message>
             <source>File Properties</source>
-            <translation>19. លក្ខណៈសម្បត្តិឯកសារ</translation>
+            <translation>លក្ខណៈសម្បត្តិឯកសារ</translation>
         </message>
         <message>
             <source>Next Announce</source>
@@ -1719,27 +1742,27 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <name>FindDialog</name>
         <message>
             <source>Find</source>
-            <translation>20. ស្វែងរក</translation>
+            <translation>ស្វែងរក</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation>21. ស្វែងរក៖</translation>
+            <translation>ស្វែងរក៖</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation>22. ស្វែងរកក្នុង៖</translation>
+            <translation>ស្វែងរកក្នុង៖</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation>23. ឈ្មោះឯកសារ ឬផ្នែកនៃឈ្មោះ</translation>
+            <translation>ឈ្មោះឯកសារ ឬផ្នែកនៃឈ្មោះ</translation>
         </message>
         <message>
             <source>Description or part of the description</source>
-            <translation>24. ការពិពណ៌នា ឬផ្នែកនៃការពិពណ៌នា</translation>
+            <translation>ការពិពណ៌នា ឬផ្នែកនៃការពិពណ៌នា</translation>
         </message>
         <message>
             <source>Site name / download link / parent web page / referrer</source>
-            <translation>25. ឈ្មោះគេហទំព័រ / តំណទាញយក / គេហទំព័រមេ / អ្នកយោង</translation>
+            <translation>ឈ្មោះគេហទំព័រ / តំណទាញយក / គេហទំព័រមេ / អ្នកយោង</translation>
         </message>
         <message>
             <source>Match case</source>
@@ -1775,10 +1798,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project name and start page are required.</source>
             <translation>ឈ្មោះគម្រោង និងទំព័រចាប់ផ្ដើមគឺចាំបាច់។</translation>
-        </message>
-        <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – ជំហាន %1 នៃ %2: %3</translation>
         </message>
         <message>
             <source>Set start page</source>
@@ -1863,6 +1882,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>គម្រោង</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – ជំហាន %1 នៃ %2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2566,16 +2589,8 @@ Project</source>
             <translation>ស្ថិតិ Grabber</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>ស្ថានភាព៖ %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>ទំនេរ</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>ទំព័របានដំណើរការ</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2587,6 +2602,22 @@ Project</source>
         </message>
         <message>
             <source>Files</source>
+            <translation>ឯកសារ</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>ស្ថានភាព</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>ស្ថានភាព</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>ទំព័របណ្ដាញ</translation>
+        </message>
+        <message>
+            <source>FILES</source>
             <translation>ឯកសារ</translation>
         </message>
         <message>
@@ -2679,6 +2710,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>ឯកសារទាំងអស់ (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>ឯកសារនាំចេញ SDM (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>ឯកសារអត្ថបទ (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2827,10 +2866,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ការទាញយក</translation>
         </message>
         <message>
-            <source>Pause all</source>
-            <translation>ផ្អាកទាំងអស់</translation>
-        </message>
-        <message>
             <source>Stop all</source>
             <translation>បញ្ឈប់ទាំងអស់</translation>
         </message>
@@ -2949,6 +2984,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Columns…</source>
             <translation>ជួរឈរ…</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>របារឧបករណ៍…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3111,10 +3150,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Stellar Download Manager</translation>
         </message>
         <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar ↓ %1 ↑ %2</translation>
-        </message>
-        <message>
             <source>New version of Stellar Download Manager is available</source>
             <translation>កំណែថ្មីរបស់ Stellar Download Manager អាចប្រើបាន</translation>
         </message>
@@ -3159,31 +3194,31 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <name>QueueSelectionDialog</name>
         <message>
             <source>Queue Selection</source>
-            <translation>1. ការជ្រើសរើសជួរ</translation>
+            <translation>ការជ្រើសរើសជួរ</translation>
         </message>
         <message>
             <source>Put files into a queue?</source>
-            <translation>2. ដាក់ឯកសារទៅក្នុងជួរ?</translation>
+            <translation>ដាក់ឯកសារទៅក្នុងជួរ?</translation>
         </message>
         <message>
             <source>Choose an existing queue or create a new one.</source>
-            <translation>3. ជ្រើសជួរដែលមាន ឬបង្កើតថ្មី។</translation>
+            <translation>ជ្រើសជួរដែលមាន ឬបង្កើតថ្មី។</translation>
         </message>
         <message>
             <source>Queue</source>
-            <translation>4. ជួរ</translation>
+            <translation>ជួរ</translation>
         </message>
         <message>
             <source>Start queue processing</source>
-            <translation>5. ចាប់ផ្ដើមដំណើរការជួរ</translation>
+            <translation>ចាប់ផ្ដើមដំណើរការជួរ</translation>
         </message>
         <message>
             <source>Don't ask me again</source>
-            <translation>6. កុំសួរខ្ញុំម្ដងទៀត</translation>
+            <translation>កុំសួរខ្ញុំម្ដងទៀត</translation>
         </message>
         <message>
             <source>Don't add to queue</source>
-            <translation>7. កុំបន្ថែមទៅជួរ</translation>
+            <translation>កុំបន្ថែមទៅជួរ</translation>
         </message>
         <message>
             <source>OK</source>
@@ -3191,7 +3226,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Enter queue name</source>
-            <translation>9. បញ្ចូលឈ្មោះជួរ</translation>
+            <translation>បញ្ចូលឈ្មោះជួរ</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -3199,18 +3234,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Create</source>
-            <translation>11. បង្កើត</translation>
+            <translation>បង្កើត</translation>
         </message>
     </context>
     <context>
         <name>RssDownloadRulesDialog</name>
         <message>
             <source>(Default)</source>
-            <translation>12. (លំនាំដើម)</translation>
+            <translation>(លំនាំដើម)</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>13. ច្បាប់ទាញយក</translation>
+            <translation>ច្បាប់ទាញយក</translation>
         </message>
         <message>
             <source>Add</source>
@@ -3222,79 +3257,79 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
-            <translation>16. ចុច &quot;បន្ថែម&quot; ដើម្បីបង្កើតច្បាប់ទាញយក</translation>
+            <translation>ចុច &quot;បន្ថែម&quot; ដើម្បីបង្កើតច្បាប់ទាញយក</translation>
         </message>
         <message>
             <source>Rule name</source>
-            <translation>17. ឈ្មោះច្បាប់</translation>
+            <translation>ឈ្មោះច្បាប់</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>18. បើកដំណើរការ</translation>
+            <translation>បើកដំណើរការ</translation>
         </message>
         <message>
             <source>FILTER RULES</source>
-            <translation>19. ច្បាប់តម្រង</translation>
+            <translation>ច្បាប់តម្រង</translation>
         </message>
         <message>
             <source>Use regular expressions</source>
-            <translation>20. ប្រើកន្សោមធម្មតា</translation>
+            <translation>ប្រើកន្សោមធម្មតា</translation>
         </message>
         <message>
             <source>Must contain:</source>
-            <translation>21. ត្រូវតែមាន:</translation>
+            <translation>ត្រូវតែមាន:</translation>
         </message>
         <message>
             <source>regex pattern</source>
-            <translation>22. លំនាំ regex</translation>
+            <translation>លំនាំ regex</translation>
         </message>
         <message>
             <source>keyword1 keyword2 | keyword3</source>
-            <translation>23. ពាក្យគន្លឹះ១ ពាក្យគន្លឹះ២ | ពាក្យគន្លឹះ៣</translation>
+            <translation>ពាក្យគន្លឹះ១ ពាក្យគន្លឹះ២ | ពាក្យគន្លឹះ៣</translation>
         </message>
         <message>
             <source>Must not contain:</source>
-            <translation>24. មិនត្រូវមាន:</translation>
+            <translation>មិនត្រូវមាន:</translation>
         </message>
         <message>
             <source>keyword1 keyword2</source>
-            <translation>25. ពាក្យគន្លឹះ១ ពាក្យគន្លឹះ២</translation>
+            <translation>ពាក្យគន្លឹះ១ ពាក្យគន្លឹះ២</translation>
         </message>
         <message>
             <source>Episode filter:</source>
-            <translation>1. តម្រងភាគ៖</translation>
+            <translation>តម្រងភាគ៖</translation>
         </message>
         <message>
             <source>e.g. 1x01-1x24  or  2x01;</source>
-            <translation>2. ឧ. 1x01-1x24 ឬ 2x01;</translation>
+            <translation>ឧ. 1x01-1x24 ឬ 2x01;</translation>
         </message>
         <message>
             <source>Use Smart Episode Filter</source>
-            <translation>3. ប្រើតម្រងភាគឆ្លាតវៃ</translation>
+            <translation>ប្រើតម្រងភាគឆ្លាតវៃ</translation>
         </message>
         <message>
             <source>Skips episodes already matched by previous rule triggers</source>
-            <translation>4. រំលងភាគដែលត្រូវគ្នានឹងកេះច្បាប់មុន</translation>
+            <translation>រំលងភាគដែលត្រូវគ្នានឹងកេះច្បាប់មុន</translation>
         </message>
         <message>
             <source>Ignore subsequent matches for</source>
-            <translation>5. មិនអើពើការផ្គូផ្គងបន្តសម្រាប់</translation>
+            <translation>មិនអើពើការផ្គូផ្គងបន្តសម្រាប់</translation>
         </message>
         <message>
             <source>days  (0 = disabled)</source>
-            <translation>6. ថ្ងៃ (0 = បិទ)</translation>
+            <translation>ថ្ងៃ (0 = បិទ)</translation>
         </message>
         <message>
             <source>DOWNLOAD SETTINGS</source>
-            <translation>7. ការកំណត់ទាញយក</translation>
+            <translation>ការកំណត់ទាញយក</translation>
         </message>
         <message>
             <source>Save at:</source>
-            <translation>8. រក្សាទុកនៅ៖</translation>
+            <translation>រក្សាទុកនៅ៖</translation>
         </message>
         <message>
             <source>Leave empty to use default save path</source>
-            <translation>9. ទុកទទេដើម្បីប្រើផ្លូវរក្សាទុកលំនាំដើម</translation>
+            <translation>ទុកទទេដើម្បីប្រើផ្លូវរក្សាទុកលំនាំដើម</translation>
         </message>
         <message>
             <source>Browse...</source>
@@ -3302,15 +3337,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Category:</source>
-            <translation>11. ប្រភេទ៖</translation>
+            <translation>ប្រភេទ៖</translation>
         </message>
         <message>
             <source>Queue:</source>
-            <translation>12. ជួរ៖</translation>
+            <translation>ជួរ៖</translation>
         </message>
         <message>
             <source>TORRENT SHARE LIMITS</source>
-            <translation>13. ដែនកំណត់ចែករំលែក Torrent</translation>
+            <translation>ដែនកំណត់ចែករំលែក Torrent</translation>
         </message>
         <message>
             <source>Ratio</source>
@@ -3318,31 +3353,31 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Default</source>
-            <translation>15. លំនាំដើម</translation>
+            <translation>លំនាំដើម</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>16. គ្មានដែនកំណត់</translation>
+            <translation>គ្មានដែនកំណត់</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>17. កំណត់ទៅ</translation>
+            <translation>កំណត់ទៅ</translation>
         </message>
         <message>
             <source>Seeding time</source>
-            <translation>18. រយៈពេល seed</translation>
+            <translation>រយៈពេល seed</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>19. នាទី</translation>
+            <translation>នាទី</translation>
         </message>
         <message>
             <source>Inactive seeding time</source>
-            <translation>20. រយៈពេល seed អសកម្ម</translation>
+            <translation>រយៈពេល seed អសកម្ម</translation>
         </message>
         <message>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
-            <translation>21. &quot;លំនាំដើម&quot; ប្រើដែនកំណត់ចែករំលែកសកលដែលបានកំណត់ក្នុង ការកំណត់ → Torrents។</translation>
+            <translation>&quot;លំនាំដើម&quot; ប្រើដែនកំណត់ចែករំលែកសកលដែលបានកំណត់ក្នុង ការកំណត់ → Torrents។</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -3354,14 +3389,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>RSS Auto Download Rules</source>
-            <translation>24. ច្បាប់ទាញយកស្វ័យប្រវត្តិ RSS</translation>
+            <translation>ច្បាប់ទាញយកស្វ័យប្រវត្តិ RSS</translation>
         </message>
     </context>
     <context>
         <name>RssWindow</name>
         <message>
             <source>Title</source>
-            <translation>25. ចំណងជើង</translation>
+            <translation>ចំណងជើង</translation>
         </message>
         <message>
             <source>Feed</source>
@@ -3870,20 +3905,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>កំណត់ល្បឿន</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>បើកកំណត់ល្បឿនសកល</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>ល្បឿនអតិបរមា៖</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>បើកកំណត់ផ្ទុកឡើងសកល</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3932,6 +3955,28 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>General</source>
             <translation>ទូទៅ</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>នាំចេញការបម្រុងទុក Stellar</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>នាំចូលការបម្រុងទុក Stellar</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>ការបម្រុងទុកបានបញ្ចប់</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>ទិន្នន័យរបស់អ្នកត្រូវបាននាំចេញទៅ៖
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>ការនាំចូលបានបញ្ចប់</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4066,6 +4111,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>គ្មាន</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>បើកកម្រិតល្បឿន</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>ទាញយកអតិបរមា៖</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>ចុចថ្នាំងថ្ងៃដើម្បីបិទបើក។ ច្បាប់ត្រូវបានវាយតម្លៃរៀងរាល់នាទី; ច្បាប់ដែលត្រូវគ្នាដំបូងឈ្នះ។ ដែនកំណត់ទាញយក និងផ្ទុកឡើងដែលបានកំណត់ពេលត្រូវបានសម្អាតដោយស្វ័យប្រវត្តិនៅពេលគ្មានច្បាប់សកម្ម។</translation>
         </message>
@@ -4088,10 +4141,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Show tips in bottom bar</source>
             <translation>បង្ហាញគន្លឹះក្នុងរបារខាងក្រោម</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>បង្ហាញចំនួនទាញយកដែលបានបញ្ចប់ក្នុងរបារស្ថានភាព</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4150,6 +4199,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>នៅពេល URL ដែលត្រូវនឹងប្រភេទឯកសារដែលបានត្រួតពិនិត្យត្រូវបានចម្លងទៅឃ្លីបបត Stellar នឹងសួរថាតើអ្នកចង់ទាញយកវាដែរឬទេ។ មានតែប្រភេទឯកសារដែលបានរាយក្រោម កម្មវិធីរុករក › ចាប់ផ្ដើមទាញយកប្រភេទឯកសារខាងក្រោមដោយស្វ័យប្រវត្តិ ប៉ុណ្ណោះដែលត្រូវបានចាប់យក។</translation>
         </message>
         <message>
+            <source>Backup &amp; Restore</source>
+            <translation>បម្រុងទុក និងស្ដារ</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>នាំចេញទាំងអស់ — ការកំណត់, ទាញយក, តោរ៉ង់ (ជាមួយសមាមាត្រចែករំលែក), ជួរ, ប្រភេទ និងស្ថិតិ — ទៅឯកសារបម្រុងទុកតែមួយ។ នាំចូលវាពេលក្រោយទៅក្នុងការដំឡើង Stellar ថ្មីដើម្បីស្ដារទាំងអស់។ ការនាំចូលជំនួសទិន្នន័យបច្ចុប្បន្ន (បម្រុងទុកដែលមានត្រាពេលវេលាត្រូវបានរក្សាទុក) ហើយចាប់ផ្ដើម Stellar ឡើងវិញ។</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>នាំចេញទិន្នន័យទាំងអស់…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>នាំចូលទិន្នន័យ…</translation>
+        </message>
+        <message>
             <source>Video Downloader</source>
             <translation>កម្មវិធីទាញយកវីដេអូ</translation>
         </message>
@@ -4175,99 +4240,99 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Re-check</source>
-            <translation>1. ពិនិត្យឡើងវិញ</translation>
+            <translation>ពិនិត្យឡើងវិញ</translation>
         </message>
         <message>
             <source>ffmpeg status</source>
-            <translation>2. ស្ថានភាព ffmpeg</translation>
+            <translation>ស្ថានភាព ffmpeg</translation>
         </message>
         <message>
             <source>ffmpeg found: %1</source>
-            <translation>3. រកឃើញ ffmpeg៖ %1</translation>
+            <translation>រកឃើញ ffmpeg៖ %1</translation>
         </message>
         <message>
             <source>ffmpeg not found — HD downloads will be limited to pre-muxed formats (max ~480p)</source>
-            <translation>4. រកមិនឃើញ ffmpeg — ការទាញយក HD នឹងត្រូវកំណត់ត្រឹមទ្រង់ទ្រាយដែលបានបញ្ចូលគ្នារួច (អតិបរមា ~480p)</translation>
+            <translation>រកមិនឃើញ ffmpeg — ការទាញយក HD នឹងត្រូវកំណត់ត្រឹមទ្រង់ទ្រាយដែលបានបញ្ចូលគ្នារួច (អតិបរមា ~480p)</translation>
         </message>
         <message>
             <source>Updating FFmpeg...</source>
-            <translation>5. កំពុងធ្វើបច្ចុប្បន្នភាព FFmpeg...</translation>
+            <translation>កំពុងធ្វើបច្ចុប្បន្នភាព FFmpeg...</translation>
         </message>
         <message>
             <source>Update FFmpeg</source>
-            <translation>6. ធ្វើបច្ចុប្បន្នភាព FFmpeg</translation>
+            <translation>ធ្វើបច្ចុប្បន្នភាព FFmpeg</translation>
         </message>
         <message>
             <source>Get ffmpeg (gyan.dev)</source>
-            <translation>7. យក ffmpeg (gyan.dev)</translation>
+            <translation>យក ffmpeg (gyan.dev)</translation>
         </message>
         <message>
             <source>ffmpeg is required to merge separate video and audio streams into MP4/MKV. Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).
 
 To fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), extract ffmpeg.exe from the bin/ folder, and place it in the same folder as yt-dlp.exe. Then click Re-check above.</source>
-            <translation>8. ffmpeg ត្រូវការដើម្បីបញ្ចូលគ្នានូវស្ទ្រីមវីដេអូ និងសំឡេងដាច់ដោយឡែកទៅជា MP4/MKV។ បើគ្មានវាទេ ការទាញយក YouTube នឹងថយទៅប្រើស្ទ្រីមដែលបានបញ្ចូលគ្នារួចតែមួយ (ជាធម្មតា WebM អតិបរមា 480p)។
+            <translation>ffmpeg ត្រូវការដើម្បីបញ្ចូលគ្នានូវស្ទ្រីមវីដេអូ និងសំឡេងដាច់ដោយឡែកទៅជា MP4/MKV។ បើគ្មានវាទេ ការទាញយក YouTube នឹងថយទៅប្រើស្ទ្រីមដែលបានបញ្ចូលគ្នារួចតែមួយ (ជាធម្មតា WebM អតិបរមា 480p)។
 
 ដើម្បីដោះស្រាយ៖ ទាញយក ffmpeg ពី gyan.dev/ffmpeg/builds (កំណែ Essentials) ស្រង់យក ffmpeg.exe ពីថត bin/ ហើយដាក់វាក្នុងថតដូចគ្នានឹង yt-dlp.exe។ បន្ទាប់មកចុច ពិនិត្យឡើងវិញ ខាងលើ។</translation>
         </message>
         <message>
             <source>Custom binary path</source>
-            <translation>9. ផ្លូវប្រព័ន្ធគោលពីរផ្ទាល់ខ្លួន</translation>
+            <translation>ផ្លូវប្រព័ន្ធគោលពីរផ្ទាល់ខ្លួន</translation>
         </message>
         <message>
             <source>Leave blank to use the bundled binary (recommended). Set to the absolute path of your own yt-dlp executable if you want to use a specific version.</source>
-            <translation>10. ទុកទទេដើម្បីប្រើប្រព័ន្ធគោលពីរដែលភ្ជាប់មកជាមួយ (ណែនាំ)។ កំណត់ទៅផ្លូវដាច់ខាតនៃ yt-dlp ផ្ទាល់ខ្លួនរបស់អ្នក ប្រសិនបើអ្នកចង់ប្រើកំណែជាក់លាក់។</translation>
+            <translation>ទុកទទេដើម្បីប្រើប្រព័ន្ធគោលពីរដែលភ្ជាប់មកជាមួយ (ណែនាំ)។ កំណត់ទៅផ្លូវដាច់ខាតនៃ yt-dlp ផ្ទាល់ខ្លួនរបស់អ្នក ប្រសិនបើអ្នកចង់ប្រើកំណែជាក់លាក់។</translation>
         </message>
         <message>
             <source>(auto - use bundled or system yt-dlp)</source>
-            <translation>11. (ស្វ័យប្រវត្តិ - ប្រើ yt-dlp ដែលភ្ជាប់មកជាមួយ ឬក្នុងប្រព័ន្ធ)</translation>
+            <translation>(ស្វ័យប្រវត្តិ - ប្រើ yt-dlp ដែលភ្ជាប់មកជាមួយ ឬក្នុងប្រព័ន្ធ)</translation>
         </message>
         <message>
             <source>JavaScript runtime</source>
-            <translation>12. ពេលដំណើរការ JavaScript</translation>
+            <translation>ពេលដំណើរការ JavaScript</translation>
         </message>
         <message>
             <source>%1 found: %2</source>
-            <translation>13. រកឃើញ %1៖ %2</translation>
+            <translation>រកឃើញ %1៖ %2</translation>
         </message>
         <message>
             <source>No JS runtime found — YouTube n-challenge solving disabled</source>
-            <translation>14. រកមិនឃើញពេលដំណើរការ JS — ការដោះស្រាយ n-challenge របស់ YouTube ត្រូវបានបិទ</translation>
+            <translation>រកមិនឃើញពេលដំណើរការ JS — ការដោះស្រាយ n-challenge របស់ YouTube ត្រូវបានបិទ</translation>
         </message>
         <message>
             <source>yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). Without it, YouTube downloads may fail or return only low-quality storyboard formats.
 
 Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. Place it in the same folder as yt-dlp.exe or add it to your system PATH, then click Re-check in the yt-dlp status section above.</source>
-            <translation>15. yt-dlp ត្រូវការពេលដំណើរការ JavaScript ខាងក្រៅដើម្បីដោះស្រាយ n-challenge របស់ YouTube (ការបិទបើក URL)។ បើគ្មានវាទេ ការទាញយក YouTube អាចបរាជ័យ ឬត្រឡប់តែទ្រង់ទ្រាយ storyboard គុណភាពទាប។
+            <translation>yt-dlp ត្រូវការពេលដំណើរការ JavaScript ខាងក្រៅដើម្បីដោះស្រាយ n-challenge របស់ YouTube (ការបិទបើក URL)។ បើគ្មានវាទេ ការទាញយក YouTube អាចបរាជ័យ ឬត្រឡប់តែទ្រង់ទ្រាយ storyboard គុណភាពទាប។
 
 ដំឡើងមួយក្នុងចំណោម៖ Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), ឬ QuickJS។ ដាក់វាក្នុងថតដូចគ្នានឹង yt-dlp.exe ឬបន្ថែមវាទៅ PATH ប្រព័ន្ធរបស់អ្នក បន្ទាប់មកចុច ពិនិត្យឡើងវិញ ក្នុងផ្នែកស្ថានភាព yt-dlp ខាងលើ។</translation>
         </message>
         <message>
             <source>Override the auto-detected runtime path. Leave blank to use auto-detection (searches yt-dlp folder, app folder, and system PATH).</source>
-            <translation>16. ជាន់លើផ្លូវពេលដំណើរការដែលបានរកឃើញដោយស្វ័យប្រវត្តិ។ ទុកទទេដើម្បីប្រើការរកឃើញដោយស្វ័យប្រវត្តិ (ស្វែងរកក្នុងថត yt-dlp, ថតកម្មវិធី, និង PATH ប្រព័ន្ធ)។</translation>
+            <translation>ជាន់លើផ្លូវពេលដំណើរការដែលបានរកឃើញដោយស្វ័យប្រវត្តិ។ ទុកទទេដើម្បីប្រើការរកឃើញដោយស្វ័យប្រវត្តិ (ស្វែងរកក្នុងថត yt-dlp, ថតកម្មវិធី, និង PATH ប្រព័ន្ធ)។</translation>
         </message>
         <message>
             <source>(auto-detect from PATH and yt-dlp folder)</source>
-            <translation>17. (រកឃើញដោយស្វ័យប្រវត្តិពី PATH និងថត yt-dlp)</translation>
+            <translation>(រកឃើញដោយស្វ័យប្រវត្តិពី PATH និងថត yt-dlp)</translation>
         </message>
         <message>
             <source>Automatically update yt-dlp at startup</source>
-            <translation>18. ធ្វើបច្ចុប្បន្នភាព yt-dlp ដោយស្វ័យប្រវត្តិពេលចាប់ផ្ដើម</translation>
+            <translation>ធ្វើបច្ចុប្បន្នភាព yt-dlp ដោយស្វ័យប្រវត្តិពេលចាប់ផ្ដើម</translation>
         </message>
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
-            <translation>19. នៅពេលបើកដំណើរការ Stellar នឹងដំណើរការ &quot;yt-dlp -U&quot; ពេលចាប់ផ្ដើម ដើម្បីរក្សាប្រព័ន្ធគោលពីរឱ្យទាន់សម័យ។ ត្រូវការការតភ្ជាប់អ៊ីនធឺណិតសកម្ម។</translation>
+            <translation>នៅពេលបើកដំណើរការ Stellar នឹងដំណើរការ &quot;yt-dlp -U&quot; ពេលចាប់ផ្ដើម ដើម្បីរក្សាប្រព័ន្ធគោលពីរឱ្យទាន់សម័យ។ ត្រូវការការតភ្ជាប់អ៊ីនធឺណិតសកម្ម។</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>
-            <translation>20. ការទាញយក Torrent</translation>
+            <translation>ការទាញយក Torrent</translation>
         </message>
         <message>
             <source>Enable BitTorrent support</source>
-            <translation>21. បើកដំណើរការគាំទ្រ BitTorrent</translation>
+            <translation>បើកដំណើរការគាំទ្រ BitTorrent</translation>
         </message>
         <message>
             <source>BitTorrent — Legal Notice</source>
-            <translation>22. BitTorrent — ការជូនដំណឹងផ្នែកច្បាប់</translation>
+            <translation>BitTorrent — ការជូនដំណឹងផ្នែកច្បាប់</translation>
         </message>
         <message>
             <source>Stellar is a file-sharing program. When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.
@@ -4275,7 +4340,7 @@ Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS.
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation>23. Stellar គឺជាកម្មវិធីចែករំលែកឯកសារ។ នៅពេលអ្នកទាញយក torrent អាសយដ្ឋាន IP របស់អ្នកនឹងអាចមើលឃើញដោយ peers ផ្សេងទៀតនៅក្នុង swarm ហើយអ្នកនឹងផ្ទុកឡើង (seed) ទិន្នន័យទៅអ្នកដទៃក្នុងពេលដំណាលគ្នា។
+            <translation>Stellar គឺជាកម្មវិធីចែករំលែកឯកសារ។ នៅពេលអ្នកទាញយក torrent អាសយដ្ឋាន IP របស់អ្នកនឹងអាចមើលឃើញដោយ peers ផ្សេងទៀតនៅក្នុង swarm ហើយអ្នកនឹងផ្ទុកឡើង (seed) ទិន្នន័យទៅអ្នកដទៃក្នុងពេលដំណាលគ្នា។
 
 អ្វីក៏ដោយដែលអ្នកចែករំលែកតាមរយៈ BitTorrent គឺជាទំនួលខុសត្រូវផ្ទាល់ខ្លួនរបស់អ្នកទាំងស្រុង។ ត្រូវប្រាកដថាអ្នកមានសិទ្ធិក្នុងការចែកចាយមាតិកានោះ។
 
@@ -4287,7 +4352,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
-            <translation>25. ការកំណត់ទាំងនេះអនុវត្តចំពោះឯកសារ .torrent និងតំណ magnet។</translation>
+            <translation>ការកំណត់ទាំងនេះអនុវត្តចំពោះឯកសារ .torrent និងតំណ magnet។</translation>
         </message>
         <message>
             <source>Listen port</source>
@@ -4444,6 +4509,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>ផែនទីសតិ៖ ឯកសារត្រូវបានផែនទីដោយផ្ទាល់ទៅក្នុងសតិ។ Windows និង Linux អាន និងសរសេរទិន្នន័យ torrent តាមរយៈឃ្លាំងសម្ងាត់ទំព័រ ដោយប្រើ CPU តិចតួច។ ណែនាំសម្រាប់អ្នកប្រើប្រាស់ភាគច្រើន។</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>ទិន្នន័យរបស់អ្នកត្រូវបានស្ដារដោយជោគជ័យ។ Stellar ត្រូវការចាប់ផ្ដើមឡើងវិញដើម្បីអនុវត្តវា។</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5087,18 +5156,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>គ្មានដែនកំណត់</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 កំណត់ល្បឿន</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 ប្រូកស៊ីបើក</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 កំពុងពិនិត្យអាប់ដេត</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT បិទ</translation>
         </message>
@@ -5119,14 +5176,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>បន្ទាប់ &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 ជួរនឹងដំណើរការក្នុង 1 នាទី</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 ជួរនឹងដំណើរការក្នុង %1 នាទី</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>សមាមាត្រចែករំលែកសរុប
@@ -5143,6 +5192,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>រកមិនឃើញការតភ្ជាប់បណ្ដាញ</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>កម្រិតល្បឿន</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>ប្រូកស៊ីបើក</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>កំពុងពិនិត្យរកការអាប់ដេត</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5163,6 +5224,14 @@ Click to open Statistics</source>
         <message>
             <source>Click to copy IP</source>
             <translation>ចុចដើម្បីចម្លង IP</translation>
+        </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>ជួរនឹងដំណើរការក្នុង ១ នាទី</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>ជួរនឹងដំណើរការក្នុង %1 នាទី</translation>
         </message>
     </context>
     <context>
@@ -5350,6 +5419,10 @@ Click to open Statistics</source>
             <translation>បន្ថែមសញ្ញាបំបែក</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>ដកចេញ</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>កំណត់ឡើងវិញ</translation>
         </message>
@@ -5360,6 +5433,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>បោះបង់</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>បង្កើត Torrent</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>ដកចេញ</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>រក្សាទុកទៅ៖</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>រកមើល…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>ឈ្មោះ៖</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>ទំហំដុំ៖</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>ស្វ័យប្រវត្តិ</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>ជ្រើសថតលទ្ធផល</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>ឯកសារ</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>ប្រភព៖</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 ទៀត)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>គ្មានប្រភពដែលបានជ្រើស</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>ឯកសារ…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>ថត…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>ថតលទ្ធផល…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>ឈ្មោះ Torrent (ស្រេចចិត្ត)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 បំណែក × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 ដុំ × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>លក្ខណៈសម្បត្តិ</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>តាមដាន:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>ស្រេចចិត្ត</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>គ្រាប់ពូជបណ្ដាញ:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>URL មួយក្នុងមួយបន្ទាត់ (ស្រេចចិត្ត)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>Torrent ឯកជន (បិទ DHT និង PeX)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ រួចរាល់ — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>កំពុងធ្វើសញ្ញាសម្គាល់… %1%  (%2 ដុំ × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>បើកពេលរួចរាល់</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>មតិ:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ កំហុស៖ %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>បានបោះបង់</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>បោះបង់</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>បិទ</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>កំពុងបង្កើត…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>បើក Torrent</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>បន្ថែមឯកសារ</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>បន្ថែមថត</translation>
         </message>
     </context>
     <context>
@@ -5773,74 +5993,82 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>🔒 Private torrent</source>
-            <translation>1. 🔒 តុងឯកជន</translation>
+            <translation>🔒 តុងឯកជន</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>2. DHT និង PeX ត្រូវបានបិទដោយ libtorrent</translation>
+            <translation>DHT និង PeX ត្រូវបានបិទដោយ libtorrent</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>3. របៀបទាញយក</translation>
+            <translation>របៀបទាញយក</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>4. ទាញយកតាមលំដាប់</translation>
+            <translation>ទាញយកតាមលំដាប់</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>5. បំណែកទាញយកតាមលំដាប់ (បំណែក 0 → ចុងក្រោយ)</translation>
+            <translation>បំណែកទាញយកតាមលំដាប់ (បំណែក 0 → ចុងក្រោយ)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>6. ផ្តល់អាទិភាពបំណែកដំបូង និងចុងក្រោយ</translation>
+            <translation>ផ្តល់អាទិភាពបំណែកដំបូង និងចុងក្រោយ</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>7. ផ្ទុកបឋមកថា/បាតកថាមុនសម្រាប់ចាក់ដំបូង</translation>
+            <translation>ផ្ទុកបឋមកថា/បាតកថាមុនសម្រាប់ចាក់ដំបូង</translation>
         </message>
     </context>
     <context>
         <name>YtdlpDialog</name>
         <message>
             <source>Fetching available formats…</source>
-            <translation>8. កំពុងទាញយកទ្រង់ទ្រាយដែលមាន…</translation>
+            <translation>កំពុងទាញយកទ្រង់ទ្រាយដែលមាន…</translation>
         </message>
         <message>
             <source>Could not fetch video information</source>
-            <translation>9. មិនអាចទាញយកព័ត៌មានវីដេអូ</translation>
+            <translation>មិនអាចទាញយកព័ត៌មានវីដេអូ</translation>
         </message>
         <message>
             <source>YouTube n-challenge solving failed</source>
-            <translation>10. ការដោះស្រាយ n-challenge របស់ YouTube បរាជ័យ</translation>
+            <translation>ការដោះស្រាយ n-challenge របស់ YouTube បរាជ័យ</translation>
         </message>
         <message>
             <source>Fetching video info…</source>
-            <translation>11. កំពុងទាញយកព័ត៌មានវីដេអូ…</translation>
+            <translation>កំពុងទាញយកព័ត៌មានវីដេអូ…</translation>
+        </message>
+        <message>
+            <source>Best quality</source>
+            <translation>គុណភាពល្អបំផុត</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>សំឡេងតែប៉ុណ្ណោះ</translation>
         </message>
         <message>
             <source>Could not fetch video info</source>
-            <translation>12. មិនអាចទាញយកព័ត៌មានវីដេអូ</translation>
+            <translation>មិនអាចទាញយកព័ត៌មានវីដេអូ</translation>
         </message>
         <message>
             <source>yt-dlp requires a JavaScript runtime (Deno, Node.js, Bun, or QuickJS) to bypass YouTube's URL throttling challenge. Install one and place it next to yt-dlp.exe or in your system PATH.</source>
-            <translation>13. yt-dlp ត្រូវការ JavaScript runtime (Deno, Node.js, Bun, ឬ QuickJS) ដើម្បីឆ្លងកាត់ការបិទបញ្ជូល URL របស់ YouTube។ ដំឡើងមួយហើយដាក់វានៅជាប់ yt-dlp.exe ឬក្នុង PATH ប្រព័ន្ធ។</translation>
+            <translation>yt-dlp ត្រូវការ JavaScript runtime (Deno, Node.js, Bun, ឬ QuickJS) ដើម្បីឆ្លងកាត់ការបិទបញ្ជូល URL របស់ YouTube។ ដំឡើងមួយហើយដាក់វានៅជាប់ yt-dlp.exe ឬក្នុង PATH ប្រព័ន្ធ។</translation>
         </message>
         <message>
             <source>No runtime detected. Install Deno (recommended) from deno.com, then re-check in Settings → Video Downloader.</source>
-            <translation>14. រកមិនឃើញ runtime។ ដំឡើង Deno (ណែនាំ) ពី deno.com បន្ទាប់មកពិនិត្យឡើងវិញក្នុង ការកំណត់ → កម្មវិធីទាញយកវីដេអូ។</translation>
+            <translation>រកមិនឃើញ runtime។ ដំឡើង Deno (ណែនាំ) ពី deno.com បន្ទាប់មកពិនិត្យឡើងវិញក្នុង ការកំណត់ → កម្មវិធីទាញយកវីដេអូ។</translation>
         </message>
         <message>
             <source>Runtime detected: %1 (%2)</source>
-            <translation>15. រកឃើញ runtime: %1 (%2)</translation>
+            <translation>រកឃើញ runtime: %1 (%2)</translation>
         </message>
         <message>
             <source>Get Deno</source>
-            <translation>16. យក Deno</translation>
+            <translation>យក Deno</translation>
         </message>
         <message>
             <source>Open Settings</source>
-            <translation>17. បើកការកំណត់</translation>
+            <translation>បើកការកំណត់</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
@@ -5848,11 +6076,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
-            <translation>19. ជ្រើសរើសកម្មវិធីរុករកដើម្បីបញ្ជូនខូគីរបស់វាទៅ yt-dlp បន្ទាប់មកព្យាយាមម្តងទៀត។</translation>
+            <translation>ជ្រើសរើសកម្មវិធីរុករកដើម្បីបញ្ជូនខូគីរបស់វាទៅ yt-dlp បន្ទាប់មកព្យាយាមម្តងទៀត។</translation>
         </message>
         <message>
             <source>Retry</source>
-            <translation>20. ព្យាយាមម្តងទៀត</translation>
+            <translation>ព្យាយាមម្តងទៀត</translation>
         </message>
         <message>
             <source>Quality:</source>
@@ -5861,19 +6089,19 @@ Click to open Statistics</source>
         <message>
             <source>Size unavailable — this quality uses separate video
 and audio streams merged by ffmpeg after download.</source>
-            <translation>22. ទំហំមិនអាចប្រើបាន — គុណភាពនេះប្រើស្ទ្រីមវីដេអូ និងអូឌីយ៉ូដាច់ដោយឡែក បញ្ចូលគ្នាដោយ ffmpeg បន្ទាប់ពីទាញយក។</translation>
+            <translation>ទំហំមិនអាចប្រើបាន — គុណភាពនេះប្រើស្ទ្រីមវីដេអូ និងអូឌីយ៉ូដាច់ដោយឡែក បញ្ចូលគ្នាដោយ ffmpeg បន្ទាប់ពីទាញយក។</translation>
         </message>
         <message>
             <source>Channel / Playlist</source>
-            <translation>23. ឆានែល / បញ្ជីចាក់</translation>
+            <translation>ឆានែល / បញ្ជីចាក់</translation>
         </message>
         <message>
             <source>All videos</source>
-            <translation>24. វីដេអូទាំងអស់</translation>
+            <translation>វីដេអូទាំងអស់</translation>
         </message>
         <message>
             <source>Latest</source>
-            <translation>25. ថ្មីបំផុត</translation>
+            <translation>ថ្មីបំផុត</translation>
         </message>
         <message>
             <source>videos</source>
@@ -6152,177 +6380,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ទាញយកវីដេអូ</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>បង្កើត Torrent</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>ឯកសារ/ថតប្រភព</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ ឯកសារ</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ ថត</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>ដកចេញ</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>អូសឯកសារ ឬថតមកទីនេះ ឬប្រើប៊ូតុងខាងលើ</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>លទ្ធផល</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>រក្សាទុកទៅ៖</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>ផ្លូវរក្សាទុកឯកសារ .torrent…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>រកមើល…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>ឈ្មោះ៖</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>ស្រេចចិត្ត — លំនាំដើមជាឈ្មោះថត/ឯកសារ</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>ទំហំដុំ៖</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>ស្វ័យប្រវត្តិ</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 ដុំ × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>ទិន្នន័យមេតា</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>មតិ:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>មតិស្រេចដែលបង្កប់ក្នុង .torrent</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>ការពិពណ៌នា:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>ការពិពណ៌នាបន្ថែមស្រេច</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>បង្កើតដោយ:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>torrent ឯកជន (DHT និង PEX បានបិទសម្រាប់ torrent នេះ)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>កម្មវិធីតាមដាន</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>URL មួយក្នុងមួយបន្ទាត់</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>គ្រាប់ពូជបណ្ដាញ (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>បើក torrent ពេលបង្កើត</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ បង្កើត torrent បានជោគជ័យ៖ %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ កំហុស៖ %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>បានបោះបង់</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>កំពុងធ្វើ hash… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 បំណែក × %2 ក្នុងមួយបំណែក</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>បិទ</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>កំពុងបង្កើត…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>បើក Torrent</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>បង្កើត Torrent…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>បន្ថែមឯកសារ</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>បន្ថែមថត</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>រក្សាទុកឯកសារ .torrent</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>ឯកសារ Torrent (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>ឯកសារទាំងអស់ (*)</translation>
         </message>
     </context>
 </TS>

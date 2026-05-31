@@ -73,6 +73,14 @@
             <translation>🛡️ ከ%1 ጋር ታስሯል</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>ምትኬ መድረሻ አልተመረጠም።</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>ወደ ውስጥ የሚገባ ምትኬ ፋይል አልተመረጠም።</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ ከ%1 ጋር ተሳስሯል (ከመስመር ውጪ — ቶረንቶች ቆመዋል)</translation>
         </message>
@@ -113,27 +121,27 @@
         </message>
         <message>
             <source>Wildcard size:</source>
-            <translation>1. የዱር ካርድ መጠን:</translation>
+            <translation>የዱር ካርድ መጠን:</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation>2. ቅድመ እይታ</translation>
+            <translation>ቅድመ እይታ</translation>
         </message>
         <message>
             <source>First: %1</source>
-            <translation>3. መጀመሪያ: %1</translation>
+            <translation>መጀመሪያ: %1</translation>
         </message>
         <message>
             <source>Second: %1</source>
-            <translation>4. ሁለተኛ: %1</translation>
+            <translation>ሁለተኛ: %1</translation>
         </message>
         <message>
             <source>Last: %1</source>
-            <translation>5. መጨረሻ: %1</translation>
+            <translation>መጨረሻ: %1</translation>
         </message>
         <message>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
-            <translation>6. እነዚህ ማውረዶች ከመጀመራቸው በፊት እንዲመደቡ ከፈለጉ ከእሺ በኋላ የወረፋ ደረጃውን ይጠቀሙ።</translation>
+            <translation>እነዚህ ማውረዶች ከመጀመራቸው በፊት እንዲመደቡ ከፈለጉ ከእሺ በኋላ የወረፋ ደረጃውን ይጠቀሙ።</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -148,19 +156,15 @@
         <name>BatchDownloadListDialog</name>
         <message>
             <source>File name</source>
-            <translation>9. የፋይል ስም</translation>
+            <translation>የፋይል ስም</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>10. መጠን</translation>
+            <translation>መጠን</translation>
         </message>
         <message>
             <source>Status</source>
             <translation>ሁኔታ</translation>
-        </message>
-        <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>አገናኞችን ከማከልዎ በፊት ይገምግሙ። አምዶች መደርደር፣ መጠን መቀየር እና መጎተት ይችላሉ።</translation>
         </message>
         <message>
             <source>Replace filenames with wildcard pattern (*)</source>
@@ -179,10 +183,6 @@
             <translation>ሁሉንም ምልክት አጥፋ</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>የተገኙ ምልክት የተደረገባቸው አገናኞች ብቻ ሊመረጡ ይችላሉ። የወረፋ ምደባ ከእሺ በኋላ ይከናወናል።</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>ይቅር</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>አገናኞችን ወደ SDM አስመጣ</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>ወደ ማውረጃ ዝርዝር ለመጨመር የሚፈልጉትን አገናኞች ምልክት አድርገው እሺ ይጫኑ።</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -505,20 +509,24 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>የተጠናቀቁ ማውረዶችን አጥፋ</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>ሁሉንም የተጠናቀቁ ማውረዶች ከስቴላር ዝርዝር ማጥፋት እንደሚፈልጉ እርግጠኛ ነዎት?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>የተጠናቀቁ ማውረጃዎችን ሰርዝ?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>ማስታወሻ: ይህ ከዝርዝሩ ብቻ ያስወግዳቸዋል። በዲስክ ላይ ያሉ ፋይሎች አይጠፉም።</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>ከዝርዝር ብቻ ያስወግዳል። በዲስክ ላይ ያሉ ፋይሎች አይሰረዙም።</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ይቅር</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>ሰርዝ</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>የተጠናቀቁና የሚዘሩ ቶረንቶችን አጥፋ</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>አዎ</translation>
         </message>
         <message>
             <source>No</source>
@@ -581,6 +589,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>የማውረድ ፋይል መረጃ</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 ፋይሎች (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>ሁሉም ፋይሎች (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -786,15 +802,15 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         </message>
         <message>
             <source>» Show details</source>
-            <translation>1. » ዝርዝር አሳይ</translation>
+            <translation>» ዝርዝር አሳይ</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation>2. ጀምር</translation>
+            <translation>ጀምር</translation>
         </message>
         <message>
             <source>Pause</source>
-            <translation>3. አቁም</translation>
+            <translation>አቁም</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -802,27 +818,27 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
-            <translation>5. በግንኙነቶች የጀመሩበት ቦታ እና የማውረድ ሂደት</translation>
+            <translation>በግንኙነቶች የጀመሩበት ቦታ እና የማውረድ ሂደት</translation>
         </message>
         <message>
             <source>N.</source>
-            <translation>6. ቁ.</translation>
+            <translation>ቁ.</translation>
         </message>
         <message>
             <source>Info</source>
-            <translation>7. መረጃ</translation>
+            <translation>መረጃ</translation>
         </message>
         <message>
             <source>Limit transfer rate for this download</source>
-            <translation>8. ለዚህ ማውረድ የማስተላለፍ ፍጥነት ገድብ</translation>
+            <translation>ለዚህ ማውረድ የማስተላለፍ ፍጥነት ገድብ</translation>
         </message>
         <message>
             <source>Enable per-download limit</source>
-            <translation>9. የማውረጃ ገደብ አንቃ</translation>
+            <translation>የማውረጃ ገደብ አንቃ</translation>
         </message>
         <message>
             <source>Maximum:</source>
-            <translation>10. ከፍተኛ:</translation>
+            <translation>ከፍተኛ:</translation>
         </message>
         <message>
             <source>e.g. 100</source>
@@ -835,6 +851,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Global limit active: %1 KB/s</source>
             <translation>አለምአቀፍ ገደብ ንቁ፦ %1 ኪባ/ሰ</translation>
+        </message>
+        <message>
+            <source>Global limit active: unlimited</source>
+            <translation>አለምአቀፍ ገደብ ንቁ፦ ያልተገደበ</translation>
         </message>
         <message>
             <source>No global limit set</source>
@@ -896,10 +916,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>የፋይል ስም ቅዳ</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent ላክ...</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>ቀጥል</translation>
         </message>
@@ -926,6 +942,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>File Name</source>
             <translation>የፋይል ስም</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>ኤክስፖርት .torrent...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -968,6 +988,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>የወረደ</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>የተጨመረበት ቀን</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>የመጨረሻ ሙከራ ቀን</translation>
         </message>
@@ -986,18 +1010,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Parent web page</source>
             <translation>ወላጅ ድረ-ገጽ</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>በመጠባበቅ ላይ</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (ቆሟል)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>በማጣራት ላይ (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1027,7 +1039,7 @@ Click  Add URL  to start.</source>
         </message>
         <message>
             <source>Verify Local Data</source>
-            <translation>1. የአካባቢ ውሂብ አረጋግጥ</translation>
+            <translation>የአካባቢ ውሂብ አረጋግጥ</translation>
         </message>
         <message>
             <source>Copy URL</source>
@@ -1036,6 +1048,25 @@ Click  Add URL  to start.</source>
         <message>
             <source>%n selected downloads</source>
             <translation>%n የተመረጡ ውርዶች</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>በመጠባበቅ ላይ</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (ቆሟል)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>በማጣራት ላይ (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n ፋይል(ሎች)</translation>
         </message>
     </context>
     <context>
@@ -1196,14 +1227,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ቅዳ</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>ሜታዳታ</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>መግለጫ</translation>
-        </message>
-        <message>
             <source>Created by</source>
             <translation>የተፈጠረው በ</translation>
         </message>
@@ -1257,11 +1280,11 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>1. ዘርቻ</translation>
+            <translation>ዘርቻ</translation>
         </message>
         <message>
             <source>Queued</source>
-            <translation>2. ተሰልፏል</translation>
+            <translation>ተሰልፏል</translation>
         </message>
         <message>
             <source>Problem</source>
@@ -1285,19 +1308,27 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>General</source>
-            <translation>1. አጠቃላይ</translation>
+            <translation>አጠቃላይ</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>3. ፋይሎች</translation>
+            <translation>ፋይሎች</translation>
         </message>
         <message>
             <source>Swarm Map</source>
-            <translation>3. የስዋርም ካርታ</translation>
+            <translation>የስዋርም ካርታ</translation>
         </message>
         <message>
             <source>Piece Map</source>
-            <translation>4. የቁራጭ ካርታ</translation>
+            <translation>የቁራጭ ካርታ</translation>
+        </message>
+        <message>
+            <source>✓ Metadata</source>
+            <translation>✓ ሜታዳታ</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>በማምጣት ላይ…</translation>
         </message>
         <message>
             <source>Move...</source>
@@ -1305,27 +1336,27 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Wasted</source>
-            <translation>5. የባከነ</translation>
+            <translation>የባከነ</translation>
         </message>
         <message>
             <source>Down speed</source>
-            <translation>6. ↓ ፍጥነት</translation>
+            <translation>↓ ፍጥነት</translation>
         </message>
         <message>
             <source>Up speed</source>
-            <translation>7. ↑ ፍጥነት</translation>
+            <translation>↑ ፍጥነት</translation>
         </message>
         <message>
             <source>Connections</source>
-            <translation>8. ግንኙነቶች</translation>
+            <translation>ግንኙነቶች</translation>
         </message>
         <message>
             <source>Share ratio</source>
-            <translation>9. ማጋሪያ ምጥን</translation>
+            <translation>ማጋሪያ ምጥን</translation>
         </message>
         <message>
             <source>Pieces</source>
-            <translation>10. ቁርጥራጮች</translation>
+            <translation>ቁርጥራጮች</translation>
         </message>
         <message>
             <source>Availability</source>
@@ -1381,19 +1412,19 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>4. ሰርዝ</translation>
+            <translation>ሰርዝ</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>5. እንደገና ሰይም</translation>
+            <translation>እንደገና ሰይም</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>6. አውርድ</translation>
+            <translation>አውርድ</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>7. እንደገና ሰይም...</translation>
+            <translation>እንደገና ሰይም...</translation>
         </message>
         <message>
             <source>No peers connected</source>
@@ -1501,7 +1532,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Peers</source>
-            <translation>8. አቻዎች</translation>
+            <translation>አቻዎች</translation>
         </message>
         <message>
             <source>0 known peers</source>
@@ -1529,7 +1560,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>9. ያልታወቀ</translation>
+            <translation>ያልታወቀ</translation>
         </message>
         <message>
             <source>You (this client)</source>
@@ -1549,7 +1580,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation>10. URL ቅዳ</translation>
+            <translation>URL ቅዳ</translation>
         </message>
         <message>
             <source>Remove tracker</source>
@@ -1569,15 +1600,15 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>No trackers</source>
-            <translation>1. መከታተያ የለም</translation>
+            <translation>መከታተያ የለም</translation>
         </message>
         <message>
             <source>Web Seeds</source>
-            <translation>2. የድር ዘሮች</translation>
+            <translation>የድር ዘሮች</translation>
         </message>
         <message>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
-            <translation>3. የድር ዘር ዩአርኤሎችን ለጥፍ - አንድ በመስመር። ዩአርኤል ዘሮች (BEP-19) እና ኤችቲቲፒ ዘሮች (BEP-17) ሁለቱም ተቀባይነት አላቸው።</translation>
+            <translation>የድር ዘር ዩአርኤሎችን ለጥፍ - አንድ በመስመር። ዩአርኤል ዘሮች (BEP-19) እና ኤችቲቲፒ ዘሮች (BEP-17) ሁለቱም ተቀባይነት አላቸው።</translation>
         </message>
         <message>
             <source>URL</source>
@@ -1585,68 +1616,64 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Type</source>
-            <translation>5. አይነት</translation>
+            <translation>አይነት</translation>
         </message>
         <message>
             <source>No web seeds</source>
-            <translation>6. የድር ዘሮች የሉም</translation>
+            <translation>የድር ዘሮች የሉም</translation>
         </message>
         <message>
             <source>Open in browser</source>
-            <translation>7. በአሳሽ ክፈት</translation>
+            <translation>በአሳሽ ክፈት</translation>
         </message>
         <message>
             <source>Remove seed</source>
-            <translation>8. ዘር አስወግድ</translation>
+            <translation>ዘር አስወግድ</translation>
         </message>
         <message>
             <source>Complete</source>
-            <translation>9. ተጠናቋል</translation>
+            <translation>ተጠናቋል</translation>
         </message>
         <message>
             <source>Client</source>
-            <translation>10. ደንበኛ</translation>
+            <translation>ደንበኛ</translation>
         </message>
         <message>
             <source>DL</source>
-            <translation>1. ማውረድ</translation>
+            <translation>ማውረድ</translation>
         </message>
         <message>
             <source>Both</source>
-            <translation>2. ሁለቱም</translation>
+            <translation>ሁለቱም</translation>
         </message>
         <message>
             <source>Speed</source>
-            <translation>3. ፍጥነት</translation>
-        </message>
-        <message>
-            <source>Available</source>
-            <translation>4. ይገኛል</translation>
+            <translation>ፍጥነት</translation>
         </message>
         <message>
             <source>Distance: %1</source>
-            <translation>5. ርቀት፦ %1</translation>
+            <translation>ርቀት፦ %1</translation>
         </message>
         <message>
             <source>Country: %1</source>
-            <translation>6. ሀገር፦ %1</translation>
+            <translation>ሀገር፦ %1</translation>
         </message>
         <message>
             <source>%1 known peers</source>
-            <translation>7. %1 የታወቁ አቻዎች</translation>
+            <translation>%1 የታወቁ አቻዎች</translation>
         </message>
         <message>
             <source>%n tracker(s)</source>
-            <translation>8. %n መከታተያ(ዎች)</translation>
+            <translation>%n መከታተያ(ዎች)</translation>
         </message>
         <message>
             <source>Tell every tracker you're here right now, instead of waiting for the
 normal announce interval. Useful if your peer count suddenly dropped.</source>
-            <translation>9. መደበኛውን የማሳወቂያ ጊዜ ሳይጠብቁ አሁን እዚህ እንዳሉ ለእያንዳንዱ መከታተያ ይንገሩ። የአቻ ብዛትዎ በድንገት ከወደቀ ጠቃሚ ነው።</translation>
+            <translation>መደበኛውን የማሳወቂያ ጊዜ ሳይጠብቁ አሁን እዚህ እንዳሉ ለእያንዳንዱ መከታተያ ይንገሩ። የአቻ ብዛትዎ በድንገት ከወደቀ ጠቃሚ ነው።</translation>
         </message>
         <message>
             <source>Reannouncing...</source>
-            <translation>10. እንደገና በማሳወቅ ላይ...</translation>
+            <translation>እንደገና በማሳወቅ ላይ...</translation>
         </message>
         <message>
             <source>Add trackers…</source>
@@ -1667,10 +1694,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>ዘር አክል…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>ከስዋርም በማምጣት ላይ…</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1775,10 +1798,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>የፕሮጀክት ስም እና መነሻ ገጽ ያስፈልጋሉ</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>ስቴላር ግራበር – ደረጃ %1 ከ %2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>መነሻ ገጽ አዘጋጅ</translation>
         </message>
@@ -1804,27 +1823,27 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>All video from a web site</source>
-            <translation>1. ሁሉም ቪዲዮ ከድር ጣቢያ</translation>
+            <translation>ሁሉም ቪዲዮ ከድር ጣቢያ</translation>
         </message>
         <message>
             <source>All audio from a web site</source>
-            <translation>2. ሁሉም ኦዲዮ ከድር ጣቢያ</translation>
+            <translation>ሁሉም ኦዲዮ ከድር ጣቢያ</translation>
         </message>
         <message>
             <source>Complete web site</source>
-            <translation>3. ሙሉ ድር ጣቢያ</translation>
+            <translation>ሙሉ ድር ጣቢያ</translation>
         </message>
         <message>
             <source>Include filters</source>
-            <translation>4. ማጣሪያዎችን አካትት</translation>
+            <translation>ማጣሪያዎችን አካትት</translation>
         </message>
         <message>
             <source>Exclude filters</source>
-            <translation>5. ማጣሪያዎችን አግልል</translation>
+            <translation>ማጣሪያዎችን አግልል</translation>
         </message>
         <message>
             <source>Template name</source>
-            <translation>6. የአብነት ስም</translation>
+            <translation>የአብነት ስም</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -1832,15 +1851,15 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Save</source>
-            <translation>8. አስቀምጥ</translation>
+            <translation>አስቀምጥ</translation>
         </message>
         <message>
             <source>New</source>
-            <translation>9. አዲስ</translation>
+            <translation>አዲስ</translation>
         </message>
         <message>
             <source>Load</source>
-            <translation>10. ጫን</translation>
+            <translation>ጫን</translation>
         </message>
         <message>
             <source>Save current settings as a template</source>
@@ -1861,6 +1880,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>ፕሮጀክት</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>ስቴላር ግራበር – ደረጃ %1 ከ %2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -1884,15 +1907,15 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Use authorization</source>
-            <translation>1. ፍቃድ ተጠቀም</translation>
+            <translation>ፍቃድ ተጠቀም</translation>
         </message>
         <message>
             <source>Advanced &lt;&lt;</source>
-            <translation>2. የላቀ &lt;&lt;</translation>
+            <translation>የላቀ &lt;&lt;</translation>
         </message>
         <message>
             <source>Advanced &gt;&gt;</source>
-            <translation>3. የላቀ &gt;&gt;</translation>
+            <translation>የላቀ &gt;&gt;</translation>
         </message>
         <message>
             <source>Login</source>
@@ -1904,23 +1927,23 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
-            <translation>6. በእጅ ለመግባት ወይም የመውጫ ገጽን ለማሰናከል የላቀን ይጫኑ።</translation>
+            <translation>በእጅ ለመግባት ወይም የመውጫ ገጽን ለማሰናከል የላቀን ይጫኑ።</translation>
         </message>
         <message>
             <source>Enter login and password manually at the following web page:</source>
-            <translation>7. በሚከተለው ድረ-ገጽ ላይ መግቢያ እና የይለፍ ቃል በእጅ ያስገቡ፦</translation>
+            <translation>በሚከተለው ድረ-ገጽ ላይ መግቢያ እና የይለፍ ቃል በእጅ ያስገቡ፦</translation>
         </message>
         <message>
             <source>Don't open the logout page:</source>
-            <translation>8. የመውጫ ገጹን አትክፈት፦</translation>
+            <translation>የመውጫ ገጹን አትክፈት፦</translation>
         </message>
         <message>
             <source>Many sites have a logout page that the Grabber should not open. You may use an asterisk wildcard here to specify a pattern for different logout pages.</source>
-            <translation>9. ብዙ ጣቢያዎች ግራበር መክፈት የሌለበት የመውጫ ገጽ አላቸው። ለተለያዩ የመውጫ ገጾች ንድፍ ለመግለጽ ኮከብ ምልክት መጠቀም ይችላሉ።</translation>
+            <translation>ብዙ ጣቢያዎች ግራበር መክፈት የሌለበት የመውጫ ገጽ አላቸው። ለተለያዩ የመውጫ ገጾች ንድፍ ለመግለጽ ኮከብ ምልክት መጠቀም ይችላሉ።</translation>
         </message>
         <message>
             <source>Save To</source>
-            <translation>10. አስቀምጥ በ</translation>
+            <translation>አስቀምጥ በ</translation>
         </message>
         <message>
             <source>Every file to a folder according to Stellar category of the file</source>
@@ -2347,83 +2370,83 @@ Project</source>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>1. ደረጃ 1፦ አይነት ምረጥ</translation>
+            <translation>ደረጃ 1፦ አይነት ምረጥ</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
-            <translation>2. የአንድ ጊዜ አሰሳ/ማውረድ</translation>
+            <translation>የአንድ ጊዜ አሰሳ/ማውረድ</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>3. ወቅታዊ ማመሳሰል</translation>
+            <translation>ወቅታዊ ማመሳሰል</translation>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>4. ደረጃ 2፦ እርምጃ ምረጥ</translation>
+            <translation>ደረጃ 2፦ እርምጃ ምረጥ</translation>
         </message>
         <message>
             <source>Explore only</source>
-            <translation>5. አሰሳ ብቻ</translation>
+            <translation>አሰሳ ብቻ</translation>
         </message>
         <message>
             <source>Explore site and download matched files</source>
-            <translation>6. ጣቢያ አስስና የተዛመዱ ፋይሎች አውርድ</translation>
+            <translation>ጣቢያ አስስና የተዛመዱ ፋይሎች አውርድ</translation>
         </message>
         <message>
             <source>Download checked files</source>
-            <translation>7. ምልክት የተደረገባቸውን ፋይሎች አውርድ</translation>
+            <translation>ምልክት የተደረገባቸውን ፋይሎች አውርድ</translation>
         </message>
         <message>
             <source>After completion</source>
-            <translation>8. ከተጠናቀቀ በኋላ</translation>
+            <translation>ከተጠናቀቀ በኋላ</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>9. ሲጠናቀቅ Stellarን ዝጋ</translation>
+            <translation>ሲጠናቀቅ Stellarን ዝጋ</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>10. ሲጠናቀቅ ኮምፒውተር አጥፋ</translation>
+            <translation>ሲጠናቀቅ ኮምፒውተር አጥፋ</translation>
         </message>
         <message>
             <source>Shut down</source>
-            <translation>1. አጥፋ</translation>
+            <translation>አጥፋ</translation>
         </message>
         <message>
             <source>Restart</source>
-            <translation>2. እንደገና አስጀምር</translation>
+            <translation>እንደገና አስጀምር</translation>
         </message>
         <message>
             <source>Sleep</source>
-            <translation>3. እንቅልፍ</translation>
+            <translation>እንቅልፍ</translation>
         </message>
         <message>
             <source>Hibernate</source>
-            <translation>4. አሸልብ</translation>
+            <translation>አሸልብ</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>5. ሂደቶችን አስገድድ አቁም</translation>
+            <translation>ሂደቶችን አስገድድ አቁም</translation>
         </message>
         <message>
             <source>Step 3.  Schedule</source>
-            <translation>6. ደረጃ 3. ቀጠሮ</translation>
+            <translation>ደረጃ 3. ቀጠሮ</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation>7. ማውረድ ይጀምሩ በ</translation>
+            <translation>ማውረድ ይጀምሩ በ</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>8. አንዴ በ</translation>
+            <translation>አንዴ በ</translation>
         </message>
         <message>
             <source>January</source>
-            <translation>9. ጥር</translation>
+            <translation>ጥር</translation>
         </message>
         <message>
             <source>February</source>
-            <translation>10. የካቲት</translation>
+            <translation>የካቲት</translation>
         </message>
         <message>
             <source>March</source>
@@ -2561,35 +2584,43 @@ Project</source>
         <name>GrabberStatisticsDialog</name>
         <message>
             <source>Grabber Statistics</source>
-            <translation>3. የማንሻ ስታቲስቲክስ</translation>
-        </message>
-        <message>
-            <source>Status: %1</source>
-            <translation>4. ሁኔታ፦ %1</translation>
+            <translation>የማንሻ ስታቲስቲክስ</translation>
         </message>
         <message>
             <source>Idle</source>
             <translation>ስራ ፈት</translation>
         </message>
         <message>
-            <source>Web pages processed</source>
-            <translation>6. የተሰሩ ድረ-ገጾች</translation>
-        </message>
-        <message>
             <source>Simple</source>
-            <translation>7. ቀላል</translation>
+            <translation>ቀላል</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>8. የላቀ</translation>
+            <translation>የላቀ</translation>
         </message>
         <message>
             <source>Files</source>
             <translation>ፋይሎች</translation>
         </message>
         <message>
+            <source>STATUS</source>
+            <translation>ሁኔታ</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>ሁኔታ</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>ድረ-ገጾች</translation>
+        </message>
+        <message>
+            <source>FILES</source>
+            <translation>ፋይሎች</translation>
+        </message>
+        <message>
             <source>Total</source>
-            <translation>10. ጠቅላላ</translation>
+            <translation>ጠቅላላ</translation>
         </message>
         <message>
             <source>Explored</source>
@@ -2679,6 +2710,14 @@ Project</source>
             <translation>ሁሉም ፋይሎች (*)</translation>
         </message>
         <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>SDM ኤክስፖርት ፋይል (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>ጽሑፍ ፋይል (*.txt)</translation>
+        </message>
+        <message>
             <source>Total: %1</source>
             <translation>ድምር፦ %1</translation>
         </message>
@@ -2732,13 +2771,13 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>1. ተረድቻለሁ፣ አንቃ</translation>
+            <translation>ተረድቻለሁ፣ አንቃ</translation>
         </message>
         <message>
             <source>You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the &quot;Download File Info&quot; dialog.
 
 You can turn this off in Settings → Downloads.</source>
-            <translation>2. 'በኋላ አውርድ' ቁልፉን ተጭነዋል፣ ነገር ግን ስቴላር የፋይሉን ከፊል ማውረድ ጀምሯል። ስቴላር 'የፋይል መረጃ አውርድ' መገናኛ ሲያሳይ ሁልጊዜ ማውረድ ይጀምራል።
+            <translation>'በኋላ አውርድ' ቁልፉን ተጭነዋል፣ ነገር ግን ስቴላር የፋይሉን ከፊል ማውረድ ጀምሯል። ስቴላር 'የፋይል መረጃ አውርድ' መገናኛ ሲያሳይ ሁልጊዜ ማውረድ ይጀምራል።
 
 ይህን በቅንብሮች → ማውረጃዎች ውስጥ ማጥፋት ይችላሉ።</translation>
         </message>
@@ -2748,45 +2787,45 @@ You can turn this off in Settings → Downloads.</source>
         </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
-            <translation>4. ፋይሉ “%1” ማውረድ አልተቻለም።</translation>
+            <translation>ፋይሉ “%1” ማውረድ አልተቻለም።</translation>
         </message>
         <message>
             <source>The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata.</source>
-            <translation>5. አገልጋዩ ከተጠበቀው ፋይል ይልቅ ድረ-ገጽ መለሰ። አንዳንድ ጣቢያዎች ስቴላር ሜታዳታቸውን ከጠየቀ በኋላ ወዲያውኑ ፋይሎችን ይሰርዛሉ።</translation>
+            <translation>አገልጋዩ ከተጠበቀው ፋይል ይልቅ ድረ-ገጽ መለሰ። አንዳንድ ጣቢያዎች ስቴላር ሜታዳታቸውን ከጠየቀ በኋላ ወዲያውኑ ፋይሎችን ይሰርዛሉ።</translation>
         </message>
         <message>
             <source>To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:
 Stellar Options → Browser → Bypass Download Interception</source>
-            <translation>6. አሳሽዎ በቀጥታ እንዲያወርድ ለማድረግ፣ አገናኙን ጠቅ ሲያደርጉ የመቀየሪያ ቁልፍ (Alt፣ Ctrl፣ ወይም Shift) ይያዙ። ቁልፉን በሚከተለው ያዋቅሩ፦
+            <translation>አሳሽዎ በቀጥታ እንዲያወርድ ለማድረግ፣ አገናኙን ጠቅ ሲያደርጉ የመቀየሪያ ቁልፍ (Alt፣ Ctrl፣ ወይም Shift) ይያዙ። ቁልፉን በሚከተለው ያዋቅሩ፦
 የስቴላር አማራጮች → አሳሽ → የማውረድ ጣልቃገብነትን ማለፍ</translation>
         </message>
         <message>
             <source>Open Browser Settings</source>
-            <translation>7. የአሳሽ ቅንብሮችን ክፈት</translation>
+            <translation>የአሳሽ ቅንብሮችን ክፈት</translation>
         </message>
         <message>
             <source>Version %1 is available.</source>
-            <translation>8. ስሪት %1 ይገኛል።</translation>
+            <translation>ስሪት %1 ይገኛል።</translation>
         </message>
         <message>
             <source>Update Now</source>
-            <translation>9. አሁን አዘምን</translation>
+            <translation>አሁን አዘምን</translation>
         </message>
         <message>
             <source>Add Torrent File…</source>
-            <translation>10. የቶረንት ፋይል አክል…</translation>
+            <translation>የቶረንት ፋይል አክል…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
-            <translation>1. የURLዎች ቡድን አክል…</translation>
+            <translation>የURLዎች ቡድን አክል…</translation>
         </message>
         <message>
             <source>Exit</source>
-            <translation>2. ውጣ</translation>
+            <translation>ውጣ</translation>
         </message>
         <message>
             <source>File</source>
-            <translation>3. ፋይል</translation>
+            <translation>ፋይል</translation>
         </message>
         <message>
             <source>Open Folder</source>
@@ -2798,15 +2837,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Download Now</source>
-            <translation>6. አሁን አውርድ</translation>
+            <translation>አሁን አውርድ</translation>
         </message>
         <message>
             <source>Stop Download</source>
-            <translation>7. አውርድ አቁም</translation>
+            <translation>አውርድ አቁም</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>8. አስወግድ</translation>
+            <translation>አስወግድ</translation>
         </message>
         <message>
             <source>Redownload</source>
@@ -2823,10 +2862,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Downloads</source>
             <translation>ውርዶች</translation>
-        </message>
-        <message>
-            <source>Pause all</source>
-            <translation>ሁሉንም አቁም</translation>
         </message>
         <message>
             <source>Stop all</source>
@@ -2949,6 +2984,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>አምዶች…</translation>
         </message>
         <message>
+            <source>Toolbar…</source>
+            <translation>መሣሪያ አሞሌ…</translation>
+        </message>
+        <message>
             <source>Options</source>
             <translation>አማራጮች</translation>
         </message>
@@ -3058,15 +3097,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Add Torrent File</source>
-            <translation>1. የቶረንት ፋይል አክል</translation>
+            <translation>የቶረንት ፋይል አክል</translation>
         </message>
         <message>
             <source>Export .torrent Files</source>
-            <translation>2. .torrent ፋይሎችን ላክ</translation>
+            <translation>.torrent ፋይሎችን ላክ</translation>
         </message>
         <message>
             <source>Channel Download Progress</source>
-            <translation>3. የሰርጥ ማውረድ ሂደት</translation>
+            <translation>የሰርጥ ማውረድ ሂደት</translation>
         </message>
         <message>
             <source>File Name</source>
@@ -3094,11 +3133,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>File No Longer Available</source>
-            <translation>5. ፋይል አይገኝም</translation>
+            <translation>ፋይል አይገኝም</translation>
         </message>
         <message>
             <source>Quick Update</source>
-            <translation>6. ፈጣን ማዘመኛ</translation>
+            <translation>ፈጣን ማዘመኛ</translation>
         </message>
         <message>
             <source>PAUSED</source>
@@ -3106,19 +3145,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>7. ስቴላር አውርድ አስተዳዳሪ</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>8. ስቴላር  ↓ %1  ↑ %2</translation>
+            <translation>ስቴላር አውርድ አስተዳዳሪ</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
-            <translation>9. አዲስ የስቴላር አውርድ አስተዳዳሪ ስሪት አለ</translation>
+            <translation>አዲስ የስቴላር አውርድ አስተዳዳሪ ስሪት አለ</translation>
         </message>
         <message>
             <source>What's New in Stellar</source>
-            <translation>10. በስቴላር ውስጥ አዲስ ምን አለ</translation>
+            <translation>በስቴላር ውስጥ አዲስ ምን አለ</translation>
         </message>
         <message>
             <source>Export</source>
@@ -3363,31 +3398,31 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Feed</source>
-            <translation>1. ምግብ</translation>
+            <translation>ምግብ</translation>
         </message>
         <message>
             <source>Date</source>
-            <translation>2. ቀን</translation>
+            <translation>ቀን</translation>
         </message>
         <message>
             <source>Open Feed</source>
-            <translation>3. ምግብ ክፈት</translation>
+            <translation>ምግብ ክፈት</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation>4. አድስ</translation>
+            <translation>አድስ</translation>
         </message>
         <message>
             <source>Rename / Edit...</source>
-            <translation>5. ዳግም ሰይም / አርም...</translation>
+            <translation>ዳግም ሰይም / አርም...</translation>
         </message>
         <message>
             <source>Remove Subscription</source>
-            <translation>6. ምዝገባ አስወግድ</translation>
+            <translation>ምዝገባ አስወግድ</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation>7. አውርድ Torrent</translation>
+            <translation>አውርድ Torrent</translation>
         </message>
         <message>
             <source>Download</source>
@@ -3395,11 +3430,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Open in Browser</source>
-            <translation>9. በአሳሽ ክፈት</translation>
+            <translation>በአሳሽ ክፈት</translation>
         </message>
         <message>
             <source>Copy Link</source>
-            <translation>10. አገናኝ ቅዳ</translation>
+            <translation>አገናኝ ቅዳ</translation>
         </message>
         <message>
             <source>Mark as Read</source>
@@ -3483,38 +3518,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Choose an article to view its summary.</source>
-            <translation>1. ማጠቃለያ ለማየት ጽሑፍ ይምረጡ</translation>
+            <translation>ማጠቃለያ ለማየት ጽሑፍ ይምረጡ</translation>
         </message>
         <message>
             <source>No summary available.</source>
-            <translation>2. ማጠቃለያ የለም</translation>
+            <translation>ማጠቃለያ የለም</translation>
         </message>
         <message>
             <source>%1 unread  ·  %2 items</source>
-            <translation>3. %1 ያልተነበበ  ·  %2 ንጥሎች</translation>
+            <translation>%1 ያልተነበበ  ·  %2 ንጥሎች</translation>
         </message>
         <message>
             <source>%1 items</source>
-            <translation>4. %1 ንጥሎች</translation>
+            <translation>%1 ንጥሎች</translation>
         </message>
         <message>
             <source>RSS Feeds</source>
-            <translation>5. RSS ምግቦች</translation>
+            <translation>RSS ምግቦች</translation>
         </message>
         <message>
             <source>Edit Subscription</source>
-            <translation>6. ምዝገባ አርትዕ</translation>
+            <translation>ምዝገባ አርትዕ</translation>
         </message>
     </context>
     <context>
         <name>SchedulerDialog</name>
         <message>
             <source>Queues</source>
-            <translation>7. ወረፋዎች</translation>
+            <translation>ወረፋዎች</translation>
         </message>
         <message>
             <source>New queue</source>
-            <translation>8. አዲስ ወረፋ</translation>
+            <translation>አዲስ ወረፋ</translation>
         </message>
         <message>
             <source>Delete</source>
@@ -3522,7 +3557,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Schedule</source>
-            <translation>10. መርሐግብር</translation>
+            <translation>መርሐግብር</translation>
         </message>
         <message>
             <source>Files in the queue</source>
@@ -3570,11 +3605,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
-            <translation>2. ሲከሽፍ ለእያንዳንዱ ፋይል የድግግሞሽ ብዛት፦</translation>
+            <translation>ሲከሽፍ ለእያንዳንዱ ፋይል የድግግሞሽ ብዛት፦</translation>
         </message>
         <message>
             <source>Open the following file when done:</source>
-            <translation>3. ሲጠናቀቅ የሚከተለውን ፋይል ክፈት፦</translation>
+            <translation>ሲጠናቀቅ የሚከተለውን ፋይል ክፈት፦</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
@@ -3590,23 +3625,23 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Download</source>
-            <translation>1. አውርድ</translation>
+            <translation>አውርድ</translation>
         </message>
         <message>
             <source>files at the same time</source>
-            <translation>8. ፋይሎች በአንድ ጊዜ</translation>
+            <translation>ፋይሎች በአንድ ጊዜ</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>2. የፋይል ስም</translation>
+            <translation>የፋይል ስም</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>3. መጠን</translation>
+            <translation>መጠን</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>4. ሁኔታ</translation>
+            <translation>ሁኔታ</translation>
         </message>
         <message>
             <source>Time Left</source>
@@ -3646,7 +3681,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Stop</source>
-            <translation>5. አቁም</translation>
+            <translation>አቁም</translation>
         </message>
         <message>
             <source>Apply</source>
@@ -3654,7 +3689,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Close</source>
-            <translation>6. ዝጋ</translation>
+            <translation>ዝጋ</translation>
         </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
@@ -3666,15 +3701,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>OK</source>
-            <translation>7. እሺ</translation>
+            <translation>እሺ</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>8. ሰርዝ</translation>
+            <translation>ሰርዝ</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>9. መርሐግብር</translation>
+            <translation>መርሐግብር</translation>
         </message>
         <message>
             <source>New Queue</source>
@@ -3689,7 +3724,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
-            <translation>10. ግንኙነት</translation>
+            <translation>ግንኙነት</translation>
         </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
@@ -3729,31 +3764,31 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Use system proxy</source>
-            <translation>1. ስርዓት ፕሮክሲ ተጠቀም</translation>
+            <translation>ስርዓት ፕሮክሲ ተጠቀም</translation>
         </message>
         <message>
             <source>HTTP / HTTPS proxy</source>
-            <translation>2. HTTP/HTTPS ፕሮክሲ</translation>
+            <translation>HTTP/HTTPS ፕሮክሲ</translation>
         </message>
         <message>
             <source>SOCKS5 proxy</source>
-            <translation>3. SOCKS5 ፕሮክሲ</translation>
+            <translation>SOCKS5 ፕሮክሲ</translation>
         </message>
         <message>
             <source>Host:</source>
-            <translation>4. አስተናጋጅ:</translation>
+            <translation>አስተናጋጅ:</translation>
         </message>
         <message>
             <source>Port:</source>
-            <translation>5. ወደብ:</translation>
+            <translation>ወደብ:</translation>
         </message>
         <message>
             <source>Username:</source>
-            <translation>6. ተጠቃሚ ስም:</translation>
+            <translation>ተጠቃሚ ስም:</translation>
         </message>
         <message>
             <source>Password:</source>
-            <translation>7. የይለፍ ቃል:</translation>
+            <translation>የይለፍ ቃል:</translation>
         </message>
         <message>
             <source>Categories</source>
@@ -3765,7 +3800,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Save to folder</source>
-            <translation>10. ወደ አቃፊ አስቀምጥ</translation>
+            <translation>ወደ አቃፊ አስቀምጥ</translation>
         </message>
         <message>
             <source>Downloads</source>
@@ -3868,20 +3903,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ፍጥነት ገዳቢ</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>አለምአቀፍ የማውረድ ገደብ አንቃ</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>ከፍተኛ ፍጥነት፦</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>አለምአቀፍ የሰቀላ ገደብ አንቃ</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3932,6 +3955,28 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>አጠቃላይ</translation>
         </message>
         <message>
+            <source>Export Stellar Backup</source>
+            <translation>ስቴላር ምትኬን ላክ</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>ስቴላር ምትኬን አስገባ</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>ምትኬ ተጠናቋል</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>ውሂብህ ወደዚህ ተልኳል፦
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>ማስመጣት ተጠናቋል</translation>
+        </message>
+        <message>
             <source>Browser</source>
             <translation>አሳሽ</translation>
         </message>
@@ -3969,43 +4014,43 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>All downloads, video downloads, update checks, and torrent peer/tracker connections are routed through this proxy.</source>
-            <translation>1. ሁሉም ማውረዶች፣ ቪዲዮ ማውረዶች፣ ማሻሻያ ፍተሻዎች እና የቶረንት አቻ/መከታተያ ግንኙነቶች በዚህ ፕሮክሲ በኩል ይመራሉ።</translation>
+            <translation>ሁሉም ማውረዶች፣ ቪዲዮ ማውረዶች፣ ማሻሻያ ፍተሻዎች እና የቶረንት አቻ/መከታተያ ግንኙነቶች በዚህ ፕሮክሲ በኩል ይመራሉ።</translation>
         </message>
         <message>
             <source>Stellar will use the proxy configured in your operating system network settings.</source>
-            <translation>2. ስቴላር በስርዓተ ክወናዎ አውታረ መረብ ቅንብሮች ውስጥ የተዋቀረውን ፕሮክሲ ይጠቀማል።</translation>
+            <translation>ስቴላር በስርዓተ ክወናዎ አውታረ መረብ ቅንብሮች ውስጥ የተዋቀረውን ፕሮክሲ ይጠቀማል።</translation>
         </message>
         <message>
             <source>Timed out — proxy did not respond</source>
-            <translation>3. ጊዜው አልቋል — ፕሮክሲ ምላሽ አልሰጠም</translation>
+            <translation>ጊዜው አልቋል — ፕሮክሲ ምላሽ አልሰጠም</translation>
         </message>
         <message>
             <source>Testing…</source>
-            <translation>4. በመሞከር ላይ…</translation>
+            <translation>በመሞከር ላይ…</translation>
         </message>
         <message>
             <source>Test Proxy</source>
-            <translation>5. ፕሮክሲ ሞክር</translation>
+            <translation>ፕሮክሲ ሞክር</translation>
         </message>
         <message>
             <source>⚠ Not in browser auto-download list: %1</source>
-            <translation>6. ⚠ በአሳሽ ራስ-ማውረድ ዝርዝር ውስጥ የለም: %1</translation>
+            <translation>⚠ በአሳሽ ራስ-ማውረድ ዝርዝር ውስጥ የለም: %1</translation>
         </message>
         <message>
             <source>Browse</source>
-            <translation>7. አስስ</translation>
+            <translation>አስስ</translation>
         </message>
         <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
-            <translation>8. ይህ የቶረንት ሜታዳታ መገናኛ በነባሪ ብጁ አቃፊ እንዲጠቀም ሲዋቀር የሚጠቀመው የማስታወሻ ብጁ የቶረንት አቃፊ ነው።</translation>
+            <translation>ይህ የቶረንት ሜታዳታ መገናኛ በነባሪ ብጁ አቃፊ እንዲጠቀም ሲዋቀር የሚጠቀመው የማስታወሻ ብጁ የቶረንት አቃፊ ነው።</translation>
         </message>
         <message>
             <source>Stellar stores partially downloaded file parts and metadata here while downloading and assembling files.</source>
-            <translation>9. ስቴላር ፋይሎችን በማውረድና በማዋሃድ ጊዜ በከፊል የወረዱ የፋይል ክፍሎችን እና ሜታዳታዎችን እዚህ ያከማቻል።</translation>
+            <translation>ስቴላር ፋይሎችን በማውረድና በማዋሃድ ጊዜ በከፊል የወረዱ የፋይል ክፍሎችን እና ሜታዳታዎችን እዚህ ያከማቻል።</translation>
         </message>
         <message>
             <source>Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting.</source>
-            <translation>10. ማስታወሻ: እነዚህ ቅንብሮች ወዲያውኑ ማውረድ ጀምር እና የማውረድ ማጠናቀቂያ መገናኛ አሳይ ለሚለው የወረፋ ሂደት አይተገበሩም።</translation>
+            <translation>ማስታወሻ: እነዚህ ቅንብሮች ወዲያውኑ ማውረድ ጀምር እና የማውረድ ማጠናቀቂያ መገናኛ አሳይ ለሚለው የወረፋ ሂደት አይተገበሩም።</translation>
         </message>
         <message>
             <source>Ask me what to do</source>
@@ -4064,6 +4109,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ምንም</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>የፍጥነት ገዳቢ አንቃ</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>ከፍተኛ ማውረድ:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>ለመቀያየር የቀን ክኒን ጠቅ ያድርጉ። ደንቦች በየደቂቃው ይገመገማሉ፤ መጀመሪያ የሚዛመደው ደንብ ያሸንፋል። ምንም ደንብ በማይሰራበት ጊዜ የታቀዱ የማውረድ እና የመጫን ገደቦች በራስ-ሰር ይጸዳሉ</translation>
         </message>
@@ -4086,10 +4139,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Show tips in bottom bar</source>
             <translation>በታችኛው አሞሌ ምክሮችን አሳይ</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>በሁኔታ አሞሌ የተጠናቀቁ ማውረዶች ብዛት አሳይ</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4146,6 +4195,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>የተቆጣጠረውን የፋይል አይነት የሚዛመድ ዩአርኤል ወደ ቅንጥብ ሰሌዳ ሲገለበጥ፣ ስቴላር ማውረድ ይፈልጉ እንደሆነ ይጠይቃል። የሚወሰዱት በአሳሽ › የሚከተሉትን የፋይል አይነቶች በራስ-ሰር ማውረድ ጀምር ስር የተዘረዘሩት ብቻ ናቸው።</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>ምትኬ እና መልሶ ማግኛ</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>ሁሉንም ነገር — ቅንብሮች፣ ማውረዶች፣ ቶረንቶች (ከማጋሪያ ምጣኔያቸው ጋር)፣ ወረፋዎች፣ ምድቦች እና ስታቲስቲክስ — ወደ አንድ ምትኬ ፋይል ላክ። ሁሉንም ለመመለስ በኋላ ወደ አዲስ Stellar ጭነት አስመጣው። ማስመጣት የአሁኑን ውሂብ ይተካዋል (የጊዜ ማህተም ያለው ምትኬ ይቀመጣል) እና Stellarን እንደገና ያስጀምረዋል።</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>ሁሉንም ውሂብ ላክ…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>ውሂብ አስመጣ…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4444,6 +4509,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ማህደረ-ትውስታ-የተቀረጸ፦ ፋይሎች በቀጥታ ወደ ማህደረ ትውስታ ይቀረጻሉ። ዊንዶውስ እና ሊኑክስ የ torrent ውሂብ በገጽ መሸጎጫ በኩል በዝቅተኛ ሲፒዩ አጠቃቀም ያነባሉ፣ ይጽፋሉ። ለአብዛኞቹ ተጠቃሚዎች ይመከራል።</translation>
         </message>
         <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>ውሂብዎ በተሳካ ሁኔታ ተመልሷል። ለመተግበር Stellar እንደገና መጀመር አለበት።</translation>
+        </message>
+        <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
             <translation>POSIX፦ ንባብና ጽሑፍ ያለ ማህደረ-ትውስታ ቅረጸት በመደበኛ ፋይል ጥሪዎች ያልፋሉ። ከማህደረ-ትውስታ-የተቀረጸ ያነሰ የአድራሻ ቦታ ይጠቀማል፤ ይህም በ32-ቢት ሲስተሞች ላይ ወይም ብዙ ትላልቅ torrentዎችን በአንድ ጊዜ ሲዘሩ ሊረዳ ይችላል።</translation>
         </message>
@@ -4585,19 +4654,19 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Total Downloaded</source>
-            <translation>1. ጠቅላላ የወረደ</translation>
+            <translation>ጠቅላላ የወረደ</translation>
         </message>
         <message>
             <source>Total Uploaded</source>
-            <translation>2. ጠቅላላ የሰቀለ</translation>
+            <translation>ጠቅላላ የሰቀለ</translation>
         </message>
         <message>
             <source>All-time Share Ratio</source>
-            <translation>3. አጠቃላይ የማጋሪያ ጥምርታ</translation>
+            <translation>አጠቃላይ የማጋሪያ ጥምርታ</translation>
         </message>
         <message>
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
-            <translation>4. ሙሉ የፈቃድ ጽሑፎች በTHIRD-PARTY-NOTICES.txt ውስጥ አሉ፣ ከዚህ ጭነት ጋር ተካተዋል።</translation>
+            <translation>ሙሉ የፈቃድ ጽሑፎች በTHIRD-PARTY-NOTICES.txt ውስጥ አሉ፣ ከዚህ ጭነት ጋር ተካተዋል።</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -4605,15 +4674,15 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Feed Fetching</source>
-            <translation>6. ምግብ ማምጣት</translation>
+            <translation>ምግብ ማምጣት</translation>
         </message>
         <message>
             <source>Enable fetching RSS feeds</source>
-            <translation>7. RSS ምግቦችን ማምጣት አንቃ</translation>
+            <translation>RSS ምግቦችን ማምጣት አንቃ</translation>
         </message>
         <message>
             <source>Feeds refresh interval</source>
-            <translation>8. የምግቦች ማደስ ጊዜ</translation>
+            <translation>የምግቦች ማደስ ጊዜ</translation>
         </message>
         <message>
             <source>minutes</source>
@@ -4621,7 +4690,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Same host request delay</source>
-            <translation>10. ተመሳሳይ አስተናጋጅ ጥያቄ መዘግየት</translation>
+            <translation>ተመሳሳይ አስተናጋጅ ጥያቄ መዘግየት</translation>
         </message>
         <message>
             <source>seconds</source>
@@ -4909,7 +4978,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Version %1 Beta</source>
-            <translation>2. ስሪት %1 ቤታ</translation>
+            <translation>ስሪት %1 ቤታ</translation>
         </message>
         <message>
             <source>Update available: %1</source>
@@ -4929,35 +4998,35 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Tray icon style:</source>
-            <translation>3. የትሪ አዶ ዘይቤ</translation>
+            <translation>የትሪ አዶ ዘይቤ</translation>
         </message>
         <message>
             <source>Colored</source>
-            <translation>4. ባለቀለም</translation>
+            <translation>ባለቀለም</translation>
         </message>
         <message>
             <source>White</source>
-            <translation>5. ነጭ</translation>
+            <translation>ነጭ</translation>
         </message>
         <message>
             <source>Black</source>
-            <translation>6. ጥቁር</translation>
+            <translation>ጥቁር</translation>
         </message>
         <message>
             <source>Appearance</source>
-            <translation>7. መልክ</translation>
+            <translation>መልክ</translation>
         </message>
         <message>
             <source>UI scale:</source>
-            <translation>8. የUI ልኬት</translation>
+            <translation>የUI ልኬት</translation>
         </message>
         <message>
             <source>Font size:</source>
-            <translation>9. የቅርጸ-ቁምፊ መጠን</translation>
+            <translation>የቅርጸ-ቁምፊ መጠን</translation>
         </message>
         <message>
             <source>System default</source>
-            <translation>10. የስርዓት ነባሪ</translation>
+            <translation>የስርዓት ነባሪ</translation>
         </message>
         <message>
             <source>A restart is required for appearance changes to take effect. Restart now?</source>
@@ -5085,18 +5154,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ያልተገደበ</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 ፍጥነት ገዳቢ</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 ተኪ በርቷል</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 ዝማኔዎችን በመፈተሽ ላይ</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT ጠፍቷል</translation>
         </message>
@@ -5117,14 +5174,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ቀጣይ &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 ወረፋ በ1 ደቂቃ ይጀምራል</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 ወረፋ በ%1 ደቂቃ ይጀምራል</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>የሁሉም-ጊዜ ማጋሪያ ጥምርታ
@@ -5141,6 +5190,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>የአውታረ መረብ ግንኙነት አልተገኘም</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>የፍጥነት ገዳቢ</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>ተኪ አብራ</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>ዝማኔዎችን በመፈተሽ ላይ</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5161,6 +5222,14 @@ Click to open Statistics</source>
         <message>
             <source>Click to copy IP</source>
             <translation>IP ለመቅዳት ጠቅ ያድርጉ</translation>
+        </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>ወረፋ በ1 ደቂቃ ይጀምራል</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>ወረፋ በ%1 ደቂቃዎች ይጀምራል</translation>
         </message>
     </context>
     <context>
@@ -5246,11 +5315,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation>1. ወረፋ ጀምር</translation>
+            <translation>ወረፋ ጀምር</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation>2. ወረፋ አቁም</translation>
+            <translation>ወረፋ አቁም</translation>
         </message>
         <message>
             <source>Grabber</source>
@@ -5262,7 +5331,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>RSS</source>
-            <translation>3. RSS</translation>
+            <translation>RSS</translation>
         </message>
     </context>
     <context>
@@ -5348,6 +5417,10 @@ Click to open Statistics</source>
             <translation>መለያ ጨምር</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>አስወግድ</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>ዳግም አስጀምር</translation>
         </message>
@@ -5358,6 +5431,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>ይቅር</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>ቶረንት ፍጠር</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>አስወግድ</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>አስቀምጥ በ፦</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>አስስ…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>ስም፦</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>ቁራጭ መጠን፦</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>ራስ-ሰር</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>የውጤት አቃፊ ምረጥ</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>ፋይሎች</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>ምንጭ፦</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 ተጨማሪ)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>ምንጭ አልተመረጠም</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>ፋይል…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>አቃፊ…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>የውጤት አቃፊ…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>የቶረንት ስም (አማራጭ)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 ቁርጥራጮች × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 ቁርጥራጮች × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>ባህሪያት</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>መከታተያዎች:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>አማራጭ</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>የድር ዘሮች:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>በአንድ መስመር አንድ URL (አማራጭ)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>የግል ቶረንት (DHT እና PeX ያሰናክላል)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ ተጠናቋል — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>ሃሺንግ… %1%  (%2 ቁርጥራጮች × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>ሲጠናቀቅ ክፈት</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>አስተያየት፦</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ ስህተት: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>ተሰርዟል</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ይቅር</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>ዝጋ</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>እየፈጠረ…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>ክፈት ቶረንት</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ፋይሎች አክል</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>አቃፊ አክል</translation>
         </message>
     </context>
     <context>
@@ -5399,7 +5619,7 @@ Click to open Statistics</source>
         <name>TorrentMetadataDialog</name>
         <message>
             <source>Save to</source>
-            <translation>4. አስቀምጥበት</translation>
+            <translation>አስቀምጥበት</translation>
         </message>
         <message>
             <source>Save As...</source>
@@ -5407,7 +5627,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Category</source>
-            <translation>5. ምድብ</translation>
+            <translation>ምድብ</translation>
         </message>
         <message>
             <source>Custom save folder</source>
@@ -5423,23 +5643,23 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Description</source>
-            <translation>6. መግለጫ</translation>
+            <translation>መግለጫ</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation>7. የቶረንት ቅንብሮች...</translation>
+            <translation>የቶረንት ቅንብሮች...</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>8. ሰርዝ</translation>
+            <translation>ሰርዝ</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>9. በኋላ አውርድ</translation>
+            <translation>በኋላ አውርድ</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>10. አውርድ</translation>
+            <translation>አውርድ</translation>
         </message>
         <message>
             <source>Opening torrent...</source>
@@ -5791,46 +6011,54 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>1. የመጀመሪያ እና የመጨረሻ ቁርጥራጮችን አስቀድም</translation>
+            <translation>የመጀመሪያ እና የመጨረሻ ቁርጥራጮችን አስቀድም</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>2. ለቅድመ ማጫወት ራስጌ/ግርጌ ቀድሞ ጫን</translation>
+            <translation>ለቅድመ ማጫወት ራስጌ/ግርጌ ቀድሞ ጫን</translation>
         </message>
     </context>
     <context>
         <name>YtdlpDialog</name>
         <message>
             <source>Fetching available formats…</source>
-            <translation>3. የሚገኙ ቅርጸቶችን በማምጣት ላይ…</translation>
+            <translation>የሚገኙ ቅርጸቶችን በማምጣት ላይ…</translation>
         </message>
         <message>
             <source>Could not fetch video information</source>
-            <translation>4. የቪዲዮ መረጃ ማምጣት አልተቻለም</translation>
+            <translation>የቪዲዮ መረጃ ማምጣት አልተቻለም</translation>
         </message>
         <message>
             <source>YouTube n-challenge solving failed</source>
-            <translation>5. የYouTube n-ፈተና መፍታት አልተሳካም</translation>
+            <translation>የYouTube n-ፈተና መፍታት አልተሳካም</translation>
         </message>
         <message>
             <source>Fetching video info…</source>
-            <translation>6. የቪዲዮ መረጃ በማምጣት ላይ…</translation>
+            <translation>የቪዲዮ መረጃ በማምጣት ላይ…</translation>
+        </message>
+        <message>
+            <source>Best quality</source>
+            <translation>ምርጥ ጥራት</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>ድምጽ ብቻ</translation>
         </message>
         <message>
             <source>Could not fetch video info</source>
-            <translation>7. የቪዲዮ መረጃ ማምጣት አልተቻለም</translation>
+            <translation>የቪዲዮ መረጃ ማምጣት አልተቻለም</translation>
         </message>
         <message>
             <source>yt-dlp requires a JavaScript runtime (Deno, Node.js, Bun, or QuickJS) to bypass YouTube's URL throttling challenge. Install one and place it next to yt-dlp.exe or in your system PATH.</source>
-            <translation>8. yt-dlp የYouTubeን የURL ማነቆ ፈተና ለማለፍ የJavaScript ራንታይም (Deno፣ Node.js፣ Bun ወይም QuickJS) ያስፈልገዋል። አንዱን ጫንና ከyt-dlp.exe አጠገብ ወይም በስርዓት PATH ውስጥ አስቀምጥ።</translation>
+            <translation>yt-dlp የYouTubeን የURL ማነቆ ፈተና ለማለፍ የJavaScript ራንታይም (Deno፣ Node.js፣ Bun ወይም QuickJS) ያስፈልገዋል። አንዱን ጫንና ከyt-dlp.exe አጠገብ ወይም በስርዓት PATH ውስጥ አስቀምጥ።</translation>
         </message>
         <message>
             <source>No runtime detected. Install Deno (recommended) from deno.com, then re-check in Settings → Video Downloader.</source>
-            <translation>9. ምንም ራንታይም አልተገኘም። Denoን (የሚመከር) ከdeno.com ጫን፣ ከዚያ በቅንብሮች → የቪዲዮ አውርጃ ውስጥ ደግመህ አረጋግጥ።</translation>
+            <translation>ምንም ራንታይም አልተገኘም። Denoን (የሚመከር) ከdeno.com ጫን፣ ከዚያ በቅንብሮች → የቪዲዮ አውርጃ ውስጥ ደግመህ አረጋግጥ።</translation>
         </message>
         <message>
             <source>Runtime detected: %1 (%2)</source>
-            <translation>10. ራንታይም ተገኝቷል፦ %1 (%2)</translation>
+            <translation>ራንታይም ተገኝቷል፦ %1 (%2)</translation>
         </message>
         <message>
             <source>Get Deno</source>
@@ -6150,177 +6378,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ቪዲዮ አውርድ</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>ቶረንት ፍጠር</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>ምንጭ ፋይሎች / አቃፊዎች</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ ፋይሎች</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ አቃፊ</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>አስወግድ</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>ፋይሎችን ወይም አቃፊዎችን እዚህ ይጎትቱ፣ ወይም ከላይ ያሉትን አዝራሮች ይጠቀሙ</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>ውጤት</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>አስቀምጥ በ፦</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>የ.torrent ፋይል መቀመጫ መንገድ…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>አስስ…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>ስም፦</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>አማራጭ — ነባሪው የአቃፊ/ፋይል ስም</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>ቁራጭ መጠን፦</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>ራስ-ሰር</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 ቁርጥራጮች × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>ሜታዳታ</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>አስተያየት፦</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>በ.torrent ውስጥ የተካተተ አማራጭ አስተያየት</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>መግለጫ፦</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>አማራጭ የተራዘመ መግለጫ</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>የተፈጠረው በ፦</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>የግል ቶረንት (DHT እና PEX ለዚህ ቶረንት ተሰናክለዋል)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>መከታተያዎች</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>በአንድ መስመር አንድ URL</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>የድር ዘሮች (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>ሲፈጠር ክፈት</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ ቶረንት ተፈጥሯል: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ ስህተት: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>ተሰርዟል</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>ክፍሎች እየተከታተለ… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 ክፍሎች × %2 በክፍል</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ይቅር</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>ዝጋ</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>እየፈጠረ…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>ክፈት ቶረንት</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>ቶረንት ፍጠር…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>ፋይሎች አክል</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>አቃፊ አክል</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>.torrent አስቀምጥ</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>የቶረንት ፋይሎች (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>ሁሉም ፋይሎች (*)</translation>
         </message>
     </context>
 </TS>

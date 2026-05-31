@@ -73,6 +73,14 @@
             <translation>🛡️ %1 にバインド済み</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>バックアップ先が未選択です。</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>インポートするバックアップファイルが未選択です。</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ %1 にバインド中 (オフライン — トレント一時停止)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>ステータス</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>追加前にリンクを確認。列はソート、サイズ変更、ドラッグで並べ替え可能。</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>ファイル名をワイルドカード (*) に置換</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>選択解除</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>「Found」のみのリンクを選択可能。OK でキュー割り当てを実行。</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>キャンセル</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>リンクをSDMにインポート</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>ダウンロードリストに追加するリンクを確認しOKを押してください。</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -504,20 +508,24 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>完了ダウンロードの削除</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Stellar の完了ダウンロードをすべて削除してもよろしいですか？</translation>
+            <source>Delete completed downloads?</source>
+            <translation>完了したダウンロードを削除しますか？</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>リストから削除されますが、ディスク上のファイルは削除されません。</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>リストからのみ削除します。ディスク上のファイルは削除されません。</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>キャンセル</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>削除</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>完了およびシード中の Torrent の削除</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>はい</translation>
         </message>
         <message>
             <source>No</source>
@@ -580,6 +588,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>ダウンロードファイル情報</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1ファイル (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>全ファイル (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -836,6 +852,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>グローバル制限有効：%1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>全体制限有効: 無制限</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>グローバル制限未設定</translation>
         </message>
@@ -895,10 +915,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ファイル名をコピー</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent をエクスポート...</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>再開</translation>
         </message>
@@ -925,6 +941,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>File Name</source>
             <translation>ファイル名</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>.torrentをエクスポート...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -967,6 +987,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>完了</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>追加日</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>最終試行日</translation>
         </message>
@@ -985,18 +1009,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Parent web page</source>
             <translation>親ウェブページ</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>保留中</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (停止)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>確認中 (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1034,6 +1046,25 @@ Click  Add URL  to start.</source>
         <message>
             <source>%n selected downloads</source>
             <translation>%n 件のダウンロードを選択</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>保留中</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (停止)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>確認中 (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%nファイル</translation>
         </message>
     </context>
     <context>
@@ -1194,14 +1225,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>コピー</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>メタデータ</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>説明</translation>
-        </message>
-        <message>
             <source>Created by</source>
             <translation>作成者</translation>
         </message>
@@ -1296,6 +1319,14 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>ピースマップ</translation>
+        </message>
+        <message>
+            <source>✓ Metadata</source>
+            <translation>✓ メタデータ</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>取得中…</translation>
         </message>
         <message>
             <source>Move...</source>
@@ -1618,10 +1649,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>速度</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>利用可能</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>距離：%1</translation>
         </message>
@@ -1665,10 +1692,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>シード追加…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>スワームから取得中...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1773,10 +1796,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>プロジェクト名と開始ページが必要です</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – %2 のうち %1 番目: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>開始ページを設定</translation>
         </message>
@@ -1859,6 +1878,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>プロジェクト</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – ステップ %1/%2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2557,16 +2580,8 @@ Project</source>
             <translation>Grabber 統計</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>ステータス：%1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>待機中</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>処理された Web ページ</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2578,6 +2593,22 @@ Project</source>
         </message>
         <message>
             <source>Files</source>
+            <translation>ファイル</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>状態</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>状態</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>WEBページ</translation>
+        </message>
+        <message>
+            <source>FILES</source>
             <translation>ファイル</translation>
         </message>
         <message>
@@ -2670,6 +2701,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>すべてのファイル (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>SDMエクスポート (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>テキスト (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2814,10 +2853,6 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
             <translation>ダウンロード</translation>
         </message>
         <message>
-            <source>Pause all</source>
-            <translation>すべて一時停止</translation>
-        </message>
-        <message>
             <source>Stop all</source>
             <translation>すべて停止</translation>
         </message>
@@ -2936,6 +2971,10 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
         <message>
             <source>Columns…</source>
             <translation>カラム…</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>ツールバー…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3096,10 +3135,6 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
         <message>
             <source>Stellar Download Manager</source>
             <translation>Stellar ダウンロードマネージャー</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar ↓%1 ↑%2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3857,20 +3892,8 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
             <translation>速度制限</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>グローバル速度制限</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>最大速度</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>グローバルアップロード制限</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3919,6 +3942,28 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
         <message>
             <source>General</source>
             <translation>一般</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>Stellarバックアップをエクスポート</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>Stellarバックアップをインポート</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>バックアップ完了</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>データのエクスポート先:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>インポート完了</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4053,6 +4098,14 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
             <translation>なし</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>速度制限を有効化</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>最大ダウンロード:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>1 日のピルをクリックして切り替え。ルールは 1 分ごとに評価され、最初の一致が採用されます。スケジュールされたダウンロード・アップロード制限は、ルールが非アクティブになると自動的にクリアされます。</translation>
         </message>
@@ -4075,10 +4128,6 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
         <message>
             <source>Show tips in bottom bar</source>
             <translation>下部バーにヒントを表示</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>完了ダウンロード数</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4135,6 +4184,22 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>監視されているファイルタイプに一致する URL がクリップボードにコピーされた場合、Stellar はダウンロードするかどうかを尋ねます。ブラウザ › 以下のファイルタイプを自動的にダウンロードする にリストされているファイルタイプのみが対象となります。</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>バックアップと復元</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>設定、ダウンロード、トレント（共有比率を含む）、キュー、カテゴリ、統計をすべて単一のバックアップファイルにエクスポートします。後で新しいStellarにインポートして復元できます。インポートすると現在のデータが置き換えられ（タイムスタンプ付きバックアップは保持）、Stellarが再起動します。</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>全データをエクスポート…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>データをインポート…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4431,6 +4496,10 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>メモリマップト: ファイルを直接メモリにマッピング。WindowsとLinuxはページキャッシュ経由で読み書きし、CPU使用率を抑えます。ほとんどのユーザーに推奨。</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>データが正常に復元されました。適用するにはStellarの再起動が必要です。</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -4758,31 +4827,31 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
         </message>
         <message>
             <source>Stellar Website</source>
-            <translation>1. Stellar公式サイト</translation>
+            <translation>Stellar公式サイト</translation>
         </message>
         <message>
             <source>GitHub</source>
-            <translation>2. GitHub</translation>
+            <translation>GitHub</translation>
         </message>
         <message>
             <source>Releases</source>
-            <translation>3. リリース</translation>
+            <translation>リリース</translation>
         </message>
         <message>
             <source>Git source</source>
-            <translation>4. Gitソース</translation>
+            <translation>Gitソース</translation>
         </message>
         <message>
             <source>yt-dlp on GitHub</source>
-            <translation>5. yt-dlp on GitHub</translation>
+            <translation>yt-dlp on GitHub</translation>
         </message>
         <message>
             <source>Unlicense</source>
-            <translation>6. Unlicense</translation>
+            <translation>Unlicense</translation>
         </message>
         <message>
             <source>Thanks for using Stellar 💙</source>
-            <translation>7. Stellarをご利用いただきありがとうございます💙</translation>
+            <translation>Stellarをご利用いただきありがとうございます💙</translation>
         </message>
         <message>
             <source>GNU GPL v3.0</source>
@@ -5040,7 +5109,7 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>1. アップロード済み</translation>
+            <translation>アップロード済み</translation>
         </message>
         <message>
             <source>Share Ratio</source>
@@ -5064,7 +5133,7 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
         </message>
         <message>
             <source>Close</source>
-            <translation>2. 閉じる</translation>
+            <translation>閉じる</translation>
         </message>
     </context>
     <context>
@@ -5072,18 +5141,6 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
         <message>
             <source>unlimited</source>
             <translation>無制限</translation>
-        </message>
-        <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 速度制限</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 プロキシ有効</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 更新確認中</translation>
         </message>
         <message>
             <source>DHT off</source>
@@ -5106,14 +5163,6 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
             <translation>次へ &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 キューが 1 分後に実行</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 キューが %1 分後に実行</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>総共有率</translation>
@@ -5129,6 +5178,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>ネットワーク接続が検出されません</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>速度制限</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>プロキシ有効</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>更新を確認中</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5150,16 +5211,24 @@ Click to open Statistics</source>
             <source>Click to copy IP</source>
             <translation>統計を開く</translation>
         </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>1分後にキュー実行</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>%1分後にキュー実行</translation>
+        </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>3. Stellar Download Manager</translation>
+            <translation>Stellar Download Manager</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>4. SDMダウンロード</translation>
+            <translation>SDMダウンロード</translation>
         </message>
         <message>
             <source>Open Stellar</source>
@@ -5202,15 +5271,15 @@ Click to open Statistics</source>
         <name>Toolbar</name>
         <message>
             <source>Add URL</source>
-            <translation>5. URL追加</translation>
+            <translation>URL追加</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>6. 再開</translation>
+            <translation>再開</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>7. 停止</translation>
+            <translation>停止</translation>
         </message>
         <message>
             <source>Stop All</source>
@@ -5218,7 +5287,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Delete</source>
-            <translation>8. 削除</translation>
+            <translation>削除</translation>
         </message>
         <message>
             <source>Delete Done</source>
@@ -5226,11 +5295,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Options</source>
-            <translation>9. オプション</translation>
+            <translation>オプション</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>10. スケジューラー</translation>
+            <translation>スケジューラー</translation>
         </message>
         <message>
             <source>Start Queue</source>
@@ -5336,6 +5405,10 @@ Click to open Statistics</source>
             <translation>区切り線を追加</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>削除</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>リセット</translation>
         </message>
@@ -5346,6 +5419,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>キャンセル</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>トレント作成</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>削除</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>保存先:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>参照…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>名前:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>ピースサイズ:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>自動</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>出力フォルダを選択</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>ファイル</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>ソース:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1件)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>ソース未選択</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>ファイル…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>フォルダ…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>出力先…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>トレント名 (任意)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1個 × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1ピース × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>プロパティ</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>トラッカー:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>任意</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>Webシード:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>1行に1URL (任意)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>プライベート (DHT/PeX無効)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ 完了 — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>ハッシュ中… %1% (%2ピース×%3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>完了時に開く</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>コメント:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ エラー: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>キャンセル済</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>閉じる</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>作成中…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>トレントを開く</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ファイルを追加</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>フォルダを追加</translation>
         </message>
     </context>
     <context>
@@ -5805,6 +6025,14 @@ Click to open Statistics</source>
             <translation>動画情報の取得中…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>最高品質</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>音声のみ</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>動画情報の取得に失敗しました</translation>
         </message>
@@ -6137,177 +6365,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>動画ダウンロード</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>トレント作成</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>ソースファイル/フォルダ</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ ファイル</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ フォルダ</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>削除</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>ファイル/フォルダをここにドロップ、または上のボタンを使用</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>出力</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>保存先:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>.torrentファイルの保存先パス…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>参照…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>名前:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>任意 — デフォルトはフォルダ/ファイル名</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>ピースサイズ:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>自動</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1ピース × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>メタデータ</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>コメント:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>.torrentに埋め込む任意コメント</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>説明:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>任意の詳細説明</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>作成者:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>プライベートトレント (DHT/PEX無効)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>トラッカー</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>1行に1URL</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>Webシード (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>作成時に開く</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ 作成成功: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ エラー: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>キャンセル済</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>ハッシュ中… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1ピース × %2/ピース</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>取消</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>閉じる</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>作成中…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>トレントを開く</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>トレントを作成…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>ファイルを追加</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>フォルダを追加</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>.torrent ファイルを保存</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>トレントファイル (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>すべてのファイル (*)</translation>
         </message>
     </context>
 </TS>

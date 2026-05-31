@@ -73,6 +73,14 @@
             <translation>🛡️ %1 에 구속됨</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>백업 대상이 선택되지 않았습니다.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>가져올 백업 파일이 선택되지 않았습니다.</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ %1에 바인딩됨 (오프라인 — 토렌트 일시 중지)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>상태</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>링크 추가 전 확인. 열 정렬, 크기 조절, 드래그 재순서 가능.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>파일명 와일드카드 (*)로 변경</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>전체 해제</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>찾은 링크만 선택 가능. OK 후 큐 할당.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>취소</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>SDM으로 링크 가져오기</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>다운로드 목록에 추가할 링크를 선택하고 확인을 클릭하세요.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -504,20 +508,24 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>완료된 다운로드 삭제</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Stellar 다운로드 목록의 모든 완료된 항목을 삭제하시겠습니까?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>완료된 다운로드를 삭제할까요?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>참고: 파일은 삭제되지 않고 목록에서만 제거됩니다.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>목록에서만 제거됩니다. 디스크의 파일은 삭제되지 않습니다.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>취소</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>삭제</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>완료된 토렌트 및 시딩 토렌트 삭제</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>예</translation>
         </message>
         <message>
             <source>No</source>
@@ -580,6 +588,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>다운로드 파일 정보</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 파일 (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>모든 파일 (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -836,6 +852,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>전체 제한 활성화: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>전역 제한 활성: 무제한</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>전체 제한 미설정</translation>
         </message>
@@ -895,10 +915,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>파일명 복사</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent 내보내기...</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>계속</translation>
         </message>
@@ -925,6 +941,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>File Name</source>
             <translation>파일명</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>.torrent 내보내기...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -967,6 +987,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>다운로드됨</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>추가 날짜</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>마지막 시도</translation>
         </message>
@@ -985,18 +1009,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Parent web page</source>
             <translation>부모 웹 페이지</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>대기 중</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (중지됨)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>확인 중 (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1035,6 +1047,25 @@ Click  Add URL  to start.</source>
         <message>
             <source>%n selected downloads</source>
             <translation>%n 선택됨</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>대기 중</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (중지됨)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>확인 중 (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>파일 %n개</translation>
         </message>
     </context>
     <context>
@@ -1195,14 +1226,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>복사</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>메타데이터</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>설명</translation>
-        </message>
-        <message>
             <source>Created by</source>
             <translation>제작자</translation>
         </message>
@@ -1297,6 +1320,14 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>피스 맵</translation>
+        </message>
+        <message>
+            <source>✓ Metadata</source>
+            <translation>✓ 메타데이터</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>가져오는 중…</translation>
         </message>
         <message>
             <source>Move...</source>
@@ -1619,10 +1650,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>속도</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>사용 가능</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>거리: %1</translation>
         </message>
@@ -1666,10 +1693,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>시드 추가…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>스웜에서 가져오는 중...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1774,10 +1797,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>프로젝트 이름 및 시작 페이지가 필요합니다</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – %2 단계 중 %1 단계: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>시작 페이지 설정</translation>
         </message>
@@ -1860,6 +1879,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>프로젝트</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – %1/%2단계: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2341,7 +2364,7 @@ Project</source>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>1. 유형 선택</translation>
+            <translation>유형 선택</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
@@ -2353,7 +2376,7 @@ Project</source>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>2. 작업 선택</translation>
+            <translation>작업 선택</translation>
         </message>
         <message>
             <source>Explore only</source>
@@ -2558,16 +2581,8 @@ Project</source>
             <translation>그래버 통계</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>상태: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>대기</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>처리된 웹 페이지</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2579,6 +2594,22 @@ Project</source>
         </message>
         <message>
             <source>Files</source>
+            <translation>파일</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>상태</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>상태</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>웹 페이지</translation>
+        </message>
+        <message>
+            <source>FILES</source>
             <translation>파일</translation>
         </message>
         <message>
@@ -2671,6 +2702,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>모든 파일 (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>SDM 내보내기 파일 (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>텍스트 파일 (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2813,10 +2852,6 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <translation>다운로드</translation>
         </message>
         <message>
-            <source>Pause all</source>
-            <translation>모두 일시정지</translation>
-        </message>
-        <message>
             <source>Stop all</source>
             <translation>모두 중지</translation>
         </message>
@@ -2935,6 +2970,10 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
         <message>
             <source>Columns…</source>
             <translation>열기</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>도구 모음…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3095,10 +3134,6 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
         <message>
             <source>Stellar Download Manager</source>
             <translation>Stellar 다운로드 관리자</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar ↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3856,20 +3891,8 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <translation>속도 제한</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>전체 속도 제한 활성화</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>최대 속도:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>전체 업로드 제한 활성화</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3918,6 +3941,28 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
         <message>
             <source>General</source>
             <translation>일반</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>Stellar 백업 내보내기</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>Stellar 백업 가져오기</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>백업 완료</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>데이터를 내보냈습니다:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>가져오기 완료</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4052,6 +4097,14 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <translation>없음</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>속도 제한 사용</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>최대 다운로드:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>일별 약정 클릭하여 토글. 규칙은 분마다 평가되며, 첫 번째 일치 규칙이 우선합니다. 활성화된 규칙이 없을 경우 다운로드/업로드 제한은 자동으로 초기화됩니다.</translation>
         </message>
@@ -4074,10 +4127,6 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
         <message>
             <source>Show tips in bottom bar</source>
             <translation>하단 바에 팁 표시</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>상태 표시줄에 완료된 다운로드 수 표시</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4134,6 +4183,22 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>모니터링 중인 파일 유형의 URL 을 클립보드에 복사하면 Stellar 이 다운로드 여부를 묻습니다. 브라우저 › 자동으로 다운로드할 파일 유형에 나열된 파일 유형만 인식됩니다.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>백업 및 복원</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>설정, 다운로드, 토렌트(공유 비율 포함), 대기열, 카테고리, 통계를 단일 백업 파일로 내보냅니다. 나중에 새 Stellar 설치에 가져와 모두 복원하세요. 가져오면 현재 데이터가 대체되며(타임스탬프 백업 보관) Stellar가 재시작됩니다.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>모든 데이터 내보내기…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>데이터 가져오기…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4428,6 +4493,10 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>메모리 매핑: 파일을 메모리에 직접 매핑. Windows와 Linux에서 페이지 캐시를 통해 토렌트 데이터를 읽고 쓰며 CPU 사용량이 적음. 대부분의 사용자에게 권장.</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>데이터가 성공적으로 복원되었습니다. 적용하려면 Stellar를 재시작해야 합니다.</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5071,18 +5140,6 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <translation>무제한</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 속도 제한기</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 프록시 켜기</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 업데이트 확인 중</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT 꺼짐</translation>
         </message>
@@ -5103,14 +5160,6 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <translation>다음 &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 큐 1 분 후 실행</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 큐 %1 분 후 실행</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>전체 공유 비율</translation>
@@ -5126,6 +5175,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>네트워크 연결 없음</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>속도 제한</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>프록시 켜짐</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>업데이트 확인</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5146,6 +5207,14 @@ Click to open Statistics</source>
         <message>
             <source>Click to copy IP</source>
             <translation>통계 보기</translation>
+        </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>1분 후 대기열 실행</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>%1분 후 대기열 실행</translation>
         </message>
     </context>
     <context>
@@ -5333,6 +5402,10 @@ Click to open Statistics</source>
             <translation>구분선 추가</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>제거</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>초기화</translation>
         </message>
@@ -5343,6 +5416,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>취소</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>토렌트 생성</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>제거</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>저장 위치:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>찾아보기…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>이름:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>조각 크기:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>자동</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>출력 폴더 선택</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>파일</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>소스:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1개 더)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>선택된 소스 없음</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>파일…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>폴더…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>출력 폴더…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>토렌트 이름 (선택)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1개 조각 × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1개 조각 × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>속성</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>트래커:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>선택</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>웹 시드:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>URL 한 줄에 하나씩 (선택)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>비공개 토렌트 (DHT 및 PeX 비활성화)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ 완료 — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>해싱 중… %1% (%2조각 × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>완료 시 열기</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>설명:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ 오류: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>취소됨</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>취소</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>닫기</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>생성 중…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>토렌트 열기</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>파일 추가</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>폴더 추가</translation>
         </message>
     </context>
     <context>
@@ -5802,6 +6022,14 @@ Click to open Statistics</source>
             <translation>동영상 정보 가져오는 중…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>최고 화질</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>음성 전용</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>동영상 정보를 가져올 수 없습니다</translation>
         </message>
@@ -6134,177 +6362,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>동영상 다운로드</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>토렌트 생성</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>원본 파일/폴더</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ 파일</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ 폴더</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>제거</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>파일 또는 폴더를 여기로 끌거나 위 버튼 사용</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>출력</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>저장 위치:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>.torrent 파일 저장 경로…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>찾아보기…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>이름:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>선택 사항 — 폴더/파일명 기본값</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>조각 크기:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>자동</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1개 조각 × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>메타데이터</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>설명:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>.torrent에 포함될 선택적 설명</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>설명:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>선택적 상세 설명</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>작성자:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>비공개 토렌트 (DHT 및 PEX 비활성화)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>트래커</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>한 줄에 URL 하나씩</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>웹 시드 (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>생성 시 토렌트 열기</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ 토렌트 생성 완료: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ 오류: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>취소됨</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>조각 해싱 중… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1개 조각 × 조각당 %2</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>닫기</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>생성 중…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>토렌트 열기</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>토렌트 생성…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>파일 추가</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>폴더 추가</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>.torrent 파일 저장</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>토렌트 파일 (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>모든 파일 (*)</translation>
         </message>
     </context>
 </TS>

@@ -73,6 +73,14 @@
             <translation>🛡️ Sidottu %1</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>Varmuuskopiolle ei valittu kohdetta.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>Tuotavaa varmuuskopiotiedostoa ei valittu.</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ Sidottu %1 (offline — torrentit pysäytetty)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>Status</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Tarkista linkit ennen lisäämistä. Sarakepääte voi lajitella, muuttaa leveyttä ja vetää uudelleenjärjestelyyn.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>Vaihda tiedostonimet villikirjaimimallilla (*)</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>Poista kaikki valinta</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Vain löydetyt linkit ovat valittavissa. Jonojen osoittelu tapahtuu silti OK-painikkeella.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>Peruuta</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>Tuo linkit SDM:ään</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>Valitse linkit, jotka haluat lisätä latauslistalle ja napsauta OK.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -335,13 +339,13 @@
         </message>
         <message>
             <source>Failed to grant permission: </source>
-            <translation>1. Luvan myöntäminen epäonnistui:</translation>
+            <translation>Luvan myöntäminen epäonnistui:</translation>
         </message>
         <message>
             <source>
 
 Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
-            <translation>2. Suorita manuaalisesti: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
+            <translation>Suorita manuaalisesti: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -504,20 +508,24 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Poista valmiit lataukset</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Haluatko varmasti poistaa kaikki Stellarin latauslistalta löytyvät valmiit lataukset?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>Poistetaanko valmiit lataukset?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Huom: Tämä poistaa ne vain listalta. Tiedostot levyltä eivät poistu.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>Poistaa vain luettelosta. Levyllä olevia tiedostoja ei poisteta.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Poista</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>Poista valmiit ja siemenet</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>Kyllä</translation>
         </message>
         <message>
             <source>No</source>
@@ -580,6 +588,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>Lataustiedot</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 tiedostoa (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Kaikki tiedostot (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -836,6 +852,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Globaaliraja aktiivinen: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>Yleinen rajoitus käytössä: rajoittamaton</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>Globaalia rajaa ei ole asetettu</translation>
         </message>
@@ -895,10 +915,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Kopioi tiedostonimi</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>Vie .torrent...</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>Jatka</translation>
         </message>
@@ -925,6 +941,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>File Name</source>
             <translation>Tiedostonimi</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>Vie .torrent...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -967,6 +987,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Ladattu</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>Lisäyspvm</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>Viimeinen yritys</translation>
         </message>
@@ -985,18 +1009,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Parent web page</source>
             <translation>Vanhempi verkkosivu</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Odottaa</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (Pysäytetty)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>Tarkistetaan (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1035,6 +1047,25 @@ Klikkaa Lisää URL aloittaaksesi.</translation>
         <message>
             <source>%n selected downloads</source>
             <translation>%n latausta</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>Odottaa</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (Pysäytetty)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>Tarkistetaan (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n tiedosto(a)</translation>
         </message>
     </context>
     <context>
@@ -1195,20 +1226,12 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Kopioi</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>Metatiedot</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Kuvaus</translation>
-        </message>
-        <message>
             <source>Created by</source>
-            <translation>3. Tekijä</translation>
+            <translation>Tekijä</translation>
         </message>
         <message>
             <source>Created on</source>
-            <translation>4. Luotu</translation>
+            <translation>Luotu</translation>
         </message>
         <message>
             <source>Category</source>
@@ -1299,8 +1322,16 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Palasenkartta</translation>
         </message>
         <message>
+            <source>✓ Metadata</source>
+            <translation>✓ Metatiedot</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>Noudetaan…</translation>
+        </message>
+        <message>
             <source>Move...</source>
-            <translation>5. Siirrä...</translation>
+            <translation>Siirrä...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -1619,10 +1650,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Nopeus</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>Saatavilla</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>Etäisyys: %1</translation>
         </message>
@@ -1666,10 +1693,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>Lisää siemen</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>Haetaan verkostosta...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1774,10 +1797,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>Hankkeen nimi ja aloitussivu vaaditaan.</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – Vaihe %1/%2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>Aseta aloitussivu</translation>
         </message>
@@ -1860,6 +1879,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>Projekti</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – Vaihe %1/%2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2341,7 +2364,7 @@ Project</source>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>1. Valitse tyyppi</translation>
+            <translation>Valitse tyyppi</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
@@ -2353,7 +2376,7 @@ Project</source>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>2. Valitse toiminto</translation>
+            <translation>Valitse toiminto</translation>
         </message>
         <message>
             <source>Explore only</source>
@@ -2558,16 +2581,8 @@ Project</source>
             <translation>Noutajan tilastot</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>Tila: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>Tyhjäkäynti</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>Käsitellyt verkkosivut</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2580,6 +2595,22 @@ Project</source>
         <message>
             <source>Files</source>
             <translation>Tiedostot</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>TILA</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>Tila</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>VERKKOSIVUT</translation>
+        </message>
+        <message>
+            <source>FILES</source>
+            <translation>TIEDOSTOT</translation>
         </message>
         <message>
             <source>Total</source>
@@ -2671,6 +2702,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>Kaikki tiedostot (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>SDM-vientitiedosto (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>Tekstitiedosto (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2809,15 +2848,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Create Torrent…</source>
-            <translation>6. Luo torrent…</translation>
+            <translation>Luo torrent…</translation>
         </message>
         <message>
             <source>Downloads</source>
             <translation>Lataukset</translation>
-        </message>
-        <message>
-            <source>Pause all</source>
-            <translation>Tauota kaikki</translation>
         </message>
         <message>
             <source>Stop all</source>
@@ -2938,6 +2973,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Columns…</source>
             <translation>Sarakkeet...</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>Työkalupalkki…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3098,10 +3137,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stellar Download Manager</source>
             <translation>Stellar-latausohjain</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar  ↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3859,20 +3894,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Nopeusrajoitin</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>Ota globaali nopeusrajoitus käyttöön</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>Maksiminopeus:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>kt/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>Ota globaali lähetysrajoitus käyttöön</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3921,6 +3944,28 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>General</source>
             <translation>Yleiset</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>Vie Stellar-varmuuskopio</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>Tuo Stellar-varmuuskopio</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>Varmuuskopiointi valmis</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>Tietosi vietiin kohteeseen:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>Tuonti valmis</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4055,6 +4100,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Ei mitään</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>Ota nopeudenrajoitin käyttöön</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>Maksimilataus</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Vaihda päivää. Säännöt arvioidaan minuutissa.</translation>
         </message>
@@ -4077,10 +4130,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Show tips in bottom bar</source>
             <translation>Näytä vinkit alustavirrassa</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>Näytä valmiit lataukset tilannepalkissa</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4137,6 +4186,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>Stellar kysyy lataatko URL:n, joka on kopioitu leikepöydälle. Vain alla olevien tiedostotyyppejen lataus on käytössä: Browser › Automaattinen lataus seuraaville tiedostotyypeille.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>Varmuuskopiointi ja palautus</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Vie kaikki — asetukset, lataukset, torrentit (jakosuhteineen), jonot, luokat ja tilastot — yhteen varmuuskopiotiedostoon. Tuo se myöhemmin uuteen Stellar-asennukseen palauttaaksesi kaiken. Tuonti korvaa nykyiset tiedot (aikaleimattu varmuuskopio säilytetään) ja käynnistää Stellarin uudelleen.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>Vie kaikki tiedot…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>Tuo tietoja…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4433,6 +4498,10 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>Muistikartoitettu: tiedostot kartoitetaan suoraan muistiin. Windows ja Linux lukevat ja kirjoittavat torrent-dataa sivuvälimuistin kautta minimaalisella suorittimen käytöllä. Suositellaan useimmille käyttäjille.</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>Tietosi palautettiin onnistuneesti. Stellarin on käynnistyttävä uudelleen ottaakseen ne käyttöön.</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5076,18 +5145,6 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <translation>rajoittamaton</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Nopeusrajoitin</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 Välityspalvelin päällä</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 Päivitettyjen tarkistus</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT pois</translation>
         </message>
@@ -5108,14 +5165,6 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <translation>seuraava &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 Jono käynnistyy 1 minuutissa</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 Jono käynnistyy %1 minuutissa</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Kaikkien aikojen jakosuhteet</translation>
@@ -5131,6 +5180,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>Ei verkkoyhteyttä</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>Nopeusrajoitin</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>Välityspalvelin käytössä</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Tarkistetaan päivityksiä</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5152,6 +5213,14 @@ Click to open Statistics</source>
             <source>Click to copy IP</source>
             <translation>Avaa tilastot</translation>
         </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>Jono suoritetaan 1 minuutin kuluttua</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>Jono suoritetaan %1 minuutin kuluttua</translation>
+        </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
@@ -5165,19 +5234,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>7. Avaa Stellar</translation>
+            <translation>Avaa Stellar</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>8. Lisää URL…</translation>
+            <translation>Lisää URL…</translation>
         </message>
         <message>
             <source>GitHub</source>
-            <translation>9. GitHub</translation>
+            <translation>GitHub</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation>10. Tietoja Stellarista</translation>
+            <translation>Tietoja Stellarista</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
@@ -5338,6 +5407,10 @@ Click to open Statistics</source>
             <translation>Lisää erotin</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>Poista</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>Palauta</translation>
         </message>
@@ -5348,6 +5421,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>Peruuta</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Luo torrent</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Poista</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Tallenna:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Selaa…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Nimi:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Palan koko:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>Valitse kohdekansio</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>Tiedostot</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>Lähde:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 lisää)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>Ei lähdettä valittu</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>Tiedosto…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>Kansio…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>Kohdekansio…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>Torrentin nimi (valinnainen)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 palaa × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 palaa × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>Ominaisuudet</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>Seuraajat:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>Valinnainen</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>Web-siemenet:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>Yksi URL riviä kohden (valinnainen)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>Yksityinen torrent (poistaa DHT:n ja PeX:n käytöstä)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ Valmis — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>Hajautus… %1%  (%2 palaa × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>Avaa valmistuttua</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Kommentti:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Virhe: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Peruttu</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Peru</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Sulje</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Luodaan…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Avaa torrent</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Lisää tiedostoja</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Lisää kansio</translation>
         </message>
     </context>
     <context>
@@ -5807,6 +6027,14 @@ Click to open Statistics</source>
             <translation>Haetaan videon tietoja...</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>Paras laatu</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>Vain ääni</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>Videoinformaatiota ei voitu hakea</translation>
         </message>
@@ -6139,177 +6367,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Videon lataus</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>Luo torrent</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>Lähdetiedostot/-kansiot</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ Tiedostot</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ Kansio</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Poista</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>Vedä tiedostot tai kansiot tähän tai käytä yläpuolen painikkeita</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>Tuloste</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>Tallenna:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>Polku .torrent-tiedostolle…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>Selaa…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>Nimi:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>Valinnainen — oletus on kansion/tiedoston nimi</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>Palan koko:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>Auto</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 palaa × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>Metatiedot</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>Kommentti:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>Valinnainen .torrentiin upotettu kommentti</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>Kuvaus:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>Valinnainen laajennettu kuvaus</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>Tekijä:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>Yksityinen torrent (DHT ja PEX poistettu käytöstä)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>Seurantapalvelimet</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>Yksi URL riviä kohden</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>Web-siemenet (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>Avaa torrent luotaessa</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ Torrent luotu: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ Virhe: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>Peruttu</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>Hajautetaan paloja… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 palaa × %2 per pala</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Peru</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Sulje</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>Luodaan…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>Avaa torrent</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>Luo torrent…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>Lisää tiedostoja</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>Lisää kansio</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>Tallenna .torrent</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>Torrent-tiedostot (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>Kaikki tiedostot (*)</translation>
         </message>
     </context>
 </TS>

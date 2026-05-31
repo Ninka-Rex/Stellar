@@ -73,6 +73,14 @@
             <translation>🛡️ 綁定至 %1</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>未選擇備份目的地。</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>未選擇要匯入的備份檔。</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ 已綁定 %1（離線 — 暫停中）</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>狀態</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>新增前請檢查連結。欄位可排序、調整大小及拖曳重排。</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>以通配符 (*) 替換檔名</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>全部取消勾選</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>僅可選取已標記「已找到」的連結。確定後仍會分配佇列。</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>取消</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>匯入連結至 SDM</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>勾選要加入下載清單的連結，然後按確定。</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -504,20 +508,24 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>刪除已完成下載</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>確定要從 Stellar 下載列表中刪除所有已完成的下載嗎？</translation>
+            <source>Delete completed downloads?</source>
+            <translation>刪除已完成的下載？</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>注意：這僅會從列表中移除它們，不會刪除磁碟上的檔案。</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>僅從清單移除，不刪除磁碟上的檔案。</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>刪除</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>刪除已完成及正在種子化的 BitTorrent</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>是</translation>
         </message>
         <message>
             <source>No</source>
@@ -580,6 +588,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>下載檔案資訊</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 檔案 (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>所有檔案 (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -836,6 +852,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>全局限速啟用：%1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>全域限制啟用：無限制</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>未設定全局限速</translation>
         </message>
@@ -895,10 +915,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>複製檔名</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>匯出 .torrent…</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>繼續</translation>
         </message>
@@ -925,6 +941,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>File Name</source>
             <translation>檔名</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>匯出 .torrent…</translation>
         </message>
         <message>
             <source>Size</source>
@@ -967,6 +987,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>已下載</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>加入日期</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>最後嘗試</translation>
         </message>
@@ -985,18 +1009,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Parent web page</source>
             <translation>父網頁</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>待處理</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (已停止)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>檢查中 (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1034,6 +1046,25 @@ Click  Add URL  to start.</source>
         <message>
             <source>%n selected downloads</source>
             <translation>%n 個已選取下載</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>待處理</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1%（已停止）</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>檢查中（%1%）</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n 個檔案</translation>
         </message>
     </context>
     <context>
@@ -1195,14 +1226,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>複製</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>金標</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>描述</translation>
-        </message>
-        <message>
             <source>Created by</source>
             <translation>建立者</translation>
         </message>
@@ -1297,6 +1320,14 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>區塊地圖</translation>
+        </message>
+        <message>
+            <source>✓ Metadata</source>
+            <translation>✓ 中繼資料</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>擷取中…</translation>
         </message>
         <message>
             <source>Move...</source>
@@ -1619,10 +1650,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>速度</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>可用</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>距離：%1</translation>
         </message>
@@ -1666,10 +1693,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>新增種子…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>從群組下載中...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1774,10 +1797,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>專案名稱與起始頁面為必填</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – 步驟 %1/%2：%3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>設定起始頁面</translation>
         </message>
@@ -1860,6 +1879,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>專案</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – 步驟 %1 / %2：%3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2341,7 +2364,7 @@ Project</source>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>1. 選取類型</translation>
+            <translation>選取類型</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
@@ -2353,7 +2376,7 @@ Project</source>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>2. 選取動作</translation>
+            <translation>選取動作</translation>
         </message>
         <message>
             <source>Explore only</source>
@@ -2558,16 +2581,8 @@ Project</source>
             <translation>抓取統計</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>狀態：%1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>閒置</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>處理網頁</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2579,6 +2594,22 @@ Project</source>
         </message>
         <message>
             <source>Files</source>
+            <translation>檔案</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>狀態</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>狀態</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>網頁</translation>
+        </message>
+        <message>
+            <source>FILES</source>
             <translation>檔案</translation>
         </message>
         <message>
@@ -2671,6 +2702,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>所有檔案 (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>SDM 匯出檔 (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>文字檔 (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2812,10 +2851,6 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <translation>下載</translation>
         </message>
         <message>
-            <source>Pause all</source>
-            <translation>暫停全部</translation>
-        </message>
-        <message>
             <source>Stop all</source>
             <translation>停止全部</translation>
         </message>
@@ -2934,6 +2969,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
         <message>
             <source>Columns…</source>
             <translation>欄位...</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>工具列…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3094,10 +3133,6 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
         <message>
             <source>Stellar Download Manager</source>
             <translation>Stellar 下載管理器</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar 下載 ↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3855,20 +3890,8 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <translation>限速</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>啟用全域速度限制</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>最大速度:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>啟用全域上傳限制</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3917,6 +3940,28 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
         <message>
             <source>General</source>
             <translation>一般</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>匯出 Stellar 備份</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>匯入 Stellar 備份</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>備份完成</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>資料已匯出至：
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>匯入完成</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4051,6 +4096,14 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <translation>無</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>啟用限速</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>最大下載：</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>點擊日曆藥丸切換。規則每分鐘評估一次；第一個符合的規則生效。無規則時自動清除排程下載與上傳限制。</translation>
         </message>
@@ -4073,10 +4126,6 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
         <message>
             <source>Show tips in bottom bar</source>
             <translation>在底部列顯示提示</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>在狀態列顯示已完成下載數量</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4133,6 +4182,22 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>複製符合監控檔案類型的 URL 時，Stellar 會詢問是否下載。僅「瀏覽器 › 自動下載以下檔案類型」中列出的類型會被處理。</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>備份與還原</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>匯出所有內容——設定、下載、種子（含分享率）、佇列、分類與統計——至單一備份檔。之後可匯入至全新 Stellar 安裝以全部還原。匯入會取代目前資料（會保留時間戳備份）並重啟 Stellar。</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>匯出所有資料…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>匯入資料…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4429,6 +4494,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>記憶體映射：檔案直接映射至記憶體。Windows 與 Linux 透過頁面快取讀寫 torrent 資料，CPU 使用率低。建議多數使用者使用。</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>資料已成功還原。Stellar 需重啟以套用。</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5072,18 +5141,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>無限制</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 限速器</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 啟用代理</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 檢查更新</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT 關閉</translation>
         </message>
@@ -5104,14 +5161,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>下一項 &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 佇列將在 1 分鐘後執行</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 佇列將在 %1 分鐘後執行</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>總分享率</translation>
@@ -5127,6 +5176,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>未偵測到網路連線</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>限速</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>代理啟用</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>檢查更新</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5147,6 +5208,14 @@ Click to open Statistics</source>
         <message>
             <source>Click to copy IP</source>
             <translation>點擊開啟統計</translation>
+        </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>佇列將於 1 分鐘後執行</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>佇列將於 %1 分鐘後執行</translation>
         </message>
     </context>
     <context>
@@ -5334,6 +5403,10 @@ Click to open Statistics</source>
             <translation>新增分隔線</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>移除</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>重設</translation>
         </message>
@@ -5344,6 +5417,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>取消</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>建立 Torrent</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>移除</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>儲存至：</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>瀏覽…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>名稱：</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>分塊大小：</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>自動</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>選擇輸出資料夾</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>檔案</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>來源：</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 更多)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>未選取來源</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>檔案…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>資料夾…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>輸出資料夾…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>Torrent 名稱 (選填)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 分塊 × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 個分塊 × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>屬性</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>Tracker：</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>選填</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>Web 種子：</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>每行一個 URL (選填)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>私人 Torrent (停用 DHT 與 PeX)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ 完成 — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>雜湊中… %1% (%2 片段 × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>完成時開啟</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>註解：</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ 錯誤：%1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>已取消</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>關閉</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>建立中…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>開啟 Torrent</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>加入檔案</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>加入資料夾</translation>
         </message>
     </context>
     <context>
@@ -5803,6 +6023,14 @@ Click to open Statistics</source>
             <translation>正在取得影片資訊…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>最佳品質</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>僅音訊</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>無法取得影片資訊</translation>
         </message>
@@ -6135,177 +6363,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>影片下載</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>建立 Torrent</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>來源檔案 / 資料夾</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ 檔案</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ 資料夾</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>移除</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>將檔案或資料夾拖曳至此，或使用上方按鈕</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>輸出</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>儲存至：</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>.torrent 檔案儲存路徑…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>瀏覽…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>名稱：</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>選填 — 預設為資料夾/檔案名稱</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>分塊大小：</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>自動</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 個分塊 × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>中繼資料</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>註解：</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>嵌入 .torrent 的選用註解</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>說明：</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>選用延伸說明</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>建立者：</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>私人種子（停用 DHT 和 PEX）</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>追蹤器</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>每行一個 URL</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>網頁種子（HTTP/FTP）</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>建立後開啟種子</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ 種子建立成功：%1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ 錯誤：%1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>已取消</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>雜湊處理中… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 片段 × 每片段 %2</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>取消</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>關閉</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>建立中…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>開啟 Torrent</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>建立 Torrent…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>加入檔案</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>加入資料夾</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>儲存 .torrent 檔案</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>Torrent 檔案 (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>所有檔案 (*)</translation>
         </message>
     </context>
 </TS>

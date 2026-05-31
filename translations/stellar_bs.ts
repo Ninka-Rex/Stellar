@@ -73,6 +73,14 @@
             <translation>🛡️ Povezano na %1</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>Nije odabrana destinacija za sigurnosnu kopiju.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>Nije odabrana datoteka sigurnosne kopije za uvoz.</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ Vezano za %1 (offline — torenti pauzirani)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>Status</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Pregledaj linkove prije dodavanja. Stupci se mogu sortirati, mijenjati veličinu i prevlačiti za promjenu poretka.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>Zamijeni nazive datoteka s uzorkom s divljim karticama (*)</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>Poništi sve</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Samo linkovi označeni kao Pronađeni su odaberi. Dodavanje u red čeka se nakon OK.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>Otkaži</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>Uvezi linkove u SDM</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>Označite linkove koje želite dodati na listu preuzimanja i kliknite OK.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -236,35 +240,35 @@
         </message>
         <message>
             <source>Select save directory</source>
-            <translation>1. Odaberi direktorij za spremanje</translation>
+            <translation>Odaberi direktorij za spremanje</translation>
         </message>
         <message>
             <source>Select save path</source>
-            <translation>2. Odaberi putanju za spremanje</translation>
+            <translation>Odaberi putanju za spremanje</translation>
         </message>
         <message>
             <source>URL:</source>
-            <translation>3. URL:</translation>
+            <translation>URL:</translation>
         </message>
         <message>
             <source>Description:</source>
-            <translation>4. Opis:</translation>
+            <translation>Opis:</translation>
         </message>
         <message>
             <source>Referer:</source>
-            <translation>5. Referer:</translation>
+            <translation>Referer:</translation>
         </message>
         <message>
             <source>Login:</source>
-            <translation>6. Prijava:</translation>
+            <translation>Prijava:</translation>
         </message>
         <message>
             <source>Password:</source>
-            <translation>7. Lozinka:</translation>
+            <translation>Lozinka:</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>8. Spremi</translation>
+            <translation>Spremi</translation>
         </message>
     </context>
     <context>
@@ -335,13 +339,13 @@
         </message>
         <message>
             <source>Failed to grant permission: </source>
-            <translation>1. Neuspjelo dodjeljivanje dozvole: </translation>
+            <translation>Neuspjelo dodjeljivanje dozvole: </translation>
         </message>
         <message>
             <source>
 
 Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
-            <translation>2. Pokreni ručno: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
+            <translation>Pokreni ručno: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
@@ -504,20 +508,24 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Obriši dovršena preuzimanja</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Jeste li sigurni da želite obrisati sva dovršena preuzimanja iz popisa Stellar?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>Obrisati završena preuzimanja?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Napomena: Ovo će ih samo ukloniti s popisa. Datoteke na disku neće biti obrisane.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>Uklanja samo sa liste. Datoteke na disku se ne brišu.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Otkaži</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Obriši</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>Obriši dovršene torrente i one koji se dijele</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>Da</translation>
         </message>
         <message>
             <source>No</source>
@@ -580,6 +588,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>Informacije o preuzimanju datoteke</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 datoteke (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Sve datoteke (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -836,6 +852,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Globalno ograničenje aktivno: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>Globalno ograničenje aktivno: neograničeno</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>Nema globalnog ograničenja</translation>
         </message>
@@ -895,10 +915,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Kopiraj ime datoteke</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>Izvezi .torrent…</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>Nastavi</translation>
         </message>
@@ -925,6 +941,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>File Name</source>
             <translation>Ime datoteke</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>Izvezi .torrent...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -967,6 +987,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Preuzeto</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>Datum dodavanja</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>Zadnji pokušaj</translation>
         </message>
@@ -985,18 +1009,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Parent web page</source>
             <translation>Nadređena web stranica</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Na čekanju</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (Zaustavljeno)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>Provjerava se (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1035,6 +1047,25 @@ Kliknite Dodaj URL za početak.</translation>
         <message>
             <source>%n selected downloads</source>
             <translation>%n odabranih preuzimanja</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>Na čekanju</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (Zaustavljeno)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>Provjera (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n datoteka</translation>
         </message>
     </context>
     <context>
@@ -1086,11 +1117,11 @@ Možete to promijeniti kasnije u Opcije → Preuzimanja.</translation>
         <name>ExportDialog</name>
         <message>
             <source>Export Downloads</source>
-            <translation>9. Izvezi preuzimanja</translation>
+            <translation>Izvezi preuzimanja</translation>
         </message>
         <message>
             <source>Select items to export:</source>
-            <translation>10. Odaberi stavke za izvoz:</translation>
+            <translation>Odaberi stavke za izvoz:</translation>
         </message>
         <message>
             <source>Export downloads in the selected queue</source>
@@ -1196,20 +1227,12 @@ Možete to promijeniti kasnije u Opcije → Preuzimanja.</translation>
             <translation>Kopiraj</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>Metapodaci</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Opis</translation>
-        </message>
-        <message>
             <source>Created by</source>
-            <translation>3. Kreirao</translation>
+            <translation>Kreirao</translation>
         </message>
         <message>
             <source>Created on</source>
-            <translation>4. Kreirano</translation>
+            <translation>Kreirano</translation>
         </message>
         <message>
             <source>Category</source>
@@ -1300,8 +1323,16 @@ Možete to promijeniti kasnije u Opcije → Preuzimanja.</translation>
             <translation>Karte komada</translation>
         </message>
         <message>
+            <source>✓ Metadata</source>
+            <translation>✓ Metapodaci</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>Preuzimanje…</translation>
+        </message>
+        <message>
             <source>Move...</source>
-            <translation>5. Premjesti...</translation>
+            <translation>Premjesti...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -1620,10 +1651,6 @@ Možete to promijeniti kasnije u Opcije → Preuzimanja.</translation>
             <translation>Brzina</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>Dostupno</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>Udaljenost: %1</translation>
         </message>
@@ -1667,10 +1694,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>Dodaj sjeme…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>Dohvaćanje iz roja...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1775,10 +1798,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>Ime projekta i početna stranica su obavezni.</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – Korak %1 od %2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>Postavi početnu stranicu</translation>
         </message>
@@ -1861,6 +1880,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>Projekat</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – Korak %1 od %2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2559,16 +2582,8 @@ Project</source>
             <translation>Statistika Grabbera</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>Status: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>Neaktivan</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>Obrađene web stranice</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2581,6 +2596,22 @@ Project</source>
         <message>
             <source>Files</source>
             <translation>Datoteke</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>STATUS</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>Stanje</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>WEB STRANICE</translation>
+        </message>
+        <message>
+            <source>FILES</source>
+            <translation>DATOTEKE</translation>
         </message>
         <message>
             <source>Total</source>
@@ -2672,6 +2703,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>Sve datoteke (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>SDM izvozna datoteka (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>Tekstualna datoteka (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2813,15 +2852,11 @@ Stellar Opcije → Preglednik → Zaobiđi presretanje preuzimanja</translation>
         </message>
         <message>
             <source>Create Torrent…</source>
-            <translation>6. Napravi Torrent…</translation>
+            <translation>Napravi Torrent…</translation>
         </message>
         <message>
             <source>Downloads</source>
             <translation>Preuzimanja</translation>
-        </message>
-        <message>
-            <source>Pause all</source>
-            <translation>Pauziraj sve</translation>
         </message>
         <message>
             <source>Stop all</source>
@@ -2942,6 +2977,10 @@ Stellar Opcije → Preglednik → Zaobiđi presretanje preuzimanja</translation>
         <message>
             <source>Columns…</source>
             <translation>Kolone…</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>Alatna traka…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3102,10 +3141,6 @@ Stellar Opcije → Preglednik → Zaobiđi presretanje preuzimanja</translation>
         <message>
             <source>Stellar Download Manager</source>
             <translation>Stellar Download Manager</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar ↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3863,20 +3898,8 @@ Stellar Opcije → Preglednik → Zaobiđi presretanje preuzimanja</translation>
             <translation>Ograničavač brzine</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>Omogući globalno ograničenje brzine</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>Maksimalna brzina:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>Omogući globalno ograničenje otpremanja</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3925,6 +3948,28 @@ Stellar Opcije → Preglednik → Zaobiđi presretanje preuzimanja</translation>
         <message>
             <source>General</source>
             <translation>Općenito</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>Izvezi Stellar rezervnu kopiju</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>Uvezi Stellar rezervnu kopiju</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>Rezervna kopija završena</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>Vaši podaci su izvezeni u:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>Uvoz završen</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4059,6 +4104,14 @@ Stellar Opcije → Preglednik → Zaobiđi presretanje preuzimanja</translation>
             <translation>Nijedan</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>Omogući ograničenje brzine</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>Maksimalno preuzimanje:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Kliknite na dan za prebacivanje. Pravila se procjenjuju svakog minuta; prvo poklapanje pobjeđuje. Ograničenja preuzimanja i slanja automatski se brišu kada nije aktivno nijedno pravilo.</translation>
         </message>
@@ -4081,10 +4134,6 @@ Stellar Opcije → Preglednik → Zaobiđi presretanje preuzimanja</translation>
         <message>
             <source>Show tips in bottom bar</source>
             <translation>Prikaži savjete u donjoj traci</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>Prikaži broj završenih preuzimanja u statusnoj traci</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4141,6 +4190,22 @@ Stellar Opcije → Preglednik → Zaobiđi presretanje preuzimanja</translation>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>Kada se URL koji odgovara praćenoj vrsti datoteke kopira u međuspremnik, Stellar će pitati želite li ga preuzeti. Preuzimaju se samo vrste navedene pod Preglednik › Automatski pokreni preuzimanje sljedećih vrsta datoteka.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>Rezervna kopija i vraćanje</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Izvezi sve — postavke, preuzimanja, torrente (s omjerima dijeljenja), redove, kategorije i statistiku — u jednu rezervnu datoteku. Kasnije je uvezi u novu Stellar instalaciju za potpuno vraćanje. Uvoz zamjenjuje trenutne podatke (čuva se vremenski označena kopija) i ponovo pokreće Stellar.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>Izvezi sve podatke…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>Uvezi podatke…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4437,6 +4502,10 @@ Toplo se preporučuje vezati Stellar na VPN mrežno sučelje i provjeriti je li 
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>Memorijski mapirano: datoteke se direktno mapiraju u memoriju. Windows i Linux čitaju i pišu torrent podatke kroz keš stranica uz minimalno korištenje CPU-a. Preporučeno za većinu korisnika.</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>Podaci su uspješno vraćeni. Stellar se mora ponovo pokrenuti da bi se primijenili.</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5046,7 +5115,7 @@ Toplo se preporučuje vezati Stellar na VPN mrežno sučelje i provjeriti je li 
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>1. Otpremljeno</translation>
+            <translation>Otpremljeno</translation>
         </message>
         <message>
             <source>Share Ratio</source>
@@ -5070,7 +5139,7 @@ Toplo se preporučuje vezati Stellar na VPN mrežno sučelje i provjeriti je li 
         </message>
         <message>
             <source>Close</source>
-            <translation>2. Zatvori</translation>
+            <translation>Zatvori</translation>
         </message>
     </context>
     <context>
@@ -5078,18 +5147,6 @@ Toplo se preporučuje vezati Stellar na VPN mrežno sučelje i provjeriti je li 
         <message>
             <source>unlimited</source>
             <translation>neograničeno</translation>
-        </message>
-        <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Ograničavanje brzine</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 Proxy uključen</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 Provjera ažuriranja</translation>
         </message>
         <message>
             <source>DHT off</source>
@@ -5112,14 +5169,6 @@ Toplo se preporučuje vezati Stellar na VPN mrežno sučelje i provjeriti je li 
             <translation>sljedeće &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 Red se izvršava za 1 minutu</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 Red se izvršava za %1 minuta</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Omjer dijeljenja (sve vrijeme)</translation>
@@ -5135,6 +5184,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>Nije otkrivena mrežna povezanost</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>Ograničenje brzine</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>Proxy uključen</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Provjera ažuriranja</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5156,32 +5217,40 @@ Click to open Statistics</source>
             <source>Click to copy IP</source>
             <translation>Kliknite za otvaranje statistike</translation>
         </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>Redoslijed se pokreće za 1 minutu</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>Redoslijed se pokreće za %1 minuta</translation>
+        </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>3. Stellar Download Manager</translation>
+            <translation>Stellar Download Manager</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>4. SDM preuzimanja</translation>
+            <translation>SDM preuzimanja</translation>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>7. Otvori Stellar</translation>
+            <translation>Otvori Stellar</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>8. Dodaj URL…</translation>
+            <translation>Dodaj URL…</translation>
         </message>
         <message>
             <source>GitHub</source>
-            <translation>9. GitHub</translation>
+            <translation>GitHub</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation>10. O Stellaru</translation>
+            <translation>O Stellaru</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
@@ -5208,15 +5277,15 @@ Click to open Statistics</source>
         <name>Toolbar</name>
         <message>
             <source>Add URL</source>
-            <translation>5. Dodaj URL</translation>
+            <translation>Dodaj URL</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>6. Nastavi</translation>
+            <translation>Nastavi</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>7. Zaustavi</translation>
+            <translation>Zaustavi</translation>
         </message>
         <message>
             <source>Stop All</source>
@@ -5224,7 +5293,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Delete</source>
-            <translation>8. Obriši</translation>
+            <translation>Obriši</translation>
         </message>
         <message>
             <source>Delete Done</source>
@@ -5232,11 +5301,11 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Options</source>
-            <translation>9. Opcije</translation>
+            <translation>Opcije</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>10. Planer</translation>
+            <translation>Planer</translation>
         </message>
         <message>
             <source>Start Queue</source>
@@ -5342,6 +5411,10 @@ Click to open Statistics</source>
             <translation>Dodaj razdjelnik</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>Ukloni</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>Resetuj</translation>
         </message>
@@ -5352,6 +5425,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>Otkaži</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Kreiraj torrent</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Ukloni</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Sačuvaj u:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Pretraži…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Naziv:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Veličina dijela:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>Odaberi odredišnu mapu</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>Datoteke</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>Izvor:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 više)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>Izvor nije odabran</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>Datoteka…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>Mapa…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>Izlazna mapa…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>Naziv torrenta (opcionalno)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 dijelova × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 dijelova × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>Svojstva</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>Trackeri:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>Opcionalno</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>Web seedovi:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>Jedan URL po redu (opcionalno)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>Privatni torrent (isključuje DHT i PeX)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ Gotovo — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>Heširanje… %1%  (%2 dijelova × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>Otvori kad završi</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Komentar:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Greška: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Otkazano</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Otkaži</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Zatvori</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Kreiranje…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Otvori torrent</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Dodaj datoteke</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Dodaj mapu</translation>
         </message>
     </context>
     <context>
@@ -5811,6 +6031,14 @@ Click to open Statistics</source>
             <translation>Dohvaćanje informacija o videu…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>Najbolji kvalitet</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>Samo audio</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>Nije moguće dohvatiti informacije o videu</translation>
         </message>
@@ -6144,177 +6372,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Preuzimanje videa</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>Kreiraj torrent</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>Izvorne datoteke / mape</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ Datoteke</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ Mapa</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Ukloni</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>Prevucite datoteke ili fascikle ovdje, ili koristite dugmad iznad</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>Izlaz</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>Sačuvaj u:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>Putanja za .torrent datoteku…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>Pretraži…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>Naziv:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>Opciono — podrazumijevano ime fascikle/datoteke</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>Veličina dijela:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>Auto</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 dijelova × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>Metapodaci</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>Komentar:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>Opcioni komentar ugrađen u .torrent</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>Opis:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>Opcioni prošireni opis</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>Kreirao:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>Privatni torrent (DHT i PEX onemogućeni)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>Trackeri</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>Jedan URL po redu</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>Web Seedovi (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>Otvori torrent nakon kreiranja</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ Torrent uspješno kreiran: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ Greška: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>Otkazano</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>Heširanje dijelova… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 dijelova × %2 po dijelu</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Otkaži</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Zatvori</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>Kreiranje…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>Otvori torrent</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>Kreiraj torrent…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>Dodaj datoteke</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>Dodaj mapu</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>Sačuvaj .torrent</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>Torrent datoteke (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>Sve datoteke (*)</translation>
         </message>
     </context>
 </TS>

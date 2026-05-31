@@ -73,6 +73,14 @@
             <translation>🛡️ Připojeno k %1</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>Nebyl vybrán cíl pro zálohu.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>Nebyl vybrán soubor zálohy k importu.</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ Vázáno na %1 (offline — torrenty pozastaveny)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>Stav</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Zkontrolujte odkazy před přidáním. Sloupce lze řadit, měnit velikost a přetahovat.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>Nahradit názvy souborů vzorem (*)</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>Zrušit výběr</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Pouze odkazy označené jako Našel jsou vybíratelné. Zařazení do fronty proběhne po potvrzení.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>Zrušit</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>Importovat odkazy do SDM</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>Zaškrtněte odkazy, které chcete přidat do seznamu stahování, a klikněte na OK.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -504,20 +508,24 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Smazat dokončená stahování</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Opravdu chcete smazat všechna dokončená stahování ze seznamu Stellar?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>Smazat dokončená stahování?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Poznámka: Tím se pouze odstraní ze seznamu. Soubory na disku nebudou smazány.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>Odstraní pouze ze seznamu. Soubory na disku nejsou smazány.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Zrušit</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Smazat</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>Smazat dokončené a seedované torrenty</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>Ano</translation>
         </message>
         <message>
             <source>No</source>
@@ -580,6 +588,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>Info o souboru</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 souborů (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Všechny soubory (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -836,6 +852,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Globální limit aktivní: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>Globální limit aktivní: neomezeno</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>Není nastaven žádný globální limit</translation>
         </message>
@@ -895,10 +915,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Kopírovat název souboru</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>Exportovat .torrent…</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>Pokračovat</translation>
         </message>
@@ -925,6 +941,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>File Name</source>
             <translation>Název souboru</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>Exportovat .torrent…</translation>
         </message>
         <message>
             <source>Size</source>
@@ -967,6 +987,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Staženo</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>Přidáno</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>Datum posledního pokusu</translation>
         </message>
@@ -985,18 +1009,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Parent web page</source>
             <translation>Rodičovská webová stránka</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Čeká</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (Zastaveno)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>Kontrola (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1036,6 +1048,25 @@ Klikněte na Přidat URL pro spuštění.</translation>
         <message>
             <source>%n selected downloads</source>
             <translation>Vybráno %n stahování</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>Čeká</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (Zastaveno)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>Kontroluji (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n souborů</translation>
         </message>
     </context>
     <context>
@@ -1197,14 +1228,6 @@ Lze změnit v Možnosti → Stahování.</translation>
             <translation>Kopírovat</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>Metadata</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Popis</translation>
-        </message>
-        <message>
             <source>Created by</source>
             <translation>Vytvořil</translation>
         </message>
@@ -1299,6 +1322,14 @@ Lze změnit v Možnosti → Stahování.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Mapa dílků</translation>
+        </message>
+        <message>
+            <source>✓ Metadata</source>
+            <translation>✓ Metadata</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>Stahuji…</translation>
         </message>
         <message>
             <source>Move...</source>
@@ -1621,10 +1652,6 @@ Lze změnit v Možnosti → Stahování.</translation>
             <translation>Rychlost</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>Dostupné</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>Vzdálenost: %1</translation>
         </message>
@@ -1668,10 +1695,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>Přidat seed…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>Načítání ze swarmu…</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1776,10 +1799,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>Je vyžadován název projektu a startovací stránka.</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – Krok %1 z %2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>Nastavit startovací stránku</translation>
         </message>
@@ -1862,6 +1881,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>Projekt</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – Krok %1 z %2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2560,16 +2583,8 @@ Project</source>
             <translation>Statistiky Grabberu</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>Stav: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>Nečinný</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>Zpracované webové stránky</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2582,6 +2597,22 @@ Project</source>
         <message>
             <source>Files</source>
             <translation>Soubory</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>STAV</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>Stav</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>WEBOVÉ STRÁNKY</translation>
+        </message>
+        <message>
+            <source>FILES</source>
+            <translation>SOUBORY</translation>
         </message>
         <message>
             <source>Total</source>
@@ -2673,6 +2704,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>Všechny soubory (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>Soubor SDM (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>Textový soubor (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2821,10 +2860,6 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <translation>Stahování</translation>
         </message>
         <message>
-            <source>Pause all</source>
-            <translation>Pozastavit vše</translation>
-        </message>
-        <message>
             <source>Stop all</source>
             <translation>Zastavit vše</translation>
         </message>
@@ -2943,6 +2978,10 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
         <message>
             <source>Columns…</source>
             <translation>Sloupce…</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>Panel nástrojů…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3103,10 +3142,6 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
         <message>
             <source>Stellar Download Manager</source>
             <translation>Správce stahování Stellar</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar ↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3864,20 +3899,8 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <translation>Omezovač rychlosti</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>Povolit globální omezení rychlosti</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>Maximální rychlost:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>Povolit globální omezení odesílání</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3926,6 +3949,28 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
         <message>
             <source>General</source>
             <translation>Obecné</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>Exportovat zálohu Stellar</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>Importovat zálohu Stellar</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>Záloha dokončena</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>Data byla exportována do:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>Import dokončen</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4060,6 +4105,14 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <translation>Žádné</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>Povolit omezovač rychlosti</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>Max. stahování:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Kliknutím na den přepnete jeho stav. Pravidla se vyhodnocují každou minutu; platí první shoda. Limity stahování a uploadu se automaticky vymažou, když není aktivní žádné pravidlo.</translation>
         </message>
@@ -4082,10 +4135,6 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
         <message>
             <source>Show tips in bottom bar</source>
             <translation>Zobrazit tipy v dolní liště</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>Zobrazit počet dokončených stahování ve stavové liště</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4142,6 +4191,22 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>Při zkopírování URL odpovídajícího monitorovanému typu souboru se Stellar zeptá, zda chcete stahovat. Zohledňují se pouze typy uvedené v Nastavení › Prohlížeč › Automaticky spustit stahování následujících typů souborů.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>Záloha a obnova</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Exportuj vše — nastavení, stahování, torrenty (s podíly), fronty, kategorie a statistiky — do jednoho souboru. Importuj později do čisté instalace Stellar pro obnovu. Import nahradí aktuální data (časová záloha zůstane) a restartuje Stellar.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>Exportovat vše…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>Importovat data…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4438,6 +4503,10 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>Mapování do paměti: soubory se mapují přímo do paměti. Windows a Linux čtou a zapisují data torrentů přes mezipaměť stránek s minimálním využitím CPU. Doporučeno pro většinu uživatelů.</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>Data obnovena. Pro aplikování je nutný restart Stellar.</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5081,18 +5150,6 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <translation>neomezeno</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Omezení rychlosti</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 Proxy zapnuta</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 Kontrola aktualizací</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT vypnuto</translation>
         </message>
@@ -5113,14 +5170,6 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <translation>další &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 Fronta se spustí za 1 minutu</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 Fronta se spustí za %1 minut</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Celkový poměr sdílení
@@ -5137,6 +5186,18 @@ Klikněte pro otevření Statistiky</translation>
         <message>
             <source>No network connectivity detected</source>
             <translation>Nebylo zjištěno síťové připojení</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>Omezovač rychlosti</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>Proxy zapnuto</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Kontrola aktualizací</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5157,6 +5218,14 @@ Klikněte pro otevření Statistiky</translation>
         <message>
             <source>Click to copy IP</source>
             <translation>Klikněte pro zkopírování IP</translation>
+        </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>Fronta spuštěna za 1 minutu</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>Fronta spuštěna za %1 minut</translation>
         </message>
     </context>
     <context>
@@ -5344,6 +5413,10 @@ Klikněte pro otevření Statistiky</translation>
             <translation>Přidat oddělovač</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>Odstranit</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>Obnovit</translation>
         </message>
@@ -5354,6 +5427,153 @@ Klikněte pro otevření Statistiky</translation>
         <message>
             <source>Cancel</source>
             <translation>Zrušit</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Vytvořit torrent</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Odebrat</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Uložit do:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Procházet…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Název:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Velikost dílu:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>Vybrat výstupní složku</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>Soubory</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>Zdroj:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 dalších)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>Není vybrán zdroj</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>Soubor…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>Složka…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>Výstupní složka…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>Název torrentu (volitelné)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 dílků × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 dílů × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>Vlastnosti</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>Trackery:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>Volitelné</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>Web seeds:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>Jedna URL na řádek (volitelné)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>Privátní torrent (vypne DHT a PeX)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ Hotovo — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>Hašování… %1%  (%2 dílů × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>Po dokončení otevřít</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Komentář:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Chyba: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Zrušeno</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Zrušit</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Zavřít</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Vytvářím…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Otevřít torrent</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Přidat soubory</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Přidat složku</translation>
         </message>
     </context>
     <context>
@@ -5813,6 +6033,14 @@ Klikněte pro otevření Statistiky</translation>
             <translation>Načítání informací o videu…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>Nejlepší kvalita</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>Pouze zvuk</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>Nelze načíst informace o videu</translation>
         </message>
@@ -6146,177 +6374,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Stáhnout video</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>Vytvořit torrent</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>Zdrojové soubory/složky</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ Soubory</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ Složka</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Odebrat</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>Přetáhněte soubory nebo složky sem, nebo použijte tlačítka výše</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>Výstup</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>Uložit do:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>Cesta k uložení .torrent souboru…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>Procházet…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>Název:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>Volitelné — výchozí název složky/souboru</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>Velikost dílu:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>Auto</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 dílů × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>Metadata</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>Komentář:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>Volitelný komentář v .torrent</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>Popis:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>Volitelný rozšířený popis</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>Vytvořil:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>Soukromý torrent (DHT a PEX vypnuty)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>Trackery</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>Jedna URL na řádek</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>Web zdroje (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>Otevřít po vytvoření</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ Torrent vytvořen: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ Chyba: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>Zrušeno</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>Hašování dílů… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 dílů × %2 na díl</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Zavřít</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>Vytvářím…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>Otevřít torrent</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>Vytvořit torrent…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>Přidat soubory</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>Přidat složku</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>Uložit .torrent</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>Soubory torrentu (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>Všechny soubory (*)</translation>
         </message>
     </context>
 </TS>

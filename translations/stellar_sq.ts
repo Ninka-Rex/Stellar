@@ -73,6 +73,14 @@
             <translation>🛡️ Lidhur me %1</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>Nuk u zgjodh asnjë destinacion për kopjen rezervë.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>Nuk u zgjodh asnjë skedar rezervë për import.</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ Lidhur me %1 (offline — torrentët pezull)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>Status</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Shqyrto lidhjet para shtimit. Kolonat mund të renditen, rregullohen dhe të tërhiqen.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>Zëvendëso emrat e skedarëve me model me dyshkë (*)</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>Hapë kontrollo të gjitha</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Përmbushen vetëm lidhjet e shënuara si Gjetur. Caktimi në radhë ndodh pas OK.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>Anulo</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>Importo lidhjet në SDM</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>Shëno lidhjet që do të shtosh në listën e shkarkimeve dhe kliko OK.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -505,20 +509,24 @@ Ekzekuto manualisht: flatpak override --user --talk-name=org.freedesktop.Flatpak
             <translation>Fshi shkarkimet e përfunduara</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>A jeni të sigurt që dëshironi të fshini të gjitha shkarkimet e përfunduara nga lista e Stellar?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>Të fshihen shkarkimet e përfunduara?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Shënim: Kjo do të fshijë vetëm ato nga lista. Skedarët në disk nuk do të fshihen.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>Hiqen vetëm nga lista. Skedarët në disk nuk fshihen.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulo</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Fshi</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>Fshi torrentet e përfunduara dhe ato që po shpërndahen</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>Po</translation>
         </message>
         <message>
             <source>No</source>
@@ -581,6 +589,14 @@ Ekzekuto manualisht: flatpak override --user --talk-name=org.freedesktop.Flatpak
         <message>
             <source>Download File Info</source>
             <translation>Informacioni i dosjes së shkarkimit</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 skedarë (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Të gjithë skedarët (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -837,6 +853,10 @@ Ekzekuto manualisht: flatpak override --user --talk-name=org.freedesktop.Flatpak
             <translation>Kufiz global aktiv: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>Kufiri global aktiv: i pakufizuar</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>Nuk ka kufiz global</translation>
         </message>
@@ -896,10 +916,6 @@ Ekzekuto manualisht: flatpak override --user --talk-name=org.freedesktop.Flatpak
             <translation>Kopjo Emër</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>Eksporto .torrent...</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>Vazhdo</translation>
         </message>
@@ -926,6 +942,10 @@ Ekzekuto manualisht: flatpak override --user --talk-name=org.freedesktop.Flatpak
         <message>
             <source>File Name</source>
             <translation>Emër</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>Eksporto .torrent...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -968,6 +988,10 @@ Ekzekuto manualisht: flatpak override --user --talk-name=org.freedesktop.Flatpak
             <translation>Shkarkuar</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>Shtuar më</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>Data e fundit</translation>
         </message>
@@ -986,18 +1010,6 @@ Ekzekuto manualisht: flatpak override --user --talk-name=org.freedesktop.Flatpak
         <message>
             <source>Parent web page</source>
             <translation>Faqja web prind</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Në pritje</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (Në pranim)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>Kontrollohet (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1036,6 +1048,25 @@ Kliko Shto URL për të nisur.</translation>
         <message>
             <source>%n selected downloads</source>
             <translation>%n shkarkime të zgjedhura</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>Në pritje</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (Ndalur)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>Kontroll (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n skedar(ë)</translation>
         </message>
     </context>
     <context>
@@ -1197,14 +1228,6 @@ E mundon në Opsione → Shkarkime më vonë.</translation>
             <translation>Kopjo</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>Meta</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Përshkrimi</translation>
-        </message>
-        <message>
             <source>Created by</source>
             <translation>Krijuar nga</translation>
         </message>
@@ -1299,6 +1322,14 @@ E mundon në Opsione → Shkarkime më vonë.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Harta e pjesëve</translation>
+        </message>
+        <message>
+            <source>✓ Metadata</source>
+            <translation>✓ Metadata</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>Marrje…</translation>
         </message>
         <message>
             <source>Move...</source>
@@ -1621,10 +1652,6 @@ E mundon në Opsione → Shkarkime më vonë.</translation>
             <translation>Shpejtësia</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>E disponueshme</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>Distanca: %1</translation>
         </message>
@@ -1668,10 +1695,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>Shto shtesë</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>Merr nga turma...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1776,10 +1799,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>Emri dhe faqja fillestare janë të nevojshme.</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – Hapi %1 nga %2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>Përcakto faqen fillestare</translation>
         </message>
@@ -1862,6 +1881,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>Projekti</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – Hapi %1 nga %2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2343,7 +2366,7 @@ Project</source>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>1. Zgjidhni llojin</translation>
+            <translation>Zgjidhni llojin</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
@@ -2355,7 +2378,7 @@ Project</source>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>2. Zgjidhni veprimin</translation>
+            <translation>Zgjidhni veprimin</translation>
         </message>
         <message>
             <source>Explore only</source>
@@ -2560,16 +2583,8 @@ Project</source>
             <translation>Statistika</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>Status: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>Pasive</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>Faqet web të përpunuara</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2582,6 +2597,22 @@ Project</source>
         <message>
             <source>Files</source>
             <translation>Skedarë</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>STATUSI</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>Gjendja</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>FAQET E WEBIT</translation>
+        </message>
+        <message>
+            <source>FILES</source>
+            <translation>SKEDARËT</translation>
         </message>
         <message>
             <source>Total</source>
@@ -2673,6 +2704,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>Të gjithë skedarët (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>Skedar eksporti SDM (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>Skedar teksti (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2818,10 +2857,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Shkarkime</translation>
         </message>
         <message>
-            <source>Pause all</source>
-            <translation>Pauzo të gjitha</translation>
-        </message>
-        <message>
             <source>Stop all</source>
             <translation>Ndalo të gjitha</translation>
         </message>
@@ -2940,6 +2975,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Columns…</source>
             <translation>Kolona...</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>Shiriti i veglave…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3100,10 +3139,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stellar Download Manager</source>
             <translation>Menaxheri Stellar</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar ↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3861,20 +3896,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kufizues shpejtësie</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>Aktivizo kufizimin global të shpejtësisë</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>Shpejtësia maksimale:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>Aktivizo kufizimin global të ngarkimit</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3923,6 +3946,28 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>General</source>
             <translation>Të përgjithshme</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>Eksporto kopjen rezervë Stellar</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>Importo kopjen rezervë Stellar</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>Rezervimi u krye</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>Të dhënat tuaja u eksportuan në:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>Importimi u përfundua</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4057,6 +4102,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Asnjë</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>Aktivizo kufizuesin e shpejtësisë</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>Shkarkimi maksimal:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Klikoni një kapsulë dite për ta ndryshuar. Rregullat vlerësohen çdo minutë; rregulli i parë që përputhet fiton. Kufizimet e shkarkimit dhe ngarkimit të programuara pastrohen automatikisht kur asnjë rregull nuk është aktiv.</translation>
         </message>
@@ -4079,10 +4132,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Show tips in bottom bar</source>
             <translation>Shfaq këshilla në barin e poshtëm</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>Shfaq numrin e shkarkimeve të përfunduara në status bar</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4139,6 +4188,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>Kur një URL që përputhet me një lloj skedash të monitoruar kopjohet në prerand, Stellar do të pyesë nëse dëshironi ta ngarkoni atë. Vetëm llojet e skedave të listuara në Shfletues › Filloni automatikisht ngarkimin e llojeve të mëposhtme të skedave merren parasysh.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>Rezervimi dhe Rikthimi</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Eksporto gjithçka — cilësimet, shkarkimet, torrentët (me raportet e ndarjes së tyre), radhët, kategoritë dhe statistikat — në një skedar të vetëm rezervë. Importoje më vonë në një instalim të ri të Stellar për ta rikthyer të gjithë. Importimi zëvendëson të dhënat aktuale (ruhet një kopje rezervë me vulë kohore) dhe rinis Stellar-in.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>Eksporto të Gjitha të Dhënat…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>Importo të dhëna…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4433,6 +4498,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>Hartë memorie: skedarët vendosen direkt në memorie. Windows dhe Linux lexojnë e shkruajnë të dhëna torrenti përmes cache-it të faqeve me përdorim minimal CPU. Rekomandohet për shumicën.</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>Të dhënat tuaja u rikthyen me sukses. Stellar duhet të riniset për t'i aplikuar ato.</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5076,18 +5145,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>e pakufizuar</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Kufizues shpejtësie</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 Proks i aktivizuar</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 Kërkim për përditësime</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT çaktivizuar</translation>
         </message>
@@ -5108,14 +5165,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>tjetri &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 Fila nis në 1 minutë</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 Fila nis në %1 minuta</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Raport i përdorimit</translation>
@@ -5131,6 +5180,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>Nuk u zbulua lidhje rrjeti</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>Kufizues shpejtësie</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>Proksi në</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Duke kontrolluar përditësimet</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5151,6 +5212,14 @@ Click to open Statistics</source>
         <message>
             <source>Click to copy IP</source>
             <translation>Kliko për statistika</translation>
+        </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>Rradha nis për 1 minutë</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>Rradha nis për %1 minuta</translation>
         </message>
     </context>
     <context>
@@ -5338,6 +5407,10 @@ Click to open Statistics</source>
             <translation>Shto ndarës</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>Hiq</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>Rivendos</translation>
         </message>
@@ -5348,6 +5421,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>Anulo</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Krijo Torrent</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Hiq</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Ruaj në:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Shfleto…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Emri:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Madhësia e pjesës:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>Zgjidh Dosjen e Daljes</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>Skedarë</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>Burimi:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 të tjerë)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>Asnjë burim i zgjedhur</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>Skedar…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>Dosje…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>Dosja e daljes…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>Emri i torrentit (opsional)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 pjesë × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 pjesë × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>Vetitë</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>Gjurmues:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>Opsionale</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>Fara web:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>Një URL për rresht (opsionale)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>Torrent privat (çaktivizon DHT dhe PeX)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ Përfundoi — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>Hash… %1%  (%2 pjesë × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>Hap kur të mbarojë</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Koment:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Gabim: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Anuluar</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulo</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Mbylle</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Duke krijuar…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Hap Torrent</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Shto Skedarë</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Shto Dosje</translation>
         </message>
     </context>
     <context>
@@ -5807,6 +6027,14 @@ Click to open Statistics</source>
             <translation>Duke marrë informacionin e videos…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>Cilësia më e mirë</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>Vetëm audio</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>Nuk u mor informacioni i videos</translation>
         </message>
@@ -6139,177 +6367,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Shkarkim videoje</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>Krijo Torrent</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>Burimi</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ Skedarë</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ Dosje</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Hiq</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>Tërhiq skedarë ose dosje këtu, ose përdor butonat më sipër</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>Dalje</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>Ruaj në:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>Rruga për të ruajtur skedarin .torrent…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>Shfleto…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>Emri:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>Opsionale — parazgjedhje emri i dosjes/skedarit</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>Madhësia e pjesës:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>Auto</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 pjesë × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>Metadata</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>Koment:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>Koment opsional i ngulitur në .torrent</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>Përshkrim:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>Përshkrim opsional i zgjeruar</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>Krijuar nga:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>Torrent privat (DHT dhe PEX çaktivizuar)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>Gjurmues</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>Një URL për rresht</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>Fara Web (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>Hap torrentin kur krijohet</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ Torrenti u krijua me sukses: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ Gabim: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>Anuluar</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>Duke hash pjesët… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 pjesë × %2 për pjesë</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Anulo</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Mbylle</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>Duke krijuar…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>Hap Torrent</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>Krijo Torrent…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>Shto Skedarë</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>Shto Dosje</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>Ruaj .torrent</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>Torrent (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>Të gjithë (*)</translation>
         </message>
     </context>
 </TS>

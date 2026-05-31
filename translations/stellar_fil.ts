@@ -73,6 +73,14 @@
             <translation>🛡️ Nakakabit sa %1</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>Walang destinasyong napili para sa backup.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>Walang backup file na napili para i-import.</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ Nakatali sa %1 (offline — naka-pause ang torrents)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>Status</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Suriin ang mga link bago idagdag.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>Palitan ang mga pangalan ng wildcard (*)</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>I-uncheck lahat</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Maaari lang piliin ang mga link na may 'Found'.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>Kanselahin</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>I-import ang mga link sa SDM</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>Lagyan ng tsek ang mga link na nais idagdag sa listahan ng download at i-click ang OK.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -335,13 +339,13 @@
         </message>
         <message>
             <source>Failed to grant permission: </source>
-            <translation>1. Nabigong magbigay ng pahintulot:</translation>
+            <translation>Nabigong magbigay ng pahintulot:</translation>
         </message>
         <message>
             <source>
 
 Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
-            <translation>2. 
+            <translation>
 Patakbuhin nang manu-mano: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
@@ -505,20 +509,24 @@ Patakbuhin nang manu-mano: flatpak override --user --talk-name=org.freedesktop.F
             <translation>Burahin ang mga natapos na pag-download</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Tama ba na burahin ang lahat ng natapos na pag-download sa listahan ng Stellar?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>Burahin ang mga tapos nang download?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Paalala: Ito ay lalabas lamang sa listahan. Hindi naibubura ang mga file sa disk.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>Aalisin lang sa listahan. Hindi buburahin ang mga file sa disk.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Kanselahin</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Burahin</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>Burahin ang mga natapos at naka-seeding na torrents</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>Oo</translation>
         </message>
         <message>
             <source>No</source>
@@ -581,6 +589,14 @@ Patakbuhin nang manu-mano: flatpak override --user --talk-name=org.freedesktop.F
         <message>
             <source>Download File Info</source>
             <translation>Impormasyon ng File na Binabasa</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 file (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Lahat ng file (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -837,6 +853,10 @@ Patakbuhin nang manu-mano: flatpak override --user --talk-name=org.freedesktop.F
             <translation>Aktibo ang Global Limit: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>Pandaigdigang limitasyon: walang hangganan</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>Walang nakataas na Global Limit</translation>
         </message>
@@ -896,10 +916,6 @@ Patakbuhin nang manu-mano: flatpak override --user --talk-name=org.freedesktop.F
             <translation>I-copy filename</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>I-export .torrent...</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>I-resume</translation>
         </message>
@@ -926,6 +942,10 @@ Patakbuhin nang manu-mano: flatpak override --user --talk-name=org.freedesktop.F
         <message>
             <source>File Name</source>
             <translation>Pangalan ng File</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>I-export ang .torrent...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -968,6 +988,10 @@ Patakbuhin nang manu-mano: flatpak override --user --talk-name=org.freedesktop.F
             <translation>Na-download</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>Petsa ng pagdagdag</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>Huling pagsubok</translation>
         </message>
@@ -986,18 +1010,6 @@ Patakbuhin nang manu-mano: flatpak override --user --talk-name=org.freedesktop.F
         <message>
             <source>Parent web page</source>
             <translation>Pangunahing pahina</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Naka-hintay</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (Napatigil)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>Nasusuri (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1036,6 +1048,25 @@ I-click ang Add URL upang magsimula.</translation>
         <message>
             <source>%n selected downloads</source>
             <translation>%n pinili na pag-download</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>Nakabinbin</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (Nakahinto)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>Sinusuri (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n (mga) file</translation>
         </message>
     </context>
     <context>
@@ -1197,20 +1228,12 @@ Maaari mong baguhin ito sa Options → Downloads sa ibang oras.</translation>
             <translation>Kopyahin</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>Metadata</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Deskripsyon</translation>
-        </message>
-        <message>
             <source>Created by</source>
-            <translation>3. Ginawa ni</translation>
+            <translation>Ginawa ni</translation>
         </message>
         <message>
             <source>Created on</source>
-            <translation>4. Ginawa noong</translation>
+            <translation>Ginawa noong</translation>
         </message>
         <message>
             <source>Category</source>
@@ -1301,8 +1324,16 @@ Maaari mong baguhin ito sa Options → Downloads sa ibang oras.</translation>
             <translation>Mapa ng Bahagi</translation>
         </message>
         <message>
+            <source>✓ Metadata</source>
+            <translation>✓ Metadata</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>Kinukuha…</translation>
+        </message>
+        <message>
             <source>Move...</source>
-            <translation>5. Ilipat...</translation>
+            <translation>Ilipat...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -1621,10 +1652,6 @@ Maaari mong baguhin ito sa Options → Downloads sa ibang oras.</translation>
             <translation>Bilis</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>Mayroon</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>Distansya: %1</translation>
         </message>
@@ -1668,10 +1695,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>Magdagdag ng seed…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>Kinukuha mula sa swarm...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1776,10 +1799,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>Kailangan ang pangalan at unang pahina.</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – Hakbang %1 sa %2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>Itakda ang unang pahina</translation>
         </message>
@@ -1862,6 +1881,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>Proyekto</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – Hakbang %1 ng %2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2343,7 +2366,7 @@ Project</source>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>1. Piliin ang uri</translation>
+            <translation>Piliin ang uri</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
@@ -2355,7 +2378,7 @@ Project</source>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>2. Piliin ang aksyon</translation>
+            <translation>Piliin ang aksyon</translation>
         </message>
         <message>
             <source>Explore only</source>
@@ -2560,16 +2583,8 @@ Project</source>
             <translation>Mga Istatistika</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>Status: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>Nakahimpil</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>Mga pahina</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2582,6 +2597,22 @@ Project</source>
         <message>
             <source>Files</source>
             <translation>Mga file</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>ESTADO</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>Estado</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>MGA WEB PAGE</translation>
+        </message>
+        <message>
+            <source>FILES</source>
+            <translation>MGA FILE</translation>
         </message>
         <message>
             <source>Total</source>
@@ -2673,6 +2704,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>Lahat ng file (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>SDM Export File (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>Text file (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2808,15 +2847,11 @@ Stellar Options → Browser → Bypass Download Interception</translation>
         </message>
         <message>
             <source>Create Torrent…</source>
-            <translation>6. Gumawa ng Torrent…</translation>
+            <translation>Gumawa ng Torrent…</translation>
         </message>
         <message>
             <source>Downloads</source>
             <translation>Mga Pag-download</translation>
-        </message>
-        <message>
-            <source>Pause all</source>
-            <translation>I-pause lahat</translation>
         </message>
         <message>
             <source>Stop all</source>
@@ -2937,6 +2972,10 @@ Stellar Options → Browser → Bypass Download Interception</translation>
         <message>
             <source>Columns…</source>
             <translation>Kolon</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>Toolbar…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3097,10 +3136,6 @@ Stellar Options → Browser → Bypass Download Interception</translation>
         <message>
             <source>Stellar Download Manager</source>
             <translation>Stellar Download Manager</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar ↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3858,20 +3893,8 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>Limitador ng Bilis</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>Paggana ng global na limitasyon ng bilis</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>Pinakamataas na bilis:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>Paggana ng global na limitasyon ng pag-upload</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3920,6 +3943,28 @@ Stellar Options → Browser → Bypass Download Interception</translation>
         <message>
             <source>General</source>
             <translation>Pangkalahatan</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>I-export Stellar Backup</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>I-import Stellar Backup</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>Tapos na Backup</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>Na-export ang data sa:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>Kumpleto na ang pag-import</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4054,6 +4099,14 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>Wala</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>I-enable ang speed limiter</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>Pinakamataas na download:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>I-click ang day pill para i-toggle. Sinusuri ang mga rule bawat minuto; ang unang tumutugma ay mananalo. Ang limitasyon ng scheduled download at upload ay aalisin kapag walang aktibong rule.</translation>
         </message>
@@ -4076,10 +4129,6 @@ Stellar Options → Browser → Bypass Download Interception</translation>
         <message>
             <source>Show tips in bottom bar</source>
             <translation>Ipakita ang tips sa ibabang bar</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>Ipakita ang bilang ng natapos na download sa status bar</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4136,6 +4185,22 @@ Stellar Options → Browser → Bypass Download Interception</translation>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>Kapag nakopya ang URL na tumutugma sa binabanggit na uri ng file, hihingi ang Stellar kung gusto mong i-download. Ipinapakita lang ang mga uri ng file sa Browser › Awtomatikong simulan ang pag-download ng mga sumusunod na uri ng file.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>Backup at Restore</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>I-export lahat — settings, downloads, torrents (kasama ang share ratios), queues, categories at statistics — sa iisang backup file. I-import ito sa bagong Stellar install para maibalik lahat. Pinapalitan ng import ang kasalukuyang data (may timestamped backup na itatabi) at ire-restart ang Stellar.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>I-export Lahat ng Data…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>I-import ang Data…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4432,6 +4497,10 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>Naka-mapa sa memorya: direktang minamapa ang mga file sa memorya. Binabasa at sinusulat ng Windows at Linux ang data ng torrent sa pamamagitan ng page cache na may kaunting paggamit ng CPU. Inirerekomenda para sa karamihan.</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>Matagumpay na naibalik ang data. Kailangang mag-restart ang Stellar para ma-apply ito.</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5075,18 +5144,6 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
             <translation>walang limitasyon</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Limitador ng bilis</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 Proxy na</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 Paghahanap ng updates</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>Naka-off ang DHT</translation>
         </message>
@@ -5107,14 +5164,6 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
             <translation>susunod &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 Nasa 1 minuto ang Queue</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 Nasa %1 minuto ang Queue</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Ratyo ng pagbabahagi (lahat ng panahon)</translation>
@@ -5130,6 +5179,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>Walang nakitang koneksyon sa network</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>Speed limiter</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>Naka-on ang proxy</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Sinusuri ang mga update</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5151,6 +5212,14 @@ Click to open Statistics</source>
             <source>Click to copy IP</source>
             <translation>I-click para buksan ang Statistics</translation>
         </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>Tatakbo ang pila sa 1 minuto</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>Tatakbo ang pila sa %1 minuto</translation>
+        </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
@@ -5164,19 +5233,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>7. Buksan ang Stellar</translation>
+            <translation>Buksan ang Stellar</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>8. Magdagdag ng URL…</translation>
+            <translation>Magdagdag ng URL…</translation>
         </message>
         <message>
             <source>GitHub</source>
-            <translation>9. GitHub</translation>
+            <translation>GitHub</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation>10. Tungkol sa Stellar</translation>
+            <translation>Tungkol sa Stellar</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
@@ -5337,6 +5406,10 @@ Click to open Statistics</source>
             <translation>Magdagdag ng separator</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>Alisin</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>I-reset</translation>
         </message>
@@ -5347,6 +5420,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>Kanselahin</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Gumawa ng Torrent</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Tanggalin</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>I-save sa:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Mag-browse…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Pangalan:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Laki ng piraso:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>Piliin ang Output Folder</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>Mga File</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>Pinagmulan:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 pa)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>Walang napiling pinagmulan</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>File…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>Folder…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>Output folder…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>Pangalan ng torrent (opsyonal)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 piraso × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 piraso × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>Mga Katangian</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>Mga Tracker:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>Opsyonal</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>Mga web seed:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>Isang URL bawat linya (opsyonal)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>Pribadong torrent (di-pinagana ang DHT at PeX)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ Tapos — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>Nagha-hash… %1%  (%2 piraso × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>Buksan kapag tapos</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Komentaryo:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Error: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Nakansela</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Kanselahin</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Isara</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Gumagawa…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Buksan ang Torrent</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Magdagdag ng Files</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Magdagdag ng Folder</translation>
         </message>
     </context>
     <context>
@@ -5806,6 +6026,14 @@ Click to open Statistics</source>
             <translation>Kinukuha ang impormasyon ng video...</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>Pinakamahusay na kalidad</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>Audio lang</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>Hindi ma-kumuha ang impormasyon ng video</translation>
         </message>
@@ -6138,177 +6366,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>I-download ang video</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>Gumawa ng Torrent</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>Mga Pinagmulang File / Folder</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ Mga File</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ Folder</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Tanggalin</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>I-drag ang mga file o folder dito, o gamitin ang mga button sa itaas</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>Output</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>I-save sa:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>Path para i-save ang .torrent file…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>Mag-browse…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>Pangalan:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>Opsyonal — default sa pangalan ng folder/file</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>Laki ng piraso:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>Auto</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 piraso × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>Metadata</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>Komentaryo:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>Opsyonal na komentaryo sa .torrent</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>Deskripsyon:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>Opsyonal na pinalawig na deskripsyon</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>Ginawa ni:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>Pribadong torrent (DHT at PEX naka-disable)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>Mga Tracker</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>Isang URL bawat linya</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>Web Seeds (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>Buksan kapag nalikha</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ Matagumpay na nalikha: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ Error: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>Nakansela</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>Nagha-hash… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 piraso × %2 bawat piraso</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Kanselahin</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Isara</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>Gumagawa…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>Buksan ang Torrent</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>Gumawa ng Torrent…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>Magdagdag ng Files</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>Magdagdag ng Folder</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>I-save ang .torrent File</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>Torrent files (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>Lahat ng files (*)</translation>
         </message>
     </context>
 </TS>

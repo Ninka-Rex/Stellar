@@ -73,6 +73,14 @@
             <translation>🛡️ Vinculado a %1</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>Non se escolleu destino para a copia de seguridade.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>Non se escolleu ficheiro de copia para importar.</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ Vinculado a %1 (sen conexión — torrents en pausa)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>Estado</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Revisa as ligazóns antes de engadilas. As columnas pódense ordenar, redimensionar e arrastrar para reordenar.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>Substituír nomes de ficheiro por patrón comodín (*)</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>Desmarcar todo</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Só as ligazóns marcadas como Atopadas son seleccionables. A asignación á cola aínda ocorre tras Aceptar.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>Cancelar</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>Importar ligazóns a SDM</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>Marca as ligazóns que queres engadir á lista de descargas e preme Aceptar.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -505,20 +509,24 @@ Executa manualmente: flatpak override --user --talk-name=org.freedesktop.Flatpak
             <translation>Eliminar descargas completadas</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Estás seguro de que queres eliminar todas as descargas completadas da lista de Stellar?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>Eliminar descargas completadas?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Nota: Isto só as eliminará da lista. Os ficheiros no disco non se borrarán.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>Só se elimina da lista. Os ficheiros no disco non se borran.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Cancelar</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Eliminar</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>Eliminar torrents completados e sementando</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>Si</translation>
         </message>
         <message>
             <source>No</source>
@@ -581,6 +589,14 @@ Executa manualmente: flatpak override --user --talk-name=org.freedesktop.Flatpak
         <message>
             <source>Download File Info</source>
             <translation>Info do ficheiro de descarga</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 ficheiros (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Todos os ficheiros (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -837,6 +853,10 @@ Executa manualmente: flatpak override --user --talk-name=org.freedesktop.Flatpak
             <translation>Límite global activo: %1 KB/s</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>Límite global activo: ilimitado</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>Sen límite global</translation>
         </message>
@@ -896,10 +916,6 @@ Executa manualmente: flatpak override --user --talk-name=org.freedesktop.Flatpak
             <translation>Copiar nome</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>Exportar .torrent…</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>Continuar</translation>
         </message>
@@ -926,6 +942,10 @@ Executa manualmente: flatpak override --user --talk-name=org.freedesktop.Flatpak
         <message>
             <source>File Name</source>
             <translation>Nome do ficheiro</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>Exportar .torrent...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -968,6 +988,10 @@ Executa manualmente: flatpak override --user --talk-name=org.freedesktop.Flatpak
             <translation>Descargado</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>Data de engadido</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>Último intento</translation>
         </message>
@@ -986,18 +1010,6 @@ Executa manualmente: flatpak override --user --talk-name=org.freedesktop.Flatpak
         <message>
             <source>Parent web page</source>
             <translation>Páxina web pai</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Pendente</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (Detido)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>Comprobando (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1036,6 +1048,25 @@ Preme  Engadir URL  para comezar.</translation>
         <message>
             <source>%n selected downloads</source>
             <translation>%n descargas seleccionadas</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>Pendente</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (Detido)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>Comprobando (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n ficheiro(s)</translation>
         </message>
     </context>
     <context>
@@ -1197,14 +1228,6 @@ Podes cambialo en Opcións → Descargas máis tarde.</translation>
             <translation>Copiar</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>Metadatos</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Descrición</translation>
-        </message>
-        <message>
             <source>Created by</source>
             <translation>Creado por</translation>
         </message>
@@ -1299,6 +1322,14 @@ Podes cambialo en Opcións → Descargas máis tarde.</translation>
         <message>
             <source>Piece Map</source>
             <translation>Mapa de pezas</translation>
+        </message>
+        <message>
+            <source>✓ Metadata</source>
+            <translation>✓ Metadatos</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>Obtendo…</translation>
         </message>
         <message>
             <source>Move...</source>
@@ -1621,10 +1652,6 @@ Podes cambialo en Opcións → Descargas máis tarde.</translation>
             <translation>Velocidade</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>Dispoñíbel</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>Distancia: %1</translation>
         </message>
@@ -1668,10 +1695,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>Engadir semente…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>Obtendo do enxame...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1776,10 +1799,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>Nome do proxecto e páxina de inicio obrigatorios.</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – Paso %1 de %2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>Definir páxina de inicio</translation>
         </message>
@@ -1862,6 +1881,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>Proxecto</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – Paso %1 de %2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2344,43 +2367,43 @@ Project</source>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>1. Paso 1. Seleccionar tipo</translation>
+            <translation>Paso 1. Seleccionar tipo</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
-            <translation>2. Exploración/descarga única</translation>
+            <translation>Exploración/descarga única</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>3. Sincronización periódica</translation>
+            <translation>Sincronización periódica</translation>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>4. Paso 2. Seleccionar acción</translation>
+            <translation>Paso 2. Seleccionar acción</translation>
         </message>
         <message>
             <source>Explore only</source>
-            <translation>5. Só explorar</translation>
+            <translation>Só explorar</translation>
         </message>
         <message>
             <source>Explore site and download matched files</source>
-            <translation>6. Explorar sitio e descargar ficheiros coincidentes</translation>
+            <translation>Explorar sitio e descargar ficheiros coincidentes</translation>
         </message>
         <message>
             <source>Download checked files</source>
-            <translation>7. Descargar ficheiros marcados</translation>
+            <translation>Descargar ficheiros marcados</translation>
         </message>
         <message>
             <source>After completion</source>
-            <translation>8. Tras completar</translation>
+            <translation>Tras completar</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>9. Saír de Stellar ao rematar</translation>
+            <translation>Saír de Stellar ao rematar</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>10. Apagar o equipo ao rematar</translation>
+            <translation>Apagar o equipo ao rematar</translation>
         </message>
         <message>
             <source>Shut down</source>
@@ -2561,16 +2584,8 @@ Project</source>
             <translation>Estatísticas do capturador</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>Estado: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>Inactivo</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>Páxinas web procesadas</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2583,6 +2598,22 @@ Project</source>
         <message>
             <source>Files</source>
             <translation>Ficheiros</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>ESTADO</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>Estado</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>PÁXINAS WEB</translation>
+        </message>
+        <message>
+            <source>FILES</source>
+            <translation>FICHEIROS</translation>
         </message>
         <message>
             <source>Total</source>
@@ -2674,6 +2705,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>Todos (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>Ficheiro SDM (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>Ficheiro de texto (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2822,10 +2861,6 @@ Opcións de Stellar → Navegador → Evitar intercepción de descargas</transla
             <translation>Descargas</translation>
         </message>
         <message>
-            <source>Pause all</source>
-            <translation>Pausar todo</translation>
-        </message>
-        <message>
             <source>Stop all</source>
             <translation>Deter todo</translation>
         </message>
@@ -2944,6 +2979,10 @@ Opcións de Stellar → Navegador → Evitar intercepción de descargas</transla
         <message>
             <source>Columns…</source>
             <translation>Columnas…</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>Barra de ferramentas…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3104,10 +3143,6 @@ Opcións de Stellar → Navegador → Evitar intercepción de descargas</transla
         <message>
             <source>Stellar Download Manager</source>
             <translation>Xestor de descargas Stellar</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar  ↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3865,20 +3900,8 @@ Opcións de Stellar → Navegador → Evitar intercepción de descargas</transla
             <translation>Limitador de velocidade</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>Activar límite global de velocidade</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>Velocidade máxima:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>KB/s</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>Activar límite global de subida</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3927,6 +3950,28 @@ Opcións de Stellar → Navegador → Evitar intercepción de descargas</transla
         <message>
             <source>General</source>
             <translation>Xeral</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>Exportar copia de Stellar</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>Importar copia de Stellar</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>Copia completada</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>Os teus datos exportáronse a:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>Importación completada</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4061,6 +4106,14 @@ Opcións de Stellar → Navegador → Evitar intercepción de descargas</transla
             <translation>Ningún</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>Activar limitador de velocidade</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>Descarga máxima:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Preme nun día para activalo/desactivalo. As regras avalíanse cada minuto; a primeira que coincida aplica. Os límites programados de subida e baixada límpanse automaticamente cando non hai regra activa.</translation>
         </message>
@@ -4083,10 +4136,6 @@ Opcións de Stellar → Navegador → Evitar intercepción de descargas</transla
         <message>
             <source>Show tips in bottom bar</source>
             <translation>Amosar consellos na barra inferior</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>Amosar contador de descargas rematadas na barra de estado</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4143,6 +4192,22 @@ Opcións de Stellar → Navegador → Evitar intercepción de descargas</transla
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>Ao copiar un URL dun tipo de ficheiro monitorizado, Stellar preguntará se queres descargalo. Só se detectan os tipos listados en Navegador › Descargar automaticamente estes tipos.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>Copia de seguridade e restauración</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Exporta todo — configuración, descargas, torrents (coas súas ratios), colas, categorías e estatísticas — a un único ficheiro de copia. Impórtao despois nunha instalación nova de Stellar para restauralo todo. A importación substitúe os datos actuais (gárdase unha copia con data) e reinicia Stellar.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>Exportar todos os datos…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>Importar datos…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4439,6 +4504,10 @@ Recoméndase encarecidamente vincular Stellar a unha interface de rede VPN e ver
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>Mapeado en memoria: os ficheiros mapeanse directamente na memoria. Windows e Linux len e escriben datos de torrent a través da caché de páxina cun uso mínimo de CPU. Recomendado para a maioría dos usuarios.</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>Os teus datos restauráronse correctamente. Stellar debe reiniciarse para aplicalo.</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5082,18 +5151,6 @@ Recoméndase encarecidamente vincular Stellar a unha interface de rede VPN e ver
             <translation>ilimitado</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Limitador de velocidade</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 Proxy activado</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 Buscando actualizacións</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT desactivado</translation>
         </message>
@@ -5114,14 +5171,6 @@ Recoméndase encarecidamente vincular Stellar a unha interface de rede VPN e ver
             <translation>seguinte &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 Cola execútase en 1 minuto</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 Cola execútase en %1 minutos</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Ratio total de compartición
@@ -5138,6 +5187,18 @@ Preme para abrir Estatísticas</translation>
         <message>
             <source>No network connectivity detected</source>
             <translation>Non se detectou conectividade de rede</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>Limitador de velocidade</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>Proxy activado</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Comprobando actualizacións</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5158,6 +5219,14 @@ Preme para abrir Estatísticas</translation>
         <message>
             <source>Click to copy IP</source>
             <translation>Preme para copiar IP</translation>
+        </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>Cola execútase en 1 minuto</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>Cola execútase en %1 minutos</translation>
         </message>
     </context>
     <context>
@@ -5345,6 +5414,10 @@ Preme para abrir Estatísticas</translation>
             <translation>Engadir separador</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>Eliminar</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>Restablecer</translation>
         </message>
@@ -5355,6 +5428,153 @@ Preme para abrir Estatísticas</translation>
         <message>
             <source>Cancel</source>
             <translation>Cancelar</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Crear torrent</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Eliminar</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Gardar en:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Examinar…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Nome:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Tamaño de peza:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Auto</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>Escoller cartafol de saída</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>Ficheiros</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>Orixe:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 máis)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>Ningunha orixe seleccionada</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>Ficheiro…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>Cartafol…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>Cartafol de saída…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>Nome do torrent (opcional)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 pezas × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 pezas × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>Propiedades</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>Rastrexadores:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>Opcional</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>Sementes web:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>Un URL por liña (opcional)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>Torrent privado (desactiva DHT e PeX)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ Feito — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>Calculando hash… %1%  (%2 pezas × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>Abrir ao rematar</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Comentario:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Erro: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Cancelado</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Cancelar</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Pechar</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Creando…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Abrir torrent</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Engadir ficheiros</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Engadir cartafol</translation>
         </message>
     </context>
     <context>
@@ -5814,6 +6034,14 @@ Preme para abrir Estatísticas</translation>
             <translation>Obtendo información do vídeo…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>Mellor calidade</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>Só audio</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>Non se puido obter a info do vídeo</translation>
         </message>
@@ -6147,177 +6375,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Descarga de vídeo</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>Crear torrent</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>Ficheiros / cartafoles fonte</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ Ficheiros</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ Cartafol</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Eliminar</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>Arrastra ficheiros ou cartafoles aquí, ou usa os botóns de arriba</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>Saída</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>Gardar en:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>Ruta para gardar o .torrent…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>Examinar…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>Nome:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>Opcional — predeterminado ao nome do cartafol/ficheiro</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>Tamaño de peza:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>Auto</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 pezas × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>Metadatos</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>Comentario:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>Comentario opcional incrustado no .torrent</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>Descrición:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>Descrición ampliada opcional</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>Creado por:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>Torrent privado (DHT e PEX desactivados)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>Rastrexadores</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>Un URL por liña</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>Sementes web (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>Abrir torrent ao crear</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ Torrent creado: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ Erro: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>Cancelado</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>Verificando pezas… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 pezas × %2 por peza</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancelar</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Pechar</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>Creando…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>Abrir torrent</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>Crear torrent…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>Engadir ficheiros</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>Engadir cartafol</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>Gardar .torrent</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>Ficheiros torrent (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>Todos (*)</translation>
         </message>
     </context>
 </TS>

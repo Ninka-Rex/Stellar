@@ -73,6 +73,14 @@
             <translation>🛡️ Прив'язано до %1</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>Не вибрано місце для резервної копії.</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>Не вибрано файл резервної копії для імпорту.</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ Прив’язано до %1 (офлайн — торенти призупинено)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>Статус</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Перевірте посилання перед додаванням. Стовпці можна сортувати, змінювати розмір та перетягувати для зміни порядку.</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>Замінити імена файлів шаблоном (*)</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>Зняти вибір із усіх</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Доступні лише посилання зі статусом «Знайдено». Черга формується після підтвердження.</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>Скасувати</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>Імпорт посилань до SDM</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>Позначте посилання для додавання до списку завантажень і натисніть OK.</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -504,20 +508,24 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Видалити завершені завантаження</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Видалити всі завершені завантаження зі списку Stellar?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>Видалити завершені завантаження?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Примітка: це лише видалить їх зі списку. Файли на диску залишаться.</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>Видаляє лише зі списку. Файли на диску не видаляються.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Скасувати</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>Видалити</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>Видалити завершені та роздавальні торренти</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>Так</translation>
         </message>
         <message>
             <source>No</source>
@@ -580,6 +588,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>Інформація про файл завантаження</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1 файлів (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>Усі файли (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -836,6 +852,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Глобальний ліміт: %1 КБ/с</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>Глобальне обмеження активне: безліміт</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>Глобальний ліміт не встановлено</translation>
         </message>
@@ -895,10 +915,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Копіювати ім'я файлу</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>Експорт .torrent…</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>Відновити</translation>
         </message>
@@ -925,6 +941,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>File Name</source>
             <translation>Ім'я файлу</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>Експорт .torrent…</translation>
         </message>
         <message>
             <source>Size</source>
@@ -967,6 +987,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Завантажено</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>Дата додавання</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>Дата останньої спроби</translation>
         </message>
@@ -985,18 +1009,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Parent web page</source>
             <translation>Батьківська веб-сторінка</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>В черзі</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (Зупинено)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>Перевірка (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1035,6 +1047,25 @@ Click  Add URL  to start.</source>
         <message>
             <source>%n selected downloads</source>
             <translation>Вибрано %n завантажень</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>Очікує</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (Зупинено)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>Перевірка (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n файл(ів)</translation>
         </message>
     </context>
     <context>
@@ -1196,14 +1227,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Копіювати</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>Метадані</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Опис</translation>
-        </message>
-        <message>
             <source>Created by</source>
             <translation>Створив</translation>
         </message>
@@ -1298,6 +1321,14 @@ You may change it in Options → Downloads at a later time.</source>
         <message>
             <source>Piece Map</source>
             <translation>Карта фрагментів</translation>
+        </message>
+        <message>
+            <source>✓ Metadata</source>
+            <translation>✓ Метадані</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>Отримання…</translation>
         </message>
         <message>
             <source>Move...</source>
@@ -1620,10 +1651,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Швидкість</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>Доступно</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>Відстань: %1</translation>
         </message>
@@ -1667,10 +1694,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>Додати сид…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>Отримання з рою...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1775,10 +1798,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>Потрібно вказати назву проекту та стартову сторінку.</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – Крок %1 з %2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>Встановити стартову сторінку</translation>
         </message>
@@ -1861,6 +1880,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>Проєкт</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>Stellar Grabber — крок %1 з %2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2560,16 +2583,8 @@ Project</source>
             <translation>Статистика Grabber</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>Статус: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>Очікування</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>Оброблено веб-сторінок</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2582,6 +2597,22 @@ Project</source>
         <message>
             <source>Files</source>
             <translation>Файли</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>СТАН</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>Стан</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>ВЕБ-СТОРІНКИ</translation>
+        </message>
+        <message>
+            <source>FILES</source>
+            <translation>ФАЙЛИ</translation>
         </message>
         <message>
             <source>Total</source>
@@ -2673,6 +2704,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>Усі файли (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>Файл експорту SDM (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>Текстовий файл (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2821,10 +2860,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Завантаження</translation>
         </message>
         <message>
-            <source>Pause all</source>
-            <translation>Призупинити все</translation>
-        </message>
-        <message>
             <source>Stop all</source>
             <translation>Зупинити все</translation>
         </message>
@@ -2943,6 +2978,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Columns…</source>
             <translation>Стовпці…</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>Панель…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3103,10 +3142,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Stellar Download Manager</source>
             <translation>Stellar Download Manager</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar ↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3864,20 +3899,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Обмежувач швидкості</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>Увімкнути глобальне обмеження швидкості</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>Макс. швидкість:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>КБ/с</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>Увімкнути глобальне обмеження віддачі</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3926,6 +3949,28 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>General</source>
             <translation>Загальні</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>Експорт резервної копії Stellar</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>Імпорт резервної копії Stellar</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>Резервне копіювання завершено</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>Дані експортовано до:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>Імпорт завершено</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4060,6 +4105,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Немає</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>Увімкнути обмежувач швидкості</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>Макс. завантаження:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Натисніть на день, щоб перемкнути його. Правила перевіряються щохвилини; перше збіжне правило перемагає. Ліміти завантаження/віддачі за розкладом автоматично скидаються, коли правило неактивне.</translation>
         </message>
@@ -4082,10 +4135,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Show tips in bottom bar</source>
             <translation>Показувати підказки в нижній панелі</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>Показувати кількість завершених завантажень у статус-барі</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4142,6 +4191,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>Коли URL із моніторованим типом файлу скопійовано в буфер обміну, Stellar запитає, чи хочете ви його завантажити. Визначаються лише типи файлів із розділу Браузер › Автоматично починати завантаження таких типів файлів.</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>Резервне копіювання та відновлення</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Експортувати все — налаштування, завантаження, торенти (з коефіцієнтами), черги, категорії та статистику — в один файл резервної копії. Імпортуйте його пізніше у свіжу інсталяцію Stellar для повного відновлення. Імпорт замінює поточні дані (зберігається копія з міткою часу) та перезапускає Stellar.</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>Експортувати всі дані…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>Імпортувати дані…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4438,6 +4503,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>Відображення в пам'ять: файли відображаються прямо в пам'ять. Windows і Linux читають і записують дані торентів через кеш сторінок з мінімальним використанням ЦП. Рекомендовано для більшості користувачів.</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>Дані успішно відновлено. Stellar потрібно перезапустити для застосування.</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5081,18 +5150,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>безлім.</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 Обмеження швидкості</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 Проксі увімкнено</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 Перевірка оновлень</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>DHT вимк.</translation>
         </message>
@@ -5113,14 +5170,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>далі &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 Черга запуститься за 1 хв</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 Черга запуститься за %1 хв</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Співвідношення за весь час
@@ -5137,6 +5186,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>Мережу не виявлено</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>Обмежувач швидкості</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>Проксі увімкнено</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Перевірка оновлень</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5157,6 +5218,14 @@ Click to open Statistics</source>
         <message>
             <source>Click to copy IP</source>
             <translation>Натисніть, щоб скопіювати IP</translation>
+        </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>Черга через 1 хвилину</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>Черга через %1 хв</translation>
         </message>
     </context>
     <context>
@@ -5344,6 +5413,10 @@ Click to open Statistics</source>
             <translation>Додати роздільник</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>Видалити</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>Скинути</translation>
         </message>
@@ -5354,6 +5427,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>Скасувати</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>Створити торент</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Видалити</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>Зберегти до:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>Огляд…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>Назва:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>Розмір частини:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>Авто</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>Вибрати папку</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>Файли</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>Джерело:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 ще)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>Джерело не вибрано</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>Файл…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>Папка…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>Папка виводу…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>Назва торента (необов’язково)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 частин × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 частин × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>Властивості</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>Трекери:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>Необов’язково</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>Веб-сіди:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>Одна URL на рядок (необов’язково)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>Приватний торент (вимикає DHT і PeX)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ Готово — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>Гешування… %1%  (%2 частин × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>Відкрити після завершення</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>Коментар:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ Помилка: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>Скасовано</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Скасувати</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Закрити</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>Створення…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>Відкрити торент</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>Додати файли</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>Додати папку</translation>
         </message>
     </context>
     <context>
@@ -5813,6 +6033,14 @@ Click to open Statistics</source>
             <translation>Отримання інформації про відео…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>Найкраща якість</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>Лише аудіо</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>Не вдалося отримати інформацію про відео</translation>
         </message>
@@ -6146,177 +6374,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Завантаження відео</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>Створити торент</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>Вихідні файли / теки</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ Файли</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ Тека</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Видалити</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>Перетягніть файли чи папки сюди або скористайтеся кнопками вище</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>Вивід</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>Зберегти до:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>Шлях до .torrent-файлу…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>Огляд…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>Назва:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>Необов’язково — типово назва папки/файлу</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>Розмір частини:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>Авто</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 частин × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>Метадані</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>Коментар:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>Необов'язковий коментар у .torrent</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>Опис:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>Необов'язковий розширений опис</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>Створив:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>Приватний торент (DHT та PEX вимкнено)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>Трекери</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>Одна URL на рядок</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>Веб-сіди (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>Відкрити після створення</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ Торент створено: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ Помилка: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>Скасовано</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>Гешування… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 частин × %2 на частину</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Скасувати</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Закрити</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>Створення…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>Відкрити торент</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>Створити торент…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>Додати файли</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>Додати папку</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>Зберегти .torrent</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>Файли торентів (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>Усі файли (*)</translation>
         </message>
     </context>
 </TS>

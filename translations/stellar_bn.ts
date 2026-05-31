@@ -73,6 +73,14 @@
             <translation>🛡️ %1-এ আবদ্ধ</translation>
         </message>
         <message>
+            <source>No destination was chosen for the backup.</source>
+            <translation>ব্যাকআপের জন্য কোনো গন্তব্য নির্বাচন করা হয়নি।</translation>
+        </message>
+        <message>
+            <source>No backup file was chosen to import.</source>
+            <translation>আমদানি করার জন্য কোনো ব্যাকআপ ফাইল নির্বাচন করা হয়নি।</translation>
+        </message>
+        <message>
             <source>⚠️ Bound to %1 (offline — torrents paused)</source>
             <translation>⚠️ %1-এ আবদ্ধ (অফলাইন — টরেন্ট স্থগিত)</translation>
         </message>
@@ -159,10 +167,6 @@
             <translation>অবস্থা</translation>
         </message>
         <message>
-            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>যোগ করার আগে লিঙ্ক পর্যালোচনা করুন। কলাম সাজানো, আকার পরিবর্তন এবং পুনর্বিন্যাসের জন্য টেনে আনা যাবে।</translation>
-        </message>
-        <message>
             <source>Replace filenames with wildcard pattern (*)</source>
             <translation>ওয়াইল্ডকার্ড প্যাটার্ন (*) দিয়ে ফাইলের নাম পরিবর্তন করুন</translation>
         </message>
@@ -179,10 +183,6 @@
             <translation>সব চিহ্ন মুছুন</translation>
         </message>
         <message>
-            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>শুধুমাত্র 'পাওয়া' চিহ্নিত লিঙ্ক নির্বাচনযোগ্য। 'ঠিক আছে' চাপার পরেও কিউ বরাদ্দ হবে।</translation>
-        </message>
-        <message>
             <source>Cancel</source>
             <translation>বাতিল</translation>
         </message>
@@ -197,6 +197,10 @@
         <message>
             <source>Import links to SDM</source>
             <translation>SDM-এ লিংক ইম্পোর্ট</translation>
+        </message>
+        <message>
+            <source>Check the links you want to add to the download list and click OK.</source>
+            <translation>ডাউনলোড তালিকায় যোগ করতে চান এমন লিঙ্কগুলো চেক করুন এবং ওকে ক্লিক করুন।</translation>
         </message>
         <message>
             <source>Save to:</source>
@@ -335,13 +339,13 @@
         </message>
         <message>
             <source>Failed to grant permission: </source>
-            <translation>1. অনুমতি দিতে ব্যর্থ: </translation>
+            <translation>অনুমতি দিতে ব্যর্থ: </translation>
         </message>
         <message>
             <source>
 
 Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</source>
-            <translation>2. 
+            <translation>
 ম্যানুয়ালি চালান: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox</translation>
         </message>
         <message>
@@ -505,20 +509,24 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>সম্পন্ন ডাউনলোড মুছুন</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>আপনি কি Stellar-এর ডাউনলোড তালিকা থেকে সকল সম্পন্ন ডাউনলোড মুছে ফেলতে চান?</translation>
+            <source>Delete completed downloads?</source>
+            <translation>সমাপ্ত ডাউনলোড মুছবেন?</translation>
         </message>
         <message>
-            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>দ্রষ্টব্য: এটি শুধুমাত্র তালিকা থেকে সরিয়ে দেবে। ডিস্কে থাকা ফাইল মুছে যাবে না।</translation>
+            <source>Removes from list only. Files on disk are not deleted.</source>
+            <translation>শুধু তালিকা থেকে সরায়। ডিস্কের ফাইল মুছে না।</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>মুছুন</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
             <translation>সম্পন্ন এবং সীডিং টরেন্ট মুছুন</translation>
-        </message>
-        <message>
-            <source>Yes</source>
-            <translation>হ্যাঁ</translation>
         </message>
         <message>
             <source>No</source>
@@ -581,6 +589,14 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download File Info</source>
             <translation>ডাউনলোড ফাইল তথ্য</translation>
+        </message>
+        <message>
+            <source>%1 files (*.%2)</source>
+            <translation>%1টি ফাইল (*.%2)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>সব ফাইল (*)</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -837,6 +853,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>বৈশ্বিক সীমা সক্রিয়: %1 কেবি/সে</translation>
         </message>
         <message>
+            <source>Global limit active: unlimited</source>
+            <translation>গ্লোবাল সীমা সক্রিয়: সীমাহীন</translation>
+        </message>
+        <message>
             <source>No global limit set</source>
             <translation>কোনো বৈশ্বিক সীমা সেট করা নেই</translation>
         </message>
@@ -896,10 +916,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ফাইলের নাম কপি</translation>
         </message>
         <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent রপ্তানি…</translation>
-        </message>
-        <message>
             <source>Resume</source>
             <translation>পুনরায় চালু</translation>
         </message>
@@ -926,6 +942,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>File Name</source>
             <translation>ফাইলের নাম</translation>
+        </message>
+        <message>
+            <source>Export .torrent...</source>
+            <translation>টরেন্ট রপ্তানি...</translation>
         </message>
         <message>
             <source>Size</source>
@@ -968,6 +988,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ডাউনলোড হয়েছে</translation>
         </message>
         <message>
+            <source>Date added</source>
+            <translation>যোগের তারিখ</translation>
+        </message>
+        <message>
             <source>Last try date</source>
             <translation>শেষ চেষ্টার তারিখ</translation>
         </message>
@@ -986,18 +1010,6 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Parent web page</source>
             <translation>প্যারেন্ট ওয়েব পেজ</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>বিচারাধীন</translation>
-        </message>
-        <message>
-            <source>%1% (Stopped)</source>
-            <translation>%1% (বন্ধ)</translation>
-        </message>
-        <message>
-            <source>Checking (%1%)</source>
-            <translation>পরীক্ষা চলছে (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
@@ -1036,6 +1048,25 @@ URL যোগ করুন শুরু করতে।</translation>
         <message>
             <source>%n selected downloads</source>
             <translation>%nটি ডাউনলোড নির্বাচিত</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTableRow</name>
+        <message>
+            <source>Pending</source>
+            <translation>অপেক্ষমাণ</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (বন্ধ)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>পরীক্ষা হচ্ছে (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n ফাইল</translation>
         </message>
     </context>
     <context>
@@ -1197,20 +1228,12 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>কপি</translation>
         </message>
         <message>
-            <source>Metadata</source>
-            <translation>মেটাডেটা</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>বিবরণ</translation>
-        </message>
-        <message>
             <source>Created by</source>
-            <translation>3. নির্মাতা</translation>
+            <translation>নির্মাতা</translation>
         </message>
         <message>
             <source>Created on</source>
-            <translation>4. তৈরির তারিখ</translation>
+            <translation>তৈরির তারিখ</translation>
         </message>
         <message>
             <source>Category</source>
@@ -1301,8 +1324,16 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>পিস ম্যাপ</translation>
         </message>
         <message>
+            <source>✓ Metadata</source>
+            <translation>✓ মেটাডেটা</translation>
+        </message>
+        <message>
+            <source>Fetching…</source>
+            <translation>আনা হচ্ছে…</translation>
+        </message>
+        <message>
             <source>Move...</source>
-            <translation>5. সরান...</translation>
+            <translation>সরান...</translation>
         </message>
         <message>
             <source>Wasted</source>
@@ -1621,10 +1652,6 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>গতি</translation>
         </message>
         <message>
-            <source>Available</source>
-            <translation>উপলব্ধ</translation>
-        </message>
-        <message>
             <source>Distance: %1</source>
             <translation>দূরত্ব: %1</translation>
         </message>
@@ -1668,10 +1695,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Add seed…</source>
             <translation>সীড যোগ করুন…</translation>
-        </message>
-        <message>
-            <source>Fetching from swarm...</source>
-            <translation>স্বার্ম থেকে আনা হচ্ছে...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
@@ -1776,10 +1799,6 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <translation>প্রজেক্টের নাম এবং শুরু করার পৃষ্ঠা প্রয়োজন।</translation>
         </message>
         <message>
-            <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – ধাপ %1/%2: %3</translation>
-        </message>
-        <message>
             <source>Set start page</source>
             <translation>শুরু করার পৃষ্ঠা সেট করুন</translation>
         </message>
@@ -1862,6 +1881,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>Project</source>
             <translation>প্রজেক্ট</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber â€“ Step %1 of %2: %3</source>
+            <translation>স্টেলার গ্র্যাবার – ধাপ %1/%2: %3</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2560,16 +2583,8 @@ Project</source>
             <translation>গ্র্যাবার পরিসংখ্যান</translation>
         </message>
         <message>
-            <source>Status: %1</source>
-            <translation>স্ট্যাটাস: %1</translation>
-        </message>
-        <message>
             <source>Idle</source>
             <translation>নিষ্ক্রিয়</translation>
-        </message>
-        <message>
-            <source>Web pages processed</source>
-            <translation>প্রক্রিয়াজাতকৃত ওয়েব পেজ</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2581,6 +2596,22 @@ Project</source>
         </message>
         <message>
             <source>Files</source>
+            <translation>ফাইল</translation>
+        </message>
+        <message>
+            <source>STATUS</source>
+            <translation>অবস্থা</translation>
+        </message>
+        <message>
+            <source>State</source>
+            <translation>অবস্থা</translation>
+        </message>
+        <message>
+            <source>WEB PAGES</source>
+            <translation>ওয়েব পৃষ্ঠা</translation>
+        </message>
+        <message>
+            <source>FILES</source>
             <translation>ফাইল</translation>
         </message>
         <message>
@@ -2673,6 +2704,14 @@ Project</source>
         <message>
             <source>All files (*)</source>
             <translation>সব ফাইল (*)</translation>
+        </message>
+        <message>
+            <source>SDM Export File (*.ef2)</source>
+            <translation>SDM এক্সপোর্ট ফাইল (*.ef2)</translation>
+        </message>
+        <message>
+            <source>Text file (*.txt)</source>
+            <translation>টেক্সট ফাইল (*.txt)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2814,15 +2853,11 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
         </message>
         <message>
             <source>Create Torrent…</source>
-            <translation>6. টরেন্ট তৈরি করুন…</translation>
+            <translation>টরেন্ট তৈরি করুন…</translation>
         </message>
         <message>
             <source>Downloads</source>
             <translation>ডাউনলোড</translation>
-        </message>
-        <message>
-            <source>Pause all</source>
-            <translation>সব বিরতি দিন</translation>
         </message>
         <message>
             <source>Stop all</source>
@@ -2943,6 +2978,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
         <message>
             <source>Columns…</source>
             <translation>কলাম…</translation>
+        </message>
+        <message>
+            <source>Toolbar…</source>
+            <translation>টুলবার…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -3103,10 +3142,6 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
         <message>
             <source>Stellar Download Manager</source>
             <translation>স্টেলার ডাউনলোড ম্যানেজার</translation>
-        </message>
-        <message>
-            <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>স্টেলার ↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
@@ -3864,20 +3899,8 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <translation>গতি সীমক</translation>
         </message>
         <message>
-            <source>Enable global speed limit</source>
-            <translation>গ্লোবাল স্পিড লিমিট সক্রিয় করুন</translation>
-        </message>
-        <message>
-            <source>Maximum speed:</source>
-            <translation>সর্বোচ্চ গতি:</translation>
-        </message>
-        <message>
             <source>KB/s</source>
             <translation>কেবি/সে</translation>
-        </message>
-        <message>
-            <source>Enable global upload limit</source>
-            <translation>গ্লোবাল আপলোড লিমিট সক্রিয় করুন</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
@@ -3926,6 +3949,28 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
         <message>
             <source>General</source>
             <translation>সাধারণ</translation>
+        </message>
+        <message>
+            <source>Export Stellar Backup</source>
+            <translation>স্টেলার ব্যাকআপ এক্সপোর্ট</translation>
+        </message>
+        <message>
+            <source>Import Stellar Backup</source>
+            <translation>স্টেলার ব্যাকআপ ইম্পোর্ট</translation>
+        </message>
+        <message>
+            <source>Backup Complete</source>
+            <translation>ব্যাকআপ সম্পূর্ণ</translation>
+        </message>
+        <message>
+            <source>Your data was exported to:
+%1</source>
+            <translation>আপনার ডেটা এখানে এক্সপোর্ট হয়েছে:
+%1</translation>
+        </message>
+        <message>
+            <source>Import Complete</source>
+            <translation>আমদানি সম্পন্ন</translation>
         </message>
         <message>
             <source>Browser</source>
@@ -4060,6 +4105,14 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <translation>কোনোটি নয়</translation>
         </message>
         <message>
+            <source>Enable speed limiter</source>
+            <translation>গতি সীমক সক্রিয় করুন</translation>
+        </message>
+        <message>
+            <source>Maximum download:</source>
+            <translation>সর্বোচ্চ ডাউনলোড:</translation>
+        </message>
+        <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>দিনের পিলে ক্লিক করে টগল করুন। নিয়ম প্রতি মিনিটে মূল্যায়ন করা হয়; প্রথম মিলিত নিয়ম প্রযোজ্য। স্কিডিউলড ডাউনলোড ও আপলোড সীমা নিয়ম সক্রিয় না থাকলে স্বয়ংক্রিয়ভাবে মুছে যায়।</translation>
         </message>
@@ -4082,10 +4135,6 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
         <message>
             <source>Show tips in bottom bar</source>
             <translation>নিচের বারে টিপস দেখান</translation>
-        </message>
-        <message>
-            <source>Show finished download count in status bar</source>
-            <translation>স্ট্যাটাস বারে সম্পন্ন ডাউনলোড সংখ্যা দেখান</translation>
         </message>
         <message>
             <source>Utilities</source>
@@ -4142,6 +4191,22 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
             <translation>নিরীক্ষিত ফাইল টাইপের সাথে মিলে যাওয়া URL ক্লিপবোর্ডে কপি করলে Stellar জিজ্ঞাসা করবে। শুধুমাত্র Browser › Automatically start downloading the following file types-এ তালিকাভুক্ত ফাইল টাইপ ধরা হবে।</translation>
+        </message>
+        <message>
+            <source>Backup &amp; Restore</source>
+            <translation>ব্যাকআপ ও পুনরুদ্ধার</translation>
+        </message>
+        <message>
+            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>সবকিছু রপ্তানি করুন — সেটিংস, ডাউনলোড, টরেন্ট (শেয়ার অনুপাত সহ), সারি, বিভাগ ও পরিসংখ্যান — একটি একক ব্যাকআপ ফাইলে। পরে একটি নতুন Stellar ইনস্টলে তা আমদানি করে সব পুনরুদ্ধার করুন। আমদানি বর্তমান ডেটা প্রতিস্থাপন করে (একটি টাইমস্ট্যাম্পযুক্ত ব্যাকআপ রাখা হয়) এবং Stellar পুনরায় চালু করে।</translation>
+        </message>
+        <message>
+            <source>Export All Data…</source>
+            <translation>সকল ডেটা রপ্তানি…</translation>
+        </message>
+        <message>
+            <source>Import Data…</source>
+            <translation>ডেটা আমদানি…</translation>
         </message>
         <message>
             <source>Video Downloader</source>
@@ -4438,6 +4503,10 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
         <message>
             <source>Memory-mapped: files are mapped directly into memory. Windows and Linux read and write torrent data through the page cache with minimal CPU usage. Recommended for most users.</source>
             <translation>মেমরি-ম্যাপড: ফাইল সরাসরি মেমরিতে ম্যাপ করা হয়। Windows ও Linux ন্যূনতম CPU ব্যবহারে পৃষ্ঠা ক্যাশের মাধ্যমে টরেন্ট ডেটা পড়ে ও লেখে। বেশিরভাগ ব্যবহারকারীর জন্য সুপারিশকৃত।</translation>
+        </message>
+        <message>
+            <source>Your data was restored successfully. Stellar needs to restart to apply it.</source>
+            <translation>আপনার ডেটা সফলভাবে পুনরুদ্ধার করা হয়েছে। প্রয়োগ করতে Stellar পুনরায় চালু করতে হবে।</translation>
         </message>
         <message>
             <source>POSIX: reads and writes go through standard file calls without memory-mapping. Uses less address space than memory-mapped, which can help on 32-bit systems or when seeding many large torrents simultaneously.</source>
@@ -5081,18 +5150,6 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <translation>সীমাহীন</translation>
         </message>
         <message>
-            <source>🛑 Speed limiter </source>
-            <translation>🛑 গতি সীমাকারী</translation>
-        </message>
-        <message>
-            <source>🌐 Proxy on</source>
-            <translation>🌐 প্রক্সি চালু</translation>
-        </message>
-        <message>
-            <source>📡 Checking for updates</source>
-            <translation>📡 আপডেট চেক করা হচ্ছে</translation>
-        </message>
-        <message>
             <source>DHT off</source>
             <translation>ডিএইচটি বন্ধ</translation>
         </message>
@@ -5113,14 +5170,6 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <translation>পরবর্তী &gt;&gt;</translation>
         </message>
         <message>
-            <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 ১ মিনিটে কিউ চলবে</translation>
-        </message>
-        <message>
-            <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 কুইউ %1 মিনিটে চলবে</translation>
-        </message>
-        <message>
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>সর্বকালের শেয়ার অনুপাত
@@ -5137,6 +5186,18 @@ Click to open Statistics</source>
         <message>
             <source>No network connectivity detected</source>
             <translation>নেটওয়ার্ক সংযোগ সনাক্ত করা যায়নি</translation>
+        </message>
+        <message>
+            <source>Speed limiter </source>
+            <translation>গতি সীমক</translation>
+        </message>
+        <message>
+            <source>Proxy on</source>
+            <translation>প্রক্সি চালু</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>আপডেট পরীক্ষা করা হচ্ছে</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
@@ -5158,6 +5219,14 @@ Click to open Statistics</source>
             <source>Click to copy IP</source>
             <translation>IP কপি করতে ক্লিক করুন</translation>
         </message>
+        <message>
+            <source>Queue runs in 1 minute</source>
+            <translation>১ মিনিটে সারি চলবে</translation>
+        </message>
+        <message>
+            <source>Queue runs in %1 minutes</source>
+            <translation>%1 মিনিটে সারি চলবে</translation>
+        </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
@@ -5171,19 +5240,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>7. স্টেলার খুলুন</translation>
+            <translation>স্টেলার খুলুন</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>8. URL যোগ করুন…</translation>
+            <translation>URL যোগ করুন…</translation>
         </message>
         <message>
             <source>GitHub</source>
-            <translation>9. গিটহাব</translation>
+            <translation>গিটহাব</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation>10. স্টেলার সম্পর্কে</translation>
+            <translation>স্টেলার সম্পর্কে</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
@@ -5344,6 +5413,10 @@ Click to open Statistics</source>
             <translation>বিভাজক যোগ</translation>
         </message>
         <message>
+            <source>Remove</source>
+            <translation>সরান</translation>
+        </message>
+        <message>
             <source>Reset</source>
             <translation>রিসেট</translation>
         </message>
@@ -5354,6 +5427,153 @@ Click to open Statistics</source>
         <message>
             <source>Cancel</source>
             <translation>বাতিল</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentCreatorDialog</name>
+        <message>
+            <source>Create Torrent</source>
+            <translation>টরেন্ট তৈরি</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>সরান</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>সংরক্ষণ করুন:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>ব্রাউজ…</translation>
+        </message>
+        <message>
+            <source>Name:</source>
+            <translation>নাম:</translation>
+        </message>
+        <message>
+            <source>Piece size:</source>
+            <translation>পিস সাইজ:</translation>
+        </message>
+        <message>
+            <source>Auto</source>
+            <translation>অটো</translation>
+        </message>
+        <message>
+            <source>Choose Output Folder</source>
+            <translation>আউটপুট ফোল্ডার বাছাই</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>ফাইল</translation>
+        </message>
+        <message>
+            <source>Source:</source>
+            <translation>উৎস:</translation>
+        </message>
+        <message>
+            <source> (+%1 more)</source>
+            <translation>(+%1 আরও)</translation>
+        </message>
+        <message>
+            <source>No source selected</source>
+            <translation>কোনো উৎস নির্বাচিত নয়</translation>
+        </message>
+        <message>
+            <source>File…</source>
+            <translation>ফাইল…</translation>
+        </message>
+        <message>
+            <source>Folder…</source>
+            <translation>ফোল্ডার…</translation>
+        </message>
+        <message>
+            <source>Output folder…</source>
+            <translation>আউটপুট ফোল্ডার…</translation>
+        </message>
+        <message>
+            <source>Torrent name (optional)</source>
+            <translation>টরেন্ট নাম (ঐচ্ছিক)</translation>
+        </message>
+        <message>
+            <source>~%1 pieces × %2</source>
+            <translation>~%1 টুকরা × %2</translation>
+        </message>
+        <message>
+            <source>%1 pieces × %2</source>
+            <translation>%1 পিস × %2</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>বৈশিষ্ট্য</translation>
+        </message>
+        <message>
+            <source>Trackers:</source>
+            <translation>ট্র্যাকার:</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>ঐচ্ছিক</translation>
+        </message>
+        <message>
+            <source>Web seeds:</source>
+            <translation>ওয়েব সীড:</translation>
+        </message>
+        <message>
+            <source>One URL per line (optional)</source>
+            <translation>প্রতি লাইনে একটি URL (ঐচ্ছিক)</translation>
+        </message>
+        <message>
+            <source>Private torrent (disables DHT and PeX)</source>
+            <translation>প্রাইভেট টরেন্ট (DHT ও PeX নিষ্ক্রিয় করে)</translation>
+        </message>
+        <message>
+            <source>✓ Done — %1</source>
+            <translation>✓ সম্পন্ন — %1</translation>
+        </message>
+        <message>
+            <source>Hashing… %1%  (%2 pieces × %3)</source>
+            <translation>হ্যাশিং… %1%  (%2 খণ্ড × %3)</translation>
+        </message>
+        <message>
+            <source>Open when done</source>
+            <translation>সম্পন্ন হলে খুলুন</translation>
+        </message>
+        <message>
+            <source>Comment:</source>
+            <translation>মন্তব্য:</translation>
+        </message>
+        <message>
+            <source>✗ Error: %1</source>
+            <translation>✗ ত্রুটি: %1</translation>
+        </message>
+        <message>
+            <source>Cancelled</source>
+            <translation>বাতিল করা হয়েছে</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>বন্ধ</translation>
+        </message>
+        <message>
+            <source>Creating…</source>
+            <translation>তৈরি হচ্ছে…</translation>
+        </message>
+        <message>
+            <source>Open Torrent</source>
+            <translation>টরেন্ট খুলুন</translation>
+        </message>
+        <message>
+            <source>Add Files</source>
+            <translation>ফাইল যোগ</translation>
+        </message>
+        <message>
+            <source>Add Folder</source>
+            <translation>ফোল্ডার যোগ</translation>
         </message>
     </context>
     <context>
@@ -5813,6 +6033,14 @@ Click to open Statistics</source>
             <translation>ভিডিও তথ্য আনা হচ্ছে…</translation>
         </message>
         <message>
+            <source>Best quality</source>
+            <translation>সেরা মান</translation>
+        </message>
+        <message>
+            <source>Audio only</source>
+            <translation>শুধু অডিও</translation>
+        </message>
+        <message>
             <source>Could not fetch video info</source>
             <translation>ভিডিও তথ্য আনা যায়নি</translation>
         </message>
@@ -6146,177 +6374,6 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ভিডিও ডাউনলোড</translation>
-        </message>
-    </context>
-    <context>
-        <name>TorrentCreatorDialog</name>
-        <message>
-            <source>Create Torrent</source>
-            <translation>টরেন্ট তৈরি</translation>
-        </message>
-        <message>
-            <source>Source Files / Folders</source>
-            <translation>উৎস ফাইল/ফোল্ডার</translation>
-        </message>
-        <message>
-            <source>+ Files</source>
-            <translation>+ ফাইল</translation>
-        </message>
-        <message>
-            <source>+ Folder</source>
-            <translation>+ ফোল্ডার</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>সরান</translation>
-        </message>
-        <message>
-            <source>Drag files or folders here, or use the buttons above</source>
-            <translation>ফাইল বা ফোল্ডার টেনে আনুন, বা উপরের বোতাম ব্যবহার করুন</translation>
-        </message>
-        <message>
-            <source>Output</source>
-            <translation>আউটপুট</translation>
-        </message>
-        <message>
-            <source>Save to:</source>
-            <translation>সংরক্ষণ করুন:</translation>
-        </message>
-        <message>
-            <source>Path to save the .torrent file…</source>
-            <translation>.torrent ফাইল সংরক্ষণের পথ…</translation>
-        </message>
-        <message>
-            <source>Browse…</source>
-            <translation>ব্রাউজ…</translation>
-        </message>
-        <message>
-            <source>Name:</source>
-            <translation>নাম:</translation>
-        </message>
-        <message>
-            <source>Optional — defaults to folder/file name</source>
-            <translation>ঐচ্ছিক — ডিফল্ট ফোল্ডার/ফাইলের নাম</translation>
-        </message>
-        <message>
-            <source>Piece size:</source>
-            <translation>পিস সাইজ:</translation>
-        </message>
-        <message>
-            <source>Auto</source>
-            <translation>অটো</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2</source>
-            <translation>%1 পিস × %2</translation>
-        </message>
-        <message>
-            <source>Metadata</source>
-            <translation>মেটাডেটা</translation>
-        </message>
-        <message>
-            <source>Comment:</source>
-            <translation>মন্তব্য:</translation>
-        </message>
-        <message>
-            <source>Optional comment embedded in the .torrent</source>
-            <translation>টরেন্টে সংযুক্ত ঐচ্ছিক মন্তব্য</translation>
-        </message>
-        <message>
-            <source>Description:</source>
-            <translation>বিবরণ:</translation>
-        </message>
-        <message>
-            <source>Optional extended description</source>
-            <translation>ঐচ্ছিক বিস্তারিত বিবরণ</translation>
-        </message>
-        <message>
-            <source>Created by:</source>
-            <translation>স্রষ্টা:</translation>
-        </message>
-        <message>
-            <source>Private torrent (DHT and PEX disabled for this torrent)</source>
-            <translation>ব্যক্তিগত টরেন্ট (এই টরেন্টে DHT ও PEX নিষ্ক্রিয়)</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>ট্র্যাকার</translation>
-        </message>
-        <message>
-            <source>One URL per line</source>
-            <translation>প্রতি লাইনে একটি URL</translation>
-        </message>
-        <message>
-            <source>Web Seeds (HTTP/FTP)</source>
-            <translation>ওয়েব সিড (HTTP/FTP)</translation>
-        </message>
-        <message>
-            <source>https://example.com/files/</source>
-            <translation>https://example.com/files/</translation>
-        </message>
-        <message>
-            <source>Open torrent when created</source>
-            <translation>তৈরি হলে টরেন্ট খুলুন</translation>
-        </message>
-        <message>
-            <source>✓ Torrent created successfully: %1</source>
-            <translation>✓ টরেন্ট সফলভাবে তৈরি: %1</translation>
-        </message>
-        <message>
-            <source>✗ Error: %1</source>
-            <translation>✗ ত্রুটি: %1</translation>
-        </message>
-        <message>
-            <source>Cancelled</source>
-            <translation>বাতিল করা হয়েছে</translation>
-        </message>
-        <message>
-            <source>Hashing pieces… %1%</source>
-            <translation>পিস হ্যাশ হচ্ছে… %1%</translation>
-        </message>
-        <message>
-            <source>%1 pieces × %2 per piece</source>
-            <translation>%1 পিস × প্রতি পিসে %2</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>বাতিল</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>বন্ধ</translation>
-        </message>
-        <message>
-            <source>Creating…</source>
-            <translation>তৈরি হচ্ছে…</translation>
-        </message>
-        <message>
-            <source>Open Torrent</source>
-            <translation>টরেন্ট খুলুন</translation>
-        </message>
-        <message>
-            <source>Create Torrent…</source>
-            <translation>টরেন্ট তৈরি…</translation>
-        </message>
-        <message>
-            <source>Add Files</source>
-            <translation>ফাইল যোগ</translation>
-        </message>
-        <message>
-            <source>Add Folder</source>
-            <translation>ফোল্ডার যোগ</translation>
-        </message>
-        <message>
-            <source>Save .torrent File</source>
-            <translation>.torrent সংরক্ষণ</translation>
-        </message>
-        <message>
-            <source>Torrent files (*.torrent)</source>
-            <translation>টরেন্ট ফাইল (*.torrent)</translation>
-        </message>
-        <message>
-            <source>All files (*)</source>
-            <translation>সব ফাইল (*)</translation>
         </message>
     </context>
 </TS>
