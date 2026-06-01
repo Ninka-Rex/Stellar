@@ -190,3 +190,4 @@ Stellar bundles or invokes the following third-party components. Full license te
 - **Qt** (LGPL-3) - Copyright (C) The Qt Company Ltd. Used under the LGPL-3 with the Qt LGPL exception. <https://code.qt.io/>
 - **DB-IP City Lite** (CC BY 4.0) - Geolocation database distributed under Creative Commons Attribution 4.0. <https://db-ip.com/>
 - **Microsoft Fluent Emoji** (MIT) - Copyright (C) Microsoft Corporation. 3D emoji-style icons used throughout the application. <https://github.com/microsoft/fluentui-emoji>
+- **Noto Color Emoji** (SIL OFL 1.1) - Copyright 2013 Google LLC. Used for some emojies. <https://github.com/googlefonts/noto-emoji>

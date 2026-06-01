@@ -64,9 +64,15 @@ Window {
 
     onVisibleChanged: {
         if (visible) {
+            minimumHeight = _dialogHeight
+            maximumHeight = _dialogHeight
+            height = _dialogHeight
             _centerOnOwner()
             deleteFileChk.checked = false
             permDeleteChk.checked = false
+            // Kick the layout engine — reused Window can have stale layout state
+            // from a previous open with different visible children.
+            Qt.callLater(function() { contentColumn.forceLayout() })
         }
     }
 
@@ -106,6 +112,8 @@ Window {
         // File-on-disk options (only shown for completed downloads)
         ColumnLayout {
             visible: root.fileExists || root.hasTorrentSelection
+            Layout.preferredHeight: visible ? implicitHeight : 0
+            clip: true
             spacing: 2
 
             Rectangle {

@@ -125,7 +125,25 @@ Full text: https://opensource.org/licenses/MIT
 Source: https://github.com/microsoft/fluentui-emoji
 
 ------------------------------------------------------------------------
-7. Stellar itself
+7. Noto Color Emoji
+------------------------------------------------------------------------
+
+Stellar uses the Noto Color Emoji font for some emojies in the
+user interface.
+
+Copyright 2013 Google LLC.
+Website: https://fonts.google.com/noto/specimen/Noto+Color+Emoji
+Source: https://github.com/googlefonts/noto-emoji
+
+Licensed under the SIL Open Font License, Version 1.1.
+Full text: https://scripts.sil.org/OFL
+
+The font is used unmodified and bundled with this software as permitted
+by the OFL, which allows bundling with any software provided that the
+copyright notice and license are included.
+
+------------------------------------------------------------------------
+8. Stellar itself
 ------------------------------------------------------------------------
 
 Stellar Download Manager
