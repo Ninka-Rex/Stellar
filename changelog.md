@@ -2,10 +2,11 @@
 
 ---
 
-## Version 0.9.0 Beta
+## Version 0.9.0 Beta - June 1, 2026
 
 ### New
 - Import and export file list, settings, torrents, share ratios, etc in Options > General > Backup & Restore
+- Options > Media: choose a default browser for yt-dlp cookie authentication, skipping the prompt on auth-required downloads
 
 ### Improved
 - Improved download engine handling of PDFs

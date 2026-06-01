@@ -110,8 +110,9 @@ Window {
     property bool   editLastTryShowSeconds:    true
     // yt-dlp settings
     property string editYtdlpCustomBinaryPath: ""
-    property bool   editYtdlpAutoUpdate:       false
-    property string editYtdlpJsRuntimePath:    ""
+    property bool   editYtdlpAutoUpdate:          false
+    property string editYtdlpJsRuntimePath:       ""
+    property string editYtdlpDefaultCookieBrowser: ""
     property bool   editTorrentEnabled:        false
     property bool   editTorrentEnableDht:      true
     property bool   editTorrentEnableLsd:      true
@@ -419,8 +420,9 @@ Window {
         editLastTryUse24Hour      !== App.settings.lastTryUse24Hour ||
         editLastTryShowSeconds    !== App.settings.lastTryShowSeconds ||
         editYtdlpCustomBinaryPath !== App.settings.ytdlpCustomBinaryPath ||
-        editYtdlpAutoUpdate       !== App.settings.ytdlpAutoUpdate       ||
-        editYtdlpJsRuntimePath    !== App.settings.ytdlpJsRuntimePath    ||
+        editYtdlpAutoUpdate            !== App.settings.ytdlpAutoUpdate            ||
+        editYtdlpJsRuntimePath         !== App.settings.ytdlpJsRuntimePath         ||
+        editYtdlpDefaultCookieBrowser  !== App.settings.ytdlpDefaultCookieBrowser  ||
         editTorrentEnabled        !== App.settings.torrentEnabled        ||
         editTorrentEnableDht      !== App.settings.torrentEnableDht      ||
         editTorrentEnableLsd      !== App.settings.torrentEnableLsd      ||
@@ -825,8 +827,9 @@ Window {
         App.settings.lastTryUse24Hour       = editLastTryUse24Hour
         App.settings.lastTryShowSeconds     = editLastTryShowSeconds
         App.settings.ytdlpCustomBinaryPath  = editYtdlpCustomBinaryPath
-        App.settings.ytdlpAutoUpdate        = editYtdlpAutoUpdate
-        App.settings.ytdlpJsRuntimePath     = editYtdlpJsRuntimePath
+        App.settings.ytdlpAutoUpdate             = editYtdlpAutoUpdate
+        App.settings.ytdlpJsRuntimePath          = editYtdlpJsRuntimePath
+        App.settings.ytdlpDefaultCookieBrowser   = editYtdlpDefaultCookieBrowser
         App.settings.torrentEnabled         = editTorrentEnabled
         App.settings.torrentEnableDht       = editTorrentEnableDht
         App.settings.torrentEnableLsd       = editTorrentEnableLsd
@@ -937,8 +940,9 @@ Window {
         editLastTryUse24Hour      = App.settings.lastTryUse24Hour
         editLastTryShowSeconds    = App.settings.lastTryShowSeconds
         editYtdlpCustomBinaryPath = App.settings.ytdlpCustomBinaryPath
-        editYtdlpAutoUpdate       = App.settings.ytdlpAutoUpdate
-        editYtdlpJsRuntimePath    = App.settings.ytdlpJsRuntimePath
+        editYtdlpAutoUpdate            = App.settings.ytdlpAutoUpdate
+        editYtdlpJsRuntimePath         = App.settings.ytdlpJsRuntimePath
+        editYtdlpDefaultCookieBrowser  = App.settings.ytdlpDefaultCookieBrowser
         editTorrentEnabled        = App.settings.torrentEnabled
         editTorrentEnableDht      = App.settings.torrentEnableDht
         editTorrentEnableLsd      = App.settings.torrentEnableLsd
@@ -3060,6 +3064,75 @@ Window {
                         Text {
                             Layout.fillWidth: true
                             text: qsTr("When enabled, Stellar will run \"yt-dlp -U\" at startup to keep the binary up to date. Requires an active internet connection.")
+                            color: "#666666"; font.pixelSize: 11 * App.fontScale
+                            wrapMode: Text.WordWrap
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        // ── Default cookie browser ────────────────────────────────────
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 10
+
+                            Text {
+                                text: qsTr("Default cookie browser:")
+                                color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale
+                                Layout.preferredWidth: 160
+                            }
+
+                            ComboBox {
+                                id: ytdlpCookieBrowserCombo
+                                Layout.preferredWidth: 140
+                                implicitHeight: 26
+                                font.pixelSize: 11 * App.fontScale
+                                model: ["None","Chrome","Firefox","Edge","Brave","Opera","Vivaldi","Safari"]
+                                currentIndex: {
+                                    var v = root.editYtdlpDefaultCookieBrowser.toLowerCase()
+                                    if (v.length === 0 || v === "none") return 0
+                                    for (var i = 1; i < model.length; ++i)
+                                        if (model[i].toLowerCase() === v) return i
+                                    return 0
+                                }
+                                onCurrentIndexChanged: {
+                                    root.editYtdlpDefaultCookieBrowser = currentIndex === 0 ? "" : currentText.toLowerCase()
+                                }
+                                contentItem: Text {
+                                    leftPadding: 8
+                                    text: ytdlpCookieBrowserCombo.displayText
+                                    color: "#d0d0d0"; font: ytdlpCookieBrowserCombo.font
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                                background: Rectangle {
+                                    color: "#1b1b1b"
+                                    border.color: ytdlpCookieBrowserCombo.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    radius: 3
+                                }
+                                delegate: ItemDelegate {
+                                    id: _ycbDel; width: ytdlpCookieBrowserCombo.width; height: 24
+                                    contentItem: Text {
+                                        text: modelData; color: "#d0d0d0"
+                                        font.pixelSize: 11 * App.fontScale
+                                        verticalAlignment: Text.AlignVCenter; leftPadding: 8
+                                    }
+                                    background: Rectangle { color: _ycbDel.hovered ? "#2a3a5a" : "#1b1b1b" }
+                                }
+                                popup: Popup {
+                                    y: ytdlpCookieBrowserCombo.height + 2
+                                    width: ytdlpCookieBrowserCombo.width
+                                    implicitHeight: contentItem.implicitHeight + 4; padding: 2
+                                    background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 3 }
+                                    contentItem: ListView {
+                                        implicitHeight: contentHeight; clip: true
+                                        model: ytdlpCookieBrowserCombo.delegateModel
+                                    }
+                                }
+                            }
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: qsTr("When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.")
                             color: "#666666"; font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }

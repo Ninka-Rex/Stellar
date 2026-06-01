@@ -5497,6 +5497,14 @@ Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS.
         <translation></translation>
     </message>
     <message>
+        <source>Default cookie browser:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/SettingsDialog.qml" line="3084"/>
         <source>Torrent Downloads</source>
         <translation></translation>

@@ -461,7 +461,12 @@ ApplicationWindow {
             appErrorDialog.open()
         }
         function onYtdlpCookieRetryRequested(downloadId, reason, suggestedBrowser) {
-            ytdlpCookieRetryDialog._openFor(downloadId, reason, suggestedBrowser)
+            var configured = App.settings.ytdlpDefaultCookieBrowser.toLowerCase()
+            if (configured.length > 0 && configured !== "none") {
+                App.retryYtdlpWithBrowserCookies(downloadId, configured)
+            } else {
+                ytdlpCookieRetryDialog._openFor(downloadId, reason, suggestedBrowser)
+            }
         }
         function onFileDeletedWarningDetected(downloadId, filename) {
             fileDeletedWarningDialog._filename = filename

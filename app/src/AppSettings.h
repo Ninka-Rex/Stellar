@@ -110,6 +110,7 @@
     X(QString, const QString &, ytdlpCustomBinaryPath, YtdlpCustomBinaryPath, QString(), "ytdlpCustomBinaryPath", N) \
     X(bool, bool, ytdlpAutoUpdate, YtdlpAutoUpdate, false, "ytdlpAutoUpdate", N) \
     X(QString, const QString &, ytdlpJsRuntimePath, YtdlpJsRuntimePath, QString(), "ytdlpJsRuntimePath", N) \
+    X(QString, const QString &, ytdlpDefaultCookieBrowser, YtdlpDefaultCookieBrowser, QString(), "ytdlpDefaultCookieBrowser", N) \
     /* ── Proxy ── */ \
     X(int, int, proxyType, ProxyType, 0, "proxyType", N) \
     X(QString, const QString &, proxyHost, ProxyHost, QString(), "proxyHost", N) \
