@@ -3716,6 +3716,13 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>Server gözlənilən fayl əvəzinə HTML səhifə qaytardı. Link brauzerdə açılma tələb edə bilər və ya müddəti bitmiş ola bilər. Heç nə saxlanmadı.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4312,6 +4319,14 @@ Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) və ya QuickJS quraşdırın
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>Aktivləşdirildikdə, Stellar başlanğıcda &quot;yt-dlp -U&quot; işlədərək binar faylı yenilə saxlayacaq. Aktiv internet bağlantısı tələb olunur.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>Defolt çərəz brauzeri:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>Təyin edildikdə, Stellar giriş tələb edən yt-dlp endirmələrini sorğusuz olaraq bu brauzerin çərəzləri ilə avtomatik təkrar sınayacaq.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

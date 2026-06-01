@@ -3722,6 +3722,13 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>Ihe nkesa weghachitere bụ ibe HTML kama faịlụ a tụrụ anya ya. Njikọ ahụ nwere ike ịchọ imeghe na ihe nchọgharị ma ọ bụ gafee oge. Ọ dịghị ihe echekwara.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4320,6 +4327,14 @@ Wụnye otu n'ime: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), ma ọ b
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>Mgbe agbanyere, Stellar ga-agba &quot;yt-dlp -U&quot; na mmalite iji mee ka ọnụọgụ abụọ dị ọhụrụ. Chọrọ njikọ ịntanetị na-arụ ọrụ.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>Ihe nchọgharị kuki ndabara:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>Mgbe atọrọ, Stellar ga-anwaghachi nbudata yt-dlp chọrọ nbanye na-eji kuki ihe nchọgharị a, n'ejighị ajụjụ.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

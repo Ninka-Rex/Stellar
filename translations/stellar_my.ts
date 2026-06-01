@@ -3721,6 +3721,13 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>ဆာဗာက ဖိုင်အစား HTML စာမျက်နှာ ပြန်ပို့သည်။ လင့်ခ်ကို ဘရောက်ဆာတွင် ဖွင့်ရန် လိုအပ်နိုင်သည် သို့မဟုတ် သက်တမ်းကုန်သွားနိုင်သည်။ ဘာမှ မသိမ်းဆည်းခဲ့ပါ။</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4319,6 +4326,14 @@ Deno (deno.com)၊ Node.js (nodejs.org)၊ Bun (bun.sh) သို့မဟုတ
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>ဖွင့်ထားပါက Stellar သည် binary ကို ခေတ်မီနေစေရန် စတင်ချိန်တွင် &quot;yt-dlp -U&quot; ကို လုပ်ဆောင်မည်။ အင်တာနက်ချိတ်ဆက်မှု လိုအပ်ပါသည်။</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>မူလ ကွတ်ကီး ဘရောက်ဆာ:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>သတ်မှတ်ထားလျှင်၊ အကောင့်ဝင်ရန် လိုအပ်သော yt-dlp ဒေါင်းလုဒ်များကို ဤဘရောက်ဆာ၏ ကွတ်ကီးများသုံး၍ မေးမြန်းခြင်းမရှိဘဲ Stellar က အလိုအလျောက် ပြန်လည်ကြိုးစားမည်။</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

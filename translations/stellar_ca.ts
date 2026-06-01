@@ -3717,6 +3717,13 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>El servidor ha retornat HTML en lloc del fitxer esperat. L'enllaç pot requerir obrir-se al navegador o haver caducat. No s'ha desat res.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4315,6 +4322,14 @@ Instal·la'n un: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) o QuickJS. 
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>Quan està activat, Stellar executarà &quot;yt-dlp -U&quot; en iniciar per mantenir el binari actualitzat. Requereix connexió a Internet activa.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>Navegador de galetes per defecte:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>Quan s'estableix, Stellar reintentarà automàticament les baixades de yt-dlp que requereixin inici de sessió usant les galetes d'aquest navegador, sense preguntar.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

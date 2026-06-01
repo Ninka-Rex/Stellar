@@ -3721,6 +3721,13 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>Server mbalekake kaca HTML, dudu berkas sing dikarepake. Tautan bisa uga kudu dibukak ing browser utawa wis kadaluwarsa. Ora ana sing disimpen.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4319,6 +4326,14 @@ Instal salah siji saka: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), uta
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>Yen diuripake, Stellar bakal mbukak &quot;yt-dlp -U&quot; nalika wiwitan kanggo njaga binari tetep anyar. Mbutuhake sambungan internet aktif.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>Browser cookie standar:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>Yen disetel, Stellar bakal otomatis nyoba maneh unduhan yt-dlp sing mbutuhake login nganggo cookie browser iki, tanpa konfirmasi.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

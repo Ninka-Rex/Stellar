@@ -3708,6 +3708,13 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>Seva ilirudisha ukurasa wa HTML badala ya faili iliyotarajiwa. Kiungo kinaweza kuhitaji kufunguliwa kwenye kivinjari au kinaweza kuwa kimeisha. Hakuna kilichohifadhiwa.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4304,6 +4311,14 @@ Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS.
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>Sasisha yt-dlp kwa kiotomatisha wakati wa kuanzisha</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>Kivinjari chaguo-msingi cha kuki:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>Inapowekwa, Stellar itajaribu tena kiotomatiki upakuaji wa yt-dlp unaohitaji kuingia kwa kutumia kuki za kivinjari hiki, bila kuuliza.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

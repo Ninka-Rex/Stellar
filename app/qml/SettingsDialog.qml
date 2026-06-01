@@ -3071,14 +3071,15 @@ Window {
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
                         // ── Default cookie browser ────────────────────────────────────
-                        RowLayout {
+                        ColumnLayout {
                             Layout.fillWidth: true
-                            spacing: 10
+                            spacing: 6
 
                             Text {
                                 text: qsTr("Default cookie browser:")
                                 color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale
-                                Layout.preferredWidth: 160
+                                wrapMode: Text.WordWrap
+                                Layout.fillWidth: true
                             }
 
                             ComboBox {
@@ -3087,15 +3088,19 @@ Window {
                                 implicitHeight: 26
                                 font.pixelSize: 11 * App.fontScale
                                 model: ["None","Chrome","Firefox","Edge","Brave","Opera","Vivaldi","Safari"]
-                                currentIndex: {
-                                    var v = root.editYtdlpDefaultCookieBrowser.toLowerCase()
+
+                                function _indexForBrowser(v) {
+                                    v = (v || "").toLowerCase()
                                     if (v.length === 0 || v === "none") return 0
                                     for (var i = 1; i < model.length; ++i)
                                         if (model[i].toLowerCase() === v) return i
                                     return 0
                                 }
-                                onCurrentIndexChanged: {
-                                    root.editYtdlpDefaultCookieBrowser = currentIndex === 0 ? "" : currentText.toLowerCase()
+
+                                Component.onCompleted: currentIndex = _indexForBrowser(root.editYtdlpDefaultCookieBrowser)
+
+                                onActivated: {
+                                    root.editYtdlpDefaultCookieBrowser = currentIndex === 0 ? "" : model[currentIndex].toLowerCase()
                                 }
                                 contentItem: Text {
                                     leftPadding: 8

@@ -3721,6 +3721,13 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>எதிர்பார்த்த கோப்புக்குப் பதிலாக HTML பக்கம் கிடைத்தது. இணைப்பு உலாவியில் திறக்கப்பட வேண்டும் அல்லது காலாவதியாகி இருக்கலாம். எதுவும் சேமிக்கப்படவில்லை.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4319,6 +4326,14 @@ Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), அல்லது QuickJS-
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>இயக்கப்பட்டால், Stellar தொடக்கத்தில் &quot;yt-dlp -U&quot; இயக்கி பைனரியை புதுப்பித்து வைக்கும். செயலில் உள்ள இணைய இணைப்பு தேவை.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>இயல்புநிலை குக்கீ உலாவி:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>அமைத்தால், உள்நுழைவு தேவைப்படும் yt-dlp பதிவிறக்கங்களை இந்த உலாவியின் குக்கீகளைப் பயன்படுத்தி, கேட்காமலேயே Stellar தானாக மீண்டும் முயற்சிக்கும்.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

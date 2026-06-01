@@ -3705,6 +3705,13 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>Server vrátil HTML stránku namiesto očakávaného súboru. Odkaz môže vyžadovať otvorenie v prehliadači alebo mohol vypršať. Nič sa neuložilo.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4303,6 +4310,14 @@ Nainštalujte jeden z: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) alebo
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>Keď je zapnuté, Stellar spustí &quot;yt-dlp -U&quot; pri štarte na udržanie binárneho súboru aktuálneho. Vyžaduje aktívne internetové pripojenie.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>Predvolený prehliadač cookies:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>Ak je nastavené, Stellar automaticky opakuje sťahovania yt-dlp vyžadujúce prihlásenie pomocou cookies tohto prehliadača bez výzvy.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

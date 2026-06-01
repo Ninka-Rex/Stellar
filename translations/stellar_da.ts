@@ -3716,6 +3716,13 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>Serveren returnerede en HTML-side i stedet for den forventede fil. Linket skal muligvis åbnes i en browser eller kan være udløbet. Intet blev gemt.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4314,6 +4321,14 @@ Installer en af: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) eller Quick
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>Når aktiveret, kører Stellar &quot;yt-dlp -U&quot; ved start for at holde binæren opdateret. Kræver en aktiv internetforbindelse.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>Standard cookie-browser:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>Når indstillet, vil Stellar automatisk prøve yt-dlp-downloads, der kræver login, igen med denne browsers cookies uden at spørge.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

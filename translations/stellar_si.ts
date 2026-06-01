@@ -3722,6 +3722,13 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>බලාපොරොත්තු වූ ගොනුව වෙනුවට සේවාදායකය HTML පිටුවක් ලබා දුනි. සබැඳිය බ්‍රවුසරයක විවෘත කිරීමට අවශ්‍ය විය හැකිය හෝ කල් ඉකුත් වී තිබිය හැකිය. කිසිවක් සුරැකුනේ නැත.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4320,6 +4327,14 @@ Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), හෝ QuickJS වලින
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>සක්‍රීය කළ විට, ද්විමය යාවත්කාලීනව තබා ගැනීමට Stellar ආරම්භයේදී &quot;yt-dlp -U&quot; ධාවනය කරයි. ක්‍රියාකාරී අන්තර්ජාල සම්බන්ධතාවයක් අවශ්‍ය වේ.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>පෙරනිමි කුකී බ්‍රවුසරය:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>සකසා ඇති විට, පිවිසුම අවශ්‍ය yt-dlp බාගැනීම් විමසීමකින් තොරව මෙම බ්‍රවුසරයේ කුකී භාවිතයෙන් Stellar ස්වයංක්‍රීයව නැවත උත්සාහ කරනු ඇත.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

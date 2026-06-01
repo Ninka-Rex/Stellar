@@ -3721,6 +3721,13 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>سېرۋېر كۈتۈلگەن ھۆججەت ئورنىغا HTML بەت قايتۇردى. ئۇلىنىش توركۆرگۈدە ئېچىشنى تەلەپ قىلىشى ياكى ۋاقتى ئۆتكەن بولۇشى مۇمكىن. ھېچنېمە ساقلانمىدى.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4319,6 +4326,14 @@ Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS.
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>قوزغىتىلغاندا، Stellar ئىجرا ھۆججىتىنى يېڭى تۇتۇش ئۈچۈن باشلانغاندا &quot;yt-dlp -U&quot; نى ئىجرا قىلىدۇ. ئاكتىپ ئىنتېرنېت باغلىنىشىنى تەلەپ قىلىدۇ.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>كۆڭۈلدىكى كۇكى توركۆرگۈسى:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>تەڭشەلسە، Stellar كىرىش تەلەپ قىلىدىغان yt-dlp چۈشۈرۈشلەرنى سورىماي بۇ توركۆرگۈنىڭ كۇكىلىرى ئارقىلىق ئاپتوماتىك قايتا سىنايدۇ.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

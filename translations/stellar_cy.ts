@@ -3722,6 +3722,13 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>Dychwelodd y gweinydd dudalen HTML yn lle'r ffeil ddisgwyliedig. Efallai bod angen agor y ddolen mewn porwr neu ei bod wedi dod i ben. Ni chadwyd dim.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4320,6 +4327,14 @@ Gosodwch un o'r canlynol: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), n
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>Pan fydd wedi'i alluogi, bydd Stellar yn rhedeg &quot;yt-dlp -U&quot; wrth gychwyn i gadw'r ffeil ddeuaidd yn gyfredol. Mae angen cysylltiad rhyngrwyd gweithredol.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>Porwr cwcis diofyn:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>Pan osodir, bydd Stellar yn ailgeisio lawrlwythiadau yt-dlp sydd angen mewngofnodi gan ddefnyddio cwcis y porwr hwn, heb annog.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

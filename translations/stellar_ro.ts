@@ -3710,6 +3710,13 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>Serverul a returnat o pagină HTML în locul fișierului așteptat. Linkul poate necesita deschiderea într-un browser sau poate fi expirat. Nu s-a salvat nimic.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4308,6 +4315,14 @@ Instalează unul dintre: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) sau
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>Când este activat, Stellar va rula &quot;yt-dlp -U&quot; la pornire pentru a menține binarul actualizat. Necesită o conexiune internet activă.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>Browser cookie implicit:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>Când este setat, Stellar va reîncerca automat descărcările yt-dlp care necesită autentificare folosind cookie-urile acestui browser, fără a solicita confirmare.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

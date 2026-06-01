@@ -3723,6 +3723,13 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>Olùpèsè dá ojú-ewé HTML padà dípò fáìlì tí a retí. Ó ṣeé ṣe kí ìjápọ̀ náà nílò ṣíṣí nínú aṣàwákiri tàbí ó ti parí. Kò sí ohun tí a fipamọ́.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4321,6 +4328,14 @@ Fi ọ̀kan sórí: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), tàbí 
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>Nígbà tó bá ṣiṣẹ́, Stellar yóò ṣiṣẹ́ &quot;yt-dlp -U&quot; ní ìbẹ̀rẹ̀ láti jẹ́ kí fáìlì náà wà lóde. Nílò ìsopọ̀ ayélujára tó ṣiṣẹ́.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>Aṣàwákiri kúkì àìpé:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>Nígbà tí a ṣètò, Stellar yóò ṣàdánwò àwọn ìgbarasílẹ̀ yt-dlp tí ó nílò ìwọlé pẹ̀lú kúkì aṣàwákiri yìí láìbéèrè.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

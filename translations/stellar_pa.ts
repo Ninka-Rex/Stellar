@@ -3710,6 +3710,13 @@ Stellar ਓਪਸ਼ਨਸ → ਬ੍ਰਾਊਜ਼ਰ → ਡਾਊਨਲੋ�
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>ਸਰਵਰ ਨੇ ਫ਼ਾਈਲ ਦੀ ਬਜਾਏ HTML ਪੇਜ਼ ਭੇਜਿਆ। ਲਿੰਕ ਨੂੰ ਬ੍ਰਾਊਜ਼ਰ 'ਚ ਖੋਲ੍ਹਣ ਦੀ ਲੋੜ ਹੋ ਸਕਦੀ ਹੈ ਜਾਂ ਇਹ ਮਿਆਦ ਪੁੱਗ ਗਿਆ। ਕੁਝ ਵੀ ਸੇਵ ਨਹੀਂ ਹੋਇਆ।</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4308,6 +4315,14 @@ Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS.
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>ਸਰਗਰਮ ਹੋਣ 'ਤੇ, Stellar startup 'ਤੇ 'yt-dlp -U' ਚਲਾਵੇਗਾ ਤਾਂ ਜੋ ਬਾਈਨਰ ਨਵੀਨਤਾ ਰੱਖਿਆ ਜਾ ਸਕੇ। ਇਸ ਲਈ ਸਰਗਰਮ ਇੰਟਰਨੈਟ ਕਨੈਕਸ਼ਨ ਦੀ ਲੋੜ ਹੈ।</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>ਡਿਫਾਲਟ ਕੂਕੀ ਬ੍ਰਾਊਜ਼ਰ:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>ਸੈੱਟ ਹੋਣ 'ਤੇ, Stellar ਬਿਨਾਂ ਪੁੱਛੇ ਇਸ ਬ੍ਰਾਊਜ਼ਰ ਦੀਆਂ ਕੂਕੀਜ਼ ਨਾਲ ਲੌਗਇਨ ਵਾਲੇ yt-dlp ਡਾਊਨਲੋਡ ਆਪਣੇ-ਆਪ ਮੁੜ-ਕੋਸ਼ਿਸ਼ ਕਰੇਗਾ।</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

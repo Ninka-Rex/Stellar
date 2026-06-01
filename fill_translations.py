@@ -16,7 +16,7 @@ English source text. All other language files are synced against it:
 Usage:
     python fill_translations.py                          # fill ALL missing (local LLM)
     python fill_translations.py it de es                 # fill specific languages
-    python fill_translations.py --backend deepseek       # use DeepSeek API
+    python fill_translations.py --backend deepseek       # use DeepSeek API (parallel, up to 200 concurrent)
     python fill_translations.py --dry-run                # show what would be translated/dropped
     python fill_translations.py --force                  # retranslate everything
     python fill_translations.py --batch 5                # batch size per LLM call
@@ -28,6 +28,7 @@ import json
 import os
 import re
 import sys
+import threading
 import time
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -70,11 +71,17 @@ LLM_TIMEOUT     = 120
 MAX_RETRIES_PER_BATCH = 1
 RETRY_DELAY     = 1
 
-DEEPSEEK_BASE_URL   = "https://api.deepseek.com"
-DEEPSEEK_MODEL      = "deepseek-v4-pro"
+DEEPSEEK_BASE_URL        = "https://api.deepseek.com"
+DEEPSEEK_MODEL           = "deepseek-v4-pro"
+DEEPSEEK_MAX_CONCURRENCY = 200
 
 # Active backend — set by CLI arg in main(); "local" or "deepseek"
 _BACKEND = "local"
+
+# Thread-local OpenAI client so each thread reuses its own connection pool.
+_tls = threading.local()
+_progress_lock = threading.Lock()
+_print_lock    = threading.Lock()
 
 SCRIPT_DIR       = Path(__file__).resolve().parent
 TRANSLATIONS_DIR = SCRIPT_DIR / "translations"
@@ -258,19 +265,24 @@ def _call_local(messages) -> Optional[str]:
     return None
 
 
+def _get_deepseek_client():
+    """Return a thread-local OpenAI client for DeepSeek."""
+    if not hasattr(_tls, "deepseek_client"):
+        try:
+            from openai import OpenAI
+        except ImportError:
+            print("ERROR: openai package not installed. Run: pip install openai", file=sys.stderr)
+            sys.exit(1)
+        api_key = os.environ.get("DEEPSEEK_API_KEY", "")
+        if not api_key:
+            print("ERROR: DEEPSEEK_API_KEY not set. Add it to .env or environment.", file=sys.stderr)
+            sys.exit(1)
+        _tls.deepseek_client = OpenAI(api_key=api_key, base_url=DEEPSEEK_BASE_URL, timeout=LLM_TIMEOUT)
+    return _tls.deepseek_client
+
+
 def _call_deepseek(messages) -> Optional[str]:
-    try:
-        from openai import OpenAI
-    except ImportError:
-        print("ERROR: openai package not installed. Run: pip install openai", file=sys.stderr)
-        sys.exit(1)
-
-    api_key = os.environ.get("DEEPSEEK_API_KEY", "")
-    if not api_key:
-        print("ERROR: DEEPSEEK_API_KEY not set. Add it to .env or environment.", file=sys.stderr)
-        sys.exit(1)
-
-    client = OpenAI(api_key=api_key, base_url=DEEPSEEK_BASE_URL, timeout=LLM_TIMEOUT)
+    client = _get_deepseek_client()
 
     for attempt in range(1, MAX_RETRIES_PER_BATCH + 1):
         try:
@@ -454,6 +466,13 @@ def translate_batch(lang_name: str, sources: List[str]) -> List[str]:
     return results
 
 
+# ── Thread-safe print ────────────────────────────────────────────────────────────
+
+def tprint(*args, **kwargs):
+    with _print_lock:
+        print(*args, **kwargs)
+
+
 # ── Core: sync logic ─────────────────────────────────────────────────────────────
 
 def classify_entries(
@@ -516,9 +535,10 @@ def process_language(
     retry_keys: List[str] = None,
 ) -> List[str]:
     lang_name = LANG_NAMES.get(lang_code, f"Unknown ({lang_code})")
-    print(f"\n{'─' * 60}")
-    print(f"  {lang_name} ({lang_code})")
-    print(f"{'─' * 60}")
+    pfx = f"[{lang_code}]"
+    tprint(f"\n{'─' * 60}")
+    tprint(f"  {lang_name} ({lang_code})")
+    tprint(f"{'─' * 60}")
 
     existing = load_existing_translations(lang_code)
 
@@ -530,43 +550,43 @@ def process_language(
         for key in list(existing.keys()):
             if key[1] in retry_set:
                 del existing[key]
-        print(f"  Retrying {len(retry_set)} previously failed string(s).")
+        tprint(f"  {pfx} Retrying {len(retry_set)} previously failed string(s).")
 
     need_translation, orphaned, arg_broken = classify_entries(
         canonical, existing, force)
 
     total_canonical = len(canonical)
-    print(f"  Canonical strings : {total_canonical}")
-    print(f"  Already translated: {total_canonical - len(need_translation)}")
-    print(f"  Need translation  : {len(need_translation)}")
+    tprint(f"  {pfx} Canonical strings : {total_canonical}")
+    tprint(f"  {pfx} Already translated: {total_canonical - len(need_translation)}")
+    tprint(f"  {pfx} Need translation  : {len(need_translation)}")
     if orphaned:
-        print(f"  Orphaned (removed): {len(orphaned)}")
+        tprint(f"  {pfx} Orphaned (removed): {len(orphaned)}")
         for ctx, src, _ in orphaned[:5]:
-            print(f"    [{ctx}] {src[:70]}")
+            tprint(f"    {pfx} [{ctx}] {src[:70]}")
         if len(orphaned) > 5:
-            print(f"    ... and {len(orphaned) - 5} more")
+            tprint(f"    {pfx} ... and {len(orphaned) - 5} more")
     if arg_broken:
-        print(f"  Arg mismatch      : {len(arg_broken)}")
+        tprint(f"  {pfx} Arg mismatch      : {len(arg_broken)}")
         for ctx, src, eng, bad in arg_broken[:5]:
-            print(f"    [{ctx}] EN={extract_args(eng)} TR={extract_args(bad)}")
-            print(f"      src: {src[:60]}")
-            print(f"      bad: {bad[:60]}")
+            tprint(f"    {pfx} [{ctx}] EN={extract_args(eng)} TR={extract_args(bad)}")
+            tprint(f"      src: {src[:60]}")
+            tprint(f"      bad: {bad[:60]}")
         if len(arg_broken) > 5:
-            print(f"    ... and {len(arg_broken) - 5} more")
+            tprint(f"    {pfx} ... and {len(arg_broken) - 5} more")
 
     if check_only or dry_run:
         if dry_run and need_translation:
-            print(f"\n  [DRY RUN] Would translate:")
+            tprint(f"\n  {pfx} [DRY RUN] Would translate:")
             for _, ctx, src, eng in need_translation[:20]:
-                print(f"    [{ctx}] {eng[:80]}")
+                tprint(f"    [{ctx}] {eng[:80]}")
             if len(need_translation) > 20:
-                print(f"    ... and {len(need_translation) - 20} more")
+                tprint(f"    {pfx} ... and {len(need_translation) - 20} more")
         if orphaned and not check_only:
-            print(f"  [DRY RUN] Would drop {len(orphaned)} orphaned entries")
+            tprint(f"  {pfx} [DRY RUN] Would drop {len(orphaned)} orphaned entries")
         return []
 
     if not need_translation and not orphaned:
-        print("  Nothing to do.")
+        tprint(f"  {pfx} Nothing to do.")
         return []
 
     # Translate missing/broken entries in batches
@@ -585,7 +605,7 @@ def process_language(
         batch_eng  = english_texts[start:end]
         batch_keys = keys[start:end]
 
-        print(f"\n  Batch {batch_num+1}/{total_batches} ({len(batch_eng)} strings)...")
+        tprint(f"\n  {pfx} Batch {batch_num+1}/{total_batches} ({len(batch_eng)} strings)...")
         results = translate_batch(lang_name, batch_eng)
 
         ok = 0
@@ -595,35 +615,35 @@ def process_language(
             if result and result.strip():
                 # Validate args; warn but keep if broken (LLM did its best)
                 if not args_match(eng, result):
-                    print(f"    WARN arg mismatch after translate: {extract_args(eng)} "
-                          f"vs {extract_args(result)}")
-                    print(f"      src: {eng[:60]}")
-                    print(f"      tr : {result[:60]}")
+                    tprint(f"    {pfx} WARN arg mismatch after translate: {extract_args(eng)} "
+                           f"vs {extract_args(result)}")
+                    tprint(f"      src: {eng[:60]}")
+                    tprint(f"      tr : {result[:60]}")
                 new_translations[(ctx, src)] = result
                 ok += 1
                 if j < 2:
-                    print(f"    OK:  {eng[:50]} -> {result[:50]}")
+                    tprint(f"    {pfx} OK:  {eng[:50]} -> {result[:50]}")
             else:
-                print(f"    FAIL: {eng[:80]}")
+                tprint(f"    {pfx} FAIL: {eng[:80]}")
                 failed_srcs.append(eng)
 
         # Items in batch_eng beyond len(results) also failed (LLM returned short array)
         for j in range(len(results), len(batch_eng)):
             eng = batch_eng[j]
-            print(f"    FAIL (no result): {eng[:80]}")
+            tprint(f"    {pfx} FAIL (no result): {eng[:80]}")
             failed_srcs.append(eng)
 
-        print(f"    {ok}/{len(batch_eng)} OK")
+        tprint(f"    {pfx} {ok}/{len(batch_eng)} OK")
         ok_total += ok
 
         # Merge and write after every batch so progress survives interruption
         _merge_and_write(lang_code, canonical, existing, new_translations)
 
     failed_count = len(failed_srcs)
-    print(f"\n  Summary: {ok_total} translated, {failed_count} failed, "
-          f"{len(orphaned)} orphaned entries dropped")
+    tprint(f"\n  {pfx} Summary: {ok_total} translated, {failed_count} failed, "
+           f"{len(orphaned)} orphaned entries dropped")
     if failed_srcs:
-        print(f"  Failed strings will be retried on next run.")
+        tprint(f"  {pfx} Failed strings will be retried on next run.")
 
     return failed_srcs
 
@@ -696,17 +716,17 @@ def main():
         TRANSLATIONS_DIR = Path(args.dir)
     TRANSLATIONS_DIR = TRANSLATIONS_DIR.resolve()
 
-    print(f"Dir:     {TRANSLATIONS_DIR}")
+    tprint(f"Dir:     {TRANSLATIONS_DIR}")
     if not (args.dry_run or args.check):
         if _BACKEND == "deepseek":
-            print(f"Backend: DeepSeek API ({DEEPSEEK_MODEL})")
+            tprint(f"Backend: DeepSeek API ({DEEPSEEK_MODEL}, up to {DEEPSEEK_MAX_CONCURRENCY} parallel languages)")
         else:
-            print(f"Backend: Local LLM ({LLM_MODEL})")
-            print(f"LLM URL: {LLM_URL}")
-        print(f"Batch:   {args.batch} strings/call")
+            tprint(f"Backend: Local LLM ({LLM_MODEL})")
+            tprint(f"LLM URL: {LLM_URL}")
+        tprint(f"Batch:   {args.batch} strings/call")
 
     canonical = load_canonical()
-    print(f"Canonical (EN) strings: {len(canonical)}")
+    tprint(f"Canonical (EN) strings: {len(canonical)}")
 
     all_ts    = sorted(TRANSLATIONS_DIR.glob("stellar_*.ts"))
     all_codes = [f.stem.replace("stellar_", "") for f in all_ts]
@@ -719,13 +739,13 @@ def main():
             if c not in all_codes:
                 _merge_and_write(c, canonical, {}, {})
                 all_codes.append(c)
-                print(f"  Created new file: stellar_{c}.ts")
+                tprint(f"  Created new file: stellar_{c}.ts")
             target.append(c)
     elif args.languages:
         target = []
         for c in args.languages:
             if c == "en":
-                print("Skipping 'en' — it is the master file.")
+                tprint("Skipping 'en' — it is the master file.")
                 continue
             if c in all_codes:
                 target.append(c)
@@ -733,69 +753,93 @@ def main():
                 _merge_and_write(c, canonical, {}, {})
                 all_codes.append(c)
                 target.append(c)
-                print(f"  Created new file: stellar_{c}.ts")
+                tprint(f"  Created new file: stellar_{c}.ts")
             else:
-                print(f"  Unknown language code: {c}")
+                tprint(f"  Unknown language code: {c}")
     else:
         target = [c for c in all_codes if c != "en"]
 
-    print(f"Available languages: {len(all_codes)}")
-    print(f"Will process {len(target)}: {target}\n")
+    tprint(f"Available languages: {len(all_codes)}")
+    tprint(f"Will process {len(target)}: {target}\n")
 
     if not target:
-        print("Nothing to do!")
+        tprint("Nothing to do!")
         return
 
     if not (args.dry_run or args.check):
         if _BACKEND == "local":
-            print("Checking LLM connectivity...")
+            tprint("Checking LLM connectivity...")
             try:
                 urllib.request.urlopen("http://127.0.0.1:1234/v1/models", timeout=5)
-                print("LLM reachable.\n")
+                tprint("LLM reachable.\n")
             except Exception:
-                print("ERROR: LLM not reachable at http://127.0.0.1:1234", file=sys.stderr)
+                tprint("ERROR: LLM not reachable at http://127.0.0.1:1234", file=sys.stderr)
                 sys.exit(1)
         else:
             if not os.environ.get("DEEPSEEK_API_KEY"):
-                print("ERROR: DEEPSEEK_API_KEY not set. Add it to .env or environment.", file=sys.stderr)
+                tprint("ERROR: DEEPSEEK_API_KEY not set. Add it to .env or environment.", file=sys.stderr)
                 sys.exit(1)
-            print("DeepSeek API key loaded.\n")
+            tprint("DeepSeek API key loaded.\n")
 
     completed_set, all_failed_keys = load_progress()
 
-    for lang_code in target:
-        try:
-            retry_keys = all_failed_keys.get(lang_code, [])
-            failed_srcs = process_language(
-                lang_code, canonical,
-                dry_run=args.dry_run,
-                force=args.force,
-                batch_size=args.batch,
-                check_only=args.check,
-                retry_keys=retry_keys,
-            )
-            if not (args.dry_run or args.check):
-                if failed_srcs:
-                    all_failed_keys[lang_code] = failed_srcs
-                else:
-                    all_failed_keys.pop(lang_code, None)
-                    completed_set.add(lang_code)
-                save_progress(completed_set, all_failed_keys)
-                status = f"{len(failed_srcs)} failed" if failed_srcs else "complete"
-                print(f"  ✓ Progress saved. ({lang_code}: {status})")
-        except KeyboardInterrupt:
-            print(f"\n⏸  Interrupted. Progress saved. Run again to resume.")
-            save_progress(completed_set, all_failed_keys)
-            sys.exit(0)
-        except Exception as e:
-            import traceback
-            print(f"\n  ✗ Error processing {lang_code}: {e}", file=sys.stderr)
-            traceback.print_exc()
-            print(f"  Continuing to next language...")
+    def _run_one(lang_code: str):
+        retry_keys  = all_failed_keys.get(lang_code, [])
+        failed_srcs = process_language(
+            lang_code, canonical,
+            dry_run=args.dry_run,
+            force=args.force,
+            batch_size=args.batch,
+            check_only=args.check,
+            retry_keys=retry_keys,
+        )
+        return lang_code, failed_srcs
 
-    print(f"\n{'=' * 60}")
-    print(f"Done! {len(completed_set)}/{len(all_codes)} languages complete.")
-    print(f"{'=' * 60}")
+    # Parallel only for DeepSeek (remote API can handle concurrent requests).
+    # Local LLM is a single server — run sequentially to avoid overwhelming it.
+    use_parallel = (_BACKEND == "deepseek") and not (args.dry_run or args.check)
+    max_workers  = min(DEEPSEEK_MAX_CONCURRENCY, len(target)) if use_parallel else 1
+
+    if use_parallel:
+        tprint(f"Running {len(target)} languages in parallel (up to {max_workers} workers)...\n")
+
+    try:
+        if max_workers == 1:
+            results_iter = (_run_one(c) for c in target)
+        else:
+            executor = ThreadPoolExecutor(max_workers=max_workers)
+            futures  = {executor.submit(_run_one, c): c for c in target}
+
+            def results_iter():
+                try:
+                    for fut in as_completed(futures):
+                        yield fut.result()
+                finally:
+                    executor.shutdown(wait=False)
+
+            results_iter = results_iter()
+
+        for lang_code, failed_srcs in results_iter:
+            if not (args.dry_run or args.check):
+                with _progress_lock:
+                    if failed_srcs:
+                        all_failed_keys[lang_code] = failed_srcs
+                    else:
+                        all_failed_keys.pop(lang_code, None)
+                        completed_set.add(lang_code)
+                    save_progress(completed_set, all_failed_keys)
+                status = f"{len(failed_srcs)} failed" if failed_srcs else "complete"
+                tprint(f"  ✓ Progress saved. ({lang_code}: {status})")
+
+    except KeyboardInterrupt:
+        tprint(f"\n⏸  Interrupted. Progress saved. Run again to resume.")
+        with _progress_lock:
+            save_progress(completed_set, all_failed_keys)
+        sys.exit(0)
+
+    tprint(f"\n{'=' * 60}")
+    tprint(f"Done! {len(completed_set)}/{len(all_codes)} languages complete.")
+    tprint(f"{'=' * 60}")
 
 
 if __name__ == "__main__":

@@ -3709,6 +3709,13 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>서버가 파일 대신 HTML 페이지를 반환했습니다. 링크가 브라우저에서 열어야 하거나 만료되었을 수 있습니다. 저장된 항목 없음.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4305,6 +4312,14 @@ Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS.
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>활성화 시 Stellar 가 시작 시 &quot;yt-dlp -U&quot; 실행하여 바이너리 최신화. 인터넷 연결 필요.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>기본 쿠키 브라우저:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>설정 시, 로그인이 필요한 yt-dlp 다운로드를 이 브라우저의 쿠키로 자동 재시도하며 확인 메시지를 표시하지 않습니다.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

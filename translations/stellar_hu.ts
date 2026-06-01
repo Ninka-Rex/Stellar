@@ -3710,6 +3710,13 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>A szerver HTML oldalt adott vissza a várt fájl helyett. Lehet, hogy a linket böngészőben kell megnyitni, vagy lejárt. Semmi sem lett mentve.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4306,6 +4313,14 @@ Telepítsen valamelyiket: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) va
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>Ha engedélyezve van, a Stellar indításkor futtatja a &quot;yt-dlp -U&quot; parancsot a bináris frissítésére. Aktív internetkapcsolatot igényel.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>Alapértelmezett cookie-böngésző:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>Ha be van állítva, a Stellar automatikusan újrapróbálja a bejelentkezést igénylő yt-dlp letöltéseket e böngésző cookie-jaival, kérés nélkül.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

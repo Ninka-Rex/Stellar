@@ -3710,6 +3710,13 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>サーバーがファイルではなくHTMLページを返しました。リンクはブラウザでの表示が必要か、期限切れの可能性があります。何も保存されませんでした。</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4309,6 +4316,14 @@ yt-dlp.exe と同じフォルダに配置するか、システム PATH に追加
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>有効化すると、起動時に Stellar は「yt-dlp -U」を実行してバイナリを最新に保ちます。インターネット接続が必要です。</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>デフォルトCookieブラウザ:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>設定時、Stellarはログインが必要なyt-dlpダウンロードを、このブラウザのCookieを使って自動再試行します。</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

@@ -3716,6 +3716,13 @@ Stellar Opcije → Preglednik → Zaobiđi presretanje preuzimanja</translation>
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>Server je vratio HTML stranicu umjesto očekivane datoteke. Link možda zahtijeva otvaranje u pregledniku ili je istekao. Ništa nije sačuvano.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4314,6 +4321,14 @@ Instalirajte jedan od: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) ili Q
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>Kada je omogućeno, Stellar će pokrenuti &quot;yt-dlp -U&quot; pri pokretanju kako bi binary bio ažuriran. Zahtijeva aktivnu internetsku vezu.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>Zadani preglednik kolačića:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>Kada je postavljeno, Stellar će automatski ponovo pokušati yt-dlp preuzimanja koja zahtijevaju prijavu koristeći kolačiće ovog preglednika, bez pitanja.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

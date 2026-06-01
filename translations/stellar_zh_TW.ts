@@ -3708,6 +3708,13 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>伺服器回傳了 HTML 頁面而非預期檔案。連結可能需在瀏覽器中開啟或已過期。未儲存任何內容。</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4306,6 +4313,14 @@ Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS.
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>啟用時，Stellar 啟動時會執行「yt-dlp -U」以保持二進位檔最新。需要網路連線。</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>預設 Cookie 瀏覽器：</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>設定後，Stellar 將自動使用此瀏覽器的 Cookie 重試需登入的 yt-dlp 下載，不再提示。</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

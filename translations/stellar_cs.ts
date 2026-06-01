@@ -3717,6 +3717,13 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>Server vrátil HTML stránku místo očekávaného souboru. Odkaz může vyžadovat otevření v prohlížeči nebo mohl vypršet. Nic nebylo uloženo.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4315,6 +4322,14 @@ Nainstalujte jeden z: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) nebo Q
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>Pokud je povoleno, Stellar spustí &quot;yt-dlp -U&quot; při spuštění pro udržení binárky aktuální. Vyžaduje aktivní připojení k internetu.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>Výchozí prohlížeč cookies:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>Pokud je nastaveno, Stellar automaticky zopakuje stahování yt-dlp vyžadující přihlášení pomocí cookies z tohoto prohlížeče bez dotazování.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

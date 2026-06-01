@@ -194,7 +194,14 @@ Window {
         subLangsField.text = "en"; embedSubsCheck.checked = false
         embedThumbCheck.checked = false; embedMetaCheck.checked = false
         sponsorBlockCheck.checked = false
-        dateAfterField.text = ""; cookiesBrowserCombo.currentIndex = 0
+        dateAfterField.text = ""
+        // Pre-select default cookie browser from settings; stays at 0 (None) if unset
+        var _defBrowser = (App.settings.ytdlpDefaultCookieBrowser || "").toLowerCase()
+        cookiesBrowserCombo.currentIndex = 0
+        if (_defBrowser.length > 0 && _defBrowser !== "none") {
+            for (var _bi = 1; _bi < cookiesBrowserCombo.model.length; ++_bi)
+                if (cookiesBrowserCombo.model[_bi].toLowerCase() === _defBrowser) { cookiesBrowserCombo.currentIndex = _bi; break }
+        }
         writeDescCheck.checked = false; writeThumbnailCheck.checked = false
         splitChaptersCheck.checked = false; sectionsField.text = ""
         playlistRandomCheck.checked = false; playlistReverseCheck.checked = false
@@ -1038,6 +1045,13 @@ Window {
                                 ComboBox {
                                     id: cookiesBrowserCombo; implicitWidth: 100; implicitHeight: 24; font.pixelSize: 11 * App.fontScale; currentIndex: 0
                                     model: ["None","Chrome","Firefox","Edge","Brave","Opera","Vivaldi","Safari"]
+                                    Component.onCompleted: {
+                                        var v = (App.settings.ytdlpDefaultCookieBrowser || "").toLowerCase()
+                                        if (v.length > 0 && v !== "none") {
+                                            for (var i = 1; i < model.length; ++i)
+                                                if (model[i].toLowerCase() === v) { currentIndex = i; break }
+                                        }
+                                    }
                                     contentItem: Text { leftPadding: 7; text: cookiesBrowserCombo.displayText; color: "#d0d0d0"; font: cookiesBrowserCombo.font; verticalAlignment: Text.AlignVCenter }
                                     background: Rectangle { color: "#1b1b1b"; border.color: cookiesBrowserCombo.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2 }
                                     delegate: ItemDelegate {

@@ -3722,6 +3722,13 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>Sabar ta dawo da shafin HTML maimakon fayil ɗin da ake tsammani. Ƙila hanyar tana buƙatar buɗewa a cikin burauza ko kuma ta ƙare. Babu abin da aka ajiye.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4320,6 +4327,14 @@ Shigar ɗaya daga: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), ko Quick
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>Idan an kunna, Stellar zai gudanar da &quot;yt-dlp -U&quot; a farawa don ci gaba da sabunta binary. Yana buƙatar haɗin intanet mai aiki.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>Tsohuwar burauzar kuki:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>Idan an saita, Stellar zai sake gwada saukarwar yt-dlp da ke buƙatar shiga ta atomatik ta amfani da kukin wannan burauzar, ba tare da tambaya ba.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>

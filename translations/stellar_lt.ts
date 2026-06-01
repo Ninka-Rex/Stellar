@@ -3716,6 +3716,13 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
         </message>
     </context>
     <context>
+        <name>SegmentedTransfer</name>
+        <message>
+            <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
+            <translation>Serveris grąžino HTML puslapį vietoj laukto failo. Nuorodą gali reikėti atidaryti naršyklėje arba ji galėjo pasibaigti. Nieko neišsaugota.</translation>
+        </message>
+    </context>
+    <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
@@ -4313,6 +4320,14 @@ Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS.
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
             <translation>Įjungus, Stellar paleidžiant paleidžia &quot;yt-dlp -U&quot;, kad išlaikytų binarį naujausią. Reikia aktyvaus interneto ryšio.</translation>
+        </message>
+        <message>
+            <source>Default cookie browser:</source>
+            <translation>Numatytoji slapukų naršyklė:</translation>
+        </message>
+        <message>
+            <source>When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.</source>
+            <translation>Nustačius, Stellar automatiškai pakartos yt-dlp atsisiuntimus, kuriems reikia prisijungimo, naudodama šios naršyklės slapukus, be užklausos.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>
