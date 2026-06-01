@@ -556,9 +556,9 @@ jobs:
           VERSION="${{ steps.version.outputs.version }}"
           # Only attach assets for platforms built this run.
           ASSETS=()
-          for f in release-artifacts/windows/StellarSetup-*.exe \
-                   release-artifacts/linux/stellar_*.deb \
-                   release-artifacts/linux/stellar-*.rpm; do
+          for f in release-artifacts/windows/packaging/windows/output/StellarSetup-*.exe \
+                   release-artifacts/linux/dist/linux/stellar_*.deb \
+                   release-artifacts/linux/dist/linux/stellar-*.rpm; do
             [ -f "$f" ] && ASSETS+=("$f")
           done
           [ "${#ASSETS[@]}" -gt 0 ] || { echo "ERROR: no release assets found"; exit 1; }
