@@ -2,6 +2,21 @@
 
 ---
 
+## Version 0.9.0 Beta
+
+### New
+- Import and export file list, settings, torrents, share ratios, etc in Options > General > Backup & Restore
+
+### Improved
+- Improved download engine handling of PDFs
+
+### Fixed
+- Fixed "Restart Now" not working when changing language
+- Fixed some incorrect translations
+- Fixed the toolbar not being translated
+
+---
+
 ## Version 0.8.2 Beta - May 28, 2026
 
 ### New

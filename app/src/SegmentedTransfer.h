@@ -127,6 +127,23 @@ private:
     void updateFilenameFromReply(QNetworkReply *reply);
     bool isConfirmPageUrl(const QUrl &url) const;
     void handleConfirmPage(const QByteArray &html);
+    // True when two URLs share the same registered domain (eTLD+1) and scheme.
+    // Used as a security gate before following any URL parsed out of a server
+    // response or query string, so credentialed requests never go off-host.
+    static bool sameRegisteredDomain(const QUrl &a, const QUrl &b);
+    // True when the URL path's extension implies a binary file but the server
+    // answers with text/html and no Content-Disposition attachment — i.e. an
+    // HTML page (login wall, viewer wrapper, error page) masquerading as the
+    // requested binary. Used to recover or fail instead of saving garbage.
+    bool looksLikeHtmlMasqueradingAsBinary(const QUrl &url,
+                                           const QString &contentTypeLower,
+                                           const QByteArray &contentDisposition) const;
+    // Attempt to recover the real file when a masquerade is detected: scan the
+    // original URL's query for a same-domain value pointing at the expected
+    // file (e.g. iframeUrlOverride) and re-drive the download against it.
+    // Returns true if a recovery HEAD was issued (caller must return).
+    bool tryRecoverMasqueradedUrl(const QString &expectedExt);
+    static QString htmlMasqueradeError();
     void applyRequestHeaders(QNetworkRequest &req, const QUrl &url) const;
     void applyReplyReadBufferSize(QNetworkReply *reply);
     void retrySegment(int index, int extraDelayMs = 0);
@@ -144,6 +161,7 @@ private:
     int                    m_speedLimitKBps{0};
     bool                   m_htmlIntercepting{false};
     QByteArray             m_htmlInterceptBuf;
+    bool                   m_recoveryAttempted{false}; // guards single masquerade-recovery retry
 
     QList<Segment>  m_segments;
     QTimer         *m_progressTimer{nullptr};

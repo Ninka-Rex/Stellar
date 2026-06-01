@@ -90,12 +90,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/src/AppController.cpp" line="7977"/>
+        <location filename="../app/src/AppController.cpp" line="7984"/>
         <source>No destination was chosen for the backup.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/src/AppController.cpp" line="8010"/>
+        <location filename="../app/src/AppController.cpp" line="8017"/>
         <source>No backup file was chosen to import.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3411,7 +3411,7 @@ Project</source>
     <message>
         <location filename="../app/qml/Main.qml" line="548"/>
         <location filename="../app/qml/Main.qml" line="3188"/>
-        <location filename="../app/qml/Main.qml" line="3294"/>
+        <location filename="../app/qml/Main.qml" line="3295"/>
         <source>Speed Limiter</source>
         <translation>Speed Limiter</translation>
     </message>
@@ -3653,7 +3653,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </message>
     <message>
         <location filename="../app/qml/Main.qml" line="3139"/>
-        <location filename="../app/qml/Main.qml" line="3290"/>
+        <location filename="../app/qml/Main.qml" line="3291"/>
         <source>Scheduler</source>
         <translation></translation>
     </message>
@@ -3669,19 +3669,19 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </message>
     <message>
         <location filename="../app/qml/Main.qml" line="3199"/>
-        <location filename="../app/qml/Main.qml" line="3305"/>
+        <location filename="../app/qml/Main.qml" line="3306"/>
         <source>Turn On</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../app/qml/Main.qml" line="3200"/>
-        <location filename="../app/qml/Main.qml" line="3306"/>
+        <location filename="../app/qml/Main.qml" line="3307"/>
         <source>Turn Off</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../app/qml/Main.qml" line="3202"/>
-        <location filename="../app/qml/Main.qml" line="3308"/>
+        <location filename="../app/qml/Main.qml" line="3309"/>
         <source>Settings…</source>
         <translation></translation>
     </message>
@@ -3791,128 +3791,128 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3286"/>
+        <location filename="../app/qml/Main.qml" line="3287"/>
         <source>Options</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3289"/>
+        <location filename="../app/qml/Main.qml" line="3290"/>
         <source>Preferences…</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3320"/>
+        <location filename="../app/qml/Main.qml" line="3321"/>
         <source>RSS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3323"/>
+        <location filename="../app/qml/Main.qml" line="3324"/>
         <source>Open RSS Reader</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3324"/>
+        <location filename="../app/qml/Main.qml" line="3325"/>
         <source>Refresh All Feeds</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3325"/>
+        <location filename="../app/qml/Main.qml" line="3326"/>
         <source>Mark All Items Read</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3349"/>
+        <location filename="../app/qml/Main.qml" line="3350"/>
         <source>Help</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3352"/>
+        <location filename="../app/qml/Main.qml" line="3353"/>
         <source>Check for Updates</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3449"/>
+        <location filename="../app/qml/Main.qml" line="3450"/>
         <source>Drop .torrent file to open torrent metadata</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3511"/>
+        <location filename="../app/qml/Main.qml" line="3512"/>
         <source>Find:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3559"/>
+        <location filename="../app/qml/Main.qml" line="3560"/>
         <source>Find</source>
         <translation type="unfinished">Find</translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3576"/>
+        <location filename="../app/qml/Main.qml" line="3577"/>
         <source>Settings ▾</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3598"/>
+        <location filename="../app/qml/Main.qml" line="3599"/>
         <source>Search in:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3601"/>
+        <location filename="../app/qml/Main.qml" line="3602"/>
         <source>File name or part of the name</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3608"/>
+        <location filename="../app/qml/Main.qml" line="3609"/>
         <source>Description</source>
         <translation type="unfinished">Description</translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3615"/>
+        <location filename="../app/qml/Main.qml" line="3616"/>
         <source>URL / referrer / parent web page</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3625"/>
+        <location filename="../app/qml/Main.qml" line="3626"/>
         <source>Match case</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3632"/>
+        <location filename="../app/qml/Main.qml" line="3633"/>
         <source>Match whole string only</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3772"/>
+        <location filename="../app/qml/Main.qml" line="3773"/>
         <source>Move sidebar to left</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3772"/>
+        <location filename="../app/qml/Main.qml" line="3773"/>
         <source>Move sidebar to right</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3776"/>
+        <location filename="../app/qml/Main.qml" line="3777"/>
         <source>Reset sidebar width</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../app/qml/Main.qml" line="546"/>
-        <location filename="../app/qml/Main.qml" line="3354"/>
+        <location filename="../app/qml/Main.qml" line="3355"/>
         <source>About Stellar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3358"/>
+        <location filename="../app/qml/Main.qml" line="3359"/>
         <source>Browser Integration</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3368"/>
+        <location filename="../app/qml/Main.qml" line="3369"/>
         <source>Browser Extensions…</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3370"/>
+        <location filename="../app/qml/Main.qml" line="3371"/>
         <source>Browser Settings…</source>
         <translation></translation>
     </message>
@@ -4728,6 +4728,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <message>
         <location filename="../app/qml/SchedulerDialog.qml" line="1328"/>
         <source>Select file to open when done</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>SegmentedTransfer</name>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1664"/>
+        <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
         <translation></translation>
     </message>
 </context>

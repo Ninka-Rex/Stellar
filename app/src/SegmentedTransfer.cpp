@@ -26,6 +26,7 @@
 #include <QFileInfo>
 #include <QSaveFile>
 #include <QUrl>
+#include <QUrlQuery>
 #include <QTimer>
 #include <QDateTime>
 #include <QSslError>
@@ -35,6 +36,7 @@
 #include <QNetworkCookie>
 #include <algorithm>
 #include <cstring>
+#include <limits>
 #include <QDebug>
 
 #ifdef Q_OS_LINUX
@@ -48,6 +50,30 @@ static const QString kBrowserUserAgent =
     QStringLiteral("Mozilla/5.0 (Windows NT 10.0; Win64; x64) Stellar/%1").arg(QStringLiteral(STELLAR_VERSION));
 
 namespace {
+// File extensions that are never legitimately served as text/html. If the URL
+// path ends in one of these but the server answers text/html (with no
+// Content-Disposition), the response is an HTML page masquerading as the file
+// (login wall, JS viewer wrapper, error page). HTML/text-family extensions
+// (html, htm, xml, svg, rss, atom, txt, json, csv, js, css) are deliberately
+// excluded — they can legitimately be text/html and must not trip the guard.
+const QSet<QString> &binaryExtensions() {
+    static const QSet<QString> kExts = {
+        QStringLiteral("pdf"),  QStringLiteral("zip"),  QStringLiteral("exe"),
+        QStringLiteral("dmg"),  QStringLiteral("msi"),  QStringLiteral("iso"),
+        QStringLiteral("mp4"),  QStringLiteral("mkv"),  QStringLiteral("avi"),
+        QStringLiteral("mov"),  QStringLiteral("mp3"),  QStringLiteral("flac"),
+        QStringLiteral("wav"),  QStringLiteral("7z"),   QStringLiteral("rar"),
+        QStringLiteral("gz"),   QStringLiteral("bz2"),  QStringLiteral("xz"),
+        QStringLiteral("tar"),  QStringLiteral("deb"),  QStringLiteral("rpm"),
+        QStringLiteral("apk"),  QStringLiteral("pkg"),  QStringLiteral("bin"),
+        QStringLiteral("img"),  QStringLiteral("doc"),  QStringLiteral("docx"),
+        QStringLiteral("xls"),  QStringLiteral("xlsx"), QStringLiteral("ppt"),
+        QStringLiteral("pptx"), QStringLiteral("epub"), QStringLiteral("mobi"),
+        QStringLiteral("wasm"),
+    };
+    return kExts;
+}
+
 QString resolvedUserAgent(bool useCustomUserAgent, const QString &customUserAgent, bool browserStyleFallback) {
     const QString trimmedCustomUserAgent = customUserAgent.trimmed();
     if (useCustomUserAgent && !trimmedCustomUserAgent.isEmpty())
@@ -250,6 +276,7 @@ void SegmentedTransfer::start() {
     m_item->setLastTryAt(QDateTime::currentDateTime());
 
     m_effectiveUrl = QUrl(); // reset on every fresh start
+    m_recoveryAttempted = false; // allow one masquerade-recovery retry per run
 
     qDebug() << "[ST] start() url=" << m_item->url().toString()
              << "isConfirmPage=" << isConfirmPageUrl(m_item->url())
@@ -445,6 +472,31 @@ void SegmentedTransfer::onHeadFinished(QNetworkReply *reply) {
         startAllSegments();
         m_progressTimer->start();
         emit started();
+        return;
+    }
+
+    // General guard (any site): the URL path implies a binary file but the
+    // server answered text/html with no Content-Disposition attachment — an
+    // HTML page (login wall, viewer wrapper, error/consent page) standing in
+    // for the requested file. Fail fast before any part file is created so we
+    // never persist garbage as e.g. a .pdf. Checked AFTER the GDrive intercept
+    // above (which returns first); GDrive URLs carry no binary extension so
+    // they cannot reach here.
+    if (looksLikeHtmlMasqueradingAsBinary(m_item->url(), contentType,
+                                          reply->rawHeader("Content-Disposition"))) {
+        const QString expectedExt = QFileInfo(m_item->url().path()).suffix().toLower();
+        // Tear down this reply before recovery: tryRecover -> sendHeadRequest
+        // reassigns m_headReply, so it must be null here.
+        reply->deleteLater();
+        m_headReply = nullptr;
+        // Some sites (e.g. iShares) carry the real file path in a query param
+        // (iframeUrlOverride). Try once to recover it before giving up.
+        if (!m_recoveryAttempted && tryRecoverMasqueradedUrl(expectedExt))
+            return; // recovery HEAD now in flight; re-enters onHeadFinished
+        const QString msg = htmlMasqueradeError();
+        m_item->setErrorString(msg);
+        m_item->setStatus(DownloadItem::Status::Error);
+        emit failed(msg);
         return;
     }
 
@@ -1345,12 +1397,23 @@ void SegmentedTransfer::mergeAndFinish() {
         cleanupPartFiles();
         deleteMetaFile();
 
-        // Detect hosts that delete the file between HEAD and GET: the assembled
-        // output will be a tiny HTML error page instead of the expected content.
-        // Threshold: file smaller than 50 KB and content sniffs as HTML.
-        static constexpr qint64 kHtmlSniffThreshold = 50 * 1024;
+        // Backstop for HTML masquerading as the file when it slips past the
+        // HEAD-time guard (server only reveals text/html on GET, or the bytes
+        // were streamed via the m_htmlIntercepting single-segment path).
+        //
+        // Generic case: hosts that delete the file between HEAD and GET return a
+        // small HTML error page — sniff only when < 50 KB to avoid touching real
+        // downloads. But when the URL clearly expected a binary and its stored
+        // content-type was text/html (e.g. a 52 KB JS viewer wrapper), the page
+        // can exceed 50 KB, so lift the size cap for that case only.
+        const bool expectedBinaryMismatch = looksLikeHtmlMasqueradingAsBinary(
+            m_item->url(), m_item->contentType(),
+            QByteArray() /* Content-Disposition not retained post-finish */);
+        const qint64 sniffThreshold = expectedBinaryMismatch
+            ? std::numeric_limits<qint64>::max()
+            : (50 * 1024);
         QFileInfo fi(outPath);
-        if (fi.size() > 0 && fi.size() < kHtmlSniffThreshold) {
+        if (fi.size() > 0 && fi.size() < sniffThreshold) {
             QFile f(outPath);
             if (f.open(QIODevice::ReadOnly)) {
                 const QByteArray head = f.read(512).trimmed();
@@ -1365,8 +1428,17 @@ void SegmentedTransfer::mergeAndFinish() {
                     // Remove the useless HTML file — the download is effectively failed.
                     QFile::remove(outPath);
                     m_item->setStatus(DownloadItem::Status::Error);
-                    m_item->setErrorString(QStringLiteral("The file no longer exists on the server."));
-                    emit fileDeletedWarning();
+                    if (expectedBinaryMismatch) {
+                        // Server sent an HTML page in place of the binary; the file
+                        // exists, so the GDrive-flavored "no longer exists" warning
+                        // would be wrong. Use the accurate masquerade message.
+                        const QString msg = htmlMasqueradeError();
+                        m_item->setErrorString(msg);
+                        emit failed(msg);
+                    } else {
+                        m_item->setErrorString(QStringLiteral("The file no longer exists on the server."));
+                        emit fileDeletedWarning();
+                    }
                     return;
                 }
             }
@@ -1571,6 +1643,95 @@ bool SegmentedTransfer::isConfirmPageUrl(const QUrl &url) const {
            host.endsWith(QStringLiteral("drive.usercontent.google.com"));
 }
 
+bool SegmentedTransfer::looksLikeHtmlMasqueradingAsBinary(
+        const QUrl &url, const QString &contentTypeLower,
+        const QByteArray &contentDisposition) const {
+    // QUrl::path() excludes the query string, so "file.pdf?stream=reg" yields
+    // suffix "pdf". suffix() is the text after the final '.', already without
+    // the query. Empty/extensionless paths (e.g. "/download?id=1") yield "".
+    const QString ext = QFileInfo(url.path()).suffix().toLower();
+    if (!binaryExtensions().contains(ext))
+        return false;
+
+    // Substring match tolerates parameters like "text/html;charset=UTF-8".
+    if (!contentTypeLower.contains(QStringLiteral("text/html")))
+        return false;
+
+    // If the server explicitly asserts a download (attachment / filename=), it
+    // is claiming this IS the file to save — trust that and do not trip, even
+    // with a text/html content-type. A hostile server abusing this merely gets
+    // the normal download path, where existing Content-Disposition path-
+    // traversal guards still apply.
+    const QByteArray cdLower = contentDisposition.toLower();
+    if (cdLower.contains("attachment") || cdLower.contains("filename"))
+        return false;
+
+    return true;
+}
+
+QString SegmentedTransfer::htmlMasqueradeError() {
+    return tr("Server returned an HTML page instead of the expected file. "
+              "The link may require opening in a browser or may have expired. "
+              "Nothing was saved.");
+}
+
+bool SegmentedTransfer::sameRegisteredDomain(const QUrl &a, const QUrl &b) {
+    // Extract eTLD+1: last two dot-separated labels of the hostname. Simple but
+    // sufficient — we're not a browser; this only gates following a URL derived
+    // from a server response/query against the already-trusted original host.
+    auto registeredDomain = [](const QString &host) -> QString {
+        const QStringList parts = host.split(QLatin1Char('.'));
+        if (parts.size() < 2) return host;
+        return parts.at(parts.size() - 2) + QLatin1Char('.') + parts.last();
+    };
+    if (a.scheme() != b.scheme())
+        return false;
+    return registeredDomain(a.host().toLower()) == registeredDomain(b.host().toLower());
+}
+
+bool SegmentedTransfer::tryRecoverMasqueradedUrl(const QString &expectedExt) {
+    if (expectedExt.isEmpty() || !binaryExtensions().contains(expectedExt))
+        return false;
+
+    const QUrl original = m_item->url();
+    const QUrlQuery query(original);
+
+    // Scan query values for one that points at the real file. Param-name-
+    // agnostic so it covers iShares' iframeUrlOverride and any similar pattern.
+    // FullyDecoded so percent-encoded paths (e.g. %2Fus%2F...pdf) are usable.
+    QUrl candidate;
+    const auto items = query.queryItems(QUrl::FullyDecoded);
+    for (const auto &kv : items) {
+        const QString value = kv.second;
+        if (value.isEmpty())
+            continue;
+        QUrl c(value);
+        if (c.isRelative())
+            c = original.resolved(c); // absolute path "/us/...pdf" resolves against host
+        if (!c.isValid())
+            continue;
+        // Require the exact expected extension so we don't grab an unrelated
+        // binary-looking param, and the same registered domain + scheme so we
+        // never issue a credentialed request off-host (rejects javascript:/
+        // data:/file: and other-host absolute URLs).
+        if (QFileInfo(c.path()).suffix().toLower() != expectedExt)
+            continue;
+        if (!sameRegisteredDomain(original, c))
+            continue;
+        candidate = c;
+        break; // first valid wins
+    }
+
+    if (!candidate.isValid())
+        return false;
+
+    qDebug() << "[Recovery] HTML masquerade detected; retrying real file URL:" << candidate;
+    m_recoveryAttempted = true;   // guard BEFORE re-HEAD so a second masquerade fails for real
+    m_effectiveUrl = candidate;   // segment GETs target the recovered URL
+    sendHeadRequest(candidate);   // reuses range / multi-segment / filename detection
+    return true;
+}
+
 void SegmentedTransfer::handleConfirmPage(const QByteArray &html) {
     qDebug() << "[HTMLIntercept] handling confirmation page, size:" << html.size();
     // Google Drive virus-scan confirmation page contains a form that
@@ -1640,25 +1801,11 @@ void SegmentedTransfer::handleConfirmPage(const QByteArray &html) {
     // We compare registered domain (eTLD+1) so subdomains of the same site are
     // accepted (e.g. drive.google.com → usercontent.google.com) while unrelated
     // hosts are rejected outright.
-    {
-        // Extract eTLD+1: last two dot-separated labels of the hostname.
-        // Simple but sufficient — we're not a browser, and the original URL was
-        // already trusted by the caller before the download started.
-        auto registeredDomain = [](const QString &host) -> QString {
-            const QStringList parts = host.split(QLatin1Char('.'));
-            if (parts.size() < 2) return host;
-            return parts.at(parts.size() - 2) + QLatin1Char('.') + parts.last();
-        };
-
-        const QString origDomain = registeredDomain(m_item->url().host().toLower());
-        const QString newDomain  = registeredDomain(newUrl.host().toLower());
-
-        if (newDomain != origDomain || newUrl.scheme() != m_item->url().scheme()) {
-            qWarning() << "[HTMLIntercept] action URL rejected — domain mismatch:"
-                       << newUrl.host() << "vs original" << m_item->url().host();
-            emit failed(QStringLiteral("Confirmation page contained an unexpected redirect host — download aborted for security"));
-            return;
-        }
+    if (!sameRegisteredDomain(m_item->url(), newUrl)) {
+        qWarning() << "[HTMLIntercept] action URL rejected — domain mismatch:"
+                   << newUrl.host() << "vs original" << m_item->url().host();
+        emit failed(QStringLiteral("Confirmation page contained an unexpected redirect host — download aborted for security"));
+        return;
     }
 
     // Clean up current segments
