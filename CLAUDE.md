@@ -1,10 +1,26 @@
 # CLAUDE.md
 
-Guidance for Claude Code when working this repo.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Coding Standard
 
 **Fully implement all changes** — no shortcuts, no stubs, no placeholders. Production-ready. Comment *why* not *what*; explain non-obvious parts, avoid over-commenting.
+
+**DRY** — do not repeat yourself. Extract shared logic; never duplicate code.
+
+## Security
+
+**Assume every server is malicious and actively attempting RCE.** Stellar processes untrusted data from arbitrary servers (HTTP headers, Content-Disposition, HTML, JSON, torrent metadata, magnet URIs, yt-dlp output, native messaging). Treat all of it as hostile input.
+
+Rules:
+- **Sanitize all server-supplied strings** before use as filenames, paths, shell arguments, or display text. Route through `sanitizeFilename()` for anything touching the filesystem. Never construct paths by concatenating server data directly.
+- **No shell expansion.** Use `QProcess` with argument lists, never `QProcess::startDetached(command_string)` or `system()`. Never interpolate server data into a command string.
+- **Validate all numeric bounds** from server responses (Content-Length, Content-Range start/end/total, segment offsets). Reject values that would cause out-of-bounds writes, negative sizes, or arithmetic overflow.
+- **Reject path traversal.** Strip or reject `..`, absolute paths, and drive-letter prefixes in any server-supplied filename or path component.
+- **JSON from untrusted sources** (native messaging, server responses, torrent metadata): check types before use — never assume a field is the expected type.
+- **Never call `ignoreSslErrors()`** — a bad cert must fail, not silently proceed.
+- **No `eval`-equivalent in JS** (browser extension): never pass server-controlled strings to `eval`, `Function()`, or `innerHTML`.
+- When in doubt, reject and fail the download rather than proceeding with unvalidated data.
 
 ## Build & Development
 
@@ -413,8 +429,11 @@ Intentionally on 5-second cadence, same as tray tooltip — not per-tick. `Statu
 
 **Architecture:** Qt Linguist system (`tr()` / `qsTr()`). Translator loaded at startup before the QML engine so all `qsTr()` calls in component construction resolve correctly.
 
+**Adding new strings — mandatory workflow:**
+Every new user-visible string must be added to `translations/stellar_en.ts`. `fill_translations.py` reads that file and uses an LLM to auto-translate into all 76 other languages. Do **not** run `lupdate` manually; do **not** edit other `.ts` files directly.
+
 **Files:**
-- `translations/stellar_fr.ts` — French translation source (XML). Run `lupdate app/src app/qml -ts translations/stellar_fr.ts` after adding new strings.
+- `translations/stellar_en.ts` — **source of truth** for all translatable strings. Add every new `tr()`/`qsTr()` string here.
 - `.qm` files compiled at build time by `qt_add_translations()` in `CMakeLists.txt` (requires `Qt6LinguistTools`; guarded with `if(Qt6LinguistTools_FOUND)`).
 - Embedded as Qt resources under prefix `:/i18n/` → loaded as `:/i18n/stellar_<locale>`.
 
