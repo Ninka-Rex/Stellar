@@ -22,10 +22,11 @@ AbstractButton {
     id: root
     property string label: ""
     property string iconSrc: ""
-    property int iconSize: 32
-    
-    width: 84
-    height: 72
+    property bool smallMode: false
+    readonly property int iconSize: smallMode ? 20 : 32
+
+    implicitWidth: smallMode ? 48 : 84
+    implicitHeight: smallMode ? 48 : 72
 
     // Dim the whole button when disabled so the user can see it won't respond.
     // AbstractButton has no built-in disabled appearance; we apply it here.
@@ -47,7 +48,7 @@ AbstractButton {
         anchors.fill: parent
 
         readonly property int _gap: 4
-        readonly property int _groupH: root.iconSize + _gap + btnLabel.contentHeight
+        readonly property int _groupH: root.iconSize + _gap + btnLabel.height
         readonly property int _topPad: Math.max(0, Math.round((root.height - _groupH) / 2))
 
         Image {
@@ -68,6 +69,8 @@ AbstractButton {
 
         Text {
             id: btnLabel
+            visible: !root.smallMode
+            height: root.smallMode ? 0 : implicitHeight
             y: btnIcon.y + btnIcon.height + parent._gap
             anchors.horizontalCenter: parent.horizontalCenter
             width: root.width - 4

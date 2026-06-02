@@ -270,6 +270,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/stop_queue.svg
         app/qml/icons/stop_all.svg
         app/qml/icons/tools.svg
+        app/qml/icons/statusbar.svg
         app/qml/icons/toolbar.svg
         app/qml/icons/pause.svg
         app/qml/icons/properties.svg
@@ -281,7 +282,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/export_torrent.svg
         app/qml/icons/satellite_antenna.svg
         app/qml/icons/columns.svg
-        app/qml/icons/hide_categories.svg
+        app/qml/icons/categories.svg
         app/qml/icons/arrow_down.svg
         app/qml/icons/rename.svg
         app/qml/icons/new_file.svg

@@ -2998,6 +2998,7 @@ ApplicationWindow {
         Action { shortcut: "Ctrl+Shift+L"; onTriggered: { if (App.settings.speedLimiterEnabled) App.disableSpeedLimiter(); else App.enableSpeedLimiter() } }
 
         Menu {
+            id: _tasksMenu
             title: qsTr("Tasks")
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
@@ -3023,6 +3024,7 @@ ApplicationWindow {
                             root._pendingExportFormat = "ef2"
                             exportDialog.show()
                             exportDialog.raise()
+                            _tasksMenu.dismiss()
                         }
                     }
                     CompactMenuItem {
@@ -3031,6 +3033,7 @@ ApplicationWindow {
                             root._pendingExportFormat = "txt"
                             exportDialog.show()
                             exportDialog.raise()
+                            _tasksMenu.dismiss()
                         }
                     }
                 }
@@ -3050,11 +3053,11 @@ ApplicationWindow {
                     onAboutToHide: _importCloseTimer.stop()
                     CompactMenuItem {
                         text: qsTr("From SDM Export File (.ef2)…")
-                        onTriggered: importEf2Dialog.open()
+                        onTriggered: { importEf2Dialog.open(); _tasksMenu.dismiss() }
                     }
                     CompactMenuItem {
                         text: qsTr("From Text File…")
-                        onTriggered: importTxtDialog.open()
+                        onTriggered: { importTxtDialog.open(); _tasksMenu.dismiss() }
                     }
                 }
                 Timer { id: _importCloseTimer; interval: 300; onTriggered: { if (!_importMenu.activeFocus) _importMenu.close() } }
@@ -3131,6 +3134,7 @@ ApplicationWindow {
             }
         }
         Menu {
+            id: _downloadsMenu
             title: qsTr("Downloads")
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
@@ -3158,7 +3162,7 @@ ApplicationWindow {
                         model: App.queueModel
                         delegate: CompactMenuItem {
                             visible: queueId !== "download-limits"; height: visible ? 22 : 0
-                            text: queueName || ""; onTriggered: App.startQueue(queueId)
+                            text: queueName || ""; onTriggered: { App.startQueue(queueId); _downloadsMenu.dismiss() }
                         }
                     }
                 }
@@ -3180,7 +3184,7 @@ ApplicationWindow {
                         model: App.queueModel
                         delegate: CompactMenuItem {
                             visible: queueId !== "download-limits"; height: visible ? 22 : 0
-                            text: queueName || ""; onTriggered: App.stopQueue(queueId)
+                            text: queueName || ""; onTriggered: { App.stopQueue(queueId); _downloadsMenu.dismiss() }
                         }
                     }
                 }
@@ -3201,10 +3205,10 @@ ApplicationWindow {
                     id: _speedLimiterMenu1
                     delegate: CompactMenuItem; implicitWidth: 260; topPadding: 0; bottomPadding: 0
                     onAboutToHide: _sl1CloseTimer.stop()
-                    CompactMenuItem { text: (App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: { App.enableSpeedLimiter(); _speedLimiterMenu1.close() } }
-                    CompactMenuItem { text: (!App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: { App.disableSpeedLimiter(); _speedLimiterMenu1.close() } }
+                    CompactMenuItem { text: (App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: { App.enableSpeedLimiter(); _downloadsMenu.dismiss() } }
+                    CompactMenuItem { text: (!App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: { App.disableSpeedLimiter(); _downloadsMenu.dismiss() } }
                     MenuSeparator {}
-                    CompactMenuItem { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = root.settingsPageSpeedLimiter; settingsDialog.show() } }
+                    CompactMenuItem { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = root.settingsPageSpeedLimiter; settingsDialog.show(); _downloadsMenu.dismiss() } }
                 }
                 Timer { id: _sl1CloseTimer; interval: 300; onTriggered: { if (!_speedLimiterMenu1.activeFocus) _speedLimiterMenu1.close() } }
             }
@@ -3220,13 +3224,47 @@ ApplicationWindow {
             CompactMenuItem { text: qsTr("Options…"); shortcutDisplay: "Alt+O"; iconSrc: "icons/gear.svg"; onTriggered: settingsDialog.show() }
         }
         Menu {
+            id: _viewMenu
             title: qsTr("View")
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
             CompactMenuItem {
                 text: (sidebar && sidebar.visible) ? qsTr("Hide Categories") : qsTr("Show Categories")
-                iconSrc: "icons/hide_categories.svg"
+                iconSrc: "icons/categories.svg"
                 onTriggered: if (sidebar) sidebar.visible = !sidebar.visible
+            }
+            CompactMenuItem {
+                text: App.settings.showStatusBar ? qsTr("Hide Status Bar") : qsTr("Show Status Bar")
+                iconSrc: "icons/statusbar.svg"
+                onTriggered: Qt.callLater(function() { App.settings.showStatusBar = !App.settings.showStatusBar })
+            }
+            CompactMenuItem {
+                id: _trayIconStyleItem
+                text: qsTr("SDM Tray Icon") + "  ▶"
+                iconSrc: "icons/milky-way.png"
+                onTriggered: _trayIconStyleMenu.popup(_trayIconStyleItem.width, 0)
+                onHoveredChanged: {
+                    if (hovered) _trayIconStyleMenu.popup(_trayIconStyleItem.width, 0)
+                    else _trayIconStyleCloseTimer.restart()
+                }
+                Menu {
+                    id: _trayIconStyleMenu
+                    delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0
+                    onAboutToHide: _trayIconStyleCloseTimer.stop()
+                    CompactMenuItem {
+                        text: (App.settings.trayIconStyle === 0 ? "✓ " : "    ") + qsTr("Colored")
+                        onTriggered: { App.settings.trayIconStyle = 0; _viewMenu.dismiss() }
+                    }
+                    CompactMenuItem {
+                        text: (App.settings.trayIconStyle === 1 ? "✓ " : "    ") + qsTr("Light")
+                        onTriggered: { App.settings.trayIconStyle = 1; _viewMenu.dismiss() }
+                    }
+                    CompactMenuItem {
+                        text: (App.settings.trayIconStyle === 2 ? "✓ " : "    ") + qsTr("Dark")
+                        onTriggered: { App.settings.trayIconStyle = 2; _viewMenu.dismiss() }
+                    }
+                }
+                Timer { id: _trayIconStyleCloseTimer; interval: 300; onTriggered: { if (!_trayIconStyleMenu.activeFocus) _trayIconStyleMenu.close() } }
             }
             MenuSeparator {}
             CompactMenuItem {
@@ -3260,17 +3298,17 @@ ApplicationWindow {
                     id: _arrangeFilesMenu
                     delegate: CompactMenuItem; implicitWidth: 260; topPadding: 0; bottomPadding: 0
                     onAboutToHide: _arrangeFilesCloseTimer.stop()
-                    CompactMenuItem { text: qsTr("By Order Of Addition");  onTriggered: App.sortDownloads("added", true) }
-                    CompactMenuItem { text: qsTr("By File Name");          onTriggered: App.sortDownloads("name", true) }
-                    CompactMenuItem { text: qsTr("By Size");               onTriggered: App.sortDownloads("size", true) }
-                    CompactMenuItem { text: qsTr("By Status");             onTriggered: App.sortDownloads("status", true) }
-                    CompactMenuItem { text: qsTr("By Time Left");          onTriggered: App.sortDownloads("timeleft", true) }
-                    CompactMenuItem { text: qsTr("By Transfer Rate");      onTriggered: App.sortDownloads("speed", false) }
-                    CompactMenuItem { text: qsTr("By Last Try Date");      onTriggered: App.sortDownloads("lasttry", false) }
-                    CompactMenuItem { text: qsTr("By Description");        onTriggered: App.sortDownloads("description", true) }
-                    CompactMenuItem { text: qsTr("By Save Path");          onTriggered: App.sortDownloads("saveto", true) }
-                    CompactMenuItem { text: qsTr("By Referer");            onTriggered: App.sortDownloads("referrer", true) }
-                    CompactMenuItem { text: qsTr("By Parent Web Page");    onTriggered: App.sortDownloads("parenturl", true) }
+                    CompactMenuItem { text: qsTr("By Order Of Addition");  onTriggered: { App.sortDownloads("added", true);       _viewMenu.dismiss() } }
+                    CompactMenuItem { text: qsTr("By File Name");          onTriggered: { App.sortDownloads("name", true);        _viewMenu.dismiss() } }
+                    CompactMenuItem { text: qsTr("By Size");               onTriggered: { App.sortDownloads("size", true);        _viewMenu.dismiss() } }
+                    CompactMenuItem { text: qsTr("By Status");             onTriggered: { App.sortDownloads("status", true);      _viewMenu.dismiss() } }
+                    CompactMenuItem { text: qsTr("By Time Left");          onTriggered: { App.sortDownloads("timeleft", true);    _viewMenu.dismiss() } }
+                    CompactMenuItem { text: qsTr("By Transfer Rate");      onTriggered: { App.sortDownloads("speed", false);      _viewMenu.dismiss() } }
+                    CompactMenuItem { text: qsTr("By Last Try Date");      onTriggered: { App.sortDownloads("lasttry", false);    _viewMenu.dismiss() } }
+                    CompactMenuItem { text: qsTr("By Description");        onTriggered: { App.sortDownloads("description", true); _viewMenu.dismiss() } }
+                    CompactMenuItem { text: qsTr("By Save Path");          onTriggered: { App.sortDownloads("saveto", true);      _viewMenu.dismiss() } }
+                    CompactMenuItem { text: qsTr("By Referer");            onTriggered: { App.sortDownloads("referrer", true);    _viewMenu.dismiss() } }
+                    CompactMenuItem { text: qsTr("By Parent Web Page");    onTriggered: { App.sortDownloads("parenturl", true);   _viewMenu.dismiss() } }
                 }
                 Timer { id: _arrangeFilesCloseTimer; interval: 300; onTriggered: { if (!_arrangeFilesMenu.activeFocus) _arrangeFilesMenu.close() } }
             }
@@ -3280,15 +3318,45 @@ ApplicationWindow {
                 columnsDialog.show()
                 columnsDialog.raise()
             }}
-            CompactMenuItem { text: qsTr("Toolbar…"); iconSrc: "icons/toolbar.svg"; onTriggered: {
-                // Rehydrate via Toolbar so saved labels are replaced with fresh
-                // translated ones (saved JSON holds stale English labels).
-                toolbarDialog.buttonDefs = toolbar._loadButtonDefs()
-                toolbarDialog.show()
-                toolbarDialog.raise()
-            }}
+            CompactMenuItem {
+                id: _toolbarItem
+                iconSrc: "icons/toolbar.svg"
+                text: qsTr("Toolbar") + "  ▶"
+                onTriggered: _toolbarMenu.popup(_toolbarItem.width, 0)
+                onHoveredChanged: {
+                    if (hovered) _toolbarMenu.popup(_toolbarItem.width, 0)
+                    else _toolbarMenuCloseTimer.restart()
+                }
+                Menu {
+                    id: _toolbarMenu
+                    delegate: CompactMenuItem; implicitWidth: 220; topPadding: 0; bottomPadding: 0
+                    onAboutToHide: _toolbarMenuCloseTimer.stop()
+                    CompactMenuItem {
+                        text: qsTr("Toolbar Settings…")
+                        // Rehydrate via Toolbar so saved labels are replaced with fresh
+                        // translated ones (saved JSON holds stale English labels).
+                        onTriggered: {
+                            toolbarDialog.buttonDefs = toolbar._loadButtonDefs()
+                            toolbarDialog.show()
+                            toolbarDialog.raise()
+                            _viewMenu.dismiss()
+                        }
+                    }
+                    MenuSeparator {}
+                    CompactMenuItem {
+                        text: (!App.settings.toolbarSmallButtons ? "✓ " : "    ") + qsTr("Large Buttons")
+                        onTriggered: { App.settings.toolbarSmallButtons = false; _viewMenu.dismiss() }
+                    }
+                    CompactMenuItem {
+                        text: (App.settings.toolbarSmallButtons ? "✓ " : "    ") + qsTr("Small Buttons")
+                        onTriggered: { App.settings.toolbarSmallButtons = true; _viewMenu.dismiss() }
+                    }
+                }
+                Timer { id: _toolbarMenuCloseTimer; interval: 300; onTriggered: { if (!_toolbarMenu.activeFocus) _toolbarMenu.close() } }
+            }
         }
         Menu {
+            id: _optionsMenu
             title: qsTr("Options")
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
@@ -3308,10 +3376,10 @@ ApplicationWindow {
                     id: _speedLimiterMenu2
                     delegate: CompactMenuItem; implicitWidth: 260; topPadding: 0; bottomPadding: 0
                     onAboutToHide: _sl2CloseTimer.stop()
-                    CompactMenuItem { text: (App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: { App.enableSpeedLimiter(); _speedLimiterMenu2.close() } }
-                    CompactMenuItem { text: (!App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: { App.disableSpeedLimiter(); _speedLimiterMenu2.close() } }
+                    CompactMenuItem { text: (App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: { App.enableSpeedLimiter(); _optionsMenu.dismiss() } }
+                    CompactMenuItem { text: (!App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: { App.disableSpeedLimiter(); _optionsMenu.dismiss() } }
                     MenuSeparator {}
-                    CompactMenuItem { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = root.settingsPageSpeedLimiter; settingsDialog.show() } }
+                    CompactMenuItem { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = root.settingsPageSpeedLimiter; settingsDialog.show(); _optionsMenu.dismiss() } }
                 }
                 Timer { id: _sl2CloseTimer; interval: 300; onTriggered: { if (!_speedLimiterMenu2.activeFocus) _speedLimiterMenu2.close() } }
             }
@@ -3352,6 +3420,7 @@ ApplicationWindow {
             }
         }
         Menu {
+            id: _helpMenu
             title: qsTr("Help")
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
@@ -3371,9 +3440,9 @@ ApplicationWindow {
                     id: _browserIntMenu
                     delegate: CompactMenuItem; implicitWidth: 260; topPadding: 0; bottomPadding: 0
                     onAboutToHide: _browserIntCloseTimer.stop()
-                    CompactMenuItem { text: qsTr("Browser Extensions…"); onTriggered: { browserIntegrationDialog.show(); browserIntegrationDialog.raise(); browserIntegrationDialog.requestActivate() } }
+                    CompactMenuItem { text: qsTr("Browser Extensions…"); onTriggered: { browserIntegrationDialog.show(); browserIntegrationDialog.raise(); browserIntegrationDialog.requestActivate(); _helpMenu.dismiss() } }
                     MenuSeparator {}
-                    CompactMenuItem { text: qsTr("Browser Settings…"); onTriggered: root.showSettingsPage(root.settingsPageBrowser) }
+                    CompactMenuItem { text: qsTr("Browser Settings…"); onTriggered: { root.showSettingsPage(root.settingsPageBrowser); _helpMenu.dismiss() } }
                 }
                 Timer { id: _browserIntCloseTimer; interval: 300; onTriggered: { if (!_browserIntMenu.activeFocus) _browserIntMenu.close() } }
             }
@@ -3467,6 +3536,7 @@ ApplicationWindow {
         Toolbar {
             id: toolbar
             Layout.fillWidth: true
+            Layout.preferredHeight: App.settings.toolbarSmallButtons ? 48 : 72
             queueModel: App.queueModel
             downloadTable: downloadTable
             onAddClicked:             { addUrlDialog.show(); addUrlDialog.raise() }
@@ -3836,6 +3906,7 @@ ApplicationWindow {
         StatusBar {
             id: statusBar
             Layout.fillWidth: true
+            visible: App.settings.showStatusBar
             activeCount:    App.activeDownloads
             completedCount: App.completedDownloads
             // _selectionVersion is the reactive trigger; Object.keys gives the live count.

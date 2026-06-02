@@ -58,6 +58,8 @@
     X(bool, bool, estimatedOnlineUsersInStatusBar, EstimatedOnlineUsersInStatusBar, false, "estimatedOnlineUsersInStatusBar", N) \
     X(bool, bool, ratioInStatusBar, RatioInStatusBar, false, "ratioInStatusBar", N) \
     X(bool, bool, showPublicIpInStatusBar, ShowPublicIpInStatusBar, false, "showPublicIpInStatusBar", N) \
+    X(bool, bool, showStatusBar, ShowStatusBar, true, "showStatusBar", N) \
+    X(bool, bool, toolbarSmallButtons, ToolbarSmallButtons, false, "toolbarSmallButtons", N) \
     X(bool, bool, showSearchEngine, ShowSearchEngine, false, "showSearchEngine", N) \
     X(bool, bool, showRssReader, ShowRssReader, false, "showRssReader", N) \
     X(int, int, sidebarWidth, SidebarWidth, 188, "sidebarWidth", S) \

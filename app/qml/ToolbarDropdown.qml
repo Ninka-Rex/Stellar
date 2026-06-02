@@ -18,11 +18,15 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-AbstractButton {
+// IDM-style split toolbar button: icon + label on left portion, small ▼ arrow
+// on the right that opens a queue-picker menu. Clicking the main area fires
+// queueSelected with an empty string (caller treats as "default queue").
+Item {
     id: root
     property string label: ""
     property string iconSrc: ""
     property var queueModel: null
+    property bool smallMode: false
 
     signal queueSelected(string queueId)
 
@@ -43,59 +47,94 @@ AbstractButton {
         return queues
     }
 
-    width: 84
-    height: 72
+    // Arrow chevron width — fixed regardless of button size
+    readonly property int _arrowW: smallMode ? 14 : 18
+    readonly property int _iconSize: smallMode ? 20 : 32
 
-    background: Rectangle {
-        color: root.pressed ? "#3a3a4a"
-             : root.hovered ? "#2d2d3d"
+    // ── Main click area (left portion) ────────────────────────────────────────
+    Rectangle {
+        id: mainArea
+        anchors { left: parent.left; top: parent.top; bottom: parent.bottom }
+        width: parent.width - _arrowW - 1   // -1 for divider
+        color: mainHover.pressed ? "#3a3a4a"
+             : mainHover.containsMouse ? "#2d2d3d"
              : "transparent"
-        radius: 0
-    }
 
-    // Fixed-position layout matching ToolbarBtn — icon and label anchored to
-    // absolute slots so wrapping or locale changes don't shift the icon.
-    // Center icon + label as a single group; label sizes to content height.
-    contentItem: Item {
-        anchors.fill: parent
-
-        readonly property int _iconSize: 32
+        // Icon + label centered as a group (same math as ToolbarBtn)
         readonly property int _gap: 4
-        readonly property int _groupH: _iconSize + _gap + btnLabel.contentHeight
+        readonly property int _groupH: root._iconSize + _gap + (root.smallMode ? 0 : lbl.contentHeight)
         readonly property int _topPad: Math.max(0, Math.round((root.height - _groupH) / 2))
 
         Image {
             id: btnIcon
-            y: parent._topPad
+            y: mainArea._topPad
             anchors.horizontalCenter: parent.horizontalCenter
             source: root.iconSrc
-            width: parent._iconSize
-            height: parent._iconSize
-            sourceSize.width: parent._iconSize
-            sourceSize.height: parent._iconSize
+            width: root._iconSize; height: root._iconSize
+            sourceSize.width: root._iconSize; sourceSize.height: root._iconSize
             fillMode: Image.PreserveAspectFit
-            smooth: true
+            smooth: false; mipmap: false; asynchronous: false; cache: true
         }
 
         Text {
-            id: btnLabel
-            y: btnIcon.y + btnIcon.height + parent._gap
+            id: lbl
+            visible: !root.smallMode
+            y: btnIcon.y + btnIcon.height + mainArea._gap
             anchors.horizontalCenter: parent.horizontalCenter
-            width: root.width - 4
+            width: parent.width - 4
             text: root.label
-            color: root.hovered ? "#ffffff" : "#d0d0d0"
+            color: mainHover.containsMouse ? "#ffffff" : "#d0d0d0"
             font.pixelSize: 11 * App.fontScale
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
             maximumLineCount: 2
             elide: Text.ElideRight
         }
+
+        MouseArea {
+            id: mainHover
+            anchors.fill: parent
+            hoverEnabled: true
+            onClicked: menu.popup(0, root.height)
+        }
     }
 
-    onClicked: menu.popup(0, height)
+    // ── Divider between main area and arrow (only visible on hover) ──────────
+    Rectangle {
+        anchors { top: parent.top; bottom: parent.bottom }
+        anchors.topMargin: 8; anchors.bottomMargin: 8
+        x: mainArea.width
+        width: 1
+        color: "#555566"
+        visible: mainHover.containsMouse || arrowHover.containsMouse
+    }
+
+    // ── Arrow drop zone (right portion) ───────────────────────────────────────
+    Rectangle {
+        id: arrowArea
+        anchors { right: parent.right; top: parent.top; bottom: parent.bottom }
+        width: _arrowW
+        color: arrowHover.pressed ? "#3a3a4a"
+             : arrowHover.containsMouse ? "#2d2d3d"
+             : "transparent"
+
+        Text {
+            anchors.centerIn: parent
+            text: "▾"
+            color: arrowHover.containsMouse ? "#ffffff" : "#aaaaaa"
+            font.pixelSize: smallMode ? 9 : 11
+        }
+
+        MouseArea {
+            id: arrowHover
+            anchors.fill: parent
+            hoverEnabled: true
+            onClicked: menu.popup(0, root.height)
+        }
+    }
 
     ToolTip.text: root.label
-    ToolTip.visible: root.hovered
+    ToolTip.visible: mainHover.containsMouse || arrowHover.containsMouse
     ToolTip.delay: 600
 
     Menu {

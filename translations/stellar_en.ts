@@ -3786,9 +3786,54 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/Main.qml" line="3278"/>
-        <source>Toolbar…</source>
-        <translation type="unfinished"></translation>
+        <location filename="../app/qml/Main.qml" line="0"/>
+        <source>SDM Tray Icon</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="0"/>
+        <source>Colored</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="0"/>
+        <source>Light</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="0"/>
+        <source>Dark</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="0"/>
+        <source>Hide Status Bar</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="0"/>
+        <source>Show Status Bar</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="0"/>
+        <source>Toolbar</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="0"/>
+        <source>Toolbar Settings…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="0"/>
+        <source>Large Buttons</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="0"/>
+        <source>Small Buttons</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../app/qml/Main.qml" line="3287"/>

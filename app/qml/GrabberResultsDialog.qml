@@ -655,7 +655,6 @@ Window {
                             delegate: ToolbarBtn {
                                 label: modelData.label
                                 iconSrc: "icons/" + modelData.icon
-                                iconSize: 32
                                 width: modelData.btnWidth
                                 height: 72
                                 enabled: {

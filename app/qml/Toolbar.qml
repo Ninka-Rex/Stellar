@@ -20,7 +20,7 @@ import QtQuick.Layouts
 
 Rectangle {
     id: root
-    height: 72
+    height: App.settings.toolbarSmallButtons ? 48 : 72
     color: "#1f1f1f"
 
     property var queueModel: null
@@ -162,8 +162,9 @@ Rectangle {
             model: root._visibleDefs
 
             delegate: Item {
-                width: modelData.key === "separator" ? 16 : 84
-                height: 72
+                readonly property bool _sm: App.settings.toolbarSmallButtons
+                width: modelData.key === "separator" ? (_sm ? 10 : 16) : (_sm ? 48 : 84)
+                height: _sm ? 48 : 72
 
                 ToolbarBtn {
                     anchors.fill: parent
@@ -172,6 +173,7 @@ Rectangle {
                              && modelData.key !== "stop_queue"
                     label: modelData.label || ""
                     iconSrc: modelData.iconSrc || ""
+                    smallMode: _sm
                     enabled: root._btnEnabled(modelData.key)
                     onClicked: root._handleClick(modelData.key)
                 }
@@ -181,6 +183,7 @@ Rectangle {
                     visible: modelData.key === "start_queue" || modelData.key === "stop_queue"
                     label: modelData.label || ""
                     iconSrc: modelData.iconSrc || ""
+                    smallMode: _sm
                     queueModel: root.queueModel
                     onQueueSelected: (queueId) => root._handleQueueClick(modelData.key, queueId)
                 }
@@ -188,7 +191,7 @@ Rectangle {
                 // Separator — vertical line centered in the 16px slot
                 Rectangle {
                     anchors.centerIn: parent
-                    width: 1; height: 36
+                    width: 1; height: _sm ? 24 : 36
                     color: "#3a3a3a"
                     visible: modelData.key === "separator"
                 }
