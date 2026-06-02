@@ -341,6 +341,7 @@ public:
     Q_INVOKABLE void sortDownloads(const QString &column, bool ascending);
     Q_INVOKABLE void pauseDownload(const QString &id);
     Q_INVOKABLE void resumeDownload(const QString &id);
+    Q_INVOKABLE void resumeDownloads(const QStringList &ids);
     Q_INVOKABLE void deleteDownload(const QString &id, int mode = 0);
     Q_INVOKABLE void openFile(const QString &id);
     Q_INVOKABLE void openFolder(const QString &id);
@@ -628,6 +629,7 @@ private:
     void flushDirty();
     void flushTorrentStats();
     bool canStartDownloadItem(DownloadItem *item) const;
+    void scheduleNextTorrentInQueue(const QString &queueId);
     qint64 queueTransferredBytesInWindow(const QString &queueId, int hours) const;
     void recordQueueTransferSample(const QString &queueId, qint64 bytes);
     void pruneQueueTransferHistory(const QString &queueId, int hours) const;

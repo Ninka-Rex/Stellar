@@ -26,9 +26,9 @@ Window {
     title: qsTr("Scheduler")
     modality: Qt.ApplicationModal
     width: 700
-    height: 520
+    height: 500
     minimumWidth: 700
-    minimumHeight: 520
+    minimumHeight: 500
     flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowSystemMenuHint | Qt.WindowCloseButtonHint
     color: "#1c1c1c"
 
@@ -821,6 +821,7 @@ Window {
 
                     // File table
                     Rectangle {
+                        id: fileTableRect
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         Layout.leftMargin: 8
@@ -830,24 +831,107 @@ Window {
                         border.width: 1
                         radius: 0
 
+                        // Resizable column widths — dragged via header separators.
+                        // All columns are fixed width; File Name has its own min width.
+                        // Total content width = margins + icon + fileName + size + status + timeLeft.
+                        // When total exceeds viewport, header and list scroll in sync.
+                        property real colIconWidth: 26
+                        property real colFileNameWidth: 200
+                        property real colSizeWidth: 90
+                        property real colStatusWidth: 80
+                        property real colTimeLeftWidth: 80
+                        // Total row content width (8px left margin + 8px right margin)
+                        readonly property real totalRowWidth: 16 + colIconWidth + colFileNameWidth + colSizeWidth + colStatusWidth + colTimeLeftWidth
+
                         ColumnLayout {
                             anchors { fill: parent; margins: 0 }
                             spacing: 0
 
-                            // Header
+                            // Header — sits in a Flickable synced to hScroll
                             Rectangle {
                                 Layout.fillWidth: true
                                 height: 26
                                 color: "#2d2d2d"
+                                clip: true
 
-                                RowLayout {
-                                    anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
-                                    spacing: 0
+                                Flickable {
+                                    id: headerFlick
+                                    anchors.fill: parent
+                                    contentWidth: fileTableRect.totalRowWidth
+                                    contentX: hScroll.position * (contentWidth - width)
+                                    interactive: false
+                                    clip: true
 
-                                    Text { Layout.fillWidth: true; text: qsTr("File Name"); color: "#999"; font.pixelSize: 11 * App.fontScale; font.bold: true }
-                                    Text { Layout.preferredWidth: 90; text: qsTr("Size"); color: "#999"; font.pixelSize: 11 * App.fontScale; font.bold: true }
-                                    Text { Layout.preferredWidth: 80; text: qsTr("Status"); color: "#999"; font.pixelSize: 11 * App.fontScale; font.bold: true }
-                                    Text { Layout.preferredWidth: 80; text: qsTr("Time Left"); color: "#999"; font.pixelSize: 11 * App.fontScale; font.bold: true }
+                                    Row {
+                                        x: 8; spacing: 0
+                                        height: headerFlick.height
+
+                                        Item { width: fileTableRect.colIconWidth; height: parent.height }
+
+                                        // File Name with drag handle on right edge
+                                        Item {
+                                            width: fileTableRect.colFileNameWidth; height: parent.height
+                                            Text { anchors.verticalCenter: parent.verticalCenter; text: qsTr("File Name"); color: "#999"; font.pixelSize: 11 * App.fontScale; font.bold: true }
+                                            Rectangle {
+                                                anchors { right: parent.right; top: parent.top; bottom: parent.bottom }
+                                                width: 4; color: "transparent"
+                                                MouseArea {
+                                                    anchors.fill: parent; cursorShape: Qt.SizeHorCursor
+                                                    property real _sx: 0; property real _sw: 0
+                                                    onPressed: { _sx = mapToItem(null, mouseX, 0).x; _sw = fileTableRect.colFileNameWidth }
+                                                    onMouseXChanged: if (pressed) { var dx = mapToItem(null, mouseX, 0).x - _sx; fileTableRect.colFileNameWidth = Math.max(80, _sw + dx) }
+                                                }
+                                            }
+                                        }
+
+                                        // Size with drag handle
+                                        Item {
+                                            width: fileTableRect.colSizeWidth; height: parent.height
+                                            Text { anchors.verticalCenter: parent.verticalCenter; text: qsTr("Size"); color: "#999"; font.pixelSize: 11 * App.fontScale; font.bold: true }
+                                            Rectangle {
+                                                anchors { right: parent.right; top: parent.top; bottom: parent.bottom }
+                                                width: 4; color: "transparent"
+                                                MouseArea {
+                                                    anchors.fill: parent; cursorShape: Qt.SizeHorCursor
+                                                    property real _sx: 0; property real _sw: 0
+                                                    onPressed: { _sx = mapToItem(null, mouseX, 0).x; _sw = fileTableRect.colSizeWidth }
+                                                    onMouseXChanged: if (pressed) { var dx = mapToItem(null, mouseX, 0).x - _sx; fileTableRect.colSizeWidth = Math.max(50, _sw + dx) }
+                                                }
+                                            }
+                                        }
+
+                                        // Status with drag handle
+                                        Item {
+                                            width: fileTableRect.colStatusWidth; height: parent.height
+                                            Text { anchors.verticalCenter: parent.verticalCenter; text: qsTr("Status"); color: "#999"; font.pixelSize: 11 * App.fontScale; font.bold: true }
+                                            Rectangle {
+                                                anchors { right: parent.right; top: parent.top; bottom: parent.bottom }
+                                                width: 4; color: "transparent"
+                                                MouseArea {
+                                                    anchors.fill: parent; cursorShape: Qt.SizeHorCursor
+                                                    property real _sx: 0; property real _sw: 0
+                                                    onPressed: { _sx = mapToItem(null, mouseX, 0).x; _sw = fileTableRect.colStatusWidth }
+                                                    onMouseXChanged: if (pressed) { var dx = mapToItem(null, mouseX, 0).x - _sx; fileTableRect.colStatusWidth = Math.max(50, _sw + dx) }
+                                                }
+                                            }
+                                        }
+
+                                        // Time Left (no handle needed — last column)
+                                        Item {
+                                            width: fileTableRect.colTimeLeftWidth; height: parent.height
+                                            Text { anchors.verticalCenter: parent.verticalCenter; text: qsTr("Time Left"); color: "#999"; font.pixelSize: 11 * App.fontScale; font.bold: true }
+                                            Rectangle {
+                                                anchors { right: parent.right; top: parent.top; bottom: parent.bottom }
+                                                width: 4; color: "transparent"
+                                                MouseArea {
+                                                    anchors.fill: parent; cursorShape: Qt.SizeHorCursor
+                                                    property real _sx: 0; property real _sw: 0
+                                                    onPressed: { _sx = mapToItem(null, mouseX, 0).x; _sw = fileTableRect.colTimeLeftWidth }
+                                                    onMouseXChanged: if (pressed) { var dx = mapToItem(null, mouseX, 0).x - _sx; fileTableRect.colTimeLeftWidth = Math.max(50, _sw + dx) }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
 
@@ -860,18 +944,17 @@ Window {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
 
-                            ListView {
+                                ListView {
                                     id: filesListView
-                                    anchors.fill: parent
+                                    anchors { top: parent.top; bottom: hScroll.visible ? hScroll.top : parent.bottom; left: parent.left; right: parent.right }
                                     model: root.visible ? App.downloadModel : null
                                     clip: true
                                     currentIndex: -1
 
                                     delegate: Rectangle {
                                         id: delegateContainer
-                                        width: ListView.view.width
-                                        // Collapse height to zero for items not belonging to the selected queue
-                                        // so they don't create invisible gaps in the list.
+                                        // Row is wider than the viewport when columns are resized out
+                                        width: Math.max(filesListView.width, fileTableRect.totalRowWidth)
                                         readonly property bool _inQueue: model.item !== null && root.selectedQueue !== null && model.item.queueId === root.selectedQueue.id
                                         visible: _inQueue
                                         height: _inQueue ? 26 : 0
@@ -886,71 +969,97 @@ Window {
                                             onClicked: filesListView.currentIndex = index
                                         }
 
-                                        RowLayout {
-                                            anchors.fill: parent
-                                            spacing: 8
-                                            anchors.leftMargin: 6
+                                        Row {
+                                            x: 8; spacing: 0
+                                            height: parent.height
 
-                                            Image {
-                                                Layout.preferredWidth: 18; Layout.preferredHeight: 18
-                                                source: model.item ? "image://fileicon/" + (model.item.savePath + "/" + model.item.filename).replace(/\\/g, "/") : ""
-                                                sourceSize: Qt.size(18, 18)
-                                                fillMode: Image.PreserveAspectFit
-                                                smooth: true
-                                            }
-
-                                            Text {
-                                                Layout.fillWidth: true
-                                                text: model.item ? model.item.filename : ""
-                                                color: filesListView.currentIndex === index ? "#88bbff" : "#d0d0d0"
-                                                font.pixelSize: 12 * App.fontScale
-                                                font.bold: filesListView.currentIndex === index
-                                                elide: Text.ElideMiddle
-                                            }
-
-                                            Text {
-                                                Layout.preferredWidth: parent.width * 0.15
-                                                text: {
-                                                    if (!model.item || model.item.totalBytes <= 0) return "--"
-                                                    var b = model.item.totalBytes
-                                                    if (b < 1048576) return (b / 1024).toFixed(1) + " KB"
-                                                    if (b < 1073741824) return (b / 1048576).toFixed(1) + " MB"
-                                                    return (b / 1073741824).toFixed(2) + " GB"
+                                            Item {
+                                                width: fileTableRect.colIconWidth; height: parent.height
+                                                Image {
+                                                    anchors.centerIn: parent
+                                                    width: 18; height: 18
+                                                    source: model.item ? "image://fileicon/" + (model.item.savePath + "/" + model.item.filename).replace(/\\/g, "/") : ""
+                                                    sourceSize: Qt.size(18, 18)
+                                                    fillMode: Image.PreserveAspectFit
+                                                    smooth: true
                                                 }
-                                                color: filesListView.currentIndex === index ? "#aaccff" : "#b0b0b0"
-                                                font.pixelSize: 12 * App.fontScale
                                             }
 
-                                            Text {
-                                                Layout.preferredWidth: parent.width * 0.15
-                                                text: model.item ? model.item.status : "--"
-                                                color: "#ffffff"
-                                                font.pixelSize: 12 * App.fontScale
+                                            Item {
+                                                width: fileTableRect.colFileNameWidth; height: parent.height
+                                                Text {
+                                                    anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; rightMargin: 4 }
+                                                    text: model.item ? model.item.filename : ""
+                                                    color: filesListView.currentIndex === index ? "#88bbff" : "#d0d0d0"
+                                                    font.pixelSize: 12 * App.fontScale
+                                                    font.bold: filesListView.currentIndex === index
+                                                    elide: Text.ElideMiddle
+                                                }
                                             }
 
-                                            Text {
-                                                Layout.preferredWidth: parent.width * 0.15
-                                                text: model.item ? model.item.timeLeft : "--"
-                                                color: filesListView.currentIndex === index ? "#aaccff" : "#b0b0b0"
-                                                font.pixelSize: 12 * App.fontScale
+                                            Item {
+                                                width: fileTableRect.colSizeWidth; height: parent.height
+                                                Text {
+                                                    anchors.verticalCenter: parent.verticalCenter
+                                                    text: {
+                                                        if (!model.item || model.item.totalBytes <= 0) return "--"
+                                                        var b = model.item.totalBytes
+                                                        if (b < 1048576) return (b / 1024).toFixed(1) + " KB"
+                                                        if (b < 1073741824) return (b / 1048576).toFixed(1) + " MB"
+                                                        return (b / 1073741824).toFixed(2) + " GB"
+                                                    }
+                                                    color: filesListView.currentIndex === index ? "#aaccff" : "#b0b0b0"
+                                                    font.pixelSize: 12 * App.fontScale
+                                                }
+                                            }
+
+                                            Item {
+                                                width: fileTableRect.colStatusWidth; height: parent.height
+                                                Text {
+                                                    anchors.verticalCenter: parent.verticalCenter
+                                                    text: model.item ? model.item.status : "--"
+                                                    color: filesListView.currentIndex === index ? "#aaccff" : "#b0b0b0"
+                                                    font.pixelSize: 12 * App.fontScale
+                                                }
+                                            }
+
+                                            Item {
+                                                width: fileTableRect.colTimeLeftWidth; height: parent.height
+                                                Text {
+                                                    anchors.verticalCenter: parent.verticalCenter
+                                                    text: model.item ? model.item.timeLeft : "--"
+                                                    color: filesListView.currentIndex === index ? "#aaccff" : "#b0b0b0"
+                                                    font.pixelSize: 12 * App.fontScale
+                                                }
                                             }
                                         }
-                                     }
+                                    }
+
+                                    // Sync horizontal scroll: when delegate width > listview width, ListView
+                                    // itself doesn't scroll horizontally — the delegate Row is just clipped.
+                                    // Mirror hScroll offset into contentX of a horizontal Flickable instead.
+                                    // Actually we clip via the outer approach: translate the Row by -hScroll.
+                                    // Simpler: use contentX on the ListView (it IS a Flickable).
+                                    contentX: hScroll.position * Math.max(0, fileTableRect.totalRowWidth - filesListView.width)
                                 }
 
-                            // Empty-state overlay: centered in the list area.
-                            // Anchored inside the wrapper Item, not in the ColumnLayout,
-                            // so it sits in the middle of the list regardless of the
-                            // ListView consuming all available height.
+                                ScrollBar {
+                                    id: hScroll
+                                    anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
+                                    orientation: Qt.Horizontal
+                                    visible: fileTableRect.totalRowWidth > fileTableRect.width
+                                    policy: ScrollBar.AsNeeded
+                                }
+
+                            // Empty-state overlay
                             Text {
                                 anchors.centerIn: parent
                                 text: {
                                     if (!root.selectedQueue) return qsTr("No queue selected")
-                                    // Check if any item in the model belongs to this queue
                                     for (var i = 0; i < App.downloadModel.rowCount(); i++) {
                                         var item = App.downloadModel.data(App.downloadModel.index(i, 0), Qt.UserRole + 2) // ItemRole
                                         if (item && item.queueId === root.selectedQueue.id) {
-                                            return "" // Has files, don't show placeholder
+                                            return ""
                                         }
                                     }
                                     return qsTr("No files in queue")

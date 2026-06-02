@@ -1622,6 +1622,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         m_torrentSession->applySettings(m_settings);
     });
     connect(m_torrentSession, &TorrentSessionManager::torrentShareLimitReached, this, [this](const QString &id, int action) {
+        auto *item = m_downloadModel->itemById(id);
+        const QString queueId = item ? item->queueId() : QString();
         if (action == 0 || action == 1) {
             pauseDownload(id);
         } else if (action == 2) {
@@ -1629,6 +1631,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         } else if (action == 3) {
             deleteDownload(id, 1);
         }
+        scheduleNextTorrentInQueue(queueId);
     });
     connect(m_torrentSession, &TorrentSessionManager::bannedPeersChanged,
             this, &AppController::torrentBannedPeersChanged);
@@ -1660,15 +1663,19 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             }
             emit downloadCompleted(item);
         }
+        // Advance the queue: start the next queued torrent in the same queue.
+        scheduleNextTorrentInQueue(item->queueId());
         emit activeDownloadsChanged();
     });
     connect(m_torrentSession, &TorrentSessionManager::torrentErrored, this, [this](const QString &id, const QString &reason) {
         auto *item = m_downloadModel->itemById(id);
         if (!item)
             return;
+        const QString queueId = item->queueId();
         item->setStatus(DownloadItem::Status::Error);
         item->setErrorString(reason);
         scheduleSave(id);
+        scheduleNextTorrentInQueue(queueId);
         emit activeDownloadsChanged();
     });
 
@@ -4372,6 +4379,35 @@ void AppController::resumeDownload(const QString &id) {
         emit downloadAdded(item);
 }
 
+void AppController::resumeDownloads(const QStringList &ids)
+{
+    // Bulk resume: batch all per-item work, emit activeDownloadsChanged once at the end.
+    // Avoids N×(session mutex + signal emission + scheduleNext iteration) for large selections.
+    bool anyChanged = false;
+    for (const QString &id : ids) {
+        DownloadItem *item = m_downloadModel->itemById(id);
+        if (!item) continue;
+        m_pendingFileInfoDownloads.remove(id);
+
+        if (item->isTorrent()) {
+            m_torrentSession->resume(item);
+            applyPerTorrentSpeedLimits(m_torrentSession, item);
+            scheduleSave(id);
+            anyChanged = true;
+        } else if (item->isYtdlp()) {
+            // delegate to single-item path — yt-dlp resume is cheap
+            resumeDownload(id);
+        } else {
+            m_queue->resume(id);
+            anyChanged = true;
+        }
+    }
+    if (anyChanged) {
+        m_queue->scheduleNext();
+        emit activeDownloadsChanged();
+    }
+}
+
 void AppController::forceRecheckTorrent(const QString &id) {
     auto *item = m_downloadModel->itemById(id);
     if (item && item->isTorrent() && m_torrentSession) {
@@ -6159,6 +6195,41 @@ bool AppController::canStartDownloadItem(DownloadItem *item) const
     return true;
 }
 
+void AppController::scheduleNextTorrentInQueue(const QString &queueId)
+{
+    if (queueId.isEmpty())
+        return;
+    Queue *queue = m_queueModel ? m_queueModel->queueById(queueId) : nullptr;
+    if (!queue || queue->id() == QStringLiteral("download-limits"))
+        return;
+
+    const int maxConcurrent = queue->maxConcurrentDownloads() > 0
+        ? queue->maxConcurrentDownloads()
+        : INT_MAX;
+
+    // Count torrents in this queue that are actively downloading
+    int activeTorrents = 0;
+    for (DownloadItem *candidate : m_queue->items()) {
+        if (!candidate || candidate->queueId() != queueId || !candidate->isTorrent())
+            continue;
+        const auto s = candidate->statusEnum();
+        if (s == DownloadItem::Status::Downloading || s == DownloadItem::Status::Checking)
+            ++activeTorrents;
+    }
+
+    // Start queued torrents up to the concurrency limit
+    for (DownloadItem *item : m_queue->items()) {
+        if (activeTorrents >= maxConcurrent)
+            break;
+        if (!item || item->queueId() != queueId || !item->isTorrent())
+            continue;
+        if (item->statusEnum() != DownloadItem::Status::Queued)
+            continue;
+        resumeDownload(item->id());
+        ++activeTorrents;
+    }
+}
+
 void AppController::pruneQueueTransferHistory(const QString &queueId, int hours) const
 {
     if (queueId.isEmpty() || hours <= 0 || !m_queueTransferHistory.contains(queueId))
@@ -6593,8 +6664,20 @@ void AppController::startQueue(const QString &queueId)
     // Mark as recently run for periodic schedules
     m_lastQueueRun[queueId] = QDateTime::currentDateTime();
 
-    // Resume torrent items explicitly via TorrentSessionManager; non-torrent items
-    // are moved to Queued and started by DownloadQueue::scheduleNext().
+    // Resume torrent items explicitly via TorrentSessionManager up to maxConcurrent;
+    // excess queued torrents get Status::Queued so the UI shows their waiting state.
+    // Non-torrent items are moved to Queued and started by DownloadQueue::scheduleNext().
+    const int maxConcurrent = q->maxConcurrentDownloads() > 0 ? q->maxConcurrentDownloads() : INT_MAX;
+    int activeTorrents = 0;
+    // Count already-active torrents in this queue (e.g. from a prior partial start)
+    for (DownloadItem *item : m_queue->items()) {
+        if (!item || item->queueId() != queueId || !item->isTorrent())
+            continue;
+        const auto s = item->statusEnum();
+        if (s == DownloadItem::Status::Downloading || s == DownloadItem::Status::Checking)
+            ++activeTorrents;
+    }
+
     int queuedCount = 0;
     for (DownloadItem *item : m_queue->items()) {
         if (!item || item->queueId() != queueId)
@@ -6605,8 +6688,13 @@ void AppController::startQueue(const QString &queueId)
             continue;
 
         if (item->isTorrent()) {
-            if (canStartDownloadItem(item))
+            if (activeTorrents < maxConcurrent && canStartDownloadItem(item)) {
                 resumeDownload(item->id());
+                ++activeTorrents;
+            } else {
+                // Mark as Queued so status bar and SchedulerDialog show correct state
+                item->setStatus(DownloadItem::Status::Queued);
+            }
             continue;
         }
 

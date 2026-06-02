@@ -1828,7 +1828,9 @@ void TorrentSessionManager::resume(DownloadItem *item) {
     handle.unset_flags(libtorrent::torrent_flags::auto_managed);
     handle.resume();
     item->setLastTryAt(QDateTime::currentDateTime());
-    updateItemFromStatus(item, handle);
+    // Don't call updateItemFromStatus here — it acquires the session mutex per torrent
+    // and causes UI freezes when resuming many torrents at once. The alert timer fires
+    // post_torrent_updates() every second, so status propagates within one tick.
 #else
     Q_UNUSED(item);
 #endif

@@ -128,10 +128,13 @@ Rectangle {
 
     function resumeSelected() {
         _selectionVersion
+        var ids = []
         for (var row in _selectedRows) {
             var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
-            if (item) App.resumeDownload(item.id)
+            if (item) ids.push(item.id)
         }
+        if (ids.length === 1) App.resumeDownload(ids[0])
+        else if (ids.length > 1) App.resumeDownloads(ids)
     }
     function stopSelected() {
         _selectionVersion
