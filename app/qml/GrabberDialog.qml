@@ -22,7 +22,7 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: qsTr("Stellar Grabber â€“ Step %1 of %2: %3").arg(stepIndex + 1).arg(stepTitles.length).arg(stepTitles[stepIndex])
+    title: qsTr("Stellar Grabber — Step %1 of %2: %3").arg(stepIndex + 1).arg(stepTitles.length).arg(stepTitles[stepIndex])
     width: 700
     height: 540
     minimumWidth: 700
@@ -584,7 +584,7 @@ Window {
             anchors.margins: 0
             spacing: 0
 
-            // Menu bar â€” real MenuBar (not ApplicationWindow, but works standalone)
+            // Menu bar — real MenuBar (not ApplicationWindow, but works standalone)
             MenuBar {
                 Layout.fillWidth: true
 
@@ -602,7 +602,7 @@ Window {
                     indicator: Item {
                         width: _cmi.checkable ? 16 : 0; height: _cmi.checkable ? 16 : 0
                         Text {
-                            text: "âœ“"; visible: _cmi.checkable && _cmi.checked
+                            text: "✓"; visible: _cmi.checkable && _cmi.checked
                             color: "#4488dd"; font.pixelSize: 12 * App.fontScale
                             anchors.centerIn: parent
                         }
@@ -610,7 +610,7 @@ Window {
                     arrow: Text {
                         x: _cmi.width - width - 8
                         anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                        text: "â–¶"; font.pixelSize: 8 * App.fontScale; color: "#888888"
+                        text: "▶"; font.pixelSize: 8 * App.fontScale; color: "#888888"
                         visible: _cmi.subMenu !== null
                     }
                     contentItem: RowLayout {
@@ -688,7 +688,7 @@ Window {
 
             }
 
-            // Step header â€” icon + title + breadcrumb pill
+            // Step header — icon + title + breadcrumb pill
             Rectangle {
                 Layout.fillWidth: true
                 height: 46
@@ -722,7 +722,7 @@ Window {
                     }
                 }
 
-                // Step breadcrumb â€” right side
+                // Step breadcrumb — right side
                 Row {
                     anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 14 }
                     spacing: 4
@@ -736,7 +736,7 @@ Window {
                             // Chevron separator (not before first)
                             Text {
                                 visible: index > 0
-                                text: "â€º"
+                                text: "›"
                                 color: "#555"
                                 font.pixelSize: 14 * App.fontScale
                                 anchors.verticalCenter: parent.verticalCenter
