@@ -272,11 +272,13 @@ Rectangle {
             }
 
             HoverHandler { id: onlineUsersHover }
-            ToolTip.visible: onlineUsersHover.hovered
-            ToolTip.delay: 250
-            ToolTip.timeout: 10000
-            ToolTip.text: App.estimatedOnlineUsersDebugText
-                + (App.dhtCrawlInProgress ? "" : "\n\nClick to recrawl now.")
+            ThemedToolTip {
+                visible: onlineUsersHover.hovered
+                delay: 250
+                timeout: 10000
+                text: App.estimatedOnlineUsersDebugText
+                    + (App.dhtCrawlInProgress ? "" : "\n\nClick to recrawl now.")
+            }
 
             MouseArea {
                 anchors.fill: parent
@@ -308,10 +310,12 @@ Rectangle {
             }
 
             HoverHandler { id: ratioHover }
-            ToolTip.visible: ratioHover.hovered
-            ToolTip.delay: 250
-            ToolTip.timeout: 6000
-            ToolTip.text: qsTr("All-time share ratio\nClick to open Statistics")
+            ThemedToolTip {
+                visible: ratioHover.hovered
+                delay: 250
+                timeout: 6000
+                text: qsTr("All-time share ratio\nClick to open Statistics")
+            }
 
             MouseArea {
                 anchors.fill: parent
@@ -373,35 +377,37 @@ Rectangle {
                 id: ipHover
                 onHoveredChanged: if (hovered) publicIpRow._refreshTooltipData()
             }
-            ToolTip.visible: ipHover.hovered
-            ToolTip.delay: 250
-            ToolTip.timeout: 10000
-            ToolTip.text: {
-                var lines = []
-                var ip = App.publicIp
-                if (!ip || ip.length === 0) {
-                    lines.push(qsTr("No network connectivity detected"))
-                } else {
-                    lines.push(qsTr("Public IP: ") + ip)
-                    if (App.publicIpListenPort > 0)
-                        lines.push(qsTr("Listening port: ") + App.publicIpListenPort)
-                    if (!App.hasIncomingConnections) {
-                        lines.push("")
-                        lines.push(qsTr("No incoming connections, network may be misconfigured"))
+            ThemedToolTip {
+                visible: ipHover.hovered
+                delay: 250
+                timeout: 10000
+                text: {
+                    var lines = []
+                    var ip = App.publicIp
+                    if (!ip || ip.length === 0) {
+                        lines.push(qsTr("No network connectivity detected"))
+                    } else {
+                        lines.push(qsTr("Public IP: ") + ip)
+                        if (App.publicIpListenPort > 0)
+                            lines.push(qsTr("Listening port: ") + App.publicIpListenPort)
+                        if (!App.hasIncomingConnections) {
+                            lines.push("")
+                            lines.push(qsTr("No incoming connections, network may be misconfigured"))
+                        }
+                        if (publicIpRow._ifaceType === 1 && publicIpRow._wifiOk) {
+                            lines.push("")
+                            lines.push(qsTr("WiFi: ") + publicIpRow._wifiSsid)
+                            lines.push(qsTr("Signal: ") + publicIpRow._wifiPct + "%  ("
+                                       + publicIpRow._wifiRssi + " dBm)")
+                        } else if (publicIpRow._ifaceType === 2) {
+                            lines.push("")
+                            lines.push(qsTr("Connection: Ethernet"))
+                        }
                     }
-                    if (publicIpRow._ifaceType === 1 && publicIpRow._wifiOk) {
-                        lines.push("")
-                        lines.push(qsTr("WiFi: ") + publicIpRow._wifiSsid)
-                        lines.push(qsTr("Signal: ") + publicIpRow._wifiPct + "%  ("
-                                   + publicIpRow._wifiRssi + " dBm)")
-                    } else if (publicIpRow._ifaceType === 2) {
-                        lines.push("")
-                        lines.push(qsTr("Connection: Ethernet"))
-                    }
+                    lines.push("")
+                    lines.push(qsTr("Click to copy IP"))
+                    return lines.join("\n")
                 }
-                lines.push("")
-                lines.push(qsTr("Click to copy IP"))
-                return lines.join("\n")
             }
 
             MouseArea {

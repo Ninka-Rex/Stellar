@@ -55,40 +55,21 @@ Item {
     readonly property int _arrowW: smallMode ? 14 : 18
     readonly property int _iconSize: smallMode ? 20 : 32
 
-    // ── Main click area (left portion) ───────────────────────────────────
+    // ── Single highlight spanning the whole button ──────────────────────
+    // One background behind both click zones so hover/press is one continuous
+    // blue box (no internal gap or divider line).
     Rectangle {
+        anchors.fill: parent
+        color: (mainHover.pressed || arrowHover.pressed) ? ColorPalette.toolbarPressBg
+             : (mainHover.containsMouse || arrowHover.containsMouse) ? ColorPalette.toolbarHoverBg
+             : "transparent"
+    }
+
+    // ── Main click area (left portion) ───────────────────────────────────
+    Item {
         id: mainArea
         anchors { left: parent.left; top: parent.top; bottom: parent.bottom }
-        width: parent.width - _arrowW - 1   // -1 for divider
-        color: mainHover.pressed ? ColorPalette.toolbarPressBg
-             : mainHover.containsMouse ? ColorPalette.toolbarHoverBg
-             : "transparent"
-
-        Image {
-            id: btnIcon
-            y: root.smallMode ? Math.round((root.height - root._iconSize) / 2) : root.iconTop
-            anchors.horizontalCenter: parent.horizontalCenter
-            source: root.iconSrc
-            width: root._iconSize; height: root._iconSize
-            sourceSize.width: root._iconSize; sourceSize.height: root._iconSize
-            fillMode: Image.PreserveAspectFit
-            smooth: false; mipmap: false; asynchronous: false; cache: true
-        }
-
-        Text {
-            id: lbl
-            visible: !root.smallMode
-            y: root.textTop
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: parent.width - 4
-            text: root.label
-            color: mainHover.containsMouse ? ColorPalette.textHeader : ColorPalette.textPrimary
-            font.pixelSize: 11 * App.fontScale
-            horizontalAlignment: Text.AlignHCenter
-            wrapMode: Text.WordWrap
-            maximumLineCount: 2
-            elide: Text.ElideRight
-        }
+        width: parent.width - _arrowW
 
         MouseArea {
             id: mainHover
@@ -98,24 +79,47 @@ Item {
         }
     }
 
-    // ── Divider between main area and arrow (only visible on hover) ──────
-    Rectangle {
-        anchors { top: parent.top; bottom: parent.bottom }
-        anchors.topMargin: 8; anchors.bottomMargin: 8
-        x: mainArea.width
-        width: 1
-        color: ColorPalette.border
-        visible: mainHover.containsMouse || arrowHover.containsMouse
+    // Icon + label centered on the WHOLE button (not the narrower main click
+    // area) so they match a plain ToolbarBtn. Kept outside mainArea — they are
+    // purely visual; mainArea/arrowArea own the click handling. Using the full
+    // button width gives the label the same room as ToolbarBtn, so wider fonts
+    // (Linux) don't wrap "Start Queue" onto a clipped second line.
+    Image {
+        id: btnIcon
+        y: root.smallMode ? Math.round((root.height - root._iconSize) / 2) : root.iconTop
+        anchors.horizontalCenter: parent.horizontalCenter
+        source: root.iconSrc
+        width: root._iconSize; height: root._iconSize
+        sourceSize.width: root._iconSize; sourceSize.height: root._iconSize
+        fillMode: Image.PreserveAspectFit
+        smooth: false; mipmap: false; asynchronous: false; cache: true
+    }
+
+    Text {
+        id: lbl
+        visible: !root.smallMode
+        // Above the arrow zone so its hover background never paints over the
+        // right end of the label (was clipping "...ue" on "Start Queue").
+        z: 1
+        y: root.textTop
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: root.width - 4
+        text: root.label
+        color: mainHover.containsMouse ? ColorPalette.textHeader : ColorPalette.textPrimary
+        font.pixelSize: 11 * App.fontScale
+        horizontalAlignment: Text.AlignHCenter
+        wrapMode: Text.WordWrap
+        maximumLineCount: 2
+        elide: Text.ElideRight
     }
 
     // ── Arrow drop zone (right portion) ──────────────────────────────────
-    Rectangle {
+    // Transparent — the single full-width highlight behind it supplies the
+    // background; no divider line so the box reads as one continuous blue box.
+    Item {
         id: arrowArea
         anchors { right: parent.right; top: parent.top; bottom: parent.bottom }
         width: _arrowW
-        color: arrowHover.pressed ? ColorPalette.toolbarPressBg
-             : arrowHover.containsMouse ? ColorPalette.toolbarHoverBg
-             : "transparent"
 
         Text {
             anchors.centerIn: parent
@@ -132,9 +136,11 @@ Item {
         }
     }
 
-    ToolTip.text: root.label
-    ToolTip.visible: mainHover.containsMouse || arrowHover.containsMouse
-    ToolTip.delay: 600
+    ThemedToolTip {
+        text: root.label
+        visible: mainHover.containsMouse || arrowHover.containsMouse
+        delay: 600
+    }
 
     Menu {
         id: menu

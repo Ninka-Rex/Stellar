@@ -83,7 +83,9 @@ AbstractButton {
         }
     }
 
-    ToolTip.text: root.label
-    ToolTip.visible: root.hovered
-    ToolTip.delay: 600
+    ThemedToolTip {
+        text: root.label
+        visible: root.hovered
+        delay: 600
+    }
 }

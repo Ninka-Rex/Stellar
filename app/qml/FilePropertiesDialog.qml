@@ -2096,6 +2096,57 @@ Window {
                                         if (newId !== root.item.category)
                                             App.setDownloadCategory(root.item.id, newId)
                                     }
+
+                                    // Themed look — default Qt ComboBox uses the
+                                    // system palette, giving white-on-white popup
+                                    // items in this dialog. Theme content, field
+                                    // and popup explicitly via ColorPalette.
+                                    contentItem: Text {
+                                        leftPadding: 8
+                                        text: categoryCombo.displayText
+                                        font: categoryCombo.font
+                                        color: ColorPalette.textPrimary
+                                        verticalAlignment: Text.AlignVCenter
+                                        elide: Text.ElideRight
+                                    }
+                                    background: Rectangle {
+                                        color: ColorPalette.cardBg
+                                        border.color: categoryCombo.activeFocus ? "#4488dd" : ColorPalette.border
+                                        radius: 2
+                                    }
+                                    delegate: ItemDelegate {
+                                        width: categoryCombo.width
+                                        height: 24
+                                        highlighted: categoryCombo.highlightedIndex === index
+                                        contentItem: Text {
+                                            text: model.categoryLabel
+                                            font.pixelSize: 11 * App.fontScale
+                                            color: ColorPalette.textPrimary
+                                            verticalAlignment: Text.AlignVCenter
+                                            elide: Text.ElideRight
+                                        }
+                                        background: Rectangle {
+                                            color: parent.highlighted ? ColorPalette.toolbarHoverBg : "transparent"
+                                        }
+                                    }
+                                    popup: Popup {
+                                        y: categoryCombo.height
+                                        width: categoryCombo.width
+                                        implicitHeight: Math.min(contentItem.implicitHeight, 240)
+                                        padding: 1
+                                        contentItem: ListView {
+                                            clip: true
+                                            implicitHeight: contentHeight
+                                            model: categoryCombo.popup.visible ? categoryCombo.delegateModel : null
+                                            currentIndex: categoryCombo.highlightedIndex
+                                            ScrollIndicator.vertical: ScrollIndicator {}
+                                        }
+                                        background: Rectangle {
+                                            color: ColorPalette.cardBg
+                                            border.color: ColorPalette.border
+                                            radius: 2
+                                        }
+                                    }
                                 }
 
                                 // Note
