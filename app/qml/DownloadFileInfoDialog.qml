@@ -379,14 +379,14 @@ Window {
                         }
                         Rectangle {
                             Layout.fillWidth: true; Layout.preferredHeight: 22
-                            color: addCatSitesChk.checked ? ColorPalette.inputBg : "#161616"
-                            border.color: addCatSitesField.activeFocus ? "#4488dd" : "#2a2a2a"
+                            color: addCatSitesChk.checked ? ColorPalette.inputBg : ColorPalette.panelBg
+                            border.color: addCatSitesField.activeFocus ? "#4488dd" : ColorPalette.border
                             border.width: 1; radius: 2
                             TextInput {
                                 id: addCatSitesField
                                 anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
                                 verticalAlignment: TextInput.AlignVCenter
-                                color: addCatSitesChk.checked ? ColorPalette.textPrimary : "#555555"
+                                color: addCatSitesChk.checked ? ColorPalette.textPrimary : ColorPalette.textDisabled
                                 font.pixelSize: 11 * App.fontScale; selectByMouse: true; clip: true
                                 enabled: addCatSitesChk.checked
                             }
@@ -613,14 +613,14 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             text: qsTr("Remember this path for \"%1\" category").arg(root.categoryLabels[catCombo.currentIndex] || "")
                             contentItem: Text {
-                                text: parent.text; color: "#707070"; font.pixelSize: 11 * App.fontScale
+                                text: parent.text; color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale
                                 leftPadding: parent.indicator.width + 4
                                 verticalAlignment: Text.AlignVCenter
                             }
                         }
                         Rectangle {
                             Layout.fillWidth: true; Layout.preferredHeight: 22
-                            color: "#161616"; border.color: "#2a2a2a"; border.width: 1; radius: 2
+                            color: ColorPalette.panelBg; border.color: ColorPalette.border; border.width: 1; radius: 2
                             TextInput {
                                 id: dirOnlyField
                                 anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5

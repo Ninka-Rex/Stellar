@@ -178,6 +178,7 @@ Window {
         if (visible) {
             _centerOnOwner()
             App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/wand.svg")
+            App.setWindowDarkTitleBar(root, App.settings.darkMode)
             raise(); requestActivate()
             if (pendingUrl.length > 0) _startProbe()
         } else {
@@ -420,7 +421,7 @@ Window {
         Rectangle {
             Layout.fillWidth: true
             implicitHeight: 52
-            color: "#1e1e26"
+            color: ColorPalette.headerStripBg
 
             // Left accent stripe
             Rectangle {
@@ -456,7 +457,7 @@ Window {
                               : (root._probing ? qsTr("Fetching video info.")
                               : (root._probeError.length > 0 ? qsTr("Could not fetch video info")
                               : qsTr("Video Download")))
-                        color: "#eaeaea"; font.pixelSize: 13 * App.fontScale; font.weight: Font.Medium
+                        color: ColorPalette.textHeader; font.pixelSize: 13 * App.fontScale; font.weight: Font.Medium
                         elide: Text.ElideRight
                     }
                     Text {
@@ -470,7 +471,7 @@ Window {
         }
 
         // separator under header
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e38" }
+        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.dividerBg }
 
         // ?? Body ?????????????????????????????????????????????????????????????
         Item {
@@ -623,10 +624,10 @@ Window {
                         Rectangle {
                             id: fmtTrigger
                             anchors.fill: parent; radius: 3
-                            color: fmtDropPopup.opened ? "#1a3060"
-                                   : (fmtHover.containsMouse ? "#202030" : ColorPalette.inputBg)
+                            color: fmtDropPopup.opened ? ColorPalette.selectionBg
+                                   : (fmtHover.containsMouse ? ColorPalette.hoverBg : ColorPalette.inputBg)
                             border.color: fmtDropPopup.opened ? "#4488dd"
-                                          : (fmtHover.containsMouse ? "#4a4a6a" : ColorPalette.border)
+                                          : (fmtHover.containsMouse ? ColorPalette.borderFocus : ColorPalette.border)
 
                             RowLayout {
                                 anchors { fill: parent; leftMargin: 9; rightMargin: 8 }
@@ -635,30 +636,30 @@ Window {
                                     id: fmtSelLabel
                                     readonly property var _fmt: root._formats[formatList.currentIndex] || null
                                     text: _fmt ? (_fmt.label || "") : ""
-                                    font.pixelSize: 12 * App.fontScale; font.weight: Font.Medium; color: "#c8d8f0"
+                                    font.pixelSize: 12 * App.fontScale; font.weight: Font.Medium; color: ColorPalette.textPrimary
                                     Layout.minimumWidth: 70
                                 }
                                 Rectangle {
                                     readonly property string c: fmtSelLabel._fmt ? root._codecLabel(fmtSelLabel._fmt.vcodec || "") : ""
                                     visible: c.length > 0 && fmtSelLabel._fmt && fmtSelLabel._fmt.id !== "best" && fmtSelLabel._fmt.id !== "bestvideo+bestaudio/best"
                                     width: _sct.implicitWidth + 10; height: 15; radius: 3
-                                    color: c==="AV1"?"#1a2020":c==="VP9"?"#1e1a20":c==="H.264"?ColorPalette.infoBoxBg:c==="H.265"?"#201a1a":ColorPalette.cardBg
+                                    color: ColorPalette.panelBg
                                     border.color: c==="AV1"?"#2a5040":c==="VP9"?"#3a2a50":c==="H.264"?"#2a4060":c==="H.265"?"#502a2a":ColorPalette.border
                                     Text { id: _sct; anchors.centerIn: parent; text: parent.c; font.pixelSize: 9 * App.fontScale
-                                        color: parent.c==="AV1"?"#5abba0":parent.c==="VP9"?"#9a70cc":parent.c==="H.264"?"#6a9acc":parent.c==="H.265"?"#cc7a7a":ColorPalette.textSecond }
+                                        color: parent.c==="AV1"?(ColorPalette.dark?"#5abba0":"#1f7a5e"):parent.c==="VP9"?(ColorPalette.dark?"#9a70cc":"#6a3aa0"):parent.c==="H.264"?(ColorPalette.dark?"#6a9acc":"#2a5e9a"):parent.c==="H.265"?(ColorPalette.dark?"#cc7a7a":"#a83a3a"):ColorPalette.textSecond }
                                 }
                                 Rectangle {
                                     readonly property string a: fmtSelLabel._fmt ? root._acodecLabel(fmtSelLabel._fmt.acodec || "") : ""
                                     visible: a.length > 0 && fmtSelLabel._fmt && (fmtSelLabel._fmt.height === 0 || !fmtSelLabel._fmt.vcodec || fmtSelLabel._fmt.vcodec === "none") && fmtSelLabel._fmt.id !== "best"
                                     width: _sat.implicitWidth + 10; height: 15; radius: 3
-                                    color: "#1a1e20"; border.color: "#2a4040"
+                                    color: ColorPalette.panelBg; border.color: "#2a4040"
                                     Text { id: _sat; anchors.centerIn: parent; text: parent.a; font.pixelSize: 9 * App.fontScale; color: "#5a9aaa" }
                                 }
                                 Rectangle {
                                     readonly property int f: fmtSelLabel._fmt ? (fmtSelLabel._fmt.fps || 0) : 0
                                     visible: f > 0 && f !== 30 && fmtSelLabel._fmt && (fmtSelLabel._fmt.height || 0) > 0
                                     width: _sft.implicitWidth + 10; height: 15; radius: 3
-                                    color: "#1e1e2a"; border.color: "#2a2a50"
+                                    color: ColorPalette.panelBg; border.color: "#2a2a50"
                                     Text { id: _sft; anchors.centerIn: parent; text: parent.f + " fps"; font.pixelSize: 9 * App.fontScale; color: "#8888cc" }
                                 }
                                 Item { Layout.fillWidth: true }
@@ -698,7 +699,7 @@ Window {
                                     width: fmtPopupList.width; height: 28
                                     readonly property bool sel: fmtPopupList.currentIndex === index
                                     readonly property bool hov: pfMouse.containsMouse
-                                    color: sel ? ColorPalette.selectionBg : (hov ? "#232333" : "transparent")
+                                    color: sel ? ColorPalette.selectionBg : (hov ? ColorPalette.hoverBg : "transparent")
                                     Rectangle { width: 3; height: parent.height; color: "#4488dd"; visible: pfd.sel }
 
                                     RowLayout {
@@ -706,7 +707,7 @@ Window {
                                         spacing: 6
                                         Text {
                                             text: modelData.label || ""; font.pixelSize: 12 * App.fontScale
-                                            color: pfd.sel ? "#c0d8ff" : ColorPalette.textPrimary
+                                            color: pfd.sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                                             font.weight: pfd.sel ? Font.Medium : Font.Normal
                                             Layout.minimumWidth: 70
                                         }
@@ -714,23 +715,23 @@ Window {
                                             property string c: root._codecLabel(modelData.vcodec || "")
                                             visible: c.length > 0 && modelData.id !== "best" && modelData.id !== "bestvideo+bestaudio/best"
                                             width: _pct.implicitWidth + 10; height: 15; radius: 3
-                                            color: c==="AV1"?"#1a2020":c==="VP9"?"#1e1a20":c==="H.264"?ColorPalette.infoBoxBg:c==="H.265"?"#201a1a":ColorPalette.cardBg
+                                            color: ColorPalette.panelBg
                                             border.color: c==="AV1"?"#2a5040":c==="VP9"?"#3a2a50":c==="H.264"?"#2a4060":c==="H.265"?"#502a2a":ColorPalette.border
                                             Text { id: _pct; anchors.centerIn: parent; text: parent.c; font.pixelSize: 9 * App.fontScale
-                                                color: parent.c==="AV1"?"#5abba0":parent.c==="VP9"?"#9a70cc":parent.c==="H.264"?"#6a9acc":parent.c==="H.265"?"#cc7a7a":ColorPalette.textSecond }
+                                                color: parent.c==="AV1"?(ColorPalette.dark?"#5abba0":"#1f7a5e"):parent.c==="VP9"?(ColorPalette.dark?"#9a70cc":"#6a3aa0"):parent.c==="H.264"?(ColorPalette.dark?"#6a9acc":"#2a5e9a"):parent.c==="H.265"?(ColorPalette.dark?"#cc7a7a":"#a83a3a"):ColorPalette.textSecond }
                                         }
                                         Rectangle {
                                             property string a: root._acodecLabel(modelData.acodec || "")
                                             visible: a.length > 0 && (modelData.height === 0 || !modelData.vcodec || modelData.vcodec === "none") && modelData.id !== "best"
                                             width: _pat.implicitWidth + 10; height: 15; radius: 3
-                                            color: "#1a1e20"; border.color: "#2a4040"
+                                            color: ColorPalette.panelBg; border.color: "#2a4040"
                                             Text { id: _pat; anchors.centerIn: parent; text: parent.a; font.pixelSize: 9 * App.fontScale; color: "#5a9aaa" }
                                         }
                                         Rectangle {
                                             property int f: modelData.fps || 0
                                             visible: f > 0 && f !== 30 && (modelData.height || 0) > 0
                                             width: _pft.implicitWidth + 10; height: 15; radius: 3
-                                            color: "#1e1e2a"; border.color: "#2a2a50"
+                                            color: ColorPalette.panelBg; border.color: "#2a2a50"
                                             Text { id: _pft; anchors.centerIn: parent; text: parent.f + " fps"; font.pixelSize: 9 * App.fontScale; color: "#8888cc" }
                                         }
                                         Item { Layout.fillWidth: true }
@@ -1228,7 +1229,7 @@ Window {
         }           // closes body Item
 
         // separator above buttons
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a36" }
+        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.dividerBg }
 
         // ?? Buttons ???????????????????????????????????????????????????????????
         RowLayout {
