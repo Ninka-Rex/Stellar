@@ -15,7 +15,9 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DownloadQueue.h"
+#include "Transfer.h"
 #include "SegmentedTransfer.h"
+#include "FtpTransfer.h"
 #include <algorithm>
 
 DownloadQueue::DownloadQueue(QObject *parent) : QObject(parent) {}
@@ -260,7 +262,13 @@ void DownloadQueue::scheduleNext() {
         // Only DownloadQueue may call setStatus(Downloading)
         item->setStatus(DownloadItem::Status::Downloading);
 
-        auto *worker = new SegmentedTransfer(item, m_nam, m_segmentsPerDownload, this);
+        // Pick the engine by URL scheme: FTP/FTPS use the raw-socket FtpTransfer,
+        // everything else (http/https and schemeless) uses the QNAM-based engine.
+        const QString scheme = item->url().scheme().toLower();
+        Transfer *worker =
+            (scheme == QLatin1String("ftp") || scheme == QLatin1String("ftps"))
+                ? static_cast<Transfer*>(new FtpTransfer(item, m_segmentsPerDownload, this))
+                : static_cast<Transfer*>(new SegmentedTransfer(item, m_nam, m_segmentsPerDownload, this));
         // Use per-download limit if set, otherwise use global limit
         int speedLimit = item->speedLimitKBps() > 0 ? item->speedLimitKBps() : m_speedLimitKBps;
         worker->setSpeedLimitKBps(speedLimit);
@@ -271,13 +279,13 @@ void DownloadQueue::scheduleNext() {
         m_workers[item->id()] = worker;
 
         const QString id = item->id();
-        connect(worker, &SegmentedTransfer::finished, this, [this, id]() {
+        connect(worker, &Transfer::finished, this, [this, id]() {
             onWorkerFinished(id);
         });
-        connect(worker, &SegmentedTransfer::failed, this, [this, id](const QString &reason) {
+        connect(worker, &Transfer::failed, this, [this, id](const QString &reason) {
             onWorkerFailed(id, reason);
         });
-        connect(worker, &SegmentedTransfer::fileDeletedWarning, this, [this, id]() {
+        connect(worker, &Transfer::fileDeletedWarning, this, [this, id]() {
             auto *w = m_workers.take(id);
             if (w) w->deleteLater();
             for (auto *itm : m_items) {

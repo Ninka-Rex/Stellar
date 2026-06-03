@@ -15,7 +15,9 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SegmentedTransfer.h"
+#include "FileNameUtils.h"
 #include "AppVersion.h"
+#include <QIODevice>
 #include <QtConcurrent/QtConcurrent>
 #include <QFutureWatcher>
 #include <QNetworkRequest>
@@ -43,6 +45,10 @@
 #include <fcntl.h>   // fallocate
 #include <cerrno>    // errno
 #endif
+
+// Memory-map window size, shared by the assembly loop in mergeAndFinish().
+// (mappedRangeCopy in FileNameUtils.h uses its own internal copy.)
+static constexpr qint64 kMapWindow = 256LL * 1024 * 1024;
 
 static const QString kUserAgent =
     QStringLiteral("Stellar/%1").arg(QStringLiteral(STELLAR_VERSION));
@@ -82,8 +88,33 @@ QString resolvedUserAgent(bool useCustomUserAgent, const QString &customUserAgen
     return browserStyleFallback ? kBrowserUserAgent : kUserAgent;
 }
 
-bool copyFileContents(QIODevice &src, QIODevice &dst, qint64 maxBytes = -1,
-                      QString *errorOut = nullptr) {
+// Returns false for strings that are clearly not a real filename (no extension,
+// too long an extension, non-alphanumeric extension). Used to distinguish a URL
+// path segment like "x64" from a genuine filename like "file.zip".
+static bool isPlausibleFilename(const QString &name) {
+    if (name.isEmpty() || name == QStringLiteral("download"))
+        return false;
+    int dot = name.lastIndexOf('.');
+    if (dot <= 0 || dot == name.length() - 1)
+        return false;
+    const QString ext = name.mid(dot + 1);
+    if (ext.length() > 10)
+        return false;
+    for (const QChar &ch : ext) {
+        if (!ch.isLetterOrNumber() && ch != '_')
+            return false;
+    }
+    return true;
+}
+
+}
+
+// ── Shared helpers (external linkage; declared in FileNameUtils.h) ────────────
+// Moved out of the anonymous namespace above so FtpTransfer can link against the
+// same single implementation rather than duplicating it.
+
+bool copyFileContents(QIODevice &src, QIODevice &dst, qint64 maxBytes,
+                      QString *errorOut) {
     static constexpr qint64 kChunkSize = 1024 * 1024;
     qint64 remaining = maxBytes;
     while (maxBytes < 0 || remaining > 0) {
@@ -100,11 +131,10 @@ bool copyFileContents(QIODevice &src, QIODevice &dst, qint64 maxBytes = -1,
     return true;
 }
 
-static constexpr qint64 kMapWindow = 256LL * 1024 * 1024;
-
 bool mappedRangeCopy(QFile &src, qint64 srcOff, qint64 size,
-                     QFile &dst, qint64 dstOff, QString *errorOut = nullptr)
+                     QFile &dst, qint64 dstOff, QString *errorOut)
 {
+    static constexpr qint64 kMapWindow = 256LL * 1024 * 1024;
     qint64 remaining = size;
     while (remaining > 0) {
         const qint64 window = std::min(remaining, kMapWindow);
@@ -131,25 +161,6 @@ bool mappedRangeCopy(QFile &src, qint64 srcOff, qint64 size,
         srcOff += window;
         dstOff += window;
         remaining -= window;
-    }
-    return true;
-}
-
-// Returns false for strings that are clearly not a real filename (no extension,
-// too long an extension, non-alphanumeric extension). Used to distinguish a URL
-// path segment like "x64" from a genuine filename like "file.zip".
-static bool isPlausibleFilename(const QString &name) {
-    if (name.isEmpty() || name == QStringLiteral("download"))
-        return false;
-    int dot = name.lastIndexOf('.');
-    if (dot <= 0 || dot == name.length() - 1)
-        return false;
-    const QString ext = name.mid(dot + 1);
-    if (ext.length() > 10)
-        return false;
-    for (const QChar &ch : ext) {
-        if (!ch.isLetterOrNumber() && ch != '_')
-            return false;
     }
     return true;
 }
@@ -230,13 +241,12 @@ QString longPath(const QString &path) {
 #endif
     return path;
 }
-}
 
 SegmentedTransfer::SegmentedTransfer(DownloadItem *item,
                                      QNetworkAccessManager *nam,
                                      int segments,
                                      QObject *parent)
-    : QObject(parent), m_item(item), m_nam(nam), m_segmentCount(segments)
+    : Transfer(parent), m_item(item), m_nam(nam), m_segmentCount(segments)
 {
     m_progressTimer = new QTimer(this);
     m_progressTimer->setInterval(kTickIntervalMs);

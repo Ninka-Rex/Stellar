@@ -90,7 +90,7 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 2
-            Text { text: qsTr("URL"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
+            Text { text: qsTr("URL, Magnet Link, or Infohash"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 22
@@ -111,6 +111,13 @@ Window {
                     Keys.onReturnPressed: root._submit()
                     Keys.onEnterPressed:  root._submit()
                 }
+            }
+            Text {
+                Layout.fillWidth: true
+                text: qsTr("Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.")
+                color: ColorPalette.textDisabled
+                font.pixelSize: 10 * App.fontScale
+                wrapMode: Text.WordWrap
             }
         }
 

@@ -23,7 +23,7 @@
 #include "DownloadItem.h"
 
 class QNetworkAccessManager;
-class SegmentedTransfer;
+class Transfer;
 
 class DownloadQueue : public QObject {
     Q_OBJECT
@@ -85,7 +85,7 @@ private:
     void onWorkerFailed(const QString &id, const QString &reason);
 
     QList<DownloadItem *>             m_items;
-    QHash<QString, SegmentedTransfer*> m_workers;
+    QHash<QString, Transfer*> m_workers;
     QNetworkAccessManager             *m_nam{nullptr};
     int m_maxConcurrent{3};
     int m_segmentsPerDownload{8};

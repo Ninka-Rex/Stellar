@@ -24,8 +24,9 @@
 #include <QList>
 #include <QVariantMap>
 #include "DownloadItem.h"
+#include "Transfer.h"
 
-class SegmentedTransfer : public QObject {
+class SegmentedTransfer : public Transfer {
     Q_OBJECT
 
 public:
@@ -52,31 +53,25 @@ public:
                                QObject *parent = nullptr);
     ~SegmentedTransfer();
 
-    Q_INVOKABLE void start();
-    Q_INVOKABLE void pause();
-    Q_INVOKABLE void resume();
-    Q_INVOKABLE void abort();
-    Q_INVOKABLE bool relocateOutput(const QString &newSavePath, const QString &newFilename);
+    Q_INVOKABLE void start() override;
+    Q_INVOKABLE void pause() override;
+    Q_INVOKABLE void resume() override;
+    Q_INVOKABLE void abort() override;
+    Q_INVOKABLE bool relocateOutput(const QString &newSavePath, const QString &newFilename) override;
 
-    void setSpeedLimitKBps(int kbps);
-    void setCustomUserAgentEnabled(bool enabled);
-    void setCustomUserAgent(const QString &userAgent);
-    void setTemporaryDirectory(const QString &path);
-    void setMaxConnectionsPerHost(int v);
+    void setSpeedLimitKBps(int kbps) override;
+    void setCustomUserAgentEnabled(bool enabled) override;
+    void setCustomUserAgent(const QString &userAgent) override;
+    void setTemporaryDirectory(const QString &path) override;
+    void setMaxConnectionsPerHost(int v) override;
 
     // Parse Content-Disposition header for filename (RFC 5987 + plain).
     // Returns empty string if no filename found. Public so probeFileInfo() can
     // extract filenames from HEAD responses without a full SegmentedTransfer.
     static QString parseContentDispositionFilename(const QByteArray &header);
 
-signals:
-    void started();
-    void progressChanged(qint64 done, qint64 total, qint64 speedBps);
-    void finished();
-    void failed(const QString &reason);
-    // Emitted when the downloaded file appears to be a small HTML error/expiry page
-    // instead of the expected content — typical of hosts that delete files on HEAD.
-    void fileDeletedWarning();
+    // started(), progressChanged(), finished(), failed(), fileDeletedWarning()
+    // are inherited from Transfer — do not redeclare (MOC would emit duplicates).
 
 private:
     struct Segment {

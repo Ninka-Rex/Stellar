@@ -129,6 +129,7 @@ set(BACKEND_SOURCES
     app/src/DownloadItem.cpp
     app/src/DownloadQueue.cpp
     app/src/SegmentedTransfer.cpp
+    app/src/FtpTransfer.cpp
     app/src/NativeMessagingHost.cpp
     app/src/CategoryModel.cpp
     app/src/DownloadTableModel.cpp
@@ -165,6 +166,9 @@ set(BACKEND_HEADERS
     app/src/DownloadItem.h
     app/src/DownloadQueue.h
     app/src/SegmentedTransfer.h
+    app/src/Transfer.h
+    app/src/FtpTransfer.h
+    app/src/FileNameUtils.h
     app/src/NativeMessagingHost.h
     app/src/CategoryModel.h
     app/src/DownloadTableModel.h

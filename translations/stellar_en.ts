@@ -33,7 +33,12 @@
     <name>AddUrlDialog</name>
     <message>
         <location filename="../app/qml/AddUrlDialog.qml" line="92"/>
-        <source>URL</source>
+        <source>URL, Magnet Link, or Infohash</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/AddUrlDialog.qml" line="120"/>
+        <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
         <translation></translation>
     </message>
     <message>
@@ -64,6 +69,116 @@
     <message>
         <location filename="../app/qml/AddUrlDialog.qml" line="41"/>
         <source>Add URL</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>FtpControl</name>
+    <message>
+        <source>FTP control connection failed: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FTP control connection closed unexpectedly.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FTP control connection timed out.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Malformed FTP reply.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Refusing to send FTP command with embedded newline.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FTP server refused connection</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FTPS required but the server does not support AUTH TLS.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FTP login failed</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FTPS data protection (PBSZ) was rejected.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FTPS data protection (PROT P) was rejected.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FTP server rejected binary mode (TYPE I).</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Could not enter FTP passive mode.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FTP server does not support resume (REST).</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FTP server rejected the file</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Unexpected FTP reply to RETR</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FTP transfer aborted by server</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Could not parse FTP passive-mode reply.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FTP passive-mode address rejected for security.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Could not open FTP data connection.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>TLS handshake failed: %1</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>FtpTransfer</name>
+    <message>
+        <source>Invalid FTP path.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Cannot open part file: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Disk write failed: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FTP transfer was truncated.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FTP segment %1 failed after %2 retries.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>No write permission for download directory: %1</source>
         <translation></translation>
     </message>
 </context>
