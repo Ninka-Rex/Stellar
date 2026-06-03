@@ -1611,8 +1611,9 @@ Window {
                                         Layout.fillWidth: true
                                         implicitHeight: 30
                                         placeholderText: "*.youtube.com *.vimeo.com"
+                                        placeholderTextColor: "#888888"
                                         font.pixelSize: 12 * App.fontScale; color: ColorPalette.textPrimary
-                                        background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
+                                        background: Rectangle { color: ColorPalette.inputBg; border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3 }
                                         leftPadding: 8
                                         onTextChanged: if (!root.loadingCategory) root.catDirty = true
                                     }
@@ -1916,7 +1917,7 @@ Window {
                                 spacing: 4
 
                                 Text { text: qsTr("Preview"); color: "#909090"; font.pixelSize: 11 * App.fontScale }
-                                Text { text: root.lastTryPreview; color: "#f0f0f0"; font.pixelSize: 13 * App.fontScale; font.family: "Consolas" }
+                                Text { text: root.lastTryPreview; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; font.family: "Consolas" }
                             }
                         }
 
@@ -3392,7 +3393,7 @@ Window {
                             ComboBox {
                                 id: torrentProtocolCombo
                                 Layout.preferredWidth: 160
-                                model: [qsTr("TCP and ?TP"), qsTr("?TP only"), qsTr("TCP only")]
+                                model: [qsTr("TCP and µTP"), qsTr("µTP only"), qsTr("TCP only")]
                                 currentIndex: root.editTorrentProtocol
                                 font.pixelSize: 12 * App.fontScale
                                 background: Rectangle { color: ColorPalette.dividerBg; border.color: torrentProtocolCombo.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3 }
@@ -3422,7 +3423,7 @@ Window {
                             Layout.fillWidth: true
                             spacing: 10
 
-                            Button {
+                            DlgButton {
                                 text: App.torrentPortTestInProgress ? qsTr("Testing...") : qsTr("Test Port")
                                 enabled: !App.torrentPortTestInProgress
                                 onClicked: App.testTorrentPort()
@@ -3571,7 +3572,7 @@ Window {
                         Text {
                             Layout.fillWidth: true
                             text: root.editTorrentBindInterface.length > 0 ? qsTr("This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.") : qsTr("No adapter binding. Torrent traffic follows the system route.")
-                            color: root.editTorrentBindInterface.length > 0 ? "#ffffff" : ColorPalette.textDisabled
+                            color: root.editTorrentBindInterface.length > 0 ? ColorPalette.textPrimary : ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
@@ -4068,8 +4069,8 @@ Window {
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.preferredHeight: 160
-                            color: "#171717"
-                            border.color: "#303030"
+                            color: ColorPalette.inputBg
+                            border.color: ColorPalette.border
                             radius: 3
                             clip: true
 
@@ -4086,7 +4087,7 @@ Window {
                                     implicitHeight: 42
                                     radius: 3
                                     color: ColorPalette.rowAltBg
-                                    border.color: "#343434"
+                                    border.color: ColorPalette.border
 
                                     RowLayout {
                                         anchors.fill: parent
