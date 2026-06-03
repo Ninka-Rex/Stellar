@@ -50,6 +50,11 @@ QtObject {
     readonly property color mapBorder:    dark ? "#314252" : "#c2cedb"
     readonly property color mapTooltipBg: dark ? "#13202d" : "#ffffff"
 
+    // Generic tooltip (ThemedToolTip)
+    readonly property color tooltipBg:     dark ? "#2a2a2a" : "#ffffff"
+    readonly property color tooltipBorder: dark ? "#3a3a3a" : "#c2c2c2"
+    readonly property color tooltipText:   dark ? "#e0e0e0" : "#202020"
+
     // Warning / caution text (amber). Darker in light mode for legibility.
     readonly property color warningText: dark ? "#e8c840" : "#9a6a00"
 

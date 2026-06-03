@@ -255,6 +255,7 @@ qt_add_qml_module(Stellar
         app/qml/TorrentSpeedLimitDialog.qml
         app/qml/TorrentCreatorDialog.qml
         app/qml/DlgButton.qml
+        app/qml/ThemedToolTip.qml
         app/qml/StyledCheckBox.qml
         app/qml/StyledRadioButton.qml
         app/qml/LanguageList.qml

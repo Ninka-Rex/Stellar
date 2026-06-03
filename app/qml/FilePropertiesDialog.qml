@@ -3747,21 +3747,23 @@ Window {
                                 MouseArea {
                                     id: peerRowMa; anchors.fill: parent; hoverEnabled: true
                                     acceptedButtons: Qt.LeftButton
-                                    ToolTip.visible: containsMouse
-                                    ToolTip.text: {
-                                        var cc = safeStr(pd.countryCode).toUpperCase()
-                                        var regionName = safeStr(pd.regionName)
-                                        var regionCode = safeStr(pd.regionCode)
-                                        var city = safeStr(pd.cityName)
-                                        var placeParts = []
-                                        if (city) placeParts.push(city)
-                                        if (regionCode && (cc === "US" || cc === "CA")) placeParts.push(regionCode)
-                                        else if (regionName) placeParts.push(regionName)
-                                        var locLine = placeParts.length > 0 ? placeParts.join(", ") : ""
-                                        var fullCountry = cc ? countryFullName(cc) : ""
-                                        var locBlock = locLine ? locLine + (fullCountry ? "\n" + fullCountry : "") : (fullCountry || "Location unavailable")
-                                        var clientLine = safeStr(pd.client) || "Unknown client"
-                                        return pd.endpoint + ":" + pd.port + "\n" + locBlock + "\n" + clientLine
+                                    ThemedToolTip {
+                                        visible: peerRowMa.containsMouse
+                                        text: {
+                                            var cc = safeStr(pd.countryCode).toUpperCase()
+                                            var regionName = safeStr(pd.regionName)
+                                            var regionCode = safeStr(pd.regionCode)
+                                            var city = safeStr(pd.cityName)
+                                            var placeParts = []
+                                            if (city) placeParts.push(city)
+                                            if (regionCode && (cc === "US" || cc === "CA")) placeParts.push(regionCode)
+                                            else if (regionName) placeParts.push(regionName)
+                                            var locLine = placeParts.length > 0 ? placeParts.join(", ") : ""
+                                            var fullCountry = cc ? countryFullName(cc) : ""
+                                            var locBlock = locLine ? locLine + (fullCountry ? "\n" + fullCountry : "") : (fullCountry || "Location unavailable")
+                                            var clientLine = safeStr(pd.client) || "Unknown client"
+                                            return pd.endpoint + ":" + pd.port + "\n" + locBlock + "\n" + clientLine
+                                        }
                                     }
                                 }
 
@@ -3858,7 +3860,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: root.compactBytes(pd.downloaded); color: "#d9d9d9"; font.pixelSize: 12 * App.fontScale
+                                            text: root.compactBytes(pd.downloaded); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                         }
                                     }
                                     Item {
@@ -3867,7 +3869,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: root.compactBytes(pd.uploaded); color: "#d9d9d9"; font.pixelSize: 12 * App.fontScale
+                                            text: root.compactBytes(pd.uploaded); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                         }
                                     }
                                     Item {
@@ -5793,29 +5795,31 @@ Window {
                                 }
                                 onExited: pieceCanvas.hoveredPiece = -1
 
-                                ToolTip.visible: pieceCanvas.hoveredPiece >= 0
-                                ToolTip.delay: 0
-                                ToolTip.text: {
-                                    var idx = pieceCanvas.hoveredPiece
-                                    if (idx < 0) return ""
-                                    var val = pieceCanvas.hoveredPieceAvail
-                                    var status
-                                    if (val === -2) {
-                                        status = "Downloaded"
-                                    } else if (val === -3) {
-                                        status = "Skipped (file not selected)"
-                                    } else if (val <= -4) {
-                                        var pct = Math.min(99, -(val + 4))
-                                        status = "Downloading - " + pct + "% of blocks received"
-                                    } else {
-                                        var hp  = (val & 0x10000) !== 0
-                                        var cnt = val & 0xFFFF
-                                        if (cnt === 0)
-                                            status = "Unavailable - no peers have this piece"
-                                        else
-                                            status = "Missing - " + cnt + (cnt === 1 ? " peer has it" : " peers have it") + (hp ? " (high priority)" : "")
+                                ThemedToolTip {
+                                    visible: pieceCanvas.hoveredPiece >= 0
+                                    delay: 0
+                                    text: {
+                                        var idx = pieceCanvas.hoveredPiece
+                                        if (idx < 0) return ""
+                                        var val = pieceCanvas.hoveredPieceAvail
+                                        var status
+                                        if (val === -2) {
+                                            status = "Downloaded"
+                                        } else if (val === -3) {
+                                            status = "Skipped (file not selected)"
+                                        } else if (val <= -4) {
+                                            var pct = Math.min(99, -(val + 4))
+                                            status = "Downloading - " + pct + "% of blocks received"
+                                        } else {
+                                            var hp  = (val & 0x10000) !== 0
+                                            var cnt = val & 0xFFFF
+                                            if (cnt === 0)
+                                                status = "Unavailable - no peers have this piece"
+                                            else
+                                                status = "Missing - " + cnt + (cnt === 1 ? " peer has it" : " peers have it") + (hp ? " (high priority)" : "")
+                                        }
+                                        return "Piece #" + idx + "\n" + status
                                     }
-                                    return "Piece #" + idx + "\n" + status
                                 }
                             }
                         }
