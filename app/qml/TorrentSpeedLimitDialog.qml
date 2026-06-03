@@ -182,7 +182,7 @@ Window {
                 Text {
                     Layout.fillWidth: true
                     text: root.torrentItem ? root.torrentItem.filename : ""
-                    color: "#e8e8e8"; font.pixelSize: 13 * App.fontScale; font.weight: Font.Medium; elide: Text.ElideMiddle
+                    color: ColorPalette.textHeader; font.pixelSize: 13 * App.fontScale; font.weight: Font.Medium; elide: Text.ElideMiddle
                 }
                 Text {
                     text: qsTr("Per-torrent speed, share limits, peer discovery, and download mode")

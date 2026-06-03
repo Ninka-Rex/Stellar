@@ -1007,6 +1007,24 @@ Window {
         default:    return ColorPalette.textSecond
         }
     }
+    function flagTip(flag) {
+        switch (flag) {
+        case "IN":  return qsTr("Incoming: they connected to you")
+        case "OUT": return qsTr("Outgoing: you connected to them")
+        case "TRK": return qsTr("Found via tracker")
+        case "DHT": return qsTr("Found via DHT (no tracker needed)")
+        case "PEX": return qsTr("Found through another peer you're connected to")
+        case "LSD": return qsTr("Found on your local network (same Wi-Fi or LAN)")
+        case "UTP": return qsTr("Uses uTP, a protocol that avoids congesting your network")
+        case "ENC": return qsTr("Traffic is encrypted")
+        case "SNB": return qsTr("Stalled: they haven't sent any data in a while")
+        case "UPO": return qsTr("They already have the whole file and are only uploading")
+        case "OPT": return qsTr("Given a trial upload slot to see if they're worth keeping")
+        case "HPX": return qsTr("Connected through a firewall using another peer's help")
+        case "I2P": return qsTr("Connected over the I2P anonymous network")
+        default:    return flag
+        }
+    }
     function peerTraffic(peer) {
         if (!peer)
             return 0
@@ -2224,9 +2242,13 @@ Window {
                                 Text { text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "-";   color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
                                 Text { text: qsTr("Seed time");   color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
                                 Text { text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "-"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
-                                // Padding item to complete the 6-column row before metadata rows
-                                Item { Layout.columnSpan: 2; Layout.fillWidth: true
-                                    visible: !!root.item && (safeStr(root.item.torrentComment).length > 0 || safeStr(root.item.torrentCreator).length > 0 || safeStr(root.item.torrentCreatedOn).length > 0) }
+                                // Padding item to complete the 6-column row before metadata rows.
+                                // Seed time label+value already used 2 of 6 columns, so this
+                                // must span the remaining 4 — otherwise the next row's label
+                                // wraps into the wrong column and label/value swap sides.
+                                // Always present so the grid stays aligned regardless of which
+                                // metadata fields are populated.
+                                Item { Layout.columnSpan: 4; Layout.fillWidth: true }
 
                                 // Each metadata field gets its own full row (label + 5-col value)
                                 Text { text: qsTr("Description"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
@@ -3600,7 +3622,7 @@ Window {
                                                             Image {
                                                                 id: mapImage
                                                                 anchors.fill: parent
-                                                                source: "icons/world-map.svg"
+                                                                source: ColorPalette.dark ? "icons/world-map.svg" : "icons/world-map-light.svg"
                                                                 fillMode: Image.Stretch
                                                                 smooth: true
                                                                 sourceSize.width: 1200
@@ -3947,6 +3969,11 @@ Window {
                                                         text: modelData; color: ColorPalette.textPrimary
                                                         font.pixelSize: 9 * App.fontScale; font.bold: true
                                                     }
+                                                    HoverHandler { id: badgeHover }
+                                                    ThemedToolTip {
+                                                        visible: badgeHover.hovered
+                                                        text: root.flagTip(modelData)
+                                                    }
                                                 }
                                             }
                                         }
@@ -4011,42 +4038,31 @@ Window {
                             }
 
                             Repeater {
-                                model: [
-                                    { flag: "IN",   tip: "Incoming: they connected to you" },
-                                    { flag: "OUT",  tip: "Outgoing: you connected to them" },
-                                    { flag: "TRK",  tip: "Found via tracker" },
-                                    { flag: "DHT",  tip: "Found via DHT (no tracker needed)" },
-                                    { flag: "PEX",  tip: "Found through another peer you're connected to" },
-                                    { flag: "LSD",  tip: "Found on your local network (same Wi-Fi or LAN)" },
-                                    { flag: "UTP",  tip: "Uses uTP, a protocol that avoids congesting your network" },
-                                    { flag: "ENC",  tip: "Traffic is encrypted" },
-                                    { flag: "SNB",  tip: "Stalled: they haven't sent any data in a while" },
-                                    { flag: "UPO",  tip: "They already have the whole file and are only uploading" },
-                                    { flag: "OPT",  tip: "Given a trial upload slot to see if they're worth keeping" },
-                                    { flag: "HPX",  tip: "Connected through a firewall using another peer's help" }
-                                ]
+                                model: ["IN", "OUT", "TRK", "DHT", "PEX", "LSD", "UTP", "ENC", "SNB", "UPO", "OPT", "HPX"]
                                 delegate: Rectangle {
-                                    required property var modelData
+                                    required property string modelData
                                     height: 14
                                     width: lgText.implicitWidth + 6
                                     radius: 2
                                     color: "transparent"
-                                    border.color: root.flagColor(modelData.flag)
+                                    border.color: root.flagColor(modelData)
                                     border.width: 1
                                     anchors.verticalCenter: parent.verticalCenter
 
                                     Text {
                                         id: lgText
                                         anchors.centerIn: parent
-                                        text: modelData.flag
+                                        text: modelData
                                         color: ColorPalette.textPrimary
                                         font.pixelSize: 9 * App.fontScale
                                         font.bold: true
                                     }
 
-                                    ToolTip.visible: lgMa.containsMouse
-                                    ToolTip.text: modelData.tip
-                                    MouseArea { id: lgMa; anchors.fill: parent; hoverEnabled: true; acceptedButtons: Qt.NoButton }
+                                    HoverHandler { id: lgHover }
+                                    ThemedToolTip {
+                                        visible: lgHover.hovered
+                                        text: root.flagTip(modelData)
+                                    }
                                 }
                             }
                         }
