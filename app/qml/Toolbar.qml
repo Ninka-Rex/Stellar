@@ -20,7 +20,7 @@ import QtQuick.Layouts
 
 Rectangle {
     id: root
-    height: App.settings.toolbarSmallButtons ? 48 : 72
+    height: App.settings.toolbarSmallButtons ? 48 : 86
     color: ColorPalette.toolbarBg
 
     property var queueModel: null
@@ -164,7 +164,7 @@ Rectangle {
             delegate: Item {
                 readonly property bool _sm: App.settings.toolbarSmallButtons
                 width: modelData.key === "separator" ? (_sm ? 10 : 16) : (_sm ? 48 : 84)
-                height: _sm ? 48 : 72
+                height: _sm ? 48 : 86
 
                 ToolbarBtn {
                     anchors.fill: parent

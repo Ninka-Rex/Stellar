@@ -3405,7 +3405,7 @@ ApplicationWindow {
             CompactMenuItem {
                 id: _toolbarItem
                 iconSrc: "icons/toolbar.svg"
-                text: qsTr("Toolbar") + "  ✓"
+                text: qsTr("Toolbar")
                 onTriggered: _toolbarMenu.popup(_toolbarItem.width, 0)
                 onHoveredChanged: {
                     if (hovered) _toolbarMenu.popup(_toolbarItem.width, 0)

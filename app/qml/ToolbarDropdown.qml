@@ -60,10 +60,11 @@ Item {
              : mainHover.containsMouse ? ColorPalette.toolbarHoverBg
              : "transparent"
 
-        // Icon + label centered as a group (same math as ToolbarBtn)
+        // Icon Y pinned to single-line group height (same as ToolbarBtn) so a
+        // 2-line label extends downward instead of pushing the icon up.
         readonly property int _gap: 4
-        readonly property int _groupH: root._iconSize + _gap + (root.smallMode ? 0 : lbl.contentHeight)
-        readonly property int _topPad: Math.max(0, Math.round((root.height - _groupH) / 2))
+        // Fixed top padding (matches ToolbarBtn): icons level, label grows downward.
+        readonly property int _topPad: root.smallMode ? Math.max(0, Math.round((root.height - root._iconSize) / 2)) : 6
 
         Image {
             id: btnIcon

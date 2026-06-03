@@ -26,7 +26,7 @@ AbstractButton {
     readonly property int iconSize: smallMode ? 20 : 32
 
     implicitWidth: smallMode ? 48 : 84
-    implicitHeight: smallMode ? 48 : 72
+    implicitHeight: smallMode ? 48 : 86
 
     // Dim the whole button when disabled so the user can see it won't respond.
     // AbstractButton has no built-in disabled appearance; we apply it here.
@@ -39,17 +39,21 @@ AbstractButton {
         radius: 0
     }
 
-    // Center icon + label as a single group. Label sizes to its actual content
-    // ── height (1 or 2 lines), so padding above icon padding below text. When ──
-    // a label wraps to 2 lines (e.g. long translations), the whole group is
-    // ── still centered the icon shifts up by half the extra line height, ──
-    // which is the only way to keep top/bottom whitespace equal.
+    // Icon Y is pinned using the SINGLE-LINE group height, so it sits at the
+    // ── same vertical spot whether the label is 1 or 2 lines. A wrapped (2-line) ──
+    // label just extends downward instead of shoving the icon up. This keeps every
+    // ── toolbar icon level across languages with longer translated labels. ──
     contentItem: Item {
         anchors.fill: parent
 
         readonly property int _gap: 4
-        readonly property int _groupH: root.iconSize + _gap + btnLabel.height
-        readonly property int _topPad: Math.max(0, Math.round((root.height - _groupH) / 2))
+        // Fixed top padding: every icon sits the same distance below the menubar,
+        // so all icons are level. The label hangs below the icon and grows downward
+        // when it wraps to 2 lines -- the bar is tall enough to hold 2 lines with
+        // matching bottom padding (see Toolbar.qml height). Not centered, because
+        // centering a 2-line-reserve group makes 1-line buttons float high while
+        // 2-line text touches the bottom edge.
+        readonly property int _topPad: root.smallMode ? Math.max(0, Math.round((root.height - root.iconSize) / 2)) : 6
 
         Image {
             id: btnIcon
