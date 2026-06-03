@@ -18,7 +18,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-// IDM-style split toolbar button: icon + label on left portion, small ▼ arrow
+// ── IDM-style split toolbar button: icon + label on left portion, small arrow ──
 // on the right that opens a queue-picker menu. Clicking the main area fires
 // queueSelected with an empty string (caller treats as "default queue").
 Item {
@@ -47,17 +47,17 @@ Item {
         return queues
     }
 
-    // Arrow chevron width — fixed regardless of button size
+    // ── Arrow chevron width fixed regardless of button size ──────────────
     readonly property int _arrowW: smallMode ? 14 : 18
     readonly property int _iconSize: smallMode ? 20 : 32
 
-    // ── Main click area (left portion) ────────────────────────────────────────
+    // ── Main click area (left portion) ───────────────────────────────────
     Rectangle {
         id: mainArea
         anchors { left: parent.left; top: parent.top; bottom: parent.bottom }
         width: parent.width - _arrowW - 1   // -1 for divider
-        color: mainHover.pressed ? "#3a3a4a"
-             : mainHover.containsMouse ? "#2d2d3d"
+        color: mainHover.pressed ? ColorPalette.toolbarPressBg
+             : mainHover.containsMouse ? ColorPalette.toolbarHoverBg
              : "transparent"
 
         // Icon + label centered as a group (same math as ToolbarBtn)
@@ -83,7 +83,7 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width - 4
             text: root.label
-            color: mainHover.containsMouse ? "#ffffff" : "#d0d0d0"
+            color: mainHover.containsMouse ? ColorPalette.textHeader : ColorPalette.textPrimary
             font.pixelSize: 11 * App.fontScale
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
@@ -99,29 +99,29 @@ Item {
         }
     }
 
-    // ── Divider between main area and arrow (only visible on hover) ──────────
+    // ── Divider between main area and arrow (only visible on hover) ──────
     Rectangle {
         anchors { top: parent.top; bottom: parent.bottom }
         anchors.topMargin: 8; anchors.bottomMargin: 8
         x: mainArea.width
         width: 1
-        color: "#555566"
+        color: ColorPalette.border
         visible: mainHover.containsMouse || arrowHover.containsMouse
     }
 
-    // ── Arrow drop zone (right portion) ───────────────────────────────────────
+    // ── Arrow drop zone (right portion) ──────────────────────────────────
     Rectangle {
         id: arrowArea
         anchors { right: parent.right; top: parent.top; bottom: parent.bottom }
         width: _arrowW
-        color: arrowHover.pressed ? "#3a3a4a"
-             : arrowHover.containsMouse ? "#2d2d3d"
+        color: arrowHover.pressed ? ColorPalette.toolbarPressBg
+             : arrowHover.containsMouse ? ColorPalette.toolbarHoverBg
              : "transparent"
 
         Text {
             anchors.centerIn: parent
             text: "▾"
-            color: arrowHover.containsMouse ? "#ffffff" : "#aaaaaa"
+            color: arrowHover.containsMouse ? ColorPalette.textHeader : ColorPalette.textSecond
             font.pixelSize: smallMode ? 9 : 11
         }
 

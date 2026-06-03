@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -28,12 +28,12 @@ Window {
     minimumWidth:  520
     minimumHeight: 420
     title:         qsTr("Torrent Settings")
-    color:         "#1e1e1e"
+    color:         ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
     modality: Qt.NonModal
 
-    Material.theme:      Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme:      ColorPalette.materialTheme
+    Material.background: ColorPalette.materialBg
     Material.accent:     "#4488dd"
 
     property var torrentItem: null
@@ -129,15 +129,15 @@ Window {
         property string subtext: ""
         signal toggled()
         spacing: 7
-        CheckBox {
+        StyledCheckBox {
             id: chk
             topPadding: 0; bottomPadding: 0
             onToggled: chkRoot.toggled()
             contentItem: Item {}
             indicator: Rectangle {
                 implicitWidth: 14; implicitHeight: 14; radius: 2
-                color: chk.checked ? "#4488dd" : "#1b1b1b"
-                border.color: chk.checked ? "#4488dd" : (chk.enabled ? "#3a3a3a" : "#2a2a2a")
+                color: chk.checked ? "#4488dd" : ColorPalette.inputBg
+                border.color: chk.checked ? "#4488dd" : (chk.enabled ? ColorPalette.border : "#2a2a2a")
                 opacity: chk.enabled ? 1.0 : 0.5
                 Text {
                     visible: chk.checked
@@ -148,7 +148,7 @@ Window {
         }
         ColumnLayout {
             Layout.fillWidth: true; spacing: 0
-            Text { text: chkRoot.label; color: chk.enabled ? "#d0d0d0" : "#666666"; font.pixelSize: 12 * App.fontScale }
+            Text { text: chkRoot.label; color: chk.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale }
             Text {
                 visible: chkRoot.subtext.length > 0
                 text: chkRoot.subtext; color: "#7a8a9a"; font.pixelSize: 10 * App.fontScale
@@ -161,7 +161,7 @@ Window {
         id: headerStrip
         anchors { left: parent.left; right: parent.right; top: parent.top }
         height: 44
-        color: "#222228"
+        color: ColorPalette.headerStripBg
 
         RowLayout {
             anchors { fill: parent; leftMargin: 12; rightMargin: 12; topMargin: 7; bottomMargin: 7 }
@@ -186,22 +186,22 @@ Window {
                 }
                 Text {
                     text: qsTr("Per-torrent speed, share limits, peer discovery, and download mode")
-                    color: "#8899aa"; font.pixelSize: 10 * App.fontScale
+                    color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale
                 }
             }
         }
     }
 
-    // Button bar — anchored to bottom so it is never clipped
+    // ?? Button bar anchored to bottom so it is never clipped ?????????????
     Rectangle {
         id: buttonBar
         anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
         height: 48
-        color: "#1e1e1e"
+        color: ColorPalette.cardBg
 
         Rectangle {
             anchors { left: parent.left; right: parent.right; top: parent.top }
-            height: 1; color: "#2d2d2d"
+            height: 1; color: ColorPalette.dividerBg
         }
 
         RowLayout {
@@ -243,7 +243,7 @@ Window {
         }
     }
 
-    // Scrollable content area — sits between header and button bar
+    // ?? Scrollable content area sits between header and button bar ???????
     ScrollView {
         anchors { left: parent.left; right: parent.right; top: headerStrip.bottom; bottom: buttonBar.top }
         contentWidth: availableWidth
@@ -258,10 +258,10 @@ Window {
                 Layout.margins: 10
                 spacing: 8
 
-                // ── Bandwidth limits ──────────────────────────────────────────
+                // ?? Bandwidth limits ?????????????????????????????????????
                 Rectangle {
                     Layout.fillWidth: true
-                    color: "#1a1a1a"; border.color: "#2d2d2d"; radius: 3
+                    color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
                     implicitHeight: bwCol.implicitHeight + 14
 
                     ColumnLayout {
@@ -269,35 +269,35 @@ Window {
                         anchors { fill: parent; margins: 7 }
                         spacing: 7
 
-                        Text { text: qsTr("BANDWIDTH LIMITS"); color: "#8899aa"; font.pixelSize: 10 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("BANDWIDTH LIMITS"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 8
-                            Text { text: qsTr("Download:"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 66 }
+                            Text { text: qsTr("Download:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 66 }
                             Rectangle {
                                 Layout.preferredWidth: 86; height: 22; radius: 2
-                                color: "#1b1b1b"; border.color: downInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                color: ColorPalette.inputBg; border.color: downInput.activeFocus ? "#4488dd" : ColorPalette.border
                                 TextInput {
                                     id: downInput
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     verticalAlignment: TextInput.AlignVCenter
                                     validator: IntValidator { bottom: 0; top: 1048576 }
-                                    color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; selectByMouse: true
+                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; selectByMouse: true
                                     onTextChanged: { var n = parseInt(text, 10); root._editDown = isNaN(n) ? 0 : Math.max(0, n) }
                                 }
                             }
                             Text { text: "KB/s"; color: "#666"; font.pixelSize: 12 * App.fontScale }
                             Item { Layout.preferredWidth: 8 }
-                            Text { text: qsTr("Upload:"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 50 }
+                            Text { text: qsTr("Upload:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 50 }
                             Rectangle {
                                 Layout.preferredWidth: 86; height: 22; radius: 2
-                                color: "#1b1b1b"; border.color: upInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                color: ColorPalette.inputBg; border.color: upInput.activeFocus ? "#4488dd" : ColorPalette.border
                                 TextInput {
                                     id: upInput
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     verticalAlignment: TextInput.AlignVCenter
                                     validator: IntValidator { bottom: 0; top: 1048576 }
-                                    color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; selectByMouse: true
+                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; selectByMouse: true
                                     onTextChanged: { var n = parseInt(text, 10); root._editUp = isNaN(n) ? 0 : Math.max(0, n) }
                                 }
                             }
@@ -307,10 +307,10 @@ Window {
                     }
                 }
 
-                // ── Share limits ──────────────────────────────────────────────
+                // ?? Share limits ?????????????????????????????????????????
                 Rectangle {
                     Layout.fillWidth: true
-                    color: "#1a1a1a"; border.color: "#2d2d2d"; radius: 3
+                    color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
                     implicitHeight: shareCol.implicitHeight + 14
 
                     ColumnLayout {
@@ -318,34 +318,34 @@ Window {
                         anchors { fill: parent; margins: 7 }
                         spacing: 7
 
-                        Text { text: qsTr("SHARE LIMITS"); color: "#8899aa"; font.pixelSize: 10 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("SHARE LIMITS"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
-                            Text { text: qsTr("Ratio:"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 100 }
+                            Text { text: qsTr("Ratio:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 100 }
                             Repeater {
                                 model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
                                 delegate: Rectangle {
                                     required property int index; required property string modelData
                                     height: 21; implicitWidth: rl.implicitWidth + 12; radius: 2
-                                    color: root._ratioMode === index ? "#1a3a6a" : "#252525"
-                                    border.color: root._ratioMode === index ? "#4488dd" : "#3a3a3a"
+                                    color: root._ratioMode === index ? ColorPalette.selectionBg : ColorPalette.panelBg
+                                    border.color: root._ratioMode === index ? "#4488dd" : ColorPalette.border
                                     Text { id: rl; anchors.centerIn: parent; text: modelData; font.pixelSize: 11 * App.fontScale
-                                           color: root._ratioMode === index ? "#88aaee" : "#888888" }
+                                           color: root._ratioMode === index ? "#88aaee" : ColorPalette.textMuted }
                                     MouseArea { anchors.fill: parent; onClicked: root._ratioMode = index }
                                 }
                             }
                             Rectangle {
                                 visible: root._ratioMode === 2
                                 Layout.preferredWidth: 64; height: 21; radius: 2
-                                color: "#1b1b1b"; border.color: ratioInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                color: ColorPalette.inputBg; border.color: ratioInput.activeFocus ? "#4488dd" : ColorPalette.border
                                 TextInput {
                                     id: ratioInput
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     verticalAlignment: TextInput.AlignVCenter
                                     text: root._ratioText
                                     validator: DoubleValidator { bottom: 0.0; top: 9999.0; decimals: 2; notation: DoubleValidator.StandardNotation }
-                                    color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; selectByMouse: true
+                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; selectByMouse: true
                                     onTextChanged: root._ratioText = text
                                 }
                             }
@@ -354,29 +354,29 @@ Window {
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
-                            Text { text: qsTr("Seeding time:"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 100 }
+                            Text { text: qsTr("Seeding time:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 100 }
                             Repeater {
                                 model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
                                 delegate: Rectangle {
                                     required property int index; required property string modelData
                                     height: 21; implicitWidth: sl.implicitWidth + 12; radius: 2
-                                    color: root._seedMode === index ? "#1a3a6a" : "#252525"
-                                    border.color: root._seedMode === index ? "#4488dd" : "#3a3a3a"
+                                    color: root._seedMode === index ? ColorPalette.selectionBg : ColorPalette.panelBg
+                                    border.color: root._seedMode === index ? "#4488dd" : ColorPalette.border
                                     Text { id: sl; anchors.centerIn: parent; text: modelData; font.pixelSize: 11 * App.fontScale
-                                           color: root._seedMode === index ? "#88aaee" : "#888888" }
+                                           color: root._seedMode === index ? "#88aaee" : ColorPalette.textMuted }
                                     MouseArea { anchors.fill: parent; onClicked: root._seedMode = index }
                                 }
                             }
                             Rectangle {
                                 visible: root._seedMode === 2
                                 Layout.preferredWidth: 64; height: 21; radius: 2
-                                color: "#1b1b1b"; border.color: seedInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                color: ColorPalette.inputBg; border.color: seedInput.activeFocus ? "#4488dd" : ColorPalette.border
                                 TextInput {
                                     id: seedInput
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     verticalAlignment: TextInput.AlignVCenter; text: root._seedText
                                     validator: IntValidator { bottom: 0; top: 999999 }
-                                    color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; selectByMouse: true
+                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; selectByMouse: true
                                     onTextChanged: root._seedText = text
                                 }
                             }
@@ -386,29 +386,29 @@ Window {
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
-                            Text { text: qsTr("Inactive time:"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 100 }
+                            Text { text: qsTr("Inactive time:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 100 }
                             Repeater {
                                 model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
                                 delegate: Rectangle {
                                     required property int index; required property string modelData
                                     height: 21; implicitWidth: il.implicitWidth + 12; radius: 2
-                                    color: root._inactiveMode === index ? "#1a3a6a" : "#252525"
-                                    border.color: root._inactiveMode === index ? "#4488dd" : "#3a3a3a"
+                                    color: root._inactiveMode === index ? ColorPalette.selectionBg : ColorPalette.panelBg
+                                    border.color: root._inactiveMode === index ? "#4488dd" : ColorPalette.border
                                     Text { id: il; anchors.centerIn: parent; text: modelData; font.pixelSize: 11 * App.fontScale
-                                           color: root._inactiveMode === index ? "#88aaee" : "#888888" }
+                                           color: root._inactiveMode === index ? "#88aaee" : ColorPalette.textMuted }
                                     MouseArea { anchors.fill: parent; onClicked: root._inactiveMode = index }
                                 }
                             }
                             Rectangle {
                                 visible: root._inactiveMode === 2
                                 Layout.preferredWidth: 64; height: 21; radius: 2
-                                color: "#1b1b1b"; border.color: inactiveInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                color: ColorPalette.inputBg; border.color: inactiveInput.activeFocus ? "#4488dd" : ColorPalette.border
                                 TextInput {
                                     id: inactiveInput
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     verticalAlignment: TextInput.AlignVCenter; text: root._inactiveText
                                     validator: IntValidator { bottom: 0; top: 999999 }
-                                    color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; selectByMouse: true
+                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; selectByMouse: true
                                     onTextChanged: root._inactiveText = text
                                 }
                             }
@@ -418,7 +418,7 @@ Window {
                     }
                 }
 
-                // ── Peer discovery + Download mode (side by side, equal height) ──
+                // ?? Peer discovery + Download mode (side by side, equal height) ??
                 // Height driven by the taller column; both rects share that height.
                 Item {
                     Layout.fillWidth: true
@@ -427,14 +427,14 @@ Window {
                     Rectangle {
                         anchors { left: parent.left; top: parent.top; bottom: parent.bottom }
                         width: (parent.width - 8) / 2
-                        color: "#1a1a1a"; border.color: "#2d2d2d"; radius: 3
+                        color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
 
                         ColumnLayout {
                             id: pdCol
                             anchors { fill: parent; margins: 7 }
                             spacing: 7
 
-                            Text { text: qsTr("PEER DISCOVERY"); color: "#8899aa"; font.pixelSize: 10 * App.fontScale; font.bold: true }
+                            Text { text: qsTr("PEER DISCOVERY"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
                             InlineCheck {
                                 Layout.fillWidth: true
@@ -466,7 +466,7 @@ Window {
                                     id: pvtNote
                                     anchors { fill: parent; margins: 6 }
                                     spacing: 2
-                                    Text { text: qsTr("🔒 Private torrent"); color: "#cc9955"; font.pixelSize: 11 * App.fontScale; font.bold: true }
+                                    Text { text: qsTr("⚠ Private torrent"); color: "#cc9955"; font.pixelSize: 11 * App.fontScale; font.bold: true }
                                     Text {
                                         Layout.fillWidth: true
                                         text: qsTr("DHT and PeX disabled by libtorrent.")
@@ -480,19 +480,19 @@ Window {
                     Rectangle {
                         anchors { right: parent.right; top: parent.top; bottom: parent.bottom }
                         width: (parent.width - 8) / 2
-                        color: "#1a1a1a"; border.color: "#2d2d2d"; radius: 3
+                        color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
 
                         ColumnLayout {
                             id: dmCol
                             anchors { fill: parent; margins: 7 }
                             spacing: 7
 
-                            Text { text: qsTr("DOWNLOAD MODE"); color: "#8899aa"; font.pixelSize: 10 * App.fontScale; font.bold: true }
+                            Text { text: qsTr("DOWNLOAD MODE"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
                             InlineCheck {
                                 Layout.fillWidth: true
                                 label: qsTr("Sequential download")
-                                subtext: qsTr("Pieces downloaded in order (piece 0 → last)")
+                                subtext: qsTr("Pieces downloaded in order (piece 0 ? last)")
                                 checked: root._editSequential
                                 onToggled: root._editSequential = checked
                             }

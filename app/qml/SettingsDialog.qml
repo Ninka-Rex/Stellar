@@ -30,10 +30,11 @@ Window {
     minimumHeight: 500
     flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
     title: qsTr("Stellar Preferences")
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     property int    initialPage: 0   // Tab indices: 0=Connection,1=Categories,2=Downloads,3=Browser,4=Speed Limiter,5=Notifications,6=General,7=Media,8=Torrents,9=RSS,10=Associations,11=Language,12=About
@@ -61,7 +62,7 @@ Window {
         return p.replace(/^file:\/\//, "")
     }
 
-    // Plain var properties — no live binding to App.settings so that
+    // Plain var properties - no live binding to App.settings so that
     // settingsChanged can detect when the user has made changes.
     property int    editMaxConcurrent:         0
     property int    editSegmentsPerDownload:   0
@@ -143,7 +144,7 @@ Window {
     property var    torrentCountryOptions:     []
     property string selectedTorrentCountryCode: ""
     property string manualBanPeerText: ""
-    // Proxy settings — 0=None, 1=System, 2=HTTP/HTTPS, 3=SOCKS5
+    // Proxy settings - 0=None, 1=System, 2=HTTP/HTTPS, 3=SOCKS5
     property int    editProxyType:     0
     property string editProxyHost:     ""
     property int    editProxyPort:     8080
@@ -158,14 +159,16 @@ Window {
     property bool   editRssAutoDownloadEnabled:  false
     property bool   editRssSmartFilterRepack:    true
     property string editRssSmartFiltersJson:     "[]"
-    // Language — empty string = English (default), "fr" = French, etc.
+    // Language - empty string = English (default), "fr" = French, etc.
     property string editUiLanguage:             ""
     // Tray icon style: 0=Colored, 1=White, 2=Black
     property int    editTrayIconStyle:          0
-    // UI scale factor: 0.0 = system default, otherwise 0.5–3.0
+    // UI scale factor: 0.0 = system default, otherwise 0.5-3.0
     property double editUiScaleFactor:          0.0
-    // Font point size: 0 = system default, otherwise 6–32
+    // Font point size: 0 = system default, otherwise 6-32
     property int    editUiFontPointSize:        0
+    // Dark mode: true = dark, false = light
+    property bool   editDarkMode:              true
 
     readonly property string defaultUserAgent: "Stellar/" + App.appVersion
     readonly property string displayedUserAgent: editUseCustomUserAgent
@@ -311,12 +314,53 @@ Window {
         return n.toFixed(i === 0 ? 0 : 2) + " " + units[i]
     }
 
+    component ThemedSpin: SpinBox {
+        id: _tspin
+        implicitWidth: 80
+        contentItem: TextInput {
+            text: _tspin.textFromValue(_tspin.value, _tspin.locale)
+            color: ColorPalette.textPrimary
+            font.pixelSize: 13 * App.fontScale
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            readOnly: !_tspin.editable
+            validator: _tspin.validator
+        }
+        up.indicator: Rectangle {
+            x: _tspin.width - width; y: 0
+            width: 22; height: _tspin.height / 2
+            color: _tspin.up.pressed ? ColorPalette.toolbarPressBg
+                 : _tspin.up.hovered ? ColorPalette.toolbarHoverBg
+                 : ColorPalette.panelBg
+            Text { anchors.centerIn: parent; text: "+"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
+        }
+        down.indicator: Rectangle {
+            x: _tspin.width - width; y: _tspin.height / 2
+            width: 22; height: _tspin.height / 2
+            color: _tspin.down.pressed ? ColorPalette.toolbarPressBg
+                 : _tspin.down.hovered ? ColorPalette.toolbarHoverBg
+                 : ColorPalette.panelBg
+            Text { anchors.centerIn: parent; text: "–"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
+        }
+        background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 2 }
+    }
+
     component ProxyRadioButton: RadioButton {
+        id: _prb
         topPadding: 0
         bottomPadding: 0
+        indicator: Rectangle {
+            implicitWidth: 16; implicitHeight: 16
+            x: _prb.leftPadding; y: parent.height / 2 - height / 2
+            radius: 8
+            color: ColorPalette.inputBg
+            border.color: _prb.checked ? ColorPalette.accent : ColorPalette.border
+            border.width: 1
+            Rectangle { anchors.centerIn: parent; width: 8; height: 8; radius: 4; color: ColorPalette.accent; visible: _prb.checked }
+        }
         contentItem: Text {
             text: parent.text
-            color: "#d0d0d0"
+            color: ColorPalette.textPrimary
             font.pixelSize: 13 * App.fontScale
             leftPadding: parent.indicator.width + 4
             verticalAlignment: Text.AlignVCenter
@@ -464,7 +508,8 @@ Window {
         editUiLanguage                !== App.settings.uiLanguage ||
         editTrayIconStyle             !== App.settings.trayIconStyle ||
         editUiScaleFactor             !== App.settings.uiScaleFactor ||
-        editUiFontPointSize           !== App.settings.uiFontPointSize
+        editUiFontPointSize           !== App.settings.uiFontPointSize ||
+        editDarkMode                  !== App.settings.darkMode
 
     property bool catDirty:       false
     property bool loadingCategory: false   // suppresses onTextChanged during programmatic load
@@ -516,9 +561,10 @@ Window {
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
         modality: Qt.WindowModal
         transientParent: root
-        color: "#1e1e1e"
-        Material.theme: Material.Dark
-        Material.background: "#1e1e1e"
+        color: ColorPalette.cardBg
+        Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+        Material.background: ColorPalette.materialBg
         Material.accent: "#4488dd"
 
         property string promptText: ""
@@ -539,7 +585,7 @@ Window {
             Text {
                 Layout.fillWidth: true
                 text: restartPrompt.promptText
-                color: "#d0d0d0"
+                color: ColorPalette.textPrimary
                 font.pixelSize: 12 * App.fontScale
                 wrapMode: Text.WordWrap
             }
@@ -663,9 +709,10 @@ Window {
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
         modality: Qt.WindowModal
         transientParent: root
-        color: "#1e1e1e"
-        Material.theme: Material.Dark
-        Material.background: "#1e1e1e"
+        color: ColorPalette.cardBg
+        Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+        Material.background: ColorPalette.materialBg
         Material.accent: "#4488dd"
 
         property string promptText: ""
@@ -684,7 +731,7 @@ Window {
             Text {
                 Layout.fillWidth: true
                 text: exportResultDlg.promptText
-                color: "#d0d0d0"
+                color: ColorPalette.textPrimary
                 font.pixelSize: 12 * App.fontScale
                 wrapMode: Text.WordWrap
             }
@@ -711,9 +758,10 @@ Window {
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.MSWindowsFixedSizeDialogHint
         modality: Qt.WindowModal
         transientParent: root
-        color: "#1e1e1e"
-        Material.theme: Material.Dark
-        Material.background: "#1e1e1e"
+        color: ColorPalette.cardBg
+        Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+        Material.background: ColorPalette.materialBg
         Material.accent: "#4488dd"
 
         function open() {
@@ -730,7 +778,7 @@ Window {
             Text {
                 Layout.fillWidth: true
                 text: qsTr("Your data was restored successfully. Stellar needs to restart to apply it.")
-                color: "#d0d0d0"
+                color: ColorPalette.textPrimary
                 font.pixelSize: 12 * App.fontScale
                 wrapMode: Text.WordWrap
             }
@@ -875,6 +923,7 @@ Window {
             App.applyUiLanguage(editUiLanguage)
         App.settings.uiScaleFactor   = editUiScaleFactor
         App.settings.uiFontPointSize = editUiFontPointSize
+        App.settings.darkMode        = editDarkMode
         App.settings.save()
         // Sync edit properties so settingsChanged resets to false
         resetEdits()
@@ -985,6 +1034,7 @@ Window {
         editUiLanguage             = App.settings.uiLanguage
         editUiScaleFactor          = App.settings.uiScaleFactor
         editUiFontPointSize        = App.settings.uiFontPointSize
+        editDarkMode               = App.settings.darkMode
         // Reset dirty flags so Apply button is disabled until user actually changes something
         catDirty = false
     }
@@ -1002,7 +1052,7 @@ Window {
             Rectangle {
                 Layout.fillHeight: true
                 width: 160
-                color: "#252525"
+                color: ColorPalette.panelBg
 
                 ListView {
                     id: catList
@@ -1014,12 +1064,12 @@ Window {
                     delegate: Rectangle {
                         width: ListView.view.width
                         height: 28
-                        color: catList.currentIndex === index ? "#1e3a6e" : (ma.containsMouse ? "#2a2a2a" : "transparent")
+                        color: catList.currentIndex === index ? ColorPalette.selectionBg : (ma.containsMouse ? ColorPalette.hoverBg : "transparent")
 
                         Text {
                             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 16 }
                             text: modelData
-                            color: catList.currentIndex === index ? "#ffffff" : "#c0c0c0"
+                            color: catList.currentIndex === index ? ColorPalette.selectionText : ColorPalette.textPrimary
                             font.pixelSize: 12 * App.fontScale
                         }
 
@@ -1051,51 +1101,51 @@ Window {
                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
-                        Text { text: qsTr("Connection"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Text { text: qsTr("Connection"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                         GridLayout {
                             columns: 3; columnSpacing: 10; rowSpacing: 10
 
-                            Text { text: qsTr("Maximum simultaneous downloads:"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
-                            SpinBox { from: 1; to: 16; value: root.editMaxConcurrent; onValueModified: root.editMaxConcurrent = value; padding: 0 }
+                            Text { text: qsTr("Maximum simultaneous downloads:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                            ThemedSpin { from: 1; to: 16; value: root.editMaxConcurrent; onValueModified: root.editMaxConcurrent = value }
                             Item {}
 
-                            Text { text: qsTr("Segments per download:"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
-                            SpinBox { from: 1; to: 16; value: root.editSegmentsPerDownload; onValueModified: root.editSegmentsPerDownload = value; padding: 0 }
+                            Text { text: qsTr("Segments per download:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                            ThemedSpin { from: 1; to: 16; value: root.editSegmentsPerDownload; onValueModified: root.editSegmentsPerDownload = value }
                             Item {}
 
-                            Text { text: qsTr("Connection timeout (seconds):"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
-                            SpinBox { from: 5; to: 120; value: root.editConnectionTimeoutSecs; onValueModified: root.editConnectionTimeoutSecs = value; padding: 0 }
+                            Text { text: qsTr("Connection timeout (seconds):"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                            ThemedSpin { from: 5; to: 120; value: root.editConnectionTimeoutSecs; onValueModified: root.editConnectionTimeoutSecs = value }
                             Item {}
 
-                            Text { text: qsTr("Retry failed downloads:"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
-                            SpinBox { from: 0; to: 10; value: root.editMaxRetries; onValueModified: root.editMaxRetries = value; padding: 0 }
-                            Text { text: qsTr("times"); color: "#a0a0a0"; font.pixelSize: 13 * App.fontScale }
+                            Text { text: qsTr("Retry failed downloads:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                            ThemedSpin { from: 0; to: 10; value: root.editMaxRetries; onValueModified: root.editMaxRetries = value }
+                            Text { text: qsTr("times"); color: ColorPalette.textSecond; font.pixelSize: 13 * App.fontScale }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                         Text {
                             text: qsTr("User Agent")
-                            color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true
+                            color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true
                         }
 
                         Text {
                             text: qsTr("When custom mode is off, Stellar uses its built-in User-Agent with the current version.")
-                            color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale
+                            color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale
                             wrapMode: Text.WordWrap
                             Layout.fillWidth: true
                         }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Use custom user agent")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editUseCustomUserAgent
                             onCheckedChanged: root.editUseCustomUserAgent = checked
                             contentItem: Text {
                                 text: parent.text
-                                color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale
                                 leftPadding: parent.indicator.width + 4
                             }
                         }
@@ -1106,11 +1156,11 @@ Window {
                             readOnly: !root.editUseCustomUserAgent
                             selectByMouse: true
                             onTextEdited: root.editCustomUserAgent = text
-                            color: root.editUseCustomUserAgent ? "#d0d0d0" : "#7a7a7a"
+                            color: root.editUseCustomUserAgent ? ColorPalette.textPrimary : "#7a7a7a"
                             font.pixelSize: 13 * App.fontScale
                             background: Rectangle {
-                                color: root.editUseCustomUserAgent ? "#2d2d2d" : "#252525"
-                                border.color: root.editUseCustomUserAgent ? "#4a4a4a" : "#3a3a3a"
+                                color: root.editUseCustomUserAgent ? ColorPalette.dividerBg : ColorPalette.panelBg
+                                border.color: root.editUseCustomUserAgent ? "#4a4a4a" : ColorPalette.border
                                 radius: 3
                             }
                         }
@@ -1124,11 +1174,11 @@ Window {
                             Layout.fillWidth: true
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e"; Layout.topMargin: 4 }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border; Layout.topMargin: 4 }
 
                         Text {
                             text: qsTr("Proxy")
-                            color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true
+                            color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true
                         }
 
                         // Type selector
@@ -1158,7 +1208,7 @@ Window {
                             }
                         }
 
-                        // Host / port / auth — only shown for custom proxy types
+                        // Host / port / auth - only shown for custom proxy types
                         ColumnLayout {
                             visible: root.editProxyType === 2 || root.editProxyType === 3
                             spacing: 8
@@ -1169,7 +1219,7 @@ Window {
                                 spacing: 8
                                 Layout.fillWidth: true
 
-                                Text { text: qsTr("Host:"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
+                                Text { text: qsTr("Host:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
                                 TextField {
                                     Layout.fillWidth: true
                                     text: root.editProxyHost
@@ -1177,11 +1227,11 @@ Window {
                                     font.pixelSize: 13 * App.fontScale
                                     onTextEdited: root.editProxyHost = text
                                     background: Rectangle {
-                                        color: "#2d2d2d"; border.color: parent.activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3
+                                        color: ColorPalette.dividerBg; border.color: parent.activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3
                                     }
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                 }
-                                Text { text: qsTr("Port:"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
+                                Text { text: qsTr("Port:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
                                 TextField {
                                     implicitWidth: 120
                                     text: root.editProxyPort.toString()
@@ -1195,9 +1245,9 @@ Window {
                                             root.editProxyPort = v
                                     }
                                     background: Rectangle {
-                                        color: "#2d2d2d"; border.color: parent.activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3
+                                        color: ColorPalette.dividerBg; border.color: parent.activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3
                                     }
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                 }
                             }
 
@@ -1206,7 +1256,7 @@ Window {
                                 columns: 2; columnSpacing: 8; rowSpacing: 6
                                 Layout.fillWidth: true
 
-                                Text { text: qsTr("Username:"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
+                                Text { text: qsTr("Username:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
                                 TextField {
                                     Layout.fillWidth: true
                                     placeholderText: qsTr("Optional")
@@ -1215,12 +1265,12 @@ Window {
                                     font.pixelSize: 13 * App.fontScale
                                     onTextEdited: root.editProxyUsername = text
                                     background: Rectangle {
-                                        color: "#2d2d2d"; border.color: parent.activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3
+                                        color: ColorPalette.dividerBg; border.color: parent.activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3
                                     }
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                 }
 
-                                Text { text: qsTr("Password:"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
+                                Text { text: qsTr("Password:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
                                 TextField {
                                     Layout.fillWidth: true
                                     placeholderText: qsTr("Optional")
@@ -1230,9 +1280,9 @@ Window {
                                     font.pixelSize: 13 * App.fontScale
                                     onTextEdited: root.editProxyPassword = text
                                     background: Rectangle {
-                                        color: "#2d2d2d"; border.color: parent.activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3
+                                        color: ColorPalette.dividerBg; border.color: parent.activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3
                                     }
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                 }
                             }
 
@@ -1252,7 +1302,7 @@ Window {
                             Layout.fillWidth: true
                         }
 
-                        // ── Proxy test ────────────────────────────────────────
+                        // ?? Proxy test ????????????????????????????????????????
                         RowLayout {
                             id: proxyTestRow
                             visible: root.editProxyType !== 0
@@ -1271,7 +1321,7 @@ Window {
                                     if (proxyTestRow._testing) {
                                         proxyTestRow._testing = false
                                         proxyTestRow._ok = false
-                                        proxyTestRow._result = qsTr("Timed out — proxy did not respond")
+                                        proxyTestRow._result = qsTr("Timed out - proxy did not respond")
                                     }
                                 }
                             }
@@ -1287,7 +1337,7 @@ Window {
                             }
 
                             DlgButton {
-                                text: proxyTestRow._testing ? qsTr("Testing…") : qsTr("Test Proxy")
+                                text: proxyTestRow._testing ? qsTr("Testing.") : qsTr("Test Proxy")
                                 enabled: !proxyTestRow._testing
                                 onClicked: {
                                     proxyTestRow._result = ""
@@ -1329,15 +1379,15 @@ Window {
                         anchors { fill: parent; margins: 12 }
                         spacing: 10
 
-                        Text { text: qsTr("Categories"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Text { text: qsTr("Categories"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                         RowLayout {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
                             spacing: 12
 
-                            // ── Left: category list ──────────────────────────
+                            // ?? Left: category list ??????????????????????????
                             ColumnLayout {
                                 Layout.fillHeight: true
                                 Layout.preferredWidth: 170
@@ -1346,8 +1396,8 @@ Window {
                                 Rectangle {
                                     Layout.fillWidth: true
                                     Layout.fillHeight: true
-                                    color: "#252525"
-                                    border.color: "#3a3a3a"
+                                    color: ColorPalette.panelBg
+                                    border.color: ColorPalette.border
                                     radius: 2
                                     clip: true
 
@@ -1400,13 +1450,13 @@ Window {
                                             visible: categoryId !== "all"
                                             height: visible ? 32 : 0
                                             color: catEditList.currentIndex === index
-                                                   ? "#1e3a6e"
-                                                   : (catItemMa.containsMouse ? "#2a2a2a" : "transparent")
+                                                   ? ColorPalette.selectionBg
+                                                   : (catItemMa.containsMouse ? ColorPalette.hoverBg : "transparent")
 
                                             Text {
                                                 anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10; right: parent.right; rightMargin: 6 }
                                                 text: categoryLabel
-                                                color: catEditList.currentIndex === index ? "#ffffff" : "#c0c0c0"
+                                                color: catEditList.currentIndex === index ? ColorPalette.selectionText : ColorPalette.textPrimary
                                                 font.pixelSize: 12 * App.fontScale
                                                 elide: Text.ElideRight
                                             }
@@ -1428,12 +1478,12 @@ Window {
 
                                     Rectangle {
                                         width: 32; height: 26; radius: 3
-                                        color: addCatMa.containsMouse ? "#445544" : "#333"
-                                        border.color: "#555"
+                                        color: addCatMa.containsMouse ? ColorPalette.hoverBg : ColorPalette.panelBg
+                                        border.color: ColorPalette.border
                                         Text {
                                             anchors.centerIn: parent
                                             text: "+"
-                                            color: "#c0c0c0"
+                                            color: ColorPalette.textPrimary
                                             font.pixelSize: 16 * App.fontScale
                                             font.bold: true
                                         }
@@ -1452,13 +1502,13 @@ Window {
                                     Rectangle {
                                         width: 32; height: 26; radius: 3
                                         enabled: !catPage.catEditBuiltIn && catPage.catEditId !== ""
-                                        color: delCatMa.containsMouse && enabled ? "#554444" : "#333"
-                                        border.color: "#555"
+                                        color: delCatMa.containsMouse && enabled ? ColorPalette.hoverBg : ColorPalette.panelBg
+                                        border.color: ColorPalette.border
                                         opacity: enabled ? 1.0 : 0.4
                                         Text {
                                             anchors.centerIn: parent
                                             text: "−"
-                                            color: "#e0a0a0"
+                                            color: ColorPalette.textPrimary
                                             font.pixelSize: 18 * App.fontScale
                                             font.bold: true
                                         }
@@ -1480,7 +1530,7 @@ Window {
                                 }
                             }
 
-                            // ── Right: edit form ─────────────────────────────
+                            // ?? Right: edit form ?????????????????????????????
                             ColumnLayout {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
@@ -1495,8 +1545,8 @@ Window {
                                         id: catEditName
                                         Layout.fillWidth: true
                                         implicitHeight: 30
-                                        font.pixelSize: 12 * App.fontScale; color: "#d0d0d0"
-                                        background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                        font.pixelSize: 12 * App.fontScale; color: ColorPalette.textPrimary
+                                        background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                                         leftPadding: 8
                                         onTextChanged: if (!root.loadingCategory) root.catDirty = true
                                     }
@@ -1511,11 +1561,11 @@ Window {
                                         Layout.fillWidth: true
                                         implicitHeight: 52
                                         clip: true
-                                        background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                        background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                                         TextArea {
                                             id: catEditExts
                                             wrapMode: TextArea.Wrap
-                                            font.pixelSize: 12 * App.fontScale; color: "#d0d0d0"
+                                            font.pixelSize: 12 * App.fontScale; color: ColorPalette.textPrimary
                                             background: null
                                             padding: 6
                                             placeholderText: "mp4, mkv, avi, mov"
@@ -1527,7 +1577,7 @@ Window {
                                         Layout.fillWidth: true
                                         wrapMode: Text.WordWrap
                                         font.pixelSize: 11 * App.fontScale
-                                        color: "#e8c840"
+                                        color: ColorPalette.warningText
                                         visible: text.length > 0
                                         text: {
                                             var typed = catEditExts.text.split(/[\s,]+/).map(function(s) {
@@ -1545,7 +1595,7 @@ Window {
                                                 return e.length > 0 && monitored.indexOf(e) < 0
                                             })
                                             return missing.length > 0
-                                                ? qsTr("⚠ Not in browser auto-download list: %1").arg(missing.join(", "))
+                                                ? qsTr("✕ Not in browser auto-download list: %1").arg(missing.join(", "))
                                                 : ""
                                         }
                                     }
@@ -1561,8 +1611,8 @@ Window {
                                         Layout.fillWidth: true
                                         implicitHeight: 30
                                         placeholderText: "*.youtube.com *.vimeo.com"
-                                        font.pixelSize: 12 * App.fontScale; color: "#d0d0d0"
-                                        background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                        font.pixelSize: 12 * App.fontScale; color: ColorPalette.textPrimary
+                                        background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                                         leftPadding: 8
                                         onTextChanged: if (!root.loadingCategory) root.catDirty = true
                                     }
@@ -1578,7 +1628,7 @@ Window {
                                 ColumnLayout {
                                     Layout.fillWidth: true
                                     spacing: 4
-                                    Text { text: qsTr("Save to folder"); color: "#909090"; font.pixelSize: 11 * App.fontScale }
+                                    Text { text: qsTr("Save to folder"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
                                     RowLayout {
                                         Layout.fillWidth: true
                                         spacing: 6
@@ -1586,16 +1636,16 @@ Window {
                                             id: catEditPath
                                             Layout.fillWidth: true
                                             implicitHeight: 30
-                                            font.pixelSize: 12 * App.fontScale; color: "#d0d0d0"
-                                            background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                            font.pixelSize: 12 * App.fontScale; color: ColorPalette.textPrimary
+                                            background: Rectangle { color: ColorPalette.dividerBg; border.color: ColorPalette.border; radius: 3 }
                                             leftPadding: 8
                                             onTextChanged: if (!root.loadingCategory) root.catDirty = true
                                         }
                                         Rectangle {
                                             width: 32; height: 30; radius: 3
-                                            color: browseMa.containsMouse ? "#445" : "#333"
-                                            border.color: "#555"
-                                            Text { anchors.centerIn: parent; text: "…"; color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
+                                            color: browseMa.containsMouse ? ColorPalette.hoverBg : ColorPalette.panelBg
+                                            border.color: ColorPalette.border
+                                            Text { anchors.centerIn: parent; text: "…"; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
                                             MouseArea {
                                                 id: browseMa
                                                 anchors.fill: parent
@@ -1626,10 +1676,10 @@ Window {
                             y: 12
                             spacing: 10
 
-                        Text { text: qsTr("Downloads"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Text { text: qsTr("Downloads"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        Text { text: qsTr("Default save folder:"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
+                        Text { text: qsTr("Default save folder:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -1637,20 +1687,20 @@ Window {
                                 Layout.fillWidth: true
                                 text: root.editDefaultSavePath
                                 onTextChanged: root.editDefaultSavePath = text
-                                color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale
-                                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale
+                                background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                             }
                             Button {
-                                text: qsTr("Browse…"); font.pixelSize: 12 * App.fontScale
-                                background: Rectangle { color: "#3a3a3a"; radius: 3 }
-                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font: parent.font; horizontalAlignment: Text.AlignHCenter }
+                                text: qsTr("Browse."); font.pixelSize: 12 * App.fontScale
+                                background: Rectangle { color: ColorPalette.border; radius: 3 }
+                                contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font: parent.font; horizontalAlignment: Text.AlignHCenter }
                                 onClicked: saveFolderDlg.open()
                             }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        Text { text: qsTr("Custom save folder for torrents:"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
+                        Text { text: qsTr("Custom save folder for torrents:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -1658,8 +1708,8 @@ Window {
                                 Layout.fillWidth: true
                                 text: root.editTorrentCustomSavePath
                                 onTextChanged: root.editTorrentCustomSavePath = text
-                                color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale
-                                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale
+                                background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                             }
                             DlgButton {
                                 text: qsTr("Browse")
@@ -1674,9 +1724,9 @@ Window {
                             Layout.fillWidth: true
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        Text { text: qsTr("Stellar temporary directory:"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
+                        Text { text: qsTr("Stellar temporary directory:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -1684,8 +1734,8 @@ Window {
                                 Layout.fillWidth: true
                                 text: root.editTemporaryDirectory
                                 onTextChanged: root.editTemporaryDirectory = text
-                                color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale
-                                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale
+                                background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                             }
                             DlgButton {
                                 text: qsTr("Browse")
@@ -1700,51 +1750,51 @@ Window {
                             Layout.fillWidth: true
                         }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Start downloading immediately (skip file info dialog)")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editStartImmediately
                             onCheckedChanged: root.editStartImmediately = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Show download complete dialog")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowDownloadComplete
                             onCheckedChanged: root.editShowDownloadComplete = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Start downloading immediately while displaying \"Download File Info\" dialog")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editStartDownloadWhileFileInfo
                             onCheckedChanged: root.editStartDownloadWhileFileInfo = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Show swarm map when downloading torrent metadata")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowSwarmMapWhileFetchingMetadata
                             onCheckedChanged: root.editShowSwarmMapWhileFetchingMetadata = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Show queue selection panel on pressing Download Later")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowQueueSelectionOnDownloadLater
                             onCheckedChanged: root.editShowQueueSelectionOnDownloadLater = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         }
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Show queue selection panel on closing batch downloads dialog")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowQueueSelectionOnBatchDownload
                             onCheckedChanged: root.editShowQueueSelectionOnBatchDownload = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         }
                         Text {
                             text: qsTr("Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting.")
@@ -1753,9 +1803,9 @@ Window {
                             Layout.fillWidth: true
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        Text { text: qsTr("If a duplicate URL is added:"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
+                        Text { text: qsTr("If a duplicate URL is added:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
                         ComboBox {
                             id: duplicateActionCombo
                             model: [
@@ -1767,19 +1817,19 @@ Window {
                             currentIndex: root.editDuplicateAction
                             implicitWidth: 260
                             font.pixelSize: 12 * App.fontScale
-                            background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                            background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                             contentItem: Text {
                                 leftPadding: 8
                                 text: duplicateActionCombo.displayText
-                                color: "#d0d0d0"; font: duplicateActionCombo.font
+                                color: ColorPalette.textPrimary; font: duplicateActionCombo.font
                                 verticalAlignment: Text.AlignVCenter
                             }
                             onCurrentIndexChanged: root.editDuplicateAction = currentIndex
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        Text { text: qsTr("Double-clicking on a download in the file list:"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
+                        Text { text: qsTr("Double-clicking on a download in the file list:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
                         ComboBox {
                             id: doubleClickActionCombo
                             model: [
@@ -1790,19 +1840,19 @@ Window {
                             currentIndex: root.editDoubleClickAction
                             implicitWidth: 260
                             font.pixelSize: 12 * App.fontScale
-                            background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                            background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                             contentItem: Text {
                                 leftPadding: 8
                                 text: doubleClickActionCombo.displayText
-                                color: "#d0d0d0"; font: doubleClickActionCombo.font
+                                color: ColorPalette.textPrimary; font: doubleClickActionCombo.font
                                 verticalAlignment: Text.AlignVCenter
                             }
                             onCurrentIndexChanged: root.editDoubleClickAction = currentIndex
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        Text { text: qsTr("Last try date format:"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
+                        Text { text: qsTr("Last try date format:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
                         ComboBox {
                             id: lastTryDateStyleCombo
                             model: [
@@ -1814,17 +1864,17 @@ Window {
                             currentIndex: root.editLastTryDateStyle
                             implicitWidth: 220
                             font.pixelSize: 12 * App.fontScale
-                            background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                            background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                             contentItem: Text {
                                 leftPadding: 8
                                 text: lastTryDateStyleCombo.displayText
-                                color: "#d0d0d0"; font: lastTryDateStyleCombo.font
+                                color: ColorPalette.textPrimary; font: lastTryDateStyleCombo.font
                                 verticalAlignment: Text.AlignVCenter
                             }
                             onCurrentIndexChanged: root.editLastTryDateStyle = currentIndex
                         }
 
-                        Text { text: qsTr("Time format:"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
+                        Text { text: qsTr("Time format:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
                         ComboBox {
                             id: lastTryTimeModeCombo
                             model: [
@@ -1834,30 +1884,30 @@ Window {
                             currentIndex: root.editLastTryUse24Hour ? 0 : 1
                             implicitWidth: 220
                             font.pixelSize: 12 * App.fontScale
-                            background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                            background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                             contentItem: Text {
                                 leftPadding: 8
                                 text: lastTryTimeModeCombo.displayText
-                                color: "#d0d0d0"; font: lastTryTimeModeCombo.font
+                                color: ColorPalette.textPrimary; font: lastTryTimeModeCombo.font
                                 verticalAlignment: Text.AlignVCenter
                             }
                             onCurrentIndexChanged: root.editLastTryUse24Hour = currentIndex === 0
                         }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Show seconds")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editLastTryShowSeconds
                             onCheckedChanged: root.editLastTryShowSeconds = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
 
                         Rectangle {
                             Layout.fillWidth: true
                             implicitHeight: previewColumn.implicitHeight + 16
                             radius: 4
-                            color: "#242424"
-                            border.color: "#3a3a3a"
+                            color: ColorPalette.rowAltBg
+                            border.color: ColorPalette.border
 
                             ColumnLayout {
                                 id: previewColumn
@@ -1889,13 +1939,13 @@ Window {
                             x: 12; y: 12
                             spacing: 10
 
-                            Text { text: qsTr("Browser Integration"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
-                            Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                            Text { text: qsTr("Browser Integration"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
+                            Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                            // ── Monitored file types ──────────────────────────────
+                            // ?? Monitored file types ??????????????????????????????
                             Text {
                                 text: qsTr("Automatically start downloading the following file types:")
-                                color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale
                                 wrapMode: Text.WordWrap
                                 Layout.fillWidth: true
                             }
@@ -1904,13 +1954,13 @@ Window {
                                 Layout.fillWidth: true
                                 implicitHeight: 72
                                 clip: true
-                                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                                 TextArea {
                                     id: monitoredExtsArea
                                     wrapMode: TextArea.Wrap
                                     font.pixelSize: 11 * App.fontScale
                                     font.family: "monospace"
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                     background: null
                                     padding: 6
                                     text: App.settings.monitoredExtensions.join(" ").toUpperCase()
@@ -1922,12 +1972,12 @@ Window {
                                 color: "#555"; font.pixelSize: 10 * App.fontScale
                             }
 
-                            Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+                            Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                            // ── Excluded sites ────────────────────────────────────
+                            // ?? Excluded sites ????????????????????????????????????
                             Text {
                                 text: qsTr("Don't start downloading automatically from the following sites:")
-                                color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale
                                 wrapMode: Text.WordWrap
                                 Layout.fillWidth: true
                             }
@@ -1936,13 +1986,13 @@ Window {
                                 Layout.fillWidth: true
                                 implicitHeight: 60
                                 clip: true
-                                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                                 TextArea {
                                     id: excludedSitesArea
                                     wrapMode: TextArea.Wrap
                                     font.pixelSize: 11 * App.fontScale
                                     font.family: "monospace"
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                     background: null
                                     padding: 6
                                     text: App.settings.excludedSites.join(" ")
@@ -1956,15 +2006,15 @@ Window {
                                 Layout.fillWidth: true
                             }
 
-                            Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+                            Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                            // ── Address Exceptions ────────────────────────────────
+                            // ?? Address Exceptions ????????????????????????????????
                             Text {
                                 text: qsTr("Address Exceptions")
-                                color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true
+                                color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true
                             }
 
-                            CheckBox {
+                            StyledCheckBox {
                                 id: showExceptDlgChk
                                 text: qsTr("Show the dialog to add an address to the list of exceptions for a twice cancelled download")
                                 topPadding: 0; bottomPadding: 0
@@ -1973,7 +2023,7 @@ Window {
                                 onCheckedChanged: root.editShowExceptionsDialog = checked
                                 contentItem: Text {
                                     text: parent.text
-                                    color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                     leftPadding: parent.indicator.width + 4
                                     wrapMode: Text.WordWrap
                                     width: parent.width
@@ -1982,7 +2032,7 @@ Window {
 
                             Text {
                                 text: qsTr("Don't start downloading from the following addresses:")
-                                color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale
                                 wrapMode: Text.WordWrap
                                 Layout.fillWidth: true
                             }
@@ -1991,13 +2041,13 @@ Window {
                                 Layout.fillWidth: true
                                 implicitHeight: 160
                                 clip: true
-                                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                                 TextArea {
                                     id: excludedAddrsArea
                                     wrapMode: TextArea.NoWrap
                                     font.pixelSize: 11 * App.fontScale
                                     font.family: "monospace"
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                     background: null
                                     padding: 6
                                     text: App.settings.excludedAddresses.join("\n")
@@ -2009,17 +2059,17 @@ Window {
                                 color: "#555"; font.pixelSize: 10 * App.fontScale
                             }
 
-                            Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+                            Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                            // ── Bypass interception key ────────────────────────────
+                            // ?? Bypass interception key ????????????????????????????
                             Text {
                                 text: qsTr("Bypass Download Interception")
-                                color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true
+                                color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true
                             }
 
                             Text {
                                 text: qsTr("Hold this key while clicking a download link to skip interception and let the browser download:")
-                                color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale
                                 wrapMode: Text.WordWrap
                                 Layout.fillWidth: true
                             }
@@ -2032,11 +2082,11 @@ Window {
                                     currentIndex: root.editBypassInterceptKey
                                     implicitWidth: 120
                                     font.pixelSize: 12 * App.fontScale
-                                    background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                    background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                                     contentItem: Text {
                                         leftPadding: 8
                                         text: bypassKeyCombo.displayText
-                                        color: "#d0d0d0"; font: bypassKeyCombo.font
+                                        color: ColorPalette.textPrimary; font: bypassKeyCombo.font
                                         verticalAlignment: Text.AlignVCenter
                                     }
                                     onCurrentIndexChanged: root.editBypassInterceptKey = currentIndex
@@ -2061,15 +2111,15 @@ Window {
                         x: 12; y: 12
                         spacing: 10
 
-                        Text { text: qsTr("Speed Limiter"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Text { text: qsTr("Speed Limiter"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                            CheckBox {
+                            StyledCheckBox {
                                 id: globalLimitChk
                                 text: qsTr("Enable speed limiter")
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: root.editGlobalSpeedLimitEnabled = checked
-                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                                contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                             }
 
                             RowLayout {
@@ -2078,9 +2128,9 @@ Window {
                                 TextField {
                                     id: speedLimitField
                                     implicitWidth: 90
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 13 * App.fontScale
-                                    background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                    background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
 
                                     function syncFromModel() {
                                         var val = root.editSavedSpeedLimitKBps
@@ -2111,9 +2161,9 @@ Window {
                                 TextField {
                                     id: uploadLimitField
                                     implicitWidth: 90
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 13 * App.fontScale
-                                    background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                    background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
 
                                     function syncFromModel() {
                                         var val = root.editGlobalUploadLimitKBps
@@ -2137,25 +2187,25 @@ Window {
                                 Text { text: qsTr("KB/s"); color: "#a0a0a0"; font.pixelSize: 13 * App.fontScale }
                             }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Always turn on speed limiter on Stellar startup")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedLimiterOnStartup
                             onCheckedChanged: root.editSpeedLimiterOnStartup = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        // ── Speed Limiter Scheduler ───────────────────────────────────────────────
+                        // ?? Speed Limiter Scheduler ???????????????????????????????????????????????
                         // Each rule: days[], onHour (1-12), onMinute (0-59), onAmPm, offHour,
                         // offMinute, offAmPm, downLimitKBps, upLimitKBps. Stored in editSpeedScheduleJson.
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Enable speed limiter scheduler")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedScheduleEnabled
                             onCheckedChanged: root.editSpeedScheduleEnabled = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
 
                         ColumnLayout {
@@ -2176,9 +2226,9 @@ Window {
                                          downLimitKBps: 500, upLimitKBps: 500 }
                             }
 
-                            // ── Per-rule cards ───────────────────────────────────────────────────
+                            // ?? Per-rule cards ???????????????????????????????????????????????????
                             // Style matches GrabberScheduleDialog: #1b1b1b panels, #333 borders,
-                            // #e0e0e0 text, 12px font, 26px tall inputs with small ▲▼ arrows.
+                            // #e0e0e0 text, 12px font, 26px tall inputs with small ?? arrows.
                             Repeater {
                                 model: scheduleCol.rules.length
                                 delegate: Rectangle {
@@ -2186,7 +2236,7 @@ Window {
                                     required property int index
                                     Layout.fillWidth: true
                                     implicitHeight: cardCol.implicitHeight + 18
-                                    color: "#1b1b1b"
+                                    color: ColorPalette.inputBg
                                     radius: 3
                                     border.color: "#333333"
 
@@ -2216,12 +2266,12 @@ Window {
                                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 10 }
                                         spacing: 8
 
-                                        // ── Header ───────────────────────────────────────────────
+                                        // ?? Header ???????????????????????????????????????????????
                                         RowLayout {
                                             Layout.fillWidth: true
                                             Text {
                                                 text: qsTr("Rule %1").arg(ruleCard.index + 1)
-                                                color: "#888888"; font.pixelSize: 11 * App.fontScale; font.bold: true
+                                                color: ColorPalette.textMuted; font.pixelSize: 11 * App.fontScale; font.bold: true
                                             }
                                             Item { Layout.fillWidth: true }
                                             Text {
@@ -2242,7 +2292,7 @@ Window {
                                             }
                                         }
 
-                                        // ── Day pills — clickable, blue when active ───────────────
+                                        // ?? Day pills - clickable, blue when active ???????????????
                                         RowLayout {
                                             spacing: 3
                                             Repeater {
@@ -2252,12 +2302,12 @@ Window {
                                                     required property var modelData
                                                     property bool on: ruleCard.rule.days && ruleCard.rule.days.indexOf(modelData) >= 0
                                                     width: 36; height: 22; radius: 2
-                                                    color: on ? "#1a3a6a" : "#252525"
-                                                    border.color: on ? "#4488dd" : "#3a3a3a"
+                                                    color: on ? ColorPalette.selectionBg : ColorPalette.panelBg
+                                                    border.color: on ? "#4488dd" : ColorPalette.border
                                                     Text {
                                                         anchors.centerIn: parent
                                                         text: modelData
-                                                        color: on ? "#aaccff" : "#666666"
+                                                        color: on ? "#aaccff" : ColorPalette.textDisabled
                                                         font.pixelSize: 11 * App.fontScale
                                                     }
                                                     MouseArea {
@@ -2269,35 +2319,35 @@ Window {
                                             }
                                         }
 
-                                        // ── On → Off / Limit row ──────────────────────────────────
+                                        // ?? On ? Off / Limit row ??????????????????????????????????
                                         // Uses the same compact input style as GrabberScheduleDialog:
-                                        // TextInput in a 50×26 Rectangle, colon separator, DarkCombo for AM/PM.
+                                        // TextInput in a 50?26 Rectangle, colon separator, DarkCombo for AM/PM.
                                         RowLayout {
                                             spacing: 4
                                             Layout.fillWidth: true
 
-                                            Text { text: qsTr("On"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale }
+                                            Text { text: qsTr("On"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
 
-                                            // On-hour input (1–12)
+                                            // On-hour input (1-12)
                                             Rectangle {
                                                 width: 50; height: 26; radius: 2
-                                                color: "#1b1b1b"; border.color: onHourFld.activeFocus ? "#4488dd" : "#3a3a3a"
+                                                color: ColorPalette.inputBg; border.color: onHourFld.activeFocus ? "#4488dd" : ColorPalette.border
                                                 TextInput {
                                                     id: onHourFld
                                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                                     text: String(ruleCard.rule.onHour || "9")
-                                                    color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
+                                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                                     horizontalAlignment: TextInput.AlignHCenter
                                                     verticalAlignment: TextInput.AlignVCenter
                                                     validator: IntValidator { bottom: 1; top: 12 }
                                                     onTextEdited: ruleCard.patch("onHour", text)
                                                 }
                                             }
-                                            Text { text: ":"; color: "#aaaaaa"; font.pixelSize: 13 * App.fontScale }
-                                            // On-minute input (00–59), zero-padded
+                                            Text { text: ":"; color: ColorPalette.textSecond; font.pixelSize: 13 * App.fontScale }
+                                            // On-minute input (00-59), zero-padded
                                             Rectangle {
                                                 width: 50; height: 26; radius: 2
-                                                color: "#1b1b1b"; border.color: onMinFld.activeFocus ? "#4488dd" : "#3a3a3a"
+                                                color: ColorPalette.inputBg; border.color: onMinFld.activeFocus ? "#4488dd" : ColorPalette.border
                                                 TextInput {
                                                     id: onMinFld
                                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
@@ -2305,14 +2355,14 @@ Window {
                                                         var m = parseInt(ruleCard.rule.onMinute)
                                                         return isNaN(m) ? "00" : (m < 10 ? "0" + m : String(m))
                                                     }
-                                                    color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
+                                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                                     horizontalAlignment: TextInput.AlignHCenter
                                                     verticalAlignment: TextInput.AlignVCenter
                                                     validator: IntValidator { bottom: 0; top: 59 }
                                                     onTextEdited: ruleCard.patch("onMinute", text)
                                                 }
                                             }
-                                            // AM/PM combo for On time — same style as DarkCombo
+                                            // AM/PM combo for On time - same style as DarkCombo
                                             ComboBox {
                                                 model: ["AM","PM"]
                                                 currentIndex: (ruleCard.rule.onAmPm || "AM") === "PM" ? 1 : 0
@@ -2320,38 +2370,38 @@ Window {
                                                 font.pixelSize: 12 * App.fontScale
                                                 contentItem: Text {
                                                     leftPadding: 8; rightPadding: 20
-                                                    text: parent.displayText; color: "#e0e0e0"; font: parent.font
+                                                    text: parent.displayText; color: ColorPalette.textPrimary; font: parent.font
                                                     verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight
                                                 }
-                                                background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
-                                                indicator: Text { x: parent.width-width-6; y: (parent.height-height)/2; text: "▼"; color: "#888"; font.pixelSize: 8 * App.fontScale }
-                                                popup.background: Rectangle { color: "#2a2a2a"; border.color: "#444"; radius: 3 }
+                                                background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 2 }
+                                                indicator: Text { x: parent.width-width-6; y: (parent.height-height)/2; text: "▾"; color: "#888"; font.pixelSize: 8 * App.fontScale }
+                                                popup.background: Rectangle { color: ColorPalette.inputBg; border.color: "#444"; radius: 3 }
                                                 onCurrentIndexChanged: ruleCard.patch("onAmPm", currentIndex === 1 ? "PM" : "AM")
                                             }
 
-                                            Text { text: "→"; color: "#555555"; font.pixelSize: 13 * App.fontScale; leftPadding: 2; rightPadding: 2 }
-                                            Text { text: "Off"; color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale }
+                                            Text { text: "–"; color: "#555555"; font.pixelSize: 13 * App.fontScale; leftPadding: 2; rightPadding: 2 }
+                                            Text { text: "Off"; color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
 
-                                            // Off-hour input (1–12)
+                                            // Off-hour input (1-12)
                                             Rectangle {
                                                 width: 50; height: 26; radius: 2
-                                                color: "#1b1b1b"; border.color: offHourFld.activeFocus ? "#4488dd" : "#3a3a3a"
+                                                color: ColorPalette.inputBg; border.color: offHourFld.activeFocus ? "#4488dd" : ColorPalette.border
                                                 TextInput {
                                                     id: offHourFld
                                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                                     text: String(ruleCard.rule.offHour || "5")
-                                                    color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
+                                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                                     horizontalAlignment: TextInput.AlignHCenter
                                                     verticalAlignment: TextInput.AlignVCenter
                                                     validator: IntValidator { bottom: 1; top: 12 }
                                                     onTextEdited: ruleCard.patch("offHour", text)
                                                 }
                                             }
-                                            Text { text: ":"; color: "#aaaaaa"; font.pixelSize: 13 * App.fontScale }
-                                            // Off-minute input (00–59)
+                                            Text { text: ":"; color: ColorPalette.textSecond; font.pixelSize: 13 * App.fontScale }
+                                            // Off-minute input (00-59)
                                             Rectangle {
                                                 width: 50; height: 26; radius: 2
-                                                color: "#1b1b1b"; border.color: offMinFld.activeFocus ? "#4488dd" : "#3a3a3a"
+                                                color: ColorPalette.inputBg; border.color: offMinFld.activeFocus ? "#4488dd" : ColorPalette.border
                                                 TextInput {
                                                     id: offMinFld
                                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
@@ -2359,7 +2409,7 @@ Window {
                                                         var m = parseInt(ruleCard.rule.offMinute)
                                                         return isNaN(m) ? "00" : (m < 10 ? "0" + m : String(m))
                                                     }
-                                                    color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
+                                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                                     horizontalAlignment: TextInput.AlignHCenter
                                                     verticalAlignment: TextInput.AlignVCenter
                                                     validator: IntValidator { bottom: 0; top: 59 }
@@ -2374,29 +2424,29 @@ Window {
                                                 font.pixelSize: 12 * App.fontScale
                                                 contentItem: Text {
                                                     leftPadding: 8; rightPadding: 20
-                                                    text: parent.displayText; color: "#e0e0e0"; font: parent.font
+                                                    text: parent.displayText; color: ColorPalette.textPrimary; font: parent.font
                                                     verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight
                                                 }
-                                                background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
-                                                indicator: Text { x: parent.width-width-6; y: (parent.height-height)/2; text: "▼"; color: "#888"; font.pixelSize: 8 * App.fontScale }
-                                                popup.background: Rectangle { color: "#2a2a2a"; border.color: "#444"; radius: 3 }
+                                                background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 2 }
+                                                indicator: Text { x: parent.width-width-6; y: (parent.height-height)/2; text: "▾"; color: "#888"; font.pixelSize: 8 * App.fontScale }
+                                                popup.background: Rectangle { color: ColorPalette.inputBg; border.color: "#444"; radius: 3 }
                                                 onCurrentIndexChanged: ruleCard.patch("offAmPm", currentIndex === 1 ? "PM" : "AM")
                                             }
 
                                         }
 
-                                        // ── Speed limit row ───────────────────────────────────────
+                                        // ?? Speed limit row ???????????????????????????????????????
                                         RowLayout {
                                             spacing: 6
-                                            Text { text: qsTr("Download"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale }
+                                            Text { text: qsTr("Download"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
                                             Rectangle {
                                                 width: 70; height: 26; radius: 2
-                                                color: "#1b1b1b"; border.color: downLimitFld.activeFocus ? "#4488dd" : "#3a3a3a"
+                                                color: ColorPalette.inputBg; border.color: downLimitFld.activeFocus ? "#4488dd" : ColorPalette.border
                                                 TextInput {
                                                     id: downLimitFld
                                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                                     text: String(ruleCard.rule.downLimitKBps || 500)
-                                                    color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
+                                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                                     horizontalAlignment: TextInput.AlignHCenter
                                                     verticalAlignment: TextInput.AlignVCenter
                                                     validator: IntValidator { bottom: 1; top: 999999 }
@@ -2406,17 +2456,17 @@ Window {
                                                     }
                                                 }
                                             }
-                                            Text { text: qsTr("KB/s"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale }
+                                            Text { text: qsTr("KB/s"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
                                             Item { Layout.preferredWidth: 10 }
-                                            Text { text: qsTr("Upload"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale }
+                                            Text { text: qsTr("Upload"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
                                             Rectangle {
                                                 width: 70; height: 26; radius: 2
-                                                color: "#1b1b1b"; border.color: upLimitFld.activeFocus ? "#4488dd" : "#3a3a3a"
+                                                color: ColorPalette.inputBg; border.color: upLimitFld.activeFocus ? "#4488dd" : ColorPalette.border
                                                 TextInput {
                                                     id: upLimitFld
                                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                                     text: String(ruleCard.rule.upLimitKBps || 500)
-                                                    color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
+                                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                                     horizontalAlignment: TextInput.AlignHCenter
                                                     verticalAlignment: TextInput.AlignVCenter
                                                     validator: IntValidator { bottom: 1; top: 999999 }
@@ -2426,13 +2476,13 @@ Window {
                                                     }
                                                 }
                                             }
-                                            Text { text: qsTr("KB/s"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale }
+                                            Text { text: qsTr("KB/s"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
                                         }
                                     }
                                 }
                             } // Repeater
 
-                            // ── Add Rule button ──────────────────────────────────────────────────
+                            // ?? Add Rule button ??????????????????????????????????????????????????
                             DlgButton {
                                 text: qsTr("+ Add Rule")
                                 onClicked: {
@@ -2442,16 +2492,16 @@ Window {
                                 }
                             }
 
-                            // Informational note — same blue-tinted style as GrabberScheduleDialog
+                            // Informational note - same blue-tinted style as GrabberScheduleDialog
                             Rectangle {
                                 Layout.fillWidth: true
                                 implicitHeight: scheduleNote.implicitHeight + 16
-                                color: "#1a2030"; border.color: "#2a3050"; radius: 3
+                                color: ColorPalette.infoBoxBg; border.color: ColorPalette.infoBoxBorder; radius: 3
                                 Text {
                                     id: scheduleNote
                                     anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
                                     text: qsTr("Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.")
-                                    color: "#8899bb"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
+                                    color: ColorPalette.infoBoxText; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
                                 }
                             }
                         } // scheduleCol
@@ -2467,22 +2517,22 @@ Window {
                         anchors { fill: parent; margins: 12 }
                         spacing: 10
 
-                        Text { text: qsTr("Notifications"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Text { text: qsTr("Notifications"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Show notification when download completes")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowCompletionNotification
                             onCheckedChanged: root.editShowCompletionNotification = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Show notification on download error")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowErrorNotification
                             onCheckedChanged: root.editShowErrorNotification = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
 
                         Item { Layout.fillHeight: true }
@@ -2501,52 +2551,52 @@ Window {
                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
-                        Text { text: qsTr("General"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Text { text: qsTr("General"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Minimize to system tray")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editMinimizeToTray
                             onCheckedChanged: root.editMinimizeToTray = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Close to system tray")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editCloseToTray
                             onCheckedChanged: root.editCloseToTray = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Launch Stellar on startup")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editLaunchOnStartup
                             onCheckedChanged: root.editLaunchOnStartup = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Pause torrents on startup")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editTorrentStopOnStartup
                             onCheckedChanged: root.editTorrentStopOnStartup = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Show tips in bottom bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowTips
                             onCheckedChanged: root.editShowTips = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
-                        Text { text: qsTr("Appearance"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
+                        Text { text: qsTr("Appearance"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
 
                         RowLayout {
                             spacing: 10
                             Text {
                                 text: qsTr("UI scale:")
-                                color: "#d0d0d0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 13 * App.fontScale
                                 Layout.alignment: Qt.AlignVCenter
                             }
@@ -2564,13 +2614,13 @@ Window {
                                 contentItem: Text {
                                     leftPadding: 8
                                     text: uiScaleCombo.displayText
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 13 * App.fontScale
                                     verticalAlignment: Text.AlignVCenter
                                 }
                                 background: Rectangle {
-                                    color: "#1b1b1b"
-                                    border.color: uiScaleCombo.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    color: ColorPalette.inputBg
+                                    border.color: uiScaleCombo.activeFocus ? "#4488dd" : ColorPalette.border
                                     radius: 2
                                 }
                             }
@@ -2580,7 +2630,7 @@ Window {
                             spacing: 10
                             Text {
                                 text: qsTr("Font size:")
-                                color: "#d0d0d0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 13 * App.fontScale
                                 Layout.alignment: Qt.AlignVCenter
                             }
@@ -2598,13 +2648,13 @@ Window {
                                 contentItem: Text {
                                     leftPadding: 8
                                     text: fontSizeCombo.displayText
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 13 * App.fontScale
                                     verticalAlignment: Text.AlignVCenter
                                 }
                                 background: Rectangle {
-                                    color: "#1b1b1b"
-                                    border.color: fontSizeCombo.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    color: ColorPalette.inputBg
+                                    border.color: fontSizeCombo.activeFocus ? "#4488dd" : ColorPalette.border
                                     radius: 2
                                 }
                             }
@@ -2614,7 +2664,7 @@ Window {
                             spacing: 10
                             Text {
                                 text: qsTr("Tray icon style:")
-                                color: "#d0d0d0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 13 * App.fontScale
                                 Layout.alignment: Qt.AlignVCenter
                             }
@@ -2628,50 +2678,80 @@ Window {
                                 contentItem: Text {
                                     leftPadding: 8
                                     text: trayIconStyleCombo.displayText
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 13 * App.fontScale
                                     verticalAlignment: Text.AlignVCenter
                                 }
                                 background: Rectangle {
-                                    color: "#1b1b1b"
-                                    border.color: trayIconStyleCombo.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    color: ColorPalette.inputBg
+                                    border.color: trayIconStyleCombo.activeFocus ? "#4488dd" : ColorPalette.border
                                     radius: 2
                                 }
                             }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
-                        Text { text: qsTr("Utilities"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        RowLayout {
+                            spacing: 10
+                            Text {
+                                text: qsTr("Theme:")
+                                color: ColorPalette.textPrimary
+                                font.pixelSize: 13 * App.fontScale
+                                Layout.alignment: Qt.AlignVCenter
+                            }
+                            ComboBox {
+                                id: themeCombo
+                                implicitWidth: 130
+                                implicitHeight: 26
+                                model: [qsTr("Dark"), qsTr("Light")]
+                                currentIndex: root.editDarkMode ? 0 : 1
+                                onActivated: root.editDarkMode = (currentIndex === 0)
+                                contentItem: Text {
+                                    leftPadding: 8
+                                    text: themeCombo.displayText
+                                    color: ColorPalette.textPrimary
+                                    font.pixelSize: 13 * App.fontScale
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                                background: Rectangle {
+                                    color: ColorPalette.inputBg
+                                    border.color: themeCombo.activeFocus ? "#4488dd" : ColorPalette.border
+                                    radius: 2
+                                }
+                            }
+                        }
 
-                        CheckBox {
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
+                        Text { text: qsTr("Utilities"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
+
+                        StyledCheckBox {
                             text: qsTr("Show speed in tray icon tooltip")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedInTrayTooltip
                             onCheckedChanged: root.editSpeedInTrayTooltip = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Show speed in title bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedInTitleBar
                             onCheckedChanged: root.editSpeedInTitleBar = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Show speed in status bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedInStatusBar
                             onCheckedChanged: root.editSpeedInStatusBar = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Show estimated online users in status bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editEstimatedOnlineUsersInStatusBar
                             onCheckedChanged: root.editEstimatedOnlineUsersInStatusBar = checked
                             contentItem: Text {
                                 text: parent.text
-                                color: "#d0d0d0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 13 * App.fontScale
                                 leftPadding: parent.indicator.width + 4
                             }
@@ -2684,19 +2764,19 @@ Window {
                             Layout.fillWidth: true
                             visible: root.editEstimatedOnlineUsersInStatusBar
                         }
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Show ratio in status bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editRatioInStatusBar
                             onCheckedChanged: root.editRatioInStatusBar = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Show Public IP in Status Bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowPublicIpInStatusBar
                             onCheckedChanged: root.editShowPublicIpInStatusBar = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
                         Text {
                             text: qsTr("Detects your public IP via libtorrent and your active connection type. Hover the indicator to see WiFi SSID/signal or warnings about incoming connections.")
@@ -2707,28 +2787,28 @@ Window {
                             visible: root.editShowPublicIpInStatusBar
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        Text { text: qsTr("Updates"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Updates"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Automatically check for updates")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editAutoCheckUpdates
                             onCheckedChanged: root.editAutoCheckUpdates = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        Text { text: qsTr("Clipboard Monitoring"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Clipboard Monitoring"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Automatically start downloading URLs placed in the clipboard")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editClipboardMonitorEnabled
                             onCheckedChanged: root.editClipboardMonitorEnabled = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         }
 
                         Text {
@@ -2739,12 +2819,12 @@ Window {
                             visible: root.editClipboardMonitorEnabled
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        Text { text: qsTr("Backup & Restore"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Backup & Restore"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
 
                         Text {
-                            text: qsTr("Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.")
+                            text: qsTr("Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.")
                             color: "#909090"; font.pixelSize: 12 * App.fontScale
                             wrapMode: Text.WordWrap
                             Layout.fillWidth: true
@@ -2753,7 +2833,7 @@ Window {
                         RowLayout {
                             spacing: 8
                             DlgButton {
-                                text: qsTr("Export All Data…")
+                                text: qsTr("Export All Data.")
                                 primary: true
                                 onClicked: {
                                     exportBackupDlg.currentFile = root.fileUrlFromPath(
@@ -2763,7 +2843,7 @@ Window {
                                 }
                             }
                             DlgButton {
-                                text: qsTr("Import Data…")
+                                text: qsTr("Import Data.")
                                 onClicked: importBackupDlg.open()
                             }
                         }
@@ -2785,8 +2865,8 @@ Window {
                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
-                        Text { text: qsTr("Video Downloader"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Text { text: qsTr("Video Downloader"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                         Text {
                             Layout.fillWidth: true
@@ -2797,8 +2877,8 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        // ── Status indicator ──────────────────────────────────────────
-                        Text { text: qsTr("Binary status"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale; font.bold: true }
+                        // ?? Status indicator ??????????????????????????????????????????
+                        Text { text: qsTr("Binary status"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; font.bold: true }
 
                         RowLayout {
                             spacing: 10
@@ -2812,7 +2892,7 @@ Window {
 
                             Text {
                                 text: App.ytdlpManager.statusText
-                                color: "#c0c0c0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 12 * App.fontScale
                                 Layout.fillWidth: true
                                 wrapMode: Text.WordWrap
@@ -2859,8 +2939,8 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        // ── ffmpeg status ─────────────────────────────────────────────
-                        Text { text: qsTr("ffmpeg status"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale; font.bold: true }
+                        // ?? ffmpeg status ?????????????????????????????????????????????
+                        Text { text: qsTr("ffmpeg status"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; font.bold: true }
 
                         RowLayout {
                             spacing: 10
@@ -2872,8 +2952,8 @@ Window {
                                 Layout.fillWidth: true
                                 text: App.ytdlpManager.ffmpegAvailable
                                       ? (qsTr("ffmpeg found: %1").arg(App.ytdlpManager.ffmpegPath))
-                                      : qsTr("ffmpeg not found — HD downloads will be limited to pre-muxed formats (max ~480p)")
-                                color: App.ytdlpManager.ffmpegAvailable ? "#c0c0c0" : "#dd8844"
+                                      : qsTr("ffmpeg not found - HD downloads will be limited to pre-muxed formats (max ~480p)")
+                                color: App.ytdlpManager.ffmpegAvailable ? ColorPalette.textPrimary : "#dd8844"
                                 font.pixelSize: 12 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
@@ -2907,15 +2987,15 @@ Window {
                             Layout.fillWidth: true
                             implicitHeight: ffmpegNote.height + 16
                             radius: 4
-                            color: "#1a2030"
-                            border.color: "#2a3050"
+                            color: ColorPalette.infoBoxBg
+                            border.color: ColorPalette.infoBoxBorder
                             visible: !App.ytdlpManager.ffmpegAvailable
 
                             Text {
                                 id: ffmpegNote
                                 anchors { left: parent.left; right: parent.right; top: parent.top; leftMargin: 8; rightMargin: 8; topMargin: 8 }
                                 text: qsTr("ffmpeg is required to merge separate video and audio streams into MP4/MKV. Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).\n\nTo fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), extract ffmpeg.exe from the bin/ folder, and place it in the same folder as yt-dlp.exe. Then click Re-check above.")
-                                color: "#8899bb"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.infoBoxText; font.pixelSize: 11 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
                         }
@@ -2926,8 +3006,8 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        // ── Custom binary path ────────────────────────────────────────
-                        Text { text: qsTr("Custom binary path"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale; font.bold: true }
+                        // ?? Custom binary path ????????????????????????????????????????
+                        Text { text: qsTr("Custom binary path"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; font.bold: true }
 
                         Text {
                             Layout.fillWidth: true
@@ -2944,7 +3024,7 @@ Window {
                                 id: ytdlpPathField
                                 Layout.fillWidth: true
                                 font.pixelSize: 12 * App.fontScale
-                                color:            "#d0d0d0"
+                                color:            ColorPalette.textPrimary
                                 leftPadding:      8
                                 rightPadding:     8
                                 placeholderText:  qsTr("(auto - use bundled or system yt-dlp)")
@@ -2952,22 +3032,22 @@ Window {
                                 text: root.editYtdlpCustomBinaryPath
                                 onTextChanged: root.editYtdlpCustomBinaryPath = text
                                 background: Rectangle {
-                                    color:        "#1b1b1b"
-                                    border.color: ytdlpPathField.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    color:        ColorPalette.inputBg
+                                    border.color: ytdlpPathField.activeFocus ? "#4488dd" : ColorPalette.border
                                     radius: 3
                                 }
                             }
 
                             DlgButton {
-                                text: qsTr("Browse…")
+                                text: qsTr("Browse.")
                                 onClicked: ytdlpFileDlg.open()
                             }
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        // ── JavaScript runtime (EJS n-challenge solver) ───────────────
-                        Text { text: qsTr("JavaScript runtime"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale; font.bold: true }
+                        // ?? JavaScript runtime (EJS n-challenge solver) ???????????????
+                        Text { text: qsTr("JavaScript runtime"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; font.bold: true }
 
                         RowLayout {
                             Layout.fillWidth: true
@@ -2981,8 +3061,8 @@ Window {
                                 Layout.fillWidth: true
                                 text: App.ytdlpManager.jsRuntimeAvailable
                                       ? qsTr("%1 found: %2").arg(App.ytdlpManager.jsRuntimeName).arg(App.ytdlpManager.jsRuntimePath)
-                                      : qsTr("No JS runtime found — YouTube n-challenge solving disabled")
-                                color: App.ytdlpManager.jsRuntimeAvailable ? "#c0c0c0" : "#dd8844"
+                                      : qsTr("No JS runtime found - YouTube n-challenge solving disabled")
+                                color: App.ytdlpManager.jsRuntimeAvailable ? ColorPalette.textPrimary : "#dd8844"
                                 font.pixelSize: 12 * App.fontScale
                                 elide: Text.ElideRight
                             }
@@ -2993,15 +3073,15 @@ Window {
                             Layout.fillWidth: true
                             implicitHeight: jsRuntimeNote.height + 16
                             radius: 4
-                            color: "#1a2030"
-                            border.color: "#2a3050"
+                            color: ColorPalette.infoBoxBg
+                            border.color: ColorPalette.infoBoxBorder
                             visible: !App.ytdlpManager.jsRuntimeAvailable
 
                             Text {
                                 id: jsRuntimeNote
                                 anchors { left: parent.left; right: parent.right; top: parent.top; leftMargin: 8; rightMargin: 8; topMargin: 8 }
                                 text: qsTr("yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). Without it, YouTube downloads may fail or return only low-quality storyboard formats.\n\nInstall one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. Place it in the same folder as yt-dlp.exe or add it to your system PATH, then click Re-check in the yt-dlp status section above.")
-                                color: "#8899bb"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.infoBoxText; font.pixelSize: 11 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
                         }
@@ -3021,7 +3101,7 @@ Window {
                                 id: jsRuntimePathField
                                 Layout.fillWidth: true
                                 font.pixelSize: 12 * App.fontScale
-                                color:            "#d0d0d0"
+                                color:            ColorPalette.textPrimary
                                 leftPadding:      8
                                 rightPadding:     8
                                 placeholderText:  qsTr("(auto-detect from PATH and yt-dlp folder)")
@@ -3029,22 +3109,22 @@ Window {
                                 text: root.editYtdlpJsRuntimePath
                                 onTextChanged: root.editYtdlpJsRuntimePath = text
                                 background: Rectangle {
-                                    color:        "#1b1b1b"
-                                    border.color: jsRuntimePathField.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    color:        ColorPalette.inputBg
+                                    border.color: jsRuntimePathField.activeFocus ? "#4488dd" : ColorPalette.border
                                     radius: 3
                                 }
                             }
 
                             DlgButton {
-                                text: qsTr("Browse…")
+                                text: qsTr("Browse.")
                                 onClicked: jsRuntimeFileDlg.open()
                             }
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        // ── Auto-update option ────────────────────────────────────────
-                        CheckBox {
+                        // ?? Auto-update option ????????????????????????????????????????
+                        StyledCheckBox {
                             id: ytdlpAutoUpdateCheck
                             text: qsTr("Automatically update yt-dlp at startup")
                             font.pixelSize: 12 * App.fontScale
@@ -3054,7 +3134,7 @@ Window {
                             onCheckedChanged: root.editYtdlpAutoUpdate = checked
                             contentItem: Text {
                                 text: parent.text
-                                color: "#c0c0c0"
+                                color: ColorPalette.textPrimary
                                 font: parent.font
                                 leftPadding: parent.indicator.width + parent.spacing
                                 verticalAlignment: Text.AlignVCenter
@@ -3064,20 +3144,20 @@ Window {
                         Text {
                             Layout.fillWidth: true
                             text: qsTr("When enabled, Stellar will run \"yt-dlp -U\" at startup to keep the binary up to date. Requires an active internet connection.")
-                            color: "#666666"; font.pixelSize: 11 * App.fontScale
+                            color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        // ── Default cookie browser ────────────────────────────────────
+                        // ?? Default cookie browser ????????????????????????????????????
                         ColumnLayout {
                             Layout.fillWidth: true
                             spacing: 6
 
                             Text {
                                 text: qsTr("Default cookie browser:")
-                                color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                 wrapMode: Text.WordWrap
                                 Layout.fillWidth: true
                             }
@@ -3105,28 +3185,28 @@ Window {
                                 contentItem: Text {
                                     leftPadding: 8
                                     text: ytdlpCookieBrowserCombo.displayText
-                                    color: "#d0d0d0"; font: ytdlpCookieBrowserCombo.font
+                                    color: ColorPalette.textPrimary; font: ytdlpCookieBrowserCombo.font
                                     verticalAlignment: Text.AlignVCenter
                                 }
                                 background: Rectangle {
-                                    color: "#1b1b1b"
-                                    border.color: ytdlpCookieBrowserCombo.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    color: ColorPalette.inputBg
+                                    border.color: ytdlpCookieBrowserCombo.activeFocus ? "#4488dd" : ColorPalette.border
                                     radius: 3
                                 }
                                 delegate: ItemDelegate {
                                     id: _ycbDel; width: ytdlpCookieBrowserCombo.width; height: 24
                                     contentItem: Text {
-                                        text: modelData; color: "#d0d0d0"
+                                        text: modelData; color: ColorPalette.textPrimary
                                         font.pixelSize: 11 * App.fontScale
                                         verticalAlignment: Text.AlignVCenter; leftPadding: 8
                                     }
-                                    background: Rectangle { color: _ycbDel.hovered ? "#2a3a5a" : "#1b1b1b" }
+                                    background: Rectangle { color: _ycbDel.hovered ? "#2a3a5a" : ColorPalette.inputBg }
                                 }
                                 popup: Popup {
                                     y: ytdlpCookieBrowserCombo.height + 2
                                     width: ytdlpCookieBrowserCombo.width
                                     implicitHeight: contentItem.implicitHeight + 4; padding: 2
-                                    background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 3 }
+                                    background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
                                     contentItem: ListView {
                                         implicitHeight: contentHeight; clip: true
                                         model: ytdlpCookieBrowserCombo.delegateModel
@@ -3138,7 +3218,7 @@ Window {
                         Text {
                             Layout.fillWidth: true
                             text: qsTr("When set, Stellar will automatically retry yt-dlp downloads that require login using this browser's cookies, without prompting.")
-                            color: "#666666"; font.pixelSize: 11 * App.fontScale
+                            color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
 
@@ -3159,11 +3239,11 @@ Window {
                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
-                        Text { text: qsTr("Torrent Downloads"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Text { text: qsTr("Torrent Downloads"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                         // Enable BitTorrent support toggle + legal notice
-                        CheckBox {
+                        StyledCheckBox {
                             id: torrentEnabledCheck
                             text: qsTr("Enable BitTorrent support")
                             checked: root.editTorrentEnabled
@@ -3176,7 +3256,7 @@ Window {
                                     root.editTorrentEnabled = false
                                 }
                             }
-                            contentItem: Text { text: parent.text; color: "#e0e0e0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
 
                         // Legal notice shown when enabling BitTorrent
@@ -3188,7 +3268,7 @@ Window {
                             modal: true
                             closePolicy: Popup.NoAutoClose
                             padding: 0
-                            background: Rectangle { color: "#1e1e1e"; border.color: "#3a3a3a"; radius: 6 }
+                            background: Rectangle { color: ColorPalette.cardBg; border.color: ColorPalette.border; radius: 6 }
                             contentItem: ColumnLayout {
                                 spacing: 0
                                 ColumnLayout {
@@ -3196,16 +3276,16 @@ Window {
                                     spacing: 12
                                     Layout.margins: 20
                                     Text {
-                                        text: qsTr("BitTorrent — Legal Notice")
-                                        color: "#ffffff"
+                                        text: qsTr("BitTorrent - Legal Notice")
+                                        color: ColorPalette.textHeader
                                         font.pixelSize: 15 * App.fontScale
                                         font.bold: true
                                     }
-                                    Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                                    Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
                                     Text {
                                         Layout.fillWidth: true
                                         wrapMode: Text.WordWrap
-                                        color: "#c0c0c0"
+                                        color: ColorPalette.textPrimary
                                         font.pixelSize: 12 * App.fontScale
                                         lineHeight: 1.4
                                         text: qsTr("Stellar is a file-sharing program. When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.\n\nAnything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.\n\nIt is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.")
@@ -3213,7 +3293,7 @@ Window {
                                     Rectangle {
                                         Layout.fillWidth: true
                                         height: 1
-                                        color: "#3a3a3a"
+                                        color: ColorPalette.border
                                     }
                                     RowLayout {
                                         Layout.fillWidth: true
@@ -3255,71 +3335,71 @@ Window {
                             columnSpacing: 10
                             rowSpacing: 8
 
-                            Text { text: qsTr("Listen port"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Listen port"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                             TextField {
                                 Layout.preferredWidth: 120
                                 text: String(root.editTorrentListenPort)
                                 validator: IntValidator { bottom: 1; top: 65535 }
-                                color: "#d0d0d0"
-                                background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
+                                color: ColorPalette.textPrimary
+                                background: Rectangle { color: ColorPalette.inputBg; border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3 }
                                 onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n)) root.editTorrentListenPort = n }
                             }
 
-                            Text { text: qsTr("Global max connections"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Global max connections"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                             TextField {
                                 Layout.preferredWidth: 120
                                 text: String(root.editTorrentConnectionsLimit)
                                 validator: IntValidator { bottom: 1; top: 100000 }
-                                color: "#d0d0d0"
-                                background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
+                                color: ColorPalette.textPrimary
+                                background: Rectangle { color: ColorPalette.inputBg; border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3 }
                                 onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n) && n >= 1) root.editTorrentConnectionsLimit = n }
                             }
 
-                            Text { text: qsTr("Max connections per torrent"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Max connections per torrent"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                             TextField {
                                 Layout.preferredWidth: 120
                                 text: String(root.editTorrentConnectionsLimitPerTorrent)
                                 validator: IntValidator { bottom: 0; top: 100000 }
-                                color: "#d0d0d0"
-                                background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
+                                color: ColorPalette.textPrimary
+                                background: Rectangle { color: ColorPalette.inputBg; border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3 }
                                 onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n) && n >= 0) root.editTorrentConnectionsLimitPerTorrent = n }
                             }
 
-                            Text { text: qsTr("Global max upload slots"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Global max upload slots"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                             TextField {
                                 Layout.preferredWidth: 120
                                 text: String(root.editTorrentUploadSlotsLimit)
                                 validator: IntValidator { bottom: 0; top: 100000 }
-                                color: "#d0d0d0"
-                                background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
+                                color: ColorPalette.textPrimary
+                                background: Rectangle { color: ColorPalette.inputBg; border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3 }
                                 onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n) && n >= 0) root.editTorrentUploadSlotsLimit = n }
                             }
 
-                            Text { text: qsTr("Max upload slots per torrent"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Max upload slots per torrent"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                             TextField {
                                 Layout.preferredWidth: 120
                                 text: String(root.editTorrentUploadSlotsLimitPerTorrent)
                                 validator: IntValidator { bottom: 0; top: 100000 }
-                                color: "#d0d0d0"
-                                background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
+                                color: ColorPalette.textPrimary
+                                background: Rectangle { color: ColorPalette.inputBg; border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3 }
                                 onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n) && n >= 0) root.editTorrentUploadSlotsLimitPerTorrent = n }
                             }
 
                             Item {}
-                            Text { text: qsTr("0 = unlimited (per-torrent fields and global upload slots)"); color: "#666666"; font.pixelSize: 10 * App.fontScale }
+                            Text { text: qsTr("0 = unlimited (per-torrent fields and global upload slots)"); color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale }
 
-                            Text { text: qsTr("Protocol"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Protocol"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                             ComboBox {
                                 id: torrentProtocolCombo
                                 Layout.preferredWidth: 160
-                                model: [qsTr("TCP and μTP"), qsTr("μTP only"), qsTr("TCP only")]
+                                model: [qsTr("TCP and ?TP"), qsTr("?TP only"), qsTr("TCP only")]
                                 currentIndex: root.editTorrentProtocol
                                 font.pixelSize: 12 * App.fontScale
-                                background: Rectangle { color: "#2d2d2d"; border.color: torrentProtocolCombo.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
+                                background: Rectangle { color: ColorPalette.dividerBg; border.color: torrentProtocolCombo.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3 }
                                 contentItem: Text {
                                     leftPadding: 8
                                     text: torrentProtocolCombo.displayText
-                                    color: "#d0d0d0"; font: torrentProtocolCombo.font
+                                    color: ColorPalette.textPrimary; font: torrentProtocolCombo.font
                                     verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight
                                 }
                                 onActivated: root.editTorrentProtocol = currentIndex
@@ -3328,12 +3408,12 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        Text { text: qsTr("Port Test"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Port Test"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
 
                         Text {
                             Layout.fillWidth: true
                             text: qsTr("Test whether your current torrent listen port is reachable from the public internet. This helps confirm whether your VPN port forwarding, router forwarding, and firewall rules are actually allowing inbound torrent connections.")
-                            color: "#666666"
+                            color: ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
@@ -3357,7 +3437,7 @@ Window {
                                     if (App.torrentPortTestStatus === "closed")
                                         return "#ff8a80"
                                     if (App.torrentPortTestStatus === "testing")
-                                        return "#d0d0d0"
+                                        return ColorPalette.textPrimary
                                     return "#a0a0a0"
                                 }
                                 font.pixelSize: 11 * App.fontScale
@@ -3367,7 +3447,7 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        Text { text: qsTr("Networking"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Networking"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
 
                         component NetCheckRow: RowLayout {
                             property alias cbChecked: cb.checked
@@ -3375,7 +3455,7 @@ Window {
                             property alias description: descText.text
                             signal toggled(bool checked)
                             spacing: 8
-                            CheckBox {
+                            StyledCheckBox {
                                 id: cb
                                 topPadding: 0; bottomPadding: 0
                                 Layout.alignment: Qt.AlignTop
@@ -3384,7 +3464,7 @@ Window {
                             ColumnLayout {
                                 spacing: 1
                                 Layout.fillWidth: true
-                                Text { id: labelText; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale }
+                                Text { id: labelText; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
                                 Text {
                                     id: descText
                                     color: "#777777"; font.pixelSize: 11 * App.fontScale
@@ -3427,26 +3507,26 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        Text { text: qsTr("Advanced"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Advanced"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
 
-                        Text { text: qsTr("Custom bittorrent user agent"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Custom bittorrent user agent"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                         TextField {
                             Layout.fillWidth: true
                             text: root.editTorrentCustomUserAgent
                             placeholderText: qsTr("Default: Stellar/%1").arg(App.appVersion)
                             onTextChanged: root.editTorrentCustomUserAgent = text
-                            color: "#d0d0d0"
-                            background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
+                            color: ColorPalette.textPrimary
+                            background: Rectangle { color: ColorPalette.inputBg; border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3 }
                         }
 
-                        Text { text: qsTr("Bind to network adapter"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Bind to network adapter"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                         ComboBox {
                             id: torrentAdapterCombo
                             Layout.fillWidth: true
                             model: root.torrentAdapterOptions
                             currentIndex: root.indexOfTorrentAdapter(root.editTorrentBindInterface)
                             font.pixelSize: 12 * App.fontScale
-                            background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                            background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                             contentItem: Text {
                                 leftPadding: 8
                                 text: {
@@ -3455,7 +3535,7 @@ Window {
                                         : null
                                     return option ? option.name : qsTr("Default route")
                                 }
-                                color: "#d0d0d0"
+                                color: ColorPalette.textPrimary
                                 font: torrentAdapterCombo.font
                                 verticalAlignment: Text.AlignVCenter
                                 elide: Text.ElideRight
@@ -3469,7 +3549,7 @@ Window {
                                     spacing: 2
                                     Text {
                                         text: modelData.name || ""
-                                        color: "#d0d0d0"
+                                        color: ColorPalette.textPrimary
                                         font.pixelSize: 12 * App.fontScale
                                         elide: Text.ElideRight
                                     }
@@ -3491,7 +3571,7 @@ Window {
                         Text {
                             Layout.fillWidth: true
                             text: root.editTorrentBindInterface.length > 0 ? qsTr("This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.") : qsTr("No adapter binding. Torrent traffic follows the system route.")
-                            color: root.editTorrentBindInterface.length > 0 ? "#ffffff" : "#666666"
+                            color: root.editTorrentBindInterface.length > 0 ? "#ffffff" : ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
@@ -3499,7 +3579,7 @@ Window {
                         Text {
                             Layout.fillWidth: true
                             text: root.torrentAdapterDetails(root.editTorrentBindInterface)
-                            color: "#666666"
+                            color: ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                             visible: text.length > 0
@@ -3508,14 +3588,14 @@ Window {
                         Text {
                             Layout.fillWidth: true
                             text: qsTr("Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.")
-                            color: "#666666"
+                            color: ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        Text { text: qsTr("Storage"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Storage"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
 
                         // Allocation mode radio group
                         ColumnLayout {
@@ -3527,7 +3607,7 @@ Window {
                             RowLayout {
                                 spacing: 16
 
-                                RadioButton {
+                                StyledRadioButton {
                                     id: storageSparseRadio
                                     text: qsTr("Sparse")
                                     checked: root.editTorrentStorageMode === 0
@@ -3535,20 +3615,20 @@ Window {
                                     topPadding: 0; bottomPadding: 0
                                     contentItem: Text {
                                         text: parent.text
-                                        color: "#e0e0e0"
+                                        color: ColorPalette.textPrimary
                                         font.pixelSize: 13 * App.fontScale
                                         leftPadding: parent.indicator.width + 4
                                     }
                                 }
 
-                                RadioButton {
+                                StyledRadioButton {
                                     text: qsTr("Pre-allocate")
                                     checked: root.editTorrentStorageMode === 1
                                     onToggled: if (checked) root.editTorrentStorageMode = 1
                                     topPadding: 0; bottomPadding: 0
                                     contentItem: Text {
                                         text: parent.text
-                                        color: "#e0e0e0"
+                                        color: ColorPalette.textPrimary
                                         font.pixelSize: 13 * App.fontScale
                                         leftPadding: parent.indicator.width + 4
                                     }
@@ -3558,47 +3638,47 @@ Window {
                             Text {
                                 Layout.fillWidth: true
                                 text: qsTr("Applies to new torrents only. Pre-allocate reserves full disk space immediately; sparse allocates on demand.")
-                                color: "#666666"
+                                color: ColorPalette.textDisabled
                                 font.pixelSize: 11 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
                         }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Piece extent affinity")
                             checked: root.editTorrentPieceExtentAffinity
                             onToggled: root.editTorrentPieceExtentAffinity = checked
                             topPadding: 0; bottomPadding: 0
-                            contentItem: Text { text: parent.text; color: "#e0e0e0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
                         Text {
                             Layout.fillWidth: true
                             text: qsTr("Download pieces in 4 MiB adjacent extents. Reduces fragmentation on torrents with small piece sizes.")
-                            color: "#666666"
+                            color: ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Coalesce disk reads")
                             checked: root.editTorrentCoalesceReads
                             onToggled: root.editTorrentCoalesceReads = checked
                             topPadding: 0; bottomPadding: 0
-                            contentItem: Text { text: parent.text; color: "#e0e0e0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Coalesce disk writes")
                             checked: root.editTorrentCoalesceWrites
                             onToggled: root.editTorrentCoalesceWrites = checked
                             topPadding: 0; bottomPadding: 0
-                            contentItem: Text { text: parent.text; color: "#e0e0e0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
 
                         Text {
                             Layout.fillWidth: true
                             text: qsTr("Coalescing merges small I/O operations into larger buffers before writing to disk. May improve throughput on fragmented torrents.")
-                            color: "#666666"
+                            color: ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
@@ -3619,13 +3699,13 @@ Window {
                                 contentItem: Text {
                                     leftPadding: 8
                                     text: diskIoTypeCombo.displayText
-                                    color: "#e0e0e0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale
                                     verticalAlignment: Text.AlignVCenter
                                 }
                                 background: Rectangle {
-                                    color: "#1b1b1b"
-                                    border.color: diskIoTypeCombo.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    color: ColorPalette.inputBg
+                                    border.color: diskIoTypeCombo.activeFocus ? "#4488dd" : ColorPalette.border
                                     radius: 3
                                 }
                             }
@@ -3640,7 +3720,7 @@ Window {
                                 default: return qsTr("Default: Stellar picks the best mode for your platform automatically.")
                                 }
                             }
-                            color: "#666666"
+                            color: ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
@@ -3654,13 +3734,13 @@ Window {
 
                             Rectangle {
                                 width: 60; height: 26; radius: 2
-                                color: "#1b1b1b"
-                                border.color: diskQueueField.activeFocus ? "#4488dd" : "#3a3a3a"
+                                color: ColorPalette.inputBg
+                                border.color: diskQueueField.activeFocus ? "#4488dd" : ColorPalette.border
                                 TextInput {
                                     id: diskQueueField
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     verticalAlignment: TextInput.AlignVCenter
-                                    color: "#e0e0e0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale
                                     text: root.editTorrentDiskWriteQueueMiB.toString()
                                     validator: IntValidator { bottom: 1; top: 65536 }
@@ -3678,54 +3758,54 @@ Window {
                                 }
                             }
 
-                            Text { text: qsTr("MiB"); color: "#666666"; font.pixelSize: 11 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
+                            Text { text: qsTr("MiB"); color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        Text { text: qsTr("Torrent Security"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Torrent Security"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
 
                         Text {
                             Layout.fillWidth: true
                             text: qsTr("Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.")
-                            color: "#666666"
+                            color: ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
 
-                        Text { text: qsTr("Encryption Mode"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Encryption Mode"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
 
                         ComboBox {
                             id: encryptionModeCombo
                             implicitWidth: 220
                             model: [qsTr("Prefer encryption"), qsTr("Require encryption"), qsTr("Allow encryption")]
-                            // model index maps: 0=Prefer, 1=Require, 2=Allow — matches torrentEncryptionMode values
+                            // model index maps: 0=Prefer, 1=Require, 2=Allow - matches torrentEncryptionMode values
                             currentIndex: root.editTorrentEncryptionMode
                             onActivated: root.editTorrentEncryptionMode = currentIndex
                             contentItem: Text {
                                 leftPadding: 8
                                 text: encryptionModeCombo.displayText
-                                color: "#d0d0d0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 13 * App.fontScale
                                 verticalAlignment: Text.AlignVCenter
                             }
                             background: Rectangle {
-                                color: "#1b1b1b"
-                                border.color: encryptionModeCombo.activeFocus ? "#4488dd" : "#3a3a3a"
+                                color: ColorPalette.inputBg
+                                border.color: encryptionModeCombo.activeFocus ? "#4488dd" : ColorPalette.border
                                 radius: 3
                             }
                             indicator: Text {
                                 x: encryptionModeCombo.width - width - 8
                                 anchors.verticalCenter: parent.verticalCenter
-                                text: "▾"
-                                color: "#888888"
+                                 text: "▾"
+                                color: ColorPalette.textMuted
                                 font.pixelSize: 10 * App.fontScale
                             }
                             popup: Popup {
                                 y: encryptionModeCombo.height
                                 width: encryptionModeCombo.width
                                 padding: 0
-                                background: Rectangle { color: "#252525"; border.color: "#3a3a3a"; radius: 3 }
+                                background: Rectangle { color: ColorPalette.panelBg; border.color: ColorPalette.border; radius: 3 }
                                 contentItem: ListView {
                                     implicitHeight: contentHeight
                                     model: encryptionModeCombo.delegateModel
@@ -3736,23 +3816,23 @@ Window {
                                 width: encryptionModeCombo.width
                                 contentItem: Text {
                                     text: modelData
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 13 * App.fontScale
                                     verticalAlignment: Text.AlignVCenter
                                 }
                                 background: Rectangle {
-                                    color: highlighted ? "#1a3a6a" : "transparent"
+                                    color: highlighted ? ColorPalette.selectionBg : "transparent"
                                 }
                                 highlighted: encryptionModeCombo.highlightedIndex === index
                             }
                         }
 
-                        Text { text: qsTr("Blocked user agents"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Blocked user agents"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.preferredHeight: 96
-                            color: "#1b1b1b"
-                            border.color: blockedPeerAgentsInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                            color: ColorPalette.inputBg
+                            border.color: blockedPeerAgentsInput.activeFocus ? "#4488dd" : ColorPalette.border
                             radius: 3
                             clip: true
 
@@ -3761,7 +3841,7 @@ Window {
                                 TextArea {
                                     id: blockedPeerAgentsInput
                                     text: root.editTorrentBlockedPeerUserAgents
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                     placeholderText: "One substring per line, for example:\naria2"
                                     wrapMode: TextEdit.Wrap
                                     selectByMouse: true
@@ -3774,12 +3854,12 @@ Window {
                         Text {
                             Layout.fillWidth: true
                             text: qsTr("One substring per line. If a peer client string contains any line above, Stellar auto-bans that peer until the matching line is removed and the settings are applied.")
-                            color: "#666666"
+                            color: ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
 
-                        Text { text: qsTr("Manually ban peer"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Manually ban peer"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -3788,10 +3868,10 @@ Window {
                                 Layout.fillWidth: true
                                 text: root.manualBanPeerText
                                 placeholderText: qsTr("IP address, for example 203.0.113.42")
-                                color: "#d0d0d0"
+                                color: ColorPalette.textPrimary
                                 background: Rectangle {
-                                    color: "#1b1b1b"
-                                    border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    color: ColorPalette.inputBg
+                                    border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border
                                     radius: 3
                                 }
                                 onTextChanged: root.manualBanPeerText = text
@@ -3811,12 +3891,12 @@ Window {
                         Text {
                             Layout.fillWidth: true
                             text: qsTr("Manual bans are permanent until you remove them from the banned peers list below.")
-                            color: "#666666"
+                            color: ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
 
-                        Text { text: qsTr("Block peers by country"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Block peers by country"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -3838,7 +3918,7 @@ Window {
                                     var option = root.torrentCountryOptions[currentIndex]
                                     root.selectedTorrentCountryCode = option ? (option.code || "") : ""
                                 }
-                                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                                 contentItem: Text {
                                     leftPadding: 8
                                     text: {
@@ -3847,7 +3927,7 @@ Window {
                                             : null
                                         return option ? ((option.code || "") + " - " + (option.name || "")) : ""
                                     }
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                     verticalAlignment: Text.AlignVCenter
                                     elide: Text.ElideRight
                                 }
@@ -3863,8 +3943,8 @@ Window {
                                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
 
                                     background: Rectangle {
-                                        color: "#252525"
-                                        border.color: "#3a3a3a"
+                                        color: ColorPalette.panelBg
+                                        border.color: ColorPalette.border
                                         radius: 3
                                     }
 
@@ -3883,7 +3963,7 @@ Window {
                                     onClicked: blockedCountryCombo.currentIndex = index
                                     contentItem: Text {
                                         text: (modelData.code || "") + " - " + (modelData.name || "")
-                                        color: "#d0d0d0"
+                                        color: ColorPalette.textPrimary
                                         font.pixelSize: 12 * App.fontScale
                                         elide: Text.ElideRight
                                     }
@@ -3908,8 +3988,8 @@ Window {
                                     Layout.fillWidth: true
                                     implicitHeight: 34
                                     radius: 3
-                                    color: "#252525"
-                                    border.color: "#3a3a3a"
+                                    color: ColorPalette.panelBg
+                                    border.color: ColorPalette.border
                                     clip: true
 
                                     RowLayout {
@@ -3932,7 +4012,7 @@ Window {
                                         Text {
                                             Layout.fillWidth: true
                                             text: modelData + " - " + root.torrentCountryName(modelData)
-                                            color: "#d0d0d0"
+                                            color: ColorPalette.textPrimary
                                             font.pixelSize: 12 * App.fontScale
                                             elide: Text.ElideRight
                                         }
@@ -3949,12 +4029,12 @@ Window {
                             Text {
                                 visible: root.editTorrentBlockedPeerCountries.length === 0
                                 text: qsTr("No blocked countries.")
-                                color: "#666666"
+                                color: ColorPalette.textDisabled
                                 font.pixelSize: 11 * App.fontScale
                             }
                         }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader")
                             topPadding: 0
                             bottomPadding: 0
@@ -3962,14 +4042,14 @@ Window {
                             onCheckedChanged: root.editTorrentAutoBanAbusivePeers = checked
                             contentItem: Text {
                                 text: parent.text
-                                color: "#d0d0d0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 13 * App.fontScale
                                 leftPadding: parent.indicator.width + 4
                                 wrapMode: Text.WordWrap
                             }
                         }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Auto Ban BitTorrent Media Player Peer")
                             topPadding: 0
                             bottomPadding: 0
@@ -3977,14 +4057,14 @@ Window {
                             onCheckedChanged: root.editTorrentAutoBanMediaPlayerPeers = checked
                             contentItem: Text {
                                 text: parent.text
-                                color: "#d0d0d0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 13 * App.fontScale
                                 leftPadding: parent.indicator.width + 4
                                 wrapMode: Text.WordWrap
                             }
                         }
 
-                        Text { text: qsTr("Manually banned peers"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Manually banned peers"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.preferredHeight: 160
@@ -4005,7 +4085,7 @@ Window {
                                     width: ListView.view.width
                                     implicitHeight: 42
                                     radius: 3
-                                    color: "#222222"
+                                    color: ColorPalette.rowAltBg
                                     border.color: "#343434"
 
                                     RowLayout {
@@ -4020,7 +4100,7 @@ Window {
 
                                             Text {
                                                 text: modelData.endpoint || ""
-                                                color: "#e0e0e0"
+                                                color: ColorPalette.textPrimary
                                                 font.pixelSize: 12 * App.fontScale
                                                 font.bold: true
                                                 elide: Text.ElideRight
@@ -4028,8 +4108,8 @@ Window {
                                             }
                                             Text {
                                                 text: (modelData.reason || "")
-                                                      + ((modelData.countryCode || "").length > 0 ? (" • " + modelData.countryCode) : "")
-                                                      + ((modelData.client || "").length > 0 ? (" • " + modelData.client) : "")
+                                                      + ((modelData.countryCode || "").length > 0 ? (" . " + modelData.countryCode) : "")
+                                                      + ((modelData.client || "").length > 0 ? (" . " + modelData.client) : "")
                                                 color: "#8ea1b5"
                                                 font.pixelSize: 11 * App.fontScale
                                                 elide: Text.ElideRight
@@ -4054,7 +4134,7 @@ Window {
                                     anchors.centerIn: parent
                                     visible: bannedPeersList.count === 0
                                     text: qsTr("No banned peers")
-                                    color: "#666666"
+                                    color: ColorPalette.textDisabled
                                     font.pixelSize: 12 * App.fontScale
                                 }
                             }
@@ -4062,7 +4142,7 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        Text { text: qsTr("IP-to-City Database"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("IP-to-City Database"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
 
                         GridLayout {
                             Layout.fillWidth: true
@@ -4074,7 +4154,7 @@ Window {
                             Text {
                                 Layout.fillWidth: true
                                 text: root.ipToCityDbInfo.versionStatus || qsTr("Unknown")
-                                color: "#d0d0d0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 11 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
@@ -4083,7 +4163,7 @@ Window {
                             Text {
                                 Layout.fillWidth: true
                                 text: root.ipToCityDbInfo.path || qsTr("Not found")
-                                color: "#d0d0d0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 11 * App.fontScale
                                 wrapMode: Text.WrapAnywhere
                             }
@@ -4091,21 +4171,21 @@ Window {
                             Text { text: qsTr("Size"); color: "#a0a0a0"; font.pixelSize: 11 * App.fontScale }
                             Text {
                                 text: root.formatBytes(root.ipToCityDbInfo.sizeBytes || 0)
-                                color: "#d0d0d0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 11 * App.fontScale
                             }
 
                             Text { text: qsTr("Entries"); color: "#a0a0a0"; font.pixelSize: 11 * App.fontScale }
                             Text {
                                 text: root.ipToCityDbInfo.entryCountFormatted || qsTr("Unknown")
-                                color: "#d0d0d0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 11 * App.fontScale
                             }
 
                             Text { text: qsTr("Last Modified"); color: "#a0a0a0"; font.pixelSize: 11 * App.fontScale }
                             Text {
                                 text: root.ipToCityDbInfo.lastModified || qsTr("Unknown")
-                                color: "#d0d0d0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 11 * App.fontScale
                             }
 
@@ -4140,19 +4220,19 @@ Window {
                             text: App.ipToCityDbUpdateUrl && App.ipToCityDbUpdateUrl.length > 0
                                 ? qsTr("Source: %1").arg(App.ipToCityDbUpdateUrl)
                                 : qsTr("Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.")
-                            color: "#666666"
+                            color: ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        Text { text: qsTr("Statistics"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Statistics"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
 
                         Text {
                             Layout.fillWidth: true
                             text: qsTr("Cumulative transfer totals across all torrents, including removed ones.")
-                            color: "#666666"
+                            color: ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
@@ -4179,19 +4259,19 @@ Window {
                                 onTriggered: torrentStatsGrid.refresh()
                             }
 
-                            Text { text: qsTr("Total Downloaded"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Total Downloaded"); color: ColorPalette.infoBoxText; font.pixelSize: 12 * App.fontScale }
                             Text {
                                 text: root.formatBytes(torrentStatsGrid.stats.downloadedBytes || 0)
-                                color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                             }
 
-                            Text { text: qsTr("Total Uploaded"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Total Uploaded"); color: ColorPalette.infoBoxText; font.pixelSize: 12 * App.fontScale }
                             Text {
                                 text: root.formatBytes(torrentStatsGrid.stats.uploadedBytes || 0)
-                                color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                             }
 
-                            Text { text: qsTr("All-time Share Ratio"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("All-time Share Ratio"); color: ColorPalette.infoBoxText; font.pixelSize: 12 * App.fontScale }
                             Text {
                                 text: {
                                     var r = torrentStatsGrid.stats.ratio || 0
@@ -4224,8 +4304,8 @@ Window {
                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
-                        Text { text: qsTr("RSS"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Text { text: qsTr("RSS"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                         Text {
                             Layout.fillWidth: true
@@ -4234,16 +4314,16 @@ Window {
                             wrapMode: Text.WordWrap
                         }
 
-                        // ── Feed fetching ──────────────────────────────────────────────
+                        // ?? Feed fetching ??????????????????????????????????????????????
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
-                        Text { text: qsTr("Feed Fetching"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Feed Fetching"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Enable fetching RSS feeds")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editRssEnabled
                             onCheckedChanged: root.editRssEnabled = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
 
                         GridLayout {
@@ -4253,52 +4333,52 @@ Window {
                             rowSpacing: 8
                             enabled: root.editRssEnabled
 
-                            Text { text: qsTr("Feeds refresh interval"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Feeds refresh interval"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                             TextField {
                                 Layout.preferredWidth: 80
                                 text: String(root.editRssRefreshIntervalMins)
                                 validator: IntValidator { bottom: 1; top: 1440 }
-                                color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                 leftPadding: 6; rightPadding: 6; selectByMouse: true
                                 background: Rectangle {
-                                    color: "#1b1b1b"
-                                    border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3
+                                    color: ColorPalette.inputBg
+                                    border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3
                                 }
                                 onTextChanged: {
                                     var n = parseInt(text, 10)
                                     if (!isNaN(n) && n >= 1) root.editRssRefreshIntervalMins = n
                                 }
                             }
-                            Text { text: qsTr("minutes"); color: "#666666"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("minutes"); color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale }
 
-                            Text { text: qsTr("Same host request delay"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Same host request delay"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                             TextField {
                                 Layout.preferredWidth: 80
                                 text: String(Math.round(root.editRssSameHostDelayMs / 1000))
                                 validator: IntValidator { bottom: 0; top: 60 }
-                                color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                 leftPadding: 6; rightPadding: 6; selectByMouse: true
                                 background: Rectangle {
-                                    color: "#1b1b1b"
-                                    border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3
+                                    color: ColorPalette.inputBg
+                                    border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3
                                 }
                                 onTextChanged: {
                                     var n = parseInt(text, 10)
                                     if (!isNaN(n) && n >= 0) root.editRssSameHostDelayMs = n * 1000
                                 }
                             }
-                            Text { text: qsTr("seconds"); color: "#666666"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("seconds"); color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale }
 
-                            Text { text: qsTr("Maximum articles per feed"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Maximum articles per feed"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                             TextField {
                                 Layout.preferredWidth: 80
                                 text: String(root.editRssMaxArticlesPerFeed)
                                 validator: IntValidator { bottom: 1; top: 10000 }
-                                color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                 leftPadding: 6; rightPadding: 6; selectByMouse: true
                                 background: Rectangle {
-                                    color: "#1b1b1b"
-                                    border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3
+                                    color: ColorPalette.inputBg
+                                    border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3
                                 }
                                 onTextChanged: {
                                     var n = parseInt(text, 10)
@@ -4308,16 +4388,16 @@ Window {
                             Item {}
                         }
 
-                        // ── Auto downloader ────────────────────────────────────────────
+                        // ?? Auto downloader ????????????????????????????????????????????
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
-                        Text { text: qsTr("Torrent Auto Downloader"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Torrent Auto Downloader"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Enable auto downloading of RSS torrents")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editRssAutoDownloadEnabled
                             onCheckedChanged: root.editRssAutoDownloadEnabled = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
 
                         DlgButton {
@@ -4329,25 +4409,25 @@ Window {
                             }
                         }
 
-                        // ── Smart episode filter ───────────────────────────────────────
+                        // ?? Smart episode filter ???????????????????????????????????????
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
-                        Text { text: qsTr("Smart Episode Filter"); color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Smart Episode Filter"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
 
-                        CheckBox {
+                        StyledCheckBox {
                             text: qsTr("Download REPACK/PROPER episodes")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editRssSmartFilterRepack
                             onCheckedChanged: root.editRssSmartFilterRepack = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
 
-                        Text { text: qsTr("Episode detection patterns (one per line):"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Episode detection patterns (one per line):"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
 
                         Rectangle {
                             Layout.fillWidth: true
                             height: 110
-                            color: "#1b1b1b"
-                            border.color: rssFiltersArea.activeFocus ? "#4488dd" : "#3a3a3a"
+                            color: ColorPalette.inputBg
+                            border.color: rssFiltersArea.activeFocus ? "#4488dd" : ColorPalette.border
                             radius: 3
 
                             ScrollView {
@@ -4360,7 +4440,7 @@ Window {
                                     id: rssFiltersArea
                                     font.pixelSize: 12 * App.fontScale
                                     font.family: "Consolas, monospace"
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                     background: null
                                     wrapMode: TextEdit.NoWrap
                                     selectByMouse: true
@@ -4381,7 +4461,7 @@ Window {
                         Text {
                             Layout.fillWidth: true
                             text: qsTr("These regular expressions are used to extract season/episode numbers for smart duplicate detection.")
-                            color: "#666666"; font.pixelSize: 11 * App.fontScale
+                            color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
 
@@ -4402,8 +4482,8 @@ Window {
                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
-                        Text { text: qsTr("Associations"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Text { text: qsTr("Associations"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                         Text {
                             Layout.fillWidth: true
@@ -4421,11 +4501,11 @@ Window {
                             columnSpacing: 16
                             rowSpacing: 8
 
-                            Text { text: qsTr(".torrent files"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
+                            Text { text: qsTr(".torrent files"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
                             Text {
                                 Layout.fillWidth: true
                                 text: root.torrentAssociationDefault ? qsTr("Currently handled by Stellar") : qsTr("Stellar is not the current default")
-                                color: root.torrentAssociationDefault ? "#7bd88f" : "#d8a65f"
+                                color: root.torrentAssociationDefault ? "#3a9d52" : ColorPalette.warningText
                                 font.pixelSize: 12 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
@@ -4458,11 +4538,11 @@ Window {
                             columnSpacing: 16
                             rowSpacing: 8
 
-                            Text { text: qsTr("magnet: links"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
+                            Text { text: qsTr("magnet: links"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
                             Text {
                                 Layout.fillWidth: true
                                 text: root.magnetAssociationDefault ? qsTr("Currently handled by Stellar") : qsTr("Stellar is not the current default")
-                                color: root.magnetAssociationDefault ? "#7bd88f" : "#d8a65f"
+                                color: root.magnetAssociationDefault ? "#3a9d52" : ColorPalette.warningText
                                 font.pixelSize: 12 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
@@ -4511,12 +4591,12 @@ Window {
                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
-                        Text { text: qsTr("Interface Language"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Text { text: qsTr("Interface Language"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                         Text {
                             text: qsTr("Select the language used throughout the Stellar interface. A restart is required for all text to update.")
-                            color: "#aaaaaa"
+                            color: ColorPalette.textSecond
                             font.pixelSize: 12 * App.fontScale
                             wrapMode: Text.WordWrap
                             Layout.fillWidth: true
@@ -4529,7 +4609,7 @@ Window {
 
                             Text {
                                 text: qsTr("Language:")
-                                color: "#c0c0c0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 13 * App.fontScale
                             }
 
@@ -4538,97 +4618,17 @@ Window {
                                 implicitWidth: 220
                                 implicitHeight: 28
 
-                                // Each entry: { code, display }
-                                property var langEntries: [
-                                    { code: "",        display: "English" },
-                                    { code: "sq",      display: "Albanian — Shqip" },
-                                    { code: "am",      display: "Amharic — አማርኛ" },
-                                    { code: "ar",      display: "Arabic — العربية" },
-                                    { code: "hy",      display: "Armenian — Հայերեն" },
-                                    { code: "az",      display: "Azerbaijani — Azərbaycan dili" },
-                                    { code: "be",      display: "Belarusian — Беларуская" },
-                                    { code: "bn",      display: "Bengali — বাংলা" },
-                                    { code: "bs",      display: "Bosnian — Bosanski" },
-                                    { code: "bg",      display: "Bulgarian — Български" },
-                                    { code: "my",      display: "Burmese — မြန်မာ" },
-                                    { code: "ca",      display: "Catalan — Català" },
-                                    { code: "zh_CN",   display: "Chinese (Simplified) — 简体中文" },
-                                    { code: "zh_TW",   display: "Chinese (Traditional) — 繁體中文" },
-                                    { code: "hr",      display: "Croatian — Hrvatski" },
-                                    { code: "cs",      display: "Czech — Čeština" },
-                                    { code: "da",      display: "Danish — Dansk" },
-                                    { code: "nl",      display: "Dutch — Nederlands" },
-                                    { code: "nl_BE",   display: "Dutch (Belgium) — Nederlands (België)" },
-                                    { code: "en",      display: "English" },
-                                    { code: "et",      display: "Estonian — Eesti" },
-                                    { code: "fa",      display: "Farsi (Persian) — فارسی" },
-                                    { code: "fil",     display: "Filipino — Filipino" },
-                                    { code: "fi",      display: "Finnish — Suomi" },
-                                    { code: "fr",      display: "French — Français" },
-                                    { code: "gl",      display: "Galician — Galego" },
-                                    { code: "ka",      display: "Georgian — ქართული" },
-                                    { code: "de",      display: "German — Deutsch" },
-                                    { code: "el",      display: "Greek — Ελληνικά" },
-                                    { code: "gu",      display: "Gujarati — ગુજરાતી" },
-                                    { code: "ha",      display: "Hausa — Hausa" },
-                                    { code: "he",      display: "Hebrew — עברית" },
-                                    { code: "hi",      display: "Hindi — हिन्दी" },
-                                    { code: "hu",      display: "Hungarian — Magyar" },
-                                    { code: "ig",      display: "Igbo — Igbo" },
-                                    { code: "id",      display: "Indonesian — Bahasa Indonesia" },
-                                    { code: "ga",      display: "Irish — Gaeilge" },
-                                    { code: "it",      display: "Italian — Italiano" },
-                                    { code: "ja",      display: "Japanese — 日本語" },
-                                    { code: "jv",      display: "Javanese — Basa Jawa" },
-                                    { code: "kn",      display: "Kannada — ಕನ್ನಡ" },
-                                    { code: "km",      display: "Khmer — ភាសាខ្មែរ" },
-                                    { code: "ko",      display: "Korean — 한국어" },
-                                    { code: "lo",      display: "Lao — ລາວ" },
-                                    { code: "lv",      display: "Latvian — Latviešu" },
-                                    { code: "lt",      display: "Lithuanian — Lietuvių" },
-                                    { code: "mk",      display: "Macedonian — Македонски" },
-                                    { code: "ml",      display: "Malayalam — മലയാളം" },
-                                    { code: "ms",      display: "Malay — Bahasa Melayu" },
-                                    { code: "mr",      display: "Marathi — मराठी" },
-                                    { code: "mn",      display: "Mongolian — Монгол" },
-                                    { code: "ne",      display: "Nepali — नेपाली" },
-                                    { code: "nb",      display: "Norwegian — Norsk Bokmål" },
-                                    { code: "ps",      display: "Pashto — پښتو" },
-                                    { code: "pl",      display: "Polish — Polski" },
-                                    { code: "pt",      display: "Portuguese — Português" },
-                                    { code: "pt_BR",   display: "Portuguese (Brazilian) — Português (Brasil)" },
-                                    { code: "pa",      display: "Punjabi — ਪੰਜਾਬੀ" },
-                                    { code: "ro",      display: "Romanian — Română" },
-                                    { code: "ru",      display: "Russian — Русский" },
-                                    { code: "sr_Cyrl", display: "Serbian (Cyrillic) — Српски" },
-                                    { code: "sr_Latn", display: "Serbian (Latin) — Srpski" },
-                                    { code: "si",      display: "Sinhala — සිංහල" },
-                                    { code: "sk",      display: "Slovak — Slovenčina" },
-                                    { code: "sl",      display: "Slovenian — Slovenščina" },
-                                    { code: "es",      display: "Spanish — Español" },
-                                    { code: "sw",      display: "Swahili — Kiswahili" },
-                                    { code: "sv",      display: "Swedish — Svenska" },
-                                    { code: "ta",      display: "Tamil — தமிழ்" },
-                                    { code: "te",      display: "Telugu — తెలుగు" },
-                                    { code: "th",      display: "Thai — ไทย" },
-                                    { code: "tr",      display: "Turkish — Türkçe" },
-                                    { code: "uk",      display: "Ukrainian — Українська" },
-                                    { code: "ur",      display: "Urdu — اردو" },
-                                    { code: "ug",      display: "Uyghur — ئۇيغۇرچە" },
-                                    { code: "uz",      display: "Uzbek — Oʻzbek" },
-                                    { code: "vi",      display: "Vietnamese — Tiếng Việt" },
-                                    { code: "cy",      display: "Welsh — Cymraeg" },
-                                    { code: "yo",      display: "Yoruba — Yorùbá" }
-                                ]
+                                // Shared list (UTF-8 native names) from the LanguageList singleton.
+                                readonly property var langEntries: LanguageList.entries
 
                                 model: langEntries.map(function(e) { return e.display })
 
-                                // Sync combo selection → editUiLanguage
+                                // Sync combo selection ? editUiLanguage
                                 onActivated: function(idx) {
                                     root.editUiLanguage = langEntries[idx].code
                                 }
 
-                                // Sync editUiLanguage → combo selection on open / reset
+                                // Sync editUiLanguage ? combo selection on open / reset
                                 function syncFromSetting() {
                                     for (var i = 0; i < langEntries.length; ++i) {
                                         if (langEntries[i].code === root.editUiLanguage) {
@@ -4647,8 +4647,8 @@ Window {
                                 }
 
                                 background: Rectangle {
-                                    color: "#1b1b1b"
-                                    border.color: languageCombo.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    color: ColorPalette.inputBg
+                                    border.color: languageCombo.activeFocus ? "#4488dd" : ColorPalette.border
                                     border.width: 1
                                     radius: 2
                                 }
@@ -4657,7 +4657,7 @@ Window {
                                     leftPadding: 8
                                     rightPadding: languageCombo.indicator.width + 4
                                     text: languageCombo.displayText
-                                    color: "#e0e0e0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale
                                     verticalAlignment: Text.AlignVCenter
                                     elide: Text.ElideRight
@@ -4666,9 +4666,9 @@ Window {
                                 indicator: Text {
                                     x: languageCombo.width - width - 8
                                     y: (languageCombo.height - height) / 2
-                                    text: "▼"
+                                     text: "▾"
                                     font.pixelSize: 8 * App.fontScale
-                                    color: "#aaaaaa"
+                                    color: ColorPalette.textSecond
                                 }
 
                                 popup: Popup {
@@ -4683,8 +4683,8 @@ Window {
                                     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
 
                                     background: Rectangle {
-                                        color: "#252525"
-                                        border.color: "#3a3a3a"
+                                        color: ColorPalette.panelBg
+                                        border.color: ColorPalette.border
                                         border.width: 1
                                         radius: 2
                                     }
@@ -4705,24 +4705,24 @@ Window {
 
                                     contentItem: Text {
                                         text: modelData
-                                        color: "#e0e0e0"
+                                        color: ColorPalette.textPrimary
                                         font.pixelSize: 12 * App.fontScale
                                         verticalAlignment: Text.AlignVCenter
                                         leftPadding: 8
                                     }
 
                                     background: Rectangle {
-                                        color: highlighted ? "#1a3a6a" : "transparent"
+                                        color: highlighted ? ColorPalette.selectionBg : "transparent"
                                     }
                                 }
                             }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a"; Layout.topMargin: 4 }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border; Layout.topMargin: 4 }
 
                         Text {
                             text: qsTr("A restart is required after changing the language.")
-                            color: "#8899bb"
+                            color: ColorPalette.infoBoxText
                             font.pixelSize: 11 * App.fontScale
                             Layout.bottomMargin: 8
                         }
@@ -4741,7 +4741,7 @@ Window {
                         anchors { left: parent.left; right: parent.right; top: parent.top; leftMargin: 16; rightMargin: 16; topMargin: 16 }
                         spacing: 0
 
-                        // ── Identity block ────────────────────────────────────────────
+                        // ?? Identity block ????????????????????????????????????????????
                         RowLayout {
                             spacing: 16
                             Layout.bottomMargin: 14
@@ -4760,7 +4760,7 @@ Window {
 
                                 Text {
                                     text: "Stellar Download Manager"
-                                    color: "#ffffff"; font.pixelSize: 15 * App.fontScale; font.bold: true
+                                    color: ColorPalette.textHeader; font.pixelSize: 15 * App.fontScale; font.bold: true
                                 }
 
                                 // Version + update status on the same line
@@ -4772,7 +4772,7 @@ Window {
                                         color: "#4488dd"; font.pixelSize: 12 * App.fontScale
                                     }
 
-                                    // Separator dot — only visible when update info is shown
+                                    // Separator dot - only visible when update info is shown
                                     Text {
                                         text: "\u00B7"
                                         color: "#444444"; font.pixelSize: 12 * App.fontScale
@@ -4788,7 +4788,7 @@ Window {
                                     }
                                 }
 
-                                // Check for updates + What's New — inline, understated
+                                // Check for updates + What's New - inline, understated
                                 RowLayout {
                                     spacing: 10
                                     Layout.topMargin: 1
@@ -4820,18 +4820,18 @@ Window {
                             }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a"; Layout.bottomMargin: 12 }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border; Layout.bottomMargin: 12 }
 
-                        // ── Build info ────────────────────────────────────────────────
+                        // ?? Build info ????????????????????????????????????????????????
                         GridLayout {
                             columns: 2; columnSpacing: 20; rowSpacing: 5
                             Layout.bottomMargin: 14
 
-                            Text { text: qsTr("Build date");  color: "#606060"; font.pixelSize: 12 * App.fontScale }
-                            Text { text: App.buildTimeFormatted; color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale }
-                            Text { text: qsTr("Qt version");  color: "#606060"; font.pixelSize: 12 * App.fontScale }
-                            Text { text: App.qtVersion; color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale }
-                            Text { text: qsTr("Platform");    color: "#606060"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Build date");  color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
+                            Text { text: App.buildTimeFormatted; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Qt version");  color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
+                            Text { text: App.qtVersion; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Platform");    color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
                             Text {
                                 text: {
                                     const os = Qt.platform.os
@@ -4840,13 +4840,13 @@ Window {
                                     if (os === "osx")     return qsTr("macOS")
                                     return os.charAt(0).toUpperCase() + os.slice(1)
                                 }
-                                color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                             }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a"; Layout.bottomMargin: 12 }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border; Layout.bottomMargin: 12 }
 
-                        // ── License + Links ───────────────────────────────────────────
+                        // ?? License + Links ???????????????????????????????????????????
                         Flow {
                             spacing: 6
                             Layout.fillWidth: true
@@ -4856,7 +4856,7 @@ Window {
                                 text: "Copyright \u00A9 2026 Ninka_"
                                 color: "#707070"; font.pixelSize: 11 * App.fontScale
                             }
-                            Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 * App.fontScale }
+                            Text { text: "\u00B7"; color: ColorPalette.border; font.pixelSize: 11 * App.fontScale }
                             Text {
                                 text: qsTr("GNU GPL v3.0")
                                 color: "#4488dd"; font.pixelSize: 11 * App.fontScale
@@ -4864,7 +4864,7 @@ Window {
                                 MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
                                     onClicked: App.openExternalUrl("https://www.gnu.org/licenses/gpl-3.0.html") }
                             }
-                            Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 * App.fontScale }
+                            Text { text: "\u00B7"; color: ColorPalette.border; font.pixelSize: 11 * App.fontScale }
                             Text {
                                 text: qsTr("Stellar Website")
                                 color: "#4488dd"; font.pixelSize: 11 * App.fontScale
@@ -4872,7 +4872,7 @@ Window {
                                 MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
                                     onClicked: App.openExternalUrl("https://stellardownloadmanager.org/") }
                             }
-                            Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 * App.fontScale }
+                            Text { text: "\u00B7"; color: ColorPalette.border; font.pixelSize: 11 * App.fontScale }
                             Text {
                                 text: qsTr("GitHub")
                                 color: "#4488dd"; font.pixelSize: 11 * App.fontScale
@@ -4880,7 +4880,7 @@ Window {
                                 MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
                                     onClicked: App.openExternalUrl("https://github.com/Ninka-Rex/Stellar") }
                             }
-                            Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 * App.fontScale }
+                            Text { text: "\u00B7"; color: ColorPalette.border; font.pixelSize: 11 * App.fontScale }
                             Text {
                                 text: qsTr("Releases")
                                 color: "#4488dd"; font.pixelSize: 11 * App.fontScale
@@ -4910,7 +4910,7 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a"; Layout.topMargin: 4; Layout.bottomMargin: 14 }
 
-                        // ── Third-party credits ───────────────────────────────────────
+                        // ?? Third-party credits ???????????????????????????????????????
                         // FFmpeg is invoked as an external executable (not linked into Stellar).
                         // Attribution is required by its LGPL-2.1+ / GPL-2+ license.
                         // Full license texts are in THIRD-PARTY-NOTICES.txt.
@@ -4928,7 +4928,7 @@ Window {
 
                             RowLayout {
                                 spacing: 8
-                                Text { text: "FFmpeg"; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                                Text { text: "FFmpeg"; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: true }
                                 Text { text: "LGPL-2.1+ / GPL-2+"; color: "#555555"; font.pixelSize: 10 * App.fontScale }
                             }
                             Text {
@@ -4936,7 +4936,7 @@ Window {
                                 text: "Copyright \u00A9 2000\u2013present the FFmpeg developers. " +
                                       "Used for merging video and audio streams. " +
                                       "FFmpeg is a trademark of Fabrice Bellard."
-                                color: "#666666"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
                             RowLayout {
@@ -4947,7 +4947,7 @@ Window {
                                     MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
                                         onClicked: App.openExternalUrl("https://ffmpeg.org/") }
                                 }
-                                Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 * App.fontScale }
+                                Text { text: "\u00B7"; color: ColorPalette.border; font.pixelSize: 11 * App.fontScale }
                                 Text {
                                     text: qsTr("Git source")
                                     color: "#4488dd"; font.pixelSize: 11 * App.fontScale; font.underline: true
@@ -4957,7 +4957,7 @@ Window {
                             }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#222222"; Layout.bottomMargin: 10 }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.rowAltBg; Layout.bottomMargin: 10 }
 
                         // libtorrent
                         ColumnLayout {
@@ -4967,14 +4967,14 @@ Window {
 
                             RowLayout {
                                 spacing: 8
-                                Text { text: "libtorrent"; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                                Text { text: "libtorrent"; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: true }
                                 Text { text: "BSD-3-Clause"; color: "#555555"; font.pixelSize: 10 * App.fontScale }
                             }
                             Text {
                                 Layout.fillWidth: true
                                 text: "Copyright \u00A9 Arvid Norberg and contributors. " +
                                       "Used for BitTorrent protocol support."
-                                color: "#666666"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
                             RowLayout {
@@ -4985,7 +4985,7 @@ Window {
                                     MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
                                         onClicked: App.openExternalUrl("https://libtorrent.org/") }
                                 }
-                                Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 * App.fontScale }
+                                Text { text: "\u00B7"; color: ColorPalette.border; font.pixelSize: 11 * App.fontScale }
                                 Text {
                                     text: "GitHub"
                                     color: "#4488dd"; font.pixelSize: 11 * App.fontScale; font.underline: true
@@ -4995,7 +4995,7 @@ Window {
                             }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#222222"; Layout.bottomMargin: 10 }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.rowAltBg; Layout.bottomMargin: 10 }
 
                         // yt-dlp
                         ColumnLayout {
@@ -5005,14 +5005,14 @@ Window {
 
                             RowLayout {
                                 spacing: 8
-                                Text { text: "yt-dlp"; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                                Text { text: "yt-dlp"; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: true }
                                 Text { text: "The Unlicense"; color: "#555555"; font.pixelSize: 10 * App.fontScale }
                             }
                             Text {
                                 Layout.fillWidth: true
                                 text: "yt-dlp contributors (The Unlicense, public-domain dedication). " +
                                       "Used for video metadata extraction and media downloading features."
-                                color: "#666666"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
                             RowLayout {
@@ -5023,7 +5023,7 @@ Window {
                                     MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
                                         onClicked: App.openExternalUrl("https://github.com/yt-dlp/yt-dlp") }
                                 }
-                                Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 * App.fontScale }
+                                Text { text: "\u00B7"; color: ColorPalette.border; font.pixelSize: 11 * App.fontScale }
                                 Text {
                                     text: qsTr("Unlicense")
                                     color: "#4488dd"; font.pixelSize: 11 * App.fontScale; font.underline: true
@@ -5033,7 +5033,7 @@ Window {
                             }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#222222"; Layout.bottomMargin: 10 }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.rowAltBg; Layout.bottomMargin: 10 }
 
                         // Qt Framework
                         ColumnLayout {
@@ -5043,13 +5043,13 @@ Window {
 
                             RowLayout {
                                 spacing: 8
-                                Text { text: "Qt " + App.qtVersion; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                                Text { text: "Qt " + App.qtVersion; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: true }
                                 Text { text: "LGPL-3"; color: "#555555"; font.pixelSize: 10 * App.fontScale }
                             }
                             Text {
                                 Layout.fillWidth: true
                                 text: "Copyright \u00A9 The Qt Company Ltd. Used under the LGPL-3 with the Qt LGPL exception."
-                                color: "#666666"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
                             Text {
@@ -5060,7 +5060,7 @@ Window {
                             }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#222222"; Layout.bottomMargin: 10 }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.rowAltBg; Layout.bottomMargin: 10 }
 
                         // DB-IP
                         ColumnLayout {
@@ -5070,13 +5070,13 @@ Window {
 
                             RowLayout {
                                 spacing: 8
-                                Text { text: "DB-IP City Lite"; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                                Text { text: "DB-IP City Lite"; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: true }
                                 Text { text: "CC BY 4.0"; color: "#555555"; font.pixelSize: 10 * App.fontScale }
                             }
                             Text {
                                 Layout.fillWidth: true
                                 text: "Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0."
-                                color: "#666666"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
                             Text {
@@ -5095,7 +5095,7 @@ Window {
                             Layout.bottomMargin: 16
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#222222"; Layout.bottomMargin: 12 }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.rowAltBg; Layout.bottomMargin: 12 }
 
                         Text {
                             text: "Thanks for using Stellar \uD83D\uDC99"
@@ -5114,7 +5114,7 @@ Window {
         Rectangle {
             Layout.fillWidth: true
             height: 48
-            color: "#252525"
+            color: ColorPalette.panelBg
 
             Row {
                 anchors { right: parent.right; verticalCenter: parent.verticalCenter; rightMargin: 12 }

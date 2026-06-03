@@ -20,7 +20,7 @@ import QtQuick.Layouts
 
 Rectangle {
     id: root
-    color: "#1f1f1f"
+    color: ColorPalette.toolbarBg
 
     signal categorySelected(string catId)
     signal queueSelected(string queueId)
@@ -40,13 +40,13 @@ Rectangle {
 
     property int selectedIndex: 0
 
-    // ── Section/category expand state ─────────────────────────────────────────
+    // ── Section/category expand state ────────────────────────────────────
     property bool allDownloadsExpanded: true
     property bool queuesExpanded: true
     property bool grabberExpanded: true
     property bool torrentsExpanded: true
 
-    // ── Torrent subcategory drag-and-drop state ───────────────────────────────
+    // ── Torrent subcategory drag-and-drop state ──────────────────────────
     QtObject {
         id: _torrentSubcatDragState
         property bool dragging: false
@@ -64,7 +64,7 @@ Rectangle {
         App.settings.torrentSubcatOrder = order
     }
 
-    // ── Category / grabber project drag state ─────────────────────────────────
+    // ── Category / grabber project drag state ────────────────────────────
     QtObject {
         id: _catDragState
         property bool dragging: false
@@ -79,7 +79,7 @@ Rectangle {
         property int  dropTarget: -1
     }
 
-    // ── Section drag-and-drop state ───────────────────────────────────────────
+    // ── Section drag-and-drop state ──────────────────────────────────────
     property int  _secDragFrom:   -1
     property int  _secDropTarget: -1
     property bool _secDragging:   false
@@ -99,24 +99,38 @@ Rectangle {
         }
     }
 
-    // ── "Categories" label bar ────────────────────────────────────────────────
+    // ── "Categories" label bar ───────────────────────────────────────────
     Rectangle {
         id: catHeader
         anchors { top: parent.top; left: parent.left; right: parent.right }
-        height: 26; color: "#2d2d2d"
+        height: 26; color: ColorPalette.dividerBg
         Rectangle { width: 3; height: parent.height; color: "#5588cc" }
         Text {
             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8 }
-            text: qsTr("Categories"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; font.bold: true
+            text: qsTr("Categories"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: true
         }
-        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
+        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
     }
 
-    // ── Main scrollable area ──────────────────────────────────────────────────
+    // ── Main scrollable area ─────────────────────────────────────────────
     ScrollView {
         id: mainScroll
         anchors { top: catHeader.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
         clip: true
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+        ScrollBar.vertical: ScrollBar {
+            id: _sbVert
+            policy: ScrollBar.AsNeeded
+            width: 10
+            contentItem: Rectangle {
+                implicitWidth: 10
+                radius: 5
+                color: _sbVert.pressed ? ColorPalette.textSecond
+                     : _sbVert.hovered ? ColorPalette.border
+                     : ColorPalette.dividerBg
+            }
+            background: Rectangle { color: "transparent" }
+        }
 
         Column {
             id: _sidebarCol
@@ -154,7 +168,7 @@ Rectangle {
                         height: 2; color: "#5588cc"; z: 20
                     }
 
-                    // ── "All Downloads" + categories ─────────────────────────
+                    // ── "All Downloads" + categories ─────────────────────
                     Column {
                         id: dlCol
                         visible: sectionDelegate.secId === "downloads"
@@ -163,8 +177,8 @@ Rectangle {
 
                         Rectangle {
                             width: parent.width; height: 28
-                            color: root.selectedIndex === 999 ? "#1e3a6e"
-                                 : (allDlMouse.containsMouse ? "#2a2a3a" : "transparent")
+                            color: root.selectedIndex === 999 ? ColorPalette.selectionBg
+                                 : (allDlMouse.containsMouse ? ColorPalette.hoverBg : "transparent")
                             border.color: root.selectedIndex === 999 ? "#4488dd" : "transparent"
                             border.width: 1
 
@@ -180,7 +194,7 @@ Rectangle {
                                 Image { source: "icons/categories/all_downloads.svg"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
                                 Text {
                                     text: qsTr("All Downloads")
-                                    color: root.selectedIndex === 999 ? "#88bbff" : "#cccccc"
+                                    color: root.selectedIndex === 999 ? ColorPalette.selectionText : ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale; font.bold: root.selectedIndex === 999
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
@@ -237,9 +251,9 @@ Rectangle {
                                 Rectangle {
                                     id: catBg
                                     anchors.fill: parent
-                                    color: root.selectedIndex === index ? "#1e3a6e"
-                                         : (catMa.containsMouse && !_catDragState.dragging ? "#2a2a3a"
-                                         : (catDrop.containsDrag ? "#2a3a2a" : "transparent"))
+                                    color: root.selectedIndex === index ? ColorPalette.selectionBg
+                                         : (catMa.containsMouse && !_catDragState.dragging ? ColorPalette.hoverBg
+                                         : (catDrop.containsDrag ? ColorPalette.hoverBg : "transparent"))
                                     border.color: root.selectedIndex === index ? "#4488dd" : "transparent"
                                     border.width: 1
                                     opacity: (_catDragState.dragging && _catDragState.dragFrom === catDelegate.modelRow) ? 0.4 : 1.0
@@ -256,7 +270,7 @@ Rectangle {
                                         }
                                         Text {
                                             text: categoryLabel
-                                            color: root.selectedIndex === index ? "#88bbff" : "#cccccc"
+                                            color: root.selectedIndex === index ? ColorPalette.selectionText : ColorPalette.textPrimary
                                             font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter
                                         }
                                     }
@@ -306,12 +320,12 @@ Rectangle {
                         }
                     }
 
-                    // ── "Unfinished" filter row ───────────────────────────────
+                    // ── "Unfinished" filter row ──────────────────────────
                     Rectangle {
                         id: unfinishedRow
                         visible: sectionDelegate.secId === "unfinished"
                         width: parent.width; height: 28
-                        color: root.selectedIndex === -1 ? "#1e3a6e" : (unfinMa.containsMouse ? "#2a2a3a" : "transparent")
+                        color: root.selectedIndex === -1 ? ColorPalette.selectionBg : (unfinMa.containsMouse ? ColorPalette.hoverBg : "transparent")
                         border.color: root.selectedIndex === -1 ? "#4488dd" : "transparent"; border.width: 1
 
                         Row {
@@ -319,7 +333,7 @@ Rectangle {
                             spacing: 5
                             Item { width: 3; height: 1 }
                             Image { source: "icons/folder.svg"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
-                            Text { text: qsTr("Unfinished"); color: root.selectedIndex === -1 ? "#88bbff" : "#cccccc"; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                            Text { text: qsTr("Unfinished"); color: root.selectedIndex === -1 ? ColorPalette.selectionText : ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                         }
 
                         SidebarSectionDragHandler {
@@ -332,12 +346,12 @@ Rectangle {
                         }
                     }
 
-                    // ── "Finished" filter row ─────────────────────────────────
+                    // ── "Finished" filter row ────────────────────────────
                     Rectangle {
                         id: finishedRow
                         visible: sectionDelegate.secId === "finished"
                         width: parent.width; height: 28
-                        color: root.selectedIndex === -2 ? "#1e3a6e" : (finMa.containsMouse ? "#2a2a3a" : "transparent")
+                        color: root.selectedIndex === -2 ? ColorPalette.selectionBg : (finMa.containsMouse ? ColorPalette.hoverBg : "transparent")
                         border.color: root.selectedIndex === -2 ? "#4488dd" : "transparent"; border.width: 1
 
                         Row {
@@ -345,7 +359,7 @@ Rectangle {
                             spacing: 5
                             Item { width: 3; height: 1 }
                             Image { source: "icons/folder.svg"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
-                            Text { text: qsTr("Finished"); color: root.selectedIndex === -2 ? "#88bbff" : "#cccccc"; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                            Text { text: qsTr("Finished"); color: root.selectedIndex === -2 ? ColorPalette.selectionText : ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                         }
 
                         SidebarSectionDragHandler {
@@ -358,7 +372,7 @@ Rectangle {
                         }
                     }
 
-                    // ── Grabber projects section ──────────────────────────────
+                    // ── Grabber projects section ─────────────────────────
                     Column {
                         id: grabberCol
                         visible: sectionDelegate.secId === "grabber"
@@ -367,14 +381,14 @@ Rectangle {
 
                         Rectangle {
                             width: parent.width; height: 28
-                            color: grabberHeaderMa.containsMouse ? "#2a2a3a" : "transparent"
+                            color: grabberHeaderMa.containsMouse ? ColorPalette.hoverBg : "transparent"
 
                             Row {
                                 anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 4 }
                                 spacing: 2
                                 Text { text: root.grabberExpanded ? "▼" : "▶"; color: "#999"; font.pixelSize: 12 * App.fontScale; width: 16; anchors.verticalCenter: parent.verticalCenter }
                                 Image { source: "icons/grabber.svg"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; anchors.verticalCenter: parent.verticalCenter }
-                                Text { text: qsTr("Grabber Projects"); color: "#cccccc"; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                Text { text: qsTr("Grabber Projects"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                             }
 
                             SidebarSectionDragHandler {
@@ -395,8 +409,8 @@ Rectangle {
                                 readonly property int modelRow: index
                                 width: mainScroll.width
                                 height: 26
-                                color: root.selectedIndex === -500 - index ? "#1e3a6e"
-                                     : (grabberMa.containsMouse ? "#2a2a3a" : "transparent")
+                                color: root.selectedIndex === -500 - index ? ColorPalette.selectionBg
+                                     : (grabberMa.containsMouse ? ColorPalette.hoverBg : "transparent")
                                 border.color: root.selectedIndex === -500 - index ? "#4488dd" : "transparent"
                                 border.width: 1
                                 opacity: (_grabberDragState.dragging && _grabberDragState.dragFrom === grabberProjectDelegate.modelRow) ? 0.4 : 1.0
@@ -416,7 +430,7 @@ Rectangle {
                                     Image { source: "icons/folder.svg"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit }
                                     Text {
                                         text: projectName || ""
-                                        color: root.selectedIndex === -500 - index ? "#88bbff" : "#cccccc"
+                                        color: root.selectedIndex === -500 - index ? ColorPalette.selectionText : ColorPalette.textPrimary
                                         font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter
                                         elide: Text.ElideRight; width: 126
                                     }
@@ -461,7 +475,7 @@ Rectangle {
                         }
                     }
 
-                    // ── Torrents section ──────────────────────────────────────
+                    // ── Torrents section ─────────────────────────────────
                     Column {
                         id: torrentsCol
                         visible: sectionDelegate.secId === "torrents"
@@ -469,7 +483,7 @@ Rectangle {
 
                         Rectangle {
                             width: parent.width; height: 28
-                            color: root.selectedIndex === -200 ? "#1e3a6e" : (torrentHeaderMa.containsMouse ? "#2a2a3a" : "transparent")
+                            color: root.selectedIndex === -200 ? ColorPalette.selectionBg : (torrentHeaderMa.containsMouse ? ColorPalette.hoverBg : "transparent")
                             border.color: root.selectedIndex === -200 ? "#4488dd" : "transparent"; border.width: 1
 
                             Row {
@@ -477,7 +491,7 @@ Rectangle {
                                 spacing: 2
                                 Text { text: root.torrentsExpanded ? "▼" : "▶"; color: "#999"; font.pixelSize: 12 * App.fontScale; width: 16; anchors.verticalCenter: parent.verticalCenter }
                                 Image { source: "icons/torrent-categories/all_torrents.svg"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
-                                Text { text: qsTr("Torrents"); color: root.selectedIndex === -200 ? "#88bbff" : "#cccccc"; font.pixelSize: 12 * App.fontScale; font.bold: root.selectedIndex === -200; anchors.verticalCenter: parent.verticalCenter }
+                                Text { text: qsTr("Torrents"); color: root.selectedIndex === -200 ? ColorPalette.selectionText : ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: root.selectedIndex === -200; anchors.verticalCenter: parent.verticalCenter }
                             }
 
                             SidebarSectionDragHandler {
@@ -539,9 +553,9 @@ Rectangle {
                                 Rectangle {
                                     id: torrentSubcatBg
                                     anchors.fill: parent
-                                    color: root.selectedIndex === torrentSubcatDelegate.selIdx ? "#1e3a6e"
-                                         : (torrentSubcatMa.containsMouse && !_torrentSubcatDragState.dragging ? "#2a2a3a"
-                                         : (torrentSubcatDrop.containsDrag ? "#2a3a2a" : "transparent"))
+                                    color: root.selectedIndex === torrentSubcatDelegate.selIdx ? ColorPalette.selectionBg
+                                         : (torrentSubcatMa.containsMouse && !_torrentSubcatDragState.dragging ? ColorPalette.hoverBg
+                                         : (torrentSubcatDrop.containsDrag ? ColorPalette.hoverBg : "transparent"))
                                     border.color: root.selectedIndex === torrentSubcatDelegate.selIdx ? "#4488dd" : "transparent"
                                     border.width: 1
                                     opacity: (_torrentSubcatDragState.dragging && _torrentSubcatDragState.dragFrom === torrentSubcatDelegate.modelRow) ? 0.4 : 1.0
@@ -557,7 +571,7 @@ Rectangle {
                                         }
                                         Text {
                                             text: torrentSubcatDelegate.subcatLabel
-                                            color: root.selectedIndex === torrentSubcatDelegate.selIdx ? "#88bbff" : "#cccccc"
+                                            color: root.selectedIndex === torrentSubcatDelegate.selIdx ? ColorPalette.selectionText : ColorPalette.textPrimary
                                             font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter
                                         }
                                     }
@@ -595,7 +609,7 @@ Rectangle {
                         }
                     }
 
-                    // ── Queues section ────────────────────────────────────────
+                    // ── Queues section ───────────────────────────────────
                     Column {
                         id: queuesCol
                         visible: sectionDelegate.secId === "queues"
@@ -603,7 +617,7 @@ Rectangle {
 
                         Rectangle {
                             width: parent.width; height: 28
-                            color: root.selectedIndex === -999 ? "#1e3a6e" : (queueHeaderMa.containsMouse ? "#2a2a3a" : "transparent")
+                            color: root.selectedIndex === -999 ? ColorPalette.selectionBg : (queueHeaderMa.containsMouse ? ColorPalette.hoverBg : "transparent")
                             border.color: root.selectedIndex === -999 ? "#4488dd" : "transparent"; border.width: 1
 
                             Row {
@@ -611,7 +625,7 @@ Rectangle {
                                 spacing: 2
                                 Text { text: root.queuesExpanded ? "▼" : "▶"; color: "#999"; font.pixelSize: 12 * App.fontScale; width: 16; anchors.verticalCenter: parent.verticalCenter }
                                 Image { width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; source: "qrc:/qt/qml/com/stellar/app/app/qml/icons/queues.svg"; anchors.verticalCenter: parent.verticalCenter }
-                                Text { text: qsTr("Queues"); color: root.selectedIndex === -999 ? "#88bbff" : "#cccccc"; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                Text { text: qsTr("Queues"); color: root.selectedIndex === -999 ? ColorPalette.selectionText : ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                             }
 
                             SidebarSectionDragHandler {
@@ -630,8 +644,8 @@ Rectangle {
                             delegate: Rectangle {
                                 visible: queueId !== "download-limits"
                                 width: mainScroll.width; height: visible ? 26 : 0
-                                color: root.selectedIndex === -100 - index ? "#1e3a6e"
-                                     : (qMa.containsMouse ? "#2a2a3a" : (qDrop.containsDrag ? "#2a3a2a" : "transparent"))
+                                color: root.selectedIndex === -100 - index ? ColorPalette.selectionBg
+                                     : (qMa.containsMouse ? ColorPalette.hoverBg : (qDrop.containsDrag ? ColorPalette.hoverBg : "transparent"))
                                 border.color: root.selectedIndex === -100 - index ? "#4488dd" : "transparent"; border.width: 1
                                 Row {
                                     anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 22 }
@@ -642,7 +656,7 @@ Rectangle {
                                               : queueId === "main-sync"     ? "qrc:/qt/qml/com/stellar/app/app/qml/icons/synch_queue.svg"
                                               :                               "qrc:/qt/qml/com/stellar/app/app/qml/icons/custom_queue.svg"
                                     }
-                                    Text { text: queueName || ""; color: root.selectedIndex === -100 - index ? "#88bbff" : "#cccccc"; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                    Text { text: queueName || ""; color: root.selectedIndex === -100 - index ? ColorPalette.selectionText : ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                 }
                                 MouseArea {
                                     id: qMa
@@ -682,6 +696,6 @@ Rectangle {
     // Right border
     Rectangle {
         anchors { top: parent.top; bottom: parent.bottom; right: parent.right }
-        width: 1; color: "#3a3a3a"
+        width: 1; color: ColorPalette.border
     }
 }

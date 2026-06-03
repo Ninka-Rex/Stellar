@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -27,11 +27,12 @@ Window {
     height: 500
     minimumWidth: 1060
     minimumHeight: 500
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     property string projectId: ""
@@ -52,7 +53,7 @@ Window {
     property var expandedFolderNodes: ({})
     property var expandedLinkNodes: ({})
     property var expandedSections: ({ "link": true, "folder": true })
-    // Cached sidebar tree lists — rebuilt explicitly rather than reactively so that
+    // ── Cached sidebar tree lists rebuilt explicitly rather than reactively so that ──
     // rapid row inserts during a crawl don't trigger O(n) rebuilds per insert.
     property var _linkItems: []
     property var _folderItems: []
@@ -263,7 +264,7 @@ Window {
     }
 
     function computeStatus(url) {
-        // Skip the C++ lookup for every visible row while the crawler is running —
+        // ── Skip the C++ lookup for every visible row while the crawler is running ──
         // the answer is always "Exploring" and the call is expensive at scale.
         if (App.grabberBusy) return "Exploring"
         var existing = App.findDuplicateUrl(url)
@@ -373,7 +374,7 @@ Window {
         function onDataChanged() {
             root.checkedCount = App.checkedGrabberResultCount()
             root.totalCount = App.grabberResultModel.rowCount()
-            // No sidebar rebuild — data-only changes (checked state, size) don't affect the tree
+            // ── No sidebar rebuild data-only changes (checked state, size) don't affect the tree ──
         }
         function onModelReset() {
             root.checkedCount = App.checkedGrabberResultCount()
@@ -417,19 +418,19 @@ Window {
 
     Rectangle {
         anchors.fill: parent
-        color: "#1e1e1e"
+        color: ColorPalette.cardBg
 
         ColumnLayout {
             anchors.fill: parent
             spacing: 0
 
-            // ── Menu bar ──────────────────────────────────────────────────────
+            // ── Menu bar ─────────────────────────────────────────────────
             MenuBar {
                 Layout.fillWidth: true
 
                 background: Rectangle {
-                    color: "#252525"
-                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#383838" }
+                    color: ColorPalette.panelBg
+                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
                 }
 
                 component CompactMenuItem: MenuItem {
@@ -449,7 +450,7 @@ Window {
                     arrow: Text {
                         x: _cmi.width - width - 8
                         anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                        text: "▶"; font.pixelSize: 8 * App.fontScale; color: "#888888"
+                        text: "▶"; font.pixelSize: 8 * App.fontScale; color: ColorPalette.textMuted
                         visible: _cmi.subMenu !== null
                     }
                     contentItem: RowLayout {
@@ -458,14 +459,14 @@ Window {
                         Item { Layout.preferredWidth: 0; Layout.preferredHeight: 14 }
                         Text {
                             text: _cmi.text; font: _cmi.font
-                            color: _cmi.enabled ? "#d0d0d0" : "#666666"
+                            color: _cmi.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
                             verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight
                             Layout.fillWidth: true
                         }
                     }
                     background: Rectangle {
                         implicitHeight: 22
-                        color: _cmi.highlighted ? "#1e3a6e" : "transparent"
+                        color: _cmi.highlighted ? ColorPalette.selectionBg : "transparent"
                     }
                 }
 
@@ -473,11 +474,11 @@ Window {
                     verticalPadding: 0; leftPadding: 12; rightPadding: 12
                     contentItem: Text {
                         text: parent.text; font: parent.font
-                        color: "#d0d0d0"; verticalAlignment: Text.AlignVCenter
+                        color: ColorPalette.textPrimary; verticalAlignment: Text.AlignVCenter
                     }
                     background: Rectangle {
                         implicitHeight: 20
-                        color: parent.highlighted ? "#1e3a6e" : "transparent"
+                        color: parent.highlighted ? ColorPalette.selectionBg : "transparent"
                     }
                 }
 
@@ -496,11 +497,11 @@ Window {
                 }
             }
 
-            // ── Project info / status strip ───────────────────────────────────
+            // ── Project info / status strip ──────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
                 height: 46
-                color: "#222222"
+                color: ColorPalette.rowAltBg
 
                 // Left accent bar
                 Rectangle {
@@ -524,7 +525,7 @@ Window {
 
                         Text {
                             text: projectName
-                            color: "#e0e0e0"
+                            color: ColorPalette.textPrimary
                             font.pixelSize: 13 * App.fontScale
                             font.bold: true
                         }
@@ -541,7 +542,7 @@ Window {
                                     id: statusDot
                                     width: 7; height: 7; radius: 4
                                     anchors.verticalCenter: parent.verticalCenter
-                                    color: App.grabberBusy ? "#55cc88" : "#444444"
+                                    color: App.grabberBusy ? "#55cc88" : ColorPalette.border
 
                                     SequentialAnimation on opacity {
                                         id: dotAnim
@@ -555,27 +556,27 @@ Window {
 
                                 Text {
                                     text: App.grabberBusy ? qsTr("Running") : qsTr("Idle")
-                                    color: App.grabberBusy ? "#55cc88" : "#555555"
+                                    color: App.grabberBusy ? "#55cc88" : ColorPalette.textDisabled
                                     font.pixelSize: 11 * App.fontScale
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
                             }
 
                             // Divider
-                            Rectangle { width: 1; height: 12; color: "#363636"; anchors.verticalCenter: parent.verticalCenter }
+                            Rectangle { width: 1; height: 12; color: ColorPalette.border; anchors.verticalCenter: parent.verticalCenter }
 
                             Text {
                                 text: qsTr("%1 files found").arg(totalCount)
-                                color: "#777777"
+                                color: ColorPalette.textDisabled
                                 font.pixelSize: 11 * App.fontScale
                                 anchors.verticalCenter: parent.verticalCenter
                             }
 
-                            Rectangle { width: 1; height: 12; color: "#363636"; anchors.verticalCenter: parent.verticalCenter }
+                            Rectangle { width: 1; height: 12; color: ColorPalette.border; anchors.verticalCenter: parent.verticalCenter }
 
                             Text {
                                 text: qsTr("%1 checked").arg(checkedCount)
-                                color: checkedCount > 0 ? "#4488dd" : "#555555"
+                                color: checkedCount > 0 ? "#4488dd" : ColorPalette.textDisabled
                                 font.pixelSize: 11 * App.fontScale
                                 anchors.verticalCenter: parent.verticalCenter
                             }
@@ -583,7 +584,7 @@ Window {
                             Text {
                                 visible: App.grabberStatusText.length > 0
                                 text: App.grabberStatusText
-                                color: "#556677"
+                                color: ColorPalette.textSecond
                                 font.pixelSize: 11 * App.fontScale
                                 elide: Text.ElideRight
                                 anchors.verticalCenter: parent.verticalCenter
@@ -595,7 +596,7 @@ Window {
                     Rectangle {
                         visible: App.grabberBusy
                         width: 160; height: 4; radius: 2
-                        color: "#2a2a2a"
+                        color: ColorPalette.border
                         Layout.alignment: Qt.AlignVCenter
 
                         Rectangle {
@@ -620,16 +621,16 @@ Window {
                     }
                 }
 
-                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#2d2d2d" }
+                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.dividerBg }
             }
 
-            // ── Toolbar ───────────────────────────────────────────────────────
+            // ── Toolbar ──────────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
                 height: 72
-                color: "#252525"
+                color: ColorPalette.panelBg
 
-                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#2d2d2d" }
+                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.dividerBg }
 
                 Flickable {
                     anchors.fill: parent
@@ -688,24 +689,24 @@ Window {
                 }
             }
 
-            // ── Main content: sidebar + file list ────────────────────────────
+            // ── Main content: sidebar + file list ────────────────────────
             RowLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 spacing: 0
 
-                // ── Sidebar ───────────────────────────────────────────────────
+                // ── Sidebar ──────────────────────────────────────────────
                 Rectangle {
                     Layout.preferredWidth: 198
                     Layout.fillHeight: true
-                    color: "#1b1b1b"
+                    color: ColorPalette.inputBg
 
                     // "Categories" header bar
                     Rectangle {
                         id: sideHeader
                         anchors { top: parent.top; left: parent.left; right: parent.right }
                         height: 26
-                        color: "#252525"
+                        color: ColorPalette.panelBg
 
                         // Left accent
                         Rectangle { width: 3; height: parent.height; color: "#4488dd" }
@@ -713,16 +714,16 @@ Window {
                         Text {
                             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
                             text: qsTr("Categories")
-                            color: "#c8c8c8"
+                            color: ColorPalette.textPrimary
                             font.pixelSize: 11 * App.fontScale
                             font.bold: true
                         }
-                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#333333" }
+                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
                     }
 
                     Rectangle {
                         anchors { top: sideHeader.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
-                        color: "#1b1b1b"
+                        color: ColorPalette.inputBg
 
                         ScrollView {
                             anchors.fill: parent
@@ -735,11 +736,11 @@ Window {
                                 width: 198
                                 spacing: 0
 
-                                // ── All Files ─────────────────────────────────
+                                // ── All Files ────────────────────────────
                                 Rectangle {
                                     width: sidebarColumn.width
                                     height: 26
-                                    color: sideMode === "all" ? "#1e3a6e" : (allFilesHover.containsMouse ? "#2a2a2a" : "transparent")
+                                    color: sideMode === "all" ? ColorPalette.selectionBg : (allFilesHover.containsMouse ? ColorPalette.hoverBg : "transparent")
 
                                     // Selected left indicator
                                     Rectangle {
@@ -762,7 +763,7 @@ Window {
                                         }
                                         Text {
                                             text: qsTr("All Files")
-                                            color: sideMode === "all" ? "#4488dd" : "#b8b8b8"
+                                            color: sideMode === "all" ? "#4488dd" : ColorPalette.textPrimary
                                             font.pixelSize: 12 * App.fontScale
                                             font.bold: sideMode === "all"
                                             anchors.verticalCenter: parent.verticalCenter
@@ -776,18 +777,18 @@ Window {
                                     }
                                 }
 
-                                // ── Link View section header ──────────────────
+                                // ── Link View section header ─────────────
                                 Rectangle {
                                     width: sidebarColumn.width
                                     height: 24
-                                    color: "#202020"
+                                    color: ColorPalette.panelBg
 
                                     Row {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8 }
                                         spacing: 5
                                         Text {
-                                            text: isSectionExpanded("link") ? "▾" : "▸"
-                                            color: "#668899"; font.pixelSize: 11 * App.fontScale; width: 12
+                                            text: isSectionExpanded("link") ? "▼" : "▶"
+                                            color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; width: 12
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
@@ -800,7 +801,7 @@ Window {
                                         }
                                         Text {
                                             text: qsTr("Link View")
-                                            color: "#888888"
+                                            color: ColorPalette.textMuted
                                             font.pixelSize: 11 * App.fontScale
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
@@ -812,10 +813,10 @@ Window {
                                             root.rebuildSidebarTrees()
                                         }
                                     }
-                                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#2a2a2a" }
+                                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
                                 }
 
-                                // ── Link View items ───────────────────────────
+                                // ── Link View items ──────────────────────
                                 Repeater {
                                     model: root._linkItems
                                     delegate: Rectangle {
@@ -823,7 +824,7 @@ Window {
                                         property bool isSelected: sideMode === "link" && sideFilterValue === modelData.id
                                         width: sidebarColumn.width
                                         height: 25
-                                        color: isSelected ? "#1e3a6e" : (linkItemHover.containsMouse ? "#2a2a2a" : "transparent")
+                                        color: isSelected ? ColorPalette.selectionBg : (linkItemHover.containsMouse ? ColorPalette.hoverBg : "transparent")
 
                                         Rectangle {
                                             visible: isSelected
@@ -837,8 +838,8 @@ Window {
                                             Text {
                                                 width: 12
                                                 text: modelData.isDomain && modelData.hasChildren
-                                                      ? (modelData.isExpanded ? "▾" : "▸") : ""
-                                                color: "#668899"; font.pixelSize: 11 * App.fontScale
+                                                      ? (modelData.isExpanded ? "▼" : "▶") : ""
+                                                color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale
                                                 horizontalAlignment: Text.AlignHCenter
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
@@ -852,7 +853,7 @@ Window {
                                             }
                                             Text {
                                                 text: modelData.label
-                                                color: isSelected ? "#4488dd" : "#b0b8c4"
+                                                color: isSelected ? "#4488dd" : ColorPalette.textSecond
                                                 font.pixelSize: 11 * App.fontScale
                                                 font.bold: modelData.isDomain
                                                 elide: Text.ElideRight
@@ -878,18 +879,18 @@ Window {
                                     }
                                 }
 
-                                // ── Folder View section header ─────────────────
+                                // ── Folder View section header ───────────
                                 Rectangle {
                                     width: sidebarColumn.width
                                     height: 24
-                                    color: "#202020"
+                                    color: ColorPalette.panelBg
 
                                     Row {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8 }
                                         spacing: 5
                                         Text {
-                                            text: isSectionExpanded("folder") ? "▾" : "▸"
-                                            color: "#668899"; font.pixelSize: 11 * App.fontScale; width: 12
+                                            text: isSectionExpanded("folder") ? "▼" : "▶"
+                                            color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; width: 12
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
@@ -902,7 +903,7 @@ Window {
                                         }
                                         Text {
                                             text: qsTr("Folder View")
-                                            color: "#888888"
+                                            color: ColorPalette.textMuted
                                             font.pixelSize: 11 * App.fontScale
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
@@ -914,10 +915,10 @@ Window {
                                             root.rebuildSidebarTrees()
                                         }
                                     }
-                                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#2a2a2a" }
+                                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
                                 }
 
-                                // ── Folder View items ─────────────────────────
+                                // ── Folder View items ────────────────────
                                 Repeater {
                                     model: root._folderItems
                                     delegate: Rectangle {
@@ -925,7 +926,7 @@ Window {
                                         property bool isSelected: sideMode === "folder" && sideFilterValue === modelData.id
                                         width: sidebarColumn.width
                                         height: 25
-                                        color: isSelected ? "#1e3a6e" : (folderItemHover.containsMouse ? "#2a2a2a" : "transparent")
+                                        color: isSelected ? ColorPalette.selectionBg : (folderItemHover.containsMouse ? ColorPalette.hoverBg : "transparent")
 
                                         Rectangle {
                                             visible: isSelected
@@ -939,8 +940,8 @@ Window {
                                             Text {
                                                 width: 12
                                                 text: modelData.hasChildren
-                                                      ? (root.isFolderExpanded(modelData.id) ? "▾" : "▸") : ""
-                                                color: "#668899"; font.pixelSize: 11 * App.fontScale
+                                                      ? (root.isFolderExpanded(modelData.id) ? "▼" : "▼") : ""
+                                                color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale
                                                 horizontalAlignment: Text.AlignHCenter
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
@@ -954,7 +955,7 @@ Window {
                                             }
                                             Text {
                                                 text: modelData.label
-                                                color: isSelected ? "#4488dd" : "#b0b8c4"
+                                                color: isSelected ? "#4488dd" : ColorPalette.textSecond
                                                 font.pixelSize: 11 * App.fontScale
                                                 font.bold: modelData.depth === 0
                                                 elide: Text.ElideRight
@@ -987,11 +988,11 @@ Window {
                     Rectangle {
                         anchors { top: parent.top; bottom: parent.bottom; right: parent.right }
                         width: 1
-                        color: "#2d2d2d"
+                        color: ColorPalette.dividerBg
                     }
                 }
 
-                // ── File list ─────────────────────────────────────────────────
+                // ── File list ────────────────────────────────────────────
                 Item {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
@@ -1008,15 +1009,15 @@ Window {
                         ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AsNeeded }
                         ScrollBar.vertical: ScrollBar { policy: ScrollBar.AlwaysOff }
 
-                        // ── Column headers ────────────────────────────────────
+                        // ── Column headers ───────────────────────────────
                         Rectangle {
                             id: headerRow
                             x: 0; y: 0
                             width: tableFlick.contentWidth
                             height: 26
-                            color: "#252525"
+                            color: ColorPalette.panelBg
 
-                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#333333" }
+                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
 
                             Row {
                                 anchors.fill: parent
@@ -1030,12 +1031,12 @@ Window {
                                         width: root.columnWidth(modelData.key)
                                         height: parent.height
                                         readonly property bool isSortable: modelData.key !== "check"
-                                        color: (isSortable && headerCellMouse.containsMouse) ? "#2a2a2a" : "transparent"
+                                        color: (isSortable && headerCellMouse.containsMouse) ? ColorPalette.border : "transparent"
 
                                         Item {
                                             anchors.fill: parent
                                             visible: modelData.key === "check"
-                                            CheckBox {
+                                            StyledCheckBox {
                                                 anchors.centerIn: parent
                                                 checked: root.allRowsChecked()
                                                 topPadding: 0; bottomPadding: 0
@@ -1048,7 +1049,7 @@ Window {
                                             anchors.left: parent.left; anchors.leftMargin: 8
                                             visible: modelData.key !== "check"
                                             text: modelData.title + root.sortIndicator(modelData.key)
-                                            color: root.sortColumn === modelData.key ? "#6699cc" : "#888899"
+                                            color: root.sortColumn === modelData.key ? "#6699cc" : ColorPalette.textSecond
                                             font.bold: true; font.pixelSize: 11 * App.fontScale
                                         }
 
@@ -1066,7 +1067,7 @@ Window {
                                             anchors.top: parent.top; anchors.bottom: parent.bottom; anchors.right: parent.right
                                             width: 1
                                             color: resizeHover.hovered || resizeDrag.active || root.resizingColumnKey === modelData.key
-                                                   ? "#4488dd" : "#323232"
+                                                   ? "#4488dd" : ColorPalette.border
                                         }
 
                                         HoverHandler { id: resizeHover; cursorShape: modelData.key === "check" ? Qt.ArrowCursor : Qt.SizeHorCursor }
@@ -1096,7 +1097,7 @@ Window {
                             }
                         }
 
-                        // ── Rows ──────────────────────────────────────────────
+                        // ── Rows ─────────────────────────────────────────
                         ListView {
                             id: resultsList
                             x: 0
@@ -1121,9 +1122,9 @@ Window {
                                 width: tableFlick.contentWidth
                                 height: rowVisible ? 26 : 0
                                 visible: height > 0
-                                color: root.isRowSelected(index) ? "#1e3a6e"
-                                     : rowMouse.containsMouse ? "#2a2a2a"
-                                     : index % 2 === 0 ? "#1c1c1c" : "#222222"
+                                color: root.isRowSelected(index) ? ColorPalette.selectionBg
+                                     : rowMouse.containsMouse ? ColorPalette.hoverBg
+                                     : index % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg
 
                                 // Selected left indicator
                                 Rectangle {
@@ -1163,37 +1164,37 @@ Window {
 
                                     Item {
                                         width: root.columnWidth("check"); height: parent.height
-                                        CheckBox {
+                                        StyledCheckBox {
                                             anchors.centerIn: parent
                                             checked: resultChecked
                                             topPadding: 0; bottomPadding: 0
                                             onToggled: App.setGrabberResultChecked(index, checked)
                                         }
                                     }
-                                    Text { width: root.columnWidth("filename"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: filename; color: root.isRowSelected(index) ? "#e8e8ff" : "#d0d0d0"; elide: Text.ElideRight; font.pixelSize: 12 * App.fontScale }
-                                    Text { width: root.columnWidth("filetype"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: fileTypeLabel(filename, url); color: root.isRowSelected(index) ? "#c8d4e0" : "#aeb7c0"; elide: Text.ElideRight; font.pixelSize: 11 * App.fontScale }
-                                    Text { width: root.columnWidth("size"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: sizeText; color: root.isRowSelected(index) ? "#c8d4e0" : "#aeb7c0"; font.pixelSize: 11 * App.fontScale }
+                                    Text { width: root.columnWidth("filename"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: filename; color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textPrimary; elide: Text.ElideRight; font.pixelSize: 12 * App.fontScale }
+                                    Text { width: root.columnWidth("filetype"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: fileTypeLabel(filename, url); color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textSecond; elide: Text.ElideRight; font.pixelSize: 11 * App.fontScale }
+                                    Text { width: root.columnWidth("size"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: sizeText; color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
                                     Text {
                                         width: root.columnWidth("status"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter
                                         property string statusVal: computeStatus(url)
                                         text: statusVal
-                                        color: root.isRowSelected(index) ? "#e0e8ff"
+                                        color: root.isRowSelected(index) ? ColorPalette.textPrimary
                                              : statusVal === "Ready" ? "#55bb77"
-                                             : statusVal === "Already in list" ? "#cc9944" : "#888899"
+                                             : statusVal === "Already in list" ? "#cc9944" : ColorPalette.textSecond
                                         elide: Text.ElideRight; font.pixelSize: 11 * App.fontScale
                                     }
-                                    Text { width: root.columnWidth("linktext"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: baseHost(sourcePage.length > 0 ? sourcePage : url); color: root.isRowSelected(index) ? "#c8d4e0" : "#9aa6b2"; elide: Text.ElideRight; font.pixelSize: 11 * App.fontScale }
+                                    Text { width: root.columnWidth("linktext"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: baseHost(sourcePage.length > 0 ? sourcePage : url); color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textSecond; elide: Text.ElideRight; font.pixelSize: 11 * App.fontScale }
                                     Text { width: root.columnWidth("downloadfrom"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: url; color: root.isRowSelected(index) ? "#88aadd" : "#6688aa"; elide: Text.ElideMiddle; font.pixelSize: 11 * App.fontScale }
-                                    Text { width: root.columnWidth("saveto"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: saveToText(filename); color: root.isRowSelected(index) ? "#c8d4e0" : "#7a8898"; elide: Text.ElideMiddle; font.pixelSize: 11 * App.fontScale }
+                                    Text { width: root.columnWidth("saveto"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: saveToText(filename); color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textSecond; elide: Text.ElideMiddle; font.pixelSize: 11 * App.fontScale }
                                 }
 
                                 Rectangle {
-                                    anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#252525"
+                                    anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.panelBg
                                 }
                             }
                         }
 
-                        // ── Empty state ───────────────────────────────────────
+                        // ── Empty state ──────────────────────────────────
                         Column {
                             x: (tableFlick.width - width) / 2
                             y: headerRow.height + (tableFlick.height - headerRow.height - height) / 2
@@ -1203,25 +1204,25 @@ Window {
                             Text {
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 text: qsTr("No files found yet")
-                                color: "#4a4a5a"; font.pixelSize: 14 * App.fontScale; font.bold: true
+                                color: ColorPalette.border; font.pixelSize: 14 * App.fontScale; font.bold: true
                             }
                             Text {
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 text: App.grabberBusy ? qsTr("Exploring…") : qsTr("Press Start Exploring to scan the URL.")
-                                color: "#3a3a4a"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                             }
                         }
                     }
                 }
             }
 
-            // ── Bottom bar ────────────────────────────────────────────────────
+            // ── Bottom bar ───────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
                 height: 42
-                color: "#252525"
+                color: ColorPalette.panelBg
 
-                Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#2d2d2d" }
+                Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: ColorPalette.dividerBg }
 
                 RowLayout {
                     anchors.fill: parent
@@ -1238,14 +1239,14 @@ Window {
                     Rectangle {
                         visible: totalCount > 0
                         height: 18; radius: 3
-                        color: "#1e1e1e"
-                        border.color: "#3a3a3a"
+                        color: ColorPalette.cardBg
+                        border.color: ColorPalette.border
                         width: countLabel.implicitWidth + 14
 
                         Text {
                             id: countLabel
                             anchors.centerIn: parent
-                            color: "#556677"
+                            color: ColorPalette.textSecond
                             font.pixelSize: 10 * App.fontScale
                             text: {
                                 var visible = visibleRowCount()

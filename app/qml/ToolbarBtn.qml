@@ -33,16 +33,16 @@ AbstractButton {
     opacity: root.enabled ? 1.0 : 0.35
 
     background: Rectangle {
-        color: root.pressed ? "#3a3a4a"
-             : root.hovered ? "#2d2d3d"
+        color: root.pressed ? ColorPalette.toolbarPressBg
+             : root.hovered ? ColorPalette.toolbarHoverBg
              : "transparent"
         radius: 0
     }
 
     // Center icon + label as a single group. Label sizes to its actual content
-    // height (1 or 2 lines), so padding above icon ≈ padding below text. When
+    // ── height (1 or 2 lines), so padding above icon padding below text. When ──
     // a label wraps to 2 lines (e.g. long translations), the whole group is
-    // still centered — the icon shifts up by half the extra line height,
+    // ── still centered the icon shifts up by half the extra line height, ──
     // which is the only way to keep top/bottom whitespace equal.
     contentItem: Item {
         anchors.fill: parent
@@ -75,7 +75,7 @@ AbstractButton {
             anchors.horizontalCenter: parent.horizontalCenter
             width: root.width - 4
             text: root.label
-            color: root.hovered ? "#ffffff" : "#d0d0d0"
+            color: root.hovered ? ColorPalette.textHeader : ColorPalette.textPrimary
             font.pixelSize: 11 * App.fontScale
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap

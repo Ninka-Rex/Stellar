@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -24,12 +24,13 @@ Window {
     id: root
     width: 460
     height: mainCol.implicitHeight + 24
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
     modality: Qt.ApplicationModal
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     property alias url:      urlField.text
@@ -73,7 +74,7 @@ Window {
         if (/^[0-9a-fA-F]{40}$/.test(trimmed)) {
             urlField.text = "magnet:?xt=urn:btih:" + trimmed.toLowerCase()
         } else if (!/^[a-zA-Z][a-zA-Z0-9+\-.]*:/.test(trimmed)) {
-            // No scheme — assume https so isLikelyYtdlpUrl and QUrl parse correctly
+            // ── No scheme assume https so isLikelyYtdlpUrl and QUrl parse correctly ──
             urlField.text = "https://" + trimmed
         }
         root.accepted()
@@ -89,12 +90,12 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 2
-            Text { text: qsTr("URL"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale }
+            Text { text: qsTr("URL"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 22
-                color: "#1b1b1b"
-                border.color: urlField.activeFocus ? "#4488dd" : "#3a3a3a"
+                color: ColorPalette.inputBg
+                border.color: urlField.activeFocus ? "#4488dd" : ColorPalette.border
                 border.width: 1
                 radius: 2
                 TextInput {
@@ -103,7 +104,7 @@ Window {
                     anchors.leftMargin: 5
                     anchors.rightMargin: 5
                     verticalAlignment: TextInput.AlignVCenter
-                    color: "#d0d0d0"
+                    color: ColorPalette.textPrimary
                     font.pixelSize: 11 * App.fontScale
                     selectByMouse: true
                     clip: true
@@ -114,12 +115,12 @@ Window {
         }
 
         // Auth checkbox
-        CheckBox {
+        StyledCheckBox {
             id: authCheck
             text: qsTr("Use Authorization")
             topPadding: 0; bottomPadding: 0
             contentItem: Text {
-                text: parent.text; color: "#c0c0c0"; font.pixelSize: 11 * App.fontScale
+                text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
                 leftPadding: parent.indicator.width + 4
                 verticalAlignment: Text.AlignVCenter
             }
@@ -134,12 +135,12 @@ Window {
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 2
-                Text { text: qsTr("Login"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale }
+                Text { text: qsTr("Login"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 22
-                    color: "#1b1b1b"
-                    border.color: usernameField.activeFocus ? "#4488dd" : "#3a3a3a"
+                    color: ColorPalette.inputBg
+                    border.color: usernameField.activeFocus ? "#4488dd" : ColorPalette.border
                     border.width: 1
                     radius: 2
                     TextInput {
@@ -148,7 +149,7 @@ Window {
                         anchors.leftMargin: 5
                         anchors.rightMargin: 5
                         verticalAlignment: TextInput.AlignVCenter
-                        color: "#d0d0d0"
+                        color: ColorPalette.textPrimary
                         font.pixelSize: 11 * App.fontScale
                         selectByMouse: true
                         clip: true
@@ -161,12 +162,12 @@ Window {
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 2
-                Text { text: qsTr("Password"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale }
+                Text { text: qsTr("Password"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 22
-                    color: "#1b1b1b"
-                    border.color: passwordField.activeFocus ? "#4488dd" : "#3a3a3a"
+                    color: ColorPalette.inputBg
+                    border.color: passwordField.activeFocus ? "#4488dd" : ColorPalette.border
                     border.width: 1
                     radius: 2
                     TextInput {
@@ -175,7 +176,7 @@ Window {
                         anchors.leftMargin: 5
                         anchors.rightMargin: 5
                         verticalAlignment: TextInput.AlignVCenter
-                        color: "#d0d0d0"
+                        color: ColorPalette.textPrimary
                         font.pixelSize: 11 * App.fontScale
                         echoMode: TextInput.Password
                         selectByMouse: true

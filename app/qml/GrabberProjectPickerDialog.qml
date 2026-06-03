@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,12 +26,13 @@ Window {
     height: 320
     minimumWidth: 380
     minimumHeight: 280
-    color: "#1c1c1c"
+    color: ColorPalette.windowBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
     modality: Qt.ApplicationModal
 
-    Material.theme: Material.Dark
-    Material.background: "#1c1c1c"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialWindowBg
 
     property string selectedProjectId: ""
     signal accepted(string projectId)
@@ -43,7 +44,7 @@ Window {
 
     Rectangle {
         anchors.fill: parent
-        color: "#1c1c1c"
+        color: ColorPalette.windowBg
 
         ColumnLayout {
             anchors.fill: parent
@@ -55,7 +56,7 @@ Window {
             Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                color: "#1c1c1c"
+                color: ColorPalette.windowBg
                 border.color: "#2e2e2e"
 
                 ListView {
@@ -74,7 +75,7 @@ Window {
                         visible: !root.isTemplateRow(index)
                         width: projectList.width
                         height: visible ? 42 : 0
-                        color: root.selectedProjectId === projectId ? "#1e3a6e" : "transparent"
+                        color: root.selectedProjectId === projectId ? ColorPalette.selectionBg : "transparent"
                         border.color: "transparent"
 
                         Column {

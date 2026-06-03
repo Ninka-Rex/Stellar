@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ Window {
     minimumWidth: 720
     minimumHeight: 480
     title: qsTr("RSS Auto Download Rules")
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
 
     property var rules: []
@@ -60,7 +60,7 @@ Window {
         ? rules[selectedRule] : null
     readonly property bool hasSelection: selectedRule >= 0 && selectedRule < rules.length
 
-    // ── Share-limit pill state (kept separately so pills don't flicker on keystrokes) ──
+    // ?? Share-limit pill state (kept separately so pills don't flicker on keystrokes) ??
     property int ratioMode: 0
     property int seedMode:  0
     property int inactMode: 0
@@ -195,8 +195,8 @@ Window {
 
             Rectangle {
                 width: 16; height: 16; radius: 3
-                color: chkRow.checked ? "#4488dd" : "#1b1b1b"
-                border.color: chkRow.checked ? "#4488dd" : "#3a3a3a"
+                color: chkRow.checked ? "#4488dd" : ColorPalette.inputBg
+                border.color: chkRow.checked ? "#4488dd" : ColorPalette.border
                 Text {
                     visible: chkRow.checked
                     anchors.centerIn: parent
@@ -205,15 +205,15 @@ Window {
             }
             ColumnLayout {
                 spacing: 1
-                Text { id: chkLabel; color: chkRow.enabled ? "#c0c0c0" : "#666"; font.pixelSize: 12 * App.fontScale }
+                Text { id: chkLabel; color: chkRow.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale }
                 Text {
                     id: chkSub
                     visible: text.length > 0
-                    color: "#7a8a9a"; font.pixelSize: 10 * App.fontScale
+                    color: ColorPalette.textSecond; font.pixelSize: 10 * App.fontScale
                 }
             }
         }
-        // Overlay covers the whole item — safe because this MouseArea is a direct child of an Item
+        // ?? Overlay covers the whole item safe because this MouseArea is a direct child of an Item ??
         MouseArea {
             anchors.fill: parent
             enabled: chkRow.enabled
@@ -244,22 +244,22 @@ Window {
         }
     }
 
-    // ─── Root layout: vertical — content row + footer ─────────────────────────
+    // ?? Root layout: vertical content row + footer ???????????????????????
     ColumnLayout {
         anchors.fill: parent
         spacing: 0
 
-        // ── Main content row ─────────────────────────────────────────────────
+        // ?? Main content row ?????????????????????????????????????????????
         RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
             spacing: 0
 
-            // ── Left panel: rule list ─────────────────────────────────────────
+            // ?? Left panel: rule list ????????????????????????????????????
             Rectangle {
                 Layout.fillHeight: true
                 width: 210
-                color: "#1b1b1b"
+                color: ColorPalette.inputBg
 
                 ColumnLayout {
                     anchors.fill: parent
@@ -268,13 +268,13 @@ Window {
                     Rectangle {
                         Layout.fillWidth: true
                         height: 30
-                        color: "#252525"
+                        color: ColorPalette.panelBg
                         Text {
                             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
                             text: qsTr("Download Rules")
-                            color: "#c0c0c0"; font.pixelSize: 11 * App.fontScale; font.bold: true
+                            color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; font.bold: true
                         }
-                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#333" }
+                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
                     }
 
                     ListView {
@@ -291,20 +291,20 @@ Window {
                             required property int index
                             width: ruleList.width
                             height: 28
-                            color: root.selectedRule === index ? "#1e3a6e"
-                                 : (ruleMa.containsMouse ? "#2a2a3a" : "transparent")
+                            color: root.selectedRule === index ? ColorPalette.selectionBg
+                                 : (ruleMa.containsMouse ? ColorPalette.hoverBg : "transparent")
 
                             RowLayout {
                                 anchors { fill: parent; leftMargin: 8; rightMargin: 6 }
                                 spacing: 4
                                 Rectangle {
                                     width: 6; height: 6; radius: 3
-                                    color: modelData.enabled !== false ? "#4dbb6d" : "#666"
+                                    color: modelData.enabled !== false ? "#4dbb6d" : ColorPalette.textDisabled
                                 }
                                 Text {
                                     Layout.fillWidth: true
                                     text: modelData.name || "Unnamed"
-                                    color: root.selectedRule === index ? "#ffffff" : "#cccccc"
+                                    color: root.selectedRule === index ? ColorPalette.selectionText : ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale
                                     elide: Text.ElideRight
                                 }
@@ -323,7 +323,7 @@ Window {
                         }
                     }
 
-                    Rectangle { Layout.fillWidth: true; height: 1; color: "#333" }
+                    Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                     RowLayout {
                         Layout.fillWidth: true
@@ -361,15 +361,15 @@ Window {
             }
 
             // Divider
-            Rectangle { width: 1; Layout.fillHeight: true; color: "#2d2d2d" }
+            Rectangle { width: 1; Layout.fillHeight: true; color: ColorPalette.dividerBg }
 
-            // ── Right panel: rule editor ──────────────────────────────────────
+            // ?? Right panel: rule editor ?????????????????????????????????
             ScrollView {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 contentWidth: availableWidth
                 ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-                // Note: ScrollView itself is always enabled — we disable individual
+                // ?? Note: ScrollView itself is always enabled we disable individual ??
                 // controls inside when no rule is selected.
 
                 ColumnLayout {
@@ -384,7 +384,7 @@ Window {
                         Text {
                             anchors.centerIn: parent
                             text: qsTr("Click \"Add\" to create a download rule")
-                            color: "#555"; font.pixelSize: 13 * App.fontScale
+                            color: ColorPalette.textDisabled; font.pixelSize: 13 * App.fontScale
                         }
                     }
 
@@ -394,7 +394,7 @@ Window {
                         spacing: 10
                         visible: root.hasSelection
 
-                        // ── Rule name + enabled ───────────────────────────────
+                        // ?? Rule name + enabled ??????????????????????????
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -402,11 +402,11 @@ Window {
                                 id: ruleNameField
                                 Layout.fillWidth: true
                                 placeholderText: qsTr("Rule name")
-                                color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale
                                 leftPadding: 8; selectByMouse: true
                                 background: Rectangle {
-                                    color: "#1b1b1b"
-                                    border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3
+                                    color: ColorPalette.inputBg
+                                    border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3
                                 }
                             }
                             ChkRow {
@@ -416,10 +416,10 @@ Window {
                             }
                         }
 
-                        // ── Filter rules card ─────────────────────────────────
+                        // ?? Filter rules card ????????????????????????????
                         Rectangle {
                             Layout.fillWidth: true
-                            color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 4
+                            color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 4
                             implicitHeight: filterCol.implicitHeight + 20
 
                             ColumnLayout {
@@ -427,7 +427,7 @@ Window {
                                 anchors { fill: parent; margins: 10 }
                                 spacing: 10
 
-                                Text { text: qsTr("FILTER RULES"); color: "#8899aa"; font.pixelSize: 10 * App.fontScale; font.bold: true }
+                                Text { text: qsTr("FILTER RULES"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
                                 ChkRow {
                                     id: useRegexCheck
@@ -440,42 +440,42 @@ Window {
                                     columnSpacing: 10
                                     rowSpacing: 8
 
-                                    Text { text: qsTr("Must contain:"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
+                                    Text { text: qsTr("Must contain:"); color: ColorPalette.infoBoxText; font.pixelSize: 12 * App.fontScale }
                                     TextField {
                                         id: mustContainField
                                         Layout.fillWidth: true
                                         placeholderText: useRegexCheck.checked ? qsTr("regex pattern") : qsTr("keyword1 keyword2 | keyword3")
-                                        color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                                        color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                         leftPadding: 6; selectByMouse: true
                                         background: Rectangle {
-                                            color: "#1b1b1b"
-                                            border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                                            color: ColorPalette.inputBg
+                                            border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2
                                         }
                                     }
 
-                                    Text { text: qsTr("Must not contain:"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
+                                    Text { text: qsTr("Must not contain:"); color: ColorPalette.infoBoxText; font.pixelSize: 12 * App.fontScale }
                                     TextField {
                                         id: mustNotContainField
                                         Layout.fillWidth: true
                                         placeholderText: useRegexCheck.checked ? qsTr("regex pattern") : qsTr("keyword1 keyword2")
-                                        color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                                        color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                         leftPadding: 6; selectByMouse: true
                                         background: Rectangle {
-                                            color: "#1b1b1b"
-                                            border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                                            color: ColorPalette.inputBg
+                                            border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2
                                         }
                                     }
 
-                                    Text { text: qsTr("Episode filter:"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
+                                    Text { text: qsTr("Episode filter:"); color: ColorPalette.infoBoxText; font.pixelSize: 12 * App.fontScale }
                                     TextField {
                                         id: episodeFilterField
                                         Layout.fillWidth: true
                                         placeholderText: qsTr("e.g. 1x01-1x24  or  2x01;")
-                                        color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                                        color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                         leftPadding: 6; selectByMouse: true
                                         background: Rectangle {
-                                            color: "#1b1b1b"
-                                            border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                                            color: ColorPalette.inputBg
+                                            border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2
                                         }
                                     }
                                 }
@@ -488,29 +488,29 @@ Window {
 
                                 RowLayout {
                                     Layout.fillWidth: true; spacing: 8
-                                    Text { text: qsTr("Ignore subsequent matches for"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
+                                    Text { text: qsTr("Ignore subsequent matches for"); color: ColorPalette.infoBoxText; font.pixelSize: 12 * App.fontScale }
                                     TextField {
                                         id: ignoreDaysField
                                         implicitWidth: 64
                                         text: "0"
                                         validator: IntValidator { bottom: 0; top: 9999 }
-                                        color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                                        color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                         leftPadding: 6; rightPadding: 6; selectByMouse: true
                                         background: Rectangle {
-                                            color: "#1b1b1b"
-                                            border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                                            color: ColorPalette.inputBg
+                                            border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2
                                         }
                                     }
-                                    Text { text: qsTr("days  (0 = disabled)"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
+                                    Text { text: qsTr("days  (0 = disabled)"); color: ColorPalette.infoBoxText; font.pixelSize: 12 * App.fontScale }
                                     Item { Layout.fillWidth: true }
                                 }
                             }
                         }
 
-                        // ── Download settings card ────────────────────────────
+                        // ?? Download settings card ???????????????????????
                         Rectangle {
                             Layout.fillWidth: true
-                            color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 4
+                            color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 4
                             implicitHeight: saveCol.implicitHeight + 20
 
                             ColumnLayout {
@@ -518,7 +518,7 @@ Window {
                                 anchors { fill: parent; margins: 10 }
                                 spacing: 10
 
-                                Text { text: qsTr("DOWNLOAD SETTINGS"); color: "#8899aa"; font.pixelSize: 10 * App.fontScale; font.bold: true }
+                                Text { text: qsTr("DOWNLOAD SETTINGS"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
                                 GridLayout {
                                     Layout.fillWidth: true
@@ -526,24 +526,24 @@ Window {
                                     columnSpacing: 10
                                     rowSpacing: 8
 
-                                    Text { text: qsTr("Save at:"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
+                                    Text { text: qsTr("Save at:"); color: ColorPalette.infoBoxText; font.pixelSize: 12 * App.fontScale }
                                     RowLayout {
                                         Layout.fillWidth: true; spacing: 6
                                         TextField {
                                             id: savePathField
                                             Layout.fillWidth: true
                                             placeholderText: qsTr("Leave empty to use default save path")
-                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                             leftPadding: 6; selectByMouse: true
                                             background: Rectangle {
-                                                color: "#1b1b1b"
-                                                border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                                                color: ColorPalette.inputBg
+                                                border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2
                                             }
                                         }
                                         DlgButton { text: qsTr("Browse..."); onClicked: folderDialog.open() }
                                     }
 
-                                    Text { text: qsTr("Category:"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
+                                    Text { text: qsTr("Category:"); color: ColorPalette.infoBoxText; font.pixelSize: 12 * App.fontScale }
                                     ComboBox {
                                         id: catCombo
                                         Layout.fillWidth: true
@@ -551,33 +551,33 @@ Window {
                                         contentItem: Text {
                                             leftPadding: 10
                                             text: catCombo.displayText
-                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                             verticalAlignment: Text.AlignVCenter
                                             elide: Text.ElideRight
                                         }
                                         background: Rectangle {
-                                            color: "#252525"
-                                            border.color: catCombo.activeFocus ? "#4488dd" : "#3c3c3c"
+                                            color: ColorPalette.panelBg
+                                            border.color: catCombo.activeFocus ? "#4488dd" : ColorPalette.border
                                             radius: 4
                                         }
-                                        popup.background: Rectangle { color: "#252525"; border.color: "#3c3c3c"; radius: 4 }
+                                        popup.background: Rectangle { color: ColorPalette.panelBg; border.color: ColorPalette.border; radius: 4 }
                                         delegate: ItemDelegate {
                                             required property string modelData
                                             required property int index
                                             width: catCombo.width
                                             contentItem: Text {
                                                 text: modelData
-                                                color: catCombo.currentIndex === index ? "#4488dd" : "#d0d0d0"
+                                                color: catCombo.currentIndex === index ? "#4488dd" : ColorPalette.textPrimary
                                                 font.pixelSize: 12 * App.fontScale; leftPadding: 10
                                                 verticalAlignment: Text.AlignVCenter
                                             }
                                             background: Rectangle {
-                                                color: hovered ? "#2a2a3a" : "transparent"
+                                                color: hovered ? ColorPalette.hoverBg : "transparent"
                                             }
                                         }
                                     }
 
-                                    Text { text: qsTr("Queue:"); color: "#8899aa"; font.pixelSize: 12 * App.fontScale }
+                                    Text { text: qsTr("Queue:"); color: ColorPalette.infoBoxText; font.pixelSize: 12 * App.fontScale }
                                     ComboBox {
                                         id: queueCombo
                                         Layout.fillWidth: true
@@ -585,28 +585,28 @@ Window {
                                         contentItem: Text {
                                             leftPadding: 10
                                             text: queueCombo.displayText
-                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                             verticalAlignment: Text.AlignVCenter
                                             elide: Text.ElideRight
                                         }
                                         background: Rectangle {
-                                            color: "#252525"
-                                            border.color: queueCombo.activeFocus ? "#4488dd" : "#3c3c3c"
+                                            color: ColorPalette.panelBg
+                                            border.color: queueCombo.activeFocus ? "#4488dd" : ColorPalette.border
                                             radius: 4
                                         }
-                                        popup.background: Rectangle { color: "#252525"; border.color: "#3c3c3c"; radius: 4 }
+                                        popup.background: Rectangle { color: ColorPalette.panelBg; border.color: ColorPalette.border; radius: 4 }
                                         delegate: ItemDelegate {
                                             required property string modelData
                                             required property int index
                                             width: queueCombo.width
                                             contentItem: Text {
                                                 text: modelData
-                                                color: queueCombo.currentIndex === index ? "#4488dd" : "#d0d0d0"
+                                                color: queueCombo.currentIndex === index ? "#4488dd" : ColorPalette.textPrimary
                                                 font.pixelSize: 12 * App.fontScale; leftPadding: 10
                                                 verticalAlignment: Text.AlignVCenter
                                             }
                                             background: Rectangle {
-                                                color: hovered ? "#2a2a3a" : "transparent"
+                                                color: hovered ? ColorPalette.hoverBg : "transparent"
                                             }
                                         }
                                     }
@@ -614,10 +614,10 @@ Window {
                             }
                         }
 
-                        // ── Share limits card ─────────────────────────────────
+                        // ?? Share limits card ????????????????????????????
                         Rectangle {
                             Layout.fillWidth: true
-                            color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 4
+                            color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 4
                             implicitHeight: shareCol.implicitHeight + 20
 
                             ColumnLayout {
@@ -625,12 +625,12 @@ Window {
                                 anchors { fill: parent; margins: 10 }
                                 spacing: 10
 
-                                Text { text: qsTr("TORRENT SHARE LIMITS"); color: "#8899aa"; font.pixelSize: 10 * App.fontScale; font.bold: true }
+                                Text { text: qsTr("TORRENT SHARE LIMITS"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
-                                // ── Ratio ─────────────────────────────────────
+                                // ?? Ratio ????????????????????????????????
                                 ColumnLayout {
                                     Layout.fillWidth: true; spacing: 6
-                                    Text { text: qsTr("Ratio"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                                    Text { text: qsTr("Ratio"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                                     RowLayout {
                                         Layout.fillWidth: true; spacing: 6
                                         Repeater {
@@ -641,13 +641,13 @@ Window {
                                                 height: 24
                                                 implicitWidth: ratPillLbl.implicitWidth + 16
                                                 radius: 3
-                                                color: root.ratioMode === index ? "#1a3a6a" : "#252525"
-                                                border.color: root.ratioMode === index ? "#4488dd" : "#3a3a3a"
+                                                color: root.ratioMode === index ? ColorPalette.selectionBg : ColorPalette.panelBg
+                                                border.color: root.ratioMode === index ? "#4488dd" : ColorPalette.border
                                                 Text {
                                                     id: ratPillLbl
                                                     anchors.centerIn: parent
                                                     text: modelData
-                                                    color: root.ratioMode === index ? "#88aaee" : "#888888"
+                                                    color: root.ratioMode === index ? ColorPalette.accent : ColorPalette.textMuted
                                                     font.pixelSize: 11 * App.fontScale
                                                 }
                                                 MouseArea {
@@ -660,24 +660,24 @@ Window {
                                             id: ratioInput
                                             visible: root.ratioMode === 2
                                             implicitWidth: 80
-                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                             leftPadding: 6; rightPadding: 6; selectByMouse: true
                                             validator: DoubleValidator { bottom: 0.0; top: 9999.0; decimals: 2; notation: DoubleValidator.StandardNotation }
                                             background: Rectangle {
-                                                color: "#1b1b1b"
-                                                border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                                                color: ColorPalette.inputBg
+                                                border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2
                                             }
                                         }
                                         Item { Layout.fillWidth: true }
                                     }
                                 }
 
-                                Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+                                Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                                // ── Seeding time ──────────────────────────────
+                                // ?? Seeding time ?????????????????????????
                                 ColumnLayout {
                                     Layout.fillWidth: true; spacing: 6
-                                    Text { text: qsTr("Seeding time"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                                    Text { text: qsTr("Seeding time"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                                     RowLayout {
                                         Layout.fillWidth: true; spacing: 6
                                         Repeater {
@@ -688,13 +688,13 @@ Window {
                                                 height: 24
                                                 implicitWidth: seedPillLbl.implicitWidth + 16
                                                 radius: 3
-                                                color: root.seedMode === index ? "#1a3a6a" : "#252525"
-                                                border.color: root.seedMode === index ? "#4488dd" : "#3a3a3a"
+                                                color: root.seedMode === index ? ColorPalette.selectionBg : ColorPalette.panelBg
+                                                border.color: root.seedMode === index ? "#4488dd" : ColorPalette.border
                                                 Text {
                                                     id: seedPillLbl
                                                     anchors.centerIn: parent
                                                     text: modelData
-                                                    color: root.seedMode === index ? "#88aaee" : "#888888"
+                                                    color: root.seedMode === index ? ColorPalette.accent : ColorPalette.textMuted
                                                     font.pixelSize: 11 * App.fontScale
                                                 }
                                                 MouseArea {
@@ -707,25 +707,25 @@ Window {
                                             id: seedInput
                                             visible: root.seedMode === 2
                                             implicitWidth: 80
-                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                             leftPadding: 6; rightPadding: 6; selectByMouse: true
                                             validator: IntValidator { bottom: 0; top: 999999 }
                                             background: Rectangle {
-                                                color: "#1b1b1b"
-                                                border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                                                color: ColorPalette.inputBg
+                                                border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2
                                             }
                                         }
-                                        Text { visible: root.seedMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 * App.fontScale }
+                                        Text { visible: root.seedMode === 2; text: qsTr("min"); color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale }
                                         Item { Layout.fillWidth: true }
                                     }
                                 }
 
-                                Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+                                Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                                // ── Inactive seeding time ─────────────────────
+                                // ?? Inactive seeding time ????????????????
                                 ColumnLayout {
                                     Layout.fillWidth: true; spacing: 6
-                                    Text { text: qsTr("Inactive seeding time"); color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                                    Text { text: qsTr("Inactive seeding time"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                                     RowLayout {
                                         Layout.fillWidth: true; spacing: 6
                                         Repeater {
@@ -736,13 +736,13 @@ Window {
                                                 height: 24
                                                 implicitWidth: inactPillLbl.implicitWidth + 16
                                                 radius: 3
-                                                color: root.inactMode === index ? "#1a3a6a" : "#252525"
-                                                border.color: root.inactMode === index ? "#4488dd" : "#3a3a3a"
+                                                color: root.inactMode === index ? ColorPalette.selectionBg : ColorPalette.panelBg
+                                                border.color: root.inactMode === index ? "#4488dd" : ColorPalette.border
                                                 Text {
                                                     id: inactPillLbl
                                                     anchors.centerIn: parent
                                                     text: modelData
-                                                    color: root.inactMode === index ? "#88aaee" : "#888888"
+                                                    color: root.inactMode === index ? ColorPalette.accent : ColorPalette.textMuted
                                                     font.pixelSize: 11 * App.fontScale
                                                 }
                                                 MouseArea {
@@ -755,22 +755,22 @@ Window {
                                             id: inactInput
                                             visible: root.inactMode === 2
                                             implicitWidth: 80
-                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                             leftPadding: 6; rightPadding: 6; selectByMouse: true
                                             validator: IntValidator { bottom: 0; top: 999999 }
                                             background: Rectangle {
-                                                color: "#1b1b1b"
-                                                border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                                                color: ColorPalette.inputBg
+                                                border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2
                                             }
                                         }
-                                        Text { visible: root.inactMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 * App.fontScale }
+                                        Text { visible: root.inactMode === 2; text: qsTr("min"); color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale }
                                         Item { Layout.fillWidth: true }
                                     }
                                 }
 
                                 Text {
-                                    text: qsTr("\"Default\" uses the global share limits set in Settings → Torrents.")
-                                    color: "#7f8a94"; font.pixelSize: 10 * App.fontScale
+                                    text: qsTr("\"Default\" uses the global share limits set in Settings ? Torrents.")
+                                    color: ColorPalette.textSecond; font.pixelSize: 10 * App.fontScale
                                     wrapMode: Text.WordWrap; Layout.fillWidth: true
                                 }
                             }
@@ -782,11 +782,11 @@ Window {
             }
         }
 
-        // ── Footer ───────────────────────────────────────────────────────────
+        // ?? Footer ???????????????????????????????????????????????????????
         Rectangle {
             Layout.fillWidth: true
             height: 48
-            color: "#252525"
+            color: ColorPalette.panelBg
 
             Row {
                 anchors { right: parent.right; verticalCenter: parent.verticalCenter; rightMargin: 12 }

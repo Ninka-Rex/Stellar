@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -28,12 +28,13 @@ Window {
     height: 500
     minimumWidth: 820
     minimumHeight: 400
-    color: "#232323"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
     modality: Qt.ApplicationModal
 
-    Material.theme: Material.Dark
-    Material.background: "#232323"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     property var files: []
@@ -475,7 +476,7 @@ Window {
             spacing: 10
             Text {
                 text: root.isImport ? qsTr("Import links to SDM") : qsTr("Batch download review")
-                color: "#f0f0f0"
+                color: ColorPalette.textPrimary
                 font.pixelSize: 16 * App.fontScale
                 font.bold: true
             }
@@ -483,7 +484,7 @@ Window {
                 visible: root.isImport
                 Layout.fillWidth: true
                 text: qsTr("Check the links you want to add to the download list and click OK.")
-                color: "#7a8a9a"
+                color: ColorPalette.textSecond
                 font.pixelSize: 10 * App.fontScale
                 wrapMode: Text.NoWrap
                 elide: Text.ElideRight
@@ -494,8 +495,8 @@ Window {
         Rectangle {
             visible: !root.isImport
             Layout.fillWidth: true
-            color: "#1a2030"
-            border.color: "#2a3a5a"
+            color: ColorPalette.infoBoxBg
+            border.color: ColorPalette.selectionBg
             radius: 4
             implicitHeight: 66
 
@@ -506,7 +507,7 @@ Window {
 
                 Text {
                     text: qsTr("Replace filenames with wildcard pattern (*)")
-                    color: "#d0d0d0"
+                    color: ColorPalette.textPrimary
                     font.pixelSize: 10 * App.fontScale
                     font.weight: Font.Medium
                     Layout.fillWidth: true
@@ -515,10 +516,10 @@ Window {
                     id: batchPatternField
                     Layout.fillWidth: true
                     placeholderText: patternHint()
-                    color: "#d0d0d0"
+                    color: ColorPalette.textPrimary
                     background: Rectangle {
-                        color: "#1b1b1b"
-                        border.color: batchPatternField.activeFocus ? "#4488dd" : "#3a3a3a"
+                        color: ColorPalette.inputBg
+                        border.color: batchPatternField.activeFocus ? "#4488dd" : ColorPalette.border
                         radius: 3
                     }
                     onTextChanged: refreshNames()
@@ -529,8 +530,8 @@ Window {
         Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            color: "#1a1a1a"
-            border.color: "#2d2d2d"
+            color: ColorPalette.cardBg
+            border.color: ColorPalette.dividerBg
             radius: 4
             clip: true
 
@@ -549,7 +550,7 @@ Window {
                     id: headerBar
                     width: tableFlick.contentWidth
                     height: 26
-                    color: "#2d2d2d"
+                    color: ColorPalette.dividerBg
 
                     Row {
                         anchors.fill: parent
@@ -563,7 +564,7 @@ Window {
                                 width: root.columnWidth(modelData.key)
                                 height: parent.height
                                 readonly property bool isSortable: !!modelData.sortable
-                                color: (isSortable && headerMouse.containsMouse && !root.colDragging) ? "#383838" : "transparent"
+                                color: (isSortable && headerMouse.containsMouse && !root.colDragging) ? ColorPalette.border : "transparent"
                                 opacity: (root.colDragging && root.colDragFromKey === modelData.key) ? 0.55 : 1.0
 
                                 Rectangle {
@@ -582,7 +583,7 @@ Window {
                                     color: "#4488dd"
                                 }
 
-                                CheckBox {
+                                StyledCheckBox {
                                     visible: modelData.key === "check"
                                     anchors.centerIn: parent
                                     topPadding: 0
@@ -599,7 +600,7 @@ Window {
                                     anchors.right: sortText.left
                                     anchors.rightMargin: 4
                                     text: modelData.title
-                                    color: root.sortColumn === modelData.key ? "#88bbff" : "#b0b0b0"
+                                    color: root.sortColumn === modelData.key ? ColorPalette.accent : ColorPalette.textSecond
                                     font.pixelSize: 11 * App.fontScale
                                     font.bold: true
                                     elide: Text.ElideRight
@@ -612,7 +613,7 @@ Window {
                                     anchors.right: resizeHandle.left
                                     anchors.rightMargin: 5
                                     text: root.sortIndicator(modelData.key)
-                                    color: "#88bbff"
+                                    color: ColorPalette.accent
                                     font.pixelSize: 9 * App.fontScale
                                 }
 
@@ -680,7 +681,7 @@ Window {
                                     anchors.right: parent.right
                                     width: 1
                                     height: parent.height
-                                    color: "#3a3a3a"
+                                    color: ColorPalette.border
                                 }
 
                                 Item {
@@ -752,7 +753,7 @@ Window {
                         readonly property bool isSelected: root.selectedRowIndex === rowIndex
                         width: tableFlick.contentWidth
                         height: 28
-                        color: isSelected ? "#2a3a5a" : (rowIndex % 2 === 0 ? "#1c1c1c" : "#222222")
+                        color: isSelected ? ColorPalette.selectionBg : (rowIndex % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg)
 
                         Row {
                             anchors.fill: parent
@@ -761,7 +762,7 @@ Window {
                             Item {
                                 width: root.columnWidth("check")
                                 height: parent.height
-                                CheckBox {
+                                StyledCheckBox {
                                     anchors.centerIn: parent
                                     topPadding: 0
                                     bottomPadding: 0
@@ -790,7 +791,7 @@ Window {
                                 leftPadding: 8
                                 verticalAlignment: Text.AlignVCenter
                                 text: modelData ? safeString(modelData.displayName) : ""
-                                color: "#e0e0e0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 12 * App.fontScale
                                 elide: Text.ElideRight
                             }
@@ -801,7 +802,7 @@ Window {
                                 leftPadding: 8
                                 verticalAlignment: Text.AlignVCenter
                                 text: modelData ? safeString(modelData.sizeText) : ""
-                                color: "#b8c4d0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 11 * App.fontScale
                                 elide: Text.ElideRight
                             }
@@ -813,7 +814,7 @@ Window {
                                 verticalAlignment: Text.AlignVCenter
                                 text: modelData ? safeString(modelData.rowStatus) : ""
                                 color: modelData && modelData.rowStatus === "Found" ? "#78c28b"
-                                    : (modelData && modelData.rowStatus === "Checking..." ? "#aeb7c0" : "#d08f8f")
+                                    : (modelData && modelData.rowStatus === "Checking..." ? ColorPalette.textSecond : "#d08f8f")
                                 font.pixelSize: 11 * App.fontScale
                                 elide: Text.ElideRight
                             }
@@ -824,7 +825,7 @@ Window {
                                 leftPadding: 8
                                 verticalAlignment: Text.AlignVCenter
                                 text: modelData ? safeString(modelData.sourceUrl) : ""
-                                color: "#9aa6b2"
+                                color: ColorPalette.textSecond
                                 font.pixelSize: 11 * App.fontScale
                                 elide: Text.ElideMiddle
                             }
@@ -841,7 +842,7 @@ Window {
                             anchors.bottom: parent.bottom
                             width: parent.width
                             height: 1
-                            color: "#2d2d2d"
+                            color: ColorPalette.dividerBg
                         }
                     }
                 }
@@ -856,8 +857,8 @@ Window {
                 Layout.fillWidth: true
                 Layout.maximumWidth: 560
                 Layout.minimumWidth: 300
-                color: "#1e1e1e"
-                border.color: "#3a3a3a"
+                color: ColorPalette.cardBg
+                border.color: ColorPalette.border
                 radius: 4
                 height: saveModeCol.height + 16
 
@@ -869,12 +870,12 @@ Window {
 
                     Text {
                         text: qsTr("Save to:")
-                        color: "#d0d0d0"
+                        color: ColorPalette.textPrimary
                         font.pixelSize: 11 * App.fontScale
                         font.weight: Font.Medium
                     }
 
-                    RadioButton {
+                    StyledRadioButton {
                         id: perCategoryRadio
                         ButtonGroup.group: saveModeGroup
                         width: parent.width
@@ -887,7 +888,7 @@ Window {
                         contentItem: Text {
                             text: parent.text
                             font: parent.font
-                            color: "#d6dbe4"
+                            color: ColorPalette.textPrimary
                             verticalAlignment: Text.AlignVCenter
                             wrapMode: Text.WordWrap
                             leftPadding: parent.indicator.width + parent.spacing
@@ -895,7 +896,7 @@ Window {
                         onCheckedChanged: if (checked) root.saveMode = "perCategory"
                     }
 
-                    RadioButton {
+                    StyledRadioButton {
                         id: oneCategoryRadio
                         ButtonGroup.group: saveModeGroup
                         width: parent.width
@@ -908,7 +909,7 @@ Window {
                         contentItem: Text {
                             text: parent.text
                             font: parent.font
-                            color: "#d6dbe4"
+                            color: ColorPalette.textPrimary
                             verticalAlignment: Text.AlignVCenter
                             wrapMode: Text.WordWrap
                             leftPadding: parent.indicator.width + parent.spacing
@@ -935,14 +936,14 @@ Window {
                             textRole: "categoryLabel"
                             valueRole: "categoryId"
                             implicitHeight: 28
-                            background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
-                            contentItem: Text { leftPadding: 8; text: categoryCombo.displayText; color: "#e8edf5"; font: categoryCombo.font; verticalAlignment: Text.AlignVCenter }
+                            background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 4 }
+                            contentItem: Text { leftPadding: 8; text: categoryCombo.displayText; color: ColorPalette.textPrimary; font: categoryCombo.font; verticalAlignment: Text.AlignVCenter }
                             onActivated: root.selectedCategoryId = currentValue
                             Component.onCompleted: currentIndex = indexOfValue(root.selectedCategoryId)
                         }
                     }
 
-                    RadioButton {
+                    StyledRadioButton {
                         id: oneDirRadio
                         ButtonGroup.group: saveModeGroup
                         width: parent.width
@@ -955,7 +956,7 @@ Window {
                         contentItem: Text {
                             text: parent.text
                             font: parent.font
-                            color: "#d6dbe4"
+                            color: ColorPalette.textPrimary
                             verticalAlignment: Text.AlignVCenter
                             wrapMode: Text.WordWrap
                             leftPadding: parent.indicator.width + parent.spacing
@@ -978,10 +979,10 @@ Window {
                                 Layout.fillWidth: true
                                 readOnly: true
                                 text: root.selectedDirectory
-                                color: "#e8edf5"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 11 * App.fontScale
                                 implicitHeight: 28
-                                background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
+                                background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 4 }
                             }
                             DlgButton {
                                 text: qsTr("Browse...")
@@ -1013,20 +1014,20 @@ Window {
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 6
-                    CheckBox {
+                    StyledCheckBox {
                         id: hideHtmlChk
                         text: qsTr("Hide HTML files")
                         topPadding: 0; bottomPadding: 0
                         checked: root.hideHtmlFiles
-                        contentItem: Text { text: parent.text; color: "#d6dbe4"; font.pixelSize: 11 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                        contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         onToggled: { root.hideHtmlFiles = checked; root._applyFilters() }
                     }
-                    CheckBox {
+                    StyledCheckBox {
                         id: hideRepeatChk
                         text: qsTr("Hide repeated files")
                         topPadding: 0; bottomPadding: 0
                         checked: root.hideRepeatedFiles
-                        contentItem: Text { text: parent.text; color: "#d6dbe4"; font.pixelSize: 11 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                        contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         onToggled: { root.hideRepeatedFiles = checked; root._applyFilters() }
                     }
                     Item { Layout.fillWidth: true }
@@ -1073,13 +1074,14 @@ Window {
         width: 500
         height: editWindowCol.implicitHeight + 32
         minimumWidth: 420
-        color: "#232323"
+        color: ColorPalette.cardBg
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
         modality: Qt.ApplicationModal
         transientParent: root
 
-        Material.theme: Material.Dark
-        Material.background: "#232323"
+        Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+        Material.background: ColorPalette.materialBg
         Material.accent: "#4488dd"
 
         property int rowIndex: -1
@@ -1106,18 +1108,18 @@ Window {
             anchors.margins: 12
             spacing: 8
 
-            Text { text: qsTr("Edit File"); color: "#ffffff"; font.pixelSize: 13 * App.fontScale; font.bold: true }
+            Text { text: qsTr("Edit File"); color: ColorPalette.textHeader; font.pixelSize: 13 * App.fontScale; font.bold: true }
 
             RowLayout {
                 Layout.fillWidth: true
                 spacing: 6
-                Text { text: qsTr("Save to:"); color: "#c7cfdb"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
+                Text { text: qsTr("Save to:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
                 TextField {
                     id: editSaveField
                     Layout.fillWidth: true
-                    color: "#e8edf5"
+                    color: ColorPalette.textPrimary
                     font.pixelSize: 11 * App.fontScale
-                    background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
+                    background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 4 }
                 }
                 DlgButton {
                     text: qsTr("Browse...")
@@ -1129,66 +1131,66 @@ Window {
             RowLayout {
                 Layout.fillWidth: true
                 spacing: 6
-                Text { text: qsTr("URL:"); color: "#c7cfdb"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
+                Text { text: qsTr("URL:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
                 TextField {
                     id: editUrlField
                     Layout.fillWidth: true
-                    color: "#e8edf5"
+                    color: ColorPalette.textPrimary
                     font.pixelSize: 11 * App.fontScale
-                    background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
+                    background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 4 }
                 }
             }
 
             RowLayout {
                 Layout.fillWidth: true
                 spacing: 6
-                Text { text: qsTr("Description:"); color: "#c7cfdb"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
+                Text { text: qsTr("Description:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
                 TextField {
                     id: editDescField
                     Layout.fillWidth: true
-                    color: "#e8edf5"
+                    color: ColorPalette.textPrimary
                     font.pixelSize: 11 * App.fontScale
-                    background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
+                    background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 4 }
                 }
             }
 
             RowLayout {
                 Layout.fillWidth: true
                 spacing: 6
-                Text { text: qsTr("Referer:"); color: "#c7cfdb"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
+                Text { text: qsTr("Referer:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
                 TextField {
                     id: editRefererField
                     Layout.fillWidth: true
-                    color: "#e8edf5"
+                    color: ColorPalette.textPrimary
                     font.pixelSize: 11 * App.fontScale
-                    background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
+                    background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 4 }
                 }
             }
 
             RowLayout {
                 Layout.fillWidth: true
                 spacing: 6
-                Text { text: qsTr("Login:"); color: "#c7cfdb"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
+                Text { text: qsTr("Login:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
                 TextField {
                     id: editLoginField
                     Layout.fillWidth: true
-                    color: "#e8edf5"
+                    color: ColorPalette.textPrimary
                     font.pixelSize: 11 * App.fontScale
-                    background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
+                    background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 4 }
                 }
             }
 
             RowLayout {
                 Layout.fillWidth: true
                 spacing: 6
-                Text { text: qsTr("Password:"); color: "#c7cfdb"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
+                Text { text: qsTr("Password:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72 }
                 TextField {
                     id: editPassField
                     Layout.fillWidth: true
                     echoMode: TextInput.Password
-                    color: "#e8edf5"
+                    color: ColorPalette.textPrimary
                     font.pixelSize: 11 * App.fontScale
-                    background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 4 }
+                    background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 4 }
                 }
             }
 

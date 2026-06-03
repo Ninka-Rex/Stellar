@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -27,12 +27,13 @@ Window {
     height: 360
     minimumWidth: 560
     minimumHeight: 300
-    color: "#232323"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
     modality: Qt.ApplicationModal
 
-    Material.theme: Material.Dark
-    Material.background: "#232323"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#5a8ec8"
 
     property string generatedPattern: ""
@@ -66,20 +67,20 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 4
-            Text { text: qsTr("Batch Download"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
-            Text { text: qsTr("Generate the links here, then continue to the review step."); color: "#a9a9a9"; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+            Text { text: qsTr("Batch Download"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
+            Text { text: qsTr("Generate the links here, then continue to the review step."); color: ColorPalette.textSecond; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
         }
 
         RowLayout {
             Layout.fillWidth: true
             spacing: 8
-            Label { text: qsTr("Address:"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+            Label { text: qsTr("Address:"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
             TextField {
                 id: addrField
                 Layout.fillWidth: true
                 font.pixelSize: 12 * App.fontScale
-                color: "#e8edf5"
-                background: Rectangle { color: "#232323"; border.color: "#4a4a4a"; radius: 0 }
+                color: ColorPalette.textPrimary
+                background: Rectangle { color: ColorPalette.cardBg; border.color: ColorPalette.border; radius: 0 }
                 onTextChanged: root._refreshPreview()
             }
         }
@@ -87,24 +88,24 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 6
-            Text { text: qsTr("Replace asterisk with"); color: "#d6dbe4"; font.pixelSize: 11 * App.fontScale; font.bold: true }
+            Text { text: qsTr("Replace asterisk with"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; font.bold: true }
 
             RowLayout {
                 Layout.fillWidth: true
                 spacing: 10
-                RadioButton {
+                StyledRadioButton {
                     id: numBtn
                     text: qsTr("Numbers")
                     checked: true
                     font.pixelSize: 11 * App.fontScale
-                    contentItem: Text { text: parent.text; color: "#d0d0d0"; leftPadding: 20; font.pixelSize: 11 * App.fontScale; verticalAlignment: Text.AlignVCenter }
+                    contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; leftPadding: 20; font.pixelSize: 11 * App.fontScale; verticalAlignment: Text.AlignVCenter }
                     onCheckedChanged: root._refreshPreview()
                 }
-                RadioButton {
+                StyledRadioButton {
                     id: letBtn
                     text: qsTr("Letters")
                     font.pixelSize: 11 * App.fontScale
-                    contentItem: Text { text: parent.text; color: "#d0d0d0"; leftPadding: 20; font.pixelSize: 11 * App.fontScale; verticalAlignment: Text.AlignVCenter }
+                    contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; leftPadding: 20; font.pixelSize: 11 * App.fontScale; verticalAlignment: Text.AlignVCenter }
                     onCheckedChanged: root._refreshPreview()
                 }
             }
@@ -112,32 +113,32 @@ Window {
             RowLayout {
                 Layout.fillWidth: true
                 spacing: 6
-                Label { text: qsTr("From:"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
+                Label { text: qsTr("From:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
                 TextField {
                     id: fromField
                     text: numBtn.checked ? "0" : "a"
                     implicitWidth: 72
-                    background: Rectangle { color: "#232323"; border.color: "#4a4a4a"; radius: 0 }
-                    color: "#e8edf5"
+                    background: Rectangle { color: ColorPalette.cardBg; border.color: ColorPalette.border; radius: 0 }
+                    color: ColorPalette.textPrimary
                     onTextChanged: root._refreshPreview()
                 }
-                Label { text: qsTr("To:"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
+                Label { text: qsTr("To:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
                 TextField {
                     id: toField
                     text: numBtn.checked ? "100" : "z"
                     implicitWidth: 72
-                    background: Rectangle { color: "#232323"; border.color: "#4a4a4a"; radius: 0 }
-                    color: "#e8edf5"
+                    background: Rectangle { color: ColorPalette.cardBg; border.color: ColorPalette.border; radius: 0 }
+                    color: ColorPalette.textPrimary
                     onTextChanged: root._refreshPreview()
                 }
-                Label { text: qsTr("Wildcard size:"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; visible: numBtn.checked }
+                Label { text: qsTr("Wildcard size:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; visible: numBtn.checked }
                 TextField {
                     id: sizeField
                     text: "2"
                     implicitWidth: 56
                     visible: numBtn.checked
-                    background: Rectangle { color: "#232323"; border.color: "#4a4a4a"; radius: 0 }
-                    color: "#e8edf5"
+                    background: Rectangle { color: ColorPalette.cardBg; border.color: ColorPalette.border; radius: 0 }
+                    color: ColorPalette.textPrimary
                     onTextChanged: root._refreshPreview()
                 }
             }
@@ -146,10 +147,10 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 4
-            Text { text: qsTr("Preview"); color: "#ffffff"; font.pixelSize: 12 * App.fontScale; font.bold: true }
-            Text { text: qsTr("First: %1").arg(root._firstLink.length ? root._firstLink : "--"); color: "#e0e0e0"; font.pixelSize: 10 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true }
-            Text { text: qsTr("Second: %1").arg(root._secondLink.length ? root._secondLink : "--"); color: "#e0e0e0"; font.pixelSize: 10 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true }
-            Text { text: qsTr("Last: %1").arg(root._lastLink.length ? root._lastLink : "--"); color: "#e0e0e0"; font.pixelSize: 10 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true }
+            Text { text: qsTr("Preview"); color: ColorPalette.textHeader; font.pixelSize: 12 * App.fontScale; font.bold: true }
+            Text { text: qsTr("First: %1").arg(root._firstLink.length ? root._firstLink : "--"); color: ColorPalette.textPrimary; font.pixelSize: 10 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true }
+            Text { text: qsTr("Second: %1").arg(root._secondLink.length ? root._secondLink : "--"); color: ColorPalette.textPrimary; font.pixelSize: 10 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true }
+            Text { text: qsTr("Last: %1").arg(root._lastLink.length ? root._lastLink : "--"); color: ColorPalette.textPrimary; font.pixelSize: 10 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true }
         }
 
         RowLayout {
@@ -158,7 +159,7 @@ Window {
             Text {
                 Layout.fillWidth: true
                 text: qsTr("Use the queue step after OK if you want these downloads grouped before they start.")
-                color: "#9a9a9a"
+                color: ColorPalette.textSecond
                 font.pixelSize: 9 * App.fontScale
             }
             DlgButton {

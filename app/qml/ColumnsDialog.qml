@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -27,11 +27,12 @@ Window {
     height: 460
     minimumWidth: 420
     minimumHeight: 380
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     // columnDefs is passed in from DownloadTable and mutated in place
@@ -71,13 +72,13 @@ Window {
         anchors { fill: parent; margins: 16 }
         spacing: 10
 
-        Text { text: qsTr("Columns"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
+        Text { text: qsTr("Columns"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
         Text {
             text: qsTr("Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.")
             color: "#909090"; font.pixelSize: 12 * App.fontScale
             wrapMode: Text.WordWrap; Layout.fillWidth: true
         }
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
         RowLayout {
             Layout.fillWidth: true
@@ -88,8 +89,8 @@ Window {
             Rectangle {
                 Layout.fillHeight: true
                 Layout.preferredWidth: 240
-                color: "#252525"
-                border.color: "#3a3a3a"
+                color: ColorPalette.panelBg
+                border.color: ColorPalette.border
                 radius: 3
                 clip: true
 
@@ -102,13 +103,13 @@ Window {
                     delegate: Rectangle {
                         width: colListView.width
                         height: 34
-                        color: colListView.currentIndex === index ? "#1e3a6e" : (itemMa.containsMouse ? "#2a2a2a" : "transparent")
+                        color: colListView.currentIndex === index ? ColorPalette.selectionBg : (itemMa.containsMouse ? ColorPalette.hoverBg : "transparent")
 
                         RowLayout {
                             anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
                             spacing: 8
 
-                            CheckBox {
+                            StyledCheckBox {
                                 checked: modelData.visible !== false
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: {
@@ -126,7 +127,7 @@ Window {
 
                             Text {
                                 text: modelData.title
-                                color: colListView.currentIndex === index ? "#ffffff" : "#d0d0d0"
+                                color: colListView.currentIndex === index ? "#ffffff" : ColorPalette.textPrimary
                                 font.pixelSize: 13 * App.fontScale
                                 Layout.fillWidth: true
                             }
@@ -148,10 +149,10 @@ Window {
 
                 Rectangle {
                     width: 100; height: 28; radius: 3
-                    color: moveUpMa.containsMouse && colListView.currentIndex > 0 ? "#1e3a6e" : "#2d2d2d"
+                    color: moveUpMa.containsMouse && colListView.currentIndex > 0 ? ColorPalette.selectionBg : ColorPalette.dividerBg
                     border.color: "#555"; border.width: 1
                     opacity: colListView.currentIndex > 0 ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Move Up"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Move Up"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: moveUpMa
                         anchors.fill: parent
@@ -166,10 +167,10 @@ Window {
 
                 Rectangle {
                     width: 100; height: 28; radius: 3
-                    color: moveDownMa.containsMouse && colListView.currentIndex < root.localDefs.length - 1 ? "#1e3a6e" : "#2d2d2d"
+                    color: moveDownMa.containsMouse && colListView.currentIndex < root.localDefs.length - 1 ? ColorPalette.selectionBg : ColorPalette.dividerBg
                     border.color: "#555"; border.width: 1
                     opacity: colListView.currentIndex < root.localDefs.length - 1 ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Move Down"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Move Down"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: moveDownMa
                         anchors.fill: parent
@@ -182,17 +183,17 @@ Window {
                     }
                 }
 
-                Rectangle { width: 100; height: 1; color: "#3a3a3a" }
+                Rectangle { width: 100; height: 1; color: ColorPalette.border }
 
                 Rectangle {
                     width: 100; height: 28; radius: 3
                     property bool canShow: colListView.currentIndex >= 0
                         && root.localDefs.length > colListView.currentIndex
                         && !root.localDefs[colListView.currentIndex].visible
-                    color: showMa.containsMouse && canShow ? "#1e3a6e" : "#2d2d2d"
+                    color: showMa.containsMouse && canShow ? ColorPalette.selectionBg : ColorPalette.dividerBg
                     border.color: "#555"; border.width: 1
                     opacity: canShow ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Show"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Show"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: showMa
                         anchors.fill: parent
@@ -215,10 +216,10 @@ Window {
                     property bool canHide: colListView.currentIndex >= 0
                         && root.localDefs.length > colListView.currentIndex
                         && root.localDefs[colListView.currentIndex].visible
-                    color: hideMa.containsMouse && canHide ? "#1e3a6e" : "#2d2d2d"
+                    color: hideMa.containsMouse && canHide ? ColorPalette.selectionBg : ColorPalette.dividerBg
                     border.color: "#555"; border.width: 1
                     opacity: canHide ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Hide"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Hide"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: hideMa
                         anchors.fill: parent
@@ -238,9 +239,9 @@ Window {
 
                 Rectangle {
                     width: 100; height: 28; radius: 3
-                    color: resetMa.containsMouse ? "#443020" : "#2d2d2d"
+                    color: resetMa.containsMouse ? "#443020" : ColorPalette.dividerBg
                     border.color: "#555"; border.width: 1
-                    Text { anchors.centerIn: parent; text: qsTr("Reset"); color: "#ffffff"; font.pixelSize: 12 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Reset"); color: ColorPalette.textHeader; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: resetMa
                         anchors.fill: parent
@@ -267,8 +268,8 @@ Window {
                 text: colListView.currentIndex >= 0 && root.localDefs.length > colListView.currentIndex
                       ? (root.localDefs[colListView.currentIndex].widthPx || 120).toString()
                       : "120"
-                color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
-                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
+                background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                 leftPadding: 6
                 validator: IntValidator { bottom: 30; top: 1200 }
                 onEditingFinished: {
@@ -283,7 +284,7 @@ Window {
             Text { text: qsTr("pixels wide"); color: "#909090"; font.pixelSize: 12 * App.fontScale }
         }
 
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
         // OK / Cancel
         RowLayout {

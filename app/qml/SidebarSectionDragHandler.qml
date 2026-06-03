@@ -33,7 +33,7 @@ MouseArea {
     required property var sidebarColumn
     required property var sectionRepeater
 
-    // MouseArea provides `clicked` / `doubleClicked` natively. Do NOT redeclare —
+    // MouseArea provides `clicked` / `doubleClicked` natively. Do NOT redeclare -
     // redeclaring shadows the built-ins so external `onClicked:` handlers in
     // Sidebar.qml never receive any event.
 

@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -25,12 +25,13 @@ Window {
     title: qsTr("Export Downloads")
     width: 420
     height: 220
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
     modality: Qt.ApplicationModal
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     property var downloadTableRef: null
@@ -60,7 +61,7 @@ Window {
 
         Text {
             text: qsTr("Select items to export:")
-            color: "#e0e0e0"
+            color: ColorPalette.textPrimary
             font.pixelSize: 13 * App.fontScale
             font.bold: true
         }
@@ -69,7 +70,7 @@ Window {
             Layout.fillWidth: true
             spacing: 0
 
-            RadioButton {
+            StyledRadioButton {
                 id: queueRadio
                 text: qsTr("Export downloads in the selected queue")
                 font.pixelSize: 12 * App.fontScale
@@ -77,14 +78,14 @@ Window {
                 topPadding: 1; bottomPadding: 1
                 contentItem: Text {
                     text: queueRadio.text
-                    color: "#e0e0e0"
+                    color: ColorPalette.textPrimary
                     font: queueRadio.font
                     verticalAlignment: Text.AlignVCenter
                     leftPadding: queueRadio.indicator.width + queueRadio.spacing
                 }
             }
 
-            RadioButton {
+            StyledRadioButton {
                 id: selectedRadio
                 text: qsTr("Export selected downloads")
                 font.pixelSize: 12 * App.fontScale
@@ -92,21 +93,21 @@ Window {
                 topPadding: 1; bottomPadding: 1
                 contentItem: Text {
                     text: selectedRadio.text
-                    color: selectedRadio.enabled ? "#e0e0e0" : "#666666"
+                    color: selectedRadio.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
                     font: selectedRadio.font
                     verticalAlignment: Text.AlignVCenter
                     leftPadding: selectedRadio.indicator.width + selectedRadio.spacing
                 }
             }
 
-            RadioButton {
+            StyledRadioButton {
                 id: allRadio
                 text: qsTr("Export all downloads")
                 font.pixelSize: 12 * App.fontScale
                 topPadding: 1; bottomPadding: 1
                 contentItem: Text {
                     text: allRadio.text
-                    color: "#e0e0e0"
+                    color: ColorPalette.textPrimary
                     font: allRadio.font
                     verticalAlignment: Text.AlignVCenter
                     leftPadding: allRadio.indicator.width + allRadio.spacing

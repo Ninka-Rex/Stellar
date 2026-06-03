@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -27,11 +27,12 @@ Window {
     height: 460
     minimumWidth: 460
     minimumHeight: 380
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     property var buttonDefs: []
@@ -41,7 +42,7 @@ Window {
 
     function syncLocal() {
         var defs = (buttonDefs && buttonDefs.slice) ? buttonDefs.slice() : _defaultDefs()
-        // Sync with View menu toggles — single source of truth for search/rss
+        // ── Sync with View menu toggles single source of truth for search/rss ──
         if (App.settings) {
             for (var i = 0; i < defs.length; i++) {
                 if (defs[i].key === "search_engine")
@@ -112,13 +113,13 @@ Window {
         anchors { fill: parent; margins: 16 }
         spacing: 10
 
-        Text { text: qsTr("Toolbar"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
+        Text { text: qsTr("Toolbar"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
         Text {
             text: qsTr("Customize toolbar buttons. Use Move Up and Move Down to reorder. Check to enable, uncheck to disable.")
             color: "#909090"; font.pixelSize: 12 * App.fontScale
             wrapMode: Text.WordWrap; Layout.fillWidth: true
         }
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
         RowLayout {
             Layout.fillWidth: true
@@ -129,8 +130,8 @@ Window {
             Rectangle {
                 Layout.fillHeight: true
                 Layout.preferredWidth: 280
-                color: "#252525"
-                border.color: "#3a3a3a"
+                color: ColorPalette.panelBg
+                border.color: ColorPalette.border
                 radius: 3
                 clip: true
 
@@ -143,10 +144,10 @@ Window {
                     delegate: Rectangle {
                         width: btnListView.width
                         height: root._isSeparator(index) ? 20 : 34
-                        color: btnListView.currentIndex === index ? "#1e3a6e" :
-                                 (itemMa.containsMouse ? "#2a2a2a" : "transparent")
+                        color: btnListView.currentIndex === index ? ColorPalette.selectionBg :
+                                 (itemMa.containsMouse ? ColorPalette.hoverBg : "transparent")
 
-                        // Separator item — draw horizontal line
+                        // ── Separator item draw horizontal line ──────────
                         Rectangle {
                             visible: root._isSeparator(index)
                             anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: 12; rightMargin: 12 }
@@ -159,7 +160,7 @@ Window {
                             anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
                             spacing: 8
 
-                            CheckBox {
+                            StyledCheckBox {
                                 id: chkBox
                                 checked: modelData.enabled !== false
                                 topPadding: 0; bottomPadding: 0
@@ -188,7 +189,7 @@ Window {
 
                             Text {
                                 text: modelData.label || ""
-                                color: btnListView.currentIndex === index ? "#ffffff" : "#d0d0d0"
+                                color: btnListView.currentIndex === index ? "#ffffff" : ColorPalette.textPrimary
                                 font.pixelSize: 13 * App.fontScale
                                 Layout.fillWidth: true
                             }
@@ -210,10 +211,10 @@ Window {
 
                 Rectangle {
                     width: 110; height: 28; radius: 3
-                    color: moveUpMa.containsMouse && btnListView.currentIndex > 0 ? "#1e3a6e" : "#2d2d2d"
+                    color: moveUpMa.containsMouse && btnListView.currentIndex > 0 ? ColorPalette.selectionBg : ColorPalette.dividerBg
                     border.color: "#555"; border.width: 1
                     opacity: btnListView.currentIndex > 0 ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Move Up"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Move Up"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: moveUpMa
                         anchors.fill: parent
@@ -228,10 +229,10 @@ Window {
 
                 Rectangle {
                     width: 110; height: 28; radius: 3
-                    color: moveDownMa.containsMouse && btnListView.currentIndex < root.localDefs.length - 1 ? "#1e3a6e" : "#2d2d2d"
+                    color: moveDownMa.containsMouse && btnListView.currentIndex < root.localDefs.length - 1 ? ColorPalette.selectionBg : ColorPalette.dividerBg
                     border.color: "#555"; border.width: 1
                     opacity: btnListView.currentIndex < root.localDefs.length - 1 ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Move Down"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Move Down"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: moveDownMa
                         anchors.fill: parent
@@ -244,15 +245,15 @@ Window {
                     }
                 }
 
-                Rectangle { width: 110; height: 1; color: "#3a3a3a" }
+                Rectangle { width: 110; height: 1; color: ColorPalette.border }
 
                 Rectangle {
                     width: 110; height: 28; radius: 3
                     property bool canEnable: !root._selectedIsSeparator() && root._buttonDisabled(btnListView.currentIndex)
-                    color: enableMa.containsMouse && canEnable ? "#1e3a6e" : "#2d2d2d"
+                    color: enableMa.containsMouse && canEnable ? ColorPalette.selectionBg : ColorPalette.dividerBg
                     border.color: "#555"; border.width: 1
                     opacity: canEnable ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Enable"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Enable"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: enableMa
                         anchors.fill: parent
@@ -273,10 +274,10 @@ Window {
                 Rectangle {
                     width: 110; height: 28; radius: 3
                     property bool canDisable: !root._selectedIsSeparator() && root._buttonEnabled(btnListView.currentIndex)
-                    color: disableMa.containsMouse && canDisable ? "#1e3a6e" : "#2d2d2d"
+                    color: disableMa.containsMouse && canDisable ? ColorPalette.selectionBg : ColorPalette.dividerBg
                     border.color: "#555"; border.width: 1
                     opacity: canDisable ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Disable"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Disable"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: disableMa
                         anchors.fill: parent
@@ -294,13 +295,13 @@ Window {
                     }
                 }
 
-                Rectangle { width: 110; height: 1; color: "#3a3a3a" }
+                Rectangle { width: 110; height: 1; color: ColorPalette.border }
 
                 Rectangle {
                     width: 110; height: 28; radius: 3
-                    color: addSepMa.containsMouse ? "#1e3a6e" : "#2d2d2d"
+                    color: addSepMa.containsMouse ? ColorPalette.selectionBg : ColorPalette.dividerBg
                     border.color: "#555"; border.width: 1
-                    Text { anchors.centerIn: parent; text: qsTr("Add Separator"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Add Separator"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: addSepMa
                         anchors.fill: parent
@@ -320,10 +321,10 @@ Window {
 
                 Rectangle {
                     width: 110; height: 28; radius: 3
-                    color: removeSepMa.containsMouse && root._selectedIsSeparator() ? "#442020" : "#2d2d2d"
+                    color: removeSepMa.containsMouse && root._selectedIsSeparator() ? "#442020" : ColorPalette.dividerBg
                     border.color: "#555"; border.width: 1
                     opacity: root._selectedIsSeparator() ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: qsTr("Remove"); color: "#ffffff"; font.pixelSize: 12 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Remove"); color: ColorPalette.textHeader; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: removeSepMa
                         anchors.fill: parent
@@ -344,9 +345,9 @@ Window {
 
                 Rectangle {
                     width: 110; height: 28; radius: 3
-                    color: resetMa.containsMouse ? "#443020" : "#2d2d2d"
+                    color: resetMa.containsMouse ? "#443020" : ColorPalette.dividerBg
                     border.color: "#555"; border.width: 1
-                    Text { anchors.centerIn: parent; text: qsTr("Reset"); color: "#ffffff"; font.pixelSize: 12 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Reset"); color: ColorPalette.textHeader; font.pixelSize: 12 * App.fontScale }
                     MouseArea {
                         id: resetMa
                         anchors.fill: parent
@@ -360,7 +361,7 @@ Window {
             }
         }
 
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
         // OK / Cancel
         RowLayout {

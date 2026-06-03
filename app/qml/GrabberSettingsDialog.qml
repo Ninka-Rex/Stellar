@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,16 +26,44 @@ Window {
     height: 320
     minimumWidth: 500
     minimumHeight: 300
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
     modality: Qt.ApplicationModal
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
+
+    component ThemedSpin: SpinBox {
+        id: _tspin
+        implicitWidth: 80
+        contentItem: TextInput {
+            text: _tspin.textFromValue(_tspin.value, _tspin.locale)
+            color: ColorPalette.textPrimary
+            font.pixelSize: 13 * App.fontScale
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            readOnly: !_tspin.editable
+            validator: _tspin.validator
+        }
+        up.indicator: Rectangle {
+            x: _tspin.width - width; y: 0
+            width: 22; height: _tspin.height / 2
+            color: _tspin.up.pressed ? ColorPalette.toolbarPressBg : _tspin.up.hovered ? ColorPalette.toolbarHoverBg : ColorPalette.panelBg
+            Text { anchors.centerIn: parent; text: "+"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
+        }
+        down.indicator: Rectangle {
+            x: _tspin.width - width; y: _tspin.height / 2
+            width: 22; height: _tspin.height / 2
+            color: _tspin.down.pressed ? ColorPalette.toolbarPressBg : _tspin.down.hovered ? ColorPalette.toolbarHoverBg : ColorPalette.panelBg
+            Text { anchors.centerIn: parent; text: "−"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
+        }
+        background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 2 }
+    }
 
     Rectangle {
         anchors.fill: parent
-        color: "#1e1e1e"
+        color: ColorPalette.cardBg
 
         ColumnLayout {
             anchors.fill: parent
@@ -44,27 +72,27 @@ Window {
 
             RowLayout {
                 Layout.fillWidth: true
-                SpinBox { id: exploreSpin; from: 1; to: 10; value: App.settings.grabberFilesToExploreAtOnce; editable: true }
-                Text { text: qsTr("files to explore at the same time (1 to 10)"); color: "#eef2f7"; font.pixelSize: 12 * App.fontScale }
+                ThemedSpin { id: exploreSpin; from: 1; to: 10; value: App.settings.grabberFilesToExploreAtOnce; editable: true }
+                Text { text: qsTr("files to explore at the same time (1 to 10)"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
             }
 
             RowLayout {
                 Layout.fillWidth: true
-                SpinBox { id: downloadSpin; from: 1; to: 10; value: App.settings.grabberFilesToDownloadAtOnce; editable: true }
-                Text { text: qsTr("files to download at the same time (1 to 10)"); color: "#eef2f7"; font.pixelSize: 12 * App.fontScale }
+                ThemedSpin { id: downloadSpin; from: 1; to: 10; value: App.settings.grabberFilesToDownloadAtOnce; editable: true }
+                Text { text: qsTr("files to download at the same time (1 to 10)"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
             }
 
             Text {
                 Layout.fillWidth: true
                 text: qsTr("Please note that a web server may reject requests if you set a large number of files to explore or download at the same time.")
-                color: "#a4adbb"
+                color: ColorPalette.textSecond
                 font.pixelSize: 11 * App.fontScale
                 wrapMode: Text.WordWrap
             }
 
-            Rectangle { Layout.fillWidth: true; height: 1; color: "#3d434c" }
+            Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-            CheckBox {
+            StyledCheckBox {
                 id: descriptionChk
                 text: qsTr("Use link texts as download descriptions when adding files to Stellar main list")
                 checked: App.settings.grabberUseLinkTextAsDescription

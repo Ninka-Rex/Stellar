@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -27,29 +27,40 @@ Window {
     height: 490
     minimumWidth: 740
     minimumHeight: 460
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
     modality: Qt.ApplicationModal
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     property string projectId: ""
     property string projectName: ""
 
-    // ── Shared sub-component styles ───────────────────────────────────────────
+    // ── Shared sub-component styles ──────────────────────────────────────
     component SLabel: Text {
-        color: "#d0d0d0"
+        color: ColorPalette.textPrimary
         font.pixelSize: 12 * App.fontScale
         verticalAlignment: Text.AlignVCenter
     }
 
     component SCheck: CheckBox {
+        id: _scheck
         topPadding: 3; bottomPadding: 3
+        indicator: Rectangle {
+            implicitWidth: 16; implicitHeight: 16
+            x: _scheck.leftPadding; y: parent.height / 2 - height / 2
+            radius: 3
+            color: _scheck.checked ? ColorPalette.accent : ColorPalette.inputBg
+            border.color: _scheck.checked ? ColorPalette.accent : ColorPalette.border
+            border.width: 1
+            Text { anchors.centerIn: parent; text: "✓"; visible: _scheck.checked; color: "#ffffff"; font.pixelSize: 11; font.bold: true }
+        }
         contentItem: Text {
             text: parent.text
-            color: parent.enabled ? "#d0d0d0" : "#666666"
+            color: parent.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
             font.pixelSize: 12 * App.fontScale
             leftPadding: parent.indicator.width + 6
             verticalAlignment: Text.AlignVCenter
@@ -57,10 +68,20 @@ Window {
     }
 
     component SRadio: RadioButton {
+        id: _sradio
         topPadding: 3; bottomPadding: 3
+        indicator: Rectangle {
+            implicitWidth: 16; implicitHeight: 16
+            x: _sradio.leftPadding; y: parent.height / 2 - height / 2
+            radius: 8
+            color: ColorPalette.inputBg
+            border.color: _sradio.checked ? ColorPalette.accent : ColorPalette.border
+            border.width: 1
+            Rectangle { anchors.centerIn: parent; width: 8; height: 8; radius: 4; color: ColorPalette.accent; visible: _sradio.checked }
+        }
         contentItem: Text {
             text: parent.text
-            color: parent.enabled ? "#d0d0d0" : "#666666"
+            color: parent.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
             font.pixelSize: 12 * App.fontScale
             leftPadding: parent.indicator.width + 6
             verticalAlignment: Text.AlignVCenter
@@ -85,7 +106,7 @@ Window {
 
         contentItem: TextInput {
             text: _spin.textFromValue(_spin.value)
-            color: "#e0e0e0"
+            color: ColorPalette.textPrimary
             font.pixelSize: 12 * App.fontScale
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -96,16 +117,16 @@ Window {
         up.indicator: Rectangle {
             x: _spin.width - width; y: 0
             width: 18; height: _spin.height / 2
-            color: _spin.up.pressed ? "#3a3a4a" : (_spin.up.hovered ? "#2d2d3a" : "#2a2a2a")
-            Text { anchors.centerIn: parent; text: "▲"; color: "#aaa"; font.pixelSize: 7 * App.fontScale }
+            color: _spin.up.pressed ? ColorPalette.toolbarPressBg : (_spin.up.hovered ? ColorPalette.toolbarHoverBg : ColorPalette.panelBg)
+            Text { anchors.centerIn: parent; text: "▲"; color: ColorPalette.textSecond; font.pixelSize: 7 * App.fontScale }
         }
         down.indicator: Rectangle {
             x: _spin.width - width; y: _spin.height / 2
             width: 18; height: _spin.height / 2
-            color: _spin.down.pressed ? "#3a3a4a" : (_spin.down.hovered ? "#2d2d3a" : "#2a2a2a")
-            Text { anchors.centerIn: parent; text: "▼"; color: "#aaa"; font.pixelSize: 7 * App.fontScale }
+            color: _spin.down.pressed ? ColorPalette.toolbarPressBg : (_spin.down.hovered ? ColorPalette.toolbarHoverBg : ColorPalette.panelBg)
+            Text { anchors.centerIn: parent; text: "▼"; color: ColorPalette.textSecond; font.pixelSize: 7 * App.fontScale }
         }
-        background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
+        background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 2 }
     }
 
     // Dark-styled ComboBox
@@ -116,27 +137,27 @@ Window {
             leftPadding: 8
             rightPadding: 24
             text: parent.displayText
-            color: parent.enabled ? "#e0e0e0" : "#666666"
+            color: parent.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
             font: parent.font
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
         }
         background: Rectangle {
-            color: "#1b1b1b"
-            border.color: "#3a3a3a"
+            color: ColorPalette.inputBg
+            border.color: ColorPalette.border
             radius: 2
         }
         indicator: Text {
             x: parent.width - width - 6
             y: (parent.height - height) / 2
-            text: "▼"
+            text: "▾"
             color: "#888"
             font.pixelSize: 8 * App.fontScale
         }
-        popup.background: Rectangle { color: "#2a2a2a"; border.color: "#444"; radius: 3 }
+        popup.background: Rectangle { color: ColorPalette.inputBg; border.color: "#444"; radius: 3 }
     }
 
-    // ── Computed day-of-week for the "Once at" date ────────────────────────────
+    // ── Computed day-of-week for the "Once at" date ──────────────────────
     function dayOfWeekName() {
         var mo = onceDateMonthCombo.currentIndex
         var da = onceDateDaySpinbox.value
@@ -146,7 +167,7 @@ Window {
         return d.toLocaleDateString(Qt.locale(), "dddd")
     }
 
-    // ── Load / save ────────────────────────────────────────────────────────────
+    // ── Load / save ──────────────────────────────────────────────────────
     function loadProjectSchedule() {
         var project = App.grabberProjectData(projectId)
         projectName = project.name || "Grabber Project"
@@ -260,13 +281,13 @@ Window {
 
     onVisibleChanged: { if (visible) { _centerOnOwner(); loadProjectSchedule() } }
 
-    // ── Layout ─────────────────────────────────────────────────────────────────
+    // ── Layout ───────────────────────────────────────────────────────────
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 12
         spacing: 10
 
-        // ── Header ────────────────────────────────────────────────────────────
+        // ── Header ───────────────────────────────────────────────────────
         Row {
             spacing: 10
             Image {
@@ -280,24 +301,24 @@ Window {
             Column {
                 spacing: 2
                 anchors.verticalCenter: parent.verticalCenter
-                Text { text: qsTr("Project:"); color: "#888888"; font.pixelSize: 11 * App.fontScale }
+                Text { text: qsTr("Project:"); color: ColorPalette.textMuted; font.pixelSize: 11 * App.fontScale }
                 Text { text: projectName; color: "#f0f0f0"; font.pixelSize: 14 * App.fontScale; font.bold: true }
             }
         }
 
         SCheck { id: enabledChk; text: qsTr("Enable project schedule") }
 
-        // ── Two-panel main area ───────────────────────────────────────────────
+        // ── Two-panel main area ──────────────────────────────────────────
         RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
             spacing: 10
 
-            // ── Left panel: Steps 1 + 2 + After completion ────────────────────
+            // ── Left panel: Steps 1 + 2 + After completion ───────────────
             Rectangle {
                 Layout.preferredWidth: 286
                 Layout.fillHeight: true
-                color: "#1b1b1b"
+                color: ColorPalette.inputBg
                 border.color: "#333333"
                 radius: 3
 
@@ -311,7 +332,7 @@ Window {
                     SRadio { id: onceTimeRadio;  text: qsTr("One-time exploring/downloading"); checked: true; ButtonGroup.group: exploringModeGroup }
                     SRadio { id: periodicRadio;  text: qsTr("Periodic synchronization"); ButtonGroup.group: exploringModeGroup }
 
-                    Rectangle { Layout.fillWidth: true; height: 1; color: "#333333"; Layout.topMargin: 8; Layout.bottomMargin: 8 }
+                    Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border; Layout.topMargin: 8; Layout.bottomMargin: 8 }
 
                     SLabel { text: qsTr("Step 2.  Select action"); font.bold: true; bottomPadding: 4 }
 
@@ -320,7 +341,7 @@ Window {
                     SRadio { id: actionExploreDownloadRadio; text: qsTr("Explore site and download matched files"); ButtonGroup.group: actionGroup }
                     SRadio { id: actionDownloadCheckedRadio; text: qsTr("Download checked files"); ButtonGroup.group: actionGroup }
 
-                    Rectangle { Layout.fillWidth: true; height: 1; color: "#333333"; Layout.topMargin: 8; Layout.bottomMargin: 8 }
+                    Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border; Layout.topMargin: 8; Layout.bottomMargin: 8 }
 
                     SLabel { text: qsTr("After completion"); font.bold: true; bottomPadding: 4 }
 
@@ -350,11 +371,11 @@ Window {
                 }
             }
 
-            // ── Right panel: Step 3 Schedule ──────────────────────────────────
+            // ── Right panel: Step 3 Schedule ─────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                color: "#1b1b1b"
+                color: ColorPalette.inputBg
                 border.color: "#333333"
                 radius: 3
 
@@ -364,7 +385,7 @@ Window {
 
                     SLabel { text: qsTr("Step 3.  Schedule"); font.bold: true }
 
-                    // ── Start time ────────────────────────────────────────────
+                    // ── Start time ───────────────────────────────────────
                     RowLayout {
                         spacing: 6
                         SCheck { id: startAtChk; text: qsTr("Start download at"); checked: true }
@@ -381,7 +402,7 @@ Window {
                         }
                     }
 
-                    // ── Once at / Daily ───────────────────────────────────────
+                    // ── Once at / Daily ──────────────────────────────────
                     ColumnLayout {
                         visible: onceTimeRadio.checked
                         enabled: startAtChk.checked
@@ -407,7 +428,7 @@ Window {
                                 opacity: enabled ? 1.0 : 0.45
                                 Text {
                                     text: dayOfWeekName()
-                                    color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale
+                                    color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale
                                     anchors.verticalCenter: parent.verticalCenter
                                     width: 68; elide: Text.ElideRight
                                 }
@@ -457,7 +478,7 @@ Window {
                         }
                     }
 
-                    // ── Periodic repeat interval ──────────────────────────────
+                    // ── Periodic repeat interval ─────────────────────────
                     RowLayout {
                         visible: periodicRadio.checked
                         spacing: 8
@@ -465,22 +486,22 @@ Window {
                         TextField {
                             id: everyHoursField
                             implicitWidth: 52; implicitHeight: 26
-                            text: "2"; color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale; leftPadding: 8
+                            text: "2"; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; leftPadding: 8
                             validator: IntValidator { bottom: 0; top: 999 }
-                            background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
+                            background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 2 }
                         }
                         SLabel { text: qsTr("hours") }
                         TextField {
                             id: everyMinutesField
                             implicitWidth: 52; implicitHeight: 26
-                            text: "0"; color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale; leftPadding: 8
+                            text: "0"; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; leftPadding: 8
                             validator: IntValidator { bottom: 0; top: 59 }
-                            background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
+                            background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 2 }
                         }
                         SLabel { text: qsTr("minutes") }
                     }
 
-                    // ── Stop time ─────────────────────────────────────────────
+                    // ── Stop time ────────────────────────────────────────
                     RowLayout {
                         spacing: 6
                         SCheck { id: stopEnabledChk; text: qsTr("Stop download at") }
@@ -497,18 +518,18 @@ Window {
                         }
                     }
 
-                    // ── Note ──────────────────────────────────────────────────
+                    // ── Note ─────────────────────────────────────────────
                     Rectangle {
                         Layout.fillWidth: true
                         height: noteText.implicitHeight + 16
-                        color: "#1a2030"
-                        border.color: "#2a3050"
+                        color: ColorPalette.infoBoxBg
+                        border.color: ColorPalette.infoBoxBorder
                         radius: 3
                         Text {
                             id: noteText
                             anchors { fill: parent; margins: 8 }
                             text: qsTr("Note: Stellar should be running in the system tray at the specified time to start a scheduled project.")
-                            color: "#8899bb"
+                            color: ColorPalette.infoBoxText
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
@@ -519,7 +540,7 @@ Window {
             }
         }
 
-        // ── Buttons ───────────────────────────────────────────────────────────
+        // ── Buttons ──────────────────────────────────────────────────────
         RowLayout {
             Layout.fillWidth: true
             Item { Layout.fillWidth: true }

@@ -25,7 +25,7 @@ Rectangle {
 
     width: parent ? parent.width : 180
     height: 28
-    color: ma.containsMouse ? "#3a3a5a" : "transparent"
+    color: ma.containsMouse ? ColorPalette.hoverBg : "transparent"
 
     Image {
         id: icon
@@ -39,7 +39,7 @@ Rectangle {
     Text {
         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: root.iconSource !== "" ? 30 : 12 }
         text: root.label
-        color: "#e0e0e0"
+        color: ColorPalette.textPrimary
         font.pixelSize: 12 * App.fontScale
         font.bold: root.bold
     }

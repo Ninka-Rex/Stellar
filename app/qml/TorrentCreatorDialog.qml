@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -30,17 +30,17 @@ Window {
     minimumWidth: 460
     maximumWidth: 700
     title: qsTr("Create Torrent")
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
-    // Fixed height — content doesn't scroll.
+    // ── Fixed height content doesn't scroll. ─────────────────────────────
     minimumHeight: height
     maximumHeight: height
 
-    Material.theme:      Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme:      ColorPalette.materialTheme
+    Material.background: ColorPalette.materialBg
     Material.accent:     "#4488dd"
 
-    // ── State ─────────────────────────────────────────────────────────────────
+    // ── State ────────────────────────────────────────────────────────────
     property bool   _creating:   false
     property int    _progress:   0
     property bool   _done:       false
@@ -51,7 +51,7 @@ Window {
     property int    _pieceSize:  0
     property double _totalInputBytes: 0
 
-    // Piece sizes indexed by slider position: 0=Auto, 1=16KiB, …, 11=16MiB
+    // ── Piece sizes indexed by slider position: 0=Auto, 1=16KiB, , 11=16MiB ──
     property var _pieceSizes: [0, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4194304, 8388608, 16777216]
     property var _pieceSizeLabels: [qsTr("Auto"), "16K", "32K", "64K", "128K", "256K", "512K", "1M", "2M", "4M", "8M", "16M"]
 
@@ -86,7 +86,7 @@ Window {
         _totalInputBytes = paths.length > 0 ? App.totalInputSize(paths) : 0
     }
 
-    // ── Helpers ───────────────────────────────────────────────────────────────
+    // ── Helpers ──────────────────────────────────────────────────────────
     function _fmtBytes(b) {
         if (b <= 0)         return "0 B"
         if (b < 1024)       return b + " B"
@@ -187,7 +187,7 @@ Window {
         pieceSizeSlider.value = 0
     }
 
-    // ── Connections ───────────────────────────────────────────────────────────
+    // ── Connections ──────────────────────────────────────────────────────
     Connections {
         target: App
         function onTorrentCreationProgress(percent) { root._progress = percent }
@@ -202,10 +202,10 @@ Window {
         }
     }
 
-    // ── Models ────────────────────────────────────────────────────────────────
+    // ── Models ───────────────────────────────────────────────────────────
     ListModel { id: inputFilesModel }
 
-    // ── File dialogs ──────────────────────────────────────────────────────────
+    // ── File dialogs ─────────────────────────────────────────────────────
     FileDialog {
         id: addFilesDialog
         title: qsTr("Add Files")
@@ -251,7 +251,7 @@ Window {
         }
     }
 
-    // ── Layout ────────────────────────────────────────────────────────────────
+    // ── Layout ───────────────────────────────────────────────────────────
     // Constant row geometry so nothing shifts during interaction.
     readonly property int _lw: 80   // label column width
     readonly property int _lm: 14   // left margin
@@ -262,7 +262,7 @@ Window {
         anchors.fill: parent
         spacing: 0
 
-        // ── Form body ─────────────────────────────────────────────────────────
+        // ── Form body ────────────────────────────────────────────────────
         Item {
             width: parent.width
             // Fixed body height: total - footer
@@ -272,18 +272,18 @@ Window {
                 anchors { fill: parent; topMargin: 10 }
                 spacing: 0
 
-                // ─── Files ───
+                // ── Files ────────────────────────────────────────────────
                 // Section header
                 Item {
                     width: parent.width; height: 22
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Files"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium
+                        text: qsTr("Files"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium
                     }
                     Rectangle {
                         anchors { left: parent.left; right: parent.right
                                   leftMargin: root._lm; rightMargin: root._rm; bottom: parent.bottom }
-                        height: 1; color: "#2a2a3a"
+                        height: 1; color: ColorPalette.border
                     }
                 }
 
@@ -293,7 +293,7 @@ Window {
 
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Source:"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; width: root._lw
+                        text: qsTr("Source:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
 
                     // Source display box
@@ -304,13 +304,13 @@ Window {
                             right: sourceButtonRow.left; rightMargin: 6
                             verticalCenter: parent.verticalCenter
                         }
-                        height: root._rh; color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2
+                        height: root._rh; color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 2
 
                         Text {
                             anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                             verticalAlignment: Text.AlignVCenter
                             elide: Text.ElideLeft; font.pixelSize: 11 * App.fontScale
-                            color: inputFilesModel.count > 0 ? "#d0d0d0" : "#445566"
+                            color: inputFilesModel.count > 0 ? ColorPalette.textPrimary : "#445566"
                             text: inputFilesModel.count > 0
                                 ? (inputFilesModel.get(0).path +
                                    (inputFilesModel.count > 1 ? qsTr(" (+%1 more)").arg(inputFilesModel.count - 1) : ""))
@@ -323,12 +323,12 @@ Window {
                         anchors { right: parent.right; rightMargin: root._rm; verticalCenter: parent.verticalCenter }
                         spacing: 4
 
-                        // File… button
+                        // ── File button ──────────────────────────────────
                         Rectangle {
                             width: fileBtn.implicitWidth + 14; height: root._rh; radius: 2
-                            color: fileBtnMa.containsMouse ? "#3a3a3a" : "#2d2d2d"
+                            color: fileBtnMa.containsMouse ? ColorPalette.border : ColorPalette.dividerBg
                             border.color: "#4a4a4a"
-                            Text { id: fileBtn; anchors.centerIn: parent; text: qsTr("File…"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
+                            Text { id: fileBtn; anchors.centerIn: parent; text: qsTr("File…"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
                             MouseArea {
                                 id: fileBtnMa; anchors.fill: parent; hoverEnabled: true
                                 cursorShape: Qt.PointingHandCursor
@@ -336,12 +336,12 @@ Window {
                                 onClicked: addFilesDialog.open()
                             }
                         }
-                        // Folder… button
+                        // ── Folder button ────────────────────────────────
                         Rectangle {
                             width: folderBtn.implicitWidth + 14; height: root._rh; radius: 2
-                            color: folderBtnMa.containsMouse ? "#3a3a3a" : "#2d2d2d"
+                            color: folderBtnMa.containsMouse ? ColorPalette.border : ColorPalette.dividerBg
                             border.color: "#4a4a4a"
-                            Text { id: folderBtn; anchors.centerIn: parent; text: qsTr("Folder…"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
+                            Text { id: folderBtn; anchors.centerIn: parent; text: qsTr("Folder…"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
                             MouseArea {
                                 id: folderBtnMa; anchors.fill: parent; hoverEnabled: true
                                 cursorShape: Qt.PointingHandCursor
@@ -352,10 +352,10 @@ Window {
                         // Remove button
                         Rectangle {
                             width: removeBtn.implicitWidth + 14; height: root._rh; radius: 2
-                            color: removeBtnMa.containsMouse && inputFilesModel.count > 0 ? "#3a2a2a" : "#2d2d2d"
+                            color: removeBtnMa.containsMouse && inputFilesModel.count > 0 ? "#3a2a2a" : ColorPalette.dividerBg
                             border.color: "#4a4a4a"
                             opacity: inputFilesModel.count > 0 ? 1.0 : 0.4
-                            Text { id: removeBtn; anchors.centerIn: parent; text: qsTr("Remove"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
+                            Text { id: removeBtn; anchors.centerIn: parent; text: qsTr("Remove"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
                             MouseArea {
                                 id: removeBtnMa; anchors.fill: parent; hoverEnabled: true
                                 cursorShape: Qt.PointingHandCursor
@@ -371,7 +371,7 @@ Window {
                     width: parent.width; height: root._rh + 8
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Save to:"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; width: root._lw
+                        text: qsTr("Save to:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Rectangle {
                         anchors {
@@ -379,14 +379,14 @@ Window {
                             right: browseDirBtn.left; rightMargin: 6
                             verticalCenter: parent.verticalCenter
                         }
-                        height: root._rh; color: "#1b1b1b"
-                        border.color: saveDirField.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                        height: root._rh; color: ColorPalette.inputBg
+                        border.color: saveDirField.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2
 
                         TextInput {
                             id: saveDirField
                             anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                             verticalAlignment: TextInput.AlignVCenter
-                            color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; clip: true
+                            color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; clip: true
                             enabled: !root._creating
                             Text {
                                 anchors.fill: parent; verticalAlignment: Text.AlignVCenter
@@ -399,9 +399,9 @@ Window {
                         id: browseDirBtn
                         anchors { right: parent.right; rightMargin: root._rm; verticalCenter: parent.verticalCenter }
                         width: browseDirLbl.implicitWidth + 14; height: root._rh; radius: 2
-                        color: browseDirMa.containsMouse ? "#3a3a3a" : "#2d2d2d"
+                        color: browseDirMa.containsMouse ? ColorPalette.border : ColorPalette.dividerBg
                         border.color: "#4a4a4a"
-                        Text { id: browseDirLbl; anchors.centerIn: parent; text: qsTr("Browse…"); color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale }
+                        Text { id: browseDirLbl; anchors.centerIn: parent; text: qsTr("Browse…"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
                         MouseArea {
                             id: browseDirMa; anchors.fill: parent; hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
@@ -416,7 +416,7 @@ Window {
                     width: parent.width; height: root._rh + 8
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Name:"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; width: root._lw
+                        text: qsTr("Name:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Rectangle {
                         anchors {
@@ -424,13 +424,13 @@ Window {
                             right: parent.right; rightMargin: root._rm
                             verticalCenter: parent.verticalCenter
                         }
-                        height: root._rh; color: "#1b1b1b"
-                        border.color: nameField.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                        height: root._rh; color: ColorPalette.inputBg
+                        border.color: nameField.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2
                         TextInput {
                             id: nameField
                             anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                             verticalAlignment: TextInput.AlignVCenter
-                            color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; clip: true
+                            color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; clip: true
                             enabled: !root._creating
                             Text {
                                 anchors.fill: parent; verticalAlignment: Text.AlignVCenter
@@ -447,7 +447,7 @@ Window {
                     width: parent.width; height: ((root._rh + 8) + 32)
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; top: parent.top; topMargin: 4 }
-                        text: qsTr("Piece size:"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; width: root._lw
+                        text: qsTr("Piece size:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Column {
                         anchors { left: parent.left; leftMargin: root._lm + root._lw
@@ -466,7 +466,7 @@ Window {
                                     var sel = root._sliderPieceSizeBytes()
                                     return sel === 0 ? qsTr("Auto") : root._fmtBytes(sel)
                                 }
-                                color: "#aaaaaa"; font.pixelSize: 10 * App.fontScale
+                                color: ColorPalette.textSecond; font.pixelSize: 10 * App.fontScale
                                 horizontalAlignment: Text.AlignRight
                             }
 
@@ -483,11 +483,11 @@ Window {
                                     implicitWidth: 200; implicitHeight: 4
                                     width: pieceSizeSlider.availableWidth; height: 4
                                     radius: 2
-                                    color: "#2d2d2d"
+                                    color: ColorPalette.dividerBg
                                     Rectangle {
                                         width: pieceSizeSlider.visualPosition * parent.width
                                         height: parent.height
-                                        color: "#666666"
+                                        color: ColorPalette.textDisabled
                                         radius: 2
                                     }
                                 }
@@ -498,11 +498,11 @@ Window {
                                     implicitWidth: 14; implicitHeight: 14
                                     radius: 7
                                     color: pieceSizeSlider.enabled
-                                        ? (pieceSizeSlider.pressed ? "#888888" : "#777777")
+                                        ? (pieceSizeSlider.pressed ? ColorPalette.textMuted : "#777777")
                                         : "#555555"
                                     border.color: pieceSizeSlider.enabled
-                                        ? (pieceSizeSlider.hovered ? "#999999" : "#777777")
-                                        : "#666666"
+                                        ? (pieceSizeSlider.hovered ? ColorPalette.textSecond : "#777777")
+                                        : ColorPalette.textDisabled
                                     border.width: 2
                                 }
                             }
@@ -550,17 +550,17 @@ Window {
                     }
                 }
 
-                // ─── Properties ───
+                // ── Properties ───────────────────────────────────────────
                 Item {
                     width: parent.width; height: 24
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Properties"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium
+                        text: qsTr("Properties"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; font.weight: Font.Medium
                     }
                     Rectangle {
                         anchors { left: parent.left; right: parent.right
                                   leftMargin: root._lm; rightMargin: root._rm; bottom: parent.bottom }
-                        height: 1; color: "#2a2a3a"
+                        height: 1; color: ColorPalette.border
                     }
                 }
 
@@ -569,7 +569,7 @@ Window {
                     width: parent.width; height: 80
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; top: parent.top; topMargin: 6 }
-                        text: qsTr("Trackers:"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; width: root._lw
+                        text: qsTr("Trackers:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Rectangle {
                         anchors {
@@ -577,8 +577,8 @@ Window {
                             right: parent.right; rightMargin: root._rm
                             top: parent.top; topMargin: 4; bottom: parent.bottom; bottomMargin: 4
                         }
-                        color: "#1b1b1b"
-                        border.color: trackersField.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                        color: ColorPalette.inputBg
+                        border.color: trackersField.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2
 
                         Flickable {
                             id: trackerFlick
@@ -591,7 +591,7 @@ Window {
                                 // Fill the full viewport so clicks anywhere in the box land on the editor.
                                 width: trackerFlick.width
                                 height: Math.max(implicitHeight, trackerFlick.height)
-                                color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; font.family: "Consolas"
+                                color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; font.family: "Consolas"
                                 wrapMode: TextEdit.Wrap; enabled: !root._creating; selectByMouse: true
 
                                 Text {
@@ -610,7 +610,7 @@ Window {
                     width: parent.width; height: root._rh + 8
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; verticalCenter: parent.verticalCenter }
-                        text: qsTr("Comment:"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; width: root._lw
+                        text: qsTr("Comment:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Rectangle {
                         anchors {
@@ -618,13 +618,13 @@ Window {
                             right: parent.right; rightMargin: root._rm
                             verticalCenter: parent.verticalCenter
                         }
-                        height: root._rh; color: "#1b1b1b"
-                        border.color: commentField.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                        height: root._rh; color: ColorPalette.inputBg
+                        border.color: commentField.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2
                         TextInput {
                             id: commentField
                             anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                             verticalAlignment: TextInput.AlignVCenter
-                            color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; clip: true
+                            color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; clip: true
                             enabled: !root._creating
                             Text {
                                 anchors.fill: parent; verticalAlignment: Text.AlignVCenter
@@ -640,7 +640,7 @@ Window {
                     width: parent.width; height: 60
                     Text {
                         anchors { left: parent.left; leftMargin: root._lm; top: parent.top; topMargin: 6 }
-                        text: qsTr("Web seeds:"); color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; width: root._lw
+                        text: qsTr("Web seeds:"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; width: root._lw
                     }
                     Rectangle {
                         anchors {
@@ -648,8 +648,8 @@ Window {
                             right: parent.right; rightMargin: root._rm
                             top: parent.top; topMargin: 4; bottom: parent.bottom; bottomMargin: 4
                         }
-                        color: "#1b1b1b"
-                        border.color: webSeedsField.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                        color: ColorPalette.inputBg
+                        border.color: webSeedsField.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2
 
                         Flickable {
                             id: seedFlick
@@ -661,7 +661,7 @@ Window {
                                 id: webSeedsField
                                 width: seedFlick.width
                                 height: Math.max(implicitHeight, seedFlick.height)
-                                color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale; font.family: "Consolas"
+                                color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; font.family: "Consolas"
                                 wrapMode: TextEdit.Wrap; enabled: !root._creating; selectByMouse: true
 
                                 Text {
@@ -678,7 +678,7 @@ Window {
                 // Private checkbox
                 Item {
                     width: parent.width; height: 30
-                    CheckBox {
+                    StyledCheckBox {
                         id: privateCheck
                         anchors { left: parent.left; leftMargin: root._lm + root._lw; verticalCenter: parent.verticalCenter }
                         text: qsTr("Private torrent (disables DHT and PeX)")
@@ -686,13 +686,13 @@ Window {
                         enabled: !root._creating
                         contentItem: Text {
                             leftPadding: privateCheck.indicator.width + 5
-                            text: privateCheck.text; color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale
+                            text: privateCheck.text; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
                             verticalAlignment: Text.AlignVCenter
                         }
                     }
                 }
 
-                // ─── Progress bar ───
+                // ── Progress bar ─────────────────────────────────────────
                 Item {
                     width: parent.width; height: 36
                     visible: root._creating || root._done
@@ -706,7 +706,7 @@ Window {
                         Text {
                             anchors { left: parent.left; right: parent.right; top: parent.top; leftMargin: 8; rightMargin: 8; topMargin: 4 }
                             text: {
-                                if (root._done && root._success)   return qsTr("✓ Done — %1").arg(root._resultPath)
+                                if (root._done && root._success)   return qsTr("✓Done ▶€” %1").arg(root._resultPath)
                                 if (root._done && root._errorText) return qsTr("✗ Error: %1").arg(root._errorText)
                                 if (root._done)                    return qsTr("Cancelled")
                                 return qsTr("Hashing… %1%  (%2 pieces × %3)")
@@ -733,21 +733,21 @@ Window {
             }
         }
 
-        // ── Footer ────────────────────────────────────────────────────────────
+        // ── Footer ───────────────────────────────────────────────────────
         Rectangle {
-            width: parent.width; height: 48; color: "#1a1a1a"
+            width: parent.width; height: 48; color: ColorPalette.cardBg
 
-            Rectangle { width: parent.width; height: 1; color: "#2d2d2d" }
+            Rectangle { width: parent.width; height: 1; color: ColorPalette.dividerBg }
 
             // Left: open-when-done checkbox.
-            CheckBox {
+            StyledCheckBox {
                 id: openWhenDoneCheck
                 anchors { left: parent.left; leftMargin: 12; verticalCenter: parent.verticalCenter }
                 text: qsTr("Open when done")
                 topPadding: 0; bottomPadding: 0
                 contentItem: Text {
                     leftPadding: openWhenDoneCheck.indicator.width + 5
-                    text: openWhenDoneCheck.text; color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale
+                    text: openWhenDoneCheck.text; color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale
                     verticalAlignment: Text.AlignVCenter
                 }
             }

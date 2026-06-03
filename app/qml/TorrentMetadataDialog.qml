@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -28,11 +28,12 @@ Window {
     minimumWidth: 720
     minimumHeight: 460
     title: qsTr("Torrent Metadata")
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     property string downloadId: ""
@@ -228,7 +229,7 @@ Window {
         return 0
     }
 
-    // ── Swarm map properties (mirrored from FilePropertiesDialog peer map) ──
+    // ?? Swarm map properties (mirrored from FilePropertiesDialog peer map) ??
     readonly property var metaPeerModel: downloadId.length > 0 ? App.torrentPeerModel(downloadId) : null
     readonly property bool metaMapActive: visible && !!(item) && !item.torrentHasMetadata && metaPeerModel !== null
     onMetaMapActiveChanged: { if (metaPeerModel) metaPeerModel.setLiveUpdatesEnabled(metaMapActive) }
@@ -240,7 +241,7 @@ Window {
     // Auto-fit: animate zoom+pan to bound all plotted peers
     property bool _userInteracted: false   // set true when user manually zooms/pans; suppresses auto-fit
 
-    // Query peer model rows directly for coordinates — avoids depending on
+    // ?? Query peer model rows directly for coordinates avoids depending on ??
     // Repeater delegate instantiation timing (itemAt() is unreliable during
     // the Loader/Component lifecycle).
     function metaAutoFit(mapW, mapH) {
@@ -348,7 +349,7 @@ Window {
     }
     function metaCountryFullName(cc) {
         var names = {
-            "AF":"Afghanistan","AX":"Åland Islands","AL":"Albania","DZ":"Algeria","AS":"American Samoa",
+            "AF":"Afghanistan","AX":"?.land Islands","AL":"Albania","DZ":"Algeria","AS":"American Samoa",
             "AD":"Andorra","AO":"Angola","AI":"Anguilla","AQ":"Antarctica","AG":"Antigua and Barbuda",
             "AR":"Argentina","AM":"Armenia","AW":"Aruba","AU":"Australia","AT":"Austria",
             "AZ":"Azerbaijan","BS":"Bahamas","BH":"Bahrain","BD":"Bangladesh","BB":"Barbados",
@@ -359,7 +360,7 @@ Window {
             "CM":"Cameroon","CA":"Canada","KY":"Cayman Islands","CF":"Central African Republic",
             "TD":"Chad","CL":"Chile","CN":"China","CX":"Christmas Island","CC":"Cocos Islands",
             "CO":"Colombia","KM":"Comoros","CG":"Congo","CD":"DR Congo","CK":"Cook Islands",
-            "CR":"Costa Rica","CI":"Côte d'Ivoire","HR":"Croatia","CU":"Cuba","CW":"Curaçao",
+            "CR":"Costa Rica","CI":"C?te d'Ivoire","HR":"Croatia","CU":"Cuba","CW":"Cura?ao",
             "CY":"Cyprus","CZ":"Czech Republic","DK":"Denmark","DJ":"Djibouti","DM":"Dominica",
             "DO":"Dominican Republic","EC":"Ecuador","EG":"Egypt","SV":"El Salvador","GQ":"Equatorial Guinea",
             "ER":"Eritrea","EE":"Estonia","SZ":"Eswatini","ET":"Ethiopia","FK":"Falkland Islands",
@@ -385,7 +386,7 @@ Window {
             "NO":"Norway","OM":"Oman","PK":"Pakistan","PW":"Palau","PS":"Palestine",
             "PA":"Panama","PG":"Papua New Guinea","PY":"Paraguay","PE":"Peru","PH":"Philippines",
             "PN":"Pitcairn","PL":"Poland","PT":"Portugal","PR":"Puerto Rico","QA":"Qatar",
-            "RE":"Réunion","RO":"Romania","RU":"Russia","RW":"Rwanda","BL":"Saint Barthélemy",
+            "RE":"R?union","RO":"Romania","RU":"Russia","RW":"Rwanda","BL":"Saint Barth?lemy",
             "SH":"Saint Helena","KN":"Saint Kitts and Nevis","LC":"Saint Lucia","MF":"Saint Martin",
             "PM":"Saint Pierre and Miquelon","VC":"Saint Vincent and the Grenadines","WS":"Samoa",
             "SM":"San Marino","ST":"Sao Tome and Principe","SA":"Saudi Arabia","SN":"Senegal",
@@ -421,7 +422,7 @@ Window {
     function metaFlagColor(flag) {
         switch (flag) {
         case "IN":  return "#e8c84a"
-        case "OUT": return "#7a8899"
+        case "OUT": return ColorPalette.textSecond
         case "TRK": return "#5f93c9"
         case "DHT": return "#4db8ff"
         case "PEX": return "#a06de8"
@@ -433,7 +434,7 @@ Window {
         case "OPT": return "#e8a35c"
         case "HPX": return "#ff8ab4"
         case "I2P": return "#a8ff78"
-        default:    return "#708396"
+        default:    return ColorPalette.textSecond
         }
     }
     function metaShowPeerHover(peer, x, y) {
@@ -543,7 +544,7 @@ Window {
                 text: root.item && root.item.filename && root.item.filename.length > 0
                       ? root.item.filename
                       : (root.pendingSourceLabel.length > 0 ? root.pendingSourceLabel : qsTr("Torrent Metadata"))
-                color: "#ffffff"
+                color: ColorPalette.textHeader
                 font.pixelSize: 15 * App.fontScale
                 font.bold: true
                 Layout.fillWidth: true
@@ -565,15 +566,15 @@ Window {
             Layout.fillWidth: true
             spacing: 6
 
-            Text { text: qsTr("Save to"); color: "#a5a5a5"; font.pixelSize: 12 * App.fontScale }
+            Text { text: qsTr("Save to"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
 
             TextField {
                 id: savePathField
                 Layout.fillWidth: true
                 Layout.preferredHeight: 32
                 text: root.savePath
-                color: "#d7d7d7"
-                background: Rectangle { color: "#171717"; border.color: "#303030"; radius: 3 }
+                color: ColorPalette.textPrimary
+                background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
                 leftPadding: 6
                 rightPadding: 6
                 topPadding: 0; bottomPadding: 0
@@ -592,9 +593,9 @@ Window {
             }
 
             // Separator
-            Rectangle { width: 1; height: 22; color: "#343434" }
+            Rectangle { width: 1; height: 22; color: ColorPalette.border }
 
-            Text { text: qsTr("Category"); color: "#a5a5a5"; font.pixelSize: 12 * App.fontScale }
+            Text { text: qsTr("Category"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
 
             ComboBox {
                 id: categoryCombo
@@ -608,13 +609,13 @@ Window {
                 }
                 contentItem: Text {
                     text: categoryCombo.displayText
-                    color: "#d7d7d7"
+                    color: ColorPalette.textPrimary
                     verticalAlignment: Text.AlignVCenter
                     leftPadding: 6
                     elide: Text.ElideRight
                     font.pixelSize: 12 * App.fontScale
                 }
-                background: Rectangle { color: "#171717"; border.color: "#303030"; radius: 3 }
+                background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
             }
         }
 
@@ -624,7 +625,7 @@ Window {
             spacing: 8
             visible: !!root.item
 
-            CheckBox {
+            StyledCheckBox {
                 id: customSavePathCheck
                 text: qsTr("Custom save folder")
                 checked: root.useCustomSavePath
@@ -641,12 +642,12 @@ Window {
                     }
                 }
                 contentItem: Text {
-                    text: parent.text; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                    text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                     leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter
                 }
             }
 
-            CheckBox {
+            StyledCheckBox {
                 text: qsTr("Remember")
                 checked: root.rememberCustomSavePath
                 enabled: root.useCustomSavePath
@@ -654,7 +655,7 @@ Window {
                 onToggled: root.rememberCustomSavePath = checked
                 contentItem: Text {
                     text: parent.text
-                    color: parent.enabled ? "#d0d0d0" : "#6f6f6f"; font.pixelSize: 12 * App.fontScale
+                    color: parent.enabled ? ColorPalette.textPrimary : "#6f6f6f"; font.pixelSize: 12 * App.fontScale
                     leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter
                 }
             }
@@ -675,15 +676,15 @@ Window {
                 }
             }
 
-            Rectangle { width: 1; height: 18; color: "#343434" }
+            Rectangle { width: 1; height: 18; color: ColorPalette.border }
 
-            Text { text: qsTr("Description"); color: "#a5a5a5"; font.pixelSize: 12 * App.fontScale }
+            Text { text: qsTr("Description"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
             TextField {
                 Layout.fillWidth: true
                 implicitHeight: 26
                 text: root.description
-                color: "#d7d7d7"
-                background: Rectangle { color: "#171717"; border.color: "#303030"; radius: 3 }
+                color: ColorPalette.textPrimary
+                background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
                 leftPadding: 6; rightPadding: 6; topPadding: 0; bottomPadding: 0
                 verticalAlignment: TextInput.AlignVCenter
                 font.pixelSize: 12 * App.fontScale
@@ -694,8 +695,8 @@ Window {
         Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            color: "#171717"
-            border.color: "#303030"
+            color: ColorPalette.inputBg
+            border.color: ColorPalette.border
             radius: 6
             clip: true
 
@@ -772,7 +773,7 @@ Window {
             // Simple spinner shown when swarm map is disabled in settings
             Rectangle {
                 anchors.fill: parent
-                color: "#0d141c"
+                color: ColorPalette.mapCanvasBg
                 radius: 3
                 visible: !App.settings.showSwarmMapWhileFetchingMetadata
 
@@ -789,16 +790,16 @@ Window {
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
                         text: root.item ? root.metadataPeerStatusText() : qsTr("Opening torrent...")
-                        color: "#8ea1b5"
+                        color: ColorPalette.textSecond
                         font.pixelSize: 13 * App.fontScale
                     }
                 }
             }
 
-            // ── World swarm map ───────────────────────────────────────────────
+            // ?? World swarm map ??????????????????????????????????????????
             Rectangle {
                 anchors.fill: parent
-                color: "#0d141c"
+                color: ColorPalette.mapCanvasBg
                 radius: 3
                 clip: true
                 visible: App.settings.showSwarmMapWhileFetchingMetadata
@@ -808,7 +809,7 @@ Window {
                     id: metaStatusBar
                     anchors { top: parent.top; left: parent.left; right: parent.right }
                     height: 34
-                    color: "#111923"
+                    color: ColorPalette.mapPanelBg
                     z: 10
 
                     Row {
@@ -825,7 +826,7 @@ Window {
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
                             text: root.item ? root.metadataPeerStatusText() : qsTr("Opening torrent...")
-                            color: "#8ea1b5"
+                            color: ColorPalette.textSecond
                             font.pixelSize: 12 * App.fontScale
                         }
                     }
@@ -836,11 +837,11 @@ Window {
                         spacing: 10
 
                         Rectangle { width: 10; height: 10; radius: 5; color: "#5f93c9"; anchors.verticalCenter: parent.verticalCenter }
-                        Text { text: qsTr("Peer"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                        Text { text: qsTr("Peer"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                         Rectangle { width: 10; height: 10; radius: 5; color: "#4caf7d"; anchors.verticalCenter: parent.verticalCenter }
-                        Text { text: qsTr("Seed"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                        Text { text: qsTr("Seed"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                         Rectangle { width: 10; height: 10; radius: 5; color: "#9959e6"; anchors.verticalCenter: parent.verticalCenter }
-                        Text { text: qsTr("You"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                        Text { text: qsTr("You"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                     }
                 }
 
@@ -936,7 +937,7 @@ Window {
                         }
                     }
 
-                    // Zoom/pan gestures — suppress auto-fit once user interacts
+                    // ?? Zoom/pan gestures suppress auto-fit once user interacts ??
                     WheelHandler {
                         target: null
                         onWheel: function(event) {
@@ -984,7 +985,7 @@ Window {
                         Image {
                             id: metaWorldImg
                             anchors.fill: parent
-                            source: "icons/world-map.svg"
+                            source: ColorPalette.dark ? "icons/world-map.svg" : "icons/world-map-light.svg"
                             fillMode: Image.PreserveAspectFit
                             smooth: true
                             sourceSize.width: 2400
@@ -1074,7 +1075,7 @@ Window {
                                     anchors.centerIn: parent
                                     width: 10; height: 10; radius: 5
                                     color: root.metaPeerMapColor(isSeed)
-                                    border.color: metaMarkerMouse.containsMouse ? "#edf3f8" : "#081018"
+                                    border.color: metaMarkerMouse.containsMouse ? ColorPalette.textPrimary : ColorPalette.mapBorder
                                     border.width: 1
                                     transformOrigin: Item.Center
                                 }
@@ -1111,7 +1112,7 @@ Window {
                                 anchors.centerIn: parent
                                 width: 10; height: 10; radius: 5
                                 color: "#9959e6"
-                                border.color: "#081018"; border.width: 1
+                                border.color: ColorPalette.mapBorder; border.width: 1
                             }
                         }
                     }
@@ -1123,8 +1124,8 @@ Window {
                         y: Math.max(10, Math.min(metaMapRoot.height - height - 10, root.metaMapHoverY - height / 2))
                         width: 200
                         implicitHeight: metaTooltipCol.implicitHeight + 10
-                        color: "#101821"
-                        border.color: "#314252"
+                        color: ColorPalette.mapTooltipBg
+                        border.color: ColorPalette.mapBorder
                         radius: 4
                         z: 20
 
@@ -1138,14 +1139,14 @@ Window {
                                 spacing: 5; width: parent.width
                                 Text {
                                     text: root.metaMapHoverEndpoint
-                                    color: "#f0f5fb"; font.pixelSize: 13 * App.fontScale; font.bold: true
+                                    color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; font.bold: true
                                     elide: Text.ElideRight
                                     width: Math.min(implicitWidth, parent.width - metaTipPort.implicitWidth - 5)
                                 }
                                 Text {
                                     id: metaTipPort
                                     text: root.metaMapHoverPort
-                                    color: "#6a8099"; font.pixelSize: 13 * App.fontScale; font.bold: true
+                                    color: ColorPalette.textSecond; font.pixelSize: 13 * App.fontScale; font.bold: true
                                     anchors.baseline: parent.children[0].baseline
                                 }
                             }
@@ -1153,14 +1154,14 @@ Window {
                             Text {
                                 visible: root.metaMapHoverClient.length > 0
                                 text: root.metaMapHoverClient
-                                color: "#c5d2de"; font.pixelSize: 12 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                 elide: Text.ElideRight; width: parent.width
                             }
 
                             Text {
                                 visible: root.metaMapHoverCountryCode.length > 0
                                 text: root.metaPeerPlaceText(root.metaMapHoverCountryCode, root.metaMapHoverRegionCode, root.metaMapHoverRegionName, root.metaMapHoverCityName)
-                                color: "#95a9bb"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
                                 elide: Text.ElideRight; width: parent.width
                             }
 
@@ -1174,12 +1175,12 @@ Window {
                                     delegate: Rectangle {
                                         required property string modelData
                                         height: 14; width: tipBadge.implicitWidth + 6
-                                        radius: 2; color: Qt.rgba(0, 0, 0, 0.3)
+                                        radius: 2; color: "transparent"
                                         border.color: root.metaFlagColor(modelData); border.width: 1
                                         Text {
                                             id: tipBadge
                                             anchors.centerIn: parent
-                                            text: modelData; color: "white"
+                                            text: modelData; color: ColorPalette.textPrimary
                                             font.pixelSize: 9 * App.fontScale; font.bold: true
                                         }
                                     }
@@ -1188,14 +1189,14 @@ Window {
 
                             Text {
                                 text: qsTr("↓ %1  ↑ %2").arg(root.compactSpeed(root.metaMapHoverDownSpeed)).arg(root.compactSpeed(root.metaMapHoverUpSpeed))
-                                color: "#9fb6c8"; font.pixelSize: 11 * App.fontScale; width: parent.width
+                                color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; width: parent.width
                             }
 
                             Text {
                                 text: qsTr("RTT %1  %2% done")
-                                    .arg(root.metaMapHoverRtt > 0 ? (root.metaMapHoverRtt + " ms") : "—")
+                                    .arg(root.metaMapHoverRtt > 0 ? (root.metaMapHoverRtt + " ms") : "–")
                                     .arg(Math.round(root.metaMapHoverProgress * 100))
-                                color: "#9fb6c8"; font.pixelSize: 11 * App.fontScale; width: parent.width
+                                color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; width: parent.width
                             }
                         }
                     }
@@ -1218,7 +1219,7 @@ Window {
                 Layout.rightMargin: 10
                 Layout.topMargin: 8
                 Layout.bottomMargin: 4
-                Text { text: qsTr("Files"); color: "#f0f0f0"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                Text { text: qsTr("Files"); color: ColorPalette.textPrimary; font.pixelSize: 14 * App.fontScale; font.bold: true }
                 Item { Layout.fillWidth: true }
                 Text {
                     text: metaFileList ? qsTr("%n item(s)", "", metaFileList.count) : ""
@@ -1232,7 +1233,7 @@ Window {
                 Layout.leftMargin: 10
                 Layout.rightMargin: 10
                 height: 1
-                color: "#2d2d2d"
+                color: ColorPalette.dividerBg
             }
 
             Item {
@@ -1252,7 +1253,7 @@ Window {
                         id: metaHeader
                         Layout.fillWidth: true
                         height: 26
-                        color: "#252525"
+                        color: ColorPalette.panelBg
                         clip: true
 
                         Row {
@@ -1271,7 +1272,7 @@ Window {
                                 Text {
                                     anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: parent.right; rightMargin: 12 }
                                     text: qsTr("Name")
-                                    color: "#b0b0b0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale
                                     font.bold: true
                                     elide: Text.ElideRight
@@ -1304,7 +1305,7 @@ Window {
                                 Text {
                                     anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: parent.right; rightMargin: 12 }
                                     text: qsTr("Progress")
-                                    color: "#b0b0b0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale
                                     font.bold: true
                                     elide: Text.ElideRight
@@ -1334,7 +1335,7 @@ Window {
                                 Text {
                                     anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: parent.right; rightMargin: 12 }
                                     text: qsTr("Size")
-                                    color: "#b0b0b0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale
                                     font.bold: true
                                     elide: Text.ElideRight
@@ -1360,7 +1361,7 @@ Window {
                             anchors.centerIn: parent
                             visible: parent.count === 0
                             text: qsTr("No file information available")
-                            color: "#666666"
+                            color: ColorPalette.textDisabled
                             font.pixelSize: 12 * App.fontScale
                         }
 
@@ -1379,7 +1380,7 @@ Window {
 
                     width: Math.max(metaFileList.width, metaFileList.contentWidth)
                     height: 26
-                    color: isFolder ? "#1f1f1f" : (index % 2 === 0 ? "#1c1c1c" : "#222222")
+                    color: isFolder ? ColorPalette.toolbarBg : (index % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg)
 
                     Rectangle {
                         visible: isFolder
@@ -1422,13 +1423,13 @@ Window {
                                 width: 14
                                 height: 14
                                 radius: 2
-                                color: wanted ? "#4488dd" : "#1b1b1b"
-                                border.color: wanted ? "#4488dd" : "#3a3a3a"
+                                color: wanted ? "#4488dd" : ColorPalette.inputBg
+                                border.color: wanted ? "#4488dd" : ColorPalette.border
                                 Text {
                                     visible: wanted
                                     anchors.centerIn: parent
                                     text: "✓"
-                                    color: "#fff"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 10 * App.fontScale
                                     font.bold: true
                                 }
@@ -1459,7 +1460,7 @@ Window {
                             width: Math.max(40, root.fileColName - Math.max(0, depth) * 14 - 16 - 22 - 16)
                             anchors.verticalCenter: parent.verticalCenter
                             text: name
-                            color: !wanted ? "#555" : (isFolder ? "#e0e0e0" : "#d0d0d0")
+                            color: !wanted ? ColorPalette.textDisabled : (isFolder ? ColorPalette.textPrimary : ColorPalette.textPrimary)
                             font.pixelSize: 12 * App.fontScale
                             font.bold: isFolder
                             elide: Text.ElideMiddle
@@ -1473,7 +1474,7 @@ Window {
                             Text {
                                 anchors { left: parent.left; leftMargin: 6; verticalCenter: parent.verticalCenter }
                                 text: parent.showProgress ? (Math.round(root.clampPct(progress) * 100) + "%") : qsTr("Pending")
-                                color: wanted ? "#b0b0b0" : "#555"
+                                color: wanted ? ColorPalette.textPrimary : ColorPalette.textDisabled
                                 font.pixelSize: 11 * App.fontScale
                                 width: 46
                             }
@@ -1502,7 +1503,7 @@ Window {
                             width: Math.max(40, root.fileColSize)
                             anchors.verticalCenter: parent.verticalCenter
                             text: root.formatBytes(size)
-                            color: wanted ? "#b0b0b0" : "#555"
+                            color: wanted ? ColorPalette.textPrimary : ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             horizontalAlignment: Text.AlignLeft
                             elide: Text.ElideRight
@@ -1548,7 +1549,7 @@ Window {
                 maximumHeight: 150
                 visible: false
                 title: qsTr("Rename")
-                color: "#1e1e1e"
+                color: ColorPalette.cardBg
                 transientParent: root
                 modality: Qt.NonModal
                 flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
@@ -1593,17 +1594,17 @@ Window {
                             fillMode: Image.PreserveAspectFit
                             asynchronous: true
                         }
-                        Text { text: qsTr("Rename item"); color: "#e0e0e0"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Rename item"); color: ColorPalette.textPrimary; font.pixelSize: 14 * App.fontScale; font.bold: true }
                     }
-                    Text { text: qsTr("Enter a new file or folder name:"); color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale }
+                    Text { text: qsTr("Enter a new file or folder name:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
                     TextField {
                         id: metaRenameInput
                         Layout.fillWidth: true
-                        color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                        color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                         selectByMouse: true; leftPadding: 8
                         background: Rectangle {
-                            color: "#1b1b1b"
-                            border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3
+                            color: ColorPalette.inputBg
+                            border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3
                         }
                         Keys.onReturnPressed: metaRenameConfirmBtn.clicked()
                         Keys.onEnterPressed:  metaRenameConfirmBtn.clicked()
@@ -1655,8 +1656,8 @@ Window {
                 property bool _isFolder: false
 
                 background: Rectangle {
-                    color: "#252525"
-                    border.color: "#3a3a3a"
+                    color: ColorPalette.panelBg
+                    border.color: ColorPalette.border
                     radius: 4
                 }
 
@@ -1666,7 +1667,7 @@ Window {
                     Rectangle {
                         width: 180
                         height: 34
-                        color: metaDownloadCtxHover.containsMouse ? "#303030" : "transparent"
+                        color: metaDownloadCtxHover.containsMouse ? ColorPalette.border : "transparent"
 
                         Row {
                             anchors.verticalCenter: parent.verticalCenter
@@ -1678,13 +1679,13 @@ Window {
                                 width: 14
                                 height: 14
                                 radius: 2
-                                color: metaFileCtxPopup._wanted ? "#4488dd" : "#1b1b1b"
-                                border.color: metaFileCtxPopup._wanted ? "#4488dd" : "#3a3a3a"
+                                color: metaFileCtxPopup._wanted ? "#4488dd" : ColorPalette.inputBg
+                                border.color: metaFileCtxPopup._wanted ? "#4488dd" : ColorPalette.border
                                 Text {
                                     visible: metaFileCtxPopup._wanted
                                     anchors.centerIn: parent
                                     text: "✓"
-                                    color: "#fff"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 10 * App.fontScale
                                     font.bold: true
                                 }
@@ -1692,7 +1693,7 @@ Window {
 
                             Text {
                                 text: qsTr("Download")
-                                color: "#e0e0e0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 12 * App.fontScale
                             }
                         }
@@ -1715,12 +1716,12 @@ Window {
                         }
                     }
 
-                    Rectangle { width: 180; height: 1; color: "#3a3a3a" }
+                    Rectangle { width: 180; height: 1; color: ColorPalette.border }
 
                     Rectangle {
                         width: 180
                         height: 34
-                        color: metaRenameCtxHover.containsMouse ? "#303030" : "transparent"
+                        color: metaRenameCtxHover.containsMouse ? ColorPalette.border : "transparent"
 
                         Image {
                             anchors.verticalCenter: parent.verticalCenter
@@ -1738,7 +1739,7 @@ Window {
                             anchors.left: parent.left
                             anchors.leftMargin: 32
                             text: qsTr("Rename...")
-                            color: "#e0e0e0"
+                            color: ColorPalette.textPrimary
                             font.pixelSize: 12 * App.fontScale
                         }
 

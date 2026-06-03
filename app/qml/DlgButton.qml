@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 
-// Shared dialog button — single source of truth for button style across all dialogs.
+// ── Shared dialog button single source of truth for button style across all dialogs. ──
 // Master style taken from AddUrlDialog.qml.
 //
 // Usage:
@@ -25,7 +25,7 @@ import QtQuick.Controls
 //   DlgButton { text: "OK";      primary: true }    // primary   (blue)
 //   DlgButton { text: "Delete";  destructive: true } // destructive (red)
 Button {
-    // Visual variant — at most one should be true; both false = secondary style.
+    // ── Visual variant at most one should be true; both false = secondary style. ──
     property bool primary:     false
     property bool destructive: false
 
@@ -37,22 +37,22 @@ Button {
         radius: 3
         border.width: 1
         color: {
-            if (!parent.enabled) return "#2a2a2a"
+            if (!parent.enabled) return ColorPalette.panelBg
             if (destructive) return parent.pressed ? "#a02828" : (parent.hovered ? "#9a2525" : "#8b2020")
-            if (primary)     return parent.pressed ? "#254a8a" : (parent.hovered ? "#22429e" : "#1e3a6e")
-            return parent.pressed ? "#484848" : (parent.hovered ? "#424242" : "#3a3a3a")
+            if (primary)     return parent.pressed ? "#254a8a" : (parent.hovered ? "#3a78c8" : "#3266a8")
+            return parent.pressed ? ColorPalette.dividerBg : (parent.hovered ? ColorPalette.border : ColorPalette.buttonSecondaryBg)
         }
         border.color: {
-            if (!parent.enabled) return "#444444"
+            if (!parent.enabled) return ColorPalette.border
             if (destructive) return "#cc3333"
             if (primary)     return "#4488dd"
-            return "#555555"
+            return ColorPalette.border
         }
     }
 
     contentItem: Text {
         text:               parent.text
-        color:              !parent.enabled ? "#8e8e8e" : ((primary || destructive) ? "#ffffff" : "#d0d0d0")
+        color:              !parent.enabled ? ColorPalette.textDisabled : ((primary || destructive) ? "#ffffff" : ColorPalette.textPrimary)
         font.pixelSize: 13 * App.fontScale
         font.bold:          primary || destructive
         horizontalAlignment: Text.AlignHCenter

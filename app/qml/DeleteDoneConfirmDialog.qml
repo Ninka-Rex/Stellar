@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -29,12 +29,13 @@ Window {
     minimumWidth: 360
     minimumHeight: 188
     maximumHeight: 188
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
     modality: Qt.ApplicationModal
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     signal confirmed(bool includeSeedingTorrents)
@@ -62,7 +63,7 @@ Window {
                 spacing: 2
                 Text {
                     text: qsTr("Delete completed downloads?")
-                    color: "#ffffff"
+                    color: ColorPalette.textHeader
                     font.pixelSize: 13 * App.fontScale
                     font.bold: true
                 }
@@ -79,11 +80,11 @@ Window {
         Rectangle {
             Layout.fillWidth: true
             height: 1
-            color: "#3a3a3a"
+            color: ColorPalette.border
             Layout.topMargin: 2
         }
 
-        CheckBox {
+        StyledCheckBox {
             text: qsTr("Delete completed and seeding torrents")
             checked: root.includeSeedingTorrents
             topPadding: 2
@@ -91,7 +92,7 @@ Window {
             onToggled: root.includeSeedingTorrents = checked
             contentItem: Text {
                 text: parent.text
-                color: "#d0d0d0"
+                color: ColorPalette.textPrimary
                 font.pixelSize: 12 * App.fontScale
                 leftPadding: parent.indicator.width + 6
                 verticalAlignment: Text.AlignVCenter

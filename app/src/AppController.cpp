@@ -15,6 +15,13 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AppController.h"
+#ifdef Q_OS_WIN
+#include <windows.h>
+#include <dwmapi.h>
+#endif
+#include <QGuiApplication>
+#include <QWindow>
+#include <QHash>
 #include <QJSEngine>
 #include "StellarPaths.h"
 #include <QQuickWindow>
@@ -808,6 +815,52 @@ void AppController::setWindowIcon(QObject *window, const QString &iconPath) {
         qw->setIcon(QIcon(iconPath));
 }
 
+#ifdef Q_OS_WIN
+static void applyDarkCaption(QWindow *win, bool dark) {
+    if (!win) return;
+    HWND hwnd = reinterpret_cast<HWND>(win->winId());
+    if (!hwnd) return;
+
+    // Cache the last value applied to each HWND. The focus-changed hook calls
+    // this on every focus change; re-applying the attribute + a frame-change
+    // re-activates the window, which re-fires focusChanged -> infinite loop
+    // (the "blank window opening over and over" crash). Skip no-op applies.
+    static QHash<HWND, BOOL> s_applied;
+    const BOOL value = dark ? TRUE : FALSE;
+    auto it = s_applied.constFind(hwnd);
+    if (it != s_applied.constEnd() && it.value() == value)
+        return;
+    s_applied.insert(hwnd, value);
+
+    // DWMWA_USE_IMMERSIVE_DARK_MODE = 20 (1903+). Some early 1809 builds used 19.
+    static const DWORD kAttrModern = 20;
+    static const DWORD kAttrLegacy = 19;
+    if (DwmSetWindowAttribute(hwnd, kAttrModern, &value, sizeof(value)) != S_OK)
+        DwmSetWindowAttribute(hwnd, kAttrLegacy, &value, sizeof(value));
+    // DWM repaints the caption itself on attribute change; no SetWindowPos /
+    // SWP_FRAMECHANGED here (that would re-activate the window and recurse).
+}
+#endif
+
+void AppController::setWindowDarkTitleBar(QObject *window, bool dark) {
+#ifdef Q_OS_WIN
+    applyDarkCaption(qobject_cast<QWindow *>(window), dark);
+#else
+    Q_UNUSED(window)
+    Q_UNUSED(dark)
+#endif
+}
+
+void AppController::applyDarkTitleBarToAllWindows(bool dark) {
+#ifdef Q_OS_WIN
+    const auto windows = QGuiApplication::topLevelWindows();
+    for (QWindow *w : windows)
+        applyDarkCaption(w, dark);
+#else
+    Q_UNUSED(dark)
+#endif
+}
+
 void AppController::handleIpcPayload(const QByteArray &json) {
     // Buffer payloads that arrive before QML has wired its signal Connections.
     // Without this, interceptedDownloadRequested (and showWindowRequested) fire
@@ -1204,6 +1257,18 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     // ── 1. Components ────────────────────────────────────────────────────────────
     m_nam           = new QNetworkAccessManager(this);
     m_settings      = new AppSettings(this);
+#ifdef Q_OS_WIN
+    // Apply the active theme's title-bar colour to any window as it gains focus.
+    // Dialogs are created lazily, so this catches each one the first time it opens
+    // without having to wire onVisibleChanged into every QML Window.
+    if (auto *guiApp = qobject_cast<QGuiApplication *>(QCoreApplication::instance())) {
+        connect(guiApp, &QGuiApplication::focusWindowChanged, this,
+                [this](QWindow *win) {
+                    if (win && m_settings)
+                        applyDarkCaption(win, m_settings->darkMode());
+                });
+    }
+#endif
     connect(m_settings, &AppSettings::uiFontPointSizeChanged,
             this,       &AppController::fontScaleChanged);
     // Start the session uptime clock — elapsed time is flushed to settings on destruction.

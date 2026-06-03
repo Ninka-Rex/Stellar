@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -28,11 +28,12 @@ Window {
     minimumWidth: 420
     minimumHeight: 360
     title: qsTr("Browser Extensions")
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     property string regState:       "idle"
@@ -78,7 +79,7 @@ Window {
         if (visible) { _centerOnOwner(); runRegister() }
     }
 
-    // ── Install button ─────────────────────────────────────────────────────────
+    // ?? Install button ???????????????????????????????????????????????????
     component InstallButton: Rectangle {
         id: ib
         property string label: ""
@@ -114,7 +115,7 @@ Window {
 
             Text {
                 text: qsTr("Browser Extensions")
-                color: "#ffffff"
+                color: ColorPalette.textHeader
                 font.pixelSize: 15 * App.fontScale
                 font.bold: true
             }
@@ -128,7 +129,7 @@ Window {
                 wrapMode: Text.WordWrap
             }
 
-            // ── Chrome ────────────────────────────────────────────────────────
+            // ?? Chrome ???????????????????????????????????????????????????
             Rectangle {
                 Layout.fillWidth: true
                 implicitHeight: chromeCol.implicitHeight + 16
@@ -157,7 +158,7 @@ Window {
                 }
             }
 
-            // ── Firefox ───────────────────────────────────────────────────────
+            // ?? Firefox ??????????????????????????????????????????????????
             Rectangle {
                 Layout.fillWidth: true
                 implicitHeight: firefoxCol.implicitHeight + 16
@@ -181,12 +182,12 @@ Window {
                         url: root.firefoxUrl
                     }
 
-                    // ── Snap-Firefox-on-KDE compatibility notice ─────────────
+                    // ?? Snap-Firefox-on-KDE compatibility notice ?????????
                     // Snap Firefox is confined and cannot launch the Stellar
                     // host binary directly. The clean fix is to use a
                     // non-snap Firefox (flatpak / Mozilla deb) or another
                     // Chromium-family browser. We never recommend installing
-                    // xdg-desktop-portal-gnome — it pulls GNOME components
+                    // ?? xdg-desktop-portal-gnome it pulls GNOME components ??
                     // that can break SDDM / switch-user on Plasma.
                     Rectangle {
                         visible: root.sandboxedIssue === "snap"
@@ -264,13 +265,13 @@ Window {
                             Text {
                                 visible: root.portalLaunchStatus === "ok"
                                 Layout.fillWidth: true
-                                text: qsTr("Opened. Install Firefox, then uninstall the snap version (System Settings → Apps).")
+                                text: qsTr("Opened. Install Firefox, then uninstall the snap version (System Settings ? Apps).")
                                 color: "#88cc88"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
                             }
                         }
                     }
 
-                    // ── Flatpak Firefox needs org.freedesktop.Flatpak=talk ────────
+                    // ?? Flatpak Firefox needs org.freedesktop.Flatpak=talk ??
                     Rectangle {
                         visible: root.sandboxedIssue === "flatpak_perm"
                         Layout.fillWidth: true
@@ -347,7 +348,7 @@ Window {
                 }
             }
 
-            // ── Native messaging host ─────────────────────────────────────────
+            // ?? Native messaging host ????????????????????????????????????
             Rectangle {
                 Layout.fillWidth: true
                 implicitHeight: hostCol.implicitHeight + 16
@@ -432,7 +433,7 @@ Window {
                         color: "#888"; font.pixelSize: 11 * App.fontScale
                     }
 
-                    // Inline copy row — reused twice; extracted as component here
+                    // ?? Inline copy row reused twice; extracted as component here ??
                     // to avoid importing the CopyRow from the old dialog.
                     Rectangle {
                         visible: root.regState === "error" && Qt.platform.os === "windows"

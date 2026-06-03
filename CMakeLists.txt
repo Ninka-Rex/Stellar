@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(Stellar VERSION 0.9.0 LANGUAGES C CXX)
+project(Stellar VERSION 0.10.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -204,6 +204,9 @@ endif()
 
 qt_add_executable(Stellar ${BACKEND_SOURCES} ${BACKEND_HEADERS})
 
+set_source_files_properties(app/qml/ColorPalette.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
+set_source_files_properties(app/qml/LanguageList.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
+
 qt_add_qml_module(Stellar
     URI com.stellar.app
     VERSION 1.0
@@ -252,12 +255,16 @@ qt_add_qml_module(Stellar
         app/qml/TorrentSpeedLimitDialog.qml
         app/qml/TorrentCreatorDialog.qml
         app/qml/DlgButton.qml
+        app/qml/StyledCheckBox.qml
+        app/qml/StyledRadioButton.qml
+        app/qml/LanguageList.qml
         app/qml/RssWindow.qml
         app/qml/RssDownloadRulesDialog.qml
         app/qml/TorrentSearchWindow.qml
         app/qml/TorrentSearchPluginsDialog.qml
         app/qml/TorrentSearchInstallDialog.qml
         app/qml/StatisticsDialog.qml
+        app/qml/ColorPalette.qml
     RESOURCES
         app/qml/icons/add.svg
         app/qml/icons/resume.svg
@@ -298,6 +305,9 @@ qt_add_qml_module(Stellar
         app/qml/icons/milky-way.ico
         app/qml/icons/milky-way.gif
         app/qml/icons/magnet.svg
+        app/qml/icons/darkmode.svg
+        app/qml/icons/lightmode.svg
+        app/qml/icons/language.svg
         app/scripts/torrent_search_runner.py
         app/search_plugins/bitsearch.py
         app/search_plugins/limetorrents.py
@@ -343,6 +353,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/link.svg
         app/qml/icons/file_no_longer_available.svg
         app/qml/icons/world-map.svg
+        app/qml/icons/world-map-light.svg
         app/qml/icons/page.svg
         app/qml/icons/cloud_copylink.svg
         app/qml/icons/folder_view.svg
@@ -478,7 +489,7 @@ target_link_libraries(Stellar PRIVATE
 )
 
 if(WIN32)
-    target_link_libraries(Stellar PRIVATE wlanapi)
+    target_link_libraries(Stellar PRIVATE wlanapi dwmapi)
 endif()
 
 if(UNIX AND NOT APPLE)
@@ -506,7 +517,7 @@ qt_add_resources(Stellar "conf"
 # ── Platform-specific ─────────────────────────────────────────────────────────
 if(WIN32)
     set_target_properties(Stellar PROPERTIES
-        WIN32_EXECUTABLE TRUE
+        WIN32_EXECUTABLE FALSE
     )
     target_compile_definitions(Stellar PRIVATE STELLAR_WINDOWS)
 elseif(UNIX AND NOT APPLE)

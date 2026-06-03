@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -27,12 +27,13 @@ Window {
     height: 250
     minimumWidth: 380
     minimumHeight: 250
-    color: "#232323"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
     modality: Qt.ApplicationModal
 
-    Material.theme: Material.Dark
-    Material.background: "#232323"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     property var queueIds: []
@@ -86,7 +87,7 @@ Window {
         anchors.margins: 16
         spacing: 10
 
-        Text { text: qsTr("Put files into a queue?"); color: "#ffffff"; font.pixelSize: 16 * App.fontScale; font.bold: true }
+        Text { text: qsTr("Put files into a queue?"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
         Text { text: qsTr("Choose an existing queue or create a new one."); color: "#aab3c2"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
 
         RowLayout {
@@ -105,19 +106,19 @@ Window {
                 implicitWidth: 32
                 implicitHeight: 30
                 background: Rectangle { color: "#2d3440"; border.color: "#4a5a72"; radius: 4 }
-                contentItem: Text { text: parent.text; color: "#ffffff"; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; font.pixelSize: 16 * App.fontScale; font.bold: true }
+                contentItem: Text { text: parent.text; color: ColorPalette.textHeader; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; font.pixelSize: 16 * App.fontScale; font.bold: true }
                 onClicked: createQueuePopup.open()
             }
         }
 
-        CheckBox {
+        StyledCheckBox {
             id: startChk
             text: qsTr("Start queue processing")
             topPadding: 0; bottomPadding: 0
             contentItem: Text { text: parent.text; color: "#d6dbe4"; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4 }
         }
 
-        CheckBox {
+        StyledCheckBox {
             id: askChk
             text: qsTr("Don't ask me again")
             topPadding: 0; bottomPadding: 0
@@ -158,7 +159,7 @@ Window {
             anchors.fill: parent
             anchors.margins: 12
             spacing: 8
-            Text { text: qsTr("Enter queue name"); color: "#ffffff"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+            Text { text: qsTr("Enter queue name"); color: ColorPalette.textHeader; font.pixelSize: 12 * App.fontScale; font.bold: true }
             TextField {
                 id: newQueueField
                 Layout.fillWidth: true

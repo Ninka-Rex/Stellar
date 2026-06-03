@@ -3361,6 +3361,41 @@ Project</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../app/qml/Main.qml" line="3271"/>
+        <source>Switch to Light Mode</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="3271"/>
+        <source>Switch to Dark Mode</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="3346"/>
+        <source>Language</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2432"/>
+        <source>Restart Required</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2456"/>
+        <source>The interface language has been changed. Stellar must restart to apply it.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2466"/>
+        <source>Restart Now</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2471"/>
+        <source>Later</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/Main.qml" line="543"/>
         <location filename="../app/qml/Main.qml" line="2999"/>
         <source>Add URL…</source>

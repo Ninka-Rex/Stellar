@@ -22,17 +22,18 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: qsTr("Stellar Grabber — Step %1 of %2: %3").arg(stepIndex + 1).arg(stepTitles.length).arg(stepTitles[stepIndex])
+    title: qsTr("Stellar Grabber - Step %1 of %2: %3").arg(stepIndex + 1).arg(stepTitles.length).arg(stepTitles[stepIndex])
     width: 700
     height: 540
     minimumWidth: 700
     minimumHeight: 540
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint
     modality: Qt.ApplicationModal
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     property string projectId: ""
@@ -70,29 +71,29 @@ Window {
     ButtonGroup { id: exploreModeGroup }
 
     component StepLabel: Text {
-        color: "#c0c0c0"
+        color: ColorPalette.textPrimary
         font.pixelSize: 13 * App.fontScale
         verticalAlignment: Text.AlignVCenter
     }
 
     component HintText: Text {
-        color: "#909090"
+        color: ColorPalette.textSecond
         font.pixelSize: 11 * App.fontScale
         wrapMode: Text.WordWrap
     }
 
     component FieldBox: Rectangle {
-        color: "#2d2d2d"
-        border.color: "#4a4a4a"
+        color: ColorPalette.dividerBg
+        border.color: ColorPalette.border
         border.width: 1
         radius: 3
     }
 
     component WizardTextField: TextField {
-        color: "#d0d0d0"
+        color: ColorPalette.textPrimary
         font.pixelSize: 13 * App.fontScale
         selectionColor: "#4f5560"
-        selectedTextColor: "#ffffff"
+        selectedTextColor: ColorPalette.textHeader
         leftPadding: 8
         rightPadding: 8
         topPadding: 6
@@ -101,10 +102,10 @@ Window {
     }
 
     component WizardTextArea: TextArea {
-        color: "#d0d0d0"
+        color: ColorPalette.textPrimary
         font.pixelSize: 12 * App.fontScale
         selectionColor: "#4f5560"
-        selectedTextColor: "#ffffff"
+        selectedTextColor: ColorPalette.textHeader
         leftPadding: 8
         rightPadding: 8
         topPadding: 8
@@ -120,14 +121,14 @@ Window {
             leftPadding: 8
             rightPadding: 24
             text: parent.displayText
-            color: "#d0d0d0"
+            color: ColorPalette.textPrimary
             font: parent.font
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
         }
         popup.background: Rectangle {
-            color: "#2d2d2d"
-            border.color: "#4a4a4a"
+            color: ColorPalette.dividerBg
+            border.color: ColorPalette.border
             radius: 3
         }
     }
@@ -143,20 +144,21 @@ Window {
             implicitHeight: 14
             x: 0
             y: (parent.height - height) / 2
-            color: "#111111"
-            border.color: parent.checked ? "#9aa1ab" : "#69717d"
+            radius: 3
+            color: parent.checked ? ColorPalette.accent : ColorPalette.inputBg
+            border.color: parent.checked ? ColorPalette.accent : ColorPalette.border
             border.width: 1
-            Rectangle {
+            Text {
                 anchors.centerIn: parent
-                width: 8
-                height: 8
-                color: "#9aa1ab"
+                text: "✓"
+                color: "#ffffff"
+                font.pixelSize: 10; font.bold: true
                 visible: parent.parent.checked
             }
         }
         contentItem: Text {
             text: parent.text
-            color: parent.enabled ? "#d0d0d0" : "#848a94"
+            color: parent.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
             font.pixelSize: 13 * App.fontScale
             leftPadding: parent.indicator.width + parent.spacing
             verticalAlignment: Text.AlignVCenter
@@ -175,21 +177,21 @@ Window {
             radius: 7
             x: 0
             y: (parent.height - height) / 2
-            color: "#111111"
-            border.color: parent.checked ? "#9aa1ab" : "#69717d"
+            color: ColorPalette.inputBg
+            border.color: parent.checked ? ColorPalette.accent : ColorPalette.border
             border.width: 1
             Rectangle {
                 anchors.centerIn: parent
                 width: 7
                 height: 7
                 radius: 4
-                color: "#9aa1ab"
+                color: ColorPalette.accent
                 visible: parent.parent.checked
             }
         }
         contentItem: Text {
             text: parent.text
-            color: parent.enabled ? "#d0d0d0" : "#848a94"
+            color: parent.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
             font.pixelSize: 13 * App.fontScale
             leftPadding: parent.indicator.width + parent.spacing
             verticalAlignment: Text.AlignVCenter
@@ -546,13 +548,13 @@ Window {
         height: 150
         x: (root.width - width) / 2
         y: (root.height - height) / 2
-        background: Rectangle { color: "#1e1e1e"; border.color: "#3a3a3a"; radius: 0 }
+        background: Rectangle { color: ColorPalette.cardBg; border.color: ColorPalette.border; radius: 0 }
 
         ColumnLayout {
             anchors.fill: parent
             anchors.margins: 12
             spacing: 10
-            Text { text: qsTr("Template name"); color: "#f1f4f8"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+            Text { text: qsTr("Template name"); color: ColorPalette.textPrimary; font.pixelSize: 14 * App.fontScale; font.bold: true }
             WizardTextField { id: templateNameField; Layout.fillWidth: true }
             RowLayout {
                 Layout.fillWidth: true
@@ -577,20 +579,20 @@ Window {
 
     Rectangle {
         anchors.fill: parent
-        color: "#1e1e1e"
+        color: ColorPalette.cardBg
 
         ColumnLayout {
             anchors.fill: parent
             anchors.margins: 0
             spacing: 0
 
-            // Menu bar — real MenuBar (not ApplicationWindow, but works standalone)
+            // Menu bar - real MenuBar (not ApplicationWindow, but works standalone)
             MenuBar {
                 Layout.fillWidth: true
 
                 background: Rectangle {
-                    color: "#252525"
-                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#383838" }
+                    color: ColorPalette.panelBg
+                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
                 }
 
                 component CompactMenuItem: MenuItem {
@@ -610,7 +612,7 @@ Window {
                     arrow: Text {
                         x: _cmi.width - width - 8
                         anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                        text: "▶"; font.pixelSize: 8 * App.fontScale; color: "#888888"
+                        text: "▾"; font.pixelSize: 8 * App.fontScale; color: ColorPalette.textMuted
                         visible: _cmi.subMenu !== null
                     }
                     contentItem: RowLayout {
@@ -619,14 +621,14 @@ Window {
                         Item { Layout.preferredWidth: 0; Layout.preferredHeight: 14 }
                         Text {
                             text: _cmi.text; font: _cmi.font
-                            color: _cmi.enabled ? "#d0d0d0" : "#666666"
+                            color: _cmi.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
                             verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight
                             Layout.fillWidth: true
                         }
                     }
                     background: Rectangle {
                         implicitHeight: 22
-                        color: _cmi.highlighted ? "#1e3a6e" : "transparent"
+                        color: _cmi.highlighted ? ColorPalette.selectionBg : "transparent"
                     }
                 }
 
@@ -634,11 +636,11 @@ Window {
                     verticalPadding: 0; leftPadding: 12; rightPadding: 12
                     contentItem: Text {
                         text: parent.text; font: parent.font
-                        color: "#d0d0d0"; verticalAlignment: Text.AlignVCenter
+                        color: ColorPalette.textPrimary; verticalAlignment: Text.AlignVCenter
                     }
                     background: Rectangle {
                         implicitHeight: 20
-                        color: parent.highlighted ? "#1e3a6e" : "transparent"
+                        color: parent.highlighted ? ColorPalette.selectionBg : "transparent"
                     }
                 }
 
@@ -688,16 +690,16 @@ Window {
 
             }
 
-            // Step header — icon + title + breadcrumb pill
+            // Step header - icon + title + breadcrumb pill
             Rectangle {
                 Layout.fillWidth: true
                 height: 46
-                color: "#222222"
+                color: ColorPalette.rowAltBg
 
                 Rectangle {
                     anchors.bottom: parent.bottom
                     width: parent.width; height: 1
-                    color: "#343434"
+                    color: ColorPalette.border
                 }
 
                 Row {
@@ -715,14 +717,14 @@ Window {
 
                     Text {
                         text: stepTitles[stepIndex]
-                        color: "#f0f0f0"
+                        color: ColorPalette.textPrimary
                         font.pixelSize: 14 * App.fontScale
                         font.bold: true
                         anchors.verticalCenter: parent.verticalCenter
                     }
                 }
 
-                // Step breadcrumb — right side
+                // Step breadcrumb - right side
                 Row {
                     anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 14 }
                     spacing: 4
@@ -736,8 +738,8 @@ Window {
                             // Chevron separator (not before first)
                             Text {
                                 visible: index > 0
-                                text: "›"
-                                color: "#555"
+                                text: ">"
+                                color: ColorPalette.textDisabled
                                 font.pixelSize: 14 * App.fontScale
                                 anchors.verticalCenter: parent.verticalCenter
                             }
@@ -746,8 +748,8 @@ Window {
                                 width: stepPillText.implicitWidth + 14
                                 height: 20
                                 radius: 10
-                                color: index === stepIndex ? "#1e3a6e" : "transparent"
-                                border.color: index === stepIndex ? "#4488dd" : (index < stepIndex ? "#336622" : "#444")
+                                color: index === stepIndex ? ColorPalette.selectionBg : "transparent"
+                                border.color: index === stepIndex ? "#4488dd" : (index < stepIndex ? "#336622" : ColorPalette.border)
                                 border.width: 1
                                 anchors.verticalCenter: parent.verticalCenter
 
@@ -761,9 +763,9 @@ Window {
                                     id: stepPillText
                                     anchors.centerIn: parent
                                     text: (index + 1) + ""
-                                    color: index === stepIndex ? "#88bbff"
+                                    color: index === stepIndex ? ColorPalette.accent
                                          : index < stepIndex  ? "#66aa44"
-                                         : "#888"
+                                         : ColorPalette.textSecond
                                     font.pixelSize: 11 * App.fontScale
                                     font.bold: index === stepIndex
                                 }
@@ -782,7 +784,7 @@ Window {
                 Rectangle {
                     Layout.preferredWidth: 160
                     Layout.fillHeight: true
-                    color: "#252525"
+                    color: ColorPalette.panelBg
 
                     Column {
                         anchors.fill: parent
@@ -794,13 +796,13 @@ Window {
                             delegate: Rectangle {
                                 width: parent.width
                                 height: 36
-                                color: index === stepIndex ? "#1e3a6e" : (ma.containsMouse ? "#2a2a2a" : "transparent")
+                                color: index === stepIndex ? ColorPalette.selectionBg : (ma.containsMouse ? ColorPalette.hoverBg : "transparent")
                                 Text {
                                     anchors.verticalCenter: parent.verticalCenter
                                     anchors.left: parent.left
                                     anchors.leftMargin: 16
                                     text: (index + 1) + ". " + modelData
-                                    color: index === stepIndex ? "#ffffff" : "#c6cbd4"
+                                    color: index === stepIndex ? "#ffffff" : ColorPalette.textPrimary
                                     font.pixelSize: 13 * App.fontScale
                                     font.bold: index === stepIndex
                                 }
@@ -818,7 +820,7 @@ Window {
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    color: "#1e1e1e"
+                    color: ColorPalette.cardBg
 
                     StackLayout {
                         anchors.fill: parent
@@ -863,7 +865,7 @@ Window {
                                     text: qsTr("If you select a project template, the wizard will make the required project settings for the selected template on the next steps. You may always change the settings manually.")
                                 }
 
-                                Rectangle { Layout.fillWidth: true; height: 1; color: "#343434" }
+                                Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                                 RowLayout {
                                     Layout.fillWidth: true
@@ -905,7 +907,7 @@ Window {
                                     text: qsTr("Press Advanced to enable manual login or to disable a logout page.")
                                 }
 
-                                Rectangle { Layout.fillWidth: true; height: 1; color: "#343434" }
+                                Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                                 ColumnLayout {
                                     Layout.fillWidth: true
@@ -1044,7 +1046,7 @@ Window {
                                             SpinBox { id: thisSiteSpin; from: 0; to: 20; value: 2; editable: true; enabled: exploreLevelsRadio.checked }
                                             Text {
                                                 text: qsTr("levels within the base site")
-                                                color: "#d4d4d4"
+                                                color: ColorPalette.textPrimary
                                                 font.pixelSize: 12 * App.fontScale
                                                 wrapMode: Text.WordWrap
                                                 Layout.preferredWidth: 140
@@ -1055,7 +1057,7 @@ Window {
                                             SpinBox { id: otherSitesSpin; from: 0; to: 20; value: 0; editable: true; enabled: exploreLevelsRadio.checked }
                                             Text {
                                                 text: qsTr("levels on other sites")
-                                                color: "#d4d4d4"
+                                                color: ColorPalette.textPrimary
                                                 font.pixelSize: 12 * App.fontScale
                                                 wrapMode: Text.WordWrap
                                                 Layout.preferredWidth: 180
@@ -1064,7 +1066,7 @@ Window {
                                     }
                                 }
 
-                                Text { text: qsTr("What is the number of link levels?"); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale }
+                                Text { text: qsTr("What is the number of link levels?"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
                                 WizardCheckBox { id: ignorePopupChk; text: qsTr("Ignore popup windows"); checked: true }
                                 WizardCheckBox { id: dontExploreParentsChk; text: qsTr("Don't explore parent directories") }
                                 WizardCheckBox { id: exploreMainDomainChk; text: qsTr("Explore all sites within the main domain") }
@@ -1131,7 +1133,7 @@ Window {
                                             leftPadding: 8
                                             rightPadding: 24
                                             text: parent.displayText
-                                            color: "#eef2f7"
+                                            color: ColorPalette.textPrimary
                                             font: parent.font
                                             verticalAlignment: Text.AlignVCenter
                                             elide: Text.ElideRight
@@ -1170,7 +1172,7 @@ Window {
                                             leftPadding: 8
                                             rightPadding: 24
                                             text: parent.displayText
-                                            color: "#eef2f7"
+                                            color: ColorPalette.textPrimary
                                             font: parent.font
                                             verticalAlignment: Text.AlignVCenter
                                             elide: Text.ElideRight
@@ -1220,7 +1222,7 @@ Window {
                                         StepLabel { text: qsTr("Bytes") }
                                     }
 
-                                    Rectangle { Layout.fillWidth: true; height: 1; color: "#343434" }
+                                    Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                                     ColumnLayout {
                                         Layout.fillWidth: true
@@ -1261,7 +1263,7 @@ Window {
             Rectangle {
                 Layout.fillWidth: true
                 height: 54
-                color: "#252525"
+                color: ColorPalette.panelBg
 
                 RowLayout {
                     anchors.fill: parent
@@ -1275,7 +1277,7 @@ Window {
                         id: errorLabel
                         Layout.fillWidth: true
                         text: App.grabberStatusText
-                        color: App.grabberBusy ? "#d0d0d0" : "#c3cad5"
+                        color: App.grabberBusy ? ColorPalette.textPrimary : ColorPalette.textPrimary
                         font.pixelSize: 11 * App.fontScale
                         elide: Text.ElideRight
                     }

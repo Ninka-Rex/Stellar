@@ -26,7 +26,7 @@ Window {
     minimumWidth: 380
     minimumHeight: root.newTrackers.length > 0 ? 260 : 140
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     modality: Qt.ApplicationModal
 
     property string existingDownloadId: ""
@@ -68,7 +68,7 @@ Window {
 
                 Text {
                     text: qsTr("Torrent already exists")
-                    color: "#e0e0e0"
+                    color: ColorPalette.textPrimary
                     font.pixelSize: 15 * App.fontScale
                     font.bold: true
                 }
@@ -77,7 +77,7 @@ Window {
                     text: root.newTrackers.length > 0
                         ? qsTr("This torrent is already in your list. %n new tracker(s) found.", "", root.newTrackers.length)
                         : qsTr("This torrent is already in your list with the same trackers.")
-                    color: "#aaaaaa"
+                    color: ColorPalette.textSecond
                     font.pixelSize: 12 * App.fontScale
                     wrapMode: Text.WordWrap
                     Layout.fillWidth: true
@@ -85,12 +85,12 @@ Window {
             }
         }
 
-        // Tracker list — only shown when there are new trackers
+        // ── Tracker list only shown when there are new trackers ──────────
         Rectangle {
             Layout.fillWidth: true
             implicitHeight: trackerContent.implicitHeight + 16
-            color: "#1a2030"
-            border.color: "#2a3050"
+            color: ColorPalette.infoBoxBg
+            border.color: ColorPalette.infoBoxBorder
             radius: 4
             visible: root.newTrackers.length > 0
 
@@ -112,7 +112,7 @@ Window {
 
                     Text {
                         text: qsTr("%n new tracker(s)", "", root.newTrackers.length)
-                        color: "#8899bb"
+                        color: ColorPalette.infoBoxText
                         font.pixelSize: 12 * App.fontScale
                         font.bold: true
                     }

@@ -21,7 +21,7 @@ import QtQuick.Layouts
 Rectangle {
     id: root
     height: App.settings.toolbarSmallButtons ? 48 : 72
-    color: "#1f1f1f"
+    color: ColorPalette.toolbarBg
 
     property var queueModel: null
     property var downloadTable: null
@@ -86,7 +86,7 @@ Rectangle {
         return buttonDefs.filter(function(d) {
             if (d.key === "search_engine" && !_showSearch) return false
             if (d.key === "rss" && !_showRss) return false
-            // View menu toggle sufficient for search/rss — bypass per-button enabled
+            // ── View menu toggle sufficient for search/rss bypass per-button enabled ──
             if (d.key === "search_engine" || d.key === "rss") return true
             return d.key === "separator" || d.enabled !== false
         })
@@ -151,7 +151,7 @@ Rectangle {
         anchors.bottom: parent.bottom
         width: parent.width
         height: 0
-        color: "#3a3a3a"
+        color: ColorPalette.border
     }
 
     Row {
@@ -188,11 +188,11 @@ Rectangle {
                     onQueueSelected: (queueId) => root._handleQueueClick(modelData.key, queueId)
                 }
 
-                // Separator — vertical line centered in the 16px slot
+                // ── Separator vertical line centered in the 16px slot ────
                 Rectangle {
                     anchors.centerIn: parent
                     width: 1; height: _sm ? 24 : 36
-                    color: "#3a3a3a"
+                    color: ColorPalette.border
                     visible: modelData.key === "separator"
                 }
             }

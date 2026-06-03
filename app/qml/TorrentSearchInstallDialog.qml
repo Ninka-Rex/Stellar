@@ -26,7 +26,7 @@ Window {
     minimumWidth: 380
     minimumHeight: 200
     title: qsTr("Install Search Plugin")
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
 
     property bool webMode: false
@@ -45,7 +45,7 @@ Window {
 
         Text {
             text: qsTr("Install a new search plugin")
-            color: "#ffffff"
+            color: ColorPalette.textHeader
             font.pixelSize: 16 * App.fontScale
             font.bold: true
         }
@@ -85,8 +85,8 @@ Window {
     Component {
         id: filePane
         Rectangle {
-            color: "#1a1a1a"
-            border.color: "#2d2d2d"
+            color: ColorPalette.cardBg
+            border.color: ColorPalette.dividerBg
             radius: 4
             implicitHeight: 72
             Layout.fillWidth: true
@@ -114,11 +114,11 @@ Window {
                 Layout.fillWidth: true
                 text: root.urlText
                 onTextChanged: root.urlText = text
-                color: "#d0d0d0"
+                color: ColorPalette.textPrimary
                 selectByMouse: true
                 background: Rectangle {
-                    color: "#1b1b1b"
-                    border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"
+                    color: ColorPalette.inputBg
+                    border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border
                     radius: 2
                 }
             }

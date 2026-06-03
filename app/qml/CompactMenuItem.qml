@@ -27,7 +27,7 @@ T.MenuItem {
 
     contentItem: Text {
         text:    parent.text
-        color:   parent.enabled ? (parent.highlighted ? "#ffffff" : "#d0d0d0") : "#666666"
+        color:   parent.enabled ? (parent.highlighted ? "#ffffff" : ColorPalette.textPrimary) : ColorPalette.textDisabled
         font.pixelSize: 12 * App.fontScale
         verticalAlignment: Text.AlignVCenter
         leftPadding: 12
@@ -36,6 +36,6 @@ T.MenuItem {
     background: Rectangle {
         implicitHeight: 22
         implicitWidth:  140
-        color: parent.highlighted ? "#1e3a6e" : "transparent"
+        color: parent.highlighted ? ColorPalette.selectionBg : "transparent"
     }
 }

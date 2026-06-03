@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -25,10 +25,11 @@ Window {
     width: 270
     height: mainCol.implicitHeight + 16
     minimumWidth: 270
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.MSWindowsFixedSizeDialogHint
 
-    Material.theme: Material.Dark
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
     Material.accent: "#4488dd"
 
     property string projectId: ""
@@ -48,7 +49,7 @@ Window {
     component StatRow: Item {
         property string label: ""
         property string value: ""
-        property color valueColor: "#c8c8c8"
+        property color valueColor: ColorPalette.textPrimary
         property bool valueBold: false
         implicitHeight: 16
         Layout.fillWidth: true
@@ -56,7 +57,7 @@ Window {
         Text {
             id: lbl
             text: parent.label
-            color: "#8899aa"
+            color: ColorPalette.infoBoxText
             font.pixelSize: 11 * App.fontScale
             anchors.left: parent.left
         }
@@ -77,18 +78,18 @@ Window {
 
         Text {
             text: qsTr("Grabber Statistics")
-            color: "#d0d0d0"
+            color: ColorPalette.textPrimary
             font.pixelSize: 13 * App.fontScale
             font.bold: true
         }
 
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#2d2d2d" }
+        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.dividerBg }
 
-        // ── All stats in one card ────────────────────────────────────────────────
+        // ── All stats in one card ────────────────────────────────────────
         Rectangle {
             Layout.fillWidth: true
-            color: "#181818"
-            border.color: "#2d2d2d"
+            color: ColorPalette.inputBg
+            border.color: ColorPalette.dividerBg
             radius: 3
             implicitHeight: panelRow.implicitHeight + 10
 

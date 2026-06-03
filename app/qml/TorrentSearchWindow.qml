@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -17,6 +17,7 @@
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
+import QtQuick.Controls.Material
 import QtQuick.Layouts
 import QtCore
 
@@ -27,8 +28,13 @@ Window {
     minimumWidth: 760
     minimumHeight: 500
     title: qsTr("Torrent Search Engine")
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
+
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
+    Material.accent: "#4488dd"
 
     property string queryText: ""
     property string sortKey: "seeders"
@@ -244,13 +250,13 @@ Window {
                 Layout.fillWidth: true
                 text: root.queryText
                 placeholderText: ""
-                color: "#d0d0d0"
+                color: ColorPalette.textPrimary
                 selectByMouse: true
                 onTextChanged: root.queryText = text
                 onAccepted: root.startSearch()
                 background: Rectangle {
-                    color: "#1b1b1b"
-                    border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"
+                    color: ColorPalette.inputBg
+                    border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border
                     radius: 2
                 }
             }
@@ -269,7 +275,7 @@ Window {
             Layout.preferredHeight: text.length > 0 ? implicitHeight : 0
             visible: text.length > 0
             text: App.torrentSearchManager.statusText
-            color: "#9aa6b2"
+            color: ColorPalette.textSecond
             font.pixelSize: 11 * App.fontScale
             elide: Text.ElideRight
         }
@@ -277,8 +283,8 @@ Window {
         Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            color: "#1a1a1a"
-            border.color: "#2d2d2d"
+            color: ColorPalette.cardBg
+            border.color: ColorPalette.dividerBg
             radius: 4
 
             ColumnLayout {
@@ -290,7 +296,7 @@ Window {
                     id: headerBar
                     Layout.fillWidth: true
                     height: 26
-                    color: "#2d2d2d"
+                    color: ColorPalette.dividerBg
                     clip: true
                     Repeater {
                         model: root.colsOrdered
@@ -303,8 +309,8 @@ Window {
 
                             Text {
                                 anchors { left: parent.left; leftMargin: 6; right: parent.right; rightMargin: 12; verticalCenter: parent.verticalCenter }
-                                text: modelData.title + (root.sortKey === modelData.key ? (root.sortAscending ? " ▲" : " ▼") : "")
-                                color: "#d7d7d7"
+                                text: modelData.title + (root.sortKey === modelData.key ? (root.sortAscending ? " ?-?" : " ?-?") : "")
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 12 * App.fontScale
                                 font.bold: true
                                 elide: Text.ElideRight
@@ -430,10 +436,10 @@ Window {
 
                         width: Math.max(ListView.view.width, ListView.view.contentWidth)
                         height: 28
-                        color: root.selectedRow === index ? "#2a3d59"
-                              : (index % 2 === 0 ? "#1c1c1c" : "#222222")
+                        color: root.selectedRow === index ? ColorPalette.selectionBg
+                              : (index % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg)
 
-                        Rectangle { anchors.left: parent.left; width: 1; height: parent.height; color: "#2a2a2a"; visible: false }
+                        Rectangle { anchors.left: parent.left; width: 1; height: parent.height; color: ColorPalette.border; visible: false }
 
                         Text {
                             x: root.colXMap["name"] || 0
@@ -441,7 +447,7 @@ Window {
                             anchors.verticalCenter: parent.verticalCenter
                             leftPadding: 6
                             text: name
-                            color: "#f0f0f0"
+                            color: ColorPalette.textPrimary
                             font.pixelSize: 12 * App.fontScale
                             elide: Text.ElideMiddle
                         }
@@ -451,7 +457,7 @@ Window {
                             anchors.verticalCenter: parent.verticalCenter
                             leftPadding: 6
                             text: sizeText.length > 0 ? sizeText : qsTr("Unknown")
-                            color: "#b6c0ca"
+                            color: ColorPalette.textSecond
                             font.pixelSize: 12 * App.fontScale
                             elide: Text.ElideRight
                         }
@@ -460,8 +466,8 @@ Window {
                             width: root.colSeeders - 12
                             anchors.verticalCenter: parent.verticalCenter
                             leftPadding: 6
-                            text: seeders >= 0 ? String(seeders) : "—"
-                            color: "#f0f0f0"
+                            text: seeders >= 0 ? String(seeders) : "–"
+                            color: ColorPalette.textPrimary
                             font.pixelSize: 12 * App.fontScale
                         }
                         Text {
@@ -469,8 +475,8 @@ Window {
                             width: root.colLeechers - 12
                             anchors.verticalCenter: parent.verticalCenter
                             leftPadding: 6
-                            text: leechers >= 0 ? String(leechers) : "—"
-                            color: "#f0f0f0"
+                            text: leechers >= 0 ? String(leechers) : "–"
+                            color: ColorPalette.textPrimary
                             font.pixelSize: 12 * App.fontScale
                         }
                         Text {
@@ -479,7 +485,7 @@ Window {
                             anchors.verticalCenter: parent.verticalCenter
                             leftPadding: 6
                             text: engine
-                            color: "#9ab3cb"
+                            color: ColorPalette.textSecond
                             font.pixelSize: 12 * App.fontScale
                             elide: Text.ElideRight
                         }
@@ -488,8 +494,8 @@ Window {
                             width: root.colPublished - 12
                             anchors.verticalCenter: parent.verticalCenter
                             leftPadding: 6
-                            text: publishedOn.length > 0 ? publishedOn : "—"
-                            color: "#a6adb6"
+                            text: publishedOn.length > 0 ? publishedOn : "–"
+                            color: ColorPalette.textSecond
                             font.pixelSize: 12 * App.fontScale
                             elide: Text.ElideRight
                         }
@@ -517,7 +523,7 @@ Window {
                         anchors.centerIn: parent
                         visible: resultList.count === 0 && !App.torrentSearchManager.searchInProgress
                         text: qsTr("No search results yet")
-                        color: "#666"
+                        color: ColorPalette.textDisabled
                         font.pixelSize: 13 * App.fontScale
                     }
                 }
@@ -527,7 +533,7 @@ Window {
         RowLayout {
             Layout.fillWidth: true
 
-            // Animated galaxy icon — visible only while a search is in progress.
+            // ?? Animated galaxy icon visible only while a search is in progress. ??
             // AnimatedImage handles GIF playback natively; playing is gated on
             // visibility so the animation resets cleanly between searches.
             AnimatedImage {

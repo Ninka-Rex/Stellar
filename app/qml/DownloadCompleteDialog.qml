@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -41,11 +41,12 @@ Window {
 
     width: 460
     height: mainCol.implicitHeight + 24
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     title: qsTr("Download complete")
     flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.MSWindowsFixedSizeDialogHint
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     function _centerOnOwner() {
@@ -99,13 +100,13 @@ Window {
                 spacing: 1
                 Text {
                     text: qsTr("Download complete")
-                    color: "#e0e0e0"
+                    color: ColorPalette.textPrimary
                     font.pixelSize: 13 * App.fontScale
                     font.bold: true
                 }
                 Text {
                     text: item ? qsTr("Downloaded %1 (%2 Bytes)").arg(root.fmtBytes(item.totalBytes)).arg((item.totalBytes || 0).toLocaleString(Qt.locale("en_US"), "f", 0)) : ""
-                    color: "#aaaaaa"
+                    color: ColorPalette.textSecond
                     font.pixelSize: 11 * App.fontScale
                 }
             }
@@ -115,12 +116,12 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 2
-            Text { text: qsTr("Address"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale }
+            Text { text: qsTr("Address"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 22
-                color: "#1b1b1b"
-                border.color: addressField.activeFocus ? "#4488dd" : "#3a3a3a"
+                color: ColorPalette.inputBg
+                border.color: addressField.activeFocus ? "#4488dd" : ColorPalette.border
                 border.width: 1
                 radius: 2
                 TextInput {
@@ -129,7 +130,7 @@ Window {
                     anchors.leftMargin: 5
                     anchors.rightMargin: 5
                     verticalAlignment: TextInput.AlignVCenter
-                    color: "#d0d0d0"
+                    color: ColorPalette.textPrimary
                     font.pixelSize: 11 * App.fontScale
                     readOnly: true
                     selectByMouse: true
@@ -143,12 +144,12 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 2
-            Text { text: qsTr("The file saved as"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale }
+            Text { text: qsTr("The file saved as"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 22
-                color: "#1b1b1b"
-                border.color: pathField.activeFocus ? "#4488dd" : "#3a3a3a"
+                color: ColorPalette.inputBg
+                border.color: pathField.activeFocus ? "#4488dd" : ColorPalette.border
                 border.width: 1
                 radius: 2
                 TextInput {
@@ -157,7 +158,7 @@ Window {
                     anchors.leftMargin: 5
                     anchors.rightMargin: 5
                     verticalAlignment: TextInput.AlignVCenter
-                    color: root.fileMoved ? "#888888" : "#d0d0d0"
+                    color: root.fileMoved ? ColorPalette.textMuted : ColorPalette.textPrimary
                     font.pixelSize: 11 * App.fontScale
                     font.italic: root.fileMoved
                     readOnly: true
@@ -211,20 +212,20 @@ Window {
             Layout.topMargin: 2
             spacing: 6
 
-            CheckBox {
+            StyledCheckBox {
                 id: dontShowAgain
                 text: qsTr("Don't show this dialog again")
                 topPadding: 0; bottomPadding: 0
                 contentItem: Text {
                     text: parent.text
-                    color: "#c0c0c0"
+                    color: ColorPalette.textPrimary
                     font.pixelSize: 11 * App.fontScale
                     leftPadding: parent.indicator.width + 4
                     verticalAlignment: Text.AlignVCenter
                 }
                 ToolTip.visible: hovered
                 ToolTip.delay: 600
-                ToolTip.text: qsTr("You can re-enable this in Settings → General → Show download complete dialog")
+                ToolTip.text: qsTr("You can re-enable this in Settings ? General ? Show download complete dialog")
             }
 
             Item { Layout.fillWidth: true }
@@ -235,11 +236,11 @@ Window {
                 Layout.preferredWidth: 28
                 Layout.preferredHeight: 24
                 radius: 3
-                color: !dragArea.enabled ? "#1a1a1a"
-                       : dragArea.containsMouse ? "#2d3a4a" : "#252525"
+                color: !dragArea.enabled ? ColorPalette.cardBg
+                       : dragArea.containsMouse ? "#2d3a4a" : ColorPalette.panelBg
                 border.color: !dragArea.enabled ? "#2a2a2a"
                             : dragArea.pressed ? "#88bbff"
-                            : dragArea.containsMouse ? "#4488dd" : "#3a3a3a"
+                            : dragArea.containsMouse ? "#4488dd" : ColorPalette.border
                 border.width: 1
                 opacity: dragArea.enabled ? 1.0 : 0.4
 

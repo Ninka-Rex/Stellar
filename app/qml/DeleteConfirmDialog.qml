@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -43,11 +43,12 @@ Window {
     maximumWidth: 520
     minimumHeight: _dialogHeight
     maximumHeight: _dialogHeight
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     title: qsTr("Confirm Delete")
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
     modality: Qt.ApplicationModal
 
@@ -70,7 +71,7 @@ Window {
             _centerOnOwner()
             deleteFileChk.checked = false
             permDeleteChk.checked = false
-            // Kick the layout engine — reused Window can have stale layout state
+            // ── Kick the layout engine reused Window can have stale layout state ──
             // from a previous open with different visible children.
             Qt.callLater(function() { contentColumn.forceLayout() })
         }
@@ -95,7 +96,7 @@ Window {
                 spacing: 2
                 Text {
                     text: qsTr("Remove download?")
-                    color: "#ffffff"
+                    color: ColorPalette.textHeader
                     font.pixelSize: 13 * App.fontScale
                     font.bold: true
                 }
@@ -119,11 +120,11 @@ Window {
             Rectangle {
                 Layout.fillWidth: true
                 height: 1
-                color: "#3a3a3a"
+                color: ColorPalette.border
                 Layout.topMargin: 2
             }
 
-            CheckBox {
+            StyledCheckBox {
                 id: deleteFileChk
                 text: root.hasTorrentSelection
                     ? qsTr("Also delete torrent files from disk")
@@ -134,14 +135,14 @@ Window {
                 onToggled: { if (!checked) permDeleteChk.checked = false }
                 contentItem: Text {
                     text: parent.text
-                    color: "#d0d0d0"
+                    color: ColorPalette.textPrimary
                     font.pixelSize: 12 * App.fontScale
                     leftPadding: parent.indicator.width + 6
                     verticalAlignment: Text.AlignVCenter
                 }
             }
 
-            CheckBox {
+            StyledCheckBox {
                 id: permDeleteChk
                 text: qsTr("Permanently delete (don't move to trash)")
                 checked: false
@@ -150,7 +151,7 @@ Window {
                 bottomPadding: 2
                 contentItem: Text {
                     text: parent.text
-                    color: permDeleteChk.enabled ? "#d0d0d0" : "#666666"
+                    color: permDeleteChk.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
                     font.pixelSize: 12 * App.fontScale
                     leftPadding: parent.indicator.width + 6
                     verticalAlignment: Text.AlignVCenter

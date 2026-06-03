@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -30,8 +30,11 @@ Window {
     minimumWidth: 700
     minimumHeight: 500
     flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowSystemMenuHint | Qt.WindowCloseButtonHint
-    color: "#1c1c1c"
+    color: ColorPalette.windowBg
 
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.primary: "#4488dd"
     Material.accent: "#4488dd"
 
@@ -166,12 +169,12 @@ Window {
             state.warnBeforeStopping !== root.selectedQueue.warnBeforeStopping
     }
 
-    // ── Root layout ───────────────────────────────────────────────────────────
+    // ── Root layout ──────────────────────────────────────────────────────
     RowLayout {
         anchors { fill: parent; margins: 12 }
         spacing: 12
 
-        // ── Left sidebar ──────────────────────────────────────────────────────
+        // ── Left sidebar ─────────────────────────────────────────────────
         ColumnLayout {
             Layout.preferredWidth: 180
             Layout.fillHeight: true
@@ -179,7 +182,7 @@ Window {
 
             Text {
                 text: qsTr("Queues")
-                color: "#d0d0d0"
+                color: ColorPalette.textPrimary
                 font.bold: true
                 font.pixelSize: 12 * App.fontScale
             }
@@ -187,8 +190,8 @@ Window {
             Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                color: "#252525"
-                border.color: "#3a3a3a"
+                color: ColorPalette.panelBg
+                border.color: ColorPalette.border
                 border.width: 1
                 radius: 0
 
@@ -203,7 +206,7 @@ Window {
                         width: queueList.width
                         height: 28
                         radius: 0
-                        color: queueList.currentIndex === index ? "#1e3a6e" : "transparent"
+                        color: queueList.currentIndex === index ? ColorPalette.selectionBg : "transparent"
                         border.color: queueList.currentIndex === index ? "#4488dd" : "transparent"
                         border.width: 1
 
@@ -225,7 +228,7 @@ Window {
 
                             Text {
                                 text: model.queueName || ""
-                                color: queueList.currentIndex === index ? "#88bbff" : "#d0d0d0"
+                                color: queueList.currentIndex === index ? ColorPalette.accent : ColorPalette.textPrimary
                                 font.pixelSize: 12 * App.fontScale
                                 elide: Text.ElideRight
                                 width: queueList.width - 50
@@ -275,7 +278,7 @@ Window {
             }
         }
 
-        // ── Right pane ────────────────────────────────────────────────────────
+        // ── Right pane ───────────────────────────────────────────────────
         ColumnLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -286,7 +289,7 @@ Window {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 32
                 text: root.selectedQueue ? root.selectedQueue.name : ""
-                color: "#ffffff"
+                color: ColorPalette.textHeader
                 font.pixelSize: 15 * App.fontScale
                 font.bold: true
                 horizontalAlignment: Text.AlignHCenter
@@ -308,7 +311,7 @@ Window {
                         font.pixelSize: 11 * App.fontScale
                         checkable: true
                         checked: tabView.currentIndex === index
-                        background: Rectangle { color: parent.checked ? "#1e3a6e" : (parent.pressed ? "#2a2a3a" : parent.hovered ? "#2d2d3d" : "#252525"); radius: 0; border.color: parent.checked ? "#4488dd" : "#3a3a3a"; border.width: 1 }
+                        background: Rectangle { color: parent.checked ? ColorPalette.selectionBg : (parent.pressed ? ColorPalette.toolbarPressBg : parent.hovered ? ColorPalette.toolbarHoverBg : ColorPalette.panelBg); radius: 0; border.color: parent.checked ? "#4488dd" : ColorPalette.border; border.width: 1 }
                         onClicked: tabView.currentIndex = index
                     }
                 }
@@ -319,7 +322,7 @@ Window {
             Rectangle {
                 Layout.fillWidth: true
                 height: 1
-                color: "#3a3a3a"
+                color: ColorPalette.border
                 visible: root.selectedQueue ? root.selectedQueue.id !== "download-limits" : true
             }
 
@@ -331,7 +334,7 @@ Window {
                 currentIndex: 0
                 visible: root.selectedQueue ? root.selectedQueue.id !== "download-limits" : true
 
-                // ── SCHEDULE TAB ──────────────────────────────────────────────
+                // ── SCHEDULE TAB ─────────────────────────────────────────
                 ScrollView {
                     clip: true
                     ScrollBar.vertical.policy: ScrollBar.AsNeeded
@@ -349,14 +352,14 @@ Window {
                             Layout.rightMargin: 12
                             spacing: 24
 
-                            RadioButton {
+                            StyledRadioButton {
                                 text: qsTr("One-time downloading")
                                 topPadding: 0
                                 bottomPadding: 0
                                 checked: root.selectedQueue ? root.selectedQueue.isDownloadQueue : true
                                 onToggled: { if (checked && root.selectedQueue) { root.selectedQueue.isDownloadQueue = true; root.checkForChanges() } }
                             }
-                            RadioButton {
+                            StyledRadioButton {
                                 text: qsTr("Periodic synchronization")
                                 topPadding: 0
                                 bottomPadding: 0
@@ -365,7 +368,7 @@ Window {
                             }
                         }
 
-                        CheckBox {
+                        StyledCheckBox {
                             Layout.leftMargin: 12
                             text: qsTr("Start download on Stellar startup")
                             topPadding: 0
@@ -375,7 +378,7 @@ Window {
                         }
 
                         // Separator
-                        Rectangle { Layout.fillWidth: true; Layout.leftMargin: 12; Layout.rightMargin: 12; height: 1; color: "#3a3a3a" }
+                        Rectangle { Layout.fillWidth: true; Layout.leftMargin: 12; Layout.rightMargin: 12; height: 1; color: ColorPalette.border }
 
                         // Start time row
                         RowLayout {
@@ -384,7 +387,7 @@ Window {
 
                             property var startParts: root.parseScheduleTime(root.selectedQueue ? root.selectedQueue.startTime : "11:00:00 PM", 11, 0, "PM")
 
-                            CheckBox {
+                            StyledCheckBox {
                                 id: hasStartTimeCb
                                 text: qsTr("Start download at")
                                 topPadding: 0
@@ -394,14 +397,14 @@ Window {
                             }
                             Rectangle {
                                 width: 50; height: 26; radius: 2
-                                color: "#1b1b1b"
-                                border.color: startHourInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                color: ColorPalette.inputBg
+                                border.color: startHourInput.activeFocus ? "#4488dd" : ColorPalette.border
                                 opacity: (hasStartTimeCb.checked && root.selectedQueue !== null) ? 1.0 : 0.4
                                 TextInput {
                                     id: startHourInput
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     text: parent.parent.startParts.hour
-                                    color: "#e0e0e0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale
                                     horizontalAlignment: TextInput.AlignHCenter
                                     verticalAlignment: TextInput.AlignVCenter
@@ -410,17 +413,17 @@ Window {
                                     onTextEdited: root.updateSelectedQueueTime("startTime", text, startMinuteInput.text, startAmPmCombo.currentText)
                                 }
                             }
-                            Text { text: ":"; color: "#aaaaaa"; font.pixelSize: 13 * App.fontScale }
+                            Text { text: ":"; color: ColorPalette.textSecond; font.pixelSize: 13 * App.fontScale }
                             Rectangle {
                                 width: 50; height: 26; radius: 2
-                                color: "#1b1b1b"
-                                border.color: startMinuteInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                color: ColorPalette.inputBg
+                                border.color: startMinuteInput.activeFocus ? "#4488dd" : ColorPalette.border
                                 opacity: (hasStartTimeCb.checked && root.selectedQueue !== null) ? 1.0 : 0.4
                                 TextInput {
                                     id: startMinuteInput
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     text: parent.parent.startParts.minute
-                                    color: "#e0e0e0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale
                                     horizontalAlignment: TextInput.AlignHCenter
                                     verticalAlignment: TextInput.AlignVCenter
@@ -441,14 +444,14 @@ Window {
                                     leftPadding: 8
                                     rightPadding: 20
                                     text: parent.displayText
-                                    color: "#e0e0e0"
+                                    color: ColorPalette.textPrimary
                                     font: parent.font
                                     verticalAlignment: Text.AlignVCenter
                                     elide: Text.ElideRight
                                 }
-                                background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
-                                indicator: Text { x: parent.width - width - 6; y: (parent.height - height) / 2; text: "▼"; color: "#888"; font.pixelSize: 8 * App.fontScale }
-                                popup.background: Rectangle { color: "#2a2a2a"; border.color: "#444"; radius: 3 }
+                                background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 2 }
+                                indicator: Text { x: parent.width - width - 6; y: (parent.height - height) / 2; text: "▾"; color: ColorPalette.textSecond; font.pixelSize: 8 * App.fontScale }
+                                popup.background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
                                 onCurrentTextChanged: root.updateSelectedQueueTime("startTime", startHourInput.text, startMinuteInput.text, currentText)
                             }
                         }
@@ -461,14 +464,14 @@ Window {
                             enabled: hasStartTimeCb.checked
                             opacity: enabled ? 1.0 : 0.5
 
-                            RadioButton {
+                            StyledRadioButton {
                                 text: qsTr("Once at")
                                 topPadding: 0
                                 bottomPadding: 0
                                 checked: root.selectedQueue ? root.selectedQueue.startOnce : true
                                 onToggled: { if (checked && root.selectedQueue) { root.selectedQueue.startOnce = true; root.selectedQueue.startDaily = false; root.checkForChanges() } }
                             }
-                            RadioButton {
+                            StyledRadioButton {
                                 id: dailyRadio
                                 text: qsTr("Daily")
                                 topPadding: 0
@@ -494,12 +497,12 @@ Window {
                                     width: 36
                                     height: 22
                                     radius: 2
-                                    color: on ? "#1a3a6a" : "#252525"
-                                    border.color: on ? "#4488dd" : "#3a3a3a"
+                                    color: on ? ColorPalette.selectionBg : ColorPalette.panelBg
+                                    border.color: on ? "#4488dd" : ColorPalette.border
                                     Text {
                                         anchors.centerIn: parent
                                         text: root.shortDayName(parent.modelData)
-                                        color: parent.on ? "#aaccff" : "#666666"
+                                        color: parent.on ? ColorPalette.accent : ColorPalette.textDisabled
                                         font.pixelSize: 11 * App.fontScale
                                     }
                                     MouseArea {
@@ -518,7 +521,7 @@ Window {
                             spacing: 8
                             visible: root.selectedQueue ? !root.selectedQueue.isDownloadQueue : false
 
-                            CheckBox {
+                            StyledCheckBox {
                                 id: startAgainCb
                                 text: qsTr("Start again every")
                                 topPadding: 0
@@ -528,14 +531,14 @@ Window {
                             }
                             Rectangle {
                                 width: 46; height: 26; radius: 2
-                                color: "#1b1b1b"
-                                border.color: startAgainHoursInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                color: ColorPalette.inputBg
+                                border.color: startAgainHoursInput.activeFocus ? "#4488dd" : ColorPalette.border
                                 opacity: startAgainCb.checked ? 1.0 : 0.4
                                 TextInput {
                                     id: startAgainHoursInput
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     text: root.selectedQueue ? String(root.selectedQueue.startAgainEveryHours) : "2"
-                                    color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
+                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                     horizontalAlignment: TextInput.AlignHCenter
                                     verticalAlignment: TextInput.AlignVCenter
                                     enabled: startAgainCb.checked
@@ -543,17 +546,17 @@ Window {
                                     onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v)) { root.selectedQueue.startAgainEveryHours = v; root.checkForChanges() } } }
                                 }
                             }
-                            Text { text: qsTr("hours"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("hours"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                             Rectangle {
                                 width: 46; height: 26; radius: 2
-                                color: "#1b1b1b"
-                                border.color: startAgainMinsInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                color: ColorPalette.inputBg
+                                border.color: startAgainMinsInput.activeFocus ? "#4488dd" : ColorPalette.border
                                 opacity: startAgainCb.checked ? 1.0 : 0.4
                                 TextInput {
                                     id: startAgainMinsInput
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     text: root.selectedQueue ? String(root.selectedQueue.startAgainEveryMins) : "0"
-                                    color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
+                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                     horizontalAlignment: TextInput.AlignHCenter
                                     verticalAlignment: TextInput.AlignVCenter
                                     enabled: startAgainCb.checked
@@ -561,7 +564,7 @@ Window {
                                     onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v)) { root.selectedQueue.startAgainEveryMins = v; root.checkForChanges() } } }
                                 }
                             }
-                            Text { text: qsTr("min"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("min"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                         }
 
                         // Day checkboxes for sync queues
@@ -580,12 +583,12 @@ Window {
                                     width: 36
                                     height: 22
                                     radius: 2
-                                    color: on ? "#1a3a6a" : "#252525"
-                                    border.color: on ? "#4488dd" : "#3a3a3a"
+                                    color: on ? ColorPalette.selectionBg : ColorPalette.panelBg
+                                    border.color: on ? "#4488dd" : ColorPalette.border
                                     Text {
                                         anchors.centerIn: parent
                                         text: root.shortDayName(parent.modelData)
-                                        color: parent.on ? "#aaccff" : "#666666"
+                                        color: parent.on ? ColorPalette.accent : ColorPalette.textDisabled
                                         font.pixelSize: 11 * App.fontScale
                                     }
                                     MouseArea {
@@ -598,7 +601,7 @@ Window {
                             }
                         }
 
-                        Rectangle { Layout.fillWidth: true; Layout.leftMargin: 12; Layout.rightMargin: 12; height: 1; color: "#3a3a3a" }
+                        Rectangle { Layout.fillWidth: true; Layout.leftMargin: 12; Layout.rightMargin: 12; height: 1; color: ColorPalette.border }
 
                         // Stop time
                         RowLayout {
@@ -607,7 +610,7 @@ Window {
 
                             property var stopParts: root.parseScheduleTime(root.selectedQueue ? root.selectedQueue.stopTime : "7:30:00 AM", 7, 30, "AM")
 
-                            CheckBox {
+                            StyledCheckBox {
                                 id: hasStopTimeCb
                                 text: qsTr("Stop download at")
                                 topPadding: 0
@@ -617,14 +620,14 @@ Window {
                             }
                             Rectangle {
                                 width: 50; height: 26; radius: 2
-                                color: "#1b1b1b"
-                                border.color: stopHourInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                color: ColorPalette.inputBg
+                                border.color: stopHourInput.activeFocus ? "#4488dd" : ColorPalette.border
                                 opacity: (hasStopTimeCb.checked && root.selectedQueue !== null) ? 1.0 : 0.4
                                 TextInput {
                                     id: stopHourInput
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     text: parent.parent.stopParts.hour
-                                    color: "#e0e0e0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale
                                     horizontalAlignment: TextInput.AlignHCenter
                                     verticalAlignment: TextInput.AlignVCenter
@@ -633,17 +636,17 @@ Window {
                                     onTextEdited: root.updateSelectedQueueTime("stopTime", text, stopMinuteInput.text, stopAmPmCombo.currentText)
                                 }
                             }
-                            Text { text: ":"; color: "#aaaaaa"; font.pixelSize: 13 * App.fontScale }
+                            Text { text: ":"; color: ColorPalette.textSecond; font.pixelSize: 13 * App.fontScale }
                             Rectangle {
                                 width: 50; height: 26; radius: 2
-                                color: "#1b1b1b"
-                                border.color: stopMinuteInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                color: ColorPalette.inputBg
+                                border.color: stopMinuteInput.activeFocus ? "#4488dd" : ColorPalette.border
                                 opacity: (hasStopTimeCb.checked && root.selectedQueue !== null) ? 1.0 : 0.4
                                 TextInput {
                                     id: stopMinuteInput
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     text: parent.parent.stopParts.minute
-                                    color: "#e0e0e0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale
                                     horizontalAlignment: TextInput.AlignHCenter
                                     verticalAlignment: TextInput.AlignVCenter
@@ -664,14 +667,14 @@ Window {
                                     leftPadding: 8
                                     rightPadding: 20
                                     text: parent.displayText
-                                    color: "#e0e0e0"
+                                    color: ColorPalette.textPrimary
                                     font: parent.font
                                     verticalAlignment: Text.AlignVCenter
                                     elide: Text.ElideRight
                                 }
-                                background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
-                                indicator: Text { x: parent.width - width - 6; y: (parent.height - height) / 2; text: "▼"; color: "#888"; font.pixelSize: 8 * App.fontScale }
-                                popup.background: Rectangle { color: "#2a2a2a"; border.color: "#444"; radius: 3 }
+                                background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 2 }
+                                indicator: Text { x: parent.width - width - 6; y: (parent.height - height) / 2; text: "▾"; color: ColorPalette.textSecond; font.pixelSize: 8 * App.fontScale }
+                                popup.background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
                                 onCurrentTextChanged: root.updateSelectedQueueTime("stopTime", stopHourInput.text, stopMinuteInput.text, currentText)
                             }
                         }
@@ -681,7 +684,7 @@ Window {
                             Layout.leftMargin: 12
                             spacing: 8
 
-                            CheckBox {
+                            StyledCheckBox {
                                 id: retriesCb
                                 text: qsTr("Number of retries for each file if downloading failed :")
                                 topPadding: 0
@@ -691,14 +694,14 @@ Window {
                             }
                             Rectangle {
                                 width: 46; height: 26; radius: 2
-                                color: "#1b1b1b"
-                                border.color: retriesInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                color: ColorPalette.inputBg
+                                border.color: retriesInput.activeFocus ? "#4488dd" : ColorPalette.border
                                 opacity: retriesCb.checked ? 1.0 : 0.4
                                 TextInput {
                                     id: retriesInput
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                     text: root.selectedQueue ? String(root.selectedQueue.maxRetries) : "10"
-                                    color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
+                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                     horizontalAlignment: TextInput.AlignHCenter
                                     verticalAlignment: TextInput.AlignVCenter
                                     enabled: retriesCb.checked
@@ -708,15 +711,15 @@ Window {
                             }
                         }
 
-                        Rectangle { Layout.fillWidth: true; Layout.leftMargin: 12; Layout.rightMargin: 12; height: 1; color: "#3a3a3a" }
+                        Rectangle { Layout.fillWidth: true; Layout.leftMargin: 12; Layout.rightMargin: 12; height: 1; color: ColorPalette.border }
 
-                        // Open file when done — checkbox + inline path field on one row
+                        // ── Open file when done checkbox + inline path field on one row ──
                         RowLayout {
                             Layout.leftMargin: 12
                             Layout.rightMargin: 12
                             spacing: 8
 
-                            CheckBox {
+                            StyledCheckBox {
                                 id: openFileCb
                                 text: qsTr("Open the following file when done:")
                                 topPadding: 0
@@ -727,14 +730,14 @@ Window {
                             Rectangle {
                                 Layout.fillWidth: true
                                 height: 26; radius: 2
-                                color: "#1b1b1b"
-                                border.color: openFileInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                color: ColorPalette.inputBg
+                                border.color: openFileInput.activeFocus ? "#4488dd" : ColorPalette.border
                                 opacity: openFileCb.checked ? 1.0 : 0.4
                                 TextInput {
                                     id: openFileInput
                                     anchors { fill: parent; leftMargin: 7; rightMargin: 7 }
                                     text: root.selectedQueue ? root.selectedQueue.openFilePath : ""
-                                    color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
+                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                     verticalAlignment: TextInput.AlignVCenter
                                     enabled: openFileCb.checked
                                     clip: true
@@ -752,7 +755,7 @@ Window {
                         }
 
                         // Post-completion actions
-                        CheckBox {
+                        StyledCheckBox {
                             Layout.leftMargin: 12
                             text: qsTr("Exit Stellar when done")
                             topPadding: 0
@@ -765,7 +768,7 @@ Window {
                             Layout.leftMargin: 12
                             spacing: 4
 
-                            CheckBox {
+                            StyledCheckBox {
                                 id: turnOffCb
                                 text: qsTr("Turn off computer when done")
                                 topPadding: 0
@@ -773,7 +776,7 @@ Window {
                                 checked: root.selectedQueue ? root.selectedQueue.turnOffComputerWhenDone : false
                                 onToggled: { if (root.selectedQueue) { root.selectedQueue.turnOffComputerWhenDone = checked; root.checkForChanges() } }
                             }
-                            CheckBox {
+                            StyledCheckBox {
                                 Layout.leftMargin: 20
                                 text: qsTr("Force processes to terminate")
                                 topPadding: 0
@@ -789,7 +792,7 @@ Window {
                     }
                 }
 
-                // ── FILES IN QUEUE TAB ────────────────────────────────────────
+                // ── FILES IN QUEUE TAB ───────────────────────────────────
                 ColumnLayout {
                     spacing: 8
 
@@ -799,23 +802,23 @@ Window {
                         Layout.leftMargin: 8
                         spacing: 8
 
-                        Text { text: qsTr("Download"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Download"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                         Rectangle {
                             width: 46; height: 26; radius: 2
-                            color: "#1b1b1b"
-                            border.color: concurrentInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                            color: ColorPalette.inputBg
+                            border.color: concurrentInput.activeFocus ? "#4488dd" : ColorPalette.border
                             TextInput {
                                 id: concurrentInput
                                 anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                 text: root.selectedQueue ? String(root.selectedQueue.maxConcurrentDownloads) : "3"
-                                color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                 horizontalAlignment: TextInput.AlignHCenter
                                 verticalAlignment: TextInput.AlignVCenter
                                 validator: IntValidator { bottom: 1; top: 10 }
                                 onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) { root.selectedQueue.maxConcurrentDownloads = v; root.checkForChanges() } } }
                             }
                         }
-                        Text { text: qsTr("files at the same time"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("files at the same time"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                         Item { Layout.fillWidth: true }
                     }
 
@@ -826,12 +829,12 @@ Window {
                         Layout.fillHeight: true
                         Layout.leftMargin: 8
                         Layout.rightMargin: 8
-                        color: "#1c1c1c"
-                        border.color: "#3a3a3a"
+                        color: ColorPalette.windowBg
+                        border.color: ColorPalette.border
                         border.width: 1
                         radius: 0
 
-                        // Resizable column widths — dragged via header separators.
+                        // ── Resizable column widths dragged via header separators. ──
                         // All columns are fixed width; File Name has its own min width.
                         // Total content width = margins + icon + fileName + size + status + timeLeft.
                         // When total exceeds viewport, header and list scroll in sync.
@@ -847,11 +850,11 @@ Window {
                             anchors { fill: parent; margins: 0 }
                             spacing: 0
 
-                            // Header — sits in a Flickable synced to hScroll
+                            // ── Header sits in a Flickable synced to hScroll ──
                             Rectangle {
                                 Layout.fillWidth: true
                                 height: 26
-                                color: "#2d2d2d"
+                                color: ColorPalette.dividerBg
                                 clip: true
 
                                 Flickable {
@@ -871,7 +874,7 @@ Window {
                                         // File Name with drag handle on right edge
                                         Item {
                                             width: fileTableRect.colFileNameWidth; height: parent.height
-                                            Text { anchors.verticalCenter: parent.verticalCenter; text: qsTr("File Name"); color: "#999"; font.pixelSize: 11 * App.fontScale; font.bold: true }
+                                            Text { anchors.verticalCenter: parent.verticalCenter; text: qsTr("File Name"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; font.bold: true }
                                             Rectangle {
                                                 anchors { right: parent.right; top: parent.top; bottom: parent.bottom }
                                                 width: 4; color: "transparent"
@@ -887,7 +890,7 @@ Window {
                                         // Size with drag handle
                                         Item {
                                             width: fileTableRect.colSizeWidth; height: parent.height
-                                            Text { anchors.verticalCenter: parent.verticalCenter; text: qsTr("Size"); color: "#999"; font.pixelSize: 11 * App.fontScale; font.bold: true }
+                                            Text { anchors.verticalCenter: parent.verticalCenter; text: qsTr("Size"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; font.bold: true }
                                             Rectangle {
                                                 anchors { right: parent.right; top: parent.top; bottom: parent.bottom }
                                                 width: 4; color: "transparent"
@@ -903,7 +906,7 @@ Window {
                                         // Status with drag handle
                                         Item {
                                             width: fileTableRect.colStatusWidth; height: parent.height
-                                            Text { anchors.verticalCenter: parent.verticalCenter; text: qsTr("Status"); color: "#999"; font.pixelSize: 11 * App.fontScale; font.bold: true }
+                                            Text { anchors.verticalCenter: parent.verticalCenter; text: qsTr("Status"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; font.bold: true }
                                             Rectangle {
                                                 anchors { right: parent.right; top: parent.top; bottom: parent.bottom }
                                                 width: 4; color: "transparent"
@@ -916,10 +919,10 @@ Window {
                                             }
                                         }
 
-                                        // Time Left (no handle needed — last column)
+                                        // ── Time Left (no handle needed last column) ──
                                         Item {
                                             width: fileTableRect.colTimeLeftWidth; height: parent.height
-                                            Text { anchors.verticalCenter: parent.verticalCenter; text: qsTr("Time Left"); color: "#999"; font.pixelSize: 11 * App.fontScale; font.bold: true }
+                                            Text { anchors.verticalCenter: parent.verticalCenter; text: qsTr("Time Left"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; font.bold: true }
                                             Rectangle {
                                                 anchors { right: parent.right; top: parent.top; bottom: parent.bottom }
                                                 width: 4; color: "transparent"
@@ -935,7 +938,7 @@ Window {
                                 }
                             }
 
-                            Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                            Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                             // Wrapper item lets the empty-state text overlay the list area
                             // instead of appearing below it (ListView has fillHeight so a
@@ -958,7 +961,7 @@ Window {
                                         readonly property bool _inQueue: model.item !== null && root.selectedQueue !== null && model.item.queueId === root.selectedQueue.id
                                         visible: _inQueue
                                         height: _inQueue ? 26 : 0
-                                        color: filesListView.currentIndex === index ? "#1e3a6e" : (fileMouseArea.containsMouse ? "#2a2a3a" : (index % 2 === 0 ? "#1c1c1c" : "#202020"))
+                                        color: filesListView.currentIndex === index ? ColorPalette.selectionBg : (fileMouseArea.containsMouse ? ColorPalette.hoverBg : (index % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg))
                                         border.color: filesListView.currentIndex === index ? "#4488dd" : "transparent"
                                         border.width: 1
 
@@ -990,7 +993,7 @@ Window {
                                                 Text {
                                                     anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; rightMargin: 4 }
                                                     text: model.item ? model.item.filename : ""
-                                                    color: filesListView.currentIndex === index ? "#88bbff" : "#d0d0d0"
+                                                    color: filesListView.currentIndex === index ? ColorPalette.accent : ColorPalette.textPrimary
                                                     font.pixelSize: 12 * App.fontScale
                                                     font.bold: filesListView.currentIndex === index
                                                     elide: Text.ElideMiddle
@@ -1008,7 +1011,7 @@ Window {
                                                         if (b < 1073741824) return (b / 1048576).toFixed(1) + " MB"
                                                         return (b / 1073741824).toFixed(2) + " GB"
                                                     }
-                                                    color: filesListView.currentIndex === index ? "#aaccff" : "#b0b0b0"
+                                                    color: filesListView.currentIndex === index ? ColorPalette.accent : ColorPalette.textPrimary
                                                     font.pixelSize: 12 * App.fontScale
                                                 }
                                             }
@@ -1018,7 +1021,7 @@ Window {
                                                 Text {
                                                     anchors.verticalCenter: parent.verticalCenter
                                                     text: model.item ? model.item.status : "--"
-                                                    color: filesListView.currentIndex === index ? "#aaccff" : "#b0b0b0"
+                                                    color: filesListView.currentIndex === index ? ColorPalette.accent : ColorPalette.textPrimary
                                                     font.pixelSize: 12 * App.fontScale
                                                 }
                                             }
@@ -1028,7 +1031,7 @@ Window {
                                                 Text {
                                                     anchors.verticalCenter: parent.verticalCenter
                                                     text: model.item ? model.item.timeLeft : "--"
-                                                    color: filesListView.currentIndex === index ? "#aaccff" : "#b0b0b0"
+                                                    color: filesListView.currentIndex === index ? ColorPalette.accent : ColorPalette.textPrimary
                                                     font.pixelSize: 12 * App.fontScale
                                                 }
                                             }
@@ -1036,7 +1039,7 @@ Window {
                                     }
 
                                     // Sync horizontal scroll: when delegate width > listview width, ListView
-                                    // itself doesn't scroll horizontally — the delegate Row is just clipped.
+                                    // ── itself doesn't scroll horizontally the delegate Row is just clipped. ──
                                     // Mirror hScroll offset into contentX of a horizontal Flickable instead.
                                     // Actually we clip via the outer approach: translate the Row by -hScroll.
                                     // Simpler: use contentX on the ListView (it IS a Flickable).
@@ -1064,7 +1067,7 @@ Window {
                                     }
                                     return qsTr("No files in queue")
                                 }
-                                color: "#555"
+                                color: ColorPalette.textDisabled
                                 font.pixelSize: 12 * App.fontScale
                                 visible: text.length > 0
                             }
@@ -1083,7 +1086,7 @@ Window {
                             Layout.preferredHeight: 32
                             text: "↑"
                             enabled: filesListView.currentIndex > 0
-                            background: Rectangle { color: parent.pressed ? "#2a2a3a" : (parent.hovered ? "#2d2d3d" : "#252525"); radius: 0; border.color: parent.enabled ? "#4488dd" : "#3a3a3a"; border.width: 1; opacity: parent.enabled ? 1.0 : 0.5 }
+                            background: Rectangle { color: parent.pressed ? ColorPalette.toolbarPressBg : (parent.hovered ? ColorPalette.toolbarHoverBg : ColorPalette.panelBg); radius: 0; border.color: parent.enabled ? "#4488dd" : ColorPalette.border; border.width: 1; opacity: parent.enabled ? 1.0 : 0.5 }
                             onClicked: {
                                 if (filesListView.currentIndex > 0) {
                                     var item = App.downloadModel.data(App.downloadModel.index(filesListView.currentIndex, 0), Qt.UserRole + 2)
@@ -1097,7 +1100,7 @@ Window {
                             Layout.preferredHeight: 32
                             text: "↓"
                             enabled: filesListView.currentIndex >= 0 && filesListView.currentIndex < App.downloadModel.rowCount() - 1
-                            background: Rectangle { color: parent.pressed ? "#2a2a3a" : (parent.hovered ? "#2d2d3d" : "#252525"); radius: 0; border.color: parent.enabled ? "#4488dd" : "#3a3a3a"; border.width: 1; opacity: parent.enabled ? 1.0 : 0.5 }
+                            background: Rectangle { color: parent.pressed ? ColorPalette.toolbarPressBg : (parent.hovered ? ColorPalette.toolbarHoverBg : ColorPalette.panelBg); radius: 0; border.color: parent.enabled ? "#4488dd" : ColorPalette.border; border.width: 1; opacity: parent.enabled ? 1.0 : 0.5 }
                             onClicked: {
                                 if (filesListView.currentIndex >= 0) {
                                     var item = App.downloadModel.data(App.downloadModel.index(filesListView.currentIndex, 0), Qt.UserRole + 2)
@@ -1111,7 +1114,7 @@ Window {
                             Layout.preferredHeight: 32
                             text: qsTr("Delete")
                             enabled: filesListView.currentIndex >= 0
-                            background: Rectangle { color: parent.pressed ? "#2a2a3a" : (parent.hovered ? "#2d2d3d" : "#252525"); radius: 0; border.color: parent.enabled ? "#ff6666" : "#3a3a3a"; border.width: 1; opacity: parent.enabled ? 1.0 : 0.5 }
+                            background: Rectangle { color: parent.pressed ? ColorPalette.toolbarPressBg : (parent.hovered ? ColorPalette.toolbarHoverBg : ColorPalette.panelBg); radius: 0; border.color: parent.enabled ? "#ff6666" : ColorPalette.border; border.width: 1; opacity: parent.enabled ? 1.0 : 0.5 }
                             onClicked: {
                                 if (filesListView.currentIndex >= 0) {
                                     var item = App.downloadModel.data(App.downloadModel.index(filesListView.currentIndex, 0), Qt.UserRole + 2)
@@ -1124,13 +1127,13 @@ Window {
                     }
                 }
 
-                // ── DOWNLOAD LIMITS TAB ───────────────────────────────────────
+                // ── DOWNLOAD LIMITS TAB ──────────────────────────────────
                 ColumnLayout {
                     spacing: 12
 
                     Item { height: 4 }
 
-                    CheckBox {
+                    StyledCheckBox {
                         id: limitsEnabledCb
                         Layout.leftMargin: 12
                         text: qsTr("Download limits")
@@ -1146,40 +1149,40 @@ Window {
                         enabled: limitsEnabledCb.checked
                         opacity: enabled ? 1.0 : 0.5
 
-                        Text { text: qsTr("Download no more than"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Download no more than"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                         Rectangle {
                             width: 60; height: 26; radius: 2
-                            color: "#1b1b1b"; border.color: limitMbInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                            color: ColorPalette.inputBg; border.color: limitMbInput.activeFocus ? "#4488dd" : ColorPalette.border
                             TextInput {
                                 id: limitMbInput
                                 anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                 text: root.selectedQueue ? String(root.selectedQueue.downloadLimitMBytes) : "200"
-                                color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                 horizontalAlignment: TextInput.AlignHCenter; verticalAlignment: TextInput.AlignVCenter
                                 validator: IntValidator { bottom: 1; top: 100000 }
                                 onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) { root.selectedQueue.downloadLimitMBytes = v; root.checkForChanges() } } }
                             }
                         }
-                        Text { text: qsTr("MBytes"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
-                        Text { text: qsTr("every"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("MBytes"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("every"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                         Rectangle {
                             width: 46; height: 26; radius: 2
-                            color: "#1b1b1b"; border.color: limitHrInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                            color: ColorPalette.inputBg; border.color: limitHrInput.activeFocus ? "#4488dd" : ColorPalette.border
                             TextInput {
                                 id: limitHrInput
                                 anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                                 text: root.selectedQueue ? String(root.selectedQueue.downloadLimitHours) : "5"
-                                color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                 horizontalAlignment: TextInput.AlignHCenter; verticalAlignment: TextInput.AlignVCenter
                                 validator: IntValidator { bottom: 1; top: 24 }
                                 onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) { root.selectedQueue.downloadLimitHours = v; root.checkForChanges() } } }
                             }
                         }
-                        Text { text: qsTr("hours"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("hours"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                         Item { Layout.fillWidth: true }
                     }
 
-                    CheckBox {
+                    StyledCheckBox {
                         Layout.leftMargin: 12
                         text: qsTr("Show warning before stopping downloads")
                         topPadding: 0
@@ -1201,7 +1204,7 @@ Window {
 
                 Item { height: 4 }
 
-                CheckBox {
+                StyledCheckBox {
                     id: dlLimitsEnabledCb
                     Layout.leftMargin: 12
                     text: qsTr("Download limits")
@@ -1217,40 +1220,40 @@ Window {
                     enabled: dlLimitsEnabledCb.checked
                     opacity: enabled ? 1.0 : 0.5
 
-                    Text { text: qsTr("Download no more than"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                    Text { text: qsTr("Download no more than"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                     Rectangle {
                         width: 60; height: 26; radius: 2
-                        color: "#1b1b1b"; border.color: dlLimitMbInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                        color: ColorPalette.inputBg; border.color: dlLimitMbInput.activeFocus ? "#4488dd" : ColorPalette.border
                         TextInput {
                             id: dlLimitMbInput
                             anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                             text: root.selectedQueue ? String(root.selectedQueue.downloadLimitMBytes) : "200"
-                            color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
+                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                             horizontalAlignment: TextInput.AlignHCenter; verticalAlignment: TextInput.AlignVCenter
                             validator: IntValidator { bottom: 1; top: 100000 }
                             onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) root.selectedQueue.downloadLimitMBytes = v } }
                         }
                     }
-                    Text { text: qsTr("MBytes"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
-                    Text { text: qsTr("every"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                    Text { text: qsTr("MBytes"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                    Text { text: qsTr("every"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                     Rectangle {
                         width: 46; height: 26; radius: 2
-                        color: "#1b1b1b"; border.color: dlLimitHrInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                        color: ColorPalette.inputBg; border.color: dlLimitHrInput.activeFocus ? "#4488dd" : ColorPalette.border
                         TextInput {
                             id: dlLimitHrInput
                             anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
                             text: root.selectedQueue ? String(root.selectedQueue.downloadLimitHours) : "5"
-                            color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
+                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                             horizontalAlignment: TextInput.AlignHCenter; verticalAlignment: TextInput.AlignVCenter
                             validator: IntValidator { bottom: 1; top: 24 }
                             onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) root.selectedQueue.downloadLimitHours = v } }
                         }
                     }
-                    Text { text: qsTr("hours"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                    Text { text: qsTr("hours"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                     Item { Layout.fillWidth: true }
                 }
 
-                CheckBox {
+                StyledCheckBox {
                     Layout.leftMargin: 12
                     text: qsTr("Show warning before stopping downloads")
                     topPadding: 0
@@ -1263,7 +1266,7 @@ Window {
             }
 
             // Separator
-            Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a"; Layout.topMargin: 4 }
+            Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border; Layout.topMargin: 4 }
 
             // Bottom buttons
             RowLayout {
@@ -1357,7 +1360,7 @@ Window {
         function onWarnBeforeStoppingChanged() { root.checkForChanges() }
     }
 
-    // ── New Queue Dialog ──────────────────────────────────────────────────────
+    // ── New Queue Dialog ─────────────────────────────────────────────────
     Dialog {
         id: newQueueDialog
         title: qsTr("New Queue")
@@ -1369,14 +1372,14 @@ Window {
         Material.accent: "#4488dd"
 
         background: Rectangle {
-            color: "#1c1c1c"
-            border.color: "#3a3a3a"
+            color: ColorPalette.windowBg
+            border.color: ColorPalette.border
             border.width: 1
             radius: 0
         }
 
         contentItem: Rectangle {
-            color: "#1c1c1c"
+            color: ColorPalette.windowBg
             ColumnLayout {
                 anchors { fill: parent; margins: 16 }
                 spacing: 12
@@ -1384,7 +1387,7 @@ Window {
                 Text {
                     Layout.fillWidth: true
                     text: qsTr("Enter a name for the new queue that will be displayed in the list of queues")
-                    color: "#d0d0d0"
+                    color: ColorPalette.textPrimary
                     wrapMode: Text.Wrap
                     font.pixelSize: 12 * App.fontScale
                 }
@@ -1392,8 +1395,8 @@ Window {
                 Rectangle {
                     Layout.fillWidth: true
                     height: 32
-                    color: "#252525"
-                    border.color: "#3a3a3a"
+                    color: ColorPalette.panelBg
+                    border.color: ColorPalette.border
                     border.width: 1
                     radius: 0
 
@@ -1401,13 +1404,13 @@ Window {
                         id: newQueueNameField
                         anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
                         verticalAlignment: TextInput.AlignVCenter
-                        color: "#d0d0d0"
+                        color: ColorPalette.textPrimary
                         selectionColor: "#4488dd"
                         Keys.onReturnPressed: confirmNewQueue()
 
                         Text {
                             text: qsTr("Queue name")
-                            color: "#666"
+                            color: ColorPalette.textDisabled
                             anchors { left: parent.left; leftMargin: 2; verticalCenter: parent.verticalCenter }
                             visible: newQueueNameField.length === 0
                         }
@@ -1431,7 +1434,7 @@ Window {
         }
     }
 
-    // ── File picker ───────────────────────────────────────────────────────────
+    // ── File picker ──────────────────────────────────────────────────────
     FileDialog {
         id: fileDialog
         title: qsTr("Select file to open when done")

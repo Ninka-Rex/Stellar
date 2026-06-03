@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -32,12 +32,13 @@ Window {
     minimumWidth: 480
     minimumHeight: 300
     title: qsTr("Duplicate Download Link")
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
     modality: Qt.ApplicationModal
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     property int selectedAction: 3
@@ -58,7 +59,7 @@ Window {
 
         Text {
             text: qsTr("This file already exists in your download list.")
-            color: "#e0e0e0"; font.pixelSize: 13 * App.fontScale; font.bold: true
+            color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; font.bold: true
             wrapMode: Text.WordWrap; Layout.fillWidth: true
         }
 
@@ -71,7 +72,7 @@ Window {
         }
 
         Item { Layout.preferredHeight: 8 }
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
         Item { Layout.preferredHeight: 8 }
 
         Text {
@@ -110,12 +111,12 @@ Window {
         }
 
         Item { Layout.preferredHeight: 12 }
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
         Item { Layout.preferredHeight: 8 }
 
-        CheckBox {
+        StyledCheckBox {
             id: rememberChk
-            text: qsTr("Remember my selection and don't show this dialog again.\nYou may change it in Options → Downloads at a later time.")
+            text: qsTr("Remember my selection and don't show this dialog again.\nYou may change it in Options ? Downloads at a later time.")
             font.pixelSize: 11 * App.fontScale
             contentItem: Text {
                 text: rememberChk.text; color: "#909090"; font: rememberChk.font
@@ -158,7 +159,7 @@ Window {
             Rectangle {
                 width: 16; height: 16; radius: 8
                 color: "transparent"
-                border.color: parent.parent.selected ? "#4488dd" : "#666666"
+                border.color: parent.parent.selected ? "#4488dd" : ColorPalette.textDisabled
                 border.width: 2
                 Rectangle {
                     anchors.centerIn: parent; width: 8; height: 8; radius: 4
@@ -168,7 +169,7 @@ Window {
 
             Text {
                 text: parent.parent.label
-                color: parent.parent.selected ? "#e0e0e0" : "#a0a0a0"
+                color: parent.parent.selected ? ColorPalette.textPrimary : "#a0a0a0"
                 font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap
             }
         }

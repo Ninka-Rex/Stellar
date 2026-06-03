@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ Window {
     minimumWidth: 860
     minimumHeight: 480
     title: qsTr("RSS Feeds")
-    color: "#1b1b1b"
+    color: ColorPalette.inputBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
 
     property int selectedFeedRow: -1
@@ -95,7 +95,7 @@ Window {
         }
         if (isSafeImageUrl(selectedArticle.imageUrl))
             return selectedArticle.imageUrl
-        // Do not re-parse descriptionHtml here — the backend already extracts
+        // ── Do not re-parse descriptionHtml here the backend already extracts ──
         // imageUrl via extractImageUrl(). Falling back to raw HTML regex would
         // bypass this scheme check and reintroduce the file:/UNC load vector.
         return ""
@@ -279,7 +279,7 @@ Window {
         property alias previewPaneHeight: root.previewPaneHeight
     }
 
-    // ── Feed context menu ────────────────────────────────────────────────────
+    // ── Feed context menu ────────────────────────────────────────────────
     Menu {
         id: feedContextMenu
         property int row: -1
@@ -287,8 +287,8 @@ Window {
             implicitWidth: 180
             implicitHeight: 24
             leftPadding: 12
-            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; verticalAlignment: Text.AlignVCenter }
-            background: Rectangle { color: parent.highlighted ? "#2a3f6a" : "transparent" }
+            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; verticalAlignment: Text.AlignVCenter }
+            background: Rectangle { color: parent.highlighted ? ColorPalette.selectionBg : "transparent" }
         }
         implicitWidth: 180
         topPadding: 0; bottomPadding: 0
@@ -318,15 +318,15 @@ Window {
         }
     }
 
-    // ── Article context menu ─────────────────────────────────────────────────
+    // ── Article context menu ─────────────────────────────────────────────
     Menu {
         id: articleContextMenu
         delegate: MenuItem {
             implicitWidth: 190
             implicitHeight: 24
             leftPadding: 12
-            contentItem: Text { text: parent.text; color: parent.enabled ? "#d0d0d0" : "#555"; font.pixelSize: 12 * App.fontScale; verticalAlignment: Text.AlignVCenter }
-            background: Rectangle { color: parent.highlighted ? "#2a3f6a" : "transparent" }
+            contentItem: Text { text: parent.text; color: parent.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale; verticalAlignment: Text.AlignVCenter }
+            background: Rectangle { color: parent.highlighted ? ColorPalette.selectionBg : "transparent" }
         }
         implicitWidth: 190
         topPadding: 0; bottomPadding: 0
@@ -357,7 +357,7 @@ Window {
         }
     }
 
-    // ── Edit subscription dialog ─────────────────────────────────────────────
+    // ── Edit subscription dialog ─────────────────────────────────────────
     Window {
         id: editFeedDialog
         width: 440
@@ -365,7 +365,7 @@ Window {
         minimumWidth: 400
         minimumHeight: 160
         title: qsTr("Edit Subscription")
-        color: "#1e1e1e"
+        color: ColorPalette.cardBg
         modality: Qt.ApplicationModal
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
@@ -380,25 +380,25 @@ Window {
                 rowSpacing: 8
                 Layout.fillWidth: true
 
-                Text { text: qsTr("Name"); color: "#a0a0a0"; font.pixelSize: 12 * App.fontScale }
+                Text { text: qsTr("Name"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
                 TextField {
                     id: editFeedNameField
                     Layout.fillWidth: true
                     placeholderText: qsTr("Custom name (optional)")
                     font.pixelSize: 12 * App.fontScale
-                    color: "#d0d0d0"
-                    background: Rectangle { color: "#2d2d2d"; border.color: activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3 }
+                    color: ColorPalette.textPrimary
+                    background: Rectangle { color: ColorPalette.dividerBg; border.color: activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3 }
                 }
 
-                Text { text: qsTr("URL"); color: "#a0a0a0"; font.pixelSize: 12 * App.fontScale }
+                Text { text: qsTr("URL"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
                 TextField {
                     id: editFeedUrlField
                     Layout.fillWidth: true
                     placeholderText: "https://..."
                     font.pixelSize: 12 * App.fontScale
-                    color: "#d0d0d0"
+                    color: ColorPalette.textPrimary
                     onAccepted: root.saveEditedFeed()
-                    background: Rectangle { color: "#2d2d2d"; border.color: activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3 }
+                    background: Rectangle { color: ColorPalette.dividerBg; border.color: activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3 }
                 }
             }
 
@@ -418,7 +418,7 @@ Window {
         }
     }
 
-    // ── Main layout ──────────────────────────────────────────────────────────
+    // ── Main layout ──────────────────────────────────────────────────────
     ColumnLayout {
         anchors.fill: parent
         spacing: 0
@@ -427,9 +427,9 @@ Window {
         Rectangle {
             Layout.fillWidth: true
             height: 42
-            color: "#252525"
+            color: ColorPalette.panelBg
 
-            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#333333" }
+            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
 
             RowLayout {
                 anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
@@ -439,8 +439,8 @@ Window {
                 Rectangle {
                     Layout.fillWidth: true
                     height: 26
-                    color: "#2d2d2d"
-                    border.color: addFeedField.activeFocus ? "#4488dd" : "#4a4a4a"
+                    color: ColorPalette.dividerBg
+                    border.color: addFeedField.activeFocus ? ColorPalette.borderFocus : ColorPalette.border
                     radius: 3
 
                     TextInput {
@@ -448,14 +448,14 @@ Window {
                         anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
                         verticalAlignment: Text.AlignVCenter
                         font.pixelSize: 12 * App.fontScale
-                        color: "#d0d0d0"
+                        color: ColorPalette.textPrimary
                         clip: true
                         onAccepted: root.addSubscription()
 
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
                             text: qsTr("Add RSS or Atom feed URL...")
-                            color: "#555"
+                            color: ColorPalette.textDisabled
                             font.pixelSize: 12 * App.fontScale
                             visible: !parent.text && !parent.activeFocus
                         }
@@ -470,7 +470,7 @@ Window {
                 }
 
                 // Separator
-                Rectangle { width: 1; height: 22; color: "#383838" }
+                Rectangle { width: 1; height: 22; color: ColorPalette.border }
 
                 DlgButton {
                     text: App.rssManager.refreshInProgress ? qsTr("Refreshing…") : qsTr("Refresh")
@@ -489,7 +489,7 @@ Window {
                 }
 
                 // Separator
-                Rectangle { width: 1; height: 22; color: "#383838" }
+                Rectangle { width: 1; height: 22; color: ColorPalette.border }
 
                 DlgButton {
                     text: qsTr("Download Rules")
@@ -508,14 +508,14 @@ Window {
 
             handle: Rectangle {
                 implicitWidth: 4
-                color: SplitHandle.hovered || SplitHandle.pressed ? "#3a5a8a" : "#2a2a2a"
+                color: SplitHandle.hovered || SplitHandle.pressed ? "#3a5a8a" : ColorPalette.border
             }
 
-            // ── Left: feed list ──────────────────────────────────────────────
+            // ── Left: feed list ──────────────────────────────────────────
             Rectangle {
                 SplitView.preferredWidth: root.leftPaneWidth
                 SplitView.minimumWidth: 170
-                color: "#1f1f1f"
+                color: ColorPalette.toolbarBg
 
                 ColumnLayout {
                     anchors.fill: parent
@@ -525,17 +525,17 @@ Window {
                     Rectangle {
                         Layout.fillWidth: true
                         height: 26
-                        color: "#2d2d2d"
+                        color: ColorPalette.dividerBg
 
                         Rectangle { width: 3; height: parent.height; color: "#5588cc" }
                         Text {
                             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
                             text: qsTr("Subscriptions")
-                            color: "#d0d0d0"
+                            color: ColorPalette.textPrimary
                             font.pixelSize: 12 * App.fontScale
                             font.bold: true
                         }
-                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
+                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
                     }
 
                     // Feed list
@@ -584,8 +584,8 @@ Window {
 
                             Rectangle {
                                 anchors.fill: parent
-                                color: root.selectedFeedRow === rowIndex ? "#1e3a6e"
-                                     : (feedMouse.containsMouse && !root._feedDragging ? "#2a2a3a" : "transparent")
+                                color: root.selectedFeedRow === rowIndex ? ColorPalette.selectionBg
+                                     : (feedMouse.containsMouse && !root._feedDragging ? ColorPalette.hoverBg : "transparent")
                                 border.color: root.selectedFeedRow === rowIndex ? "#4488dd" : "transparent"
                                 border.width: 1
                                 opacity: (root._feedDragging && root._feedDragFrom === rowIndex) ? 0.4 : 1.0
@@ -594,11 +594,11 @@ Window {
                                     anchors { fill: parent; leftMargin: 10; rightMargin: 6 }
                                     spacing: 0
 
-                                    // Feed name — fills available space
+                                    // ── Feed name fills available space ──
                                     Text {
                                         Layout.fillWidth: true
                                         text: title || url
-                                        color: root.selectedFeedRow === rowIndex ? "#88bbff" : "#cccccc"
+                                        color: root.selectedFeedRow === rowIndex ? ColorPalette.accent : ColorPalette.textPrimary
                                         font.pixelSize: 12 * App.fontScale
                                         font.bold: unreadCount > 0
                                         elide: Text.ElideRight
@@ -618,14 +618,14 @@ Window {
                                         width: unreadLabel.implicitWidth + 8
                                         height: 16
                                         radius: 8
-                                        color: root.selectedFeedRow === rowIndex ? "#2a4a8a" : "#1a3060"
+                                        color: root.selectedFeedRow === rowIndex ? ColorPalette.selectionBg : ColorPalette.selectionBg
                                         border.color: root.selectedFeedRow === rowIndex ? "#5588cc" : "#3a5080"
 
                                         Text {
                                             id: unreadLabel
                                             anchors.centerIn: parent
                                             text: unreadCount
-                                            color: "#88bbff"
+                                            color: ColorPalette.accent
                                             font.pixelSize: 10 * App.fontScale
                                             font.bold: true
                                         }
@@ -702,13 +702,13 @@ Window {
                     Rectangle {
                         Layout.fillWidth: true
                         height: 30
-                        color: "#252525"
-                        Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#333333" }
+                        color: ColorPalette.panelBg
+                        Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: ColorPalette.border }
 
                         Text {
                             anchors.centerIn: parent
                             text: qsTr("Mark All Read")
-                            color: markAllReadMouse.containsMouse ? "#88bbff" : "#7a8a9a"
+                            color: markAllReadMouse.containsMouse ? ColorPalette.accent : "#7a8a9a"
                             font.pixelSize: 11 * App.fontScale
 
                             MouseArea {
@@ -723,10 +723,10 @@ Window {
                 }
             }
 
-            // ── Right: article list + preview ────────────────────────────────
+            // ── Right: article list + preview ────────────────────────────
             Rectangle {
                 SplitView.fillWidth: true
-                color: "#1c1c1c"
+                color: ColorPalette.windowBg
 
                 ColumnLayout {
                     anchors.fill: parent
@@ -736,7 +736,7 @@ Window {
                     Rectangle {
                         Layout.fillWidth: true
                         height: 26
-                        color: "#2d2d2d"
+                        color: ColorPalette.dividerBg
                         clip: true
 
                         Row {
@@ -752,7 +752,7 @@ Window {
                                     width: root.colWidth(modelData.key)
                                     height: parent.height
                                     readonly property bool isActive: root.articleSortKey === modelData.key
-                                    color: headerCellMouse.containsMouse && !root._colDragging ? "#383838" : "transparent"
+                                    color: headerCellMouse.containsMouse && !root._colDragging ? ColorPalette.border : "transparent"
                                     opacity: (root._colDragging && root._colDragFromKey === modelData.key) ? 0.5 : 1.0
 
                                     Rectangle {
@@ -770,7 +770,7 @@ Window {
                                     Text {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: sortInd.left; rightMargin: 4 }
                                         text: modelData.title
-                                        color: headerCell.isActive ? "#88bbff" : "#b0b0b0"
+                                        color: headerCell.isActive ? ColorPalette.accent : ColorPalette.textPrimary
                                         font.pixelSize: 12 * App.fontScale; font.bold: true
                                         elide: Text.ElideRight
                                     }
@@ -778,7 +778,7 @@ Window {
                                         id: sortInd
                                         anchors { verticalCenter: parent.verticalCenter; right: resizeHandle.left; rightMargin: 4 }
                                         text: root.articleSortAscending ? "▲" : "▼"
-                                        color: "#88bbff"; font.pixelSize: 9 * App.fontScale
+                                        color: ColorPalette.accent; font.pixelSize: 9 * App.fontScale
                                         visible: headerCell.isActive
                                     }
 
@@ -820,7 +820,7 @@ Window {
                                         onClicked: { if (!_didDrag) root.applyArticleSort(modelData.key) }
                                     }
 
-                                    Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: "#3a3a3a" }
+                                    Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: ColorPalette.border }
 
                                     Item {
                                         id: resizeHandle
@@ -860,7 +860,7 @@ Window {
                             }
                         }
 
-                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
+                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
                     }
 
                     // Article list + preview split
@@ -873,11 +873,11 @@ Window {
 
                         handle: Rectangle {
                             implicitHeight: 4
-                            color: SplitHandle.hovered || SplitHandle.pressed ? "#3a5a8a" : "#252525"
+                            color: SplitHandle.hovered || SplitHandle.pressed ? "#3a5a8a" : ColorPalette.panelBg
                             Rectangle {
                                 anchors.centerIn: parent
                                 width: 28; height: 1
-                                color: SplitHandle.hovered || SplitHandle.pressed ? "#88bbff" : "#383838"
+                                color: SplitHandle.hovered || SplitHandle.pressed ? ColorPalette.accent : ColorPalette.border
                             }
                         }
 
@@ -898,19 +898,19 @@ Window {
                                 width: articleList.width
                                 height: 26
                                 color: root.selectedArticleRow === index
-                                     ? "#1e3a6e"
-                                     : (articleMouse.containsMouse ? "#242434" : (index % 2 === 0 ? "#1c1c1c" : "#1e1e1e"))
+                                     ? ColorPalette.selectionBg
+                                     : (articleMouse.containsMouse ? ColorPalette.hoverBg : (index % 2 === 0 ? ColorPalette.windowBg : ColorPalette.cardBg))
 
                                 // Unread indicator bar on the left edge
                                 Rectangle {
                                     visible: !!articleDelegate.modelData.unread
                                     width: 2; height: parent.height
-                                    color: root.selectedArticleRow === index ? "#88bbff" : "#4488dd"
+                                    color: root.selectedArticleRow === index ? ColorPalette.accent : "#4488dd"
                                 }
 
-                                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#262626" }
+                                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
 
-                                // Columns — hardcoded to avoid Repeater/QQmlContext overhead
+                                // ── Columns hardcoded to avoid Repeater/QQmlContext overhead ──
                                 Item {
                                     id: col0
                                     x: 0
@@ -929,10 +929,10 @@ Window {
                                         }
                                         color: {
                                             if (root.visibleCols.length > 0 && root.visibleCols[0].key === "title") {
-                                                if (root.selectedArticleRow === index) return "#ffffff"
-                                                return !!articleDelegate.modelData.unread ? "#e8e8e8" : "#b0b0b0"
+                                                if (root.selectedArticleRow === index) return ColorPalette.selectionText
+                                                return !!articleDelegate.modelData.unread ? ColorPalette.textPrimary : ColorPalette.textSecond
                                             }
-                                            return root.selectedArticleRow === index ? "#ffffff" : "#c0c0c0"
+                                            return root.selectedArticleRow === index ? ColorPalette.selectionText : ColorPalette.textPrimary
                                         }
                                         font.pixelSize: 12 * App.fontScale
                                         font.bold: root.visibleCols.length > 0 && root.visibleCols[0].key === "title"
@@ -958,10 +958,10 @@ Window {
                                         }
                                         color: {
                                             if (root.visibleCols.length > 1 && root.visibleCols[1].key === "title") {
-                                                if (root.selectedArticleRow === index) return "#ffffff"
-                                                return !!articleDelegate.modelData.unread ? "#e8e8e8" : "#b0b0b0"
+                                                if (root.selectedArticleRow === index) return ColorPalette.selectionText
+                                                return !!articleDelegate.modelData.unread ? ColorPalette.textPrimary : ColorPalette.textSecond
                                             }
-                                            return root.selectedArticleRow === index ? "#ffffff" : "#888888"
+                                            return root.selectedArticleRow === index ? ColorPalette.selectionText : ColorPalette.textMuted
                                         }
                                         font.pixelSize: 12 * App.fontScale
                                         font.bold: root.visibleCols.length > 1 && root.visibleCols[1].key === "title"
@@ -987,10 +987,10 @@ Window {
                                         }
                                         color: {
                                             if (root.visibleCols.length > 2 && root.visibleCols[2].key === "title") {
-                                                if (root.selectedArticleRow === index) return "#ffffff"
-                                                return !!articleDelegate.modelData.unread ? "#e8e8e8" : "#b0b0b0"
+                                                if (root.selectedArticleRow === index) return ColorPalette.selectionText
+                                                return !!articleDelegate.modelData.unread ? ColorPalette.textPrimary : ColorPalette.textSecond
                                             }
-                                            return root.selectedArticleRow === index ? "#ffffff" : "#888888"
+                                            return root.selectedArticleRow === index ? ColorPalette.selectionText : ColorPalette.textMuted
                                         }
                                         font.pixelSize: 12 * App.fontScale
                                         font.bold: root.visibleCols.length > 2 && root.visibleCols[2].key === "title"
@@ -1018,15 +1018,15 @@ Window {
                             }
                         }
 
-                        // ── Preview pane ─────────────────────────────────────
+                        // ── Preview pane ─────────────────────────────────
                         Rectangle {
                             SplitView.preferredHeight: root.previewPaneHeight
                             SplitView.minimumHeight: 90
                             SplitView.maximumHeight: root.height * 0.6
                             onHeightChanged: root.previewPaneHeight = height
-                            color: "#191919"
+                            color: ColorPalette.cardBg
 
-                            Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#2e2e2e" }
+                            Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: ColorPalette.border }
 
                             ColumnLayout {
                                 anchors.fill: parent
@@ -1041,7 +1041,7 @@ Window {
                                     Text {
                                         Layout.fillWidth: true
                                         text: selectedArticle.title || qsTr("Select an article")
-                                        color: selectedArticle.title ? "#f0f0f0" : "#555"
+                                        color: selectedArticle.title ? ColorPalette.textPrimary : ColorPalette.textDisabled
                                         font.pixelSize: 13 * App.fontScale
                                         font.bold: true
                                         elide: Text.ElideRight
@@ -1070,7 +1070,7 @@ Window {
                                     }
                                 }
 
-                                // Feed • date meta line
+                                // ── Feed date meta line ──────────────────
                                 Text {
                                     Layout.fillWidth: true
                                     text: selectedArticle.feedTitle
@@ -1081,7 +1081,7 @@ Window {
                                     elide: Text.ElideRight
                                 }
 
-                                Rectangle { Layout.fillWidth: true; height: 1; color: "#272727" }
+                                Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                                 // Body: thumbnail + text
                                 RowLayout {
@@ -1093,8 +1093,8 @@ Window {
                                         visible: !!root.selectedArticleImageUrl
                                         Layout.preferredWidth: 150
                                         Layout.fillHeight: true
-                                        color: "#111"
-                                        border.color: "#2a2a2a"
+                                        color: ColorPalette.cardBg
+                                        border.color: ColorPalette.border
                                         radius: 2
 
                                         Image {
@@ -1121,7 +1121,7 @@ Window {
                                                     ? selectedArticle.summary
                                                     : ((!selectedArticle.descriptionHtml || selectedArticle.descriptionHtml.length === 0)
                                                        ? (selectedArticle.title ? qsTr("No summary available.") : "") : "")
-                                                color: "#c0c0c0"
+                                                color: ColorPalette.textPrimary
                                                 font.pixelSize: 11 * App.fontScale
                                                 wrapMode: Text.WordWrap
                                                 visible: text.length > 0
@@ -1132,7 +1132,7 @@ Window {
                                                 visible: !!selectedArticle.descriptionHtml && selectedArticle.descriptionHtml.length > 0
                                                 text: selectedArticle.descriptionHtml || ""
                                                 textFormat: Text.RichText
-                                                color: "#c0c0c0"
+                                                color: ColorPalette.textPrimary
                                                 linkColor: "#7fb4ff"
                                                 font.pixelSize: 11 * App.fontScale
                                                 wrapMode: Text.WordWrap
@@ -1151,12 +1151,12 @@ Window {
             }
         }
 
-        // ── Status bar ───────────────────────────────────────────────────────
+        // ── Status bar ───────────────────────────────────────────────────
         Rectangle {
             Layout.fillWidth: true
             height: 22
-            color: "#222222"
-            Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#2e2e2e" }
+            color: ColorPalette.rowAltBg
+            Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: ColorPalette.border }
 
             RowLayout {
                 anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
@@ -1186,7 +1186,7 @@ Window {
                             unread += f.unreadCount || 0
                         }
                         if (total === 0) return ""
-                        return unread > 0 ? qsTr("%1 unread  ·  %2 items").arg(unread).arg(total) : qsTr("%1 items").arg(total)
+                        return unread > 0 ? qsTr("%1 unread  ▶  %2 items").arg(unread).arg(total) : qsTr("%1 items").arg(total)
                     }
                     color: "#4a5a6a"
                     font.pixelSize: 11 * App.fontScale

@@ -212,6 +212,14 @@ public:
     // Called from QML as App.setWindowIcon(root, ":/path/to/icon.ico").
     Q_INVOKABLE void setWindowIcon(QObject *window, const QString &iconPath);
 
+    // Toggle the native Windows title-bar (caption) between dark and light.
+    // No-op on non-Windows platforms. Uses DWMWA_USE_IMMERSIVE_DARK_MODE.
+    Q_INVOKABLE void setWindowDarkTitleBar(QObject *window, bool dark);
+
+    // Apply the current theme's caption colour to every top-level window.
+    // Called when the user toggles dark/light so all open dialogs update.
+    Q_INVOKABLE void applyDarkTitleBarToAllWindows(bool dark);
+
     // Dispatch a raw IPC JSON payload (same object the IPC socket receives).
     // If QML is not yet ready the payload is buffered and replayed on setQmlReady().
     void handleIpcPayload(const QByteArray &json);

@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -40,12 +40,13 @@ Window {
     height: mainCol.implicitHeight + 24
     minimumWidth: 480
     title: qsTr("Download File Info")
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     modality: Qt.ApplicationModal
     flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     signal downloadNow(string downloadId, string url, string savePath, string category, string description)
@@ -91,7 +92,7 @@ Window {
         }
     }
 
-    // ── Category helpers ───────────────────────────────────────────────────────
+    // ── Category helpers ─────────────────────────────────────────────────
     function _categoryIds() {
         var ids = []
         for (var i = 0; i < App.categoryModel.rowCount(); i++)
@@ -163,7 +164,7 @@ Window {
             if (info.contentLength > 0 && root.pendingSize.length === 0)
                 root.pendingSize = _formatSize(info.contentLength)
             // Server may have resolved a real filename from Content-Disposition
-            // or the final redirect URL (e.g. "x64" → "LM-Studio-0.4.14-4-x64.deb").
+            // ── or the final redirect URL (e.g. "x64" "LM-Studio-0.4.14-4-x64.deb"). ──
             if (info.filename && info.filename !== root.pendingFilename) {
                 root.pendingFilename = info.filename
             }
@@ -252,19 +253,20 @@ Window {
         }
     }
 
-    // ── Add Category dialog ────────────────────────────────────────────────────
+    // ── Add Category dialog ──────────────────────────────────────────────
     Window {
         id: addCatDialog
         width: 460
         height: addCatCol.implicitHeight + 24
         title: qsTr("Adding a category to Stellar categories list")
-        color: "#1e1e1e"
+        color: ColorPalette.cardBg
         modality: Qt.ApplicationModal
         transientParent: root
         flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
 
-        Material.theme: Material.Dark
-        Material.background: "#1e1e1e"
+        Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+        Material.background: ColorPalette.materialBg
         Material.accent: "#4488dd"
 
         function openNew() {
@@ -313,17 +315,17 @@ Window {
                     ColumnLayout {
                         Layout.fillWidth: true
                         spacing: 3
-                        Text { text: qsTr("Category name"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale }
+                        Text { text: qsTr("Category name"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
                         Rectangle {
                             Layout.fillWidth: true; Layout.preferredHeight: 22
-                            color: "#1b1b1b"
-                            border.color: addCatNameField.activeFocus ? "#4488dd" : "#3a3a3a"
+                            color: ColorPalette.inputBg
+                            border.color: addCatNameField.activeFocus ? "#4488dd" : ColorPalette.border
                             border.width: 1; radius: 2
                             TextInput {
                                 id: addCatNameField
                                 anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
                                 verticalAlignment: TextInput.AlignVCenter
-                                color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
                                 selectByMouse: true; clip: true
                                 Keys.onReturnPressed: addCatDialog._doAdd()
                                 Keys.onEnterPressed:  addCatDialog._doAdd()
@@ -337,25 +339,25 @@ Window {
                         spacing: 3
                         Text {
                             text: qsTr("Automatically put in this category the following file types:")
-                            color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
+                            color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
                             Layout.fillWidth: true
                         }
                         Rectangle {
                             Layout.fillWidth: true; Layout.preferredHeight: 22
-                            color: "#1b1b1b"
-                            border.color: addCatExtField.activeFocus ? "#4488dd" : "#3a3a3a"
+                            color: ColorPalette.inputBg
+                            border.color: addCatExtField.activeFocus ? "#4488dd" : ColorPalette.border
                             border.width: 1; radius: 2
                             TextInput {
                                 id: addCatExtField
                                 anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
                                 verticalAlignment: TextInput.AlignVCenter
-                                color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
                                 selectByMouse: true; clip: true
                             }
                         }
                         Text {
                             text: qsTr("Note: type file extensions separated by space (e.g. avi mpg mpeg)")
-                            color: "#666666"; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap
+                            color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap
                             Layout.fillWidth: true
                         }
                     }
@@ -364,12 +366,12 @@ Window {
                     ColumnLayout {
                         Layout.fillWidth: true
                         spacing: 3
-                        CheckBox {
+                        StyledCheckBox {
                             id: addCatSitesChk
                             topPadding: 0; bottomPadding: 0
                             text: qsTr("Automatically put in this category the files from the following sites only:")
                             contentItem: Text {
-                                text: parent.text; color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale
+                                text: parent.text; color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale
                                 leftPadding: parent.indicator.width + 4
                                 verticalAlignment: Text.AlignVCenter; wrapMode: Text.WordWrap
                                 width: parent.width - parent.indicator.width - 8
@@ -377,21 +379,21 @@ Window {
                         }
                         Rectangle {
                             Layout.fillWidth: true; Layout.preferredHeight: 22
-                            color: addCatSitesChk.checked ? "#1b1b1b" : "#161616"
+                            color: addCatSitesChk.checked ? ColorPalette.inputBg : "#161616"
                             border.color: addCatSitesField.activeFocus ? "#4488dd" : "#2a2a2a"
                             border.width: 1; radius: 2
                             TextInput {
                                 id: addCatSitesField
                                 anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
                                 verticalAlignment: TextInput.AlignVCenter
-                                color: addCatSitesChk.checked ? "#d0d0d0" : "#555555"
+                                color: addCatSitesChk.checked ? ColorPalette.textPrimary : "#555555"
                                 font.pixelSize: 11 * App.fontScale; selectByMouse: true; clip: true
                                 enabled: addCatSitesChk.checked
                             }
                         }
                         Text {
                             text: qsTr("Separate sites by spaces. You may use asterisk as a wildcard pattern")
-                            color: "#666666"; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap
+                            color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap
                             Layout.fillWidth: true
                         }
                     }
@@ -407,26 +409,26 @@ Window {
                         }
                         Rectangle {
                             Layout.fillWidth: true; Layout.preferredHeight: 22
-                            color: "#1b1b1b"
-                            border.color: addCatFolderField.activeFocus ? "#4488dd" : "#3a3a3a"
+                            color: ColorPalette.inputBg
+                            border.color: addCatFolderField.activeFocus ? "#4488dd" : ColorPalette.border
                             border.width: 1; radius: 2
                             TextInput {
                                 id: addCatFolderField
                                 anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
                                 verticalAlignment: TextInput.AlignVCenter
-                                color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
                                 selectByMouse: true; clip: true
                             }
                         }
                     }
 
                     // Remember last save path
-                    CheckBox {
+                    StyledCheckBox {
                         id: addCatRememberChk
                         topPadding: 0; bottomPadding: 0
                         text: qsTr("Remember last save path")
                         contentItem: Text {
-                            text: parent.text; color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale
+                            text: parent.text; color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale
                             leftPadding: parent.indicator.width + 4
                             verticalAlignment: Text.AlignVCenter
                         }
@@ -489,7 +491,7 @@ Window {
         }
     }
 
-    // ── Root layout ────────────────────────────────────────────────────────────
+    // ── Root layout ──────────────────────────────────────────────────────
     ColumnLayout {
         id: mainCol
         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
@@ -509,15 +511,15 @@ Window {
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 6
-                    Text { text: qsTr("URL"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
+                    Text { text: qsTr("URL"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
                     Rectangle {
                         Layout.fillWidth: true; Layout.preferredHeight: 22
-                        color: "#1b1b1b"; border.color: urlField.activeFocus ? "#4488dd" : "#3a3a3a"; border.width: 1; radius: 2
+                        color: ColorPalette.inputBg; border.color: urlField.activeFocus ? "#4488dd" : ColorPalette.border; border.width: 1; radius: 2
                         TextInput {
                             id: urlField
                             anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
                             verticalAlignment: TextInput.AlignVCenter
-                            color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale
+                            color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
                             readOnly: true; selectByMouse: true; clip: true
                             text: root.pendingUrl
                         }
@@ -528,10 +530,10 @@ Window {
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 6
-                    Text { text: qsTr("Category"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
+                    Text { text: qsTr("Category"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
                     Rectangle {
                         implicitWidth: 160; implicitHeight: 22
-                        color: "#1b1b1b"; border.color: "#3a3a3a"; border.width: 1; radius: 2
+                        color: ColorPalette.inputBg; border.color: ColorPalette.border; border.width: 1; radius: 2
                         ComboBox {
                             id: catCombo
                             anchors.fill: parent
@@ -540,7 +542,7 @@ Window {
                             background: Item {}
                             contentItem: Text {
                                 leftPadding: 6; text: catCombo.displayText
-                                color: "#d0d0d0"; font: catCombo.font
+                                color: ColorPalette.textPrimary; font: catCombo.font
                                 verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight
                             }
                             onCurrentIndexChanged: root._updateSavePath(currentIndex)
@@ -549,8 +551,8 @@ Window {
                     Rectangle {
                         id: addCatBtn
                         width: 22; height: 22; radius: 2
-                        color: addCatMa.containsMouse ? "#2e2e2e" : "#1b1b1b"
-                        border.color: "#3a3a3a"; border.width: 1
+                        color: addCatMa.containsMouse ? "#2e2e2e" : ColorPalette.inputBg
+                        border.color: ColorPalette.border; border.width: 1
                         Text { anchors.centerIn: parent; text: "+"; color: "#909090"; font.pixelSize: 15 * App.fontScale }
                         MouseArea {
                             id: addCatMa; anchors.fill: parent; hoverEnabled: true
@@ -565,15 +567,15 @@ Window {
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 6
-                    Text { text: qsTr("Save As"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
+                    Text { text: qsTr("Save As"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
                     Rectangle {
                         Layout.fillWidth: true; Layout.preferredHeight: 22
-                        color: "#1b1b1b"; border.color: saveAsField.activeFocus ? "#4488dd" : "#3a3a3a"; border.width: 1; radius: 2
+                        color: ColorPalette.inputBg; border.color: saveAsField.activeFocus ? "#4488dd" : ColorPalette.border; border.width: 1; radius: 2
                         TextInput {
                             id: saveAsField
                             anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
                             verticalAlignment: TextInput.AlignVCenter
-                            color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale
+                            color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
                             selectByMouse: true; clip: true
                             onTextEdited: {
                                 var sep = Math.max(text.lastIndexOf("/"), text.lastIndexOf("\\"))
@@ -583,9 +585,9 @@ Window {
                     }
                     Rectangle {
                         width: 26; height: 22; radius: 2
-                        color: browseMa.containsMouse ? "#2e2e2e" : "#1b1b1b"
-                        border.color: "#3a3a3a"; border.width: 1
-                        Text { anchors.centerIn: parent; text: "…"; color: "#c0c0c0"; font.pixelSize: 12 * App.fontScale }
+                        color: browseMa.containsMouse ? "#2e2e2e" : ColorPalette.inputBg
+                        border.color: ColorPalette.border; border.width: 1
+                        Text { anchors.centerIn: parent; text: "…"; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                         MouseArea {
                             id: browseMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
                             onClicked: {
@@ -606,7 +608,7 @@ Window {
                     ColumnLayout {
                         Layout.fillWidth: true
                         spacing: 4
-                        CheckBox {
+                        StyledCheckBox {
                             id: rememberPathChk
                             topPadding: 0; bottomPadding: 0
                             text: qsTr("Remember this path for \"%1\" category").arg(root.categoryLabels[catCombo.currentIndex] || "")
@@ -623,7 +625,7 @@ Window {
                                 id: dirOnlyField
                                 anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
                                 verticalAlignment: TextInput.AlignVCenter
-                                color: "#666666"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                                 readOnly: true; clip: true
                             }
                         }
@@ -634,15 +636,15 @@ Window {
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 6
-                    Text { text: qsTr("Description"); color: "#aaaaaa"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
+                    Text { text: qsTr("Description"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
                     Rectangle {
                         Layout.fillWidth: true; Layout.preferredHeight: 22
-                        color: "#1b1b1b"; border.color: descField.activeFocus ? "#4488dd" : "#3a3a3a"; border.width: 1; radius: 2
+                        color: ColorPalette.inputBg; border.color: descField.activeFocus ? "#4488dd" : ColorPalette.border; border.width: 1; radius: 2
                         TextInput {
                             id: descField
                             anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
                             verticalAlignment: TextInput.AlignVCenter
-                            color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale
+                            color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
                             selectByMouse: true; clip: true
                         }
                     }
@@ -668,7 +670,7 @@ Window {
                     Text {
                         Layout.alignment: Qt.AlignHCenter
                         text: root.pendingSize
-                        color: "#888888"; font.pixelSize: 10 * App.fontScale
+                        color: ColorPalette.textMuted; font.pixelSize: 10 * App.fontScale
                         visible: root.pendingSize.length > 0
                         horizontalAlignment: Text.AlignHCenter
                     }

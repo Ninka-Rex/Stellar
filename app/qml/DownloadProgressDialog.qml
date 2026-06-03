@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -127,7 +127,7 @@ Window {
         }
     }
 
-    color: "#1a1a1a"
+    color: ColorPalette.cardBg
 
     title: {
         if (!item) return qsTr("Download")
@@ -135,8 +135,9 @@ Window {
         return pct + item.filename
     }
 
-    Material.theme: Material.Dark
-    Material.background: "#1a1a1a"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     function fmtBytes(b) {
@@ -159,7 +160,7 @@ Window {
         if (s === "Downloading") return "#4488dd"
         if (s === "Assembling")  return "#4488dd"
         if (s === "Error")       return "#dd5555"
-        return "#c8c8c8"
+        return ColorPalette.textPrimary
     }
 
     function statusLabel() {
@@ -206,17 +207,17 @@ Window {
         anchors.fill: parent
         spacing: 0
 
-        // ── Tab bar ──────────────────────────────────────────────────────────
+        // ── Tab bar ──────────────────────────────────────────────────────
         Rectangle {
             Layout.fillWidth: true
             height: 26
-            color: "#252525"
+            color: ColorPalette.panelBg
 
             // Bottom separator
             Rectangle {
                 anchors.bottom: parent.bottom
                 width: parent.width; height: 1
-                color: "#111"
+                color: ColorPalette.border
             }
 
             Row {
@@ -229,14 +230,14 @@ Window {
                         width: tabLbl.implicitWidth + 28
                         height: parent.height
                         color: tabStack.currentIndex === index
-                               ? "#1a1a1a"
-                               : (tabHover.containsMouse ? "#2e2e2e" : "transparent")
+                               ? ColorPalette.cardBg
+                               : (tabHover.containsMouse ? ColorPalette.hoverBg : "transparent")
 
                         Text {
                             id: tabLbl
                             anchors.centerIn: parent
                             text: modelData
-                            color: tabStack.currentIndex === index ? "#ffffff" : "#909090"
+                            color: tabStack.currentIndex === index ? ColorPalette.textHeader : ColorPalette.textSecond
                             font.pixelSize: 11 * App.fontScale
                         }
 
@@ -258,7 +259,7 @@ Window {
                 }
             }
 
-            // Minimize-to-tray button — flat, right-aligned in the tab bar
+            // ── Minimize-to-tray button flat, right-aligned in the tab bar ──
             Item {
                 anchors { right: parent.right; top: parent.top; bottom: parent.bottom; rightMargin: 6 }
                 width: minTrayLbl.implicitWidth + 20
@@ -267,7 +268,7 @@ Window {
                     id: minTrayLbl
                     anchors.centerIn: parent
                     text: qsTr(">>  Send to Tray")
-                    color: minTrayMa.containsMouse ? "#cccccc" : "#888888"
+                    color: minTrayMa.containsMouse ? ColorPalette.textPrimary : ColorPalette.textMuted
                     font.pixelSize: 11 * App.fontScale
                 }
 
@@ -296,24 +297,24 @@ Window {
             }
         }
 
-        // ── Tab pages ─────────────────────────────────────────────────────────
+        // ── Tab pages ────────────────────────────────────────────────────
         StackLayout {
             id: tabStack
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            // ── Tab 0: Download status ────────────────────────────────────────
+            // ── Tab 0: Download status ───────────────────────────────────
             Item {
                 ColumnLayout {
                     anchors { fill: parent; margins: 8; bottomMargin: 6 }
                     spacing: 5
 
-                    // ── Info box ─────────────────────────────────────────────
+                    // ── Info box ─────────────────────────────────────────
                     Rectangle {
                         Layout.fillWidth: true
                         implicitHeight: infoCol.implicitHeight + 16
-                        color: "#212121"
-                        border.color: "#303030"
+                        color: ColorPalette.inputBg
+                        border.color: ColorPalette.border
                         radius: 3
 
                         Column {
@@ -333,7 +334,7 @@ Window {
 
                             // Separator
                             Item { width: 1; height: 5 }
-                            Rectangle { width: parent.width; height: 1; color: "#2e2e2e" }
+                            Rectangle { width: parent.width; height: 1; color: ColorPalette.border }
                             Item { width: 1; height: 6 }
 
                             // Status row (with colored dot)
@@ -344,7 +345,7 @@ Window {
 
                                 Text {
                                     text: qsTr("Status")
-                                    color: "#666"
+                                    color: ColorPalette.textDisabled
                                     font.pixelSize: 12 * App.fontScale
                                     width: 120
                                     anchors.verticalCenter: parent.verticalCenter
@@ -352,7 +353,7 @@ Window {
 
                                 Text {
                                     text: root.statusLabel()
-                                    color: item ? root.statusColor(item.status) : "#b0b0b0"
+                                    color: item ? root.statusColor(item.status) : ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale
                                     font.bold: true
                                     anchors.verticalCenter: parent.verticalCenter
@@ -361,23 +362,23 @@ Window {
 
                             Item { width: 1; height: 4 }
 
-                            // Data rows — individual bindings so they react to item changes
+                            // ── Data rows individual bindings so they react to item changes ──
                             Row {
                                 spacing: 0; width: parent.width; height: 18
-                                Text { text: qsTr("File size");  color: "#666"; font.pixelSize: 12 * App.fontScale; width: 120 }
-                                Text { text: item ? root.fmtBytes(item.totalBytes) : "--"; color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale }
+                                Text { text: qsTr("File size");  color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale; width: 120 }
+                                Text { text: item ? root.fmtBytes(item.totalBytes) : "--"; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                             }
                             Row {
                                 spacing: 0; width: parent.width; height: 18
-                                Text { text: qsTr("Downloaded"); color: "#666"; font.pixelSize: 12 * App.fontScale; width: 120 }
+                                Text { text: qsTr("Downloaded"); color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale; width: 120 }
                                 Text {
                                     text: item ? qsTr("%1  ( %2% )").arg(root.fmtBytes(item.doneBytes)).arg(Math.round(item.progress * 100)) : "--"
-                                    color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale
+                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                 }
                             }
                             Row {
                                 spacing: 0; width: parent.width; height: 18
-                                Text { text: qsTr("Transfer rate"); color: "#666"; font.pixelSize: 12 * App.fontScale; width: 120 }
+                                Text { text: qsTr("Transfer rate"); color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale; width: 120 }
                                 Text {
                                     text: {
                                         if (!item) return "--"
@@ -391,30 +392,30 @@ Window {
                                             speed += " " + qsTr("(Limited %1)").arg(root.fmtSpeed(limit * 1024))
                                         return speed
                                     }
-                                    color: "#c8c8c8"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale
                                 }
                             }
                             Row {
                                 spacing: 0; width: parent.width; height: 18
-                                Text { text: qsTr("Time left");  color: "#666"; font.pixelSize: 12 * App.fontScale; width: 120 }
-                                Text { text: item ? item.timeLeft : "--"; color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale }
+                                Text { text: qsTr("Time left");  color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale; width: 120 }
+                                Text { text: item ? item.timeLeft : "--"; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                             }
                             Row {
                                 spacing: 0; width: parent.width; height: 18
-                                Text { text: qsTr("Resume capability"); color: "#666"; font.pixelSize: 12 * App.fontScale; width: 120 }
+                                Text { text: qsTr("Resume capability"); color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale; width: 120 }
                                 Text {
                                     text: (item && item.resumeCapable) ? qsTr("Yes") : qsTr("No")
-                                    color: (item && item.resumeCapable) ? "#c8c8c8" : "#c8c8c8"
+                                    color: (item && item.resumeCapable) ? ColorPalette.textPrimary : ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale
                                 }
                             }
 
-                            // Error detail row — only shown when status is Error
+                            // ── Error detail row only shown when status is Error ──
                             Row {
                                 visible: item && item.status === "Error" && item.errorString !== ""
                                 spacing: 0; width: parent.width
-                                Text { text: qsTr("Error detail"); color: "#666"; font.pixelSize: 12 * App.fontScale; width: 120; topPadding: 2 }
+                                Text { text: qsTr("Error detail"); color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale; width: 120; topPadding: 2 }
                                 Text {
                                     text: item ? item.errorString : ""
                                     color: "#dd5555"
@@ -426,12 +427,12 @@ Window {
                         }
                     }
 
-                    // ── Progress bar ─────────────────────────────────────────
+                    // ── Progress bar ─────────────────────────────────────
                     Rectangle {
                         id: progressBarRect
                         Layout.fillWidth: true
                         height: 14
-                        color: "#2a2a2a"
+                        color: ColorPalette.border
                         radius: 2
                         clip: true
 
@@ -457,7 +458,7 @@ Window {
                         }
                     }
 
-                    // ── Buttons row ───────────────────────────────────────────
+                    // ── Buttons row ──────────────────────────────────────
                     RowLayout {
                         Layout.fillWidth: true
                         spacing: 8
@@ -466,15 +467,15 @@ Window {
                         Rectangle {
                             height: 22
                             width: hideDetailsLabel.implicitWidth + 16
-                            color: hideDetailsMa.containsMouse ? "#303030" : "transparent"
-                            border.color: hideDetailsMa.containsMouse ? "#484848" : "#383838"
+                            color: hideDetailsMa.containsMouse ? ColorPalette.border : "transparent"
+                            border.color: hideDetailsMa.containsMouse ? ColorPalette.border : ColorPalette.border
                             radius: 3
 
                             Text {
                                 id: hideDetailsLabel
                                 anchors.centerIn: parent
                                 text: root.detailsVisible ? qsTr("« Hide details") : qsTr("» Show details")
-                                color: "#aaaaaa"
+                                color: ColorPalette.textSecond
                                 font.pixelSize: 12 * App.fontScale
                             }
 
@@ -508,7 +509,7 @@ Window {
                         }
                     }
 
-                    // ── Details section ───────────────────────────────────────
+                    // ── Details section ──────────────────────────────────
                     ColumnLayout {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
@@ -519,14 +520,14 @@ Window {
                         Rectangle {
                             Layout.fillWidth: true
                             height: 16
-                            color: "#1e1e1e"
+                            color: ColorPalette.cardBg
 
-                            Rectangle { width: parent.width; height: 1; color: "#2e2e2e" }
+                            Rectangle { width: parent.width; height: 1; color: ColorPalette.border }
 
                             Text {
                                 anchors.centerIn: parent
                                 text: qsTr("Start positions and download progress by connections")
-                                color: "#606060"
+                                color: ColorPalette.textDisabled
                                 font.pixelSize: 11 * App.fontScale
                             }
                         }
@@ -535,8 +536,8 @@ Window {
                         Rectangle {
                             Layout.fillWidth: true
                             height: 10
-                            color: "#252525"
-                            border.color: "#303030"
+                            color: ColorPalette.panelBg
+                            border.color: ColorPalette.border
                             radius: 2
                             clip: true
 
@@ -567,7 +568,7 @@ Window {
                                     Rectangle {
                                         anchors.right: parent.right
                                         width: 1; height: parent.height
-                                        color: "#ffffff"; opacity: 0.15
+                                        color: ColorPalette.textHeader; opacity: 0.15
                                     }
                                 }
                             }
@@ -577,8 +578,8 @@ Window {
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
-                            color: "#1c1c1c"
-                            border.color: "#303030"
+                            color: ColorPalette.windowBg
+                            border.color: ColorPalette.border
                             radius: 2
                             clip: true
 
@@ -590,20 +591,20 @@ Window {
                                 Rectangle {
                                     Layout.fillWidth: true
                                     height: 22
-                                    color: "#272727"
+                                    color: ColorPalette.panelBg
 
                                     Rectangle {
                                         anchors.bottom: parent.bottom
                                         width: parent.width; height: 1
-                                        color: "#333"
+                                        color: ColorPalette.border
                                     }
 
                                     Row {
                                         anchors { fill: parent; leftMargin: 8 }
                                         spacing: 0
-                                        Text { width: 34;  text: qsTr("N.");         color: "#888"; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { width: 110; text: qsTr("Downloaded"); color: "#888"; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
-                                        Text {             text: qsTr("Info");       color: "#888"; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { width: 34;  text: qsTr("N.");         color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { width: 110; text: qsTr("Downloaded"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                        Text {             text: qsTr("Info");       color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
                                     }
                                 }
 
@@ -625,14 +626,14 @@ Window {
                                     delegate: Rectangle {
                                         width: ListView.view.width
                                         height: 24
-                                        color: index % 2 === 0 ? "#1c1c1c" : "#202020"
+                                        color: index % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg
 
                                         Row {
                                             anchors { fill: parent; leftMargin: 8 }
                                             spacing: 0
-                                            Text { width: 34;  text: (index + 1) + ".";       color: "#999";    font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
-                                            Text { width: 110; text: root.fmtBytes(received); color: "#cccccc"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
-                                            Text {             text: info ?? "";              color: "#e0e0e0"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                            Text { width: 34;  text: (index + 1) + ".";       color: ColorPalette.textSecond;    font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                            Text { width: 110; text: root.fmtBytes(received); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                            Text {             text: info ?? "";              color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         }
                                     }
                                 }
@@ -642,7 +643,7 @@ Window {
                 }
             }
 
-            // ── Tab 1: Speed Limiter ──────────────────────────────────────────
+            // ── Tab 1: Speed Limiter ─────────────────────────────────────
             Item {
                 ColumnLayout {
                     anchors { fill: parent; margins: 16 }
@@ -650,12 +651,12 @@ Window {
 
                     Text {
                         text: qsTr("Limit transfer rate for this download")
-                        color: "#cccccc"
+                        color: ColorPalette.textPrimary
                         font.pixelSize: 12 * App.fontScale
                         font.bold: true
                     }
 
-                    CheckBox {
+                    StyledCheckBox {
                         id: limitThisChk
                         text: qsTr("Enable per-download limit")
                         enabled: !App.settings.speedLimiterEnabled
@@ -679,13 +680,13 @@ Window {
                         Label { text: qsTr("KB/s") }
                     }
 
-                    Rectangle { Layout.fillWidth: true; height: 1; color: "#303030" }
+                    Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                     Text {
                         text: App.settings.speedLimiterEnabled
                             ? (App.settings.globalSpeedLimitKBps > 0 ? qsTr("Global limit active: %1 KB/s").arg(App.settings.globalSpeedLimitKBps) : qsTr("Global limit active: unlimited"))
                             : qsTr("No global limit set")
-                        color: App.settings.speedLimiterEnabled ? "#ffcc88" : "#666"
+                        color: App.settings.speedLimiterEnabled ? "#ffcc88" : ColorPalette.textDisabled
                         font.pixelSize: 11 * App.fontScale
                         wrapMode: Text.WordWrap
                     }
@@ -707,32 +708,32 @@ Window {
                 }
             }
 
-            // ── Tab 2: Options on completion ──────────────────────────────────
+            // ── Tab 2: Options on completion ─────────────────────────────
             Item {
                 ColumnLayout {
                     anchors { fill: parent; margins: 16 }
                     spacing: 12
                     Text {
                         text: qsTr("Options On Completion")
-                        color: "#cccccc"
+                        color: ColorPalette.textPrimary
                         font.pixelSize: 12 * App.fontScale
                         font.bold: true
                     }
-                    CheckBox {
+                    StyledCheckBox {
                         text: qsTr("Open file when done")
                         checked: root.openFileWhenDone
                         topPadding: 0
                         bottomPadding: 0
                         onToggled: root.openFileWhenDone = checked
                     }
-                    CheckBox {
+                    StyledCheckBox {
                         text: qsTr("Open folder when done")
                         checked: root.openFolderWhenDone
                         topPadding: 0
                         bottomPadding: 0
                         onToggled: root.openFolderWhenDone = checked
                     }
-                    CheckBox {
+                    StyledCheckBox {
                         text: qsTr("Shutdown computer when done")
                         checked: root.shutdownWhenDone
                         topPadding: 0
@@ -742,7 +743,7 @@ Window {
                     Text {
                         Layout.fillWidth: true
                         text: qsTr("These options are temporary for this download only and start unchecked each time.")
-                        color: "#909090"
+                        color: ColorPalette.textSecond
                         font.pixelSize: 11 * App.fontScale
                         wrapMode: Text.WordWrap
                     }

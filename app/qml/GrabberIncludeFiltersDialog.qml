@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,12 +26,13 @@ Window {
     height: 360
     minimumWidth: 520
     minimumHeight: 320
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
     modality: Qt.ApplicationModal
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     property string dialogTitle: "Include filters"
@@ -108,7 +109,7 @@ Window {
             Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                color: "#1b1b1b"
+                color: ColorPalette.inputBg
                 border.color: "#343434"
 
                 Column {
@@ -117,7 +118,7 @@ Window {
                     Rectangle {
                         width: parent.width
                         height: 28
-                        color: "#252525"
+                        color: ColorPalette.panelBg
 
                         Row {
                             anchors.fill: parent
@@ -158,7 +159,7 @@ Window {
                             required property var modelData
                             width: filtersList.width
                             height: 24
-                            color: index === filtersList.currentIndex ? "#1e3a6e" : "transparent"
+                            color: index === filtersList.currentIndex ? ColorPalette.selectionBg : "transparent"
 
                             Row {
                                 anchors.fill: parent
@@ -249,7 +250,7 @@ Window {
         height: categoryEnabled ? 214 : 174
         x: (root.width - width) / 2
         y: (root.height - height) / 2
-        background: Rectangle { color: "#1f1f1f"; border.color: "#343434"; radius: 0 }
+        background: Rectangle { color: ColorPalette.toolbarBg; border.color: "#343434"; radius: 0 }
 
         ColumnLayout {
             anchors.fill: parent
@@ -265,7 +266,7 @@ Window {
                 color: "#eef2f7"
                 leftPadding: 8
                 rightPadding: 8
-                background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 0 }
+                background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 0 }
             }
 
             Text { text: qsTr("Mask"); color: "#d4d4d4"; font.pixelSize: 12 * App.fontScale }
@@ -275,7 +276,7 @@ Window {
                 color: "#eef2f7"
                 leftPadding: 8
                 rightPadding: 8
-                background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 0 }
+                background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 0 }
             }
 
             ColumnLayout {
@@ -287,7 +288,7 @@ Window {
                     id: categoryCombo
                     Layout.fillWidth: true
                     model: categoryLabelOptions
-                    background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 0 }
+                    background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 0 }
                     contentItem: Text {
                         leftPadding: 8
                         rightPadding: 24

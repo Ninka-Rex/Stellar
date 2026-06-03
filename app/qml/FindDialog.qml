@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -28,11 +28,12 @@ Window {
     minimumWidth: 320
     minimumHeight: 305
     maximumHeight: 305
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     // Search options
@@ -77,63 +78,63 @@ Window {
         RowLayout {
             Layout.fillWidth: true
             spacing: 8
-            Text { text: qsTr("Find:"); color: "#c0c0c0"; font.pixelSize: 13 * App.fontScale }
+            Text { text: qsTr("Find:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
             TextField {
                 id: searchField
                 Layout.fillWidth: true
-                color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale
-                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale
+                background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                 leftPadding: 8
                 Keys.onReturnPressed: root.doFind()
                 Keys.onEnterPressed:  root.doFind()
             }
         }
 
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
         Text { text: qsTr("Search in:"); color: "#909090"; font.pixelSize: 12 * App.fontScale }
 
-        CheckBox {
+        StyledCheckBox {
             text: qsTr("File name or part of the name")
             checked: root.searchName
             topPadding: 0; bottomPadding: 0
             onCheckedChanged: root.searchName = checked
-            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
         }
-        CheckBox {
+        StyledCheckBox {
             text: qsTr("Description or part of the description")
             checked: root.searchDesc
             topPadding: 0; bottomPadding: 0
             onCheckedChanged: root.searchDesc = checked
-            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
         }
-        CheckBox {
+        StyledCheckBox {
             text: qsTr("Site name / download link / parent web page / referrer")
             checked: root.searchLinks
             topPadding: 0; bottomPadding: 0
             onCheckedChanged: root.searchLinks = checked
             contentItem: Text {
-                text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale
+                text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale
                 leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap
                 Layout.fillWidth: true
             }
         }
 
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-        CheckBox {
+        StyledCheckBox {
             text: qsTr("Match case")
             checked: root.matchCase
             topPadding: 0; bottomPadding: 0
             onCheckedChanged: root.matchCase = checked
-            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
         }
-        CheckBox {
+        StyledCheckBox {
             text: qsTr("Match whole string only")
             checked: root.matchWhole
             topPadding: 0; bottomPadding: 0
             onCheckedChanged: root.matchWhole = checked
-            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
         }
 
         Item { Layout.fillHeight: true }
@@ -160,21 +161,21 @@ Window {
                 text: qsTr("Find")
                 implicitWidth: 80
                 background: Rectangle {
-                    color: root._finding ? "#2a5faa" : "#1e3a6e"
+                    color: root._finding ? "#2a5faa" : ColorPalette.selectionBg
                     radius: 3
                     border.color: root._finding ? "#66aaff" : "#4488dd"
                     border.width: 1
                     Behavior on color { ColorAnimation { duration: 80 } }
                     Behavior on border.color { ColorAnimation { duration: 80 } }
                 }
-                contentItem: Text { text: parent.text; color: "#ffffff"; font.pixelSize: 13 * App.fontScale; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+                contentItem: Text { text: parent.text; color: ColorPalette.textHeader; font.pixelSize: 13 * App.fontScale; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
                 onClicked: root.doFind()
             }
             Button {
                 text: qsTr("Cancel")
                 implicitWidth: 80
-                background: Rectangle { color: "#3a3a3a"; radius: 3; border.color: "#555"; border.width: 1 }
-                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13 * App.fontScale; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+                background: Rectangle { color: ColorPalette.border; radius: 3; border.color: "#555"; border.width: 1 }
+                contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
                 onClicked: root.close()
             }
         }

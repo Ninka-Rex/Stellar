@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ ApplicationWindow {
     visible: true
     width: Math.max(minimumWidth, App.settings.mainWindowWidth > 0 ? App.settings.mainWindowWidth : 1100)
     height: Math.max(minimumHeight, App.settings.mainWindowHeight > 0 ? App.settings.mainWindowHeight : 680)
-    // Restore saved position; -1 means first run — let the OS centre the window naturally.
+    // ── Restore saved position; -1 means first run let the OS centre the window naturally. ──
     x: App.settings.mainWindowX >= 0 ? App.settings.mainWindowX : x
     y: App.settings.mainWindowY >= 0 ? App.settings.mainWindowY : y
     minimumWidth: 800
@@ -46,10 +46,20 @@ ApplicationWindow {
         return prefix + "[↓ " + fmt(App.totalDownSpeed) + "  ↑ " + fmt(App.totalUpSpeed) + "] " + base
     }
 
-    Material.theme: Material.Dark
-    Material.background: "#1c1c1c"
-    Material.primary: "#2d2d2d"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialWindowBg
+    Material.primary: ColorPalette.dividerBg
     Material.accent: "#5588cc"
+
+    // Keep the native Windows caption (title bar) in sync with the app theme.
+    // Dark caption when dark mode, light caption otherwise.
+    onVisibleChanged: if (visible) App.setWindowDarkTitleBar(root, App.settings.darkMode)
+    Connections {
+        target: App.settings
+        ignoreUnknownSignals: true
+        function onDarkModeChanged() { App.applyDarkTitleBarToAllWindows(App.settings.darkMode) }
+    }
 
     // Set to true after the window has been shown at least once so that early
     // geometry signals during window creation don't overwrite saved position.
@@ -59,7 +69,7 @@ ApplicationWindow {
     readonly property int settingsPageSpeedLimiter: 4
     readonly property int settingsPageAbout: 12
 
-    // ── Minimize to tray on close ─────────────────────────────────────────────
+    // ── Minimize to tray on close ────────────────────────────────────────
     property bool isQuitting:    false
     property bool findBarActive: false
     property bool speedScheduleOwnsDownLimit: false
@@ -95,7 +105,7 @@ ApplicationWindow {
         win.requestActivate()
     }
 
-    // Map of downloadId → DownloadProgressDialog instances
+    // ── Map of downloadId DownloadProgressDialog instances ───────────────
     property var _progressDialogs: ({})
 
     function _getOrCreateProgressDialog(item) {
@@ -221,7 +231,7 @@ ApplicationWindow {
         Qt.callLater(function() {
             var torrentFileId = App.addTorrentFile(torrentFilePath, saveDir, category || "", description || "", false, "")
             if (!torrentFileId || torrentFileId.length === 0)
-                return // duplicate — torrentDuplicateDetected signal already fired
+                return // duplicate ▶€” torrentDuplicateDetected signal already fired
             torrentMetadataDialog.downloadId = torrentFileId
             torrentMetadataDialog.show()
             torrentMetadataDialog.raise()
@@ -295,7 +305,7 @@ ApplicationWindow {
         height: 260
         minimumHeight: 240
         title: qsTr("Browser Cookies Required")
-        color: "#1e1e1e"
+        color: ColorPalette.cardBg
         modality: Qt.ApplicationModal
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
@@ -339,7 +349,7 @@ ApplicationWindow {
             Text {
                 Layout.fillWidth: true
                 text: qsTr("This YouTube download looks like it needs login cookies.")
-                color: "#e0e0e0"
+                color: ColorPalette.textPrimary
                 font.pixelSize: 14 * App.fontScale
                 font.weight: Font.Medium
                 wrapMode: Text.WordWrap
@@ -348,7 +358,7 @@ ApplicationWindow {
             Text {
                 Layout.fillWidth: true
                 text: ytdlpCookieRetryDialog.errorReason
-                color: "#aaaaaa"
+                color: ColorPalette.textSecond
                 font.pixelSize: 11 * App.fontScale
                 wrapMode: Text.WordWrap
             }
@@ -357,8 +367,8 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 implicitHeight: 64
                 radius: 4
-                color: "#1a2030"
-                border.color: "#2a3050"
+                color: ColorPalette.infoBoxBg
+                border.color: ColorPalette.infoBoxBorder
 
                 ColumnLayout {
                     anchors.fill: parent
@@ -367,7 +377,7 @@ ApplicationWindow {
 
                     Text {
                         text: qsTr("Cookies from browser:")
-                        color: "#8899bb"
+                        color: ColorPalette.infoBoxText
                         font.pixelSize: 11 * App.fontScale
                     }
 
@@ -379,13 +389,13 @@ ApplicationWindow {
                         contentItem: Text {
                             leftPadding: 8
                             text: cookieBrowserCombo.displayText
-                            color: "#d0d0d0"
+                            color: ColorPalette.textPrimary
                             font: cookieBrowserCombo.font
                             verticalAlignment: Text.AlignVCenter
                         }
                         background: Rectangle {
-                            color: "#1b1b1b"
-                            border.color: cookieBrowserCombo.activeFocus ? "#4488dd" : "#3a3a3a"
+                            color: ColorPalette.inputBg
+                            border.color: cookieBrowserCombo.activeFocus ? "#4488dd" : ColorPalette.border
                             radius: 3
                         }
                         delegate: ItemDelegate {
@@ -394,19 +404,19 @@ ApplicationWindow {
                             height: 24
                             contentItem: Text {
                                 text: modelData
-                                color: "#d0d0d0"
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 11 * App.fontScale
                                 verticalAlignment: Text.AlignVCenter
                                 leftPadding: 8
                             }
-                            background: Rectangle { color: cookieBrowserDelegate.hovered ? "#2a3a5a" : "#1b1b1b" }
+                            background: Rectangle { color: cookieBrowserDelegate.hovered ? "#2a3a5a" : ColorPalette.inputBg }
                         }
                         popup: Popup {
                             y: cookieBrowserCombo.height + 2
                             width: cookieBrowserCombo.width
                             implicitHeight: contentItem.implicitHeight + 4
                             padding: 2
-                            background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 3 }
+                            background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
                             contentItem: ListView {
                                 implicitHeight: contentHeight
                                 clip: true
@@ -476,7 +486,7 @@ ApplicationWindow {
         }
     }
 
-    // Debounce geometry saves — writing QSettings on every pixel of a drag
+    // ── Debounce geometry saves writing QSettings on every pixel of a drag ──
     // causes a disk write per event and makes resizing feel laggy.
     Timer {
         id: geometrySaveTimer
@@ -518,7 +528,7 @@ ApplicationWindow {
         flags: Qt.Tool | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
         width: 180
         height: menuCol.implicitHeight + 2
-        color: "#2b2b2b"
+        color: ColorPalette.cardBg
         visible: false
 
         function popup(screenX, screenY) {
@@ -536,7 +546,7 @@ ApplicationWindow {
         Rectangle {
             anchors.fill: parent
             color: "transparent"
-            border.color: "#555"
+            border.color: ColorPalette.border
             border.width: 1
         }
 
@@ -546,26 +556,26 @@ ApplicationWindow {
 
             TrayMenuItem { label: qsTr("Open Stellar"); bold: true; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.requestActivate() } }
             TrayMenuItem { label: qsTr("Add URL…");     onClicked: { trayMenu.visible = false; root.show(); root.raise(); addUrlDialog.show(); addUrlDialog.raise() } }
-            Rectangle { width: parent.width; height: 1; color: "#444" }
+            Rectangle { width: parent.width; height: 1; color: ColorPalette.border }
             TrayMenuItem { label: qsTr("GitHub");        onClicked: { trayMenu.visible = false; App.openExternalUrl("https://github.com/Ninka-Rex/Stellar") } }
             TrayMenuItem { label: qsTr("About Stellar"); onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageAbout) } }
-            Rectangle { width: parent.width; height: 1; color: "#444" }
-            TrayMenuItem { label: ((App.settings.globalSpeedLimitKBps > 0 || App.settings.globalUploadLimitKBps > 0) ? "✓ " : "") + qsTr("Speed Limiter"); onClicked: { trayMenu.visible = false; if (App.settings.globalSpeedLimitKBps > 0 || App.settings.globalUploadLimitKBps > 0) App.disableSpeedLimiter(); else App.enableSpeedLimiter() } }
+            Rectangle { width: parent.width; height: 1; color: ColorPalette.border }
+            TrayMenuItem { label: ((App.settings.globalSpeedLimitKBps > 0 || App.settings.globalUploadLimitKBps > 0) ? "✓" : "") + qsTr("Speed Limiter"); onClicked: { trayMenu.visible = false; if (App.settings.globalSpeedLimitKBps > 0 || App.settings.globalUploadLimitKBps > 0) App.disableSpeedLimiter(); else App.enableSpeedLimiter() } }
             TrayMenuItem { label: qsTr("Speed Limiter Settings…"); onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageSpeedLimiter) } }
-            Rectangle { width: parent.width; height: 1; color: "#444" }
-            TrayMenuItem { label: (App.sessionPaused ? "✓ " : "") + qsTr("Pause Session"); onClicked: { trayMenu.visible = false; if (App.sessionPaused) App.resumeSession(); else App.pauseSession() } }
+            Rectangle { width: parent.width; height: 1; color: ColorPalette.border }
+            TrayMenuItem { label: (App.sessionPaused ? "✓" : "") + qsTr("Pause Session"); onClicked: { trayMenu.visible = false; if (App.sessionPaused) App.resumeSession(); else App.pauseSession() } }
             TrayMenuItem { label: qsTr("Exit Stellar");  onClicked: { trayMenu.visible = false; root.quitApp() } }
         }
     }
 
-    // ── Downloads tray context menu ───────────────────────────────────────────
+    // ── Downloads tray context menu ──────────────────────────────────────
     Window {
         id: downloadsTrayMenu
         transientParent: null
         flags: Qt.Tool | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
         width: 220
         height: downloadsTrayCol.implicitHeight + 2
-        color: "#2b2b2b"
+        color: ColorPalette.cardBg
         visible: false
 
         function popup(screenX, screenY) {
@@ -596,7 +606,7 @@ ApplicationWindow {
         Rectangle {
             anchors.fill: parent
             color: "transparent"
-            border.color: "#555"
+            border.color: ColorPalette.border
             border.width: 1
         }
 
@@ -618,7 +628,7 @@ ApplicationWindow {
                 }
             }
 
-            Rectangle { width: parent.width; height: 1; color: "#444" }
+            Rectangle { width: parent.width; height: 1; color: ColorPalette.border }
 
             ListModel { id: perDownloadModel }
 
@@ -637,13 +647,13 @@ ApplicationWindow {
         }
     }
 
-    // ── Component for creating per-download progress dialogs ──────────────────
+    // ── Component for creating per-download progress dialogs ─────────────
     Component {
         id: progressDialogComponent
         DownloadProgressDialog {}
     }
 
-    // ── Controller signals ────────────────────────────────────────────────────
+    // ── Controller signals ───────────────────────────────────────────────
     Connections {
         target: App
 
@@ -657,7 +667,7 @@ ApplicationWindow {
         }
         function onDownloadAdded(item) {
             // Don't show the progress popup for "Download Later" (Paused) or for
-            // queue-managed downloads — queues run silently in the background.
+            // ── queue-managed downloads queues run silently in the background. ──
             if (!item || item.status === "Paused") return
             if (item.isTorrent) return
             if (item.isYtdlp && item.ytdlpPlaylistMode) return
@@ -677,7 +687,7 @@ ApplicationWindow {
                 if (dlg && dlg.visible) dlg.hide()
                 root._updateDownloadsTray()
             }
-            // Torrents go Completed → Seeding; never show the complete dialog for them.
+            // ── Torrents go Completed Seeding; never show the complete dialog for them. ──
             if (!item || item.isTorrent)
                 return
             // Don't show complete dialog for queue-assigned downloads or if disabled in settings
@@ -766,7 +776,7 @@ ApplicationWindow {
             if (existing) {
                 var action = App.settings.duplicateAction
                 if (action === 0) {
-                    // Ask — show duplicate dialog
+                    // ── Ask show duplicate dialog ────────────────────────
                     duplicateDialog.existingItem = existing
                     duplicateDialog._pendingUrl  = url
                     showAndActivate(duplicateDialog)
@@ -775,15 +785,15 @@ ApplicationWindow {
                 }
                 return
             }
-            // Firefox passes the full local save path as filename — extract basename only.
+            // ── Firefox passes the full local save path as filename extract basename only. ──
             var urlName = url.split("/").pop().split("?")[0] || "download"
             var hasExt = urlName.indexOf('.') > 0
             var name = (filename.length > 0 ? filename.split(/[/\\]/).pop() : "")
                     || (hasExt ? urlName : "")
-            // Display placeholder even when URL guess is bad — dialog needs a label.
+            // ── Display placeholder even when URL guess is bad dialog needs a label. ──
             var displayName = name || urlName
             var _cookies  = App.takePendingCookies(url)
-            // No cookies from extension — read from browser profiles on disk.
+            // ── No cookies from extension read from browser profiles on disk. ──
             if (_cookies.length === 0)
                 _cookies = App.cookiesForUrl(url)
             // Store back so takePendingCookies() works at confirm time (addUrl path).
@@ -805,7 +815,7 @@ ApplicationWindow {
         }
     }
 
-    // ── Grabber explore-finished: run completion actions ─────────────────────
+    // ── Grabber explore-finished: run completion actions ─────────────────
     Connections {
         target: App
         function onGrabberExploreFinished(projectId) {
@@ -821,7 +831,7 @@ ApplicationWindow {
         }
     }
 
-    // ── Grabber schedule checker (runs every 30 s) ────────────────────────────
+    // ── Grabber schedule checker (runs every 30 s) ───────────────────────
     Timer {
         id: grabberScheduleTimer
         interval: 30000
@@ -869,7 +879,7 @@ ApplicationWindow {
         }
     }
 
-    // ── Clipboard URL monitoring — react to signal from AppController ────────────
+    // ── Clipboard URL monitoring react to signal from AppController ──────
     // When the user copies a URL matching a monitored extension, show the Add URL
     // dialog pre-filled with that URL and a friendly title explaining why it appeared.
     Connections {
@@ -884,7 +894,7 @@ ApplicationWindow {
         }
     }
 
-    // ── Speed limiter scheduler ───────────────────────────────────────────────
+    // ── Speed limiter scheduler ──────────────────────────────────────────
     // Evaluated every 60 seconds AND immediately when settings are applied.
     // Each rule: days[], onHour (1-12), onMinute (0-59), onAmPm, offHour,
     // offMinute, offAmPm, downLimitKBps, upLimitKBps. First matching rule wins.
@@ -938,8 +948,8 @@ ApplicationWindow {
 
             // Handle same-day and overnight ranges
             var active = (on24 <= off24)
-                ? (nowTotal >= on24 && nowTotal < off24)          // e.g. 9 AM – 5 PM
-                : (nowTotal >= on24 || nowTotal < off24)           // e.g. 10 PM – 6 AM
+                ? (nowTotal >= on24 && nowTotal < off24)          // e.g. 9 AM ▶€“ 5 PM
+                : (nowTotal >= on24 || nowTotal < off24)           // e.g. 10 PM ▶€“ 6 AM
             if (active) { matchedRule = r; break }
         }
 
@@ -983,7 +993,7 @@ ApplicationWindow {
         onTriggered: root.runSpeedScheduleCheck()
     }
 
-    // ── Add URL dialog (step 1) ───────────────────────────────────────────────
+    // ── Add URL dialog (step 1) ──────────────────────────────────────────
     AddUrlDialog {
         id: addUrlDialog
         transientParent: root
@@ -1048,7 +1058,7 @@ ApplicationWindow {
         onRejected: root.pendingTorrentExportIds = []
     }
 
-    // ── Import / Export file dialogs ──────────────────────────────────────────
+    // ── Import / Export file dialogs ─────────────────────────────────────
 
     FileDialog {
         id: exportEf2Dialog
@@ -1191,7 +1201,7 @@ ApplicationWindow {
     }
 
     // Open the yt-dlp format picker for a video site URL.
-    // No DownloadItem is created here — it only appears in the list once the
+    // ── No DownloadItem is created here it only appears in the list once the ──
     // user confirms a format and App.finalizeYtdlpDownload() runs.
     function _showYtdlpDialog(url) {
         ytdlpDialog.pendingUrl = url
@@ -1221,14 +1231,14 @@ ApplicationWindow {
         var displayFilename = filename || urlName2
         // Discard any pre-fetch that was started by a previous _showFileInfoDialog
         // call for this same URL (e.g. when the user picks "Add Numbered" after a
-        // duplicate warning — we'd otherwise leak a running download in temp).
+        // ── duplicate warning we'd otherwise leak a running download in temp). ──
         if (fileInfoDialog.pendingDownloadId.length > 0) {
             App.discardPendingDownload(fileInfoDialog.pendingDownloadId)
             fileInfoDialog.pendingDownloadId = ""
         }
 
         var _cookies2  = App.takePendingCookies(url)
-        // No cookies from extension — read from browser profiles on disk.
+        // ── No cookies from extension read from browser profiles on disk. ──
         if (_cookies2.length === 0)
             _cookies2 = App.cookiesForUrl(url)
         // Store back so takePendingCookies() works at confirm time (addUrl path).
@@ -1254,7 +1264,7 @@ ApplicationWindow {
     function _handleDuplicateAction(action, remember, existing, url) {
         if (remember) App.settings.duplicateAction = action
         if (action === 3) {
-            // Resume or show complete — no file info dialog
+            // ── Resume or show complete no file info dialog ──────────────
             if (existing.status === "Completed") {
                 completeDialog.item = existing
                 completeDialog.show(); completeDialog.raise()
@@ -1267,7 +1277,7 @@ ApplicationWindow {
             _showFileInfoDialog(url, "")
         } else {
             // AddNumbered: for yt-dlp URLs the filename is chosen by yt-dlp itself
-            // (from video metadata), so generating a numbered name here has no effect —
+            // ── (from video metadata), so generating a numbered name here has no effect ──
             // just open the format picker as a fresh download.
             // For regular URLs, generate a unique filename as usual.
             if (App.isLikelyYtdlpUrl(url)) {
@@ -1293,7 +1303,7 @@ ApplicationWindow {
     property var _pendingExportItems: []
     property var _afterDownloadLaterWarning: null
 
-    // ── Download File Info dialog (step 2) ────────────────────────────────────
+    // ── Download File Info dialog (step 2) ───────────────────────────────
     DownloadFileInfoDialog {
         id: fileInfoDialog
         transientParent: root
@@ -1319,7 +1329,7 @@ ApplicationWindow {
                     // "Paused" when the UI signal arrives; open the progress
                     // window directly for the item the user just started.
                     // Skip the progress dialog if the download already finished
-                    // while the user was reviewing the file info dialog — the
+                    // ── while the user was reviewing the file info dialog the ──
                     // complete dialog will have been (or will be) shown instead.
                     Qt.callLater(function() {
                         var dlItem = App.downloadById(downloadId)
@@ -1409,7 +1419,7 @@ ApplicationWindow {
         }
     }
 
-    // ── yt-dlp format picker dialog ───────────────────────────────────────────
+    // ── yt-dlp format picker dialog ──────────────────────────────────────
     // Shown when a yt-dlp-compatible URL is submitted via Add URL or clipboard.
     // The URL is probed with "yt-dlp --dump-json" so the user can choose quality
     // before the actual download starts.
@@ -1432,7 +1442,7 @@ ApplicationWindow {
         minimumHeight: 360
         maximumHeight: 500
         title: qsTr("Channel Download Progress")
-        color: "#1e1e1e"
+        color: ColorPalette.cardBg
         modality: Qt.NonModal
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
         visible: false
@@ -1455,7 +1465,7 @@ ApplicationWindow {
             }
         }
 
-        // ── Column definitions ──────────────────────────────────────────────────
+        // ── Column definitions ───────────────────────────────────────────
         readonly property var _defaultCols: [
             { title: "#",           key: "index",    widthPx: 40,  visible: true },
             { title: qsTr("File Name"), key: "filename", widthPx: 320, visible: true },
@@ -1596,7 +1606,7 @@ ApplicationWindow {
             columnDefs = defs
         }
 
-        // ── Aggregate stats ─────────────────────────────────────────────────────
+        // ── Aggregate stats ──────────────────────────────────────────────
         property int _statsTotal: {
             return App.ytdlpBatchItems.length
         }
@@ -1626,7 +1636,7 @@ ApplicationWindow {
             anchors.margins: 8
             spacing: 6
 
-            // ── Title ───────────────────────────────────────────────────────────
+            // ── Title ────────────────────────────────────────────────────
             Text {
                 Layout.fillWidth: true
                 text: App.ytdlpBatchLabel.length > 0 ? App.ytdlpBatchLabel : "Channel/Playlist"
@@ -1635,7 +1645,7 @@ ApplicationWindow {
                 elide: Text.ElideMiddle
             }
 
-            // ── Summary stats ───────────────────────────────────────────────────
+            // ── Summary stats ────────────────────────────────────────────
             Text {
                 id: summaryText
                 Layout.fillWidth: true
@@ -1649,7 +1659,7 @@ ApplicationWindow {
                 elide: Text.ElideRight
             }
 
-            // ── Table ───────────────────────────────────────────────────────────
+            // ── Table ────────────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
@@ -1658,12 +1668,12 @@ ApplicationWindow {
                 radius: 4
                 clip: true
 
-                // ── Header ──────────────────────────────────────────────────────
+                // ── Header ───────────────────────────────────────────────
                 Rectangle {
                     id: batchHeader
                     anchors { top: parent.top; left: parent.left; right: parent.right }
                     height: 26
-                    color: "#2d2d2d"
+                    color: ColorPalette.dividerBg
                     clip: true
 
                     Row {
@@ -1678,7 +1688,7 @@ ApplicationWindow {
                                 id: hdrCell
                                 width: ytdlpBatchWindow.colWidth(modelData.key)
                                 height: parent.height
-                                color: (hdrMouse.containsMouse && !ytdlpBatchWindow._colDragging) ? "#383838" : "transparent"
+                                color: (hdrMouse.containsMouse && !ytdlpBatchWindow._colDragging) ? ColorPalette.border : "transparent"
                                 opacity: (ytdlpBatchWindow._colDragging && ytdlpBatchWindow._colDragFromKey === modelData.key) ? 0.5 : 1.0
 
                                 // Drop insert-line LEFT of this column
@@ -1771,7 +1781,7 @@ ApplicationWindow {
                                 Rectangle {
                                     anchors.right: parent.right
                                     width: 1; height: parent.height
-                                    color: "#3a3a3a"
+                                    color: ColorPalette.border
                                 }
 
                                 // Column resize handle
@@ -1838,7 +1848,7 @@ ApplicationWindow {
                     }
 
                     // Bottom border
-                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
+                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
                 }
 
                 Item {
@@ -1846,7 +1856,7 @@ ApplicationWindow {
                     visible: false
                 }
 
-                // ── Rows ────────────────────────────────────────────────────────
+                // ── Rows ─────────────────────────────────────────────────
                 ListView {
                     id: batchListView
                     anchors { top: batchHeader.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
@@ -1887,14 +1897,14 @@ ApplicationWindow {
                         required property var modelData
                         width: batchListView.contentWidth
                         height: 28
-                        color: batchRowIndex % 2 === 0 ? "#1c1c1c" : "#222222"
+                        color: batchRowIndex % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg
                         clip: true
 
                         readonly property int batchRowIndex: index
                         readonly property var itemData: modelData
 
                         Row {
-                            // ── # column ─────────────────────────────────────────
+                            // ── # column ─────────────────────────────────
                             Item {
                                 visible: ytdlpBatchWindow._colVisible("index")
                                 x: ytdlpBatchWindow._colXMap["index"] || 0
@@ -1911,7 +1921,7 @@ ApplicationWindow {
                                 }
                             }
 
-                            // ── Filename column ──────────────────────────────────
+                            // ── Filename column ──────────────────────────
                             Item {
                                 visible: ytdlpBatchWindow._colVisible("filename")
                                 x: ytdlpBatchWindow._colXMap["filename"] || 0
@@ -1926,13 +1936,13 @@ ApplicationWindow {
                                         if (t === undefined || t === null || t === "") return qsTr("Item %1").arg(batchRow.batchRowIndex + 1)
                                         return t
                                     }
-                                    color: "#d0d0d0"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 12 * App.fontScale
                                     elide: Text.ElideMiddle
                                 }
                             }
 
-                            // ── Size column ──────────────────────────────────────
+                            // ── Size column ──────────────────────────────
                             Item {
                                 visible: ytdlpBatchWindow._colVisible("size")
                                 x: ytdlpBatchWindow._colXMap["size"] || 0
@@ -1952,7 +1962,7 @@ ApplicationWindow {
                                 }
                             }
 
-                            // ── Status column ────────────────────────────────────
+                            // ── Status column ────────────────────────────
                             Item {
                                 visible: ytdlpBatchWindow._colVisible("status")
                                 x: ytdlpBatchWindow._colXMap["status"] || 0
@@ -1976,7 +1986,7 @@ ApplicationWindow {
                                 }
                             }
 
-                            // ── Time left column ─────────────────────────────────
+                            // ── Time left column ─────────────────────────
                             Item {
                                 visible: ytdlpBatchWindow._colVisible("timeleft")
                                 x: ytdlpBatchWindow._colXMap["timeleft"] || 0
@@ -2022,7 +2032,7 @@ ApplicationWindow {
                 }
             }
 
-            // ── Buttons ──────────────────────────────────────────────────────────
+            // ── Buttons ──────────────────────────────────────────────────
             RowLayout {
                 Layout.fillWidth: true
                 Item { Layout.fillWidth: true }
@@ -2101,7 +2111,7 @@ ApplicationWindow {
         modal: true
         closePolicy: Popup.NoAutoClose
         padding: 0
-        background: Rectangle { color: "#1e1e1e"; border.color: "#3a3a3a"; radius: 6 }
+        background: Rectangle { color: ColorPalette.cardBg; border.color: ColorPalette.border; radius: 6 }
         contentItem: ColumnLayout {
             spacing: 0
             ColumnLayout {
@@ -2110,20 +2120,20 @@ ApplicationWindow {
                 Layout.margins: 20
                 Text {
                     text: qsTr("Enable BitTorrent Support?")
-                    color: "#ffffff"
+                    color: ColorPalette.textHeader
                     font.pixelSize: 15 * App.fontScale
                     font.bold: true
                 }
-                Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
                 Text {
                     Layout.fillWidth: true
                     wrapMode: Text.WordWrap
-                    color: "#c0c0c0"
+                    color: ColorPalette.textPrimary
                     font.pixelSize: 12 * App.fontScale
                     lineHeight: 1.4
                     text: qsTr("BitTorrent support is currently disabled.\n\nWhen you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.\n\nAnything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.\n\nIt is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.")
                 }
-                Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 8
@@ -2188,10 +2198,11 @@ ApplicationWindow {
         minimumHeight: 200
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
         modality: Qt.ApplicationModal
-        color: "#1e1e1e"
+        color: ColorPalette.cardBg
 
-        Material.theme: Material.Dark
-        Material.background: "#1e1e1e"
+        Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+        Material.background: ColorPalette.materialBg
         Material.accent: "#4488dd"
 
         onVisibleChanged: {
@@ -2213,7 +2224,7 @@ ApplicationWindow {
             Text {
                 Layout.fillWidth: true
                 text: qsTr("You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the \"Download File Info\" dialog.\n\nYou can turn this off in Settings → Downloads.")
-                color: "#d0d0d0"
+                color: ColorPalette.textPrimary
                 font.pixelSize: 13 * App.fontScale
                 wrapMode: Text.WordWrap
                 lineHeight: 1.3
@@ -2238,7 +2249,7 @@ ApplicationWindow {
         }
     }
 
-    // ── File Deleted Warning Dialog ───────────────────────────────────────────
+    // ── File Deleted Warning Dialog ──────────────────────────────────────
     Window {
         id: fileDeletedWarningDialog
         property string _filename: ""
@@ -2250,10 +2261,11 @@ ApplicationWindow {
         minimumHeight: 220
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
         modality: Qt.ApplicationModal
-        color: "#1e1e1e"
+        color: ColorPalette.cardBg
 
-        Material.theme: Material.Dark
-        Material.background: "#1e1e1e"
+        Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+        Material.background: ColorPalette.materialBg
         Material.accent: "#4488dd"
 
         onVisibleChanged: {
@@ -2287,7 +2299,7 @@ ApplicationWindow {
                     Text {
                         Layout.fillWidth: true
                         text: qsTr("The file \u201c%1\u201d could not be downloaded.").arg(fileDeletedWarningDialog._filename)
-                        color: "#e0e0e0"
+                        color: ColorPalette.textPrimary
                         font.pixelSize: 12 * App.fontScale
                         font.bold: true
                         wrapMode: Text.WordWrap
@@ -2296,7 +2308,7 @@ ApplicationWindow {
                     Text {
                         Layout.fillWidth: true
                         text: qsTr("The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata.")
-                        color: "#c8c8c8"
+                        color: ColorPalette.textPrimary
                         font.pixelSize: 11 * App.fontScale
                         wrapMode: Text.WordWrap
                         lineHeight: 1.3
@@ -2307,15 +2319,15 @@ ApplicationWindow {
             Rectangle {
                 Layout.fillWidth: true
                 implicitHeight: fdwInfoText.implicitHeight + 16
-                color: "#1a2030"
-                border.color: "#2a3050"
+                color: ColorPalette.infoBoxBg
+                border.color: ColorPalette.infoBoxBorder
                 radius: 3
 
                 Text {
                     id: fdwInfoText
                     anchors { fill: parent; margins: 8 }
                     text: qsTr("To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:\nStellar Options \u2192 Browser \u2192 Bypass Download Interception")
-                    color: "#8899bb"
+                    color: ColorPalette.infoBoxText
                     font.pixelSize: 11 * App.fontScale
                     wrapMode: Text.WordWrap
                     lineHeight: 1.3
@@ -2346,7 +2358,7 @@ ApplicationWindow {
         }
     }
 
-    // ── Duplicate Download Dialog ─────────────────────────────────────────────
+    // ── Duplicate Download Dialog ────────────────────────────────────────
     DuplicateDownloadDialog {
         id: duplicateDialog
         transientParent: root
@@ -2356,10 +2368,10 @@ ApplicationWindow {
         }
     }
 
-    // ── Download Complete Dialog ──────────────────────────────────────────────
+    // ── Download Complete Dialog ─────────────────────────────────────────
     DownloadCompleteDialog { id: completeDialog; transientParent: root }
 
-    // ── Settings / About Dialog ───────────────────────────────────────────────
+    // ── Settings / About Dialog ──────────────────────────────────────────
     SettingsDialog {
         id: settingsDialog
         transientParent: root
@@ -2382,7 +2394,7 @@ ApplicationWindow {
         minimumHeight: 160
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
         modality: Qt.ApplicationModal
-        color: "#1e1e1e"
+        color: ColorPalette.cardBg
         property string messageText: ""
 
         onVisibleChanged: {
@@ -2401,7 +2413,7 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 text: quickUpdateDialog.messageText
                 wrapMode: Text.WordWrap
-                color: "#d8d8d8"
+                color: ColorPalette.textPrimary
                 font.pixelSize: 13 * App.fontScale
             }
 
@@ -2417,6 +2429,59 @@ ApplicationWindow {
         }
     }
 
+    // Restart prompt shown when the UI language is changed from the View menu.
+    Window {
+        id: languageRestartPrompt
+        title: qsTr("Restart Required")
+        width: 360
+        height: langPromptCol.implicitHeight + 24
+        flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
+        modality: Qt.WindowModal
+        transientParent: root
+        color: ColorPalette.cardBg
+        Material.theme: ColorPalette.materialTheme
+        Material.foreground: ColorPalette.textPrimary
+        Material.background: ColorPalette.materialBg
+        Material.accent: "#4488dd"
+
+        function open() {
+            x = root.x + Math.round((root.width  - width)  / 2)
+            y = root.y + Math.round((root.height - height) / 2)
+            show()
+            raise()
+            requestActivate()
+        }
+
+        ColumnLayout {
+            id: langPromptCol
+            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 16 }
+            spacing: 16
+
+            Text {
+                Layout.fillWidth: true
+                text: qsTr("The interface language has been changed. Stellar must restart to apply it.")
+                color: ColorPalette.textPrimary
+                font.pixelSize: 12 * App.fontScale
+                wrapMode: Text.WordWrap
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 8
+                Item { Layout.fillWidth: true }
+                DlgButton {
+                    text: qsTr("Restart Now")
+                    primary: true
+                    onClicked: App.restartApp()
+                }
+                DlgButton {
+                    text: qsTr("Later")
+                    onClicked: languageRestartPrompt.close()
+                }
+            }
+        }
+    }
+
     Window {
         id: updateAvailableDialog
         title: qsTr("New version of Stellar Download Manager is available")
@@ -2427,7 +2492,7 @@ ApplicationWindow {
         minimumHeight: 375
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
         modality: Qt.ApplicationModal
-        color: "#1e1e1e"
+        color: ColorPalette.cardBg
         property bool dismissOnClose: true
 
         onVisibleChanged: {
@@ -2450,12 +2515,12 @@ ApplicationWindow {
 
             Text {
                 text: qsTr("Version %1 is available.").arg(App.updateVersion)
-                color: "#ffffff"
+                color: ColorPalette.textHeader
                 font.pixelSize: 16 * App.fontScale
                 font.bold: true
             }
 
-            Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+            Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
             ScrollView {
                 Layout.fillWidth: true
@@ -2505,7 +2570,7 @@ ApplicationWindow {
         }
     }
 
-    // ── What's New / Changelog viewer ─────────────────────────────────────────
+    // ── What's New / Changelog viewer ────────────────────────────────────
     Window {
         id: whatsNewDialog
         title: qsTr("What's New in Stellar")
@@ -2516,7 +2581,7 @@ ApplicationWindow {
         minimumHeight: 375
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
         modality: Qt.ApplicationModal
-        color: "#1e1e1e"
+        color: ColorPalette.cardBg
 
         onVisibleChanged: {
             if (visible) {
@@ -2534,12 +2599,12 @@ ApplicationWindow {
                 text: App.updateChangelog && App.updateChangelog.length > 0
                     ? "Changelog"
                     : "What's New"
-                color: "#ffffff"
+                color: ColorPalette.textHeader
                 font.pixelSize: 16 * App.fontScale
                 font.bold: true
             }
 
-            Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+            Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
             ScrollView {
                 Layout.fillWidth: true
@@ -2568,10 +2633,10 @@ ApplicationWindow {
         }
     }
 
-    // ── Scheduler Dialog ───────────────────────────────────────────────────────
+    // ── Scheduler Dialog ─────────────────────────────────────────────────
     SchedulerDialog { id: schedulerDialog; transientParent: root }
 
-    // ── Batch Download Dialogs ────────────────────────────────────────────────
+    // ── Batch Download Dialogs ───────────────────────────────────────────
     BatchDownloadDialog {
         id: batchDownloadDialog
         transientParent: root
@@ -2718,7 +2783,7 @@ ApplicationWindow {
 
     GrabberStatisticsDialog { id: grabberStatisticsDialog }
 
-    // ── Statistics Dialog ─────────────────────────────────────────────────────
+    // ── Statistics Dialog ────────────────────────────────────────────────
     StatisticsDialog { id: statisticsDialog }
     ExportDialog {
         id: exportDialog
@@ -2752,24 +2817,24 @@ ApplicationWindow {
         }
     }
 
-    // ── Browser Integration Dialog ────────────────────────────────────────────
+    // ── Browser Integration Dialog ───────────────────────────────────────
     BrowserIntegrationDialog { id: browserIntegrationDialog; transientParent: root }
 
 
-    // ── Add Exception Dialog ──────────────────────────────────────────────────
+    // ── Add Exception Dialog ─────────────────────────────────────────────
     AddExceptionDialog { id: addExceptionDialog; transientParent: root }
 
-    // ── Delete Done Confirm Dialog ────────────────────────────────────────────
+    // ── Delete Done Confirm Dialog ───────────────────────────────────────
     DeleteDoneConfirmDialog {
         id: deleteDoneConfirmDialog
         transientParent: root
         onConfirmed: (includeSeedingTorrents) => App.deleteAllCompleted(0, includeSeedingTorrents)
     }
 
-    // ── File Properties Dialog ────────────────────────────────────────────────
+    // ── File Properties Dialog ───────────────────────────────────────────
     FilePropertiesDialog { id: filePropertiesDialog; transientParent: root }
 
-// ── Columns Dialog ────────────────────────────────────────────────────────
+// ── Columns Dialog ───────────────────────────────────────────────────────
     ColumnsDialog {
         id: columnsDialog
         transientParent: root
@@ -2782,7 +2847,7 @@ ApplicationWindow {
         }
     }
 
-    // ── Toolbar Dialog ────────────────────────────────────────────────────────
+    // ── Toolbar Dialog ───────────────────────────────────────────────────
     ToolbarDialog {
         id: toolbarDialog
         transientParent: root
@@ -2817,7 +2882,7 @@ ApplicationWindow {
         }
     }
 
-    // ── Tips timer and display ────────────────────────────────────────────────
+    // ── Tips timer and display ───────────────────────────────────────────
     property var tipsArray: []
     property int currentTipIndex: 0
 
@@ -2835,6 +2900,7 @@ ApplicationWindow {
 
     Component.onCompleted: {
         loadTips()
+        App.setWindowDarkTitleBar(root, App.settings.darkMode)
         // When launched by the OS at login, start hidden in the tray instead of
         // showing the main window.  The tray icon is always visible regardless.
         if (typeof StartMinimized !== "undefined" && StartMinimized) {
@@ -2883,12 +2949,12 @@ ApplicationWindow {
         }
     }
 
-    // ── Menu bar ──────────────────────────────────────────────────────────────
+    // ── Menu bar ─────────────────────────────────────────────────────────
     menuBar: MenuBar {
         id: appMenuBar
         background: Rectangle {
-            color: "#252525"
-            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#383838" }
+            color: ColorPalette.panelBg
+            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
         }
 
         // Shared compact MenuItem delegate used by all drop-down menus.
@@ -2919,7 +2985,7 @@ ApplicationWindow {
                 anchors.verticalCenter: parent ? parent.verticalCenter : undefined
                 text: "▶"
                 font.pixelSize: 8 * App.fontScale
-                color: "#888888"
+                color: ColorPalette.textMuted
                 visible: _cmi.subMenu !== null
             }
             contentItem: RowLayout {
@@ -2939,14 +3005,14 @@ ApplicationWindow {
                 Text {
                     text: _cmi.text
                     font: _cmi.font
-                    color: _cmi.enabled ? "#d0d0d0" : "#666666"
+                    color: _cmi.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
                     verticalAlignment: Text.AlignVCenter
                     elide: Text.ElideRight
                     Layout.fillWidth: true
                 }
                 Text {
                     text: _cmi.shortcutDisplay
-                    color: "#888888"
+                    color: ColorPalette.textMuted
                     font.pixelSize: 11 * App.fontScale
                     visible: text !== ""
                     verticalAlignment: Text.AlignVCenter
@@ -2955,7 +3021,19 @@ ApplicationWindow {
             }
             background: Rectangle {
                 implicitHeight: 22
-                color: _cmi.highlighted ? "#1e3a6e" : "transparent"
+                color: _cmi.highlighted ? ColorPalette.selectionBg : "transparent"
+            }
+        }
+
+        // Themed menu separator -- the default Material MenuSeparator draws a
+        // near-invisible line in light mode. Force a visible divider colour.
+        component CompactSep: MenuSeparator {
+            padding: 0
+            topPadding: 3; bottomPadding: 3
+            contentItem: Rectangle {
+                implicitWidth: 180
+                implicitHeight: 1
+                color: ColorPalette.border
             }
         }
 
@@ -2966,16 +3044,16 @@ ApplicationWindow {
             contentItem: Text {
                 text: parent.text
                 font: parent.font
-                color: "#d0d0d0"
+                color: ColorPalette.textPrimary
                 verticalAlignment: Text.AlignVCenter
             }
             background: Rectangle {
                 implicitHeight: 20
-                color: parent.highlighted ? "#1e3a6e" : "transparent"
+                color: parent.highlighted ? ColorPalette.selectionBg : "transparent"
             }
         }
 
-        // Keyboard shortcuts for menu actions — Action.shortcut works at window scope.
+        // ── Keyboard shortcuts for menu actions Action.shortcut works at window scope. ──
         Action { shortcut: "Ctrl+N";       onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
         Action { shortcut: "Ctrl+Shift+T"; onTriggered: addTorrentFileDialog.open() }
         Action { shortcut: "Ctrl+Shift+N"; onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
@@ -3005,7 +3083,7 @@ ApplicationWindow {
             CompactMenuItem { text: qsTr("Add URL…"); shortcutDisplay: "Ctrl+N"; iconSrc: "icons/add_url.svg";  onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
             CompactMenuItem { text: qsTr("Add Torrent File…"); iconSrc: "icons/torrent_file.svg";   onTriggered: addTorrentFileDialog.open() }
             CompactMenuItem { text: qsTr("Add Batch URLs…");   iconSrc: "icons/add.svg";      onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
-            MenuSeparator {}
+            CompactSep {}
             CompactMenuItem {
                 id: _exportMenuItem
                 text: qsTr("Export") + "  ▶"
@@ -3062,7 +3140,7 @@ ApplicationWindow {
                 }
                 Timer { id: _importCloseTimer; interval: 300; onTriggered: { if (!_importMenu.activeFocus) _importMenu.close() } }
             }
-            MenuSeparator {}
+            CompactSep {}
             CompactMenuItem { text: qsTr("Exit"); shortcutDisplay: "Ctrl+Q"; iconSrc: "icons/exit.svg"; onTriggered: root.quitApp() }
         }
         Menu {
@@ -3083,7 +3161,7 @@ ApplicationWindow {
                 enabled: root.selectedDownloadItem && (root.selectedDownloadItem.status === "Completed" || root.selectedDownloadItem.status === "Seeding")
                 onTriggered: { var item = root.selectedDownloadItem; if (item && (item.status === "Completed" || item.status === "Seeding")) App.openFile(item.id) }
             }
-            MenuSeparator {}
+            CompactSep {}
             CompactMenuItem {
                 text: qsTr("Download Now")
                 shortcutDisplay: "Ctrl+S"
@@ -3139,12 +3217,12 @@ ApplicationWindow {
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
             CompactMenuItem { text: qsTr("Stop all"); shortcutDisplay: "Ctrl+K"; iconSrc: "icons/stop_all.svg";  onTriggered: downloadTable.pauseAll() }
-            MenuSeparator {}
+            CompactSep {}
             CompactMenuItem { text: qsTr("Delete all completed"); shortcutDisplay: "Ctrl+Shift+W"; iconSrc: "icons/delete.svg";        onTriggered: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() } }
-            MenuSeparator {}
+            CompactSep {}
             CompactMenuItem { text: qsTr("Find…"); shortcutDisplay: "Ctrl+F"; iconSrc: "icons/magnifying_glass.svg"; onTriggered: { root.findBarActive = true; findBarField.forceActiveFocus() } }
             CompactMenuItem { text: qsTr("Find Next"); shortcutDisplay: "F3"; iconSrc: "icons/magnifying_glass.svg"; onTriggered: downloadTable.findNextFiltered() }
-            MenuSeparator {}
+            CompactSep {}
             CompactMenuItem { text: qsTr("Scheduler"); iconSrc: "icons/scheduler.svg"; onTriggered: schedulerDialog.show() }
             CompactMenuItem {
                 id: _startQueueItem
@@ -3190,7 +3268,7 @@ ApplicationWindow {
                 }
                 Timer { id: _stqCloseTimer; interval: 300; onTriggered: { if (!_stopQueueMenu.activeFocus) _stopQueueMenu.close() } }
             }
-            MenuSeparator {}
+            CompactSep {}
             CompactMenuItem {
                 id: _speedLimiterItem1
                 iconSrc: "icons/snail.svg"
@@ -3205,9 +3283,9 @@ ApplicationWindow {
                     id: _speedLimiterMenu1
                     delegate: CompactMenuItem; implicitWidth: 260; topPadding: 0; bottomPadding: 0
                     onAboutToHide: _sl1CloseTimer.stop()
-                    CompactMenuItem { text: (App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: { App.enableSpeedLimiter(); _downloadsMenu.dismiss() } }
-                    CompactMenuItem { text: (!App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: { App.disableSpeedLimiter(); _downloadsMenu.dismiss() } }
-                    MenuSeparator {}
+                    CompactMenuItem { text: (App.settings.speedLimiterEnabled ? "✓" : "    ") + qsTr("Turn On");  onTriggered: { App.enableSpeedLimiter(); _downloadsMenu.dismiss() } }
+                    CompactMenuItem { text: (!App.settings.speedLimiterEnabled ? "✓" : "    ") + qsTr("Turn Off"); onTriggered: { App.disableSpeedLimiter(); _downloadsMenu.dismiss() } }
+                    CompactSep {}
                     CompactMenuItem { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = root.settingsPageSpeedLimiter; settingsDialog.show(); _downloadsMenu.dismiss() } }
                 }
                 Timer { id: _sl1CloseTimer; interval: 300; onTriggered: { if (!_speedLimiterMenu1.activeFocus) _speedLimiterMenu1.close() } }
@@ -3220,7 +3298,7 @@ ApplicationWindow {
                 checked: App.sessionPaused
                 onTriggered: App.sessionPaused ? App.resumeSession() : App.pauseSession()
             }
-            MenuSeparator {}
+            CompactSep {}
             CompactMenuItem { text: qsTr("Options…"); shortcutDisplay: "Alt+O"; iconSrc: "icons/gear.svg"; onTriggered: settingsDialog.show() }
         }
         Menu {
@@ -3266,7 +3344,13 @@ ApplicationWindow {
                 }
                 Timer { id: _trayIconStyleCloseTimer; interval: 300; onTriggered: { if (!_trayIconStyleMenu.activeFocus) _trayIconStyleMenu.close() } }
             }
-            MenuSeparator {}
+            CompactSep {}
+            CompactMenuItem {
+                text: App.settings.darkMode ? qsTr("Switch to Light Mode") : qsTr("Switch to Dark Mode")
+                iconSrc: App.settings.darkMode ? "icons/lightmode.svg" : "icons/darkmode.svg"
+                onTriggered: { App.settings.darkMode = !App.settings.darkMode; _viewMenu.dismiss() }
+            }
+            CompactSep {}
             CompactMenuItem {
                 text: (App.settings.showSearchEngine ? "✓ " : "    ") + qsTr("Show Search Engine")
                 // Defer the toggle so the View menu fully dismisses before the
@@ -3278,17 +3362,17 @@ ApplicationWindow {
                 text: (App.settings.showRssReader ? "✓ " : "    ") + qsTr("Show RSS Reader")
                 onTriggered: Qt.callLater(function() { App.settings.showRssReader = !App.settings.showRssReader })
             }
-            MenuSeparator {}
+            CompactSep {}
             CompactMenuItem {
                 text: qsTr("Statistics…")
                 shortcutDisplay: "Ctrl+I"
                 iconSrc: "icons/bar_chart.svg"
                 onTriggered: { statisticsDialog.show(); statisticsDialog.raise(); statisticsDialog.requestActivate() }
             }
-            MenuSeparator {}
+            CompactSep {}
             CompactMenuItem {
                 id: _arrangeFilesItem
-                text: qsTr("Arrange Files") + "  ▶"
+                text: qsTr("Arrange Files") + "  ✓"
                 onTriggered: _arrangeFilesMenu.popup(_arrangeFilesItem.width, 0)
                 onHoveredChanged: {
                     if (hovered) { _arrangeFilesMenu.popup(_arrangeFilesItem.width, 0) }
@@ -3312,7 +3396,7 @@ ApplicationWindow {
                 }
                 Timer { id: _arrangeFilesCloseTimer; interval: 300; onTriggered: { if (!_arrangeFilesMenu.activeFocus) _arrangeFilesMenu.close() } }
             }
-            MenuSeparator {}
+            CompactSep {}
             CompactMenuItem { text: qsTr("Columns…"); iconSrc: "icons/columns.svg"; onTriggered: {
                 columnsDialog.columnDefs = downloadTable.columnDefs.slice()
                 columnsDialog.show()
@@ -3321,7 +3405,7 @@ ApplicationWindow {
             CompactMenuItem {
                 id: _toolbarItem
                 iconSrc: "icons/toolbar.svg"
-                text: qsTr("Toolbar") + "  ▶"
+                text: qsTr("Toolbar") + "  ✓"
                 onTriggered: _toolbarMenu.popup(_toolbarItem.width, 0)
                 onHoveredChanged: {
                     if (hovered) _toolbarMenu.popup(_toolbarItem.width, 0)
@@ -3342,17 +3426,54 @@ ApplicationWindow {
                             _viewMenu.dismiss()
                         }
                     }
-                    MenuSeparator {}
+                    CompactSep {}
                     CompactMenuItem {
-                        text: (!App.settings.toolbarSmallButtons ? "✓ " : "    ") + qsTr("Large Buttons")
+                        text: (!App.settings.toolbarSmallButtons ? "✓" : "    ") + qsTr("Large Buttons")
                         onTriggered: { App.settings.toolbarSmallButtons = false; _viewMenu.dismiss() }
                     }
                     CompactMenuItem {
-                        text: (App.settings.toolbarSmallButtons ? "✓ " : "    ") + qsTr("Small Buttons")
+                        text: (App.settings.toolbarSmallButtons ? "✓" : "    ") + qsTr("Small Buttons")
                         onTriggered: { App.settings.toolbarSmallButtons = true; _viewMenu.dismiss() }
                     }
                 }
                 Timer { id: _toolbarMenuCloseTimer; interval: 300; onTriggered: { if (!_toolbarMenu.activeFocus) _toolbarMenu.close() } }
+            }
+            CompactSep {}
+            CompactMenuItem {
+                id: _languageItem
+                iconSrc: "icons/language.svg"
+                text: qsTr("Language") + "  ▶"
+                onTriggered: _languageMenu.popup(_languageItem.width, 0)
+                onHoveredChanged: {
+                    if (hovered) _languageMenu.popup(_languageItem.width, 0)
+                    else _languageMenuCloseTimer.restart()
+                }
+                Menu {
+                    id: _languageMenu
+                    delegate: CompactMenuItem
+                    implicitWidth: 240
+                    topPadding: 0; bottomPadding: 0
+                    // Cap height so the list scrolls instead of running off-screen.
+                    height: Math.min(implicitHeight, 460)
+                    onAboutToHide: _languageMenuCloseTimer.stop()
+
+                    Repeater {
+                        model: LanguageList.entries
+                        delegate: CompactMenuItem {
+                            required property var modelData
+                            text: (App.settings.uiLanguage === modelData.code ? "✓ " : "    ") + modelData.display
+                            onTriggered: {
+                                var changed = App.settings.uiLanguage !== modelData.code
+                                App.settings.uiLanguage = modelData.code
+                                App.applyUiLanguage(modelData.code)
+                                _viewMenu.dismiss()
+                                if (changed)
+                                    languageRestartPrompt.open()
+                            }
+                        }
+                    }
+                }
+                Timer { id: _languageMenuCloseTimer; interval: 300; onTriggered: { if (!_languageMenu.activeFocus) _languageMenu.close() } }
             }
         }
         Menu {
@@ -3376,9 +3497,9 @@ ApplicationWindow {
                     id: _speedLimiterMenu2
                     delegate: CompactMenuItem; implicitWidth: 260; topPadding: 0; bottomPadding: 0
                     onAboutToHide: _sl2CloseTimer.stop()
-                    CompactMenuItem { text: (App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: { App.enableSpeedLimiter(); _optionsMenu.dismiss() } }
-                    CompactMenuItem { text: (!App.settings.speedLimiterEnabled ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: { App.disableSpeedLimiter(); _optionsMenu.dismiss() } }
-                    MenuSeparator {}
+                    CompactMenuItem { text: (App.settings.speedLimiterEnabled ? "✓" : "    ") + qsTr("Turn On");  onTriggered: { App.enableSpeedLimiter(); _optionsMenu.dismiss() } }
+                    CompactMenuItem { text: (!App.settings.speedLimiterEnabled ? "✓" : "    ") + qsTr("Turn Off"); onTriggered: { App.disableSpeedLimiter(); _optionsMenu.dismiss() } }
+                    CompactSep {}
                     CompactMenuItem { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = root.settingsPageSpeedLimiter; settingsDialog.show(); _optionsMenu.dismiss() } }
                 }
                 Timer { id: _sl2CloseTimer; interval: 300; onTriggered: { if (!_speedLimiterMenu2.activeFocus) _speedLimiterMenu2.close() } }
@@ -3425,9 +3546,9 @@ ApplicationWindow {
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
             CompactMenuItem { text: qsTr("Check for Updates"); iconSrc: "icons/satellite_antenna.svg"; onTriggered: App.checkForUpdates(true) }
-            MenuSeparator {}
+            CompactSep {}
             CompactMenuItem { text: qsTr("About Stellar"); shortcutDisplay: "Ctrl+/"; iconSrc: "icons/information.svg"; onTriggered: root.showSettingsPage(root.settingsPageAbout) }
-            MenuSeparator {}
+            CompactSep {}
             CompactMenuItem {
                 id: _browserIntItem
                 text: qsTr("Browser Integration") + "  ▶"
@@ -3441,7 +3562,7 @@ ApplicationWindow {
                     delegate: CompactMenuItem; implicitWidth: 260; topPadding: 0; bottomPadding: 0
                     onAboutToHide: _browserIntCloseTimer.stop()
                     CompactMenuItem { text: qsTr("Browser Extensions…"); onTriggered: { browserIntegrationDialog.show(); browserIntegrationDialog.raise(); browserIntegrationDialog.requestActivate(); _helpMenu.dismiss() } }
-                    MenuSeparator {}
+                    CompactSep {}
                     CompactMenuItem { text: qsTr("Browser Settings…"); onTriggered: { root.showSettingsPage(root.settingsPageBrowser); _helpMenu.dismiss() } }
                 }
                 Timer { id: _browserIntCloseTimer; interval: 300; onTriggered: { if (!_browserIntMenu.activeFocus) _browserIntMenu.close() } }
@@ -3449,7 +3570,7 @@ ApplicationWindow {
         }
     }
 
-    // ── Window-level drag proxy for category drag-and-drop ───────────────────
+    // ── Window-level drag proxy for category drag-and-drop ───────────────
     // Lives outside every layout/clip so DropAreas in the sidebar can see it.
     Item {
         id: dragProxy
@@ -3464,7 +3585,7 @@ ApplicationWindow {
         property string dragFilename: ""
     }
 
-    // Visual drag label — purely cosmetic, follows the proxy
+    // ── Visual drag label purely cosmetic, follows the proxy ─────────────
     Rectangle {
         visible: dragProxy.visible
         z: 9998
@@ -3473,7 +3594,7 @@ ApplicationWindow {
         width: Math.min(dragLabelText.implicitWidth + 20, 220)
         height: 22
         radius: 3
-        color: "#1e3a6e"
+        color: ColorPalette.selectionBg
         border.color: "#4488dd"
         border.width: 1
 
@@ -3481,13 +3602,13 @@ ApplicationWindow {
             id: dragLabelText
             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8; right: parent.right; rightMargin: 8 }
             text: dragProxy.dragFilename
-            color: "#ffffff"
+            color: ColorPalette.textHeader
             font.pixelSize: 11 * App.fontScale
             elide: Text.ElideMiddle
         }
     }
 
-    // ── Root layout ───────────────────────────────────────────────────────────
+    // ── Root layout ──────────────────────────────────────────────────────
     DropArea {
         anchors.fill: parent
         z: 9997
@@ -3563,7 +3684,7 @@ ApplicationWindow {
             }
         }
 
-        // ── Inline Find Bar ───────────────────────────────────────────────────
+        // ── Inline Find Bar ──────────────────────────────────────────────
         Rectangle {
             id: findBar
             Layout.fillWidth: true
@@ -3596,7 +3717,7 @@ ApplicationWindow {
                     Layout.fillWidth: true
                     implicitHeight: 24
                     font.pixelSize: 12 * App.fontScale
-                    color: "#d0d0d0"
+                    color: ColorPalette.textPrimary
                     background: Rectangle { color: "#2a2a3a"; border.color: "#4a4a6a"; radius: 3 }
                     leftPadding: 6
 
@@ -3629,10 +3750,10 @@ ApplicationWindow {
                 // Find button
                 Rectangle {
                     implicitWidth: 46; implicitHeight: 24; radius: 3
-                    color: findBtnMa.containsMouse ? "#2a5faa" : "#1e3a6e"
+                    color: findBtnMa.containsMouse ? "#2a5faa" : ColorPalette.selectionBg
                     border.color: "#4488dd"; border.width: 1
                     Layout.alignment: Qt.AlignVCenter
-                    Text { anchors.centerIn: parent; text: qsTr("Find"); color: "#ffffff"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                    Text { anchors.centerIn: parent; text: qsTr("Find"); color: ColorPalette.textHeader; font.pixelSize: 12 * App.fontScale; font.bold: true }
                     MouseArea {
                         id: findBtnMa
                         anchors.fill: parent
@@ -3673,43 +3794,43 @@ ApplicationWindow {
 
                             Text { text: qsTr("Search in:"); color: "#808090"; font.pixelSize: 11 * App.fontScale; bottomPadding: 2 }
 
-                            CheckBox {
+                            StyledCheckBox {
                                 text: qsTr("File name or part of the name")
                                 checked: downloadTable.filterName
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: { downloadTable.filterName = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
-                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
+                                contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
                             }
-                            CheckBox {
+                            StyledCheckBox {
                                 text: qsTr("Description")
                                 checked: downloadTable.filterDesc
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: { downloadTable.filterDesc = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
-                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
+                                contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
                             }
-                            CheckBox {
+                            StyledCheckBox {
                                 text: qsTr("URL / referrer / parent web page")
                                 checked: downloadTable.filterLinks
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: { downloadTable.filterLinks = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
-                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
+                                contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
                             }
 
                             Rectangle { width: parent.width; height: 1; color: "#3a3a4a"; Layout.topMargin: 4; Layout.bottomMargin: 4 }
 
-                            CheckBox {
+                            StyledCheckBox {
                                 text: qsTr("Match case")
                                 checked: downloadTable.filterMatchCase
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: { downloadTable.filterMatchCase = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
-                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
+                                contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
                             }
-                            CheckBox {
+                            StyledCheckBox {
                                 text: qsTr("Match whole string only")
                                 checked: downloadTable.filterMatchWhole
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: { downloadTable.filterMatchWhole = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
-                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
+                                contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
                             }
                         }
                     }
@@ -3720,7 +3841,7 @@ ApplicationWindow {
                     implicitWidth: 22; implicitHeight: 22; radius: 3
                     color: closeFindMa.containsMouse ? "#553333" : "transparent"
                     Layout.alignment: Qt.AlignVCenter
-                    Text { anchors.centerIn: parent; text: "×"; color: "#a0a0a0"; font.pixelSize: 16 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: "✕"; color: "#a0a0a0"; font.pixelSize: 16 * App.fontScale }
                     MouseArea {
                         id: closeFindMa
                         anchors.fill: parent
@@ -3754,7 +3875,7 @@ ApplicationWindow {
                 onCategorySelected: (catId) => {
                     App.selectedCategory = catId
                     // Clear selection so toolbar enabled-states re-evaluate against
-                    // the new (possibly empty) filtered view — otherwise Resume/Delete/etc.
+                    // ── the new (possibly empty) filtered view otherwise Resume/Delete/etc. ──
                     // stay lit when the newly shown category has no items.
                     downloadTable._setSelection({})
                     downloadTable._anchorRow = -1
@@ -3796,7 +3917,7 @@ ApplicationWindow {
                    ? parent.width - App.settings.sidebarWidth - width
                    : App.settings.sidebarWidth
                 color: dividerDragArea.containsMouse || parent._dividerDragging
-                       ? "#4488dd" : "#2a2a2a"
+                       ? "#4488dd" : ColorPalette.border
 
                 Behavior on color { ColorAnimation { duration: 80 } }
 

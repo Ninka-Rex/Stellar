@@ -25,7 +25,7 @@ Window {
     minimumWidth: 500
     minimumHeight: 320
     title: qsTr("Search Plugins")
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
 
     property int ctxRow: -1
@@ -74,8 +74,8 @@ Window {
         Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            color: "#1a1a1a"
-            border.color: "#2d2d2d"
+            color: ColorPalette.cardBg
+            border.color: ColorPalette.dividerBg
             radius: 4
 
             ListView {
@@ -93,7 +93,7 @@ Window {
 
                     width: ListView.view.width
                     height: 34
-                    color: index % 2 === 0 ? "#1c1c1c" : "#222222"
+                    color: index % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg
 
                     RowLayout {
                         anchors.fill: parent

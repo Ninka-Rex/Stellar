@@ -20,7 +20,7 @@ import QtQuick.Layouts
 
 Rectangle {
     id: root
-    color: "#1c1c1c"
+    color: ColorPalette.windowBg
 
     signal openProgressRequested(var item)
     signal openPropertiesRequested(var item)
@@ -35,7 +35,7 @@ Rectangle {
 
     property var categoryDragProxy: null
 
-    // ── Multi-selection state ─────────────────────────────────────────────────
+    // ── Multi-selection state ────────────────────────────────────────────
     property var _selectedRows:     ({})
     property int _selectionVersion: 0
 
@@ -97,7 +97,7 @@ Rectangle {
         function onLayoutChanged() { root.refreshModelRowCount() }
     }
 
-    // Toolbar enabled-state bindings — reactive via _selectionVersion
+    // ── Toolbar enabled-state bindings reactive via _selectionVersion ────
     readonly property bool anyPausedSelected: {
         _selectionVersion
         for (var row in _selectedRows) {
@@ -234,7 +234,7 @@ Rectangle {
         }
     }
 
-    // ── Rename torrent root dialog ────────────────────────────────────────────
+    // ── Rename torrent root dialog ───────────────────────────────────────
     Window {
         id: renameTorrentRootDialog
         property var targetItem: null
@@ -244,7 +244,7 @@ Rectangle {
         title: qsTr("Rename")
         width: 360; height: 110
         minimumWidth: 280; minimumHeight: 110; maximumHeight: 110
-        color: "#1e1e1e"
+        color: ColorPalette.cardBg
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
         function openFor(item) {
@@ -268,8 +268,8 @@ Rectangle {
                 id: nameInput
                 Layout.fillWidth: true
                 implicitHeight: 28
-                color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale
-                background: Rectangle { color: "#1b1b1b"; border.color: nameInput.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2 }
+                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
+                background: Rectangle { color: ColorPalette.inputBg; border.color: nameInput.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2 }
                 leftPadding: 6; topPadding: 0; bottomPadding: 0
                 Keys.onReturnPressed: confirmBtn.clicked()
                 Keys.onEnterPressed:  confirmBtn.clicked()
@@ -298,7 +298,7 @@ Rectangle {
         }
     }
 
-    // ── Context menu items ────────────────────────────────────────────────────
+    // ── Context menu items ───────────────────────────────────────────────
     property var _ctxItem: null
 
     component CtxMenuItem: MenuItem {
@@ -314,7 +314,7 @@ Rectangle {
         arrow: Text {
             x: _ctxMi.width - width - 8
             anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-            text: "▶"; font.pixelSize: 8 * App.fontScale; color: "#888888"
+            text: "▶"; font.pixelSize: 8 * App.fontScale; color: ColorPalette.textMuted
             visible: _ctxMi.subMenu !== null
         }
         contentItem: Row {
@@ -332,7 +332,7 @@ Rectangle {
             Text {
                 text: _ctxMi.text
                 font: _ctxMi.font
-                color: _ctxMi.enabled ? "#d0d0d0" : "#666666"
+                color: _ctxMi.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
                 verticalAlignment: Text.AlignVCenter
                 elide: Text.ElideRight
                 anchors.verticalCenter: parent.verticalCenter
@@ -340,7 +340,7 @@ Rectangle {
         }
         background: Rectangle {
             implicitHeight: 22
-            color: _ctxMi.highlighted ? "#1e3a6e" : "transparent"
+            color: _ctxMi.highlighted ? ColorPalette.selectionBg : "transparent"
         }
     }
 
@@ -445,7 +445,7 @@ Rectangle {
         }
     }
 
-    // ── Column definitions ────────────────────────────────────────────────────
+    // ── Column definitions ───────────────────────────────────────────────
     readonly property var _defaultColumnDefs: [
         { title: "Q",              key: "queue",      widthPx: 31,  visible: true  },
         { title: qsTr("File Name"),      key: "name",       widthPx: 240, visible: true  },
@@ -636,7 +636,7 @@ Rectangle {
         App.downloadModel.sortBy(sortKey, sortAscending)
     }
 
-    // ── Filter state ──────────────────────────────────────────────────────────
+    // ── Filter state ─────────────────────────────────────────────────────
     property string filterText:       ""
     property bool   filterName:       true
     property bool   filterDesc:       false
@@ -759,7 +759,7 @@ Rectangle {
         }
     }
 
-    // ── Sort state ────────────────────────────────────────────────────────────
+    // ── Sort state ───────────────────────────────────────────────────────
     property string sortKey:       "added"
     property bool   sortAscending: false
 
@@ -775,7 +775,7 @@ Rectangle {
 
     readonly property var _sortableKeys: ["name","size","status","timeleft","downspeed","upspeed","seeders","peers","ratio","uploaded","downloaded","added","lasttry","description","saveto","referrer","parenturl","queue"]
 
-    // ── Column visibility context menu ────────────────────────────────────────
+    // ── Column visibility context menu ───────────────────────────────────
     component ColCheckMenuItem: MenuItem {
         id: _colChkMi
         implicitHeight: 22
@@ -795,13 +795,13 @@ Rectangle {
         contentItem: Text {
             text: _colChkMi.text
             font: _colChkMi.font
-            color: _colChkMi.enabled ? "#d0d0d0" : "#666666"
+            color: _colChkMi.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight
         }
         background: Rectangle {
             implicitHeight: 22
-            color: _colChkMi.highlighted ? "#1e3a6e" : "transparent"
+            color: _colChkMi.highlighted ? ColorPalette.selectionBg : "transparent"
         }
     }
 
@@ -828,7 +828,7 @@ Rectangle {
         }
     }
 
-    // ── Header (extracted component) ──────────────────────────────────────────
+    // ── Header (extracted component) ─────────────────────────────────────
     DownloadTableHeader {
         id: header
         table: root
@@ -836,7 +836,7 @@ Rectangle {
         colCtxMenu: colCtxMenu
     }
 
-    // ── Rows ──────────────────────────────────────────────────────────────────
+    // ── Rows ─────────────────────────────────────────────────────────────
     ListView {
         id: tableView
         anchors { top: header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
@@ -874,8 +874,32 @@ Rectangle {
             }
         }
 
-        ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
-        ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AsNeeded }
+        ScrollBar.vertical: ScrollBar {
+            id: _tblSbV
+            policy: ScrollBar.AsNeeded
+            width: 12
+            contentItem: Rectangle {
+                implicitWidth: 12
+                radius: 6
+                color: _tblSbV.pressed ? ColorPalette.textSecond
+                     : _tblSbV.hovered ? ColorPalette.border
+                     : ColorPalette.dividerBg
+            }
+            background: Rectangle { color: ColorPalette.panelBg }
+        }
+        ScrollBar.horizontal: ScrollBar {
+            id: _tblSbH
+            policy: ScrollBar.AsNeeded
+            height: 12
+            contentItem: Rectangle {
+                implicitHeight: 12
+                radius: 6
+                color: _tblSbH.pressed ? ColorPalette.textSecond
+                     : _tblSbH.hovered ? ColorPalette.border
+                     : ColorPalette.dividerBg
+            }
+            background: Rectangle { color: ColorPalette.panelBg }
+        }
 
         WheelHandler {
             orientation: Qt.Vertical
@@ -908,7 +932,7 @@ Rectangle {
             rowItem: model.item
         }
 
-        // ── Empty state ───────────────────────────────────────────────────
+        // ── Empty state ──────────────────────────────────────────────────
         Column {
             anchors.centerIn: parent
             spacing: 12
@@ -927,7 +951,7 @@ Rectangle {
                     return qsTr("No downloads yet.\nClick  Add URL  to start.")
                 }
                 horizontalAlignment: Text.AlignHCenter
-                color: "#444444"
+                color: ColorPalette.textDisabled
                 font.pixelSize: 14 * App.fontScale
                 lineHeight: 1.6
             }
@@ -956,7 +980,7 @@ Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: qsTr("Loading %n download(s)…", "", App.restoreTotalCount)
                 horizontalAlignment: Text.AlignHCenter
-                color: "#444444"
+                color: ColorPalette.textDisabled
                 font.pixelSize: 14 * App.fontScale
                 lineHeight: 1.6
             }

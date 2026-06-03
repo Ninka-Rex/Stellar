@@ -27,11 +27,12 @@ Window {
     title: _isTorrent ? qsTr("Torrent Properties") : qsTr("File Properties")
     // Sizes are enforced via onItemChanged/onVisibleChanged so the window
     // always fits the content type, even when the user switches items.
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     property var item: null
@@ -43,7 +44,7 @@ Window {
     readonly property bool peerMapActive: visible && _isTorrent && currentTab === 4
     readonly property bool peerUpdatesActive: visible && _isTorrent && (currentTab === 3 || currentTab === 4)
     // Tab 2 = Files. Gate the per-tick file_progress() walk in libtorrent on
-    // whether the user can actually see the file list — when hidden, skip the
+    // whether the user can actually see the file list - when hidden, skip the
     // expensive piece-granularity scan entirely.
     readonly property bool fileUpdatesActive: visible && _isTorrent && currentTab === 2
     onFileUpdatesActiveChanged: {
@@ -55,7 +56,7 @@ Window {
     }
     readonly property bool trackerTabActive:  visible && _isTorrent && currentTab === 5
     // Gate tracker model rebuilds (QUrl parse + geo-IP + status snapshot lookups
-    // per tracker × per torrent) on tracker tab visibility.
+    // per tracker ? per torrent) on tracker tab visibility.
     onTrackerTabActiveChanged: {
         if (torrentTrackerModel) {
             torrentTrackerModel.setLiveUpdatesEnabled(trackerTabActive)
@@ -368,7 +369,7 @@ Window {
         property alias swarmStatsStoreJson: root.swarmStatsStoreJson
     }
 
-    // ── Window sizing ────────────────────────────────────────────────────────
+    // ?? Window sizing ????????????????????????????????????????????????????????
     function _applySize() {
         var torrent = !!(root.item && root.item.isTorrent)
         minimumWidth  = 0
@@ -400,7 +401,7 @@ Window {
     // Works around a Qt layout invalidation bug when the Loader swaps between
     // regularLayout and torrentLayout.  The new component is created and sized
     // within the same event-loop tick as the old one is destroyed, but Qt
-    // coalesces the relayout into that same frame — before the new component's
+    // coalesces the relayout into that same frame - before the new component's
     // implicit sizes have fully propagated through the ColumnLayout chain.
     // Result: the footer buttons overlap the content or disappear entirely.
     // A zero-delay timer fires on the *next* tick and nudges the window width
@@ -475,7 +476,7 @@ Window {
         if (root.currentTab === 5 && root.swarmClientPieRef) root.swarmClientPieRef.requestPaint()
         if (root.currentTab === 5 && root.swarmCountryPieRef) root.swarmCountryPieRef.requestPaint()
     }
-    // onSpeedSpanIndexChanged → onSpeedSpanSecondsChanged → _rebuildDecimatedCache → requestPaint()
+    // onSpeedSpanIndexChanged ? onSpeedSpanSecondsChanged ? _rebuildDecimatedCache ? requestPaint()
 
     Timer {
         id: speedHistoryTimer
@@ -491,19 +492,19 @@ Window {
             if (!root.item || !root.item.isTorrent)
                 return
             // Sync cached edit values only when the speed limit dialog has no
-            // unsaved edits — otherwise the user's in-flight changes win.
+            // unsaved edits - otherwise the user's in-flight changes win.
             if (!speedLimitDialog.dirty) {
                 root.editPerTorrentDownLimitKBps = root.item.perTorrentDownLimitKBps | 0
                 root.editPerTorrentUpLimitKBps   = root.item.perTorrentUpLimitKBps   | 0
             }
         }
-        // No direct repaint on speed/stats signals — the 2 s speedHistoryTimer
+        // No direct repaint on speed/stats signals - the 2 s speedHistoryTimer
         // already calls refreshSpeedHistory() which repaints after rebuilding
         // the decimated cache.  Bypassing that and painting with stale data
         // caused the graph to flicker on every libtorrent alert tick.
     }
 
-    // ── Helpers ──────────────────────────────────────────────────────────────
+    // ?? Helpers ??????????????????????????????????????????????????????????????
     function safeStr(v) { return (v === undefined || v === null) ? "" : String(v) }
     function torrentStatusLabel() {
         switch (_torrentStatusText) {
@@ -527,7 +528,7 @@ Window {
         case "Checking": return "#d2b26f"
         case "Queued": return "#8fb4d9"
         case "Error": return "#d97b7b"
-        default: return "#aeb6bf"
+        default: return ColorPalette.textPrimary
         }
     }
     function countryFlagSource(code) {
@@ -678,12 +679,12 @@ Window {
         // after the smoothed cache and stable axis ceiling are both ready.
     }
     // Reduce pts to at most maxPts by averaging each bucket.
-    // Averaging preserves the real throughput shape — peak-only decimation
+    // Averaging preserves the real throughput shape - peak-only decimation
     // exaggerates spikes and produces a misleadingly jagged curve on long spans.
     // Time-aligned bucket decimation.  Bucket boundaries are snapped to multiples
     // of bucketMs from the Unix epoch, so they are identical across every refresh
     // call.  Only the rightmost (current) bucket changes as new samples arrive;
-    // all completed buckets are frozen — the line stays still and scrolls left.
+    // all completed buckets are frozen - the line stays still and scrolls left.
     function decimateSamples(pts, maxPts) {
         if (pts.length === 0) return pts
         var spanMs   = root.speedSpanSeconds * 1000
@@ -695,7 +696,7 @@ Window {
         var gridOrigin = Math.floor(nowMs / bucketMs) * bucketMs
         // gridOrigin is the last bucket boundary <= nowMs; the grid covers
         // [gridOrigin - spanMs, gridOrigin).  Samples between gridOrigin and
-        // nowMs land in the last (open) bucket which shifts — that's intentional,
+        // nowMs land in the last (open) bucket which shifts - that's intentional,
         // only the live bucket changes.
         var startMs    = gridOrigin - spanMs
         var out = []
@@ -718,7 +719,7 @@ Window {
         return out.length > 0 ? out : pts
     }
 
-    // Cached decimated sample array and stable Y-axis ceiling — rebuilt only
+    // Cached decimated sample array and stable Y-axis ceiling - rebuilt only
     // when the raw data or the selected time span changes, NOT on every mouse
     // move or canvas repaint.  Keeping axisTop stable prevents the Y-axis from
     // jumping every tick; the canvas and hover tooltip both read from these.
@@ -728,11 +729,11 @@ Window {
         var rows = speedVisibleSamples()
         var span = speedSpanSeconds
 
-        // Step 1 — decimate to a target point count that scales inversely with
+        // Step 1 - decimate to a target point count that scales inversely with
         // the span.  Shorter spans keep more detail; longer spans merge more
         // raw samples per bucket so individual spikes are averaged away.
         // At 1 hour with ~1000 raw points each bucket covers ~13 raw samples
-        // (≈26 s of data), which collapses narrow spikes into their true average.
+        // (?26 s of data), which collapses narrow spikes into their true average.
         var canvasW   = speedGraphCanvasRef ? speedGraphCanvasRef.width : 600
         var plotW     = Math.max(60, canvasW - 62)
         // Base density: 1 pt per 3 px, then halve for each span tier above 10 min.
@@ -745,7 +746,7 @@ Window {
 
         // Compute and cache the stable Y-axis ceiling from the smoothed data.
         // Using the previous _speedAxisTop as a floor prevents the axis from
-        // shrinking on every minor dip — it only grows immediately, then
+        // shrinking on every minor dip - it only grows immediately, then
         // gently decays toward the true max so the scale stays readable.
         var maxV = 1
         for (var si = 0; si < rows.length; ++si)
@@ -824,7 +825,7 @@ Window {
         var lat = Number(latitude) + root.peerMapLatOffset
         if (!isFinite(lat))
             lat = 0
-        // world-map.svg (Natural Earth 110m) uses equirectangular projection spanning Â±90Â°.
+        // ?? world-map.svg (Natural Earth 110m) uses equirectangular projection spanning 90. ??
         // x = (lon+180)/360*width, y = (90-lat)/180*height
         lat = Math.max(-90, Math.min(90, lat))
         var normalized = (90 - lat) / 180
@@ -833,7 +834,7 @@ Window {
     }
     function countryFullName(cc) {
         var names = {
-            "AF":"Afghanistan","AX":"Åland Islands","AL":"Albania","DZ":"Algeria","AS":"American Samoa",
+            "AF":"Afghanistan","AX":"?land Islands","AL":"Albania","DZ":"Algeria","AS":"American Samoa",
             "AD":"Andorra","AO":"Angola","AI":"Anguilla","AQ":"Antarctica","AG":"Antigua and Barbuda",
             "AR":"Argentina","AM":"Armenia","AW":"Aruba","AU":"Australia","AT":"Austria",
             "AZ":"Azerbaijan","BS":"Bahamas","BH":"Bahrain","BD":"Bangladesh","BB":"Barbados",
@@ -844,7 +845,7 @@ Window {
             "CM":"Cameroon","CA":"Canada","KY":"Cayman Islands","CF":"Central African Republic",
             "TD":"Chad","CL":"Chile","CN":"China","CX":"Christmas Island","CC":"Cocos Islands",
             "CO":"Colombia","KM":"Comoros","CG":"Congo","CD":"DR Congo","CK":"Cook Islands",
-            "CR":"Costa Rica","CI":"Côte d'Ivoire","HR":"Croatia","CU":"Cuba","CW":"Curaçao",
+            "CR":"Costa Rica","CI":"C?te d'Ivoire","HR":"Croatia","CU":"Cuba","CW":"Cura?ao",
             "CY":"Cyprus","CZ":"Czech Republic","DK":"Denmark","DJ":"Djibouti","DM":"Dominica",
             "DO":"Dominican Republic","EC":"Ecuador","EG":"Egypt","SV":"El Salvador","GQ":"Equatorial Guinea",
             "ER":"Eritrea","EE":"Estonia","SZ":"Eswatini","ET":"Ethiopia","FK":"Falkland Islands",
@@ -870,7 +871,7 @@ Window {
             "NO":"Norway","OM":"Oman","PK":"Pakistan","PW":"Palau","PS":"Palestine",
             "PA":"Panama","PG":"Papua New Guinea","PY":"Paraguay","PE":"Peru","PH":"Philippines",
             "PN":"Pitcairn","PL":"Poland","PT":"Portugal","PR":"Puerto Rico","QA":"Qatar",
-            "RE":"Réunion","RO":"Romania","RU":"Russia","RW":"Rwanda","BL":"Saint Barthélemy",
+            "RE":"R?union","RO":"Romania","RU":"Russia","RW":"Rwanda","BL":"Saint Barth?lemy",
             "SH":"Saint Helena","KN":"Saint Kitts and Nevis","LC":"Saint Lucia","MF":"Saint Martin",
             "PM":"Saint Pierre and Miquelon","VC":"Saint Vincent and the Grenadines","WS":"Samoa",
             "SM":"San Marino","ST":"Sao Tome and Principe","SA":"Saudi Arabia","SN":"Senegal",
@@ -990,20 +991,20 @@ Window {
     }
     function flagColor(flag) {
         switch (flag) {
-        case "IN":  return "#e8c84a"   // yellow — incoming
-        case "OUT": return "#7a8899"   // muted — outgoing
-        case "TRK": return "#5f93c9"   // blue — tracker
-        case "DHT": return "#4db8ff"   // cyan-blue — DHT
-        case "PEX": return "#a06de8"   // purple — PeX
-        case "LSD": return "#4caf7d"   // green — local
-        case "UTP": return "#5ecfe8"   // teal — uTP
-        case "ENC": return "#7dd87d"   // green — encrypted
-        case "SNB": return "#e86a5c"   // red — snubbed
-        case "UPO": return "#c97de8"   // magenta — upload-only
-        case "OPT": return "#e8a35c"   // orange — optimistic
-        case "HPX": return "#ff8ab4"   // pink — holepunch
-        case "I2P": return "#a8ff78"   // lime — I2P
-        default:    return "#708396"
+        case "IN":  return "#e8c84a"   // yellow - incoming
+        case "OUT": return ColorPalette.textSecond   // muted - outgoing
+        case "TRK": return "#5f93c9"   // blue - tracker
+        case "DHT": return "#4db8ff"   // cyan-blue - DHT
+        case "PEX": return "#a06de8"   // purple - PeX
+        case "LSD": return "#4caf7d"   // green - local
+        case "UTP": return "#5ecfe8"   // teal - uTP
+        case "ENC": return "#7dd87d"   // green - encrypted
+        case "SNB": return "#e86a5c"   // red - snubbed
+        case "UPO": return "#c97de8"   // magenta - upload-only
+        case "OPT": return "#e8a35c"   // orange - optimistic
+        case "HPX": return "#ff8ab4"   // pink - holepunch
+        case "I2P": return "#a8ff78"   // lime - I2P
+        default:    return ColorPalette.textSecond
         }
     }
     function peerTraffic(peer) {
@@ -1084,10 +1085,10 @@ Window {
         return isFinite(v) ? v.toFixed(2) : "0.00"
     }
 
-    // Formats seconds into human-readable "Xh Xm" / "Xm Xs" / "Xs" / "—"
+    // Formats seconds into human-readable "Xh Xm" / "Xm Xs" / "Xs" / "-"
     function formatDuration(secs) {
         var s = Math.max(0, secs | 0)
-        if (s <= 0) return "—"
+        if (s <= 0) return "-"
         var h = Math.floor(s / 3600)
         var m = Math.floor((s % 3600) / 60)
         var r = s % 60
@@ -1485,7 +1486,7 @@ Window {
         _swarmDecimated = rows
     }
 
-    /* Swarm Statistics monitoring timer — disabled pending rework
+    /* Swarm Statistics monitoring timer - disabled pending rework
     Timer {
         id: swarmStatsTimer
         interval: 60000
@@ -1538,13 +1539,13 @@ Window {
         })
     }
 
-    // ── Shared components ────────────────────────────────────────────────────
+    // ?? Shared components ????????????????????????????????????????????????????
     component ReadOnlyField: Rectangle {
         property alias fieldText: ti.text
-        property color textColor: "#d0d0d0"
+        property color textColor: ColorPalette.textPrimary
         implicitHeight: 26
-        color: "#1b1b1b"
-        border.color: ti.activeFocus ? "#4488dd" : "#3a3a3a"
+        color: ColorPalette.inputBg
+        border.color: ti.activeFocus ? "#4488dd" : ColorPalette.border
         radius: 2
         clip: true
         TextInput {
@@ -1557,7 +1558,7 @@ Window {
         }
     }
 
-    // ── File chooser ─────────────────────────────────────────────────────────
+    // ?? File chooser ?????????????????????????????????????????????????????????
     FileDialog {
         id: moveFileDialog
         title: _isTorrent ? qsTr("Move Torrent Data To...") : qsTr("Move File To...")
@@ -1593,7 +1594,7 @@ Window {
         }
     }
 
-    // ── Root layout ──────────────────────────────────────────────────────────
+    // ?? Root layout ??????????????????????????????????????????????????????????
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 0
@@ -1611,7 +1612,7 @@ Window {
                 // Nudge the window size in a later event-loop tick to force
                 // Qt to run a full layout pass with the new Loader content.
                 // The Loader swap invalidates geometry but Qt coalesces the
-                // relayout into the current frame — which runs before the new
+                // relayout into the current frame - which runs before the new
                 // component's implicit sizes have fully propagated. A deferred
                 // +1/-1 nudge triggers a second, clean layout pass.
                 layoutNudgeTimer.restart()
@@ -1675,14 +1676,14 @@ Window {
         }
     }
 
-    // ── Per-torrent speed limit dialog (opened from General tab) ─────────────
+    // ?? Per-torrent speed limit dialog (opened from General tab) ?????????????
     TorrentSpeedLimitDialog {
         id: speedLimitDialog
     }
 
-    // ═══════════════════════════════════════════════════════════════════════════
+    // ??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
     // Regular HTTP/FTP file layout
-    // ═══════════════════════════════════════════════════════════════════════════
+    // ??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
     Component {
         id: regularLayout
         ColumnLayout {
@@ -1691,7 +1692,7 @@ Window {
             // Header card
             Rectangle {
                 Layout.fillWidth: true; Layout.preferredHeight: 74
-                color: "#222228"; border.width: 0; radius: 0
+                color: ColorPalette.headerStripBg; border.width: 0; radius: 0
                 RowLayout {
                     anchors { fill: parent; leftMargin: 14; rightMargin: 14; topMargin: 10; bottomMargin: 10 }
                     spacing: 8
@@ -1710,12 +1711,12 @@ Window {
                         Layout.fillWidth: true; spacing: 4
                         Text {
                             text: root.item ? safeStr(root.item.filename) : ""
-                            color: "#ffffff"; font.pixelSize: 14 * App.fontScale; font.bold: true
+                            color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true
                             elide: Text.ElideMiddle; Layout.fillWidth: true
                         }
                         Text {
                             text: ""
-                            color: "#8ea1b5"; font.pixelSize: 10 * App.fontScale
+                            color: ColorPalette.textPrimary; font.pixelSize: 10 * App.fontScale
                             elide: Text.ElideRight; Layout.fillWidth: true
                             visible: false
                         }
@@ -1728,13 +1729,13 @@ Window {
                                      : root.item && safeStr(root.item.status) === "Paused" ? "#b7b7b7"
                                      : root.item && safeStr(root.item.status) === "Completed" ? "#67bb7a"
                                      : root.item && safeStr(root.item.status) === "Error" ? "#d97b7b"
-                                     : "#aeb6bf"
+                                     : ColorPalette.textPrimary
                                 font.pixelSize: 11 * App.fontScale
                                 font.bold: true
                             }
                             Text {
                                 text: root.item ? root.compactBytes(root.item.totalBytes) : "--"
-                                color: "#8f98a1"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
                                 elide: Text.ElideRight; Layout.fillWidth: true
                             }
                         }
@@ -1745,7 +1746,7 @@ Window {
             // Details card
             Rectangle {
                 Layout.fillWidth: true; Layout.fillHeight: true
-                color: "#1e1e1e"; border.width: 0; radius: 3
+                color: ColorPalette.cardBg; border.width: 0; radius: 3
 
                 ColumnLayout {
                     anchors { fill: parent; margins: 8 }
@@ -1755,13 +1756,13 @@ Window {
                         Layout.fillWidth: true
                         columns: 2; columnSpacing: 8; rowSpacing: 6
 
-                        Text { text: qsTr("Status");  color: "#6a7a8a"; font.pixelSize: 12 * App.fontScale; font.bold: true }
-                        Text { text: root.item ? safeStr(root.item.statusText) : "--"; color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true }
+                        Text { text: qsTr("Status");  color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: root.item ? safeStr(root.item.statusText) : "--"; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true }
 
-                        Text { text: qsTr("Size");    color: "#6a7a8a"; font.pixelSize: 12 * App.fontScale; font.bold: true }
-                        Text { text: root.item ? root.formatBytes(root.item.totalBytes) : "--"; color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Size");    color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: root.item ? root.formatBytes(root.item.totalBytes) : "--"; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
 
-                        Text { text: qsTr("Save to"); color: "#6a7a8a"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Save to"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
                             ReadOnlyField {
@@ -1776,52 +1777,52 @@ Window {
                             DlgButton { text: qsTr("Move"); enabled: !!root.item; onClicked: { if (root._isTorrent) moveTorrentDialog.open(); else moveFileDialog.open() } }
                         }
 
-                        Text { text: qsTr("Address"); color: "#6a7a8a"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Address"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         ReadOnlyField {
                             Layout.fillWidth: true
                             fieldText: root.item ? safeStr(root.item.url) : "--"
                             textColor: "#4488dd"
                         }
 
-                        Text { text: qsTr("Web page"); color: "#6a7a8a"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Web page"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         Text {
                             text: { var p = root.item ? safeStr(root.item.parentUrl) : ""; return p || "(unknown)" }
-                            color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true
+                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true
                         }
 
-                        Text { text: qsTr("Referer"); color: "#6a7a8a"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Referer"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         Text {
                             text: { var r = root.item ? safeStr(root.item.referrer) : ""; return r || "(none)" }
-                            color: "#c8c8c8"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true
+                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; elide: Text.ElideMiddle; Layout.fillWidth: true
                         }
 
-                        Text { text: qsTr("Description"); color: "#6a7a8a"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Description"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         TextField {
                             Layout.fillWidth: true; implicitHeight: 26
                             text: root.item ? safeStr(root.item.description) : ""
-                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
-                            background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2 }
+                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
+                            background: Rectangle { color: ColorPalette.inputBg; border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2 }
                             leftPadding: 6; topPadding: 0; bottomPadding: 0
                             onTextChanged: if (root.item && text !== root.item.description) App.setDownloadDescription(root.item.id, text)
                         }
 
-                        Text { text: qsTr("Login"); color: "#6a7a8a"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Login"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         TextField {
                             Layout.fillWidth: true; implicitHeight: 26
                             text: root.item ? safeStr(root.item.username) : ""
-                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
-                            background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2 }
+                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
+                            background: Rectangle { color: ColorPalette.inputBg; border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2 }
                             leftPadding: 6; topPadding: 0; bottomPadding: 0
                             onTextChanged: if (root.item && text !== root.item.username) App.setDownloadUsername(root.item.id, text)
                         }
 
-                        Text { text: qsTr("Password"); color: "#6a7a8a"; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                        Text { text: qsTr("Password"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true }
                         TextField {
                             Layout.fillWidth: true; implicitHeight: 26
                             text: root.item ? safeStr(root.item.password) : ""
                             echoMode: TextInput.Password
-                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
-                            background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2 }
+                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
+                            background: Rectangle { color: ColorPalette.inputBg; border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2 }
                             leftPadding: 6; topPadding: 0; bottomPadding: 0
                             onTextChanged: if (root.item && text !== root.item.password) App.setDownloadPassword(root.item.id, text)
                         }
@@ -1832,22 +1833,22 @@ Window {
         }
     }
 
-    //═══════════════════════════════════════════════════════════════════════════
+    //??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
     // Torrent layout
-    // ═══════════════════════════════════════════════════════════════════════════
+    // ??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
     Component {
         id: torrentLayout
         ColumnLayout {
             spacing: 8
 
-            // ── Summary header ────────────────────────────────────────────────
+            // ?? Summary header ????????????????????????????????????????????????
             // Compact two-row layout: icon + title/status + ETA on row 1; progress
             // bar with percent + down/up speed + seeders/peers on row 2. The full
             // stats grid lives on the General tab.
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: contentCol.implicitHeight + 8
-                color: "#222228"; border.width: 0; radius: 0
+                color: ColorPalette.headerStripBg; border.width: 0; radius: 0
 
                 ColumnLayout {
                     id: contentCol
@@ -1874,13 +1875,13 @@ Window {
 
                         Text {
                             text: root.item ? safeStr(root.item.filename) : ""
-                            color: "#ffffff"; font.pixelSize: 13 * App.fontScale; font.bold: true
+                            color: ColorPalette.textHeader; font.pixelSize: 13 * App.fontScale; font.bold: true
                             elide: Text.ElideMiddle; Layout.fillWidth: true
                         }
 
                         Text {
                             text: root.torrentStatusLabel()
-                            color: "#ffffff"
+                            color: ColorPalette.textHeader
                             font.pixelSize: 11 * App.fontScale
                             font.bold: true
                         }
@@ -1896,7 +1897,7 @@ Window {
                             }
                             visible: !_isCompleteState && _eta.length > 0
                             text: qsTr("ETA: %1").arg(_eta)
-                            color: "#8f98a1"
+                            color: ColorPalette.textPrimary
                             font.pixelSize: 11 * App.fontScale
                             elide: Text.ElideRight
                         }
@@ -1907,7 +1908,7 @@ Window {
                         Layout.fillWidth: true; spacing: 8
                         Text {
                             text: root.item ? Math.round(root.clampPct(root.item.progress) * 100) + "%" : "0%"
-                            color: "#ffffff"; font.pixelSize: 12 * App.fontScale; font.bold: true
+                            color: ColorPalette.textHeader; font.pixelSize: 12 * App.fontScale; font.bold: true
                             Layout.preferredWidth: 38
                         }
                         // Have / total bytes (e.g. "123 MB / 3.2 GB"). Hidden until
@@ -1917,46 +1918,46 @@ Window {
                             text: root.item
                                 ? root.compactBytes(root.item.doneBytes) + " / " + root.compactBytes(root.item.totalBytes)
                                 : ""
-                            color: "#ffffff"; font.pixelSize: 11 * App.fontScale
+                            color: ColorPalette.textHeader; font.pixelSize: 11 * App.fontScale
                         }
                         Rectangle {
                             Layout.fillWidth: true; height: 5; radius: 2
-                            color: "#232323"; border.color: "#2d2d2d"
+                            color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg
                             Rectangle {
                                 width: Math.max(0, parent.width * (root.item ? root.clampPct(root.item.progress) : 0))
                                 height: parent.height; radius: parent.radius; color: "#4488dd"
                             }
                         }
-                        // ↓ down speed
+                        // ? down speed
                         Text {
                             text: "↓ " + (root.item ? root.compactSpeed(root.item.speed) : "0 B/s")
-                            color: "#ffffff"; font.pixelSize: 11 * App.fontScale
+                            color: ColorPalette.textHeader; font.pixelSize: 11 * App.fontScale
                         }
-                        // ↑ up speed
+                        // ? up speed
                         Text {
                             text: "↑ " + (root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "0 B/s")
-                            color: "#ffffff"; font.pixelSize: 11 * App.fontScale
+                            color: ColorPalette.textHeader; font.pixelSize: 11 * App.fontScale
                         }
                         // Seeders: connected (total)
                         Text {
                             text: root.item ? qsTr("Seeds: %1 (%2)").arg(root.item.torrentSeeders | 0).arg(root.item.torrentListSeeders | 0) : qsTr("Seeds: %1 (%2)").arg(0).arg(0)
-                            color: "#c8c8c8"; font.pixelSize: 11 * App.fontScale
+                            color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
                         }
                         // Peers: connected (total)
                         Text {
                             text: root.item ? qsTr("Peers: %1 (%2)").arg(root.item.torrentPeers | 0).arg(root.item.torrentListPeers | 0) : qsTr("Peers: %1 (%2)").arg(0).arg(0)
-                            color: "#c8c8c8"; font.pixelSize: 11 * App.fontScale
+                            color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
                         }
                     }
                 }
             }
 
-            // ── Tab strip ─────────────────────────────────────────────────────
+            // ?? Tab strip ?????????????????????????????????????????????????????
             Rectangle {
                 Layout.fillWidth: true; height: 34
-                color: "#252525"
+                color: ColorPalette.panelBg
 
-                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#111" }
+                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
 
                 Row {
                     anchors.fill: parent; spacing: 0
@@ -1965,12 +1966,12 @@ Window {
                         delegate: Rectangle {
                             width: tabLbl.implicitWidth + 28; height: parent.height
                             color: root.currentTab === index
-                                   ? "#1e1e1e"
-                                   : (tabHov.containsMouse ? "#2e2e2e" : "transparent")
+                                   ? ColorPalette.cardBg
+                                   : (tabHov.containsMouse ? ColorPalette.hoverBg : "transparent")
                             Text {
                                 id: tabLbl; anchors.centerIn: parent
                                 text: modelData
-                                color: root.currentTab === index ? "#ffffff" : "#909090"
+                                color: root.currentTab === index ? ColorPalette.textHeader : ColorPalette.textSecond
                                 font.pixelSize: 12 * App.fontScale
                             }
                             Rectangle {
@@ -1988,12 +1989,12 @@ Window {
                 }
             }
 
-            // ── Tab pages ─────────────────────────────────────────────────────
+            // ?? Tab pages ?????????????????????????????????????????????????????
             StackLayout {
                 Layout.fillWidth: true; Layout.fillHeight: true
                 currentIndex: root.currentTab
 
-                // ── General ───────────────────────────────────────────────────
+                // ?? General ???????????????????????????????????????????????????
                 Item {
                     ScrollView {
                         id: generalScrollView
@@ -2006,10 +2007,10 @@ Window {
                             width: generalScrollView.availableWidth
                             spacing: 0
 
-                            // ── Info + Save (merged, compact) ─────────────────
+                            // ?? Info + Save (merged, compact) ?????????????????
                             // 2-col grid: label | content-row (field + optional actions).
                             // Action buttons live inside the content row so each row
-                            // controls its own action area independently — no off-center
+                            // controls its own action area independently - no off-center
                             // buttons or stretched fields.
                             GridLayout {
                                 id: infoGrid
@@ -2021,15 +2022,15 @@ Window {
                                 property real lw: 68
 
                                 // Source
-                                Text { text: qsTr("Source"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Source"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
                                 ReadOnlyField {
                                     Layout.fillWidth: true
                                     fieldText: root.item ? safeStr(root.item.torrentSource) : ""
-                                    textColor: "#b0c0d0"
+                                    textColor: ColorPalette.textPrimary
                                 }
 
-                                // Info hash — sized to fit a SHA1/SHA256 hash; badge + Copy follow inline.
-                                Text { text: qsTr("Info hash"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
+                                // Info hash - sized to fit a SHA1/SHA256 hash; badge + Copy follow inline.
+                                Text { text: qsTr("Info hash"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
                                 RowLayout {
                                     Layout.fillWidth: true
                                     spacing: 8
@@ -2037,23 +2038,6 @@ Window {
                                         Layout.preferredWidth: 360
                                         Layout.maximumWidth: 360
                                         fieldText: root.item ? safeStr(root.item.torrentInfoHash) : ""
-                                    }
-                                    Rectangle {
-                                        readonly property bool hasMetadata: !!root.item && root.item.torrentHasMetadata
-                                        Layout.alignment: Qt.AlignVCenter
-                                        implicitHeight: 22
-                                        implicitWidth: badgeText.implicitWidth + 14
-                                        radius: 3
-                                        color: hasMetadata ? "#16331f" : "#2a1f0c"
-                                        border.color: hasMetadata ? "#2d5a3a" : "#5a3f12"
-                                        Text {
-                                            id: badgeText
-                                            anchors.centerIn: parent
-                                            text: parent.hasMetadata ? qsTr("✓ Metadata") : qsTr("Fetching…")
-                                            color: parent.hasMetadata ? "#5eaa6e" : "#c09a50"
-                                            font.pixelSize: 11 * App.fontScale
-                                            font.bold: true
-                                        }
                                     }
                                     Item { Layout.fillWidth: true }
                                     DlgButton {
@@ -2064,7 +2048,7 @@ Window {
                                 }
 
                                 // Save to
-                                Text { text: qsTr("Save to"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Save to"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
                                 RowLayout {
                                     Layout.fillWidth: true
                                     spacing: 8
@@ -2077,7 +2061,7 @@ Window {
                                 }
 
                                 // Category
-                                Text { text: qsTr("Category"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Category"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
                                 ComboBox {
                                     id: categoryCombo
                                     Layout.preferredWidth: 180
@@ -2115,94 +2099,101 @@ Window {
                                 }
 
                                 // Note
-                                Text { text: qsTr("Note"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Note"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
                                 TextField {
                                     Layout.fillWidth: true
                                     implicitHeight: 26
                                     text: root.item ? safeStr(root.item.description) : ""
-                                    color: "#d0d0d0"; font.pixelSize: 11 * App.fontScale
-                                    background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2 }
+                                    color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
+                                    background: Rectangle { color: ColorPalette.inputBg; border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2 }
                                     leftPadding: 7; topPadding: 0; bottomPadding: 0
                                     onTextChanged: if (root.item && text !== root.item.description) App.setDownloadDescription(root.item.id, text)
                                 }
                             }
 
-                            Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a"; Layout.topMargin: 8; Layout.bottomMargin: 0 }
+                            Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border; Layout.topMargin: 8; Layout.bottomMargin: 0 }
 
-                            // ── Transfer Stats section ─────────────────────────
+                            // ?? Transfer Stats section ?????????????????????????
                             GridLayout {
                                 Layout.fillWidth: true
                                 Layout.topMargin: 7
                                 columns: 6; columnSpacing: 8; rowSpacing: 5
                                 property real lw: 80
 
-                                Text { text: qsTr("Downloaded");  color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.compactBytes(root.item.torrentDownloaded) : "—"; color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
-                                Text { text: qsTr("Uploaded");    color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.compactBytes(root.item.torrentUploaded) : "—";   color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
-                                Text { text: qsTr("Wasted");      color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Downloaded");  color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.compactBytes(root.item.torrentDownloaded) : "-"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
+                                Text { text: qsTr("Uploaded");    color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.compactBytes(root.item.torrentUploaded) : "-";   color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
+                                Text { text: qsTr("Wasted");      color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
                                 Text {
-                                    text: { if (!root.item) return "—"; var w = root.item.torrentWastedBytes; return (w > 0) ? root.compactBytes(w) : "—" }
-                                    color: (root.item && root.item.torrentWastedBytes > 0) ? "#b8924a" : "#c8d0d8"
+                                    text: { if (!root.item) return "-"; var w = root.item.torrentWastedBytes; return (w > 0) ? root.compactBytes(w) : "-" }
+                                    color: (root.item && root.item.torrentWastedBytes > 0) ? "#b8924a" : ColorPalette.textPrimary
                                     font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true
                                 }
 
-                                Text { text: qsTr("Down speed");  color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.compactSpeed(root.item.speed) : "—"; color: "#4ea2ff"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
-                                Text { text: qsTr("Up speed");    color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "—"; color: "#4cc87a"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
-                                Text { text: qsTr("Connections"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? String(root.item.torrentConnections | 0) : "—"; color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
+                                Text { text: qsTr("Down speed");  color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.compactSpeed(root.item.speed) : "-"; color: "#4ea2ff"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
+                                Text { text: qsTr("Up speed");    color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "-"; color: "#4cc87a"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
+                                Text { text: qsTr("Connections"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? String(root.item.torrentConnections | 0) : "-"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
 
-                                Text { text: qsTr("Share ratio"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Share ratio"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
                                 Text {
-                                    text: root.item ? root.ratioText(root.item.torrentRatio) : "—"
-                                    color: { if (!root.item) return "#c8d0d8"; var r = Number(root.item.torrentRatio); return r >= 1.0 ? "#5eaa6e" : r >= 0.5 ? "#c09a50" : "#c8d0d8" }
+                                    text: root.item ? root.ratioText(root.item.torrentRatio) : "-"
+                                    color: { if (!root.item) return ColorPalette.textPrimary; var r = Number(root.item.torrentRatio); return r >= 1.0 ? "#5eaa6e" : r >= 0.5 ? "#c09a50" : ColorPalette.textPrimary }
                                     font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true
                                 }
-                                // Pieces + Availability on their own row — piece text can be long
-                                Text { text: qsTr("Pieces");      color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.columnSpan: 1 }
+                                // Pieces + Availability on their own row - piece text can be long
+                                Text { text: qsTr("Pieces");      color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.columnSpan: 1 }
                                 Text {
                                     text: {
-                                        if (!root.item) return "—"
+                                        if (!root.item) return "-"
                                         var done = root.item.torrentPiecesDone | 0
                                         var total = root.item.torrentPiecesTotal | 0
-                                        if (total <= 0) return done > 0 ? String(done) : "—"
+                                        if (total <= 0) return done > 0 ? String(done) : "-"
                                         return done + " / " + total + " (" + Math.round(done / total * 100) + "%)"
                                     }
-                                    color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 1
+                                    color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 1
                                 }
-                                Text { text: qsTr("Availability"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Availability"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
                                 Text {
-                                    text: { if (!root.item) return "—"; var av = root.item.torrentAvailability; return (typeof av === "number" && av > 0) ? av.toFixed(2) : "—" }
-                                    color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true
+                                    text: { if (!root.item) return "-"; var av = root.item.torrentAvailability; return (typeof av === "number" && av > 0) ? av.toFixed(2) : "-" }
+                                    color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true
                                 }
 
-                                Text { text: qsTr("Active time"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "—";   color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
-                                Text { text: qsTr("Seed time");   color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "—"; color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
+                                Text { text: qsTr("Metadata"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text {
+                                    text: (!!root.item && root.item.torrentHasMetadata) ? qsTr("Available") : qsTr("Fetching…")
+                                    color: (!!root.item && root.item.torrentHasMetadata) ? "#5eaa6e" : "#c09a50"
+                                    font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 3
+                                }
+
+                                Text { text: qsTr("Active time"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "-";   color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
+                                Text { text: qsTr("Seed time");   color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "-"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
                                 // Padding item to complete the 6-column row before metadata rows
                                 Item { Layout.columnSpan: 2; Layout.fillWidth: true
                                     visible: !!root.item && (safeStr(root.item.torrentComment).length > 0 || safeStr(root.item.torrentCreator).length > 0 || safeStr(root.item.torrentCreatedOn).length > 0) }
 
                                 // Each metadata field gets its own full row (label + 5-col value)
-                                Text { text: qsTr("Description"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
+                                Text { text: qsTr("Description"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
                                     visible: !!root.item && safeStr(root.item.torrentComment).length > 0 }
-                                Text { text: root.item ? safeStr(root.item.torrentComment) : ""; color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 5; wrapMode: Text.WordWrap
+                                Text { text: root.item ? safeStr(root.item.torrentComment) : ""; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 5; wrapMode: Text.WordWrap
                                     visible: !!root.item && safeStr(root.item.torrentComment).length > 0 }
 
-                                Text { text: qsTr("Created by"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
+                                Text { text: qsTr("Created by"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
                                     visible: !!root.item && safeStr(root.item.torrentCreator).length > 0 }
-                                Text { text: root.item ? safeStr(root.item.torrentCreator) : ""; color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 5; wrapMode: Text.WordWrap
+                                Text { text: root.item ? safeStr(root.item.torrentCreator) : ""; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 5; wrapMode: Text.WordWrap
                                     visible: !!root.item && safeStr(root.item.torrentCreator).length > 0 }
 
-                                Text { text: qsTr("Created on"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
+                                Text { text: qsTr("Created on"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter
                                     visible: !!root.item && safeStr(root.item.torrentCreatedOn).length > 0 }
-                                Text { text: root.item ? safeStr(root.item.torrentCreatedOn) : ""; color: "#c8d0d8"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 5
+                                Text { text: root.item ? safeStr(root.item.torrentCreatedOn) : ""; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 5
                                     visible: !!root.item && safeStr(root.item.torrentCreatedOn).length > 0 }
                                 Text {
-                                    text: qsTr("Speed limit"); color: "#6a7a8a"; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw
+                                    text: qsTr("Speed limit"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw
                                     visible: !!root.item && (root.item.perTorrentDownLimitKBps > 0 || root.item.perTorrentUpLimitKBps > 0)
                                 }
                                 Text {
@@ -2211,9 +2202,9 @@ Window {
                                         var d = root.item.perTorrentDownLimitKBps | 0
                                         var u = root.item.perTorrentUpLimitKBps   | 0
                                         var parts = []
-                                        if (d > 0) parts.push("↓ " + d + " KB/s")
-                                        if (u > 0) parts.push("↑ " + u + " KB/s")
-                                        return parts.join("  ·  ")
+                                        if (d > 0) parts.push("? " + d + " KB/s")
+                                        if (u > 0) parts.push("? " + u + " KB/s")
+                                        return parts.join("  ?  ")
                                     }
                                     color: "#d09040"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true
                                     visible: !!root.item && (root.item.perTorrentDownLimitKBps > 0 || root.item.perTorrentUpLimitKBps > 0)
@@ -2230,16 +2221,16 @@ Window {
                         anchors { fill: parent; margins: 10 }
                         spacing: 8
 
-                        // Graph card — fills remaining space
+                        // Graph card - fills remaining space
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
-                            color: "#161616"
-                            border.color: "#2a2a2a"
+                            color: ColorPalette.inputBg
+                            border.color: ColorPalette.border
                             radius: 3
                             clip: true
 
-                            // Main graph canvas — only repaints when data/span changes.
+                            // Main graph canvas - only repaints when data/span changes.
                             // The crosshair lives in a separate overlay canvas so hover
                             // mouse moves don't trigger a full graph redraw.
                             Canvas {
@@ -2276,10 +2267,10 @@ Window {
                                     var nowMs   = root._speedNowMs || Date.now()
                                     var startMs = nowMs - root.speedSpanSeconds * 1000
 
-                                    // Pre-built decimated+smoothed cache — never recomputed on hover.
+                                    // Pre-built decimated+smoothed cache - never recomputed on hover.
                                     var samples = root._speedDecimated
 
-                                    // Stable Y ceiling cached in _speedAxisTop — computed once per
+                                    // Stable Y ceiling cached in _speedAxisTop - computed once per
                                     // data refresh, decays slowly so the scale doesn't thrash.
                                     var axisTop = Math.max(1, root._speedAxisTop)
 
@@ -2291,7 +2282,7 @@ Window {
                                     }
 
                                     // Background
-                                    ctx.fillStyle = "#0d0f12"
+                                    ctx.fillStyle = ColorPalette.mapCanvasBg
                                     ctx.fillRect(0, 0, w, h)
 
                                     // Horizontal grid lines only
@@ -2299,7 +2290,7 @@ Window {
                                     ctx.lineWidth = 1
                                     for (var gy = 0; gy <= gridLines; ++gy) {
                                         var gy2 = Math.round(plotY + plotH * gy / gridLines) + 0.5
-                                        ctx.strokeStyle = (gy === gridLines) ? "#222830" : "#181c22"
+                                        ctx.strokeStyle = ColorPalette.mapGrid
                                         ctx.beginPath(); ctx.moveTo(plotX, gy2); ctx.lineTo(plotX + plotW, gy2); ctx.stroke()
                                     }
 
@@ -2365,8 +2356,8 @@ Window {
                                     drawSmoothedSeries("up",   "#3dba6a", "rgba(61,186,106,0.20)", "rgba(61,186,106,0.02)")
                                     drawSmoothedSeries("down", "#4490e8", "rgba(68,144,232,0.28)", "rgba(68,144,232,0.03)")
 
-                                    // Y-axis labels — right side
-                                    ctx.fillStyle = "#4a5a6a"
+                                    // Y-axis labels - right side
+                                    ctx.fillStyle = ColorPalette.textDisabled
                                     ctx.font = "10px sans-serif"
                                     ctx.textAlign = "left"
                                     ctx.textBaseline = "middle"
@@ -2377,7 +2368,7 @@ Window {
                                     }
 
                                     // X-axis time labels
-                                    ctx.fillStyle = "#3a4a56"
+                                    ctx.fillStyle = ColorPalette.textDisabled
                                     ctx.textAlign = "center"
                                     ctx.textBaseline = "top"
                                     for (var lx = 0; lx <= 6; ++lx) {
@@ -2391,7 +2382,7 @@ Window {
                                 }
                             }
 
-                            // Crosshair overlay — tiny canvas that only redraws on mouse move.
+                            // Crosshair overlay - tiny canvas that only redraws on mouse move.
                             // Keeping this separate prevents the full graph from repainting on
                             // every pixel of mouse movement, which was the main source of jitter.
                             Canvas {
@@ -2447,8 +2438,8 @@ Window {
                                 id: speedHoverTip
                                 visible: root.speedHoverActive
                                 radius: 3
-                                color: "#101722"
-                                border.color: "#2f465d"
+                                color: ColorPalette.mapCanvasBg
+                                border.color: ColorPalette.mapBorder
                                 anchors.top: parent.top
                                 anchors.topMargin: 14
                                 x: Math.max(10, Math.min(parent.width - width - 10, root.speedHoverX + 16))
@@ -2480,13 +2471,13 @@ Window {
                                     spacing: 2
                                     Text {
                                         text: speedHoverTip._point ? root.formatClockTime(speedHoverTip._point.t) : ""
-                                        color: "#dbe8f6"
+                                        color: ColorPalette.textPrimary
                                         font.pixelSize: 11 * App.fontScale
                                         font.bold: true
                                     }
                                     Text {
                                         text: speedHoverTip._point ? root.formatAgoNatural(speedHoverTip._ageSec) : ""
-                                        color: "#a8b8c8"
+                                        color: ColorPalette.textPrimary
                                         font.pixelSize: 10 * App.fontScale
                                     }
                                     Text {
@@ -2521,26 +2512,26 @@ Window {
 
                                 // Legend dots
                                 Rectangle { width: 8; height: 8; radius: 4; color: "#4490e8" }
-                                Text { text: qsTr("Down"); color: "#5a6a7a"; font.pixelSize: 11 * App.fontScale }
+                                Text { text: qsTr("Down"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
                                 Text { text: root.compactSpeed(speedStatsCard._down.current); color: "#4ea2ff"; font.bold: true; font.pixelSize: 12 * App.fontScale }
-                                Text { text: "avg"; color: "#4a5a6a"; font.pixelSize: 10 * App.fontScale }
+                                Text { text: "avg"; color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale }
                                 Text { text: root.compactSpeed(speedStatsCard._down.avg); color: "#7ba8d0"; font.pixelSize: 11 * App.fontScale }
-                                Text { text: "peak " + root.compactSpeed(speedStatsCard._down.max); color: "#445566"; font.pixelSize: 10 * App.fontScale }
+                                Text { text: "peak " + root.compactSpeed(speedStatsCard._down.max); color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale }
 
                                 Rectangle { width: 8; height: 8; radius: 4; color: "#3dba6a" }
-                                Text { text: qsTr("Up"); color: "#5a6a7a"; font.pixelSize: 11 * App.fontScale }
+                                Text { text: qsTr("Up"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
                                 Text { text: root.compactSpeed(speedStatsCard._up.current); color: "#4cc87a"; font.bold: true; font.pixelSize: 12 * App.fontScale }
-                                Text { text: "avg"; color: "#4a5a6a"; font.pixelSize: 10 * App.fontScale }
+                                Text { text: "avg"; color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale }
                                 Text { text: root.compactSpeed(speedStatsCard._up.avg); color: "#7abf9a"; font.pixelSize: 11 * App.fontScale }
-                                Text { text: "peak " + root.compactSpeed(speedStatsCard._up.max); color: "#445566"; font.pixelSize: 10 * App.fontScale }
+                                Text { text: "peak " + root.compactSpeed(speedStatsCard._up.max); color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale }
                             }
 
                             Item { Layout.fillWidth: true }
 
-                            // Time span selector — compact, bottom-right
+                            // Time span selector - compact, bottom-right
                             RowLayout {
                                 spacing: 6
-                                Text { text: qsTr("Span"); color: "#4a5a6a"; font.pixelSize: 11 * App.fontScale }
+                                Text { text: qsTr("Span"); color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale }
                                 ComboBox {
                                     implicitWidth: 90
                                     implicitHeight: 24
@@ -2552,12 +2543,12 @@ Window {
                                         leftPadding: 8
                                         text: parent.displayText
                                         font: parent.font
-                                        color: "#c0c0c0"
+                                        color: ColorPalette.textPrimary
                                         verticalAlignment: Text.AlignVCenter
                                     }
                                     background: Rectangle {
-                                        color: "#1e1e1e"
-                                        border.color: parent.activeFocus ? "#4488dd" : "#333333"
+                                        color: ColorPalette.cardBg
+                                        border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border
                                         radius: 2
                                     }
                                 }
@@ -2565,7 +2556,7 @@ Window {
                         }
                     }
                 }
-                // ── Files ─────────────────────────────────────────────────────
+                // ?? Files ?????????????????????????????????????????????????????
                 Item {
                     ColumnLayout {
                         anchors.fill: parent; spacing: 0
@@ -2574,8 +2565,8 @@ Window {
                         Rectangle {
                             id: fileHeader
                             Layout.fillWidth: true; height: 26
-                            color: "#2d2d2d"; clip: true
-                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
+                            color: ColorPalette.dividerBg; clip: true
+                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
 
                             Row {
                                 x: -fileList.contentX
@@ -2589,9 +2580,9 @@ Window {
                                     height: parent.height
                                     Text {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 44 }
-                                        text: qsTr("Name"); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale; font.bold: true
+                                        text: qsTr("Name"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: true
                                     }
-                                    Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: "#3a3a3a" }
+                                    Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: ColorPalette.border }
                                     Item {
                                         id: fNameRh; width: 10; height: parent.height; anchors.right: parent.right; z: 10
                                         property real _startW: 0
@@ -2611,9 +2602,9 @@ Window {
                                     width: root.fileColProgress; height: parent.height
                                     Text {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: fProgRh.left; rightMargin: 2 }
-                                        text: qsTr("Progress"); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale; font.bold: true; elide: Text.ElideRight
+                                        text: qsTr("Progress"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: true; elide: Text.ElideRight
                                     }
-                                    Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: "#3a3a3a" }
+                                    Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: ColorPalette.border }
                                     Item {
                                         id: fProgRh; width: 10; height: parent.height; anchors.right: parent.right; z: 10
                                         property real _startW: 0
@@ -2633,7 +2624,7 @@ Window {
                                     width: root.fileColSize; height: parent.height
                                     Text {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: fSizeRh.left; rightMargin: 2 }
-                                        text: qsTr("Size"); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale; font.bold: true; elide: Text.ElideRight
+                                        text: qsTr("Size"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: true; elide: Text.ElideRight
                                     }
                                     Item {
                                         id: fSizeRh; width: 10; height: parent.height; anchors.right: parent.right; z: 10
@@ -2665,7 +2656,7 @@ Window {
                                 anchors.centerIn: parent
                                 visible: fileList.count === 0
                                 text: qsTr("No file information available")
-                                color: "#666666"; font.pixelSize: 12 * App.fontScale
+                                color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale
                             }
 
                             delegate: Rectangle {
@@ -2682,7 +2673,7 @@ Window {
                                 required property int    fileIndex
 
                                 width: Math.max(fileList.width, fileList.contentWidth); height: 26
-                                color: isFolder ? "#1f1f1f" : (index % 2 === 0 ? "#1c1c1c" : "#222222")
+                                color: isFolder ? ColorPalette.toolbarBg : (index % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg)
 
                                 Row {
                                     anchors { fill: parent; leftMargin: 6; rightMargin: 8 }
@@ -2696,7 +2687,7 @@ Window {
                                         width: 16; height: parent.height
                                         Text {
                                             visible: fd.isFolder; anchors.centerIn: parent
-                                            text: fd.expanded ? "▾" : "▸"
+                                            text: fd.expanded ? "▼" : "▶"
                                             color: "#888"; font.pixelSize: 11 * App.fontScale
                                         }
                                         MouseArea {
@@ -2706,18 +2697,18 @@ Window {
                                         }
                                     }
 
-                                    // Wanted checkbox — shown for both files and folders.
+                                    // Wanted checkbox - shown for both files and folders.
                                     // Toggling a folder entry sets wanted on all its children.
                                     Item {
                                         width: 22; height: parent.height
                                         Rectangle {
                                             anchors.centerIn: parent
                                             width: 14; height: 14; radius: 2
-                                            color: fd.wanted ? "#4488dd" : "#1b1b1b"
-                                            border.color: fd.wanted ? "#4488dd" : "#3a3a3a"
+                                            color: fd.wanted ? "#4488dd" : ColorPalette.inputBg
+                                            border.color: fd.wanted ? "#4488dd" : ColorPalette.border
                                             Text {
                                                 visible: fd.wanted; anchors.centerIn: parent
-                                                text: "✓"; color: "#fff"
+                                                text: "✓"; color: ColorPalette.textPrimary
                                                 font.pixelSize: 10 * App.fontScale; font.bold: true
                                             }
                                         }
@@ -2745,13 +2736,13 @@ Window {
                                         asynchronous: true
                                     }
 
-                                    // Name — width subtracts: depth-indent, expand-toggle (16),
+                                    // Name - width subtracts: depth-indent, expand-toggle (16),
                                     // checkbox (22), icon (16) + gap (4), outer margins (6+8).
                                     Text {
                                         width: root.fileColName - Math.max(0, fd.depth) * 14 - 16 - 22 - 16
                                         anchors.verticalCenter: parent.verticalCenter
                                         text: safeStr(fd.name)
-                                        color: !fd.wanted ? "#555" : (fd.isFolder ? "#e0e0e0" : "#d0d0d0")
+                                        color: !fd.wanted ? ColorPalette.textDisabled : (fd.isFolder ? ColorPalette.textPrimary : ColorPalette.textPrimary)
                                         font.pixelSize: 12 * App.fontScale; font.bold: fd.isFolder
                                         elide: Text.ElideMiddle
                                     }
@@ -2764,7 +2755,7 @@ Window {
                                             id: progPctLbl
                                             anchors { left: parent.left; verticalCenter: parent.verticalCenter }
                                             text: Math.round(root.clampPct(fd.progress) * 100) + "%"
-                                            color: fd.wanted ? "#b0b0b0" : "#555"
+                                            color: fd.wanted ? ColorPalette.textPrimary : ColorPalette.textDisabled
                                             font.pixelSize: 11 * App.fontScale
                                             width: 34
                                         }
@@ -2776,11 +2767,11 @@ Window {
                                                 verticalCenter: parent.verticalCenter
                                             }
                                             height: 4; radius: 2
-                                            color: "#2a2a2a"
+                                            color: ColorPalette.border
                                             Rectangle {
                                                 width: Math.max(0, parent.width * root.clampPct(fd.progress))
                                                 height: parent.height; radius: parent.radius
-                                                color: fd.wanted ? "#33bb44" : "#555"
+                                                color: fd.wanted ? "#33bb44" : ColorPalette.textDisabled
                                             }
                                         }
                                     }
@@ -2789,7 +2780,7 @@ Window {
                                     Text {
                                         width: root.fileColSize; anchors.verticalCenter: parent.verticalCenter
                                         text: root.compactBytes(fd.size)
-                                        color: fd.wanted ? "#b0b0b0" : "#555"
+                                        color: fd.wanted ? ColorPalette.textPrimary : ColorPalette.textDisabled
                                         font.pixelSize: 12 * App.fontScale; horizontalAlignment: Text.AlignLeft
                                     }
                                 }
@@ -2827,7 +2818,7 @@ Window {
                             maximumHeight: 150
                             visible: false
                             title: qsTr("Rename")
-                            color: "#1e1e1e"
+                            color: ColorPalette.cardBg
                             transientParent: root
                             modality: Qt.NonModal
                             flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
@@ -2874,22 +2865,22 @@ Window {
                                     }
                                     Text {
                                         text: qsTr("Rename item")
-                                        color: "#e0e0e0"; font.pixelSize: 14 * App.fontScale; font.bold: true
+                                        color: ColorPalette.textPrimary; font.pixelSize: 14 * App.fontScale; font.bold: true
                                     }
                                 }
                                 Text {
                                     text: qsTr("Enter a new file or folder name:")
-                                    color: "#aaaaaa"; font.pixelSize: 12 * App.fontScale
+                                    color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale
                                 }
                                 TextField {
                                     id: renameInput
                                     Layout.fillWidth: true
-                                    color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale
+                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                     selectByMouse: true
                                     leftPadding: 8
                                     background: Rectangle {
-                                        color: "#1b1b1b"
-                                        border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"
+                                        color: ColorPalette.inputBg
+                                        border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border
                                         radius: 3
                                     }
                                     Keys.onReturnPressed: renameConfirmBtn.clicked()
@@ -2943,8 +2934,8 @@ Window {
                             property bool _isFolder: false
 
                             background: Rectangle {
-                                color: "#252525"
-                                border.color: "#3a3a3a"
+                                color: ColorPalette.panelBg
+                                border.color: ColorPalette.border
                                 radius: 4
                             }
 
@@ -2954,7 +2945,7 @@ Window {
                                 Rectangle {
                                     width: 180
                                     height: 34
-                                    color: downloadCtxHover.containsMouse ? "#303030" : "transparent"
+                                    color: downloadCtxHover.containsMouse ? ColorPalette.border : "transparent"
 
                                     Row {
                                         anchors.verticalCenter: parent.verticalCenter
@@ -2966,13 +2957,13 @@ Window {
                                             width: 14
                                             height: 14
                                             radius: 2
-                                            color: fileCtxPopup._wanted ? "#4488dd" : "#1b1b1b"
-                                            border.color: fileCtxPopup._wanted ? "#4488dd" : "#3a3a3a"
+                                            color: fileCtxPopup._wanted ? "#4488dd" : ColorPalette.inputBg
+                                            border.color: fileCtxPopup._wanted ? "#4488dd" : ColorPalette.border
                                             Text {
                                                 visible: fileCtxPopup._wanted
                                                 anchors.centerIn: parent
                                                 text: "✓"
-                                                color: "#fff"
+                                                color: ColorPalette.textPrimary
                                                 font.pixelSize: 10 * App.fontScale
                                                 font.bold: true
                                             }
@@ -2980,7 +2971,7 @@ Window {
 
                                         Text {
                                             text: qsTr("Download")
-                                            color: "#e0e0e0"
+                                            color: ColorPalette.textPrimary
                                             font.pixelSize: 12 * App.fontScale
                                         }
                                     }
@@ -3003,12 +2994,12 @@ Window {
                                     }
                                 }
 
-                                Rectangle { width: 180; height: 1; color: "#3a3a3a" }
+                                Rectangle { width: 180; height: 1; color: ColorPalette.border }
 
                                 Rectangle {
                                     width: 180
                                     height: 34
-                                    color: renameCtxHover.containsMouse ? "#303030" : "transparent"
+                                    color: renameCtxHover.containsMouse ? ColorPalette.border : "transparent"
 
                                     Image {
                                         anchors.verticalCenter: parent.verticalCenter
@@ -3026,7 +3017,7 @@ Window {
                                         anchors.left: parent.left
                                         anchors.leftMargin: 32
                                         text: qsTr("Rename...")
-                                        color: "#e0e0e0"
+                                        color: ColorPalette.textPrimary
                                         font.pixelSize: 12 * App.fontScale
                                     }
 
@@ -3045,7 +3036,7 @@ Window {
                     }
                 }
 
-                // ── Peers ─────────────────────────────────────────────────────
+                // ?? Peers ?????????????????????????????????????????????????????
                 Item {
                     // Peer column widths live on root so they survive tab switches.
                     // Each column header cell has a DragHandler resize handle, mirroring
@@ -3057,13 +3048,13 @@ Window {
                     ColumnLayout {
                         anchors.fill: parent; spacing: 0
 
-                        // Header — styled identically to DownloadTable
+                        // Header - styled identically to DownloadTable
                         Rectangle {
                             id: peerHeader
                             Layout.fillWidth: true; height: 26
-                            color: "#2d2d2d"; clip: true
+                            color: ColorPalette.dividerBg; clip: true
 
-                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
+                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
 
                             Item {
                                 x: -peerListView.contentX
@@ -3077,7 +3068,7 @@ Window {
                                         x: root._peerColXMap[modelData.key] || 0
                                         width: root._peerColW(modelData.key)
                                         height: peerHeader.height
-                                        color: hdrMa.containsMouse && !rhDrag.active ? "#383838" : "transparent"
+                                        color: hdrMa.containsMouse && !rhDrag.active ? ColorPalette.border : "transparent"
                                         opacity: root._peerColDragging && root._peerColDragFromKey === modelData.key ? 0.5 : 1.0
 
                                         // Insert-before indicator (left edge)
@@ -3095,7 +3086,7 @@ Window {
                                                 right: sortArrow.left; rightMargin: 2
                                             }
                                             text: modelData.title
-                                            color: root.peerSortKey === modelData.sortKey ? "#88bbff" : "#b0b0b0"
+                                            color: root.peerSortKey === modelData.sortKey ? "#88bbff" : ColorPalette.textPrimary
                                             font.pixelSize: 12 * App.fontScale; font.bold: true
                                             elide: Text.ElideRight
                                         }
@@ -3141,7 +3132,7 @@ Window {
 
                                         Rectangle {
                                             anchors.right: parent.right
-                                            width: 1; height: parent.height; color: "#3a3a3a"
+                                            width: 1; height: parent.height; color: ColorPalette.border
                                         }
 
                                         // Resize handle
@@ -3230,7 +3221,7 @@ Window {
                                 // Save contentY before a live reorder (layoutChanged from
                                 // setEntries) and restore it immediately after. QML's ListView
                                 // does not preserve scroll position across layoutChanged when
-                                // rows shift — without this the view jumps to the top every
+                                // rows shift - without this the view jumps to the top every
                                 // time a new peer enters a speed-sorted list.
                                 function onLiveReorderAboutToHappen() {
                                     root._peerLiveReorderY = peerListView.contentY
@@ -3244,7 +3235,7 @@ Window {
                                 anchors.centerIn: parent
                                 visible: peerListView.count === 0
                                 text: qsTr("No peers connected")
-                                color: "#666"; font.pixelSize: 12 * App.fontScale
+                                color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale
                             }
 
                             Popup {
@@ -3262,8 +3253,8 @@ Window {
                                 property var peerData: ({})
 
                                 background: Rectangle {
-                                    color: "#252525"
-                                    border.color: "#3a3a3a"
+                                    color: ColorPalette.panelBg
+                                    border.color: ColorPalette.border
                                     radius: 4
                                 }
 
@@ -3273,14 +3264,14 @@ Window {
                                     Rectangle {
                                         width: 180
                                         height: 34
-                                        color: peerInfoHover.containsMouse ? "#303030" : "transparent"
+                                        color: peerInfoHover.containsMouse ? ColorPalette.border : "transparent"
 
                                         Text {
                                             anchors.verticalCenter: parent.verticalCenter
                                             anchors.left: parent.left
                                             anchors.leftMargin: 10
                                             text: qsTr("Peer Info")
-                                            color: peerCtxMenu.endpoint.length > 0 ? "#e0e0e0" : "#777777"
+                                            color: peerCtxMenu.endpoint.length > 0 ? ColorPalette.textPrimary : ColorPalette.textDisabled
                                             font.pixelSize: 12 * App.fontScale
                                         }
 
@@ -3296,19 +3287,19 @@ Window {
                                         }
                                     }
 
-                                    Rectangle { width: 180; height: 1; color: "#3a3a3a" }
+                                    Rectangle { width: 180; height: 1; color: ColorPalette.border }
 
                                     Rectangle {
                                         width: 180
                                         height: 34
-                                        color: peerBanHover.containsMouse ? "#303030" : "transparent"
+                                        color: peerBanHover.containsMouse ? ColorPalette.border : "transparent"
 
                                         Text {
                                             anchors.verticalCenter: parent.verticalCenter
                                             anchors.left: parent.left
                                             anchors.leftMargin: 10
                                             text: qsTr("Ban peer")
-                                            color: (!!root.item && peerCtxMenu.endpoint.length > 0) ? "#e0e0e0" : "#777777"
+                                            color: (!!root.item && peerCtxMenu.endpoint.length > 0) ? ColorPalette.textPrimary : ColorPalette.textDisabled
                                             font.pixelSize: 12 * App.fontScale
                                         }
 
@@ -3340,7 +3331,7 @@ Window {
                                 modality: Qt.ApplicationModal
                                 flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
                                 title: qsTr("Peer Info")
-                                color: "#1e1e1e"
+                                color: ColorPalette.cardBg
                                 property var peerData: ({})
                                 function blankPeerData() {
                                     return {
@@ -3375,7 +3366,7 @@ Window {
 
                                 Rectangle {
                                     anchors.fill: parent
-                                    color: "#1e1e1e"
+                                    color: ColorPalette.cardBg
 
                                     ColumnLayout {
                                         anchors.fill: parent
@@ -3414,7 +3405,7 @@ Window {
 
                                                         Text {
                                                             text: root.safeStr(peerInfoDialog.peerData.endpoint) || "--"
-                                                            color: "#f0f0f0"
+                                                            color: ColorPalette.textPrimary
                                                             font.pixelSize: 15 * App.fontScale
                                                             font.bold: true
                                                             elide: Text.ElideRight
@@ -3422,7 +3413,7 @@ Window {
                                                         }
                                                         Text {
                                                             text: String(peerInfoDialog.peerData.port || 0)
-                                                            color: "#8d8d8d"
+                                                            color: ColorPalette.textDisabled
                                                             font.pixelSize: 15 * App.fontScale
                                                             anchors.verticalCenter: parent.verticalCenter
                                                         }
@@ -3436,7 +3427,7 @@ Window {
                                                     }
                                                     Text {
                                                         text: root.peerLocationLabel(peerInfoDialog.peerData.countryCode, peerInfoDialog.peerData.regionName, peerInfoDialog.peerData.cityName)
-                                                        color: "#9eb0c2"
+                                                        color: ColorPalette.textPrimary
                                                         font.pixelSize: 11 * App.fontScale
                                                         elide: Text.ElideRight
                                                         Layout.fillWidth: true
@@ -3472,11 +3463,11 @@ Window {
                                                     anchors.margins: 10
                                                     spacing: 6
 
-                                                    Text { text: qsTr("Connection"); color: "#f0f0f0"; font.pixelSize: 14 * App.fontScale; font.bold: true }
-                                                    Text { text: qsTr("Source: %1").arg(root.safeStr(peerInfoDialog.peerData.source) || "Unknown"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
-                                                    Text { text: qsTr("Role: %1").arg(peerInfoDialog.peerData.isSeed ? qsTr("Seeder") : qsTr("Peer")); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
-                                                    Text { text: qsTr("Ping: %1").arg((Number(peerInfoDialog.peerData.rtt) || 0) > 0 ? (String(peerInfoDialog.peerData.rtt) + " ms") : "--"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
-                                                    Text { text: qsTr("Progress: %1%").arg(Math.round(root.clampPct(peerInfoDialog.peerData.progress) * 100)); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Connection"); color: ColorPalette.textPrimary; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                                                    Text { text: qsTr("Source: %1").arg(root.safeStr(peerInfoDialog.peerData.source) || "Unknown"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Role: %1").arg(peerInfoDialog.peerData.isSeed ? qsTr("Seeder") : qsTr("Peer")); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Ping: %1").arg((Number(peerInfoDialog.peerData.rtt) || 0) > 0 ? (String(peerInfoDialog.peerData.rtt) + " ms") : "--"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Progress: %1%").arg(Math.round(root.clampPct(peerInfoDialog.peerData.progress) * 100)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                                                 }
                                             }
 
@@ -3491,11 +3482,11 @@ Window {
                                                     anchors.margins: 10
                                                     spacing: 6
 
-                                                    Text { text: qsTr("Transfer"); color: "#f0f0f0"; font.pixelSize: 14 * App.fontScale; font.bold: true }
-                                                    Text { text: qsTr("Down: %1").arg(root.compactSpeed(peerInfoDialog.peerData.downSpeed)); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
-                                                    Text { text: qsTr("Up: %1").arg(root.compactSpeed(peerInfoDialog.peerData.upSpeed)); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
-                                                    Text { text: qsTr("Total down: %1").arg(root.compactBytes(peerInfoDialog.peerData.downloaded)); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
-                                                    Text { text: qsTr("Total up: %1").arg(root.compactBytes(peerInfoDialog.peerData.uploaded)); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Transfer"); color: ColorPalette.textPrimary; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                                                    Text { text: qsTr("Down: %1").arg(root.compactSpeed(peerInfoDialog.peerData.downSpeed)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Up: %1").arg(root.compactSpeed(peerInfoDialog.peerData.upSpeed)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Total down: %1").arg(root.compactBytes(peerInfoDialog.peerData.downloaded)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Total up: %1").arg(root.compactBytes(peerInfoDialog.peerData.uploaded)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                                                 }
                                             }
 
@@ -3510,11 +3501,11 @@ Window {
                                                     anchors.margins: 10
                                                     spacing: 6
 
-                                                    Text { text: qsTr("Location"); color: "#f0f0f0"; font.pixelSize: 14 * App.fontScale; font.bold: true }
-                                                    Text { text: root.peerLocationLabel(peerInfoDialog.peerData.countryCode, peerInfoDialog.peerData.regionName, peerInfoDialog.peerData.cityName); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap; width: parent.width }
-                                                    Text { text: qsTr("Distance: %1").arg(root.distanceSummary(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap; width: parent.width }
-                                                    Text { text: qsTr("Country: %1").arg(root.safeStr(peerInfoDialog.peerData.countryCode) || "--"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale }
-                                                    Text { text: qsTr("Client: %1").arg(root.safeStr(peerInfoDialog.peerData.client) || "Unknown"); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight; width: parent.width }
+                                                    Text { text: qsTr("Location"); color: ColorPalette.textPrimary; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                                                    Text { text: root.peerLocationLabel(peerInfoDialog.peerData.countryCode, peerInfoDialog.peerData.regionName, peerInfoDialog.peerData.cityName); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap; width: parent.width }
+                                                    Text { text: qsTr("Distance: %1").arg(root.distanceSummary(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap; width: parent.width }
+                                                    Text { text: qsTr("Country: %1").arg(root.safeStr(peerInfoDialog.peerData.countryCode) || "--"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                                                    Text { text: qsTr("Client: %1").arg(root.safeStr(peerInfoDialog.peerData.client) || "Unknown"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight; width: parent.width }
                                                 }
                                             }
                                         }
@@ -3531,8 +3522,8 @@ Window {
                                                 Rectangle {
                                                     Layout.fillWidth: true
                                                     Layout.fillHeight: true
-                                                    color: "#13202d"
-                                                    border.color: "#34485d"
+                                                    color: ColorPalette.mapTooltipBg
+                                                    border.color: ColorPalette.mapBorder
                                                     clip: true
 
                                                     Item {
@@ -3591,8 +3582,8 @@ Window {
                                                             }
                                                         }
 
-                                                        Rectangle { visible: parent.hasLocal; x: parent.baseMapX + parent.localX - 4; y: parent.localY - 4; width: 8; height: 8; radius: 4; color: "#8a63ff"; border.color: "#ffffff"; border.width: 1 }
-                                                        Rectangle { visible: parent.hasPeer; x: parent.baseMapX + parent.peerX - 4; y: parent.peerY - 4; width: 8; height: 8; radius: 4; color: peerInfoDialog.peerData.isSeed ? "#67bb7a" : "#62a8ff"; border.color: "#ffffff"; border.width: 1 }
+                                                        Rectangle { visible: parent.hasLocal; x: parent.baseMapX + parent.localX - 4; y: parent.localY - 4; width: 8; height: 8; radius: 4; color: "#8a63ff"; border.color: ColorPalette.textHeader; border.width: 1 }
+                                                        Rectangle { visible: parent.hasPeer; x: parent.baseMapX + parent.peerX - 4; y: parent.peerY - 4; width: 8; height: 8; radius: 4; color: peerInfoDialog.peerData.isSeed ? "#67bb7a" : "#62a8ff"; border.color: ColorPalette.textHeader; border.width: 1 }
                                                         Text { visible: parent.hasLocal; x: parent.baseMapX + parent.localX + 6; y: parent.localY - 9; text: qsTr("You"); color: "#f6f6f6"; font.pixelSize: 10 * App.fontScale; font.bold: true }
                                                         Text { visible: parent.hasPeer; x: parent.baseMapX + parent.peerX + 6; y: parent.peerY - 9; text: qsTr("Peer"); color: "#f6f6f6"; font.pixelSize: 10 * App.fontScale; font.bold: true }
                                                     }
@@ -3611,7 +3602,7 @@ Window {
 
                                                 Text {
                                                     text: qsTr("Flags")
-                                                    color: "#9eb0c2"
+                                                    color: ColorPalette.textPrimary
                                                     font.pixelSize: 11 * App.fontScale
                                                     font.bold: true
                                                     visible: root.peerFlagsList(peerInfoDialog.peerData.flags).length > 0
@@ -3633,7 +3624,7 @@ Window {
                                                             border.width: 1
                                                             function badgeColor(flag) {
                                                                 if (flag === "Seed") return "#c0a54a"
-                                                                if (flag === "Peer") return "#7a8899"
+                                                                if (flag === "Peer") return ColorPalette.textSecond
                                                                 return root.flagColor(flag)
                                                             }
 
@@ -3661,7 +3652,7 @@ Window {
                                                                 id: badgeLbl
                                                                 anchors.centerIn: parent
                                                                 text: modelData
-                                                                color: "white"
+                                                                color: ColorPalette.textPrimary
                                                                 font.pixelSize: 9 * App.fontScale
                                                                 font.bold: true
                                                             }
@@ -3750,8 +3741,8 @@ Window {
                                 height: 26
 
                                 color: peerRowMa.containsMouse
-                                       ? "#2a2a2a"
-                                       : (index % 2 === 0 ? "#1c1c1c" : "#222222")
+                                       ? ColorPalette.border
+                                       : (index % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg)
 
                                 MouseArea {
                                     id: peerRowMa; anchors.fill: parent; hoverEnabled: true
@@ -3797,7 +3788,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: safeStr(pd.endpoint); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
+                                            text: safeStr(pd.endpoint); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                         }
                                     }
                                     Item {
@@ -3807,7 +3798,7 @@ Window {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
                                             text: pd.port > 0 ? String(pd.port) : ""
-                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
+                                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                         }
                                     }
                                     Item {
@@ -3829,7 +3820,7 @@ Window {
                                                     leftMargin: clientIcon.visible ? 6 : 0
                                                     right: parent.right; verticalCenter: parent.verticalCenter
                                                 }
-                                                text: pd.client; color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
+                                                text: pd.client; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                             }
                                         }
                                     }
@@ -3840,7 +3831,7 @@ Window {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
                                             text: Math.round(root.clampPct(pd.progress) * 100) + "%"
-                                            color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale
+                                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                         }
                                     }
                                     Item {
@@ -3849,7 +3840,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: root.compactSpeed(pd.downSpeed); color: "#ffffff"; font.pixelSize: 12 * App.fontScale
+                                            text: root.compactSpeed(pd.downSpeed); color: ColorPalette.textHeader; font.pixelSize: 12 * App.fontScale
                                         }
                                     }
                                     Item {
@@ -3858,7 +3849,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: root.compactSpeed(pd.upSpeed); color: "#ffffff"; font.pixelSize: 12 * App.fontScale
+                                            text: root.compactSpeed(pd.upSpeed); color: ColorPalette.textHeader; font.pixelSize: 12 * App.fontScale
                                         }
                                     }
                                     Item {
@@ -3894,13 +3885,13 @@ Window {
                                                     border.color: flagBadgeColor(modelData); border.width: 1
                                                     function flagBadgeColor(flag) {
                                                         if (flag === "Seed") return "#c0a54a"
-                                                        if (flag === "Peer") return "#7a8899"
+                                                        if (flag === "Peer") return ColorPalette.textSecond
                                                         return root.flagColor(flag)
                                                     }
                                                     Text {
                                                         id: badgeLbl
                                                         anchors.centerIn: parent
-                                                        text: modelData; color: "white"
+                                                        text: modelData; color: ColorPalette.textPrimary
                                                         font.pixelSize: 9 * App.fontScale; font.bold: true
                                                     }
                                                 }
@@ -3961,7 +3952,7 @@ Window {
 
                             Text {
                                 text: qsTr("Legend:")
-                                color: "#ffffff"
+                                color: ColorPalette.textHeader
                                 font.pixelSize: 10 * App.fontScale
                                 anchors.verticalCenter: parent.verticalCenter
                             }
@@ -3995,7 +3986,7 @@ Window {
                                         id: lgText
                                         anchors.centerIn: parent
                                         text: modelData.flag
-                                        color: "white"
+                                        color: ColorPalette.textPrimary
                                         font.pixelSize: 9 * App.fontScale
                                         font.bold: true
                                     }
@@ -4009,11 +4000,11 @@ Window {
                     }
                 }
 
-                // ── Peer Map ────────────────────────────────────────────────
+                // ?? Peer Map ????????????????????????????????????????????????
                 Item {
                     Rectangle {
                         anchors.fill: parent
-                        color: "#141b24"
+                        color: ColorPalette.mapCanvasBg
                         border.width: 0
                         radius: 3
 
@@ -4030,7 +4021,7 @@ Window {
                                     text: root.activePeerMapModel
                                         ? qsTr("%1 known peers").arg(root.activePeerMapModel.rowCount())
                                         : qsTr("0 known peers")
-                                    color: "#8ea1b5"
+                                    color: ColorPalette.textPrimary
                                     font.pixelSize: 11 * App.fontScale
                                 }
                                 Item { Layout.fillWidth: true }
@@ -4039,44 +4030,44 @@ Window {
                                 Row {
                                     Layout.alignment: Qt.AlignVCenter
                                     spacing: 5
-                                    CheckBox {
+                                    StyledCheckBox {
                                         id: inactiveCheck
                                         checked: root.peerMapShowInactive
                                         onCheckedChanged: App.settings.swarmMapShowInactive = checked
                                         implicitHeight: 20
                                         indicator: Rectangle {
                                             width: 14; height: 14; radius: 2
-                                            color: inactiveCheck.checked ? "#4488dd" : "#1b1b1b"
-                                            border.color: inactiveCheck.checked ? "#4488dd" : "#3a3a3a"
-                                            Text { visible: inactiveCheck.checked; text: "✓"; color: "#fff"; font.pixelSize: 10 * App.fontScale; anchors.centerIn: parent }
+                                            color: inactiveCheck.checked ? "#4488dd" : ColorPalette.inputBg
+                                            border.color: inactiveCheck.checked ? "#4488dd" : ColorPalette.border
+                                            Text { visible: inactiveCheck.checked; text: "✓"; color: ColorPalette.textPrimary; font.pixelSize: 10 * App.fontScale; anchors.centerIn: parent }
                                         }
                                         contentItem: Item {}
                                     }
-                                    Text { text: qsTr("Inactive"); color: "#8ea1b5"; font.pixelSize: 11 * App.fontScale }
+                                    Text { text: qsTr("Inactive"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
                                 }
 
                                 // Tracker dots toggle
                                 Row {
                                     Layout.alignment: Qt.AlignVCenter
                                     spacing: 5
-                                    CheckBox {
+                                    StyledCheckBox {
                                         id: trackerDotsCheck
                                         checked: root.peerMapShowTrackers
                                         onCheckedChanged: App.settings.swarmMapShowTrackers = checked
                                         implicitHeight: 20
                                         indicator: Rectangle {
                                             width: 14; height: 14; radius: 2
-                                            color: trackerDotsCheck.checked ? "#4488dd" : "#1b1b1b"
-                                            border.color: trackerDotsCheck.checked ? "#4488dd" : "#3a3a3a"
-                                            Text { visible: trackerDotsCheck.checked; text: "✓"; color: "#fff"; font.pixelSize: 10 * App.fontScale; anchors.centerIn: parent }
+                                            color: trackerDotsCheck.checked ? "#4488dd" : ColorPalette.inputBg
+                                            border.color: trackerDotsCheck.checked ? "#4488dd" : ColorPalette.border
+                                            Text { visible: trackerDotsCheck.checked; text: "✓"; color: ColorPalette.textPrimary; font.pixelSize: 10 * App.fontScale; anchors.centerIn: parent }
                                         }
                                         contentItem: Item {}
                                     }
-                                    Text { text: qsTr("Trackers"); color: "#8ea1b5"; font.pixelSize: 11 * App.fontScale }
+                                    Text { text: qsTr("Trackers"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
                                 }
 
                                 Rectangle {
-                                    color: "#1a252f"
+                                    color: ColorPalette.mapPanelBg
                                     border.color: "transparent"
                                     radius: 2
                                     implicitHeight: 24
@@ -4086,20 +4077,20 @@ Window {
                                         anchors.centerIn: parent
                                         spacing: 10
                                         Rectangle { width: 10; height: 10; radius: 5; color: "#5f93c9"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: qsTr("Peer"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("Peer"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle { width: 10; height: 10; radius: 5; color: "#4caf7d"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: qsTr("Seed"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("Seed"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle { width: 10; height: 10; radius: 5; color: "#9959e6"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: qsTr("You"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("You"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle { width: 8; height: 8; radius: 4; color: "#e8d57a"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: qsTr("Tracker"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("Tracker"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         // Line type legend
                                         Rectangle { width: 18; height: 2; color: "#5f93c9"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: qsTr("DL"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("DL"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle { width: 18; height: 2; color: "#4caf7d"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: qsTr("UL"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("UL"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle { width: 18; height: 2; color: "#9959e6"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: qsTr("Both"); color: "#b8c5d3"; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("Both"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                     }
                                 }
                             }
@@ -4108,7 +4099,7 @@ Window {
                                 id: peerMapFrame
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
-                                color: "#0d141c"
+                                color: ColorPalette.mapCanvasBg
                                 radius: 3
                                 clip: true
 
@@ -4135,7 +4126,7 @@ Window {
                                         Image {
                                             id: worldMapImage
                                             anchors.fill: parent
-                                            source: "icons/world-map.svg"
+                                            source: ColorPalette.dark ? "icons/world-map.svg" : "icons/world-map-light.svg"
                                             fillMode: Image.PreserveAspectFit
                                             smooth: true
                                             sourceSize.width: 2400
@@ -4201,7 +4192,7 @@ Window {
                                             required property bool isSeed
                                             required property string source
                                             required property string flags
-                                            required property double progress   // fraction 0–1; was missing, causing all peers to show 0%
+                                            required property double progress   // fraction 0-1; was missing, causing all peers to show 0%
 
                                             readonly property bool hasCoordinates: isFinite(latitude) && isFinite(longitude) && !(latitude === 0 && longitude === 0)
                                             readonly property bool isActive: downSpeed > 0 || upSpeed > 0
@@ -4222,7 +4213,7 @@ Window {
                                                 height: 10
                                                 radius: 5
                                                 color: root.peerMapColor(parent)
-                                                border.color: markerMouse.containsMouse ? "#edf3f8" : "#081018"
+                                                border.color: markerMouse.containsMouse ? ColorPalette.textPrimary : ColorPalette.mapBorder
                                                 border.width: 1
                                             }
 
@@ -4233,8 +4224,8 @@ Window {
                                                 anchors.bottomMargin: 6
                                                 width: 220
                                                 implicitHeight: tooltipCol.implicitHeight + 10
-                                                color: "#111923"
-                                                border.color: "#324555"
+                                                color: ColorPalette.mapTooltipBg
+                                                border.color: ColorPalette.mapBorder
                                                 radius: 3
                                                 z: 10
 
@@ -4244,12 +4235,12 @@ Window {
                                                     anchors.margins: 5
                                                     spacing: 2
 
-                                                    Text { text: endpoint + ":" + port; color: "#f0f5fb"; font.pixelSize: 11 * App.fontScale; font.bold: true; elide: Text.ElideRight; width: parent.width }
-                                                    Text { text: client; color: "#c5d2de"; font.pixelSize: 11 * App.fontScale; elide: Text.ElideRight; width: parent.width }
-                                                    Text { text: root.peerPlaceText(parent.parent); color: "#95a9bb"; font.pixelSize: 10 * App.fontScale; elide: Text.ElideRight; width: parent.width }
-                                                    Text { text: (isSeed ? qsTr("Seed") : qsTr("Peer")) + " • " + source; color: isSeed ? "#f6b84c" : "#56d27f"; font.pixelSize: 10 * App.fontScale; width: parent.width }
-                                                    Text { text: qsTr("Down %1  Up %2").arg(root.compactSpeed(downSpeed)).arg(root.compactSpeed(upSpeed)); color: "#9fb6c8"; font.pixelSize: 10 * App.fontScale; width: parent.width }
-                                                    Text { text: qsTr("RTT %1").arg(rtt > 0 ? (rtt + " ms") : "--"); color: "#9fb6c8"; font.pixelSize: 10 * App.fontScale; width: parent.width }
+                                                    Text { text: endpoint + ":" + port; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; font.bold: true; elide: Text.ElideRight; width: parent.width }
+                                                    Text { text: client; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; elide: Text.ElideRight; width: parent.width }
+                                                    Text { text: root.peerPlaceText(parent.parent); color: ColorPalette.textPrimary; font.pixelSize: 10 * App.fontScale; elide: Text.ElideRight; width: parent.width }
+                                                    Text { text: (isSeed ? qsTr("Seed") : qsTr("Peer")) + " . " + source; color: isSeed ? "#f6b84c" : "#56d27f"; font.pixelSize: 10 * App.fontScale; width: parent.width }
+                                                    Text { text: qsTr("Down %1  Up %2").arg(root.compactSpeed(downSpeed)).arg(root.compactSpeed(upSpeed)); color: ColorPalette.textPrimary; font.pixelSize: 10 * App.fontScale; width: parent.width }
+                                                    Text { text: qsTr("RTT %1").arg(rtt > 0 ? (rtt + " ms") : "--"); color: ColorPalette.textPrimary; font.pixelSize: 10 * App.fontScale; width: parent.width }
                                                 }
                                             }
 
@@ -4296,7 +4287,7 @@ Window {
                                                 anchors.centerIn: parent
                                                 width: 8; height: 8; radius: 4
                                                 color: "#e8d57a"
-                                                border.color: "#081018"; border.width: 1
+                                                border.color: ColorPalette.mapBorder; border.width: 1
                                             }
                                             MouseArea {
                                                 id: trackerDotMouse
@@ -4338,7 +4329,7 @@ Window {
                                             height: 10
                                             radius: 5
                                             color: "#9959e6"
-                                            border.color: "#081018"
+                                            border.color: ColorPalette.mapBorder
                                             border.width: 1
                                         }
 
@@ -4359,8 +4350,8 @@ Window {
                                         y: Math.max(10, Math.min(parent.height - height - 10, root.peerMapHoverY - height / 2))
                                         width: 200
                                         implicitHeight: mapTooltipCol.implicitHeight + 10
-                                        color: "#101821"
-                                        border.color: "#314252"
+                                        color: ColorPalette.mapTooltipBg
+                                        border.color: ColorPalette.mapBorder
                                         radius: 4
                                         z: 20
 
@@ -4376,7 +4367,7 @@ Window {
                                                 width: parent.width
                                                 Text {
                                                     text: root.peerMapHoverEndpoint
-                                                    color: "#f0f5fb"
+                                                    color: ColorPalette.textPrimary
                                                     font.pixelSize: 13 * App.fontScale
                                                     font.bold: true
                                                     elide: Text.ElideRight
@@ -4385,7 +4376,7 @@ Window {
                                                 Text {
                                                     id: portLbl
                                                     text: root.peerMapHoverPort
-                                                    color: "#6a8099"
+                                                    color: ColorPalette.textSecond
                                                     font.pixelSize: 13 * App.fontScale
                                                     font.bold: true
                                                     anchors.baseline: parent.children[0].baseline
@@ -4407,7 +4398,7 @@ Window {
                                                 }
                                                 Text {
                                                     text: root.peerMapHoverClient
-                                                    color: "#c5d2de"
+                                                    color: ColorPalette.textPrimary
                                                     font.pixelSize: 12 * App.fontScale
                                                     elide: Text.ElideRight
                                                     width: parent.width - (parent.children[0].visible ? 19 : 0)
@@ -4434,7 +4425,7 @@ Window {
                                                         regionName: root.peerMapHoverRegionName,
                                                         cityName: root.peerMapHoverCityName
                                                     })
-                                                    color: "#95a9bb"
+                                                    color: ColorPalette.textPrimary
                                                     font.pixelSize: 11 * App.fontScale
                                                     elide: Text.ElideRight
                                                     width: parent.width - 21
@@ -4455,13 +4446,13 @@ Window {
                                                         height: 14
                                                         width: mapBadgeLbl.implicitWidth + 6
                                                         radius: 2
-                                                        color: Qt.rgba(0, 0, 0, 0.3)
+                                                        color: "transparent"
                                                         border.color: mapFlagColor(modelData)
                                                         border.width: 1
 
                                                         function mapFlagColor(flag) {
                                                             if (flag === "Seed") return "#c0a54a"
-                                                            if (flag === "Peer") return "#7a8899"
+                                                            if (flag === "Peer") return ColorPalette.textSecond
                                                             return root.flagColor(flag)
                                                         }
 
@@ -4469,7 +4460,7 @@ Window {
                                                             id: mapBadgeLbl
                                                             anchors.centerIn: parent
                                                             text: modelData
-                                                            color: "white"
+                                                            color: ColorPalette.textPrimary
                                                             font.pixelSize: 9 * App.fontScale
                                                             font.bold: true
                                                         }
@@ -4480,15 +4471,15 @@ Window {
                                             // Speed row
                                             Text {
                                                 text: qsTr("↓ %1  ↑ %2").arg(root.compactSpeed(root.peerMapHoverDownSpeed)).arg(root.compactSpeed(root.peerMapHoverUpSpeed))
-                                                color: "#9fb6c8"
+                                                color: ColorPalette.textPrimary
                                                 font.pixelSize: 11 * App.fontScale
                                                 width: parent.width
                                             }
 
                                             // Ping + progress row
                                             Text {
-                                                text: qsTr("Ping %1  %2% done").arg(root.peerMapHoverRtt > 0 ? (root.peerMapHoverRtt + " ms") : "—").arg(Math.round(root.peerMapHoverProgress * 100))
-                                                color: "#9fb6c8"
+                                                text: qsTr("Ping %1  %2% done").arg(root.peerMapHoverRtt > 0 ? (root.peerMapHoverRtt + " ms") : "-").arg(Math.round(root.peerMapHoverProgress * 100))
+                                                color: ColorPalette.textPrimary
                                                 font.pixelSize: 11 * App.fontScale
                                                 width: parent.width
                                             }
@@ -4502,8 +4493,8 @@ Window {
                                         y: Math.max(10, Math.min(parent.height - height - 10, root.peerMapTrackerHoverY - height / 2))
                                         width: 210
                                         implicitHeight: trackerTipCol.implicitHeight + 10
-                                        color: "#101821"
-                                        border.color: "#314252"
+                                        color: ColorPalette.mapPanelBg
+                                        border.color: ColorPalette.mapBorder
                                         radius: 4
                                         z: 22
 
@@ -4524,7 +4515,7 @@ Window {
                                                 }
                                                 Text {
                                                     text: root.peerMapTrackerHoverHost
-                                                    color: "#f0f5fb"
+                                                    color: ColorPalette.textPrimary
                                                     font.pixelSize: 13 * App.fontScale
                                                     font.bold: true
                                                     elide: Text.ElideRight
@@ -4536,18 +4527,18 @@ Window {
                                             Text {
                                                 visible: root.peerMapTrackerHoverCountry.length > 0
                                                 text: root.peerMapTrackerHoverCountry
-                                                color: "#95a9bb"
+                                                color: ColorPalette.textPrimary
                                                 font.pixelSize: 11 * App.fontScale
                                                 width: parent.width
                                             }
 
                                             // Divider
-                                            Rectangle { width: parent.width; height: 1; color: "#243040" }
+                                            Rectangle { width: parent.width; height: 1; color: ColorPalette.mapGrid }
 
                                             // Status
                                             Row {
                                                 spacing: 4
-                                                Text { text: qsTr("Status"); color: "#6a8099"; font.pixelSize: 11 * App.fontScale }
+                                                Text { text: qsTr("Status"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
                                                 Text {
                                                     text: root.peerMapTrackerHoverStatus || qsTr("Unknown")
                                                     color: {
@@ -4565,17 +4556,17 @@ Window {
                                             Row {
                                                 visible: root.peerMapTrackerHoverTier >= 0
                                                 spacing: 4
-                                                Text { text: qsTr("Tier"); color: "#6a8099"; font.pixelSize: 11 * App.fontScale }
-                                                Text { text: String(root.peerMapTrackerHoverTier); color: "#c5d2de"; font.pixelSize: 11 * App.fontScale }
+                                                Text { text: qsTr("Tier"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
+                                                Text { text: String(root.peerMapTrackerHoverTier); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
                                             }
 
                                             // Peers reported
                                             Row {
                                                 spacing: 4
-                                                Text { text: qsTr("Peers"); color: "#6a8099"; font.pixelSize: 11 * App.fontScale }
+                                                Text { text: qsTr("Peers"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
                                                 Text {
-                                                    text: root.peerMapTrackerHoverCount > 0 ? String(root.peerMapTrackerHoverCount) : "—"
-                                                    color: "#c5d2de"; font.pixelSize: 11 * App.fontScale
+                                                    text: root.peerMapTrackerHoverCount > 0 ? String(root.peerMapTrackerHoverCount) : "-"
+                                                    color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
                                                 }
                                             }
                                         }
@@ -4596,8 +4587,8 @@ Window {
                                         }
                                         width: 200
                                         implicitHeight: youTooltipCol.implicitHeight + 10
-                                        color: "#101821"
-                                        border.color: "#314252"
+                                        color: ColorPalette.mapPanelBg
+                                        border.color: ColorPalette.mapBorder
                                         radius: 4
                                         z: 21
 
@@ -4612,7 +4603,7 @@ Window {
                                                 width: parent.width
                                                 Text {
                                                     text: root.torrentPeerModel ? root.torrentPeerModel.localIp : ""
-                                                    color: "#f0f5fb"
+                                                    color: ColorPalette.textPrimary
                                                     font.pixelSize: 13 * App.fontScale
                                                     font.bold: true
                                                     elide: Text.ElideRight
@@ -4621,7 +4612,7 @@ Window {
                                                 Text {
                                                     id: youPortLbl
                                                     text: root.torrentPeerModel ? root.torrentPeerModel.localPort : ""
-                                                    color: "#6a8099"
+                                                    color: ColorPalette.textSecond
                                                     font.pixelSize: 13 * App.fontScale
                                                     font.bold: true
                                                     visible: root.torrentPeerModel && root.torrentPeerModel.localPort > 0
@@ -4642,7 +4633,7 @@ Window {
                                                     text: root.torrentPeerModel && root.torrentPeerModel.localClientName.length > 0
                                                           ? root.torrentPeerModel.localClientName
                                                           : ("Stellar/" + App.appVersion)
-                                                    color: "#c5d2de"
+                                                    color: ColorPalette.textPrimary
                                                     font.pixelSize: 12 * App.fontScale
                                                     anchors.verticalCenter: parent.verticalCenter
                                                 }
@@ -4675,7 +4666,7 @@ Window {
                                                             parts.push(country)
                                                         return parts.join(", ")
                                                     }
-                                                    color: "#95a9bb"
+                                                    color: ColorPalette.textPrimary
                                                     font.pixelSize: 11 * App.fontScale
                                                     elide: Text.ElideRight
                                                     width: parent.width - 21
@@ -4692,7 +4683,7 @@ Window {
                                             Text {
                                                 visible: !!root.item
                                                 text: Math.round((root.item ? root.item.progress : 0) * 100) + "% done"
-                                                color: "#9fb6c8"
+                                                color: ColorPalette.textPrimary
                                                 font.pixelSize: 11 * App.fontScale
                                                 width: parent.width
                                             }
@@ -4737,7 +4728,7 @@ Window {
                                         anchors.centerIn: parent
                                         visible: !root.activePeerMapModel || mapCanvas.plottedPeerCount === 0
                                         text: qsTr("No connected peers to plot")
-                                        color: "#708396"
+                                        color: ColorPalette.textSecond
                                         font.pixelSize: 12 * App.fontScale
                                     }
 
@@ -4745,7 +4736,7 @@ Window {
                                         anchors.centerIn: parent
                                         visible: !!root.activePeerMapModel && root.activePeerMapModel.rowCount() > 0 && !root.activePeerMapModel.hasLocalLocation
                                         text: qsTr("Waiting for your public IP so the local map position can be shown")
-                                        color: "#708396"
+                                        color: ColorPalette.textSecond
                                         font.pixelSize: 12 * App.fontScale
                                     }
 
@@ -4760,7 +4751,7 @@ Window {
                     Menu {
                         id: trackerCtxMenu
                         property string trackerUrl: ""
-                        // DHT/PEX/LSD are virtual "trackers" with no real URL — disable
+                        // DHT/PEX/LSD are virtual "trackers" with no real URL - disable
                         // destructive/copy actions so right-clicking them feels inert.
                         property bool isSystemEntry: false
 
@@ -4792,25 +4783,25 @@ Window {
                         }
                     }
 
-                    // Add tracker panel — slides in/out from the top
+                    // Add tracker panel - slides in/out from the top
                     ColumnLayout {
                         anchors.fill: parent; spacing: 0
 
                         // Toolbar row with count + add button
                         Rectangle {
                             Layout.fillWidth: true; height: 34
-                            color: "#252525"
-                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#111" }
+                            color: ColorPalette.panelBg
+                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
 
                             RowLayout {
                                 anchors { fill: parent; leftMargin: 10; rightMargin: 10 }
                                 Text {
                                     text: qsTr("Trackers")
-                                    color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale; font.bold: true
+                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: true
                                 }
                                 Text {
                                     text: qsTr("%n tracker(s)", "", trackerList.count)
-                                    color: "#666"; font.pixelSize: 11 * App.fontScale
+                                    color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                                     leftPadding: 8
                                 }
                                 Item { Layout.fillWidth: true }
@@ -4854,7 +4845,7 @@ Window {
                                     onRunningChanged: if (running) flashing = true
                                 }
                                 DlgButton {
-                                    text: root.showTrackerAdd ? qsTr("Cancel") : qsTr("Add trackers…")
+                                    text: root.showTrackerAdd ? qsTr("Cancel") : qsTr("Add trackers...")
                                     primary: !root.showTrackerAdd
                                     onClicked: {
                                         root.showTrackerAdd = !root.showTrackerAdd
@@ -4868,7 +4859,7 @@ Window {
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.preferredHeight: root.showTrackerAdd ? 130 : 0
-                            color: "#1d2030"; border.color: "#2a3050"
+                            color: ColorPalette.infoBoxBg; border.color: ColorPalette.infoBoxBorder
                             clip: true
                             visible: root.showTrackerAdd
 
@@ -4880,21 +4871,21 @@ Window {
 
                                 Text {
                                     text: qsTr("Paste tracker URLs - one per line. Lines starting with # are ignored.")
-                                    color: "#8899bb"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
+                                    color: ColorPalette.infoBoxText; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
                                     Layout.fillWidth: true
                                 }
 
                                 Rectangle {
                                     Layout.fillWidth: true; Layout.fillHeight: true
-                                    color: "#1b1b1b"
-                                    border.color: trackerInput.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2; clip: true
+                                    color: ColorPalette.inputBg
+                                    border.color: trackerInput.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2; clip: true
 
                                     ScrollView {
                                         anchors.fill: parent
                                         TextArea {
                                             id: trackerInput
                                             placeholderText: "udp://tracker.opentrackr.org:1337/announce\nhttps://tracker.example.org/announce"
-                                            color: "#d0d0d0"; placeholderTextColor: "#444"
+                                            color: ColorPalette.textPrimary; placeholderTextColor: ColorPalette.border
                                             font.pixelSize: 11 * App.fontScale; wrapMode: TextArea.NoWrap
                                             selectByMouse: true; background: null; padding: 6
                                         }
@@ -4938,8 +4929,8 @@ Window {
                         Rectangle {
                             id: trackerHeader
                             Layout.fillWidth: true; height: 26
-                            color: "#2d2d2d"; clip: true
-                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
+                            color: ColorPalette.dividerBg; clip: true
+                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
                             Item {
                                 x: -trackerList.contentX
                                 width: root.trkColTracker + root.trkColStatus + root.trkColSource + root.trkColSeeders + root.trkColPeers + root.trkColNextAnnounce + root.trkColMessage
@@ -4952,7 +4943,7 @@ Window {
                                         x: root._trkColXMap[modelData.key] || 0
                                         width: root._trkColW(modelData.key)
                                         height: trackerHeader.height
-                                        color: trkHdrMa.containsMouse && !trkRhDrag.active ? "#383838" : "transparent"
+                                        color: trkHdrMa.containsMouse && !trkRhDrag.active ? ColorPalette.border : "transparent"
                                         opacity: root._trkColDragging && root._trkColDragFromKey === modelData.key ? 0.5 : 1.0
 
                                         // Insert-before indicator
@@ -4966,7 +4957,7 @@ Window {
                                         Text {
                                             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: trkSortArrow.left; rightMargin: 2 }
                                             text: modelData.title
-                                            color: root.trkSortKey === modelData.sortKey ? "#88bbff" : "#b0b0b0"
+                                            color: root.trkSortKey === modelData.sortKey ? "#88bbff" : ColorPalette.textPrimary
                                             font.pixelSize: 12 * App.fontScale; font.bold: true; elide: Text.ElideRight
                                         }
                                         Text {
@@ -4976,7 +4967,7 @@ Window {
                                             color: "#88bbff"; font.pixelSize: 9 * App.fontScale
                                             visible: root.trkSortKey === modelData.sortKey
                                         }
-                                        Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: "#3a3a3a" }
+                                        Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: ColorPalette.border }
 
                                         MouseArea {
                                             id: trkHdrMa
@@ -5063,7 +5054,7 @@ Window {
                                 anchors.centerIn: parent
                                 visible: trackerList.count === 0
                                 text: qsTr("No trackers")
-                                color: "#666"; font.pixelSize: 12 * App.fontScale
+                                color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale
                             }
 
                             delegate: Rectangle {
@@ -5081,8 +5072,8 @@ Window {
 
                                 width: Math.max(ListView.view.width, trackerList.contentWidth); height: 28
                                 color: trackerRowFlashTimer.flashing
-                                       ? "#1a2a3a"
-                                       : (trMa.containsMouse ? "#2a2a2a" : (index % 2 === 0 ? "#1c1c1c" : "#222222"))
+                                       ? ColorPalette.mapGrid
+                                       : (trMa.containsMouse ? ColorPalette.hoverBg : (index % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg))
                                 Behavior on color { ColorAnimation { duration: trackerRowFlashTimer.flashing ? 80 : 350 } }
 
                                 MouseArea {
@@ -5104,7 +5095,7 @@ Window {
                                         Text {
                                             anchors { fill: parent }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: safeStr(trd.url); color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
+                                            text: safeStr(trd.url); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                         }
                                     }
                                     Item {
@@ -5120,7 +5111,7 @@ Window {
                                                 if (s.indexOf("error") >= 0 || s.indexOf("fail") >= 0) return "#cc6060"
                                                 if (s === "working") return "#55cc66"
                                                 if (s.indexOf("announcing") >= 0 || s.indexOf("reannouncing") >= 0) return "#c0a54a"
-                                                return "#b0b0b0"
+                                                return ColorPalette.textPrimary
                                             }
                                             font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                         }
@@ -5131,7 +5122,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: safeStr(trd.source); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
+                                            text: safeStr(trd.source); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                         }
                                     }
                                     Item {
@@ -5149,7 +5140,7 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: String(trd.peers | 0); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale
+                                            text: String(trd.peers | 0); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                         }
                                     }
                                     Item {
@@ -5158,11 +5149,11 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale
+                                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                                             text: {
                                                 if (trd.isSystemEntry) return ""
                                                 var s = trd.nextAnnounceSecs | 0
-                                                if (s < 0) return qsTr("—")
+                                                if (s < 0) return qsTr("-")
                                                 if (s === 0) return qsTr("Now")
                                                 var h = Math.floor(s / 3600)
                                                 var m = Math.floor((s % 3600) / 60)
@@ -5186,7 +5177,7 @@ Window {
                                                 var s = safeStr(trd.status)
                                                 return s === "Idle" ? qsTr("Waiting to announce") : ""
                                             }
-                                            color: safeStr(trd.message).length > 0 ? "#8ea1b5" : "#4a5a6a"
+                                            color: safeStr(trd.message).length > 0 ? ColorPalette.textPrimary : ColorPalette.textDisabled
                                             font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                         }
                                     }
@@ -5201,7 +5192,7 @@ Window {
                     }
                 }
 
-                // ── Web Seeds ─────────────────────────────────────────────────
+                // ?? Web Seeds ?????????????????????????????????????????????????
                 Item {
                     id: webSeedsTab
 
@@ -5243,23 +5234,23 @@ Window {
                         // Toolbar
                         Rectangle {
                             Layout.fillWidth: true; height: 34
-                            color: "#252525"
-                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#111" }
+                            color: ColorPalette.panelBg
+                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
 
                             RowLayout {
                                 anchors { fill: parent; leftMargin: 10; rightMargin: 10 }
                                 Text {
                                     text: qsTr("Web Seeds")
-                                    color: "#e0e0e0"; font.pixelSize: 12 * App.fontScale; font.bold: true
+                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: true
                                 }
                                 Text {
                                     text: qsTr("%n seed(s)", "", webSeedModel.count)
-                                    color: "#666"; font.pixelSize: 11 * App.fontScale
+                                    color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                                     leftPadding: 8
                                 }
                                 Item { Layout.fillWidth: true }
                                 DlgButton {
-                                    text: root.showWebSeedAdd ? qsTr("Cancel") : qsTr("Add seed…")
+                                    text: root.showWebSeedAdd ? qsTr("Cancel") : qsTr("Add seed...")
                                     primary: !root.showWebSeedAdd
                                     onClicked: {
                                         root.showWebSeedAdd = !root.showWebSeedAdd
@@ -5273,7 +5264,7 @@ Window {
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.preferredHeight: root.showWebSeedAdd ? 130 : 0
-                            color: "#1d2030"; border.color: "#2a3050"
+                            color: ColorPalette.infoBoxBg; border.color: ColorPalette.infoBoxBorder
                             clip: true
                             visible: root.showWebSeedAdd
 
@@ -5285,21 +5276,21 @@ Window {
 
                                 Text {
                                     text: qsTr("Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.")
-                                    color: "#8899bb"; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
+                                    color: ColorPalette.infoBoxText; font.pixelSize: 11 * App.fontScale; wrapMode: Text.WordWrap
                                     Layout.fillWidth: true
                                 }
 
                                 Rectangle {
                                     Layout.fillWidth: true; Layout.fillHeight: true
-                                    color: "#1b1b1b"
-                                    border.color: webSeedInput.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2; clip: true
+                                    color: ColorPalette.inputBg
+                                    border.color: webSeedInput.activeFocus ? "#4488dd" : ColorPalette.border; radius: 2; clip: true
 
                                     ScrollView {
                                         anchors.fill: parent
                                         TextArea {
                                             id: webSeedInput
                                             placeholderText: "https://example.com/files/\nhttps://mirror.example.org/files/"
-                                            color: "#d0d0d0"; placeholderTextColor: "#444"
+                                            color: ColorPalette.textPrimary; placeholderTextColor: ColorPalette.border
                                             font.pixelSize: 11 * App.fontScale; wrapMode: TextArea.NoWrap
                                             selectByMouse: true; background: null; padding: 6
                                         }
@@ -5344,18 +5335,18 @@ Window {
                         // List header
                         Rectangle {
                             Layout.fillWidth: true; height: 26
-                            color: "#2d2d2d"; clip: true
-                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
+                            color: ColorPalette.dividerBg; clip: true
+                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
                             Row {
                                 anchors { fill: parent; leftMargin: 8 }
                                 Text {
                                     width: webSeedList.width * 0.72
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: qsTr("URL"); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale; font.bold: true; elide: Text.ElideRight
+                                    text: qsTr("URL"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: true; elide: Text.ElideRight
                                 }
                                 Text {
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: qsTr("Type"); color: "#b0b0b0"; font.pixelSize: 12 * App.fontScale; font.bold: true
+                                    text: qsTr("Type"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: true
                                 }
                             }
                         }
@@ -5376,7 +5367,7 @@ Window {
                                 anchors.centerIn: parent
                                 visible: webSeedList.count === 0
                                 text: qsTr("No web seeds")
-                                color: "#666"; font.pixelSize: 12 * App.fontScale
+                                color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale
                             }
 
                             delegate: Rectangle {
@@ -5386,7 +5377,7 @@ Window {
                                 required property string seedType
 
                                 width: Math.max(ListView.view.width, webSeedList.contentWidth); height: 28
-                                color: wsMa.containsMouse ? "#2a2a2a" : (index % 2 === 0 ? "#1c1c1c" : "#222222")
+                                color: wsMa.containsMouse ? ColorPalette.hoverBg : (index % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg)
 
                                 MouseArea {
                                     id: wsMa; anchors.fill: parent; hoverEnabled: true
@@ -5408,7 +5399,7 @@ Window {
                                             anchors { fill: parent }
                                             verticalAlignment: Text.AlignVCenter
                                             text: wsd.url
-                                            color: "#d0d0d0"; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
+                                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight
                                         }
                                     }
                                     Item {
@@ -5464,7 +5455,7 @@ Window {
                     }
                 }
 
-                // ── Piece Map ─────────────────────────────────────────────────
+                // ?? Piece Map ?????????????????????????????????????????????????
                 Item {
                     id: pieceMapTab
 
@@ -5472,7 +5463,7 @@ Window {
                     property var pieceData: []
                     // maxRarity is the highest peer-count seen; used to scale the rarity gradient.
                     property int maxRarity: 1
-                    // flashSet: sparse object mapping piece index ↑ flash colour string.
+                    // flashSet: sparse object mapping piece index ? flash colour string.
                     // Populated on each refresh for pieces whose status changed; cleared by flashTimer.
                     property var flashSet: ({})
                     property bool hasFlash: false
@@ -5572,7 +5563,7 @@ Window {
 
                             Text {
                                 text: qsTr("Legend:")
-                                color: "#6a8099"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale
                                 anchors.verticalCenter: parent.verticalCenter
                             }
 
@@ -5583,8 +5574,8 @@ Window {
                                     { color: "#c0392b", label: "Rare" },
                                     { color: "#27ae60", label: "Common" },
                                     { color: "#e67e22", label: "High Priority" },
-                                    { color: "#888888", label: "Skipped" },
-                                    { color: "#1e1e1e", label: "Unavailable" }
+                                    { color: ColorPalette.textMuted, label: "Skipped" },
+                                    { color: ColorPalette.cardBg, label: "Unavailable" }
                                 ]
                                 delegate: Row {
                                     required property var modelData
@@ -5597,7 +5588,7 @@ Window {
                                         anchors.verticalCenter: parent.verticalCenter
                                     }
                                     Text {
-                                        text: modelData.label; color: "#b0b0b0"; font.pixelSize: 11 * App.fontScale
+                                        text: modelData.label; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
                                         anchors.verticalCenter: parent.verticalCenter
                                     }
                                 }
@@ -5607,7 +5598,7 @@ Window {
 
                             Text {
                                 id: pieceSummaryText
-                                color: "#6a8099"; font.pixelSize: 11 * App.fontScale
+                                color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale
                                 anchors.verticalCenter: parent.verticalCenter
                                 text: {
                                     var d = pieceMapTab.pieceData
@@ -5676,11 +5667,11 @@ Window {
                             //   N                 : N peers have it (normal priority)
                             //   N | 0x10000       : N peers, high-priority piece
                             function pieceColor(val, maxRarity) {
-                                if (val === -2) return "#2ecc71"   // have — green
-                                if (val === -3) return "#888888"   // skipped — grey
+                                if (val === -2) return "#2ecc71"   // have - green
+                                if (val === -3) return ColorPalette.textMuted   // skipped - grey
                                 if (val <= -4) {
                                     // Downloading: shade of blue proportional to block progress.
-                                    // pct = 0 ↑ dark blue, pct = 99 ↑ bright cyan-blue
+                                    // pct = 0 ? dark blue, pct = 99 ? bright cyan-blue
                                     var pct = Math.min(99, -(val + 4))
                                     var t = pct / 99
                                     var r2 = Math.round(0x1a + (0x4a - 0x1a) * t)
@@ -5690,11 +5681,11 @@ Window {
                                 }
                                 var hp  = (val & 0x10000) !== 0
                                 var cnt = val & 0xFFFF
-                                if (cnt === 0) return "#141414"    // unavailable — near black
-                                if (hp) return "#e67e22"           // high priority — orange
-                                // Map 1..maxRarity to red (rare) ↑ green (common)
+                                if (cnt === 0) return ColorPalette.inputBg    // unavailable - near black
+                                if (hp) return "#e67e22"           // high priority - orange
+                                // Map 1..maxRarity to red (rare) ? green (common)
                                 var t2 = maxRarity > 1 ? (cnt - 1) / (maxRarity - 1) : 1.0
-                                // t2=0 ↑ rare #c0392b (red), t2=1 ↑ common #27ae60 (green)
+                                // t2=0 ? rare #c0392b (red), t2=1 ? common #27ae60 (green)
                                 var r = Math.round(0xc0 + (0x27 - 0xc0) * t2)
                                 var g = Math.round(0x39 + (0xae - 0x39) * t2)
                                 var b = Math.round(0x2b + (0x60 - 0x2b) * t2)
@@ -5723,12 +5714,12 @@ Window {
                             onPaint: {
                                 var ctx = getContext("2d")
                                 ctx.clearRect(0, 0, width, height)
-                                ctx.fillStyle = "#0e1014"
+                                ctx.fillStyle = ColorPalette.mapCanvasBg
                                 ctx.fillRect(0, 0, width, height)
 
                                 var d = pieceMapTab.pieceData
                                 if (!d || d.length === 0) {
-                                    ctx.fillStyle = "#555"
+                                    ctx.fillStyle = ColorPalette.textDisabled
                                     ctx.font = "13px sans-serif"
                                     ctx.textAlign = "center"
                                     ctx.fillText("No piece data available", width / 2, height / 2)
@@ -5753,7 +5744,7 @@ Window {
                                         ctx.fillRect(col * cs + gap, row * cs + gap, cs - gap, cs - gap)
                                     }
                                 } else {
-                                    // Run mode: many pieces per 2px column — colour by dominant status in range
+                                    // Run mode: many pieces per 2px column - colour by dominant status in range
                                     var piecesPerCol = -cs  // cs is negative in run mode
                                     var numCols = Math.ceil(d.length / piecesPerCol)
                                     var colW = 2
@@ -5779,9 +5770,9 @@ Window {
                                         else if (rareN > 0)
                                             domColor = pieceColor(Math.round(rareSum / rareN), maxR)
                                         else if (skipCount > 0)
-                                            domColor = "#888888"
+                                            domColor = ColorPalette.textMuted
                                         else
-                                            domColor = "#141414"
+                                            domColor = ColorPalette.inputBg
                                         ctx.fillStyle = domColor
                                         ctx.fillRect(c * colW, 0, colW, height)
                                     }

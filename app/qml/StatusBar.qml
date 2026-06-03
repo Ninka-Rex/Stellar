@@ -21,7 +21,7 @@ import QtQuick.Controls
 Rectangle {
     id: root
     height: 22
-    color: "#1a1a1a"
+    color: ColorPalette.cardBg
 
     property int activeCount: 0
     property int completedCount: 0
@@ -61,13 +61,13 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
     }
 
-    Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#3a3a3a" }
+    Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: ColorPalette.border }
 
     RowLayout {
         anchors { fill: parent; leftMargin: 8; rightMargin: 8; topMargin: 1 }
         spacing: 8
 
-        // ── Left cluster: download counts ────────────────────────────
+        // Left cluster: download counts
 
         Row {
             visible: App.totalDownloads > 0
@@ -76,7 +76,7 @@ Rectangle {
             StatusIcon { source: "icons/floppy_disk.svg" }
             Text {
                 text: App.totalDownloads
-                color: "#a0a0a0"
+                color: ColorPalette.textSecond
                 font.pixelSize: 11 * App.fontScale
             }
         }
@@ -88,7 +88,7 @@ Rectangle {
             StatusIcon { source: "icons/resume.svg" }
             Text {
                 text: App.activeDownloads
-                color: "#a0a0a0"
+                color: ColorPalette.textSecond
                 font.pixelSize: 11 * App.fontScale
             }
         }
@@ -100,7 +100,7 @@ Rectangle {
             StatusIcon { source: "icons/torrent-categories/seeding.svg" }
             Text {
                 text: App.activeSeedingCount + (App.activeSeedingCount !== App.seedingCount ? " (" + App.seedingCount + ")" : "")
-                color: "#a0a0a0"
+                color: ColorPalette.textSecond
                 font.pixelSize: 11 * App.fontScale
             }
         }
@@ -112,7 +112,7 @@ Rectangle {
             StatusIcon { source: "icons/pause.svg" }
             Text {
                 text: App.pausedCount
-                color: "#a0a0a0"
+                color: ColorPalette.textSecond
                 font.pixelSize: 11 * App.fontScale
             }
         }
@@ -124,7 +124,7 @@ Rectangle {
             StatusIcon { source: "icons/torrent-categories/checking.svg" }
             Text {
                 text: App.checkingCount
-                color: "#a0a0a0"
+                color: ColorPalette.textSecond
                 font.pixelSize: 11 * App.fontScale
             }
         }
@@ -136,7 +136,7 @@ Rectangle {
             StatusIcon { source: "icons/warning.svg" }
             Text {
                 text: errorCount
-                color: "#a0a0a0"
+                color: ColorPalette.textSecond
                 font.pixelSize: 11 * App.fontScale
             }
         }
@@ -148,22 +148,22 @@ Rectangle {
             StatusIcon { source: "icons/magnifying_glass.svg" }
             Text {
                 text: selectedCount
-                color: "#a0a0a0"
+                color: ColorPalette.textSecond
                 font.pixelSize: 11 * App.fontScale
             }
         }
 
-        // ── Separator ─────────────────────────────────────────────────
+        // Separator
 
         Text {
             visible: _hasVisibleCounts && _hasSysStatus
             text: "|"
-            color: "#666666"
+            color: ColorPalette.textDisabled
             font.pixelSize: 11 * App.fontScale
             Layout.alignment: Qt.AlignVCenter
         }
 
-        // ── System status items ───────────────────────────────────────
+        // System status items
 
         Row {
             visible: App.settings.speedLimiterEnabled
@@ -180,7 +180,7 @@ Rectangle {
                     var limStr = limitParts.length > 0 ? limitParts.join(" / ") : qsTr("unlimited")
                     return qsTr("Speed limiter ") + limStr
                 }
-                color: "#a0a0a0"
+                color: ColorPalette.textSecond
                 font.pixelSize: 11 * App.fontScale
             }
         }
@@ -192,7 +192,7 @@ Rectangle {
             StatusIcon { source: "icons/globe.svg" }
             Text {
                 text: qsTr("Proxy on")
-                color: "#a0a0a0"
+                color: ColorPalette.textSecond
                 font.pixelSize: 11 * App.fontScale
             }
         }
@@ -204,16 +204,16 @@ Rectangle {
             StatusIcon { source: "icons/update.svg" }
             Text {
                 text: qsTr("Checking for updates")
-                color: "#a0a0a0"
+                color: ColorPalette.textSecond
                 font.pixelSize: 11 * App.fontScale
             }
         }
 
-        // Raw status texts from C++ — these may include their own formatting
+        // Raw status texts from C++
         Text {
             visible: App.updateStatusText && App.updateStatusText.length > 0 && !App.checkingForUpdates
             text: App.updateStatusText
-            color: "#a0a0a0"
+            color: ColorPalette.textSecond
             font.pixelSize: 11 * App.fontScale
             Layout.alignment: Qt.AlignVCenter
         }
@@ -221,14 +221,14 @@ Rectangle {
         Text {
             visible: App.torrentBindingStatusText && App.torrentBindingStatusText.length > 0
             text: App.torrentBindingStatusText
-            color: "#a0a0a0"
+            color: ColorPalette.textSecond
             font.pixelSize: 11 * App.fontScale
             Layout.alignment: Qt.AlignVCenter
         }
 
         Item { Layout.fillWidth: true }
 
-        // ── Right cluster: online users ───────────────────────────────
+        // Right cluster: online users
 
         Item {
             id: onlineUsersRow
@@ -266,7 +266,7 @@ Rectangle {
                         }
                         return qsTr("Estimating… (%1%)").arg(App.estimatedOnlineUsersWarmupPercent)
                     }
-                    color: onlineUsersHover.hovered ? "#ffffff" : "#b0b0b0"
+                    color: onlineUsersHover.hovered ? ColorPalette.textHeader : ColorPalette.textSecond
                     font.pixelSize: 11 * App.fontScale
                 }
             }
@@ -286,7 +286,7 @@ Rectangle {
             }
         }
 
-        // ── All-time torrent ratio ────────────────────────────────────
+        // All-time torrent ratio
 
         Item {
             id: ratioRow
@@ -302,7 +302,7 @@ Rectangle {
                 StatusIcon { source: "icons/yin_yang.svg" }
                 Text {
                     text: App.allTimeRatio.toFixed(3)
-                    color: ratioHover.hovered ? "#ffffff" : "#b0b0b0"
+                    color: ratioHover.hovered ? ColorPalette.textHeader : ColorPalette.textSecond
                     font.pixelSize: 11 * App.fontScale
                 }
             }
@@ -320,7 +320,7 @@ Rectangle {
             }
         }
 
-        // ── Public IP / network indicator ─────────────────────────────
+        // Public IP / network indicator
 
         Item {
             id: publicIpRow
@@ -361,10 +361,10 @@ Rectangle {
                 }
                 Text {
                     text: {
-                        if (!App.publicIp || App.publicIp.length === 0) return "—"
+                        if (!App.publicIp || App.publicIp.length === 0) return "–"
                         return App.publicIp
                     }
-                    color: ipHover.hovered ? "#ffffff" : "#b0b0b0"
+                    color: ipHover.hovered ? ColorPalette.textHeader : ColorPalette.textSecond
                     font.pixelSize: 11 * App.fontScale
                 }
             }
@@ -414,7 +414,7 @@ Rectangle {
             }
         }
 
-        // ── Live speed indicator ──────────────────────────────────────
+        // Live speed indicator
 
         Text {
             id: speedText
@@ -428,13 +428,13 @@ Rectangle {
                 }
                 return "↓ " + fmt(App.totalDownSpeed) + "  ↑ " + fmt(App.totalUpSpeed)
             }
-            color: "#b0b0b0"
+            color: ColorPalette.textSecond
             font.pixelSize: 11 * App.fontScale
             Layout.fillHeight: true
             verticalAlignment: Text.AlignVCenter
         }
 
-        // ── MOTD ──────────────────────────────────────────────────────
+        // MOTD
 
         RowLayout {
             visible: motdVisible && motdText.length > 0
@@ -442,7 +442,7 @@ Rectangle {
 
             Text {
                 text: motdText
-                color: "#b0b0b0"
+                color: ColorPalette.textSecond
                 font.pixelSize: 11 * App.fontScale
                 wrapMode: Text.NoWrap
                 elide: Text.ElideRight
@@ -451,20 +451,20 @@ Rectangle {
 
             Text {
                 text: "✕"
-                color: "#888888"
+                color: ColorPalette.textMuted
                 font.pixelSize: 12 * App.fontScale
                 MouseArea {
                     anchors.fill: parent
                     cursorShape: Qt.PointingHandCursor
                     hoverEnabled: true
                     onClicked: root.dismissMotd()
-                    onEntered: parent.color = "#b0b0b0"
-                    onExited: parent.color = "#888888"
+                    onEntered: parent.color = ColorPalette.textSecond
+                    onExited: parent.color = ColorPalette.textMuted
                 }
             }
         }
 
-        // ── Tips ──────────────────────────────────────────────────────
+        // Tips
 
         RowLayout {
             visible: !motdVisible && App.settings.showTips && tipsArray.length > 0
@@ -476,7 +476,7 @@ Rectangle {
                 StatusIcon { source: "icons/light_bulb.svg" }
                 Text {
                     text: "Tip: " + (tipsArray.length > currentTipIndex ? tipsArray[currentTipIndex] : "")
-                    color: "#b0b0b0"
+                    color: ColorPalette.textSecond
                     font.pixelSize: 11 * App.fontScale
                     wrapMode: Text.NoWrap
                     elide: Text.ElideRight
@@ -489,7 +489,7 @@ Rectangle {
 
                 Text {
                     text: qsTr("next >>")
-                    color: "#5588cc"
+                    color: ColorPalette.accent
                     font.pixelSize: 10 * App.fontScale
                     font.underline: true
                     MouseArea {
@@ -501,21 +501,21 @@ Rectangle {
 
                 Text {
                     text: "✕"
-                    color: "#888888"
+                    color: ColorPalette.textMuted
                     font.pixelSize: 12 * App.fontScale
                     MouseArea {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
                         hoverEnabled: true
                         onClicked: root.closeTips()
-                        onEntered: parent.color = "#b0b0b0"
-                        onExited: parent.color = "#888888"
+                        onEntered: parent.color = ColorPalette.textSecond
+                        onExited: parent.color = ColorPalette.textMuted
                     }
                 }
             }
         }
 
-        // ── Queue timer ───────────────────────────────────────────────
+        // Queue timer
 
         Item {
             visible: !motdVisible && (!App.settings.showTips || tipsArray.length === 0)
@@ -532,7 +532,7 @@ Rectangle {
                     text: App.minutesUntilNextQueue === 1
                         ? qsTr("Queue runs in 1 minute")
                         : qsTr("Queue runs in %1 minutes").arg(App.minutesUntilNextQueue)
-                    color: "#a0a0a0"
+                    color: ColorPalette.textSecond
                     font.pixelSize: 11 * App.fontScale
                 }
             }

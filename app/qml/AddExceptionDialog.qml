@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -28,11 +28,12 @@ Window {
     minimumWidth: 380
     minimumHeight: 180
     title: qsTr("Add Address Exception")
-    color: "#1e1e1e"
+    color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
-    Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.theme: ColorPalette.materialTheme
+    Material.foreground: ColorPalette.textPrimary
+    Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
     property string url: ""
@@ -46,7 +47,7 @@ Window {
 
         Text {
             text: qsTr("Add to Address Exceptions?")
-            color: "#ffffff"
+            color: ColorPalette.textHeader
             font.pixelSize: 15 * App.fontScale
             font.bold: true
         }
@@ -54,7 +55,7 @@ Window {
         Text {
             Layout.fillWidth: true
             text: qsTr( "This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?")
-            color: "#c0c0c0"
+            color: ColorPalette.textPrimary
             font.pixelSize: 12 * App.fontScale
             wrapMode: Text.WordWrap
         }
@@ -62,8 +63,8 @@ Window {
         Rectangle {
             Layout.fillWidth: true
             height: 32
-            color: "#252525"
-            border.color: "#3a3a3a"
+            color: ColorPalette.panelBg
+            border.color: ColorPalette.border
             radius: 3
 
             Text {

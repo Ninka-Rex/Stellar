@@ -127,6 +127,7 @@
     /* ── i18n & appearance ── */ \
     X(QString, const QString &, uiLanguage, UiLanguage, QString(), "uiLanguage", N) \
     X(int, int, trayIconStyle, TrayIconStyle, 0, "trayIconStyle", N) \
+    X(bool, bool, darkMode, DarkMode, true, "ui/darkMode", N) \
     /* ── Torrent: torrentSettingsChanged signal ── */ \
     X(int, int, torrentListenPort, TorrentListenPort, 6881, "torrentListenPort", T) \
     X(int, int, torrentConnectionsLimit, TorrentConnectionsLimit, 200, "torrentConnectionsLimit", T) \

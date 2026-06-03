@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ Rectangle {
     required property var rowItem       // forwarded from delegate's context `item` role
 
     // Alias kept so existing references (`rowRect.item`) continue to work and,
-    // more importantly, so the binding tracks the role-based `rowItem` — not
+    // ── more importantly, so the binding tracks the role-based `rowItem` not ──
     // a non-reactive `App.downloadModel.itemAt(rowIndex)` call that QML can't
     // invalidate on model dataChanged/move signals.
     readonly property var item: rowItem
@@ -52,9 +52,9 @@ Rectangle {
 
     color: {
         table._selectionVersion
-        if (table.isRowSelected(rowIndex)) return "#1e3a6e"
-        if (rowMouse.containsMouse)        return "#2a2a2a"
-        return rowIndex % 2 === 0 ? "#1c1c1c" : "#222222"
+        if (table.isRowSelected(rowIndex)) return ColorPalette.selectionBg
+        if (rowMouse.containsMouse)        return ColorPalette.hoverBg
+        return rowIndex % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg
     }
 
     Item {
@@ -119,7 +119,7 @@ Rectangle {
                 }
                 Text {
                     text: rowRect.item ? rowRect.item.filename : ""
-                    color: rowRect._sel ? "#ffffff" : "#d0d0d0"
+                    color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                     font.pixelSize: 12 * App.fontScale
                     width: parent.parent.width - 42
                     elide: Text.ElideMiddle
@@ -138,7 +138,7 @@ Rectangle {
                 anchors { fill: parent; leftMargin: 6 }
                 verticalAlignment: Text.AlignVCenter
                 text: rowRect.item ? table.formatBytesShort(rowRect.item.totalBytes) : ""
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 12 * App.fontScale
             }
         }
@@ -164,7 +164,7 @@ Rectangle {
                         return qsTr("Checking (%1%)").arg((rowRect.item.progress * 100).toFixed(1))
                     return rowRect.item.statusText
                 }
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 12 * App.fontScale
             }
         }
@@ -179,7 +179,7 @@ Rectangle {
                 anchors { fill: parent; leftMargin: 6 }
                 verticalAlignment: Text.AlignVCenter
                 text: rowRect.item ? (rowRect.item.timeLeft || "") : ""
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 12 * App.fontScale
             }
         }
@@ -206,7 +206,7 @@ Rectangle {
                     if (bps >= 1000)       return (bps / 1000).toFixed(1) + " KB/s" + suffix
                     return bps + " B/s" + suffix
                 }
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 12 * App.fontScale
             }
         }
@@ -231,7 +231,7 @@ Rectangle {
                     if (bps >= 1000)       return (bps / 1000).toFixed(1) + " KB/s" + suffix
                     return bps > 0 ? (bps + " B/s" + suffix) : ""
                 }
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 12 * App.fontScale
             }
         }
@@ -251,7 +251,7 @@ Rectangle {
                     if (st === "Paused" || st === "Stopped") return ""
                     return rowRect.item.torrentSeeders + " (" + rowRect.item.torrentListSeeders + ")"
                 }
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 12 * App.fontScale
             }
         }
@@ -271,7 +271,7 @@ Rectangle {
                     if (st === "Paused" || st === "Stopped") return ""
                     return rowRect.item.torrentPeers + " (" + rowRect.item.torrentListPeers + ")"
                 }
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 12 * App.fontScale
             }
         }
@@ -286,7 +286,7 @@ Rectangle {
                 anchors { fill: parent; leftMargin: 6 }
                 verticalAlignment: Text.AlignVCenter
                 text: rowRect.item && rowRect.item.isTorrent ? rowRect.item.torrentRatio.toFixed(2) : ""
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 12 * App.fontScale
             }
         }
@@ -301,7 +301,7 @@ Rectangle {
                 anchors { fill: parent; leftMargin: 6 }
                 verticalAlignment: Text.AlignVCenter
                 text: rowRect.item && rowRect.item.isTorrent ? table.formatBytesShort(rowRect.item.torrentUploaded) : ""
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 12 * App.fontScale
             }
         }
@@ -316,7 +316,7 @@ Rectangle {
                 anchors { fill: parent; leftMargin: 6 }
                 verticalAlignment: Text.AlignVCenter
                 text: rowRect.item && rowRect.item.isTorrent ? table.formatBytesShort(rowRect.item.torrentDownloaded) : ""
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 12 * App.fontScale
             }
         }
@@ -331,7 +331,7 @@ Rectangle {
                 anchors { fill: parent; leftMargin: 6 }
                 verticalAlignment: Text.AlignVCenter
                 text: rowRect.addedDateStr
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 11 * App.fontScale
             }
         }
@@ -346,7 +346,7 @@ Rectangle {
                 anchors { fill: parent; leftMargin: 6 }
                 verticalAlignment: Text.AlignVCenter
                 text: rowRect.lastTryDateStr
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 11 * App.fontScale
             }
         }
@@ -361,7 +361,7 @@ Rectangle {
                 anchors { fill: parent; leftMargin: 6 }
                 verticalAlignment: Text.AlignVCenter
                 text: rowRect.item ? (rowRect.item.description || "--") : "--"
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 11 * App.fontScale
             }
         }
@@ -376,7 +376,7 @@ Rectangle {
                 anchors { fill: parent; leftMargin: 6 }
                 verticalAlignment: Text.AlignVCenter
                 text: rowRect.item ? (rowRect.item.savePath || "--") : "--"
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 11 * App.fontScale
             }
         }
@@ -391,7 +391,7 @@ Rectangle {
                 anchors { fill: parent; leftMargin: 6 }
                 verticalAlignment: Text.AlignVCenter
                 text: rowRect.item ? (rowRect.item.referrer || "--") : "--"
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 11 * App.fontScale
             }
         }
@@ -406,7 +406,7 @@ Rectangle {
                 anchors { fill: parent; leftMargin: 6 }
                 verticalAlignment: Text.AlignVCenter
                 text: rowRect.item ? (rowRect.item.parentUrl || "--") : "--"
-                color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 11 * App.fontScale
             }
         }
@@ -422,7 +422,7 @@ Rectangle {
         visible: rowRect.item && rowRect.item.status === "Downloading"
     }
 
-    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#2e2e2e" }
+    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
 
     MouseArea {
         id: rowMouse

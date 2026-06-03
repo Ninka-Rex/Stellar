@@ -25,7 +25,7 @@ Rectangle {
     id: header
     anchors { top: parent ? parent.top : undefined; left: parent ? parent.left : undefined; right: parent ? parent.right : undefined }
     height: 26
-    color: "#2d2d2d"
+    color: ColorPalette.dividerBg
     clip: true
 
     required property var table        // DownloadTable root
@@ -47,7 +47,7 @@ Rectangle {
                 height: parent.height
                 readonly property bool isSortable: table._sortableKeys.indexOf(modelData.key) >= 0
                 readonly property bool isActive:   table.sortKey === modelData.key
-                color: (isSortable && headerCellMouse.containsMouse && !table._colDragging) ? "#383838" : "transparent"
+                color: (isSortable && headerCellMouse.containsMouse && !table._colDragging) ? ColorPalette.border : "transparent"
                 opacity: (table._colDragging && table._colDragFromKey === modelData.key) ? 0.5 : 1.0
 
                 // Drop insert-line LEFT of this column when it is the target
@@ -79,7 +79,7 @@ Rectangle {
                         rightMargin: modelData.key === "queue" ? resizeHandle.width : 2
                     }
                     text: modelData.title
-                    color: headerCell.isActive ? "#88bbff" : "#b0b0b0"
+                    color: headerCell.isActive ? ColorPalette.accent : ColorPalette.textPrimary
                     font.pixelSize: 12 * App.fontScale
                     font.bold: true
                     horizontalAlignment: modelData.key === "queue" ? Text.AlignHCenter : Text.AlignLeft
@@ -153,11 +153,11 @@ Rectangle {
                     }
                 }
 
-                // ── Column separator ────────────────────────────────────
+                // ── Column separator ─────────────────────────────────────
                 Rectangle {
                     anchors.right: parent.right
                     width: 1; height: parent.height
-                    color: "#3a3a3a"
+                    color: ColorPalette.border
                 }
 
                 // ── Column resize handle ─────────────────────────────────
@@ -232,5 +232,5 @@ Rectangle {
     }
 
     // Bottom border
-    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
+    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
 }
