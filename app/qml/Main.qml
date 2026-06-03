@@ -29,8 +29,8 @@ ApplicationWindow {
     // ── Restore saved position; -1 means first run let the OS centre the window naturally. ──
     x: App.settings.mainWindowX >= 0 ? App.settings.mainWindowX : x
     y: App.settings.mainWindowY >= 0 ? App.settings.mainWindowY : y
-    minimumWidth: 800
-    minimumHeight: 500
+    minimumWidth: 100
+    minimumHeight: 100
     title: {
         const prefix = App.sessionPaused ? "[" + qsTr("PAUSED") + "] " : ""
         const base = qsTr("Stellar Download Manager") + " " + App.appVersion + " Beta"
