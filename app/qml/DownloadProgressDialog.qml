@@ -279,9 +279,11 @@ Window {
                     color: minTrayMa.containsMouse ? "#4488dd" : "transparent"
                 }
 
-                ToolTip.visible: minTrayMa.containsMouse
-                ToolTip.text: qsTr("Minimize to system tray")
-                ToolTip.delay: 400
+                ThemedToolTip {
+                    visible: minTrayMa.containsMouse
+                    text: qsTr("Minimize to system tray")
+                    delay: 400
+                }
 
                 MouseArea {
                     id: minTrayMa

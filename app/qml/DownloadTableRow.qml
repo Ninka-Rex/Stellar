@@ -78,16 +78,18 @@ Rectangle {
                 width: 14; height: 14
                 sourceSize: Qt.size(14, 14)
                 fillMode: Image.PreserveAspectFit
-                ToolTip.visible: queueIconMouse.containsMouse
-                ToolTip.text: {
-                    const qid = rowRect.item ? rowRect.item.queueId : ""
-                    if (!qid) return ""
-                    for (var i = 0; i < App.queueModel.rowCount(); i++) {
-                        var queueId = App.queueModel.data(App.queueModel.index(i, 0), 34)
-                        if (queueId === qid)
-                            return App.queueModel.data(App.queueModel.index(i, 0), 35) || qid
+                ThemedToolTip {
+                    visible: queueIconMouse.containsMouse
+                    text: {
+                        const qid = rowRect.item ? rowRect.item.queueId : ""
+                        if (!qid) return ""
+                        for (var i = 0; i < App.queueModel.rowCount(); i++) {
+                            var queueId = App.queueModel.data(App.queueModel.index(i, 0), 34)
+                            if (queueId === qid)
+                                return App.queueModel.data(App.queueModel.index(i, 0), 35) || qid
+                        }
+                        return qid
                     }
-                    return qid
                 }
                 MouseArea { id: queueIconMouse; anchors.fill: parent; hoverEnabled: true }
             }

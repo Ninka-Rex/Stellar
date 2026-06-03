@@ -3701,23 +3701,25 @@ Window {
                                                                 return root.flagColor(flag)
                                                             }
 
-                                                            ToolTip.visible: badgeMouse.containsMouse
-                                                            ToolTip.text: {
-                                                                switch (modelData) {
-                                                                case "IN": return "Incoming connection"
-                                                                case "OUT": return "Outgoing connection"
-                                                                case "TRK": return "Discovered via tracker"
-                                                                case "DHT": return "Discovered via DHT"
-                                                                case "PEX": return "Discovered via peer exchange"
-                                                                case "LSD": return "Discovered via local service discovery"
-                                                                case "UTP": return "Using uTP"
-                                                                case "ENC": return "Encrypted connection"
-                                                                case "SNB": return "Peer is snubbed"
-                                                                case "UPO": return "Upload-only peer"
-                                                                case "OPT": return "Optimistically unchoked"
-                                                                case "HPX": return "Holepunched connection"
-                                                                case "I2P": return "I2P transport"
-                                                                default: return modelData
+                                                            ThemedToolTip {
+                                                                visible: badgeMouse.containsMouse
+                                                                text: {
+                                                                    switch (modelData) {
+                                                                    case "IN": return "Incoming connection"
+                                                                    case "OUT": return "Outgoing connection"
+                                                                    case "TRK": return "Discovered via tracker"
+                                                                    case "DHT": return "Discovered via DHT"
+                                                                    case "PEX": return "Discovered via peer exchange"
+                                                                    case "LSD": return "Discovered via local service discovery"
+                                                                    case "UTP": return "Using uTP"
+                                                                    case "ENC": return "Encrypted connection"
+                                                                    case "SNB": return "Peer is snubbed"
+                                                                    case "UPO": return "Upload-only peer"
+                                                                    case "OPT": return "Optimistically unchoked"
+                                                                    case "HPX": return "Holepunched connection"
+                                                                    case "I2P": return "I2P transport"
+                                                                    default: return modelData
+                                                                    }
                                                                 }
                                                             }
 
@@ -4890,11 +4892,14 @@ Window {
                                 }
 
                                 DlgButton {
+                                    id: reannounceAllBtn
                                     text: qsTr("Reannounce All")
                                     enabled: !!root.item
-                                    ToolTip.visible: hovered
-                                    ToolTip.delay: 400
-                                    ToolTip.text: qsTr("Tell every tracker you're here right now, instead of waiting for the\nnormal announce interval. Useful if your peer count suddenly dropped.")
+                                    ThemedToolTip {
+                                        visible: reannounceAllBtn.hovered
+                                        delay: 400
+                                        text: qsTr("Tell every tracker you're here right now, instead of waiting for the\nnormal announce interval. Useful if your peer count suddenly dropped.")
+                                    }
                                     onClicked: {
                                         if (!root.item) return
                                         App.forceReannounceTorrent(root.item.id)

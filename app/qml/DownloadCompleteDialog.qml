@@ -223,9 +223,11 @@ Window {
                     leftPadding: parent.indicator.width + 4
                     verticalAlignment: Text.AlignVCenter
                 }
-                ToolTip.visible: hovered
-                ToolTip.delay: 600
-                ToolTip.text: qsTr("You can re-enable this in Settings ? General ? Show download complete dialog")
+                ThemedToolTip {
+                    visible: dontShowAgain.hovered
+                    delay: 600
+                    text: qsTr("You can re-enable this in Settings → General → Show download complete dialog")
+                }
             }
 
             Item { Layout.fillWidth: true }
@@ -275,9 +277,11 @@ Window {
                     }
                     onReleased: dragStarted = false
 
-                    ToolTip.visible: containsMouse && !pressed && enabled
-                    ToolTip.delay: 600
-                    ToolTip.text: qsTr("Drag the file to move it elsewhere")
+                    ThemedToolTip {
+                        visible: dragArea.containsMouse && !dragArea.pressed && dragArea.enabled
+                        delay: 600
+                        text: qsTr("Drag the file to move it elsewhere")
+                    }
                 }
             }
         }

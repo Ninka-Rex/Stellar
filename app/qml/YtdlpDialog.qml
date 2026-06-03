@@ -386,14 +386,17 @@ Window {
         }
 
         MouseArea {
+            id: chkTipMa
             anchors.fill: parent
             enabled: _chk.enabled_
             cursorShape: Qt.PointingHandCursor
             onClicked: _chk.checked = !_chk.checked
             hoverEnabled: _chk.tip.length > 0
-            ToolTip.visible: containsMouse && _chk.tip.length > 0
-            ToolTip.text: _chk.tip
-            ToolTip.delay: 600
+            ThemedToolTip {
+                visible: chkTipMa.containsMouse && _chk.tip.length > 0
+                text: _chk.tip
+                delay: 600
+            }
         }
     }
 
@@ -741,8 +744,11 @@ Window {
                                             text: hasSize ? root._formatSize(modelData.filesize) : ""
                                             color: pfd.sel ? "#8aaddd" : "#6a8aaa"; font.pixelSize: 11 * App.fontScale; visible: hasSize
                                             HoverHandler { id: _pszHover }
-                                            ToolTip.visible: !hasSize && isSplit && _pszHover.hovered; ToolTip.delay: 500
-                                            ToolTip.text: qsTr("Size unavailable - this quality uses separate video\nand audio streams merged by ffmpeg after download.")
+                                            ThemedToolTip {
+                                                visible: !parent.hasSize && parent.isSplit && _pszHover.hovered
+                                                delay: 500
+                                                text: qsTr("Size unavailable - this quality uses separate video\nand audio streams merged by ffmpeg after download.")
+                                            }
                                         }
                                     }
                                     MouseArea { id: pfMouse; anchors.fill: parent; hoverEnabled: true
@@ -925,8 +931,11 @@ Window {
                                         anchors { fill: parent; leftMargin: 5; rightMargin: 5 }
                                         text: "en"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
                                         verticalAlignment: Text.AlignVCenter; selectByMouse: true
-                                        ToolTip.visible: activeFocus; ToolTip.delay: 600
-                                        ToolTip.text: qsTr("Language code(s), e.g. en  ?  en.*,ja  ?  all")
+                                        ThemedToolTip {
+                                            visible: subLangsField.activeFocus
+                                            delay: 600
+                                            text: qsTr("Language code(s), e.g. en  ?  en.*,ja  ?  all")
+                                        }
                                     }
                                 }
                             }
