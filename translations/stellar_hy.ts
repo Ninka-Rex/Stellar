@@ -2640,6 +2640,34 @@ Project</source>
             <translation>Խնդիրներ</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Անցնել լուսավոր ռեժիմի</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Անցնել մութ ռեժիմի</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Լեզու</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Վերագործարկում է պահանջվում</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Ինտերֆեյսի լեզուն փոխվել է։ Stellar-ը պետք է վերագործարկվի կիրառելու համար։</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Վերագործարկել հիմա</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Ավելի ուշ</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Ավելացնել URL…</translation>
         </message>
@@ -2977,8 +3005,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Սյունակներ…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Գործիքագոտի…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM համակարգային պատկերակ</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Գունավոր</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Լուսավոր</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Մուգ</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Թաքցնել կարգավիճակի տողը</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Ցույց տալ կարգավիճակի տողը</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Գործիքագոտի</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Գործիքագոտու կարգ․․․</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Մեծ կոճակներ</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Փոքր կոճակներ</translation>
         </message>
         <message>
             <source>Options</source>

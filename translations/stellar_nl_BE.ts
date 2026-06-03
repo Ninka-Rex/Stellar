@@ -2642,6 +2642,34 @@ Project</source>
             <translation>Taken</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Schakel naar lichte modus</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Schakel naar donkere modus</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Taal</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Herstart vereist</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>De interfacetaal is gewijzigd. Stellar moet herstarten om dit toe te passen.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Nu herstarten</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Later</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL toevoegen…</translation>
         </message>
@@ -2977,8 +3005,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kolommen…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Werkbalk…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM-systeemvakpictogram</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Gekleurd</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Licht</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Donker</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Statusbalk verbergen</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Statusbalk tonen</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Werkbalk</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Werkbalkinstellingen…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Grote knoppen</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Kleine knoppen</translation>
         </message>
         <message>
             <source>Options</source>

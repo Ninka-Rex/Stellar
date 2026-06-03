@@ -2642,6 +2642,34 @@ Project</source>
             <translation>Zadania</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Tryb jasny</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Tryb ciemny</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Język</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Wymagany restart</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Zmieniono język interfejsu. Uruchom ponownie Stellar, aby zastosować.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Uruchom ponownie</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Później</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Dodaj URL…</translation>
         </message>
@@ -2979,8 +3007,44 @@ Opcje Stellar → Przeglądarka → Omijaj przechwytywanie pobierania</translati
             <translation>Kolumny…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Pasek narzędzi…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Ikona SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Kolorowa</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Jasna</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Ciemny</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Ukryj pasek stanu</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Pokaż pasek stanu</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Pasek narzędzi</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Ustawienia paska…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Duże przyciski</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Małe przyciski</translation>
         </message>
         <message>
             <source>Options</source>

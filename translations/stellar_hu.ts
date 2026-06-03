@@ -2641,6 +2641,34 @@ Project</source>
             <translation>Feladatok</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Váltás világos módra</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Váltás sötét módra</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Nyelv</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Újraindítás szükséges</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>A felület nyelve megváltozott. A Stellar újraindítása szükséges az alkalmazáshoz.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Újraindítás most</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Később</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL hozzáadása…</translation>
         </message>
@@ -2973,8 +3001,44 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <translation>Oszlopok...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Eszköztár…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM tálcaikon</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Színes</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Világos</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Sötét</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Állapotsor elrejtése</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Állapotsor megjelenítése</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Eszköztár</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Eszköztár beállításai…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Nagy gombok</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Kis gombok</translation>
         </message>
         <message>
             <source>Options</source>

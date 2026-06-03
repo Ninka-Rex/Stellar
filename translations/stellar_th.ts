@@ -2642,6 +2642,34 @@ Project</source>
             <translation>งาน</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>โหมดสว่าง</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>โหมดมืด</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>ภาษา</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>ต้องรีสตาร์ท</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>เปลี่ยนภาษาแล้ว ต้องรีสตาร์ท Stellar เพื่อให้มีผล</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>รีสตาร์ทเลย</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>ทีหลัง</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>เพิ่ม URL…</translation>
         </message>
@@ -2974,8 +3002,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>คอลัมน์...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>แถบเครื่องมือ…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>ไอคอนถาด SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>มีสี</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>สว่าง</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>มืด</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>ซ่อนแถบสถานะ</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>แสดงแถบสถานะ</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>แถบเครื่องมือ</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>ตั้งค่าแถบเครื่องมือ…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>ปุ่มใหญ่</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>ปุ่มเล็ก</translation>
         </message>
         <message>
             <source>Options</source>

@@ -2642,6 +2642,34 @@ Project</source>
             <translation>Görevler</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Açık Moda Geç</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Koyu Moda Geç</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Dil</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Yeniden Başlatma Gerekli</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Arayüz dili değiştirildi. Uygulamak için Stellar yeniden başlatılmalı.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Şimdi Yeniden Başlat</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Sonra</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL Ekle…</translation>
         </message>
@@ -2971,8 +2999,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Sütunlar…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Araç Çubuğu…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM Tepsi Simgesi</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Renkli</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Açık</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Koyu</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Durum Çubuğunu Gizle</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Durum Çubuğunu Göster</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Araç Çubuğu</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Araç Çubuğu Ayarları…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Büyük Düğmeler</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Küçük Düğmeler</translation>
         </message>
         <message>
             <source>Options</source>

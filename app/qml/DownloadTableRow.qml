@@ -422,8 +422,6 @@ Rectangle {
         visible: rowRect.item && rowRect.item.status === "Downloading"
     }
 
-    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
-
     MouseArea {
         id: rowMouse
         anchors.fill: parent

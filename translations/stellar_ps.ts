@@ -2642,6 +2642,34 @@ Project</source>
             <translation>دندې</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>رڼا حالت ته واوړه</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>تیاره حالت ته واوړه</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>ژبه</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>بیا پیل ته اړتیا</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>د انٹرفیس ژبه بدله شوه. د پلي کولو لپاره سټیلر باید بیا پیل شي.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>اوس بیا پیل کړئ</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>وروسته</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL اضافه کړئ…</translation>
         </message>
@@ -2980,8 +3008,44 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <translation>کالمې…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>وسیلپټه…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM ټری نښه</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>رنګین</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>رڼا</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>تیاره</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>حالت پټه کړئ</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>حالت ښکاره کړئ</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>وسیلې پټه</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>د وسیلې پټې ترتیبات…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>لوی تڼۍ</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>وړې تڼۍ</translation>
         </message>
         <message>
             <source>Options</source>

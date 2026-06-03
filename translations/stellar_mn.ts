@@ -2640,6 +2640,34 @@ Project</source>
             <translation>Бүтээгдэхүүн</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Гэрэл горимд шилжих</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Бараан горимд шилжих</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Хэл</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Дахин эхлүүлэх шаардлагатай</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Интерфейсийн хэл өөрчлөгдсөн. Хэрэгжүүлэхийн тулд Stellar-г дахин эхлүүлнэ үү.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Одоо дахин эхлүүлэх</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Дараа</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL нэмэх...</translation>
         </message>
@@ -2969,8 +2997,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Багц...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Хэрэгслийн самбар…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM тавиур дүрс</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Өнгөтэй</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Гэрэл</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Бараан</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Статус мөрийг нуух</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Статус мөрийг харуулах</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Хэрэгслийн мөр</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Хэрэгслийн мөрийн тохиргоо…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Том товчнууд</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Жижиг товчнууд</translation>
         </message>
         <message>
             <source>Options</source>

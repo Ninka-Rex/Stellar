@@ -2647,6 +2647,34 @@ Project</source>
             <translation>කාර්ය</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>ආලෝක මාදිලියට මාරුවන්න</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>අඳුරු මාදිලියට මාරුවන්න</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>භාෂාව</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>නැවත ආරම්භ කිරීම අවශ්‍යයි</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>අතුරුමුහුණත් භාෂාව වෙනස් කර ඇත. එය යෙදීමට Stellar නැවත ආරම්භ විය යුතුය.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>දැන් නැවත ආරම්භ කරන්න</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>පසුව</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL එක් කරන්න…</translation>
         </message>
@@ -2985,8 +3013,44 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <translation>තීරු…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>මෙවලම් තීරුව…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM තැටි නිරූපකය</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>වර්ණවත්</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>ආලෝකය</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>අඳුරු</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>තත්ව තීරුව සඟවන්න</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>තත්ව තීරුව පෙන්වන්න</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>මෙවලම් තීරුව</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>මෙවලම් තීරු සැකසුම්…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>විශාල බොත්තම්</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>කුඩා බොත්තම්</translation>
         </message>
         <message>
             <source>Options</source>

@@ -2642,6 +2642,34 @@ Project</source>
             <translation>Tasques</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Mode clar</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Mode fosc</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Idioma</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Reinici necessari</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>L'idioma de la interfície ha canviat. Cal reiniciar Stellar per aplicar-lo.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Reinicia ara</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Més tard</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Afegeix URL…</translation>
         </message>
@@ -2980,8 +3008,44 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <translation>Columnes…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Barra d'eines…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Icona de safata SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Acolorit</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Clar</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Fosc</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Amaga barra d'estat</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Mostra barra d'estat</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Barra d'eines</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Config. barra d'eines…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Botons grans</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Botons petits</translation>
         </message>
         <message>
             <source>Options</source>

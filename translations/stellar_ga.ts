@@ -2641,6 +2641,34 @@ Project</source>
             <translation>Tascanna</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Athraigh go Mód Geal</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Athraigh go Mód Dorcha</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Teanga</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Atosú de dhíth</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Athraíodh teanga an chomhéadain. Ní mór Stellar a atosú chun é a chur i bhfeidhm.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Atosaigh Anois</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Níos déanaí</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Cuir URL…</translation>
         </message>
@@ -2978,8 +3006,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Colúin…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Barra uirlisí…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Deilbhín Tráidire SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Daite</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Geal</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Dorcha</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Folaigh an Barra Stádais</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Taispeáin an Barra Stádais</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Barra Uirlisí</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Socruithe Barra Uirlisí…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Cnaipí Móra</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Cnaipí Beaga</translation>
         </message>
         <message>
             <source>Options</source>

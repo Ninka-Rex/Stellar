@@ -2646,6 +2646,34 @@ Project</source>
             <translation>பணிகள்</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>வெளிர் பயன்முறைக்கு மாறு</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>இருள் பயன்முறைக்கு மாறு</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>மொழி</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>மறுதொடக்கம் தேவை</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>இடைமுக மொழி மாற்றப்பட்டது. அதைப் பயன்படுத்த Stellar மறுதொடக்கம் செய்யப்பட வேண்டும்.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>இப்போது மறுதொடக்கம்</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>பின்னர்</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL சேர்…</translation>
         </message>
@@ -2984,8 +3012,44 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <translation>நெடுவரிசைகள்…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>கருவிப்பட்டை…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM தட்டு சின்னம்</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>வண்ணமயமான</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>வெளிர்</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>இருள்</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>நிலைப் பட்டையை மறை</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>நிலைப் பட்டையைக் காட்டு</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>கருவிப்பட்டை</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>கருவிப்பட்டை அமைப்புகள்…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>பெரிய பொத்தான்கள்</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>சிறிய பொத்தான்கள்</translation>
         </message>
         <message>
             <source>Options</source>

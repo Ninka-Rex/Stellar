@@ -2647,6 +2647,34 @@ Aiki</translation>
             <translation>Ayyuka</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Canja zuwa Haske</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Canja zuwa Duhu</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Harshe</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Sake Kunnawa Bukata</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>An canza harshen dubawa. Dole Stellar ya sake kunnawa don amfani da shi.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Sake Kunnawa Yanzu</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Daga Baya</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Ƙara URL…</translation>
         </message>
@@ -2985,8 +3013,44 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
             <translation>Shafuka…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Kayan aiki…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Alamar Tire na SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Mai Launi</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Haske</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Duhu</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Ɓoye Ma'aunin Hali</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Nuna Ma'aunin Hali</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Kayan Aiki</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Saitunan Kayan Aiki…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Manyan Maɓallai</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Ƙananan Maɓallai</translation>
         </message>
         <message>
             <source>Options</source>

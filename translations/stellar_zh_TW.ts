@@ -2640,6 +2640,34 @@ Project</source>
             <translation>任務</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>切換至淺色模式</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>切換至深色模式</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>語言</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>需重新啟動</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>介面語言已變更，須重新啟動 Stellar 才能套用。</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>立即重新啟動</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>稍後</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>新增 URL…</translation>
         </message>
@@ -2971,8 +2999,44 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <translation>欄位...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>工具列…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM 系統匣圖示</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>彩色</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>淺色</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>深色</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>隱藏狀態列</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>顯示狀態列</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>工具列</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>工具列設定…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>大按鈕</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>小按鈕</translation>
         </message>
         <message>
             <source>Options</source>

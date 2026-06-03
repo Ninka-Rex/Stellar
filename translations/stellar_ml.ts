@@ -2646,6 +2646,34 @@ Project</source>
             <translation>ടാസ്ക്കുകൾ</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>ലൈറ്റ് മോഡിലേക്ക് മാറുക</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>ഡാർക്ക് മോഡിലേക്ക് മാറുക</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>ഭാഷ</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>പുനരാരംഭം ആവശ്യമാണ്</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>ഇന്റർഫേസ് ഭാഷ മാറ്റി. ഇത് പ്രയോഗിക്കാൻ Stellar പുനരാരംഭിക്കണം.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>ഇപ്പോൾ പുനരാരംഭിക്കുക</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>പിന്നീട്</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL ചേർക്കുക…</translation>
         </message>
@@ -2983,8 +3011,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>കോളങ്ങൾ…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>ടൂൾബാർ…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM ട്രേ ഐക്കൺ</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>നിറമുള്ളത്</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>ലൈറ്റ്</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>ഇരുണ്ടത്</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>സ്റ്റാറ്റസ് ബാർ മറയ്ക്കുക</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>സ്റ്റാറ്റസ് ബാർ കാണിക്കുക</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>ടൂൾബാർ</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>ടൂൾബാർ ക്രമീകരണങ്ങൾ…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>വലിയ ബട്ടണുകൾ</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>ചെറിയ ബട്ടണുകൾ</translation>
         </message>
         <message>
             <source>Options</source>

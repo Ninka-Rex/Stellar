@@ -2642,6 +2642,34 @@ Project</source>
             <translation>Εργασίες</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Μετάβαση σε φωτεινή λειτουργία</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Μετάβαση σε σκοτεινή λειτουργία</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Γλώσσα</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Απαιτείται επανεκκίνηση</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Η γλώσσα διεπαφής άλλαξε. Το Stellar πρέπει να επανεκκινηθεί.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Επανεκκίνηση τώρα</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Αργότερα</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Προσθήκη URL…</translation>
         </message>
@@ -2980,8 +3008,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Στήλες…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Γραμμή εργαλείων…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Εικονίδιο SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Έγχρωμο</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Φωτεινό</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Σκούρο</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Απόκρυψη γραμμής κατάστασης</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Εμφάνιση γραμμής κατάστασης</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Γραμμή εργαλείων</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Ρυθμίσεις γραμμής εργαλείων…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Μεγάλα κουμπιά</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Μικρά κουμπιά</translation>
         </message>
         <message>
             <source>Options</source>

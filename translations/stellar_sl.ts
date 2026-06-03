@@ -2640,6 +2640,34 @@ Project</source>
             <translation>Naloge</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Preklopi na svetli način</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Preklopi na temni način</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Jezik</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Potreben ponovni zagon</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Jezik vmesnika je bil spremenjen. Stellar se mora znova zagnati, da uveljavi spremembo.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Znova zaženi zdaj</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Kasneje</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Dodaj URL…</translation>
         </message>
@@ -2969,8 +2997,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Stolpci…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Orodna vrstica …</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Ikona v vrstici SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Barvna</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Svetla</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Temno</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Skrij vrstico stanja</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Pokaži vrstico stanja</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Orodna vrstica</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Nastavitve orodne vrstice …</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Veliki gumbi</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Majhni gumbi</translation>
         </message>
         <message>
             <source>Options</source>

@@ -2646,6 +2646,34 @@ Project</source>
             <translation>လုပ်ငန်းများ</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>အလင်းမုဒ်သို့ပြောင်း</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>အမှောင်မုဒ်သို့ပြောင်း</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>ဘာသာစကား</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>ပြန်လည်စတင်ရန်လိုအပ်</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>အင်တာဖေ့စ်ဘာသာစကားပြောင်းထားသည်။ အသုံးပြုရန် Stellar ပြန်လည်စတင်ရမည်။</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>ယခုပြန်စမည်</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>နောက်မှ</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL ထည့်မည်…</translation>
         </message>
@@ -2984,8 +3012,44 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
             <translation>ကော်လံများ…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>ကိရိယာဘား…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM စနစ်ဗန်းအိုင်ကွန်</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>အရောင်စုံ</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>အလင်း</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>အမှောင်</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>အခြေအနေဘား ဝှက်ရန်</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>အခြေအနေဘား ပြရန်</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>ကိရိယာဘား</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>ကိရိယာဘား ဆက်တင်များ…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>ခလုတ်ကြီးများ</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>ခလုတ်ငယ်များ</translation>
         </message>
         <message>
             <source>Options</source>

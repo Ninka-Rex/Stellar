@@ -2641,6 +2641,34 @@ Project</source>
             <translation>Opgaver</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Skift til lyst tema</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Skift til mørkt tema</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Sprog</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Genstart påkrævet</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Sproget er ændret. Stellar skal genstarte for at anvende det.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Genstart nu</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Senere</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Tilføj URL…</translation>
         </message>
@@ -2979,8 +3007,44 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
             <translation>Kolonner…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Værktøjslinje…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM-ikon</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Farvet</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Lyst</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Mørk</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Skjul statuslinje</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Vis statuslinje</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Værktøjslinje</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Værktøjslinjeindstillinger…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Store knapper</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Små knapper</translation>
         </message>
         <message>
             <source>Options</source>

@@ -2664,6 +2664,34 @@ Project</source>
             <translation>ಕಾರ್ಯಗಳು</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>ಲೈಟ್ ಮೋಡ್ಗೆ ಬದಲಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>ಡಾರ್ಕ್ ಮೋಡ್ಗೆ ಬದಲಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>ಭಾಷೆ</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>ಮರುಪ್ರಾರಂಭ ಅಗತ್ಯ</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>ಇಂಟರ್ಫೇಸ್ ಭಾಷೆ ಬದಲಾಗಿದೆ. ಅನ್ವಯಿಸಲು Stellar ಮರುಪ್ರಾರಂಭಿಸಬೇಕು.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>ಈಗ ಮರುಪ್ರಾರಂಭಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>ನಂತರ</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL ಸೇರಿಸಿ…</translation>
         </message>
@@ -3001,8 +3029,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ಕಾಲಮ್‌ಗಳು…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>ಟೂಲ್‌ಬಾರ್…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM ಟ್ರೇ ಐಕಾನ್</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>ಬಣ್ಣದ</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>ಲೈಟ್</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>ಗಾಢ</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>ಸ್ಥಿತಿ ಪಟ್ಟಿ ಮರೆಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>ಸ್ಥಿತಿ ಪಟ್ಟಿ ತೋರಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>ಪರಿಕರಪಟ್ಟಿ</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>ಪರಿಕರಪಟ್ಟಿ ಸೆಟ್ಟಿಂಗ್‌ಗಳು…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>ದೊಡ್ಡ ಗುಂಡಿಗಳು</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>ಸಣ್ಣ ಗುಂಡಿಗಳು</translation>
         </message>
         <message>
             <source>Options</source>

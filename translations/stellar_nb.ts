@@ -2641,6 +2641,34 @@ Project</source>
             <translation>Oppgaver</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Bytt til lys modus</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Bytt til mørk modus</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Språk</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Omstart kreves</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Grensesnittspråket er endret. Stellar må startes på nytt for å ta det i bruk.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Start på nytt nå</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Senere</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Legg til URL…</translation>
         </message>
@@ -2972,8 +3000,44 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <translation>Søyler...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Verktøylinje…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM-ikon i systemkurv</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Farget</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Lys</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Mørk</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Skjul statuslinje</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Vis statuslinje</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Verktøylinje</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Verktøylinjeinnstillinger…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Store knapper</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Små knapper</translation>
         </message>
         <message>
             <source>Options</source>

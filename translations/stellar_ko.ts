@@ -2640,6 +2640,34 @@ Project</source>
             <translation>작업</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>라이트 모드로 전환</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>다크 모드로 전환</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>언어</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>재시작 필요</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>인터페이스 언어가 변경되었습니다. 적용하려면 Stellar를 재시작해야 합니다.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>지금 재시작</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>나중에</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL 추가…</translation>
         </message>
@@ -2972,8 +3000,44 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <translation>열기</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>도구 모음…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM 트레이 아이콘</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>컬러</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>라이트</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>어둡게</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>상태 표시줄 숨기기</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>상태 표시줄 보이기</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>도구 모음</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>도구 모음 설정…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>큰 버튼</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>작은 버튼</translation>
         </message>
         <message>
             <source>Options</source>

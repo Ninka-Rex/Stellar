@@ -2642,6 +2642,34 @@ Project</source>
             <translation>Mashughuli</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Badilisha kwa Hali Nuru</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Badilisha kwa Hali Giza</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Lugha</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Anzisha Upya Inahitajika</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Lugha ya kiolesura imebadilishwa. Stellar lazima ianze upya ili kuitumia.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Anzisha Upya Sasa</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Baadaye</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Ongeza URL...</translation>
         </message>
@@ -2971,8 +2999,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Mifupa...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Upau wa zana…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Aikoni ya Trei ya SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Rangi</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Nuru</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Giza</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Ficha Upau wa Hali</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Onyesha Upau wa Hali</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Upauzana</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Mipangilio ya Upauzana…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Vitufe Vikubwa</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Vitufe Vidogo</translation>
         </message>
         <message>
             <source>Options</source>

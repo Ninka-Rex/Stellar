@@ -2647,6 +2647,34 @@ Prosiect</translation>
             <translation>Tasgau</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Newid i'r Modd Golau</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Newid i'r Modd Tywyll</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Iaith</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Ailgychwyn Angenrheidiol</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Mae iaith y rhyngwyneb wedi'i newid. Rhaid i Stellar ailgychwyn i'w gymhwyso.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Ailgychwyn Nawr</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Yn Ddiweddarach</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Ychwanegu URL…</translation>
         </message>
@@ -2985,8 +3013,44 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <translation>Colofnau…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Bar offer…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Eicon Hambwrdd SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Lliw</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Golau</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Tywyll</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Cuddio Bar Statws</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Dangos Bar Statws</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Bar Offer</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Gosodiadau Bar Offer…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Botymau Mawr</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Botymau Bach</translation>
         </message>
         <message>
             <source>Options</source>

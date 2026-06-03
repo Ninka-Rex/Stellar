@@ -2642,6 +2642,34 @@ Project</source>
             <translation>Tâches</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Passer en mode clair</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Passer en mode sombre</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Langue</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Redémarrage requis</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>La langue de l'interface a été modifiée. Stellar doit redémarrer pour l'appliquer.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Redémarrer</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Plus tard</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Ajouter une URL…</translation>
         </message>
@@ -2979,8 +3007,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Colonnes…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Barre d'outils…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Icône de la barre SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Colorée</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Clair</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Sombre</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Masquer barre d'état</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Afficher barre d'état</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Barre d'outils</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Réglages barre…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Grands boutons</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Petits boutons</translation>
         </message>
         <message>
             <source>Options</source>

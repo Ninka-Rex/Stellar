@@ -2641,6 +2641,34 @@ Project</source>
             <translation>Tugas</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Mode Terang</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Mode Gelap</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Bahasa</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Perlu Mulai Ulang</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Bahasa antarmuka telah diubah. Stellar harus dimulai ulang untuk menerapkannya.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Mulai Ulang</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Nanti</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Tambah URL…</translation>
         </message>
@@ -2976,8 +3004,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kolom...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Bilah Alat…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Ikon Baki SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Berwarna</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Terang</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Gelap</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Sembunyikan Bilah Status</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Tampilkan Bilah Status</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Bilah Alat</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Pengaturan Bilah Alat…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Tombol Besar</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Tombol Kecil</translation>
         </message>
         <message>
             <source>Options</source>

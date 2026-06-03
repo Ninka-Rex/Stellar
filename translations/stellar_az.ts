@@ -2641,6 +2641,34 @@ Project</source>
             <translation>Tapşırıqlar</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>İşıqlı rejimə keç</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Qaranlıq rejimə keç</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Dil</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Yenidən başlatma tələb olunur</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>İnterfeys dili dəyişdirildi. Tətbiq etmək üçün Stellar yenidən başlamalıdır.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>İndi yenidən başlat</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Sonra</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL əlavə et…</translation>
         </message>
@@ -2979,8 +3007,44 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
             <translation>Sütunlar…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Alətlər paneli…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM Tepsi İkonu</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Rəngli</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>İşıqlı</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Tünd</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Status panelini gizlət</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Status panelini göstər</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Alətlər paneli</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Alətlər paneli parametrləri…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Böyük düymələr</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Kiçik düymələr</translation>
         </message>
         <message>
             <source>Options</source>

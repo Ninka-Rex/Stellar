@@ -2642,6 +2642,34 @@ Project</source>
             <translation>Zadaci</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Пребаци на светли режим</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Пребаци на тамни режим</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Језик</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Потребно поновно покретање</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Језик интерфејса је промењен. Поново покрените Stellar да би се применио.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Поново покрени одмах</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Касније</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Dodaj URL...</translation>
         </message>
@@ -2977,8 +3005,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kolone...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Трака са алаткама…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM иконица у палети</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>У боји</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Светла</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Тамно</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Сакриј статусну траку</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Прикажи статусну траку</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Алатна трака</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Подешавања алатне траке…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Велика дугмад</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Мала дугмад</translation>
         </message>
         <message>
             <source>Options</source>

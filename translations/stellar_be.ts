@@ -2642,6 +2642,34 @@ Project</source>
             <translation>Задачы</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Пераключыць на светлую тэму</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Пераключыць на цёмную тэму</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Мова</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Патрабуецца перазапуск</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Мова інтэрфейсу зменена. Stellar трэба перазапусціць, каб прымяніць змены.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Перазапусціць зараз</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Пазней</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Дадаць URL…</translation>
         </message>
@@ -2979,8 +3007,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Калоны…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Панэль інструментаў…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Значок SDM у трэі</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Каляровы</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Светлы</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Цёмная</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Схаваць радок стану</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Паказаць радок стану</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Панэль</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Налады панэлі…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Вялікія кнопкі</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Малыя кнопкі</translation>
         </message>
         <message>
             <source>Options</source>

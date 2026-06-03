@@ -2643,6 +2643,34 @@ Project</source>
             <translation>Tarefas</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Cambiar a modo claro</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Cambiar a modo escuro</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Idioma</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Require reinicio</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>O idioma da interface cambiou. Stellar debe reiniciarse para aplicalo.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Reiniciar agora</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Despois</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Engadir URL…</translation>
         </message>
@@ -2981,8 +3009,44 @@ Opcións de Stellar → Navegador → Evitar intercepción de descargas</transla
             <translation>Columnas…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Barra de ferramentas…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Icona da bandexa SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Con cor</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Claro</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Escuro</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Agochar barra de estado</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Amosar barra de estado</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Barra de ferramentas</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Axustes da barra…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Botóns grandes</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Botóns pequenos</translation>
         </message>
         <message>
             <source>Options</source>

@@ -2647,6 +2647,34 @@ Project</source>
             <translation>Ọrụ</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Gbanwee gaa na Ọnọdụ Ìhè</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Gbanwee gaa na Ọnọdụ Ọchịchịrị</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Asụsụ</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Mweghachi Dị Mkpa</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Asụsụ interface agbanweela. Stellar ga-amalitegharị iji tinye ya.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Malitegharịa Ugbu a</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Emechaa</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Tinye URL…</translation>
         </message>
@@ -2985,8 +3013,44 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
             <translation>Kọlụm…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Ogwe ngwaọrụ…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Akara Tray SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Agba</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Ìhè</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Ọchịchịrị</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Zochi Ogwe Ọkwa</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Gosi Ogwe Ọkwa</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Ogwe Ngwaọrụ</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Ntọala Ogwe Ngwaọrụ…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Bọtịnụ Nnukwu</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Bọtịnụ Nta</translation>
         </message>
         <message>
             <source>Options</source>

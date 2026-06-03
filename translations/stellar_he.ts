@@ -2641,6 +2641,34 @@ Project</source>
             <translation>משימות</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>מעבר למצב בהיר</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>מעבר למצב כהה</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>שפה</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>נדרש אתחול</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>שפת הממשק שונתה. יש להפעיל מחדש את Stellar כדי להחיל.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>הפעל מחדש כעת</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>מאוחר יותר</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>הוסף URL...</translation>
         </message>
@@ -2970,8 +2998,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>עמודים...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>סרגל כלים…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>סמל מגש SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>צבעוני</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>בהיר</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>כהה</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>הסתר שורת מצב</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>הצג שורת מצב</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>סרגל כלים</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>הגדרות סרגל כלים…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>כפתורים גדולים</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>כפתורים קטנים</translation>
         </message>
         <message>
             <source>Options</source>

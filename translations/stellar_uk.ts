@@ -2642,6 +2642,34 @@ Project</source>
             <translation>Завдання</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Світла тема</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Темна тема</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Мова</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Потрібен перезапуск</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Мову інтерфейсу змінено. Stellar потрібно перезапустити.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Перезапустити</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Пізніше</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Додати URL…</translation>
         </message>
@@ -2980,8 +3008,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Стовпці…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Панель…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Значок SDM у треї</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Кольоровий</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Світлий</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Темна</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Сховати рядок стану</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Показати рядок стану</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Панель</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Налаштування панелі…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Великі кнопки</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Малі кнопки</translation>
         </message>
         <message>
             <source>Options</source>

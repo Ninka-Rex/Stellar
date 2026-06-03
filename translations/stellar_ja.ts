@@ -2639,6 +2639,34 @@ Project</source>
             <translation>タスク</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>ライトモードに切替</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>ダークモードに切替</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>言語</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>再起動が必要</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>UI言語が変更されました。適用にはStellarの再起動が必要です。</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>今すぐ再起動</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>後で</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL を追加…</translation>
         </message>
@@ -2973,8 +3001,44 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
             <translation>カラム…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>ツールバー…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDMトレイアイコン</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>カラー</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>ライト</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>ダーク</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>ステータスバーを隠す</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>ステータスバーを表示</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>ツールバー</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>ツールバー設定…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>大ボタン</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>小ボタン</translation>
         </message>
         <message>
             <source>Options</source>

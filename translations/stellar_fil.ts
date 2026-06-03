@@ -2642,6 +2642,34 @@ Project</source>
             <translation>Mga Gawain</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Lumipat sa Light Mode</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Lumipat sa Dark Mode</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Wika</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Kailangan ng Restart</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Binago ang wika ng interface. Kailangang i-restart ang Stellar para mag-apply.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>I-restart Ngayon</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Mamaya</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Idagdag URL…</translation>
         </message>
@@ -2974,8 +3002,44 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>Kolon</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Toolbar…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM Tray Icon</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>May Kulay</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Light</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Madilim</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Itago ang Status Bar</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Ipakita ang Status Bar</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Toolbar</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Mga Setting ng Toolbar…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Malalaking Button</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Maliliit na Button</translation>
         </message>
         <message>
             <source>Options</source>

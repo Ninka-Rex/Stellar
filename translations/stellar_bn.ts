@@ -2642,6 +2642,34 @@ Project</source>
             <translation>টাস্ক</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>লাইট মোডে যান</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>ডার্ক মোডে যান</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>ভাষা</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>পুনরারম্ভ প্রয়োজন</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>ইন্টারফেসের ভাষা পরিবর্তন হয়েছে। প্রয়োগ করতে Stellar পুনরায় চালু করতে হবে।</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>এখনই পুনরারম্ভ</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>পরে</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL যোগ করুন…</translation>
         </message>
@@ -2980,8 +3008,44 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <translation>কলাম…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>টুলবার…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM ট্রে আইকন</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>রঙিন</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>লাইট</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>অন্ধকার</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>স্ট্যাটাস বার লুকান</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>স্ট্যাটাস বার দেখান</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>টুলবার</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>টুলবার সেটিংস…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>বড় বোতাম</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>ছোট বোতাম</translation>
         </message>
         <message>
             <source>Options</source>

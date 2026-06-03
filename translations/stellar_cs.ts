@@ -2642,6 +2642,34 @@ Project</source>
             <translation>Úkoly</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Přepnout do světlého režimu</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Přepnout do tmavého režimu</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Jazyk</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Vyžadován restart</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Jazyk rozhraní byl změněn. Pro použití je nutné Stellar restartovat.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Restartovat</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Později</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Přidat URL…</translation>
         </message>
@@ -2980,8 +3008,44 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <translation>Sloupce…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Panel nástrojů…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Ikona v liště SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Barevná</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Světlá</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Tmavý</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Skrýt stavový řádek</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Zobrazit stavový řádek</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Panel nástrojů</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Nastavení panelu…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Velká tlačítka</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Malá tlačítka</translation>
         </message>
         <message>
             <source>Options</source>

@@ -2651,6 +2651,34 @@ Project</source>
             <translation>დავალებები</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>ღია რეჟიმი</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>მუქი რეჟიმი</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>ენა</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>გადატვირთვა</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>ინტერფეისის ენა შეიცვალა. Stellar უნდა გადაიტვირთოს.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>გადატვირთვა</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>მოგვიანებით</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL-ის დამატება…</translation>
         </message>
@@ -2988,8 +3016,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>სვეტები…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>ხელსაწყოთა პანელი…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM ხატულა</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>ფერადი</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>ღია</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>მუქი</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>სტატუსის ზოლის დამალვა</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>სტატუსის ზოლის ჩვენება</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>ხელსაწყოთა ზოლი</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>ხელსაწყოთა ზოლის პარამეტრები…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>დიდი ღილაკები</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>პატარა ღილაკები</translation>
         </message>
         <message>
             <source>Options</source>

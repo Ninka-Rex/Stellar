@@ -2642,6 +2642,34 @@ Project</source>
             <translation>Uzdevumi</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Pārslēgt uz gaišo režīmu</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Pārslēgt uz tumšo režīmu</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Valoda</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Nepieciešama restartēšana</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Interfeisa valoda ir mainīta. Lai piemērotu izmaiņas, Stellar jārestartē.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Restartēt tagad</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Vēlāk</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Pievienot URL…</translation>
         </message>
@@ -2979,8 +3007,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kolonnas…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Rīkjosla…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM teknes ikona</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Krāsaina</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Gaiša</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Tumšs</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Slēpt statusa joslu</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Rādīt statusa joslu</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Rīkjosla</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Rīkjoslas iestatījumi…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Lielas pogas</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Mazas pogas</translation>
         </message>
         <message>
             <source>Options</source>

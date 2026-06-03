@@ -9,7 +9,7 @@ QtObject {
     readonly property color cardBg:       dark ? "#1e1e1e" : "#f7f7f7"
     readonly property color panelBg:      dark ? "#252525" : "#e8e8e8"
     readonly property color inputBg:      dark ? "#1b1b1b" : "#ffffff"
-    readonly property color rowAltBg:     dark ? "#222222" : "#f0f4f8"
+    readonly property color rowAltBg:     dark ? "#222222" : "#e6e6e6"
     readonly property color toolbarBg:      dark ? "#1f1f1f" : "#dcdcdc"
     readonly property color toolbarHoverBg: dark ? "#3a3a55" : "#c8d4e8"
     readonly property color toolbarPressBg: dark ? "#4a4a66" : "#b0c0dc"

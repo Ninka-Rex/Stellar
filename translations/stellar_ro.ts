@@ -2641,6 +2641,34 @@ Project</source>
             <translation>Sarcini</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Comută la modul luminos</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Comută la modul întunecat</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Limbă</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Repornire necesară</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Limba interfeței a fost schimbată. Stellar trebuie repornit pentru aplicare.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Repornește acum</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Mai târziu</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Adaugă URL...</translation>
         </message>
@@ -2973,8 +3001,44 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <translation>Coloane...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Bară unelte…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Pictogramă tavă SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Colorată</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Luminos</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Întunecat</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Ascunde bara de stare</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Afișează bara de stare</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Bară unelte</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Setări bară unelte…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Butoane mari</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Butoane mici</translation>
         </message>
         <message>
             <source>Options</source>

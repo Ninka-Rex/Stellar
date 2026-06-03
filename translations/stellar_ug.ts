@@ -2646,6 +2646,34 @@ Project</source>
             <translation>ۋەزىپىلەر</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>يورۇق ھالەتكە ئالماشتۇر</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>قاراڭغۇ ھالەتكە ئالماشتۇر</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>تىل</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>قايتا قوزغىتىش زۆرۈر</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>ئارايۈز تىلى ئۆزگەرتىلدى. قوللىنىش ئۈچۈن Stellar قايتا قوزغىتىلىشى كېرەك.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>ھازىر قايتا قوزغات</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>كېيىن</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL قوش…</translation>
         </message>
@@ -2984,8 +3012,44 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
             <translation>ستونلار…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>قورال بالدىقى…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM تەپسىلى چىقىش بەلگىسى</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>رەڭلىك</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>يورۇق</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>قاراڭغۇ</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>ھالەت بالدىقىنى يوشۇر</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>ھالەت بالدىقىنى كۆرسەت</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>قورال بالدىقى</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>قورال بالدىقى تەڭشەكلىرى…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>چوڭ كۇنۇپكىلار</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>كىچىك كۇنۇپكىلار</translation>
         </message>
         <message>
             <source>Options</source>

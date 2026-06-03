@@ -2641,6 +2641,34 @@ Project</source>
             <translation>Uppgifter</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Byt till ljust läge</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Byt till mörkt läge</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Språk</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Omstart krävs</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Gränssnittsspråket har ändrats. Stellar måste startas om för att tillämpa det.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Starta om nu</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Senare</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Lägg till URL…</translation>
         </message>
@@ -2970,8 +2998,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kolumner...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Verktygsfält…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM-ikon i aktivitetsfältet</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Färgad</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Ljus</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Mörkt</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Dölj statusfält</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Visa statusfält</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Verktygsfält</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Verktygsfältsinställningar…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Stora knappar</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Små knappar</translation>
         </message>
         <message>
             <source>Options</source>

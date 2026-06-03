@@ -2656,6 +2656,34 @@ Project</source>
             <translation>Ülesanded</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Lülitu heledale režiimile</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Lülitu tumedale režiimile</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Keel</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Taaskäivitus vajalik</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Liidese keel on muudetud. Stellar tuleb muudatuse rakendamiseks taaskäivitada.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Taaskäivita nüüd</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Hiljem</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Lisa URL…</translation>
         </message>
@@ -2991,8 +3019,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Veergud…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Tööriistariba…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM-i süsteemisalve ikoon</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Värviline</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Hele</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Tume</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Peida olekuriba</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Kuva olekuriba</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Tööriistariba</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Tööriistariba seaded…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Suured nupud</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Väikesed nupud</translation>
         </message>
         <message>
             <source>Options</source>

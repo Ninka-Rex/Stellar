@@ -2649,6 +2649,34 @@ Project</source>
             <translation>ໜ້າວຽກ</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>ປ່ຽນເປັນໂໝດສະຫວ່າງ</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>ປ່ຽນເປັນໂໝດມືດ</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>ພາສາ</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>ຕ້ອງເລີ່ມໃໝ່</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>ພາສາອິນເຕີເຟດຖືກປ່ຽນແລ້ວ. Stellar ຕ້ອງເລີ່ມໃໝ່ເພື່ອນຳໃຊ້.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>ເລີ່ມໃໝ່ຕອນນີ້</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>ພາຍຫຼັງ</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>ເພີ່ມ URL…</translation>
         </message>
@@ -2987,8 +3015,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ຖັນ…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>ແຖບເຄື່ອງມື…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>ໄອຄອນຖາດ SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>ມີສີ</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>ສະຫວ່າງ</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>ມືດ</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>ເຊື່ອງແຖບສະຖານະ</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>ສະແດງແຖບສະຖານະ</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>ແຖບເຄື່ອງມື</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>ຕັ້ງຄ່າແຖບເຄື່ອງມື…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>ປຸ່ມໃຫຍ່</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>ປຸ່ມນ້ອຍ</translation>
         </message>
         <message>
             <source>Options</source>

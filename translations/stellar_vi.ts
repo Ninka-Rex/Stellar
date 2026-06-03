@@ -2641,6 +2641,34 @@ Project</source>
             <translation>Nhiệm vụ</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Chế độ sáng</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Chế độ tối</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Ngôn ngữ</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Cần khởi động lại</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Ngôn ngữ giao diện đã thay đổi. Stellar cần khởi động lại để áp dụng.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Khởi động lại ngay</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Để sau</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Thêm URL…</translation>
         </message>
@@ -2978,8 +3006,44 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <translation>Cột...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Thanh công cụ…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Biểu tượng khay SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Có màu</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Sáng</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Tối</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Ẩn thanh trạng thái</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Hiện thanh trạng thái</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Thanh công cụ</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Cài đặt thanh công cụ…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Nút lớn</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Nút nhỏ</translation>
         </message>
         <message>
             <source>Options</source>

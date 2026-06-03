@@ -2646,6 +2646,34 @@ Project</source>
             <translation>ተግባራት</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>ወደ ብርሃን ሁነታ ቀይር</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>ወደ ጨለማ ሁነታ ቀይር</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>ቋንቋ</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>ዳግም ማስጀመር ያስፈልጋል</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>የበይነገጽ ቋንቋ ተቀይሯል። ለመተግበር Stellar እንደገና መጀመር አለበት።</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>አሁን ዳግም አስጀምር</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>በኋላ</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL አክል…</translation>
         </message>
@@ -2984,8 +3012,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>አምዶች…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>መሣሪያ አሞሌ…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM ትሪ አዶ</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>ቀለም ያለው</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>ብርሃን</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>ጨለማ</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>የሁኔታ አሞሌን ደብቅ</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>የሁኔታ አሞሌን አሳይ</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>የመሳሪያ አሞሌ</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>የመሳሪያ አሞሌ ቅንብሮች…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>ትላልቅ አዝራሮች</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>ትናንሽ አዝራሮች</translation>
         </message>
         <message>
             <source>Options</source>

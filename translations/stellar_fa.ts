@@ -2641,6 +2641,34 @@ Project</source>
             <translation>وظایف</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>حالت روشن</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>حالت تاریک</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>زبان</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>نیاز به راه‌اندازی مجدد</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>زبان رابط تغییر کرده. استلار باید مجدداً راه‌اندازی شود.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>اکنون راه‌اندازی شود</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>بعداً</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>افزودن URL...</translation>
         </message>
@@ -2976,8 +3004,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ستون‌ها...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>نوار ابزار…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>آیکون سینی SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>رنگی</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>روشن</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>تیره</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>مخفی کردن نوار وضعیت</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>نمایش نوار وضعیت</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>نوار ابزار</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>تنظیمات نوار ابزار…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>دکمه‌های بزرگ</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>دکمه‌های کوچک</translation>
         </message>
         <message>
             <source>Options</source>

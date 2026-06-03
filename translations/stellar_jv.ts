@@ -2646,6 +2646,34 @@ Proyek</translation>
             <translation>Tugas</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Ganti Mode Padhang</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Ganti Mode Peteng</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Basa</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Perlu Restart</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Basa antarmuka wis diganti. Stellar kudu restart kanggo nerapake.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Restart Saiki</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Mengko</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Tambah URL…</translation>
         </message>
@@ -2984,8 +3012,44 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
             <translation>Kolom…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Toolbar…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Ikon Baki SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Werna</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Padhang</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Peteng</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Singidaken Bar Status</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Tampilaken Bar Status</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Toolbar</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Setelan Toolbar…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Tombol Gedhe</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Tombol Cilik</translation>
         </message>
         <message>
             <source>Options</source>

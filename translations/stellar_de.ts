@@ -2640,6 +2640,34 @@ Project</source>
             <translation>Aufgaben</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Heller Modus</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Dunkler Modus</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Sprache</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Neustart nötig</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Sprache geändert. Stellar muss neu starten.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Jetzt neu starten</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Später</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL hinzufügen…</translation>
         </message>
@@ -2978,8 +3006,44 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <translation>Spalten…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Symbolleiste…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM-Tray-Symbol</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Farbig</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Hell</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Dunkel</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Statusleiste ausblenden</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Statusleiste einblenden</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Symbolleiste</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Symbolleisteneinstellungen…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Große Schaltflächen</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Kleine Schaltflächen</translation>
         </message>
         <message>
             <source>Options</source>

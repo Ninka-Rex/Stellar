@@ -2648,6 +2648,34 @@ Project</source>
             <translation>កិច្ចការ</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>ប្តូរទៅរបៀបភ្លឺ</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>ប្តូរទៅរបៀបងងឹត</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>ភាសា</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>ត្រូវចាប់ផ្តើមឡើងវិញ</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>ភាសាចំណុចប្រទាក់ត្រូវបានផ្លាស់ប្តូរ។ Stellar ត្រូវចាប់ផ្តើមឡើងវិញដើម្បីអនុវត្ត។</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>ចាប់ផ្តើមឡើងវិញឥឡូវ</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>ពេលក្រោយ</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>បន្ថែម URL…</translation>
         </message>
@@ -2986,8 +3014,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ជួរឈរ…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>របារឧបករណ៍…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>រូបតំណាងថាស SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>ពណ៌</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>ភ្លឺ</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>ងងឹត</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>លាក់របារស្ថានភាព</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>បង្ហាញរបារស្ថានភាព</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>របារឧបករណ៍</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>ការកំណត់របារឧបករណ៍…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>ប៊ូតុងធំ</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>ប៊ូតុងតូច</translation>
         </message>
         <message>
             <source>Options</source>

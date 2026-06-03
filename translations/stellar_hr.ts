@@ -2639,6 +2639,34 @@ Project</source>
             <translation>Zadaci</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Prebaci na svijetli način</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Prebaci na tamni način</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Jezik</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Potrebno ponovno pokretanje</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Jezik sučelja je promijenjen. Stellar se mora ponovno pokrenuti za primjenu.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Pokreni ponovno</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Kasnije</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Dodaj URL…</translation>
         </message>
@@ -2977,8 +3005,44 @@ Postavke Stellara → Preglednik → Zaobiđi preuzimanje</translation>
             <translation>Stupci...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Alatna traka…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM ikona u traci</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>U boji</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Svijetlo</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Tamno</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Sakrij statusnu traku</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Prikaži statusnu traku</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Alatna traka</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Postavke alatne trake…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Veliki gumbi</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Mali gumbi</translation>
         </message>
         <message>
             <source>Options</source>

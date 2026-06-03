@@ -2641,6 +2641,34 @@ Project</source>
             <translation>Užduotys</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Šviesus režimas</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Tamsus režimas</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Kalba</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Reikia paleisti iš naujo</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Sąsajos kalba pakeista. „Stellar“ turi būti paleista iš naujo.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Paleisti dabar</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Vėliau</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Pridėti URL…</translation>
         </message>
@@ -2979,8 +3007,44 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <translation>Stulpeliai…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Įrankių juosta…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM piktograma</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Spalvota</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Šviesi</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Tamsi</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Slėpti būsenos juostą</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Rodyti būsenos juostą</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Įrankių juosta</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Įrankių juostos nustatymai…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Dideli mygtukai</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Maži mygtukai</translation>
         </message>
         <message>
             <source>Options</source>

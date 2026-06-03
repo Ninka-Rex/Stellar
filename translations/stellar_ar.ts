@@ -2642,6 +2642,34 @@ Project</source>
             <translation>المهام</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>الوضع النهاري</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>الوضع الليلي</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>اللغة</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>إعادة التشغيل مطلوبة</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>تم تغيير لغة الواجهة. يجب إعادة تشغيل Stellar لتطبيقها.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>إعادة التشغيل الآن</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>لاحقًا</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>إضافة عنوان URL…</translation>
         </message>
@@ -2980,8 +3008,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>الأعمدة…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>شريط الأدوات…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>أيقونة SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>ملون</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>فاتح</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>داكن</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>إخفاء شريط الحالة</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>إظهار شريط الحالة</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>شريط الأدوات</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>إعدادات شريط الأدوات…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>أزرار كبيرة</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>أزرار صغيرة</translation>
         </message>
         <message>
             <source>Options</source>

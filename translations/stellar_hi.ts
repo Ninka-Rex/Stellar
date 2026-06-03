@@ -2655,6 +2655,34 @@ Project</source>
             <translation>टास्क</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>लाइट मोड में बदलें</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>डार्क मोड में बदलें</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>भाषा</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>पुनरारंभ आवश्यक</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>इंटरफ़ेस भाषा बदल दी गई है। इसे लागू करने के लिए Stellar को पुनरारंभ करना होगा।</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>अभी पुनरारंभ करें</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>बाद में</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL जोड़ें…</translation>
         </message>
@@ -2993,8 +3021,44 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>कॉलम…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>उपकरण पट्टी…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM ट्रे आइकन</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>रंगीन</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>लाइट</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>डार्क</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>स्टेटस बार छुपाएँ</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>स्टेटस बार दिखाएँ</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>टूलबार</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>टूलबार सेटिंग्स…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>बड़े बटन</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>छोटे बटन</translation>
         </message>
         <message>
             <source>Options</source>

@@ -2642,6 +2642,34 @@ Project</source>
             <translation>Detyra</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Kalo në pamjen e çelur</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Kalo në pamjen e errët</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Gjuha</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Rinisje e nevojshme</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Gjuha e ndërfaqes u ndryshua. Stellar duhet të riniset për ta aplikuar.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Rinise tani</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Më vonë</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Shto URL...</translation>
         </message>
@@ -2977,8 +3005,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kolona...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Shiriti i veglave…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Ikona e tabakasë SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Me ngjyra</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>E çelur</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>E errët</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Fshih shiritin e statusit</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Shfaq shiritin e statusit</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Shiriti i veglave</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Cilësimet e shiritit…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Butona të mëdhenj</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Butona të vegjël</translation>
         </message>
         <message>
             <source>Options</source>

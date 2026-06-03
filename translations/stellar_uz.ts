@@ -2642,6 +2642,34 @@ Project</source>
             <translation>Vazifalar</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Yorqin rejimga o‘tish</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Tungi rejimga o‘tish</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Til</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Qayta ishga tushirish kerak</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Interfeys tili o‘zgartirildi. Stellar uni qo‘llash uchun qayta ishga tushishi kerak.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Hoziroq qayta ishga tushirish</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Keyinroq</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL qo'shish...</translation>
         </message>
@@ -2971,8 +2999,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Ustunlar...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Asboblar paneli…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM tizim tepsi belgisi</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Rangli</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Yorqin</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Qorong‘u</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Holat panelini yashirish</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Holat panelini ko‘rsatish</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Asboblar paneli</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Asboblar paneli sozlamalari…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Katta tugmalar</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Kichik tugmalar</translation>
         </message>
         <message>
             <source>Options</source>

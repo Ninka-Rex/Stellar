@@ -2647,6 +2647,34 @@ Project</source>
             <translation>పనులు</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>లైట్ మోడ్కి మారండి</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>డార్క్ మోడ్కి మారండి</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>భాష</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>పునఃప్రారంభం అవసరం</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>ఇంటర్ఫేస్ భాష మార్చబడింది. దీన్ని వర్తింపజేయడానికి స్టెల్లార్ పునఃప్రారంభం కావాలి.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>ఇప్పుడే పునఃప్రారంభించు</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>తర్వాత</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>URL జోడించు…</translation>
         </message>
@@ -2985,8 +3013,44 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>నిలువు వరుసలు…</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>టూల్బార్…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>SDM ట్రే చిహ్నం</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>రంగుతో</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>లైట్</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>చీకటి</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>స్థితి పట్టీ దాచు</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>స్థితి పట్టీ చూపు</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>సాధనపట్టీ</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>సాధనపట్టీ సెట్టింగ్లు…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>పెద్ద బటన్లు</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>చిన్న బటన్లు</translation>
         </message>
         <message>
             <source>Options</source>

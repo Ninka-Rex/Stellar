@@ -2648,6 +2648,34 @@ Iṣẹ́</translation>
             <translation>Àwọn iṣẹ́</translation>
         </message>
         <message>
+            <source>Switch to Light Mode</source>
+            <translation>Yipada si Ipo Imọlẹ</translation>
+        </message>
+        <message>
+            <source>Switch to Dark Mode</source>
+            <translation>Yipada si Ipo Dudu</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>Ede</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Atunbẹrẹ Nilo</translation>
+        </message>
+        <message>
+            <source>The interface language has been changed. Stellar must restart to apply it.</source>
+            <translation>Ede atọkun ti yipada. Stellar gbọdọ tun bẹrẹ lati lo.</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Tun Bẹrẹ Bayi</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Nigbamii</translation>
+        </message>
+        <message>
             <source>Add URL…</source>
             <translation>Fi URL kún…</translation>
         </message>
@@ -2986,8 +3014,44 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <translation>Àwọn Ìlà...</translation>
         </message>
         <message>
-            <source>Toolbar…</source>
-            <translation>Pẹpẹ irinṣẹ́…</translation>
+            <source>SDM Tray Icon</source>
+            <translation>Aami Atẹ SDM</translation>
+        </message>
+        <message>
+            <source>Colored</source>
+            <translation>Alawọ</translation>
+        </message>
+        <message>
+            <source>Light</source>
+            <translation>Imọlẹ</translation>
+        </message>
+        <message>
+            <source>Dark</source>
+            <translation>Dudu</translation>
+        </message>
+        <message>
+            <source>Hide Status Bar</source>
+            <translation>Fi Pẹpẹ Ipo pamọ</translation>
+        </message>
+        <message>
+            <source>Show Status Bar</source>
+            <translation>Ṣe afihan Pẹpẹ Ipo</translation>
+        </message>
+        <message>
+            <source>Toolbar</source>
+            <translation>Pẹpẹ irinṣẹ</translation>
+        </message>
+        <message>
+            <source>Toolbar Settings…</source>
+            <translation>Ètò Pẹpẹ irinṣẹ…</translation>
+        </message>
+        <message>
+            <source>Large Buttons</source>
+            <translation>Bọtini Nla</translation>
+        </message>
+        <message>
+            <source>Small Buttons</source>
+            <translation>Bọtini Kekere</translation>
         </message>
         <message>
             <source>Options</source>
