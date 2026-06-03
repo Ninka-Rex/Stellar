@@ -28,6 +28,10 @@ Item {
     property var queueModel: null
     property bool smallMode: false
 
+    // Supplied by parent Toolbar so this matches ToolbarBtn's icon/text Y exactly.
+    property int iconTop: 8
+    property int textTop: 44
+
     signal queueSelected(string queueId)
 
     function visibleQueues() {
@@ -60,15 +64,9 @@ Item {
              : mainHover.containsMouse ? ColorPalette.toolbarHoverBg
              : "transparent"
 
-        // Icon Y pinned to single-line group height (same as ToolbarBtn) so a
-        // 2-line label extends downward instead of pushing the icon up.
-        readonly property int _gap: 4
-        // Fixed top padding (matches ToolbarBtn): icons level, label grows downward.
-        readonly property int _topPad: root.smallMode ? Math.max(0, Math.round((root.height - root._iconSize) / 2)) : 6
-
         Image {
             id: btnIcon
-            y: mainArea._topPad
+            y: root.smallMode ? Math.round((root.height - root._iconSize) / 2) : root.iconTop
             anchors.horizontalCenter: parent.horizontalCenter
             source: root.iconSrc
             width: root._iconSize; height: root._iconSize
@@ -80,7 +78,7 @@ Item {
         Text {
             id: lbl
             visible: !root.smallMode
-            y: btnIcon.y + btnIcon.height + mainArea._gap
+            y: root.textTop
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width - 4
             text: root.label

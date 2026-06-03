@@ -3372,7 +3372,7 @@ ApplicationWindow {
             CompactSep {}
             CompactMenuItem {
                 id: _arrangeFilesItem
-                text: qsTr("Arrange Files") + "  ✓"
+                text: qsTr("Arrange Files") + "  ▶"
                 onTriggered: _arrangeFilesMenu.popup(_arrangeFilesItem.width, 0)
                 onHoveredChanged: {
                     if (hovered) { _arrangeFilesMenu.popup(_arrangeFilesItem.width, 0) }
@@ -3405,7 +3405,7 @@ ApplicationWindow {
             CompactMenuItem {
                 id: _toolbarItem
                 iconSrc: "icons/toolbar.svg"
-                text: qsTr("Toolbar")
+                text: qsTr("Toolbar") + "  ▶"
                 onTriggered: _toolbarMenu.popup(_toolbarItem.width, 0)
                 onHoveredChanged: {
                     if (hovered) _toolbarMenu.popup(_toolbarItem.width, 0)
@@ -3657,7 +3657,9 @@ ApplicationWindow {
         Toolbar {
             id: toolbar
             Layout.fillWidth: true
-            Layout.preferredHeight: App.settings.toolbarSmallButtons ? 48 : 72
+            // Toolbar computes its own height from font metrics; mirror it here.
+            Layout.preferredHeight: implicitHeight
+            implicitHeight: height
             queueModel: App.queueModel
             downloadTable: downloadTable
             onAddClicked:             { addUrlDialog.show(); addUrlDialog.raise() }

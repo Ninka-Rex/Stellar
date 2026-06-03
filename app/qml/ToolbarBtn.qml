@@ -25,8 +25,15 @@ AbstractButton {
     property bool smallMode: false
     readonly property int iconSize: smallMode ? 20 : 32
 
+    // Vertical layout is computed by the parent Toolbar (single source of truth so
+    // the bar height and every button agree). iconTop = y of the icon box top;
+    // textTop = y where the label starts. In small mode these are ignored and the
+    // icon is simply centered.
+    property int iconTop: 8
+    property int textTop: 44
+
     implicitWidth: smallMode ? 48 : 84
-    implicitHeight: smallMode ? 48 : 86
+    implicitHeight: smallMode ? 48 : 90
 
     // Dim the whole button when disabled so the user can see it won't respond.
     // AbstractButton has no built-in disabled appearance; we apply it here.
@@ -39,25 +46,14 @@ AbstractButton {
         radius: 0
     }
 
-    // Icon Y is pinned using the SINGLE-LINE group height, so it sits at the
-    // ── same vertical spot whether the label is 1 or 2 lines. A wrapped (2-line) ──
-    // label just extends downward instead of shoving the icon up. This keeps every
-    // ── toolbar icon level across languages with longer translated labels. ──
     contentItem: Item {
         anchors.fill: parent
 
-        readonly property int _gap: 4
-        // Fixed top padding: every icon sits the same distance below the menubar,
-        // so all icons are level. The label hangs below the icon and grows downward
-        // when it wraps to 2 lines -- the bar is tall enough to hold 2 lines with
-        // matching bottom padding (see Toolbar.qml height). Not centered, because
-        // centering a 2-line-reserve group makes 1-line buttons float high while
-        // 2-line text touches the bottom edge.
-        readonly property int _topPad: root.smallMode ? Math.max(0, Math.round((root.height - root.iconSize) / 2)) : 6
-
         Image {
             id: btnIcon
-            y: parent._topPad
+            // Small mode: icon centered. Otherwise icon top is the parent-supplied
+            // iconTop, so every icon in the bar sits at the same Y (perfectly level).
+            y: root.smallMode ? Math.round((root.height - root.iconSize) / 2) : root.iconTop
             anchors.horizontalCenter: parent.horizontalCenter
             source: root.iconSrc
             width: root.iconSize
@@ -74,7 +70,7 @@ AbstractButton {
         Text {
             id: btnLabel
             visible: !root.smallMode
-            y: btnIcon.y + btnIcon.height + parent._gap
+            y: root.textTop
             anchors.horizontalCenter: parent.horizontalCenter
             width: root.width - 4
             text: root.label

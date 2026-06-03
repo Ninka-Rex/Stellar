@@ -20,8 +20,59 @@ import QtQuick.Layouts
 
 Rectangle {
     id: root
-    height: App.settings.toolbarSmallButtons ? 48 : 86
     color: ColorPalette.toolbarBg
+
+    // ── Toolbar vertical layout (single source of truth) ─────────────────────
+    // The bar height adapts to the CURRENT language: if no visible label wraps it's
+    // sized for 1 line; if any label wraps it's sized for 2 lines. Within a language
+    // every button is then centred, icons all share one Y (_iconTop) so they stay
+    // level, and there is no wasted whitespace. Pixels above the *visible* top of
+    // the SVG icon == pixels below the bottom of the text.
+    //
+    //   _pad ......... equal whitespace above icon and below text
+    //   _svgBuffer ... transparent margin baked into the 32x32 icon viewBox;
+    //                  subtracted so the *visible* top gap equals _pad
+    //   _iconGap ..... space between icon and label
+    readonly property int _pad: 8
+    readonly property int _svgBuffer: 2
+    readonly property int _iconGap: 4
+    readonly property int _iconSizePx: 32
+    readonly property int _labelWidth: 84 - 4   // button width minus label side margin
+
+    FontMetrics {
+        id: _labelFM
+        font.pixelSize: 11 * App.fontScale
+    }
+
+    // Off-screen measurer: returns the natural (unwrapped) pixel width of a string
+    // so we can tell whether it would wrap to a second line at _labelWidth.
+    TextMetrics {
+        id: _labelMeasure
+        font.pixelSize: 11 * App.fontScale
+    }
+
+    // True if any currently-visible label is wider than one button -> needs 2 lines.
+    readonly property bool _anyTwoLine: {
+        var defs = root._visibleDefs
+        if (!defs)
+            return false
+        for (var i = 0; i < defs.length; ++i) {
+            var d = defs[i]
+            if (!d || d.key === "separator" || !d.label)
+                continue
+            _labelMeasure.text = d.label
+            if (_labelMeasure.advanceWidth > root._labelWidth)
+                return true
+        }
+        return false
+    }
+
+    readonly property int _lineCount: _anyTwoLine ? 2 : 1
+    readonly property int _iconTop: Math.max(0, _pad - _svgBuffer)
+    readonly property int _textTop: _iconTop + _iconSizePx + _iconGap
+    readonly property int _computedBarH: _textTop + Math.ceil(_labelFM.height * _lineCount) + _pad
+
+    height: App.settings.toolbarSmallButtons ? 48 : _computedBarH
 
     property var queueModel: null
     property var downloadTable: null
@@ -164,7 +215,7 @@ Rectangle {
             delegate: Item {
                 readonly property bool _sm: App.settings.toolbarSmallButtons
                 width: modelData.key === "separator" ? (_sm ? 10 : 16) : (_sm ? 48 : 84)
-                height: _sm ? 48 : 86
+                height: root.height
 
                 ToolbarBtn {
                     anchors.fill: parent
@@ -174,6 +225,8 @@ Rectangle {
                     label: modelData.label || ""
                     iconSrc: modelData.iconSrc || ""
                     smallMode: _sm
+                    iconTop: root._iconTop
+                    textTop: root._textTop
                     enabled: root._btnEnabled(modelData.key)
                     onClicked: root._handleClick(modelData.key)
                 }
@@ -184,6 +237,8 @@ Rectangle {
                     label: modelData.label || ""
                     iconSrc: modelData.iconSrc || ""
                     smallMode: _sm
+                    iconTop: root._iconTop
+                    textTop: root._textTop
                     queueModel: root.queueModel
                     onQueueSelected: (queueId) => root._handleQueueClick(modelData.key, queueId)
                 }
