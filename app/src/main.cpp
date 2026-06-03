@@ -36,6 +36,7 @@
 #include <QTextStream>
 #include <QStandardPaths>
 #include <QLibraryInfo>
+#include <QLoggingCategory>
 #include "AppController.h"
 #include "FileIconImageProvider.h"
 #include "FileDragDropHelper.h"
@@ -621,6 +622,11 @@ static int runCliMode(int argc, char *argv[], const CliArgs &ca)
 
 int main(int argc, char *argv[])
 {
+    // Silence Qt's harmless "OpenType support missing ... script 20" font-DB
+    // warnings -- Qt logs these for scripts (e.g. Braille) no installed UI font
+    // shapes. They're cosmetic noise, not a real problem.
+    QLoggingCategory::setFilterRules(QStringLiteral("qt.text.font.db.warning=false"));
+
     QString argsStr;
     QString launchTorrentFile;
     QString launchMagnetUri;

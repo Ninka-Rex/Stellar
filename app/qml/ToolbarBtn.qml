@@ -74,7 +74,6 @@ AbstractButton {
         Text {
             id: btnLabel
             visible: !root.smallMode
-            height: root.smallMode ? 0 : implicitHeight
             y: btnIcon.y + btnIcon.height + parent._gap
             anchors.horizontalCenter: parent.horizontalCenter
             width: root.width - 4
