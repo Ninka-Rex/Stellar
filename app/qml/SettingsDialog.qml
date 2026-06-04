@@ -2834,7 +2834,7 @@ Window {
                         RowLayout {
                             spacing: 8
                             DlgButton {
-                                text: qsTr("Export All Data.")
+                                text: qsTr("Export All Data…")
                                 primary: true
                                 onClicked: {
                                     exportBackupDlg.currentFile = root.fileUrlFromPath(
@@ -2844,7 +2844,7 @@ Window {
                                 }
                             }
                             DlgButton {
-                                text: qsTr("Import Data.")
+                                text: qsTr("Import Data…")
                                 onClicked: importBackupDlg.open()
                             }
                         }
