@@ -23,10 +23,10 @@ import QtQuick.Layouts
 Window {
     id: root
 
-    width:         560
-    height:        460
-    minimumWidth:  520
-    minimumHeight: 420
+    width:         470
+    height:        388
+    minimumWidth:  450
+    minimumHeight: 360
     title:         qsTr("Torrent Settings")
     color:         ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
@@ -160,22 +160,22 @@ Window {
     Rectangle {
         id: headerStrip
         anchors { left: parent.left; right: parent.right; top: parent.top }
-        height: 44
+        height: 40
         color: ColorPalette.headerStripBg
 
         RowLayout {
-            anchors { fill: parent; leftMargin: 12; rightMargin: 12; topMargin: 7; bottomMargin: 7 }
-            spacing: 10
+            anchors { fill: parent; leftMargin: 10; rightMargin: 10; topMargin: 6; bottomMargin: 6 }
+            spacing: 9
 
             Image {
-                Layout.preferredWidth: 26; Layout.preferredHeight: 26
+                Layout.preferredWidth: 24; Layout.preferredHeight: 24
                 source: {
                     if (!root.torrentItem) return ""
                     var p = String(root.torrentItem.savePath || "").replace(/\\/g, "/")
                     var f = String(root.torrentItem.filename || "")
                     return (p && f) ? ("image://fileicon/" + p + "/" + f) : ""
                 }
-                sourceSize: Qt.size(26, 26); fillMode: Image.PreserveAspectFit; asynchronous: true
+                sourceSize: Qt.size(24, 24); fillMode: Image.PreserveAspectFit; asynchronous: true
             }
             ColumnLayout {
                 Layout.fillWidth: true; spacing: 1
@@ -196,7 +196,7 @@ Window {
     Rectangle {
         id: buttonBar
         anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
-        height: 48
+        height: 42
         color: ColorPalette.cardBg
 
         Rectangle {
@@ -255,19 +255,19 @@ Window {
 
             ColumnLayout {
                 Layout.fillWidth: true
-                Layout.margins: 10
-                spacing: 8
+                Layout.margins: 8
+                spacing: 6
 
                 // ?? Bandwidth limits ?????????????????????????????????????
                 Rectangle {
                     Layout.fillWidth: true
                     color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
-                    implicitHeight: bwCol.implicitHeight + 14
+                    implicitHeight: bwCol.implicitHeight + 12
 
                     ColumnLayout {
                         id: bwCol
-                        anchors { fill: parent; margins: 7 }
-                        spacing: 7
+                        anchors { fill: parent; margins: 6 }
+                        spacing: 6
 
                         Text { text: qsTr("BANDWIDTH LIMITS"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
@@ -311,18 +311,18 @@ Window {
                 Rectangle {
                     Layout.fillWidth: true
                     color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
-                    implicitHeight: shareCol.implicitHeight + 14
+                    implicitHeight: shareCol.implicitHeight + 12
 
                     ColumnLayout {
                         id: shareCol
-                        anchors { fill: parent; margins: 7 }
-                        spacing: 7
+                        anchors { fill: parent; margins: 6 }
+                        spacing: 5
 
                         Text { text: qsTr("SHARE LIMITS"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
-                            Text { text: qsTr("Ratio:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 100 }
+                            Text { text: qsTr("Ratio:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 82 }
                             Repeater {
                                 model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
                                 delegate: Rectangle {
@@ -354,7 +354,7 @@ Window {
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
-                            Text { text: qsTr("Seeding time:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 100 }
+                            Text { text: qsTr("Seeding time:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 82 }
                             Repeater {
                                 model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
                                 delegate: Rectangle {
@@ -386,7 +386,7 @@ Window {
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
-                            Text { text: qsTr("Inactive time:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 100 }
+                            Text { text: qsTr("Inactive time:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 82 }
                             Repeater {
                                 model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
                                 delegate: Rectangle {
@@ -422,17 +422,17 @@ Window {
                 // Height driven by the taller column; both rects share that height.
                 Item {
                     Layout.fillWidth: true
-                    implicitHeight: Math.max(pdCol.implicitHeight, dmCol.implicitHeight) + 14
+                    implicitHeight: Math.max(pdCol.implicitHeight, dmCol.implicitHeight) + 12
 
                     Rectangle {
                         anchors { left: parent.left; top: parent.top; bottom: parent.bottom }
-                        width: (parent.width - 8) / 2
+                        width: (parent.width - 6) / 2
                         color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
 
                         ColumnLayout {
                             id: pdCol
-                            anchors { fill: parent; margins: 7 }
-                            spacing: 7
+                            anchors { fill: parent; margins: 6 }
+                            spacing: 5
 
                             Text { text: qsTr("PEER DISCOVERY"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
@@ -479,13 +479,13 @@ Window {
 
                     Rectangle {
                         anchors { right: parent.right; top: parent.top; bottom: parent.bottom }
-                        width: (parent.width - 8) / 2
+                        width: (parent.width - 6) / 2
                         color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
 
                         ColumnLayout {
                             id: dmCol
-                            anchors { fill: parent; margins: 7 }
-                            spacing: 7
+                            anchors { fill: parent; margins: 6 }
+                            spacing: 5
 
                             Text { text: qsTr("DOWNLOAD MODE"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
 

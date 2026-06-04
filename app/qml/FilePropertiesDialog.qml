@@ -3397,10 +3397,10 @@ Window {
 
                             Window {
                                 id: peerInfoDialog
-                                width: 560
-                                height: 470
-                                minimumWidth: 540
-                                minimumHeight: 450
+                                width: 580
+                                height: 420
+                                minimumWidth: 560
+                                minimumHeight: 400
                                 modality: Qt.ApplicationModal
                                 flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
                                 title: qsTr("Peer Info")
@@ -3444,18 +3444,18 @@ Window {
                                     ColumnLayout {
                                         anchors.fill: parent
                                         anchors.margins: 10
-                                        spacing: 8
+                                        spacing: 6
 
                                         Rectangle {
                                             Layout.fillWidth: true
                                             color: "transparent"
                                             border.width: 0
-                                            implicitHeight: 54
+                                            implicitHeight: headerRow.implicitHeight
 
                                             RowLayout {
+                                                id: headerRow
                                                 anchors.fill: parent
-                                                anchors.margins: 6
-                                                spacing: 6
+                                                spacing: 8
 
                                                 Image {
                                                     source: root.torrentClientIconSource(peerInfoDialog.peerData.client)
@@ -3493,7 +3493,7 @@ Window {
                                                     }
                                                     Text {
                                                         text: root.safeStr(peerInfoDialog.peerData.client) || "Unknown client"
-                                                        color: "#8fb4d9"
+                                                        color: ColorPalette.clientText
                                                         font.pixelSize: 12 * App.fontScale
                                                         elide: Text.ElideRight
                                                         Layout.fillWidth: true
@@ -3519,149 +3519,142 @@ Window {
                                             }
                                         }
 
-                                        GridLayout {
+                                        RowLayout {
+                                            id: infoColumns
                                             Layout.fillWidth: true
-                                            columns: 3
-                                            columnSpacing: 10
-                                            rowSpacing: 10
+                                            spacing: 16
 
-                                            Rectangle {
+                                            Column {
                                                 Layout.fillWidth: true
-                                                color: "transparent"
-                                                border.width: 0
-                                                implicitHeight: 124
+                                                Layout.preferredWidth: 1
+                                                Layout.alignment: Qt.AlignTop
+                                                spacing: 3
 
-                                                Column {
-                                                    anchors.fill: parent
-                                                    anchors.margins: 10
-                                                    spacing: 6
-
-                                                    Text { text: qsTr("Connection"); color: ColorPalette.textPrimary; font.pixelSize: 14 * App.fontScale; font.bold: true }
-                                                    Text { text: qsTr("Source: %1").arg(root.safeStr(peerInfoDialog.peerData.source) || "Unknown"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                    Text { text: qsTr("Role: %1").arg(peerInfoDialog.peerData.isSeed ? qsTr("Seeder") : qsTr("Peer")); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                    Text { text: qsTr("Ping: %1").arg((Number(peerInfoDialog.peerData.rtt) || 0) > 0 ? (String(peerInfoDialog.peerData.rtt) + " ms") : "--"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                    Text { text: qsTr("Progress: %1%").arg(Math.round(root.clampPct(peerInfoDialog.peerData.progress) * 100)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                }
+                                                Text { text: qsTr("Connection"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; font.bold: true; bottomPadding: 2 }
+                                                Text { text: qsTr("Source: %1").arg(root.safeStr(peerInfoDialog.peerData.source) || "Unknown"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                                                Text { text: qsTr("Role: %1").arg(peerInfoDialog.peerData.isSeed ? qsTr("Seeder") : qsTr("Peer")); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                                                Text { text: qsTr("Ping: %1").arg((Number(peerInfoDialog.peerData.rtt) || 0) > 0 ? (String(peerInfoDialog.peerData.rtt) + " ms") : "--"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                                                Text { text: qsTr("Progress: %1%").arg(Math.round(root.clampPct(peerInfoDialog.peerData.progress) * 100)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                                             }
 
-                                            Rectangle {
+                                            Column {
                                                 Layout.fillWidth: true
-                                                color: "transparent"
-                                                border.width: 0
-                                                implicitHeight: 124
+                                                Layout.preferredWidth: 1
+                                                Layout.alignment: Qt.AlignTop
+                                                spacing: 3
 
-                                                Column {
-                                                    anchors.fill: parent
-                                                    anchors.margins: 10
-                                                    spacing: 6
-
-                                                    Text { text: qsTr("Transfer"); color: ColorPalette.textPrimary; font.pixelSize: 14 * App.fontScale; font.bold: true }
-                                                    Text { text: qsTr("Down: %1").arg(root.compactSpeed(peerInfoDialog.peerData.downSpeed)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                    Text { text: qsTr("Up: %1").arg(root.compactSpeed(peerInfoDialog.peerData.upSpeed)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                    Text { text: qsTr("Total down: %1").arg(root.compactBytes(peerInfoDialog.peerData.downloaded)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                    Text { text: qsTr("Total up: %1").arg(root.compactBytes(peerInfoDialog.peerData.uploaded)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                }
+                                                Text { text: qsTr("Transfer"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; font.bold: true; bottomPadding: 2 }
+                                                Text { text: qsTr("Down: %1").arg(root.compactSpeed(peerInfoDialog.peerData.downSpeed)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                                                Text { text: qsTr("Up: %1").arg(root.compactSpeed(peerInfoDialog.peerData.upSpeed)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                                                Text { text: qsTr("Total down: %1").arg(root.compactBytes(peerInfoDialog.peerData.downloaded)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                                                Text { text: qsTr("Total up: %1").arg(root.compactBytes(peerInfoDialog.peerData.uploaded)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
                                             }
 
-                                            Rectangle {
+                                            Column {
                                                 Layout.fillWidth: true
-                                                color: "transparent"
-                                                border.width: 0
-                                                implicitHeight: 124
+                                                Layout.preferredWidth: 1
+                                                Layout.alignment: Qt.AlignTop
+                                                spacing: 3
 
-                                                Column {
-                                                    anchors.fill: parent
-                                                    anchors.margins: 10
-                                                    spacing: 6
-
-                                                    Text { text: qsTr("Location"); color: ColorPalette.textPrimary; font.pixelSize: 14 * App.fontScale; font.bold: true }
-                                                    Text { text: root.peerLocationLabel(peerInfoDialog.peerData.countryCode, peerInfoDialog.peerData.regionName, peerInfoDialog.peerData.cityName); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap; width: parent.width }
-                                                    Text { text: qsTr("Distance: %1").arg(root.distanceSummary(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap; width: parent.width }
-                                                    Text { text: qsTr("Country: %1").arg(root.safeStr(peerInfoDialog.peerData.countryCode) || "--"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                                                    Text { text: qsTr("Client: %1").arg(root.safeStr(peerInfoDialog.peerData.client) || "Unknown"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight; width: parent.width }
-                                                }
+                                                Text { text: qsTr("Location"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; font.bold: true; bottomPadding: 2 }
+                                                Text { text: root.peerLocationLabel(peerInfoDialog.peerData.countryCode, peerInfoDialog.peerData.regionName, peerInfoDialog.peerData.cityName); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap; width: parent.width }
+                                                Text { text: qsTr("Distance: %1").arg(root.distanceSummary(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap; width: parent.width }
+                                                Text { text: qsTr("Country: %1").arg(root.safeStr(peerInfoDialog.peerData.countryCode) || "--"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                                                Text { text: qsTr("Client: %1").arg(root.safeStr(peerInfoDialog.peerData.client) || "Unknown"); color: ColorPalette.clientText; font.pixelSize: 12 * App.fontScale; elide: Text.ElideRight; width: parent.width }
                                             }
                                         }
 
-                                        Item {
+                                        Rectangle {
                                             Layout.fillWidth: true
-                                            Layout.preferredHeight: 210
+                                            Layout.fillHeight: true
+                                            Layout.minimumHeight: 170
+                                            color: ColorPalette.mapTooltipBg
+                                            border.color: ColorPalette.mapBorder
+                                            clip: true
 
-                                            ColumnLayout {
+                                            // Map label: no background; outline gives contrast against any map color
+                                            component MapLabel: Text {
+                                                color: ColorPalette.mapLabelText
+                                                style: Text.Outline
+                                                styleColor: ColorPalette.mapLabelBg
+                                                font.pixelSize: 10 * App.fontScale
+                                                font.bold: true
+                                            }
+
+                                            Item {
                                                 anchors.fill: parent
-                                                anchors.margins: 2
-                                                spacing: 8
+                                                anchors.margins: 6
+                                                readonly property real mapHeight: height
+                                                readonly property real baseMapWidth: mapHeight * (800.0 / 387.0)
+                                                readonly property real baseMapX: (width - baseMapWidth) / 2
+                                                readonly property bool hasLocal: !!root.torrentPeerModel && root.torrentPeerModel.hasLocalLocation
+                                                readonly property bool hasPeer: root.hasGeoCoordinates(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)
+                                                readonly property var transformData: root.peerInfoMapTransform(peerInfoDialog.peerData, baseMapWidth, mapHeight)
+                                                readonly property real localX: transformData.localX
+                                                readonly property real localY: transformData.localY
+                                                readonly property real peerX: transformData.peerX
+                                                readonly property real peerY: transformData.peerY
+                                                // Absolute (un-rotated) endpoints + midpoint of the You<->Peer line
+                                                readonly property real absLocalX: baseMapX + localX
+                                                readonly property real absPeerX: baseMapX + peerX
+                                                readonly property real midX: (absLocalX + absPeerX) / 2
+                                                readonly property real midY: (localY + peerY) / 2
+                                                readonly property real lineLen: Math.sqrt(Math.pow(absPeerX - absLocalX, 2) + Math.pow(peerY - localY, 2))
 
-                                                Rectangle {
-                                                    Layout.fillWidth: true
-                                                    Layout.fillHeight: true
-                                                    color: ColorPalette.mapTooltipBg
-                                                    border.color: ColorPalette.mapBorder
-                                                    clip: true
+                                                Item {
+                                                    x: parent.baseMapX + parent.transformData.offsetX
+                                                    y: parent.transformData.offsetY
+                                                    width: parent.baseMapWidth * parent.transformData.scale
+                                                    height: parent.mapHeight * parent.transformData.scale
 
-                                                    Item {
+                                                    Image {
+                                                        id: mapImage
                                                         anchors.fill: parent
-                                                        anchors.margins: 6
-                                                        readonly property real mapHeight: height
-                                                        readonly property real baseMapWidth: mapHeight * (800.0 / 387.0)
-                                                        readonly property real baseMapX: (width - baseMapWidth) / 2
-                                                        readonly property bool hasLocal: !!root.torrentPeerModel && root.torrentPeerModel.hasLocalLocation
-                                                        readonly property bool hasPeer: root.hasGeoCoordinates(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)
-                                                        readonly property var transformData: root.peerInfoMapTransform(peerInfoDialog.peerData, baseMapWidth, mapHeight)
-                                                        readonly property real localX: transformData.localX
-                                                        readonly property real localY: transformData.localY
-                                                        readonly property real peerX: transformData.peerX
-                                                        readonly property real peerY: transformData.peerY
-
-                                                        Item {
-                                                            x: parent.baseMapX + parent.transformData.offsetX
-                                                            y: parent.transformData.offsetY
-                                                            width: parent.baseMapWidth * parent.transformData.scale
-                                                            height: parent.mapHeight * parent.transformData.scale
-
-                                                            Image {
-                                                                id: mapImage
-                                                                anchors.fill: parent
-                                                                source: ColorPalette.dark ? "icons/world-map.svg" : "icons/world-map-light.svg"
-                                                                fillMode: Image.Stretch
-                                                                smooth: true
-                                                                sourceSize.width: 1200
-                                                                sourceSize.height: 581
-                                                            }
-                                                        }
-
-                                                        Item {
-                                                            visible: parent.hasLocal && parent.hasPeer
-                                                            readonly property real x1: parent.baseMapX + parent.localX
-                                                            readonly property real y1: parent.localY
-                                                            readonly property real x2: parent.baseMapX + parent.peerX
-                                                            readonly property real y2: parent.peerY
-                                                            readonly property real dx: x2 - x1
-                                                            readonly property real dy: y2 - y1
-                                                            readonly property real length: Math.sqrt(dx * dx + dy * dy)
-
-                                                            x: x1
-                                                            y: y1
-                                                            width: length
-                                                            height: 2
-                                                            rotation: Math.atan2(dy, dx) * 180 / Math.PI
-                                                            transformOrigin: Item.Left
-
-                                                            Rectangle {
-                                                                anchors.verticalCenter: parent.verticalCenter
-                                                                width: parent.width
-                                                                height: 2
-                                                                color: "#6db6ff"
-                                                            }
-                                                        }
-
-                                                        Rectangle { visible: parent.hasLocal; x: parent.baseMapX + parent.localX - 4; y: parent.localY - 4; width: 8; height: 8; radius: 4; color: "#8a63ff"; border.color: ColorPalette.textHeader; border.width: 1 }
-                                                        Rectangle { visible: parent.hasPeer; x: parent.baseMapX + parent.peerX - 4; y: parent.peerY - 4; width: 8; height: 8; radius: 4; color: peerInfoDialog.peerData.isSeed ? "#67bb7a" : "#62a8ff"; border.color: ColorPalette.textHeader; border.width: 1 }
-                                                        Text { visible: parent.hasLocal; x: parent.baseMapX + parent.localX + 6; y: parent.localY - 9; text: qsTr("You"); color: "#f6f6f6"; font.pixelSize: 10 * App.fontScale; font.bold: true }
-                                                        Text { visible: parent.hasPeer; x: parent.baseMapX + parent.peerX + 6; y: parent.peerY - 9; text: qsTr("Peer"); color: "#f6f6f6"; font.pixelSize: 10 * App.fontScale; font.bold: true }
+                                                        source: ColorPalette.dark ? "icons/world-map.svg" : "icons/world-map-light.svg"
+                                                        fillMode: Image.Stretch
+                                                        smooth: true
+                                                        sourceSize.width: 1200
+                                                        sourceSize.height: 581
                                                     }
                                                 }
 
+                                                Item {
+                                                    visible: parent.hasLocal && parent.hasPeer
+                                                    readonly property real x1: parent.absLocalX
+                                                    readonly property real y1: parent.localY
+                                                    readonly property real x2: parent.absPeerX
+                                                    readonly property real y2: parent.peerY
+                                                    readonly property real dx: x2 - x1
+                                                    readonly property real dy: y2 - y1
+                                                    readonly property real length: Math.sqrt(dx * dx + dy * dy)
+
+                                                    x: x1
+                                                    y: y1
+                                                    width: length
+                                                    height: 2
+                                                    rotation: Math.atan2(dy, dx) * 180 / Math.PI
+                                                    transformOrigin: Item.Left
+
+                                                    Rectangle {
+                                                        anchors.verticalCenter: parent.verticalCenter
+                                                        width: parent.width
+                                                        height: 2
+                                                        color: "#6db6ff"
+                                                    }
+                                                }
+
+                                                Rectangle { visible: parent.hasLocal; x: parent.absLocalX - 4; y: parent.localY - 4; width: 8; height: 8; radius: 4; color: "#8a63ff"; border.color: ColorPalette.textHeader; border.width: 1 }
+                                                Rectangle { visible: parent.hasPeer; x: parent.absPeerX - 4; y: parent.peerY - 4; width: 8; height: 8; radius: 4; color: peerInfoDialog.peerData.isSeed ? "#67bb7a" : "#62a8ff"; border.color: ColorPalette.textHeader; border.width: 1 }
+                                                MapLabel { visible: parent.hasLocal; x: parent.absLocalX + 6; y: parent.localY - 7; text: qsTr("You") }
+                                                MapLabel { visible: parent.hasPeer; x: parent.absPeerX + 6; y: parent.peerY - 7; text: qsTr("Peer") }
+
+                                                // Distance at line midpoint; hidden when nodes too close (labels would collide)
+                                                MapLabel {
+                                                    visible: parent.hasLocal && parent.hasPeer && parent.lineLen > 70 && text.length > 0
+                                                    x: parent.midX - implicitWidth / 2
+                                                    y: parent.midY - implicitHeight - 5
+                                                    text: root.distanceSummary(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)
+                                                }
                                             }
                                         }
 

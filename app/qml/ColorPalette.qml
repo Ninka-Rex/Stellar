@@ -50,6 +50,12 @@ QtObject {
     readonly property color mapBorder:    dark ? "#314252" : "#c2cedb"
     readonly property color mapTooltipBg: dark ? "#13202d" : "#ffffff"
 
+    // Peer-info client / user-agent string (was a hard light-blue, illegible in light mode)
+    readonly property color clientText: dark ? "#8fb4d9" : "#2a5a8a"
+    // Map node labels ("You"/"Peer") — pill bg + readable text in both modes
+    readonly property color mapLabelBg:   dark ? "#000000" : "#ffffff"
+    readonly property color mapLabelText: dark ? "#f6f6f6" : "#1a1a1a"
+
     // Generic tooltip (ThemedToolTip)
     readonly property color tooltipBg:     dark ? "#2a2a2a" : "#ffffff"
     readonly property color tooltipBorder: dark ? "#3a3a3a" : "#c2c2c2"
