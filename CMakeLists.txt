@@ -365,10 +365,12 @@ qt_add_qml_module(Stellar
         app/qml/icons/about.svg
         app/qml/icons/floppy_disk.svg
         app/qml/icons/light_bulb.svg
+        app/qml/icons/waving_hand.svg
         app/qml/icons/hourglass_not_done.svg
         app/qml/icons/person.svg
         app/qml/icons/red_circle.svg
         app/qml/icons/warning.svg
+        app/qml/icons/shield.svg
         app/qml/icons/fire.svg
         app/qml/icons/yin_yang.svg
         app/qml/icons/torrent-categories/all_torrents.svg

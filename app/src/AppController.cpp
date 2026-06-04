@@ -34,6 +34,7 @@
 #include <QLocalSocket>
 #include <QUuid>
 #include <QDateTime>
+#include <QRandomGenerator>
 #include <QDir>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -2240,6 +2241,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         // by the singleShot queue.
         const int itemCount = static_cast<int>(items.size());
         m_restoreTotalCount = itemCount;
+        m_restoreDoneCount = 0;
         // Bulk-add mode: addItem() defers per-row insertRows + signal
         // wiring. A single beginResetModel/endResetModel in endBulkAdd
         // replaces 40 individual insert notifications, avoiding QML
@@ -2253,6 +2255,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         auto finalizeRestore = [this]() {
             m_downloadModel->endBulkAdd();
             m_restoring = false;
+            m_restoreDoneCount = m_restoreTotalCount;
             emit restoreProgressChanged();
             // Connect persistence signal handlers now that all set*() calls
             // from addTorrentInternal are done — avoids cascading signal storms.
@@ -2306,6 +2309,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                   for (const QByteArray &p : pending)
                       handleIpcPayload(p);
               }
+              showWelcomeBack();
         };
         if (itemCount == 0) {
             QTimer::singleShot(0, this, finalizeRestore);
@@ -2330,6 +2334,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                         applyPerTorrentSpeedLimits(m_torrentSession, item);
                     }
                 }
+                m_restoreDoneCount = restoreIndex;
                 emit restoreProgressChanged();
                 if (restoreIndex < itemCount)
                     return;
@@ -2527,8 +2532,17 @@ QString AppController::torrentBindingStatusText() const {
     }
 
     if (!available)
-        return tr("⚠️ Bound to %1 (offline — torrents paused)").arg(label);
-    return tr("🛡️ Bound to %1").arg(label);
+        return tr("Bound to %1 (offline - torrents paused)").arg(label);
+    return tr("Bound to %1").arg(label);
+}
+
+bool AppController::torrentBindingOffline() const {
+    if (!m_settings)
+        return false;
+    const QString bindTarget = m_settings->torrentBindInterface().trimmed();
+    if (bindTarget.isEmpty())
+        return false;
+    return !(m_torrentSession && m_torrentSession->isBindInterfaceAvailable(bindTarget));
 }
 
 void AppController::setTorrentPortTestState(bool inProgress, const QString &status, const QString &message) {
@@ -6184,6 +6198,44 @@ void AppController::flushTorrentStats() {
         m_lastTorrentPersistUploaded[id]   = uploaded;
         m_lastTorrentPersistDownloaded[id] = downloaded;
     }
+}
+
+void AppController::showWelcomeBack()
+{
+    // Time-of-day greeting. Half the time we instead use a generic fun phrase,
+    // so repeated launches don't always say the same clock-based line.
+    const int hour = QTime::currentTime().hour();
+    QString timeGreeting;
+    if (hour < 12)
+        timeGreeting = tr("Good morning!");
+    else if (hour < 18)
+        timeGreeting = tr("Good afternoon!");
+    else if (hour < 22)
+        timeGreeting = tr("Good evening!");
+    else
+        timeGreeting = tr("Working late?");
+
+    const QStringList funPhrases = {
+        tr("Welcome back!"),
+        tr("Ready when you are!"),
+        tr("Let's go!"),
+        tr("Good to see you!"),
+    };
+
+    auto *rng = QRandomGenerator::global();
+    // 50/50 between the time-of-day line and a random fun phrase.
+    if (rng->bounded(2) == 0)
+        m_welcomeMessage = timeGreeting;
+    else
+        m_welcomeMessage = funPhrases.at(rng->bounded(funPhrases.size()));
+
+    m_welcomeVisible = true;
+    emit welcomeMessageChanged();
+
+    QTimer::singleShot(5000, this, [this]() {
+        m_welcomeVisible = false;
+        emit welcomeMessageChanged();
+    });
 }
 
 void AppController::cleanupTemporaryDirectory()

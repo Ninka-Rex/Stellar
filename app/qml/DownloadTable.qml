@@ -978,11 +978,30 @@ Rectangle {
 
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTr("Loading %n download(s)…", "", App.restoreTotalCount)
+                text: qsTr("Loading %1 / %2 downloads…")
+                      .arg(App.restoreDoneCount).arg(App.restoreTotalCount)
                 horizontalAlignment: Text.AlignHCenter
                 color: ColorPalette.textDisabled
                 font.pixelSize: 14 * App.fontScale
                 lineHeight: 1.6
+            }
+
+            // Thin progress bar that fills left→right as items drain from the DB.
+            Rectangle {
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: 220
+                height: 4
+                radius: 2
+                color: ColorPalette.panelBg
+                Rectangle {
+                    height: parent.height
+                    radius: 2
+                    color: ColorPalette.accent
+                    width: App.restoreTotalCount > 0
+                           ? parent.width * (App.restoreDoneCount / App.restoreTotalCount)
+                           : 0
+                    Behavior on width { NumberAnimation { duration: 120 } }
+                }
             }
         }
     }

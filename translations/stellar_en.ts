@@ -200,8 +200,48 @@
         <translation></translation>
     </message>
     <message>
+        <location filename="../app/src/AppController.cpp" line="6195"/>
+        <source>Good morning!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6197"/>
+        <source>Good afternoon!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6199"/>
+        <source>Good evening!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6201"/>
+        <source>Working late?</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6204"/>
+        <source>Welcome back!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6205"/>
+        <source>Ready when you are!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6206"/>
+        <source>Let's go!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6207"/>
+        <source>Good to see you!</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/src/AppController.cpp" line="2459"/>
-        <source>🛡️ Bound to %1</source>
+        <source>Bound to %1</source>
         <translation></translation>
     </message>
     <message>
@@ -216,7 +256,7 @@
     </message>
     <message>
         <location filename="../app/src/AppController.cpp" line="2458"/>
-        <source>⚠️ Bound to %1 (offline — torrents paused)</source>
+        <source>Bound to %1 (offline - torrents paused)</source>
         <translation></translation>
     </message>
 </context>
@@ -1405,13 +1445,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
 Click  Add URL  to start.</source>
         <translation></translation>
     </message>
-    <message numerus="yes">
-        <location filename="../app/qml/DownloadTable.qml" line="954"/>
-        <source>Loading %n download(s)…</source>
-        <translation>
-            <numerusform>Loading %n download(s)…</numerusform>
-            <numerusform></numerusform>
-        </translation>
+    <message>
+        <location filename="../app/qml/DownloadTable.qml" line="980"/>
+        <source>Loading %1 / %2 downloads…</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../app/qml/DownloadTable.qml" line="396"/>

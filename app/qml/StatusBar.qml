@@ -218,12 +218,35 @@ Rectangle {
             Layout.alignment: Qt.AlignVCenter
         }
 
-        Text {
+        Row {
             visible: App.torrentBindingStatusText && App.torrentBindingStatusText.length > 0
-            text: App.torrentBindingStatusText
-            color: ColorPalette.textSecond
-            font.pixelSize: 11 * App.fontScale
+            spacing: 4
             Layout.alignment: Qt.AlignVCenter
+            StatusIcon {
+                source: App.torrentBindingOffline ? "icons/warning.svg" : "icons/shield.svg"
+            }
+            Text {
+                text: App.torrentBindingStatusText
+                color: ColorPalette.textSecond
+                font.pixelSize: 11 * App.fontScale
+                anchors.verticalCenter: parent.verticalCenter
+            }
+        }
+
+        // Welcome-back greeting (transient; shown for a few seconds after the
+        // cold-start restore completes). Sits at the right edge of the left
+        // cluster — always the rightmost left-side entry — then hides.
+        Row {
+            visible: App.welcomeVisible && App.welcomeMessage.length > 0
+            spacing: 4
+            Layout.alignment: Qt.AlignVCenter
+            StatusIcon { source: "icons/waving_hand.svg" }
+            Text {
+                text: App.welcomeMessage
+                color: ColorPalette.textSecond
+                font.pixelSize: 11 * App.fontScale
+                anchors.verticalCenter: parent.verticalCenter
+            }
         }
 
         Item { Layout.fillWidth: true }

@@ -184,10 +184,15 @@ private:
         QDateTime updatedAt;
     };
 
-    struct DhtCrawlNode {
+    // One entry in the greedy-lookup shortlist: a candidate node and whether we
+    // have already sent it a find_node(target) probe. The shortlist is kept
+    // sorted by XOR distance to the crawl target and trimmed to the K closest.
+    struct DhtShortlistNode {
         QByteArray id;
         QString host;
         int port{0};
+        bool queried{false};
+        bool responded{false};
     };
 
     struct PeerLocation;
@@ -227,10 +232,16 @@ private:
     void lookupPeerLocation(const QString &endpoint, QString *countryCode,
                             QString *regionCode, QString *regionName, QString *cityName,
                             double *latitude, double *longitude);
-    void enqueueDhtCrawlNode(const QByteArray &nodeId, const QString &host, int port);
     void pumpDhtEstimatorCrawler();
     void handleDhtDirectResponse(const libtorrent::dht_direct_response_alert *alert);
     void maybePublishDhtMeasurementEpoch(const QDateTime &now);
+    // Inserts a candidate into the greedy-lookup shortlist, keeping it sorted by
+    // XOR distance to m_dhtCrawlTarget and trimmed to the K closest nodes.
+    // Returns true if the candidate is new and made it into the shortlist.
+    bool considerDhtShortlistNode(const QByteArray &nodeId, const QString &host, int port);
+    // Resets all greedy-lookup state and picks a fresh crawl target for a new
+    // measurement epoch.
+    void resetDhtCrawlState();
 
     std::unique_ptr<libtorrent::session> m_session;
     std::unique_ptr<GeoDbState> m_geoDb;
@@ -284,34 +295,33 @@ private:
     qint64 m_cachedDhtGlobalEstimate{-1};
     int m_lastDhtWarmupPercent{0};
     QVector<qint64> m_recentPublishedDhtEstimates;
-    QVector<DhtCrawlNode> m_dhtCrawlQueue;
-    QSet<QByteArray> m_enqueuedDhtNodeIds;
     QHash<QString, QDateTime> m_pendingDhtRequests;
     QHash<QByteArray, QDateTime> m_dhtMeasurementZoneNodes;
+    // Greedy iterative-lookup state. m_dhtShortlist holds the K closest nodes to
+    // m_dhtCrawlTarget discovered so far, sorted ascending by XOR distance. The
+    // crawl probes the closest unqueried entries with find_node(target) until
+    // the K closest have all answered and none closer turns up — at which point
+    // the distance to the K-th node gives the KNN density estimate.
+    QVector<DhtShortlistNode> m_dhtShortlist;
+    QByteArray m_dhtCrawlTarget;
+    QSet<QByteArray> m_dhtShortlistSeenIds;
     QDateTime m_dhtMeasurementStartedAt;
     QDateTime m_dhtMeasurementLastPublishedAt;
+    // When the DHT first became usable (known node id + non-empty routing
+    // table). The first crawl is delayed kDhtStartupWarmupSecs past this so it
+    // doesn't run against a cold, sparse table.
+    QDateTime m_dhtFirstUsableAt;
     bool m_dhtMeasurementPublished{false};
     QElapsedTimer m_lastSessionStatsRequest;
     QElapsedTimer m_lastDhtLiveNodesRequest;
     QElapsedTimer m_lastDhtLiveNodesUpdate;
     QByteArray m_lastDhtNodeId;
     QHash<QByteArray, QDateTime> m_recentDhtNodeIds;
-    // Last published zone-node count — preserved across epoch rollovers so
-    // the tooltip doesn't flash "Closest samples: 0" while the next crawl
-    // is warming up.
+    // Last published zone-node count — preserved across epoch rollovers so the
+    // tooltip doesn't flash "Closest samples: 0" while the next crawl warms up.
     int m_lastPublishedZoneCount{0};
-    // Sliding-window history of live zone-node counts, used by the plateau
-    // detector in maybePublishDhtMeasurementEpoch() to publish early once
-    // the BFS has saturated and the count has stopped meaningfully growing.
-    // Trimmed to ~2 × kPlateauWindowSecs of samples; tiny in practice.
-    struct ZoneSample {
-        QDateTime takenAt;
-        int liveCount{0};
-    };
-    QList<ZoneSample> m_zoneCountHistory;
-    // Counts pump-timer ticks since the current measurement started, used to
-    // pace bootstrap-walk re-pulls of dht_live_nodes inside pumpDhtEstimator-
-    // Crawler(). Reset when a new epoch begins.
+    // Pump-timer ticks since the current crawl started; paces bootstrap re-pulls
+    // of dht_live_nodes in the fast-pump lambda. Reset when a new epoch begins.
     int m_dhtBootstrapTickCount{0};
     // Per-crawl diagnostic counters, reset on epoch start, written to the CSV
     // log so we can tell whether undersaturation is caused by sending too few

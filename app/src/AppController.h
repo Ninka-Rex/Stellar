@@ -97,6 +97,11 @@ class AppController : public QObject {
     // painting and the model populating.
     Q_PROPERTY(bool restoreInProgress READ restoreInProgress NOTIFY restoreProgressChanged)
     Q_PROPERTY(int restoreTotalCount READ restoreTotalCount NOTIFY restoreProgressChanged)
+    Q_PROPERTY(int restoreDoneCount READ restoreDoneCount NOTIFY restoreProgressChanged)
+    // Transient time-of-day greeting shown briefly in the status bar once the
+    // cold-start restore completes. Auto-hides after a few seconds.
+    Q_PROPERTY(QString welcomeMessage READ welcomeMessage NOTIFY welcomeMessageChanged)
+    Q_PROPERTY(bool welcomeVisible READ welcomeVisible NOTIFY welcomeMessageChanged)
     Q_PROPERTY(int recentErrorDownloads READ recentErrorDownloads NOTIFY recentErrorDownloadsChanged)
     Q_PROPERTY(bool updateAvailable READ updateAvailable NOTIFY updateAvailableChanged)
     Q_PROPERTY(QString updateVersion READ updateVersion NOTIFY updateAvailableChanged)
@@ -108,6 +113,9 @@ class AppController : public QObject {
     Q_PROPERTY(bool motdVisible READ motdVisible NOTIFY motdChanged)
     Q_PROPERTY(bool checkingForUpdates READ checkingForUpdates NOTIFY checkingForUpdatesChanged)
     Q_PROPERTY(QString torrentBindingStatusText READ torrentBindingStatusText NOTIFY torrentBindingStatusTextChanged)
+    // True when a bind interface is configured but currently offline (torrents
+    // paused). Drives the status-bar icon choice (warning vs. shield).
+    Q_PROPERTY(bool torrentBindingOffline READ torrentBindingOffline NOTIFY torrentBindingStatusTextChanged)
     Q_PROPERTY(bool torrentPortTestInProgress READ torrentPortTestInProgress NOTIFY torrentPortTestChanged)
     Q_PROPERTY(QString torrentPortTestStatus READ torrentPortTestStatus NOTIFY torrentPortTestChanged)
     Q_PROPERTY(QString torrentPortTestMessage READ torrentPortTestMessage NOTIFY torrentPortTestChanged)
@@ -173,6 +181,9 @@ public:
     int completedDownloads() const { return m_completedCount; }
     bool restoreInProgress() const { return m_restoring; }
     int restoreTotalCount() const { return m_restoreTotalCount; }
+    int restoreDoneCount() const { return m_restoreDoneCount; }
+    QString welcomeMessage() const { return m_welcomeMessage; }
+    bool welcomeVisible() const { return m_welcomeVisible; }
     int recentErrorDownloads() const;
     bool updateAvailable() const { return m_updateAvailable; }
     QString updateVersion() const { return m_updateVersion; }
@@ -184,6 +195,7 @@ public:
     bool motdVisible() const { return !m_motd.isEmpty(); }
     bool checkingForUpdates() const { return m_checkingForUpdates; }
     QString torrentBindingStatusText() const;
+    bool torrentBindingOffline() const;
     bool torrentPortTestInProgress() const { return m_torrentPortTestInProgress; }
     QString torrentPortTestStatus() const { return m_torrentPortTestStatus; }
     QString torrentPortTestMessage() const { return m_torrentPortTestMessage; }
@@ -510,6 +522,7 @@ signals:
     void minutesUntilNextQueueChanged();
     void completedDownloadsChanged();
     void restoreProgressChanged();
+    void welcomeMessageChanged();
     void recentErrorDownloadsChanged();
     void updateAvailableChanged();
     void updateStatusTextChanged();
@@ -614,6 +627,9 @@ private:
     QMap<QString, qint64>    m_lastTorrentPersistDownloaded;
     bool                    m_restoring{false};
     int                     m_restoreTotalCount{0};
+    int                     m_restoreDoneCount{0};
+    QString                 m_welcomeMessage;
+    bool                    m_welcomeVisible{false};
     // IDs of torrents that were already seeding/complete when restored from the
     // database. Completion alerts for these IDs are suppressed — they are not
     // new downloads finishing, just libtorrent re-emitting state on reconnect.
@@ -643,6 +659,9 @@ private:
     void pruneQueueTransferHistory(const QString &queueId, int hours) const;
     void enforceQueueDownloadLimits(const QString &queueId);
     void cleanupTemporaryDirectory();
+    // Builds a time-of-day greeting (mixed with a random fun phrase) and shows it
+    // transiently in the status bar; auto-hides after a few seconds.
+    void showWelcomeBack();
     void checkQueueSchedules();
     int calculateMinutesUntilNextQueue() const;
     void scheduleGrabberResultsPersist();
