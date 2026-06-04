@@ -55,7 +55,6 @@
     X(bool, bool, speedInTrayTooltip, SpeedInTrayTooltip, true, "speedInTrayTooltip", N) \
     X(bool, bool, speedInTitleBar, SpeedInTitleBar, false, "speedInTitleBar", N) \
     X(bool, bool, speedInStatusBar, SpeedInStatusBar, false, "speedInStatusBar", N) \
-    X(bool, bool, estimatedOnlineUsersInStatusBar, EstimatedOnlineUsersInStatusBar, false, "estimatedOnlineUsersInStatusBar", N) \
     X(bool, bool, ratioInStatusBar, RatioInStatusBar, false, "ratioInStatusBar", N) \
     X(bool, bool, showPublicIpInStatusBar, ShowPublicIpInStatusBar, false, "showPublicIpInStatusBar", N) \
     X(bool, bool, showStatusBar, ShowStatusBar, true, "showStatusBar", N) \

@@ -88,7 +88,6 @@ Window {
     property bool   editSpeedInTrayTooltip:    true
     property bool   editSpeedInTitleBar:       false
     property bool   editSpeedInStatusBar:      false
-    property bool   editEstimatedOnlineUsersInStatusBar: false
     property bool   editRatioInStatusBar:      false
     property bool   editShowPublicIpInStatusBar: false
     property bool   editStartDownloadWhileFileInfo: true
@@ -450,7 +449,6 @@ Window {
         editSpeedInTrayTooltip    !== App.settings.speedInTrayTooltip ||
         editSpeedInTitleBar       !== App.settings.speedInTitleBar ||
         editSpeedInStatusBar      !== App.settings.speedInStatusBar ||
-        editEstimatedOnlineUsersInStatusBar !== App.settings.estimatedOnlineUsersInStatusBar ||
         editRatioInStatusBar      !== App.settings.ratioInStatusBar ||
         editShowPublicIpInStatusBar !== App.settings.showPublicIpInStatusBar ||
         editLaunchOnStartup       !== App.settings.launchOnStartup ||
@@ -861,7 +859,6 @@ Window {
         App.settings.speedInTrayTooltip     = editSpeedInTrayTooltip
         App.settings.speedInTitleBar        = editSpeedInTitleBar
         App.settings.speedInStatusBar       = editSpeedInStatusBar
-        App.settings.estimatedOnlineUsersInStatusBar = editEstimatedOnlineUsersInStatusBar
         App.settings.ratioInStatusBar       = editRatioInStatusBar
         App.settings.showPublicIpInStatusBar = editShowPublicIpInStatusBar
         App.settings.launchOnStartup        = editLaunchOnStartup
@@ -975,7 +972,6 @@ Window {
         editSpeedInTrayTooltip    = App.settings.speedInTrayTooltip
         editSpeedInTitleBar       = App.settings.speedInTitleBar
         editSpeedInStatusBar      = App.settings.speedInStatusBar
-        editEstimatedOnlineUsersInStatusBar = App.settings.estimatedOnlineUsersInStatusBar
         editRatioInStatusBar      = App.settings.ratioInStatusBar
         editShowPublicIpInStatusBar = App.settings.showPublicIpInStatusBar
         editLaunchOnStartup       = App.settings.launchOnStartup
@@ -2744,26 +2740,6 @@ Window {
                             checked: root.editSpeedInStatusBar
                             onCheckedChanged: root.editSpeedInStatusBar = checked
                             contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
-                        }
-                        StyledCheckBox {
-                            text: qsTr("Show estimated online users in status bar")
-                            topPadding: 0; bottomPadding: 0
-                            checked: root.editEstimatedOnlineUsersInStatusBar
-                            onCheckedChanged: root.editEstimatedOnlineUsersInStatusBar = checked
-                            contentItem: Text {
-                                text: parent.text
-                                color: ColorPalette.textPrimary
-                                font.pixelSize: 13 * App.fontScale
-                                leftPadding: parent.indicator.width + 4
-                            }
-                        }
-                        Text {
-                            text: qsTr("Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.")
-                            color: "#7a7a7a"
-                            font.pixelSize: 11 * App.fontScale
-                            wrapMode: Text.WordWrap
-                            Layout.fillWidth: true
-                            visible: root.editEstimatedOnlineUsersInStatusBar
                         }
                         StyledCheckBox {
                             text: qsTr("Show ratio in status bar")

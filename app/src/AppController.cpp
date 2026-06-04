@@ -1410,20 +1410,6 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             m_activeSeedingCount = activeSeeding;
             emit seedingCountChanged();
         }
-        const qint64 estimatedOnlineUsers =
-            m_torrentSession ? m_torrentSession->dhtGlobalNodesEstimate() : -1;
-        const int warmupPercent =
-            m_torrentSession ? m_torrentSession->dhtEstimateWarmupPercent() : 0;
-        const QString debugText =
-            m_torrentSession ? m_torrentSession->dhtEstimateDebugText() : QString();
-        if (m_estimatedOnlineUsers != estimatedOnlineUsers
-            || m_estimatedOnlineUsersWarmupPercent != warmupPercent
-            || m_estimatedOnlineUsersDebugText != debugText) {
-            m_estimatedOnlineUsers = estimatedOnlineUsers;
-            m_estimatedOnlineUsersWarmupPercent = warmupPercent;
-            m_estimatedOnlineUsersDebugText = debugText;
-            emit estimatedOnlineUsersChanged();
-        }
     });
     m_speedTimer->start();
 
@@ -1643,7 +1629,6 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         m_queue->setMaxConnectionsPerHost(m_settings->perHostConnectionLimit());
     });
     m_torrentSession->applySettings(m_settings);
-    m_torrentSession->setDhtEstimatorEnabled(m_settings->estimatedOnlineUsersInStatusBar());
     // If the user already had a bind interface configured but it's not up at
     // startup (e.g. VPN client not yet connected), suspend the session now so
     // we don't leak traffic in the window before the periodic check fires.
@@ -1673,9 +1658,6 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 }
             }
         }
-    });
-    connect(m_settings, &AppSettings::estimatedOnlineUsersInStatusBarChanged, this, [this]() {
-        m_torrentSession->setDhtEstimatorEnabled(m_settings->estimatedOnlineUsersInStatusBar());
     });
     connect(m_settings, &AppSettings::torrentSettingsChanged, this, &AppController::torrentBindingStatusTextChanged);
     connect(m_settings, &AppSettings::globalSpeedLimitKBpsChanged, this, [this]() {
@@ -4949,13 +4931,6 @@ QVariantList AppController::torrentPieceMap(const QString &downloadId) const {
 
 void AppController::clearTorrentSpeedHistory(const QString &downloadId) {
     m_torrentSpeedHistory.remove(downloadId);
-}
-
-void AppController::startDhtCrawlNow() {
-    if (m_torrentSession && !m_torrentSession->dhtCrawlInProgress())
-        m_torrentSession->startDhtCrawlNow();
-    // Leave the last published estimate in place so the status bar keeps
-    // showing it while the fresh crawl runs.
 }
 
 QVariantMap AppController::torrentAllTimeStats() const {

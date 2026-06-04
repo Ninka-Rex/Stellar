@@ -251,66 +251,6 @@ Rectangle {
 
         Item { Layout.fillWidth: true }
 
-        // Right cluster: online users
-
-        Item {
-            id: onlineUsersRow
-            Layout.leftMargin: 12
-            Layout.fillHeight: true
-            visible: App.settings.estimatedOnlineUsersInStatusBar
-            implicitWidth: onlineUsersInner.width
-
-            Row {
-                id: onlineUsersInner
-                spacing: 4
-                anchors.verticalCenter: parent.verticalCenter
-                StatusIcon {
-                    visible: App.settings.torrentEnableDht && App.estimatedOnlineUsers > 0
-                        && App.estimatedOnlineUsers <= 25000000
-                    source: "icons/person.svg"
-                }
-                Text {
-                    text: {
-                        function fmtUsers(value) {
-                            if (value >= 1000000000)
-                                return "~" + (value / 1000000000).toFixed(value >= 10000000000 ? 0 : 1) + "B"
-                            if (value >= 1000000)
-                                return "~" + (value / 1000000).toFixed(value >= 10000000 ? 0 : 1) + "M"
-                            if (value >= 1000)
-                                return "~" + (value / 1000).toFixed(value >= 10000 ? 0 : 1) + "K"
-                            return "~" + Math.round(value)
-                        }
-                        if (!App.settings.torrentEnableDht)
-                            return qsTr("DHT off")
-                        if (App.estimatedOnlineUsers > 0) {
-                            if (App.estimatedOnlineUsers > 25000000)
-                                return fmtUsers(App.estimatedOnlineUsers) + qsTr(" online (low confidence)")
-                            return fmtUsers(App.estimatedOnlineUsers) + qsTr(" online")
-                        }
-                        return qsTr("Estimating… (%1%)").arg(App.estimatedOnlineUsersWarmupPercent)
-                    }
-                    color: onlineUsersHover.hovered ? ColorPalette.textHeader : ColorPalette.textSecond
-                    font.pixelSize: 11 * App.fontScale
-                }
-            }
-
-            HoverHandler { id: onlineUsersHover }
-            ThemedToolTip {
-                visible: onlineUsersHover.hovered
-                delay: 250
-                timeout: 10000
-                text: App.estimatedOnlineUsersDebugText
-                    + (App.dhtCrawlInProgress ? "" : "\n\nClick to recrawl now.")
-            }
-
-            MouseArea {
-                anchors.fill: parent
-                enabled: !App.dhtCrawlInProgress
-                cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
-                onClicked: App.startDhtCrawlNow()
-            }
-        }
-
         // All-time torrent ratio
 
         Item {

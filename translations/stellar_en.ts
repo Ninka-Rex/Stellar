@@ -5529,16 +5529,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/SettingsDialog.qml" line="2664"/>
-        <source>Show estimated online users in status bar</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/SettingsDialog.qml" line="2676"/>
-        <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../app/qml/SettingsDialog.qml" line="2684"/>
         <source>Show ratio in status bar</source>
         <translation></translation>
@@ -6781,26 +6771,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     <message>
         <location filename="../app/qml/StatusBar.qml" line="180"/>
         <source>unlimited</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/StatusBar.qml" line="261"/>
-        <source>DHT off</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/StatusBar.qml" line="264"/>
-        <source> online (low confidence)</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/StatusBar.qml" line="265"/>
-        <source> online</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/StatusBar.qml" line="267"/>
-        <source>Estimating… (%1%)</source>
         <translation></translation>
     </message>
     <message>
