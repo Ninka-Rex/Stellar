@@ -997,10 +997,13 @@ Rectangle {
                     height: parent.height
                     radius: 2
                     color: ColorPalette.accent
+                    // No width Behavior: restore items drain every ~1 ms, far
+                    // faster than any animation duration, so an animated bar
+                    // perpetually chases a stale target and lags ~70% behind
+                    // the actual count. Bind width directly for live state.
                     width: App.restoreTotalCount > 0
                            ? parent.width * (App.restoreDoneCount / App.restoreTotalCount)
                            : 0
-                    Behavior on width { NumberAnimation { duration: 120 } }
                 }
             }
         }
