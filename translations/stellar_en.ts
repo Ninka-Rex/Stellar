@@ -443,7 +443,7 @@
     <message>
         <location filename="../app/qml/BatchDownloadListDialog.qml" line="987"/>
         <location filename="../app/qml/BatchDownloadListDialog.qml" line="1123"/>
-        <source>Browse...</source>
+        <source>Browse…</source>
         <translation></translation>
     </message>
     <message>
@@ -963,7 +963,7 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
     </message>
     <message>
         <location filename="../app/qml/DownloadFileInfoDialog.qml" line="440"/>
-        <source>Browse...</source>
+        <source>Browse…</source>
         <translation></translation>
     </message>
     <message>
@@ -4466,7 +4466,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </message>
     <message>
         <location filename="../app/qml/RssDownloadRulesDialog.qml" line="543"/>
-        <source>Browse...</source>
+        <source>Browse…</source>
         <translation></translation>
     </message>
     <message>

@@ -1696,7 +1696,7 @@ Window {
                                 background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                             }
                             Button {
-                                text: qsTr("Browse."); font.pixelSize: 12 * App.fontScale
+                                text: qsTr("Browse…"); font.pixelSize: 12 * App.fontScale
                                 background: Rectangle { color: ColorPalette.border; radius: 3 }
                                 contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font: parent.font; horizontalAlignment: Text.AlignHCenter }
                                 onClicked: saveFolderDlg.open()
@@ -3038,7 +3038,7 @@ Window {
                             }
 
                             DlgButton {
-                                text: qsTr("Browse.")
+                                text: qsTr("Browse…")
                                 onClicked: ytdlpFileDlg.open()
                             }
                         }
@@ -3115,7 +3115,7 @@ Window {
                             }
 
                             DlgButton {
-                                text: qsTr("Browse.")
+                                text: qsTr("Browse…")
                                 onClicked: jsRuntimeFileDlg.open()
                             }
                         }
