@@ -487,6 +487,11 @@ void DownloadTableModel::onItemProgressChanged() {
         return;
     }
 
+    // Skip per-tick repaint when the window is hidden — no visible delegate to
+    // update, and the queued dataChanged would have to be flushed all at once on
+    // restore. setUiActive(true) repaints the whole table instead.
+    if (!m_uiActive) return;
+
     emit dataChanged(index(visRow, ColProgress), index(visRow, ColTimeLeft));
 }
 
@@ -509,8 +514,31 @@ void DownloadTableModel::flushVolatileSort() {
         [this](DownloadItem *a, DownloadItem *b) {
             return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
         });
+    // Keep the list ordered while hidden, but defer the repaint to setUiActive(true).
+    // m_volatileDirty is intentionally NOT cleared so the pending-repaint state is
+    // implied by activeness, not lost — the sort above already applied the values.
+    if (!m_uiActive) {
+        m_volatileDirty.clear();
+        return;
+    }
     emit dataChanged(index(0, 0), index(m_visible.size() - 1, ColCount - 1));
     m_volatileDirty.clear();
+}
+
+void DownloadTableModel::setUiActive(bool active) {
+    if (m_uiActive == active) return;
+    m_uiActive = active;
+    if (!active || m_visible.isEmpty()) return;
+
+    // Becoming visible again: the visible list was kept sorted while hidden but
+    // no dataChanged was emitted. Re-sort once (volatile values changed under us)
+    // and repaint the whole table in a single pass.
+    std::stable_sort(m_visible.begin(), m_visible.end(),
+        [this](DownloadItem *a, DownloadItem *b) {
+            return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
+        });
+    m_volatileDirty.clear();
+    emit dataChanged(index(0, 0), index(m_visible.size() - 1, ColCount - 1));
 }
 
 int DownloadTableModel::statusSortKey(const QString &status) {

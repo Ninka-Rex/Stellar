@@ -54,7 +54,21 @@ ApplicationWindow {
 
     // Keep the native Windows caption (title bar) in sync with the app theme.
     // Dark caption when dark mode, light caption otherwise.
-    onVisibleChanged: if (visible) App.setWindowDarkTitleBar(root, App.settings.darkMode)
+    onVisibleChanged: {
+        if (visible) App.setWindowDarkTitleBar(root, App.settings.darkMode)
+        _syncTableActive()
+    }
+
+    // Suspend per-tick download-table repaints while the window is hidden
+    // (close-to-tray) or minimized. Without this the dataChanged churn from many
+    // seeding torrents queues up and floods the scene on restore, freezing the
+    // GUI for several seconds. Re-activating repaints the whole table once.
+    function _syncTableActive() {
+        if (App.downloadModel)
+            App.downloadModel.setUiActive(visible && visibility !== Window.Minimized)
+    }
+    onVisibilityChanged: _syncTableActive()
+
     Connections {
         target: App.settings
         ignoreUnknownSignals: true
@@ -2900,6 +2914,7 @@ ApplicationWindow {
 
     Component.onCompleted: {
         loadTips()
+        _syncTableActive()
         App.setWindowDarkTitleBar(root, App.settings.darkMode)
         // When launched by the OS at login, start hidden in the tray instead of
         // showing the main window.  The tray icon is always visible regardless.

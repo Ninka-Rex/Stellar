@@ -65,6 +65,15 @@ public:
 public slots:
     void flushVolatileSort();
 
+    // Suspends per-tick dataChanged emissions when the main window is hidden
+    // (close-to-tray / minimized). While inactive the visible list and filter
+    // membership stay correct, but no high-frequency dataChanged churn is
+    // pushed into the QML scene — that backlog is what froze the GUI for
+    // several seconds on restore when many torrents were seeding. On
+    // reactivation one full re-sort + dataChanged repaints the whole table.
+    void setUiActive(bool active);
+    bool uiActive() const { return m_uiActive; }
+
 private slots:
     void onItemChanged();
     void onItemProgressChanged();
@@ -84,6 +93,7 @@ private:
     bool                  m_sortAscending{true};
     bool                  m_bulkRemoving{false};
     bool                  m_bulkAdding{false};
+    bool                  m_uiActive{true};
     QSet<DownloadItem *>  m_volatileDirty;
     static QString formatSize(qint64 bytes);
     static QString formatSpeed(qint64 bps);
