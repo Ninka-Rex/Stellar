@@ -372,6 +372,8 @@ qt_add_qml_module(Stellar
         app/qml/icons/shield.svg
         app/qml/icons/fire.svg
         app/qml/icons/yin_yang.svg
+        app/qml/icons/connections.svg
+        app/qml/icons/dht_nodes.svg
         app/qml/icons/torrent-categories/all_torrents.svg
         app/qml/icons/torrent-categories/active.svg
         app/qml/icons/torrent-categories/checking.svg

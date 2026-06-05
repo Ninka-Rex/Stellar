@@ -89,6 +89,8 @@ Window {
     property bool   editSpeedInTitleBar:       false
     property bool   editSpeedInStatusBar:      false
     property bool   editRatioInStatusBar:      false
+    property bool   editConnectionsInStatusBar: false
+    property bool   editDhtNodesInStatusBar:    false
     property bool   editShowPublicIpInStatusBar: false
     property bool   editStartDownloadWhileFileInfo: true
     property bool   editShowSwarmMapWhileFetchingMetadata: true
@@ -450,6 +452,8 @@ Window {
         editSpeedInTitleBar       !== App.settings.speedInTitleBar ||
         editSpeedInStatusBar      !== App.settings.speedInStatusBar ||
         editRatioInStatusBar      !== App.settings.ratioInStatusBar ||
+        editConnectionsInStatusBar !== App.settings.connectionsInStatusBar ||
+        editDhtNodesInStatusBar    !== App.settings.dhtNodesInStatusBar ||
         editShowPublicIpInStatusBar !== App.settings.showPublicIpInStatusBar ||
         editLaunchOnStartup       !== App.settings.launchOnStartup ||
         editTorrentStopOnStartup  !== App.settings.torrentStopOnStartup ||
@@ -860,6 +864,8 @@ Window {
         App.settings.speedInTitleBar        = editSpeedInTitleBar
         App.settings.speedInStatusBar       = editSpeedInStatusBar
         App.settings.ratioInStatusBar       = editRatioInStatusBar
+        App.settings.connectionsInStatusBar = editConnectionsInStatusBar
+        App.settings.dhtNodesInStatusBar    = editDhtNodesInStatusBar
         App.settings.showPublicIpInStatusBar = editShowPublicIpInStatusBar
         App.settings.launchOnStartup        = editLaunchOnStartup
         App.settings.torrentStopOnStartup   = editTorrentStopOnStartup
@@ -973,6 +979,8 @@ Window {
         editSpeedInTitleBar       = App.settings.speedInTitleBar
         editSpeedInStatusBar      = App.settings.speedInStatusBar
         editRatioInStatusBar      = App.settings.ratioInStatusBar
+        editConnectionsInStatusBar = App.settings.connectionsInStatusBar
+        editDhtNodesInStatusBar    = App.settings.dhtNodesInStatusBar
         editShowPublicIpInStatusBar = App.settings.showPublicIpInStatusBar
         editLaunchOnStartup       = App.settings.launchOnStartup
         editTorrentStopOnStartup  = App.settings.torrentStopOnStartup
@@ -2746,6 +2754,20 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editRatioInStatusBar
                             onCheckedChanged: root.editRatioInStatusBar = checked
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                        }
+                        StyledCheckBox {
+                            text: qsTr("Show torrent connections in status bar")
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editConnectionsInStatusBar
+                            onCheckedChanged: root.editConnectionsInStatusBar = checked
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                        }
+                        StyledCheckBox {
+                            text: qsTr("Show DHT nodes in status bar")
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editDhtNodesInStatusBar
+                            onCheckedChanged: root.editDhtNodesInStatusBar = checked
                             contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         }
                         StyledCheckBox {

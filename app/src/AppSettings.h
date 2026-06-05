@@ -56,6 +56,8 @@
     X(bool, bool, speedInTitleBar, SpeedInTitleBar, false, "speedInTitleBar", N) \
     X(bool, bool, speedInStatusBar, SpeedInStatusBar, false, "speedInStatusBar", N) \
     X(bool, bool, ratioInStatusBar, RatioInStatusBar, false, "ratioInStatusBar", N) \
+    X(bool, bool, connectionsInStatusBar, ConnectionsInStatusBar, false, "connectionsInStatusBar", N) \
+    X(bool, bool, dhtNodesInStatusBar, DhtNodesInStatusBar, false, "dhtNodesInStatusBar", N) \
     X(bool, bool, showPublicIpInStatusBar, ShowPublicIpInStatusBar, false, "showPublicIpInStatusBar", N) \
     X(bool, bool, showStatusBar, ShowStatusBar, true, "showStatusBar", N) \
     X(bool, bool, toolbarSmallButtons, ToolbarSmallButtons, false, "toolbarSmallButtons", N) \

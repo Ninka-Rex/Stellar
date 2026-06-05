@@ -69,6 +69,7 @@ class AppController : public QObject {
     Q_PROPERTY(qint64  totalUpSpeed       READ totalUpSpeed       NOTIFY totalSpeedChanged)
     Q_PROPERTY(int     seedingCount       READ seedingCount       NOTIFY seedingCountChanged)
     Q_PROPERTY(int     activeSeedingCount READ activeSeedingCount NOTIFY seedingCountChanged)
+    Q_PROPERTY(int     totalConnections   READ totalConnections   NOTIFY totalConnectionsChanged)
     Q_PROPERTY(double  allTimeRatio       READ allTimeRatio       NOTIFY allTimeRatioChanged)
     Q_PROPERTY(QString selectedCategory  READ selectedCategory   WRITE setSelectedCategory NOTIFY selectedCategoryChanged)
     Q_PROPERTY(QString selectedQueue     READ selectedQueue      WRITE setSelectedQueue    NOTIFY selectedQueueChanged)
@@ -135,6 +136,7 @@ class AppController : public QObject {
     Q_PROPERTY(QString publicIp READ publicIp NOTIFY publicIpChanged)
     Q_PROPERTY(int publicIpListenPort READ publicIpListenPort NOTIFY publicIpChanged)
     Q_PROPERTY(bool hasIncomingConnections READ hasIncomingConnections NOTIFY hasIncomingConnectionsChanged)
+    Q_PROPERTY(int dhtNodes READ dhtNodes NOTIFY dhtNodesChanged)
     Q_PROPERTY(NetworkInfo *networkInfo READ networkInfo CONSTANT)
     Q_PROPERTY(bool sessionPaused READ sessionPaused NOTIFY sessionPausedChanged)
 
@@ -157,6 +159,7 @@ public:
     qint64 totalUpSpeed()    const { return m_totalUpSpeed; }
     int    seedingCount()       const { return m_seedingCount; }
     int    activeSeedingCount() const { return m_activeSeedingCount; }
+    int    totalConnections()   const { return m_totalConnections; }
     double allTimeRatio()    const { return m_allTimeRatio; }
     QString selectedCategory() const { return m_selectedCategory; }
     QString selectedQueue() const    { return m_selectedQueue; }
@@ -209,6 +212,7 @@ public:
     QString publicIp() const { return m_torrentSession ? m_torrentSession->detectedExternalAddress() : QString(); }
     int publicIpListenPort() const { return m_torrentSession ? m_torrentSession->listenPort() : 0; }
     bool hasIncomingConnections() const { return m_torrentSession && m_torrentSession->hasIncomingConnection(); }
+    int dhtNodes() const { return m_torrentSession ? m_torrentSession->dhtNodes() : 0; }
     NetworkInfo *networkInfo() const { return m_networkInfo; }
     bool sessionPaused() const { return m_sessionPaused; }
 
@@ -480,6 +484,7 @@ signals:
     void activeDownloadsChanged();
     void totalSpeedChanged();
     void seedingCountChanged();
+    void totalConnectionsChanged();
     void allTimeRatioChanged();
     void fontScaleChanged();
     void selectedCategoryChanged();
@@ -562,6 +567,7 @@ signals:
     void torrentBannedPeersChanged();
     void publicIpChanged();
     void hasIncomingConnectionsChanged();
+    void dhtNodesChanged();
     void torrentCreationProgress(int percent);
     void torrentCreationFinished(bool success, const QString &errorOrPath);
 
@@ -592,6 +598,7 @@ private:
     qint64                  m_totalUpSpeed{0};
     int                     m_seedingCount{0};
     int                     m_activeSeedingCount{0};
+    int                     m_totalConnections{0};
     double                  m_allTimeRatio{0.0};
     QString                 m_lastTrayTooltip;
     // When the user has bound torrents to a specific interface and that

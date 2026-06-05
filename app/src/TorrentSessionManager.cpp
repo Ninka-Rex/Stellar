@@ -512,6 +512,13 @@ TorrentSessionManager::TorrentSessionManager(QObject *parent)
         processAlerts();
         if (m_session) {
             m_session->post_torrent_updates();
+            // Refresh global DHT node count; arrives async as dht_stats_alert.
+            if (m_settings && m_settings->torrentEnableDht()) {
+                m_session->post_dht_stats();
+            } else if (m_dhtNodes != 0) {
+                m_dhtNodes = 0;
+                emit dhtNodesChanged();
+            }
 
             // For magnets waiting on metadata, post_torrent_updates() only
             // fires state_update_alert when the torrent's state actually changes.
@@ -1657,6 +1664,18 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
 
     if (auto *externalIp = libtorrent::alert_cast<libtorrent::external_ip_alert>(alert)) {
         setDetectedExternalAddress(QString::fromStdString(externalIp->external_address.to_string()));
+        return;
+    }
+
+    if (auto *dhtStats = libtorrent::alert_cast<libtorrent::dht_stats_alert>(alert)) {
+        // Total nodes = sum of live nodes across every routing-table bucket.
+        int nodes = 0;
+        for (const auto &bucket : dhtStats->routing_table)
+            nodes += bucket.num_nodes;
+        if (m_dhtNodes != nodes) {
+            m_dhtNodes = nodes;
+            emit dhtNodesChanged();
+        }
         return;
     }
 

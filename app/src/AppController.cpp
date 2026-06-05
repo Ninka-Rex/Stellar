@@ -1320,6 +1320,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             this, &AppController::publicIpChanged);
     connect(m_torrentSession, &TorrentSessionManager::hasIncomingConnectionChanged,
             this, &AppController::hasIncomingConnectionsChanged);
+    connect(m_torrentSession, &TorrentSessionManager::dhtNodesChanged,
+            this, &AppController::dhtNodesChanged);
     refreshIpToCityDbInfo();
 
     // Clean up any orphaned rss_*.torrent temp files left by previous runs
@@ -1388,11 +1390,13 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         qint64 upSpeed   = 0;
         int    seeding       = 0;
         int    activeSeeding = 0;
+        int    connections   = 0;
         for (DownloadItem *item : m_downloadModel->allItems()) {
             downSpeed += item->speed();
             if (item->isTorrent()) {
                 qint64 upSpd = item->torrentUploadSpeed();
                 upSpeed += upSpd;
+                connections += item->torrentConnections();
                 if (item->statusEnum() == DownloadItem::Status::Seeding) {
                     ++seeding;
                     if (upSpd > 0)
@@ -1409,6 +1413,10 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             m_seedingCount       = seeding;
             m_activeSeedingCount = activeSeeding;
             emit seedingCountChanged();
+        }
+        if (m_totalConnections != connections) {
+            m_totalConnections = connections;
+            emit totalConnectionsChanged();
         }
     });
     m_speedTimer->start();

@@ -131,6 +131,15 @@ public:
 #endif
     }
     int listenPort() const;
+    // Global DHT node count from the routing table (session-wide, all torrents).
+    // 0 when DHT disabled or built without libtorrent.
+    int dhtNodes() const {
+#if defined(STELLAR_HAS_LIBTORRENT)
+        return m_dhtNodes;
+#else
+        return 0;
+#endif
+    }
     void setDetectedExternalAddress(const QString &ipAddress);
     void setDetectedExternalAddress(const QString &ipAddress, double latitude, double longitude, bool hasCoordinates);
     QVariantMap geoDatabaseInfo();
@@ -149,6 +158,7 @@ public:
 signals:
     void externalAddressChanged();
     void hasIncomingConnectionChanged();
+    void dhtNodesChanged();
     void torrentBatchUpdated();
     void torrentFinished(const QString &downloadId);
     void torrentErrored(const QString &downloadId, const QString &reason);
@@ -235,6 +245,7 @@ private:
     QHash<QString, BannedPeer> m_bannedPeers;
     QString m_externalAddress;
     bool    m_hasIncomingConnection{false};
+    int     m_dhtNodes{0};
     bool    m_hasIncomingPending{false};
     bool    m_didInspectPeersThisTick{false};
     QString m_localCountryCode;

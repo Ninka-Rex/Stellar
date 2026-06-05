@@ -287,6 +287,66 @@ Rectangle {
             }
         }
 
+        // Total torrent connections
+
+        Item {
+            id: connectionsRow
+            Layout.leftMargin: 12
+            Layout.fillHeight: true
+            visible: App.settings.connectionsInStatusBar
+            implicitWidth: connectionsInner.width
+
+            Row {
+                id: connectionsInner
+                spacing: 4
+                anchors.verticalCenter: parent.verticalCenter
+                StatusIcon { source: "icons/connections.svg" }
+                Text {
+                    text: App.totalConnections
+                    color: connectionsHover.hovered ? ColorPalette.textHeader : ColorPalette.textSecond
+                    font.pixelSize: 11 * App.fontScale
+                }
+            }
+
+            HoverHandler { id: connectionsHover }
+            ThemedToolTip {
+                visible: connectionsHover.hovered
+                delay: 250
+                timeout: 6000
+                text: qsTr("Total torrent peer connections")
+            }
+        }
+
+        // DHT nodes
+
+        Item {
+            id: dhtNodesRow
+            Layout.leftMargin: 12
+            Layout.fillHeight: true
+            visible: App.settings.dhtNodesInStatusBar
+            implicitWidth: dhtNodesInner.width
+
+            Row {
+                id: dhtNodesInner
+                spacing: 4
+                anchors.verticalCenter: parent.verticalCenter
+                StatusIcon { source: "icons/dht_nodes.svg" }
+                Text {
+                    text: App.dhtNodes
+                    color: dhtNodesHover.hovered ? ColorPalette.textHeader : ColorPalette.textSecond
+                    font.pixelSize: 11 * App.fontScale
+                }
+            }
+
+            HoverHandler { id: dhtNodesHover }
+            ThemedToolTip {
+                visible: dhtNodesHover.hovered
+                delay: 250
+                timeout: 6000
+                text: qsTr("DHT nodes")
+            }
+        }
+
         // Public IP / network indicator
 
         Item {

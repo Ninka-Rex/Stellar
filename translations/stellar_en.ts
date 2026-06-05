@@ -5534,6 +5534,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <translation></translation>
     </message>
     <message>
+        <source>Show torrent connections in status bar</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Show DHT nodes in status bar</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/SettingsDialog.qml" line="2691"/>
         <source>Show Public IP in Status Bar</source>
         <translation></translation>
@@ -6782,6 +6790,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <location filename="../app/qml/StatusBar.qml" line="314"/>
         <source>All-time share ratio
 Click to open Statistics</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Total torrent peer connections</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>DHT nodes</source>
         <translation></translation>
     </message>
     <message>
