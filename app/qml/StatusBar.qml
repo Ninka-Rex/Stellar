@@ -201,7 +201,7 @@ Rectangle {
             visible: App.checkingForUpdates
             spacing: 4
             Layout.alignment: Qt.AlignVCenter
-            StatusIcon { source: "icons/update.svg" }
+            StatusIcon { source: "icons/checking_for_updates.svg" }
             Text {
                 text: qsTr("Checking for updates")
                 color: ColorPalette.textSecond
@@ -210,12 +210,19 @@ Rectangle {
         }
 
         // Raw status texts from C++
-        Text {
+        Row {
             visible: App.updateStatusText && App.updateStatusText.length > 0 && !App.checkingForUpdates
-            text: App.updateStatusText
-            color: ColorPalette.textSecond
-            font.pixelSize: 11 * App.fontScale
+            spacing: 4
             Layout.alignment: Qt.AlignVCenter
+            StatusIcon {
+                source: "icons/update_available.svg"
+            }
+            Text {
+                text: App.updateStatusText
+                color: ColorPalette.textSecond
+                font.pixelSize: 11 * App.fontScale
+                anchors.verticalCenter: parent.verticalCenter
+            }
         }
 
         Row {

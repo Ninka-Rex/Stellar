@@ -259,6 +259,17 @@
         <source>Bound to %1 (offline - torrents paused)</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="5273"/>
+        <location filename="../app/src/AppController.cpp" line="5290"/>
+        <source>Update available! (%1)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="5302"/>
+        <source>Checking for updates</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>BatchDownloadDialog</name>

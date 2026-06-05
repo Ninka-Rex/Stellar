@@ -663,6 +663,10 @@ private:
     void pruneRecentErrorDownloads();
     void setCheckingForUpdates(bool checking);
     void finishUpdateCheckUi(const std::function<void()> &finishWork);
+    // Sets m_updateStatusText to the "update available" line when an update is
+    // known and auto-check is on, otherwise clears it. Used by every terminal
+    // branch of checkForUpdates() that settles the status bar after the spinner.
+    void settleUpdateStatusText();
     void setTorrentPortTestState(bool inProgress, const QString &status, const QString &message);
     void cacheIpToCityDbUpdateUrl(const QVariantMap &map);
     void cacheFfmpegUpdateMetadata(const QVariantMap &map);

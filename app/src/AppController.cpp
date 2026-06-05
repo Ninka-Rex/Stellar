@@ -5270,7 +5270,7 @@ void AppController::applyUpdateMetadata(const QVariantMap &map, bool manual) {
 
     const bool shouldShowPassiveUi = m_settings->autoCheckUpdates() || manual;
     if (shouldShowPassiveUi) {
-        m_updateStatusText = QStringLiteral("🎊 Update available! (%1)").arg(m_updateVersion);
+        m_updateStatusText = tr("Update available! (%1)").arg(m_updateVersion);
         emit updateStatusTextChanged();
     } else if (!m_updateStatusText.isEmpty()) {
         m_updateStatusText.clear();
@@ -5283,13 +5283,23 @@ void AppController::applyUpdateMetadata(const QVariantMap &map, bool manual) {
         emit updateDialogRequested();
 }
 
+void AppController::settleUpdateStatusText() {
+    if (!m_settings->autoCheckUpdates())
+        m_updateStatusText.clear();
+    else if (m_updateAvailable)
+        m_updateStatusText = tr("Update available! (%1)").arg(m_updateVersion);
+    else
+        m_updateStatusText.clear();
+    emit updateStatusTextChanged();
+}
+
 void AppController::checkForUpdates(bool manual) {
     if (m_checkingForUpdates)
         return;
 
     m_updateCheckManual = manual;
     m_updateCheckStartedAt = QDateTime::currentDateTime();
-    m_updateStatusText = QStringLiteral("📡 Checking for updates");
+    m_updateStatusText = tr("Checking for updates");
     emit updateStatusTextChanged();
     setCheckingForUpdates(true);
 
@@ -5302,29 +5312,13 @@ void AppController::checkForUpdates(bool manual) {
         reply->deleteLater();
 
         if (!networkError.isEmpty()) {
-            finishUpdateCheckUi([this]() {
-                if (!m_settings->autoCheckUpdates())
-                    m_updateStatusText.clear();
-                else if (m_updateAvailable)
-                    m_updateStatusText = QStringLiteral("🎊 Update available! (%1)").arg(m_updateVersion);
-                else
-                    m_updateStatusText.clear();
-                emit updateStatusTextChanged();
-            });
+            finishUpdateCheckUi([this]() { settleUpdateStatusText(); });
             return;
         }
 
         const QJsonDocument doc = QJsonDocument::fromJson(payload);
         if (!doc.isObject()) {
-            finishUpdateCheckUi([this]() {
-                if (!m_settings->autoCheckUpdates())
-                    m_updateStatusText.clear();
-                else if (m_updateAvailable)
-                    m_updateStatusText = QStringLiteral("🎊 Update available! (%1)").arg(m_updateVersion);
-                else
-                    m_updateStatusText.clear();
-                emit updateStatusTextChanged();
-            });
+            finishUpdateCheckUi([this]() { settleUpdateStatusText(); });
             return;
         }
 
@@ -5370,15 +5364,7 @@ void AppController::checkForUpdates(bool manual) {
             metadata[QStringLiteral("changelog")] = changelogText;
             m_updateChangelog = metadata.value(QStringLiteral("changelog")).toString();
             applyUpdateMetadata(metadata, manual);
-            finishUpdateCheckUi([this]() {
-                if (!m_settings->autoCheckUpdates())
-                    m_updateStatusText.clear();
-                else if (m_updateAvailable)
-                    m_updateStatusText = QStringLiteral("🎊 Update available! (%1)").arg(m_updateVersion);
-                else
-                    m_updateStatusText.clear();
-                emit updateStatusTextChanged();
-            });
+            finishUpdateCheckUi([this]() { settleUpdateStatusText(); });
         });
     });
 }
