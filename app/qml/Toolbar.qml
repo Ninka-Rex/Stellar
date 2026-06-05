@@ -189,8 +189,8 @@ Rectangle {
     // Dynamic enabled state for ToolbarBtn items
     function _btnEnabled(key) {
         switch (key) {
-            case "resume":    return downloadTable ? (downloadTable.selectedItemStatus === "Paused" || downloadTable.selectedItemStatus === "Error") : false
-            case "stop":      return downloadTable ? (downloadTable.selectedItemStatus === "Downloading" || downloadTable.selectedItemStatus === "Queued" || downloadTable.selectedItemStatus === "Seeding") : false
+            case "resume":    return downloadTable ? (downloadTable.anyPausedSelected || downloadTable.anyErrorSelected) : false
+            case "stop":      return downloadTable ? downloadTable.anyStoppableSelected : false
             case "stop_all":  return App.canPauseAll
             case "delete":    return downloadTable ? downloadTable.hasSelection : false
             default:          return true

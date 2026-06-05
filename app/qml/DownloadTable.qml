@@ -114,6 +114,26 @@ Rectangle {
         }
         return false
     }
+    // Stop is valid for any non-terminal, non-paused item. Includes Queued,
+    // Checking, Assembling and Error so a stuck/errored download or torrent can
+    // still be stopped — the previous gate only allowed Downloading/Queued/
+    // Seeding, leaving Error/Checking items un-stoppable (greyed-out Stop).
+    readonly property bool anyStoppableSelected: {
+        _selectionVersion
+        for (var row in _selectedRows) {
+            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+            if (item && item.status !== "Completed" && item.status !== "Paused") return true
+        }
+        return false
+    }
+    readonly property bool anyErrorSelected: {
+        _selectionVersion
+        for (var row in _selectedRows) {
+            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+            if (item && item.status === "Error") return true
+        }
+        return false
+    }
 
     function anySelectedHasStatus(status) {
         if (status === "Paused")                             return anyPausedSelected

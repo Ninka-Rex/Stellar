@@ -178,16 +178,23 @@ void DownloadQueue::enqueueRestored(DownloadItem *item) {
 
 void DownloadQueue::pause(const QString &id) {
     for (auto *item : m_items) {
-        if (item->id() == id && (item->status() == QStringLiteral("Downloading")
-                                 || item->status() == QStringLiteral("Queued"))) {
-            auto *worker = m_workers.value(id, nullptr);
-            if (worker) {
-                worker->pause(); // worker sets status to Paused
-            } else {
-                item->setStatus(DownloadItem::Status::Paused);
-            }
+        if (item->id() != id)
+            continue;
+        // Stop is valid for any non-terminal, non-paused state. Besides the
+        // active Downloading/Queued states this must also cover Error,
+        // Checking and Assembling so a stuck or errored download can be
+        // stopped (moved to Paused) and then resumed/retried. Completed and
+        // already-Paused items are left untouched.
+        const QString st = item->status();
+        if (st == QStringLiteral("Completed") || st == QStringLiteral("Paused"))
             break;
+        auto *worker = m_workers.value(id, nullptr);
+        if (worker) {
+            worker->pause(); // worker sets status to Paused
+        } else {
+            item->setStatus(DownloadItem::Status::Paused);
         }
+        break;
     }
 }
 
