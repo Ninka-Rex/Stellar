@@ -75,7 +75,12 @@ Rectangle {
                         verticalCenter: parent.verticalCenter
                         left: parent.left
                         leftMargin: modelData.key === "queue" ? 0 : 6
-                        right: modelData.key === "queue" ? parent.right : sortIndicator.left
+                        // Only reserve room for the sort arrow on the active column.
+                        // sortIndicator is anchored even while invisible, so anchoring
+                        // the label to its left edge on every column stole ~13px and
+                        // elided headers like "Down Speed" prematurely.
+                        right: modelData.key === "queue" ? parent.right
+                             : (headerCell.isActive ? sortIndicator.left : resizeHandle.left)
                         rightMargin: modelData.key === "queue" ? resizeHandle.width : 2
                     }
                     text: modelData.title
