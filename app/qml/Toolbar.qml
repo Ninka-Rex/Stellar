@@ -44,14 +44,10 @@ Rectangle {
         font.pixelSize: 11 * App.fontScale
     }
 
-    // Off-screen measurer: returns the natural (unwrapped) pixel width of a string
-    // so we can tell whether it would wrap to a second line at _labelWidth.
-    TextMetrics {
-        id: _labelMeasure
-        font.pixelSize: 11 * App.fontScale
-    }
-
     // True if any currently-visible label is wider than one button -> needs 2 lines.
+    // Use FontMetrics.advanceWidth(string) (a pure function) instead of mutating a
+    // shared TextMetrics inside the binding — the latter writes a property it also
+    // reads, which Qt flags as a binding loop.
     readonly property bool _anyTwoLine: {
         var defs = root._visibleDefs
         if (!defs)
@@ -60,8 +56,7 @@ Rectangle {
             var d = defs[i]
             if (!d || d.key === "separator" || !d.label)
                 continue
-            _labelMeasure.text = d.label
-            if (_labelMeasure.advanceWidth > root._labelWidth)
+            if (_labelFM.advanceWidth(d.label) > root._labelWidth)
                 return true
         }
         return false
