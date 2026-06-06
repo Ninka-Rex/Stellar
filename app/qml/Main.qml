@@ -2537,19 +2537,21 @@ ApplicationWindow {
             Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
             ScrollView {
+                id: updateChangelogScroll
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 clip: true
+                contentWidth: availableWidth
 
                 Text {
-                    width: parent.width
+                    width: updateChangelogScroll.availableWidth
                     text: App.updateChangelog && App.updateChangelog.length > 0
                         ? App.updateChangelog
                         : "No changelog is available for this update."
                     color: "#cfcfcf"
                     font.pixelSize: 12 * App.fontScale
                     wrapMode: Text.WordWrap
-                    textFormat: Text.PlainText
+                    textFormat: Text.MarkdownText
                 }
             }
 
@@ -2621,19 +2623,21 @@ ApplicationWindow {
             Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
             ScrollView {
+                id: whatsNewScroll
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 clip: true
+                contentWidth: availableWidth
 
                 Text {
-                    width: parent.width
+                    width: whatsNewScroll.availableWidth
                     text: App.updateChangelog && App.updateChangelog.length > 0
                         ? App.updateChangelog
                         : "No changelog is available."
                     color: "#cfcfcf"
                     font.pixelSize: 12 * App.fontScale
                     wrapMode: Text.WordWrap
-                    textFormat: Text.PlainText
+                    textFormat: Text.MarkdownText
                 }
             }
 
