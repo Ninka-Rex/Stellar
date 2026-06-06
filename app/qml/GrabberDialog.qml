@@ -792,15 +792,26 @@ Window {
                     TextMetrics { id: stepListProbe; font.pixelSize: 13 * App.fontScale; font.bold: true }
                     QtObject {
                         id: stepListMetrics
-                        property real maxWidth: {
+                        // Plain (non-binding) property: maxWidth must NOT be a
+                        // reactive binding, because measuring requires mutating
+                        // the shared stepListProbe.text, and a binding that writes
+                        // to an object it also reads forms a binding loop (Qt warns
+                        // "Binding loop detected for property maxWidth"). Instead we
+                        // recompute imperatively whenever the only input — the font
+                        // scale — changes, and on first construction.
+                        property real maxWidth: 0
+                        function recompute() {
                             var m = 0
                             for (var i = 0; i < stepTitles.length; ++i) {
                                 stepListProbe.text = (i + 1) + ". " + stepTitles[i]
                                 if (stepListProbe.width > m)
                                     m = stepListProbe.width
                             }
-                            return m
+                            maxWidth = m
                         }
+                        Component.onCompleted: recompute()
+                        property real _fontScale: App.fontScale
+                        on_FontScaleChanged: recompute()
                     }
 
                     Column {

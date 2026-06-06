@@ -360,7 +360,10 @@ Rectangle {
         }
         background: Rectangle {
             implicitHeight: 22
-            color: _ctxMi.highlighted ? ColorPalette.selectionBg : "transparent"
+            // Opaque (never "transparent"): the software scene graph may not
+            // composite the Menu's own background node, so transparent rows show
+            // the window through. See ColorPalette.menuBg.
+            color: _ctxMi.highlighted ? ColorPalette.selectionBg : ColorPalette.menuBg
         }
     }
 
@@ -821,7 +824,8 @@ Rectangle {
         }
         background: Rectangle {
             implicitHeight: 22
-            color: _colChkMi.highlighted ? ColorPalette.selectionBg : "transparent"
+            // Opaque (never "transparent") for the software scene graph. See menuBg.
+            color: _colChkMi.highlighted ? ColorPalette.selectionBg : ColorPalette.menuBg
         }
     }
 
