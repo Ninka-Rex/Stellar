@@ -93,8 +93,10 @@ Source: "{#BuildDir}\data\dbip-city-lite-*.mmdb"; DestDir: "{app}\data"; Flags: 
 ; Third-party license notices (required for LGPL/GPL compliance — FFmpeg, Qt, SQLite)
 Source: "..\..\THIRD-PARTY-NOTICES.txt";         DestDir: "{app}";                      Flags: ignoreversion
 
-; Visual C++ Redistributable (windeployqt copies this)
-Source: "{#BuildDir}\vc_redist.x64.exe";        DestDir: "{tmp}";                       Flags: deleteafterinstall skipifsourcedoesntexist
+; NOTE: No vc_redist.x64.exe — the MSVC runtime DLLs (vcruntime140.dll,
+; vcruntime140_1.dll, msvcp140.dll) are shipped loose via the *.dll glob above,
+; copied by `windeployqt --compiler-runtime`. The app is fully self-contained and
+; never installs a system-wide VC++ redistributable.
 
 ; yt-dlp binary — bundled by release.ps1 (downloaded from github.com/yt-dlp/yt-dlp).
 ; skipifsourcedoesntexist allows the installer to build without it; the app will
@@ -127,10 +129,6 @@ Root: HKCU; Subkey: "Software\Mozilla\NativeMessagingHosts\com.stellar.downloadm
   Tasks: firefoxext; Flags: uninsdeletekey
 
 [Run]
-; Install VC++ Redistributable silently if present
-Filename: "{tmp}\vc_redist.x64.exe"; Parameters: "/install /quiet /norestart"; \
-  Flags: skipifdoesntexist runhidden waituntilterminated; \
-  StatusMsg: "Installing Visual C++ Redistributable..."
 Filename: "{app}\{#AppExeName}"; Description: "Launch {#AppName}"; Flags: nowait postinstall skipifsilent
 
 [UninstallRun]

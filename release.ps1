@@ -187,6 +187,40 @@ if (-not $SkipBuild) {
         "$BuildDir\Stellar.exe"
     if ($LASTEXITCODE -ne 0) { Write-Error "windeployqt failed" }
 
+    # windeployqt --release ships vc_redist.x64.exe (an installer) rather than loose
+    # DLLs, which would force a system-wide VC++ install on every update. Instead we
+    # copy the Microsoft-signed CRT DLLs (vcruntime140.dll, vcruntime140_1.dll,
+    # msvcp140.dll) straight from the VS redist tree so the app is fully
+    # self-contained and never mutates the host system. The installer ships these
+    # via its *.dll glob.
+    if (Test-Path "$BuildDir\vc_redist.x64.exe") {
+        Remove-Item -LiteralPath "$BuildDir\vc_redist.x64.exe" -Force
+    }
+
+    if ([string]::IsNullOrWhiteSpace($env:VCToolsRedistDir)) {
+        Write-Error "VCToolsRedistDir not set. Run release.ps1 from a Visual Studio Developer PowerShell so the MSVC CRT DLLs can be located."
+    }
+    $crtDir = Join-Path $env:VCToolsRedistDir "x64\Microsoft.VC143.CRT"
+    if (-not (Test-Path $crtDir)) {
+        # Tools version in the path (VC143) tracks the MSVC major; fall back to a glob
+        # so a future toolset bump doesn't silently break the copy.
+        $crtDir = Get-ChildItem (Join-Path $env:VCToolsRedistDir "x64") -Directory `
+            -Filter "Microsoft.VC*.CRT" | Select-Object -First 1 -ExpandProperty FullName
+    }
+    if (-not $crtDir -or -not (Test-Path $crtDir)) {
+        Write-Error "Could not locate Microsoft.VC*.CRT redist folder under $env:VCToolsRedistDir."
+    }
+
+    $crtDlls = @("vcruntime140.dll", "vcruntime140_1.dll", "msvcp140.dll")
+    foreach ($dll in $crtDlls) {
+        $src = Join-Path $crtDir $dll
+        if (-not (Test-Path $src)) {
+            Write-Error "Expected MSVC runtime '$dll' not found in $crtDir. App would not start without a system VC++ redist."
+        }
+        Copy-Item -LiteralPath $src -Destination "$BuildDir\$dll" -Force
+    }
+    Write-Host "[release] Copied Microsoft-signed CRT DLLs ($($crtDlls -join ', ')) from $crtDir." -ForegroundColor Green
+
     # QtQuick.Dialogs workaround (same as CMakeLists auto-copy)
     $dialogsSrc = "$QtDir\qml\QtQuick\Dialogs"
     $dialogsDst = "$BuildDir\qml\QtQuick\Dialogs"
