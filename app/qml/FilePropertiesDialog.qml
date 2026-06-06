@@ -2813,6 +2813,7 @@ Window {
                                     // checkbox (22), icon (16) + gap (4), outer margins (6+8).
                                     Text {
                                         width: root.fileColName - Math.max(0, fd.depth) * 14 - 16 - 22 - 16
+                                        rightPadding: 8
                                         anchors.verticalCenter: parent.verticalCenter
                                         text: safeStr(fd.name)
                                         color: !fd.wanted ? ColorPalette.textDisabled : (fd.isFolder ? ColorPalette.textPrimary : ColorPalette.textPrimary)
@@ -2836,7 +2837,7 @@ Window {
                                         Rectangle {
                                             anchors {
                                                 left: progPctLbl.right; leftMargin: 4
-                                                right: parent.right; rightMargin: 6
+                                                right: parent.right; rightMargin: 12
                                                 verticalCenter: parent.verticalCenter
                                             }
                                             height: 4; radius: 2
