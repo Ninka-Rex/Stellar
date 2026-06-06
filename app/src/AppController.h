@@ -612,6 +612,12 @@ private:
     // route. This flag tracks whether the suspension was caused by that
     // mechanism (vs. user-driven), so we only unsuspend what we suspended.
     bool                    m_torrentSessionSuspendedForBind{false};
+    // Consecutive bind-interface "unavailable" checks. A VPN adapter can flap
+    // its IsUp/IsRunning flag or briefly drop its IPv4 entry during keepalive/
+    // rekey, so a single transient reading must not pause the whole session
+    // (that drops all peers → speed sawtooth). We only suspend after the
+    // interface stays unavailable for kBindSuspendGraceTicks consecutive checks.
+    int                     m_torrentBindUnavailableTicks{0};
     QLocalServer           *m_ipcServer{nullptr};
     bool                    m_qmlReady{false};
     QList<QByteArray>       m_pendingIpcPayloads; // buffered until QML is ready

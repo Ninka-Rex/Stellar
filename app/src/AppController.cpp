@@ -2530,7 +2530,21 @@ void AppController::reconcileTorrentBindState() {
     const QString target = m_settings->torrentBindInterface().trimmed();
     const bool wantBind = !target.isEmpty();
     const bool available = wantBind ? m_torrentSession->isBindInterfaceAvailable(target) : true;
-    const bool shouldSuspend = wantBind && !available;
+
+    // Debounce transient "unavailable" readings. This check runs every 5s (driven
+    // by the tray-tooltip timer); VPN adapters routinely flap their interface
+    // flags / IPv4 entry for a tick during keepalive/rekey. Pausing the session on
+    // a single false reading drops all peers and produces a speed sawtooth. Only
+    // suspend after the interface stays unavailable across several consecutive
+    // checks; recover immediately when it returns.
+    static constexpr int kBindSuspendGraceTicks = 3; // ~15s at the 5s cadence
+    if (wantBind && !available)
+        ++m_torrentBindUnavailableTicks;
+    else
+        m_torrentBindUnavailableTicks = 0;
+
+    const bool shouldSuspend =
+        wantBind && !available && m_torrentBindUnavailableTicks >= kBindSuspendGraceTicks;
 
     if (shouldSuspend && !m_torrentSessionSuspendedForBind) {
         // Suspend FIRST so no peer/tracker/DHT traffic can leak in the window
