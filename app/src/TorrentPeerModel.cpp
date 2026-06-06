@@ -23,7 +23,13 @@
 #include <algorithm>
 
 TorrentPeerModel::TorrentPeerModel(QObject *parent)
-    : QAbstractListModel(parent) {}
+    : QAbstractListModel(parent) {
+    // The swarm-map peer count binds to the `count` property; row signals from
+    // every insert/remove/reset path funnel into countChanged so it stays live.
+    connect(this, &QAbstractItemModel::rowsInserted, this, &TorrentPeerModel::countChanged);
+    connect(this, &QAbstractItemModel::rowsRemoved, this, &TorrentPeerModel::countChanged);
+    connect(this, &QAbstractItemModel::modelReset, this, &TorrentPeerModel::countChanged);
+}
 
 namespace {
 constexpr int kPeerRemovalGraceTicks = 3;

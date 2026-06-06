@@ -32,6 +32,7 @@ class TorrentPeerModel : public QAbstractListModel {
     Q_PROPERTY(QString localRegionName READ localRegionName NOTIFY localLocationChanged)
     Q_PROPERTY(QString localCityName READ localCityName NOTIFY localLocationChanged)
     Q_PROPERTY(QString localClientName READ localClientName NOTIFY localLocationChanged)
+    Q_PROPERTY(int count READ count NOTIFY countChanged)
 public:
     enum Roles {
         EndpointRole = Qt::UserRole + 1,
@@ -80,6 +81,7 @@ public:
     explicit TorrentPeerModel(QObject *parent = nullptr);
 
     int rowCount(const QModelIndex &parent = {}) const override;
+    int count() const { return rowCount(); }
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
     bool hasLocalLocation() const { return m_hasLocalLocation; }
@@ -111,6 +113,7 @@ public:
 
 signals:
     void localLocationChanged();
+    void countChanged();
     // Emitted around live-update reorders (not user-initiated sorts) so QML
     // can save/restore contentY and prevent the ListView jumping to the top.
     void liveReorderAboutToHappen();

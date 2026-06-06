@@ -4083,7 +4083,7 @@ Window {
 
                                 Text {
                                     text: root.activePeerMapModel
-                                        ? qsTr("%1 known peers").arg(root.activePeerMapModel.rowCount())
+                                        ? qsTr("%1 known peers").arg(root.activePeerMapModel.count)
                                         : qsTr("0 known peers")
                                     color: ColorPalette.textPrimary
                                     font.pixelSize: 11 * App.fontScale
