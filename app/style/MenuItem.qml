@@ -1,6 +1,9 @@
-// Copyright (C) 2017 The Qt Company Ltd.
-// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only
-// Modified for Stellar: reduced item height and padding for a compact menu.
+// Stellar custom Controls style — MenuItem.
+//
+// Based on Qt's Material MenuItem (Copyright (C) 2017 The Qt Company Ltd.,
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR LGPL-3.0-only OR
+// GPL-2.0-only OR GPL-3.0-only), with reduced item height/padding for a
+// compact menu. Part of the "Stellar" custom style (FallbackStyle=Material).
 
 import QtQuick
 import QtQuick.Templates as T
@@ -60,20 +63,22 @@ T.MenuItem {
         color: control.enabled ? control.Material.foreground : control.Material.hintTextColor
     }
 
+    // Each row paints an OPAQUE background (the menu's dialog colour when not
+    // highlighted, the highlight colour when it is). This is deliberate: under
+    // the Qt Quick software scene graph — our forced backend on machines without
+    // usable hardware OpenGL (VirtualBox/SVGA3D, where GLX has no FBConfig) — the
+    // Menu's own background Rectangle does not composite, so a menu whose rows are
+    // "transparent" shows the window straight through. Making every row opaque
+    // means the stacked rows themselves form the solid menu panel regardless of
+    // whether the popup background node paints. On a hardware backend it looks
+    // identical (the rows simply match the dialog colour behind them).
+    //
+    // Ripple is intentionally omitted: it is a ShaderEffect, which the software
+    // adaptation ignores entirely, and it added nothing on the hardware path here.
     background: Rectangle {
         implicitWidth: 200
         implicitHeight: 24
-        color: control.highlighted ? control.Material.listHighlightColor : "transparent"
-
-        Ripple {
-            width: parent.width
-            height: parent.height
-
-            clip: visible
-            pressed: control.pressed
-            anchor: control
-            active: control.down || control.highlighted
-            color: control.Material.rippleColor
-        }
+        color: control.highlighted ? control.Material.listHighlightColor
+                                    : control.Material.dialogColor
     }
 }

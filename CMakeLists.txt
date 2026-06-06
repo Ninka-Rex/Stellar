@@ -396,6 +396,59 @@ qt_add_resources(Stellar "flags"
     FILES ${STELLAR_FLAG_FILES}
 )
 
+# ── Custom Qt Quick Controls style ───────────────────────────────────────────
+# "Stellar" is a custom Controls style with FallbackStyle=Material (set in
+# qtquickcontrols2.conf): every control falls through to Material except the few
+# we override here. Selected at runtime by name, so the override QML files must
+# be importable as the module "Stellar" — that is exactly what qt_add_qml_module
+# gives us (files land at qrc:/qt/qml/Stellar/, which is on the default QML
+# import path). This is the supported Qt 6 mechanism and, crucially, compiles the
+# overrides INTO the binary — replacing the old app/style-overrides/ tree, which
+# used the obsolete Qt 5 filesystem layout, was never registered in CMake or on
+# any import path, and therefore never loaded.
+# NOTE: do NOT set OUTPUT_DIRECTORY to a path ending in "Stellar" — on Linux the
+# executable is also named "Stellar" and lives in the same binary dir, so a
+# "Stellar/" subdir collides with the output binary ("ld: cannot open output
+# file Stellar: Is a directory"). The default output dir is fine; the only cost
+# is a harmless qmllint target-path warning at configure time.
+# A custom Qt Quick Controls style is resolved purely from QML files + a qmldir;
+# it registers no C++ types and needs no plugin. qt_add_qml_module insists on
+# emitting a `plugin`/`classname`/`linktarget` qmldir even with NO_PLUGIN on
+# Qt 6.8, and the engine then tries to dlopen a plugin .so that does not exist
+# for a statically embedded style — the import fails ("resolvePlugin ... file
+# does not exist", "Stellar version invalid") and every control silently falls
+# back to Material. That is precisely why the overridden Menu was never used and
+# menus stayed transparent under the software backend.
+#
+# So we author a minimal, plugin-less qmldir by hand and embed it together with
+# the style QML files under the resource prefix /qt/qml/Stellar — exactly where
+# the engine looks for the import named "Stellar" (qrc:/qt/qml is on the default
+# import path). No plugin, no dlopen, nothing to fail.
+set(STELLAR_STYLE_QMLDIR "${CMAKE_CURRENT_BINARY_DIR}/stellar-style-qmldir")
+file(WRITE "${STELLAR_STYLE_QMLDIR}"
+"module Stellar\n"
+"Menu 1.0 Menu.qml\n"
+"MenuItem 1.0 MenuItem.qml\n"
+"MenuSeparator 1.0 MenuSeparator.qml\n")
+# Embed the qmldir as ".../Stellar/qmldir" (the generated file has a different
+# name on disk, so alias it) and the two style QML files alongside it.
+set_source_files_properties("${STELLAR_STYLE_QMLDIR}" PROPERTIES
+    QT_RESOURCE_ALIAS "qmldir")
+set_source_files_properties("${CMAKE_CURRENT_SOURCE_DIR}/app/style/Menu.qml" PROPERTIES
+    QT_RESOURCE_ALIAS "Menu.qml")
+set_source_files_properties("${CMAKE_CURRENT_SOURCE_DIR}/app/style/MenuItem.qml" PROPERTIES
+    QT_RESOURCE_ALIAS "MenuItem.qml")
+set_source_files_properties("${CMAKE_CURRENT_SOURCE_DIR}/app/style/MenuSeparator.qml" PROPERTIES
+    QT_RESOURCE_ALIAS "MenuSeparator.qml")
+qt_add_resources(Stellar "stellar_style"
+    PREFIX "/qt/qml/Stellar"
+    FILES
+        "${STELLAR_STYLE_QMLDIR}"
+        "${CMAKE_CURRENT_SOURCE_DIR}/app/style/Menu.qml"
+        "${CMAKE_CURRENT_SOURCE_DIR}/app/style/MenuItem.qml"
+        "${CMAKE_CURRENT_SOURCE_DIR}/app/style/MenuSeparator.qml"
+)
+
 
 # ── Translations ───────────────────────────────────────────────────────────────
 # Run lupdate manually to regenerate .ts files after adding new qsTr() strings:
