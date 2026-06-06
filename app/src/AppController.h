@@ -228,6 +228,11 @@ public:
     // Called when the user toggles dark/light so all open dialogs update.
     Q_INVOKABLE void applyDarkTitleBarToAllWindows(bool dark);
 
+    // Windows taskbar button progress (IDM-style). `progress` is 0.0–1.0.
+    // `state`: 0 = no progress, 1 = normal (green), 2 = paused (yellow),
+    // 3 = error (red), 4 = indeterminate. No-op on non-Windows.
+    Q_INVOKABLE void setWindowTaskbarProgress(QObject *window, qreal progress, int state);
+
     // Dispatch a raw IPC JSON payload (same object the IPC socket receives).
     // If QML is not yet ready the payload is buffered and replayed on setQmlReady().
     void handleIpcPayload(const QByteArray &json);

@@ -18,6 +18,7 @@
 #ifdef Q_OS_WIN
 #include <windows.h>
 #include <dwmapi.h>
+#include <shobjidl.h>
 #endif
 #include <QGuiApplication>
 #include <QWindow>
@@ -859,6 +860,53 @@ void AppController::applyDarkTitleBarToAllWindows(bool dark) {
         applyDarkCaption(w, dark);
 #else
     Q_UNUSED(dark)
+#endif
+}
+
+void AppController::setWindowTaskbarProgress(QObject *window, qreal progress, int state) {
+#ifdef Q_OS_WIN
+    auto *qw = qobject_cast<QWindow *>(window);
+    if (!qw) return;
+    HWND hwnd = reinterpret_cast<HWND>(qw->winId());
+    if (!hwnd) return;
+
+    // ITaskbarList3 is created once per process (the taskbar button service).
+    // CoInitialize is already performed for the GUI thread elsewhere (file-icon
+    // provider / shell drag-drop), but call it defensively — S_FALSE/RPC_E_*
+    // just means it was already initialised, which is fine.
+    static ITaskbarList3 *s_taskbar = nullptr;
+    static bool s_tried = false;
+    if (!s_taskbar && !s_tried) {
+        s_tried = true;
+        CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
+        ITaskbarList3 *tb = nullptr;
+        if (SUCCEEDED(CoCreateInstance(CLSID_TaskbarList, nullptr, CLSCTX_INPROC_SERVER,
+                                       IID_PPV_ARGS(&tb)))) {
+            if (SUCCEEDED(tb->HrInit()))
+                s_taskbar = tb;
+            else
+                tb->Release();
+        }
+    }
+    if (!s_taskbar) return;
+
+    TBPFLAG flag;
+    switch (state) {
+        case 1:  flag = TBPF_NORMAL; break;
+        case 2:  flag = TBPF_PAUSED; break;
+        case 3:  flag = TBPF_ERROR; break;
+        case 4:  flag = TBPF_INDETERMINATE; break;
+        default: flag = TBPF_NOPROGRESS; break;
+    }
+    s_taskbar->SetProgressState(hwnd, flag);
+    if (flag != TBPF_NOPROGRESS && flag != TBPF_INDETERMINATE) {
+        ULONGLONG val = static_cast<ULONGLONG>(qBound(0.0, progress, 1.0) * 1000.0);
+        s_taskbar->SetProgressValue(hwnd, val, 1000);
+    }
+#else
+    Q_UNUSED(window)
+    Q_UNUSED(progress)
+    Q_UNUSED(state)
 #endif
 }
 

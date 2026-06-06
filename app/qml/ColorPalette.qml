@@ -63,6 +63,9 @@ QtObject {
 
     // Warning / caution text (amber). Darker in light mode for legibility.
     readonly property color warningText: dark ? "#e8c840" : "#9a6a00"
+    // Speed-limit / throttle accent. Cleaner orange in light mode (warningText
+    // reads too brown for inline "(Limited …)" labels).
+    readonly property color speedLimitText: dark ? "#e8a34a" : "#c2591b"
 
     // Material theme integer (2=Dark, 1=Light) - avoids importing Material in non-Window files
     readonly property int materialTheme: dark ? 2 : 1

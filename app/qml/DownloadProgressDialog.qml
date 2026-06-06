@@ -23,6 +23,10 @@ import QtQuick.Layouts
 Window {
     id: root
 
+    // Detach from the main window so Windows gives each progress dialog its own
+    // taskbar button (IDM-style), instead of treating it as a transient child.
+    transientParent: null
+
     flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.WindowMinimizeButtonHint
 
     signal minimizedToTray(string downloadId)
@@ -39,9 +43,14 @@ Window {
     property int    segmentRowLimit: Math.max(1, App.settings ? App.settings.perHostConnectionLimit : 8)
 
     width: 620
-    height: 500
     minimumWidth: 440
-    minimumHeight: 240
+    // Height is content-driven: window wraps the active layout exactly, so the
+    // segment table never leaves empty space and tabs are never clipped.
+    // Keep min/max loose so Qt doesn't fight transient mismatches while the
+    // implicit height changes (was causing setGeometry warnings).
+    minimumHeight: 150
+    maximumHeight: 16777215
+    height: rootCol.implicitHeight
 
     property bool _updatingSpeedUI: false
 
@@ -94,6 +103,9 @@ Window {
             _centerOnOwner()
             raise()
             requestActivate()
+            _updateTaskbar()
+        } else {
+            App.setWindowTaskbarProgress(root, 0, 0)
         }
     }
 
@@ -115,18 +127,6 @@ Window {
         _updatingSpeedUI = false
     }
 
-    onDetailsVisibleChanged: {
-        if (detailsVisible) {
-            maximumHeight = 16777215
-            minimumHeight = 360
-            height = 500
-        } else {
-            maximumHeight = 16777215
-            minimumHeight = 260
-            height = 310
-        }
-    }
-
     color: ColorPalette.cardBg
 
     title: {
@@ -138,7 +138,7 @@ Window {
     Material.theme: ColorPalette.materialTheme
     Material.foreground: ColorPalette.textPrimary
     Material.background: ColorPalette.materialBg
-    Material.accent: "#4488dd"
+    Material.accent: ColorPalette.accent
 
     function fmtBytes(b) {
         if (b === undefined || b === null || b < 0) return "--"
@@ -156,10 +156,14 @@ Window {
         return bps + " B/s"
     }
 
+    // Shared status palette — matches FilePropertiesDialog header so both
+    // dialogs read identically and stay legible in light + dark mode.
     function statusColor(s) {
-        if (s === "Downloading") return "#4488dd"
-        if (s === "Assembling")  return "#4488dd"
-        if (s === "Error")       return "#dd5555"
+        if (s === "Downloading") return ColorPalette.accent
+        if (s === "Assembling")  return ColorPalette.accent
+        if (s === "Paused")      return ColorPalette.dark ? "#b7b7b7" : "#666666"
+        if (s === "Completed")   return ColorPalette.dark ? "#67bb7a" : "#2e7d32"
+        if (s === "Error")       return ColorPalette.dark ? "#d97b7b" : "#c62828"
         return ColorPalette.textPrimary
     }
 
@@ -187,9 +191,26 @@ Window {
             App.shutdownComputer()
     }
 
+    // Push the download's progress + state onto this window's Windows taskbar
+    // button (IDM-style). state: 0 none, 1 normal(green), 2 paused(yellow),
+    // 3 error(red), 4 indeterminate.
+    function _updateTaskbar() {
+        if (!visible || !item) { App.setWindowTaskbarProgress(root, 0, 0); return }
+        var s = item.status
+        var state = 0
+        if (s === "Downloading")      state = 1
+        else if (s === "Assembling")  state = 4
+        else if (s === "Paused")      state = 2
+        else if (s === "Queued")      state = 2
+        else if (s === "Error")       state = 3
+        else                          state = 0   // Completed / other -> clear
+        App.setWindowTaskbarProgress(root, item.progress, state)
+    }
+
     Connections {
         target: item
-        function onStatusChanged() { root.handleCompletion() }
+        function onStatusChanged() { root.handleCompletion(); root._updateTaskbar() }
+        function onDoneBytesChanged() { root._updateTaskbar() }
         function onSegmentDataChanged() {
             var nextData = item ? item.segmentData : []
             if (segmentList.moving || segmentList.flicking || segmentList.dragging) {
@@ -203,14 +224,139 @@ Window {
 
     ListModel { id: segmentListModel }
 
+    // Read-only selectable field (mirrors FilePropertiesDialog's inline component)
+    component ReadOnlyField: Rectangle {
+        property alias fieldText: ti.text
+        property color textColor: ColorPalette.textPrimary
+        implicitHeight: 26
+        color: ColorPalette.inputBg
+        border.color: ti.activeFocus ? ColorPalette.borderFocus : ColorPalette.border
+        radius: 2
+        clip: true
+        TextInput {
+            id: ti
+            anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+            verticalAlignment: TextInput.AlignVCenter
+            color: parent.textColor
+            font.pixelSize: 12 * App.fontScale
+            readOnly: true; selectByMouse: true; clip: true
+        }
+    }
+
     ColumnLayout {
-        anchors.fill: parent
+        id: rootCol
+        anchors { left: parent.left; right: parent.right; top: parent.top }
         spacing: 0
+
+        // ── Header bar (icon + name + status + live progress) ─────────────
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.preferredHeight: hdrCol.implicitHeight + 8
+            color: ColorPalette.headerStripBg
+            border.width: 0
+            radius: 0
+
+            ColumnLayout {
+                id: hdrCol
+                anchors { fill: parent; leftMargin: 14; rightMargin: 14; topMargin: 4; bottomMargin: 4 }
+                spacing: 4
+
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 8
+
+                    Image {
+                        Layout.preferredWidth: 22; Layout.preferredHeight: 22
+                        source: {
+                            if (!root.item) return ""
+                            var p = String(root.item.savePath || "").replace(/\\/g, "/")
+                            var f = String(root.item.filename || "")
+                            return (p && f) ? ("image://fileicon/" + p + "/" + f) : ""
+                        }
+                        sourceSize: Qt.size(22, 22)
+                        fillMode: Image.PreserveAspectFit
+                        asynchronous: true
+                    }
+
+                    Text {
+                        text: root.item ? String(root.item.filename || "") : ""
+                        color: ColorPalette.textHeader; font.pixelSize: 13 * App.fontScale; font.bold: true
+                        elide: Text.ElideMiddle; Layout.fillWidth: true
+                    }
+
+                    Text {
+                        text: root.statusLabel()
+                        color: root.item ? root.statusColor(root.item.status) : ColorPalette.textHeader
+                        font.pixelSize: 11 * App.fontScale; font.bold: true
+                    }
+
+                    Text {
+                        readonly property string _eta: root.item ? String(root.item.timeLeft || "") : ""
+                        visible: root.item && root.item.status === "Downloading" && _eta.length > 0
+                        text: qsTr("ETA: %1").arg(_eta)
+                        color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale
+                        elide: Text.ElideRight
+                    }
+                }
+
+                // Progress bar + live transfer
+                RowLayout {
+                    Layout.fillWidth: true; spacing: 8
+
+                    Text {
+                        text: {
+                            if (!item) return "0%"
+                            var pct = Math.round(item.progress * 100)
+                            if (item.status === "Assembling") return qsTr("Assembling %1%").arg(pct)
+                            return pct + "%"
+                        }
+                        color: ColorPalette.textHeader; font.pixelSize: 12 * App.fontScale; font.bold: true
+                    }
+
+                    Text {
+                        visible: root.item && root.item.totalBytes > 0
+                        text: root.item
+                            ? root.fmtBytes(root.item.doneBytes) + " / " + root.fmtBytes(root.item.totalBytes)
+                            : ""
+                        color: ColorPalette.textHeader; font.pixelSize: 11 * App.fontScale
+                    }
+
+                    Rectangle {
+                        id: progressBarRect
+                        Layout.fillWidth: true; height: 5; radius: 2
+                        color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg
+                        clip: true
+                        Rectangle {
+                            width: Math.max(0, parent.width * (item ? item.progress : 0))
+                            height: parent.height; radius: parent.radius; color: ColorPalette.accent
+                            Behavior on width { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
+                        }
+                    }
+
+                    Text {
+                        text: "↓ " + (root.item ? root.fmtSpeed(root.item.speed) : "0 B/s")
+                        color: ColorPalette.textHeader; font.pixelSize: 11 * App.fontScale
+                    }
+
+                    Text {
+                        readonly property int _limit: {
+                            if (!item) return 0
+                            if (item.speedLimitKBps > 0) return item.speedLimitKBps
+                            if (App.settings.speedLimiterEnabled && App.settings.globalSpeedLimitKBps > 0) return App.settings.globalSpeedLimitKBps
+                            return 0
+                        }
+                        visible: _limit > 0
+                        text: qsTr("(Limited %1)").arg(root.fmtSpeed(_limit * 1024))
+                        color: ColorPalette.speedLimitText; font.pixelSize: 11 * App.fontScale
+                    }
+                }
+            }
+        }
 
         // ── Tab bar ──────────────────────────────────────────────────────
         Rectangle {
             Layout.fillWidth: true
-            height: 26
+            height: 34
             color: ColorPalette.panelBg
 
             // Bottom separator
@@ -238,14 +384,8 @@ Window {
                             anchors.centerIn: parent
                             text: modelData
                             color: tabStack.currentIndex === index ? ColorPalette.textHeader : ColorPalette.textSecond
-                            font.pixelSize: 11 * App.fontScale
-                        }
-
-                        // Active underline
-                        Rectangle {
-                            anchors.bottom: parent.bottom
-                            width: parent.width; height: 2
-                            color: tabStack.currentIndex === index ? "#4488dd" : "transparent"
+                            font.pixelSize: 12 * App.fontScale
+                            font.bold: tabStack.currentIndex === index
                         }
 
                         MouseArea {
@@ -268,15 +408,8 @@ Window {
                     id: minTrayLbl
                     anchors.centerIn: parent
                     text: qsTr(">>  Send to Tray")
-                    color: minTrayMa.containsMouse ? ColorPalette.textPrimary : ColorPalette.textMuted
-                    font.pixelSize: 11 * App.fontScale
-                }
-
-                // Active underline matching tab style
-                Rectangle {
-                    anchors.bottom: parent.bottom
-                    width: parent.width; height: 2
-                    color: minTrayMa.containsMouse ? "#4488dd" : "transparent"
+                    color: minTrayMa.containsMouse ? ColorPalette.accent : ColorPalette.textMuted
+                    font.pixelSize: 12 * App.fontScale
                 }
 
                 ThemedToolTip {
@@ -303,160 +436,88 @@ Window {
         StackLayout {
             id: tabStack
             Layout.fillWidth: true
-            Layout.fillHeight: true
+            // Size to the ACTIVE tab (not the tallest) so the window wraps the
+            // current page exactly — no slack below the Download-status buttons.
+            Layout.preferredHeight: currentIndex === 0 ? tab0Col.implicitHeight + 14
+                                  : currentIndex === 1 ? tab1Col.implicitHeight + 20
+                                  : tab2Col.implicitHeight + 20
 
             // ── Tab 0: Download status ───────────────────────────────────
             Item {
+                implicitHeight: tab0Col.implicitHeight
                 ColumnLayout {
-                    anchors { fill: parent; margins: 8; bottomMargin: 6 }
+                    id: tab0Col
+                    anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8; bottomMargin: 6 }
                     spacing: 5
 
-                    // ── Info box ─────────────────────────────────────────
-                    Rectangle {
+                    // ── Details (plain selectable rows) ──────────────────
+                    GridLayout {
+                        id: infoGrid
                         Layout.fillWidth: true
-                        implicitHeight: infoCol.implicitHeight + 16
-                        color: ColorPalette.inputBg
-                        border.color: ColorPalette.border
-                        radius: 3
+                        Layout.topMargin: 2
+                        columns: 2
+                        columnSpacing: 14
+                        rowSpacing: 7
 
-                        Column {
-                            id: infoCol
-                            anchors { fill: parent; margins: 10 }
-                            spacing: 0
-
-                            // URL row
-                            Text {
-                                width: parent.width
-                                text: item ? item.url.toString() : ""
-                                color: "#6688bb"
-                                font.pixelSize: 13 * App.fontScale
-                                elide: Text.ElideMiddle
-                                bottomPadding: 7
-                            }
-
-                            // Separator
-                            Item { width: 1; height: 5 }
-                            Rectangle { width: parent.width; height: 1; color: ColorPalette.border }
-                            Item { width: 1; height: 6 }
-
-                            // Status row (with colored dot)
-                            Row {
-                                spacing: 0
-                                width: parent.width
-                                height: 18
-
-                                Text {
-                                    text: qsTr("Status")
-                                    color: ColorPalette.textDisabled
-                                    font.pixelSize: 12 * App.fontScale
-                                    width: 120
-                                    anchors.verticalCenter: parent.verticalCenter
-                                }
-
-                                Text {
-                                    text: root.statusLabel()
-                                    color: item ? root.statusColor(item.status) : ColorPalette.textPrimary
-                                    font.pixelSize: 12 * App.fontScale
-                                    font.bold: true
-                                    anchors.verticalCenter: parent.verticalCenter
-                                }
-                            }
-
-                            Item { width: 1; height: 4 }
-
-                            // ── Data rows individual bindings so they react to item changes ──
-                            Row {
-                                spacing: 0; width: parent.width; height: 18
-                                Text { text: qsTr("File size");  color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale; width: 120 }
-                                Text { text: item ? root.fmtBytes(item.totalBytes) : "--"; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                            }
-                            Row {
-                                spacing: 0; width: parent.width; height: 18
-                                Text { text: qsTr("Downloaded"); color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale; width: 120 }
-                                Text {
-                                    text: item ? qsTr("%1  ( %2% )").arg(root.fmtBytes(item.doneBytes)).arg(Math.round(item.progress * 100)) : "--"
-                                    color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
-                                }
-                            }
-                            Row {
-                                spacing: 0; width: parent.width; height: 18
-                                Text { text: qsTr("Transfer rate"); color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale; width: 120 }
-                                Text {
-                                    text: {
-                                        if (!item) return "--"
-                                        var speed = root.fmtSpeed(item.speed)
-                                        var limit = 0
-                                        if (item.speedLimitKBps > 0)
-                                            limit = item.speedLimitKBps
-                                        else if (App.settings.speedLimiterEnabled && App.settings.globalSpeedLimitKBps > 0)
-                                            limit = App.settings.globalSpeedLimitKBps
-                                        if (limit > 0)
-                                            speed += " " + qsTr("(Limited %1)").arg(root.fmtSpeed(limit * 1024))
-                                        return speed
-                                    }
-                                    color: ColorPalette.textPrimary
-                                    font.pixelSize: 12 * App.fontScale
-                                }
-                            }
-                            Row {
-                                spacing: 0; width: parent.width; height: 18
-                                Text { text: qsTr("Time left");  color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale; width: 120 }
-                                Text { text: item ? item.timeLeft : "--"; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                            }
-                            Row {
-                                spacing: 0; width: parent.width; height: 18
-                                Text { text: qsTr("Resume capability"); color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale; width: 120 }
-                                Text {
-                                    text: (item && item.resumeCapable) ? qsTr("Yes") : qsTr("No")
-                                    color: (item && item.resumeCapable) ? ColorPalette.textPrimary : ColorPalette.textPrimary
-                                    font.pixelSize: 12 * App.fontScale
-                                }
-                            }
-
-                            // ── Error detail row only shown when status is Error ──
-                            Row {
-                                visible: item && item.status === "Error" && item.errorString !== ""
-                                spacing: 0; width: parent.width
-                                Text { text: qsTr("Error detail"); color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale; width: 120; topPadding: 2 }
-                                Text {
-                                    text: item ? item.errorString : ""
-                                    color: "#dd5555"
-                                    font.pixelSize: 11 * App.fontScale
-                                    width: parent.width - 120
-                                    wrapMode: Text.WrapAnywhere
-                                }
-                            }
+                        Text {
+                            text: qsTr("Address"); color: ColorPalette.textSecond
+                            font.pixelSize: 12 * App.fontScale; font.bold: true
+                            Layout.preferredWidth: 110; Layout.alignment: Qt.AlignTop
                         }
-                    }
-
-                    // ── Progress bar ─────────────────────────────────────
-                    Rectangle {
-                        id: progressBarRect
-                        Layout.fillWidth: true
-                        height: 14
-                        color: ColorPalette.border
-                        radius: 2
-                        clip: true
-
-                        Rectangle {
-                            width: item ? Math.max(0, item.progress * progressBarRect.width) : 0
-                            height: progressBarRect.height
-                            color: "#4488dd"
-                            radius: 3
-                            Behavior on width { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
+                        TextEdit {
+                            Layout.fillWidth: true
+                            text: item ? item.url.toString() : "--"
+                            color: ColorPalette.accent
+                            font.pixelSize: 12 * App.fontScale
+                            readOnly: true; selectByMouse: true; wrapMode: TextEdit.WrapAnywhere
+                            selectionColor: ColorPalette.selectionBg
+                            selectedTextColor: ColorPalette.selectionText
                         }
 
                         Text {
-                            anchors.centerIn: parent
+                            text: qsTr("Save to"); color: ColorPalette.textSecond
+                            font.pixelSize: 12 * App.fontScale; font.bold: true
+                            Layout.preferredWidth: 110; Layout.alignment: Qt.AlignTop
+                        }
+                        TextEdit {
+                            Layout.fillWidth: true
                             text: {
-                                if (!item) return "0%"
-                                var pct = Math.round(item.progress * 100)
-                                if (item.status === "Assembling") return qsTr("Assembling... %1%").arg(pct)
-                                return pct + "%"
+                                if (!item) return "--"
+                                var p = String(item.savePath || "").replace(/\//g, "\\")
+                                var f = String(item.filename || "")
+                                return p + ((p && f) ? "\\" : "") + f
                             }
-                            color: "white"
-                            font.pixelSize: 10 * App.fontScale
-                            font.bold: true
+                            color: ColorPalette.textPrimary
+                            font.pixelSize: 12 * App.fontScale
+                            readOnly: true; selectByMouse: true; wrapMode: TextEdit.WrapAnywhere
+                            selectionColor: ColorPalette.selectionBg
+                            selectedTextColor: ColorPalette.selectionText
+                        }
+
+                        Text {
+                            text: qsTr("Resume capability"); color: ColorPalette.textSecond
+                            font.pixelSize: 12 * App.fontScale; font.bold: true
+                            Layout.preferredWidth: 110
+                        }
+                        Text {
+                            text: (item && item.resumeCapable) ? qsTr("Yes") : qsTr("No")
+                            color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true
+                        }
+
+                        // ── Error detail row only shown when status is Error ──
+                        Text {
+                            text: qsTr("Error detail")
+                            color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true
+                            visible: item && item.status === "Error" && item.errorString !== ""
+                            Layout.preferredWidth: 110; Layout.alignment: Qt.AlignTop
+                        }
+                        Text {
+                            text: item ? item.errorString : ""
+                            color: root.statusColor("Error")
+                            font.pixelSize: 11 * App.fontScale
+                            wrapMode: Text.WrapAnywhere
+                            visible: item && item.status === "Error" && item.errorString !== ""
+                            Layout.fillWidth: true
                         }
                     }
 
@@ -466,28 +527,9 @@ Window {
                         spacing: 8
 
                         // Hide/Show details
-                        Rectangle {
-                            height: 22
-                            width: hideDetailsLabel.implicitWidth + 16
-                            color: hideDetailsMa.containsMouse ? ColorPalette.border : "transparent"
-                            border.color: hideDetailsMa.containsMouse ? ColorPalette.border : ColorPalette.border
-                            radius: 3
-
-                            Text {
-                                id: hideDetailsLabel
-                                anchors.centerIn: parent
-                                text: root.detailsVisible ? qsTr("« Hide details") : qsTr("» Show details")
-                                color: ColorPalette.textSecond
-                                font.pixelSize: 12 * App.fontScale
-                            }
-
-                            MouseArea {
-                                id: hideDetailsMa
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: root.detailsVisible = !root.detailsVisible
-                            }
+                        DlgButton {
+                            text: root.detailsVisible ? qsTr("« Hide details") : qsTr("» Show details")
+                            onClicked: root.detailsVisible = !root.detailsVisible
                         }
 
                         Item { Layout.fillWidth: true }
@@ -514,7 +556,6 @@ Window {
                     // ── Details section ──────────────────────────────────
                     ColumnLayout {
                         Layout.fillWidth: true
-                        Layout.fillHeight: true
                         visible: root.detailsVisible
                         spacing: 4
 
@@ -540,7 +581,7 @@ Window {
                             height: 10
                             color: ColorPalette.panelBg
                             border.color: ColorPalette.border
-                            radius: 2
+                            radius: 3
                             clip: true
 
                             Repeater {
@@ -558,31 +599,36 @@ Window {
                                     width: Math.max(1, segW)
                                     height: parent.height
 
+                                    // Faint full-extent track so segments read as one
+                                    // continuous bar (no gaps from unfilled regions)
+                                    Rectangle {
+                                        anchors.fill: parent
+                                        color: ColorPalette.accent
+                                        opacity: 0.22
+                                    }
+                                    // Downloaded portion
                                     Rectangle {
                                         width: Math.max(0, fillW); height: parent.height
-                                        gradient: Gradient {
-                                            orientation: Gradient.Vertical
-                                            GradientStop { position: 0.0; color: "#4499dd" }
-                                            GradientStop { position: 1.0; color: "#2266aa" }
-                                        }
+                                        color: ColorPalette.accent
                                     }
-                                    // Segment divider
+                                    // Segment boundary tick
                                     Rectangle {
                                         anchors.right: parent.right
                                         width: 1; height: parent.height
-                                        color: ColorPalette.textHeader; opacity: 0.15
+                                        color: ColorPalette.panelBg; opacity: 0.6
                                     }
                                 }
                             }
                         }
 
-                        // Segment table
+                        // Segment table — fixed to its row count so there is no
+                        // empty padding below the last connection.
                         Rectangle {
                             Layout.fillWidth: true
-                            Layout.fillHeight: true
+                            Layout.preferredHeight: 22 + Math.max(1, segmentListModel.count) * 24 + 1
                             color: ColorPalette.windowBg
                             border.color: ColorPalette.border
-                            radius: 2
+                            radius: 3
                             clip: true
 
                             ColumnLayout {
@@ -647,9 +693,11 @@ Window {
 
             // ── Tab 1: Speed Limiter ─────────────────────────────────────
             Item {
+                implicitHeight: tab1Col.implicitHeight + 20
                 ColumnLayout {
-                    anchors { fill: parent; margins: 16 }
-                    spacing: 12
+                    id: tab1Col
+                    anchors { left: parent.left; right: parent.right; top: parent.top; margins: 10 }
+                    spacing: 8
 
                     Text {
                         text: qsTr("Limit transfer rate for this download")
@@ -674,47 +722,64 @@ Window {
                         TextField {
                             id: speedInput
                             placeholderText: qsTr("e.g. 100")
-                            implicitWidth: 80
+                            implicitWidth: 90
+                            implicitHeight: 26
                             enabled: limitThisChk.enabled
                             validator: IntValidator { bottom: 0; top: 999999 }
                             onTextEdited: root.applyPerDownloadSpeed()
+                            color: ColorPalette.textPrimary
+                            placeholderTextColor: ColorPalette.textDisabled
+                            font.pixelSize: 12 * App.fontScale
+                            leftPadding: 6; topPadding: 0; bottomPadding: 0
+                            verticalAlignment: TextInput.AlignVCenter
+                            background: Rectangle {
+                                color: ColorPalette.inputBg
+                                border.color: speedInput.activeFocus ? ColorPalette.borderFocus : ColorPalette.border
+                                radius: 2
+                            }
                         }
                         Label { text: qsTr("KB/s") }
                     }
 
                     Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                    Text {
-                        text: App.settings.speedLimiterEnabled
-                            ? (App.settings.globalSpeedLimitKBps > 0 ? qsTr("Global limit active: %1 KB/s").arg(App.settings.globalSpeedLimitKBps) : qsTr("Global limit active: unlimited"))
-                            : qsTr("No global limit set")
-                        color: App.settings.speedLimiterEnabled ? "#ffcc88" : ColorPalette.textDisabled
-                        font.pixelSize: 11 * App.fontScale
-                        wrapMode: Text.WordWrap
-                    }
+                    RowLayout {
+                        Layout.fillWidth: true
+                        spacing: 12
 
-                    Text {
-                        text: qsTr("Global speed limiter settings…")
-                        color: "#4488dd"
-                        font.pixelSize: 11 * App.fontScale
-                        font.underline: true
+                        Text {
+                            text: App.settings.speedLimiterEnabled
+                                ? (App.settings.globalSpeedLimitKBps > 0 ? qsTr("Global limit active: %1 KB/s").arg(App.settings.globalSpeedLimitKBps) : qsTr("Global limit active: unlimited"))
+                                : qsTr("No global limit set")
+                            color: App.settings.speedLimiterEnabled ? ColorPalette.speedLimitText : ColorPalette.textDisabled
+                            font.pixelSize: 11 * App.fontScale
+                            elide: Text.ElideRight
+                            Layout.fillWidth: true
+                        }
 
-                        MouseArea {
-                            anchors.fill: parent
-                            cursorShape: Qt.PointingHandCursor
-                            onClicked: root.openSettingsRequested(4)  // Speed Limiter tab
+                        Text {
+                            text: qsTr("Global speed limiter settings…")
+                            color: ColorPalette.accent
+                            font.pixelSize: 11 * App.fontScale
+                            font.underline: true
+
+                            MouseArea {
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: root.openSettingsRequested(4)  // Speed Limiter tab
+                            }
                         }
                     }
-
-                    Item { Layout.fillHeight: true }
                 }
             }
 
             // ── Tab 2: Options on completion ─────────────────────────────
             Item {
+                implicitHeight: tab2Col.implicitHeight + 20
                 ColumnLayout {
-                    anchors { fill: parent; margins: 16 }
-                    spacing: 12
+                    id: tab2Col
+                    anchors { left: parent.left; right: parent.right; top: parent.top; margins: 10 }
+                    spacing: 8
                     Text {
                         text: qsTr("Options On Completion")
                         color: ColorPalette.textPrimary
@@ -749,7 +814,6 @@ Window {
                         font.pixelSize: 11 * App.fontScale
                         wrapMode: Text.WordWrap
                     }
-                    Item { Layout.fillHeight: true }
                 }
             }
         }
