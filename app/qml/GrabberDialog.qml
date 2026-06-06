@@ -23,7 +23,7 @@ import QtQuick.Layouts
 Window {
     id: root
     title: qsTr("Stellar Grabber - Step %1 of %2: %3").arg(stepIndex + 1).arg(stepTitles.length).arg(stepTitles[stepIndex])
-    width: 700
+    width: 800
     height: 540
     minimumWidth: 700
     minimumHeight: 540
@@ -782,9 +782,26 @@ Window {
                 Layout.bottomMargin: 0
 
                 Rectangle {
-                    Layout.preferredWidth: 160
+                    id: stepListPanel
+                    // Width tracks the widest step label so long translations
+                    // (e.g. French) aren't clipped. 16px left + 12px right padding.
+                    Layout.preferredWidth: Math.max(160, stepListMetrics.maxWidth + 28)
                     Layout.fillHeight: true
                     color: ColorPalette.panelBg
+
+                    TextMetrics { id: stepListProbe; font.pixelSize: 13 * App.fontScale; font.bold: true }
+                    QtObject {
+                        id: stepListMetrics
+                        property real maxWidth: {
+                            var m = 0
+                            for (var i = 0; i < stepTitles.length; ++i) {
+                                stepListProbe.text = (i + 1) + ". " + stepTitles[i]
+                                if (stepListProbe.width > m)
+                                    m = stepListProbe.width
+                            }
+                            return m
+                        }
+                    }
 
                     Column {
                         anchors.fill: parent
@@ -801,10 +818,13 @@ Window {
                                     anchors.verticalCenter: parent.verticalCenter
                                     anchors.left: parent.left
                                     anchors.leftMargin: 16
+                                    anchors.right: parent.right
+                                    anchors.rightMargin: 12
                                     text: (index + 1) + ". " + modelData
                                     color: index === stepIndex ? "#ffffff" : ColorPalette.textPrimary
                                     font.pixelSize: 13 * App.fontScale
                                     font.bold: index === stepIndex
+                                    elide: Text.ElideRight
                                 }
                                 MouseArea {
                                     id: ma

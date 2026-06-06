@@ -22,8 +22,9 @@ import QtQuick.Layouts
 Window {
     id: root
     title: qsTr("Settings of Stellar Grabber")
-    width: 520
-    height: 320
+    // Content-driven width so long translations (e.g. French) aren't clipped.
+    width: Math.max(520, mainCol.implicitWidth + 24)
+    height: Math.max(320, mainCol.implicitHeight + 24)
     minimumWidth: 500
     minimumHeight: 300
     color: ColorPalette.cardBg
@@ -66,6 +67,7 @@ Window {
         color: ColorPalette.cardBg
 
         ColumnLayout {
+            id: mainCol
             anchors.fill: parent
             anchors.margins: 12
             spacing: 10
@@ -73,13 +75,13 @@ Window {
             RowLayout {
                 Layout.fillWidth: true
                 ThemedSpin { id: exploreSpin; from: 1; to: 10; value: App.settings.grabberFilesToExploreAtOnce; editable: true }
-                Text { text: qsTr("files to explore at the same time (1 to 10)"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                Text { Layout.fillWidth: true; text: qsTr("files to explore at the same time (1 to 10)"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap }
             }
 
             RowLayout {
                 Layout.fillWidth: true
                 ThemedSpin { id: downloadSpin; from: 1; to: 10; value: App.settings.grabberFilesToDownloadAtOnce; editable: true }
-                Text { text: qsTr("files to download at the same time (1 to 10)"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                Text { Layout.fillWidth: true; text: qsTr("files to download at the same time (1 to 10)"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; wrapMode: Text.WordWrap }
             }
 
             Text {
