@@ -1611,6 +1611,89 @@ You may change it in Options → Downloads at a later time.</source>
 <context>
     <name>FilePropertiesDialog</name>
     <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5642"/>
+        <source>Rare</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5643"/>
+        <source>Common</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5644"/>
+        <source>High Priority</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5645"/>
+        <source>Skipped</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5646"/>
+        <source>Unavailable</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5682"/>
+        <source>%1 pieces</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5683"/>
+        <source>%1 downloaded</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5685"/>
+        <source>%1 downloading</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5686"/>
+        <source>%1 skipped</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5793"/>
+        <source>No piece data available</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5875"/>
+        <source>Skipped (file not selected)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5878"/>
+        <source>Downloading - %1% of blocks received</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5883"/>
+        <source>Unavailable - no peers have this piece</source>
+        <translation></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5885"/>
+        <source>Missing - %n peer(s) have it</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5885"/>
+        <source> (high priority)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="5887"/>
+        <source>Piece #%1</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/FilePropertiesDialog.qml" line="1563"/>
         <source>Move Torrent Data To...</source>
         <translation></translation>

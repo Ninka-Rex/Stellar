@@ -5637,13 +5637,13 @@ Window {
 
                             Repeater {
                                 model: [
-                                    { color: "#2ecc71", label: "Have" },
-                                    { color: "#4a9de8", label: "Downloading" },
-                                    { color: "#c0392b", label: "Rare" },
-                                    { color: "#27ae60", label: "Common" },
-                                    { color: "#e67e22", label: "High Priority" },
-                                    { color: ColorPalette.textMuted, label: "Skipped" },
-                                    { color: ColorPalette.cardBg, label: "Unavailable" }
+                                    { color: "#2ecc71", label: qsTr("Have") },
+                                    { color: "#4a9de8", label: qsTr("Downloading") },
+                                    { color: "#c0392b", label: qsTr("Rare") },
+                                    { color: "#e2b13c", label: qsTr("Common") },
+                                    { color: "#e67e22", label: qsTr("High Priority") },
+                                    { color: ColorPalette.textMuted, label: qsTr("Skipped") },
+                                    { color: ColorPalette.cardBg, label: qsTr("Unavailable") }
                                 ]
                                 delegate: Row {
                                     required property var modelData
@@ -5661,29 +5661,31 @@ Window {
                                     }
                                 }
                             }
+                        }
 
-                            Item { Layout.fillWidth: true }
-
-                            Text {
-                                id: pieceSummaryText
-                                color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale
-                                anchors.verticalCenter: parent.verticalCenter
-                                text: {
-                                    var d = pieceMapTab.pieceData
-                                    if (!d || d.length === 0) return ""
-                                    var have = 0, partial = 0, skipped = 0, missing = 0
-                                    for (var i = 0; i < d.length; ++i) {
-                                        var v = d[i]
-                                        if (v === -2)      have++
-                                        else if (v === -3) skipped++
-                                        else if (v <= -4)  partial++
-                                        else               missing++
-                                    }
-                                    var parts = [d.length + " pieces", have + " downloaded"]
-                                    if (partial > 0) parts.push(partial + " downloading")
-                                    if (skipped > 0) parts.push(skipped + " skipped")
-                                    return parts.join("  -  ")
+                        // Summary on its own full-width row so it never clips the legend,
+                        // regardless of UI language.
+                        Text {
+                            id: pieceSummaryText
+                            Layout.fillWidth: true
+                            elide: Text.ElideRight
+                            color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale
+                            text: {
+                                var d = pieceMapTab.pieceData
+                                if (!d || d.length === 0) return ""
+                                var have = 0, partial = 0, skipped = 0, missing = 0
+                                for (var i = 0; i < d.length; ++i) {
+                                    var v = d[i]
+                                    if (v === -2)      have++
+                                    else if (v === -3) skipped++
+                                    else if (v <= -4)  partial++
+                                    else               missing++
                                 }
+                                var parts = [qsTr("%1 pieces").arg(d.length),
+                                             qsTr("%1 downloaded").arg(have)]
+                                if (partial > 0) parts.push(qsTr("%1 downloading").arg(partial))
+                                if (skipped > 0) parts.push(qsTr("%1 skipped").arg(skipped))
+                                return parts.join("  -  ")
                             }
                         }
 
@@ -5751,12 +5753,14 @@ Window {
                                 var cnt = val & 0xFFFF
                                 if (cnt === 0) return ColorPalette.inputBg    // unavailable - near black
                                 if (hp) return "#e67e22"           // high priority - orange
-                                // Map 1..maxRarity to red (rare) ? green (common)
+                                // Missing pieces shaded by swarm rarity. Green is reserved for
+                                // "Have" only, so the gradient runs red (rare) -> amber (common)
+                                // and never collides with the have/common-green ambiguity.
                                 var t2 = maxRarity > 1 ? (cnt - 1) / (maxRarity - 1) : 1.0
-                                // t2=0 ? rare #c0392b (red), t2=1 ? common #27ae60 (green)
-                                var r = Math.round(0xc0 + (0x27 - 0xc0) * t2)
-                                var g = Math.round(0x39 + (0xae - 0x39) * t2)
-                                var b = Math.round(0x2b + (0x60 - 0x2b) * t2)
+                                // t2=0 -> rare #c0392b (red), t2=1 -> common #e2b13c (amber)
+                                var r = Math.round(0xc0 + (0xe2 - 0xc0) * t2)
+                                var g = Math.round(0x39 + (0xb1 - 0x39) * t2)
+                                var b = Math.round(0x2b + (0x3c - 0x2b) * t2)
                                 return "rgb(" + r + "," + g + "," + b + ")"
                             }
 
@@ -5790,7 +5794,7 @@ Window {
                                     ctx.fillStyle = ColorPalette.textDisabled
                                     ctx.font = "13px sans-serif"
                                     ctx.textAlign = "center"
-                                    ctx.fillText("No piece data available", width / 2, height / 2)
+                                    ctx.fillText(qsTr("No piece data available"), width / 2, height / 2)
                                     return
                                 }
 
@@ -5870,21 +5874,21 @@ Window {
                                         var val = pieceCanvas.hoveredPieceAvail
                                         var status
                                         if (val === -2) {
-                                            status = "Downloaded"
+                                            status = qsTr("Downloaded")
                                         } else if (val === -3) {
-                                            status = "Skipped (file not selected)"
+                                            status = qsTr("Skipped (file not selected)")
                                         } else if (val <= -4) {
                                             var pct = Math.min(99, -(val + 4))
-                                            status = "Downloading - " + pct + "% of blocks received"
+                                            status = qsTr("Downloading - %1% of blocks received").arg(pct)
                                         } else {
                                             var hp  = (val & 0x10000) !== 0
                                             var cnt = val & 0xFFFF
                                             if (cnt === 0)
-                                                status = "Unavailable - no peers have this piece"
+                                                status = qsTr("Unavailable - no peers have this piece")
                                             else
-                                                status = "Missing - " + cnt + (cnt === 1 ? " peer has it" : " peers have it") + (hp ? " (high priority)" : "")
+                                                status = qsTr("Missing - %n peer(s) have it", "", cnt) + (hp ? qsTr(" (high priority)") : "")
                                         }
-                                        return "Piece #" + idx + "\n" + status
+                                        return qsTr("Piece #%1").arg(idx) + "\n" + status
                                     }
                                 }
                             }
