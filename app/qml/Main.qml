@@ -3040,9 +3040,7 @@ ApplicationWindow {
             }
             background: Rectangle {
                 implicitHeight: 22
-                // Opaque fill (ColorPalette.menuBg), never "transparent": under the
-                // software scene graph the Menu's own background node may not
-                // composite, so transparent rows render see-through. See menuBg.
+                // Opaque, never "transparent" — see ColorPalette.menuBg.
                 color: _cmi.highlighted ? ColorPalette.selectionBg : ColorPalette.menuBg
             }
         }
@@ -3052,8 +3050,7 @@ ApplicationWindow {
         component CompactSep: MenuSeparator {
             padding: 0
             topPadding: 3; bottomPadding: 3
-            // Opaque background so the separator's padding gap doesn't show the
-            // window through under the software scene graph (see ColorPalette.menuBg).
+            // Opaque, never "transparent" — see ColorPalette.menuBg.
             background: Rectangle { color: ColorPalette.menuBg }
             contentItem: Rectangle {
                 implicitWidth: 180

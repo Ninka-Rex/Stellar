@@ -63,18 +63,10 @@ T.MenuItem {
         color: control.enabled ? control.Material.foreground : control.Material.hintTextColor
     }
 
-    // Each row paints an OPAQUE background (the menu's dialog colour when not
-    // highlighted, the highlight colour when it is). This is deliberate: under
-    // the Qt Quick software scene graph — our forced backend on machines without
-    // usable hardware OpenGL (VirtualBox/SVGA3D, where GLX has no FBConfig) — the
-    // Menu's own background Rectangle does not composite, so a menu whose rows are
-    // "transparent" shows the window straight through. Making every row opaque
-    // means the stacked rows themselves form the solid menu panel regardless of
-    // whether the popup background node paints. On a hardware backend it looks
-    // identical (the rows simply match the dialog colour behind them).
-    //
-    // Ripple is intentionally omitted: it is a ShaderEffect, which the software
-    // adaptation ignores entirely, and it added nothing on the hardware path here.
+    // Opaque row background (dialog colour, or highlight when highlighted): under
+    // the software scene graph the Menu panel node may not composite, so the rows
+    // must be solid themselves. Ripple omitted — it's a ShaderEffect the software
+    // backend ignores. See CLAUDE.md "Linux Software-Backend Menus".
     background: Rectangle {
         implicitWidth: 200
         implicitHeight: 24

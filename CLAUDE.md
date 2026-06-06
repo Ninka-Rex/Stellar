@@ -430,7 +430,7 @@ Intentionally on 5-second cadence, same as tray tooltip — not per-tick. `Statu
 - Pattern: `Rectangle { width:50; height:26; radius:2; color:"#1b1b1b"; border.color: field.activeFocus ? "#4488dd" : "#3a3a3a" }` containing `TextInput`
 - AM/PM: `ComboBox` with `implicitWidth:62; implicitHeight:26`, custom `contentItem`/`background`/`indicator` (▼ at 8px)
 
-**Menu bar items**: `component CompactMenuItem: MenuItem` inside `MenuBar` in `Main.qml`. All top-level `Menu` use `delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0`. Submenus need same three properties.
+**Menu bar items**: `component CompactMenuItem: MenuItem` inside `MenuBar` in `Main.qml`. All top-level `Menu` use `delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0`. Submenus need same three properties. Menu rows **must paint an opaque background** — see "Linux Software-Backend Menus".
 
 **All dialogs are `Window`** (not `Dialog`) — use `.show(); .raise(); .requestActivate()` to open, never `.open()`.
 
@@ -441,6 +441,18 @@ Intentionally on 5-second cadence, same as tray tooltip — not per-tick. `Statu
 - Transfer Stats GridLayout: 8px column spacing, 4px row; labels `#8899aa`, values `#c8c8c8`
 - "Verify Local Data" at bottom-right of Transfer Stats
 - File list delegates use `TapHandler` for right-click rename
+
+## Linux Software-Backend Menus (transparency fix)
+
+On machines without usable hardware OpenGL the app runs on the Qt Quick software scene graph (selected in-process by `selectWorkingGraphicsBackend()` in `main.cpp`; VirtualBox/SVGA3D has no GLX FBConfig for any Qt surface format). There the Menu's own background node does not reliably composite, so any `MenuItem` whose background is `"transparent"` shows the window straight through.
+
+**Rule:** every menu row and separator **must paint an OPAQUE background**. Use `ColorPalette.menuBg` (theme-aware) for rows, `ColorPalette.selectionBg` when highlighted.
+
+This applies to the inline `MenuItem` subcomponents that the real menus define — `CompactMenuItem` (`Main.qml`), `CtxMenuItem` / `ColCheckMenuItem` (`DownloadTable.qml`) — **not** just `app/style/MenuItem.qml`. **Inline component definitions override the custom style**, so fixing only the style file does nothing for these menus. That was the original bug: edits to `app/style/*.qml` that the actual menus never used.
+
+**Not the cause (superseded theories, don't reintroduce):** the Material elevation shadow ShaderEffect layer, and `Popup.Window` vs `Popup.Item`. `popupType: T.Popup.Item` is set in `app/style/Menu.qml` and is correct (in-overlay, single window) but did not by itself fix transparency — opaque row backgrounds did.
+
+Style additions ship via a hand-authored qmldir + `qt_add_resources` under `/qt/qml/Stellar` (see `CMakeLists.txt`): `Menu.qml`, `MenuItem.qml`, `MenuSeparator.qml`. The style `MenuSeparator` is opaque so all bare `MenuSeparator{}` call sites are covered app-wide.
 
 ## Internationalisation (i18n)
 

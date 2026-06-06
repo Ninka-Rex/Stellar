@@ -624,30 +624,13 @@ static int runCliMode(int argc, char *argv[], const CliArgs &ca)
 
 // ── GUI mode ──────────────────────────────────────────────────────────────────
 
-// Decide, in-process and BEFORE any QQuickWindow exists, whether hardware OpenGL
-// actually works on this display — and if it doesn't, switch Qt Quick to the
-// software (CPU) scene graph instead of letting it crash.
-//
-// Why this exists: Stellar is a Qt Quick app, so the default RHI backend is
-// OpenGL. On Linux that means a GL context via GLX (X11) or EGL (Wayland). When
-// the context can't be created — VirtualBox SVGA3D with no usable FBConfig
-// ("Could not initialize GLX"), a Wayland session where EGL is unavailable,
-// headless/RDP, broken Mesa — Qt calls qFatal() and the process ABORTS on the
-// first window, before anything is shown. The old workaround was a shell wrapper
-// that caught the crash and relaunched with QT_QUICK_BACKEND=software; that made
-// "crash, then maybe reopen" the normal startup path (flickering tray, crash
-// notifications, lost first instance). Unacceptable.
-//
-// Instead we probe GL ourselves: create a throwaway QOpenGLContext on a hidden
-// QOffscreenSurface using the real platform integration. If creation or
-// makeCurrent fails, hardware GL is not usable, so we select the software backend
-// up front with QQuickWindow::setGraphicsApi(). No window is ever created on a
-// broken GL path, so qFatal never fires and the app just opens — on the GPU when
-// it can, on the CPU when it must.
-//
-// Honour an explicit user/we-already-decided override: if the software backend
-// was requested via env (QT_QUICK_BACKEND=software) or the GL integration was
-// pinned, don't probe — respect the choice.
+// Probe hardware OpenGL in-process, before any QQuickWindow exists. Qt Quick's
+// default RHI backend is OpenGL; if a GL context can't be created (VirtualBox
+// SVGA3D with no usable FBConfig, Wayland without EGL, headless/RDP, broken Mesa)
+// Qt qFatal()s on the first window. Creating a throwaway context on a hidden
+// QOffscreenSurface lets us detect that and select the software scene graph up
+// front, so the app opens (on the GPU when it can, on the CPU when it must)
+// instead of crashing.
 static bool probeOpenGl()
 {
     QOpenGLContext ctx;
@@ -675,16 +658,10 @@ static void selectWorkingGraphicsBackend()
     if (probeOpenGl())
         return; // hardware GL works with the current default format
 
-    // The default QSurfaceFormat may simply not have a matching GLX FBConfig on
-    // this driver — this is the classic VirtualBox/SVGA3D and bare-Mesa case
-    // ("qglx_findConfig: Failed to finding matching FBConfig ..."), where the
-    // *system* GL works fine but Qt's requested format is too rich. Retry with a
-    // deliberately minimal, widely-supported format (RGB, 24-bit depth, no
-    // stencil, no MSAA, no alpha) before giving up on hardware. Many VMs that
-    // qFatal with the default format accept this one and then render on the GPU.
-    // We MUST get real GL if at all possible: the Qt Quick software backend does
-    // not paint Popup/Menu backgrounds (menus render transparent there), so the
-    // software path is a degraded last resort, not an equal alternative.
+    // The default QSurfaceFormat may have no matching GLX FBConfig on this driver
+    // (VirtualBox/SVGA3D, bare Mesa: "qglx_findConfig: Failed ... matching
+    // FBConfig") while a leaner format works. Retry once with a minimal,
+    // widely-supported format before falling back to software.
     {
         QSurfaceFormat fmt;
         fmt.setRenderableType(QSurfaceFormat::OpenGL);
@@ -706,9 +683,8 @@ static void selectWorkingGraphicsBackend()
     }
 
     nmLog(QStringLiteral("Hardware OpenGL unavailable; using software scene graph."));
-    // No usable GL even with a minimal format. Select the software RHI backend
-    // for Qt Quick; the env vars cover the few code paths (and the xcb GL probe)
-    // that read them directly so nothing tries GLX/EGL afterward.
+    // No usable GL. Select the software backend; the env vars cover the code paths
+    // (and the xcb GL probe) that read them directly so nothing retries GLX/EGL.
     QQuickWindow::setGraphicsApi(QSGRendererInterface::Software);
     qputenv("QT_QUICK_BACKEND", "software");
     qputenv("QT_XCB_GL_INTEGRATION", "none");
@@ -894,15 +870,11 @@ int main(int argc, char *argv[])
             return 0;
         }
 
-        // The segment exists but nobody is listening on the IPC socket: the
-        // previous instance crashed (e.g. a GLX qFatal abort before the window
-        // ever appeared) without freeing its single-instance segment. On Linux
-        // QSharedMemory is backed by a SysV segment that is NOT reclaimed on
-        // abnormal exit, so a single crash would otherwise wedge every future
-        // launch into this "already running" branch forever — the app silently
-        // refuses to start. Reclaim the orphaned segment and continue as the
-        // first instance. attach()+detach() makes us the last attacher; Qt marks
-        // the segment for removal on final detach, releasing the stale key.
+        // Segment exists but nobody is listening on the IPC socket: the previous
+        // instance crashed without freeing it. On Linux QSharedMemory uses a SysV
+        // segment that is not reclaimed on abnormal exit, so the stale key would
+        // otherwise block every future launch. Reclaim it: attach()+detach() makes
+        // us the last attacher, and Qt removes the segment on final detach.
         nmLog(QStringLiteral("Stale single-instance segment from a crashed instance; reclaiming."));
         if (shm.attach()) {
             shm.detach();              // last detach removes the orphaned SysV segment

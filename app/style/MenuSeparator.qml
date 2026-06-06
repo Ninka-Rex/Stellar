@@ -5,14 +5,9 @@
 // GPL-2.0-only OR GPL-3.0-only). Part of the "Stellar" custom style
 // (FallbackStyle=Material).
 //
-// The one Stellar change: the background is OPAQUE (Material.dialogColor), not
-// the stock implicit transparent. Under the Qt Quick software scene graph — our
-// fallback on machines without usable hardware OpenGL (e.g. VirtualBox/SVGA3D,
-// where GLX has no usable FBConfig) — the Menu's own background node does not
-// reliably composite. A separator whose padding region is transparent then
-// punches a hole through the menu, showing the window behind it. Painting the
-// separator's full background opaque keeps the menu panel solid. On a hardware
-// backend it is identical (the fill matches the menu colour behind it).
+// Stellar change: opaque background (Material.dialogColor) instead of the stock
+// transparent, so the separator's padding gap doesn't show through under the
+// software scene graph. See CLAUDE.md "Linux Software-Backend Menus".
 
 import QtQuick
 import QtQuick.Templates as T

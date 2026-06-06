@@ -35,12 +35,10 @@ QtObject {
     readonly property color buttonSecondaryBg:      dark ? "#3a3a3a" : "#d0d4da"  // secondary button fill
     readonly property color buttonSecondaryHoverBg: dark ? "#484848" : "#c0c6ce"  // secondary button hover
     readonly property color hoverBg:           dark ? "#2a2a2a" : "#e0e8f5"
-    // Opaque fill for dropdown-menu rows. Must be solid (never "transparent"):
-    // under the Qt Quick software backend (our fallback on machines without
-    // usable hardware OpenGL — e.g. VirtualBox/SVGA3D) the Menu's own background
-    // node does not always composite, so transparent rows show the window
-    // straight through. Painting each row opaque makes the stacked rows form the
-    // solid menu panel themselves. Matches the Menu background colour.
+    // Opaque fill for dropdown-menu rows — must never be "transparent". Under the
+    // software scene graph the Menu panel node may not composite, so transparent
+    // rows show the window through; opaque rows form the solid menu panel
+    // themselves. See CLAUDE.md "Linux Software-Backend Menus".
     readonly property color menuBg:            dark ? "#1e1e1e" : "#f7f7f7"
 
     // Info / note boxes
