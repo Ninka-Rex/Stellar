@@ -23,11 +23,16 @@ Window {
     id: root
     title: qsTr("Statistics")
     // ?? Height is driven by content no filler space. ?????????????????????
-    width: 320
-    height: mainCol.implicitHeight + 16
+    // Width driven by content too so longer translations (e.g. French) don't clip.
+    // Content-driven size. No fixed-size hint: it freezes the native frame at
+    // show-time dimensions, ignoring late content growth (long French labels,
+    // large byte values that arrive on first async refresh()).
+    width: Math.max(320, mainCol.implicitWidth + 16)
+    height: Math.max(180, mainCol.implicitHeight + 16)
     minimumWidth: 320
+    minimumHeight: 180
     color: ColorPalette.cardBg
-    flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.MSWindowsFixedSizeDialogHint
+    flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint
 
     Material.theme: ColorPalette.materialTheme
     Material.foreground: ColorPalette.textPrimary
@@ -113,28 +118,23 @@ Window {
 
     // Stats row helper: label on left, value on right, value left-aligned after label.
     // Using a plain Row so the value sits immediately after the label with no column stretching.
-    component StatRow: Item {
+    component StatRow: Row {
         property string label: ""
         property string value: ""
         property color valueColor: ColorPalette.textPrimary
         property bool valueBold: false
-        implicitHeight: 16
-        Layout.fillWidth: true
+        spacing: 6
 
         Text {
-            id: lbl
             text: parent.label
             color: ColorPalette.infoBoxText
             font.pixelSize: 11 * App.fontScale
-            anchors.left: parent.left
         }
         Text {
             text: parent.value
             color: parent.valueColor
             font.pixelSize: 11 * App.fontScale
             font.bold: parent.valueBold
-            anchors.left: lbl.right
-            anchors.leftMargin: 6
         }
     }
 
@@ -158,17 +158,20 @@ Window {
             color: ColorPalette.inputBg
             border.color: ColorPalette.dividerBg
             radius: 3
+            // Both implicit dims required: the card uses anchored fill for its
+            // RowLayout, so without implicitWidth it reports 0 width to mainCol
+            // and the window never widens to fit the columns (clips session col).
+            implicitWidth: panelRow.implicitWidth + 12
             implicitHeight: panelRow.implicitHeight + 10
 
             RowLayout {
                 id: panelRow
                 anchors { fill: parent; margins: 6 }
-                spacing: 64
+                spacing: 40
 
-                // All-time column
+                // All-time column — sized to its content so labels never clip.
                 ColumnLayout {
                     id: atCol
-                    Layout.fillWidth: true
                     Layout.alignment: Qt.AlignTop
                     spacing: 2
 
@@ -192,6 +195,7 @@ Window {
                 ColumnLayout {
                     id: sesCol
                     Layout.fillWidth: true
+                    Layout.minimumWidth: implicitWidth
                     Layout.alignment: Qt.AlignTop
                     spacing: 2
 

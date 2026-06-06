@@ -22,11 +22,15 @@ import QtQuick.Controls.Material
 Window {
     id: root
     title: qsTr("Grabber Statistics")
-    width: 270
-    height: mainCol.implicitHeight + 16
+    // Width driven by content so longer translations (e.g. French) don't clip.
+    // Content-driven size. No fixed-size hint: it freezes the native frame at
+    // show-time dimensions, ignoring late content growth (long French labels).
+    width: Math.max(270, mainCol.implicitWidth + 16)
+    height: Math.max(160, mainCol.implicitHeight + 16)
     minimumWidth: 270
+    minimumHeight: 160
     color: ColorPalette.cardBg
-    flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.MSWindowsFixedSizeDialogHint
+    flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint
 
     Material.theme: ColorPalette.materialTheme
     Material.foreground: ColorPalette.textPrimary
@@ -46,28 +50,23 @@ Window {
         onTriggered: root.refreshStats()
     }
 
-    component StatRow: Item {
+    component StatRow: Row {
         property string label: ""
         property string value: ""
         property color valueColor: ColorPalette.textPrimary
         property bool valueBold: false
-        implicitHeight: 16
-        Layout.fillWidth: true
+        spacing: 6
 
         Text {
-            id: lbl
             text: parent.label
             color: ColorPalette.infoBoxText
             font.pixelSize: 11 * App.fontScale
-            anchors.left: parent.left
         }
         Text {
             text: parent.value
             color: parent.valueColor
             font.pixelSize: 11 * App.fontScale
             font.bold: parent.valueBold
-            anchors.left: lbl.right
-            anchors.leftMargin: 6
         }
     }
 
@@ -91,12 +90,15 @@ Window {
             color: ColorPalette.inputBg
             border.color: ColorPalette.dividerBg
             radius: 3
+            // implicitWidth required so the window widens to fit the columns;
+            // anchored-fill RowLayout otherwise reports 0 width to mainCol.
+            implicitWidth: panelRow.implicitWidth + 12
             implicitHeight: panelRow.implicitHeight + 10
 
             RowLayout {
                 id: panelRow
                 anchors { fill: parent; margins: 6 }
-                spacing: 64
+                spacing: 40
 
                 // Status + Web pages column
                 ColumnLayout {
@@ -117,6 +119,7 @@ Window {
                 // Files column
                 ColumnLayout {
                     Layout.fillWidth: true
+                    Layout.minimumWidth: implicitWidth
                     Layout.alignment: Qt.AlignTop
                     spacing: 2
 
