@@ -32,7 +32,8 @@ QtObject {
     readonly property color selectionBg:       dark ? "#1a3a6a" : "#cce0ff"
     readonly property color selectionBorder:   "#4488dd"
     readonly property color selectionText:     dark ? "#ffffff" : "#003070"  // text on selectionBg
-    readonly property color buttonSecondaryBg: dark ? "#3a3a3a" : "#d0d4da"  // secondary button fill
+    readonly property color buttonSecondaryBg:      dark ? "#3a3a3a" : "#d0d4da"  // secondary button fill
+    readonly property color buttonSecondaryHoverBg: dark ? "#484848" : "#c0c6ce"  // secondary button hover
     readonly property color hoverBg:           dark ? "#2a2a2a" : "#e0e8f5"
 
     // Info / note boxes

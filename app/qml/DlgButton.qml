@@ -40,7 +40,7 @@ Button {
             if (!parent.enabled) return ColorPalette.panelBg
             if (destructive) return parent.pressed ? "#a02828" : (parent.hovered ? "#9a2525" : "#8b2020")
             if (primary)     return parent.pressed ? "#254a8a" : (parent.hovered ? "#3a78c8" : "#3266a8")
-            return parent.pressed ? ColorPalette.dividerBg : (parent.hovered ? ColorPalette.border : ColorPalette.buttonSecondaryBg)
+            return parent.pressed ? ColorPalette.dividerBg : (parent.hovered ? ColorPalette.buttonSecondaryHoverBg : ColorPalette.buttonSecondaryBg)
         }
         border.color: {
             if (!parent.enabled) return ColorPalette.border

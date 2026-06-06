@@ -5472,12 +5472,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/SettingsDialog.qml" line="1661"/>
-        <location filename="../app/qml/SettingsDialog.qml" line="1687"/>
-        <source>Browse</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../app/qml/SettingsDialog.qml" line="1667"/>
         <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
         <translation></translation>

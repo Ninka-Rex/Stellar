@@ -1699,10 +1699,8 @@ Window {
                                 color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale
                                 background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                             }
-                            Button {
-                                text: qsTr("Browse…"); font.pixelSize: 12 * App.fontScale
-                                background: Rectangle { color: ColorPalette.border; radius: 3 }
-                                contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font: parent.font; horizontalAlignment: Text.AlignHCenter }
+                            DlgButton {
+                                text: qsTr("Browse…")
                                 onClicked: saveFolderDlg.open()
                             }
                         }
@@ -1721,7 +1719,7 @@ Window {
                                 background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                             }
                             DlgButton {
-                                text: qsTr("Browse")
+                                text: qsTr("Browse…")
                                 onClicked: torrentCustomSaveFolderDlg.open()
                             }
                         }
@@ -1747,7 +1745,7 @@ Window {
                                 background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                             }
                             DlgButton {
-                                text: qsTr("Browse")
+                                text: qsTr("Browse…")
                                 onClicked: tempFolderDlg.open()
                             }
                         }
