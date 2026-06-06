@@ -115,6 +115,10 @@ QJsonArray chromeNativeMessagingOrigins()
 
 namespace {
 constexpr int kMinimumUpdateCheckIndicatorMs = 3000;
+// How long a Specific-mode bind interface must be continuously unavailable before we
+// fail-closed by suspending the session. Wall-clock so it is independent of the
+// reconcile timer's interval. Long enough to ride out VPN keepalive/rekey flaps.
+constexpr qint64 kBindSuspendGraceMs = 15000;
 constexpr qint64 kTorrentSpeedHistoryRetentionMs = 24LL * 60LL * 60LL * 1000LL;
 constexpr int kMaxMotdLengthChars = 280;
 constexpr qint64 kMotdDismissDurationMs = 7LL * 24LL * 60LL * 60LL * 1000LL;
@@ -1684,6 +1688,20 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_settings, &AppSettings::perHostConnectionLimitChanged, this, [this]() {
         m_queue->setMaxConnectionsPerHost(m_settings->perHostConnectionLimit());
     });
+    // Migrate a bind interface saved as a raw Windows LUID (e.g. "iftype53_32769",
+    // written by versions that stored iface.name()) to the stable friendly name.
+    // The LUID is reassigned when a VPN adapter is recreated on reconnect, which
+    // silently breaks the bind; the friendly name survives. Done once, before the
+    // first applySettings, so the session binds to the durable identifier.
+    {
+        const QString saved = m_settings->torrentBindInterface().trimmed();
+        if (!saved.isEmpty()) {
+            const QNetworkInterface iface = QNetworkInterface::interfaceFromName(saved);
+            const QString friendly = iface.isValid() ? iface.humanReadableName().trimmed() : QString();
+            if (!friendly.isEmpty() && friendly != saved)
+                m_settings->setTorrentBindInterface(friendly);
+        }
+    }
     m_torrentSession->applySettings(m_settings);
     // If the user already had a bind interface configured but it's not up at
     // startup (e.g. VPN client not yet connected), suspend the session now so
@@ -2527,24 +2545,28 @@ void AppController::reconcileTorrentBindState() {
     if (!m_settings || !m_torrentSession || !m_torrentSession->available())
         return;
 
+    // Single control, qBittorrent-style: torrentBindInterface empty = "Any interface"
+    // (unbound, follow the system route — never suspends); a named adapter = hard bind
+    // and fail-closed when it goes away (so no traffic leaks onto another route).
     const QString target = m_settings->torrentBindInterface().trimmed();
     const bool wantBind = !target.isEmpty();
     const bool available = wantBind ? m_torrentSession->isBindInterfaceAvailable(target) : true;
 
-    // Debounce transient "unavailable" readings. This check runs every 5s (driven
-    // by the tray-tooltip timer); VPN adapters routinely flap their interface
-    // flags / IPv4 entry for a tick during keepalive/rekey. Pausing the session on
-    // a single false reading drops all peers and produces a speed sawtooth. Only
-    // suspend after the interface stays unavailable across several consecutive
-    // checks; recover immediately when it returns.
-    static constexpr int kBindSuspendGraceTicks = 3; // ~15s at the 5s cadence
-    if (wantBind && !available)
-        ++m_torrentBindUnavailableTicks;
-    else
-        m_torrentBindUnavailableTicks = 0;
-
-    const bool shouldSuspend =
-        wantBind && !available && m_torrentBindUnavailableTicks >= kBindSuspendGraceTicks;
+    // Wall-clock debounce: VPN adapters flap their IsUp/IsRunning flag and drop their
+    // IP for a tick during keepalive/rekey. Suspending on a single false reading drops
+    // all peers → speed sawtooth. Only suspend after the adapter stays unavailable for
+    // kBindSuspendGraceMs; recover immediately when it returns. Wall-clock (not a tick
+    // count) so the grace does not silently depend on the reconcile timer's interval.
+    const qint64 now = QDateTime::currentMSecsSinceEpoch();
+    if (wantBind && !available) {
+        if (m_torrentBindUnavailableSinceMs == 0)
+            m_torrentBindUnavailableSinceMs = now;
+    } else {
+        m_torrentBindUnavailableSinceMs = 0;
+    }
+    const bool graceElapsed = m_torrentBindUnavailableSinceMs != 0
+        && (now - m_torrentBindUnavailableSinceMs) >= kBindSuspendGraceMs;
+    const bool shouldSuspend = wantBind && !available && graceElapsed;
 
     if (shouldSuspend && !m_torrentSessionSuspendedForBind) {
         // Suspend FIRST so no peer/tracker/DHT traffic can leak in the window
@@ -2568,16 +2590,21 @@ QString AppController::torrentBindingStatusText() const {
 
     const QString bindTarget = m_settings->torrentBindInterface().trimmed();
     if (bindTarget.isEmpty())
-        return {};
+        return {}; // "Any interface" — nothing to report
 
     const bool available = m_torrentSession && m_torrentSession->isBindInterfaceAvailable(bindTarget);
 
+    // Resolve to a friendly display name. bindTarget is normally already the friendly
+    // name, but a value saved before the friendly-name migration may still be a raw
+    // Windows LUID (e.g. "iftype53_32769") — match on both name() and
+    // humanReadableName() so the label never shows the ugly LUID.
     QString label = bindTarget;
     const QList<QNetworkInterface> interfaces = QNetworkInterface::allInterfaces();
     for (const QNetworkInterface &iface : interfaces) {
-        if (iface.name() != bindTarget)
-            continue;
         const QString human = iface.humanReadableName().trimmed();
+        if (iface.name() != bindTarget
+            && QString::compare(human, bindTarget, Qt::CaseInsensitive) != 0)
+            continue;
         if (!human.isEmpty())
             label = human;
         break;
@@ -2595,6 +2622,16 @@ bool AppController::torrentBindingOffline() const {
     if (bindTarget.isEmpty())
         return false;
     return !(m_torrentSession && m_torrentSession->isBindInterfaceAvailable(bindTarget));
+}
+
+bool AppController::torrentBindingHardened() const {
+    // Hardening (UPnP/NAT-PMP/LSD disabled) applies when traffic is pinned to a named
+    // interface AND the user hasn't opted to allow discovery while bound. "Any
+    // interface" (empty) follows the system route and is never hardened. Mirrors
+    // hardenDiscovery in TorrentSessionManager::configureSession.
+    return m_settings
+        && !m_settings->torrentBindInterface().trimmed().isEmpty()
+        && !m_settings->torrentAllowDiscoveryWhenBound();
 }
 
 void AppController::setTorrentPortTestState(bool inProgress, const QString &status, const QString &message) {
@@ -2828,8 +2865,8 @@ QVariantList AppController::torrentNetworkAdapters() const {
 
     QVariantMap defaultOption;
     defaultOption.insert(QStringLiteral("id"), QString());
-    defaultOption.insert(QStringLiteral("name"), QStringLiteral("Default route"));
-    defaultOption.insert(QStringLiteral("details"), QStringLiteral("Let the OS choose the active network adapter."));
+    defaultOption.insert(QStringLiteral("name"), QStringLiteral("Any interface"));
+    defaultOption.insert(QStringLiteral("details"), QStringLiteral("Follow the system route (used by your other apps)."));
     adapters.push_back(defaultOption);
 
     const QList<QNetworkInterface> interfaces = QNetworkInterface::allInterfaces();
@@ -2858,12 +2895,18 @@ QVariantList AppController::torrentNetworkAdapters() const {
         if (addresses.isEmpty())
             continue;
 
+        // Use the human-readable name (e.g. "WindscribeWireGuard") as the stored id,
+        // NOT iface.name(). On Windows iface.name() is the adapter LUID (e.g.
+        // "iftype53_32769"), which changes every time a VPN adapter is recreated on
+        // reconnect — a stored LUID then no longer resolves and the bind silently
+        // breaks. The friendly name is set by the driver/VPN client and is stable, and
+        // findNetworkInterfaceForBinding() resolves it (interfaceFromName first, then a
+        // case-insensitive humanReadableName match), so binding survives reconnects.
+        const QString friendly = iface.humanReadableName().trimmed();
+        const QString id = friendly.isEmpty() ? iface.name() : friendly;
         QVariantMap option;
-        option.insert(QStringLiteral("id"), iface.name());
-        option.insert(QStringLiteral("name"),
-                      iface.humanReadableName().trimmed().isEmpty()
-                          ? iface.name()
-                          : iface.humanReadableName().trimmed());
+        option.insert(QStringLiteral("id"), id);
+        option.insert(QStringLiteral("name"), id);
         option.insert(QStringLiteral("details"), addresses.join(QStringLiteral(", ")));
         adapters.push_back(option);
     }

@@ -144,6 +144,7 @@
     X(int, int, torrentDefaultShareLimitAction, TorrentDefaultShareLimitAction, 1, "torrentDefaultShareLimitAction", T) \
     X(QString, const QString &, torrentCustomUserAgent, TorrentCustomUserAgent, QString(), "torrentCustomUserAgent", T) \
     X(QString, const QString &, torrentBindInterface, TorrentBindInterface, QString(), "torrentBindInterface", T) \
+    X(bool, bool, torrentAllowDiscoveryWhenBound, TorrentAllowDiscoveryWhenBound, false, "torrentAllowDiscoveryWhenBound", T) \
     X(QStringList, const QStringList &, torrentBannedPeers, TorrentBannedPeers, QStringList(), "torrentBannedPeers", T) \
     X(QString, const QString &, torrentBlockedPeerUserAgents, TorrentBlockedPeerUserAgents, QString(), "torrentBlockedPeerUserAgents", T) \
     X(QStringList, const QStringList &, torrentBlockedPeerCountries, TorrentBlockedPeerCountries, QStringList(), "torrentBlockedPeerCountries", T) \

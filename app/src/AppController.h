@@ -113,6 +113,10 @@ class AppController : public QObject {
     // True when a bind interface is configured but currently offline (torrents
     // paused). Drives the status-bar icon choice (warning vs. shield).
     Q_PROPERTY(bool torrentBindingOffline READ torrentBindingOffline NOTIFY torrentBindingStatusTextChanged)
+    // True when torrent traffic is currently pinned to a specific interface (Specific
+    // mode, or Automatic with a VPN detected) — i.e. when LAN discovery is auto-hardened
+    // off. Drives the "UPnP/NAT-PMP/LSD disabled" note in settings.
+    Q_PROPERTY(bool torrentBindingHardened READ torrentBindingHardened NOTIFY torrentBindingStatusTextChanged)
     Q_PROPERTY(bool torrentPortTestInProgress READ torrentPortTestInProgress NOTIFY torrentPortTestChanged)
     Q_PROPERTY(QString torrentPortTestStatus READ torrentPortTestStatus NOTIFY torrentPortTestChanged)
     Q_PROPERTY(QString torrentPortTestMessage READ torrentPortTestMessage NOTIFY torrentPortTestChanged)
@@ -190,6 +194,7 @@ public:
     bool motdVisible() const { return !m_motd.isEmpty(); }
     bool checkingForUpdates() const { return m_checkingForUpdates; }
     QString torrentBindingStatusText() const;
+    bool torrentBindingHardened() const;
     bool torrentBindingOffline() const;
     bool torrentPortTestInProgress() const { return m_torrentPortTestInProgress; }
     QString torrentPortTestStatus() const { return m_torrentPortTestStatus; }
@@ -612,12 +617,14 @@ private:
     // route. This flag tracks whether the suspension was caused by that
     // mechanism (vs. user-driven), so we only unsuspend what we suspended.
     bool                    m_torrentSessionSuspendedForBind{false};
-    // Consecutive bind-interface "unavailable" checks. A VPN adapter can flap
-    // its IsUp/IsRunning flag or briefly drop its IPv4 entry during keepalive/
-    // rekey, so a single transient reading must not pause the whole session
-    // (that drops all peers → speed sawtooth). We only suspend after the
-    // interface stays unavailable for kBindSuspendGraceTicks consecutive checks.
-    int                     m_torrentBindUnavailableTicks{0};
+    // Wall-clock timestamp (ms since epoch) of when the Specific-mode bind interface
+    // first went unavailable, or 0 when available. A VPN adapter can flap its
+    // IsUp/IsRunning flag or briefly drop its IPv4 entry during keepalive/rekey, so a
+    // single transient reading must not pause the whole session (that drops all peers
+    // → speed sawtooth). We only suspend after it stays unavailable for
+    // kBindSuspendGraceMs. Wall-clock (not a tick count) so the grace period does not
+    // silently depend on the reconcile timer's interval.
+    qint64                  m_torrentBindUnavailableSinceMs{0};
     QLocalServer           *m_ipcServer{nullptr};
     bool                    m_qmlReady{false};
     QList<QByteArray>       m_pendingIpcPayloads; // buffered until QML is ready

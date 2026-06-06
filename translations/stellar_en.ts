@@ -5949,23 +5949,33 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/SettingsDialog.qml" line="3364"/>
-        <source>Bind to network adapter</source>
+        <location filename="../app/qml/SettingsDialog.qml" line="3521"/>
+        <source>Network interface</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/SettingsDialog.qml" line="3415"/>
-        <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
+        <location filename="../app/qml/SettingsDialog.qml" line="3572"/>
+        <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/SettingsDialog.qml" line="3415"/>
-        <source>No adapter binding. Torrent traffic follows the system route.</source>
+        <location filename="../app/qml/SettingsDialog.qml" line="3575"/>
+        <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/SettingsDialog.qml" line="3432"/>
-        <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
+        <location filename="../app/qml/SettingsDialog.qml" line="3587"/>
+        <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3601"/>
+        <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="3603"/>
+        <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
         <translation></translation>
     </message>
     <message>
@@ -6542,14 +6552,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/SettingsDialog.qml" line="227"/>
-        <location filename="../app/qml/SettingsDialog.qml" line="3378"/>
-        <source>Default route</source>
+        <location filename="../app/qml/SettingsDialog.qml" line="232"/>
+        <location filename="../app/qml/SettingsDialog.qml" line="3536"/>
+        <source>Any interface</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/SettingsDialog.qml" line="228"/>
-        <source>Let the OS choose the active network adapter.</source>
+        <location filename="../app/qml/SettingsDialog.qml" line="233"/>
+        <source>Follow the system route (used by your other apps).</source>
         <translation></translation>
     </message>
     <message>

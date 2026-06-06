@@ -244,87 +244,6 @@ QStringList interfaceBindAddresses(const QNetworkInterface &iface) {
     return addresses;
 }
 
-bool interfaceLooksLikeVpn(const QNetworkInterface &iface) {
-    if (!iface.isValid())
-        return false;
-
-    const QString name = iface.name().trimmed().toLower();
-    const QString human = iface.humanReadableName().trimmed().toLower();
-
-    const QStringList strongTokens{
-        QStringLiteral("tun"),
-        QStringLiteral("tap"),
-        QStringLiteral("wg"),
-        QStringLiteral("wireguard"),
-        QStringLiteral("ppp"),
-        QStringLiteral("ipsec"),
-        QStringLiteral("openvpn"),
-        QStringLiteral("protonvpn"),
-        QStringLiteral("nord"),
-        QStringLiteral("mullvad"),
-        QStringLiteral("surfshark"),
-        QStringLiteral("expressvpn"),
-        QStringLiteral("windscribe"),
-        QStringLiteral("ivpn"),
-        QStringLiteral("zerotier"),
-        QStringLiteral("tailscale")
-    };
-
-    for (const QString &token : strongTokens) {
-        if (name.contains(token) || human.contains(token))
-            return true;
-    }
-
-    return false;
-}
-
-QNetworkInterface findPreferredVpnInterface() {
-    const QList<QNetworkInterface> interfaces = QNetworkInterface::allInterfaces();
-
-    QNetworkInterface bestCandidate;
-    int bestScore = -1;
-
-    for (const QNetworkInterface &iface : interfaces) {
-        const QStringList bindAddresses = interfaceBindAddresses(iface);
-        if (bindAddresses.isEmpty())
-            continue;
-
-        int score = -1;
-        const QString name = iface.name().trimmed().toLower();
-        const QString human = iface.humanReadableName().trimmed().toLower();
-
-        if (name.startsWith(QStringLiteral("wg")) || human.contains(QStringLiteral("wireguard"))) {
-            score = 400;
-        } else if (name.startsWith(QStringLiteral("tun")) || name.startsWith(QStringLiteral("tap"))
-                   || human.contains(QStringLiteral("openvpn"))) {
-            score = 300;
-        } else if (name.startsWith(QStringLiteral("ppp")) || human.contains(QStringLiteral("ppp"))
-                   || human.contains(QStringLiteral("ipsec"))) {
-            score = 200;
-        } else if (interfaceLooksLikeVpn(iface)) {
-            score = 100;
-        }
-
-        if (score < 0)
-            continue;
-
-        const bool hasIpv4 = std::any_of(bindAddresses.cbegin(), bindAddresses.cend(),
-                                         [](const QString &addressText) {
-                                             return QHostAddress(addressText).protocol()
-                                                 == QAbstractSocket::IPv4Protocol;
-                                         });
-        if (hasIpv4)
-            score += 10;
-
-        if (score > bestScore) {
-            bestScore = score;
-            bestCandidate = iface;
-        }
-    }
-
-    return bestCandidate;
-}
-
 void applyInterfaceBinding(libtorrent::settings_pack &pack, const QStringList &bindAddresses, int listenPort) {
     if (!bindAddresses.isEmpty()) {
         QStringList listenInterfaces;
@@ -764,7 +683,10 @@ void TorrentSessionManager::suspendSession() {
 #if defined(STELLAR_HAS_LIBTORRENT)
     if (m_session)
         m_session->pause();
-    m_alertTimer.stop();
+    // Deliberately keep m_alertTimer running. Pausing stops peer traffic (the leak
+    // guard) but the alert loop must keep processing: save_resume_data alerts (else a
+    // crash during suspend loses recent resume data), checkShareLimits, and UI status
+    // updates. post_torrent_updates() on a paused-but-valid session is safe.
 #endif
 }
 
@@ -772,7 +694,8 @@ void TorrentSessionManager::unsuspendSession() {
 #if defined(STELLAR_HAS_LIBTORRENT)
     if (m_session) {
         m_session->resume();
-        m_alertTimer.start();
+        if (!m_alertTimer.isActive())
+            m_alertTimer.start();
     }
 #endif
 }
@@ -1261,10 +1184,40 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
     pack.set_int(libtorrent::settings_pack::alert_mask,
                  static_cast<int>(static_cast<std::uint32_t>(alertMask)));
 
+    // Network interface binding (leak protection). Single user-facing control,
+    // qBittorrent-style: torrentBindInterface is either empty ("Any interface":
+    // unbound, follow the system route, which already goes through the VPN when the
+    // VPN is the default route) or a named adapter (hard bind to that interface only;
+    // if it goes away, no traffic leaks onto another route).
+    // boundToInterface = a specific adapter is selected.
+    const QString bindTarget = settings->torrentBindInterface().trimmed();
+    const bool boundToInterface = !bindTarget.isEmpty();
+    QStringList bindAddrs;
+    if (boundToInterface)
+        bindAddrs = interfaceBindAddresses(findNetworkInterfaceForBinding(bindTarget));
+    // Fail-closed: a configured adapter that currently has no usable address binds to
+    // nothing rather than falling back to all interfaces (which would leak).
+    const bool bindFailClosed = boundToInterface && bindAddrs.isEmpty();
+
     pack.set_bool(libtorrent::settings_pack::enable_dht, settings->torrentEnableDht());
-    pack.set_bool(libtorrent::settings_pack::enable_lsd, settings->torrentEnableLsd());
-    pack.set_bool(libtorrent::settings_pack::enable_upnp, settings->torrentEnableUpnp());
-    pack.set_bool(libtorrent::settings_pack::enable_natpmp, settings->torrentEnableNatPmp());
+    // Auto-harden when bound to a specific interface: UPnP and NAT-PMP map ports via
+    // the LAN gateway (off-VPN, exposing the listen port) and LSD broadcasts to the
+    // local network, so all three leak around the bound interface. Disable them while
+    // bound unless the user explicitly opts in via torrentAllowDiscoveryWhenBound (e.g.
+    // binding to a plain LAN adapter where UPnP is legitimately wanted). When following
+    // the system route (unbound) the user's settings are always honoured. DHT stays
+    // user-controlled: it routes over the bound interface and maps no LAN ports. Both
+    // the v4 and v6 addresses of the bound interface are used (see applyInterfaceBinding),
+    // so IPv6 rides the VPN when the VPN provides a v6 address; a v4-only VPN simply
+    // yields a v4-only bind and never falls back to an all-interfaces [::] catch-all
+    // that would leak native IPv6.
+    const bool hardenDiscovery = boundToInterface && !settings->torrentAllowDiscoveryWhenBound();
+    pack.set_bool(libtorrent::settings_pack::enable_lsd,
+                  hardenDiscovery ? false : settings->torrentEnableLsd());
+    pack.set_bool(libtorrent::settings_pack::enable_upnp,
+                  hardenDiscovery ? false : settings->torrentEnableUpnp());
+    pack.set_bool(libtorrent::settings_pack::enable_natpmp,
+                  hardenDiscovery ? false : settings->torrentEnableNatPmp());
 
     // PeX has no session-level settings_pack key; propagate to all existing handles.
     for (auto &h : m_session->get_torrents()) {
@@ -1323,21 +1276,17 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
                       STELLAR_VERSION_PATCH);
         pack.set_str(libtorrent::settings_pack::peer_fingerprint, fp);
     }
-    const QString bindTarget = settings->torrentBindInterface().trimmed();
-    if (!bindTarget.isEmpty()) {
-        const QNetworkInterface iface = findNetworkInterfaceForBinding(bindTarget);
-        const QStringList addrs = interfaceBindAddresses(iface);
-        if (addrs.isEmpty()) {
-            // Interface configured but not available (e.g. VPN disconnected) — bind to
-            // nothing rather than falling back to all interfaces, which would leak traffic.
-            pack.set_str(libtorrent::settings_pack::listen_interfaces, std::string());
-            pack.set_str(libtorrent::settings_pack::outgoing_interfaces, std::string());
-        } else {
-            applyInterfaceBinding(pack, addrs, settings->torrentListenPort());
-        }
+    // Apply the bind decision computed above. When fail-closed (mode 1 with the
+    // configured adapter unavailable), bind to NOTHING — empty interfaces stop all
+    // traffic rather than letting libtorrent's all-interfaces default leak the real
+    // IP. Otherwise applyInterfaceBinding pins listen+outgoing to bindAddrs, or — for
+    // genuinely-unbound modes (mode 2, or Automatic with no VPN) where bindAddrs is
+    // empty and we are NOT fail-closed — uses the default-route fallback.
+    if (bindFailClosed) {
+        pack.set_str(libtorrent::settings_pack::listen_interfaces, std::string());
+        pack.set_str(libtorrent::settings_pack::outgoing_interfaces, std::string());
     } else {
-        const QNetworkInterface vpnIface = findPreferredVpnInterface();
-        applyInterfaceBinding(pack, interfaceBindAddresses(vpnIface), settings->torrentListenPort());
+        applyInterfaceBinding(pack, bindAddrs, settings->torrentListenPort());
     }
     // Apply proxy settings so tracker announces and peer connections are routed
     // through the same proxy the rest of the app uses.

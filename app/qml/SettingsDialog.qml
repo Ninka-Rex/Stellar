@@ -129,6 +129,7 @@ Window {
     property int    editTorrentProtocol: 0
     property string editTorrentCustomUserAgent: ""
     property string editTorrentBindInterface:  ""
+    property bool   editTorrentAllowDiscoveryWhenBound: false
     property string editTorrentBlockedPeerUserAgents: ""
     property var    editTorrentBlockedPeerCountries: []
     property var    editTorrentBannedPeers: []
@@ -229,8 +230,8 @@ Window {
         var adapters = App.torrentNetworkAdapters()
         torrentAdapterOptions = adapters && adapters.length ? adapters : [{
             id: "",
-            name: qsTr("Default route"),
-            details: qsTr("Let the OS choose the active network adapter.")
+            name: qsTr("Any interface"),
+            details: qsTr("Follow the system route (used by your other apps).")
         }]
         var boundId = editTorrentBindInterface && editTorrentBindInterface.length > 0
             ? editTorrentBindInterface
@@ -483,6 +484,7 @@ Window {
         editTorrentProtocol !== App.settings.torrentProtocol ||
         editTorrentCustomUserAgent !== App.settings.torrentCustomUserAgent ||
         editTorrentBindInterface  !== App.settings.torrentBindInterface  ||
+        editTorrentAllowDiscoveryWhenBound !== App.settings.torrentAllowDiscoveryWhenBound ||
         editTorrentBlockedPeerUserAgents !== App.settings.torrentBlockedPeerUserAgents ||
         JSON.stringify(editTorrentBlockedPeerCountries) !== JSON.stringify(App.settings.torrentBlockedPeerCountries) ||
         JSON.stringify(editTorrentBannedPeers) !== JSON.stringify(App.settings.torrentBannedPeers) ||
@@ -895,6 +897,7 @@ Window {
         App.settings.torrentProtocol = editTorrentProtocol
         App.settings.torrentCustomUserAgent = editTorrentCustomUserAgent
         App.settings.torrentBindInterface   = editTorrentBindInterface
+        App.settings.torrentAllowDiscoveryWhenBound = editTorrentAllowDiscoveryWhenBound
         App.settings.torrentBlockedPeerUserAgents = editTorrentBlockedPeerUserAgents
         App.settings.torrentBlockedPeerCountries = editTorrentBlockedPeerCountries
         App.settings.torrentBannedPeers = editTorrentBannedPeers
@@ -1010,6 +1013,7 @@ Window {
         editTorrentProtocol = App.settings.torrentProtocol
         editTorrentCustomUserAgent = App.settings.torrentCustomUserAgent
         editTorrentBindInterface  = App.settings.torrentBindInterface
+        editTorrentAllowDiscoveryWhenBound = App.settings.torrentAllowDiscoveryWhenBound
         editTorrentBlockedPeerUserAgents = App.settings.torrentBlockedPeerUserAgents
         editTorrentBlockedPeerCountries = App.settings.torrentBlockedPeerCountries.slice()
         editTorrentBannedPeers = App.settings.torrentBannedPeers.slice()
@@ -3518,7 +3522,8 @@ Window {
                             background: Rectangle { color: ColorPalette.inputBg; border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3 }
                         }
 
-                        Text { text: qsTr("Bind to network adapter"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Network interface"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+
                         ComboBox {
                             id: torrentAdapterCombo
                             Layout.fillWidth: true
@@ -3532,7 +3537,7 @@ Window {
                                     var option = torrentAdapterCombo.currentIndex >= 0 && torrentAdapterCombo.currentIndex < root.torrentAdapterOptions.length
                                         ? root.torrentAdapterOptions[torrentAdapterCombo.currentIndex]
                                         : null
-                                    return option ? option.name : qsTr("Default route")
+                                    return option ? option.name : qsTr("Any interface")
                                 }
                                 color: ColorPalette.textPrimary
                                 font: torrentAdapterCombo.font
@@ -3567,26 +3572,49 @@ Window {
                             }
                         }
 
+                        // Honest explainer: empty = follow system route; named = hard bind + fail-closed.
                         Text {
                             Layout.fillWidth: true
-                            text: root.editTorrentBindInterface.length > 0 ? qsTr("This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.") : qsTr("No adapter binding. Torrent traffic follows the system route.")
-                            color: root.editTorrentBindInterface.length > 0 ? ColorPalette.textPrimary : ColorPalette.textDisabled
+                            text: root.editTorrentBindInterface.length > 0
+                                  ? qsTr("Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.")
+                                  : qsTr("Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.")
+                            color: ColorPalette.textPrimary
+                            font.pixelSize: 11 * App.fontScale
+                            wrapMode: Text.WordWrap
+                        }
+
+                        // Allow LAN discovery while bound (advanced). Default off = harden.
+                        StyledCheckBox {
+                            visible: root.editTorrentBindInterface.length > 0
+                            text: qsTr("Allow UPnP, NAT-PMP and Local Service Discovery while bound")
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editTorrentAllowDiscoveryWhenBound
+                            onCheckedChanged: root.editTorrentAllowDiscoveryWhenBound = checked
+                            contentItem: Text {
+                                text: parent.text
+                                color: ColorPalette.textPrimary
+                                font.pixelSize: 13 * App.fontScale
+                                leftPadding: parent.indicator.width + 4
+                                verticalAlignment: Text.AlignVCenter
+                                wrapMode: Text.WordWrap
+                            }
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            visible: root.editTorrentBindInterface.length > 0
+                            text: root.editTorrentAllowDiscoveryWhenBound
+                                  ? qsTr("These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.")
+                                  : qsTr("UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.")
+                            color: "#8899bb"
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
                         }
 
                         Text {
                             Layout.fillWidth: true
+                            visible: root.editTorrentBindInterface.length > 0
                             text: root.torrentAdapterDetails(root.editTorrentBindInterface)
-                            color: ColorPalette.textDisabled
-                            font.pixelSize: 11 * App.fontScale
-                            wrapMode: Text.WordWrap
-                            visible: text.length > 0
-                        }
-
-                        Text {
-                            Layout.fillWidth: true
-                            text: qsTr("Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.")
                             color: ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
