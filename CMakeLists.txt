@@ -285,6 +285,8 @@ qt_add_qml_module(Stellar
         app/qml/icons/statusbar.svg
         app/qml/icons/toolbar.svg
         app/qml/icons/pause.svg
+        app/qml/icons/status_play.svg
+        app/qml/icons/status_pause.svg
         app/qml/icons/properties.svg
         app/qml/icons/scheduler.svg
         app/qml/icons/update.svg

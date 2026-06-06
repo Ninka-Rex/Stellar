@@ -85,7 +85,7 @@ Rectangle {
             visible: App.activeDownloads > 0
             spacing: 4
             Layout.alignment: Qt.AlignVCenter
-            StatusIcon { source: "icons/resume.svg" }
+            StatusIcon { source: "icons/status_play.svg" }
             Text {
                 text: App.activeDownloads
                 color: ColorPalette.textSecond
@@ -109,7 +109,7 @@ Rectangle {
             visible: App.pausedCount > 0
             spacing: 4
             Layout.alignment: Qt.AlignVCenter
-            StatusIcon { source: "icons/pause.svg" }
+            StatusIcon { source: "icons/status_pause.svg" }
             Text {
                 text: App.pausedCount
                 color: ColorPalette.textSecond
