@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, காந்த இணைப்பு அல்லது இன்ஃபோஹாஷ்</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP இணைப்புகள், காந்த இணைப்புகள் அல்லது டோரண்ட் இன்ஃபோஹாஷை ஏற்கும்.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP கட்டுப்பாட்டு இணைப்பு தோல்வி: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP கட்டுப்பாட்டு இணைப்பு எதிர்பாராமல் மூடப்பட்டது.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP கட்டுப்பாட்டு இணைப்பு நேரம் முடிந்தது.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>தவறான FTP பதில்.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>உட்பொதிக்கப்பட்ட புதுவரியுடன் FTP கட்டளையை அனுப்ப மறுக்கிறது.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP சேவையகம் இணைப்பை மறுத்தது</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS தேவை ஆனால் சேவையகம் AUTH TLS-ஐ ஆதரிக்கவில்லை.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP உள்நுழைவு தோல்வி</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS தரவு பாதுகாப்பு (PBSZ) நிராகரிக்கப்பட்டது.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS தரவு பாதுகாப்பு (PROT P) நிராகரிக்கப்பட்டது.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP சேவையகம் பைனரி முறையை (TYPE I) நிராகரித்தது.</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTP செயலற்ற முறைக்கு நுழைய முடியவில்லை.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP சேவையகம் மீள்தொடக்கத்தை (REST) ஆதரிக்கவில்லை.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP சேவையகம் கோப்பை நிராகரித்தது</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>RETR-க்கு எதிர்பாராத FTP பதில்</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>சேவையகத்தால் FTP பரிமாற்றம் நிறுத்தப்பட்டது</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>FTP செயலற்ற-முறை பதிலைப் பாகுபடுத்த முடியவில்லை.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>பாதுகாப்புக்காக FTP செயலற்ற-முறை முகவரி நிராகரிக்கப்பட்டது.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTP தரவு இணைப்பைத் திறக்க முடியவில்லை.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS கைகுலுக்கல் தோல்வி: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>தவறான FTP பாதை.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>பகுதி கோப்பைத் திறக்க முடியவில்லை: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>வட்டு எழுதுதல் தோல்வி: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP பரிமாற்றம் துண்டிக்கப்பட்டது.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP பிரிவு %1, %2 மறுமுயற்சிகளுக்குப் பின் தோல்வி.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>பதிவிறக்க கோப்பகத்திற்கு எழுத அனுமதி இல்லை: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>ஸ்டெல்லார் தொடங்குகிறது...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ %1 உடன் இணைக்கப்பட்டது</translation>
+            <source>Past midnight already?</source>
+            <translation>ஏற்கனவே நள்ளிரவைக் கடந்ததா?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>இன்னும் விழித்திருக்கிறீர்களா?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>இரவு இளமையானது!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>தூக்கம் வரவில்லையா?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>காலை வணக்கம்!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>எழுந்து பிரகாசி!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>காலை மலர்ச்சி!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>காலை! காபி தயாராகிறது.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>மதிய வணக்கம்!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>மதிய உணவு இடைவேளையில் பதிவிறக்கமா?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>மதியம் ஆகிவிட்டதா!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>உங்கள் நாள் நன்றாகப் போகிறது என்று நம்புகிறேன்!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>மதிய வணக்கம்!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>இனிய மாலை!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>ஓய்வெடுக்கிறீர்களா?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>மாலை வணக்கம்!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>நல்ல நாளாக இருந்திருக்கும் என நம்புகிறேன்!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>இரவு வேலையா?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>தூங்கும் நேரம் கடந்ததா?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>இரவு நேர அமர்வு!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>ஓய்வெடுக்க மறக்காதீர்கள்!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>மீண்டும் வருக!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>நீங்கள் தயாரானதும் தொடங்குவோம்!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>உங்களைப் பார்ப்பதில் மகிழ்ச்சி!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>பதிவிறக்கத் தொடங்குவோம்!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>உங்களைக் காணவில்லை!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>மீண்டும் தொடங்குங்கள்!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>உங்கள் பதிவிறக்கங்கள் காத்திருக்கின்றன!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>விட்ட இடத்திலிருந்து தொடரவா?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>இன்று என்ன பதிவிறக்கலாம்?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>%1 உடன் இணைக்கப்பட்டது</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>இறக்குமதி செய்ய காப்புப்படி கோப்பு தேர்வு செய்யப்படவில்லை.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ %1 உடன் இணைக்கப்பட்டது (ஆஃப்லைன் — டொரண்டுகள் இடைநிறுத்தப்பட்டுள்ளன)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>%1 உடன் இணைக்கப்பட்டது (ஆஃப்லைன் - டொரண்டுகள் இடைநிறுத்தம்)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>புதுப்பிப்பு உள்ளது! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>புதுப்பிப்புகளைச் சரிபார்க்கிறது</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>அனைத்து கோப்புகளும் ஒரே கோப்பகத்தில்</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>உலாவு...</translation>
+            <source>Browse…</source>
+            <translation>உலாவு…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>கடைசி சேமிப்புப் பாதையை நினைவில் கொள்</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>உலாவு...</translation>
+            <source>Browse…</source>
+            <translation>உலாவு…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>பதிவிறக்கம்</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>நகலெடுக்க கிளிக் செய்க</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 தொடங்க  URL சேர்  என்பதைக் கிளிக் செய்க</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>%n பதிவிறக்கம்(கள்) ஏற்றப்படுகிறது…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>%1 / %2 பதிவிறக்கங்கள் ஏற்றப்படுகின்றன…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>முன்னுரிமை</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>குறைவு</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>இயல்பு</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>அதிகம்</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>அதிகபட்சம்</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>கலப்பு</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>அரிது</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>பொது</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>உயர் முன்னுரிமை</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>தவிர்க்கப்பட்டது</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>கிடைக்கவில்லை</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 துண்டுகள்</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 பதிவிறக்கம்</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 பதிவிறங்குகிறது</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 தவிர்க்கப்பட்டது</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>துண்டுத் தரவு இல்லை</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>தவிர்க்கப்பட்டது (கோப்பு தேர்ந்தெடுக்கப்படவில்லை)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>பதிவிறக்கம் - %1% தொகுதிகள் பெறப்பட்டன</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>கிடைக்கவில்லை - இந்தத் துண்டு எந்த பியரிடமும் இல்லை</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>விடுபட்டது - %n பியர்(கள்) வைத்துள்ளனர்</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(உயர் முன்னுரிமை)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>துண்டு #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>டொரண்ட் தரவை நகர்த்து...</translation>
@@ -3394,8 +3728,8 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <translation>இயல்புநிலை பாதைக்கு காலியாக விடவும்</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>உலாவு...</translation>
+            <source>Browse…</source>
+            <translation>உலாவு…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3906,6 +4240,10 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <translation>&quot;கோப்பு தகவல்&quot; உரையாடலைக் காட்டும்போது உடனடியாகப் பதிவிறக்கு</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>கோப்பு மெட்டாடேட்டாவுடன் விளக்கப் புலத்தை தானாக நிரப்பு</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>டொரெண்ட் மெட்டாடேட்டாவைப் பதிவிறக்கும்போது கூட்ட வரைபடத்தைக் காட்டு</translation>
         </message>
@@ -4108,10 +4446,6 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <translation>⚠ உலாவி தானியங்கு பதிவிறக்கப் பட்டியலில் இல்லை: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>உலாவு</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>டோரண்ட் மெட்டாடேட்டா உரையாடல் இயல்பாக தனிப்பயன் சேமிப்பு கோப்புறையைப் பயன்படுத்த அமைக்கப்படும்போது பயன்படுத்தப்படும் நினைவில் வைக்கப்பட்ட தனிப்பயன் டோரண்ட் கோப்புறை இது.</translation>
         </message>
@@ -4228,16 +4562,16 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <translation>நிலைப் பட்டியில் வேகம் காட்டு</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>நிலைப் பட்டியில் மதிப்பிடப்பட்ட ஆன்லைன் பயனர்களைக் காட்டு</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>உலகளாவிய BitTorrent பயனர்களை மதிப்பிட DHT முனை-அடையாள அடர்த்தியைப் பயன்படுத்துகிறது. அதிக தனித்துவ முனை அடையாளங்கள் காணப்படும்போது நம்பிக்கை அதிகரிக்கும்; நிலைப் பட்டியில் * இருந்தால் மதிப்பீடு இன்னும் குறைந்த நம்பிக்கையில் உள்ளது.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>நிலைப் பட்டியில் விகிதம் காட்டு</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>நிலைப் பட்டையில் டொரண்ட் இணைப்புகளைக் காட்டு</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>நிலைப் பட்டையில் DHT முனைகளைக் காட்டு</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4500,20 +4834,28 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
             <translation>தனிப்பயன் பிட்டோரென்ட் பயனர் முகவர்</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>பிணைய தகவி உடன் இணை</translation>
+            <source>Network interface</source>
+            <translation>பிணைய இடைமுகம்</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>இந்த தகவி டொரன்ட் போக்குவரத்திற்கு பூட்டப்பட்டுள்ளது. VPN துண்டிக்கப்பட்டாலோ அல்லது தகவி நீங்கினாலோ, ஸ்டெல்லார் இயல்புநிலை வழியை நிறுத்தி, உங்கள் டொரன்ட்கள் வேறு இணைப்பில் கசியாமல் பிணைய அணுகலை இழக்கும்.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>டொரண்ட் போக்குவரத்து இந்த இடைமுகத்தில் பூட்டப்பட்டுள்ளது. உங்கள் VPN துண்டிக்கப்பட்டாலோ அல்லது இடைமுகம் நீங்கினாலோ, Stellar மற்றொரு இணைப்பில் கசிவதற்குப் பதிலாக டொரண்ட்களை இடைநிறுத்துகிறது. அனைத்து டொரண்ட் போக்குவரத்தையும், IPv6 உட்பட, VPN வழியாக அனுப்ப உங்கள் VPN அடாப்டருடன் பிணைக்கவும்.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>தகவி பிணைப்பு இல்லை. டொரன்ட் போக்குவரத்து கணினி வழியைப் பின்தொடரும்.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>எந்த இடைமுகம்: உங்கள் மற்ற பயன்பாடுகளைப் போலவே டொரண்ட் போக்குவரத்து கணினி வழியைப் பின்பற்றுகிறது. VPN உங்கள் செயலில் உள்ள இணைப்பாக இருந்தால் அது VPN வழியாகச் செல்கிறது; VPN துண்டிக்கப்பட்டால், போக்குவரத்து சாதாரண இணைப்பில் தொடர்கிறது. கண்டிப்பான VPN-மட்டும் பிணைப்பிற்கு ஒரு குறிப்பிட்ட அடாப்டரைத் தேர்ந்தெடுக்கவும்.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>பிணைய தகவி பிணைப்பு, தேர்ந்தெடுத்த தகவி வழியாக மட்டுமே டொரன்ட் போக்குவரத்தை அனுப்பவும் பெறவும் ஸ்டெல்லாரை அறிவுறுத்துகிறது. VPN இணைக்கப்படாதபோது தற்செயலான போக்குவரத்து கசிவைத் தடுப்பதால், இது VPN பயனர்களுக்கு மிகவும் பயனுள்ளதாகும்.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>பிணைக்கப்பட்டிருக்கும்போது UPnP, NAT-PMP மற்றும் உள்ளூர் சேவை கண்டுபிடிப்பை அனுமதி</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>இவை உங்கள் உள்ளூர் திசைவியுடன் பேசி, சுரங்கப்பாதையைச் சுற்றி உங்கள் கேட்கும் துறையை வெளிப்படுத்தலாம். VPN அல்ல, நம்பகமான LAN அடாப்டருடன் பிணைக்கும்போது மட்டுமே இதை இயக்கவும்.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>பிணைக்கப்பட்டிருக்கும்போது UPnP, NAT-PMP மற்றும் உள்ளூர் சேவை கண்டுபிடிப்பு முடக்கப்பட்டுள்ளன, ஏனெனில் அவை உள்ளூர் திசைவியுடன் பேசி சுரங்கப்பாதையைச் சுற்றி உங்கள் கேட்கும் துறையை வெளிப்படுத்தும்.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4968,12 +5310,12 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
             <translation>சரி</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>இயல்புநிலை வழி</translation>
+            <source>Any interface</source>
+            <translation>எந்த இடைமுகம்</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>செயலில் உள்ள பிணைய ஏற்பியை OS தேர்வு செய்யட்டும்.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>கணினி வழியைப் பின்பற்று (உங்கள் மற்ற பயன்பாடுகளால் பயன்படுத்தப்படுகிறது).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5052,8 +5394,8 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
             <translation>மூலம்: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>மூல URL இன்னும் தற்காலிகமாக சேமிக்கப்படவில்லை. update.json-இலிருந்து IPtoCityDB-ஐ தற்காலிகமாக சேமிக்க புதுப்பிப்புகளைச் சரிபார்க்கவும்.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>db-ip.com-லிருந்து புதுப்பிக்கும்போது தானாகத் தீர்க்கப்பட்டது.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5233,22 +5575,6 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
             <translation>வரம்பற்ற</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT முடக்கு</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>இணைப்பில் (குறைந்த நம்பகத்தன்மை)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>இணைப்பில்</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>மதிப்பிடுகிறது… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>அடுத்து &gt;&gt;</translation>
         </message>
@@ -5257,6 +5583,14 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
 Click to open Statistics</source>
             <translation>எல்லா கால பகிர்வு விகிதம்
 புள்ளிவிவரங்களைத் திறக்க கிளிக் செய்க</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>மொத்த டொரண்ட் பியர் இணைப்புகள்</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT முனைகள்</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5696,6 +6030,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>முன்னுரிமை</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>குறை</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>இயல்பு</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>உயர்</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>அதிகபட்சம்</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>கலப்பு</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>இங்கே சேமி</translation>
@@ -6457,6 +6815,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>வீடியோ பதிவிறக்கம்</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>பதிவிறக்க வரம்புகள் மீறப்பட்டன!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1 முதல் %2 வரை %3 MB பதிவிறக்கம் செய்துள்ளீர்கள். ஒவ்வொரு %6க்கும் %5 MB என்ற பதிவிறக்க வரம்பை மீறியதால் &quot;%4&quot; இல் உள்ள அனைத்து பதிவிறக்கங்களும் நிறுத்தப்பட்டுள்ளன.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>நிறுத்தப்பட்ட அனைத்து பதிவிறக்கங்களும் %1 மணிக்கு (இன்னும் %2 இல்) தானாகவே மீண்டும் தொடங்கும். உடனடியாக மீண்டும் தொடங்க, பதிவிறக்க வரம்புகள் அமைப்பை மாற்றி, மீண்டும் தொடங்கு என்பதை அழுத்தவும்.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>இப்போது</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 மணி</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 மணி</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 நிமிடம்</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 நிமிடங்கள்</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>ஒரு நிமிடத்திற்கும் குறைவாக</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>மற்றும்</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>சரி</translation>
         </message>
     </context>
 </TS>

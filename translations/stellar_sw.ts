@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Kiungo cha Sumaku, au Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Inakubali viungo vya HTTP/HTTPS/FTP, viungo vya sumaku, au infohash ya mkondo.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Muunganisho wa udhibiti wa FTP umeshindwa: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>Muunganisho wa udhibiti wa FTP ulifungwa bila kutarajiwa.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Muunganisho wa udhibiti wa FTP umeisha muda.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Jibu la FTP lenye hitilafu.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Inakataa kutuma amri ya FTP yenye mstari mpya uliopachikwa.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>Seva ya FTP ilikataa muunganisho</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS inahitajika lakini seva haitumii AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Kuingia kwa FTP kumeshindwa</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Ulinzi wa data FTPS (PBSZ) umekataliwa.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Ulinzi wa data FTPS (PROT P) umekataliwa.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>Seva ya FTP imekataa hali ya binary (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Imeshindwa kuingia hali tulivu ya FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>Seva ya FTP haitumii kuanzisha upya (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>Seva ya FTP imekataa faili</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Jibu lisilotarajiwa la FTP kwa RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Uhamishaji wa FTP umesitishwa na seva</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Imeshindwa kuchanganua jibu la hali tulivu ya FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Anwani ya hali tulivu ya FTP imekataliwa kwa usalama.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Haikuweza kufungua muunganisho wa data wa FTP.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>Kupeana mkono kwa TLS kumeshindwa: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Njia batili ya FTP.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Haiwezi kufungua faili sehemu: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Kuandika kwenye diski kumeshindwa: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Uhamishaji wa FTP ulikatwa.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Sehemu ya FTP %1 imeshindwa baada ya majaribio %2.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Hakuna ruhusa ya kuandika kwa saraka ya upakuaji: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar inajipanga...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Imegawanywa na %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Umeshapita usiku wa manane?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Bado uko macho?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Usiku bado!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Hupati usingizi?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Habari za asubuhi!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Amka uangaze!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Asubuhi njema!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Asubuhi! Kahawa inatayarishwa.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Habari za mchana!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Vipakuliwa vya mapumziko ya chakula?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Mchana tayari!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Natumai siku yako inaendelea vizuri!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Habari za mchana!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Jioni njema!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Unapumzika?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Jioni!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Natumai umekuwa na siku njema!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Unachelewa kazini?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Uko nje ya muda wa kulala?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Kikao cha usiku wa manane!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Usisahau kupumzika!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Karibu tena!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Tayari utakapokuwa tayari!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Nimefurahi kukuona!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Tuanze kupakua!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Nimekukosa!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Tumerudi tena!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Vipakuliwa vyako vinakusubiri!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Endelea ulipoishia?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Tunachukua nini leo?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Imefungwa kwa %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Hakuna faili rudufu lililochaguliwa kuingizwa.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Imefungwa kwa %1 (nje ya mtandao — torrenti zimesitishwa)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Imefungwa kwa %1 (nje ya mtandao - torrenti zimesitishwa)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Sasisho linapatikana! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Inatafuta masasisho</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Faili zote kwenye saraka moja</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Vinjari...</translation>
+            <source>Browse…</source>
+            <translation>Vinjari…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Endesha wewe mwenyewe: flatpak override --user --talk-name=org.freedesktop.Flatp
             <translation>Kumbuka njia ya mwisho ya kuhifadhi</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Angalia...</translation>
+            <source>Browse…</source>
+            <translation>Vinjari…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Endesha wewe mwenyewe: flatpak override --user --talk-name=org.freedesktop.Flatp
         <message>
             <source>Download</source>
             <translation>Pasho</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Bofya kunakili</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 Bonyeza  Onyesha URL  kuanza.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Inapakia %n kupakia…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Inapakia %1 / %2 vipakuliwa…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1147,6 +1393,94 @@ Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Kipaumbele</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Chini</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Kawaida</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Juu</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Upeo</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Mchanganyiko</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Adimu</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Kawaida</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Kipaumbele cha Juu</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Imerukwa</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Haipatikani</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>Vipande %1</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 imepakuliwa</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 inapakua</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 imerukwa</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Hakuna data ya kipande</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Imerukwa (faili haijachaguliwa)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Inapakua - %1% ya bloki zimepokelewa</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Haipatikani - hakuna wenza wenye kipande hiki</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Inakosekana - %n mwenza ana nacho</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(kipaumbele cha juu)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Kipande #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Hudu Data ya Torrent...</translation>
@@ -3381,8 +3715,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Baki tupeleke njia ya kawaida</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Vinjari...</translation>
+            <source>Browse…</source>
+            <translation>Vinjari…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3893,6 +4227,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Anza kupakua sasa wakati ukionyesha dialog ya 'Habari Faili'</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Jaza sehemu ya maelezo kiotomatiki kwa metadata ya faili (bitrate, resolution, codec, n.k.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Onyesha ncha ya mazingira wakati ukipakua metadata ya BitTorrent</translation>
         </message>
@@ -4095,10 +4433,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ Haijao kwenye orodha ya undani ya kiotomatiki ya kivinjari: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Angalia</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Hii ni kichwa cha undani cha BitTorrent kilichohifadhiwa kinachotumika wakati dhana ya metadata ya BitTorrent imewekwa kutumia kichwa cha undani kiotomatiki.</translation>
         </message>
@@ -4215,16 +4549,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Onyesha kasi kwenye mstari wa hali</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Onyesha watumiaji wanaoanza kwenye mstari wa hali</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Tumia msongamano wa DHT node-ID kukadiria watumiaji wa BitTorrent. Uthabiti unapanda kadiri node IDs tofauti zinavyoonekana; * kwenye mstari wa hali inamaanisha makadirio bado ni ya chini ya uthabiti.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Onyesha ratio kwenye mstari wa hali</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Onyesha miunganisho ya torrent kwenye upau wa hali</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Onyesha nodi za DHT kwenye upau wa hali</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4485,20 +4819,28 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <translation>User agent ya BitTorrent ya kipekee</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>unganisha na adapter ya mtandao</translation>
+            <source>Network interface</source>
+            <translation>Kiolesura cha mtandao</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Adapter hii imefungwa kwa mtiririko wa BitTorrent. Ikiwa VPN yako inatoka au adapter inapotea, Stellar haitumii njia ya kiasili na BitTorrent zako hazipata mtiririko badala ya kushuka kwenye uunganizo mwingine.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Trafiki ya torrent imefungwa kwenye kiolesura hiki. VPN yako ikikatika au kiolesura kikiondoka, Stellar inasimamisha torrent badala ya kuvuja kwenye muunganisho mwingine. Unganisha kwenye adapta yako ya VPN ili kupitisha trafiki yote ya torrent, ikiwemo IPv6, kupitia VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Hakuna uunganisho wa adapter ya mtandao. Mtiririko wa BitTorrent unafuata njia ya mfumo.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Kiolesura chochote: trafiki ya torrent inafuata njia ya mfumo, kama programu zako nyingine. Ikiwa VPN ndio muunganisho wako hai, trafiki inapita kupitia VPN; VPN ikikatika, trafiki inaendelea kwenye muunganisho wa kawaida. Chagua adapta mahususi kwa ufungaji wa VPN pekee.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Uunganisho wa adapter ya mtandao unawataka Stellar kutuma na kupokea mtiririko wa BitTorrent kupitia adapter iliyochaguliwa pekee. Hii ni muhimu sana kwa watumiaji wa VPN kwa sababu inazuia shambulizi la mtiririko wakati VPN haipo.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Ruhusu UPnP, NAT-PMP na Ugunduzi wa Huduma za Karibu wakati umefungwa</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Hizi zinawasiliana na kipanga njia chako cha karibu na zinaweza kufichua mlango wako wa kusikiliza nje ya handaki. Washa hii tu unapounganisha kwenye adapta ya LAN inayoaminika, si VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP na Ugunduzi wa Huduma za Karibu zimezimwa wakati umefungwa, kwani zinawasiliana na kipanga njia cha karibu na zingefichua mlango wako wa kusikiliza nje ya handaki.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4953,12 +5295,12 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <translation>Sawa</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Njia ya kuanzia</translation>
+            <source>Any interface</source>
+            <translation>Kiolesura chochote</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Ruhusu mfumo uchague kinywaji cha mtandao kilichobuniwa.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Fuata njia ya mfumo (inayotumiwa na programu zako nyingine).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5037,8 +5379,8 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <translation>Chanzo: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>URL ya chanzo haijapashwa. Tumia Angalia mipya ili kupashwa IPtoCityDB kutoka update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Imesuluhishwa kiotomatiki kutoka db-ip.com unaposasisha.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5218,22 +5560,6 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <translation>bila kikomo</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT imezimwa</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> online (kukumbusho kidogo)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Inakadiriwa… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>kisha &gt;&gt;</translation>
         </message>
@@ -5241,6 +5567,14 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Sehemu ya jumla</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Miunganisho yote ya rika la mkondo</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>Vifundo vya DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5680,6 +6014,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Kipaumbele</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Chini</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Kawaida</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Juu</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Upeo</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Mchanganyiko</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Hifadhi kwa</translation>
@@ -6440,6 +6798,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Pakua Video</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Vikomo vya upakuaji vimevukwa!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Kutoka %1 hadi %2 umepakua MB %3. Upakuaji wote katika &quot;%4&quot; umesimamishwa kwa sababu umezidi kikomo cha upakuaji cha MB %5 kila %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Upakuaji wote uliosimamishwa utaendelea kiotomatiki saa %1 (%2 kutoka sasa). Ili kuendelea mara moja, badilisha mpangilio wa Vikomo vya Upakuaji na ubonyeze Endelea.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>sasa</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>saa 1</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>masaa %1</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>dakika 1</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>dakika %1</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>chini ya dakika</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>na</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>SAWA</translation>
         </message>
     </context>
 </TS>

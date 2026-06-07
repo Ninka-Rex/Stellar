@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, ಮ್ಯಾಗ್ನೆಟ್ ಲಿಂಕ್, ಅಥವಾ ಇನ್ಫೋಹ್ಯಾಶ್</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP ಲಿಂಕ್ಗಳು, ಮ್ಯಾಗ್ನೆಟ್ ಲಿಂಕ್ಗಳು, ಅಥವಾ ಟೊರೆಂಟ್ ಇನ್ಫೋಹ್ಯಾಶ್ ಸ್ವೀಕರಿಸುತ್ತದೆ.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP ನಿಯಂತ್ರಣ ಸಂಪರ್ಕ ವಿಫಲವಾಗಿದೆ: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP ನಿಯಂತ್ರಣ ಸಂಪರ್ಕವು ಅನಿರೀಕ್ಷಿತವಾಗಿ ಮುಚ್ಚಲ್ಪಟ್ಟಿದೆ.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP ನಿಯಂತ್ರಣ ಸಂಪರ್ಕದ ಸಮಯ ಮೀರಿದೆ.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>ತಪ್ಪಾದ FTP ಪ್ರತ್ಯುತ್ತರ.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>FTP ಆಜ್ಞೆಯಲ್ಲಿ ಹೊಸ ಸಾಲಿನ ಅಕ್ಷರ ಸೇರಿಸಿ ಕಳುಹಿಸಲು ನಿರಾಕರಿಸಲಾಗುತ್ತಿದೆ.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP ಸರ್ವರ್ ಸಂಪರ್ಕವನ್ನು ನಿರಾಕರಿಸಿತು</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS ಅಗತ್ಯವಿದೆ ಆದರೆ ಸರ್ವರ್ AUTH TLS ಅನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP ಲಾಗಿನ್ ವಿಫಲವಾಗಿದೆ</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS ಡೇಟಾ ರಕ್ಷಣೆ (PBSZ) ತಿರಸ್ಕರಿಸಲಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS ಡೇಟಾ ರಕ್ಷಣೆ (PROT P) ತಿರಸ್ಕರಿಸಲಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP ಸರ್ವರ್ ಬೈನರಿ ಮೋಡ್ (TYPE I) ತಿರಸ್ಕರಿಸಿತು.</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTP ನಿಷ್ಕ್ರಿಯ ಮೋಡ್‌ಗೆ ಪ್ರವೇಶಿಸಲಾಗಲಿಲ್ಲ.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP ಸರ್ವರ್ ಪುನರಾರಂಭ (REST) ಬೆಂಬಲಿಸುವುದಿಲ್ಲ.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP ಸರ್ವರ್ ಫೈಲ್ ತಿರಸ್ಕರಿಸಿತು</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>RETR ಗೆ ಅನಿರೀಕ್ಷಿತ FTP ಪ್ರತ್ಯುತ್ತರ</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP ವರ್ಗಾವಣೆ ಸರ್ವರ್‌ನಿಂದ ರದ್ದುಗೊಂಡಿದೆ</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>FTP ನಿಷ್ಕ್ರಿಯ-ಮೋಡ್ ಪ್ರತ್ಯುತ್ತರ ಪಾರ್ಸ್ ಮಾಡಲಾಗಲಿಲ್ಲ.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>ಭದ್ರತೆಗಾಗಿ FTP ನಿಷ್ಕ್ರಿಯ-ಮೋಡ್ ವಿಳಾಸ ತಿರಸ್ಕರಿಸಲಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTP ಡೇಟಾ ಸಂಪರ್ಕ ತೆರೆಯಲಾಗಲಿಲ್ಲ.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS ಹ್ಯಾಂಡ್‌ಶೇಕ್ ವಿಫಲ: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>ಅಮಾನ್ಯ FTP ಮಾರ್ಗ.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>ಭಾಗ ಫೈಲ್ ತೆರೆಯಲಾಗದು: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ಡಿಸ್ಕ್ ಬರಹ ವಿಫಲ: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP ವರ್ಗಾವಣೆ ಮೊಟಕುಗೊಂಡಿದೆ.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP ವಿಭಾಗ %1, %2 ಮರುಪ್ರಯತ್ನಗಳ ನಂತರ ವಿಫಲ.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ಡೌನ್‌ಲೋಡ್ ಡೈರೆಕ್ಟರಿಗೆ ಬರೆಯಲು ಅನುಮತಿ ಇಲ್ಲ: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>ಸ್ಟೆಲ್ಲರ್ ಪ್ರಾರಂಭವಾಗುತ್ತಿದೆ...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ %1 ಗೆ ಬಂಧಿತ</translation>
+            <source>Past midnight already?</source>
+            <translation>ಈಗಾಗಲೇ ಮಧ್ಯರಾತ್ರಿ ದಾಟಿದೆಯೇ?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>ಇನ್ನೂ ಎಚ್ಚರವಿದೆಯೇ?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>ರಾತ್ರಿ ಇನ್ನೂ ಇದೆ!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>ನಿದ್ದೆ ಬರುತ್ತಿಲ್ಲವೇ?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>ಶುಭೋದಯ!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>ಏಳು ಮತ್ತು ಮಿಂಚು!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>ಬೆಳಗಿನ ಟಾಪ್!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>ಬೆಳಿಗ್ಗೆ! ಕಾಫಿ ತಯಾರಾಗುತ್ತಿದೆ.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>ಶುಭ ಮಧ್ಯಾಹ್ನ!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>ಊಟದ ವಿರಾಮ ಡೌನ್‌ಲೋಡ್‌ಗಳೇ?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>ಈಗಾಗಲೇ ಮಧ್ಯಾಹ್ನ!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>ನಿಮ್ಮ ದಿನ ಚೆನ್ನಾಗಿರಲಿ ಎಂದು ಆಶಿಸುತ್ತೇನೆ!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>ಶುಭ ಮಧ್ಯಾಹ್ನ!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>ಶುಭ ಸಂಜೆ!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>ವಿಶ್ರಾಂತಿ ಪಡೆಯುತ್ತಿದ್ದೀರಾ?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>ಸಂಜೆ!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>ನಿಮ್ಮ ದಿನ ಚೆನ್ನಾಗಿತ್ತು ಎಂದು ಭಾವಿಸುತ್ತೇನೆ!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>ತಡವಾಗಿ ಕೆಲಸ ಮಾಡುತ್ತಿದ್ದೀರಾ?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>ಮಲಗುವ ಸಮಯ ಮೀರಿದೆಯೇ?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>ತಡರಾತ್ರಿಯ ಅವಧಿ!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>ವಿಶ್ರಾಂತಿ ಪಡೆಯಲು ಮರೆಯಬೇಡಿ!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>ಮರಳಿ ಸ್ವಾಗತ!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>ನೀವು ಸಿದ್ಧರಾದಾಗ!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>ನಿಮ್ಮನ್ನು ನೋಡಿ ಸಂತೋಷ!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>ಡೌನ್‌ಲೋಡ್ ಮಾಡೋಣ!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>ನಿಮ್ಮನ್ನು ಮಿಸ್ ಮಾಡಿದೆವು!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>ಮತ್ತೆ ಶುರು!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್‌ಗಳು ಕಾಯುತ್ತಿವೆ!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>ನೀವು ನಿಲ್ಲಿಸಿದಲ್ಲಿಂದ ಮುಂದುವರಿಸಿ?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>ಇಂದು ಏನು ಪಡೆಯೋಣ?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>%1 ಗೆ ಬಂಧಿತ</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>ಆಮದು ಮಾಡಲು ಬ್ಯಾಕಪ್ ಫೈಲ್ ಆಯ್ಕೆ ಮಾಡಿಲ್ಲ.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ %1 ಗೆ ಬಂಧಿತ (ಆಫ್‌ಲೈನ್ — ಟೊರೆಂಟ್‌ಗಳು ವಿರಮಿಸಿವೆ)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>%1 ಗೆ ಬಂಧಿತ (ಆಫ್‌ಲೈನ್ - ಟೊರೆಂಟ್‌ಗಳು ವಿರಮಿಸಿವೆ)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>ನವೀಕರಣ ಲಭ್ಯ! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>ನವೀಕರಣಗಳಿಗಾಗಿ ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>ಎಲ್ಲಾ ಫೈಲ್‌ಗಳನ್ನು ಒಂದು ಡೈರೆಕ್ಟರಿಗೆ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>ಬ್ರೌಸ್ ಮಾಡಿ...</translation>
+            <source>Browse…</source>
+            <translation>ಬ್ರೌಸ್…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -647,8 +889,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ಕೊನೆಯ ಸೇವ್ ಪಥವನ್ನು ನೆನಪಿಡಿ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>ಬ್ರೌಸ್...</translation>
+            <source>Browse…</source>
+            <translation>ಬ್ರೌಸ್…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -735,6 +977,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>ಡೌನ್‌ಲೋಡ್</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>ನಕಲಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1042,8 +1288,8 @@ Click  Add URL  to start.</source>
 URL ಸೇರಿಸಿ ಪ್ರಾರಂಭಿಸಿ.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>%n ಡೌನ್‌ಲೋಡ್(ಗಳು) ಲೋಡ್ ಆಗುತ್ತಿವೆ…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>%1 / %2 ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1163,6 +1409,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ಆದ್ಯತೆ</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>ಕಡಿಮೆ</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>ಸಾಮಾನ್ಯ</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>ಹೆಚ್ಚು</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>ಗರಿಷ್ಠ</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ಮಿಶ್ರ</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>ಅಪರೂಪ</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>ಸಾಮಾನ್ಯ</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>ಹೆಚ್ಚಿನ ಆದ್ಯತೆ</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>ಬಿಟ್ಟುಬಿಡಲಾಗಿದೆ</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>ಲಭ್ಯವಿಲ್ಲ</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 ತುಣುಕುಗಳು</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 ಡೌನ್‌ಲೋಡ್ ಆಗಿದೆ</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 ಬಿಟ್ಟುಬಿಡಲಾಗಿದೆ</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>ಯಾವುದೇ ತುಣುಕು ಡೇಟಾ ಲಭ್ಯವಿಲ್ಲ</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>ಬಿಟ್ಟುಬಿಡಲಾಗಿದೆ (ಫೈಲ್ ಆಯ್ಕೆ ಮಾಡಿಲ್ಲ)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ - %1% ಬ್ಲಾಕ್‌ಗಳು ಸ್ವೀಕೃತ</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>ಲಭ್ಯವಿಲ್ಲ - ಯಾವುದೇ ಪೀರ್‌ಗಳ ಬಳಿ ಈ ತುಣುಕು ಇಲ್ಲ</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>ಕಾಣೆಯಾಗಿದೆ - %n ಪೀರ್(ಗಳ) ಬಳಿ ಇದೆ</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(ಹೆಚ್ಚಿನ ಆದ್ಯತೆ)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>ತುಣುಕು #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>ಟರೆಂಟ್ ಡೇಟಾವನ್ನು ... ಗೆ ಸ್ಥಳಾಂತರಿಸಿ</translation>
@@ -3411,8 +3745,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ಡೀಫಾಲ್ಟ್ ಸಂಗ್ರಹಣಾ ಮಾರ್ಗವನ್ನು ಬಳಸಲು ಖಾಲಿ ಬಿಡಿ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>ಬ್ರೌಸ್ ಮಾಡಿ...</translation>
+            <source>Browse…</source>
+            <translation>ಬ್ರೌಸ್ ಮಾಡಿ…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3923,6 +4257,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ಡೌನ್‌ಲೋಡ್ ಫೈಲ್ ಮಾಹಿತಿ ಸಂಭಾಷಣೆ ತೋರಿಸುತ್ತಾ ತಕ್ಷಣ ಪ್ರಾರಂಭಿಸಿ</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>ಫೈಲ್ ಮೆಟಾಡೇಟಾದೊಂದಿಗೆ ವಿವರಣೆ ಕ್ಷೇತ್ರವನ್ನು ಸ್ವಯಂ-ಭರ್ತಿ ಮಾಡಿ (ಬಿಟ್‌ರೇಟ್, ರೆಸಲ್ಯೂಶನ್, ಕೊಡೆಕ್, ಇತ್ಯಾದಿ.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>ಟೋರೆಂಟ್ ಮೆಟಾಡೇಟಾ ಡೌನ್‌ಲೋಡ್ ಮಾಡುವಾಗ ಸ್ವಾರ್ಮ್ ನಕ್ಷೆ ತೋರಿಸಿ</translation>
         </message>
@@ -4125,10 +4463,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ ಬ್ರೌಸರ್ ಸ್ವಯಂ-ಡೌನ್‌ಲೋಡ್ ಪಟ್ಟಿಯಲ್ಲಿ ಇಲ್ಲ: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>ಬ್ರೌಸ್</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>ಟೋರೆಂಟ್ ಮೆಟಾಡೇಟಾ ಡೈಲಾಗ್ ಅನ್ನು ಡಿಫಾಲ್ಟ್ ಆಗಿ ಕಸ್ಟಮ್ ಸೇವ್ ಫೋಲ್ಡರ್ ಬಳಸಲು ಸೆಟ್ ಮಾಡಿದಾಗ ಬಳಸುವ ನೆನಪಿನ ಕಸ್ಟಮ್ ಟೋರೆಂಟ್ ಫೋಲ್ಡರ್ ಇದಾಗಿದೆ.</translation>
         </message>
@@ -4245,16 +4579,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ಸ್ಥಿತಿ ಪಟ್ಟಿಯಲ್ಲಿ ವೇಗ ತೋರಿಸಿ</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>ಸ್ಥಿತಿ ಪಟ್ಟಿಯಲ್ಲಿ ಅಂದಾಜು ಆನ್‌ಲೈನ್ ಬಳಕೆದಾರರನ್ನು ತೋರಿಸಿ</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>DHT ನೋಡ್-ID ಸಾಂದ್ರತೆಯನ್ನು ಬಳಸಿ ಜಾಗತಿಕ BitTorrent ಬಳಕೆದಾರರನ್ನು ಅಂದಾಜು ಮಾಡುತ್ತದೆ. ಹೆಚ್ಚು ಅನನ್ಯ ನೋಡ್ IDs ಗಮನಿಸಿದಂತೆ ವಿಶ್ವಾಸಾರ್ಹತೆ ಹೆಚ್ಚಾಗುತ್ತದೆ; ಸ್ಥಿತಿ ಪಟ್ಟಿಯಲ್ಲಿ * ಚಿಹ್ನೆ ಇದ್ದರೆ ಅಂದಾಜು ಕಡಿಮೆ ವಿಶ್ವಾಸಾರ್ಹತೆಯನ್ನು ಸೂಚಿಸುತ್ತದೆ.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>ಸ್ಥಿತಿ ಪಟ್ಟಿಯಲ್ಲಿ ಅನುಪಾತ ತೋರಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>ಸ್ಥಿತಿ ಪಟ್ಟಿಯಲ್ಲಿ ಟೊರೆಂಟ್ ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸು</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>ಸ್ಥಿತಿ ಪಟ್ಟಿಯಲ್ಲಿ DHT ನೋಡ್‌ಗಳನ್ನು ತೋರಿಸು</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4517,20 +4851,28 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <translation>ಬಿಟ್‌ಟರೆಂಟ್ ಬಳಕೆದಾರ ಏಜೆಂಟ್ ಸ್ವಯಂ</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>ನೆಟ್‌ವರ್ಕ್ ಅಡಾಪ್ಟರ್‌ಗೆ ಬೈಂಡ್ ಮಾಡಿ</translation>
+            <source>Network interface</source>
+            <translation>ನೆಟ್‌ವರ್ಕ್ ಇಂಟರ್‌ಫೇಸ್</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>ಈ ಅಡಾಪ್ಟರ್ ಟರೆಂಟ್ ಟ್ರಾಫಿಕ್‌ಗೆ ಲಾಕ್ ಆಗಿದೆ. ನಿಮ್ಮ VPN ವಿಚ್ಛೇದಿಸಿದರೆ ಅಥವಾ ಅಡಾಪ್ಟರ್ ಕಳೆದುಹೋದರೆ, Stellar ಡಿಫಾಲ್ಟ್ ರೂಟ್ ಬಳಸುವುದನ್ನು ನಿಲ್ಲಿಸುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ ಟರೆಂಟ್‌ಗಳು ಇತರ ಸಂಪರ್ಕಕ್ಕೆ ಲೀಕ್ ಆಗುವ ಬದಲು ನೆಟ್‌ವರ್ಕ್ ಪ್ರವೇಶ ಕಳೆದುಕೊಳ್ಳುತ್ತವೆ.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>ಟೊರೆಂಟ್ ಟ್ರಾಫಿಕ್ ಈ ಇಂಟರ್‌ಫೇಸ್‌ಗೆ ಲಾಕ್ ಆಗಿದೆ. ನಿಮ್ಮ VPN ಸಂಪರ್ಕ ಕಡಿತಗೊಂಡರೆ ಅಥವಾ ಇಂಟರ್‌ಫೇಸ್ ಕಾರ್ಯನಿರ್ವಹಿಸದಿದ್ದರೆ, Stellar ಟೊರೆಂಟ್‌ಗಳನ್ನು ವಿರಾಮಗೊಳಿಸುತ್ತದೆ, ಬೇರೆ ಸಂಪರ್ಕದಲ್ಲಿ ಸೋರಿಕೆಯಾಗುವುದನ್ನು ತಡೆಯುತ್ತದೆ. ಎಲ್ಲಾ ಟೊರೆಂಟ್ ಟ್ರಾಫಿಕ್ (IPv6 ಸೇರಿ) VPN ಮೂಲಕ ಹೋಗಲು ನಿಮ್ಮ VPN ಅಡಾಪ್ಟರ್‌ಗೆ ಬೈಂಡ್ ಮಾಡಿ.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>ಯಾವುದೇ ಅಡಾಪ್ಟರ್ ಬೈಂಡಿಂಗ್ ಇಲ್ಲ. ಟರೆಂಟ್ ಟ್ರಾಫಿಕ್ ವ್ಯವಸ್ಥೆಯ ರೂಟ್ ಅನುಸರಿಸುತ್ತದೆ.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>ಯಾವುದೇ ಇಂಟರ್‌ಫೇಸ್: ಟೊರೆಂಟ್ ಟ್ರಾಫಿಕ್ ನಿಮ್ಮ ಇತರ ಆಪ್‌ಗಳಂತೆ ಸಿಸ್ಟಮ್ ಮಾರ್ಗವನ್ನು ಅನುಸರಿಸುತ್ತದೆ. VPN ಸಕ್ರಿಯ ಸಂಪರ್ಕವಾಗಿದ್ದರೆ ಅದರ ಮೂಲಕ ಹೋಗುತ್ತದೆ; VPN ಕಡಿತಗೊಂಡರೆ, ಸಾಮಾನ್ಯ ಸಂಪರ್ಕದಲ್ಲಿ ಟ್ರಾಫಿಕ್ ಮುಂದುವರಿಯುತ್ತದೆ. ಕಟ್ಟುನಿಟ್ಟಾದ VPN-ಮಾತ್ರ ಬೈಂಡಿಂಗ್‌ಗಾಗಿ ನಿರ್ದಿಷ್ಟ ಅಡಾಪ್ಟರ್ ಆಯ್ಕೆಮಾಡಿ.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>ನೆಟ್‌ವರ್ಕ್ ಅಡಾಪ್ಟರ್ ಬೈಂಡಿಂಗ್ Stellar ಗೆ ಆಯ್ಕೆ ಮಾಡಿದ ಅಡಾಪ್ಟರ್ ಮೂಲಕ ಮಾತ್ರ ಟರೆಂಟ್ ಟ್ರಾಫಿಕ್ ಕಳುಹಿಸಲು ಮತ್ತು ಸ್ವೀಕರಿಸಲು ಹೇಳುತ್ತದೆ. ಇದು VPN ಬಳಕೆದಾರರಿಗೆ ವಿಶೇಷವಾಗಿ ಉಪಯುಕ್ತ, ಏಕೆಂದರೆ ಇದು VPN ಸಂಪರ್ಕವಿಲ್ಲದಿದ್ದಾಗ ಅನಪೇಕ್ಷಿತ ಟ್ರಾಫಿಕ್ ಲೀಕ್ ಅನ್ನು ತಡೆಯುತ್ತದೆ.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>ಬೈಂಡ್ ಆಗಿರುವಾಗ UPnP, NAT-PMP ಮತ್ತು ಸ್ಥಳೀಯ ಸೇವಾ ಅನ್ವೇಷಣೆಗೆ ಅನುಮತಿಸು</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>ಇವು ನಿಮ್ಮ ಸ್ಥಳೀಯ ರೂಟರ್‌ನೊಂದಿಗೆ ಸಂವಹಿಸುತ್ತವೆ ಮತ್ತು ಟನಲ್ ಸುತ್ತಲೂ ನಿಮ್ಮ ಲಿಸನ್ ಪೋರ್ಟ್ ಅನ್ನು ಬಹಿರಂಗಪಡಿಸಬಹುದು. VPN ಗೆ ಅಲ್ಲ, ವಿಶ್ವಾಸಾರ್ಹ LAN ಅಡಾಪ್ಟರ್‌ಗೆ ಬೈಂಡ್ ಮಾಡುವಾಗ ಮಾತ್ರ ಇದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>ಬೈಂಡ್ ಆಗಿರುವಾಗ UPnP, NAT-PMP ಮತ್ತು ಸ್ಥಳೀಯ ಸೇವಾ ಅನ್ವೇಷಣೆ ನಿಷ್ಕ್ರಿಯಗೊಂಡಿವೆ, ಏಕೆಂದರೆ ಅವು ಸ್ಥಳೀಯ ರೂಟರ್‌ನೊಂದಿಗೆ ಸಂವಹಿಸಿ ಟನಲ್ ಸುತ್ತಲೂ ನಿಮ್ಮ ಲಿಸನ್ ಪೋರ್ಟ್ ಅನ್ನು ಬಹಿರಂಗಪಡಿಸುತ್ತವೆ.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4985,12 +5327,12 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <translation>ಸರಿ</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>ಪೂರ್ವನಿಯೋಜಿತ ಮಾರ್ಗ</translation>
+            <source>Any interface</source>
+            <translation>ಯಾವುದೇ ಇಂಟರ್‌ಫೇಸ್</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>ಸಕ್ರಿಯ ನೆಟ್‌ವರ್ಕ್ ಅಡಾಪ್ಟರ್ ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಲು OS ಅನುಮತಿಸಿ.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>ಸಿಸ್ಟಮ್ ಮಾರ್ಗವನ್ನು ಅನುಸರಿಸಿ (ನಿಮ್ಮ ಇತರ ಆಪ್‌ಗಳು ಬಳಸುವಂತೆ).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5069,8 +5411,8 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <translation>ಮೂಲ: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>ಮೂಲ URL ಇನ್ನೂ ಕ್ಯಾಶ್ ಆಗಿಲ್ಲ. update.json ರಿಂದ IPtoCityDB ಅನ್ನು ಕ್ಯಾಶ್ ಮಾಡಲು ನವೀಕರಣವನ್ನು ಪರಿಶೀಲಿಸಿ ಬಳಸಿ.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>ನೀವು ನವೀಕರಿಸಿದಾಗ db-ip.com ನಿಂದ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪರಿಹರಿಸಲಾಗಿದೆ.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5250,22 +5592,6 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <translation>ಅಪರಿಮಿತ</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT ಆಫ್</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>ಆನ್‌ಲೈನ್ (ಕಡಿಮೆ ವಿಶ್ವಾಸ)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>ಆನ್‌ಲೈನ್</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>ಅಂದಾಜಿಸಲಾಗುತ್ತಿದೆ… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>ಮುಂದಿನ &gt;&gt;</translation>
         </message>
@@ -5274,6 +5600,14 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
 Click to open Statistics</source>
             <translation>ಎಲ್ಲಾ ಸಮಯದ ಹಂಚಿಕೆ ಅನುಪಾತ
 ಸಂಖ್ಯಾಶಾಸ್ತ್ರ ತೆರೆಯಲು ಕ್ಲಿಕ್ ಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>ಒಟ್ಟು ಟೊರೆಂಟ್ ಪೀರ್ ಸಂಪರ್ಕಗಳು</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT ನೋಡ್‌ಗಳು</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5713,6 +6047,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ಆದ್ಯತೆ</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>ಕಡಿಮೆ</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>ಸಾಮಾನ್ಯ</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>ಹೆಚ್ಚು</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>ಗರಿಷ್ಠ</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ಮಿಶ್ರ</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>ಇಲ್ಲಿ ಉಳಿಸಿ</translation>
@@ -6474,6 +6832,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ವೀಡಿಯೊ ಡೌನ್‌ಲೋಡ್</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>ಡೌನ್‌ಲೋಡ್ ಮಿತಿಗಳು ಮೀರಿದೆ!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1 ರಿಂದ %2 ವರೆಗೆ ನೀವು %3 MB ಡೌನ್ಲೋಡ್ ಮಾಡಿದ್ದೀರಿ. &quot;%4&quot; ನಲ್ಲಿನ ಎಲ್ಲಾ ಡೌನ್ಲೋಡ್ಗಳನ್ನು ನಿಲ್ಲಿಸಲಾಗಿದೆ ಏಕೆಂದರೆ ನೀವು ಪ್ರತಿ %6 ಗೆ %5 MB ಡೌನ್ಲೋಡ್ ಮಿತಿಯನ್ನು ಮೀರಿದ್ದೀರಿ.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>ಎಲ್ಲಾ ನಿಲ್ಲಿಸಲಾದ ಡೌನ್ಲೋಡ್ಗಳು %1 ಕ್ಕೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮುಂದುವರಿಯುತ್ತವೆ (ಇಂದಿನಿಂದ %2). ತಕ್ಷಣ ಮುಂದುವರಿಸಲು, ಡೌನ್ಲೋಡ್ ಮಿತಿಗಳ ಸೆಟ್ಟಿಂಗ್ ಬದಲಾಯಿಸಿ ಮತ್ತು ಮುಂದುವರಿಸು ಒತ್ತಿರಿ.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>ಈಗ</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>೧ ಗಂಟೆ</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 ಗಂಟೆಗಳು</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>೧ ನಿಮಿಷ</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 ನಿಮಿಷಗಳು</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>ಒಂದು ನಿಮಿಷಕ್ಕಿಂತ ಕಡಿಮೆ</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>ಮತ್ತು</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
         </message>
     </context>
 </TS>

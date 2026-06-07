@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, ลิงก์แม่เหล็ก หรือแฮชข้อมูล</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>รองรับลิงก์ HTTP/HTTPS/FTP, ลิงก์แม่เหล็ก หรือแฮชข้อมูลทอร์เรนต์</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>การเชื่อมต่อควบคุม FTP ล้มเหลว: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>การเชื่อมต่อควบคุม FTP ปิดโดยไม่คาดคิด</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>การเชื่อมต่อควบคุม FTP หมดเวลา</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>การตอบกลับ FTP ผิดรูปแบบ</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>ปฏิเสธการส่งคำสั่ง FTP ที่มีบรรทัดใหม่ฝังอยู่</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>เซิร์ฟเวอร์ FTP ปฏิเสธการเชื่อมต่อ</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>ต้องใช้ FTPS แต่เซิร์ฟเวอร์ไม่รองรับ AUTH TLS</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>การเข้าสู่ระบบ FTP ล้มเหลว</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>การป้องกันข้อมูล FTPS (PBSZ) ถูกปฏิเสธ</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>การป้องกันข้อมูล FTPS (PROT P) ถูกปฏิเสธ</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>เซิร์ฟเวอร์ FTP ปฏิเสธโหมดไบนารี (TYPE I)</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>ไม่สามารถเข้าโหมดพาสซีฟ FTP ได้</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>เซิร์ฟเวอร์ FTP ไม่รองรับการทำต่อ (REST)</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>เซิร์ฟเวอร์ FTP ปฏิเสธไฟล์</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>การตอบกลับ RETR ของ FTP ไม่คาดคิด</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>การถ่ายโอน FTP ถูกยกเลิกโดยเซิร์ฟเวอร์</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>ไม่สามารถแยกวิเคราะห์การตอบกลับโหมดพาสซีฟ FTP ได้</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>ที่อยู่โหมดพาสซีฟ FTP ถูกปฏิเสธด้วยเหตุผลด้านความปลอดภัย</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>ไม่สามารถเปิดการเชื่อมต่อข้อมูล FTP</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>การจับมือ TLS ล้มเหลว: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>พาธ FTP ไม่ถูกต้อง</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>ไม่สามารถเปิดไฟล์ส่วน: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>การเขียนดิสก์ล้มเหลว: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>การถ่ายโอน FTP ถูกตัดทอน</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>ส่วน FTP %1 ล้มเหลวหลังจากลอง %2 ครั้ง</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ไม่มีสิทธิ์เขียนในไดเรกทอรีดาวน์โหลด: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>กำลังเริ่มต้น Stellar...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ ผูกกับ %1</translation>
+            <source>Past midnight already?</source>
+            <translation>เลยเที่ยงคืนแล้วหรือ?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>ยังไม่นอน?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>ค่ำคืนยังอีกยาวไกล!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>นอนไม่หลับเหรอ?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>อรุณสวัสดิ์!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>ตื่นได้แล้ว!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>เช้าสดใส!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>เช้าแล้ว! กาแฟพร้อมแล้ว</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>สวัสดีตอนบ่าย!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>พักเที่ยงดาวน์โหลด?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>เที่ยงแล้วนะ!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>ขอให้วันนี้เป็นวันที่ดี!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>สวัสดีตอนบ่าย!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>สวัสดีตอนเย็น!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>พักผ่อนหรือยัง?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>ยามเย็น!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>หวังว่าวันนี้ดีนะ!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>ทำงานดึกเหรอ?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>ยังไม่นอนอีกเหรอ?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>ดึกแล้วนะ!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>อย่าลืมพักผ่อน!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>ยินดีต้อนรับกลับ!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>พร้อมเมื่อคุณพร้อม!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>ดีใจที่ได้เจอ!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>เริ่มดาวน์โหลดกันเลย!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>คิดถึงจัง!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>กลับมาลุยต่อ!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>ไฟล์รอคุณอยู่!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>ทำต่อจากที่ค้างไว้ไหม?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>วันนี้จะโหลดอะไรดี?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>ผูกกับ %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>ไม่ได้เลือกไฟล์สำรองเพื่อนำเข้า</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ ผูกกับ %1 (ออฟไลน์ — หยุดทอร์เรนต์ชั่วคราว)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>ผูกกับ %1 (ออฟไลน์ - หยุดทอร์เรนต์ชั่วคราว)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>อัปเดตพร้อมใช้งาน! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>กำลังตรวจสอบอัปเดต</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>ทุกไฟล์ไปยังไดเรกทอรีเดียว</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>เรียกดู...</translation>
+            <source>Browse…</source>
+            <translation>เรียกดู…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>จำตำแหน่งสุดท้าย</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>เรียกดู...</translation>
+            <source>Browse…</source>
+            <translation>เรียกดู…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>ดาวน์โหลด</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>คลิกเพื่อคัดลอก</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 คลิก เพิ่ม URL เพื่อเริ่มต้น</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>กำลังโหลด %n รายการ...</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>กำลังโหลด %1 / %2 ดาวน์โหลด…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ลำดับความสำคัญ</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>ต่ำ</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>ปกติ</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>สูง</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>สูงสุด</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ผสม</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>หายาก</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>ทั่วไป</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>ลำดับสูง</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>ข้าม</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>ไม่พร้อมใช้งาน</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 ชิ้น</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 ดาวน์โหลดแล้ว</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 กำลังดาวน์โหลด</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 ข้าม</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>ไม่มีข้อมูลชิ้นส่วน</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>ข้าม (ไม่ได้เลือกไฟล์)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>กำลังดาวน์โหลด - %1% ของบล็อกที่ได้รับ</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>ไม่พร้อมใช้งาน - ไม่มีเพียร์ที่มีชิ้นส่วนนี้</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>ขาดหาย - %n เพียร์มี</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(ลำดับความสำคัญสูง)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>ชิ้นส่วน #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>ย้ายข้อมูล Torrent ไปที่...</translation>
@@ -3384,8 +3718,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>เว้นว่างเพื่อใช้เส้นทางบันทึกเริ่มต้น</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>เรียกดู...</translation>
+            <source>Browse…</source>
+            <translation>เรียกดู…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3896,6 +4230,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>เริ่มดาวน์โหลดทันทีพร้อมแสดง 'ข้อมูลไฟล์ดาวน์โหลด'</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>เติมคำอธิบายอัตโนมัติด้วยข้อมูลเมตาของไฟล์ (บิตเรต, ความละเอียด, โคเดก ฯลฯ)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>แสดงแผนที่ Swarm ขณะดาวน์โหลดข้อมูล Torrent</translation>
         </message>
@@ -4098,10 +4436,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ ไม่อยู่ในรายการดาวน์โหลดอัตโนมัติของเบราว์เซอร์: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>เรียกดู</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>นี่คือโฟลเดอร์ BitTorrent แบบกำหนดเองที่บันทึกไว้ ใช้เมื่อกล่องโต้ตอบข้อมูลเมตา BitTorrent ตั้งค่าให้ใช้โฟลเดอร์บันทึกแบบกำหนดเองเป็นค่าเริ่มต้น</translation>
         </message>
@@ -4218,16 +4552,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>แสดงความเร็วในแถบสถานะ</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>แสดงจำนวนผู้ใช้ในแถบสถานะ</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>ใช้ความหนาแน่นของ Node-ID DHT เพื่อประมาณจำนวนผู้ใช้ BitTorrent โดยความน่าเชื่อถือจะเพิ่มขึ้นเมื่อพบ Node-ID ที่แตกต่างกัน; เครื่องหมาย * ในแถบสถานะหมายถึงการประมาณการที่ยังมีความน่าเชื่อถือต่ำ</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>แสดงอัตราส่วนในแถบสถานะ</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>แสดงการเชื่อมต่อทอร์เรนต์ในแถบสถานะ</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>แสดงโหนด DHT ในแถบสถานะ</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4488,20 +4822,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>User Agent ของ BitTorrent แบบกำหนดเอง</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>ผูกกับอุปกรณ์เครือข่าย</translation>
+            <source>Network interface</source>
+            <translation>อินเทอร์เฟซเครือข่าย</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>อุปกรณ์นี้ถูกล็อกสำหรับข้อมูล Torrent หาก VPN ตัดการเชื่อมต่อหรืออุปกรณ์หายไป Stellar จะหยุดใช้เส้นทางเริ่มต้น และ Torrent จะสูญเสียการเข้าถึงเครือข่ายแทนที่จะรั่วไหลไปยังการเชื่อมต่ออื่น</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>ทราฟฟิกทอร์เรนต์ถูกล็อกกับอินเทอร์เฟซนี้ หาก VPN หลุดหรืออินเทอร์เฟซหาย Stellar จะหยุดทอร์เรนต์แทนที่จะรั่วไหลไปยังการเชื่อมต่ออื่น ผูกกับอะแดปเตอร์ VPN เพื่อกำหนดเส้นทางทราฟฟิกทอร์เรนต์ทั้งหมด รวมถึง IPv6 ผ่าน VPN</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>ไม่มีการผูกอุปกรณ์เครือข่าย ข้อมูล Torrent จะใช้เส้นทางของระบบ</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>อินเทอร์เฟซใดก็ได้: ทราฟฟิกทอร์เรนต์ตามเส้นทางระบบเหมือนแอปอื่น หาก VPN เป็นการเชื่อมต่อที่ใช้งานอยู่จะผ่าน VPN หาก VPN หลุด ทราฟฟิกจะไปต่อบนการเชื่อมต่อปกติ เลือกอะแดปเตอร์เฉพาะเพื่อผูกกับ VPN เท่านั้นอย่างเข้มงวด</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>การผูกอุปกรณ์เครือข่ายบอก Stellar ให้ส่งและรับข้อมูล Torrent ผ่านอุปกรณ์ที่เลือกเท่านั้น มีประโยชน์สำหรับผู้ใช้ VPN เพราะป้องกันไม่ให้ข้อมูลรั่วไหลโดยไม่ได้ตั้งใจเมื่อ VPN ไม่เชื่อมต่อ</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>อนุญาต UPnP, NAT-PMP และ Local Service Discovery ขณะผูก</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>สิ่งเหล่านี้สื่อสารกับเราเตอร์ในพื้นที่และอาจเปิดเผยพอร์ตฟังรอบอุโมงค์ เปิดใช้งานเฉพาะเมื่อผูกกับอะแดปเตอร์ LAN ที่เชื่อถือได้ ไม่ใช่ VPN</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP และ Local Service Discovery ถูกปิดใช้งานขณะผูก เนื่องจากสื่อสารกับเราเตอร์ในพื้นที่และจะเปิดเผยพอร์ตฟังรอบอุโมงค์</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4956,12 +5298,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ตกลง</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>เส้นทางเริ่มต้น</translation>
+            <source>Any interface</source>
+            <translation>อินเทอร์เฟซใดก็ได้</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>ให้ระบบปฏิบัติการเลือกอุปกรณ์เครือข่ายที่ใช้งาน</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>ตามเส้นทางระบบ (ใช้โดยแอปอื่นของคุณ)</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5040,8 +5382,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ที่มา: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>ยังไม่มี URL แหล่งที่มาในแคช ใช้ 'ตรวจสอบการอัปเดต' เพื่อบันทึก IPtoCityDB จาก update.json</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>แก้ไขอัตโนมัติจาก db-ip.com เมื่ออัปเดต</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5221,22 +5563,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ไม่จำกัด</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>ปิด DHT</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>ออนไลน์ (ความเชื่อมั่นต่ำ)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>ออนไลน์</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>กำลังประมาณ… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>ถัดไป &gt;&gt;</translation>
         </message>
@@ -5244,6 +5570,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>อัตราส่วนการแชร์ตลอดกาล</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>การเชื่อมต่อเพียร์ทอร์เรนต์ทั้งหมด</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>โหนด DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5683,6 +6017,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ลำดับความสำคัญ</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>ต่ำ</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>ปกติ</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>สูง</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>สูงสุด</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ผสม</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>บันทึกที่</translation>
@@ -6443,6 +6801,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ดาวน์โหลดวิดีโอ</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>เกินขีดจำกัดดาวน์โหลด!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>จาก %1 ถึง %2 คุณดาวน์โหลด %3 MB การดาวน์โหลดทั้งหมดใน &quot;%4&quot; หยุดแล้วเนื่องจากเกินขีดจำกัด %5 MB ทุก %6</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>การดาวน์โหลดที่หยุดไว้ทั้งหมดจะเริ่มใหม่โดยอัตโนมัติเวลา %1 (อีก %2) หากต้องการเริ่มทันที ให้เปลี่ยนการตั้งค่าขีดจำกัดแล้วกดเริ่มต่อ</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>ตอนนี้</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 ชั่วโมง</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 ชั่วโมง</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 นาที</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 นาที</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>น้อยกว่า 1 นาที</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>และ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ตกลง</translation>
         </message>
     </context>
 </TS>

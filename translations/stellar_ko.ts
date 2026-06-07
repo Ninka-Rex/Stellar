@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, 마그넷 링크 또는 인포해시</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP 링크, 마그넷 링크 또는 토렌트 인포해시 허용</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP 제어 연결 실패: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP 제어 연결이 예기치 않게 종료됨</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP 제어 연결 시간 초과</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>잘못된 FTP 응답</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>줄바꿈 포함된 FTP 명령 전송 거부</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP 서버 연결 거부</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS 필요하나 서버가 AUTH TLS 미지원</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP 로그인 실패</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS 데이터 보호(PBSZ)가 거부됨.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS 데이터 보호(PROT P)가 거부됨.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP 서버가 바이너리 모드(TYPE I)를 거부함.</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTP 수동 모드 진입 실패.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP 서버가 이어받기(REST) 미지원.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP 서버가 파일을 거부함</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>RETR에 대한 예상치 못한 FTP 응답</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>서버에 의해 FTP 전송 중단됨</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>FTP 수동 모드 응답 구문 분석 실패.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>보안상 FTP 수동 모드 주소 거부됨.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTP 데이터 연결을 열 수 없습니다.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS 핸드셰이크 실패: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>잘못된 FTP 경로입니다.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>부분 파일을 열 수 없음: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>디스크 쓰기 실패: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP 전송이 중단되었습니다.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP 세그먼트 %1 실패 (%2회 재시도)</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>다운로드 디렉터리 쓰기 권한 없음: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar 이 시작되고 있습니다...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ %1 에 구속됨</translation>
+            <source>Past midnight already?</source>
+            <translation>벌써 자정이 지났나요?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>아직 깨어 있나요?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>밤은 아직 깊었어요!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>잠이 안 와요?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>좋은 아침!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>일어나요!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>아침이 왔어요!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>좋은 아침! 커피 준비 중.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>좋은 오후!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>점심에 다운로드?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>벌써 정오!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>좋은 하루 보내세요!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>오후예요!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>좋은 저녁이에요!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>마무리 중이신가요?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>저녁이에요!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>좋은 하루 보내셨나요?</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>늦게까지 일하시나요?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>안 주무시나요?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>늦은 밤 작업 중!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>휴식 잊지 마세요!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>다시 오신 걸 환영합니다!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>준비되면 시작하세요!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>반가워요!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>다운로드 시작합시다!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>기다렸어요!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>다시 시작하죠!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>다운로드가 기다리고 있어요!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>이어서 진행할까요?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>오늘은 뭘 받을까요?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>%1에 바인딩됨</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>가져올 백업 파일이 선택되지 않았습니다.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ %1에 바인딩됨 (오프라인 — 토렌트 일시 중지)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>%1에 바인딩됨 (오프라인 - 토렌트 일시 중지)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>업데이트 가능! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>업데이트 확인 중</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>모든 파일을 한 디렉터리로</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>찾아보기...</translation>
+            <source>Browse…</source>
+            <translation>찾아보기…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>마지막 저장 경로 기억</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>찾아보기...</translation>
+            <source>Browse…</source>
+            <translation>찾아보기…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>다운로드</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>클릭하여 복사</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 시작하려면 URL 추가</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>로딩 중 (%n 개 다운로드)…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>다운로드 로딩 중 %1 / %2…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1145,6 +1391,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>우선순위</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>낮음</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>보통</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>높음</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>최대</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>혼합</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>희귀</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>일반</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>높은 우선순위</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>건너뜀</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>사용 불가</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1개</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 다운로드 완료</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 다운로드 중</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1개 건너뜀</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>피스 데이터 없음</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>건너뜀 (파일 미선택)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>다운로드 중 - 블록 %1% 수신</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>불가 - 피어 없음</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>누락 - %n개 피어 보유</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(우선)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>피스 #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>토렌트 데이터 이동</translation>
@@ -3382,8 +3716,8 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <translation>기본 저장 경로 사용</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>찾아보기...</translation>
+            <source>Browse…</source>
+            <translation>찾아보기…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3894,6 +4228,10 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <translation>파일 정보 표시하며 즉시 다운로드 시작</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>파일 메타데이터로 설명 자동 채우기</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>토렌트 메타데이터 다운로드 시 스웜 맵 표시</translation>
         </message>
@@ -4096,10 +4434,6 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <translation>⚠ 브라우저 자동 다운로드 목록에 없음: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>찾아보기</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>토렌트 메타데이터 대화상자가 기본 사용자 지정 저장 폴더를 사용할 때 기억된 사용자 지정 토렌트 폴더입니다</translation>
         </message>
@@ -4216,16 +4550,16 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <translation>상태 표시줄에 속도 표시</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>상태 표시줄에 예상 온라인 사용자 수 표시</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>DHT 노드-ID 밀도를 기반으로 전역 BitTorrent 사용자 수 추정. 고유 노드-ID가 관찰될수록 신뢰도가 상승합니다. 상태 표시줄의 뒤쪽 * 은 추정치가 아직 신뢰도가 낮음을 의미합니다.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>상태 표시줄에 비율 표시</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>상태 표시줄에 토렌트 연결 표시</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>상태 표시줄에 DHT 노드 표시</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4486,20 +4820,28 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <translation>사용자 지정 BitTorrent 사용자 에이전트</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>네트워크 어댑터 바인딩</translation>
+            <source>Network interface</source>
+            <translation>네트워크 인터페이스</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>이 어댑터는 토렌트 트래픽에 잠겨 있습니다. VPN이 연결이 끊기거나 어댑터가 사라지면 Stellar은 기본 라우트를 사용하지 않아 토렌트가 다른 연결로 누출되는 대신 네트워크 접근을 잃습니다.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>토렌트 트래픽이 이 인터페이스에 고정됩니다. VPN 연결이 끊기거나 인터페이스가 사라지면, Stellar가 다른 연결로 유출되는 대신 토렌트를 일시 중지합니다. VPN 어댑터에 바인딩하여 IPv6를 포함한 모든 토렌트 트래픽을 VPN을 통해 라우팅하세요.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>어댑터 바인딩 없음. 토렌트 트래픽은 시스템 라우트를 따릅니다.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>모든 인터페이스: 토렌트 트래픽이 다른 앱과 마찬가지로 시스템 경로를 따릅니다. VPN이 활성 연결인 경우 VPN을 통해 전송되며, VPN이 끊어지면 일반 연결로 트래픽이 계속됩니다. 엄격한 VPN 전용 바인딩을 위해 특정 어댑터를 선택하세요.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>네트워크 어댑터 바인딩은 Stellar이 선택한 어댑터만 통해 토렌트 트래픽을 주고받도록 합니다. VPN 사용자에게 특히 유용하며, VPN 연결이 끊겼을 때 트래픽 누출을 방지합니다.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>바인딩된 상태에서 UPnP, NAT-PMP 및 로컬 서비스 검색 허용</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>이 기능은 로컬 라우터와 통신하며 터널을 통해 수신 포트를 노출할 수 있습니다. VPN이 아닌 신뢰할 수 있는 LAN 어댑터에 바인딩할 때만 활성화하세요.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>바인딩된 동안 UPnP, NAT-PMP 및 로컬 서비스 검색이 비활성화됩니다. 이들은 로컬 라우터와 통신하여 터널 주변에서 수신 포트를 노출시킬 수 있기 때문입니다.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4954,12 +5296,12 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <translation>확인</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>기본 라우트</translation>
+            <source>Any interface</source>
+            <translation>어떤 인터페이스</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>OS 가 활성 네트워크 어댑터를 선택합니다.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>시스템 경로를 따르세요(다른 앱에서 사용).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5038,8 +5380,8 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <translation>출처: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>출처 URL 캐시되지 않았습니다. update.json 에서 IPtoCityDB 를 캐시하려면 업데이트 확인을 사용하세요.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>db-ip.com에서 업데이트 시 자동 확인됨</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5219,22 +5561,6 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <translation>무제한</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT 꺼짐</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>온라인 (낮은 신뢰도)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>온라인</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>예상 중… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>다음 &gt;&gt;</translation>
         </message>
@@ -5242,6 +5568,14 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>전체 공유 비율</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>전체 토렌트 피어 연결</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT 노드</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5681,6 +6015,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>우선순위</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>낮음</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>보통</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>높음</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>최대</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>혼합</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>저장 위치</translation>
@@ -6441,6 +6799,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>동영상 다운로드</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>다운로드 한도 초과!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1부터 %2까지 %3 MB를 다운로드했습니다. %6마다 %5 MB 다운로드 제한을 초과하여 &quot;%4&quot;의 모든 다운로드가 중지되었습니다.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>중지된 모든 다운로드는 %1(%2 후)에 자동으로 재개됩니다. 즉시 재개하려면 다운로드 제한 설정을 변경하고 재개를 누르세요.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>지금</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1시간</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1시간</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1분</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1분</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>1분 미만</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>및</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>확인</translation>
         </message>
     </context>
 </TS>

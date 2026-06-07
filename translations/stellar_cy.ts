@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Dolen Magnet, neu Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Derbyn dolenni HTTP/HTTPS/FTP, dolenni magnet, neu infohash torrent.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Methwyd cysylltiad rheoli FTP: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>Caeodd cysylltiad rheoli FTP yn annisgwyl.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Goramser cysylltiad rheoli FTP.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Ateb FTP anghywir.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Gwrthod anfon gorchymyn FTP gyda llinell newydd fewnosodedig.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>Gwrthododd gweinydd FTP gysylltiad</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>Mae angen FTPS ond nid yw'r gweinydd yn cefnogi AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Methwyd mewngofnodi FTP</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Gwrthodwyd diogelu data FTPS (PBSZ).</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Gwrthodwyd diogelu data FTPS (PROT P).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>Gwrthododd y gweinydd FTP y modd deuaidd (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Methu mynd i mewn i fodd goddefol FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>Nid yw'r gweinydd FTP yn cefnogi ailddechrau (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>Gwrthododd y gweinydd FTP y ffeil</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Ateb FTP annisgwyl i RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Trosglwyddiad FTP wedi'i atal gan y gweinydd</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Methu dosrannu ateb modd goddefol FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Gwrthodwyd cyfeiriad modd goddefol FTP am resymau diogelwch.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Methwyd agor cysylltiad data FTP.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>Methodd ysgwyd llaw TLS: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Llwybr FTP annilys.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Methu agor ffeil rannol: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Methodd ysgrifennu disg: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Cafodd trosglwyddiad FTP ei gwtogi.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Methodd segment FTP %1 ar ôl %2 ymgais.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Dim caniatâd ysgrifennu i'r cyfeiriadur lawrlwytho: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar yn cychwyn...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Wedi'i rwymo i %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Wedi mynd heibio hanner nos yn barod?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Dal ar ddi-hun?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Mae'r nos yn ifanc!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Methu cysgu?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Bore da!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Codwch a disgleiriwch!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Bendith y bore!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Bore! Mae coffi'n bragu.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Prynhawn da!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Lawrlwythiadau amser cinio?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Canol dydd yn barod!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Gobeithio bod eich diwrnod yn mynd yn dda!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Prynhawn da!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Noswaith dda!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Ymlacio?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Noswaith!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Gobeithio cawsoch chi ddiwrnod da!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Gweithio'n hwyr?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Ar ôl amser gwely?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Sesiwn hwyr y nos!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Peidiwch ag anghofio gorffwys!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Croeso nôl!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Barod pan wyt ti!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Neis dy weld di!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Gad i ni lawrlwytho!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Wedi dy golli di!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Nôl ati!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Mae dy lawrlwythiadau'n aros!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Dal ati o'r lle gorffennaist?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Beth rydyn ni'n ei gipio heddiw?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Wedi'i rwymo i %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Ni ddewiswyd ffeil wrth gefn i'w mewnforio.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Wedi'i rwymo i %1 (all-lein — torrents wedi'u hoedi)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Wedi'i rwymo i %1 (all-lein - torrents wedi'u seibio)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Diweddariad ar gael! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Gwirio am ddiweddariadau</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Pob ffeil i un cyfeiriadur</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Pori...</translation>
+            <source>Browse…</source>
+            <translation>Pori…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Cofio’r llwybr cadw diwethaf</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Pori...</translation>
+            <source>Browse…</source>
+            <translation>Pori…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Lawrlwythiad</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Clicio i gopïo</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 Cliciwch  Ychwanegu URL  i ddechrau.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Llwytho %n lawrlwythiad…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Llwytho %1 / %2 lawrlwythiadau…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Blaenoriaeth</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Isel</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Arferol</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Uchel</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Uchafswm</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Cymysg</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Prin</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Cyffredin</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Blaenoriaeth Uchel</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Hepgorwyd</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Ddim ar gael</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 darn</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 wedi'u llwytho</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 yn llwytho</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 wedi'i hepgor</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Dim data darn ar gael</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Hepgorwyd (ffeil heb ei dewis)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Wrthi'n lawrlwytho - %1% o flociau wedi'u derbyn</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Dim ar gael - does gan yr un cyfoed y darn hwn</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Ar goll - %n cyfoed sy'n ei gael</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(blaenoriaeth uchel)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Darn #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Symud Data Torrent i...</translation>
@@ -3395,8 +3729,8 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <translation>Gadewch yn wag i ddefnyddio llwybr diofyn</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Pori...</translation>
+            <source>Browse…</source>
+            <translation>Pori…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3907,6 +4241,10 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <translation>Dechrau llwytho ar unwaith wrth ddangos deialog &quot;Gwybodaeth Ffeil Llwytho&quot;</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Awgrymu'r maes disgrifiad gyda metadata ffeil (cyfradd didau, cydraniad, codec, ayb.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Dangos map haid wrth lwytho metadata torrent</translation>
         </message>
@@ -4109,10 +4447,6 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <translation>⚠ Ddim yn rhestr awto-lawrlwytho'r porwr: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Pori</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Dyma'r ffolder torrent arferol a gofir pan osodir y deialog metadata torrent i ddefnyddio ffolder cadw arferol yn ddiofyn.</translation>
         </message>
@@ -4229,16 +4563,16 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <translation>Dangos cyflymder yn y bar statws</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Dangos amcangyfrif defnyddwyr ar-lein yn y bar statws</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Yn defnyddio dwysedd ID nodau DHT i amcangyfrif defnyddwyr BitTorrent byd-eang. Mae hyder yn cynyddu wrth i fwy o IDau nodau unigryw gael eu gweld; mae seren * ar y diwedd yn y bar statws yn golygu bod yr amcangyfrif yn dal yn ansicr.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Dangos cymhareb yn y bar statws</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Dangos cysylltiadau torrent yn y bar statws</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Dangos nodau DHT yn y bar statws</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4501,20 +4835,28 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <translation>Asiant defnyddiwr BitTorrent wedi'i addasu</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Clymu i addasydd rhwydwaith</translation>
+            <source>Network interface</source>
+            <translation>Rhyngwyneb rhwydwaith</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Mae'r addasydd hwn wedi'i gloi ar gyfer traffig torrent. Os bydd eich VPN yn datgysylltu neu'r addasydd yn diflannu, bydd Stellar yn rhoi'r gorau i ddefnyddio'r llwybr diofyn a bydd eich torrents yn colli mynediad i'r rhwydwaith yn hytrach na gollwng ar gysylltiad arall.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Mae traffig torrent wedi'i gloi i'r rhyngwyneb hwn. Os bydd eich VPN yn datgysylltu neu'r rhyngwyneb yn diflannu, mae Stellar yn oedi torrents yn hytrach na gollwng i gysylltiad arall. Rhwymwch i'ch addasydd VPN i gyfeirio'r holl draffig torrent, gan gynnwys IPv6, drwy'r VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Dim clymu addasydd. Mae traffig torrent yn dilyn llwybr y system.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Unrhyw ryngwyneb: mae traffig torrent yn dilyn llwybr y system, yn union fel eich apiau eraill. Os mai VPN yw eich cysylltiad gweithredol, mae'n mynd drwy'r VPN; os bydd y VPN yn methu, mae traffig yn parhau ar y cysylltiad arferol. Dewiswch addasydd penodol ar gyfer rhwymo VPN-yn-unig llym.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Mae clymu addasydd rhwydwaith yn dweud wrth Stellar am anfon a derbyn traffig torrent trwy'r addasydd a ddewiswyd yn unig. Mae hyn yn arbennig o ddefnyddiol i ddefnyddwyr VPN oherwydd ei fod yn atal gollyngiadau traffig damweiniol pan nad yw'r VPN wedi'i gysylltu.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Caniatáu UPnP, NAT-PMP a Darganfod Gwasanaeth Lleol wrth rwymo</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Mae'r rhain yn siarad â'ch llwybrydd lleol a gallant ddatgelu eich porthladd gwrando o amgylch y twnnel. Galluogwch hwn dim ond wrth rwymo i addasydd LAN dibynadwy, nid VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>Mae UPnP, NAT-PMP a Darganfod Gwasanaeth Lleol wedi'u hanalluogi wrth rwymo, gan eu bod yn siarad â'r llwybrydd lleol a byddent yn datgelu eich porthladd gwrando o amgylch y twnnel.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4969,12 +5311,12 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <translation>Iawn</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Llwybr diofyn</translation>
+            <source>Any interface</source>
+            <translation>Unrhyw ryngwyneb</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Gadewch i'r OS ddewis yr addasydd rhwydwaith gweithredol.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Dilyn llwybr y system (a ddefnyddir gan eich apiau eraill).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5053,8 +5395,8 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <translation>Ffynhonnell: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>URL ffynhonnell heb ei storio eto. Defnyddiwch Gwirio am ddiweddariadau i storio IPtoCityDB o update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Wedi'i ddatrys yn awtomatig o db-ip.com pan fyddwch yn diweddaru.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5234,22 +5576,6 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <translation>diderfyn</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT i ffwrdd</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> ar-lein (hyder isel)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> ar-lein</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Wrthi'n amcangyfrif… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>nesaf &gt;&gt;</translation>
         </message>
@@ -5258,6 +5584,14 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
 Click to open Statistics</source>
             <translation>Cymhareb rhannu erioed
 Cliciwch i agor Ystadegau</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Cyfanswm cysylltiadau cymheiriaid torrent</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>Nodau DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5697,6 +6031,30 @@ Cliciwch i agor Ystadegau</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Blaenoriaeth</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Isel</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Arferol</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Uchel</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Uchafswm</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Cymysg</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Cadw i</translation>
@@ -6458,6 +6816,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Llwytho Fideo</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Terfynau lawrlwytho wedi'u rhagori!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>O %1 i %2 gwnaethoch lawrlwytho %3 MB. Mae pob lawrlwythiad yn &quot;%4&quot; wedi'i atal oherwydd i chi fynd dros y terfyn lawrlwytho o %5 MB bob %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Bydd pob lawrlwythiad a ataliwyd yn ailddechrau'n awtomatig am %1 (%2 o hyn). I ailddechrau ar unwaith, newidiwch y gosodiad Terfynau Lawrlwytho a gwasgwch Ailddechrau.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>nawr</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 awr</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 awr</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 munud</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 munud</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>llai na munud</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>a</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Iawn</translation>
         </message>
     </context>
 </TS>

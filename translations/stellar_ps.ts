@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL، مقناطیسي لېنک، یا انفوهش</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP لینکونه، مګنیټ لینکونه، یا د تورنټ انفوهش مني.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>د FTP کنټرول اړیکه ناکامه شوه: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>د FTP کنټرول اړیکه په ناڅاپي ډول وتړل شوه.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>د FTP کنټرول اړیکه وخت تېره شوه.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>بد شکله FTP ځواب</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>د نوي کرښې سره د FTP امر لیږلو څخه انکار.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP سرور اړیکه رد کړه</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS ته اړتیا ده خو سرور د AUTH TLS ملاتړ نه کوي.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>د FTP ننوتل ناکام شو</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>د FTPS ډیټا ساتنه (PBSZ) رد شوه.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>د FTPS ډیټا ساتنه (PROT P) رد شوه.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP سرور د بائنري حالت (TYPE I) رد کړ.</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>د FTP غیر فعال حالت ته ننوتل ممکن نه وو.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP سرور د بیا پیلولو (REST) ملاتړ نه کوي.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP سرور فایل رد کړ</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>د RETR لپاره د FTP نا اټکل شوی ځواب</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>د FTP لېږد د سرور لخوا ودرول شو</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>د FTP غیر فعال حالت ځواب تجزیه نشو کولای.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>د امنیت لپاره د FTP غیر فعال حالت پته رد شوه.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>د FTP ډېټا اړیکه پرانیستل کېدای نشوه.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS لاس ورکول ناکام شول: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>ناسم FTP لار.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>برخه فایل پرانیستل کېدای نشي: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ډیسک لیکنه ناکامه شوه: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP لېږد پرې شو.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP برخه %1 د %2 بیا هڅو وروسته ناکامه شوه.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ډاونلوډ پوښۍ لپاره د لیکلو اجازه نشته: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>ستیلار پیل کیږي...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ %1 سره تړلی</translation>
+            <source>Past midnight already?</source>
+            <translation>لا دمخه نیمه شپه شوه؟</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>لا هم ویښ یې؟</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>شپه لا ځوانه ده!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>خوب نه راځي؟</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>سهار مو پخیر!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>پاڅېږه او ځلېږه!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>سهار مو نېکمرغه!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>سهار! قهوه تیاریږي.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>غرمه مو پخیر!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>د غرمې ډاونلوډونه؟</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>غرمه لا دمخه شوه!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>هیله ده ورځ مو ښه تېرېږي!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>ماسپښین مو نیکمرغه!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>ماښام مو نیکمرغه!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>ارامېږئ؟</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>ماښام!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>هیله ده چې ورځ مو ښه تېره شوې وي!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>ناوخته کار کوئ؟</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>د خوب له وخته وتلي یاست؟</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>د شپې ناوخته غونډه!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>ارام هېر نه کړئ!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>بېرته ښه راغلاست!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>کله چې تیار یې!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>خوشحاله یم چې تاسو وینم!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>راځئ ډاونلوډ پیل کړو!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>موږ تاسو یادوئ!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>بېرته کار ته!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>ستاسو ډاونلوډونه منتظر دي!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>له هغه ځایه پیل کړئ چې پریښی مو و؟</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>نن څه ترلاسه کوو؟</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>له %1 سره تړلی</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>د واردولو لپاره هیڅ بیک اپ فایل نه دی ټاکل شوی.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ له %1 سره تړلی (آفلاین — ټورنټونه ځنډېدلي)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>له %1 سره تړلی (آفلاین - ټورنټونه ځنډول شوي)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>تازه کول شتون لري! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>د تازه کولو لپاره کتنه</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>ټول فایلونه یوې ډایرکټرۍ ته</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>لټون...</translation>
+            <source>Browse…</source>
+            <translation>لټون…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>وروستی د خوندي کولو لاره یاد ساتئ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>لټون...</translation>
+            <source>Browse…</source>
+            <translation>لټون…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>ډاونلوډ</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>کاپي کولو لپاره کلیک وکړئ</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,9 +1272,8 @@ Click  Add URL  to start.</source>
 URL اضافه کړئ ترڅو پیل شي.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>%n ډاونلوډ(ونه) بارول...
-</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>ډاونلوډونه %1 / %2 بارول…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1147,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>لومړیتوب</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>ټیټ</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>نورمال</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>لوړ</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>اعظمي</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ګډ</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>نادر</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>عام</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>لوړ لومړیتوب</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>پریښودل شوی</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>نشته</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 ټوټې</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 ډاونلوډ شو</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 ډاونلوډېږي</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 پریښودل شو</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>هیڅ ټوټه معلومات نشته</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>پریښودل شو (فایل نه دی ټاکل شوی)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>ډاونلوډېنګ - %1% بلاکونه ترلاسه شول</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>نشته - هیڅ پییر دا ټوټه نلري</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>ورک - %n پییر(ان) یې لري</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(لوړ لومړیتوب)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>ټوټه #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>ښه</translation>
@@ -3390,8 +3723,8 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <translation>برای استفاده از مسیر پیش‌فرض خالی بگذارید</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>لټول...</translation>
+            <source>Browse…</source>
+            <translation>لټون…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3902,6 +4235,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <translation>فوری ډاونلوډ پیل کړئ پداسې حال کې چې &quot;د ډاونلوډ فایل معلومات&quot; ډایلاګ ښودل کیږي</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>د فایل میټاډاټا سره د توضیحاتو ساحه اتومات ډکه کړئ (بټریټ، ریزولوشن، کوډیک، او نور)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>د تورنټ میټاډاټا ډاونلوډ کولو پر مهال د ځمکې نقشه وښایاست</translation>
         </message>
@@ -4104,10 +4441,6 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <translation>⚠ په براوزر اتوماتیک ډاونلوډ لیست کې نه دی: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>لټون</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>دا هغه یاد شوی ځانګړی ټورنټر فولډر دی کله چې د ټورنټر میټاډیټا ډایلاګ د پیش فرض ځانګړي خوندي کولو فولډر په توګه تنظیم شوی وي.</translation>
         </message>
@@ -4224,16 +4557,16 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <translation>په سټیټس بار کې سرعت ښکاره کړئ</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>په سټیټس بار کې اټکل شوی آنلاین کارونکي ښکاره کړئ</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>د DHT node-ID کثافت کاروي ترڅو نړیوال BitTorrent کارونکي اټکل کړي.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>په سټیټس بار کې نسبت ښکاره کړئ</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>په حالت پټه کې د تورنټ اړیکې ښکاره کړئ</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>په حالت پټه کې د DHT نوډونه ښکاره کړئ</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4494,20 +4827,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>د بټورنټ د کارونکي عامل سفارشی</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>د شبکې اډاپټر سره تړل</translation>
+            <source>Network interface</source>
+            <translation>شبکې انٹرفیس</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>دا اډاپټر د ټورنټ ټرافیک لپاره بند دی. که ستاسو VPN ونځي یا اډاپټر ورک شي، Stellar د پیش فرض لارې څخه کار اخیستل بندوي او ستاسو ټورنټونه د نورو اړیکو پرځای د شبکې لاسرسی له لاسه ورکوي.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>د تورنټ ټرافیک دې انٹرفیس پورې تړلی دی. که ستاسو VPN قطع شي یا انٹرفیس له منځه لاړ شي، Stellar تورنټونه ودروي د دې پرځای چې بلې اړیکې ته واوړي. د خپل VPN اډاپټر سره وتړئ ترڅو ټول تورنټ ټرافیک، د IPv6 په ګډون، د VPN له لارې وګرځوئ.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>هیڅ اډاپټر تړاو نشته. د ټورنټ ټرافیک د سیسټم لارې تعقیبوي.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>هر انٹرفیس: د تورنټ ټرافیک د سیسټم لارې تعقیبوي، لکه ستاسو نور اپلیکیشنونه. که VPN ستاسو فعاله اړیکه وي، د VPN له لارې ځي؛ که VPN پرې شي، ټرافیک په عادي اړیکه دوام کوي. د سخت VPN-یوازې تړلو لپاره یو ځانګړی اډاپټر غوره کړئ.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>د شبکې اډاپټر تړاو Stellar ته وايي چې یوازې د غوره شوي اډاپټر له لارې د ټورنټ ټرافیک واستوي او ترلاسه کړي. دا د VPN کارونکو لپاره ځانګړی ګټور دی ځکه چې دا د VPN د نشتوالي پر مهال د تصادفي ټرافیک د لیږد مخه نیسي.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>د تړل کیدو پرمهال UPnP، NAT-PMP او محلي خدمت موندنې ته اجازه ورکړئ</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>دا ستاسو محلي روټر سره خبرې کوي او کولی شي ستاسو د اوریدلو پورټ د تونل شاوخوا ښکاره کړي. دا یوازې هغه وخت فعال کړئ کله چې په باوري LAN اډاپټر پورې تړلی وي، نه VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>د تړل کیدو پرمهال UPnP، NAT-PMP او محلي خدمت موندنه غیر فعاله ده، ځکه چې دوی محلي روټر سره خبرې کوي او ستاسو د اوریدلو پورټ به د تونل شاوخوا ښکاره کړي.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4962,12 +5303,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ښه</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>خپلکاره لاره</translation>
+            <source>Any interface</source>
+            <translation>هر انٹرفیس</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>د فعالې شبکې اډاپټر لپاره د OS انتخاب.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>د سیسټم لاره تعقیب کړئ (ستاسو د نورو اپلیکیشنونو لخوا کارول کیږي).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5046,8 +5387,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>سرچینه: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>سرچینه URL اوس مهال کیچ نه دی. IPtoCityDB د update.json څخه کیچ کولو لپاره د تازه کولو چیک وکاروئ.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>کله چې تازه کړئ، له db-ip.com څخه په اتومات ډول حل شو.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5227,22 +5568,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>بې حده</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT بند</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>آنلاین (ټیټ باور)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>آنلاین</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>اټکل کېږي… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>بل &gt;&gt;</translation>
         </message>
@@ -5250,6 +5575,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>د شریکونو تناسب</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>ټول تورنټ پییر اړیکې</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT نوډونه</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5689,6 +6022,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>لومړیتوب</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>ټیټ</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>نورمال</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>لوړ</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>اعظمي</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ګډ</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>خوندي کول</translation>
@@ -6449,6 +6806,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ویډیو ډاونلوډ</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>ډاونلوډ محدودیتونه تېر شول!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>له %1 څخه %2 ته تاسو %3 MB ډاونلوډ کړل. په &quot;%4&quot; کې ټول ډاونلوډونه ودرول شول ځکه چې تاسو په هرو %6 کې د %5 MB ډاونلوډ حد تېر کړ.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>ټول درول شوي ډاونلوډونه به په اتومات ډول په %1 (%2 له اوس څخه) بیا پیل شي. د سمدستي پیل لپاره، د ډاونلوډ حدود تنظیم بدل کړئ او بیا پیل فشار ورکړئ.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>اوس</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>۱ ساعت</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 ساعته</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>۱ دقیقه</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 دقیقې</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>له یوې دقیقې کم</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>او</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
         </message>
     </context>
 </TS>

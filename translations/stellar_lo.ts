@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, ລິ້ງແມ່ເຫຼັກ ຫຼື Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>ຮອງຮັບລິ້ງ HTTP/HTTPS/FTP, ລິ້ງແມ່ເຫຼັກ ຫຼື infohash torrent.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>ການເຊື່ອມຕໍ່ຄວບຄຸມ FTP ລົ້ມເຫຼວ: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>ການເຊື່ອມຕໍ່ຄວບຄຸມ FTP ປິດລົງຢ່າງບໍ່ຄາດຄິດ.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>ການເຊື່ອມຕໍ່ຄວບຄຸມ FTP ໝົດເວລາ.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>ການຕອບກັບ FTP ຜິດຮູບແບບ.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>ປະຕິເສດການສົ່ງຄຳສັ່ງ FTP ທີ່ມີການຂຶ້ນບັນທັດໃໝ່ຝັງຢູ່.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>ເຊີບເວີ FTP ປະຕິເສດການເຊື່ອມຕໍ່</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>ຕ້ອງການ FTPS ແຕ່ເຊີບເວີບໍ່ຮອງຮັບ AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>ການເຂົ້າສູ່ລະບົບ FTP ລົ້ມເຫຼວ</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>ການປົກປ້ອງຂໍ້ມູນ FTPS (PBSZ) ຖືກປະຕິເສດ.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>ການປົກປ້ອງຂໍ້ມູນ FTPS (PROT P) ຖືກປະຕິເສດ.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>ເຊີບເວີ FTP ປະຕິເສດໂໝດຖານສອງ (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>ບໍ່ສາມາດເຂົ້າສູ່ໂໝດ passive FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>ເຊີບເວີ FTP ບໍ່ຮອງຮັບການສືບຕໍ່ (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>ເຊີບເວີ FTP ປະຕິເສດໄຟລ໌</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>ການຕອບກັບ FTP ທີ່ບໍ່ຄາດຄິດຕໍ່ RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>ການໂອນ FTP ຖືກຍົກເລີກໂດຍເຊີບເວີ</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>ບໍ່ສາມາດແຍກວິເຄາະການຕອບກັບໂໝດ passive FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>ທີ່ຢູ່ໂໝດ passive FTP ຖືກປະຕິເສດດ້ວຍເຫດຜົນຄວາມປອດໄພ.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>ບໍ່ສາມາດເປີດການເຊື່ອມຕໍ່ຂໍ້ມູນ FTP.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>ການຈັບມື TLS ລົ້ມເຫຼວ: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>ເສັ້ນທາງ FTP ບໍ່ຖືກຕ້ອງ.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>ບໍ່ສາມາດເປີດໄຟລ໌ສ່ວນ: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ການຂຽນດິສກ໌ລົ້ມເຫຼວ: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>ການໂອນ FTP ຖືກຕັດຂາດ.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>ສ່ວນ FTP %1 ລົ້ມເຫຼວ ຫຼັງລອງໃໝ່ %2 ຄັ້ງ.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ບໍ່ມີສິດຂຽນສຳລັບໂຟນເດີດາວໂຫຼດ: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar ກຳລັງເລີ່ມ...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ ຜູກກັບ %1</translation>
+            <source>Past midnight already?</source>
+            <translation>ເລີຍທ່ຽງຄືນແລ້ວບໍ?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>ຍັງບໍ່ນອນບໍ?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>ຄືນຍັງອ່ອນ!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>ນອນບໍ່ຫຼັບບໍ?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>ສະບາຍດີຕອນເຊົ້າ!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>ຕື່ນເດີ້!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>ຕອນເຊົ້າສົດໃສ!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>ເຊົ້າແລ້ວ! ກາເຟກຳລັງຊົງ.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>ສະບາຍດີຕອນສວຍ!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>ດາວໂຫຼດຕອນພັກທ່ຽງບໍ?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>ຕອນທ່ຽງແລ້ວ!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>ຫວັງວ່າມື້ນີ້ດຳເນີນໄປດີ!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>ສະບາຍດີຕອນບ່າຍ!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>ສະບາຍດີຕອນແລງ!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>ພັກຜ່ອນບໍ?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>ຕອນແລງ!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>ຫວັງວ່າມື້ນີ້ດີ!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>ເຮັດວຽກດຶກບໍ?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>ເດິກເກີນເວລານອນບໍ?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>ເຊສຊັນດຶກ!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>ຢ່າລືມພັກຜ່ອນ!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>ຍິນດີຕ້ອນຮັບກັບ!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>ພ້ອມແລ້ວ!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>ດີໃຈທີ່ໄດ້ເຫັນ!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>ມາເລີ່ມດາວໂຫຼດກັນ!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>ຄິດຮອດເຈົ້າ!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>ກັບມາແລ້ວ!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>ດາວໂຫຼດຂອງເຈົ້າລໍຖ້າຢູ່!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>ສືບຕໍ່ຈາກບ່ອນເກົ່າບໍ?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>ມື້ນີ້ເຮົາຈະເອົາຫຍັງດີ?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>ຜູກກັບ %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>ບໍ່ໄດ້ເລືອກໄຟລ໌ສຳຮອງເພື່ອນຳເຂົ້າ.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ ຜູກກັບ %1 (ອອບລາຍ — ຢຸດ torrents)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>ຜູກກັບ %1 (ອອບລາຍ - ຢຸດທໍເຣັນຊົ່ວຄາວ)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>ອັບເດດພ້ອມ! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>ກຳລັງກວດສອບອັບເດດ</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>ທຸກໄຟລ໌ໃສ່ໂຟນເດີດຽວ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>ເລືອກ...</translation>
+            <source>Browse…</source>
+            <translation>ເລືອກ…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ຈື່ເສັ້ນທາງບັນທຶກຫຼ້າສຸດ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>ເລືອກ...</translation>
+            <source>Browse…</source>
+            <translation>ເລືອກ…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>ດາວໂຫຼດ</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>ກົດເພື່ອສຳເນົາ</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 ກົດ ເພີ່ມ URL ເພື່ອເລີ່ມ.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>ກຳລັງໂຫຼດ %n ດາວໂຫຼດ…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>ກຳລັງໂຫຼດ %1 / %2…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1147,6 +1393,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ບູລິມະສິດ</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>ຕ່ຳ</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>ປົກກະຕິ</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>ສູງ</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>ສູງສຸດ</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ປະສົມ</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>ຫາຍາກ</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>ທົ່ວໄປ</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>ບູລິມະສິດສູງ</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>ຂ້າມ</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>ບໍ່ມີ</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 ຊິ້ນ</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 ດາວໂຫຼດແລ້ວ</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 ກຳລັງດາວໂຫຼດ</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 ຖືກຂ້າມ</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>ບໍ່ມີຂໍ້ມູນຊິ້ນສ່ວນ</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>ຂ້າມ (ບໍ່ໄດ້ເລືອກໄຟລ໌)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>ກຳລັງດາວໂຫຼດ - %1% ຂອງບລັອກທີ່ໄດ້ຮັບ</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>ບໍ່ມີ - ບໍ່ມີເພຍມີຊິ້ນນີ້</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>ຂາດ - %n ເພຍມີມັນ</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(ບູລິມະສິດສູງ)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>ຊິ້ນ #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>ຍ້າຍຂໍ້ມູນທໍເຣັນໄປ...</translation>
@@ -3397,7 +3731,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ປ່ອຍຫວ່າງເພື່ອໃຊ້ເສັ້ນທາງບັນທຶກເລີ່ມຕົ້ນ</translation>
         </message>
         <message>
-            <source>Browse...</source>
+            <source>Browse…</source>
             <translation>ເລືອກ...</translation>
         </message>
         <message>
@@ -3909,6 +4243,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ເລີ່ມດາວໂຫຼດທັນທີ ພ້ອມສະແດງໜ້າຕ່າງ &quot;ຂໍ້ມູນໄຟລ໌ດາວໂຫຼດ&quot;</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>ຕື່ມຊ່ອງຄຳອະທິບາຍອັດຕະໂນມັດດ້ວຍເມຕາເດຕ້າຂອງໄຟລ໌ (ບິດເຣດ, ຄວາມລະອຽດ, ໂຄເດັກ, ແລະອື່ນໆ)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>ສະແດງແຜນທີ່ສະວອມ ເມື່ອດາວໂຫຼດເມຕາເດຕ້າທໍເຣັນ</translation>
         </message>
@@ -4111,10 +4449,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ ບໍ່ຢູ່ໃນລາຍການດາວໂຫຼດອັດຕະໂນມັດຂອງບຣາວເຊີ: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>ເລືອກ</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>ນີ້ແມ່ນໂຟນເດີ torrent ແບບກຳນົດເອງທີ່ຈື່ໄວ້ ເມື່ອກ່ອງຂໍ້ມູນ metadata ຂອງ torrent ຖືກຕັ້ງໃຫ້ໃຊ້ໂຟນເດີບັນທຶກແບບກຳນົດເອງເປັນຄ່າເລີ່ມຕົ້ນ.</translation>
         </message>
@@ -4231,16 +4565,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ສະແດງຄວາມໄວໃນແຖບສະຖານະ</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>ສະແດງຜູ້ໃຊ້ອອນລາຍປະມານໃນແຖບສະຖານະ</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>ໃຊ້ຄວາມໜາແໜ້ນ DHT node-ID ເພື່ອປະເມີນຜູ້ໃຊ້ BitTorrent ທົ່ວໂລກ. ຄວາມເຊື່ອໝັ້ນສູງຂຶ້ນເມື່ອພົບ node-ID ທີ່ບໍ່ຊ້ຳກັນຫຼາຍຂຶ້ນ; * ຕໍ່ທ້າຍໃນແຖບສະຖານະໝາຍຄວາມວ່າການປະເມີນຍັງມີຄວາມເຊື່ອໝັ້ນຕ່ຳ.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>ສະແດງອັດຕາສ່ວນໃນແຖບສະຖານະ</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>ສະແດງການເຊື່ອມຕໍ່ torrent ໃນແຖບສະຖານະ</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>ສະແດງ DHT nodes ໃນແຖບສະຖານະ</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4503,20 +4837,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ຕົວແທນຜູ້ໃຊ້ BitTorrent ແບບກຳນົດເອງ</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>ຜູກກັບອະແດັບເຕີເຄືອຂ່າຍ</translation>
+            <source>Network interface</source>
+            <translation>ອິນເຕີເຟສເຄືອຂ່າຍ</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>ອະແດັບເຕີນີ້ຖືກລັອກສຳລັບທຣາຟິກທໍເຣັນ. ຖ້າ VPN ຫຼຸດການເຊື່ອມຕໍ່ ຫຼືອະແດັບເຕີຫາຍໄປ, Stellar ຈະຢຸດໃຊ້ເສັ້ນທາງເລີ່ມຕົ້ນ ແລະທໍເຣັນຈະຂາດການເຂົ້າເຖິງເຄືອຂ່າຍ ແທນທີ່ຈະຮົ່ວໄປຍັງການເຊື່ອມຕໍ່ອື່ນ.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>ການຈະລາຈອນ torrent ຖືກລັອກໃສ່ອິນເຕີເຟສນີ້. ຖ້າ VPN ຂອງທ່ານຕັດການເຊື່ອມຕໍ່ ຫຼື ອິນເຕີເຟສຫາຍໄປ, Stellar ຈະຢຸດ torrents ແທນທີ່ຈະຮົ່ວໄປໃສ່ການເຊື່ອມຕໍ່ອື່ນ. ຜູກກັບອະແດັບເຕີ VPN ຂອງທ່ານເພື່ອກຳນົດເສັ້ນທາງການຈະລາຈອນ torrent ທັງໝົດ, ລວມທັງ IPv6, ຜ່ານ VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>ບໍ່ມີການຜູກອະແດັບເຕີ. ທຣາຟິກທໍເຣັນຕາມເສັ້ນທາງລະບົບ.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>ອິນເຕີເຟສໃດກໍໄດ້: ການຈະລາຈອນ torrent ຕາມເສັ້ນທາງລະບົບ, ຄືກັບແອັບອື່ນໆຂອງທ່ານ. ຖ້າ VPN ເປັນການເຊື່ອມຕໍ່ທີ່ໃຊ້ງານຢູ່ ມັນຈະຜ່ານ VPN; ຖ້າ VPN ຫຼຸດ, ການຈະລາຈອນຈະສືບຕໍ່ໃນການເຊື່ອມຕໍ່ປົກກະຕິ. ເລືອກອະແດັບເຕີສະເພາະສຳລັບການຜູກມັດ VPN ເທົ່ານັ້ນຢ່າງເຂັ້ມງວດ.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>ການຜູກອະແດັບເຕີເຄືອຂ່າຍບອກໃຫ້ Stellar ສົ່ງ ແລະຮັບທຣາຟິກທໍເຣັນຜ່ານອະແດັບເຕີທີ່ເລືອກເທົ່ານັ້ນ. ມີປະໂຫຍດໂດຍສະເພາະສຳລັບຜູ້ໃຊ້ VPN ເພາະປ້ອງກັນການຮົ່ວໄຫຼຂອງທຣາຟິກໂດຍບັງເອີນເມື່ອ VPN ບໍ່ໄດ້ເຊື່ອມຕໍ່.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>ອະນຸຍາດ UPnP, NAT-PMP ແລະ Local Service Discovery ໃນຂະນະທີ່ຜູກມັດ</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>ສິ່ງເຫຼົ່ານີ້ສື່ສານກັບ router ທ້ອງຖິ່ນຂອງທ່ານ ແລະ ສາມາດເປີດເຜີຍພອດຟັງຂອງທ່ານອ້ອມ tunnel ໄດ້. ເປີດໃຊ້ສະເພາະເມື່ອຜູກມັດກັບອະແດັບເຕີ LAN ທີ່ເຊື່ອຖືໄດ້, ບໍ່ແມ່ນ VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP ແລະ Local Service Discovery ຖືກປິດໃຊ້ງານໃນຂະນະທີ່ຜູກມັດ, ເນື່ອງຈາກພວກມັນສື່ສານກັບ router ທ້ອງຖິ່ນ ແລະ ຈະເປີດເຜີຍພອດຟັງຂອງທ່ານອ້ອມ tunnel.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4971,12 +5313,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ຕົກລົງ</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>ເສັ້ນທາງຕັ້ງຄ່າ</translation>
+            <source>Any interface</source>
+            <translation>ອິນເຕີເຟສໃດກໍໄດ້</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>ໃຫ້ OS ເລືອກອະແດັບເຕີເຄືອຂ່າຍທີ່ໃຊ້ງານຢູ່.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>ຕາມເສັ້ນທາງລະບົບ (ໃຊ້ໂດຍແອັບອື່ນໆຂອງທ່ານ).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5055,8 +5397,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ແຫຼ່ງ: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>URL ແຫຼ່ງຍັງບໍ່ຖືກເກັບໄວ້. ໃຊ້ ກວດສອບອັບເດດ ເພື່ອເກັບ IPtoCityDB ຈາກ update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>ແກ້ໄຂອັດຕະໂນມັດຈາກ db-ip.com ເມື່ອອັບເດດ</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5236,22 +5578,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ບໍ່ຈຳກັດ</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT ປິດ</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> ອອນລາຍ (ຄວາມໝັ້ນໃຈຕ່ຳ)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> ອອນລາຍ</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>ກຳລັງຄາດຄະເນ… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>ຕໍ່ໄປ &gt;&gt;</translation>
         </message>
@@ -5260,6 +5586,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 Click to open Statistics</source>
             <translation>ອັດຕາສ່ວນແບ່ງປັນທັງໝົດ
 ຄລິກເພື່ອເປີດສະຖິຕິ</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>ການເຊື່ອມຕໍ່ພີຣ໌ torrent ທັງໝົດ</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>ໂໝດ DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5699,6 +6033,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ບູລິມະສິດ</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>ຕ່ຳ</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>ປົກກະຕິ</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>ສູງ</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>ສູງສຸດ</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ປະສົມ</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>ບັນທຶກໃສ່</translation>
@@ -6460,6 +6818,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ດາວໂຫຼດວິດີໂອ</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>ເກີນຂີດຈຳກັດດາວໂຫຼດ!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>ຈາກ %1 ຫາ %2 ທ່ານດາວໂຫຼດ %3 MB. ການດາວໂຫຼດທັງໝົດໃນ &quot;%4&quot; ຖືກຢຸດເພາະທ່ານເກີນຂີດຈຳກັດດາວໂຫຼດ %5 MB ທຸກໆ %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>ການດາວໂຫຼດທີ່ຢຸດທັງໝົດຈະຖືກສືບຕໍ່ອັດຕະໂນມັດເວລາ %1 (ອີກ %2). ເພື່ອສືບຕໍ່ທັນທີ, ປ່ຽນການຕັ້ງຄ່າຂີດຈຳກັດດາວໂຫຼດ ແລະກົດ ສືບຕໍ່.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>ດຽວນີ້</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 ຊົ່ວໂມງ</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 ຊົ່ວໂມງ</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 ນາທີ</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 ນາທີ</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>ບໍ່ຮອດນາທີ</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>ແລະ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ຕົກລົງ</translation>
         </message>
     </context>
 </TS>

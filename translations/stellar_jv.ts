@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Link Magnet, utawa Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Nampa pranala HTTP/HTTPS/FTP, link magnet, utawa infohash torrent.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Sambungan kontrol FTP gagal: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>Sambungan kontrol FTP katutup ora disangka.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Sambungan kontrol FTP entek wektu.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Wangsulan FTP rusak.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Nolak ngirim printah FTP nganggo baris anyar.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>Server FTP nolak sambungan</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS dibutuhake nanging server ora ndhukung AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Mlebu FTP gagal</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Proteksi data FTPS (PBSZ) ditolak.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Proteksi data FTPS (PROT P) ditolak.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>Server FTP nolak mode biner (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Ora bisa mlebu mode pasif FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>Server FTP ora ndhukung resume (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>Server FTP nolak berkas</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Wangsulan FTP kanggo RETR ora disangka</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Transfer FTP dibatalake server</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Ora bisa ngurai wangsulan mode pasif FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Alamat mode pasif FTP ditolak kanggo keamanan.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Ora bisa mbukak sambungan data FTP.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>Gagal salaman TLS: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Path FTP ora valid.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Ora bisa mbukak berkas bagian: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Gagal nulis disk: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Transfer FTP kepotong.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Segmen FTP %1 gagal sawise %2 nyoba maneh.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Ora ana ijin nulis kanggo direktori unduhan: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar lagi miwiti...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Kaiket ing %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Wis liwat tengah wengi?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Isih melek?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Wengi isih enom!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Ora bisa turu?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Sugeng enjing!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Tangi lan sumunar!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Esuk-esuk!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Enjing! Kopi lagi diseduh.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Sugeng siang!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Nedha awan karo unduhan?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Wis awan!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Muga-muga dinane lancar!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Sore!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Sugeng sonten!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Lagi santai?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Sonten!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Mugi-mugi dintenipun sae!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Nyambut damel dalu?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Durung tilem?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Sesi dalu!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Aja lali ngaso!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Sugeng rawuh malih!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Wis siyap!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Seneng ketemu maneh!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Ayo diundhuh!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Kangen kowe!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Wiwiti maneh!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Unduhanmu ngenteni!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Terusna sing mau?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Saiki arep njupuk apa?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Kaiket %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Ora ana berkas serepan sing dipilih kanggo diimpor.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Kaiket %1 (offline — torrent dijeda)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Kaiket %1 (offline - torrent mandheg)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Ana nganyari! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Mriksa nganyari</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Kabeh berkas menyang siji direktori</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Telusuri...</translation>
+            <source>Browse…</source>
+            <translation>Telusur…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Éling path simpenan pungkasan</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Telusuri...</translation>
+            <source>Browse…</source>
+            <translation>Telusur…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Undhuh</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Klik kanggo nyalin</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 Klik Tambah URL kanggo miwiti.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Muat %n unduhan…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Muat %1 / %2 unduhan…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ Sampeyan bisa ngubah ing Opsi → Unduhan mengko.</translation>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritas</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Cendhèk</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Dhuwur</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimum</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Campuran</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Langka</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Umum</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Prioritas Dhuwur</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Dilangkahi</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Ora Kasedhiya</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 potong</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 diundhuh</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 ngundhuh</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 diliwati</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Ora ana data potongan</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Diliwati (file ora dipilih)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Ngundhuh - %1% blok ditampa</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Ora kasedhiya - ora ana peer sing duwe</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Ilang - %n peer duwe</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(prioritas dhuwur)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Potongan #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Pindhah Data Torrent Menyang...</translation>
@@ -3394,8 +3728,8 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
             <translation>Kosongi kanggo path simpenan baku</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Telusuri...</translation>
+            <source>Browse…</source>
+            <translation>Telusuri…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3906,6 +4240,10 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
             <translation>Miwiti unduhan langsung sinambi nampilake dialog &quot;Info Berkas Unduhan&quot;</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Isi otomatis kolom deskripsi nganggo metadata file (bitrate, resolusi, codec, lsp.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Tampilake peta swarm nalika ngundhuh metadata torrent</translation>
         </message>
@@ -4108,10 +4446,6 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
             <translation>⚠ Ora ana ing dhaptar unduhan otomatis browser: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Telusuri</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Iki folder torrent khusus sing dieling-eling nalika dialog metadata torrent disetel nganggo folder simpen khusus minangka standar.</translation>
         </message>
@@ -4228,16 +4562,16 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
             <translation>Tampilke kacepetan ing baris status</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Tampilke perkiraan pangguna online ing baris status</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Nganggo kapadhetan ID simpul DHT kanggo ngira-ngira pangguna BitTorrent global. Keyakinan mundhak nalika luwih akeh ID simpul unik diamati; tandha * ing mburi baris status tegese perkiraan isih kurang yakin.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Tampilke rasio ing baris status</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Tampilake sambungan torrent ing garis status</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Tampilake simpul DHT ing garis status</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4500,20 +4834,28 @@ Disaranaké banget kanggo naleni Stellar nèng antarmuka jaringan VPN lan verifi
             <translation>Agen panganggo BitTorrent dhewe</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Ikèt menyang adaptor jaringan</translation>
+            <source>Network interface</source>
+            <translation>Antarmuka jaringan</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Adaptor iki dikunci kanggo lalu lintas torrent. Yèn VPN pedhot utawa adaptor ilang, Stellar mandheg nganggo rute baku lan torrent panjenengan kelangan aksès jaringan, ora bocor menyang sambungan liya.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Lalu lintas torrent dikunci ing antarmuka iki. Yen VPN pedhot utawa antarmuka ilang, Stellar ngaso torrent tinimbang bocor menyang sambungan liya. Ikatan menyang adaptor VPN kanggo nuntun kabeh lalu lintas torrent, kalebu IPv6, liwat VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Tanpa ikètan adaptor. Lalu lintas torrent manut rute sistem.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Antarmuka apa wae: lalu lintas torrent ngetutake rute sistem, kaya aplikasi liyane. Yen VPN dadi sambungan aktif, bakal liwat VPN; yen VPN pedhot, lalu lintas terus ing sambungan normal. Pilih adaptor tartamtu kanggo ikatan mung VPN sing ketat.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Ikètan adaptor jaringan ndhawuhi Stellar supaya ngirim lan nampa lalu lintas torrent mung liwat adaptor sing dipilih. Iki migunani banget kanggo panganggo VPN amarga nyegah bocor lalu lintas nalika VPN ora nyambung.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Ijini UPnP, NAT-PMP lan Panemuan Layanan Lokal nalika kaiket</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Iki komunikasi karo router lokal lan bisa mbukak port ngrungokake ing sakubenge trowongan. Mung aktifake iki nalika kaiket menyang adaptor LAN sing dipercaya, dudu VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP lan Panemuan Layanan Lokal dipateni nalika kaiket, amarga komunikasi karo router lokal lan bakal mbukak port ngrungokake ing sakubenge trowongan.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4968,12 +5310,12 @@ Disaranaké banget kanggo naleni Stellar nèng antarmuka jaringan VPN lan verifi
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Rute gawan</translation>
+            <source>Any interface</source>
+            <translation>Antarmuka apa wae</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Ayo OS milih adaptor jaringan aktif.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Ngetutake rute sistem (digunakake dening aplikasi liyane).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5052,8 +5394,8 @@ Disaranaké banget kanggo naleni Stellar nèng antarmuka jaringan VPN lan verifi
             <translation>Sumber: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>URL sumber durung di-cache. Gunakake Priksa nganyari kanggo cache IPtoCityDB saka update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Rampung otomatis saka db-ip.com nalika nganyari.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5233,22 +5575,6 @@ Disaranaké banget kanggo naleni Stellar nèng antarmuka jaringan VPN lan verifi
             <translation>tanpa wates</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT mati</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> online (kurang yakin)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Ngira-ngira… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>sabanjuré &gt;&gt;</translation>
         </message>
@@ -5257,6 +5583,14 @@ Disaranaké banget kanggo naleni Stellar nèng antarmuka jaringan VPN lan verifi
 Click to open Statistics</source>
             <translation>Rasio bagéan saklawasé
 Klik kanggo mbukak Statistik</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Total sambungan peer torrent</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>Node DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5696,6 +6030,30 @@ Klik kanggo mbukak Statistik</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritas</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Rendah</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Dhuwur</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimal</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Campuran</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Simpen nèng</translation>
@@ -6456,6 +6814,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Undhuh Video</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Wates unduhan ngluwihi!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Saka %1 menyang %2 sampeyan ngundhuh %3 MB. Kabeh undhuhan ing &quot;%4&quot; wis mandheg amarga sampeyan ngluwihi wates undhuhan %5 MB saben %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Kabeh undhuhan sing mandheg bakal diterusake otomatis jam %1 (%2 maneh). Kanggo nerusake saiki, ganti setelan Wates Undhuhan banjur pencet Terusake.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>saiki</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 jam</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 jam</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 menit</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 menit</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>kurang semenit</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>lan</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

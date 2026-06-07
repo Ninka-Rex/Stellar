@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Nasc Maighnéad, nó Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Glacann sé naisc HTTP/HTTPS/FTP, naisc mhaighnéad, nó infohash torrent.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Theip ar nasc rialaithe FTP: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>Dúnadh nasc rialaithe FTP gan choinne.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Nasc rialaithe FTP imithe thar am.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Freagra FTP míchumtha.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Diúltaíodh ordú FTP a sheoladh le líne nua leabaithe.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>Dhiúltaigh freastalaí FTP nasc</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>Tá FTPS ag teastáil ach ní thacaíonn an freastalaí le AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Theip ar logáil isteach FTP</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Diúltaíodh cosaint sonraí FTPS (PBSZ).</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Diúltaíodh cosaint sonraí FTPS (PROT P).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>Dhiúltaigh freastalaí FTP mód dénártha (CINEÁL I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Níorbh fhéidir dul i mód éighníomhach FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>Ní thacaíonn freastalaí FTP le hatosú (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>Dhiúltaigh freastalaí FTP an comhad</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Freagra FTP gan choinne ar RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Aistriú FTP tobscortha ag freastalaí</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Níorbh fhéidir freagra mód éighníomhach FTP a pharsáil.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Diúltaíodh seoladh mód éighníomhach FTP ar chúiseanna slándála.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Níorbh fhéidir nasc sonraí FTP a oscailt.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>Theip ar chroitheadh láimhe TLS: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Cosán FTP neamhbhailí.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Ní féidir comhad páirteach a oscailt: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Theip ar scríobh diosca: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Gearradh aistriú FTP.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Theip ar mhír FTP %1 tar éis %2 iarracht.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Gan cead scríofa don chomhadlann íoslódála: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar ag tosú...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Ceangailte le %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Thar mheán oíche cheana?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Fós i do dhúiseacht?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Tá an oíche óg!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Gan chodladh?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Maidin mhaith!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Éirigh is taitin!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Barr na maidine!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Maidin! Caife ag grúdú.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Tráthnóna maith!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Íoslódálacha lóin?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Meán lae cheana!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Tá súil agam go bhfuil do lá ag dul go maith!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Tráthnóna maith!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Tráthnóna maith duit!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Ag scíth?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Tráthnóna!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Tá súil agam go raibh lá maith agat!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Ag obair go déanach?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>I do dhiaidh am codlata?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Seisiún oíche!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Ná déan dearmad scíth a ligean!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Fáilte ar ais!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Réidh nuair atá tú!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Go deas thú a fheiceáil!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Tosaímis ag íoslódáil!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Chronaigh mé thú!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Ar ais arís!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Tá d'íoslódálacha ag fanacht!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Ar mhaith leat leanúint ar aghaidh?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Cad atá á fháil againn inniu?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Ceangailte le %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Níor roghnaíodh comhad cúltaca le hiompórtáil.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Ceangailte le %1 (as líne — torentaí curtha ar sos)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Ceangailte le %1 (as líne - torentaí ar sos)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Nuashonrú ar fáil! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Seiceáil le haghaidh nuashonruithe</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Gach comhad chuig eolaire amháin</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Brabhsáil...</translation>
+            <source>Browse…</source>
+            <translation>Brabhsáil…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Cuimhnigh ar an gcosán sábhála deireanach</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Brabhsáil...</translation>
+            <source>Browse…</source>
+            <translation>Brabhsáil…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Íoslódáil</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Cliceáil le cóipeáil</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 Cliceáil Cuir URL leis chun tosú.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Ag lódáil %n íoslódáil(eann)…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Íoslódálacha %1 / %2 á lódáil…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1145,6 +1391,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Tosaíocht</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Íseal</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Gnáth</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Ard</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Uasmhéid</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Measctha</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Annamh</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Coitianta</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Ardtosaíocht</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Scipeáilte</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Ar fáil</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 píosa</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 íoslódáilte</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 á íoslódáil</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 scipeáilte</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Níl sonraí píosa ar fáil</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Scipeáilte (comhad gan roghnú)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Á íoslódáil - %1% de bhlocanna faighte</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Dofhála - níl an píosa seo ag aon phiaraí</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Ar iarraidh - tá sé ag %n piara(í)</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(ardthosaíocht)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Píosa #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Bog Sonraí BitTorrent Go...</translation>
@@ -3388,8 +3722,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Fág folamh chun an bealach sábhála réamhshocraithe a úsáid</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Brabhsáil...</translation>
+            <source>Browse…</source>
+            <translation>Brabhsáil…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3900,6 +4234,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Tosaigh íoslódáil láithreach agus dialóg 'Eolas Comhad Íoslódála' á taispeáint</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Uathlíon an réimse tuairisce le meiteashonraí comhaid (giotráta, taifeach, codec, srl.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Taispeáin léarscáil swarm nuair a bhíonn meiteashonraí torrent á n-íoslódáil</translation>
         </message>
@@ -4102,10 +4440,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ Gan liosta íoslódála uathoibríoch an bhrabhsálaí: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Brabhsáil</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Is é seo an fillteán torrent saincheaptha a chuimhnítear nuair a shocraítear an dialóg sonraí torrent le fillteán sábhála saincheaptha mar réamhshocrú.</translation>
         </message>
@@ -4222,16 +4556,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Taispeáin luas sa bharra stádais</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Taispeáin líon thart ar úsáideoirí ar líne sa bharra stádais</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Úsáideann dlús ID nód DHT chun úsáideoirí BitTorrent domhanda a mheas. Éiríonn an muinín níos airde de réir mar a fheictear níos mó IDanna nód ar leith; ciallaíonn * ag deireadh an bharra stádais go bhfuil an meastachán fós le muinín íseal.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Taispeáin cóimheas sa bharra stádais</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Taispeáin naisc torrent sa bharra stádais</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Taispeáin nóid DHT sa bharra stádais</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4494,20 +4828,28 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <translation>Ainmneoir bittorrent saincheaptha</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Nascadh le cluiche líonra</translation>
+            <source>Network interface</source>
+            <translation>Comhéadan líonra</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Tá an cluiche seo glasaithe do thrácht torrent. Má dhéanann do VPN scaradh nó má imíonn an cluiche, stopann Stellar ag baint úsáide as an ród réamhshocraithe agus caillfidh do torrents rochtain ar an líonra in ionad scaipeadh ar nasc eile.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Tá trácht torrent faoi ghlas leis an gcomhéadan seo. Má ghearrann do VPN nó má imíonn an comhéadan, cuireann Stellar na torrentaí ar sos in ionad iad a ligean amach ar nasc eile. Ceangail le d’oiriúnóir VPN chun an trácht torrent ar fad, IPv6 san áireamh, a threorú tríd an VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Gan nascadh cluiche. Leanann trácht torrent an ród córais.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Comhéadan ar bith: leanann trácht torrent bealach an chórais, díreach mar a dhéanann d’aipeanna eile. Más é VPN do nasc gníomhach, téann sé tríd an VPN; má thiteann an VPN, leanann an trácht ar an ngnáthnasc. Roghnaigh oiriúnóir ar leith chun ceangal docht VPN amháin a dhéanamh.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Míníonn nascadh cluiche líonra do Stellar trácht torrent a sheoladh agus a fháil trí an gcluiche roghnaithe amháin. Tá sé seo an-úsáideach do úsáideoirí VPN mar chuireann sé cosc ar scaipeadh trácht de thaobh amhairc nuair nach bhfuil an VPN nasctha.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Ceadaigh UPnP, NAT-PMP agus Local Service Discovery agus tú ceangailte</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Labhraíonn siad seo le do ródaire áitiúil agus féadann siad do phort éisteachta a nochtadh timpeall an tolláin. Ná cumasaigh é seo ach amháin nuair atá tú ceangailte le hoiriúnóir LAN iontaofa, ní le VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>Tá UPnP, NAT-PMP agus Local Service Discovery díchumasaithe agus tú ceangailte, mar labhraíonn siad leis an ródaire áitiúil agus nochtfaidís do phort éisteachta timpeall an tolláin.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4962,12 +5304,12 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Ró réamhshocraithe</translation>
+            <source>Any interface</source>
+            <translation>Comhéadan ar bith</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Fág leis an OS an chárta líonra gníomhach a roghnú.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Lean bealach an chórais (a úsáideann d’aipeanna eile).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5046,8 +5388,8 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <translation>Foinse: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Níl an URL foinse caighdeánaithe fós. Úsáid Seiceáil nuashonruithe chun IPtoCityDB a chaighdeánú ó update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Réitithe go huathoibríoch ó db-ip.com nuair a nuashonraíonn tú.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5227,22 +5569,6 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <translation>gan teorainn</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT múchta</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> ar líne (muinín íseal)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> ar líne</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Á mheas… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation> ar aghaidh &gt;&gt;</translation>
         </message>
@@ -5250,6 +5576,14 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Cóimheas roinnte go léir</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Ceangail iomlána piaraí torrent</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>Nóid DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5689,6 +6023,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Tosaíocht</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Íseal</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Gnáth</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Ard</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Uasmhéid</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Measctha</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Sábháil go</translation>
@@ -6449,6 +6807,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Íoslódáil Físeáin</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Sáraíodh teorainneacha íoslódála!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Ó %1 go %2 d'íoslódáil tú %3 MB. Stopadh gach íoslódáil i &quot;%4&quot; mar sháraigh tú an teorainn íoslódála de %5 MB gach %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Ath-thosófar gach íoslódáil stoptha go huathoibríoch ag %1 (%2 as seo). Chun ath-thosú láithreach, athraigh an socrú Teorainneacha Íoslódála agus brúigh Ath-thosaigh.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>anois</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 uair</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 uair</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 nóiméad</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 nóiméad</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>níos lú ná nóiméad</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>agus</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

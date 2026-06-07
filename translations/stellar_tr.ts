@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet Bağlantı veya Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP bağlantıları, magnet bağlantıları veya torrent infohash kabul eder.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP kontrol bağlantısı başarısız: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP kontrol bağlantısı beklenmedik şekilde kapandı.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP kontrol bağlantısı zaman aşımına uğradı.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Hatalı FTP yanıtı.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Satır sonu içeren FTP komutu gönderilmiyor.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP sunucusu bağlantıyı reddetti</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS gerekli ancak sunucu AUTH TLS desteklemiyor.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP oturum açma başarısız</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS veri koruması (PBSZ) reddedildi.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS veri koruması (PROT P) reddedildi.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP sunucusu ikili modu (TYPE I) reddetti.</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTP pasif moda girilemedi.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP sunucusu devam ettirmeyi (REST) desteklemiyor.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP sunucusu dosyayı reddetti</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>RETR komutuna beklenmeyen FTP yanıtı</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP aktarımı sunucu tarafından durduruldu</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Pasif mod FTP yanıtı ayrıştırılamadı.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>FTP pasif mod adresi güvenlik nedeniyle reddedildi.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTP veri bağlantısı açılamadı.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS el sıkışması başarısız: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Geçersiz FTP yolu.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Parça dosyası açılamadı: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Diske yazma başarısız: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP aktarımı kesildi.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP segmenti %1, %2 denemeden sonra başarısız.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>İndirme dizinine yazma izni yok: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar başlıyor...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>%1'e bağlandı</translation>
+            <source>Past midnight already?</source>
+            <translation>Gece yarısını geçti mi?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Hâlâ ayakta mısın?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Gece daha genç!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Uyuyamıyor musun?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Günaydın!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Kalk ve parla!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Günün en güzel saati!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Sabah! Kahve demleniyor.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>İyi günler!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Öğle arası indirmeleri mi?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Öğlen olmuş bile!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Umarım günün iyi geçiyordur!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>İyi günler!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>İyi akşamlar!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Günü bitiriyor musun?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Akşamlar!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Umarım iyi bir gün geçirmişsindir!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Geç saatlere kadar çalışıyor musun?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Uyku vaktini geçtin!</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Gece mesaisi!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Dinlenmeyi unutma!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Tekrar hoş geldin!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Hazırım!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Seni görmek güzel!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>İndirmeye başlayalım!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Özlettin!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Geri döndük!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>İndirmelerin bekliyor!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Kaldığın yerden devam?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Bugün ne indiriyoruz?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>%1 bağlı</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>İçe aktarılacak yedek dosyası seçilmedi.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ %1 adresine bağlı (çevrimdışı — torrentler duraklatıldı)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>%1 bağlı (çevrimdışı - torrentler duraklatıldı)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Güncelleme var! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Güncellemeler kontrol ediliyor</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Tüm dosyaları tek dizine</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Gözat...</translation>
+            <source>Browse…</source>
+            <translation>Gözat…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -632,8 +874,8 @@ Manuel çalıştır: flatpak override --user --talk-name=org.freedesktop.Flatpak
             <translation>Son kaydetme yolunu hatırla</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Gözat...</translation>
+            <source>Browse…</source>
+            <translation>Gözat…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -720,6 +962,10 @@ Manuel çalıştır: flatpak override --user --talk-name=org.freedesktop.Flatpak
         <message>
             <source>Download</source>
             <translation>İndirme</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Kopyalamak için tıkla</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1027,8 +1273,8 @@ Click  Add URL  to start.</source>
 Başlatmak için URL Ekle'ye tıklayın.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Yükleniyor %n indirme…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>%1 / %2 indirme yükleniyor…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1147,6 +1393,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Öncelik</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Düşük</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Yüksek</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimum</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Karışık</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Nadir</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Yaygın</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Yüksek Öncelik</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Atlandı</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Mevcut Değil</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 parça</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 indirildi</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 indiriliyor</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 atlandı</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Parça verisi yok</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Atlandı (dosya seçilmedi)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>İndiriliyor - blokların %1'i alındı</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Kullanılamaz - eşlerde bu parça yok</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Eksik - %n eşte var</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(yüksek öncelik)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Parça #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Yıldırım Verilerini Taşı...</translation>
@@ -3381,8 +3715,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Boş bırakarak varsayılan yolu kullan</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Gözat...</translation>
+            <source>Browse…</source>
+            <translation>Gözat…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3893,6 +4227,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>İndirmeyi gösterirken 'Dosya Bilgisi' diyaloğunu başlat</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Açıklama alanını dosya meta verisiyle otomatik doldur (bit hızı, çözünürlük, codec vb.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Torrent meta verisi indirilirken sürü haritasını göster</translation>
         </message>
@@ -4095,10 +4433,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ Tarayıcı otomatik indirme listesinde yok: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Göz At</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Bu, varsayılan olarak özel kaydetme klasörü kullanacak şekilde ayarlandığında torrent meta verisi diyaloğu tarafından kullanılan hatırlanan özel torrent klasörüdür.</translation>
         </message>
@@ -4215,16 +4549,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Durum çubuğunda hız</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Durum çubuğunda tahmini kullanıcı</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>DHT node-ID yoğunluğu ile küresel BitTorrent kullanıcıları tahmin edilir. Güvenilirlik artar; durum çubuğundaki * düşük güvenliğe işaret eder.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Durum çubuğunda oran</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Durum çubuğunda torrent bağlantılarını göster</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Durum çubuğunda DHT düğümlerini göster</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4481,20 +4815,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Özel BitTorrent User Agent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Ağ adaptörüne bağlan</translation>
+            <source>Network interface</source>
+            <translation>Ağ arayüzü</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Bu adaptör torrent trafiği için kilitli. VPN'in kesilmesi veya adaptörün kaybolması durumunda Stellar varsayılan rotayı kullanmayı durdurur ve torrentler başka bir bağlantıya sızmak yerine ağ erişimini kaybeder.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Torrent trafiği bu arayüze kilitlenmiştir. VPN bağlantınız kesilirse veya arayüz kaybolursa, Stellar torrentleri başka bir bağlantıya sızdırmak yerine duraklatır. Tüm torrent trafiğini, IPv6 dahil, VPN üzerinden yönlendirmek için VPN adaptörünüze bağlayın.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Ağ adaptörü bağlaması yok. Torrent trafiği sistem rotasını takip eder.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Herhangi bir arayüz: torrent trafiği, diğer uygulamalarınız gibi sistem rotasını takip eder. VPN etkin bağlantınızsa VPN üzerinden geçer; VPN kesilirse trafik normal bağlantı üzerinden devam eder. Sıkı VPN bağlantısı için belirli bir adaptör seçin.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Ağ adaptörü bağlaması, Stellar'ın torrent trafiğini yalnızca seçilen adaptör üzerinden göndermesini ve almasını sağlar. Bu, VPN kullanıcısı için özellikle faydalıdır çünkü VPN bağlı değilken kazara trafik sızıntısını önler.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Bağlıyken UPnP, NAT-PMP ve Yerel Hizmet Keşfine izin ver</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Bunlar yerel yönlendiricinizle iletişim kurar ve dinleme bağlantı noktanızı tünel çevresinde açığa çıkarabilir. Bunu yalnızca güvenilir bir LAN bağdaştırıcısına bağlanırken etkinleştirin, VPN'e değil.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>Bağlıyken UPnP, NAT-PMP ve Yerel Hizmet Keşfi devre dışıdır, çünkü bunlar yerel yönlendiriciyle iletişim kurar ve dinleme portunuzu tünel etrafında açığa çıkarır.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4949,12 +5291,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Tamam</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Varsayılan rota</translation>
+            <source>Any interface</source>
+            <translation>Herhangi bir arayüz</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>İşletim sisteminin aktif ağ adaptörünü seçmesine izin ver.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Sistem rotasını takip edin (diğer uygulamalarınız tarafından kullanılır).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5033,8 +5375,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Kaynak: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Kaynak URL henüz önbelleğe alınmadı. IPtoCityDB'yi önbelleğe almak için Güncellemeleri kontrol et.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>db-ip.com'dan güncelleme sırasında otomatik çözüldü.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5214,22 +5556,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>sınırsız</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT kapalı</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>çevrimiçi (düşük güven)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>çevrimiçi</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Tahmin ediliyor… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>sonraki &gt;&gt;</translation>
         </message>
@@ -5237,6 +5563,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Toplam Pay Oranı</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Toplam torrent eş bağlantısı</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT düğümleri</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5676,6 +6010,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Öncelik</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Düşük</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Yüksek</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimum</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Karışık</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Kaydet</translation>
@@ -6436,6 +6794,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Video İndir</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>İndirme limitleri aşıldı!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1 ile %2 arasında %3 MB indirdiniz. &quot;%4&quot; içindeki tüm indirmeler, her %6 için %5 MB indirme sınırını aştığınız için durduruldu.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Durdurulan tüm indirmeler %1 (%2 sonra) otomatik olarak devam edecek. Hemen devam etmek için İndirme Sınırları ayarını değiştirip Devam Et'e basın.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>şimdi</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 saat</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 saat</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 dakika</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 dakika</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>bir dakikadan az</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>ve</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Tamam</translation>
         </message>
     </context>
 </TS>

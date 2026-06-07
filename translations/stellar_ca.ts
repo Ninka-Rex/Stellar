@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, enllaç magnet o infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Accepta enllaços HTTP/HTTPS/FTP, magnet o un infohash de torrent.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Connexió de control FTP fallida: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>Connexió de control FTP tancada inesperadament.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Connexió de control FTP expirada.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Resposta FTP mal formada.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Rebutjat enviar comanda FTP amb salt de línia incrustat.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>Servidor FTP ha refusat la connexió</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>Es requereix FTPS però el servidor no suporta AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Inici de sessió FTP fallit</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>La protecció de dades FTPS (PBSZ) ha estat rebutjada.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Protecció de dades FTPS (PROT P) rebutjada.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>El servidor FTP ha rebutjat el mode binari (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>No s'ha pogut entrar en mode passiu FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>El servidor FTP no admet la represa (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>El servidor FTP ha rebutjat el fitxer</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Resposta FTP inesperada a RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Transferència FTP avortada pel servidor</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>No s'ha pogut analitzar la resposta del mode passiu FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>L'adreça del mode passiu FTP ha estat rebutjada per seguretat.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>No s'ha pogut obrir la connexió de dades FTP.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>Error en l'encaixada TLS: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Camí FTP no vàlid.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>No es pot obrir el fitxer parcial: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Error d'escriptura al disc: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Transferència FTP truncada.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>El segment FTP %1 ha fallat després de %2 intents.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Sense permís d'escriptura al directori de baixada: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar s'està iniciant...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Lligat a %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Ja és passada la mitjanit?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Encara despert?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>La nit és jove!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>No pots dormir?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Bon dia!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Amunt i fora!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Al punt del matí!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Bon dia! El cafè es fa.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Bona tarda!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Descàrregues a l'hora de dinar?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Migdia ja!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Espero que el dia vagi bé!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Bona tarda!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Bona nit!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Relaxant?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Vespre!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Espero que hagis tingut un bon dia!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Treballant fins tard?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Despert passada l'hora de dormir?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Sessió nocturna!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>No t'oblidis de descansar!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Ben tornat!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Preparat quan vulguis!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>M'alegra veure't!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Som-hi, a descarregar!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>T'he trobat a faltar!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Tornem-hi!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Les descàrregues t'esperen!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Reprenem on ho vas deixar?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Què baixem avui?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Vinculat a %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>No s'ha triat cap fitxer de còpia de seguretat per importar.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Vinculat a %1 (fora de línia — torrents en pausa)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Vinculat a %1 (fora de línia - torrents en pausa)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Actualització disponible! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>S'estan comprovant actualitzacions</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Tots els fitxers a un directori</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Navega...</translation>
+            <source>Browse…</source>
+            <translation>Navega…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Recorda l'última ruta de desat</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Navega...</translation>
+            <source>Browse…</source>
+            <translation>Navega…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Descarrega</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Clica per copiar</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 Fes clic a Afegeix URL per començar.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Carregant %n baixada(es)…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>S'estan carregant %1 / %2 baixades…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ Podeu canviar-ho a Opcions → Descàrregues més tard.</translation>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritat</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Baixa</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Alta</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Màxim</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Mixt</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Rar</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Comú</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Prioritat alta</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Omès</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>No disponible</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 peces</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 baixat</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 baixant</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 omès</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>No hi ha dades de peça disponibles</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Omès (fitxer no seleccionat)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Baixant - %1% de blocs rebuts</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>No disponible - cap peer té aquesta peça</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Falta - %n peer(s) la tenen</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(prioritat alta)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Peça #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Mou les dades del torrent a...</translation>
@@ -3390,8 +3724,8 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <translation>Deixa buit per utilitzar la ruta per defecte</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Navega...</translation>
+            <source>Browse…</source>
+            <translation>Navega…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3902,6 +4236,10 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <translation>Inicia la descàrrega immediatament mostrant el diàleg &quot;Informació del fitxer&quot;</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Emplena automàticament el camp descripció amb metadades del fitxer (bitrate, resolució, còdec, etc.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Mostra el mapa de la swarm en descarregar metadades de torrents</translation>
         </message>
@@ -4104,10 +4442,6 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <translation>⚠ No a la llista de descàrrega automàtica del navegador: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Navega</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Aquesta és la carpeta de torrents personalitzada emmagatzemada que s'utilitza quan el diàleg de metadades del torrent està configurat per defecte per utilitzar una carpeta de desament personalitzada.</translation>
         </message>
@@ -4224,16 +4558,16 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <translation>Mostra la velocitat a la barra d'estat</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Mostra l'estimació d'usuaris en línia a la barra d'estat</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Utilitza la densitat de l'ID del node DHT per estimar els usuaris globals de BitTorrent. La confiança augmenta a mesura que s'observen més IDs de node únics; un * final a la barra d'estat indica que l'estimació encara té baixa confiança.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Mostra el ratio a la barra d'estat</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Mostra les connexions torrent a la barra d'estat</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Mostra els nodes DHT a la barra d'estat</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4496,20 +4830,28 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <translation>Agent d'usuari BitTorrent personalitzat</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Vincula a l'adaptador de xarxa</translation>
+            <source>Network interface</source>
+            <translation>Interfície de xarxa</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Aquest adaptador està bloquejat per al trànsit de torrents. Si el VPN es desconnecta o l'adaptador desapareix, Stellar deixa d'utilitzar la ruta per defecte i els torrents perden accés a la xarxa en lloc de filtrar-se a una altra connexió.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>El trànsit torrent està bloquejat a aquesta interfície. Si la VPN es desconnecta o la interfície desapareix, Stellar posa en pausa els torrents en lloc de filtrar-se per una altra connexió. Vincula't a l'adaptador VPN per encaminar tot el trànsit torrent, inclòs IPv6, a través de la VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Sense vinculació d'adaptador. El trànsit de torrents segueix la ruta del sistema.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Qualsevol interfície: el trànsit torrent segueix la ruta del sistema, com les altres aplicacions. Si una VPN és la connexió activa, hi passa; si la VPN cau, el trànsit continua per la connexió normal. Tria un adaptador específic per a una vinculació estricta només VPN.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>La vinculació de l'adaptador de xarxa indica a Stellar que enviï i rebi trànsit de torrents només a través de l'adaptador seleccionat. És especialment útil per a usuaris de VPN perquè evita fugues de trànsit accidental quan el VPN no està connectat.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Permet UPnP, NAT-PMP i descobriment de serveis locals mentre està vinculat</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Aquests es comuniquen amb el router local i poden exposar el port d'escolta fora del túnel. Activa-ho només en vincular-te a un adaptador LAN de confiança, no a una VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP i descobriment de serveis locals estan desactivats mentre està vinculat, ja que es comuniquen amb el router local i exposarien el port d'escolta fora del túnel.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4964,12 +5306,12 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <translation>D'acord</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Ruta predeterminada</translation>
+            <source>Any interface</source>
+            <translation>Qualsevol interfície</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Permet que el sistema operatiu triï l'adaptador de xarxa actiu.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Segueix la ruta del sistema (utilitzada per les altres aplicacions).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5048,8 +5390,8 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <translation>Font: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>URL de la font no emmagatzemada en caché. Fes servir Comprova actualitzacions per emmagatzemar IPtoCityDB des d'update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Resolt automàticament des de db-ip.com en actualitzar.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5229,22 +5571,6 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <translation>il·limitat</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT desactivat</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>en línia (baixa confiança)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>en línia</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>S'estima… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>següent &gt;&gt;</translation>
         </message>
@@ -5253,6 +5579,14 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
 Click to open Statistics</source>
             <translation>Ratio de compartició històric
 Fes clic per obrir les estadístiques</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Connexions totals de peers</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>Nodes DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5692,6 +6026,30 @@ Fes clic per obrir les estadístiques</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritat</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Baixa</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Alta</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Màxima</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Mixt</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Desa a</translation>
@@ -6453,6 +6811,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Descàrrega de vídeo</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Límits de baixada superats!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>De %1 a %2 has baixat %3 MB. Totes les baixades a «%4» s'han aturat perquè has superat el límit de %5 MB cada %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Totes les baixades aturades es reprendran automàticament a les %1 (d'aquí %2). Per reprendre ara, canvia el límit de baixada i prem Reprèn.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>ara</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 hora</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 hores</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 minut</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 minuts</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>menys d'un minut</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>i</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>D'acord</translation>
         </message>
     </context>
 </TS>

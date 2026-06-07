@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, మాగ్నెట్ లింక్, లేదా ఇన్ఫోహాష్</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP లింక్లు, మాగ్నెట్ లింక్లు లేదా టొరెంట్ ఇన్ఫోహాష్ను అంగీకరిస్తుంది.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP నియంత్రణ కనెక్షన్ విఫలమైంది: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP నియంత్రణ కనెక్షన్ ఊహించని విధంగా మూసివేయబడింది.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP నియంత్రణ కనెక్షన్ సమయం ముగిసింది.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>తప్పుగా ఏర్పడిన FTP ప్రత్యుత్తరం</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>FTP ఆదేశంలో కొత్త లైన్ ఉన్నందున పంపడానికి నిరాకరిస్తోంది.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP సర్వర్ కనెక్షన్ను తిరస్కరించింది</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS అవసరం కానీ సర్వర్ AUTH TLSకు మద్దతు ఇవ్వదు.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP లాగిన్ విఫలమైంది</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS డేటా రక్షణ (PBSZ) తిరస్కరించబడింది.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS డేటా రక్షణ (PROT P) తిరస్కరించబడింది.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP సర్వర్ బైనరీ మోడ్ (TYPE I) తిరస్కరించింది.</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTP నిష్క్రియ మోడ్‌లోకి ప్రవేశించలేకపోయింది.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP సర్వర్ పునఃప్రారంభానికి (REST) మద్దతు ఇవ్వదు.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP సర్వర్ ఫైల్‌ను తిరస్కరించింది</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>RETR కి ఊహించని FTP ప్రత్యుత్తరం</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>సర్వర్ ద్వారా FTP బదిలీ నిలిపివేయబడింది</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>FTP నిష్క్రియ-మోడ్ ప్రత్యుత్తరాన్ని అన్వయించలేకపోయింది.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>భద్రత కోసం FTP నిష్క్రియ-మోడ్ చిరునామా తిరస్కరించబడింది.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTP డేటా కనెక్షన్ తెరవడం సాధ్యపడలేదు.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS హ్యాండ్షేక్ విఫలమైంది: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>చెల్లని FTP మార్గం</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>పార్ట్ ఫైల్ తెరవలేకపోయింది: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>డిస్క్ రైట్ విఫలమైంది: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP బదిలీ కత్తిరించబడింది.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP విభాగం %1 %2 పునఃప్రయత్నాల తర్వాత విఫలమైంది.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>డౌన్లోడ్ డైరెక్టరీకి వ్రాత అనుమతి లేదు: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>స్టెల్లార్ ప్రారంభమవుతోంది...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ %1కి బంధించబడింది</translation>
+            <source>Past midnight already?</source>
+            <translation>ఇప్పటికే అర్ధరాత్రి దాటిందా?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>ఇంకా మేలుకొని ఉన్నారా?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>రాత్రి ఇంకా మిగిలే ఉంది!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>నిద్ర పట్టడం లేదా?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>శుభోదయం!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>లేచి మెరవండి!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>ఉదయపు శుభారంభం!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>ఉదయం! కాఫీ తయారవుతోంది.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>శుభ మధ్యాహ్నం!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>భోజన విరామ డౌన్‌లోడ్లా?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>ఇప్పటికే మధ్యాహ్నం!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>మీ రోజు బాగా సాగుతోందని ఆశిస్తున్నాను!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>శుభ మధ్యాహ్నం!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>శుభ సాయంత్రం!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>విశ్రాంతి తీసుకుంటున్నారా?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>సాయంత్రం శుభాకాంక్షలు!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>మీ రోజు బాగుందని ఆశిస్తున్నాను!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>ఆలస్యంగా పని చేస్తున్నారా?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>నిద్ర సమయం దాటిందా?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>అర్ధరాత్రి సెషన్!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>విశ్రాంతి మర్చిపోవద్దు!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>పునఃస్వాగతం!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>సిద్ధంగా ఉన్నప్పుడు చెప్పండి!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>మిమ్మల్ని చూడటం ఆనందంగా ఉంది!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>డౌన్లోడ్ చేద్దాం!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>మిస్ అయ్యాను!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>తిరిగి మొదలుపెట్టండి!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>మీ డౌన్లోడ్లు ఎదురుచూస్తున్నాయి!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>మీరు ఆపిన చోట నుండి కొనసాగించాలా?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>ఈ రోజు మనం ఏం తీసుకుంటున్నాం?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>%1కు బంధించబడింది</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>దిగుమతి చేయడానికి బ్యాకప్ ఫైల్ ఎంచుకోలేదు.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ %1కి బంధించబడింది (ఆఫ్‌లైన్ — టొరెంట్‌లు నిలిపివేయబడ్డాయి)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>%1కు బంధించబడింది (ఆఫ్లైన్ - టొరెంట్లు నిలిపివేయబడ్డాయి)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>నవీకరణ అందుబాటులో ఉంది! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>నవీకరణల కోసం తనిఖీ చేస్తోంది</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>అన్ని ఫైళ్ళు ఒకే డైరెక్టరీలో</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>బ్రౌజ్ చేయండి...</translation>
+            <source>Browse…</source>
+            <translation>బ్రౌజ్ చేయండి…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>చివరి సేవ్ మార్గాన్ని గుర్తుంచుకో</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>బ్రౌజ్ చేయండి...</translation>
+            <source>Browse…</source>
+            <translation>బ్రౌజ్ చేయండి…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>డౌన్‌లోడ్</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>కాపీ చేయడానికి క్లిక్ చేయండి</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 ప్రారంభించడానికి  URL జోడించు  క్లిక్ చేయండి.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>%n డౌన్‌లోడ్(లు) లోడ్ అవుతున్నాయి…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>%1 / %2 డౌన్‌లోడ్‌లు లోడ్ అవుతున్నాయి…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ప్రాధాన్యత</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>తక్కువ</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>సాధారణం</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>అధికం</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>గరిష్టం</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>మిశ్రమం</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>అరుదు</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>సాధారణం</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>అధిక ప్రాధాన్యత</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>దాటవేయబడింది</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>అందుబాటులో లేదు</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 ముక్కలు</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 డౌన్‌లోడ్ చేయబడింది</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 డౌన్‌లోడ్ అవుతోంది</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 దాటవేయబడింది</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>పీస్ డేటా అందుబాటులో లేదు</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>దాటవేయబడింది (ఫైల్ ఎంచుకోలేదు)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>డౌన్‌లోడ్ - %1% బ్లాక్‌లు అందాయి</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>అందుబాటులో లేదు - ఈ పీస్ పీర్ల వద్ద లేదు</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>లేదు - %n పీర్(ల) వద్ద ఉంది</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(అధిక ప్రాధాన్యత)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>పీస్ #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>టొరెంట్ డేటాను తరలించు...</translation>
@@ -3395,8 +3729,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>డిఫాల్ట్ సేవ్ పాత్ ఉపయోగించడానికి ఖాళీగా వదలండి</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>బ్రౌజ్...</translation>
+            <source>Browse…</source>
+            <translation>బ్రౌజ్…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3907,6 +4241,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>డౌన్లోడ్ ఫైల్ సమాచారం డైలాగ్ను ప్రదర్శిస్తూనే వెంటనే డౌన్లోడ్ చేయడం ప్రారంభించండి</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>ఫైల్ మెటాడేటాతో వివరణ ఫీల్డ్‌ను ఆటో-ఫిల్ చేయి</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>టొరెంట్ మెటాడేటా డౌన్లోడ్ చేస్తున్నప్పుడు స్వార్మ్ మ్యాప్ చూపించు</translation>
         </message>
@@ -4109,10 +4447,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ బ్రౌజర్ ఆటో-డౌన్‌లోడ్ జాబితాలో లేదు: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>బ్రౌజ్ చేయి</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>టొరెంట్ మెటాడేటా డైలాగ్ డిఫాల్ట్‌గా కస్టమ్ సేవ్ ఫోల్డర్‌ను ఉపయోగించేలా సెట్ చేసినప్పుడు ఉపయోగించే గుర్తుంచుకున్న కస్టమ్ టొరెంట్ ఫోల్డర్ ఇది.</translation>
         </message>
@@ -4229,16 +4563,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>స్టేటస్ బార్లో వేగాన్ని చూపించు</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>స్టేటస్ బార్లో అంచనా వేసిన ఆన్లైన్ వినియోగదారులను చూపించు</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>DHT నోడ్-ID సాంద్రతను ఉపయోగించి ప్రపంచ BitTorrent వినియోగదారులను అంచనా వేస్తుంది. మరిన్ని ప్రత్యేక నోడ్ IDలు గమనించిన కొద్దీ విశ్వాసం పెరుగుతుంది; స్థితి పట్టీలో వెనుక ఉన్న * అంటే అంచనా ఇంకా తక్కువ విశ్వాసంతో ఉందని అర్థం.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>స్థితి పట్టీలో నిష్పత్తి చూపించు</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>స్టేటస్ బార్లో టొరెంట్ కనెక్షన్లు చూపించు</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>స్టేటస్ బార్లో DHT నోడ్లు చూపించు</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4501,20 +4835,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>అనుకూల బిట్టొరెంట్ వినియోగదారు ఏజెంట్</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>నెట్వర్క్ అడాప్టర్కు బంధించు</translation>
+            <source>Network interface</source>
+            <translation>నెట్వర్క్ ఇంటర్ఫేస్</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>ఈ అడాప్టర్ టొరెంట్ ట్రాఫిక్ కోసం లాక్ చేయబడింది. మీ VPN డిస్కనెక్ట్ అయితే లేదా అడాప్టర్ పోతే, స్టెల్లార్ డిఫాల్ట్ రూట్ ఉపయోగించడం ఆపివేస్తుంది మరియు మీ టొరెంట్లు మరొక కనెక్షన్లో లీక్ కాకుండా నెట్వర్క్ యాక్సెస్ కోల్పోతాయి.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>టొరెంట్ ట్రాఫిక్ ఈ ఇంటర్ఫేస్కు లాక్ చేయబడింది. మీ VPN డిస్కనెక్ట్ అయితే లేదా ఇంటర్ఫేస్ పోతే, Stellar టొరెంట్లను పాజ్ చేస్తుంది, మరో కనెక్షన్లో లీక్ కాకుండా. IPv6తో సహా అన్ని టొరెంట్ ట్రాఫిక్ను VPN ద్వారా రూట్ చేయడానికి మీ VPN అడాప్టర్కు బైండ్ చేయండి.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>అడాప్టర్ బైండింగ్ లేదు. టొరెంట్ ట్రాఫిక్ సిస్టమ్ రూట్ను అనుసరిస్తుంది.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>ఏదైనా ఇంటర్ఫేస్: టొరెంట్ ట్రాఫిక్ సిస్టమ్ రూట్ను అనుసరిస్తుంది, మీ ఇతర యాప్ల లాగానే. VPN మీ యాక్టివ్ కనెక్షన్ అయితే అది VPN ద్వారా వెళ్తుంది; VPN డ్రాప్ అయితే, ట్రాఫిక్ సాధారణ కనెక్షన్లో కొనసాగుతుంది. కఠినమైన VPN-మాత్రమే బైండింగ్ కోసం నిర్దిష్ట అడాప్టర్ను ఎంచుకోండి.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>నెట్వర్క్ అడాప్టర్ బైండింగ్ స్టెల్లార్కు ఎంచుకున్న అడాప్టర్ ద్వారా మాత్రమే టొరెంట్ ట్రాఫిక్ను పంపడానికి మరియు స్వీకరించడానికి సూచిస్తుంది. VPN కనెక్ట్ కానప్పుడు ప్రమాదవశాత్తు ట్రాఫిక్ లీక్లను నివారిస్తుంది కాబట్టి ఇది VPN వినియోగదారులకు ప్రత్యేకంగా ఉపయోగకరంగా ఉంటుంది.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>బైండ్ అయినప్పుడు UPnP, NAT-PMP మరియు లోకల్ సర్వీస్ డిస్కవరీని అనుమతించు</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>ఇవి మీ లోకల్ రూటర్తో మాట్లాడి టన్నెల్ చుట్టూ మీ లిజన్ పోర్ట్ను బహిర్గతం చేయగలవు. VPNకు కాకుండా విశ్వసనీయ LAN అడాప్టర్కు బైండ్ చేసినప్పుడు మాత్రమే దీన్ని ఎనేబుల్ చేయండి.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>బైండ్ అయినప్పుడు UPnP, NAT-PMP మరియు లోకల్ సర్వీస్ డిస్కవరీ డిసేబుల్ చేయబడతాయి, ఎందుకంటే అవి లోకల్ రూటర్తో మాట్లాడి టన్నెల్ చుట్టూ మీ లిజన్ పోర్ట్ను బహిర్గతం చేస్తాయి.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4969,12 +5311,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>సరే</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>డిఫాల్ట్ మార్గం</translation>
+            <source>Any interface</source>
+            <translation>ఏదైనా ఇంటర్ఫేస్</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>నెట్వర్క్ అడాప్టర్ను OS ఎంచుకోనివ్వండి.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>సిస్టమ్ రూట్ను అనుసరించు (మీ ఇతర యాప్లు ఉపయోగించేది).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5053,8 +5395,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>మూలం: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>మూల URL ఇంకా కాష్ కాలేదు. update.json నుండి IPtoCityDB కాష్ చేయడానికి నవీకరణల కోసం తనిఖీ చేయండి.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>db-ip.com నుండి నవీకరించినప్పుడు స్వయంచాలకంగా పరిష్కరించబడింది.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5234,22 +5576,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>అపరిమితం</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT ఆఫ్</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>ఆన్‌లైన్ (తక్కువ విశ్వాసం)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>ఆన్‌లైన్</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>అంచనా వేస్తోంది… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>తదుపరి &gt;&gt;</translation>
         </message>
@@ -5258,6 +5584,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 Click to open Statistics</source>
             <translation>మొత్తం షేర్ రేషియో
 గణాంకాలు తెరవడానికి క్లిక్ చేయండి</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>మొత్తం టొరెంట్ పీర్ కనెక్షన్లు</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT నోడ్లు</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5697,6 +6031,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ప్రాధాన్యత</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>తక్కువ</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>సాధారణం</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>అధికం</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>గరిష్టం</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>మిశ్రమం</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>ఇక్కడ భద్రపరచు</translation>
@@ -6459,6 +6817,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>వీడియో డౌన్‌లోడ్</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>డౌన్‌లోడ్ పరిమితులు మించిపోయాయి!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1 నుండి %2 వరకు మీరు %3 MB డౌన్‌లోడ్ చేసారు. &quot;%4&quot; లోని అన్ని డౌన్‌లోడ్‌లు ఆపివేయబడ్డాయి ఎందుకంటే మీరు ప్రతి %6 కి %5 MB డౌన్‌లోడ్ పరిమితిని మించిపోయారు.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>ఆపివేయబడిన అన్ని డౌన్లోడ్లు %1 వద్ద స్వయంచాలకంగా తిరిగి ప్రారంభించబడతాయి (ఇప్పటి నుండి %2). వెంటనే తిరిగి ప్రారంభించడానికి, డౌన్లోడ్ పరిమితుల సెట్టింగ్ను మార్చండి మరియు తిరిగి ప్రారంభించు నొక్కండి.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>ఇప్పుడు</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 గంట</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 గంటలు</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 నిమిషం</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 నిమిషాలు</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>ఒక నిమిషం కంటే తక్కువ</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>మరియు</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>సరే</translation>
         </message>
     </context>
 </TS>

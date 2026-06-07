@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Njikọ Magnet, ma ọ bụ Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Na-anabata njikọ HTTP/HTTPS/FTP, njikọ magnet, ma ọ bụ infohash torrent.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Njikọ njikwa FTP dara: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>Njikọ njikwa FTP mechiri na mberede.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Oge njikọ njikwa FTP agwụla.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Azịza FTP ezighi ezi.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Ọjụjụ izipu iwu FTP nwere ahịrị ọhụrụ agbakwunyere.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>Sava FTP jụrụ njikọ</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS achọrọ mana sava anaghị akwado AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Nbanye FTP dara</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Nchekwa data FTPS (PBSZ) jụrụ.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Nchekwa data FTPS (PROT P) jụrụ.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>Sava FTP jụrụ ọnọdụ ọnụọgụ abụọ (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Enweghị ike ịbanye n'ọnọdụ na-agafe agafe FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>Sava FTP anaghị akwado ịmaliteghachi (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>Sava FTP jụrụ faịlụ ahụ</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Azịza FTP a na-atụghị anya ya na RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Mbufe FTP kwụsịrị site na sava</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Enweghị ike ịtụgharị azịza ọnọdụ na-agafe agafe FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Adreesị ọnọdụ na-agafe agafe FTP jụrụ maka nchekwa.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Enweghị ike imeghe njikọ data FTP.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>Nkwekọrịta aka TLS dara: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Ụzọ FTP ezighi ezi.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Enweghị ike imeghe faịlụ akụkụ: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Ịde diski dara: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Ebufe FTP ebelatala.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Akụkụ FTP %1 dara mgbe %2 nwaghachi.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Enweghị ikike ide maka ndekọ nbudata: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar na-amalite...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Ejikọtara na %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Ị gafeela etiti abalị?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Ị ka nọ n'ụra?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Abalị ka dị ọhụrụ!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Ị naghị ehi ụra?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Ụtụtụ ọma!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Bilie nwuo!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Ụtụtụ kacha mma!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Ụtụtụ! Kọfị na-esi.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Ehihie ọma!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Nbudata n'oge nri ehihie?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Etiti ehihie ugbua!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Olileanya na ụbọchị gị na-aga nke ọma!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Ezigbo ehihie!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Mgbede ọma!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Ị na-ezu ike?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Mgbede!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Olileanya na ụbọchị gị dị mma!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Ị na-arụ ọrụ abalị?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Ị mụ anya gafee oge ụra?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Oge abalị!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Echefula izu ike!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Nnọọ!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Jikere mgbe ị dị!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Ọ dị mma ịhụ gị!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Ka anyị budata!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>A tụrụ m ụka gị!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Ị laghachitela!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Nbudata gị na-eche!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Ị ga-esi ebe ị kwụsịrị malite?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Gịnị ka anyị na-ebute taa?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Ejikọtara na %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Ọ nweghị faịlụ ndabere ahọpụtara ibubata.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Ejikọtara na %1 (anọghị n'ịntanetị — torrents kwụsịrị)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Ejikọtara na %1 (anọghị n'ịntanetị - torrents kwụsịrị)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Mmelite dị! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Na-enyocha mmelite</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Faịlụ niile n'otu ndekọ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Chọgharịa...</translation>
+            <source>Browse…</source>
+            <translation>Chọgharịa…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Jiri aka gị mee: flatpak override --user --talk-name=org.freedesktop.Flatpak o
             <translation>Cheta ụzọ nchekwa ikpeazụ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Chọgharịa...</translation>
+            <source>Browse…</source>
+            <translation>Chọgharịa…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Jiri aka gị mee: flatpak override --user --talk-name=org.freedesktop.Flatpak o
         <message>
             <source>Download</source>
             <translation>Budata</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Pịa iṅomi</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
             <translation>Enweghị nbudata. Pịa  Tinye URL  ịmalite.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Na-ebunye %n nbudata…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Na-ebunye %1 / %2…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Mkpa</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Ala</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Nkịtị</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Elu</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Kachasị</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Agwakọtara</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Dị ụkọ</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Nkịtị</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Mkpa dị elu</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Awụliela</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Adịghị</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 iberibe</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 ebudatala</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 na-ebudata</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 awụfuru</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Enweghị data ibe dị</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Awụfuru (ahọpụtaghị faịlụ)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Na-ebudata - %1% nke blọk enwetara</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Adịghị - ọ nweghị ndị ọgbọ nwere ibe a</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Nedostaje - %n ndị ọgbọ nwere ya</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(mkpa dị elu)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Ibe #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Bugharịa data torrent gaa...</translation>
@@ -3395,8 +3729,8 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
             <translation>Hapụ oghere iji jiri ụzọ nchekwa ndabara</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Chọgharịa...</translation>
+            <source>Browse…</source>
+            <translation>Chọgharịa…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3907,6 +4241,10 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
             <translation>Malite nbudata ozugbo na-egosi mkparịtaụka 'Ozi Faịlụ Nbudata'</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Mejuputa oghere nkọwa na metadata faịlụ (bitrate, mkpebi, codec, wdg.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Gosi map ụyọkọ mgbe ị na-ebudata metadata torrent</translation>
         </message>
@@ -4109,10 +4447,6 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
             <translation>⚠ Ọ bụghị na ndepụta nbudata akpaka ihe nchọgharị: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Chọgharịa</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Nke a bụ nchekwa folda torrent omenala echetara mgbe dialog metadata torrent setịpụrụ iji folda nchekwa omenala na ndabara.</translation>
         </message>
@@ -4229,16 +4563,16 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
             <translation>Gosi ọsọ na ogwe ọnọdụ</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Gosi atụmatụ ndị ọrụ n'ịntanetị na ogwe ọnọdụ</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Na-eji njupụta DHT node-ID tụọ atụmatụ ndị ọrụ BitTorrent zuru ụwa ọnụ. Ntụkwasị obi na-abawanye ka a na-ahụ ID node pụrụ iche; * na-esochi na ogwe ọnọdụ pụtara na atụmatụ ahụ ka nwere obere ntụkwasị obi.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Gosi ruru na ogwe ọnọdụ</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Gosi njikọ torrent na ogwe ọkwa</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Gosi ọnụ DHT na ogwe ọkwa</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4501,20 +4835,28 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
             <translation>Onye ọrụ BitTorrent ahaziri</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Kekọta na netwọk nkwụnye</translation>
+            <source>Network interface</source>
+            <translation>Oghere netwọk</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Nkwụnye a akpọchiri maka okporo ụzọ torrent. Ọ bụrụ na VPN gị kwụsị ma ọ bụ nkwụnye ahụ pụọ, Stellar kwụsịrị iji ụzọ ndabara, torrent gị enweghịkwa ohere netwọk kama ịpụ na njikọ ọzọ.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Okporo torrent akpọchiri na oghere a. Ọ bụrụ na VPN gị kwụsị ma ọ bụ oghere ahụ pụọ, Stellar na-akwụsị torrent kama ịpụ na njikọ ọzọ. Kechie na nkwụnye VPN gị iji duzie okporo torrent niile, gụnyere IPv6, site na VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Enweghị njikọ nkwụnye. Okporo ụzọ torrent na-agbaso ụzọ sistemụ.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Oghere ọ bụla: okporo torrent na-eso ụzọ sistemụ, dị ka ngwa gị ndị ọzọ. Ọ bụrụ na VPN bụ njikọ gị na-arụ ọrụ, ọ na-aga site na VPN; ọ bụrụ na VPN kwụsị, okporo na-aga n'ihu na njikọ nkịtị. Họrọ nkwụnye akọwapụtara maka ịkechi naanị VPN.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Njikọ nkwụnye netwọk na-agwa Stellar ka ọ na-ezipụ ma na-anata okporo ụzọ torrent naanị site na nkwụnye ahọpụtara. Nke a bara uru karịsịa maka ndị ọrụ VPN n'ihi na ọ na-egbochi mgbapụ okporo ụzọ mberede mgbe VPN ejikọtaghị.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Kwe ka UPnP, NAT-PMP na Nchọpụta Ọrụ Mpaghara mgbe ekechiri</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Ndị a na-agwa rawụta gị okwu ma nwee ike ikpughe ọdụ ige gị gburugburu ọwara ahụ. Mee ka nke a rụọ ọrụ naanị mgbe ị na-eke na nkwụnye LAN a tụkwasịrị obi, ọ bụghị VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP na Nchọpụta Ọrụ Mpaghara agbanyụrụ mgbe ekechiri, ebe ha na-agwa rawụta mpaghara okwu ma ga-ekpughe ọdụ ige gị gburugburu ọwara ahụ.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4969,12 +5311,12 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
             <translation>Ọ dị mma</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Ụzọ ndabere</translation>
+            <source>Any interface</source>
+            <translation>Oghere ọ bụla</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Hapụ OS ka ọ họrọ ihe nkwụnye netwọk na-arụ ọrụ.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Soro ụzọ sistemụ (nke ngwa gị ndị ọzọ na-eji).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5053,8 +5395,8 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
             <translation>Isi mmalite: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Edebeghị URL isi mmalite. Jiri Lelee maka mmelite iji debe IPtoCityDB site na update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Edoziri na-akpaghị aka site na db-ip.com mgbe ị melitere.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5234,22 +5576,6 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
             <translation>enweghị oke</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT gbanyụrụ</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>n'ịntanetị (ntụkwasị obi dị ala)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>n'ịntanetị</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Na-atụle… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>ọzọ &gt;&gt;</translation>
         </message>
@@ -5258,6 +5584,14 @@ A na-atụ aro ka ị kechie Stellar na interface netwọk VPN ma nyochaa na VPN
 Click to open Statistics</source>
             <translation>Oke nkekọrịta oge niile
 Pịa imeghe Ọnụọgụ</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Ngụkọta njikọ ndị ọgbọ torrent</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>Ọnụ DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5697,6 +6031,30 @@ Pịa imeghe Ọnụọgụ</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Mkpa</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Ala</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Nkịtị</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Elu</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Kacha</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Agwakọtara</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Chekwaa na</translation>
@@ -6457,6 +6815,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Nbudata Vidiyo</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Oke nbudata agafeela!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Site na %1 ruo %2, ị budatara %3 MB. Nbudata niile dị na &quot;%4&quot; akwụsịla n'ihi na ị gafere oke nbudata nke %5 MB kwa %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>A ga-amaliteghachi nbudata niile akwụsịrị na %1 (%2 site ugbu a). Iji maliteghachi ozugbo, gbanwee ntọala Oke Nbudata wee pịa Maliteghachi.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>ugbu a</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 awa</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 awa</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 nkeji</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 nkeji</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>erughị otu nkeji</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>na</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Ọ DỊ MMA</translation>
         </message>
     </context>
 </TS>

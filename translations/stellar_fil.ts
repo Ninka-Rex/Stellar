@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet Link, o Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Tumatanggap ng HTTP/HTTPS/FTP links, magnet links, o torrent infohash.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Nabigo ang FTP control connection: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>Hindi inaasahang nagsara ang FTP control connection.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Nag-timeout ang FTP control connection.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Maling FTP reply.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Tinatanggihang magpadala ng FTP command na may nakapaloob na newline.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>Tinanggihan ng FTP server ang koneksyon</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>Kailangan ang FTPS ngunit hindi sinusuportahan ng server ang AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Nabigo ang FTP login</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Tinanggihan ang proteksyon ng data ng FTPS (PBSZ).</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Tinanggihan ang proteksyon ng data ng FTPS (PROT P).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>Tinanggihan ng FTP server ang binary mode (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Hindi makapasok sa FTP passive mode.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>Hindi sinusuportahan ng FTP server ang resume (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>Tinanggihan ng FTP server ang file</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Hindi inaasahang tugon ng FTP sa RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Inabort ng server ang FTP transfer</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Hindi ma-parse ang tugon ng FTP passive-mode.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Tinanggihan ang FTP passive-mode address para sa seguridad.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Hindi mabuksan ang koneksyon ng FTP data.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>Nabigo ang TLS handshake: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Di-wastong FTP path.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Hindi mabuksan ang part file: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Nabigo ang pagsulat sa disk: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Naputol ang FTP transfer.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Nabigo ang FTP segment %1 pagkatapos ng %2 ulit.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Walang pahintulot sa pagsulat para sa download directory: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Nagsisimula ang Stellar...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Nakakabit sa %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Lagpas hatinggabi na?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Gising pa?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Bata pa ang gabi!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Hindi makatulog?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Magandang umaga!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Bangon na!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Simula pa lang ng umaga!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Umaga! Nagtitimpla ng kape.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Magandang hapon!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Download habang lunch?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Tanghali na agad!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Sana maayos ang araw mo!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Magandang hapon!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Magandang gabi!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Nagpapahinga na?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Gabi na!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Sana maganda ang araw mo!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Nagtatrabaho pa?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Gising pa sa oras ng tulog?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Late night session!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Huwag kalimutang magpahinga!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Welcome back!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Handa na ako!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Buti naman at nandito ka!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Mag-download na tayo!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Na-miss kita!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Balik na ulit!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Naghihintay ang mga download mo!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Ituloy kung saan tumigil?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Anong kukunin natin ngayon?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Naka-bind sa %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Walang backup file na napili para i-import.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Nakatali sa %1 (offline — naka-pause ang torrents)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Naka-bind sa %1 (offline - naka-pause ang torrents)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>May update! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Sinusuri ang mga update</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Lahat ng file sa isang direktoryo</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Mag-browse...</translation>
+            <source>Browse…</source>
+            <translation>Mag-browse…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Patakbuhin nang manu-mano: flatpak override --user --talk-name=org.freedesktop.F
             <translation>Tandaan ang huling landas ng pag-save</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Bilangin...</translation>
+            <source>Browse…</source>
+            <translation>Mag-browse…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Patakbuhin nang manu-mano: flatpak override --user --talk-name=org.freedesktop.F
         <message>
             <source>Download</source>
             <translation>Nakukuha</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>I-click para kopyahin</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 I-click ang Add URL upang magsimula.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Naglo-load ng %n pag-download...</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Naglo-load %1 / %2 mga download…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1147,6 +1393,94 @@ Maaari mong baguhin ito sa Options → Downloads sa ibang oras.</translation>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Priyoridad</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Mababa</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Mataas</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Pinakamataas</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Halo-halo</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Bihira</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Karaniwan</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Mataas na Priyoridad</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Nilaktawan</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Hindi available</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 piraso</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 na-download</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 dina-download</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 nilaktawan</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Walang data ng piraso</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Nilaktawan (hindi napiling file)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Dina-download - %1% ng bloke natanggap</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Hindi available - walang peer may hawak</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Kulang - %n peer ang mayroon</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(mataas na priyoridad)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Piraso #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Ilipat Data ng Torrent...</translation>
@@ -3384,8 +3718,8 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>Huwag punan para gumamit ng default</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Mag-browse...</translation>
+            <source>Browse…</source>
+            <translation>Browse…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3896,6 +4230,10 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>Simulan agad ang pag-download habang ipinapakita ang dialog ng 'Download File Info'</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Auto-fill ang deskripsyon gamit metadata ng file (bitrate, resolusyon, codec, atbp.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Ipakita ang mapa ng swarm kapag nag-download ng metadata ng torrent</translation>
         </message>
@@ -4098,10 +4436,6 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>⚠ Hindi nasa listahan ng auto-download ng browser: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Bilangin</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Ito ang inialalang folder para sa mga torrent na ginagamit kapag ang dialog ng metadata ay naka-set up para sa custom save folder.</translation>
         </message>
@@ -4218,16 +4552,16 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>Ipakita ang bilis sa status bar</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Ipakita ang tinatayang mga gumagamit sa status bar</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Gumagamit ng DHT node-ID density upang matandaan ang global na BitTorrent users. Tumataas ang tiwala habang mas maraming unique node IDs ang nakikita; ang * sa dulo ng status bar ay nangangahulugang mababa pa ang tiwala sa pagtatanda.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Ipakita ang ratio sa status bar</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Ipakita ang mga koneksyon ng torrent sa status bar</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Ipakita ang mga DHT node sa status bar</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4490,20 +4824,28 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
             <translation>Custom bittorrent user agent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Bind to network adapter</translation>
+            <source>Network interface</source>
+            <translation>Interface ng network</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Locked adapter para sa torrent traffic. Kung mag-disconnect ang VPN o mawala ang adapter, iiwan ni Stellar ang default route at hindi makakapag-leak ang torrents sa ibang connection.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Naka-lock ang trapiko ng torrent sa interface na ito. Kapag nadiskonekta ang VPN o nawala ang interface, ihihinto ng Stellar ang mga torrent imbes na tumagas sa ibang koneksyon. I-bind sa iyong VPN adapter upang iruta ang lahat ng trapiko ng torrent, kasama ang IPv6, sa VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Walang adapter binding. Sumusunod ang torrent traffic sa system route.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Kahit anong interface: sumusunod ang trapiko ng torrent sa ruta ng system, tulad ng iba mong apps. Kung aktibong koneksyon ang VPN, dadaan ito sa VPN; kapag bumagsak ang VPN, magpapatuloy ang trapiko sa normal na koneksyon. Pumili ng partikular na adapter para sa mahigpit na VPN-only binding.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Nagpapaliwanag ang Network adapter binding na magpadala at tanggap lang ng torrent traffic ang Stellar sa pamamagitan ng napiling adapter. Lalo itong makatulong sa mga gumagamit ng VPN upang maiwasan ang accidental traffic leaks kapag hindi konektado ang VPN.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Payagan ang UPnP, NAT-PMP at Local Service Discovery habang naka-bind</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Nakikipag-usap ang mga ito sa iyong lokal na router at maaaring ilantad ang iyong listen port sa labas ng tunnel. I-enable lang ito kapag naka-bind sa pinagkakatiwalaang LAN adapter, hindi sa VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>Naka-disable ang UPnP, NAT-PMP at Local Service Discovery habang naka-bind, dahil nakikipag-usap ang mga ito sa lokal na router at ilalantad ang iyong listen port sa labas ng tunnel.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4958,12 +5300,12 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Default route</translation>
+            <source>Any interface</source>
+            <translation>Kahit anong interface</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Piliin ng OS ang aktibong network adapter.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Sundin ang ruta ng system (ginagamit ng iba mong apps).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5042,8 +5384,8 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
             <translation>Pinagmulan: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Hindi pa na-cache ang Source URL. Gamitin ang Check for updates para ma-cache ang IPtoCityDB mula sa update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Awtomatikong nakuha mula sa db-ip.com kapag nag-update.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5223,22 +5565,6 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
             <translation>walang limitasyon</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>Naka-off ang DHT</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>online (mababang tiwala)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Tinatantiya… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>susunod &gt;&gt;</translation>
         </message>
@@ -5246,6 +5572,14 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Ratyo ng pagbabahagi (lahat ng panahon)</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Kabuuang koneksyon ng peer sa torrent</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT nodes</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5685,6 +6019,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Priyoridad</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Mababa</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Mataas</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Pinakamataas</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Halo-halo</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>I-save sa</translation>
@@ -6445,6 +6803,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>I-download ang video</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Lampas sa limitasyon ng pag-download!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Mula %1 hanggang %2 nag-download ka ng %3 MB. Lahat ng download sa &quot;%4&quot; ay itinigil dahil lumampas ka sa limit na %5 MB bawat %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Awtomatikong magpapatuloy ang lahat ng itinigil na download sa %1 (%2 mula ngayon). Para ipagpatuloy agad, baguhin ang Download Limits at pindutin ang Resume.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>ngayon</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 oras</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 oras</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 minuto</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 minuto</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>wala pang isang minuto</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>at</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

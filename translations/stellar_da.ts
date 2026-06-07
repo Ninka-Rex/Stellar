@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet-link eller infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Accepterer HTTP/HTTPS/FTP-links, magnet-links eller en torrent-infohash.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP-kontrolforbindelse mislykkedes: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP-kontrolforbindelse lukket uventet.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP-kontrolforbindelse fik timeout.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Misformet FTP-svar.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Nægter at sende FTP-kommando med indlejret linjeskift.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP-server nægtede forbindelse</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS påkrævet, men serveren understøtter ikke AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP-login mislykkedes</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS-databeskyttelse (PBSZ) blev afvist.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS-databeskyttelse (PROT P) blev afvist.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP-server afviste binær tilstand (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Kunne ikke gå i FTP passiv tilstand.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP-server understøtter ikke genoptagelse (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP-server afviste filen</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Uventet FTP-svar på RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP-overførsel afbrudt af server</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Kunne ikke parse FTP passiv tilstand-svar.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>FTP passiv tilstand-adresse afvist af sikkerhedshensyn.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Kunne ikke åbne FTP-datakommunikation.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS-handshake mislykkedes: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Ugyldig FTP-sti.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Kan ikke åbne delfil: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Disk-skrivning mislykkedes: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP-overførsel blev afkortet.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP-segment %1 mislykkedes efter %2 forsøg.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Ingen skrivetilladelse til download-mappe: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar starter...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Bundet til %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Allerede over midnat?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Stadig oppe?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Natten er ung!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Kan du ikke sove?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Godmorgen!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Op og stå!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Frisk fra morgenstunden!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Morgen! Kaffen er klar.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>God eftermiddag!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Frokostpause-downloads?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Allerede middag!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Håber din dag går godt!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>God eftermiddag!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>God aften!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Er du ved at slappe af?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Aften!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Håber du havde en god dag!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Arbejder du sent?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Oppe efter sengetid?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Sen natsession!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Glem ikke at hvile!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Velkommen tilbage!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Klar når du er!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Godt at se dig!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Lad os komme i gang!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Savnede dig!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>I gang igen!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Dine downloads venter!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Fortsæt hvor du slap?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Hvad skal vi hente i dag?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Bundet til %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Ingen backup-fil valgt til import.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Bundet til %1 (offline — torrenter sat på pause)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Bundet til %1 (offline - torrenter pauset)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Opdatering klar! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Søger efter opdateringer</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Alle filer til én mappe</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Gennemse...</translation>
+            <source>Browse…</source>
+            <translation>Gennemse…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Husk sidste gemmestii</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Gennemse...</translation>
+            <source>Browse…</source>
+            <translation>Gennemse…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Download</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Klik for at kopiere</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 Klik Tilføj URL for at starte.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Indlæser %n download(er)…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Indlæser %1 / %2 downloads…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ Du kan ændre det i Indstillinger → Downloads senere.</translation>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritet</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Lav</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Høj</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maks</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Blandet</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Sjælden</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Almindelig</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Høj prioritet</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Skippet</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Utilgængelig</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 stykker</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 hentet</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 henter</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 sprunget over</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Ingen brikdata tilgængelig</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Sprunget over (fil ikke valgt)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Downloader - %1% af blokkene modtaget</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Utilgængelig - ingen peers har dette stykke</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Mangler - %n peer(s) har den</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(høj prioritet)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Stykke #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Flyt Torrent-data til...</translation>
@@ -3389,8 +3723,8 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
             <translation>Lad være tom for at bruge standard gemmestien</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Gennemse...</translation>
+            <source>Browse…</source>
+            <translation>Gennemse…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3901,6 +4235,10 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
             <translation>Start download straks med &quot;Download filinfo&quot;-dialog</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Autoudfyld beskrivelsesfeltet med filmetadata (bitrate, opløsning, codec osv.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Vis svarmkort ved download af torrent-metadata</translation>
         </message>
@@ -4103,10 +4441,6 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
             <translation>⚠ Ikke i browserens auto-download-liste: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Gennemse</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Den gemte brugerdefinerede torrent-mappe, der bruges, når torrent-metadata-dialogen er indstillet til at bruge en brugerdefineret gemmemappe som standard.</translation>
         </message>
@@ -4223,16 +4557,16 @@ Stellar-indstillinger → Browser → Omgå download-aflytning</translation>
             <translation>Vis hastighed i statuslinjen</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Vis estimeret antal online-brugere i statuslinjen</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Bruger DHT-node-ID-tæthed til at estimere globale BitTorrent-brugere. Tilliden stiger, jo flere unikke node-ID'er der observeres; et efterfølgende * i statuslinjen betyder, at estimatet stadig er lavt-i-tillid.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Vis ratio i statuslinjen</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Vis torrentforbindelser i statuslinjen</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Vis DHT-noder i statuslinjen</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4495,20 +4829,28 @@ Det anbefales stærkt at binde Stellar til et VPN-netværksinterface og verifice
             <translation>Brugerdefineret BitTorrent-brugeragent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Bind til netværksadapter</translation>
+            <source>Network interface</source>
+            <translation>Netværksgrænseflade</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Denne adapter er låst til torrent-trafik. Hvis din VPN afbrydes, eller adapteren forsvinder, stopper Stellar med at bruge standardruten, og dine torrents mister netværksadgang i stedet for at lække til en anden forbindelse.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Torrent-trafik er låst til denne grænseflade. Hvis din VPN afbrydes, eller grænsefladen forsvinder, sætter Stellar torrents på pause i stedet for at lække til en anden forbindelse. Bind til din VPN-adapter for at dirigere al torrent-trafik, inklusive IPv6, gennem VPN'en.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Ingen adapterbinding. Torrent-trafik følger systemruten.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Enhver grænseflade: torrent-trafik følger systemruten, ligesom dine andre apps. Hvis en VPN er din aktive forbindelse, går den gennem VPN'en; hvis VPN'en falder, fortsætter trafikken på den normale forbindelse. Vælg en specifik adapter for streng VPN-begrænset binding.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Netværksadapterbinding fortæller Stellar at sende og modtage torrent-trafik kun gennem den valgte adapter. Dette er særligt nyttigt for VPN-brugere, da det forhindrer utilsigtet trafiklæk, når VPN'en ikke er tilsluttet.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Tillad UPnP, NAT-PMP og lokal tjenesteopdagelse, mens der er bundet</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Disse kommunikerer med din lokale router og kan eksponere din lytteport gennem tunnelen. Aktivér kun dette, når du binder til en betroet LAN-adapter, ikke en VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP og lokal tjenesteopdagelse er deaktiveret, mens der er bundet, da de kommunikerer med den lokale router og ville afsløre din lytteport uden om tunnelen.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4963,12 +5305,12 @@ Det anbefales stærkt at binde Stellar til et VPN-netværksinterface og verifice
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Standardrute</translation>
+            <source>Any interface</source>
+            <translation>Enhver grænseflade</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Lad OS vælge den aktive netværksadapter.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Følg systemruten (bruges af dine andre apps).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5047,8 +5389,8 @@ Det anbefales stærkt at binde Stellar til et VPN-netværksinterface og verifice
             <translation>Kilde: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Kilde-URL ikke cachelagret endnu. Brug Tjek for opdateringer for at cachelagre IPtoCityDB fra update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Løst automatisk fra db-ip.com ved opdatering.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5228,22 +5570,6 @@ Det anbefales stærkt at binde Stellar til et VPN-netværksinterface og verifice
             <translation>ubegrænset</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT fra</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>online (lav tillid)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Estimerer… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>næste &gt;&gt;</translation>
         </message>
@@ -5252,6 +5578,14 @@ Det anbefales stærkt at binde Stellar til et VPN-netværksinterface og verifice
 Click to open Statistics</source>
             <translation>Samlet delingsforhold
 Klik for at åbne Statistik</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Samlede peer-forbindelser</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT-noder</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5691,6 +6025,30 @@ Klik for at åbne Statistik</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritet</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Lav</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Høj</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maks.</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Blandet</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Gem til</translation>
@@ -6452,6 +6810,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Videodownload</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Downloadgrænser overskredet!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Fra %1 til %2 downloadede du %3 MB. Alle downloads i &quot;%4&quot; er stoppet, fordi du overskred downloadgrænsen på %5 MB hver %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Alle stoppede downloads genoptages automatisk %1 (%2 fra nu). For at genoptage med det samme, ændr indstillingen for Downloadgrænser og tryk på Genoptag.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>nu</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 time</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 timer</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 minut</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 minutter</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>under et minut</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>og</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

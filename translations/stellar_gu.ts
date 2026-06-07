@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, મેગ્નેટ લિંક, અથવા ઇન્ફોહેશ</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP લિંક, મેગ્નેટ લિંક અથવા ટોરેન્ટ ઇન્ફોહેશ સ્વીકારે છે.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP નિયંત્રણ જોડાણ નિષ્ફળ: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP નિયંત્રણ જોડાણ અનપેક્ષિત રીતે બંધ થયું.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP નિયંત્રણ જોડાણ સમયસમાપ્ત.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>ખામીયુક્ત FTP જવાબ.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>એમ્બેડેડ નવી લાઇન સાથે FTP આદેશ મોકલવાનો ઇનકાર.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP સર્વરે જોડાણ નકાર્યું</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS જરૂરી છે પણ સર્વર AUTH TLS સપોર્ટ કરતું નથી.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP લૉગિન નિષ્ફળ</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS ડેટા સુરક્ષા (PBSZ) નકારાઈ.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS ડેટા સુરક્ષા (PROT P) નકારાઈ.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP સર્વરે બાઈનરી મોડ (TYPE I) નકાર્યો.</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTP પેસિવ મોડમાં પ્રવેશી શકાયો નહીં.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP સર્વર ફરી શરૂ (REST) સપોર્ટ કરતું નથી.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP સર્વરે ફાઇલ નકારી</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>RETR માટે અનપેક્ષિત FTP જવાબ</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP ટ્રાન્સફર સર્વર દ્વારા રદ કરાયું</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>FTP પેસિવ-મોડ જવાબ સમજી શકાયો નહીં.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>FTP પેસિવ-મોડ સરનામું સુરક્ષા માટે નકારાયું.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTP ડેટા કનેક્શન ખોલી શકાયું નહીં.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS હેન્ડશેક નિષ્ફળ: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>અમાન્ય FTP પાથ.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>ભાગ ફાઇલ ખોલી શકાતી નથી: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ડિસ્ક લેખન નિષ્ફળ: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP ટ્રાન્સફર કાપવામાં આવ્યું.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP સેગમેન્ટ %1 %2 પુનઃપ્રયાસો પછી નિષ્ફળ.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ડાઉનલોડ ડિરેક્ટરી માટે લેખન પરવાનગી નથી: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>સ્ટેલર શરૂ થઈ રહ્યું છે...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ %1 પર બંધ</translation>
+            <source>Past midnight already?</source>
+            <translation>પહેલેથી મધરાત વીતી ગઈ?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>હજુ જાગો છો?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>રાત હજુ બાકી છે!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>ઊંઘ નથી આવતી?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>સુપ્રભાત!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>જાગો અને ચમકો!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>સવારની શરૂઆત!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>સવાર! કોફી તૈયાર છે.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>શુભ બપોર!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>બપોરના ડાઉનલોડ?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>બપોર થઈ ગયો!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>આશા છે તમારો દિવસ સારો જાય!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>શુભ બપોર!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>શુભ સાંજ!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>શાંત થઈ રહ્યા છો?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>સાંજ પડી!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>આશા રાખું છું કે તમારો દિવસ સારો રહ્યો હશે!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>મોડે સુધી કામ કરો છો?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>સૂવાના સમયથી મોડું થયું?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>મોડી રાતનો સત્ર!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>આરામ કરવાનું ભૂલશો નહીં!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>પાછા આવવા બદલ આવકાર!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>તમે તૈયાર હો ત્યારે!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>તમને જોઈને આનંદ થયો!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>ચાલો ડાઉનલોડ કરીએ!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>તમારી યાદ આવતી હતી!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>ફરી શરૂ કરીએ!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>તમારા ડાઉનલોડ રાહ જોઈ રહ્યા છે!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>જ્યાંથી છોડ્યું ત્યાંથી ચાલુ કરશો?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>આજે શું લેવાનું છે?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>%1 સાથે જોડાયેલ</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>આયાત કરવા માટે કોઈ બેકઅપ ફાઇલ પસંદ કરાઈ નથી.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ %1 સાથે જોડાયેલ (ઑફલાઇન — ટોરેન્ટ થોભાવ્યા)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>%1 સાથે જોડાયેલ (ઑફલાઇન - ટોરેન્ટ થોભાવેલ)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>અપડેટ ઉપલબ્ધ! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>અપડેટ તપાસે છે</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>બધી ફાઇલો એક ડિરેક્ટરીમાં</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>બ્રાઉઝ કરો...</translation>
+            <source>Browse…</source>
+            <translation>બ્રાઉઝ કરો…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -632,8 +874,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>છેલ્લો સેવ પાથ યાદ રાખો</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>બ્રાઉઝ કરો...</translation>
+            <source>Browse…</source>
+            <translation>બ્રાઉઝ કરો…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -720,6 +962,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>ડાઉનલોડ</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>કૉપિ કરવા ક્લિક કરો</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1027,8 +1273,8 @@ Click  Add URL  to start.</source>
 શરૂ કરવા માટે 'Add URL' પર ક્લિક કરો.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>લોડિંગ %n ડાઉનલોડ(ો)…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>%1 / %2 ડાઉનલોડ લોડ થાય છે…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1147,6 +1393,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>પ્રાથમિકતા</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>નીચી</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>સામાન્ય</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>ઊંચી</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>મહત્તમ</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>મિશ્ર</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>દુર્લભ</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>સામાન્ય</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>ઉચ્ચ અગ્રતા</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>છોડેલ</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>અનુપલબ્ધ</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 ભાગો</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 ડાઉનલોડ થયા</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 ડાઉનલોડ થઈ રહ્યા છે</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 અવગણ્યા</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>કોઈ ભાગ માહિતી ઉપલબ્ધ નથી</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>અવગણ્યા (ફાઇલ પસંદ નથી)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>ડાઉનલોડ થાય છે - %1% બ્લોક મળ્યા</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>અનુપલબ્ધ - કોઈ પીઅર પાસે આ ભાગ નથી</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>ગુમ - %n પીઅર પાસે છે</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(ઉચ્ચ અગ્રતા)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>ભાગ #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>ટોર્ન્ટ ડેટા સ્થાનાંતરિત કરો...</translation>
@@ -3384,8 +3718,8 @@ Stellar ઓપ્શન્સ → બ્રાઉઝર → ડાઉનલો�
             <translation>ડિફોલ્ટ સેવ પાથનો ઉપયોગ કરવા માટે ખાલી રાખો</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>બ્રાઉઝ...</translation>
+            <source>Browse…</source>
+            <translation>બ્રાઉઝ કરો…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3896,6 +4230,10 @@ Stellar ઓપ્શન્સ → બ્રાઉઝર → ડાઉનલો�
             <translation>ડાઉનલોડ ફાઈલ માહિતી ડાયલોગ દર્શાવતા તરત જ ડાઉનલોડ શરૂ કરો</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>ફાઇલ મેટાડેટા સાથે વર્ણન ફીલ્ડ આપમેળે ભરો</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>ટોર્ન્ટ મેટાડેટા ડાઉનલોડ કરતી વખતે સ્વર્મ મેપ દર્શાવો</translation>
         </message>
@@ -4098,10 +4436,6 @@ Stellar ઓપ્શન્સ → બ્રાઉઝર → ડાઉનલો�
             <translation>⚠ ઓટો-ડાઉનલોડ લિસ્ટમાં નથી: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>બ્રાઉઝ કરો</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>કસ્ટમ ટોરેન્ટ ફોલ્ડર</translation>
         </message>
@@ -4218,16 +4552,16 @@ Stellar ઓપ્શન્સ → બ્રાઉઝર → ડાઉનલો�
             <translation>સ્ટેટસ બારમાં ઝડપ દર્શાવો</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>સ્ટેટસ બારમાં ઓનલાઈન વપરાશકર્તાઓ દર્શાવો</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>DHT નોડ-ID ઘનતાનો ઉપયોગ કરીને ગ્લોબલ BitTorrent વપરાશકર્તાઓનો અંદાજ મેળવો. વધુ અનન્ય નોડ ID જોવા મળતા વિશ્વાસ વધે છે; સ્ટેટસ બારમાં અંતિમ * એ અંદાજની ઓછી વિશ્વાસપાત્રતા દર્શાવે છે.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>સ્ટેટસ બારમાં રેશિયો દર્શાવો</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>સ્થિતિ પટ્ટીમાં ટોરેન્ટ જોડાણો બતાવો</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>સ્ટેટસ બારમાં DHT નોડ્સ બતાવો</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4490,20 +4824,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>કસ્ટમ બિટ્ટોરેન્ટ યુઝર એજન્ટ</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>નેટવર્ક એડેપ્ટર સાથે બાઈન્ડ કરો</translation>
+            <source>Network interface</source>
+            <translation>નેટવર્ક ઇન્ટરફેસ</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>આ એડેપ્ટરને ટોરન્ટ ટ્રાફિક માટે લોક કરવામાં આવ્યો છે. જો તમારો VPN કનેક્ટ થઈ જાય અથવા એડેપ્ટર અદ્રશ્ય થાય, તો સ્ટેલર ડિફોલ્ટ રૂટનો ઉપયોગ બંધ કરી દેશે અને તમારા ટોરન્ટ્સને અન્ય કનેક્શન પર લીક થવાને બદલે નેટવર્ક એક્સેસ ગુમાવશે.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>ટોરેન્ટ ટ્રાફિક આ ઇન્ટરફેસ પર લૉક છે. જો તમારું VPN ડિસ્કનેક્ટ થાય અથવા ઇન્ટરફેસ ખોવાઈ જાય, તો સ્ટેલર ટોરેન્ટને બીજા કનેક્શન પર લીક થવાને બદલે થોભાવે છે. તમામ ટોરેન્ટ ટ્રાફિક, IPv6 સહિત, VPN મારફતે રૂટ કરવા માટે તમારા VPN એડેપ્ટર સાથે બાઈન્ડ કરો.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>કોઈ એડેપ્ટર બાઈન્ડિંગ નથી. ટોરન્ટ ટ્રાફિક સિસ્ટમ રૂટને અનુસરે છે.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>કોઈપણ ઇન્ટરફેસ: ટોરેન્ટ ટ્રાફિક સિસ્ટમ રૂટને અનુસરે છે, તમારી અન્ય એપ્લિકેશનોની જેમ. જો VPN તમારું સક્રિય કનેક્શન હોય તો તે VPN માંથી પસાર થાય છે; જો VPN ડ્રોપ થાય, તો ટ્રાફિક સામાન્ય કનેક્શન પર ચાલુ રહે છે. કડક VPN-માત્ર બાઈન્ડિંગ માટે ચોક્કસ એડેપ્ટર પસંદ કરો.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>નેટવર્ક એડેપ્ટર બાઈન્ડિંગ સ્ટેલરને સૂચવે છે કે તે ટોરન્ટ ટ્રાફિકને માત્ર પસંદ કરેલ એડેપ્ટર દ્વારા મોકલે અને પ્રાપ્ત કરે. આ ખાસ કરીને VPN વપરાશકર્તાઓ માટે ઉપયોગી છે કારણ કે તે VPN કનેક્ટ ન હોય ત્યારે અકસ્માત ટ્રાફિક લીકને રોકે છે.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>બાઉન્ડ હોય ત્યારે UPnP, NAT-PMP અને સ્થાનિક સેવા શોધને મંજૂરી આપો</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>આ તમારા સ્થાનિક રાઉટર સાથે વાત કરે છે અને ટનલની આસપાસ તમારા સાંભળવાના પોર્ટને ખુલ્લો કરી શકે છે. ફક્ત ત્યારે જ આને સક્ષમ કરો જ્યારે વિશ્વસનીય LAN એડેપ્ટર સાથે બંધન કરો, VPN સાથે નહીં.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP અને સ્થાનિક સેવા શોધ બંધ કરવામાં આવે છે જ્યારે બાઉન્ડ હોય, કારણ કે તે સ્થાનિક રાઉટર સાથે વાત કરે છે અને તમારા સાંભળવાના પોર્ટને ટનલની આસપાસ ખુલ્લો કરી દેશે.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4958,12 +5300,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ઠીક</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>ડિફોલ્ટ રૂટ</translation>
+            <source>Any interface</source>
+            <translation>કોઈપણ ઇન્ટરફેસ</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>ઓએસ સક્રિય નેટવર્ક એડેપ્ટર પસંદ કરે.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>સિસ્ટમ રૂટને અનુસરો (તમારી અન્ય એપ્લિકેશનો દ્વારા ઉપયોગમાં લેવાય છે).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5042,8 +5384,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>સ્રોત: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>સ્રોત URL હજુ કેશમાં નથી. update.json માંથી IPtoCityDB કેશ કરવા માટે 'અપડેટ ચેક' વાપરો.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>અપડેટ કરો ત્યારે db-ip.com થી આપમેળે ઉકેલાય છે.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5223,22 +5565,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>અમર્યાદિત</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT બંધ</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>online (ઓછું વિશ્વાસ)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>અંદાજ લગાવી રહ્યા છીએ… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>next &gt;&gt;</translation>
         </message>
@@ -5246,6 +5572,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>કુલ શેર ગુણોત્તર</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>કુલ ટોરેન્ટ પીઅર જોડાણો</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT નોડ્સ</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5685,6 +6019,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>પ્રાથમિકતા</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>નીચી</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>સામાન્ય</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>ઊંચી</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>મહત્તમ</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>મિશ્ર</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>આમાં સાચવો</translation>
@@ -6445,6 +6803,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>વિડિયો ડાઉનલોડ</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>ડાઉનલોડ મર્યાદા વટાવી!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1 થી %2 સુધી તમે %3 MB ડાઉનલોડ કર્યા. &quot;%4&quot; માં બધા ડાઉનલોડ બંધ કર્યા કારણ કે તમે દર %6 ની %5 MB ની ડાઉનલોડ મર્યાદા વટાવી દીધી.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>બધા બંધ ડાઉનલોડ %1 વાગ્યે આપમેળે ફરી શરૂ થશે (હવેથી %2). તરત શરૂ કરવા, ડાઉનલોડ મર્યાદા સેટિંગ બદલો અને ફરી શરૂ દબાવો.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>હમણાં</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 કલાક</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 કલાક</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 મિનિટ</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 મિનિટ</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>એક મિનિટથી ઓછો</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>અને</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ઠીક</translation>
         </message>
     </context>
 </TS>

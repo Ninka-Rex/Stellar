@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Ọna asopọ Magnet, tabi Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Gba awọn ọna asopọ HTTP/HTTPS/FTP, awọn ọna asopọ magnet, tabi infohash torrent.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Asopọ iṣakoso FTP kuna: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>Asopọ iṣakoso FTP ti ni pipade lairotẹlẹ.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Asopọ iṣakoso FTP ti pari akoko.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Idahun FTP ti ko tọ.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Kọ lati fi aṣẹ FTP ranṣẹ pẹlu ila tuntun ti a fi sii.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>Olupin FTP kọ asopọ</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS nilo ṣugbọn olupin ko ṣe atilẹyin AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Iwọle FTP kuna</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Aabo data FTPS (PBSZ) ti kọ.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Aabo data FTPS (PROT P) ti kọ.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>Olupin FTP kọ ipo alakomeji (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Ko le wọ ipo palolo FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>Olupin FTP ko ṣe atilẹyin atunbere (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>Olupin FTP kọ faili naa</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Idahun FTP airotẹlẹ si RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Gbigbe FTP ti olupin da duro</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Ko le ṣe itumọ idahun ipo palolo FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Adirẹsi ipo palolo FTP ti kọ fun aabo.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Kò le ṣí àsopọ̀ dátà FTP.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>Ìfọwọ́sowọ́pọ̀ TLS kùnà: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Ọ̀nà FTP kò tọ́.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Kò le ṣí fáìlì apá kan: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Àkọsílẹ̀ dískì kùnà: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Gbigbe FTP ti ge kúrú.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Apá FTP %1 kùnà lẹ́yìn ìgbìyànjú %2.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Kò sí ìyọ̀nda àkọsílẹ̀ fún àkójọpọ̀ ìgbàsílẹ̀: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar ń bẹ̀rẹ̀...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ So mọ́ %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Ti kọjá ọ̀gànjọ́?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Ṣì wà lójú?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Alẹ́ ṣẹ̀ṣẹ̀ ń bẹ̀rẹ̀!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>O ò lè sùn?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Ẹ káàárọ̀!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Dìde kí o máa dán!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Ẹ káàárọ̀ o!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Ẹ káàárọ̀! Kọfí ń sè.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Ẹ káàsán!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Ìgbà ọ̀sán là ń ṣe downloads?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Ọ̀sán ti dé báyìí!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Mo rètí pé ọjọ́ rẹ ń lọ dáadáa!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Ọ̀sán!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Ẹ káalẹ́!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Ǹjẹ́ o ń sinmi?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Ìrọ̀lẹ́!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Mo rò pé ọjọ́ rẹ dára!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Ǹjẹ́ o ń ṣiṣẹ́ pẹ́?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Ǹjẹ́ o ti kọjá àsùn?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Ìpàdé alẹ́!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Má gbàgbé láti sinmi!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Káàbọ̀ padà!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Mo ti ṣetan!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Inu mi dun lati ri ọ!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Jẹ ki a bẹrẹ igbasilẹ!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>A ti padanu rẹ!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>A ti pada si iṣẹ!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Awọn igbasilẹ rẹ nduro!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Tẹsiwaju lati ibi ti o duro?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Kí la ó gbà lónìí?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>So mọ %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>A ko yan faili afẹyinti lati gbe wọle.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ So mọ́ %1 (offline — torrents dá dúró)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>So mọ %1 (aisi lori ayelujara - awọn torrenti daduro)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Ìmúdójúwọ̀n wà! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Ńṣàyẹ̀wò àwọn ìmúdójúwọ̀n</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Gbogbo fáìlì sí ìkàlẹ̀ kan</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Ṣàwárí...</translation>
+            <source>Browse…</source>
+            <translation>Ṣàwárí…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Ranti ọna ipamọ to kẹhin</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Ṣàwárí...</translation>
+            <source>Browse…</source>
+            <translation>Ṣàwárí…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Ṣagbasilẹ</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Tẹ láti daákò</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 Tẹ  Fi URL kún  láti bẹ̀rẹ̀.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Ńgbé %n ìgbàsílẹ̀…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Ńgbé %1 / %2 àwọn ìgbarasílẹ̀…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1147,6 +1393,94 @@ O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkók�
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Ohun àkọ́kọ́</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Kéré</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Déédé</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Gíga</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>O pọju</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Àdàlù</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Ṣọ̀wọ́n</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Wọ́pọ̀</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Pàtàkì Gíga</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Fò</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Kò sí</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 àwọn ege</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 ti gbà</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 ń gbà</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 ti fo</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Ko si alaye nkan ti o wa</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Ti fo (faili ko yan)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>N gba lati ayelujara - %1% awọn bulọọki ti gba</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Ko si - ko si ẹlẹgbẹ ti o ni nkan yii</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>O sonu - %n ẹlẹgbẹ ni o ni</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(pataki giga)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Nkan #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Gbe dátà Torrent lọ sí...</translation>
@@ -3396,8 +3730,8 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <translation>Fi òfo sílẹ̀ láti lo ọ̀nà ìpamọ́ àtìlẹdá</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Ṣàwárí...</translation>
+            <source>Browse…</source>
+            <translation>Ṣàwárí…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3908,6 +4242,10 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <translation>Bẹ̀rẹ̀ ìgbàsílẹ̀ lẹ́sẹ̀kẹsẹ̀ bí ó ti ń fi àdíráhọ̀ “Ìsọfúnni Fáìlì Ìgbàsílẹ̀” hàn</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Fi alaye faili kun aaye apejuwe laifọwọyi (bitrate, ipinnu, codec, ati bẹbẹ lọ)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Fi àwòrán swarm hàn nígbà tí ń gba àkọọ́lẹ̀ torrent</translation>
         </message>
@@ -4110,10 +4448,6 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <translation>⚠ Kò sí nínú àtòjọ igbasilẹ̀ aládàáṣe aṣàwákiri: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Ṣàwárí</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Èyí ni folda torrent àṣà tí a rántí tí a lò nígbà tí àtẹ àkọsílẹ̀ torrent bá wà ní lílo folda ìpamọ́ àṣà ní àìpẹ.</translation>
         </message>
@@ -4230,16 +4564,16 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <translation>Fi iyara hàn ní pẹpẹ ipò</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Fi ìfòjú àwọn olùmúlò orí ayélujára hàn ní pẹpẹ ipò</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Ńlo ìṣúpọ̀ DHT node-ID láti fojú díwọ̀n àwọn olùmúlò BitTorrent kárí ayé. Ìgbẹ́kẹ̀lé ń pọ̀ bí a ṣe ń rí àwọn node-ID àrà ọ̀tọ̀; àmì * tó ń tẹ̀lé ní pẹpẹ ipò túmọ̀ sí pé ìfòjú kò tíì dáni lójú.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Fi ìpín hàn ní pẹpẹ ipò</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Ṣe afihan awọn asopọ torrent ni igi ipo</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Ṣe afihan awọn apa DHT ni igi ipo</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4502,20 +4836,28 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <translation>Aṣojú olùmúlò BitTorrent àdáni</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>So mọ́ ohun èlò ìsopọ̀ nẹ́tíwọ́ọ̀kì</translation>
+            <source>Network interface</source>
+            <translation>Atọkun nẹtiwọọki</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Ohun èlò ìsopọ̀ yìí ti wà ní títìpa fún ìsòwò torrent. Bí VPN rẹ bá já tàbí ohun èlò ìsopọ̀ náà bá lọ, Stellar yóò dá lílo ọ̀nà àbáwọlé dúró, àwọn torrent rẹ yóò sì pàdánù ìwọ̀lé nẹ́tíwọ́ọ̀kì dípò jíjẹ́ kí ó yọ sórí ìsopọ̀ mìíràn.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Ijabọ torrent ti wa ni titiipa si atọkun yii. Ti VPN rẹ ba ge asopọ tabi atọkun naa ko si, Stellar yoo da awọn torrent duro dipo jijẹ lori asopọ miiran. So mọ adaṣe VPN rẹ lati dari gbogbo ijabọ torrent, pẹlu IPv6, nipasẹ VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Kò sí ìsomọ́ ohun èlò ìsopọ̀. Ìsòwò torrent ń tẹ̀lé ọ̀nà ẹ̀rọ.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Atọkun eyikeyi: ijabọ torrent tẹle ipa ọna eto, gẹgẹ bi awọn ohun elo rẹ miiran. Ti VPN ba jẹ asopọ ti nṣiṣẹ lọwọ, yoo gba nipasẹ VPN; ti VPN ba ja, ijabọ yoo tẹsiwaju lori asopọ deede. Yan adaṣe kan pato fun isomọ VPN ti o muna.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Ìsomọ́ ohun èlò ìsopọ̀ nẹ́tíwọ́ọ̀kì sọ fún Stellar pé kí ó fi àwọn ìsòwò torrent ránṣẹ́ àti gbà wọlé nípasẹ̀ ohun èlò ìsopọ̀ tí a yàn nìkan. Èyí wúlò pàápàá fún àwọn olùmúlò VPN nítorí ó ń dènà jíjẹ́ kí ìsòwò yọ síta láìròtẹ́lẹ̀ nígbà tí VPN kò bá sopọ̀.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Gba UPnP, NAT-PMP ati Awari Iṣẹ Agbegbe laaye nigbati o ba so</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Awọn wọnyi n ba olulana agbegbe rẹ sọrọ ati pe o le ṣafihan ibudo igbọ rẹ ni ayika oju eefin. Mu eyi ṣiṣẹ nikan nigbati o ba so mọ adaṣe LAN ti o gbẹkẹle, kii ṣe VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP ati Awari Iṣẹ Agbegbe ni a pa nigbati o ba so, nitori wọn n ba olulana agbegbe sọrọ ati pe yoo ṣafihan ibudo igbọ rẹ ni ayika oju eefin.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4970,12 +5312,12 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <translation>Ó Dára</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Ọ̀nà àbáláyé</translation>
+            <source>Any interface</source>
+            <translation>Atọkun eyikeyi</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Jẹ́ kí OS yan adápítà nẹ́tíwọ́ọ̀kì tó ń ṣiṣẹ́.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Tẹle ipa ọna eto (ti awọn ohun elo rẹ miiran n lo).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5054,8 +5396,8 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <translation>Orísun: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>URL orísun kò tì pamọ́. Lo Ṣàyẹ̀wo àwọn ìmúdòjuìwọ̀n láti pamọ́ IPtoCityDB láti update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Ti yanju laifọwọyi lati db-ip.com nigbati o ba ṣe imudojuiwọn.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5235,22 +5577,6 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <translation>àìlópin</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT pa</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> orí ayélujára (ìgbẹ́kẹ̀lé kéré)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> orí ayélujára</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Ńṣèrò… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>àtẹ̀lé &gt;&gt;</translation>
         </message>
@@ -5259,6 +5585,14 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
 Click to open Statistics</source>
             <translation>Ìpín pínpín gbogbo ìgbà
 Tẹ láti ṣí Ìṣirò</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Lapapọ awọn asopọ ẹlẹgbẹ torrent</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>Awọn apa DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5698,6 +6032,30 @@ Tẹ láti ṣí Ìṣirò</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Pataki</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Kekere</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Deede</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Giga</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>O pọju</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Adalu</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Fipamọ́ sí</translation>
@@ -6458,6 +6816,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Gba Fídíò</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Awọn opin igbasilẹ ti kọja!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Lati %1 si %2 o ti ṣagbaye %3 MB. Gbogbo awọn igbasilẹ ninu &quot;%4&quot; ti da duro nitori o ti kọja opin igbasilẹ ti %5 MB ni gbogbo %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Gbogbo awọn igbasilẹ ti o da duro yoo tun bẹrẹ laifọwọyi ni %1 (%2 lati isisiyi). Lati tun bẹrẹ lẹsẹkẹsẹ, yi eto Awọn Opin Igbasilẹ pada ki o tẹ Tun Bẹrẹ.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>isisiyi</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>wakati 1</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>awọn wakati %1</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>iṣẹju 1</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>awọn iṣẹju %1</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>kere ju iṣẹju kan</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>ati</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>O DARA</translation>
         </message>
     </context>
 </TS>

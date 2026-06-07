@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>網址</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL、磁力連結或 Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>接受 HTTP/HTTPS/FTP 連結、磁力連結或 torrent infohash。</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP 控制連線失敗：%1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP 控制連線意外關閉。</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP 控制連線逾時。</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>FTP 回應格式錯誤。</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>拒絕傳送內嵌換行符的 FTP 指令。</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP 伺服器拒絕連線</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>需要 FTPS，但伺服器不支援 AUTH TLS。</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP 登入失敗</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS 資料保護 (PBSZ) 已被拒絕。</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS 資料保護 (PROT P) 被拒絕。</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP 伺服器拒絕二進位模式 (TYPE I)。</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>無法進入 FTP 被動模式。</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP 伺服器不支援續傳 (REST)。</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP 伺服器拒絕了該檔案</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>對 RETR 的意外 FTP 回應</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP 傳輸已被伺服器中斷</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>無法解析 FTP 被動模式回應。</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>基於安全考量，FTP被動模式位址遭拒絕。</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>無法開啟 FTP 資料連線。</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS 交握失敗：%1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>無效的 FTP 路徑。</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>無法開啟部分檔案：%1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>磁碟寫入失敗：%1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP 傳輸被截斷。</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP 分段 %1 在 %2 次重試後失敗。</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>下載目錄無寫入權限：%1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar 啟動中...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ 綁定至 %1</translation>
+            <source>Past midnight already?</source>
+            <translation>已過午夜？</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>還在線？</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>夜還長著呢！</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>睡不著嗎？</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>早安！</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>起床囉！</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>清晨好時光！</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>早安！咖啡煮好了。</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>午安！</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>午休時間下載？</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>已經中午了！</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>祝你今天順利！</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>午安！</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>晚安！</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>準備休息了嗎？</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>傍晚好！</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>希望你今天過得不錯！</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>還在加班嗎？</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>熬夜了嗎？</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>深夜工作！</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>別忘了休息！</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>歡迎回來！</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>準備好就開始！</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>很高興見到你！</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>開始下載吧！</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>想念你！</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>繼續開工！</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>你的下載在等你！</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>要從上次中斷處繼續嗎？</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>今天要抓什麼？</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>已綁定 %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>未選擇要匯入的備份檔。</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ 已綁定 %1（離線 — 暫停中）</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>已綁定 %1（離線 - 種子已暫停）</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>有更新可用！(%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>正在檢查更新</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>所有檔案歸入同一目錄</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>瀏覽...</translation>
+            <source>Browse…</source>
+            <translation>瀏覽…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>記住上次儲存路徑</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>瀏覽...</translation>
+            <source>Browse…</source>
+            <translation>瀏覽…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>下載</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>點擊複製</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1024,8 +1270,8 @@ Click  Add URL  to start.</source>
             <translation>尚未下載。點擊「新增 URL」開始。</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>載入 %n 個下載中…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>正在載入 %1 / %2 個下載…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1145,6 +1391,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>優先級</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>低</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>正常</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>高</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>最大</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>混合</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>稀有</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>普通</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>高優先</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>已跳過</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>不可用</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 個片段</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>已下載 %1</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>下載中 %1</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>已跳過 %1</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>無區塊資料可用</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>已跳過（未選取檔案）</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>下載中 - 已接收 %1% 區塊</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>不可用 - 無對等端擁有此區塊</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>缺失 - %n 個對等端擁有</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>（高優先級）</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>區塊 #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>移動種子資料至...</translation>
@@ -3381,8 +3715,8 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <translation>留空以使用預設儲存路徑</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>瀏覽...</translation>
+            <source>Browse…</source>
+            <translation>瀏覽…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3893,6 +4227,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <translation>立即下載並顯示「檔案資訊」</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>自動填入檔案中繼資料（位元率、解析度、編解碼器等）</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>下載種子元資料時顯示群組地圖</translation>
         </message>
@@ -4095,10 +4433,6 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <translation>⚠ 不在瀏覽器自動下載清單：%1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>瀏覽</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>這是記住自訂 BitTorrent 資料夾，當 BitTorrent 金屬資料對話框預設使用自訂儲存資料夾時。</translation>
         </message>
@@ -4215,16 +4549,16 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <translation>狀態列顯示速度</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>狀態列顯示預估線上人數</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>使用 DHT 節點 ID 密度估算全球 BitTorrent 用戶數；觀察到越多唯一節點 ID，信心越高；狀態列末尾的 * 表示估算信心仍低</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>狀態列顯示分享比例</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>在狀態列顯示 Torrent 連線</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>在狀態列顯示 DHT 節點</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4487,20 +4821,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>自訂 BitTorrent 使用者代理</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>綁定網路適配器</translation>
+            <source>Network interface</source>
+            <translation>網路介面</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>此適配器已鎖定用於 BitTorrent 流量。若您的 VPN 斷線或適配器消失，Stellar 將停止使用預設路由， torrents 將失去網路連線而非洩漏至其他連線。</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Torrent 流量已鎖定在此網路介面上。若您的 VPN 中斷連線或該介面失效，Stellar 會暫停所有 Torrent 任務，避免流量洩漏到其他連線。綁定至您的 VPN 介面卡，即可將所有 Torrent 流量（包含 IPv6）透過 VPN 傳輸。</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>無適配器綁定。BitTorrent 流量遵循系統路由。</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>任何介面：Torrent 流量會跟隨系統路由，就像您的其他應用程式一樣。如果 VPN 是您的主動連線，流量就會通過 VPN；如果 VPN 中斷，流量會繼續使用一般連線。選擇特定介面卡以進行嚴格的僅限 VPN 綁定。</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>網路適配器綁定指示 Stellar 僅透過選定的適配器發送和接收 BitTorrent 流量。這對 VPN 用戶尤其有用，可防止 VPN 未連線時意外洩漏流量。</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>在綁定時允許 UPnP、NAT-PMP 和本地服務發現</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>這些會與您的本地路由器通訊，並可能透過隧道暴露您的監聽埠。僅在綁定到受信任的區域網路介面卡時啟用此功能，而非 VPN。</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>綁定時，UPnP、NAT-PMP 和本地服務發現功能會停用，因為它們會與本地路由器通訊，可能透過隧道暴露您的監聽埠。</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4955,12 +5297,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>確定</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>預設路由</translation>
+            <source>Any interface</source>
+            <translation>任何介面</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>讓作業系統選擇活躍網路適配器</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>遵循系統路徑（由您的其他應用程式使用）</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5039,8 +5381,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>來源：%1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>來源 URL 尚未快取。請使用「檢查更新」快取 IPtoCityDB。</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>更新時從 db-ip.com 自動解析</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5220,22 +5562,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>無限制</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT 關閉</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>線上 (信心度低)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>線上</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>估算中… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>下一項 &gt;&gt;</translation>
         </message>
@@ -5243,6 +5569,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>總分享率</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>總 BitTorrent 節點連線數</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT 節點數</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5682,6 +6016,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>優先級</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>低</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>正常</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>高</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>最高</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>混合</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>儲存至</translation>
@@ -6442,6 +6800,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>影片下載</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>下載限制已超出！</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>從 %1 到 %2，您下載了 %3 MB。由於超過每 %6 %5 MB 的下載限制，「%4」中的所有下載已停止。</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>所有已停止的下載將於 %1（%2 後）自動恢復。若要立即恢復，請變更下載限制設定並按下「恢復」。</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>現在</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 小時</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 小時</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 分鐘</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 分鐘</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>少於一分鐘</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>和</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
         </message>
     </context>
 </TS>

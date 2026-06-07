@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet Link, ko Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Yana karɓar hanyoyin HTTP/HTTPS/FTP, magnet links, ko infohash na torrent.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Haɗin sarrafa FTP ya gaza: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>Haɗin sarrafa FTP ya rufe ba zato ba tsammani.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Haɗin sarrafa FTP ya ƙare lokaci.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Amsar FTP mara tsari.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Ƙin aika umarnin FTP da sabon layi a ciki.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>Sabar FTP ta ƙi haɗi</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>Ana buƙatar FTPS amma sabar ba ta goyi bayan AUTH TLS ba.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Shiga FTP ya gaza</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Kariyar bayanai ta FTPS (PBSZ) an ƙi.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>An ƙi kariyar bayanan FTPS (PROT P).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>Sabar FTP ta ƙi yanayin binary (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Ba a iya shiga yanayin FTP mara aiki ba.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>Sabar FTP ba ta goyan bayan ci gaba (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>Sabar FTP ta ƙi fayil ɗin</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Amsar FTP da ba a yi tsammani ba ga RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>An dakatar da aika FTP ta uwar garke</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Ba a iya fassara amsa yanayin wucewa ta FTP ba.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>An ƙi adireshin yanayin wucewa na FTP saboda tsaro.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Ba a iya buɗe haɗin bayanan FTP ba.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS musanya ta gaza: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Hanyar FTP mara inganci.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Ba za a iya buɗe fayil ɗin ɓangare ba: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Rubutun faifai ya gaza: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Canja wurin FTP ya yanke.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Bangaren FTP %1 ya gaza bayan ƙoƙarin %2.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Babu izinin rubutawa ga kundin saukewa: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar na farawa...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ An ɗaure zuwa %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Tuni tsakar dare ya wuce?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Har yanzu kana a farke?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Dare ya yi nisa!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Ba za ka iya barci ba?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Ina kwana!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Tashi ka haskaka!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Barka da safiya!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Safiya! Kofi na tafasa.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Barka da rana!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Zazzagewa lokacin hutu?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Rana ta yi tsaka!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Ina fatan ranarka tana tafiya lafiya!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Barka da rana!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Barka da yamma!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Ana hutawa?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Yamma!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Da fatan rana ta yi kyau!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Aiki da dare?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Bacci ya kwashe?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Zaman dare!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Kar ka manta ka huta!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Barka da dawowa!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Shirye lokacin da kake!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Da kyau ganinka!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Mu fara saukewa!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Na yi kewarka!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>An dawo!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Sauke-saukenka na jira!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Ci gaba daga inda ka tsaya?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Me za mu kama yau?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>An ɗaure zuwa %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Ba a zaɓi fayil ɗin ajiyar da za a shigo ba.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ An ɗaure zuwa %1 (offline — torrents an dakatar)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>An ɗaure zuwa %1 (offline - torrents an dakata)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Sabuntawa akwai! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Ana duba sabuntawa</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Duk fayiloli zuwa babban fayil ɗaya</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Bincika...</translation>
+            <source>Browse…</source>
+            <translation>Lilo…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Gudanar da hannu: flatpak override --user --talk-name=org.freedesktop.Flatpak or
             <translation>Tuna hanyar ajiya ta ƙarshe</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Bincike...</translation>
+            <source>Browse…</source>
+            <translation>Lilo…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Gudanar da hannu: flatpak override --user --talk-name=org.freedesktop.Flatpak or
         <message>
             <source>Download</source>
             <translation>Sauke</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Danna don kwafa</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 Danna  Ƙara URL  don farawa.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Ana ɗora %n zazzagewa…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Ana loda %1 / %2 saukewa…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Fifiko</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Ƙasa</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Matsakaici</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Sama</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Mafi yawa</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Gauraye</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Ba kasafai</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Na kowa</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Babban fifiko</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>An tsallake</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Babu samuwa</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>guda %1</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 an sauke</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 ana saukewa</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 an tsallake</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Babu bayanan yanki</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>An tsallake (fayil ɗin ba a zaɓa ba)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Ana saukewa - %1% na tubalan sun iso</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Babu - babu masu amfani da ke da wannan yanki</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Bace - %n masu amfani suna da shi</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(fifiko babba)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Yanki #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Matsar da bayanan Torrent zuwa...</translation>
@@ -3395,8 +3729,8 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
             <translation>Bar komai don amfani da hanyar ajiya ta asali</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Bincika...</translation>
+            <source>Browse…</source>
+            <translation>Bincika…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3907,6 +4241,10 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
             <translation>Fara zazzagewa kai tsaye yayin nuna bayanin fayil</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Cika filin bayanin kai tsaye da bayanan fayil (bitrate, ƙuduri, codec, da sauransu)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Nuna taswirar tarin lokacin zazzage bayanan torrent</translation>
         </message>
@@ -4109,10 +4447,6 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
             <translation>⚠ Ba a cikin jerin abubuwan da za a sauke ta atomatik na burauza: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Lilo</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Wannan shine babban fayil ɗin torrent da aka tuna da shi wanda ake amfani dashi lokacin da aka saita maganganun metadata na torrent don amfani da babban fayil ɗin ajiya na al'ada ta tsohuwa.</translation>
         </message>
@@ -4229,16 +4563,16 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
             <translation>Nuna saurin a sandar matsayi</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Nuna kiyasin masu amfani a sandar matsayi</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Yana amfani da yawan DHT node-ID don kiyasta masu amfani da BitTorrent. Amincewa yana ƙaruwa yayin da ake ganin ƙarin ID; alamar * a sandar matsayi na nuna kiyasin bai tabbata ba.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Nuna rabo a sandar matsayi</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Nuna haɗin torrent a sandar matsayi</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Nuna nodes DHT a sandar matsayi</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4501,20 +4835,28 @@ An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabb
             <translation>Wakilin mai amfani na BitTorrent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Haɗa zuwa adaftar cibiyar sadarwa</translation>
+            <source>Network interface</source>
+            <translation>Interface na cibiyar sadarwa</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Wannan adaftar an kulle don zirga-zirgar torrent. Idan VPN ɗinka ya katse ko adaftar ta ɓace, Stellar zai daina amfani da hanyar tsohuwa kuma torrent ɗinka zasu rasa hanyar sadarwa maimakon yaɗuwa zuwa wata hanyar sadarwa.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Traffic na torrent an kulle shi zuwa wannan interface. Idan VPN ɗinka ya katse ko interface ɗin ya ɓace, Stellar zai dakatar da torrents maimakon ya zube ta wata hanyar haɗi. Ɗaure zuwa adaftar VPN ɗinka don tafiyar da duk traffic na torrent, gami da IPv6, ta cikin VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Babu haɗin adaftar. Zirga-zirgar torrent tana bin hanyar tsarin.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Kowace interface: traffic na torrent yana bin hanyar tsarin, kamar sauran apps ɗinka. Idan VPN ita ce haɗin da kake amfani da shi, zai bi ta VPN; idan VPN ta katse, traffic zai ci gaba ta hanyar haɗi ta al'ada. Zaɓi takamaiman adafta don ɗauri mai tsauri ta VPN kawai.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Haɗin adaftar cibiyar sadarwa yana gaya wa Stellar ya aika da karɓar zirga-zirgar torrent ta hanyar adaftar da aka zaɓa kawai. Wannan yana da amfani musamman ga masu amfani da VPN saboda yana hana yaɗuwar zirga-zirga ba da gangan ba lokacin da VPN ba ta haɗa ba.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Bada izinin UPnP, NAT-PMP da Binciken Sabis na Gida yayin ɗaure</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Waɗannan suna magana da na'urar router ɗinka na gida kuma suna iya fallasa tashar sauraro a kewayen ramin. Kunna wannan kawai lokacin da kake ɗaure zuwa adaftar LAN amintacce, ba VPN ba.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP da Binciken Sabis na Gida an kashe su yayin ɗaure, tunda suna magana da na'urar router na gida kuma zasu fallasa tashar sauraro a kewayen ramin.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4969,12 +5311,12 @@ An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabb
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Tafarki na asali</translation>
+            <source>Any interface</source>
+            <translation>Kowace interface</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Bari OS ta zaɓi adaftar cibiyar sadarwa mai aiki.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Bi hanyar tsarin (wanda sauran apps ɗinka ke amfani da shi).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5053,8 +5395,8 @@ An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabb
             <translation>Tushe: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Tushen URL ɗin bai ɓoye ba tukuna. Yi amfani da Duba sabuntawa don ɓoye IPtoCityDB daga update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>An warware ta atomatik daga db-ip.com lokacin sabuntawa.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5234,22 +5576,6 @@ An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabb
             <translation>marar iyaka</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT a kashe</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>a layi (ƙarancin tabbaci)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>a layi</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Ana ƙididdigewa… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>gaba &gt;&gt;</translation>
         </message>
@@ -5258,6 +5584,14 @@ An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabb
 Click to open Statistics</source>
             <translation>Rabon rabawa na kowane lokaci
 Danna don buɗe Ƙididdiga</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Jimlar haɗin abokan torrent</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>Nodes DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5697,6 +6031,30 @@ Danna don buɗe Ƙididdiga</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Fifiko</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Ƙasa</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Matsakaici</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Babba</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Mafi girma</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Gauraye</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Ajiye zuwa</translation>
@@ -6457,6 +6815,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Zazzage Bidiyo</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Iyakar saukewa ta wuce!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Daga %1 zuwa %2 kun sauke %3 MB. Duk saukarwa a cikin &quot;%4&quot; an dakatar saboda kun wuce iyakar saukarwa na %5 MB kowane %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Duk saukarwar da aka dakatar za a ci gaba da kai tsaye a %1 (%2 daga yanzu). Don ci gaba nan take, canza saitin Iyakokin Saukarwa kuma danna Ci gaba.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>yanzu</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>awa 1</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>awanni %1</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>minti 1</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>mintuna %1</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>kasa da minti daya</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>da</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Ok</translation>
         </message>
     </context>
 </TS>

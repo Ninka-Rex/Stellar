@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet Link, atau Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Menerima tautan HTTP/HTTPS/FTP, magnet link, atau infohash torrent.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Koneksi kontrol FTP gagal: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>Koneksi kontrol FTP tertutup tiba-tiba.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Koneksi kontrol FTP waktu habis.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Balasan FTP tidak valid.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Menolak mengirim perintah FTP dengan baris baru tersemat.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>Server FTP menolak koneksi</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS diperlukan tapi server tidak mendukung AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Login FTP gagal</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Proteksi data FTPS (PBSZ) ditolak.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Proteksi data FTPS (PROT P) ditolak.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>Server FTP menolak mode biner (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Tidak bisa masuk mode pasif FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>Server FTP tidak mendukung resume (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>Server FTP menolak file</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Balasan RETR FTP tak terduga</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Transfer FTP dibatalkan server</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Tidak bisa mengurai balasan mode pasif FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Alamat mode pasif FTP ditolak demi keamanan.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Tidak bisa buka koneksi data FTP.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>Gagal jabat tangan TLS: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Jalur FTP tidak valid.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Tidak bisa buka file bagian: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Gagal tulis disk: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Transfer FTP terpotong.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Segmen FTP %1 gagal setelah %2 coba.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Tidak ada izin tulis di direktori unduh: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar sedang memulai...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Terikat ke %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Sudah lewat tengah malam?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Masih bangun?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Malam masih muda!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Sulit tidur?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Selamat pagi!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Bangun dan bersinar!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Pagi yang cerah!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Pagi! Kopi sedang diseduh.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Selamat siang!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Unduhan saat istirahat makan siang?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Sudah siang!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Semoga harimu menyenangkan!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Selamat sore!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Selamat malam!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Mulai santai?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Malam!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Semoga harimu baik!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Lembur?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Begadang?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Sesi larut malam!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Jangan lupa istirahat!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Selamat datang kembali!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Siap kapan saja!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Senang melihatmu!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Ayo unduh!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Kangen kamu!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Mulai lagi!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Unduhanmu menanti!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Lanjutkan dari terakhir?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Mau ambil apa hari ini?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Terikat ke %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Tidak ada file cadangan yang dipilih untuk diimpor.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Terikat ke %1 (offline — torrent dijeda)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Terikat ke %1 (offline - torrent dijeda)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Pembaruan tersedia! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Memeriksa pembaruan</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Semua file ke satu direktori</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Telusuri...</translation>
+            <source>Browse…</source>
+            <translation>Telusuri…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Ingat jalur penyimpanan terakhir</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Jelajah...</translation>
+            <source>Browse…</source>
+            <translation>Telusuri…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Unduhan</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Klik untuk salin</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 Klik Tambah URL untuk memulai.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Memuat %n unduhan...</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Memuat %1 / %2 unduhan…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ Anda dapat mengubahnya di Opsi → Unduhan nanti.</translation>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritas</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Rendah</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Tinggi</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimum</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Campuran</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Langka</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Umum</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Prioritas Tinggi</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Dilewati</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Tak Tersedia</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 potong</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 terunduh</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 mengunduh</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 dilewati</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Data bagian tidak tersedia</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Dilewati (file tidak dipilih)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Mengunduh - %1% blok diterima</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Tidak tersedia - tidak ada peer punya bagian ini</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Hilang - %n peer memilikinya</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(prioritas tinggi)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Bagian #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Pindahkan Data Torrent Ke...</translation>
@@ -3386,8 +3720,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kosongkan untuk menggunakan jalur simpan default</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Telusuri...</translation>
+            <source>Browse…</source>
+            <translation>Telusuri…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3898,6 +4232,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Mulai unduh segera sambil tampilkan dialog 'Info File Unduhan'</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Isi otomatis deskripsi dengan metadata file (bitrate, resolusi, codec, dll.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Tampilkan peta swarm saat mengunduh metadata torrent</translation>
         </message>
@@ -4100,10 +4438,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ Tidak ada di daftar unduhan otomatis browser: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Jelajah</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Ini adalah folder torrent kustom yang disimpan saat dialog metadata torrent diatur untuk menggunakan folder simpan kustom secara default.</translation>
         </message>
@@ -4220,16 +4554,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kecepatan di bilah status</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Pengguna online perkiraan di bilah status</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Menggunakan kepadatan node-ID DHT untuk memperkirakan pengguna BitTorrent global. Kepercayaan meningkat seiring bertambahnya ID node unik yang diamati; tanda * di bilah status berarti perkiraan masih rendah kepercayaan.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Rasio di bilah status</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Tampilkan koneksi torrent di bilah status</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Tampilkan simpul DHT di bilah status</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4492,20 +4826,28 @@ Sangat disarankan untuk mengikat Stellar ke antarmuka jaringan VPN dan memverifi
             <translation>Custom bittorrent user agent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Bind to network adapter</translation>
+            <source>Network interface</source>
+            <translation>Antarmuka jaringan</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Adapter dikunci untuk lalu lintas torrent. Jika VPN terputus atau adapter hilang, Stellar berhenti menggunakan rute default dan torrent kehilangan akses jaringan alih-alih bocor ke koneksi lain.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Lalu lintas torrent dikunci ke antarmuka ini. Jika VPN terputus atau antarmuka hilang, Stellar menjeda torrent alih-alih bocor ke koneksi lain. Ikat ke adaptor VPN untuk merutekan semua lalu lintas torrent, termasuk IPv6, melalui VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Tidak ada pengikatan adapter. Lalu lintas torrent mengikuti rute sistem.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Antarmuka apa pun: lalu lintas torrent mengikuti rute sistem, seperti aplikasi lain. Jika VPN adalah koneksi aktif, ia melewati VPN; jika VPN putus, lalu lintas berlanjut di koneksi normal. Pilih adaptor spesifik untuk pengikatan ketat hanya-VPN.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Pengikatan adapter jaringan memerintahkan Stellar mengirim dan menerima lalu lintas torrent hanya melalui adapter terpilih. Sangat berguna untuk pengguna VPN karena mencegah kebocoran lalu lintas saat VPN tidak terhubung.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Izinkan UPnP, NAT-PMP, dan Local Service Discovery saat terikat</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Ini berkomunikasi dengan router lokal dan dapat mengekspos porta dengar di sekitar terowongan. Hanya aktifkan saat mengikat ke adaptor LAN tepercaya, bukan VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP, dan Local Service Discovery dinonaktifkan saat terikat, karena berkomunikasi dengan router lokal dan akan mengekspos porta dengar di sekitar terowongan.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4960,12 +5302,12 @@ Sangat disarankan untuk mengikat Stellar ke antarmuka jaringan VPN dan memverifi
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Rute default</translation>
+            <source>Any interface</source>
+            <translation>Antarmuka apa pun</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Biarkan OS memilih adapter jaringan aktif.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Ikuti rute sistem (digunakan oleh aplikasi lain).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5044,8 +5386,8 @@ Sangat disarankan untuk mengikat Stellar ke antarmuka jaringan VPN dan memverifi
             <translation>Sumber: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>URL sumber belum di-cache. Gunakan Periksa pembaruan untuk meng-cache IPtoCityDB dari update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Diselesaikan otomatis dari db-ip.com saat diperbarui.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5225,22 +5567,6 @@ Sangat disarankan untuk mengikat Stellar ke antarmuka jaringan VPN dan memverifi
             <translation>tak terbatas</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT mati</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> online (kepercayaan rendah)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Memperkirakan… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>selanjutnya &gt;&gt;</translation>
         </message>
@@ -5248,6 +5574,14 @@ Sangat disarankan untuk mengikat Stellar ke antarmuka jaringan VPN dan memverifi
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Rasio berbagi total</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Total koneksi peer torrent</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>Node DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5687,6 +6021,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritas</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Rendah</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Tinggi</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimum</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Campuran</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Simpan ke</translation>
@@ -6447,6 +6805,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Unduh Video</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Batas unduhan terlampaui!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Dari %1 ke %2 Anda mengunduh %3 MB. Semua unduhan di &quot;%4&quot; telah dihentikan karena melebihi batas unduh %5 MB setiap %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Semua unduhan terhenti akan dilanjutkan otomatis pada %1 (%2 dari sekarang). Untuk melanjutkan segera, ubah pengaturan Batas Unduh lalu tekan Lanjutkan.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>sekarang</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 jam</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 jam</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 menit</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 menit</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>kurang dari semenit</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>dan</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

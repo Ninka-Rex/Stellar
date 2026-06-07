@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet Link, ose Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Pranon lidhje HTTP/HTTPS/FTP, magnet, ose infohash torrenti.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Lidhja e kontrollit FTP dështoi: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>Lidhja e kontrollit FTP u mbyll papritur.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Lidhja e kontrollit FTP mbaroi kohën.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Përgjigje FTP e keqformuar.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Refuzim dërgimi komande FTP me rresht të ri të ngulitur.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>Serveri FTP refuzoi lidhjen</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>Kërkohet FTPS por serveri nuk mbështet AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Hyrja FTP dështoi</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Mbrojtja e të dhënave FTPS (PBSZ) u refuzua.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Mbrojtja e të dhënave FTPS (PROT P) u refuzua.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>Serveri FTP refuzoi mënyrën binare (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Nuk mund të hynte në mënyrën pasive FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>Serveri FTP nuk mbështet rifillimin (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>Serveri FTP refuzoi skedarin</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Përgjigje e papritur FTP ndaj RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Transferimi FTP u ndërpre nga serveri</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Nuk u analizua dot përgjigjja e mënyrës pasive FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Adresa e mënyrës pasive FTP u refuzua për siguri.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Nuk u hap lidhja e të dhënave FTP.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>Shtrëngimi TLS dështoi: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Rrugë FTP e pavlefshme.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Nuk hapet skedari pjesor: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Shkrimi në disk dështoi: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Transferimi FTP u cungua.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Segmenti FTP %1 dështoi pas %2 riprovimesh.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Nuk ka leje shkrimi për direktorinë e shkarkimit: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar po nis...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Lidhur me %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Ka kaluar mesnata?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Ende zgjuar?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Nata është e re!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Nuk flihet?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Mirëmëngjes!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Çohu e shkëlqe!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Maja e mëngjesit!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Mëngjes! Kafeja po zien.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Mirëdita!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Shkarkime në pushim dreke?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Mesditë tashmë!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Shpresoj që dita po shkon mirë!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Mirëdita!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Mirëmbrëma!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Po relaksohesh?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Mbrëma e mirë!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Shpresoj të kalove ditë të mirë!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Duke punuar vonë?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Zgjuar pas orarit të gjumit?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Seancë nate vonë!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Mos harro të pushosh!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Mirë se u ktheve!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Gati kur të jesh!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Mirë se u ktheve!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Le t'i nisim shkarkimet!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Na mungove!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Sërish në punë!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Shkarkimet të presin!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Të vazhdojmë aty ku e lamë?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Çfarë marrim sot?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Lidhur me %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Nuk u zgjodh asnjë skedar rezervë për import.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Lidhur me %1 (offline — torrentët pezull)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Lidhur me %1 (jashtë linje - torrentët në pauzë)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Përditësim i disponueshëm! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Duke kontrolluar përditësimet</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Të gjithë skedarët në një dosje</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Shfleto...</translation>
+            <source>Browse…</source>
+            <translation>Shfleto…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Ekzekuto manualisht: flatpak override --user --talk-name=org.freedesktop.Flatpak
             <translation>Kujto rrugën e fundit të ruajtjes</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Shflet...</translation>
+            <source>Browse…</source>
+            <translation>Shfleto…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Ekzekuto manualisht: flatpak override --user --talk-name=org.freedesktop.Flatpak
         <message>
             <source>Download</source>
             <translation>Dërgim</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Kliko për të kopjuar</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 Kliko Shto URL për të nisur.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Duke ngarkuar %n shkarkime...</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Po ngarkohen %1 / %2 shkarkime…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1147,6 +1393,94 @@ E mundon në Opsione → Shkarkime më vonë.</translation>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioriteti</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>I ulët</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>I lartë</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimum</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Të përzier</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Të rrallë</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Të zakonshëm</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Prioritet i lartë</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Të anashkaluar</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>I padisponueshëm</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 pjesë</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 të shkarkuar</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 duke u shkarkuar</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 u anashkalua</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Nuk ka të dhëna për pjesën</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>U anashkalua (skedari nuk u zgjodh)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Duke shkarkuar - %1% e blloqeve të marra</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>I padisponueshëm - asnjë pjesëmarrës s'ka këtë pjesë</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Mungon - %n pjesëmarrës e kanë</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(prioritet i lartë)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Pjesa #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Lëviz Torrent në...</translation>
@@ -3387,8 +3721,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Lëni bosh për rrugë të paracaktuar</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Shfleto...</translation>
+            <source>Browse…</source>
+            <translation>Shfleto…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3899,6 +4233,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Filloni shkarkimin menjëherë duke treguar dialogun 'Informacion Skedari'</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Plotëso automatikisht fushën e përshkrimit me metadata të skedarit (bitrate, rezolucion, kodek, etj.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Shfaq hartën e turmave gjatë shkarkimit të metadatave të torrentit</translation>
         </message>
@@ -4101,10 +4439,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ Jo në listën e ngarkimit automatik të shfletuesit: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Shfletim</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Kjo është folderi personalizuar i ruajtur i torrent-it që përdoret kur dialogu i metadatave të torrent-it është vendosur të përdorë një folder ruajtjeje personalizuar si parazgjedhje.</translation>
         </message>
@@ -4221,16 +4555,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Shfaq shpejtësinë në status bar</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Shfaq përdoruesit online të vlerësuar në status bar</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Përdor dendësinë e DHT node-ID për të vlerësuar përdoruesit globalë BitTorrent. Besimi rritet me ID-unike të reja; * në fund tregon besim të ulët.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Shfaq ratio në status bar</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Shfaq lidhjet e torrentit në shiritin e statusit</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Shfaq nyjet DHT në shiritin e statusit</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4491,20 +4825,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Custom bittorrent user agent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Bind to network adapter</translation>
+            <source>Network interface</source>
+            <translation>Ndërfaqja e rrjetit</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Kjo adapter është bllokuar për trafik torrent. Nëse VPN-i thyhet ose adapteri mungon, Stellar ndalon rrugën paraprake dhe torrentet humbasin aksesin në rrjet në vend që të shpërthejnë në një lidhje tjetër.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Trafiku i torrentëve është i kyçur në këtë ndërfaqe. Nëse VPN-ja juaj shkëputet ose ndërfaqja zhduket, Stellar ndalon torrentët në vend që të rrjedhin në një lidhje tjetër. Lidheni me përshtatësin tuaj VPN për të drejtuar të gjithë trafikun e torrentëve, përfshirë IPv6, përmes VPN-së.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Pa lidhje me adapterin. Trafiku torrent ndjek rrugën e sistemit.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Çdo ndërfaqe: trafiku i torrentit ndjek rrugën e sistemit, ashtu si aplikacionet e tjera. Nëse një VPN është lidhja juaj aktive, ai kalon përmes VPN-së; nëse VPN-ja bie, trafiku vazhdon në lidhjen normale. Zgjidhni një përshtatës specifik për lidhje të rreptë vetëm me VPN.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Lidhja me adapterin e rrjetit tregon Stellar të dërgojë dhe pranojë trafik torrent vetëm përmes adapterit të zgjedhur. Kjo është veçanërisht e dobishme për përdoruesit e VPN-it sepse parandalon rrjedhjen e gabuar të trafikut kur VPN-i nuk është i lidhur.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Lejo UPnP, NAT-PMP dhe Zbulimin e Shërbimeve Lokale gjatë lidhjes</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Këto komunikojnë me ruterin tuaj lokal dhe mund të ekspozojnë portën tuaj të dëgjimit rreth tunelit. Aktivizojeni këtë vetëm kur lidheni me një përshtatës të besuar LAN, jo me një VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP dhe Zbulimi i Shërbimit Lokal janë të çaktivizuara gjatë lidhjes, pasi ato komunikojnë me ruterin lokal dhe do të ekspozonin portën tuaj të dëgjimit rreth tunelit.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4959,12 +5301,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Ruta parësore</translation>
+            <source>Any interface</source>
+            <translation>Çdo ndërfaqe</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Lejo sistemin operativ të zgjedhë adapterin e rrjetit aktiv.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Ndiqni rrugën e sistemit (të përdorur nga aplikacionet e tjera).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5043,8 +5385,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Burimi: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>URL burimi nuk është memorizuar ende. Përdur Kontrollo përditësimet për të memorizuar IPtoCityDB nga update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Zgjidhet automatikisht nga db-ip.com kur përditësoni.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5224,22 +5566,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>e pakufizuar</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT çaktivizuar</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> online (besim i ulët)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Duke vlerësuar… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>tjetri &gt;&gt;</translation>
         </message>
@@ -5247,6 +5573,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Raport i përdorimit</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Lidhjet totale të shokëve torrent</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>Nyjet DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5686,6 +6020,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioriteti</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>I ulët</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>I lartë</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimal</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Të përzier</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Ruaj te</translation>
@@ -6446,6 +6804,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Shkarkim videoje</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Kufijtë e shkarkimit u tejkaluan!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Nga %1 në %2 shkarkuat %3 MB. Të gjitha shkarkimet në &quot;%4&quot; u ndalën sepse tejkaluat kufirin e shkarkimit prej %5 MB çdo %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Të gjitha shkarkimet e ndaluara do të rifillojnë automatikisht në %1 (%2 nga tani). Për të rifilluar menjëherë, ndryshoni cilësimet e Kufijve të Shkarkimit dhe shtypni Rifillo.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>tani</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 orë</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 orë</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 minutë</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 minuta</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>më pak se një minutë</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>dhe</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet-посилання або Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Приймає HTTP/HTTPS/FTP, magnet-посилання або infohash.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Помилка FTP-з'єднання: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP-з'єднання несподівано закрито.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Час очікування FTP-з'єднання.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Некоректна відповідь FTP.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Відмова надсилати FTP-команду з вбудованим новим рядком.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP-сервер відмовив у з'єднанні</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>Потрібен FTPS, але сервер не підтримує AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Помилка входу FTP</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Захист даних FTPS (PBSZ) було відхилено.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Захист даних FTPS (PROT P) було відхилено.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP-сервер відхилив двійковий режим (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Не вдалося перейти в пасивний режим FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP-сервер не підтримує відновлення (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP-сервер відхилив файл</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Неочікувана відповідь FTP на RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Передачу FTP перервано сервером</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Не вдалося розібрати відповідь пасивного режиму FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Адресу пасивного режиму FTP відхилено з міркувань безпеки.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Не вдалося відкрити FTP-з'єднання даних.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>Помилка рукостискання TLS: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Недійсний шлях FTP.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Не вдалося відкрити частковий файл: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Помилка запису на диск: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP-передачу обрізано.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Сегмент FTP %1 не вдався після %2 спроб.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Немає прав на запис у теку завантажень: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar запускається...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Прив'язано до %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Вже за північ?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Ще не спиш?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Ніч тільки починається!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Не спиться?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Доброго ранку!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Прокидайся!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Найкращий ранок!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Ранок! Кава готова.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Добрий день!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Завантаження на обід?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Вже полудень!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Сподіваюсь, день вдалий!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Добрий день!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Добрий вечір!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Відпочиваєте?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Вечір!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Сподіваюсь, день вдався!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Працюєте допізна?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Не спиться?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Нічна сесія!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Не забудьте відпочити!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>З поверненням!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Готові, коли ви!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Радий вас бачити!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Починаймо завантаження!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Сумували за вами!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Знову за роботу!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Ваші завантаження чекають!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Продовжити з місця зупинки?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Що сьогодні завантажуємо?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Прив'язано до %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Не вибрано файл резервної копії для імпорту.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Прив’язано до %1 (офлайн — торенти призупинено)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Прив'язано до %1 (офлайн — торенти на паузі)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Доступне оновлення! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Перевірка оновлень</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Всі файли в одну теку</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Огляд...</translation>
+            <source>Browse…</source>
+            <translation>Огляд…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Запам'ятати останній шлях збереження</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Огляд...</translation>
+            <source>Browse…</source>
+            <translation>Огляд…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Завантажити</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Клацніть, щоб скопіювати</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 Натисніть Додати URL, щоб почати.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Завантаження %n файл(ів)…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Завантаження %1 / %2…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Пріоритет</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Низький</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Звичайний</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Високий</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Максимум</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Змішаний</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Рідкісний</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Звичайний</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Високий пріоритет</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Пропущено</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Недоступно</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 частин</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 завантажено</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 завантажується</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 пропущено</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Немає даних частини</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Пропущено (файл не вибрано)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Завантаження — %1% блоків отримано</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Недоступно — частини немає в пірів</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Відсутня — є в %n пірів</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(високий пріоритет)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Частина №%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Перемістити дані торенту в…</translation>
@@ -3390,8 +3724,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Залиште порожнім для шляху за замовчуванням</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Огляд...</translation>
+            <source>Browse…</source>
+            <translation>Огляд…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3902,6 +4236,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Почати завантаження, показуючи діалог</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Автозаповнення опису метаданими файлу (бітрейт, роздільність, кодек тощо)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Показувати карту рою при завантаженні метаданих</translation>
         </message>
@@ -4104,10 +4442,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ Не в списку автозавантаження браузера: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Огляд</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Це запам'ятована тека для торентів, що використовується, коли діалог метаданих торенту за замовчуванням має власну теку збереження.</translation>
         </message>
@@ -4224,16 +4558,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Показувати швидкість у статус-барі</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Показувати оцінку онлайн-користувачів у статус-барі</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Оцінює глобальних користувачів BitTorrent за щільністю ID вузлів DHT. Достовірність зростає з кількістю унікальних ID; символ * у статус-барі означає низьку достовірність.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Показувати ratio у статус-барі</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Показувати торент-з’єднання в рядку стану</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Показувати DHT-вузли в рядку стану</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4496,20 +4830,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Власний User-Agent для BitTorrent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Прив'язка до мережевого адаптера</translation>
+            <source>Network interface</source>
+            <translation>Мережевий інтерфейс</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Цей адаптер заблоковано для трафіку торентів. Якщо ваш VPN відключиться або адаптер зникне, Stellar припинить використання маршруту за замовчуванням, і ваші торенти втратять доступ до мережі замість того, щоб протікати через інше з'єднання.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Трафік торентів прив’язано до цього інтерфейсу. Якщо VPN від’єднається або інтерфейс зникне, Stellar призупинить торенти замість витоку на інше з’єднання. Прив’яжіться до адаптера VPN, щоб спрямувати весь торент-трафік, включно з IPv6, через VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Без прив'язки адаптера. Трафік торентів слідує системним маршрутом.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Будь-який інтерфейс: трафік торентів іде системним маршрутом, як і інші програми. Якщо VPN активний, трафік іде через нього; якщо VPN від’єднається, трафік продовжиться звичайним з’єднанням. Виберіть конкретний адаптер для суворої прив’язки лише до VPN.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Прив'язка мережевого адаптера вказує Stellar надсилати та отримувати трафік торентів лише через вибраний адаптер. Це особливо корисно для користувачів VPN, оскільки запобігає випадковим витокам трафіку, коли VPN не підключено.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Дозволити UPnP, NAT-PMP і виявлення локальних служб під час прив’язки</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Вони взаємодіють із вашим локальним роутером і можуть відкрити порт прослуховування за межами тунелю. Вмикайте лише при прив’язці до надійного LAN-адаптера, а не VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP і виявлення локальних служб вимкнено під час прив’язки, оскільки вони взаємодіють із локальним роутером і відкрили б порт прослуховування за межами тунелю.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4964,12 +5306,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Маршрут за замовчуванням</translation>
+            <source>Any interface</source>
+            <translation>Будь-який інтерфейс</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Дозволити ОС обрати мережевий адаптер.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Слідувати системному маршруту (використовується іншими програмами).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5048,8 +5390,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Джерело: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>URL джерела ще не закешовано. Використайте «Перевірити оновлення» для кешування IPtoCityDB з update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Визначено автоматично з db-ip.com під час оновлення.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5229,22 +5571,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>безлім.</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT вимк.</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> онлайн (низька впевненість)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> онлайн</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Оцінювання… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>далі &gt;&gt;</translation>
         </message>
@@ -5253,6 +5579,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 Click to open Statistics</source>
             <translation>Співвідношення за весь час
 Натисніть для відкриття статистики</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Всього з'єднань пірів</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>Вузли DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5692,6 +6026,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Пріоритет</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Низький</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Звичайний</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Високий</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Максимум</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Змішаний</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Зберегти в</translation>
@@ -6453,6 +6811,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Завантаження відео</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Перевищено ліміти завантаження!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>З %1 до %2 ви завантажили %3 МБ. Усі завантаження в &quot;%4&quot; зупинено, оскільки перевищено ліміт %5 МБ за %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Усі зупинені завантаження відновляться автоматично о %1 (через %2). Щоб відновити негайно, змініть ліміти завантажень і натисніть Відновити.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>зараз</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 година</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 годин</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 хвилина</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 хвилин</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>менше хвилини</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>та</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet Link, හෝ Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP සබැඳි, Magnet Link, හෝ torrent infohash පිළිගනී.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP පාලන සම්බන්ධතාව අසාර්ථකයි: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP පාලන සම්බන්ධතාව අනපේක්ෂිතව වැසී ගියේය.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP පාලන සම්බන්ධතාව කල් ඉකුත් විය.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>විකෘති FTP පිළිතුර.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>නව පේළියක් ඇතුළත් FTP විධානය යැවීම ප්‍රතික්ෂේප කරයි.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP සේවාදායකය සම්බන්ධතාව ප්‍රතික්ෂේප කළේය</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS අවශ්‍ය නමුත් සේවාදායකය AUTH TLS සඳහා සහය නොදක්වයි.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP පිවිසුම අසාර්ථකයි</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS දත්ත ආරක්ෂණය (PBSZ) ප්‍රතික්ෂේප විය.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS දත්ත ආරක්ෂණය (PROT P) ප්‍රතික්ෂේප විය.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP සේවාදායකය ද්විමය මාදිලිය (TYPE I) ප්‍රතික්ෂේප කළේය.</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTP උදාසීන මාදිලියට ඇතුළු විය නොහැක.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP සේවාදායකය නැවත ආරම්භය (REST) සඳහා සහය නොදක්වයි.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP සේවාදායකය ගොනුව ප්‍රතික්ෂේප කළේය</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>RETR සඳහා අනපේක්ෂිත FTP පිළිතුර</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP හුවමාරුව සේවාදායකය විසින් අත්හිටුවන ලදී</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>FTP උදාසීන-මාදිලි පිළිතුර විග්‍රහ කළ නොහැක.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>FTP උදාසීන-මාදිලි ලිපිනය ආරක්ෂාව සඳහා ප්‍රතික්ෂේප විය.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTP දත්ත සම්බන්ධතාව විවෘත කළ නොහැක.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS අතට අත දීම අසාර්ථකයි: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>වලංගු නොවන FTP මාර්ගය.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>කොටස් ගොනුව විවෘත කළ නොහැක: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>තැටි ලිවීම අසාර්ථකයි: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP හුවමාරුව කප්පාදු විය.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP කොටස %1 උත්සාහ %2 කට පසු අසාර්ථකයි.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>බාගැනීම් නාමාවලියට ලිවීමේ අවසර නැත: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar ආරම්භ වෙමින්...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ %1 වෙත බැඳී ඇත</translation>
+            <source>Past midnight already?</source>
+            <translation>දැනටමත් මධ්‍යම රාත්‍රිය පසුවීද?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>තවමත් අවදියෙන්ද?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>රාත්‍රිය තවම තරුණයි!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>නින්ද නොයනවද?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>සුභ උදෑසනක්!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>අවදි වී දිදුලන්න!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>උදෑසනම සුභයි!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>උදෑසනක්! කෝපි හදනවා.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>සුභ දවාලක්!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>දිවා ආහාර විවේක බාගැනීම්?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>දැනටමත් මැදියම!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>ඔබේ දවස හොඳින් ගෙවේවා කියා බලාපොරොත්තු වෙනවා!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>සුභ සන්ධ්‍යාවක්!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>සුභ සන්ධ්‍යාවක්!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>විවේක ගන්නවද?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>සන්ධ්‍යාවක්!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>සුබ දවසක් වේවා!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>රෑ වෙනකම් වැඩද?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>නිදි වෙලාව පහුවෙලාද?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>රෑ සැසියක්!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>විවේක ගන්න අමතක කරන්න එපා!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>ආයුබෝවන්!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>ඔබ සූදානම් වූ විට!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>ඔබව දැකීම සතුටක්!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>බාගැනීම් අරඹමු!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>ඔබව මග හැරුණි!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>නැවත වැඩට!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>ඔබගේ බාගැනීම් බලා සිටී!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>නැවතුණු තැනින් ඉදිරියට?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>අද අපි මොනවා ගන්නද?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>%1 වෙත බැඳී</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>ආයාත කිරීමට උපස්ථ ගොනුවක් තෝරා නැත.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ %1 වෙත බැඳී ඇත (නොබැඳි — ටොරන්ට් විරාමිත)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>%1 වෙත බැඳී (නොබැඳි - ටොරන්ට් විරාමිත)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>යාවත්කාලීනයක් ඇත! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>යාවත්කාලීන සඳහා පරීක්ෂා කරමින්</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>සියලු ගොනු එක් නාමාවලියකට</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>පිරික්සන්න...</translation>
+            <source>Browse…</source>
+            <translation>බ්‍රවුස් කරන්න…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>අවසන් සුරකින මාර්ගය මතක තබා ගන්න</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>පිරික්සන්න...</translation>
+            <source>Browse…</source>
+            <translation>බ්‍රවුස් කරන්න…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>බාගත කරන්න</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>පිටපත් කිරීමට ක්ලික් කරන්න</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 ආරම්භ කිරීමට  URL එක් කරන්න  ක්ලික් කරන්න.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>බාගැනීම් %n පූරණය වෙමින්…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>%1 / %2 බාගැනීම් පූරණය වෙමින්…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1147,6 +1393,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ප්‍රමුඛතාව</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>අඩු</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>සාමාන්‍ය</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>ඉහළ</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>උපරිම</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>මිශ්‍ර</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>දුර්ලභ</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>සාමාන්‍ය</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>ඉහළ ප්‍රමුඛතාව</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>මඟ හැරුණු</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>නොතිබෙන</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 කොටස්</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 බාගත කළ</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 බාගත වෙමින්</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 මඟ හැරිණි</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>කොටස් දත්ත නොමැත</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>මඟ හැරිණි (ගොනුව තෝරා නැත)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>බාගත වෙමින් - කොටස් %1% ලැබිණි</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>නොමැත - කිසිදු සමකරුවෙකුට මෙම කොටස නැත</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>අඩුයි - සමකරුවන් %nට ඇත</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(ඉහළ ප්‍රමුඛතාව)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>කොටස #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>ටොරන්ට් දත්ත ගෙනයන්න...</translation>
@@ -3395,8 +3729,8 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <translation>හිස්ව තබන්න පෙරනිමි සුරැකුම් මාර්ගය භාවිතා කිරීමට</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>සොයන්න...</translation>
+            <source>Browse…</source>
+            <translation>පිරික්සන්න…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3907,6 +4241,10 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <translation>&quot;ගොනු තොරතුරු&quot; සංවාදය පෙන්වමින් වහාම බාගැනීම අරඹන්න</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>ගොනු පාරදත්ත සමඟ විස්තර ක්ෂේත්‍රය ස්වයං-පුරවන්න (බිට් අනුපාතය, විභේදනය, කෝඩෙක්, ආදිය)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>ටොරන්ට් පාරදත්ත බාගැනීමේදී සමූහ සිතියම පෙන්වන්න</translation>
         </message>
@@ -4109,10 +4447,6 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <translation>⚠ බ්‍රවුසර ස්වයං-බාගැනීම් ලැයිස්තුවේ නැත: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>පිරික්සන්න</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>ටොරන්ට් පාරදත්ත සංවාදය පෙරනිමියෙන් අභිරුචි සුරැකුම් ෆෝල්ඩරයක් භාවිතා කිරීමට සකසා ඇති විට භාවිතා කරන මතක තබාගත් අභිරුචි ටොරන්ට් ෆෝල්ඩරය මෙයයි.</translation>
         </message>
@@ -4229,16 +4563,16 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <translation>තත්ත්ව තීරුවේ වේගය පෙන්වන්න</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>තත්ත්ව තීරුවේ ඇස්ත. සබැඳි පරි. පෙන්වන්න</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>ගෝලීය BitTorrent පරිශීලකයින් ඇස්තමේන්තු කිරීමට DHT node-ID ඝනත්වය භාවිතා කරයි. නව අනන්‍ය node-ID නිරීක්ෂණය වන විට විශ්වාසනීයත්වය ඉහළ යයි; තත්ත්ව තීරුවේ * සලකුණක් යනු ඇස්තමේන්තුව තවමත් අඩු විශ්වාසනීය බවයි.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>තත්ත්ව තීරුවේ අනුපාතය පෙන්වන්න</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>තත්ත්ව තීරුවේ ටොරන්ට් සම්බන්ධතා පෙන්වන්න</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>තත්ත්ව තීරුවේ DHT නෝඩ් පෙන්වන්න</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4501,20 +4835,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>අභිරුචි බිට්ටොරන්ට් පරිශීලක නියෝජිත</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>ජාල ඇඩැප්ටරයට බැඳෙන්න</translation>
+            <source>Network interface</source>
+            <translation>ජාල අතුරුමුහුණත</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>මෙම ඇඩැප්ටරය ටොරන්ට් ගමනාගමනය සඳහා අගුළු දමා ඇත. ඔබගේ VPN විසන්ධි වුවහොත් හෝ ඇඩැප්ටරය ඉවත් වුවහොත්, Stellar පෙරනිමි මාර්ගය භාවිතා කිරීම නවතා ඔබගේ ටොරන්ට් වලට වෙනත් සම්බන්ධතාවයකට කාන්දු වීම වෙනුවට ජාල ප්‍රවේශය අහිමි වේ.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>ටොරන්ට් ගමනාගමනය මෙම අතුරුමුහුණතට අගුළු දමා ඇත. ඔබගේ VPN විසන්ධි වුවහොත් හෝ අතුරුමුහුණත ඉවත් වුවහොත්, Stellar වෙනත් සම්බන්ධතාවයකට කාන්දු වීම වෙනුවට ටොරන්ට් විරාම කරයි. සියලුම ටොරන්ට් ගමනාගමනය, IPv6 ඇතුළුව, VPN හරහා යොමු කිරීමට ඔබගේ VPN ඇඩැප්ටරයට බැඳ තබන්න.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>ඇඩැප්ටර බැඳීමක් නැත. ටොරන්ට් ගමනාගමනය පද්ධති මාර්ගය අනුගමනය කරයි.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>ඕනෑම අතුරුමුහුණතක්: ටොරන්ට් ගමනාගමනය ඔබගේ අනෙකුත් යෙදුම් මෙන් පද්ධති මාර්ගය අනුගමනය කරයි. VPN ඔබගේ සක්‍රිය සම්බන්ධතාවය නම් එය VPN හරහා යයි; VPN බිඳ වැටුණහොත්, ගමනාගමනය සාමාන්‍ය සම්බන්ධතාවය මත දිගටම පවතී. දැඩි VPN-පමණක් බැඳීම සඳහා නිශ්චිත ඇඩැප්ටරයක් තෝරන්න.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>ජාල ඇඩැප්ටර බැඳීම Stellar හට ටොරන්ට් ගමනාගමනය තෝරාගත් ඇඩැප්ටරය හරහා පමණක් යැවීමට සහ ලැබීමට පවසයි. VPN සම්බන්ධ නොවූ විට අහම්බෙන් ගමනාගමන කාන්දු වීම් වළක්වන බැවින් මෙය VPN පරිශීලකයින්ට විශේෂයෙන් ප්‍රයෝජනවත් වේ.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>බැඳී ඇති විට UPnP, NAT-PMP සහ දේශීය සේවා සොයාගැනීමට ඉඩ දෙන්න</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>මේවා ඔබගේ දේශීය රවුටරය සමඟ කතා කරන අතර උමඟ වටා ඔබගේ සවන්දීමේ තොට නිරාවරණය කළ හැකිය. මෙය සක්‍රීය කරන්නේ VPN එකකට නොව විශ්වාසදායක LAN ඇඩැප්ටරයකට බැඳී ඇති විට පමණි.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>බැඳී ඇති විට UPnP, NAT-PMP සහ දේශීය සේවා සොයාගැනීම අක්‍රීය කර ඇත, මන්ද ඒවා දේශීය රවුටරය සමඟ කතා කරන අතර උමඟ වටා ඔබගේ සවන්දීමේ තොට නිරාවරණය කරනු ඇත.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4969,12 +5311,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>හරි</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>පෙරනිමි මාර්ගය</translation>
+            <source>Any interface</source>
+            <translation>ඕනෑම අතුරුමුහුණතක්</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>OS ට ක්‍රියාකාරී ජාල ඇඩැප්ටරය තෝරා ගැනීමට ඉඩ දෙන්න.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>පද්ධති මාර්ගය අනුගමනය කරන්න (ඔබගේ අනෙකුත් යෙදුම් භාවිතා කරන).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5053,8 +5395,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>මූලාශ්‍රය: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>මූලාශ්ර URL තවමත් හැඹිලිගත නොවී. update.json වෙතින් IPtoCityDB හැඹිලිගත කිරීමට යාවත්කාලීන පරීක්ෂා කරන්න.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>යාවත්කාලීන කළ විට db-ip.com වෙතින් ස්වයංක්‍රීයව විසඳන ලදී.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5234,22 +5576,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>අසීමිත</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT අක්‍රියයි</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>සබැඳි (අඩු විශ්වාසනීයත්වය)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>සබැඳි</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>ඇස්තමේන්තු කරමින්… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>ඊළඟ &gt;&gt;</translation>
         </message>
@@ -5258,6 +5584,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 Click to open Statistics</source>
             <translation>සියලු කාල බෙදාගැනීමේ අනුපාතය
 සංඛ්‍යාලේඛන විවෘත කිරීමට ක්ලික් කරන්න</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>සම්පූර්ණ ටොරන්ට් සමකාලීන සම්බන්ධතා</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT නෝඩ්</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5697,6 +6031,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ප්‍රමුඛතාව</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>අඩු</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>සාමාන්‍ය</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>ඉහළ</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>උපරිම</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>මිශ්‍ර</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>සුරකින ස්ථානය</translation>
@@ -6458,6 +6816,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>වීඩියෝ බාගැනීම</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>බාගත සීමා ඉක්මවා ඇත!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1 සිට %2 දක්වා ඔබ %3 MB බාගත කළා. &quot;%4&quot; හි සියලු බාගැනීම් නවතා ඇත්තේ ඔබ සෑම %6 කට වරක් %5 MB බාගැනීමේ සීමාව ඉක්මවා ඇති නිසාය.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>සියලු නැවතුණු බාගැනීම් %1 ට ස්වයංක්‍රීයව නැවත ආරම්භ වනු ඇත (දැන් සිට %2). වහාම නැවත ආරම්භ කිරීමට, බාගැනීම් සීමා සැකසුම වෙනස් කර Resume ඔබන්න.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>දැන්</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>පැය 1</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 පැය</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>විනාඩි 1</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 මිනිත්තු</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>මිනිත්තුවකට වඩා අඩු</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>සහ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>හරි</translation>
         </message>
     </context>
 </TS>

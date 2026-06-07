@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet Link ή Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Δέχεται συνδέσμους HTTP/HTTPS/FTP, magnet ή infohash torrent.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Αποτυχία σύνδεσης ελέγχου FTP: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>Η σύνδεση ελέγχου FTP έκλεισε απροσδόκητα.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Λήξη χρόνου σύνδεσης ελέγχου FTP.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Κακοδιατυπωμένη απάντηση FTP.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Άρνηση αποστολής εντολής FTP με ενσωματωμένη νέα γραμμή.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>Ο διακομιστής FTP αρνήθηκε τη σύνδεση</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>Απαιτείται FTPS αλλά ο διακομιστής δεν υποστηρίζει AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Αποτυχία σύνδεσης FTP</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Η προστασία δεδομένων FTPS (PBSZ) απορρίφθηκε.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Η προστασία δεδομένων FTPS (PROT P) απορρίφθηκε.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>Ο διακομιστής FTP απέρριψε τη δυαδική λειτουργία (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Δεν ήταν δυνατή η είσοδος σε παθητική λειτουργία FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>Ο διακομιστής FTP δεν υποστηρίζει συνέχιση (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>Ο διακομιστής FTP απέρριψε το αρχείο</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Μη αναμενόμενη απάντηση FTP στο RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Η μεταφορά FTP ματαιώθηκε από τον διακομιστή</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Δεν ήταν δυνατή η ανάλυση της απάντησης παθητικής λειτουργίας FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Η διεύθυνση παθητικής λειτουργίας FTP απορρίφθηκε για λόγους ασφαλείας.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Αδυναμία ανοίγματος σύνδεσης δεδομένων FTP.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>Αποτυχία χειραψίας TLS: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Μη έγκυρη διαδρομή FTP.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Αδυναμία ανοίγματος αρχείου τμήματος: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Αποτυχία εγγραφής δίσκου: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Η μεταφορά FTP διακόπηκε.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Το τμήμα FTP %1 απέτυχε μετά από %2 προσπάθειες.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Δεν υπάρχει άδεια εγγραφής για τον κατάλογο λήψης: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Η Stellar εκκινεί...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Συνδεδεμένο με %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Πέρασαν ήδη μεσάνυχτα;</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Ακόμα ξύπνιος;</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Η νύχτα είναι νέα!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Δεν κοιμάσαι;</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Καλημέρα!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Ξύπνα και λάμψε!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Καλημέρα της καλημέρας!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Καλημέρα! Ο καφές βράζει.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Καλό απόγευμα!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Λήψεις στο διάλειμμα;</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Μεσημέρι κιόλας!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Ελπίζω η μέρα σου να πηγαίνει καλά!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Καλό απόγευμα!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Καλό βράδυ!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Χαλαρώνεις;</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Βράδυ!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Ελπίζω να είχες καλή μέρα!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Δουλεύεις αργά;</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Ξενύχτι;</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Βραδινή συνεδρία!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Μην ξεχνάς να ξεκουραστείς!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Καλώς όρισες πίσω!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Έτοιμος όταν είσαι!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Χαίρομαι που σε βλέπω!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Πάμε για λήψεις!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Μας έλειψες!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Πίσω στη δράση!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Οι λήψεις σου περιμένουν!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Να συνεχίσεις από εκεί που σταμάτησες;</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Τι κατεβάζουμε σήμερα;</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Συνδεδεμένο σε %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Δεν επιλέχθηκε αρχείο αντιγράφου για εισαγωγή.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Συνδεδεμένο στο %1 (εκτός σύνδεσης — torrents σε παύση)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Συνδεδεμένο σε %1 (εκτός σύνδεσης - torrents σε παύση)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Διαθέσιμη ενημέρωση! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Έλεγχος ενημερώσεων</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Όλα σε έναν φάκελο</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Περιήγηση...</translation>
+            <source>Browse…</source>
+            <translation>Περιήγηση…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Εκ νέου αποθήκευση στο τελευταίο μονοπάτι</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Περιήγηση...</translation>
+            <source>Browse…</source>
+            <translation>Περιήγηση…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Λήψη</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Κλικ για αντιγραφή</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 Πατήστε Προσθήκη URL για έναρξη.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Φόρτωση %n λήψη(ων)…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Φόρτωση %1 / %2 λήψεων…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1147,6 +1393,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Προτεραιότητα</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Χαμηλή</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Κανονική</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Υψηλή</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Μέγιστο</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Μικτό</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Σπάνιο</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Κοινό</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Υψηλή προτεραιότητα</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Παραλείφθηκε</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Μη διαθέσιμο</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 κομμάτια</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 λήφθηκε</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 λήψη</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 παραλείφθηκε</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Δεν υπάρχουν δεδομένα τμήματος</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Παραλείφθηκε (μη επιλεγμένο αρχείο)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Λήψη - %1% των μπλοκ ελήφθησαν</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Μη διαθέσιμο - κανένας ομότιμος δεν έχει αυτό το τμήμα</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Λείπει - %n ομότιμος/οι το έχουν</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(υψηλή προτεραιότητα)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Τμήμα #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Μετακίνηση δεδομένων torrent σε...</translation>
@@ -3390,8 +3724,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Αφήστε κενό για προεπιλεγμένο φάκελο</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Περιήγηση...</translation>
+            <source>Browse…</source>
+            <translation>Περιήγηση…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3902,6 +4236,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Έναρξη λήψης αμέσως με εμφάνιση διαλόγου &quot;Πληροφορίες Αρχείου Λήψης&quot;</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Αυτόματη συμπλήρωση περιγραφής με μεταδεδομένα αρχείου (bitrate, ανάλυση, κωδικοποιητής, κλπ.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Εμφάνιση χάρτη swarm κατά τη λήψη μεταδεδομένων torrent</translation>
         </message>
@@ -4104,10 +4442,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ Δεν υπάρχει στη λίστα αυτόματων λήψεων του προγράμματος περιήγησης: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Περιήγηση</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Αυτός είναι ο αποθηκευμένος φάκελος torrent που χρησιμοποιείται όταν η διαλογική οθόνη μεταδεδομένων torrent έχει οριστεί να χρησιμοποιεί προεπιλεγμένα προσαρμοσμένο φάκελο αποθήκευσης.</translation>
         </message>
@@ -4224,16 +4558,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Εμφάνιση ταχύτητας στη μπάρα κατάστασης</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Εμφάνιση εκτιμώμενων online χρηστών στη μπάρα κατάστασης</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Χρησιμοποιεί την πυκνότητα node-ID DHT για εκτίμηση παγκόσμιων χρηστών BitTorrent. Η εμπιστοσύνη αυξάνεται καθώς παρατηρούνται περισσότερα μοναδικά node IDs· ένα trailing * στη μπάρα κατάστασης σημαίνει ότι η εκτίμηση είναι ακόμα χαμηλής εμπιστοσύνης.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Εμφάνιση λόγου στη μπάρα κατάστασης</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Εμφάνιση συνδέσεων torrent στη γραμμή κατάστασης</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Εμφάνιση κόμβων DHT στη γραμμή κατάστασης</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4496,20 +4830,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Προσαρμοσμένο user agent bittorrent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Δέσιμο με προσαρμογέα δικτύου</translation>
+            <source>Network interface</source>
+            <translation>Διεπαφή δικτύου</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Αυτός ο προσαρμογέας είναι κλειδωμένος για κίνηση torrent. Αν η VPN αποσυνδεθεί ή ο προσαρμογέας χαθεί, το Stellar σταματά να χρησιμοποιεί την προεπιλεγμένη διαδρομή και τα torrents χάνουν πρόσβαση στο δίκτυο αντί να διαρρέουν σε άλλη σύνδεση.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Η κίνηση torrent κλειδώνεται σε αυτή τη διεπαφή. Αν αποσυνδεθεί το VPN ή χαθεί η διεπαφή, το Stellar διακόπτει τα torrent αντί να διαρρεύσει σε άλλη σύνδεση. Συνδεθείτε στον προσαρμογέα VPN για δρομολόγηση όλης της κίνησης, συμπεριλαμβανομένου IPv6, μέσω VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Χωρίς δέσιμο προσαρμογέα. Η κίνηση torrent ακολουθεί τη διαδρομή συστήματος.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Οποιαδήποτε διεπαφή: η κίνηση torrent ακολουθεί τη διαδρομή συστήματος, όπως οι άλλες εφαρμογές. Αν το VPN είναι ενεργό, περνά μέσω VPN· αν πέσει, συνεχίζει στην κανονική σύνδεση. Επιλέξτε συγκεκριμένο προσαρμογέα για αυστηρή σύνδεση μόνο μέσω VPN.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Το δέσιμο προσαρμογέα δικτύου λέει στο Stellar να στέλνει και να λαμβάνει κίνηση torrent μόνο μέσω του επιλεγμένου προσαρμογέα. Είναι ιδιαίτερα χρήσιμο για χρήστες VPN γιατί αποτρέπει τυχαίες διαρροές κίνησης όταν η VPN δεν είναι συνδεδεμένη.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Να επιτρέπονται UPnP, NAT-PMP και Local Service Discovery όταν είναι δεσμευμένο</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Αυτά επικοινωνούν με τον τοπικό δρομολογητή και μπορούν να εκθέσουν τη θύρα ακρόασης γύρω από τη σήραγγα. Ενεργοποιήστε το μόνο όταν συνδέεστε σε αξιόπιστο προσαρμογέα LAN, όχι VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>Τα UPnP, NAT-PMP και Local Service Discovery απενεργοποιούνται όταν είναι δεσμευμένα, καθώς επικοινωνούν με τον τοπικό δρομολογητή και θα εξέθεταν τη θύρα ακρόασης γύρω από τη σήραγγα.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4964,12 +5306,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Προεπιλεγμένη διαδρομή</translation>
+            <source>Any interface</source>
+            <translation>Οποιαδήποτε διεπαφή</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Αφήστε το OS να επιλέξει τον ενεργό προσαρμογέα δικτύου.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Ακολουθεί τη διαδρομή συστήματος (χρησιμοποιείται από άλλες εφαρμογές).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5048,8 +5390,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Πηγή: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Η διεύθυνση URL πηγής δεν έχει προσωρινά αποθηκευτεί. Χρησιμοποιήστε Έλεγχος ενημερώσεων.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Επίλυση αυτόματα από db-ip.com κατά την ενημέρωση.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5229,22 +5571,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>απεριόριστο</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT ανενεργό</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> online (χαμηλή αξιοπιστία)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Εκτίμηση… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>επόμενο &gt;&gt;</translation>
         </message>
@@ -5253,6 +5579,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 Click to open Statistics</source>
             <translation>Συνολικός λόγος κοινοποίησης
 Κλικ για στατιστικά</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Συνδέσεις ομότιμων torrent</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>Κόμβοι DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5692,6 +6026,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Προτεραιότητα</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Χαμηλή</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Κανονική</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Υψηλή</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Μέγιστη</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Μικτή</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Αποθήκευση σε</translation>
@@ -6453,6 +6811,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Λήψη βίντεο</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Υπέρβαση ορίων λήψης!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Από %1 έως %2 κατεβάσατε %3 MB. Όλες οι λήψεις στο &quot;%4&quot; σταμάτησαν επειδή ξεπεράσατε το όριο λήψης των %5 MB κάθε %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Όλες οι σταματημένες λήψεις θα συνεχιστούν αυτόματα στις %1 (σε %2 από τώρα). Για άμεση συνέχιση, αλλάξτε τα Όρια Λήψης και πατήστε Συνέχιση.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>τώρα</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 ώρα</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 ώρες</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 λεπτό</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 λεπτά</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>λιγότερο από λεπτό</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>και</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

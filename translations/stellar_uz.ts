@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet havola yoki Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP havolalar, magnet havolalar yoki torrent infohash qabul qilinadi.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP boshqaruv ulanishi muvaffaqiyatsiz: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP boshqaruv ulanishi kutilmaganda uzildi.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP boshqaruv ulanishi vaqti tugadi.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Noto‘g‘ri FTP javobi.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Yangi qator bilan FTP buyrug‘ini yuborish rad etildi.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP server ulanishni rad etdi</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS talab qilinadi, lekin server AUTH TLS ni qo‘llab-quvvatlamaydi.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP kirish muvaffaqiyatsiz</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS ma'lumotlar himoyasi (PBSZ) rad etildi.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS ma'lumotlar himoyasi (PROT P) rad etildi.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP serveri ikkilik rejimni (TYPE I) rad etdi.</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTP passiv rejimiga kira olmadi.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP serveri davom ettirishni (REST) qo‘llab-quvvatlamaydi.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP server faylni rad etdi</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>RETR ga kutilmagan FTP javobi</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP uzatish server tomonidan to‘xtatildi</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>FTP passiv rejim javobini tahlil qilib bo‘lmadi.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>FTP passiv rejim manzili xavfsizlik sababli rad etildi.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTP ma'lumot ulanishini ochib bo'lmadi.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS qo'l siqish amalga oshmadi: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Noto'g'ri FTP yo'li.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Qism faylni ochib bo'lmadi: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Diskka yozish amalga oshmadi: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP uzatish qisqartirildi.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP segment %1 %2 qayta urinishdan keyin amalga oshmadi.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Yuklab olish katalogiga yozish ruxsati yo'q: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar ishga tushmoqda...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>%1 ga ulandi</translation>
+            <source>Past midnight already?</source>
+            <translation>Yarim tundan o'tib ketdimi?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Haliyam ishlayapsizmi?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Tun endi boshlanyapti!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Uyqu kelmayaptimi?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Xayrli tong!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Uygʻoning, tong otdi!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Tongning eng yaxshi vaqti!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Xayrli tong! Kofe tayyor.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Xayrli kun!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Tushlik paytida yuklab olasizmi?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Kun yarmi boʻldi ham!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Kuningiz yaxshi oʻtayotgan boʻlsin!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Hayrli kun!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Xayrli kech!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Dam olyapsizmi?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Kech!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Kuningiz yaxshi o'tgan bo'lsa!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Kech ishlayapsizmi?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Uyqudan o'tib ketdingizmi?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Kechki sessiya!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Dam olishni unutmang!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Xush kelibsiz!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Tayyorman, boshlaymiz!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Sizni ko‘rganim yaxshi!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Yuklab olishni boshlaymiz!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Sizni sog‘indim!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Yana ishga tushdik!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Yuklamalaringiz kutmoqda!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>To‘xtagan joydan davom etamizmi?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Bugun nimani yuklaymiz?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>%1 ga bog‘langan</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Import uchun zaxira fayli tanlanmagan.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ %1 ga bog‘langan (oflayn — torrentlar to‘xtatilgan)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>%1 ga bog‘langan (oflayn - torrentlar to‘xtatilgan)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Yangilanish mavjud! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Yangilanishlar tekshirilmoqda</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Barcha fayllar bir jildga</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Ko‘rib chiqish...</translation>
+            <source>Browse…</source>
+            <translation>Ko‘rib chiqish…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Qo‘lda ishga tushiring: flatpak override --user --talk-name=org.freedesktop.Fl
             <translation>Oxirgi saqlash yo'lini eslab qoling</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Brauzer...</translation>
+            <source>Browse…</source>
+            <translation>Ko‘rib chiqish…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Qo‘lda ishga tushiring: flatpak override --user --talk-name=org.freedesktop.Fl
         <message>
             <source>Download</source>
             <translation>Yuklash</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Nusxalash uchun bosing</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 Boshlash uchun URL qo'shing.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Yuklanmoqda %n yuklama (lar)…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>%1 / %2 yuklamalar yuklanmoqda…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1147,6 +1393,94 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Ustuvorlik</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Past</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>O‘rtacha</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Yuqori</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimal</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Aralash</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Kam uchraydi</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Oddiy</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Yuqori ustuvor</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>O‘tkazildi</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Mavjud emas</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 qism</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 yuklandi</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 yuklanmoqda</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 oʻtkazib yuborildi</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Parcha maʼlumotlari mavjud emas</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Oʻtkazib yuborildi (fayl tanlanmagan)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Yuklanmoqda - bloklarning %1% qabul qilindi</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Mavjud emas - bu parcha hech bir peerda yoʻq</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Yetishmayapti - %n peerda mavjud</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(yuqori ustuvorlik)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Parcha #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Torrent ma'lumotini ko'chirish...</translation>
@@ -3381,8 +3715,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Bo'sh qoldirish uchun standart yo'lni ishlatish</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Ko‘rib chiqish...</translation>
+            <source>Browse…</source>
+            <translation>Koʻrib chiqish…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3893,6 +4227,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Yuklash ma'lumotlar oynasini ko'rsatib darhol yuklash</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Tavsif maydonini fayl metamaʼlumotlari bilan avtotoʻldirish (bitreyt, ruxsat, kodek va h.k.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Torrent ma'lumotlari yuklanayotganda guruh xaritasini ko'rsatish</translation>
         </message>
@@ -4095,10 +4433,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Brauzer avtomatik yuklash ro'yxatida yo'q: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Brauzer</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Bu torrent ma'lumotlar bazasi uchun maxsus saqlash papkasi.</translation>
         </message>
@@ -4215,16 +4549,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Holat panelida tezlik</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Holat panelida foydalanuvchilar</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>BitTorrent foydalanuvchilari</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Holat panelida nisbat</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Status satrida torrent ulanishlarini ko‘rsatish</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Status satrida DHT tugunlarini ko‘rsatish</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4487,20 +4821,28 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <translation>Maxsus BitTorrent foydalanuvchi agenti</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Tarmoq adapteriga ulanish</translation>
+            <source>Network interface</source>
+            <translation>Tarmoq interfeysi</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Ushbu adapter qulflangan: VPN uzilsa yoki adapter yo'qolsa, Stellar standart yo'lni o'zgartirib, torrentlarni boshqa ulanish orqali oqimini o'zgartirmaydi.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Torrent trafigi shu interfeysga bog‘langan. Agar VPN uzilib qolsa yoki interfeys yo‘qolsa, Stellar torrentlarni to‘xtatib, boshqa ulanishga sizib chiqishni oldini oladi. Barcha torrent trafigini, jumladan IPv6 ni VPN orqali yo‘naltirish uchun VPN adapteringizga bog‘lang.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Adapter bog'lanmagan: Torrent oqimi tizim yo'li bo'yicha o'tadi.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Har qanday interfeys: torrent trafigi boshqa ilovalaringiz kabi tizim marshruti bo‘yicha boradi. Agar VPN faol ulanish bo‘lsa, u VPN orqali o‘tadi; agar VPN uzilib qolsa, trafik oddiy ulanishda davom etadi. Qat’iy VPN-bog‘lash uchun maxsus adapterni tanlang.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Adapter bog'lash Stellar-ni faqat tanlangan adapter orqali torrent oqimini yuborish va qabul qilishga majbur qiladi. Bu VPN foydalanuvchilar uchun juda foydali, chunki VPN ulanmaganida tasodifiy oqim oqimini oldini oladi.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Bog‘langan holda UPnP, NAT-PMP va Mahalliy xizmat kashfiyotiga ruxsat berish</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Ular mahalliy routeringiz bilan gaplashadi va tinglash portingizni tunnel atrofida oshkor qilishi mumkin. Buni faqat ishonchli LAN adapteriga bog‘langanda yoqing, VPN emas.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>Bog‘langan holda UPnP, NAT-PMP va Mahalliy xizmat kashfiyoti o‘chirilgan, chunki ular mahalliy router bilan gaplashib, tinglash portingizni tunnel atrofida oshkor qiladi.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4955,12 +5297,12 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Asosiy yo'l</translation>
+            <source>Any interface</source>
+            <translation>Har qanday interfeys</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>OS tomonidan faol tarmoq adapterini tanlatish</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Tizim marshrutiga amal qiling (boshqa ilovalaringiz ishlatadi).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5039,8 +5381,8 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <translation>Manba: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Manba URL hali kesh qilinmagan. IPtoCityDB ni update.json dan kesh qilish uchun Yangilanishlarni tekshirishdan foydalaning.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Yangilaganda db-ip.com saytidan avtomatik aniqlanadi.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5220,22 +5562,6 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <translation>cheksiz</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT o‘chiq</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>online (past ishonch)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Baholanmoqda… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>keyingi &gt;&gt;</translation>
         </message>
@@ -5243,6 +5569,14 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Uslubiy ulashuv</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Jami torrent ulanishlari</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT tugunlari</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5682,6 +6016,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Ustuvorlik</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Past</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Oddiy</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Yuqori</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimal</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Aralash</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Saqlash joyi</translation>
@@ -6442,6 +6800,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Video yuklab olish</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Yuklab olish chegarasi oshdi!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1 dan %2 gacha %3 MB yuklab oldingiz. &quot;%4&quot; dagi barcha yuklashlar to‘xtatildi, chunki siz har %6 da %5 MB yuklash chegarasidan oshib ketdingiz.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Barcha to‘xtatilgan yuklashlar %1 da avtomatik qayta tiklanadi (%2 dan keyin). Darhol davom ettirish uchun Yuklash Cheklovlari sozlamasini o‘zgartiring va Davom etish tugmasini bosing.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>hozir</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 soat</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 soat</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 daqiqa</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 daqiqa</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>bir daqiqadan kam</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>va</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

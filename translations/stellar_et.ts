@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet Link või Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Võtab vastu HTTP/HTTPS/FTP linke, magnetlinke või torrenti infohashi.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP juhtühendus ebaõnnestus: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP juhtühendus katkes ootamatult.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP juhtühendus aegus.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Vigane FTP vastus.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Keeldutakse saatmast FTP käsku, mis sisaldab manustatud reavahetust.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP-server keeldus ühendusest</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS on nõutav, kuid server ei toeta AUTH TLS-i.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP sisselogimine ebaõnnestus</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS-andmete kaitse (PBSZ) lükati tagasi.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS-andmekaitse (PROT P) lükati tagasi.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP-server keelas binaarrežiimi (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Ei saanud siseneda FTP passiivsesse režiimi.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP-server ei toeta jätkamist (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP-server lükkas faili tagasi</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Ootamatu FTP vastus RETR-ile</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP ülekanne katkestati serveri poolt</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Ei suutnud FTP passiivse režiimi vastust parsida.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>FTP passiivrežiimi aadress lükati turvalisuse huvides tagasi.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTP andmesideühendust ei saanud avada.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS-käepigistus ebaõnnestus: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Vigane FTP-tee.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Osafaili ei saa avada: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Kettale kirjutamine ebaõnnestus: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP-ülekanne katkestati.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP segment %1 nurjus pärast %2 katset.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Allalaadimiskataloogile puudub kirjutusõigus: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar käivitub...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Seotud %1-ga</translation>
+            <source>Past midnight already?</source>
+            <translation>Kas juba üle südaöö?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Kas ikka veel üleval?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Öö on alles noor!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Ei saa und?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Tere hommikust!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Ärka ja sära!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Hommiku parim osa!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Hommik! Kohv tõmbab.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Tere päevast!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Lõunapausi allalaadimised?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Keskpäev juba!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Loodan, et päev läheb hästi!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Tere pärastlõunat!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Head õhtut!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Lõpetad päeva?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Õhtust!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Loodan, et päev läks hästi!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Töötad hilja?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Üleval üle uneaja?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Hilisõhtune sessioon!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Ära unusta puhata!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Tere tulemast tagasi!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Valmis, kui oled!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Tore sind näha!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Asume allalaadimisele!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Igatsesin sind!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Jälle töös!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Su allalaadimised ootavad!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Jätka sealt, kus pooleli jäid?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Mida täna haarame?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Seotud: %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Imporditavat varufaili ei valitud.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Seotud %1 (ühenduseta — torrentid peatatud)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Seotud: %1 (ühenduseta – torrentid peatatud)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Uuendus saadaval! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Uuenduste kontrollimine</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Kõik failid ühte kausta</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Sirvi...</translation>
+            <source>Browse…</source>
+            <translation>Sirvi…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -632,8 +874,8 @@ Käivita käsitsi: flatpak override --user --talk-name=org.freedesktop.Flatpak o
             <translation>Note: type file extensions separated by space (e.g. avi mpg mpeg)</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Keep UNTRANSLATED: yt-dlp, ffmpeg, BitTorrent, TCP, μTP, DHT, VPN, RSS, URL, IP, SOCKS5, HTTP, HTTPS, JS, Stellar, YouTube, Windows, macOS, Linux, Deno, Node.js, Bun, QuickJS, GNU GPL.</translation>
+            <source>Browse…</source>
+            <translation>Sirvi…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -735,6 +977,10 @@ Reviewing conciseness and UI feel:
         <message>
             <source>Download</source>
             <translation>Laadimine</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Klõpsa kopeerimiseks</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1041,8 +1287,8 @@ Click  Add URL  to start.</source>
             <translation>Alla laadimisi veel pole. Alustamiseks klõpsake lisamiseks URL.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Laaditakse %n alla laadimist…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Laadin %1 / %2 allalaadimist…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1161,6 +1407,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioriteet</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Madal</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Tavaline</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Kõrge</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimaalne</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Segatud</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Haruldane</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Tavaline</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Kõrge prioriteet</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Vahele jäetud</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Pole saadaval</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 tükki</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 alla laaditud</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 allalaadimisel</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 vahele jäetud</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Pole tüki andmeid saadaval</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Vahele jäetud (faili pole valitud)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Allalaadimine – %1% plokkidest vastu võetud</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Pole saadaval – ühelgi partneril pole seda osa</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Puudu – %n kasutajal on see olemas</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(kõrge prioriteet)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Tükk #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Torraandmete liigutamine...</translation>
@@ -3401,8 +3735,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Jäta tühi, et kasutada vaikimisi salvestuslooki</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Sirvi...</translation>
+            <source>Browse…</source>
+            <translation>Sirvi…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3913,6 +4247,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Alusta laadimist kohe, näidates 'Failiinfo' dialoogi</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Täida kirjelduse väli automaatselt faili metaandmetega (bitikiirus, eraldusvõime, koodek jne).</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Näita karjakaarti torrenti metadata laadimisel</translation>
         </message>
@@ -4115,10 +4453,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ Puudub brauseri automaatlaetavate failide loendis: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Sirvi</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>See on mäletatud kohandatud torrenti kaust, mida kasutatakse, kui torrenti metaandmete dialoog on vaikimisi seadistatud kasutama kohanduvat salvestuskausta.</translation>
         </message>
@@ -4235,16 +4569,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kiirus</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Kasutajad</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>DHT tihedus</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Ratio</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Kuva torrent-ühendused olekuribal</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Kuva DHT sõlmed olekuribal</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4502,20 +4836,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Kohandatud BitTorrent kasutajaagent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Seo võrgukaardile</translation>
+            <source>Network interface</source>
+            <translation>Võrguliides</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>See kaart on lukustatud torrenti liikluse jaoks. Kui VPN katkeb või kaart kaob, lülitub Stellar vaikimisi reedelt eemale ja torrentid kaotavad võrguühenduse, mitte ei lekita teisele ühendusele.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Torrentiliiklus on lukustatud sellele liidesele. Kui sinu VPN katkeb või liides kaob, peatab Stellar torrentid, selle asemel et lekkida teisele ühendusele. Seo oma VPN-adapteriga, et suunata kogu torrentiliiklus, sealhulgas IPv6, läbi VPN-i.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Puudub seos võrgukaardiga. Torrenti liiklus järgib süsteemi reed.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Iga liides: torrentiliiklus järgib süsteemi marsruuti, nagu teisedki rakendused. Kui VPN on aktiivne ühendus, läbib liiklus VPN-i; kui VPN katkeb, jätkub liiklus tavalise ühenduse kaudu. Vali rangeks VPN-iga sidumiseks konkreetne adapter.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Võrgukaardi seos suunab Stellari saatma ja vastama torrenti liiklusele ainult valitud kaardi kaudu. See on eriti kasulik VPNi kasutajatele, kuna see hoiab ära juhusliku liikluse lekkimist, kui VPN ei ole ühendatud.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Luba UPnP, NAT-PMP ja kohaliku teenuse tuvastamine, kui seotud</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Need räägivad teie kohaliku ruuteriga ja võivad paljastada teie kuulamisporti tunneli kaudu. Luba see ainult siis, kui seod usaldusväärse LAN-adapteriga, mitte VPN-iga.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP ja kohaliku teenuse avastamine on seotud olekus keelatud, kuna need suhtlevad kohaliku ruuteriga ja paljastaksid teie kuulamisporti tunneli kaudu.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4970,12 +5312,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Vaikimisi reed</translation>
+            <source>Any interface</source>
+            <translation>Iga liides</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Lase operatsioonisüsteemil valida aktiivne võrguadapter.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Järgi süsteemi marsruuti (kasutavad teised sinu rakendused).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5054,8 +5396,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Allikas: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Allika URL-i ei ole veel vahetatud. Kasuta 'Uuenduste kontrollimist', et vahetada IPtoCityDB failist update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Lahendatud automaatselt saidilt db-ip.com uuendamisel.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5235,22 +5577,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>piiramatu</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT väljas</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> online (madal kindlus)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Hindamine… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>järgmine &gt;&gt;</translation>
         </message>
@@ -5258,6 +5584,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Koguaja jagamisprotsent</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Torrenti ühenduste arv</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT sõlmed</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5697,6 +6031,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioriteet</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Madal</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Tavaline</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Kõrge</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimaalne</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Segatud</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Salvesta asukohta</translation>
@@ -6457,6 +6815,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Video allalaadimine</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Allalaadimispiirangud ületatud!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1 kuni %2 laadisid alla %3 MB. Kõik allalaadimised kaustas &quot;%4&quot; peatati, sest ületasid allalaadimislimiidi %5 MB iga %6 järel.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Kõik peatatud allalaadimised jätkuvad automaatselt %1 (%2 pärast). Koheseks jätkamiseks muuda allalaadimislimiidi seadet ja vajuta Jätka.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>kohe</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 tund</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 tundi</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 minut</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 minutit</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>vähem kui minut</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>ja</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

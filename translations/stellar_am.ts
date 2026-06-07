@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>ዩአርኤል፣ ማግኔት ሊንክ፣ ወይም ኢንፎሃሽ</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP አገናኞችን፣ ማግኔት አገናኞችን ወይም የቶረንት ኢንፎሃሽ ይቀበላል።</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>የFTP መቆጣጠሪያ ግንኙነት አልተሳካም፦ %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>የFTP መቆጣጠሪያ ግንኙነት ባልተጠበቀ ሁኔታ ተዘግቷል።</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>የFTP መቆጣጠሪያ ግንኙነት ጊዜው አልቋል።</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>የተበላሸ የFTP ምላሽ</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>FTP ትዕዛዝ ከተካተተ አዲስ መስመር ጋር ለመላክ እምቢታ ማድረግ።</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>የFTP አገልጋይ ግንኙነቱን አልተቀበለም</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS ያስፈልጋል ነገር ግን አገልጋዩ AUTH TLSን አይደግፍም</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>የFTP መግቢያ አልተሳካም</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>የFTPS ውሂብ ጥበቃ (PBSZ) ተቀባይነት አላገኘም።</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>የFTPS ውሂብ ጥበቃ (PROT P) ተቀባይነት አላገኘም።</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>የFTP አገልጋይ ሁለትዮሽ ሁነታን (TYPE I) አልተቀበለም።</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>ወደ FTP ተገብሮ ሁነታ መግባት አልተቻለም።</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>የFTP አገልጋይ ቀጣይነትን (REST) አይደግፍም።</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>የFTP አገልጋይ ፋይሉን አልተቀበለም</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>ለRETR ያልተጠበቀ የFTP ምላሽ</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>የFTP ዝውውር በአገልጋዩ ተቋርጧል</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>የFTP ተገብሮ ሁነታ ምላሽ መተንተን አልተቻለም።</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>የFTP ተገብሮ ሁነታ አድራሻ ለደህንነት ሲባል ተቀባይነት አላገኘም።</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>የFTP ዳታ ግንኙነት መክፈት አልተቻለም።</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS መጨባበጥ አልተሳካም፦ %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>ልክ ያልሆነ የFTP ዱካ።</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>ከፊል ፋይል መክፈት አልተቻለም፦ %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ዲስክ መፃፍ አልተሳካም፦ %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>የFTP ዝውውር ተቋርጧል።</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>የFTP ክፍል %1 ከ%2 ሙከራዎች በኋላ አልተሳካም።</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ለማውረጃ ማውጫ የመፃፍ ፍቃድ የለም፦ %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>ስቴላር እየጀመረ ነው...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ ከ%1 ጋር ታስሯል</translation>
+            <source>Past midnight already?</source>
+            <translation>አስቀድሞ እኩለ ሌሊት ሆኗል?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>አሁንም ነቅተሃል?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>ሌሊቱ ገና ነው!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>እንቅልፍ አልወሰደህም?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>እንደምን አደሩ!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>ተነስተህ አብራ!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>የጠዋቱ ጫፍ!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>እንደምን አደሩ! ቡና እየቀቀጠ ነው።</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>እንደምን ዋሉ!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>የምሳ እረፍት ማውረዶች?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>ቀትር ሆኗል!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>ቀንህ በጥሩ ሁኔታ እየሄደ እንደሆነ ተስፋ አደርጋለሁ!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>እንደምን ዋላችሁ!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>መልካም ምሽት!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>እያረፍክ ነው?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>ምሽት ሰላም!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>መልካም ቀን እንደነበረህ ተስፋ አደርጋለሁ!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>ዘግይተህ እየሰራህ ነው?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>የመኝታ ሰዓት አልፏል?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>የሌሊት ስራ!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>ማረፍ አትርሳ!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>እንኳን ደህና መጣህ!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>ስትዘጋጅ ጀምር!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>ስላየሁህ ደስ ብሎኛል!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>እንውረድ!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>ናፍቀኸኝ ነበር!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>እንቀጥል!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>ማውረዶችህ ይጠብቁሃል!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>ካቆምክበት ቀጥል?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>ዛሬ ምን እንያዝ?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>ከ%1 ጋር ታስሯል</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>ወደ ውስጥ የሚገባ ምትኬ ፋይል አልተመረጠም።</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ ከ%1 ጋር ተሳስሯል (ከመስመር ውጪ — ቶረንቶች ቆመዋል)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>ከ%1 ጋር ታስሯል (ከመስመር ውጪ - ቶረንቶች ቆመዋል)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>ዝማኔ አለ! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>ዝማኔዎችን በመፈተሽ ላይ</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>ሁሉንም ፋይሎች ወደ አንድ ዕፀ ፋይል</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>አስስ...</translation>
+            <source>Browse…</source>
+            <translation>አስስ…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>የመጨረሻውን የማስቀመጫ መንገድ አስታውስ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>አስስ...</translation>
+            <source>Browse…</source>
+            <translation>አስስ…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>አውርድ</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>ለመቅዳት ጠቅ ያድርጉ</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 ለመጀመር  አድራሻ አክል  የሚለውን ጠቅ ያድርጉ።</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>%n ማውረድ(ዎችን) በመጫን ላይ…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>%1 / %2 ማውረዶችን በመጫን ላይ…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ቅድሚያ</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>ዝቅተኛ</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>መደበኛ</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>ከፍተኛ</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>ከፍተኛ</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ድብልቅ</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>ብርቅ</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>የተለመደ</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>ከፍተኛ ቅድሚያ</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>የተዘለለ</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>የማይገኝ</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 ቁርጥራጮች</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 የወረደ</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 በማውረድ ላይ</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 ተዘሏል</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>ምንም ክፍል ውሂብ አይገኝም</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>ዘለለ (ፋይል አልተመረጠም)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>የማውረድ - ከተቀበሉት ብሎኮች %1%</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>የማይገኝ - ምንም አቻዎች ይህን ክፍል የላቸውም</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>የጠፋ - %n አቻ(ዎች) አላቸው</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(ከፍተኛ ቅድሚያ)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>ቁራጭ #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>የቶረንት ውሂብ ወደ...</translation>
@@ -3394,8 +3728,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ነባሪ መንገድ ለመጠቀም ባዶ ይተዉ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>ቃኝ...</translation>
+            <source>Browse…</source>
+            <translation>ይቃኙ…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3906,6 +4240,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>«የፋይል መረጃ» መገናኛ እያሳየሁ ወዲያው አውርድ</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>የፋይል ሜታዳታ (ቢትሬት፣ ሪዞሉሽን፣ ኮዴክ፣ ወዘተ.) በመግለጫ መስኩ ላይ በራስ-ሙላ</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>የቶረንት ዲበ ውሂብ ሲወርድ የመንጋ ካርታ አሳይ</translation>
         </message>
@@ -4108,10 +4446,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ በአሳሽ ራስ-ማውረድ ዝርዝር ውስጥ የለም: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>አስስ</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>ይህ የቶረንት ሜታዳታ መገናኛ በነባሪ ብጁ አቃፊ እንዲጠቀም ሲዋቀር የሚጠቀመው የማስታወሻ ብጁ የቶረንት አቃፊ ነው።</translation>
         </message>
@@ -4228,16 +4562,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>በሁኔታ አሞሌ ውስጥ ፍጥነት አሳይ</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>በሁኔታ አሞሌ ውስጥ የተገመቱ የመስመር ላይ ተጠቃሚዎችን አሳይ</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>የDHT መስቀለኛ-መታወቂያ ጥግግት ተጠቅሞ ዓለም አቀፍ የBitTorrent ተጠቃሚዎችን ይገምታል። ልዩ የመስቀለኛ መታወቂያዎች ሲታዩ እምነት ይጨምራል፤ በሁኔታ አሞሌው ላይ ያለው * ግምቱ አሁንም ዝቅተኛ እምነት ያለው መሆኑን ያሳያል።</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>በሁኔታ አሞሌ ውስጥ ምጥጥን አሳይ</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>የቶረንት ግንኙነቶችን በሁኔታ አሞሌ አሳይ</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>የDHT ኖዶችን በሁኔታ አሞሌ አሳይ</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4500,20 +4834,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ብጁ የቢትቶረንት ተጠቃሚ ወኪል</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>ከአውታረ መረብ አስማሚ ጋር አስር</translation>
+            <source>Network interface</source>
+            <translation>የአውታረ መረብ በይነገጽ</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>ይህ አስማሚ ለቶረንት ትራፊክ ተቆልፏል። ቪፒኤንዎ ከተቋረጠ ወይም አስማሚው ከጠፋ፣ ስቴላር ነባሪውን መስመር መጠቀም ያቆማል እና ቶረንቶችዎ ወደ ሌላ ግንኙነት ከመፍሰስ ይልቅ የአውታረ መረብ መዳረሻ ያጣሉ።</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>የቶረንት ትራፊክ በዚህ በይነገጽ ተቆልፏል። VPNዎ ከተቋረጠ ወይም በይነገጹ ከጠፋ፣ ስቴላር ቶረንቶችን ያቆማል እንጂ ወደ ሌላ ግንኙነት አያፈስም። ሁሉንም የቶረንት ትራፊክ፣ IPv6ን ጨምሮ፣ በVPN በኩል ለማዞር ከVPN አስማሚዎ ጋር ያስሩ።</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>ምንም አስማሚ ማሰሪያ የለም። የቶረንት ትራፊክ የስርዓት መስመሩን ይከተላል።</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>ማንኛውም በይነገጽ፦ የቶረንት ትራፊክ ልክ እንደሌሎች መተግበሪያዎችዎ የስርዓት መስመሩን ይከተላል። VPN ንቁ ግንኙነትዎ ከሆነ በVPN በኩል ይሄዳል፤ VPN ከወደቀ፣ ትራፊክ በመደበኛው ግንኙነት ይቀጥላል። ለጥብቅ VPN-ብቻ ትስስር የተወሰነ አስማሚ ይምረጡ።</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>የአውታረ መረብ አስማሚ ማሰሪያ ስቴላር የቶረንት ትራፊክን በተመረጠው አስማሚ ብቻ እንዲልክ እና እንዲቀበል ይነግረዋል። ይህ በተለይ ለቪፒኤን ተጠቃሚዎች ጠቃሚ ነው ምክንያቱም ቪፒኤን ሳይገናኝ ሲቀር ድንገተኛ የትራፊክ ፍሰትን ይከላከላል።</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>UPnP፣ NAT-PMP እና አካባቢያዊ አገልግሎት ፍለጋን ታስሮ እያለ ፍቀድ</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>እነዚህ ከአካባቢያዊ ራውተርዎ ጋር ይነጋገራሉ እና የማዳመጫ ወደብዎን ከዋሻው ዙሪያ ሊያጋልጡ ይችላሉ። ይህን የሚያነቁት ከታመነ LAN አስማሚ ጋር ሲያስሩ ብቻ ነው፣ VPN ካልሆነ።</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP፣ NAT-PMP እና አካባቢያዊ አገልግሎት ፍለጋ ታስረው እያለ ተሰናክለዋል፣ ምክንያቱም ከአካባቢያዊ ራውተር ጋር ስለሚነጋገሩ እና የማዳመጫ ወደብዎን ከዋሻው ዙሪያ ስለሚያጋልጡ።</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4968,12 +5310,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>እሺ</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>ነባሪ መንገድ</translation>
+            <source>Any interface</source>
+            <translation>ማንኛውም በይነገጽ</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>ስርዓተ ክወናው ንቁ የአውታረ መረብ አስማሚውን እንዲመርጥ ፍቀድ።</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>የስርዓት መስመሩን ይከተሉ (በሌሎች መተግበሪያዎችዎ ጥቅም ላይ ይውላል)።</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5052,8 +5394,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ምንጭ፦ %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>የምንጭ URL እስካሁን አልተቀመጠም። ማሻሻያ ካለ አረጋግጥ ተጠቀም</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>ሲያዘምኑ ከdb-ip.com በራስ-ሰር ተፈቷል።</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5233,22 +5575,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ያልተገደበ</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT ጠፍቷል</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> መስመር ላይ (ዝቅተኛ እምነት)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> መስመር ላይ</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>በመገመት ላይ… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>ቀጣይ &gt;&gt;</translation>
         </message>
@@ -5257,6 +5583,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 Click to open Statistics</source>
             <translation>የሁሉም-ጊዜ ማጋሪያ ጥምርታ
 ስታቲስቲክስ ለመክፈት ጠቅ ያድርጉ</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>ጠቅላላ የአቻ ግንኙነቶች</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT ኖዶች</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5696,6 +6030,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ቅድሚያ</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>ዝቅተኛ</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>መደበኛ</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>ከፍተኛ</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>ከፍተኛው</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>የተቀላቀለ</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>አስቀምጥበት</translation>
@@ -6457,6 +6815,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ቪዲዮ አውርድ</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>የማውረድ ገደብ አልፏል!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>ከ%1 እስከ %2 ድረስ %3 ሜባ አውርደዋል። በ&quot;%4&quot; ውስጥ ያሉት ሁሉም አውርዶች ቆመዋል ምክንያቱም በየ%6 የ%5 ሜባ የማውረድ ገደብ አልፈዋል።</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>ሁሉም የቆሙ ማውረዶች በ%1 (%2 ከአሁን ጀምሮ) በራስ-ሰር ይቀጥላሉ። ወዲያውኑ ለመቀጠል፣ የማውረድ ገደቦች ቅንብሩን ይቀይሩ እና ቀጥል የሚለውን ይጫኑ።</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>አሁን</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>አንድ ሰዓት</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 ሰዓታት</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 ደቂቃ</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 ደቂቃ</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>ከአንድ ደቂቃ በታች</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>እና</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>እሺ</translation>
         </message>
     </context>
 </TS>

@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet saite vai infohašs</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Pieņem HTTP/HTTPS/FTP saites, magnet saites vai torrenta infohašu.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP vadības savienojums neizdevās: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP vadības savienojums negaidīti pārtraukts.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP vadības savienojuma taimauts.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Nepareiza FTP atbilde.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Atteikums sūtīt FTP komandu ar iegultu jaunu rindu.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP serveris atteica savienojumu</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>Nepieciešams FTPS, bet serveris neatbalsta AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP pieteikšanās neizdevās</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS datu aizsardzība (PBSZ) tika noraidīta.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS datu aizsardzība (PROT P) tika noraidīta.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP serveris noraidīja bināro režīmu (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Nevarēja ieiet FTP pasīvajā režīmā.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP serveris neatbalsta atsākšanu (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP serveris noraidīja failu</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Negaidīta FTP atbilde uz RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP pārsūtīšana tika pārtraukta no servera puses</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Nevarēja parsēt FTP pasīvā režīma atbildi.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>FTP pasīvā režīma adrese noraidīta drošības apsvērumu dēļ.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Nevarēja atvērt FTP datu savienojumu.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS rokasspiediens neizdevās: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Nederīgs FTP ceļš.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Nevar atvērt daļas failu: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Diska rakstīšana neizdevās: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP pārsūtīšana tika saīsināta.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP segments %1 neizdevās pēc %2 atkārtotiem mēģinājumiem.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Nav rakstīšanas atļaujas lejupielādes direktorijai: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar tiek palaists...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Saistīts ar %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Vai tiešām jau pāri pusnaktij?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Joprojām nomodā?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Nakts vēl jauna!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Nevari aizmigt?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Labrīt!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Celies un spīdi!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Jauks rīts!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Rīts! Kafija vārās.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Labdien!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Pusdienlaika lejupielādes?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Jau dienas vidus!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Ceru, ka diena rit labi!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Labdien!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Labvakar!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Atpūšaties?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Vakars!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Ceru, ka diena bija laba!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Strādājat vēlu?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Vēl nomodā?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Vēlā nakts sesija!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Neaizmirstiet atpūsties!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Laipni atpakaļ!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Kad būsi gatavs!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Prieks tevi redzēt!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Sāksim lejupielādi!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Ilgojos pēc tevis!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Atpakaļ pie darba!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Tavas lejupielādes gaida!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Turpināt, kur pārtrauci?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Ko šodien ķersim?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Piesaistīts %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Nav izvēlēts importējamais rezerves fails.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Piesaistīts %1 (bezsaistē — straumes apturētas)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Piesaistīts %1 (bezsaistē — straumes apturētas)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Pieejams atjauninājums! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Pārbauda atjauninājumus</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Visus failus vienā direktorijā</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Pārlūkot...</translation>
+            <source>Browse…</source>
+            <translation>Pārlūkot…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Atcerēties pēdējo saglabāšanas ceļu</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Pārlūkot...</translation>
+            <source>Browse…</source>
+            <translation>Pārlūkot…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Lejupielāde</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Klikšķināt, lai kopētu</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 Noklikšķiniet uz Pievienot URL, lai sāktu.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Ielādē %n lejupielādu…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Ielādē %1 / %2 lejupielādes…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritāte</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Zema</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normāla</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Augsta</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimums</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Jaukts</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Rets</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Parasts</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Augsta prioritāte</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Izlaists</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Nav pieejams</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 gabali</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 lejupielādēts</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 lejupielādē</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 izlaists</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Nav pieejami gabala dati</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Izlaists (datne nav atlasīta)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Lejupielādē - %1% bloku saņemti</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Nav pieejams - nevienam vienranga lietotājam nav šī gabala</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Trūkst - %n vienranga lietotājiem ir</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(augsta prioritāte)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Gabals #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Pārvietot torrenta datus uz...</translation>
@@ -3389,8 +3723,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Atstāj tukšu, lai izmantotu noklusējuma ceļu</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Pārlūkot...</translation>
+            <source>Browse…</source>
+            <translation>Pārlūkot…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3901,6 +4235,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Sākt lejupielādi nekavējoties, rādot „Lejupielādēt faila informāciju” dialogu</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Automātiski aizpildīt apraksta lauku ar datnes metadatiem (bitu pārraides ātrums, izšķirtspēja, kodeks utt.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Rādīt svītras karti, lejupielādējot torrenta metadatus</translation>
         </message>
@@ -4103,10 +4441,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ Nav pārlūkprogrammas automātiskās lejupielādes sarakstā: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Pārlūkot</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Šī ir atcerētā pielāgotā torrent mapes vieta, kas tiek izmantota, kad torrenta metadatu dialoglodziņš ir iestatīts uz noklusējuma pielāgotu saglabāšanas mapi.</translation>
         </message>
@@ -4223,16 +4557,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Rādīt ātrumu statusa joslā</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Rādīt aptuveno tiešsaistes lietotāju skaitu statusa joslā</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Izmanto DHT mezglu ID blīvumu, lai novērtētu globālos BitTorrent lietotājus. Pārliecība pieaug, novērojot vairāk unikālu mezglu ID; statusa joslā redzams * zīmju, ja novērtējums ir zemas pārliecības.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Rādīt attiecību statusa joslā</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Rādīt straumju savienojumus statusa joslā</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Rādīt DHT mezglus statusa joslā</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4495,20 +4829,28 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <translation>Pielāgots BitTorrent lietotāja aģents</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Saistīt ar tīkla adapteri</translation>
+            <source>Network interface</source>
+            <translation>Tīkla saskarne</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Šis adapteris ir bloķēts torrent satiksmes lietošanai. Ja VPN atvienojas vai adapteris pazūd, Stellar pārtrauc noklusējuma maršruta izmantošanu, un torrentiem pazūd tīkla piekļuve, nevis notiek datu noplūda citā savienojumā.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Straumju datplūsma ir piesaistīta šai saskarnei. Ja VPN atvienojas vai saskarne pazūd, Stellar aptur straumes, nevis nopludina tās citā savienojumā. Piesaistiet VPN adapterim, lai visu straumju datplūsmu, ieskaitot IPv6, maršrutētu caur VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Bez adaptera saistīšanas. Torrent satiksme seko sistēmas maršrutam.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Jebkura saskarne: straumju datplūsma seko sistēmas maršrutam, tāpat kā citas lietotnes. Ja VPN ir aktīvais savienojums, datplūsma iet caur to; ja VPN pārtrūkst, datplūsma turpinās pa parasto savienojumu. Izvēlieties konkrētu adapteri stingrai tikai-VPN piesaistei.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Tīkla adaptera saistīšana norāda Stellar nosūtīt un saņemt torrent satiksmi tikai caur izvēlēto adapteri. Tas ir īpaši noderīgi VPN lietotājiem, jo novērš nejaušu datu noplūdi, kad VPN nav savienots.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Atļaut UPnP, NAT-PMP un lokālo pakalpojumu atklāšanu piesaistes laikā</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Šie sazinās ar jūsu lokālo maršrutētāju un var atklāt jūsu klausīšanās portu ap tuneli. Iespējojiet tikai tad, kad piesaistāt uzticamam LAN adapterim, nevis VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP un lokālo pakalpojumu atklāšana ir atspējota piesaistes laikā, jo tie sazinās ar lokālo maršrutētāju un atklātu jūsu klausīšanās portu ap tuneli.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4963,12 +5305,12 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <translation>Labi</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Noklusējuma maršruts</translation>
+            <source>Any interface</source>
+            <translation>Jebkura saskarne</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Ļaut OS izvēlēties aktīvo tīkla adapteri.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Sekot sistēmas maršrutam (izmanto citas lietotnes).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5047,8 +5389,8 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <translation>Avots: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Avota URL vēl nav kešatmiņā. Izmantojo 'Pārbaudīt atjauninājumus', lai kešatmiņā ielādētu IPtoCityDB no update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Automātiski noteikts no db-ip.com atjauninot.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5228,22 +5570,6 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <translation>neierobežots</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT izslēgts</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>online (zema uzticamība)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Aprēķina… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>nākamais &gt;&gt;</translation>
         </message>
@@ -5252,6 +5578,14 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
 Click to open Statistics</source>
             <translation>Visu laiku dalīšanās koeficients
 Noklikšķiniet, lai atvērtu statistiku</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Kopējie torrent vienādranga savienojumi</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT mezgli</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5691,6 +6025,30 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritāte</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Zema</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normāla</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Augsta</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimālā</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Jaukta</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Saglabāt uz</translation>
@@ -6452,6 +6810,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Video lejupielāde</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Lejupielādes ierobežojumi pārsniegti!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>No %1 līdz %2 jūs lejupielādējāt %3 MB. Visas lejupielādes mapē &quot;%4&quot; ir apturētas, jo pārsniegts lejupielādes ierobežojums — %5 MB ik pēc %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Visas apturētās lejupielādes tiks automātiski atsāktas %1 (pēc %2). Lai atsāktu tūlīt, mainiet lejupielādes ierobežojumu iestatījumu un nospiediet Atsākt.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>tagad</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 stunda</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 stundas</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 minūte</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 minūtes</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>mazāk par minūti</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>un</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Labi</translation>
         </message>
     </context>
 </TS>

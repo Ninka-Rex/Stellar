@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL၊ Magnet Link သို့မဟုတ် Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP လင့်များ၊ magnet လင့်များ သို့မဟုတ် torrent infohash ကို လက်ခံသည်။</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP ထိန်းချုပ်ချိတ်ဆက်မှု မအောင်မြင်: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP ထိန်းချုပ်ချိတ်ဆက်မှု မမျှော်လင့်ဘဲ ပိတ်သွားသည်။</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP ထိန်းချုပ်ချိတ်ဆက်မှု အချိန်ကုန်သွားသည်။</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>ပုံစံမမှန်သော FTP ပြန်ကြားချက်။</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>လိုင်းသစ်ပါဝင်သော FTP အမိန့်ပို့ရန် ငြင်းဆိုသည်။</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP ဆာဗာက ချိတ်ဆက်မှုကို ငြင်းပယ်သည်</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS လိုအပ်သော်လည်း ဆာဗာက AUTH TLS ကို မထောက်ပံ့ပါ။</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP အကောင့်ဝင်ရောက်မှု မအောင်မြင်</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS ဒေတာကာကွယ်မှု (PBSZ) ငြင်းပယ်ခံရသည်။</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS ဒေတာကာကွယ်မှု (PROT P) ငြင်းပယ်ခံရသည်။</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP ဆာဗာက binary mode (TYPE I) ငြင်းပယ်သည်။</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTP passive mode သို့ မဝင်နိုင်ပါ။</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP ဆာဗာက ပြန်စခြင်း (REST) မထောက်ပံ့ပါ။</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP ဆာဗာက ဖိုင်ကို ငြင်းပယ်သည်။</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>RETR အတွက် မျှော်လင့်မထားသော FTP တုံ့ပြန်မှု</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>ဆာဗာမှ FTP လွှဲပြောင်းမှု ဖျက်သိမ်းခံရသည်။</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>FTP passive-mode တုံ့ပြန်မှု ဖတ်မရပါ။</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>လုံခြုံရေးအတွက် FTP passive-mode လိပ်စာ ငြင်းပယ်ခံရသည်။</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTP ဒေတာချိတ်ဆက်မှု မဖွင့်နိုင်ပါ။</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS လက်ဆွဲနှုတ်ဆက်မှု မအောင်မြင်ပါ- %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>FTP လမ်းကြောင်း မမှန်ကန်ပါ။</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>အပိုင်းဖိုင် မဖွင့်နိုင်ပါ- %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ဒစ်ခ်ရေးခြင်း မအောင်မြင်ပါ- %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP လွှဲပြောင်းမှု ဖြတ်တောက်ခံရသည်။</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP အပိုင်း %1 သည် %2 ကြိမ် ပြန်ကြိုးစားပြီးနောက် မအောင်မြင်ပါ။</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ဒေါင်းလုဒ်ဖိုင်တွဲအတွက် ရေးခွင့်မရှိပါ- %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar စတင်နေသည်...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ %1 သို့ ချိတ်ဆက်ထားသည်</translation>
+            <source>Past midnight already?</source>
+            <translation>သန်းခေါင်ကျော်ပြီလား။</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>နိုးနေသေးလား။</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>ညဦးယံပါပဲ!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>အိပ်မပျော်ဘူးလား?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>မင်္ဂလာနံနက်ခင်းပါ!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>ထထ လန်းလန်းဆန်းဆန်း!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>မနက်ခင်းရဲ့အကောင်းဆုံးအချိန်!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>မနက်ခင်းပါ! ကော်ဖီဖျော်နေတယ်။</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>မင်္ဂလာနေ့လည်ခင်းပါ!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>နေ့လည်စာစားချိန် ဒေါင်းလုဒ်တွေလား?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>နေ့တစ်ဝက်ရောက်ပြီလား!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>မင်းရဲ့တစ်နေ့တာ အဆင်ပြေမယ်လို့ မျှော်လင့်ပါတယ်!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>နေ့လည်ခင်းပါ!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>မင်္ဂလာညနေခင်းပါ!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>အနားယူတော့မလား?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>ညနေခင်းပါ!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>နေ့တစ်နေ့ကောင်းခဲ့မယ်လို့မျှော်လင့်ပါတယ်!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>ညနက်တဲ့အထိအလုပ်လုပ်နေတာလား?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>အိပ်ချိန်ကျော်နေပြီလား?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>ညနက်ပိုင်းအစီအစဉ်ပါ!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>အနားယူဖို့မမေ့ပါနဲ့!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>ပြန်လည်ကြိုဆိုပါတယ်!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>အဆင်သင့်ပါ။</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>တွေ့ရတာ ဝမ်းသာပါတယ်။</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>ဒေါင်းလုဒ်ဆွဲကြရအောင်။</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>သတိရနေခဲ့တယ်။</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>ပြန်စလိုက်ပြီ။</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>မင်းရဲ့ဒေါင်းလုဒ်တွေ စောင့်နေတယ်။</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>ရပ်ထားတဲ့နေရာကနေ ပြန်စမလား။</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>ဒီနေ့ ဘာတွေယူကြမလဲ။</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>%1 နဲ့ချိတ်ထားတယ်</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>သွင်းရန် အရန်ဖိုင်မရွေးခဲ့ပါ။</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ %1 သို့ ချိတ်ဆက်ထားသည် (အော့ဖ်လိုင်း — တိုရန့်များ ခေတ္တရပ်)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>%1 နဲ့ချိတ်ထားတယ် (အော့ဖ်လိုင်း - တိုရန့်တွေ ခေတ္တရပ်ထား)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>အပ်ဒိတ်ရှိ! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>အပ်ဒိတ်စစ်ဆေးနေသည်</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>ဖိုင်အားလုံး ဖိုဒါတစ်ခုထဲသို့</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>ရှာဖွေပါ...</translation>
+            <source>Browse…</source>
+            <translation>ရှာဖွေ…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>နောက်ဆုံးသိမ်းဆည်းသည့်လမ်းကြောင်းကို မှတ်ထားပါ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>ရှာဖွေမည်...</translation>
+            <source>Browse…</source>
+            <translation>ရှာဖွေ…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>ဒေါင်းလုဒ်</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>ကူးယူရန်နှိပ်</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 စတင်ရန်  Add URL  ကိုနှိပ်ပါ။</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>ဒေါင်းလုဒ် %n ခု ဖွင့်နေသည်…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>%1 / %2 ဒေါင်းလုဒ်များ ဖွင့်နေသည်…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ဦးစားပေး</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>နိမ့်</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>ပုံမှန်</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>မြင့်</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>အများဆုံး</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ရောနှော</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>ရှားပါး</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>အသုံးများ</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>ဦးစားပေးမြင့်</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>ကျော်ထား</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>မရနိုင်</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 အပိုင်း</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 ဒေါင်းပြီး</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 ဒေါင်းနေသည်</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 ကျော်သွားသည်</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>အပိုင်းအစဒေတာမရှိပါ</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>ကျော်သွားသည် (ဖိုင်မရွေးထား)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>ဒေါင်းလုဒ်ဆွဲနေသည် - ဘလောက် %1% ရရှိပြီး</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>မရနိုင်ပါ - ဤအပိုင်းကိုပိုင်ဆိုင်သည့် peer မရှိ</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>ပျောက်နေသည် - peer %n ဦးတွင်ရှိသည်</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(ဦးစားပေးမြင့်)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>အပိုင်း #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>တောရင့်ဒေတာကို ဤနေရာသို့ ရွှေ့မည်...</translation>
@@ -3394,8 +3728,8 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
             <translation>ပုံမှန်သိမ်းဆည်းသည့်လမ်းကြောင်းကိုအသုံးပြုရန် ကွက်လပ်ထားပါ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>ရှာဖွေ...</translation>
+            <source>Browse…</source>
+            <translation>ရှာဖွေရန်…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3906,6 +4240,10 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
             <translation>ဖိုင်အချက်အလက်ပြသပြီး ချက်ချင်းစတင်ဒေါင်းလုဒ်လုပ်</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>ဖိုင်မက်တာဒေတာ (ဘစ်နှုန်း၊ ရုပ်ထွက်၊ ကိုဒက်စသည်) ဖြင့် ဖော်ပြချက်အကွက်ကို အလိုအလျောက်ဖြည့်ပါ</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>တိုရန့်မက်တာဒေတာဒေါင်းလုဒ်လုပ်ချိန် swarm မြေပုံပြသမည်</translation>
         </message>
@@ -4108,10 +4446,6 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
             <translation>⚠ ဘရောက်ဆာ အလိုအလျောက်ဒေါင်းလုဒ်စာရင်းတွင် မရှိပါ- %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>ရှာဖွေရန်</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>တိုးရင့်မက်တာဒေတာ ဒိုင်ယာလော့ခ်ကို ပုံမှန်အားဖြင့် စိတ်ကြိုက်သိမ်းဆည်းရန်ဖိုဒါ အသုံးပြုရန် သတ်မှတ်ထားချိန်တွင် အသုံးပြုသည့် မှတ်သားထားသော စိတ်ကြိုက်တိုးရင့်ဖိုဒါ ဖြစ်သည်။</translation>
         </message>
@@ -4228,16 +4562,16 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
             <translation>အခြေအနေဘားတွင် မြန်နှုန်းပြပါ</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>အခြေအနေဘားတွင် ခန့်မှန်းအွန်လိုင်းအသုံးပြုသူများ ပြပါ</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>ကမ္ဘာလုံးဆိုင်ရာ BitTorrent အသုံးပြုသူများကို ခန့်မှန်းရန် DHT node-ID သိပ်သည်းဆကို အသုံးပြုသည်။ ထူးခြားသော node ID များ ပိုမိုတွေ့ရှိလာသည်နှင့်အမျှ ယုံကြည်မှု တိုးလာသည်။ အခြေအနေဘားရှိ * သည် ခန့်မှန်းချက် ယုံကြည်မှုနည်းနေသေးသည်ကို ဆိုလိုသည်။</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>အခြေအနေဘားတွင် အချိုးပြပါ</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>အခြေအနေဘားတွင် torrent ချိတ်ဆက်မှုများပြပါ</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>အခြေအနေဘားတွင် DHT node များပြပါ</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4500,20 +4834,28 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
             <translation>စိတ်ကြိုက် BitTorrent အသုံးပြုသူအေးဂျင့်</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>ကွန်ရက်အဒက်ပ်တာသို့ ချိတ်ဆက်ပါ</translation>
+            <source>Network interface</source>
+            <translation>ကွန်ရက်ကြားခံ</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>ဤအဒက်ပ်တာကို တိုရန့်အသွားအလာအတွက် လော့ခ်ချထားသည်။ သင့် VPN ပြတ်တောက်သွားပါက သို့မဟုတ် အဒက်ပ်တာပျောက်သွားပါက Stellar သည် မူလလမ်းကြောင်းကို အသုံးပြုခြင်းရပ်တန့်ပြီး သင့်တိုရန့်များသည် အခြားချိတ်ဆက်မှုသို့ ပေါက်ကြားမသွားဘဲ ကွန်ရက်အသုံးပြုခွင့်ဆုံးရှုံးသွားမည်ဖြစ်သည်။</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Torrent အသွားအလာကို ဤကြားခံသို့ သော့ခတ်ထားသည်။ သင်၏ VPN ပြတ်တောက်သွားပါက သို့မဟုတ် ကြားခံ ပျောက်သွားပါက Stellar သည် အခြားချိတ်ဆက်မှုသို့ ပေါက်ကြားမသွားစေဘဲ torrent များကို ခေတ္တရပ်ထားသည်။ IPv6 အပါအဝင် torrent အသွားအလာအားလုံးကို VPN မှတစ်ဆင့် လမ်းကြောင်းပြောင်းရန် သင်၏ VPN adapter သို့ ချိတ်ဆက်ပါ။</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>အဒက်ပ်တာချိတ်ဆက်မှုမရှိပါ။ တိုရန့်အသွားအလာသည် စနစ်လမ်းကြောင်းအတိုင်း လိုက်နာသည်။</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>မည်သည့်ကြားခံမဆို- torrent အသွားအလာသည် သင်၏အခြားအက်ပ်များကဲ့သို့ စနစ်လမ်းကြောင်းအတိုင်း လိုက်နာသည်။ VPN သည် သင်၏တက်ကြွသောချိတ်ဆက်မှုဖြစ်ပါက ၎င်းမှတစ်ဆင့် သွားသည်။ VPN ပြတ်တောက်ပါက အသွားအလာသည် ပုံမှန်ချိတ်ဆက်မှုတွင် ဆက်လက်ရှိနေသည်။ တင်းကျပ်သော VPN-သီးသန့် ချိတ်ဆက်မှုအတွက် သီးခြား adapter တစ်ခုကို ရွေးချယ်ပါ။</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>ကွန်ရက်အဒက်ပ်တာချိတ်ဆက်မှုက Stellar အား ရွေးချယ်ထားသောအဒက်ပ်တာမှတစ်ဆင့်သာ တိုရန့်အသွားအလာများ ပေးပို့လက်ခံရန် ညွှန်ကြားသည်။ ၎င်းသည် VPN အသုံးပြုသူများအတွက် အထူးအသုံးဝင်သည်၊ အကြောင်းမှာ VPN မချိတ်ဆက်ထားချိန်တွင် မတော်တဆအသွားအလာပေါက်ကြားမှုကို ကာကွယ်ပေးသောကြောင့်ဖြစ်သည်။</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>ချိတ်ဆက်ထားစဉ် UPnP၊ NAT-PMP နှင့် Local Service Discovery ကိုခွင့်ပြုပါ</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>၎င်းတို့သည် သင်၏ဒေသခံ router သို့ ဆက်သွယ်ပြီး သင်၏နားထောင်ပို့တ်ကို ဥမင်လိုဏ်ခေါင်းတစ်ဝိုက်တွင် ဖော်ထုတ်နိုင်သည်။ VPN မဟုတ်ဘဲ ယုံကြည်ရသော LAN adapter သို့ ချိတ်ဆက်သည့်အခါမှသာ ၎င်းကိုဖွင့်ပါ။</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>ချိတ်ဆက်ထားစဉ် UPnP၊ NAT-PMP နှင့် Local Service Discovery ကို ပိတ်ထားသည်၊ အကြောင်းမှာ ၎င်းတို့သည် ဒေသခံ router သို့ ဆက်သွယ်ပြီး သင်၏နားထောင်ပို့တ်ကို ဥမင်လိုဏ်ခေါင်းတစ်ဝိုက်တွင် ဖော်ထုတ်နိုင်သောကြောင့်ဖြစ်သည်။</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4968,12 +5310,12 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
             <translation>အိုကေ</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>မူလလမ်းကြောင်း</translation>
+            <source>Any interface</source>
+            <translation>မည်သည့်ကြားခံမဆို</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>OS မှ လက်ရှိအသုံးပြုနိုင်သော ကွန်ရက်အဒက်ပ်တာကို ရွေးချယ်ပါစေ။</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>စနစ်လမ်းကြောင်းအတိုင်း လိုက်နာပါ (သင်၏အခြားအက်ပ်များက အသုံးပြုသည်)။</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5052,8 +5394,8 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
             <translation>ရင်းမြစ်: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>ရင်းမြစ် URL ကို ကက်ရှ်မသိမ်းရသေး။ IPtoCityDB ကို update.json မှ ကက်ရှ်သိမ်းရန် အပ်ဒိတ်စစ်ဆေးရန် သုံးပါ။</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>db-ip.com မှ အလိုအလျောက် ဖြေရှင်းသည်။</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5233,22 +5575,6 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
             <translation>အကန့်အသတ်မရှိ</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT ပိတ်</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>အွန်လိုင်း (ယုံကြည်မှုနည်း)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>အွန်လိုင်း</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>ခန့်မှန်းနေသည်… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>နောက်တစ်ခု &gt;&gt;</translation>
         </message>
@@ -5257,6 +5583,14 @@ BitTorrent မှတစ်ဆင့် သင်မျှဝေသည့် မ�
 Click to open Statistics</source>
             <translation>အချိန်တစ်လျှောက် မျှဝေမှုအချိုး
 စာရင်းဇယားဖွင့်ရန် နှိပ်ပါ</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>စုစုပေါင်း torrent peer ချိတ်ဆက်မှုများ</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT နုတ်များ</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5696,6 +6030,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ဦးစားပေး</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>နိမ့်</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>ပုံမှန်</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>မြင့်</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>အများဆုံး</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ရောထွေး</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>သိမ်းရန်</translation>
@@ -6457,6 +6815,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ဗီဒီယိုဒေါင်းလုဒ်</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>ဒေါင်းလုဒ် ကန့်သတ်ချက် ကျော်လွန်ပြီ။</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1 မှ %2 သို့ %3 MB ဒေါင်းလုဒ်လုပ်ခဲ့သည်။ &quot;%4&quot; ရှိ ဒေါင်းလုဒ်အားလုံးကို %6 တိုင်း %5 MB ဒေါင်းလုဒ်ကန့်သတ်ချက်ကျော်လွန်သွားသောကြောင့် ရပ်တန့်လိုက်ပါသည်။</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>ရပ်ထားသော ဒေါင်းလုဒ်အားလုံးကို %1 (%2 နောက်ပိုင်း) တွင် အလိုအလျောက်ပြန်စပါမည်။ ချက်ချင်းပြန်စရန် ဒေါင်းလုဒ်ကန့်သတ်ချက်ဆက်တင်ကို ပြောင်းပြီး ပြန်စရန်နှိပ်ပါ။</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>ယခု</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>၁ နာရီ</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 နာရီ</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>၁ မိနစ်</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 မိနစ်</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>တစ်မိနစ်အောက်</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>နှင့်</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>အိုကေ</translation>
         </message>
     </context>
 </TS>

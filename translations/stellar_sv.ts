@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, magnetlänk eller infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Accepterar HTTP/HTTPS/FTP-länkar, magnetlänkar eller torrent-infohash.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP-kontrollanslutning misslyckades: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP-kontrollanslutning stängdes oväntat.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP-kontrollanslutning tog för lång tid.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Felaktigt FTP-svar.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Vägrar skicka FTP-kommando med inbäddad nyrad.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP-server nekade anslutning</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS krävs men servern stöder inte AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP-inloggning misslyckades</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS-dataskydd (PBSZ) nekades.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS-dataskydd (PROT P) nekades.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP-server nekade binärläge (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Kunde inte gå till passivt FTP-läge.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP-server stöder ej återupptagning (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP-server nekade filen</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Oväntat FTP-svar på RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP-överföring avbröts av server</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Kunde inte tolka passivt FTP-svar.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Passiv FTP-adress nekad av säkerhetsskäl.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Kunde inte öppna FTP-dataanslutning.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS-handskakning misslyckades: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Ogiltig FTP-sökväg.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Kan inte öppna delfil: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Diskskrivning misslyckades: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP-överföringen trunkerades.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP-segment %1 misslyckades efter %2 försök.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Ingen skrivrättighet för nedladdningsmapp: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar startar...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Bunden till %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Redan efter midnatt?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Fortfarande vaken?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Natten är ung!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Kan du inte sova?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>God morgon!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Upp och hoppa!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Morgonstund har guld i mund!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Morgon! Kaffet puttrar.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>God eftermiddag!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Lunchpaus-nedladdningar?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Redan mitt på dagen!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Hoppas din dag är bra!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Eftermiddag!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>God kväll!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Varvar du ner?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Kväll!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Hoppas du haft en bra dag!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Jobbar sent?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Uppe efter läggdags?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Sena nattsessionen!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Glöm inte vila!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Välkommen tillbaka!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Redo när du är!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Kul att se dig!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Dags att ladda ner!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Saknat dig!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>På't igen!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Dina nedladdningar väntar!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Fortsätta där du slutade?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Vad ska vi hämta idag?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Bunden till %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Ingen säkerhetskopia valdes för import.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Bunden till %1 (offline — torrents pausade)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Bunden till %1 (offline - torrents pausade)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Uppdatering tillgänglig! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Söker efter uppdateringar</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Alla filer till en katalog</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Bläddra...</translation>
+            <source>Browse…</source>
+            <translation>Bläddra…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Kör manuellt: flatpak override --user --talk-name=org.freedesktop.Flatpak org.m
             <translation>Kom ihåg senaste sparingsväg</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Bläddra...</translation>
+            <source>Browse…</source>
+            <translation>Bläddra…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Kör manuellt: flatpak override --user --talk-name=org.freedesktop.Flatpak org.m
         <message>
             <source>Download</source>
             <translation>Ladda ner</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Klicka för att kopiera</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 Klicka på Lägg till URL för att börja.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Laddar %n nedladdning(ar)…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Läser in %1 / %2 nedladdningar…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritet</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Låg</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Hög</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maximal</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Blandad</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Sällsynt</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Vanlig</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Hög prioritet</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Överhoppad</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Otillgänglig</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 delar</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 nedladdad</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 laddas ned</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 överhoppad</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Ingen blockdata tillgänglig</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Överhoppad (fil ej vald)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Laddar ner - %1% av block mottagna</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Otillgänglig - inga peers har denna del</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Saknas - %n peer(s) har den</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(hög prioritet)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Del #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Flytta torrentdata till...</translation>
@@ -3380,8 +3714,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Lämna tomt för standard</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Bläddra...</translation>
+            <source>Browse…</source>
+            <translation>Bläddra…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3892,6 +4226,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Starta nedladdning direkt medan 'Nedladdningsfilinfo'-dialogen visas</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Fyll i beskrivning automatiskt med filmetadata (bitrate, upplösning, codec etc.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Visa svärmkarta vid nedladdning av torrent-metadata</translation>
         </message>
@@ -4094,10 +4432,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ Inte i webbläsarens automatiska nedladdningslista: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Bläddra</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Detta är den sparade anpassade torrentmappen som används när torrent-metadata-dialogrutan är inställd på att använda en anpassad sparfolder som standard.</translation>
         </message>
@@ -4214,16 +4548,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Visa hastighet i statusrad</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Visa uppskattade onlineanvändare</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Använder DHT-nod-ID-täthet för att uppskatta globala BitTorrent-användare. Förtroende ökar med fler unika nod-ID:n; en efterföljande * i statusraden indikerar lågt förtroende.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Visa ratio i statusrad</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Visa torrent-anslutningar i statusfältet</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Visa DHT-noder i statusfältet</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4486,20 +4820,28 @@ Det rekommenderas starkt att binda Stellar till ett VPN-nätverksgränssnitt och
             <translation>Anpassad bittorrent user agent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Bind till nätverksadapter</translation>
+            <source>Network interface</source>
+            <translation>Nätverksgränssnitt</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Denna adapter är låst för torrenttrafik. Om din VPN kopplas bort eller adaptern försvinner, slutar Stellar använda standardvägen och dina torrents förlorar nätverksåtkomst istället för att läcka till en annan anslutning.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Torrenttrafik är låst till detta gränssnitt. Om din VPN kopplas från eller gränssnittet försvinner, pausar Stellar torrents istället för att läcka ut på en annan anslutning. Bind till din VPN-adapter för att dirigera all torrenttrafik, inklusive IPv6, genom VPN:en.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Ingen adapterbindning. Torrenttrafik följer systemvägen.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Alla gränssnitt: Torrent-trafik följer systemets rutt, precis som dina andra appar. Om en VPN är din aktiva anslutning går den genom VPN:en; om VPN:en bryts fortsätter trafiken på den vanliga anslutningen. Välj en specifik adapter för strikt VPN-bindning.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Nätverksadapterbindning talar till Stellar att skicka och ta emot torrenttrafik endast genom den valda adaptern. Detta är särskilt användbart för VPN-användare eftersom det förhindrar oavsiktliga trafikläckor när VPN inte är anslutet.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Tillåt UPnP, NAT-PMP och lokal tjänstidentifiering vid bunden anslutning</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Dessa kommunicerar med din lokala router och kan exponera din lyssningsport via tunneln. Aktivera endast detta vid anslutning till en betrodd LAN-adapter, inte ett VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP och lokal tjänsteupptäckt är inaktiverade under bindning, eftersom de kommunicerar med den lokala routern och skulle exponera din lyssningsport utanför tunneln.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4954,12 +5296,12 @@ Det rekommenderas starkt att binda Stellar till ett VPN-nätverksgränssnitt och
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Standardväg</translation>
+            <source>Any interface</source>
+            <translation>Valfritt gränssnitt</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Låt OS:et välja det aktiva nätverksadaptern.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Följ systemrutten (används av dina andra appar).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5038,8 +5380,8 @@ Det rekommenderas starkt att binda Stellar till ett VPN-nätverksgränssnitt och
             <translation>Källa: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Käll-URL:n är inte cachad än. Använd Kontrollera uppdateringar för att cachera IPtoCityDB från update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Löses automatiskt från db-ip.com vid uppdatering.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5219,22 +5561,6 @@ Det rekommenderas starkt att binda Stellar till ett VPN-nätverksgränssnitt och
             <translation>obegränsat</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT av</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> online (låg tillförlitlighet)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Uppskattar… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>nästa &gt;&gt;</translation>
         </message>
@@ -5242,6 +5568,14 @@ Det rekommenderas starkt att binda Stellar till ett VPN-nätverksgränssnitt och
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Total delningsratio</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Totala torrent-peer-anslutningar</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT-noder</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5681,6 +6015,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritet</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Låg</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Hög</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Max</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Blandad</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Spara till</translation>
@@ -6441,6 +6799,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Ladda ner video</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Nedladdningsgränser överskridna!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Från %1 till %2 laddade du ner %3 MB. Alla nedladdningar i &quot;%4&quot; har stoppats eftersom du överskred nedladdningsgränsen på %5 MB var %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Alla stoppade nedladdningar återupptas automatiskt %1 (%2 från nu). För att återuppta direkt, ändra inställningen för nedladdningsgränser och tryck på Återuppta.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>nu</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 timme</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 timmar</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 minut</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 minuter</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>mindre än en minut</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>och</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL、マグネットリンク、またはInfoHash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTPリンク、マグネットリンク、またはトレントのInfoHashを受け付けます。</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP制御接続失敗: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP制御接続が予期せず切断されました。</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP制御接続がタイムアウトしました。</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>不正なFTP応答。</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>改行を含むFTPコマンドの送信を拒否しました。</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTPサーバーが接続を拒否しました</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS必須ですがサーバーがAUTH TLSをサポートしていません。</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTPログイン失敗</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPSデータ保護(PBSZ)が拒否されました。</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPSデータ保護(PROT P)が拒否されました。</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTPサーバーがバイナリモード(TYPE I)を拒否しました。</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTPパッシブモードに入れませんでした。</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTPサーバーがレジューム(REST)をサポートしていません。</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTPサーバーがファイルを拒否しました</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>RETRへの予期しないFTP応答</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>サーバーによりFTP転送が中断されました</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>FTPパッシブモード応答を解析できませんでした。</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>セキュリティのためFTPパッシブモードアドレスが拒否されました。</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTPデータ接続を開けません。</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLSハンドシェイク失敗: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>無効なFTPパス。</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>パートファイルを開けません: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ディスク書き込み失敗: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP転送が中断されました。</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTPセグメント%1が%2回の再試行後失敗。</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ダウンロード先の書込権限なし: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar の起動中...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ %1 にバインド済み</translation>
+            <source>Past midnight already?</source>
+            <translation>もう深夜？</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>まだ起きてる？</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>夜はこれから！</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>眠れないの？</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>おはようございます！</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>起きて！</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>朝一番だ！</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>おはよう！コーヒー淹れてるよ。</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>こんにちは！</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>昼休みにダウンロード？</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>もう正午だ！</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>良い一日を！</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>こんにちは！</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>こんばんは！</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>そろそろ終わり？</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>夕方ですね！</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>良い一日でしたか？</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>夜遅くまで仕事？</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>まだ起きてるの？</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>深夜作業中！</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>休息も忘れずに！</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>おかえりなさい！</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>準備OKです！</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>お会いできて嬉しいです！</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>ダウンロードを始めましょう！</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>お待ちしていました！</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>再開ですね！</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>ダウンロードが待っています！</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>中断したところから再開しますか？</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>今日は何を取得しますか？</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>%1にバインド中</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>インポートするバックアップファイルが未選択です。</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ %1 にバインド中 (オフライン — トレント一時停止)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>%1にバインド中（オフライン - トレント停止中）</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>アップデートあり (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>更新を確認中</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>全ファイルを1フォルダに</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>参照...</translation>
+            <source>Browse…</source>
+            <translation>参照…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>最後の保存パスを記憶</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>参照...</translation>
+            <source>Browse…</source>
+            <translation>参照…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>ダウンロード</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>クリックでコピー</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1024,8 +1270,8 @@ Click  Add URL  to start.</source>
             <translation>まだダウンロードなし。</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>%n 件のダウンロードを読み込み中…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>%1 / %2 件のダウンロードを読み込み中…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1144,6 +1390,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>優先度</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>低</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>標準</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>高</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>最大</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>混在</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>希少</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>一般</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>高優先</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>スキップ</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>利用不可</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1個</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1完了</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1取得中</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 スキップ</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>ピースデータなし</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>スキップ (ファイル未選択)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>ダウンロード中 - ブロック受信 %1%</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>利用不可 - ピース保持ピアなし</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>欠落 - %n ピアが保持</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(高優先)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>ピース #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation> Torrent データを移動</translation>
@@ -3383,8 +3717,8 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
             <translation>空欄はデフォルト</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>参照...</translation>
+            <source>Browse…</source>
+            <translation>参照…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3895,6 +4229,10 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
             <translation>「ファイル情報」ダイアログを表示しながら直ちにダウンロード開始</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>ファイルのメタデータで説明欄を自動入力 (ビットレート、解像度、コーデック等)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>torrent メタデータダウンロード時にスワームマップを表示</translation>
         </message>
@@ -4097,10 +4435,6 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
             <translation>⚠ ブラウザの自動ダウンロードリストにありません：%1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>閲覧</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation> Torrent メタデータダイアログでカスタム保存フォルダをデフォルトに設定する場合に使用されるカスタム Torrent フォルダです</translation>
         </message>
@@ -4217,16 +4551,16 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
             <translation>速度</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>オンラインユーザー数</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>DHT ノード ID 密度</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>レシオ</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>ステータスバーにtorrent接続を表示</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>ステータスバーにDHTノードを表示</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4489,20 +4823,28 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
             <translation>カスタム BitTorrent ユーザーエージェント</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>ネットワークアダプタにバインド</translation>
+            <source>Network interface</source>
+            <translation>ネットワークインターフェース</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>このアダプタは Torrent トラフィックにロックされています。VPN が切断またはアダプタが消失すると、Stellar はデフォルトルートを停止し、Torrent は別の接続にリークするのではなくネットワークアクセスを失います。</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>torrent通信をこのインターフェースに固定します。VPNが切断されたりインターフェースが消えた場合、Stellarはtorrentを一時停止し、他の接続への漏洩を防ぎます。VPNアダプターにバインドして、IPv6を含むすべてのtorrent通信をVPN経由にします。</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>アダプタバインドなし。Torrent トラフィックはシステムルートに従います。</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>任意のインターフェース: torrent通信は他のアプリと同様にシステムルートに従います。VPNがアクティブならVPN経由、VPNが切断されると通常の接続で通信が継続されます。厳密なVPN専用バインドには特定のアダプターを選択してください。</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>ネットワークアダプタバインドは、Stellar が選択したアダプタのみで Torrent トラフィックを送受信することを指示します。VPN ユーザーには特に有用で、VPN が接続されていない時の誤ったトラフィックリークを防ぎます。</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>バインド中もUPnP、NAT-PMP、ローカルサービス検出を許可</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>これらはローカルルーターと通信し、トンネル外にリッスンポートを公開する可能性があります。VPNではなく信頼できるLANアダプターにバインドする場合のみ有効にしてください。</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>バインド中はUPnP、NAT-PMP、ローカルサービス検出が無効になります。これらはローカルルーターと通信し、トンネル外にリッスンポートを公開するためです。</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4957,12 +5299,12 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>デフォルトルート</translation>
+            <source>Any interface</source>
+            <translation>任意のインターフェース</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>OS がアクティブなネットワークアダプターを選択します。</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>システムルートに従う（他のアプリと同じ）</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5041,8 +5383,8 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
             <translation>ソース: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>ソース URL のキャッシュがありません。update.json から IPtoCityDB をキャッシュするには「更新を確認」を使用してください。</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>db-ip.comから自動解決（更新時）</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5222,22 +5564,6 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
             <translation>無制限</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHTオフ</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>オンライン (信頼度低)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>オンライン</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>推定中… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>次へ &gt;&gt;</translation>
         </message>
@@ -5245,6 +5571,14 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>総共有率</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>総ピア接続数</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHTノード</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5684,6 +6018,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>優先度</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>低</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>標準</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>高</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>最大</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>混在</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>保存先</translation>
@@ -6444,6 +6802,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>動画ダウンロード</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>DL制限超過！</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1から%2までに%3 MBダウンロードしました。%6ごとの制限%5 MBを超えたため、「%4」の全ダウンロードを停止しました。</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>停止中のダウンロードは%1（%2後）に自動再開されます。すぐに再開するには、ダウンロード制限を変更して再開を押してください。</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>今すぐ</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1時間</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1時間</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1分</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1分</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>1分未満</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>および</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

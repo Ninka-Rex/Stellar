@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>כתובת URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>כתובת URL, קישור מגנט או Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>מקבל קישורי HTTP/HTTPS/FTP, קישורי מגנט או infohash של טורנט.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>חיבור בקרת FTP נכשל: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>חיבור בקרת FTP נסגר באופן בלתי צפוי.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>חיבור בקרת ה-FTP פג תוקף.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>תגובת FTP פגומה</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>מסרב לשלוח פקודת FTP עם שורה חדשה מוטמעת.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>שרת ה-FTP סירב לחיבור</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>נדרש FTPS אך השרת אינו תומך ב-AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>התחברות FTP נכשלה</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>הגנת נתוני FTPS (PBSZ) נדחתה.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>הגנת נתוני FTPS (PROT P) נדחתה.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>שרת FTP דחה מצב בינארי (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>לא ניתן להיכנס למצב פסיבי ב-FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>שרת FTP לא תומך בחידוש (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>שרת FTP דחה את הקובץ</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>תגובת FTP לא צפויה ל-RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>העברת FTP הופסקה ע&quot;י השרת</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>לא ניתן לפענח תגובת מצב פסיבי ב-FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>כתובת מצב פסיבי ב-FTP נדחתה מטעמי אבטחה.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>לא ניתן לפתוח חיבור נתונים FTP.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>לחיצת יד TLS נכשלה: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>נתיב FTP לא תקין.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>לא ניתן לפתוח קובץ חלקי: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>כתיבה לדיסק נכשלה: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>העברת FTP נקטעה.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>מקטע FTP %1 נכשל לאחר %2 ניסיונות.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>אין הרשאת כתיבה לתיקיית הורדה: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar מתחיל...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ קשור ל-%1</translation>
+            <source>Past midnight already?</source>
+            <translation>כבר אחרי חצות?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>עדיין ער?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>הלילה עוד צעיר!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>לא מצליח לישון?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>בוקר טוב!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>קום והתעורר!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>בוקר נהדר!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>בוקר! הקפה מתבשל.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>צהריים טובים!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>הורדות בהפסקת צהריים?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>כבר צהריים!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>מקווה שהיום שלך עובר טוב!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>צהריים טובים!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>ערב טוב!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>נרגעים?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>ערב!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>מקווה שהיה לך יום טוב!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>עובדים עד מאוחר?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>ערים אחרי שעת השינה?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>סשן לילה מאוחר!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>אל תשכחו לנוח!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>ברוכים השבים!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>מוכן כשאתה מוכן!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>טוב לראות אותך!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>בוא נתחיל להוריד!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>התגעגענו אליך!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>חוזרים לפעולה!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>ההורדות שלך מחכות!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>להמשיך מאיפה שהפסקת?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>מה מורידים היום?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>מחובר ל-%1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>לא נבחר קובץ גיבוי לייבוא.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ מקושר ל-%1 (מנותק — טורנטים מושהים)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>מחובר ל-%1 (מנותק - טורנטים מושהים)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>עדכון זמין! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>בודק עדכונים</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>כל הקבצים לתיקייה אחת</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>עיון...</translation>
+            <source>Browse…</source>
+            <translation>עיון…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>זכור את דרך האחרונה לשמירה</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>דפדוף...</translation>
+            <source>Browse…</source>
+            <translation>עיון…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>הורדה</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>לחץ להעתקה</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 לחץ על הוספת כתובת URL להתחלה</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>טוען %n הורדות...</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>טוען %1 / %2 הורדות…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>עדיפות</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>נמוכה</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>רגילה</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>גבוהה</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>מקסימום</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>מעורב</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>נדיר</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>נפוץ</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>עדיפות גבוהה</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>דולג</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>לא זמין</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 חלקים</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 הורדו</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 מורידים</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 דולג</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>אין נתוני חלקה</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>דולג (קובץ לא נבחר)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>מוריד - %1% מהבלוקים התקבלו</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>לא זמין - לאף עמית אין חלקה זו</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>חסר - ל-%n עמית(ים) יש אותה</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(עדיפות גבוהה)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>חלקה #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>הזז נתוני טורנט אל...</translation>
@@ -3380,8 +3714,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>השאיר ריק כדי להשתמש בנתיב ברירת המחדל</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>עיון...</translation>
+            <source>Browse…</source>
+            <translation>עיון…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3892,6 +4226,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>התחל הורדה מיד תוך הצגת חלון מידע</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>מלא אוטומטית את שדה התיאור עם מטא-נתוני קובץ (קצב סיביות, רזולוציה, קודק וכו')</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>הצג מפת ציידים בעת טעינת מטא-נתונים</translation>
         </message>
@@ -4094,10 +4432,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ לא ברשימת ההורדה האוטומטית של הדפדפן: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>דפדוף</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>זהו תיקיית ה-BitTorrent המותאמת אישית שזכורה, המשמשת כאשר תיבת הדיאלוג של מטא-נתונים מוגדרת להשתמש בתיקיית שמירה מותאמת אישית כברירת מחדל.</translation>
         </message>
@@ -4214,16 +4548,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>הצג מהירות בשורת מצב</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>הצג משתמשים אונליין משוערים בשורת מצב</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>הערכת משתמשי BitTorrent גלובליים על פי צפיפות node-ID של DHT. ביטחון עולה ככל שמתצפים יותר node-ID ייחודיים; * בסוף בשורת מצב מעיד על ביטחון נמוך.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>הצג Ratio בשורת מצב</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>הצג חיבורי טורנט בשורת המצב</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>הצג צמתי DHT בשורת המצב</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4481,20 +4815,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>User Agent מותאם אישית ל-BitTorrent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>התחברות לממשק רשת</translation>
+            <source>Network interface</source>
+            <translation>ממשק רשת</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>ממשק זה נעול לתעבורת Torrent. אם ה-VPN נקטע או שהממשק נעלם, Stellar מפסיק להשתמש ברירת המחדל והטורנטים מאבדים גישה לרשת במקום ללכת דרך חיבור אחר.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>תעבורת טורנט נעולה לממשק זה. אם ה-VPN מתנתק או הממשק נופל, Stellar עוצר טורנטים במקום לדלוף לחיבור אחר. קשור למתאם ה-VPN כדי לנתב את כל תעבורת הטורנט, כולל IPv6, דרך ה-VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>אין התחברות לממשק רשת. תעבורת Torrent עוקבת אחר מסלול המערכת.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>כל ממשק: תעבורת טורנט עוקבת אחר ניתוב המערכת, כמו שאר האפליקציות. אם VPN הוא החיבור הפעיל, התעבורה עוברת דרכו; אם ה-VPN נופל, התעבורה ממשיכה בחיבור הרגיל. בחר מתאם ספציפי לקשירה קפדנית ל-VPN בלבד.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>התחברות לממשק רשת מורה ל-Stellar לשלוח ולקבל תעבורת Torrent רק דרך הממשק שנבחר. זה יעיל במיוחד למשתמשי VPN כדי למנוע דליפות תעבורה במקרה של ניתוק ה-VPN.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>אפשר UPnP, NAT-PMP ו-Local Service Discovery בזמן קשירה</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>אלו מתקשרים לנתב המקומי ויכולים לחשוף את פורט ההאזנה מסביב למנהרה. הפעל זאת רק כשקשור למתאם LAN מהימן, לא ל-VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP ו-Local Service Discovery מושבתים בזמן קשירה, מאחר שהם מתקשרים לנתב המקומי ויחשפו את פורט ההאזנה מסביב למנהרה.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4949,12 +5291,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>אישור</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>מסלול ברירת מחדל</translation>
+            <source>Any interface</source>
+            <translation>כל ממשק</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>לאפשר למערכת ההפעלה לבחור את ממשק הרשת הפעיל.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>עקוב אחר ניתוב המערכת (בשימוש שאר האפליקציות).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5033,8 +5375,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>מקור: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>כתובת המקור לא נשמעה עדיין. השתמש ב'בדיקת עדכונים' כדי לשמור את IPtoCityDB מ-update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>נפתר אוטומטית מ-db-ip.com בעת עדכון.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5214,22 +5556,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ללא הגבלה</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT כבוי</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>online (נמוך ביטחון)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>מעריך… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>הבא &gt;&gt;</translation>
         </message>
@@ -5237,6 +5563,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>نسبة المشاركة الكليّة</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>סה&quot;כ חיבורי עמיתים</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>צמתי DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5676,6 +6010,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>עדיפות</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>נמוכה</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>רגילה</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>גבוהה</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>מקסימלית</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>מעורב</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>שמור ב</translation>
@@ -6436,6 +6794,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>הורדת וידאו</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>חריגה ממגבלות הורדה!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>מה-%1 אל %2 הורדת %3 מ&quot;ב. כל ההורדות ב-&quot;%4&quot; הופסקו כי חרגת ממגבלת ההורדה של %5 מ&quot;ב כל %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>כל ההורדות שהופסקו יחודשו אוטומטית ב-%1 (בעוד %2). לחידוש מיידי, שנה את הגדרות מגבלות ההורדה ולחץ המשך.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>עכשיו</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>שעה</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 שעות</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>דקה</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 דקות</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>פחות מדקה</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>ו-</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
         </message>
     </context>
 </TS>

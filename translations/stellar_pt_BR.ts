@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Link Magnet ou Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Aceita links HTTP/HTTPS/FTP, links magnet ou um infohash de torrent.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Conexão de controle FTP falhou: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>Conexão de controle FTP fechada inesperadamente.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Conexão de controle FTP expirou.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Resposta FTP malformada.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Recusando enviar comando FTP com quebra de linha embutida.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>Servidor FTP recusou a conexão</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS é necessário, mas o servidor não oferece suporte a AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Falha no login FTP</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Proteção de dados FTPS (PBSZ) foi rejeitada.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Proteção de dados FTPS (PROT P) foi rejeitada.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>O servidor FTP rejeitou o modo binário (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Não foi possível entrar no modo passivo FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>O servidor FTP não suporta retomada (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>O servidor FTP rejeitou o arquivo</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Resposta FTP inesperada ao RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Transferência FTP abortada pelo servidor</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Não foi possível analisar a resposta do modo passivo FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Endereço do modo passivo FTP rejeitado por segurança.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Não foi possível abrir conexão de dados FTP.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>Falha no handshake TLS: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Caminho FTP inválido.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Não foi possível abrir arquivo parcial: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Falha ao gravar no disco: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Transferência FTP truncada.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Segmento FTP %1 falhou após %2 tentativas.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Sem permissão de gravação no diretório de download: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Iniciando Stellar...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Vinculado a %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Já passou da meia-noite?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Ainda acordado?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>A noite é uma criança!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Sem sono?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Bom dia!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Hora de acordar!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>O melhor da manhã!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Bom dia! Café passando.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Boa tarde!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Downloads na pausa do almoço?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Já é meio-dia!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Espero que seu dia esteja indo bem!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Boa tarde!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Boa noite!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Desacelerando?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Noitinha!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Espero que tenha tido um bom dia!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Trabalhando até tarde?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Passou da hora de dormir?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Sessão madrugada afora!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Não esqueça de descansar!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Bem-vindo de volta!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Pronto quando você estiver!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Bom te ver!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Vamos baixar!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Saudades de você!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>De volta à ativa!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Seus downloads te esperam!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Continuar de onde parou?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>O que vamos pegar hoje?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Vinculado a %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Nenhum arquivo de backup foi escolhido para importar.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Vinculado a %1 (offline — torrents pausados)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Vinculado a %1 (offline - torrents pausados)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Atualização disponível! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Verificando atualizações</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Todos arquivos em um diretório</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Procurar...</translation>
+            <source>Browse…</source>
+            <translation>Procurar…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Lembrar último caminho</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Navegar...</translation>
+            <source>Browse…</source>
+            <translation>Procurar…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Baixar</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Clique para copiar</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 Clique em Adicionar URL para iniciar.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Carregando %n download(s)…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Carregando %1 / %2 downloads…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ Você pode alterar em Opções → Downloads a qualquer momento.</translation>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioridade</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Baixa</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Alta</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Máximo</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Misto</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Raro</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Comum</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Prioridade Alta</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Ignorado</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Indisponível</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 peças</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 baixado</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 baixando</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 ignorado(s)</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Nenhum dado de peça disponível</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Ignorado (arquivo não selecionado)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Baixando - %1% dos blocos recebidos</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Indisponível - nenhum par tem esta peça</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Faltando - %n par(es) a possuem</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(alta prioridade)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Peça #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Mover Torrent Para...</translation>
@@ -3389,8 +3723,8 @@ Opções do Stellar → Navegador → Ignorar Intercepção de Download</transla
             <translation>Deixe vazio para usar o caminho padrão</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Procurar...</translation>
+            <source>Browse…</source>
+            <translation>Procurar…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3901,6 +4235,10 @@ Opções do Stellar → Navegador → Ignorar Intercepção de Download</transla
             <translation>Iniciar download mostrando info</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Preencher descrição com metadados (bitrate, resolução, codec, etc.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Mostrar mapa do enxame</translation>
         </message>
@@ -4103,10 +4441,6 @@ Opções do Stellar → Navegador → Ignorar Intercepção de Download</transla
             <translation>⚠ Não na lista de auto-download do navegador: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Navegar</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Esta é a pasta personalizada de torrent lembrada usada quando o diálogo de metadados de torrent está definido para usar uma pasta de salvamento personalizada por padrão.</translation>
         </message>
@@ -4223,16 +4557,16 @@ Opções do Stellar → Navegador → Ignorar Intercepção de Download</transla
             <translation>Velocidade na barra de status</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Usuários online estimados na barra de status</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Usa densidade de IDs de nó DHT para estimar usuários globais BitTorrent. Confiança aumenta com mais IDs únicos; * no final indica baixa confiança.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Razão na barra de status</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Exibir conexões de torrent na barra de status</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Mostrar nós DHT na barra de status</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4495,20 +4829,28 @@ Recomenda-se fortemente vincular o Stellar a uma interface de rede VPN e verific
             <translation>User agent personalizado</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Vincular a adaptador</translation>
+            <source>Network interface</source>
+            <translation>Interface de rede</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Adaptador bloqueado para tráfego de torrent. Se sua VPN desconectar ou o adaptador sumir, o Stellar para de usar a rota padrão e suas torrents perdem acesso à rede em vez de vazarem para outra conexão.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>O tráfego de torrent está vinculado a esta interface. Se sua VPN desconectar ou a interface cair, o Stellar pausa os torrents em vez de vazar para outra conexão. Vincule ao adaptador da sua VPN para rotear todo o tráfego de torrent, incluindo IPv6, através da VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Sem vínculo de adaptador. O tráfego de torrent segue a rota do sistema.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Qualquer interface: o tráfego de torrent segue a rota do sistema, assim como seus outros aplicativos. Se uma VPN for sua conexão ativa, ele passa pela VPN; se a VPN cair, o tráfego continua na conexão normal. Escolha um adaptador específico para vinculação estrita apenas à VPN.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>O vínculo de adaptador instrui o Stellar a enviar e receber tráfego de torrent apenas pelo adaptador selecionado. Isso é especialmente útil para usuários de VPN, pois evita vazamentos acidentais quando a VPN não está conectada.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Permitir UPnP, NAT-PMP e Descoberta de Serviços Locais enquanto vinculado</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Estes se comunicam com seu roteador local e podem expor sua porta de escuta através do túnel. Habilite isso apenas ao vincular a um adaptador LAN confiável, não a uma VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP e Descoberta de Serviço Local estão desabilitados enquanto vinculados, pois eles se comunicam com o roteador local e exporiam sua porta de escuta através do túnel.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4963,12 +5305,12 @@ Recomenda-se fortemente vincular o Stellar a uma interface de rede VPN e verific
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Roteamento padrão</translation>
+            <source>Any interface</source>
+            <translation>Qualquer interface</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Deixe o SO escolher o adaptador de rede ativo.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Siga a rota do sistema (usada pelos seus outros aplicativos).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5047,8 +5389,8 @@ Recomenda-se fortemente vincular o Stellar a uma interface de rede VPN e verific
             <translation>Fonte: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>URL da fonte não está em cache ainda. Use Verificar atualizações para carregar o IPtoCityDB de update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Resolvido automaticamente via db-ip.com ao atualizar.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5228,22 +5570,6 @@ Recomenda-se fortemente vincular o Stellar a uma interface de rede VPN e verific
             <translation>ilimitado</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT desligado</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>online (baixa confiança)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Estimando… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>próximo &gt;&gt;</translation>
         </message>
@@ -5251,6 +5577,14 @@ Recomenda-se fortemente vincular o Stellar a uma interface de rede VPN e verific
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Razão total</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Conexões totais de peers</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>Nós DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5690,6 +6024,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioridade</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Baixa</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normal</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Alta</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Máxima</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Misto</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Salvar em</translation>
@@ -6450,6 +6808,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Download de vídeo</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Limite de download excedido!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>De %1 a %2 você baixou %3 MB. Todos os downloads em &quot;%4&quot; foram interrompidos porque você excedeu o limite de download de %5 MB a cada %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Todos os downloads interrompidos serão retomados automaticamente em %1 (%2 a partir de agora). Para retomar imediatamente, altere a configuração de Limites de Download e pressione Retomar.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>agora</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 hora</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 horas</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 minuto</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 minutos</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>menos de um minuto</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>e</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

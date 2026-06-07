@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet Link sau Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Acceptă linkuri HTTP/HTTPS/FTP, magnet sau un infohash torrent.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Conexiune FTP de control eșuată: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>Conexiunea FTP de control s-a închis neașteptat.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Conexiunea FTP de control a expirat.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Răspuns FTP malformat.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Refuz trimitere comandă FTP cu linie nouă încorporată.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>Server FTP a refuzat conexiunea</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS necesar, dar serverul nu suportă AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Autentificare FTP eșuată</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Protecția datelor FTPS (PBSZ) a fost respinsă.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Protecția datelor FTPS (PROT P) a fost respinsă.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>Serverul FTP a respins modul binar (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Nu s-a putut intra în modul pasiv FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>Serverul FTP nu suportă reluarea (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>Serverul FTP a respins fișierul</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Răspuns FTP neașteptat la RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Transfer FTP anulat de server</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Nu s-a putut analiza răspunsul modului pasiv FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Adresa modului pasiv FTP respinsă din motive de securitate.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Nu s-a putut deschide conexiunea de date FTP.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>Negocierea TLS a eșuat: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Cale FTP invalidă.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Nu se poate deschide fișierul parțial: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Scrierea pe disc a eșuat: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Transferul FTP a fost trunchiat.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Segmentul FTP %1 a eșuat după %2 reîncercări.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Fără permisiune de scriere pentru directorul de descărcare: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar pornește...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Legat de %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Deja trecut de miezul nopții?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Încă treaz?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Noaptea-i tânără!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Nu poți dormi?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Bună dimineața!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Trezirea!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>O dimineață minunată!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Dimineața! Cafeaua-i pe foc.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Bună ziua!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Descărcări în pauza de prânz?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Deja amiază!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Sper să ai o zi bună!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Bună ziua!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Bună seara!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Te relaxezi?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Seară bună!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Sper că ai avut o zi bună!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Lucrezi până târziu?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Treci de ora de culcare?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Sesiune nocturnă!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Nu uita să te odihnești!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Bine ai revenit!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Gata când ești!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Mă bucur să te văd!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Să începem descărcările!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Mi-a fost dor!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Din nou la treabă!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Descărcările te așteaptă!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Reluăm de unde am rămas?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Ce descărcăm azi?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Legat la %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Niciun fișier de backup ales pentru import.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Legat de %1 (offline — torrente oprite)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Legat la %1 (offline - torrente oprite)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Actualizare disponibilă! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Se verifică actualizări</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Toate fișierele într-un director</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Răsfoiește...</translation>
+            <source>Browse…</source>
+            <translation>Răsfoiește…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Rulează manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org
             <translation>Amintește calea ultimei salvări</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Răsfoire...</translation>
+            <source>Browse…</source>
+            <translation>Răsfoiește…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Rulează manual: flatpak override --user --talk-name=org.freedesktop.Flatpak org
         <message>
             <source>Download</source>
             <translation>Descărcare</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Clic pentru copiere</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 Apăsați Adaugă URL pentru a începe.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Se încarcă %n descărcare(i)…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Se încarcă %1 / %2 descărcări…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritate</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Scăzută</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normală</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Ridicată</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maxim</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Mixt</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Rar</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Comun</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Prioritate mare</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Sărite</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Indisponibil</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 bucăți</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 descărcate</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 în descărcare</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 omis</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Nicio dată de piesă disponibilă</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Omis (fișier neselectat)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Descărcare - %1% blocuri primite</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Indisponibil - niciun peer nu are piesa</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Lipsește - %n peer(i) o au</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(prioritate mare)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Piesa #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Mutare date torrent...</translation>
@@ -3383,8 +3717,8 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <translation>Lăsați gol pentru cale implicită</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Răsfoiește...</translation>
+            <source>Browse…</source>
+            <translation>Răsfoiește…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3895,6 +4229,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <translation>Începe descărcarea imediat afișând dialogul 'Info Fișier Descărcare'</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Completează automat descrierea cu metadatele fișierului (bitrate, rezoluție, codec etc.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Arată harta swarm la descărcarea metadator torrent</translation>
         </message>
@@ -4097,10 +4435,6 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <translation>⚠ Nu este în lista de descărcări automate a browserului: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Parcurge</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Aceasta este folderul personalizat pentru torrenturi reținut, folosit când dialogul de metadate este setat să folosească un folder de salvare personalizat implicit.</translation>
         </message>
@@ -4217,16 +4551,16 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <translation>Viteză în bară stare</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Utilizatori online estimați</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Densitate DHT estimare utilizatori</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Ratio în bară stare</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Afișează conexiunile torrent în bara de stare</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Afișează nodurile DHT în bara de stare</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4485,20 +4819,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Agent utilizator BitTorrent personalizat</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Legare la adaptator de rețea</translation>
+            <source>Network interface</source>
+            <translation>Interfață rețea</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Acest adaptator este blocat pentru traficul torrent. Dacă VPN-ul se deconectează sau adaptatorul dispare, Stellar oprește utilizarea rutei implicite și torrent-urile pierd accesul la rețea în loc să scurgă pe o altă conexiune.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Traficul torrent este blocat pe această interfață. Dacă VPN-ul se deconectează sau interfața dispare, Stellar pune torrentele pe pauză în loc să le scurgă pe altă conexiune. Leagă-te la adaptorul VPN pentru a ruta tot traficul torrent, inclusiv IPv6, prin VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Fără legare la adaptator. Traficul torrent urmează ruta sistemului.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Orice interfață: traficul torrent urmează ruta de sistem, la fel ca celelalte aplicații. Dacă un VPN este conexiunea activă, traficul trece prin VPN; dacă VPN-ul cade, traficul continuă pe conexiunea normală. Alege un adaptor specific pentru legare strictă doar prin VPN.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Legarea la adaptator de rețea indică Stellar să trimită și să primească trafic torrent doar prin adaptatorul selectat. Este util pentru utilizatorii VPN deoarece previne scurgerile accidentale de trafic când VPN-ul nu este conectat.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Permite UPnP, NAT-PMP și descoperirea serviciilor locale când este legat</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Acestea comunică cu routerul local și pot expune portul de ascultare în afara tunelului. Activează doar când ești legat la un adaptor LAN de încredere, nu la un VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP și descoperirea serviciilor locale sunt dezactivate când ești legat, deoarece comunică cu routerul local și ar expune portul de ascultare în afara tunelului.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4953,12 +5295,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Ruta implicită</translation>
+            <source>Any interface</source>
+            <translation>Orice interfață</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Permiteți sistemului de operare să aleagă adapterul de rețea activ.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Urmează ruta de sistem (folosită de celelalte aplicații).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5037,8 +5379,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Sursă: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>URL-ul sursei nu este încă în cache. Folosiți Verificare actualizări pentru a încărca IPtoCityDB din update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Rezolvat automat de db-ip.com la actualizare.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5218,22 +5560,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>nelimitat</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT oprit</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>online (încredere mică)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Estimare… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>următor &gt;&gt;</translation>
         </message>
@@ -5241,6 +5567,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Raport partajare</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Total conexiuni peer torrent</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>Noduri DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5680,6 +6014,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritate</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Scăzută</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normală</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Ridicată</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maximă</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Mixt</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Salvare în</translation>
@@ -6440,6 +6798,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Descarcă video</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Limite descărcare depășite!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>De la %1 la %2 ai descărcat %3 MB. Toate descărcările din „%4” au fost oprite deoarece ai depășit limita de %5 MB la fiecare %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Toate descărcările oprite vor fi reluate automat la %1 (peste %2). Pentru a relua imediat, modifică setarea Limite descărcare și apasă Reluare.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>acum</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 oră</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 ore</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 minut</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 minute</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>mai puțin de un minut</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>și</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

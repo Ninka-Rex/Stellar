@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>رابط URL، رابط Magnet، أو Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>يقبل روابط HTTP/HTTPS/FTP، أو روابط المغناطيس، أو تجزئة معلومات التورنت.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>فشل اتصال التحكم FTP: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>تم إغلاق اتصال التحكم FTP بشكل غير متوقع.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>انتهت مهلة اتصال التحكم FTP.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>رد FTP غير صحيح.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>رفض إرسال أمر FTP الذي يحتوي على سطر جديد مضمن.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>رفض خادم FTP الاتصال</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>مطلوب FTPS لكن الخادم لا يدعم AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>فشل تسجيل الدخول إلى FTP</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>رفض حماية بيانات FTPS (PBSZ).</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>رفض حماية بيانات FTPS (PROT P).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>رفض خادم FTP الوضع الثنائي (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>تعذر الدخول في وضع FTP السلبي.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>خادم FTP لا يدعم الاستئناف (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>رفض خادم FTP الملف</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>رد غير متوقع من FTP على RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>أُجهض نقل FTP من الخادم</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>تعذر تحليل رد وضع FTP السلبي.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>رُفض عنوان وضع FTP السلبي للأمان.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>تعذر فتح اتصال بيانات FTP.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>فشل مصافحة TLS: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>مسار FTP غير صالح.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>تعذر فتح الملف الجزئي: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>فشل الكتابة على القرص: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>تم اقتطاع نقل FTP.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>فشل مقطع FTP %1 بعد %2 محاولة.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>لا يوجد إذن كتابة لمجلد التنزيل: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>جارٍ بدء تشغيل Stellar...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ مرتبط بـ %1</translation>
+            <source>Past midnight already?</source>
+            <translation>هل تجاوزنا منتصف الليل؟</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>أما زلت مستيقظًا؟</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>الليل ما زال صغيراً!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>ألا تستطيع النوم؟</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>صباح الخير!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>استيقظ وتألق!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>أفضل الصباح!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>صباح الخير! القهوة تُحضّر.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>مساء الخير!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>تنزيلات استراحة الغداء؟</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>منتصف النهار بالفعل!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>أتمنى أن يكون يومك جيداً!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>مساء الخير!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>مساء الخير!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>هل تهدأ الآن؟</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>مساءً!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>أتمنى أن يومك كان جيداً!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>تعمل لوقت متأخر؟</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>سهران لبعد النوم؟</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>جلسة ليلية متأخرة!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>لا تنسَ أن ترتاح!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>أهلاً بعودتك!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>جاهز عندما تكون!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>تسعدني رؤيتك!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>لنبدأ التحميل!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>اشتقت لك!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>عدنا للعمل!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>تحميلاتك بانتظارك!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>أتكمل من حيث توقفت؟</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>ماذا سنحمل اليوم؟</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>مرتبط بـ %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>لم يتم اختيار ملف نسخ احتياطي لاستيراده.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ مرتبط بـ %1 (غير متصل — التورنت متوقف)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>مرتبط بـ %1 (غير متصل - التورنت متوقف)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>تحديث متاح! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>التحقق من التحديثات</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>كل الملفات إلى مجلد واحد</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>تصفح...</translation>
+            <source>Browse…</source>
+            <translation>تصفح…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>تذكر آخر مسار حفظ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>تصفح...</translation>
+            <source>Browse…</source>
+            <translation>تصفح…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>تحميل</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>انقر للنسخ</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 انقر على إضافة عنوان URL للبدء.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>جارٍ تحميل %n تنزيل/تنزيلات…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>تحميل %1 / %2…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>الأولوية</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>منخفض</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>عادي</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>مرتفع</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>الأقصى</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>مختلط</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>نادر</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>شائع</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>أولوية عالية</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>مُتخطى</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>غير متاح</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 قطعة</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>تم تنزيل %1</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>جارٍ تنزيل %1</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>تم تخطي %1</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>لا توجد بيانات قطعة</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>تم التخطي (الملف غير محدد)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>جارٍ التنزيل - %1% من الكتل</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>غير متاح - لا نظراء</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>مفقود - %n نظير</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(أولوية عالية)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>قطعة #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>نقل بيانات التورنت إلى...</translation>
@@ -3390,8 +3724,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>اتركه فارغًا لاستخدام المسار الافتراضي</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>تصفح...</translation>
+            <source>Browse…</source>
+            <translation>تصفح…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3902,6 +4236,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>بدء التنزيل فوراً مع إظهار مربع &quot;معلومات ملف التنزيل&quot;</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>ملء تلقائي للوصف</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>إظهار خريطة السرب عند تنزيل بيانات التورنت</translation>
         </message>
@@ -4104,10 +4442,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ غير موجود في قائمة التنزيل التلقائي للمتصفح: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>تصفح</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>هذا هو مجلد البت تورنت المخصص المحفوظ، ويُستخدم عندما يكون مربع حوار بيانات البت تورنت مُعدّلاً لاستخدام مجلد حفظ مخصص كخيار افتراضي.</translation>
         </message>
@@ -4224,16 +4558,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>إظهار السرعة في شريط الحالة</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>إظهار عدد المستخدمين المتصلين المقدر في شريط الحالة</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>يستخدم كثافة معرف عقدة DHT لتقدير مستخدمي BitTorrent العالميين. تزداد الثقة بملاحظة معرفات عقدة فريدة أكثر؛ يعني النجمة (*) في شريط الحالة أن التقدير لا يزال منخفض الثقة.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>إظهار النسبة في شريط الحالة</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>إظهار اتصالات التورنت في شريط الحالة</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>إظهار عُقد DHT في شريط الحالة</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4496,20 +4830,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>وكيل مستخدم مخصص لـ BitTorrent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>التصاق بمحول الشبكة</translation>
+            <source>Network interface</source>
+            <translation>واجهة الشبكة</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>هذا المحور مقفل لحركة التورنت. إذا انقطع اتصال VPN أو اختفى المحور، يتوقف Stellar عن استخدام المسار الافتراضي وتفقد التورنتات الوصول إلى الشبكة بدلاً من التسرب إلى اتصال آخر.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>حركة التورنت مقفلة على هذه الواجهة. إذا انقطع VPN أو اختفت الواجهة، يوقف Stellar التورنت بدلاً من التسريب عبر اتصال آخر. اربطه بمحول VPN لتوجيه كل حركة التورنت، بما فيها IPv6، عبر VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>بدون التصاق بالمحول. تتبع حركة التورنت مسار النظام.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>أي واجهة: حركة التورنت تتبع مسار النظام، مثل تطبيقاتك الأخرى. إذا كان VPN هو اتصالك النشط يمر عبره؛ وإذا انقطع، تستمر الحركة على الاتصال العادي. اختر محولاً محدداً لربط صارم بـ VPN فقط.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>يخبر التصاق المحور Stellar بإرسال واستقبال حركة التورنت فقط عبر المحور المحدد. هذا مفيد جدًا لمستخدمي VPN لأنه يمنع التسرب العرضي للحركة عندما لا يكون VPN متصلاً.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>السماح بـ UPnP و NAT-PMP واكتشاف الخدمة المحلية أثناء الربط</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>هذه تتحدث مع موجّهك المحلي وقد تكشف منفذ الاستماع حول النفق. فعّلها فقط عند الربط بمحول LAN موثوق، وليس VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP و NAT-PMP واكتشاف الخدمة المحلية معطّلة أثناء الربط، لأنها تتحدث مع الموجّه المحلي وستكشف منفذ الاستماع حول النفق.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4964,12 +5306,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>موافق</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>المسار الافتراضي</translation>
+            <source>Any interface</source>
+            <translation>أي واجهة</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>دع نظام التشغيل يختبط محوّل الشبكة النشط.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>اتبع مسار النظام (المستخدم من تطبيقاتك الأخرى).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5048,8 +5390,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>المصدر: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>لم يتم تخزين عنوان URL للمصدر بعد. استخدم التحقق من التحديثات لتخزين IPtoCityDB من update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>تم الحل تلقائياً من db-ip.com عند التحديث.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5229,22 +5571,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>غير محدود</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT متوقف</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>متصل (ثقة منخفضة)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>متصل</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>جارٍ التقدير… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>التالي &gt;&gt;</translation>
         </message>
@@ -5252,6 +5578,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>نسبة المشاركة طوال الوقت</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>إجمالي اتصالات الأقران</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>عُقد DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5691,6 +6025,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>الأولوية</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>منخفض</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>عادي</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>مرتفع</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>الأقصى</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>مختلط</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>حفظ إلى</translation>
@@ -6452,6 +6810,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>تنزيل الفيديو</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>تم تجاوز حدود التحميل!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>من %1 إلى %2 حمّلت %3 ميغابايت. أُوقفت التنزيلات في &quot;%4&quot; لتجاوزك حد %5 ميغابايت كل %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>ستُستأنف التنزيلات الموقوفة تلقائياً %1 (بعد %2). للاستئناف فوراً، غيّر حدود التنزيل واضغط استئناف.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>الآن</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>ساعة</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 ساعات</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>دقيقة</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 دقائق</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>أقل من دقيقة</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>و</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
         </message>
     </context>
 </TS>

@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL، لینک مگنت یا اینفوهش</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>پیوندهای HTTP/HTTPS/FTP، پیوندهای مگنت یا هش اطلاعات تورنت را می‌پذیرد.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>اتصال کنترلی FTP ناموفق بود: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>اتصال کنترل FTP به طور غیرمنتظرهای بسته شد.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>اتصال کنترلی FTP با اتمام زمان مواجه شد.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>پاسخ ناقص FTP</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>از ارسال فرمان FTP با خط جدید تعبیه‌شده خودداری می‌شود.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>سرور FTP اتصال را رد کرد</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS الزامی است اما سرور از AUTH TLS پشتیبانی نمی‌کند.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>ورود FTP ناموفق بود</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>حفاظت داده FTPS (PBSZ) رد شد.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>حفاظت داده FTPS (PROT P) رد شد.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>سرور FTP حالت باینری (TYPE I) را رد کرد.</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>ورود به حالت غیرفعال FTP ممکن نشد.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>سرور FTP از ازسرگیری (REST) پشتیبانی نمیکند.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>سرور FTP فایل را رد کرد</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>پاسخ غیرمنتظره FTP به RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>انتقال FTP توسط سرور متوقف شد</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>تجزیه پاسخ حالت غیرفعال FTP ممکن نشد.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>آدرس حالت غیرفعال FTP به دلایل امنیتی رد شد.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>نتوانست اتصال داده FTP را باز کند.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>دست‌دهی TLS ناموفق: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>مسیر FTP نامعتبر.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>نتوانست فایل بخش را باز کند: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>نوشتن روی دیسک ناموفق: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>انتقال FTP ناقص ماند.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>بخش FTP %1 پس از %2 تلاش ناموفق ماند.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>دسترسی نوشتن در پوشه دانلود وجود ندارد: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>استلار در حال راه‌اندازی است...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ به %1 متصل شد</translation>
+            <source>Past midnight already?</source>
+            <translation>هنوز بیداری؟</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>هنوز بیداری؟</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>شب تازه شروع شده!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>خوابت نمی‌بره؟</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>صبح بخیر!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>بیدار شو و بدرخش!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>صبح به خیر!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>صبح بخیر! قهوه دم می‌کشه.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>عصر بخیر!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>دانلودای وقت ناهار؟</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>ظهر شده!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>امیدوارم روزت خوب پیش بره!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>عصر بخیر!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>عصر بخیر!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>کم‌کم وقت استراحت؟</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>عصرتون بخیر!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>امیدوارم روز خوبی داشته باشید!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>تا دیروقت کار می‌کنید؟</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>بیدار موندید؟</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>نشست شبانه!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>استراحت یادتون نره!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>خوش برگشتید!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>هر وقت آمادهای شروع کنیم!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>از دیدنت خوشحالم!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>بریم دانلود کنیم!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>دلمون برات تنگ شده بود!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>دوباره شروع کنیم!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>دانلودهات منتظرتن!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>از همونجا که مونده بود ادامه بدیم؟</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>امروز چی میخوایم بگیریم؟</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>متصل به %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>فایل پشتیبانی برای وارد کردن انتخاب نشد.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ متصل به %1 (آفلاین — تورنت‌ها متوقف)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>متصل به %1 (آفلاین - تورنت‌ها متوقف)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>به‌روزرسانی در دسترس! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>بررسی به‌روزرسانی</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>همه فایل‌ها در یک پوشه</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>مرور...</translation>
+            <source>Browse…</source>
+            <translation>مرور…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>یادآوری مسیر آخرین ذخیره</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>مرور...</translation>
+            <source>Browse…</source>
+            <translation>مرور…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>دانلود</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>کلیک برای کپی</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 برای شروع، آدرس را اضافه کنید.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>در حال بارگذاری %n دانلود...</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>در حال بارگیری %1 از %2 دانلود…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>اولویت</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>کم</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>معمولی</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>زیاد</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>بیشینه</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ترکیبی</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>نادر</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>رایج</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>اولویت بالا</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>رد شده</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>ناموجود</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 قطعه</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 دریافت‌شده</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 در حال دریافت</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 نادیده گرفته شد</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>داده‌ای برای قطعه موجود نیست</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>نادیده گرفته شد (فایل انتخاب نشده)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>در حال دانلود - %1٪ از بلوک‌ها دریافت شد</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>در دسترس نیست - هیچ همتایی این قطعه را ندارد</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>مفقود - %n همتا آن را دارند</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(اولویت بالا)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>قطعه #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>انتقال تورنت به...</translation>
@@ -3386,8 +3720,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>خالی بگذارید تا مسیر پیش‌فرض استفاده شود</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>مرور...</translation>
+            <source>Browse…</source>
+            <translation>مرور…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3898,6 +4232,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>شروع دانلود فوری همراه نمایش پنجره «اطلاعات فایل»</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>پر کردن خودکار توضیحات با فراداده فایل (نرخ بیت، وضوح، کدک و غیره)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>نمایش نقشه گله هنگام دانلود متادیتای تورنت</translation>
         </message>
@@ -4100,10 +4438,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ در لیست دانلود خودکار مرورگر نیست: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>مرور</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>این پوشه سفارشی ذخیره‌شده است که هنگام تنظیم دیالوگ متادیتای تِرانت به صورت پیش‌فرض از پوشه ذخیره سفارشی استفاده می‌شود.</translation>
         </message>
@@ -4220,16 +4554,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>نمایش سرعت در نوار وضعیت</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>نمایش تعداد کاربران آنلاین تخمینی در نوار وضعیت</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>استفاده از تراکم شناسه گره DHT برای تخمین کاربران جهانی BitTorrent. اعتماد با مشاهده شناسه‌های گره منحصر‌به‌فرد بیشتر می‌شود; ستاره (*) در انتهای نوار وضعیت نشان‌دهنده کمبود اعتماد است.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>نمایش نسبت در نوار وضعیت</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>نمایش اتصالات تورنت در نوار وضعیت</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>نمایش گره‌های DHT در نوار وضعیت</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4489,20 +4823,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>User Agent سفارشی BitTorrent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>اتصال به کارت شبکه</translation>
+            <source>Network interface</source>
+            <translation>رابط شبکه</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>این کارت شبکه برای ترافیک تورنت قفل شده است. اگر VPN قطع شود یا کارت شبکه از دسترس خارج شود، Stellar از مسیر پیش‌فرض استفاده نمی‌کند و تورنت‌های شما به جای نشت به اتصال دیگر، دسترسی به شبکه را از دست می‌دهند.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>ترافیک تورنت به این رابط قفل شده است. اگر VPN قطع شود یا رابط از دسترس خارج شود، Stellar تورنت‌ها را متوقف می‌کند تا ترافیک به اتصال دیگری نشت نکند. برای هدایت تمام ترافیک تورنت، از جمله IPv6، از طریق VPN، به آداپتور VPN متصل شوید.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>بدون اتصال به کارت شبکه. ترافیک تورنت از مسیر سیستم پیروی می‌کند.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>هر رابط: ترافیک تورنت مسیر سیستم را دنبال می‌کند، مانند سایر برنامه‌ها. اگر VPN اتصال فعال شما باشد، از آن عبور می‌کند؛ اگر VPN قطع شود، ترافیک روی اتصال عادی ادامه می‌یابد. برای اتصال انحصاری VPN، یک آداپتور خاص انتخاب کنید.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>اتصال به کارت شبکه به Stellar دستور می‌دهد که ترافیک تورنت را تنها از طریق کارت شبکه انتخاب شده ارسال و دریافت کند. این برای کاربران VPN بسیار مفید است زیرا از نشت تصادفی ترافیک هنگام عدم اتصال VPN جلوگیری می‌کند.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>اجازه UPnP، NAT-PMP و کشف سرویس محلی در حالت متصل</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>این موارد با روتر محلی شما ارتباط برقرار می‌کنند و می‌توانند پورت شنود شما را در اطراف تونل آشکار کنند. فقط زمانی این گزینه را فعال کنید که به یک آداپتور LAN قابل اعتماد متصل هستید، نه VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP، NAT-PMP و کشف سرویس محلی در حالت متصل غیرفعال هستند، زیرا با روتر محلی ارتباط برقرار کرده و پورت شنود شما را در اطراف تونل آشکار می‌کنند.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4957,12 +5299,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>تأیید</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>مسیر پیش‌فرض</translation>
+            <source>Any interface</source>
+            <translation>هر رابط</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>به سیستم عامل اجازه دهید انتخاب‌کننده شبکه فعال را انتخاب کند.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>دنبال کردن مسیر سیستم (مورد استفاده سایر برنامه‌ها).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5041,8 +5383,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>منبع: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>آدرس منبع هنوز کش نشده است. برای کش کردن IPtoCityDB از update.json از گزینه بررسی به‌روزرسانی استفاده کنید.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>به‌طور خودکار از db-ip.com هنگام به‌روزرسانی دریافت شد.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5222,22 +5564,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>نامحدود</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT خاموش</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>online (اعتماد کم)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>در حال برآورد... (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>بعدی &gt;&gt;</translation>
         </message>
@@ -5245,6 +5571,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>نسبت اشتراک کل‌زمان</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>کل اتصالات همتا تورنت</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>گره‌های DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5684,6 +6018,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>اولویت</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>کم</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>متوسط</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>زیاد</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>حداکثر</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ترکیبی</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>ذخیره در</translation>
@@ -6444,6 +6802,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>دانلود ویدیو</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>محدودیت دانلود رد شد!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>از %1 تا %2 شما %3 مگابایت دانلود کردید. همه دانلودها در &quot;%4&quot; متوقف شدند چون از محدودیت %5 مگابایت در هر %6 عبور کردید.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>همه دانلودهای متوقف‌شده به‌طور خودکار در %1 (%2 دیگر) از سر گرفته می‌شوند. برای از سرگیری فوری، تنظیمات محدودیت دانلود را تغییر دهید و Resume را بزنید.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>اکنون</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>۱ ساعت</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 ساعت</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>۱ دقیقه</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 دقیقه</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>کمتر از یک دقیقه</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>و</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>تأیید</translation>
         </message>
     </context>
 </TS>

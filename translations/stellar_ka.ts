@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, მაგნიტური ბმული ან ინფოჰეში</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP ბმულების, მაგნიტური ბმულების ან ტორენტის ინფოჰეშის მიღება.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP საკონტროლო კავშირი ვერ მოხერხდა: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP საკონტროლო კავშირი მოულოდნელად დაიხურა.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP საკონტროლო კავშირს დრო ამოეწურა.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>FTP პასუხის ფორმატი არასწორია.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>FTP ბრძანება ჩაშენებული ახალი ხაზით არ გაიგზავნება.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP სერვერმა კავშირი უარყო</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS საჭიროა, მაგრამ სერვერი AUTH TLS-ს არ უჭერს მხარს.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP ავტორიზაცია ვერ მოხერხდა</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS მონაცემთა დაცვა (PBSZ) უარყოფილია.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS მონაცემთა დაცვა (PROT P) უარყოფილია.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP სერვერმა უარყო ორობითი რეჟიმი (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTP პასიურ რეჟიმში ვერ შევიდა.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP სერვერს განახლება (REST) არ აქვს მხარდაჭერილი.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP სერვერმა ფაილი უარყო</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>RETR-ზე FTP მოულოდნელი პასუხი</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP გადაცემა სერვერმა შეწყვიტა</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>FTP პასიური რეჟიმის პასუხის ანალიზი ვერ მოხერხდა.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>FTP პასიური რეჟიმის მისამართი უსაფრთხოებისთვის უარყოფილია.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTP მონაცემთა კავშირი ვერ გაიხსნა.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS ხელის ჩამორთმევა ვერ მოხერხდა: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>FTP ბილიკი არასწორია.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>ნაწილის ფაილი ვერ იხსნება: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>დისკზე ჩაწერა ვერ მოხერხდა: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP გადაცემა შეწყდა.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP სეგმენტი %1 ვერ მოხერხდა %2 ცდის შემდეგ.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ჩამოტვირთვის დირექტორიაში ჩაწერის უფლება არ არის: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar იშვება...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ მიბმულია %1-თან</translation>
+            <source>Past midnight already?</source>
+            <translation>უკვე შუაღამეა?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>ისევ ფხიზლობ?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>ღამე ჯერ ახალგაზრდაა!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>ვერ იძინებ?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>დილა მშვიდობისა!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>ადექი და გაბრწყინდი!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>დილის მწვერვალი!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>დილა! ყავა იხარშება.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>შუადღე მშვიდობისა!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>სადილის შესვენებაზე ჩამოტვირთვები?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>უკვე შუადღეა!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>იმედია, დღე კარგად მიდის!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>საღამო მშვიდობისა!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>საღამო მშვიდობისა!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>ისვენებ?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>საღამო!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>იმედია, კარგი დღე გქონდა!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>გვიან მუშაობ?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>ძილის დრო გადასულია?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>გვიან ღამის სესია!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>არ დაგავიწყდეს დასვენება!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>კეთილი იყოს შენი დაბრუნება!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>მზად ვარ, როცა შენ იქნები!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>კარგია შენი ნახვა!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>დავიწყოთ ჩამოტვირთვა!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>მომენატრე!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>ისევ საქმეზე!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>შენი ჩამოტვირთვები გელოდება!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>გააგრძელო, სადაც შეწყვიტე?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>რას ვიჭერთ დღეს?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>დაკავშირებულია %1-თან</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>იმპორტისთვის სარეზერვო ფაილი არ არის არჩეული.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ მიბმულია %1-ზე (ოფლაინი — ტორენტები შეჩერებულია)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>დაკავშირებულია %1-თან (ოფლაინი - ტორენტები შეჩერებულია)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>განახლება ხელმისაწვდომია! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>განახლებების შემოწმება</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>ყველა ფაილი ერთ დირექტორიაში</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>დათვალიერება...</translation>
+            <source>Browse…</source>
+            <translation>დათვალიერება…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -636,8 +878,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ბოლო შენახვის გზის გახსენება</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>შემოწმება...</translation>
+            <source>Browse…</source>
+            <translation>დათვალიერება…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -724,6 +966,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>დააწკაპუნეთ კოპირებისთვის</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1031,8 +1277,8 @@ Click  Add URL  to start.</source>
 დააჭირეთ URL-ის დამატებას დასაწყებად.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>%n ჩამოტვირთვა იტვირთება…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>იტვირთება %1 / %2…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1151,6 +1397,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>პრიორიტეტი</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>დაბალი</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>ნორმალური</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>მაღალი</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>მაქსიმუმი</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>შერეული</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>იშვიათი</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>ხშირი</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>მაღალი პრიორიტეტი</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>გამოტოვებული</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>მიუწვდომელი</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 ნაწილი</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 გადმოწერილი</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 იტვირთება</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 გამოტოვებულია</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>ნაწილის მონაცემები არ არის</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>გამოტოვებულია (ფაილი არ არის არჩეული)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>იტვირთება - მიღებულია ბლოკების %1%</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>მიუწვდომელია - არცერთ პირს არ აქვს ეს ნაწილი</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>აკლია - %n პირ(ს) აქვს</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(მაღალი პრიორიტეტი)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>ნაწილი #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>ტორენტის მონაცემების გადატანა...</translation>
@@ -3398,8 +3732,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>დეფოლტ გზისთვის ცარიელი დატოვეთ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>დათვალიერება...</translation>
+            <source>Browse…</source>
+            <translation>დათვალიერება…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3910,6 +4244,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>დაიწყე გადმოწერა დაუყოვნებლივ &quot;ფაილის ინფოს&quot; დიალოგის ჩვენებით</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>აღწერის ველის ავტომატურად შევსება ფაილის მეტამონაცემებით (ბიტრეიტი, გაფართოება, კოდეკი და ა.შ.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>ჩვენება რწყილის რუკა ტორენტის მეტამონაცემების გადმოწერისას</translation>
         </message>
@@ -4112,10 +4450,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ არ არის ბრაუზერის ავტო-ჩამოტვირთვის სიაში: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>შემოწმება</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>ეს არის შენახული კასტომური ტორენტის საქაღალდე, რომელიც გამოიყენება ტორენტის მეტამონაცემების დიალოგში კასტომური შენახვის საქაღალდის დეფოლტად დაყენებისას.</translation>
         </message>
@@ -4232,16 +4566,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>სიჩქარის ჩვენება სტატუსის ზოლში</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>ონლაინ მომხმარებლების რაოდენობის ჩვენება</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>მსოფლიო მომხმარებლების შეფასება DHT-ის საფუძველზე. * ნიშანი ნაკლები სანდოობას ნიშნავს.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>რატიოს ჩვენება სტატუსის ზოლში</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>სტატუსის ზოლში ტორენტის კავშირების ჩვენება</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>სტატუსის ზოლში DHT კვანძების ჩვენება</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4504,20 +4838,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>მორგებული BitTorrent-ის აგენტი</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>მიბმა ქსელის ადაპტორს</translation>
+            <source>Network interface</source>
+            <translation>ქსელის ინტერფეისი</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>ეს ადაპტორი დაბლოკილია ტორენტის ტრაფიკისთვის. თუ VPN გაითიშება ან ადაპტორი გაქრება, Stellar ჩვეულებრივ მარშრუტს აღარ გამოიყენებს და ტორენტებს ინტერნეტთან წვდომა დაეკარგებათ, ნაცვლად იმისა, რომ სხვა კავშირზე გაჟონონ.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>ტორენტის ტრაფიკი ჩაკეტილია ამ ინტერფეისზე. თუ თქვენი VPN გაითიშება ან ინტერფეისი გაქრება, Stellar აჩერებს ტორენტებს, ნაცვლად იმისა, რომ ტრაფიკი სხვა კავშირზე გაჟონოს. მიაბით თქვენი VPN ადაპტერი, რომ მთელი ტორენტის ტრაფიკი, IPv6-ის ჩათვლით, VPN-ის გავლით გაიაროს.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>ადაპტორის მიბმა არ არის. ტორენტის ტრაფიკი სისტემის მარშრუტს ემორჩილება.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>ნებისმიერი ინტერფეისი: ტორენტის ტრაფიკი მიჰყვება სისტემის მარშრუტს, ისევე როგორც თქვენი სხვა აპლიკაციები. თუ VPN არის თქვენი აქტიური კავშირი, ის გადის VPN-ის მეშვეობით; თუ VPN გაითიშება, ტრაფიკი გრძელდება ჩვეულებრივ კავშირზე. აირჩიეთ კონკრეტული ადაპტერი მკაცრი VPN-მხოლოდ მიბმისთვის.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>ქსელის ადაპტორის მიბმა Stellar-ს ავალდებულებს, ტორენტის ტრაფიკი მხოლოდ შერჩეული ადაპტორით გაატაროს. ეს განსაკუთრებით სასარგებლოა VPN-ის მომხმარებლებისთვის, რადგან ხელს უშლის შემთხვევით გაჟონვას, როცა VPN არ არის ჩართული.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>UPnP, NAT-PMP და ლოკალური სერვისის აღმოჩენის დაშვება მიბმულ მდგომარეობაში</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>ეს თქვენს ლოკალურ როუტერს ესაუბრება და შეუძლია თქვენი მოსასმენი პორტი გამოაშკარავოს გვირაბის გარშემო. ჩართეთ ეს მხოლოდ მაშინ, როცა სანდო LAN ადაპტერს უკავშირდებით, და არა VPN-ს.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP და ლოკალური სერვისის აღმოჩენა გამორთულია მიბმისას, რადგან ისინი ლოკალურ როუტერთან ურთიერთობენ და თქვენს მოსასმენ პორტს გამოაშკარავებენ გვირაბის გარშემო.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4972,12 +5314,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>კარგი</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>დეფოლტ მარშრუტი</translation>
+            <source>Any interface</source>
+            <translation>ნებისმიერი ინტერფეისი</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>დატოვეთ OS-ს აქტიური ქსელის ადაპტერის არჩევა.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>ընթացեք համակարգային երթուղով (ձեր մյուս հավելվածների կողմից օգտագործվող)</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5056,8 +5398,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>წყარო: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>წყაროს URL ჯერ კეშირებული არ არის. გამოიყენეთ განახლებების შემოწმება IPtoCityDB-ის კეშირებისთვის update.json-დან.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>ავტომატურად განისაზღვრა db-ip.com-დან განახლებისას.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5237,22 +5579,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>უსაზღვრო</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT გამორთული</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>ონლაინში (დაბალი სანდოობა)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>ონლაინში</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>შეფასება… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>შემდეგი &gt;&gt;</translation>
         </message>
@@ -5261,6 +5587,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 Click to open Statistics</source>
             <translation>ყოველდღიური გაზიარების კოეფიციენტი
 დაწკაპუნეთ სტატისტიკის გასახსნელად</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>ტორენტის ჯამური კავშირები</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT კვანძები</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5700,6 +6034,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>პრიორიტეტი</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>დაბალი</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>საშუალო</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>მაღალი</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>მაქსიმუმი</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>შერეული</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>შენახვა</translation>
@@ -6461,6 +6819,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ვიდეოს ჩამოტვირთვა</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>ჩამოტვირთვის ლიმიტი გადაჭარბებულია!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1-დან %2-მდე ჩამოტვირთეთ %3 მბ. ყველა ჩამოტვირთვა &quot;%4&quot;-ში შეჩერდა, რადგან გადააჭარბეთ %5 მბ ლიმიტს ყოველ %6-ში.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>ყველა შეჩერებული ჩამოტვირთვა ავტომატურად განახლდება %1-ზე (%2-ში). დაუყოვნებლივ გასაგრძელებლად, შეცვალეთ ჩამოტვირთვის ლიმიტები და დააჭირეთ გაგრძელებას.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>ახლა</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 საათი</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 საათი</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 წუთი</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 წუთი</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>წუთზე ნაკლები</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>და</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>კარგი</translation>
         </message>
     </context>
 </TS>

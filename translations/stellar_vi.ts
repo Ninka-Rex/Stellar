@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet Link hoặc Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Nhận liên kết HTTP/HTTPS/FTP, magnet hoặc infohash torrent.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Kết nối điều khiển FTP thất bại: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>Kết nối điều khiển FTP đóng đột ngột.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>Kết nối điều khiển FTP hết thời gian.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Phản hồi FTP không hợp lệ.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Từ chối gửi lệnh FTP chứa ký tự xuống dòng.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>Máy chủ FTP từ chối kết nối</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>Yêu cầu FTPS nhưng máy chủ không hỗ trợ AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>Đăng nhập FTP thất bại</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Bảo vệ dữ liệu FTPS (PBSZ) bị từ chối.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Bảo vệ dữ liệu FTPS (PROT P) bị từ chối.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>Máy chủ FTP từ chối chế độ nhị phân (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Không thể vào chế độ thụ động FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>Máy chủ FTP không hỗ trợ tiếp tục (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>Máy chủ FTP từ chối tệp</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Phản hồi FTP bất thường với RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Truyền FTP bị máy chủ hủy</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Không thể phân tích phản hồi chế độ thụ động FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Địa chỉ chế độ thụ động FTP bị từ chối vì bảo mật.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Không thể mở kết nối dữ liệu FTP.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>Bắt tay TLS thất bại: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Đường dẫn FTP không hợp lệ.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Không thể mở tệp part: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Ghi đĩa thất bại: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Truyền FTP bị cắt ngắn.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Phân đoạn FTP %1 thất bại sau %2 lần thử.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Không có quyền ghi vào thư mục tải: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar đang khởi động...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Gắn vào %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Đã quá nửa đêm rồi sao?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Vẫn thức à?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Đêm còn dài!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Khó ngủ à?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Chào buổi sáng!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Dậy đi nào!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Sáng sớm tinh mơ!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Sáng rồi! Cà phê đang pha.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Chào buổi chiều!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Tải lúc nghỉ trưa à?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Đã trưa rồi!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Chúc ngày mới tốt lành!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Chào buổi chiều!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Chào buổi tối!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Đang thư giãn à?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Buổi tối vui vẻ!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Hy vọng bạn có một ngày tốt lành!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Làm việc muộn à?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Thức khuya hả?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Phiên làm việc khuya!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Đừng quên nghỉ ngơi!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Chào mừng trở lại!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Sẵn sàng rồi!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Mừng gặp lại!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Tải thôi nào!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Nhớ bạn đấy!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Lại làm việc thôi!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Tệp tải đang chờ!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Tiếp tục từ lúc trước?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Hôm nay tải gì nào?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Đã kết nối %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Chưa chọn tệp sao lưu để nhập.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Ràng buộc với %1 (ngoại tuyến — torrent bị tạm dừng)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Đã kết nối %1 (ngoại tuyến - torrent đã tạm dừng)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Đã có bản cập nhật! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Đang kiểm tra cập nhật</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Tất cả tệp vào một thư mục</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Duyệt...</translation>
+            <source>Browse…</source>
+            <translation>Duyệt…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Chạy thủ công: flatpak override --user --talk-name=org.freedesktop.Flatpak 
             <translation>Ghi nhớ đường dẫn lưu cuối cùng</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Duyệt...</translation>
+            <source>Browse…</source>
+            <translation>Duyệt…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Chạy thủ công: flatpak override --user --talk-name=org.freedesktop.Flatpak 
         <message>
             <source>Download</source>
             <translation>Tải xuống</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Nhấn để sao chép</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 Nhấn Thêm URL để bắt đầu.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Đang tải %n tải xuống…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Đang tải %1 / %2 tệp…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Ưu tiên</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Thấp</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Thường</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Cao</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Tối đa</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Hỗn hợp</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Hiếm</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Thường</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Ưu tiên cao</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Đã bỏ qua</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Không có sẵn</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 mảnh</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>Đã tải %1</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>Đang tải %1</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 đã bỏ qua</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Không có dữ liệu mảnh</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Đã bỏ qua (tệp không chọn)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Đang tải - %1% khối đã nhận</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Không khả dụng - không peer nào có mảnh này</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Thiếu - %n peer có nó</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(ưu tiên cao)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Mảnh #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Di chuyển Torrent...</translation>
@@ -3388,8 +3722,8 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <translation>Để trống để dùng đường dẫn mặc định</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Duyệt...</translation>
+            <source>Browse…</source>
+            <translation>Duyệt…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3900,6 +4234,10 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <translation>Bắt đầu tải xuống ngay lập tức khi hiển thị hộp thoại &quot;Thông tin tệp tải xuống&quot;.</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Tự động điền mô tả bằng siêu dữ liệu tệp (bitrate, độ phân giải, codec, v.v.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Hiển thị bản đồ swarm khi tải torrent metadata</translation>
         </message>
@@ -4102,10 +4440,6 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <translation>⚠ Không nằm trong danh sách tải tự động trình duyệt: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Duyệt</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Đây là thư mục torrent tùy chỉnh đã lưu dùng khi hộp thoại metadata torrent đặt mặc định dùng thư mục lưu tùy chỉnh.</translation>
         </message>
@@ -4222,16 +4556,16 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <translation>Tốc độ</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Người dùng</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>DHT</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Tỷ lệ</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Hiển thị kết nối torrent trên thanh trạng thái</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Hiển thị nút DHT trên thanh trạng thái</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4494,20 +4828,28 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <translation>User agent tùy chỉnh BitTorrent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Gắn vào bộ điều hợp mạng</translation>
+            <source>Network interface</source>
+            <translation>Giao diện mạng</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Bộ điều hợp này bị khóa cho lưu lượng torrent. Nếu VPN ngắt kết nối hoặc bộ điều hợp biến mất, Stellar sẽ ngừng sử dụng tuyến mặc định và các torrent của bạn sẽ mất kết nối mạng thay vì rò rỉ sang một kết nối khác.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Lưu lượng torrent bị khóa vào giao diện này. Nếu VPN ngắt kết nối hoặc giao diện biến mất, Stellar sẽ tạm dừng torrent thay vì rò rỉ sang kết nối khác. Liên kết với bộ điều hợp VPN để định tuyến toàn bộ lưu lượng torrent, bao gồm IPv6, qua VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Không gắn bộ điều hợp. Lưu lượng torrent tuân theo tuyến hệ thống.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Mọi giao diện: lưu lượng torrent đi theo tuyến hệ thống, giống các ứng dụng khác. Nếu VPN đang hoạt động, lưu lượng sẽ qua VPN; nếu VPN ngắt, lưu lượng tiếp tục trên kết nối thường. Chọn bộ điều hợp cụ thể để ràng buộc chặt chỉ qua VPN.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Gắn bộ điều hợp mạng yêu cầu Stellar gửi và nhận lưu lượng torrent chỉ qua bộ điều hợp được chọn. Điều này đặc biệt hữu ích cho người dùng VPN vì nó ngăn chặn rò rỉ lưu lượng ngẫu nhiên khi VPN không được kết nối.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Cho phép UPnP, NAT-PMP và Local Service Discovery khi bị ràng buộc</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Các dịch vụ này giao tiếp với bộ định tuyến cục bộ và có thể làm lộ cổng nghe ra ngoài đường hầm. Chỉ bật khi ràng buộc với bộ điều hợp LAN tin cậy, không phải VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP và Local Service Discovery bị vô hiệu hóa khi bị ràng buộc, vì chúng giao tiếp với bộ định tuyến cục bộ và sẽ làm lộ cổng nghe ra ngoài đường hầm.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4962,12 +5304,12 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Mặc định</translation>
+            <source>Any interface</source>
+            <translation>Mọi giao diện</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Để hệ điều hành chọn bộ chuyển đổi mạng hoạt động.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Đi theo tuyến hệ thống (dùng bởi các ứng dụng khác).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5046,8 +5388,8 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <translation>Nguồn: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>URL nguồn chưa được lưu cache. Sử dụng Kiểm tra cập nhật để lưu cache IPtoCityDB từ update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Tự động phân giải từ db-ip.com khi cập nhật.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5227,22 +5569,6 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <translation>vô hạn</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>Tắt DHT</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>  trực tuyến (thấp tin cậy)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>  trực tuyến</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Đang ước tính… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>Tiếp theo &gt;&gt;</translation>
         </message>
@@ -5251,6 +5577,14 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
 Click to open Statistics</source>
             <translation>Tỷ lệ chia sẻ mọi thời đại
 Nhấp để xem thống kê</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Tổng kết nối peer torrent</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>Nút DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5690,6 +6024,30 @@ Nhấp để xem thống kê</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Ưu tiên</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Thấp</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Thường</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Cao</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Tối đa</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Hỗn hợp</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Lưu vào</translation>
@@ -6450,6 +6808,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Tải Video</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Vượt giới hạn tải!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Từ %1 đến %2 bạn đã tải %3 MB. Mọi tải về trong &quot;%4&quot; đã dừng vì vượt giới hạn %5 MB mỗi %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Mọi tải về đã dừng sẽ tự động tiếp tục lúc %1 (còn %2). Để tiếp tục ngay, sửa cài đặt Giới hạn tải và nhấn Tiếp tục.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>bây giờ</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 giờ</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 giờ</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 phút</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 phút</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>dưới một phút</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>và</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

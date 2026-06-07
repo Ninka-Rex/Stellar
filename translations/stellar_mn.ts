@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet холбоос эсвэл Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP холбоос, magnet холбоос эсвэл torrent infohash хүлээн авна.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP хяналтын холболт амжилтгүй: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP хяналтын холболт гэнэт хаагдсан.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP хяналтын холболтын хугацаа хэтэрсэн.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>FTP хариу буруу хэлбэртэй.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Шинэ мөр агуулсан FTP команд илгээхээс татгалзав.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP сервер холболтоос татгалзсан</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS шаардлагатай боловч сервер AUTH TLS дэмжихгүй.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP нэвтрэлт амжилтгүй</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS өгөгдөл хамгаалалт (PBSZ) татгалзсан.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS өгөгдөл хамгаалалт (PROT P) татгалзсан.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP сервер хоёртын горим (TYPE I) татгалзсан.</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTP идэвхгүй горимд орж чадсангүй.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP сервер үргэлжлүүлэх (REST) дэмжихгүй.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP сервер файлыг татгалзсан</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>RETR-д FTP хариу гэнэтийн</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP дамжуулалт серверээр зогсоогдсон</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>FTP идэвхгүй горимын хариуг задлан шинжилж чадсангүй.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>FTP идэвхгүй горимын хаяг аюулгүй байдлын үүднээс татгалзсан.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTP өгөгдлийн холболт нээх боломжгүй.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS гар барилт амжилтгүй: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>FTP зам буруу.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Хэсэг файлыг нээх боломжгүй: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Диск бичилт амжилтгүй: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP дамжуулалт тасарсан.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP сегмент %1 %2 дахин оролдлогын дараа амжилтгүй.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Татаж авах санд бичих зөвшөөрөлгүй: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar эхэлж байна...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ %1-т холбогдлоо</translation>
+            <source>Past midnight already?</source>
+            <translation>Шөнө дунд өнгөрсөн үү?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Сэрүүн хэвээр үү?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Шөнө дөнгөж эхэлж байна!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Нойр хүрэхгүй байна уу?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Өглөөний мэнд!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Босоод гэрэлт!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Өглөөний сайхан!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Өглөө! Кофе чанаж байна.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Өдрийн мэнд!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Үдийн завсар татаж байна уу?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Үд дунд болчихлоо!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Өдөр чинь сайхан өнгөрч байгаа гэж найдая!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Оройн мэнд!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Оройн мэнд!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Амарч байна уу?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Оройн мэнд!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Өдөр сайхан өнгөрсөн байх!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Оройтож ажиллаж байна уу?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Унтах цаг өнгөрөв үү?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Шөнийн сесс!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Амрахаа бүү март!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Тавтай морил!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Бэлэн боллоо!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Уулзсандаа баяртай!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Татаж эхэлцгээе!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Таныг санав!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Буцаад эхэллээ!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Таны таталтууд хүлээж байна!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Үргэлжлүүлэх үү?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Өнөөдөр юу татах вэ?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>%1-д холбогдсон</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Импортлох нөөц файл сонгогдоогүй.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ %1-д холбогдсон (офлайн — тараалтууд түр зогссон)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>%1-д холбогдсон (офлайн - торрент түр зогссон)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Шинэчлэлт байна! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Шинэчлэлт шалгаж байна</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Бүх файлыг нэг хавтсанд</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Хайх...</translation>
+            <source>Browse…</source>
+            <translation>Сонгох…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Сүүлийн хадгалах замыг санах</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Хайх...</translation>
+            <source>Browse…</source>
+            <translation>Сонгох…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Татаж авах</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Хуулахын тулд дар</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
             <translation>Агуулга байхгүй. Эхлүүлэхийн тулд URL нэмэх</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>%n дамжуулалтыг ачааллаж байна...</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>%1 / %2 таталт ачаалж байна…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1145,6 +1391,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Тэргүүлэх</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Бага</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Дунд</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Өндөр</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Дээд</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Холимог</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Ховор</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Энгийн</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Өндөр тэргүүлэх</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Алгассан</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Боломжгүй</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 хэсэг</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 татагдсан</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 татаж байна</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 алгассан</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Хэсгийн өгөгдөл байхгүй</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Алгассан (файл сонгогдоогүй)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Татаж байна - %1% блок хүлээн авсан</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Боломжгүй - энэ хэсэгт пир байхгүй</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Дутуу - %n пирт байгаа</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(өндөр тэргүүлэх)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Хэсэг #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Torrent өгөгдлийг шилжүүлэх...</translation>
@@ -3379,8 +3713,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Хүчингүй үлдээх</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Хайх...</translation>
+            <source>Browse…</source>
+            <translation>Хайх…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3891,6 +4225,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Файлын мэдээллийн цонхыг харуулж татахыг шууд эхлүүлэх</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Файлын мета өгөгдлөөр тайлбар талбарыг автоматаар бөглөх (битрэйт, нягтрал, кодек гэх мэт)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Torrent-ийн метадатуудыг татах үед олонлогийн зурагтыг харуулах</translation>
         </message>
@@ -4093,10 +4431,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ Авто-авах жагсаалтаагүй: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Хайх</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Тайлбар: Torrent хуулбарын хэсэг</translation>
         </message>
@@ -4213,16 +4547,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Хурд</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Хэрэглэгчид</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>ДHT</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Харьцаа</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Статус мөрөнд торрент холболтыг харуулах</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Статус мөрөнд DHT зангилааг харуулах</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4485,20 +4819,28 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <translation>БитТоррент хэрэглэгчийн агент</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Төвөгтэй холбоос</translation>
+            <source>Network interface</source>
+            <translation>Сүлжээний интерфейс</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Энэ төвөгтэй холбоос нь торрент урсгалыг хамгаалсан байна. Хэрэв таны VPN холбогдохгүй эсвэл төвөгтэй холбоос алга болбол Stellar нь стандарт замаас ашиглахаа зогсоож, торрентүүд өөр холбоос руу нүүхгүйгээр сүлжээндээ орохгүй болно.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Торрент траффик энэ интерфейсээр түгжигдсэн. Хэрэв VPN салбал эсвэл интерфейс идэвхгүй болбол, Stellar өөр холболтоор алдагдахаас сэргийлж торрентыг түр зогсооно. Бүх торрент траффикийг (IPv6 орно) VPN-ээр чиглүүлэхийн тулд VPN адаптертай холбоно уу.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Төвөгтэй холбоос холбохгүй. Торрент урсгал нь системийн замаар дамжина.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Ямар ч интерфейс: торрент траффик бусад апп шиг системийн маршрутаар явна. Хэрэв VPN идэвхтэй холболт бол VPN-ээр дамжина; VPN салбал, траффик энгийн холболтоор үргэлжилнэ. Чанд VPN-ээр холбогдохын тулд тодорхой адаптер сонгоно уу.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Төвөгтэй холбоос холбох нь Stellar-д сонгогдсон төвөгтэй холбоосын зөвхөн торрент урсгалыг илгээх, хүлээн авахыг заадаг. Энэ нь ялангуяа VPN ашиглагчид болон VPN холбогдоогүй үед урсгал нүүхээс сэргийлэхэд ашигтай.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Холбогдсон үед UPnP, NAT-PMP болон Локал Үйлчилгээ Илрүүлэлтийг зөвшөөрөх</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Эдгээр нь дотоод рутертай харилцаж, сонсох портыг туннелийн эргэн тойронд ил гаргаж болно. VPN биш, итгэмжит LAN адаптертай холбогдсон үед л үүнийг идэвхжүүлнэ үү.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>Холбогдсон үед UPnP, NAT-PMP болон Локал Үйлчилгээ Илрүүлэлт идэвхгүй, учир нь тэдгээр нь дотоод рутертай харилцаж, сонсох портыг туннелийн эргэн тойронд ил гаргана.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4953,12 +5295,12 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Үндсэн зам</translation>
+            <source>Any interface</source>
+            <translation>Ямар ч интерфейс</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>OS нь идэвхтэй сүлжээний адаптерийг сонгоно.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Системийн маршрутыг дагах (бусад апп-ууд ашигладаг).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5037,8 +5379,8 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <translation>Эх сурвалж: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Эх үүсвэрийн URL-ийг хадгалаагүй. IPtoCityDB-г хадгалахын тулд Check for updates-г ашиглана.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Шинэчлэх үед db-ip.com-аас автоматаар тодорхойлогдсон.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5218,22 +5560,6 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <translation>хязгааргүй</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT унтраалттай</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>online (бага итгэмж)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Тооцоолж байна… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>next &gt;&gt;</translation>
         </message>
@@ -5241,6 +5567,14 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Нийт хуваарь</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Нийт торрент пэр холболт</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT зангилаа</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5680,6 +6014,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Тэргүүлэх чиг</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Бага</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Дунд</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Өндөр</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Дээд</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Холимог</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Хадгалах</translation>
@@ -6440,6 +6798,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Видео буулгах</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Татаж авах хязгаар хэтэрсэн!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1-с %2 хүртэл %3 МБ татав. &quot;%4&quot; дахь бүх таталт %6 тутамд %5 МБ хязгаараас хэтэрсэн тул зогсоов.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Зогссон бүх таталт %1-д (%2-н дараа) автоматаар үргэлжилнэ. Шууд үргэлжлүүлэхийн тулд Татах Хязгаарын тохиргоог өөрчилж, Үргэлжлүүлэх дар.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>одоо</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 цаг</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 цаг</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 минут</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 минут</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>минутаас бага</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>ба</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

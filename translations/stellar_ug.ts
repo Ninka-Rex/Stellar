@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL، ماگنىت ئۇلانمىسى ياكى ئىنفوھاش</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP ئۇلانمىلىرى، ماگنىت ئۇلانمىلىرى ياكى توررېنت ئىنفوھاشىنى قوبۇل قىلىدۇ.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP كونترول باغلىنىشى مەغلۇپ بولدى: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP كونترول باغلىنىشى كۈتۈلمىگەن ھالدا تاقالدى.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP كونترول باغلىنىشى ۋاقتى ئۆتتى.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>خاتا FTP جاۋابى.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>قىستۇرۇلغان يېڭى قۇر بىلەن FTP بۇيرۇقىنى يوللاش رەت قىلىندى.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP مۇلازىمېتىرى باغلىنىشنى رەت قىلدى</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS تەلەپ قىلىنىدۇ، ئەمما مۇلازىمېتىر AUTH TLS نى قوللىمايدۇ.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP كىرىش مەغلۇپ بولدى</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS سانلىق-مەلۇمات قوغداش (PBSZ) رەت قىلىندى.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS سانلىق-مەلۇمات قوغداش (PROT P) رەت قىلىندى.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP مۇلازىمېتى ئىككىلىك ھالەتنى (TYPE I) رەت قىلدى.</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTP پاسسىپ ھالەتكە كىرەلمىدى.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP مۇلازىمېتى داۋاملاشتۇرۇشنى (REST) قوللىمايدۇ.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP مۇلازىمېتى ھۆججەتنى رەت قىلدى</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>RETR غا كۈتۈلمىگەن FTP جاۋابى</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP يۆتكەش مۇلازىمېت تەرىپىدىن توختىتىلدى</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>FTP پاسسىپ ھالەت جاۋابىنى تەھلىل قىلالمىدى.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>FTP پاسسىپ ھالەت ئادرېسى بىخەتەرلىك ئۈچۈن رەت قىلىندى.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTP سانلىق مەلۇمات باغلىنىشىنى ئاچالمىدى.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS قول ئېلىشىش مەغلۇپ بولدى: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>ئىناۋەتسىز FTP يولى.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>پارچە ھۆججەتنى ئاچالمىدى: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>دىسكقا يېزىش مەغلۇپ بولدى: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP يۆتكەش قىسقارتىلدى.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP بۆلىكى %1، %2 قايتا سىناشتىن كېيىن مەغلۇپ بولدى.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>چۈشۈرۈش مۇندەرىجىسىگە يېزىش ئىجازىتى يوق: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar قوزغىلىۋاتىدۇ...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ %1 غا باغلاندى</translation>
+            <source>Past midnight already?</source>
+            <translation>يېرىم كېچە بولدىمۇ؟</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>يەنىلا ئوغاقمۇ؟</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>كېچە تېخى ياش!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>ئۇخلىيالمايۋاتامسىز؟</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>خەيرلىك ئەتىگەن!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>ئورنىڭىزدىن تۇرۇڭ ۋە پارلاڭ!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>ئەتىگەننىڭ ئەڭ ياخشى ۋاقتى!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>ئەتىگەن! قەھۋە قايناۋاتىدۇ.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>خەيرلىك چۈشتىن كېيىن!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>چۈشلۈك تاماق ئارىلىقىدا چۈشۈرەمسىز؟</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>چۈش بولدى دېگۈچە!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>كۈنىڭىز ياخشى ئۆتۈۋاتقان بولسۇن!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>خەيرلىك چۈش!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>خەيرلىك كەچ!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>ئارام ئېلىۋاتامسىز؟</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>كەچ!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>كۈنىڭىز ياخشى ئۆتتى دەپ ئۈمىد قىلىمەن!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>كەچتە ئىشلەۋاتامسىز؟</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>ئۇخلاش ۋاقتىدىن ئۆتۈپ كەتتىڭىزمۇ؟</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>كەچلىك سېئانس!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>ئارام ئېلىشنى ئۇنۇتماڭ!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>قايتىدىن كەلگەنلىكىڭىزگە مەرھابا!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>تەييار بولغاندا باشلايمىز!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>سىزنى كۆرگىنىمىزگە خۇشال!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>چۈشۈرۈشنى باشلايلى!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>سىزنى سېغىندۇق!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>قايتىدىن باشلايلى!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>چۈشۈرۈشلىرىڭىز كۈتۈۋاتىدۇ!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>توختاپ قالغان يەردىن داۋاملاشتۇرامسىز؟</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>بۈگۈن نېمىنى چۈشۈرىمىز؟</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>%1 گە باغلاندى</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>ئەكىرىش ئۈچۈن زاپاس ھۆججەت تاللانمىدى.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ %1 غا باغلاندى (تور ئۈزۈلدى — توررېنت توختىتىلدى)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>%1 گە باغلاندى (تورسىز - توررېنت توختىتىلدى)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>يېڭىلانما بار! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>يېڭىلانما تەكشۈرۈۋاتىدۇ</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>بارلىق ھۆججەتلەر بىر مۇندەرىجىگە</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>كۆرۈش...</translation>
+            <source>Browse…</source>
+            <translation>كۆرۈش…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ئاخىرقى ساقلاش يولىنى ئەستە تۇت</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>كۆرۈش...</translation>
+            <source>Browse…</source>
+            <translation>كۆرۈش…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>چۈشۈر</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>چېكىپ كۆچۈرۈڭ</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 چۈشۈرۈشنى باشلاش ئۈچۈن  URL قوشۇش نى بېسىڭ.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>%n چۈشۈرۈش يۈكلەۋاتىدۇ…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>%1 / %2 چۈشۈرۈشلەر يۈكلىنىۋاتىدۇ…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ئالدىن</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>تۆۋەن</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>نورمال</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>يۇقىرى</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>ئەڭ يۇقىرى</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ئارىلاش</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>نادېر</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>ئادەتتىكى</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>يۇقىرى ئالدىراش</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>ئۆتكۈزۈلدى</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>مەۋجۇت ئەمەس</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 پارچە</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 چۈشۈرۈلدى</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 چۈشۈرۈۋاتىدۇ</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 ئاتلاندى</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>پارچە سانلىق مەلۇماتى يوق</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>ئاتلاندى (ھۆججەت تاللانمىدى)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>چۈشۈرۈۋاتىدۇ - بلوكلارنىڭ %1% تاپشۇرۇۋالدى</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>قوللىنىشچان ئەمەس - بۇ پارچىغا ئىگە پىر يوق</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>يېتەرسىز - %n پىردا بار</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(يۇقىرى ئالدىراشلىق)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>پارچە #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>توررېنت سانلىق-مەلۇماتىنى يۆتكەش...</translation>
@@ -3394,8 +3728,8 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
             <translation>سۈكۈتتىكى ساقلاش يولىنى ئىشلىتىش ئۈچۈن بوش قالدۇرۇڭ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>كۆرۈش...</translation>
+            <source>Browse…</source>
+            <translation>كۆرۈش…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3906,6 +4240,10 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
             <translation>«ھۆججەت چۈشۈرۈش ئۇچۇرى» سۆزلەشكۈسىنى كۆرسىتىپ دەرھال چۈشۈرۈشنى باشلا</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>چۈشەندۈرۈش بۆلۈكىنى ھۆججەت مېتاسانلىق مەلۇماتى بىلەن ئاپتوماتىك تولدۇر (بىت سۈرئىتى، ئېنىقلىق، كودېك قاتارلىقلار)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>توررېنت مېتا-ساندانلىرىنى چۈشۈرگەندە توپ خەرىتىسىنى كۆرسەت</translation>
         </message>
@@ -4108,10 +4446,6 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
             <translation>⚠ تور كۆرگۈچ ئاپتوماتىك چۈشۈرۈش تىزىملىكىدە ئەمەس: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>كۆرۈش</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>بۇ توررېنت مېتا-ساندان سۆزلەشكۈسى سۈكۈت بويىچە ئىختىيارى ساقلاش قىسقۇچ ئىشلەتكەندە ئەسلىگەن ئىختىيارى توررېنت قىسقۇچ.</translation>
         </message>
@@ -4228,16 +4562,16 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
             <translation>ھالەت بالدىقىدا سۈرئەت كۆرسەت</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>ھالەت بالدىقىدا مۆلچەرلەنگەن تور ئىشلەتكۈچىلەرنى كۆرسەت</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>دۇنياۋى BitTorrent ئىشلەتكۈچىلىرىنى مۆلچەرلەش ئۈچۈن DHT تۈگۈن-ID زىچلىقىنى ئىشلىتىدۇ. كۆپرەك ئۆزگىچە تۈگۈن ID لىرى كۆزىتىلگەنسېرى ئىشەنچ ئاشىدۇ؛ ھالەت بالدىقىدىكى ئارقىغا ئەگەشكەن * بەلگىسى مۆلچەرنىڭ يەنىلا تۆۋەن ئىشەنچلىك ئىكەنلىكىنى بىلدۈرىدۇ.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>ھالەت بالدىقىدا نىسبەت كۆرسەت</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>ھالەت بالدىقىدا توررېنت باغلىنىشلىرىنى كۆرسەت</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>ھالەت بالدىقىدا DHT تۈگۈنلىرىنى كۆرسەت</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4500,20 +4834,28 @@ BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق �
             <translation>ئىختىيارىي BitTorrent ئىشلەتكۈچى ۋاكالەتچىسى</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>تور ئاداپتېرىغا باغلاش</translation>
+            <source>Network interface</source>
+            <translation>تۈر ئارا يۈزى</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>بۇ ئاداپتېر توررېنت قاتنىشى ئۈچۈن قۇلۇپلانغان. VPN ئۈزۈلسە ياكى ئاداپتېر يوقالسا، Stellar سۈكۈت يولىنى ئىشلەتمەي، توررېنتلىرىڭىز باشقا باغلىنىشقا سىزىپ چىقماستىن تور زىيارىتىنى يوقىتىدۇ.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>توررېنت قاتنىشى بۇ ئارايۈزگە قۇلۇپلانغان. ئەگەر VPN ئۈزۈلسە ياكى ئارايۈز يوقالسا، Stellar توررېنتلارنى باشقا ئۇلىنىشقا سىڭىپ كېتىشتىن ساقلىنىپ توختىتىدۇ. بارلىق توررېنت قاتنىشىنى، شۇنداقلا IPv6 نى VPN ئارقىلىق يۆتكەش ئۈچۈن VPN ئاداپتېرىڭىزغا باغلاڭ.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>ئاداپتېر باغلانمىغان. توررېنت قاتنىشى سىستېما يولىغا ئەگىشىدۇ.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>ھەر قانداق كۆرۈنمە يۈز: توررېنت قاتنىشى باشقا پروگراممىلىرىڭىزغا ئوخشاش سىستېما يولىنى بويلاپ ماڭىدۇ. ئەگەر VPN ئاكتىپ ئۇلانمىڭىز بولسا، ئۇ VPN ئارقىلىق ئۆتىدۇ؛ VPN ئۈزۈلۈپ قالسا، قاتناش نورمال ئۇلىنىشتا داۋاملىشىدۇ. قاتتىق VPN-غا باغلاش ئۈچۈن مەخسۇس ئاداپتېر تاللاڭ.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>تور ئاداپتېرىنى باغلاش Stellar غا توررېنت قاتنىشىنى پەقەت تاللانغان ئاداپتېر ئارقىلىق ئەۋەتىش ۋە قوبۇل قىلىشنى بۇيرۇيدۇ. بۇ VPN ئىشلەتكۈچىلەر ئۈچۈن ئالاھىدە پايدىلىق، چۈنكى VPN باغلانمىغاندا تاسادىپىي قاتناش سىزىپ چىقىشنىڭ ئالدىنى ئالىدۇ.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>باغلانغان ھالەتتە UPnP، NAT-PMP ۋە يەرلىك مۇلازىمەت بايقاشقا يول قويۇڭ</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>بۇلار يەرلىك يوللاشتۇرغۇچىڭىز بىلەن سۆزلىشىدۇ ۋە تونېل ئەتراپىدا ئاڭلاش پورتىڭىزنى ئاشكارىلىشى مۇمكىن. بۇنى پەقەت ئىشەنچلىك LAN ئاداپتېرىغا باغلىغاندا قوزغىتىڭ، VPN ئەمەس.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP، NAT-PMP ۋە يەرلىك مۇلازىمەت بايقاش باغلانغان ھالەتتە چەكلەنگەن، چۈنكى ئۇلار يەرلىك يوللاندۇرغۇچ بىلەن سۆزلىشىدۇ ۋە تونېل ئەتراپىدا ئاڭلاش پورتىڭىزنى ئاشكارىلايدۇ.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4968,12 +5310,12 @@ BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق �
             <translation>جەزملە</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>كۆڭۈلدىكى يول</translation>
+            <source>Any interface</source>
+            <translation>ھەرقانداق ئارايۈز</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>ئاكتىپ تور ئاداپتېرىنى ئەمەلىي سىستېما تاللىسۇن.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>سىستېما يولىنى قوللىنىڭ (باشقا ئەپلىرىڭىز ئىشلىتىدۇ).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5052,8 +5394,8 @@ BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق �
             <translation>مەنبە: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>مەنبە URL تېخى كەشلەنمىدى. IPtoCityDB نى update.json دىن كەشلەش ئۈچۈن يېڭىلانمىلارنى تەكشۈرۈشنى ئىشلىتىڭ.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>db-ip.com دىن يېڭىلانغاندا ئاپتوماتىك ھەل قىلىندى.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5233,22 +5575,6 @@ BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق �
             <translation>چەكسىز</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT ئۆچۈك</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>توردا (ئىشەنچ تۆۋەن)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>توردا</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>مۆلچەرلىنىۋاتىدۇ… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>كېيىنكى &gt;&gt;</translation>
         </message>
@@ -5257,6 +5583,14 @@ BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق �
 Click to open Statistics</source>
             <translation>ئومۇمىي ئۇلىشىش نىسبىتى
 ستاتىستىكىنى ئېچىش ئۈچۈن چېكىڭ</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>ئومۇمىي توررېنت تەڭداش ئۇلىنىشى</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT تۈگۈنلىرى</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5696,6 +6030,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>ئالدىنلىق</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>تۆۋەن</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>نورمال</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>يۇقىرى</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>ئەڭ چوڭ</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ئارىلاش</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>ساقلاش ئورنى</translation>
@@ -6456,6 +6814,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>سىن چۈشۈرۈش</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>چۈشۈرۈش چەكلىمىسى ئېشىپ كەتتى!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1 دىن %2 غىچە %3 MB چۈشۈردىڭىز. &quot;%4&quot; دىكى بارلىق چۈشۈرۈشلەر توختىتىلدى، چۈنكى %6 ھەر %5 MB چۈشۈرۈش چېكىدىن ئاشتىڭىز.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>بارلىق توختىتىلغان چۈشۈرۈشلەر %1 دا ئاپتوماتىك داۋاملىشىدۇ (ھازىردىن %2 كېيىن). دەرھال داۋاملاشتۇرۇش ئۈچۈن چۈشۈرۈش چەكلىمىسى تەڭشىكىنى ئۆزگەرتىپ داۋاملاشتۇرۇشنى بېسىڭ.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>ھازىر</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 سائەت</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 سائەت</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 مىنۇت</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 مىنۇت</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>بىر مىنۇتتىن ئاز</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>ۋە</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ماقۇل</translation>
         </message>
     </context>
 </TS>

@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet link vagy infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP linkek, magnet linkek vagy torrent infohash elfogadása.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP vezérlőkapcsolat sikertelen: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP vezérlőkapcsolat váratlanul lezárult.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP vezérlőkapcsolat időtúllépés.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Hibás FTP válasz.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Beágyazott sortörést tartalmazó FTP parancs megtagadva.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP szerver elutasította a kapcsolatot</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS szükséges, de a szerver nem támogatja az AUTH TLS-t.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP bejelentkezés sikertelen</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Az FTPS adatvédelem (PBSZ) elutasítva.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Az FTPS adatvédelem (PROT P) elutasítva.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>Az FTP szerver elutasította a bináris módot (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Nem sikerült FTP passzív módba lépni.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>Az FTP szerver nem támogatja a folytatást (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>Az FTP szerver elutasította a fájlt</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Váratlan FTP válasz a RETR-re</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>Az FTP átvitelt a szerver megszakította</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Nem sikerült értelmezni az FTP passzív mód választ.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Az FTP passzív mód címe biztonsági okból elutasítva.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Nem sikerült FTP adatkapcsolatot nyitni.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS kézfogás sikertelen: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Érvénytelen FTP elérési út.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Nem nyitható meg a részletfájl: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Lemezírás sikertelen: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>Az FTP átvitel csonka lett.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>Az FTP szegmens %1 %2 újrapróbálkozás után is sikertelen.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Nincs írási jog a letöltési könyvtárhoz: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>A Stellar indítása...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Kapcsolva: %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Már elmúlt éjfél?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Még fent vagy?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Még fiatal az éj!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Nem tudsz aludni?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Jó reggelt!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Ébresztő!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>A reggel fénypontja!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Reggel! Fő a kávé.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Jó napot!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Ebédszünetben letöltések?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Máris dél van!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Remélem, jól telik a napod!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Jó napot!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Jó estét!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Levezetés?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Estét!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Remélem, jó napod volt!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Későn dolgozol?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Már rég aludnod kéne?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Késő esti menet!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Ne felejts el pihenni!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Üdv újra!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Kezdhetjük, ha készen állsz!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Jó újra látni!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Kezdjük a letöltést!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Hiányoztál!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Újra munkában!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>A letöltéseid várnak!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Folytatod, ahol abbahagytad?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Mit szerzünk be ma?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>%1-hez kötve</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Nincs kiválasztott biztonsági mentés fájl az importáláshoz.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ %1-hez kötve (offline — torrentek szüneteltetve)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>%1-hez kötve (offline - torrentek szüneteltetve)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Frissítés elérhető! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Frissítések keresése</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Minden fájl egy könyvtárba</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Tallózás...</translation>
+            <source>Browse…</source>
+            <translation>Tallózás…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Emlékezzen az utolsó mentési útvonalra</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Böngészés...</translation>
+            <source>Browse…</source>
+            <translation>Tallózás…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Letöltés</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Kattints a másoláshoz</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 Kattintson az Add URL gombra az indításhoz.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Betöltés %n letöltés...</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>%1 / %2 letöltés betöltése…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ Később az Opciók → Letöltések menüpontban módosíthatja.</translation>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritás</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Alacsony</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normál</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Magas</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maximum</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Vegyes</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Ritka</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Gyakori</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Magas prioritás</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Kihagyva</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Nem elérhető</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 darab</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 letöltve</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 letöltés alatt</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 kihagyva</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Nincs elérhető darab adat</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Kihagyva (fájl nincs kiválasztva)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Letöltés - blokkok %1%-a megérkezett</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Nem elérhető - egyik partnernél sincs meg</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Hiányzik - %n partnernél van meg</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(magas prioritás)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>%1. darab</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Torrent adatok áthelyezése...</translation>
@@ -3383,8 +3717,8 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <translation>Hagyja üresen az alapértelmezett útvonal használatához</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Tallózás...</translation>
+            <source>Browse…</source>
+            <translation>Tallózás…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3895,6 +4229,10 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <translation>Azonnal kezdje a letöltést a 'Fájlinformáció' párbeszédablak megjelenítésével</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Leírás automatikus kitöltése fájl metaadatokkal (bitráta, felbontás, kodek stb.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Szivárgókép megjelenítése torrenthemetaadatok letöltésekor</translation>
         </message>
@@ -4097,10 +4435,6 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <translation>⚠ Nem a böngésző automatikus letöltési listájában: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Böngészés</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Ez a megjegyzett egyedi torrent mappa, amelyet akkor használ, ha a torrent metaadat párbeszédablak alapértelmezettként egyedi mentési mappát használ.</translation>
         </message>
@@ -4217,16 +4551,16 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <translation>Sebesség a státuszszalagon</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Becsült online felhasználók a státuszszalagon</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>DHT csomópont-ID sűrűség alapján globális BitTorrent felhasználók becslése. Az önbizalom nő a megfigyelt egyedi csomópont-IDs számával; a státuszszalagonban lévő * jelzés alacsony önbizalmat jelez.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Ratio a státuszszalagonon</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Torrentkapcsolatok mutatása az állapotsorban</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>DHT csomópontok mutatása az állapotsorban</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4483,20 +4817,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Egyéni BitTorrent felhasználói ügynök</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Hálózati adapterhez kötés</translation>
+            <source>Network interface</source>
+            <translation>Hálózati interfész</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Ez az adapter zárolva a torrent forgalomhoz. Ha a VPN lekapcsolódik vagy az adapter eltűnik, a Stellar elhagyja az alapértelmezett útvonalat, így a torrentek elveszítik a hálózati hozzáférést, nem szivárognak át más kapcsolatra.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>A torrentforgalom ehhez az interfészhez van kötve. Ha a VPN megszakad vagy az interfész eltűnik, a Stellar szünetelteti a torrenteket ahelyett, hogy más kapcsolatra szivárogna. Kössük a VPN adapterhez, hogy minden torrentforgalom, beleértve az IPv6-ot is, a VPN-en keresztül menjen.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Nincs adapter-kötés. A torrent forgalom követi a rendszer útvonalát.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Bármely interfész: a torrentforgalom a rendszer útvonalát követi, mint más alkalmazások. Ha a VPN az aktív kapcsolat, azon megy keresztül; ha a VPN megszakad, a forgalom a normál kapcsolaton folytatódik. Válasszunk egyedi adaptert a szigorú, csak VPN-es kötéshez.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Az adapter-kötés arra utasítja a Stellart, hogy a torrent forgalmat csak a kiválasztott adapteren keresztül küldje és fogadja. Ez különösen hasznos VPN felhasználóknak, mivel megakadályozza a véletlen forgalom-szivárgást, ha a VPN nem csatlakozik.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>UPnP, NAT-PMP és helyi szolgáltatásfelderítés engedélyezése kötés esetén</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Ezek a helyi routerrel kommunikálnak, és felfedhetik a figyelőportot az alagúton kívül. Csak akkor engedélyezd, ha megbízható LAN adapterhez kötöd, ne VPN-hez.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>Az UPnP, NAT-PMP és helyi szolgáltatásfelderítés le van tiltva kötés esetén, mivel a helyi routerrel kommunikálnak, és felfednék a figyelőportot az alagúton kívül.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4951,12 +5293,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Alapértelmezett útvonal</translation>
+            <source>Any interface</source>
+            <translation>Bármely interfész</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Hagyja, hogy az OS válassza ki az aktív hálózati adaptert.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>A rendszer útvonalát követi (mint más alkalmazások).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5035,8 +5377,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Forrás: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Forrás URL nincs gyorsítótárazva. Használja a Frissítés ellenőrzése opciót az IPtoCityDB gyorsítótárazásához az update.json-ből.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Automatikusan feloldva a db-ip.com-ról frissítéskor.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5216,22 +5558,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>korlátlan</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT ki</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> online (alacsony bizalom)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Becslés… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>következő &gt;&gt;</translation>
         </message>
@@ -5239,6 +5565,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Összes arány</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Összes torrent peer kapcsolat</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT csomópontok</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5678,6 +6012,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritás</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Alacsony</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normál</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Magas</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maximum</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Vegyes</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Mentés ide</translation>
@@ -6439,6 +6797,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Videó letöltése</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Letöltési korlát túllépve!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1 és %2 között %3 MB-ot töltöttél le. A(z) „%4” összes letöltése leállt, mert túllépted a(z) %5 MB-os letöltési korlátot %6 alatt.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Minden leállított letöltés automatikusan folytatódik ekkor: %1 (%2 múlva). Az azonnali folytatáshoz módosítsd a Letöltési korlátok beállítást, és nyomd meg a Folytatás gombot.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>most</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 óra</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 óra</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 perc</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 perc</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>kevesebb mint egy perc</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>és</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

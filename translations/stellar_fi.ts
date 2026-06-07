@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, magneettilinkki tai infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Hyväksyy HTTP/HTTPS/FTP-linkit, magnet-linkit tai torrentin infohashin.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP-ohjausyhteyden muodostaminen epäonnistui: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP-ohjausyhteys katkesi odottamatta.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP-ohjausyhteyden aikakatkaisu.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Viallinen FTP-vastaus.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Kieltäydytään lähettämästä FTP-komentoa, jossa on upotettu rivinvaihto.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP-palvelin kieltäytyi yhteydestä</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS vaaditaan, mutta palvelin ei tue AUTH TLS:ää.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP-kirjautuminen epäonnistui</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS-tietosuoja (PBSZ) hylättiin.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS-tietosuoja (PROT P) hylättiin.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP-palvelin hylkäsi binääritilan (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTP-passiivitilaan ei voitu siirtyä.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP-palvelin ei tue jatkamista (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP-palvelin hylkäsi tiedoston</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Odottamaton FTP-vastaus RETR-komentoon</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP-siirto keskeytettiin palvelimelta</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>FTP-passiivitilan vastausta ei voitu jäsentää.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>FTP-passiivitilan osoite hylättiin turvallisuussyistä.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTP-datayhteyttä ei voitu avata.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS-kättely epäonnistui: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Virheellinen FTP-polku.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Osatiedostoa ei voi avata: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Levylle kirjoitus epäonnistui: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP-siirto katkesi.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP-segmentti %1 epäonnistui %2 uudelleenyrityksen jälkeen.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Ei kirjoitusoikeutta lataushakemistoon: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar käynnistyy...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Sidottu %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Jo yli puolenyön?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Vieläkö valvot?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Yö on nuori!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Eikö uni tule?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Hyvää huomenta!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Ylös ja ulos!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Huomenta parhaimmillaan!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Huomenta! Kahvi tippuu.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Hyvää iltapäivää!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Lounastauon lataukset?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Keskipäivä jo!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Toivottavasti päiväsi sujuu hyvin!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Iltapäivää!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Hyvää iltaa!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Rauhoittumassa?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Iltaa!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Toivottavasti päiväsi oli hyvä!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Myöhään töissä?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Valvomassa yli nukkumaanmenoajan?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Myöhäisillan sessio!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Muista levätä!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Tervetuloa takaisin!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Valmiina kun olet!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Kiva nähdä!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Ladataan!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Olit ikävä!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Takaisin hommissa!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Latauksesi odottavat!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Jatketaanko siitä mihin jäit?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Mitä tänään haetaan?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Yhdistetty %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Tuotavaa varmuuskopiotiedostoa ei valittu.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Sidottu %1 (offline — torrentit pysäytetty)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Yhdistetty %1 (offline - torrentit pysäytetty)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Päivitys saatavilla! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Tarkistetaan päivityksiä</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Kaikki tiedostot yhteen hakemistoon</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Selaa...</translation>
+            <source>Browse…</source>
+            <translation>Selaa…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Muista viimeinen tallennuspolku</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Selaa...</translation>
+            <source>Browse…</source>
+            <translation>Selaa…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Lataus</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Kopioi napsauttamalla</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 Klikkaa Lisää URL aloittaaksesi.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Ladataan %n latausta…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Ladataan %1 / %2 latausta…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1145,6 +1391,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioriteetti</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Matala</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normaali</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Korkea</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimi</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Sekalainen</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Harvinainen</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Yleinen</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Korkea prioriteetti</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Ohitettu</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Ei saatavilla</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 kpl</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 ladattu</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 ladataan</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 ohitettu</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Ei paladataa saatavilla</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Ohitettu (tiedostoa ei valittu)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Ladataan - %1% lohkoista vastaanotettu</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Ei saatavilla - ei vertaisia</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Puuttuu - %n vertaisella on se</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(korkea prioriteetti)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Pala #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Siirrä torrent-tiedostot...</translation>
@@ -3385,8 +3719,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Jätä tyhjäksi oletuspolku</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Selaa...</translation>
+            <source>Browse…</source>
+            <translation>Selaa…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3897,6 +4231,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Aloita lataus heti</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Täytä kuvauskenttä tiedoston metatiedoilla (bittinopeus, resoluutio, koodekki jne.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Näytä joukkokartta</translation>
         </message>
@@ -4099,10 +4437,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ Ei selaimen automaattilatauslistalla: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Selaa</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Tämä on muistettu mukautettu torrent-kansio, jota käytetään oletuksena, kun torrent-metadialogi on asetettu käyttämään mukautettua tallennuskansiota.</translation>
         </message>
@@ -4219,16 +4553,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Näytä nopeus</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Näytä käyttäjät</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>DHT-arvio</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Näytä ratio</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Näytä torrent-yhteydet tilarivillä</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Näytä DHT-solmut tilarivillä</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4491,20 +4825,28 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <translation>Mukautettu BitTorrent-käyttäjänimi</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Sidonta verkkoadaptoriin</translation>
+            <source>Network interface</source>
+            <translation>Verkkoliitäntä</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Tämä adapteri on lukittu torrent-liikenteelle. Jos VPN irtoaa tai adapteri katoaa, Stellar lopettaa oletusradan käytön ja torrentit menettävät verkkoyhteyden eikä vuotaa toiseen yhteyteen.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Bittorrent-liikenne on lukittu tähän verkkoliitäntään. Jos VPN-yhteytesi katkeaa tai liitäntä katoaa, Stellar keskeyttää torrentit sen sijaan, että liikenne vuotaisi toisen yhteyden kautta. Sido VPN-sovittimeesi ohjataksesi kaiken torrent-liikenteen, mukaan lukien IPv6, VPN:n kautta.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Ei adapterisidontaa. Torrent-liikenne noudattaa järjestelmän reititystä.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Mikä tahansa liitäntä: torrent-liikenne seuraa järjestelmän reittiä, kuten muutkin sovelluksesi. Jos VPN on aktiivinen yhteytesi, liikenne kulkee VPN:n kautta; jos VPN katkeaa, liikenne jatkuu normaalilla yhteydellä. Valitse tietty sovitin tiukkaa vain VPN-sitomista varten.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Verkkoadapterisidonta ohjaa Stellaria lähettämään ja vastaanottamaan torrent-liikennettä vain valitun adapterin kautta. Tämä on erityisen hyödyllistä VPN-käyttäjille, koska se estää vahingossa tapahtuvan liikennevuodon, kun VPN ei ole kytketty.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Salli UPnP, NAT-PMP ja paikallinen palveluhaku sidottuna</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Nämä kommunikoivat paikallisen reitittimesi kanssa ja voivat paljastaa kuunteluporttisi tunnelin ympärillä. Ota tämä käyttöön vain, kun sidot luotettuun LAN-sovittimeen, et VPN:ään.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP ja paikallisten palveluiden etsintä on poistettu käytöstä sidottuna ollessa, koska ne kommunikoivat paikallisen reitittimen kanssa ja paljastaisivat kuunteluporttisi tunnelin ympärillä.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4959,12 +5301,12 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Oletusrouting</translation>
+            <source>Any interface</source>
+            <translation>Mikä tahansa käyttöliittymä</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Salli käyttöjärjestelmän valita aktiivisen verkkoadapterin.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Seuraa järjestelmäreittiä (muiden sovellustesi käyttämä).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5043,8 +5385,8 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <translation>Lähde: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Lähde-URL ei ole väliaikaisesti tallennettu. Käytä Päivitä tarkistaa IPtoCityDB:n.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Ratkaistu automaattisesti db-ip.com:sta päivitettäessä.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5224,22 +5566,6 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <translation>rajoittamaton</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT pois</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> online (matala luottamus)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Arvioidaan… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>seuraava &gt;&gt;</translation>
         </message>
@@ -5247,6 +5573,14 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Kaikkien aikojen jakosuhteet</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Torrent-vertaisyhteydet yhteensä</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT-solmut</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5686,6 +6020,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioriteetti</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Matala</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normaali</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Korkea</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimi</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Sekoitettu</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Tallenna kohteeseen</translation>
@@ -6446,6 +6804,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Videon lataus</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Latausrajat ylitetty!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Kohteesta %1 kohteeseen %2 latasit %3 Mt. Kaikki lataukset kohteessa &quot;%4&quot; on pysäytetty, koska ylitit %5 Mt:n latausrajan joka %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Kaikki pysäytetyt lataukset jatkuvat automaattisesti %1 (%2 kuluttua). Jatka heti muuttamalla Latausrajat-asetusta ja painamalla Jatka.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>nyt</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 tunti</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 tuntia</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 minuutti</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 minuuttia</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>alle minuutti</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>ja</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>

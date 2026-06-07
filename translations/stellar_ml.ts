@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet ലിങ്ക്, അല്ലെങ്കിൽ Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>HTTP/HTTPS/FTP ലിങ്കുകൾ, Magnet ലിങ്കുകൾ, അല്ലെങ്കിൽ torrent infohash സ്വീകരിക്കുന്നു.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP നിയന്ത്രണ കണക്ഷൻ പരാജയപ്പെട്ടു: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP നിയന്ത്രണ കണക്ഷൻ അപ്രതീക്ഷിതമായി അടച്ചു.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP നിയന്ത്രണ കണക്ഷൻ സമയപരിധി കഴിഞ്ഞു.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>തെറ്റായ FTP മറുപടി.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>ഉൾച്ചേർത്ത പുതിയ വരിയോടുകൂടിയ FTP കമാൻഡ് അയയ്ക്കാൻ വിസമ്മതിക്കുന്നു.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP സെർവർ കണക്ഷൻ നിരസിച്ചു</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS ആവശ്യമാണ്, എന്നാൽ സെർവർ AUTH TLS പിന്തുണയ്ക്കുന്നില്ല.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP ലോഗിൻ പരാജയപ്പെട്ടു</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS ഡാറ്റ പരിരക്ഷ (PBSZ) നിരസിച്ചു.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS ഡാറ്റ പരിരക്ഷ (PROT P) നിരസിച്ചു.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP സെർവർ ബൈനറി മോഡ് (TYPE I) നിരസിച്ചു.</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTP പാസീവ് മോഡിൽ പ്രവേശിക്കാനായില്ല.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP സെർവർ പുനരാരംഭം (REST) പിന്തുണയ്ക്കുന്നില്ല.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP സെർവർ ഫയൽ നിരസിച്ചു</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>RETR-ന് അപ്രതീക്ഷിത FTP മറുപടി</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP കൈമാറ്റം സെർവർ നിർത്തി</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>FTP പാസീവ്-മോഡ് മറുപടി പാഴ്സ് ചെയ്യാനായില്ല.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>FTP പാസീവ്-മോഡ് വിലാസം സുരക്ഷയ്ക്കായി നിരസിച്ചു.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>FTP ഡാറ്റ കണക്ഷൻ തുറക്കാനായില്ല.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS ഹാൻഡ്ഷേക്ക് പരാജയപ്പെട്ടു: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>അസാധുവായ FTP പാത.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>ഭാഗ ഫയൽ തുറക്കാനാവില്ല: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ഡിസ്ക് എഴുത്ത് പരാജയപ്പെട്ടു: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP കൈമാറ്റം വെട്ടിച്ചുരുക്കി.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP സെഗ്മെന്റ് %1 %2 ശ്രമങ്ങൾക്ക് ശേഷം പരാജയപ്പെട്ടു.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ഡൗൺലോഡ് ഡയറക്ടറിയിൽ എഴുത്ത് അനുമതിയില്ല: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>സ്റ്റെല്ലർ പ്രവർത്തനം ആരംഭിക്കുന്നു...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ %1-ലേക്ക് ബന്ധിപ്പിച്ചു</translation>
+            <source>Past midnight already?</source>
+            <translation>അർദ്ധരാത്രി കഴിഞ്ഞോ?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>ഇനിയും ഉണർന്നിരിക്കുന്നോ?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>രാത്രി ഇനിയും ചെറുപ്പം!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>ഉറക്കം വരുന്നില്ലേ?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>സുപ്രഭാതം!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>എഴുന്നേറ്റ് തിളങ്ങൂ!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>പ്രഭാതത്തിന്റെ മധുരം!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>സുപ്രഭാതം! കാപ്പി തിളച്ചുകൊണ്ടിരിക്കുന്നു.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>ഗുഡ് ആഫ്റ്റർനൂൺ!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>ഉച്ചഭക്ഷണ ഇടവേള ഡൗൺലോഡുകൾ?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>ഇതിനകം ഉച്ചയായോ!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>നിങ്ങളുടെ ദിവസം നന്നായി പോകുന്നുണ്ടെന്ന് പ്രതീക്ഷിക്കുന്നു!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>ഉച്ചതിരിഞ്ഞു!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>ശുഭ സായാഹ്നം!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>വിശ്രമിക്കുകയാണോ?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>സായാഹ്നം!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>നല്ലൊരു ദിവസം ആയിരുന്നു എന്ന് കരുതുന്നു!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>വൈകി ജോലി ചെയ്യുകയാണോ?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>ഉറക്കസമയം കഴിഞ്ഞോ?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>രാത്രി വൈകിയുള്ള സെഷൻ!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>വിശ്രമിക്കാൻ മറക്കരുത്!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>തിരികെ സ്വാഗതം!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>തയ്യാറാകുമ്പോൾ തുടങ്ങാം!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>കണ്ടതിൽ സന്തോഷം!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>ഡൗൺലോഡ് തുടങ്ങാം!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>നിങ്ങളെ മിസ്സ് ചെയ്തു!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>തിരിച്ചെത്തി!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>നിങ്ങളുടെ ഡൗൺലോഡുകൾ കാത്തിരിക്കുന്നു!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>നിർത്തിയിടത്ത് നിന്ന് തുടരണോ?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>ഇന്ന് എന്താണ് ഡൗൺലോഡ് ചെയ്യേണ്ടത്?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>%1-ലേക്ക് ബന്ധിപ്പിച്ചു</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>ഇറക്കുമതി ചെയ്യാൻ ബാക്കപ്പ് ഫയൽ തിരഞ്ഞെടുത്തിട്ടില്ല.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ %1-ലേക്ക് ബന്ധിപ്പിച്ചിരിക്കുന്നു (ഓഫ്‌ലൈൻ — ടോറന്റുകൾ താൽക്കാലികമായി നിർത്തി)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>%1-ലേക്ക് ബന്ധിപ്പിച്ചു (ഓഫ്‌ലൈൻ - ടോറന്റുകൾ താൽക്കാലികമായി നിർത്തി)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>അപ്ഡേറ്റ് ലഭ്യം! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>അപ്ഡേറ്റുകൾ പരിശോധിക്കുന്നു</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>എല്ലാ ഫയലുകളും ഒരു ഡയറക്ടറിയിലേക്ക്</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>ബ്രൗസ് ചെയ്യുക...</translation>
+            <source>Browse…</source>
+            <translation>ബ്രൗസ്…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>കഴിഞ്ഞ സേവ് പാത്ത് ഓർക്കുക</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>ബ്രൗസ്...</translation>
+            <source>Browse…</source>
+            <translation>ബ്രൗസ്…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>ഡൗൺലോഡ്</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>പകർത്താൻ ക്ലിക്ക് ചെയ്യുക</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 URL ചേർക്കുക ആരംഭിക്കാൻ.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>%n ഡൗൺലോഡ്(കൾ) ലോഡ് ചെയ്യുന്നു…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>%1 / %2 ഡൗൺലോഡുകൾ ലോഡ് ചെയ്യുന്നു…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1145,6 +1391,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>മുൻഗണന</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>കുറവ്</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>സാധാരണ</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>ഉയർന്ന</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>പരമാവധി</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>മിശ്രിതം</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>അപൂർവ്വം</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>സാധാരണ</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>ഉയർന്ന മുൻഗണന</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>ഒഴിവാക്കി</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>ലഭ്യമല്ല</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 ഭാഗങ്ങൾ</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 ഡൗൺലോഡ് ചെയ്തു</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 ഡൗൺലോഡ് ചെയ്യുന്നു</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 ഒഴിവാക്കി</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>പീസ് ഡാറ്റ ലഭ്യമല്ല</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>ഒഴിവാക്കി (ഫയൽ തിരഞ്ഞെടുത്തിട്ടില്ല)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>ഡൗൺലോഡ് - %1% ബ്ലോക്കുകൾ ലഭിച്ചു</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>ലഭ്യമല്ല - ഈ പീസ് പിയറുകൾക്കില്ല</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>കാണുന്നില്ല - %n പിയറുകൾക്കുണ്ട്</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(ഉയർന്ന മുൻഗണന)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>പീസ് #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>ടോറന്റ് ഡാറ്റ മാറ്റുക...</translation>
@@ -3393,8 +3727,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ഡിഫോൾട്ട് സേവ് പാത്ത് ഉപയോഗിക്കാൻ ഖാലിയാക്കുക</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>ബ്രൗസ്...</translation>
+            <source>Browse…</source>
+            <translation>ബ്രൗസ്…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3905,6 +4239,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ഡൗൺലോഡ് ആരംഭിക്കുക ('ഡൗൺലോഡ് ഫയൽ വിവരങ്ങൾ' സംഭാഷണം കാണിക്കുമ്പോൾ)</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>ഫയൽ മെറ്റാഡാറ്റ ഉപയോഗിച്ച് വിവരണ ഫീൽഡ് ഓട്ടോ-ഫിൽ ചെയ്യുക (ബിറ്റ്റേറ്റ്, റെസല്യൂഷൻ, കോഡെക് മുതലായവ)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>ടോറന്റ് മെറ്റാഡാറ്റ ഡൗൺലോഡ് ചെയ്യുമ്പോൾ സ്വാർട്ട് മാപ്പ് കാണിക്കുക</translation>
         </message>
@@ -4107,10 +4445,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ ബ്രൗസർ ഓട്ടോ-ഡൗൺലോഡ് പട്ടികയിൽ ഇല്ല: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>ബ്രൗസ് ചെയ്യുക</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>ടോറന്റ് മെറ്റാഡാറ്റാ ഡയലോഗ് സ്വയം ഒരു കസ്റ്റം സേവ് ഫോൾഡർ ഉപയോഗിക്കാൻ സജ്ജീകരിച്ചിരിക്കുമ്പോൾ ഉപയോഗിക്കുന്ന ഓർമ്മിച്ച കസ്റ്റം ടോറന്റ് ഫോൾഡർ ഇതാണ്.</translation>
         </message>
@@ -4227,16 +4561,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>സ്റ്റാറ്റസ് ബാറിൽ വേഗത കാണിക്കുക</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>സ്റ്റാറ്റസ് ബാറിൽ ഓൺലൈൻ ഉപയോക്താക്കളുടെ എണ്ണം കാണിക്കുക</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>ഗ്ലോബൽ BitTorrent ഉപയോക്താക്കളെ കണക്കാക്കാൻ DHT നോഡ്-ID സാന്ദ്രത ഉപയോഗിക്കുന്നു. കൂടുതൽ യൂണിക് നോഡ് IDs നിരീക്ഷിക്കുമ്പോൾ വിശ്വാസ്യത വർദ്ധിക്കുന്നു; സ്റ്റാറ്റസ് ബാറിൽ * ചിഹ്നം ഉണ്ടെങ്കിൽ കണക്കാക്കിയ മൂല്യം കുറഞ്ഞ വിശ്വാസ്യതയുള്ളതാണെന്ന് അർത്ഥമാക്കുന്നു.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>സ്റ്റാറ്റസ് ബാറിൽ റേഷ്യോ കാണിക്കുക</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>സ്റ്റാറ്റസ് ബാറിൽ ടോറന്റ് കണക്ഷനുകൾ കാണിക്കുക</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>സ്റ്റാറ്റസ് ബാറിൽ DHT നോഡുകൾ കാണിക്കുക</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4497,20 +4831,28 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <translation>കസ്റ്റം ബിറ്റ്‌ടോറന്റ് ഉപയോക്തൃ ഏജന്റ്</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>നെറ്റ്‌വർക്ക് അഡാപ്റ്ററിൽ ബൈൻഡ് ചെയ്യുക</translation>
+            <source>Network interface</source>
+            <translation>നെറ്റ്‌വർക്ക് ഇന്റർഫേസ്</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>ഈ അഡാപ്റ്റർ ടോറന്റ് ട്രാഫിക്ക്ക് ലോക്ക് ചെയ്തിരിക്കുന്നു. നിങ്ങളുടെ VPN ഡിസ്‌കണക്റ്റ് ആയാലോ അഡാപ്റ്റർ ഇല്ലാതായാലോ, സ്റ്റെല്ലർ ഡിഫോൾട്ട് റൂട്ട് ഉപയോഗിക്കുന്നത് നിർത്തുകയും നിങ്ങളുടെ ടോറന്റുകൾ മറ്റൊരു കണക്ഷനിൽ ലീക്ക് ചെയ്യുന്നതിന് പകരം നെറ്റ്‌വർക് ആക്സസ് നഷ്ടപ്പെടുകയും ചെയ്യും.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>ടോറന്റ് ട്രാഫിക് ഈ ഇന്റർഫേസിൽ പൂട്ടിയിരിക്കുന്നു. VPN വിച്ഛേദിക്കപ്പെടുകയോ ഇന്റർഫേസ് നഷ്ടപ്പെടുകയോ ചെയ്താൽ, മറ്റൊരു കണക്ഷനിലേക്ക് ചോർച്ചയുണ്ടാകാതെ Stellar ടോറന്റുകൾ താൽക്കാലികമായി നിർത്തുന്നു. എല്ലാ ടോറന്റ് ട്രാഫിക്കും (IPv6 ഉൾപ്പെടെ) VPN വഴി റൂട്ട് ചെയ്യാൻ നിങ്ങളുടെ VPN അഡാപ്റ്ററുമായി ബന്ധിപ്പിക്കുക.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>അഡാപ്റ്റർ ബൈൻഡിംഗ് ഇല്ല. ടോറന്റ് ട്രാഫിക് സിസ്റ്റം റൂട്ട് പിന്തുടരുന്നു.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>ഏതെങ്കിലും ഇന്റർഫേസ്: ടോറന്റ് ട്രാഫിക് നിങ്ങളുടെ മറ്റ് ആപ്പുകളെപ്പോലെ സിസ്റ്റം റൂട്ട് പിന്തുടരുന്നു. VPN സജീവ കണക്ഷനാണെങ്കിൽ അതിലൂടെ പോകുന്നു; VPN നഷ്ടപ്പെട്ടാൽ, സാധാരണ കണക്ഷനിൽ ട്രാഫിക് തുടരുന്നു. കർശന VPN-മാത്രം ബൈൻഡിംഗിനായി ഒരു പ്രത്യേക അഡാപ്റ്റർ തിരഞ്ഞെടുക്കുക.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>നെറ്റ്‌വർക്ക് അഡാപ്റ്റർ ബൈൻഡിംഗ് സ്റ്റെല്ലറിനെ തിരഞ്ഞെടുത്ത അഡാപ്റ്റർ വഴി മാത്രം ടോറന്റ് ട്രാഫിക് അയക്കാനും സ്വീകരിക്കാനും പറയുന്നു. VPN ഉപയോക്താക്കൾക്ക് ഇത് പ്രത്യേകം ഉപയോഗപ്രദമാണ്, കാരണം VPN കണക്റ്റ് ചെയ്തിട്ടില്ലാത്തപ്പോൾ അനാവശ്യ ട്രാഫിക് ലീക്ക് തടയുന്നു.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>ബൈൻഡ് ചെയ്യുമ്പോൾ UPnP, NAT-PMP, ലോക്കൽ സർവീസ് ഡിസ്കവറി അനുവദിക്കുക</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>ഇവ നിങ്ങളുടെ ലോക്കൽ റൂട്ടറുമായി സംസാരിക്കുകയും ടണലിന് ചുറ്റും നിങ്ങളുടെ ലിസൺ പോർട്ട് തുറന്നുകാട്ടുകയും ചെയ്യും. VPN-ലല്ല, വിശ്വസനീയ LAN അഡാപ്റ്ററുമായി ബന്ധിപ്പിക്കുമ്പോൾ മാത്രം ഇത് പ്രവർത്തനക്ഷമമാക്കുക.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>ബൈൻഡ് ചെയ്യുമ്പോൾ UPnP, NAT-PMP, ലോക്കൽ സർവീസ് ഡിസ്കവറി പ്രവർത്തനരഹിതമാണ്, കാരണം അവ ലോക്കൽ റൂട്ടറുമായി സംസാരിക്കുകയും ടണലിന് ചുറ്റും നിങ്ങളുടെ ലിസൺ പോർട്ട് തുറന്നുകാട്ടുകയും ചെയ്യും.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4965,12 +5307,12 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <translation>ശരി</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>ഡിഫോൾട്ട് റൂട്ട്</translation>
+            <source>Any interface</source>
+            <translation>ഏതെങ്കിലും ഇന്റർഫേസ്</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>സജീവ നെറ്റ്‌വർക്ക് അഡാപ്റ്റർ തിരഞ്ഞെടുക്കാൻ OS-ന് അനുവദിക്കുക.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>സിസ്റ്റം റൂട്ട് പിന്തുടരുക (നിങ്ങളുടെ മറ്റ് ആപ്പുകൾ ഉപയോഗിക്കുന്നത്).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5049,8 +5391,8 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <translation>ഉറവിടം: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>ഉറവിട URL ഇനിയും കാഷ് ചെയ്തിട്ടില്ല. update.json-ൽ നിന്ന് IPtoCityDB കാഷ് ചെയ്യാൻ അപ്ഡേറ്റ് പരിശോധിക്കുക ഉപയോഗിക്കുക.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>db-ip.com-ൽ നിന്ന് അപ്ഡേറ്റ് ചെയ്യുമ്പോൾ സ്വയം പരിഹരിക്കപ്പെടും.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5230,22 +5572,6 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <translation>പരിധിയില്ലാത്ത</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT ഓഫ്</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>ഓൺലൈൻ (കുറഞ്ഞ വിശ്വാസ്യത)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>ഓൺലൈൻ</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>കണക്കാക്കുന്നു… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>അടുത്തത് &gt;&gt;</translation>
         </message>
@@ -5254,6 +5580,14 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
 Click to open Statistics</source>
             <translation>എല്ലാ സമയത്തെയും ഷെയർ റേഷ്യോ
 സ്റ്റാറ്റിസ്റ്റിക്സ് തുറക്കാൻ ക്ലിക്ക് ചെയ്യുക</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>മൊത്തം ടോറന്റ് പിയർ കണക്ഷനുകൾ</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT നോഡുകൾ</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5693,6 +6027,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>മുൻഗണന</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>കുറവ്</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>സാധാരണ</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>ഉയർന്ന</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>പരമാവധി</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>മിശ്രിതം</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>ഇവിടെ സംരക്ഷിക്കുക</translation>
@@ -6454,6 +6812,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>വീഡിയോ ഡൗൺലോഡ്</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>ഡൗൺലോഡ് പരിധി കവിഞ്ഞു!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1 മുതൽ %2 വരെ നിങ്ങൾ %3 MB ഡൗൺലോഡ് ചെയ്തു. &quot;%4&quot; ലെ എല്ലാ ഡൗൺലോഡുകളും നിർത്തിയിരിക്കുന്നു, കാരണം നിങ്ങൾ ഓരോ %6 ലും %5 MB എന്ന ഡൗൺലോഡ് പരിധി കവിഞ്ഞു.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>എല്ലാ നിർത്തിവച്ച ഡൗൺലോഡുകളും %1-ൽ സ്വയമേവ പുനരാരംഭിക്കും (ഇപ്പോൾ മുതൽ %2). ഉടൻ പുനരാരംഭിക്കാൻ, ഡൗൺലോഡ് പരിധി ക്രമീകരണം മാറ്റി പുനരാരംഭിക്കുക അമർത്തുക.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>ഇപ്പോൾ</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 മണിക്കൂർ</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 മണിക്കൂർ</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 മിനിറ്റ്</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 മിനിറ്റ്</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>ഒരു മിനിറ്റിൽ താഴെ</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>മലയാളം</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ശരി</translation>
         </message>
     </context>
 </TS>

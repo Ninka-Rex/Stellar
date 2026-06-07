@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet линк или Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Прихвата HTTP/HTTPS/FTP линкове, magnet линкове или torrent infohash.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP контролна веза није успела: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP контролна веза неочекивано затворена.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP контролна веза истекла.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Неисправан FTP одговор.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Одбија слање FTP команде са уграђеним новим редом.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP сервер одбио везу</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS је обавезан, али сервер не подржава AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP пријава није успела</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS заштита података (PBSZ) је одбијена.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS заштита података (PROT P) је одбијена.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP сервер одбио бинарни режим (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Не могу да уђем у FTP пасивни режим.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP сервер не подржава наставак (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP сервер одбио датотеку</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Неочекиван FTP одговор на RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP пренос прекинут од стране сервера</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Не могу да обрадим одговор FTP пасивног режима.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>FTP адреса пасивног режима одбијена из безбедносних разлога.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Не могу да отворим FTP везу за податке.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS руковање није успело: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Неисправна FTP путања.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Не могу да отворим део датотеке: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Упис на диск није успео: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP пренос је прекинут.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP сегмент %1 није успео након %2 покушаја.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Нема дозволе за упис у директоријум: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar se pokreće...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Povezano na %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Већ је прошла поноћ?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Још си будан?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Ноћ је млада!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Не можеш да спаваш?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Добро јутро!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Устај и сијај!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Најбољи део јутра!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Јутро! Кафа се кува.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Добар дан!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Преузимања за време паузе?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Већ је подне!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Надам се да ти дан добро пролази!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Добар дан!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Добро вече!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Смирујете се?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Вече!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Надам се да сте имали добар дан!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Радите до касно?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Будни после спавања?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Касна ноћна сесија!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Не заборавите да се одморите!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Добро дошли назад!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Кад си спреман!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Драго ми је да те видим!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Хајде да преузимамо!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Недостајао/ла си ми!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Поново на делу!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Преузимања те чекају!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Настави где си стао/ла?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Шта данас хватамо?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Везан за %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Није изабрана датотека резервне копије за увоз.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Везан за %1 (офлајн — торенти паузирани)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Везан за %1 (офлајн – торенти паузирани)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Доступно ажурирање! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Провера ажурирања</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Сви фајлови у један директоријум</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Прегледај...</translation>
+            <source>Browse…</source>
+            <translation>Прегледај…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Zapamti poslednji put sačuvanu mapu</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Pretraži...</translation>
+            <source>Browse…</source>
+            <translation>Прегледај…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Preuzimanje</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Кликни за копирање</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 Kliknite na Dodaj URL za početak.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Učitavanje %n preuzimanja...</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Учитавање %1 / %2 преузимања…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1147,6 +1393,94 @@ Možete promeniti u Opcije → Preuzimanja kasnije.</translation>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Приоритет</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Низак</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Нормалан</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Висок</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Максимално</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Мешовито</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Ретко</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Уобичајено</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Висок приоритет</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Прескочено</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Недоступно</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 делова</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 преузето</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 преузима</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 прескочено</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Нема података о делу</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Прескочено (фајл није изабран)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Преузимање - %1% блокова примљено</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Недоступно - ниједан клијент нема овај део</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Недостаје - %n клијената га има</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(висок приоритет)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Део #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Премести податке торента...</translation>
@@ -3387,8 +3721,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Ostavi prazno za podrazumevanu putanju</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Прегледај...</translation>
+            <source>Browse…</source>
+            <translation>Прегледај…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3899,6 +4233,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Odmah pokreni preuzimanje prikazujući dijalog informacija o fajlu</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Аутоматски попуни опис метаподацима фајла (битрејт, резолуција, кодек, итд.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Prikaži mapu swarm-a tokom preuzimanja metapodataka</translation>
         </message>
@@ -4101,10 +4439,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ Nije na listi automatskog preuzimanja pregledača: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Pretraži</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Ovo je zapamćena prilagođena mapa za torrente korišćena kada je dijalog za metapodatke torrenta podešen da koristi prilagođenu mapu za čuvanje po defaultu.</translation>
         </message>
@@ -4221,16 +4555,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Брзина у статусу</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Корисници у статусу</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Глобални корисници</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Однос у статусу</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Прикажи торент конекције у статусној траци</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Прикажи DHT чворове у статусној траци</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4493,20 +4827,28 @@ Preporučuje se vezivanje Stellara za mrežni sučelje VPN-a i provera da li je 
             <translation>Korisničko ime za BitTorrent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Poveži na mrežni adapter</translation>
+            <source>Network interface</source>
+            <translation>Мрежни интерфејс</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Ovaj adapter je zaključan za torrent saobraćaj. Ako se vaš VPN isključi ili adapter nestane, Stellar prestaje da koristi podrazumevanu rutu i vaši torrenti gube pristup mreži umesto da curenje na drugu vezu.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Торент саобраћај је закључан на овај интерфејс. Ако VPN прекине везу или интерфејс нестане, Stellar паузира торенте уместо да цури на другу конекцију. Вежите се за VPN адаптер да бисте усмерили сав торент саобраћај, укључујући IPv6, кроз VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Bez vezivanja na adapter. Torrent saobraćaj prati sistemsku rutu.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Било који интерфејс: торент саобраћај прати системску руту, као и остале апликације. Ако је VPN активна конекција, иде кроз VPN; ако VPN прекине, саобраћај наставља нормалном конекцијом. Изаберите одређени адаптер за строго VPN-везивање.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Vezivanje na mrežni adapter nalaže Stellaru da šalje i prima torrent saobraćaj samo kroz izabrani adapter. Ovo je posebno korisno za korisnike VPN-a jer sprečava slučajno curenje saobraćaja kada VPN nije povezan.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Дозволи UPnP, NAT-PMP и локално откривање сервиса док је везано</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Ово комуницира са локалним рутером и може изложити ваш порт за слушање око тунела. Омогућите само када сте везани за поуздани LAN адаптер, не за VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP и локално откривање сервиса су онемогућени док је везано, јер комуницирају са локалним рутером и изложили би ваш порт за слушање око тунела.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4961,12 +5303,12 @@ Preporučuje se vezivanje Stellara za mrežni sučelje VPN-a i provera da li je 
             <translation>У реду</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Podrazumevana ruta</translation>
+            <source>Any interface</source>
+            <translation>Било који интерфејс</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Pusti OS da odabere aktivni mrežni adapter.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Прати системску руту (користе је остале апликације).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5045,8 +5387,8 @@ Preporučuje se vezivanje Stellara za mrežni sučelje VPN-a i provera da li je 
             <translation>Извор: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>URL izvora još nije keširan. Koristite Proverite ažuriranja za keširanje IPtoCityDB iz update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Аутоматски разрешено са db-ip.com при ажурирању.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5226,22 +5568,6 @@ Preporučuje se vezivanje Stellara za mrežni sučelje VPN-a i provera da li je 
             <translation>неограничено</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT искљ.</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>online (niska pouzdanost)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Процена… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>dalje &gt;&gt;</translation>
         </message>
@@ -5249,6 +5575,14 @@ Preporučuje se vezivanje Stellara za mrežni sučelje VPN-a i provera da li je 
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Ukupni odnos</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Укупне конекције торент колега</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT чворови</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5688,6 +6022,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Приоритет</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Низак</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Нормалан</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Висок</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Максималан</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Мешовито</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Сачувај у</translation>
@@ -6448,6 +6806,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Preuzmi video</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Ограничења преузимања премашена!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Од %1 до %2 преузели сте %3 MB. Сва преузимања у „%4“ су заустављена јер сте прекорачили ограничење од %5 MB сваких %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Сва заустављена преузимања ће се аутоматски наставити у %1 (%2 од сада). Да одмах наставите, промените подешавање Ограничења преузимања и притисните Настави.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>сада</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 сат</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 сати</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 минут</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 минута</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>мање од минута</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>и</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>У реду</translation>
         </message>
     </context>
 </TS>

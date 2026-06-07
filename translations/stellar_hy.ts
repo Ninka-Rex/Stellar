@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet Link կամ Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Ընդունում է HTTP/HTTPS/FTP հղումներ, magnet հղումներ կամ torrent infohash:</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP կառավարման կապը ձախողվեց՝ %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP կառավարման կապն անսպասելիորեն փակվեց:</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP կառավարման կապի ժամկետը սպառվեց:</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Սխալ FTP պատասխան:</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>FTP հրամանը մերժվում է ներկառուցված նոր տողով:</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP սերվերը մերժեց կապը</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>FTPS-ը պարտադիր է, բայց սերվերը չի աջակցում AUTH TLS:</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP մուտքը ձախողվեց</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS տվյալների պաշտպանությունը (PBSZ) մերժվեց:</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS տվյալների պաշտպանությունը (PROT P) մերժվեց:</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP սերվերը մերժեց երկուական ռեժիմը (TYPE I):</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>FTP պասիվ ռեժիմ մտնել չհաջողվեց:</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP սերվերը չի աջակցում վերսկսում (REST):</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP սերվերը մերժեց ֆայլը</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Անսպասելի FTP պատասխան RETR-ին</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP փոխանցումը ընդհատվեց սերվերի կողմից</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>FTP պասիվ ռեժիմի պատասխանը վերլուծել չհաջողվեց:</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>FTP պասիվ ռեժիմի հասցեն մերժվեց անվտանգության նկատառումներով:</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Չհաջողվեց բացել FTP տվյալների կապը։</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS ձեռքսեղմումը ձախողվեց՝ %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Անվավեր FTP ուղի։</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Չի բացվում մասնակի ֆայլը՝ %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Սկավառակի գրառումը ձախողվեց՝ %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP փոխանցումը կտրվեց։</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP հատված %1 ձախողվեց %2 կրկնությունից հետո։</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Գրելու թույլտվություն չկա ներբեռնման թղթապանակում՝ %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar-ը մեկնարկում է...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Կապված է %1-ի հետ</translation>
+            <source>Past midnight already?</source>
+            <translation>Արդեն կեսգիշերն անց է՞</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Դեռ արթո՞ւն ես</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Գիշերը դեռ երիտասարդ է</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Չե՞ս կարողանում քնել</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Բարի լույս</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Արթնացի՛ր ու փայլի՛ր</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Առավոտվա լավագույն պահը</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Առավոտ է, սուրճը եռում է</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Բարի օր</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Ճաշի ընդմիջման ներբեռնումնե՞ր</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Արդեն կեսօր է</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Հուսով եմ՝ օրդ լավ է ընթանում</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Բարի կեսօր:</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Բարի երեկո:</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Հանգստանո՞ւմ եք:</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Երեկո:</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Հուսով եմ լավ օր եք ունեցել:</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Ուշ եք աշխատո՞ւմ:</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Քնելու ժամն անցե՞լ է:</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Ուշ գիշերային սեսիա:</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Մի մոռացեք հանգստանալ:</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Բարի վերադարձ:</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Պատրաստ եմ, երբ դու պատրաստ լինես</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Ուրախ եմ քեզ տեսնել</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Սկսենք ներբեռնումը</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Կարոտել էի</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Նորից գործի</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Քո ներբեռնումները սպասում են</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Շարունակե՞ս ընդհատված տեղից</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Ի՞նչ ենք վերցնում այսօր</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Կապված է %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Ներմուծման պահուստային ֆայլ չի ընտրվել:</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ %1-ին կապված (անցանց — torrent-ները դադարեցված)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Կապված է %1 (անցանց - թորենթները դադարեցված են)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Թարմացում կա՛ (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Թարմացումների ստուգում</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Բոլորը մեկ պանակում</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Դիտել...</translation>
+            <source>Browse…</source>
+            <translation>Թերթել…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Հիշել վերջին պահպանման ճանապարհը</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Գտնել...</translation>
+            <source>Browse…</source>
+            <translation>Թերթել…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Ներբեռնել</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Սեղմեք պատճենելու համար</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1025,8 +1271,8 @@ Click  Add URL  to start.</source>
 Սեղմեք Ավելացնել հղումը սկսելու համար։</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Բեռնում %n ներբեռնում(ներ)…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Բեռնում %1 / %2 ներբեռնում…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1145,6 +1391,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Առաջնահերթություն</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Ցածր</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Միջին</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Բարձր</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Առավելագույն</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Խառը</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Հազվադեպ</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Սովորական</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Բարձր առաջնահերթ</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Բաց թողնված</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Անհասանելի</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 մաս</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 ներբեռնված</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 ներբեռնվում է</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 բաց թողնվեց</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Մասի տվյալներ չկան</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Բաց թողնվեց (ֆայլն ընտրված չէ)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Ներբեռնում - %1% բլոկ ստացվեց</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Անհասանելի - ոչ մի փիր չունի այս մասը</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Բացակայում է - %n փիր(եր) ունեն</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(բարձր առաջնահերթ)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Մաս #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Տեղափոխել Տորենտի տվյալները...</translation>
@@ -3387,8 +3721,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Դատարկ թողեք ստանդարտ պահոցի համար</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Թերթել...</translation>
+            <source>Browse…</source>
+            <translation>Թերթել…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3899,6 +4233,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Սկսել ներբեռնումը անմիջապես՝ ցուցադրելով «Ֆայլի տվյալներ» խորհուրդը</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Ինքնալրացնել նկարագրության դաշտը ֆայլի մետատվյալներով</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Ցույց տալ սվարմ քարտեզը տորենտի մետատվյալների ներբեռնման ժամանակ</translation>
         </message>
@@ -4101,10 +4439,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ Չի գտնվում բրաուզերի ավտոներբեռնման ցանկում՝ %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Դիտել</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Սա հիշված հատուկ տորենտային թղթապանակն է, որն օգտագործվում է, երբ տորենտի մետատվյալների խոսքարկղը կարգավորված է ընտրյալ պահպանման թղթապանակով։</translation>
         </message>
@@ -4221,16 +4555,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Ցույց տալ արագությունը վիճակի շարքում</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Ցույց տալ գնահատված օնլայն օգտատերերի թիվը վիճակի շարքում</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Օգտագործում է DHT հանգույց-ID խտությունը գլոբալ BitTorrent օգտատերերը գնահատելու համար: Ծանրաբեռնվածությունը բարձրանում է, երբ ավելի շատ եզակի հանգույց-ID-ներ են դիտարկվում; վիճակի շարքում * նշանը նշանակում է, որ գնահատականը դեռ ցածր վստահելիությամբ է:</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Ցույց տալ հարաբերակցությունը վիճակի շարքում</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Ցույց տալ torrent կապերը կարգավիճակի տողում</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Ցույց տալ DHT հանգույցները կարգավիճակի տողում</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4487,20 +4821,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>BitTorrent-ի սեփական user agent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Կապել ցանցային հարմարանքին</translation>
+            <source>Network interface</source>
+            <translation>Ցանցային ինտերֆեյս</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Այս հարմարանքը կողպված է torrent երթուղու համար: Եթե VPN-ը կապը խզի կամ հարմարանքը հեռանա, Stellar-ը դադարում է օգտագործել ստանդարտ երթուղին, և ձեր torrent-ները կկորցնեն ցանցի մուտքը՝ փոխանակ այլ կապի վրա լիկվիդացվելու:</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Torrent տրաֆիկը կապված է այս ինտերֆեյսին։ Եթե VPN-ն անջատվի կամ ինտերֆեյսը չլինի, Stellar-ը դադարեցնում է torrent-ները՝ այլ կապով արտահոսքից խուսափելու համար։ Կապեք VPN ադապտերին՝ ամբողջ torrent տրաֆիկը, ներառյալ IPv6, VPN-ով ուղղորդելու համար։</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Առանց հարմարանքի կապման: Torrent երթուղին հետևում է համակարգի երթուղուն:</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Ցանկացած ինտերֆեյս․ torrent տրաֆիկը հետևում է համակարգային երթուղուն, ինչպես մյուս հավելվածները։ Եթե VPN-ն ակտիվ է, անցնում է VPN-ով, եթե VPN-ն ընկնի, տրաֆիկը շարունակվում է սովորական կապով։ Ընտրեք կոնկրետ ադապտեր խիստ VPN-միայն կապման համար։</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Ցանցային հարմարանքի կապումը հրահանգում է Stellar-ին ուղարկել և ստանալ torrent երթուղին միայն ընտրված հարմարանքի միջոցով: Սա հատկապես օգտակար է VPN օգտագործողների համար, քանի որ այն կանխում է պատահական երթուղու լիկվիդացումը, երբ VPN-ը միացված չէ:</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Թույլատրել UPnP, NAT-PMP և Տեղական ծառայության հայտնաբերում կապված վիճակում</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Սրանք կապվում են ձեր տեղական երթուղիչին և կարող են բացել ձեր լսման պորտը թունելի շուրջ։ Միացրեք միայն վստահելի LAN ադապտերին կապելիս, ոչ VPN-ին։</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP և Տեղական ծառայության հայտնաբերումն անջատված են կապված վիճակում, քանի որ դրանք կապվում են տեղական երթուղիչին և կբացեն ձեր լսման պորտը թունելի շուրջ։</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4955,12 +5297,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Կանոնավոր ուղի</translation>
+            <source>Any interface</source>
+            <translation>Ցանկացած ինտերֆեյս</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Թող օպերացիոն համակարգն ընտրի ակտիվ ցանցային հարմարանքը:</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Հետևել համակարգային երթուղուն (օգտագործվում է ձեր մյուս հավելվածների կողմից)։</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5039,8 +5381,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Աղբյուր՝ %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Աղբյուրի URL-ը դեռ չի կաշվածվել։ Օգտագործեք «Ստուգել թարմացումները»՝ IPtoCityDB-ն update.json-ից կաշվածելու համար։</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Ինքնաբերաբար լուծվում է db-ip.com-ից թարմացնելիս:</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5220,22 +5562,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>անսահմանափակ</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT անջատված</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation>  առցանց (ցածր վստահություն)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation>  առցանց</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Գնահատվում է… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation> հաջորդ &gt;&gt;</translation>
         </message>
@@ -5244,6 +5570,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 Click to open Statistics</source>
             <translation>Բաժնեկցման հարաբերակցությունը բոլոր ժամանակների ընթացքում
 Սեղմեք վիճակագրությունը բացելու համար</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Ընդհանուր թորենթ փիր կապեր</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT հանգույցներ</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5683,6 +6017,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Առաջնահերթություն</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Ցածր</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Նորմալ</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Բարձր</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Առավելագույն</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Խառը</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Պահել</translation>
@@ -6444,6 +6802,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Տեսանյութի ներբեռնում</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Ներբեռնման սահմանաչափերը գերազանցված են:</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>%1-ից %2 %3 ՄԲ ներբեռնեցիք: &quot;%4&quot;-ի բոլոր ներբեռնումները դադարեցվեցին, քանի որ գերազանցեցիք %5 ՄԲ սահմանաչափը ամեն %6:</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Բոլոր դադարեցված ներբեռնումները կվերսկսվեն ավտոմատ %1-ին (%2 հետո): Անմիջապես վերսկսելու համար փոխեք Ներբեռնման սահմանափակումները և սեղմեք Շարունակել:</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>հիմա</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 ժամ</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 ժամ</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 րոպե</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 րոպե</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>մեկ րոպեից պակաս</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>և</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
         </message>
     </context>
 </TS>

@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnetinė nuoroda arba Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Priima HTTP/HTTPS/FTP nuorodas, magnetines nuorodas arba torrent infohash.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>Nepavyko FTP valdymo ryšys: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP valdymo ryšys netikėtai nutrūko.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP valdymo ryšio laikas baigėsi.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Netinkamas FTP atsakymas.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Atsisakoma siųsti FTP komandą su įterptu naujos eilutės simboliu.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP serveris atsisakė prisijungimo</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>Reikalingas FTPS, bet serveris nepalaiko AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP prisijungimas nepavyko</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>FTPS duomenų apsauga (PBSZ) atmesta.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>FTPS duomenų apsauga (PROT P) atmesta.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP serveris atmetė dvejetainį režimą (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Nepavyko įjungti FTP pasyvaus režimo.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP serveris nepalaiko atnaujinimo (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP serveris atmetė failą</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Netikėtas FTP atsakas į RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP perdavimą nutraukė serveris</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Nepavyko apdoroti FTP pasyvaus režimo atsako.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>FTP pasyvaus režimo adresas atmestas saugumo sumetimais.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Nepavyko atidaryti FTP duomenų ryšio.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS paspaudimas nepavyko: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Netinkamas FTP kelias.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Nepavyksta atidaryti dalies failo: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Disko rašymas nepavyko: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP perdavimas buvo sutrumpintas.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP segmentas %1 nepavyko po %2 bandymų.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Nėra rašymo teisės atsisiuntimo katalogui: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar paleidžiamas...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Surinkta %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Jau po vidurnakčio?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Dar nemiegi?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Naktis dar jauna!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Negali užmigti?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Labas rytas!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Kilkim ir švieskim!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Gero ryto!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Rytas! Kava verda.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Laba diena!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Pietų pertraukos siuntimai?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Jau vidurdienis!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Tikiuosi, diena sekasi!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Laba diena!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Labas vakaras!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Atsipalaiduojate?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Vakaras!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Tikiuosi, diena buvo gera!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Dirbate vėlai?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Nemiegate iki vėlumos?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Vėlyvo vakaro sesija!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Nepamirškite pailsėti!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Sveiki sugrįžę!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Pasiruošęs, kai būsi!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Malonu tave matyti!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Pradėkime siųstis!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Pasiilgau tavęs!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Vėl prie reikalo!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Tavo atsisiuntimai laukia!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Tęsti, kur baigei?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Ką šiandien čiupsime?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Susieta su %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Nepasirinktas importuojamas atsarginės kopijos failas.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Susietas su %1 (atsijungęs — torrentai pristabdyti)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Susieta su %1 (atsijungę – torrentai pristabdyti)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Yra atnaujinimas! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Tikrinama, ar yra atnaujinimų</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Visi failai į vieną katalogą</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Naršyti...</translation>
+            <source>Browse…</source>
+            <translation>Naršyti…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -631,8 +873,8 @@ Paleiskite rankiniu būdu: flatpak override --user --talk-name=org.freedesktop.F
             <translation>Atsiminti paskutinį saugojimo kelią</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Naršyti...</translation>
+            <source>Browse…</source>
+            <translation>Naršyti…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -719,6 +961,10 @@ Paleiskite rankiniu būdu: flatpak override --user --talk-name=org.freedesktop.F
         <message>
             <source>Download</source>
             <translation>Atsisiuntimas</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Spustelėkite kopijuoti</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1026,8 +1272,8 @@ Click  Add URL  to start.</source>
 Spauskite  Pridėti URL  pradžiai.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Kraunama %n atsisiuntimas...</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Įkeliama %1 / %2 siuntinių…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1146,6 +1392,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritetas</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Žemas</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normalus</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Aukštas</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimalus</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Mišrus</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Retas</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Dažnas</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Aukštas prioritetas</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Praleista</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Nepasiekiama</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 dalys</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 atsisiųsta</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 atsisiunčiama</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 praleista</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Nėra dalies duomenų</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Praleista (failas nepasirinktas)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Atsiunčiama – %1% blokų gauta</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Nepasiekiama – nė vienas dalyvis neturi</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Trūksta – %n dalyvis(-iai) turi</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(aukštas prioritetas)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Dalis #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Perkelti torrent duomenis į...</translation>
@@ -3389,8 +3723,8 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <translation>Palikti tuščią</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Naršyti...</translation>
+            <source>Browse…</source>
+            <translation>Naršyti…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3901,6 +4235,10 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <translation>Pradėti atsisiuntimą iš karto rodomą 'Failo informacija' langą</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Automatiškai užpildyti aprašą failo metaduomenimis (bitų sparta, raiška, kodekas ir kt.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Rodyti žaidėjų žemėlapį atsisiunčiant torrent metaduomenis</translation>
         </message>
@@ -4103,10 +4441,6 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <translation>⚠ Nepatekęs į naršyklės automatinio atsisiuntimo sąrašą: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Naršyti</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Tai išsaugotas asmeninis BitTorrent aplankas, naudojamas pagal numatytuosius nustatymus, kai 'BitTorrent metaduomenų' dialogo lange įjungtas asmeniškas išsaugojimo aplanko nustatymas.</translation>
         </message>
@@ -4223,16 +4557,16 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <translation>Greitis būsenos juostoje</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Numatomi naudotojai būsenos juostoje</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>DHT mazgų ID tankis leidžia įvertinti globalius BitTorrent naudotojus. Kuo daugiau unikalių ID stebima, tuo didesnė pasitikėjimo laipsnis. Būsenos juostoje esantis * reiškia, kad įvertis dar netikslus.</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Dalyavimo santykis būsenos juostoje</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Rodyti torrentų ryšius būsenos juostoje</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Rodyti DHT mazgus būsenos juostoje</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4490,20 +4824,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Nustatyti BitTorrent naudotojo agentą</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Prijungti prie tinklo adapterio</translation>
+            <source>Network interface</source>
+            <translation>Tinklo sąsaja</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Šis adapteris užrakintas torrent srautams. Jei VPN nutraukiamas arba adapteris išnyksta, Stellar atsisako numatytosios maršruto ir torrentai praranda tinklo prieigą, o ne nuteka į kitą ryšį.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Torrentų srautas užrakintas šiai sąsajai. Jei VPN atsijungia ar sąsaja dingsta, Stellar pristabdo torrentus, užuot leidęs srautui nutekėti kitu ryšiu. Pririškite prie VPN adapterio, kad visas torrentų srautas, įskaitant IPv6, eitų per VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Nėra adapterio ryšio. Torrent srautai seka sistemos maršrutą.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Bet kuri sąsaja: torrentų srautas eina sistemos maršrutu, kaip ir kitos programos. Jei VPN yra aktyvus ryšys, srautas eina per VPN; jei VPN dingsta, srautas tęsiamas įprastu ryšiu. Pasirinkite konkretų adapterį griežtam tik VPN naudojimui.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Tinklo adapterio ryšio nustatymas verčia Stellar siųsti ir gauti torrent srautus tik per pasirinktą adapterį. Tai ypač naudinga VPN vartotojams, nes tai užkerta kelią atsitiktiniams srautų nutekėjimams, kai VPN nėra prijungtas.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Leisti UPnP, NAT-PMP ir vietinio tinklo paslaugų paiešką esant pririštam</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Šios paslaugos bendrauja su vietiniu maršrutizatoriumi ir gali atskleisti jūsų klausymo prievadą už tunelio ribų. Įjunkite tik tada, kai pririšta prie patikimo LAN adapterio, o ne VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP ir vietinio tinklo paslaugų paieška išjungta esant pririštam, nes jos bendrauja su vietiniu maršrutizatoriumi ir atskleistų jūsų klausymo prievadą už tunelio ribų.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4958,12 +5300,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Gerai</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Numatytasis maršrutas</translation>
+            <source>Any interface</source>
+            <translation>Bet kuri sąsaja</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Leisti OS pasirinkti aktyvų tinklo adapterį.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Eiti sistemos maršrutu (naudojama kitų programų).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5042,8 +5384,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Šaltinis: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Šaltinio URL dar nėra įkeltas. Naudokite „Patikrinti atnaujinimus</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Automatiškai nustatyta iš db-ip.com atnaujinant.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5223,22 +5565,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>neribotas</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT išjungta</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> online (maža tikimybė)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Apskaičiuojama… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>toliau &gt;&gt;</translation>
         </message>
@@ -5246,6 +5572,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Viso laiko dalinimosi santykis</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Visos srauto bendraamžių jungtys</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT mazgai</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5685,6 +6019,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Prioritetas</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Žemas</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normalus</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Aukštas</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maksimalus</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Mišrus</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Išsaugoti į</translation>
@@ -6445,6 +6803,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Vaizdo įrašo atsisiuntimas</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Atsisiuntimo limitai viršyti!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Nuo %1 iki %2 atsisiuntėte %3 MB. Visi atsisiuntimai iš „%4“ sustabdyti, nes viršijote %5 MB limitą per %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Visi sustabdyti atsisiuntimai bus automatiškai pratęsti %1 (po %2). Norėdami pratęsti dabar, pakeiskite Atsisiuntimo limitų nustatymą ir paspauskite Pratęsti.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>dabar</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 valandos</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 valandų</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 minutės</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 minučių</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>mažiau nei minutės</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>ir</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Gerai</translation>
         </message>
     </context>
 </TS>

@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet Link ឬ Infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>ទទួលយកតំណ HTTP/HTTPS/FTP, តំណមេដែក ឬ infohash torrent</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>ការតភ្ជាប់បញ្ជា FTP បរាជ័យ៖ %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>ការតភ្ជាប់បញ្ជា FTP ត្រូវបានបិទដោយមិនបានរំពឹងទុក</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>ការតភ្ជាប់បញ្ជា FTP អស់ពេល</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>ការឆ្លើយតប FTP មានទម្រង់ខុស</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>បដិសេធការផ្ញើពាក្យបញ្ជា FTP ដែលមានបន្ទាត់ថ្មីភ្ជាប់</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>ម៉ាស៊ីនមេ FTP បដិសេធការតភ្ជាប់</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>ត្រូវការ FTPS ប៉ុន្តែម៉ាស៊ីនមេមិនគាំទ្រ AUTH TLS</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>ការចូល FTP បរាជ័យ</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>ការការពារទិន្នន័យ FTPS (PBSZ) ត្រូវបានបដិសេធ។</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>ការការពារទិន្នន័យ FTPS (PROT P) ត្រូវបានបដិសេធ។</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>ម៉ាស៊ីនមេ FTP បដិសេធរបៀបប៊ីនណារី (TYPE I)។</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>មិនអាចចូលរបៀបអកម្ម FTP បានទេ។</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>ម៉ាស៊ីនមេ FTP មិនគាំទ្រការបន្ត (REST) ទេ។</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>ម៉ាស៊ីនមេ FTP បានបដិសេធឯកសារ</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>ការឆ្លើយតប FTP ដែលមិនរំពឹងទុកចំពោះ RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>ការផ្ទេរ FTP ត្រូវបានបោះបង់ដោយម៉ាស៊ីនមេ</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>មិនអាចញែកការឆ្លើយតបរបៀបអកម្ម FTP បានទេ។</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>អាសយដ្ឋានរបៀបអកម្ម FTP ត្រូវបានបដិសេធសម្រាប់សុវត្ថិភាព។</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>មិនអាចបើកការតភ្ជាប់ទិន្នន័យ FTP បានទេ។</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>ការចាប់ដៃ TLS បរាជ័យ៖ %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>ផ្លូវ FTP មិនត្រឹមត្រូវ។</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>មិនអាចបើកឯកសារផ្នែក៖ %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ការសរសេរថាសបរាជ័យ៖ %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>ការផ្ទេរ FTP ត្រូវបានកាត់ខ្លី។</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>ផ្នែក FTP %1 បរាជ័យបន្ទាប់ពីព្យាយាម %2 ដង។</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>គ្មានសិទ្ធិសរសេរសម្រាប់ថតទាញយក៖ %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar កំពុងចាប់ផ្ដើម...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ ចងភ្ជាប់ទៅ %1</translation>
+            <source>Past midnight already?</source>
+            <translation>កន្លងពាក់កណ្ដាលអធ្រាត្រហើយ?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>នៅភ្ញាក់ទេ?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>យប់នៅក្មេងនៅឡើយ!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>គេងមិនលក់មែនទេ?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>អរុណសួស្តី!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>ក្រោកឡើងហើយភ្លឺស្វាង!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>ព្រឹកព្រលឹមហើយ!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>ព្រឹកហើយ! កាហ្វេកំពុងឆុង។</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>សួស្តីពេលរសៀល!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>ទាញយកពេលសម្រាកអាហារថ្ងៃត្រង់?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>ថ្ងៃត្រង់ហើយ!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>សង្ឃឹមថាថ្ងៃរបស់អ្នកដំណើរការល្អ!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>រសៀល!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>រាត្រីសួស្តី!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>សម្រាកហើយឬ?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>ល្ងាចហើយ!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>សង្ឃឹមថាថ្ងៃនេះល្អ!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>ធ្វើការយប់មែនទេ?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>ដល់ម៉ោងគេងហើយ?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>វគ្គយប់ជ្រៅ!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>កុំភ្លេចសម្រាក!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>សូមស្វាគមន៍មកវិញ!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>រួចរាល់ហើយ!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>រីករាយដែលបានជួប!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>តោះចាប់ផ្ដើមទាញយក!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>នឹកអ្នក!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>ត្រឡប់មកវិញហើយ!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>ការទាញយករបស់អ្នកកំពុងរង់ចាំ!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>បន្តពីកន្លែងដែលអ្នកបានឈប់?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>ថ្ងៃនេះយើងនឹងទាញយកអ្វី?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>ភ្ជាប់ទៅ %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>មិនបានជ្រើសឯកសារបម្រុងទុកដើម្បីនាំចូលទេ។</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ ភ្ជាប់ទៅ %1 (គ្មានអ៊ីនធឺណិត — ផ្អាក torrent)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>ភ្ជាប់ទៅ %1 (គ្មានអ៊ីនធឺណិត - ថូរ៉ង់បានផ្អាក)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>មានកំណែថ្មី! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>កំពុងពិនិត្យកំណែថ្មី</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>ឯកសារទាំងអស់ទៅថតមួយ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>រកមើល...</translation>
+            <source>Browse…</source>
+            <translation>រកមើល…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -632,8 +874,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>ចងចាំផ្លូវរក្សាទុកចុងក្រោយ</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>រកមើល...</translation>
+            <source>Browse…</source>
+            <translation>រកមើល…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -720,6 +962,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>ទាញយក</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>ចុចដើម្បីចម្លង</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1027,8 +1273,8 @@ Click  Add URL  to start.</source>
 ចុច បន្ថែម URL ដើម្បីចាប់ផ្ដើម។</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>កំពុងផ្ទុក %n ការទាញយក…</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>កំពុងផ្ទុក %1 / %2 ទាញយក…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1148,6 +1394,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>អាទិភាព</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>ទាប</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>ធម្មតា</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>ខ្ពស់</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>អតិបរមា</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>ចម្រុះ</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>កម្រ</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>ធម្មតា</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>អាទិភាពខ្ពស់</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>រំលង</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>មិនអាចប្រើបាន</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 ដុំ</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 បានទាញយក</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 កំពុងទាញយក</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 ត្រូវបានរំលង</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>គ្មានទិន្នន័យដុំ</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>រំលង (ឯកសារមិនបានជ្រើស)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>កំពុងទាញយក - %1% នៃប្លុកបានទទួល</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>មិនអាចប្រើបាន - គ្មានមិត្តភែរមានដុំនេះ</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>បាត់ - %n មិត្តភែរមានវា</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(អាទិភាពខ្ពស់)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>ដុំ #%1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>ផ្លាស់ទីទិន្នន័យ Torrent ទៅ...</translation>
@@ -3396,8 +3730,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ទុកទទេដើម្បីប្រើផ្លូវរក្សាទុកលំនាំដើម</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>រកមើល...</translation>
+            <source>Browse…</source>
+            <translation>រកមើល…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3908,6 +4242,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ចាប់ផ្តើមទាញយកភ្លាមៗ ខណៈបង្ហាញប្រអប់ &quot;ព័ត៌មានឯកសារទាញយក&quot;</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>បំពេញស្វ័យប្រវត្តិនូវវាលពិពណ៌នាជាមួយទិន្នន័យមេតាឯកសារ (អត្រាប៊ីត, កម្រិតភាពច្បាស់, កូឌិក, ។ល។)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>បង្ហាញផែនទី swarm ពេលទាញយកទិន្នន័យមេតា torrent</translation>
         </message>
@@ -4110,10 +4448,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ មិននៅក្នុងបញ្ជីទាញយកដោយស្វ័យប្រវត្តិរបស់កម្មវិធីរុករក៖ %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>រកមើល</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>នេះជាថត torrent ផ្ទាល់ខ្លួនដែលបានចងចាំ ប្រើនៅពេលប្រអប់ទិន្នន័យមេតា torrent ត្រូវបានកំណត់ឲ្យប្រើថតរក្សាទុកផ្ទាល់ខ្លួនតាមលំនាំដើម។</translation>
         </message>
@@ -4230,16 +4564,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>បង្ហាញល្បឿនក្នុងរបារស្ថានភាព</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>បង្ហាញចំនួនអ្នកប្រើប្រាស់អនឡាញប៉ាន់ស្មានក្នុងរបារស្ថានភាព</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>ប្រើដង់ស៊ីតេ DHT node-ID ដើម្បីប៉ាន់ស្មានអ្នកប្រើ BitTorrent សកល។ ភាពជឿជាក់កើនឡើងនៅពេលដែល node-ID ពិសេសត្រូវបានសង្កេតឃើញកាន់តែច្រើន; សញ្ញា * នៅខាងចុងក្នុងរបារស្ថានភាពមានន័យថាការប៉ាន់ស្មាននៅមានភាពជឿជាក់ទាប។</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>បង្ហាញសមាមាត្រក្នុងរបារស្ថានភាព</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>បង្ហាញការតភ្ជាប់ torrent ក្នុងរបារស្ថានភាព</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>បង្ហាញថ្នាំង DHT ក្នុងរបារស្ថានភាព</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4502,20 +4836,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ភ្នាក់ងារអ្នកប្រើ BitTorrent ផ្ទាល់ខ្លួន</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>ភ្ជាប់ទៅអាដាប់ទ័របណ្តាញ</translation>
+            <source>Network interface</source>
+            <translation>ចំណុចប្រទាក់បណ្តាញ</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>អាដាប់ទ័រនេះត្រូវបានចាក់សោសម្រាប់ចរាចរណ៍តូរ៉ង់។ ប្រសិនបើ VPN របស់អ្នកផ្តាច់ ឬអាដាប់ទ័របាត់ Stellar ឈប់ប្រើផ្លូវលំនាំដើម ហើយតូរ៉ង់របស់អ្នកបាត់បង់ការចូលប្រើបណ្តាញជំនួសឱ្យការលេចធ្លាយទៅការតភ្ជាប់ផ្សេងទៀត។</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>ចរាចរ torrent ត្រូវបានចាក់សោទៅចំណុចប្រទាក់នេះ។ ប្រសិនបើ VPN របស់អ្នកផ្តាច់ ឬចំណុចប្រទាក់បាត់ Stellar នឹងផ្អាក torrent ជំនួសឱ្យការលេចធ្លាយទៅការតភ្ជាប់ផ្សេង។ ភ្ជាប់ទៅអាដាប់ទ័រ VPN របស់អ្នកដើម្បីបញ្ជូនចរាចរ torrent ទាំងអស់ រួមទាំង IPv6 តាមរយៈ VPN ។</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>គ្មានការភ្ជាប់អាដាប់ទ័រ។ ចរាចរណ៍តូរ៉ង់ដើរតាមផ្លូវប្រព័ន្ធ។</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>ចំណុចប្រទាក់ណាមួយ៖ ចរាចរ torrent ដើរតាមផ្លូវប្រព័ន្ធ ដូចកម្មវិធីផ្សេងទៀតរបស់អ្នក។ ប្រសិនបើ VPN គឺជាការតភ្ជាប់សកម្មរបស់អ្នក វានឹងឆ្លងកាត់ VPN; ប្រសិនបើ VPN ធ្លាក់ ចរាចរនឹងបន្តនៅលើការតភ្ជាប់ធម្មតា។ ជ្រើសរើសអាដាប់ទ័រជាក់លាក់សម្រាប់ការចងជាប់តែជាមួយ VPN តឹងរឹង។</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>ការភ្ជាប់អាដាប់ទ័របណ្តាញប្រាប់ Stellar ឱ្យផ្ញើ និងទទួលចរាចរណ៍តូរ៉ង់តែតាមរយៈអាដាប់ទ័រដែលបានជ្រើសរើសប៉ុណ្ណោះ។ វាមានប្រយោជន៍ជាពិសេសសម្រាប់អ្នកប្រើ VPN ព្រោះវាការពារការលេចធ្លាយចរាចរណ៍ដោយចៃដន្យនៅពេលដែល VPN មិនបានតភ្ជាប់។</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>អនុញ្ញាត UPnP, NAT-PMP និង Local Service Discovery ពេលចងជាប់</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>ទាំងនេះទាក់ទងជាមួយរ៉ោតទ័រមូលដ្ឋានរបស់អ្នក ហើយអាចបង្ហាញច្រកស្តាប់របស់អ្នកជុំវិញផ្លូវរូងក្រោមដី។ បើកដំណើរការវាតែនៅពេលចងជាប់ទៅអាដាប់ទ័រ LAN ដែលទុកចិត្ត មិនមែន VPN ទេ។</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP និង Local Service Discovery ត្រូវបានបិទពេលចងជាប់ ដោយសារពួកវាទាក់ទងជាមួយរ៉ោតទ័រមូលដ្ឋាន ហើយនឹងបង្ហាញច្រកស្តាប់របស់អ្នកជុំវិញផ្លូវរូងក្រោមដី។</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4970,12 +5312,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>យល់ព្រម</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>ផ្លូវលំនាំដើម</translation>
+            <source>Any interface</source>
+            <translation>ចំណុចប្រទាក់ណាមួយ</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>ឲ្យ OS ជ្រើសរើសអាដាប់ទ័របណ្តាញសកម្ម។</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>ដើរតាមផ្លូវប្រព័ន្ធ (ប្រើដោយកម្មវិធីផ្សេងទៀតរបស់អ្នក)។</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5054,8 +5396,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ប្រភព៖ %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>URL ប្រភពមិនទាន់ឃ្លាំង។ ប្រើពិនិត្យបច្ចុប្បន្នភាពដើម្បីឃ្លាំង IPtoCityDB ពី update.json។</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>បានដោះស្រាយដោយស្វ័យប្រវត្តិពី db-ip.com ពេលអ្នកធ្វើបច្ចុប្បន្នភាព។</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5235,22 +5577,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>គ្មានដែនកំណត់</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT បិទ</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> លើបណ្ដាញ (ទំនុកចិត្តទាប)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> លើបណ្ដាញ</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>កំពុងប៉ាន់ស្មាន… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>បន្ទាប់ &gt;&gt;</translation>
         </message>
@@ -5259,6 +5585,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 Click to open Statistics</source>
             <translation>សមាមាត្រចែករំលែកសរុប
 ចុចដើម្បីបើកស្ថិតិ</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>ការតភ្ជាប់សរុបរបស់មិត្តភក្តិ torrent</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>ថ្នាំង DHT</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5698,6 +6032,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>អាទិភាព</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>ទាប</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>ធម្មតា</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>ខ្ពស់</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>អតិបរមា</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>លាយ</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>រក្សាទុកទៅ</translation>
@@ -6459,6 +6817,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>ទាញយកវីដេអូ</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>ដែនកំណត់ទាញយកលើស!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>ពី %1 ទៅ %2 អ្នកបានទាញយក %3 MB។ រាល់ការទាញយកក្នុង &quot;%4&quot; ត្រូវបានបញ្ឈប់ ព្រោះអ្នកលើសដែនកំណត់ទាញយក %5 MB រៀងរាល់ %6។</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>រាល់ការទាញយកដែលបានបញ្ឈប់នឹងបន្តដោយស្វ័យប្រវត្តិនៅ %1 (%2 ទៀត)។ ដើម្បីបន្តភ្លាមៗ សូមប្ដូរការកំណត់ដែនកំណត់ទាញយក ហើយចុច បន្ត។</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>ឥឡូវ</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>១ ម៉ោង</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 ម៉ោង</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>១ នាទី</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 នាទី</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>តិចជាងមួយនាទី</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>និង</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>យល់ព្រម</translation>
         </message>
     </context>
 </TS>

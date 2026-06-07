@@ -26,8 +26,12 @@
     <context>
         <name>AddUrlDialog</name>
         <message>
-            <source>URL</source>
-            <translation>URL</translation>
+            <source>URL, Magnet Link, or Infohash</source>
+            <translation>URL, Magnet odkaz alebo infohash</translation>
+        </message>
+        <message>
+            <source>Accepts HTTP/HTTPS/FTP links, magnet links, or a torrent infohash.</source>
+            <translation>Prijíma HTTP/HTTPS/FTP odkazy, magnet odkazy alebo infohash torrentu.</translation>
         </message>
         <message>
             <source>Use Authorization</source>
@@ -55,6 +59,116 @@
         </message>
     </context>
     <context>
+        <name>FtpControl</name>
+        <message>
+            <source>FTP control connection failed: %1</source>
+            <translation>FTP riadiace pripojenie zlyhalo: %1</translation>
+        </message>
+        <message>
+            <source>FTP control connection closed unexpectedly.</source>
+            <translation>FTP riadiace pripojenie sa neočakávane uzavrelo.</translation>
+        </message>
+        <message>
+            <source>FTP control connection timed out.</source>
+            <translation>FTP riadiace pripojenie vypršalo.</translation>
+        </message>
+        <message>
+            <source>Malformed FTP reply.</source>
+            <translation>Chybná FTP odpoveď.</translation>
+        </message>
+        <message>
+            <source>Refusing to send FTP command with embedded newline.</source>
+            <translation>Odmietnutie odoslať FTP príkaz s vloženým novým riadkom.</translation>
+        </message>
+        <message>
+            <source>FTP server refused connection</source>
+            <translation>FTP server odmietol pripojenie</translation>
+        </message>
+        <message>
+            <source>FTPS required but the server does not support AUTH TLS.</source>
+            <translation>Vyžaduje sa FTPS, ale server nepodporuje AUTH TLS.</translation>
+        </message>
+        <message>
+            <source>FTP login failed</source>
+            <translation>FTP prihlásenie zlyhalo</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PBSZ) was rejected.</source>
+            <translation>Ochrana údajov FTPS (PBSZ) bola odmietnutá.</translation>
+        </message>
+        <message>
+            <source>FTPS data protection (PROT P) was rejected.</source>
+            <translation>Ochrana údajov FTPS (PROT P) bola odmietnutá.</translation>
+        </message>
+        <message>
+            <source>FTP server rejected binary mode (TYPE I).</source>
+            <translation>FTP server odmietol binárny režim (TYPE I).</translation>
+        </message>
+        <message>
+            <source>Could not enter FTP passive mode.</source>
+            <translation>Nepodarilo sa prepnúť do pasívneho režimu FTP.</translation>
+        </message>
+        <message>
+            <source>FTP server does not support resume (REST).</source>
+            <translation>FTP server nepodporuje obnovenie (REST).</translation>
+        </message>
+        <message>
+            <source>FTP server rejected the file</source>
+            <translation>FTP server odmietol súbor</translation>
+        </message>
+        <message>
+            <source>Unexpected FTP reply to RETR</source>
+            <translation>Neočakávaná odpoveď FTP na RETR</translation>
+        </message>
+        <message>
+            <source>FTP transfer aborted by server</source>
+            <translation>FTP prenos zrušený serverom</translation>
+        </message>
+        <message>
+            <source>Could not parse FTP passive-mode reply.</source>
+            <translation>Nepodarilo sa analyzovať odpoveď pasívneho režimu FTP.</translation>
+        </message>
+        <message>
+            <source>FTP passive-mode address rejected for security.</source>
+            <translation>Adresa pasívneho režimu FTP odmietnutá z bezpečnostných dôvodov.</translation>
+        </message>
+        <message>
+            <source>Could not open FTP data connection.</source>
+            <translation>Nepodarilo sa otvoriť FTP dátové pripojenie.</translation>
+        </message>
+        <message>
+            <source>TLS handshake failed: %1</source>
+            <translation>TLS handshake zlyhal: %1</translation>
+        </message>
+    </context>
+    <context>
+        <name>FtpTransfer</name>
+        <message>
+            <source>Invalid FTP path.</source>
+            <translation>Neplatná FTP cesta.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Nedá sa otvoriť súbor časti: %1</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Zápis na disk zlyhal: %1</translation>
+        </message>
+        <message>
+            <source>FTP transfer was truncated.</source>
+            <translation>FTP prenos bol skrátený.</translation>
+        </message>
+        <message>
+            <source>FTP segment %1 failed after %2 retries.</source>
+            <translation>FTP segment %1 zlyhal po %2 pokusoch.</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Chýba oprávnenie na zápis do adresára: %1</translation>
+        </message>
+    </context>
+    <context>
         <name>AppController</name>
         <message>
             <source>PAUSED</source>
@@ -69,8 +183,128 @@
             <translation>Stellar sa spúšťa...</translation>
         </message>
         <message>
-            <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Viazané na %1</translation>
+            <source>Past midnight already?</source>
+            <translation>Už je po polnoci?</translation>
+        </message>
+        <message>
+            <source>Still up?</source>
+            <translation>Ešte nespíš?</translation>
+        </message>
+        <message>
+            <source>The night is young!</source>
+            <translation>Noc je ešte mladá!</translation>
+        </message>
+        <message>
+            <source>Can't sleep?</source>
+            <translation>Nemôžeš spať?</translation>
+        </message>
+        <message>
+            <source>Good morning!</source>
+            <translation>Dobré ráno!</translation>
+        </message>
+        <message>
+            <source>Rise and shine!</source>
+            <translation>Vstávaj a zaskvej sa!</translation>
+        </message>
+        <message>
+            <source>Top of the morning!</source>
+            <translation>Najlepšie ráno!</translation>
+        </message>
+        <message>
+            <source>Morning! Coffee's brewing.</source>
+            <translation>Ráno! Káva sa varí.</translation>
+        </message>
+        <message>
+            <source>Good afternoon!</source>
+            <translation>Dobré popoludnie!</translation>
+        </message>
+        <message>
+            <source>Lunch break downloads?</source>
+            <translation>Sťahovanie počas obeda?</translation>
+        </message>
+        <message>
+            <source>Midday already!</source>
+            <translation>Už je poludnie!</translation>
+        </message>
+        <message>
+            <source>Hope your day's going well!</source>
+            <translation>Dúfam, že deň ide dobre!</translation>
+        </message>
+        <message>
+            <source>Afternoon!</source>
+            <translation>Dobré popoludnie!</translation>
+        </message>
+        <message>
+            <source>Good evening!</source>
+            <translation>Dobrý večer!</translation>
+        </message>
+        <message>
+            <source>Winding down?</source>
+            <translation>Uvoľňuješ sa?</translation>
+        </message>
+        <message>
+            <source>Evening!</source>
+            <translation>Večer!</translation>
+        </message>
+        <message>
+            <source>Hope you had a good day!</source>
+            <translation>Dúfam, že si mal dobrý deň!</translation>
+        </message>
+        <message>
+            <source>Working late?</source>
+            <translation>Pracuješ dlho?</translation>
+        </message>
+        <message>
+            <source>Up past bedtime?</source>
+            <translation>Hore po spaní?</translation>
+        </message>
+        <message>
+            <source>Late night session!</source>
+            <translation>Nočná seansa!</translation>
+        </message>
+        <message>
+            <source>Don't forget to rest!</source>
+            <translation>Nezabudni si oddýchnuť!</translation>
+        </message>
+        <message>
+            <source>Welcome back!</source>
+            <translation>Vitaj späť!</translation>
+        </message>
+        <message>
+            <source>Ready when you are!</source>
+            <translation>Pripravený, keď ty!</translation>
+        </message>
+        <message>
+            <source>Good to see you!</source>
+            <translation>Rád ťa vidím!</translation>
+        </message>
+        <message>
+            <source>Let's get downloading!</source>
+            <translation>Poďme sťahovať!</translation>
+        </message>
+        <message>
+            <source>Missed you!</source>
+            <translation>Chýbal si mi!</translation>
+        </message>
+        <message>
+            <source>Back at it!</source>
+            <translation>Späť v akcii!</translation>
+        </message>
+        <message>
+            <source>Your downloads await!</source>
+            <translation>Tvoje sťahovania čakajú!</translation>
+        </message>
+        <message>
+            <source>Pick up where you left off?</source>
+            <translation>Pokračovať tam, kde si skončil?</translation>
+        </message>
+        <message>
+            <source>What are we grabbing today?</source>
+            <translation>Čo dnes stiahneme?</translation>
+        </message>
+        <message>
+            <source>Bound to %1</source>
+            <translation>Naviazané na %1</translation>
         </message>
         <message>
             <source>No destination was chosen for the backup.</source>
@@ -81,8 +315,16 @@
             <translation>Nebol zvolený súbor zálohy na import.</translation>
         </message>
         <message>
-            <source>⚠️ Bound to %1 (offline — torrents paused)</source>
-            <translation>⚠️ Naviazané na %1 (offline — torrenty pozastavené)</translation>
+            <source>Bound to %1 (offline - torrents paused)</source>
+            <translation>Naviazané na %1 (offline - torrenty pozastavené)</translation>
+        </message>
+        <message>
+            <source>Update available! (%1)</source>
+            <translation>Aktualizácia! (%1)</translation>
+        </message>
+        <message>
+            <source>Checking for updates</source>
+            <translation>Kontrolujem aktualizácie</translation>
         </message>
     </context>
     <context>
@@ -219,8 +461,8 @@
             <translation>Všetky súbory do jedného adresára</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Prehľadávať...</translation>
+            <source>Browse…</source>
+            <translation>Prehľadávať…</translation>
         </message>
         <message>
             <source>Edit...</source>
@@ -630,8 +872,8 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
             <translation>Zapamätať si poslednú cestu uloženia</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Prehliadať...</translation>
+            <source>Browse…</source>
+            <translation>Prehľadávať…</translation>
         </message>
         <message>
             <source>OK</source>
@@ -718,6 +960,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <message>
             <source>Download</source>
             <translation>Stiahnutie</translation>
+        </message>
+        <message>
+            <source>Click to copy</source>
+            <translation>Klikni pre kopírovanie</translation>
         </message>
         <message>
             <source>Receiving data...</source>
@@ -1024,8 +1270,8 @@ Click  Add URL  to start.</source>
             <translation>Žiadne sťahovania. Kliknite na Pridať URL.</translation>
         </message>
         <message>
-            <source>Loading %n download(s)…</source>
-            <translation>Načítava sa %n sťahovanie...</translation>
+            <source>Loading %1 / %2 downloads…</source>
+            <translation>Načítavam %1 / %2 sťahovaní…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
@@ -1144,6 +1390,94 @@ You may change it in Options → Downloads at a later time.</source>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Priorita</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Nízka</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normálna</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Vysoká</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maximum</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Zmiešané</translation>
+        </message>
+        <message>
+            <source>Rare</source>
+            <translation>Vzácne</translation>
+        </message>
+        <message>
+            <source>Common</source>
+            <translation>Bežné</translation>
+        </message>
+        <message>
+            <source>High Priority</source>
+            <translation>Vysoká priorita</translation>
+        </message>
+        <message>
+            <source>Skipped</source>
+            <translation>Preskočené</translation>
+        </message>
+        <message>
+            <source>Unavailable</source>
+            <translation>Nedostupné</translation>
+        </message>
+        <message>
+            <source>%1 pieces</source>
+            <translation>%1 kusov</translation>
+        </message>
+        <message>
+            <source>%1 downloaded</source>
+            <translation>%1 stiahnutých</translation>
+        </message>
+        <message>
+            <source>%1 downloading</source>
+            <translation>%1 sťahuje sa</translation>
+        </message>
+        <message>
+            <source>%1 skipped</source>
+            <translation>%1 preskočených</translation>
+        </message>
+        <message>
+            <source>No piece data available</source>
+            <translation>Dáta dielu nedostupné</translation>
+        </message>
+        <message>
+            <source>Skipped (file not selected)</source>
+            <translation>Preskočené (súbor nevybraný)</translation>
+        </message>
+        <message>
+            <source>Downloading - %1% of blocks received</source>
+            <translation>Sťahovanie – %1% prijatých blokov</translation>
+        </message>
+        <message>
+            <source>Unavailable - no peers have this piece</source>
+            <translation>Nedostupné – žiadny peer nemá diel</translation>
+        </message>
+        <message>
+            <source>Missing - %n peer(s) have it</source>
+            <translation>Chýba – %n peer(ov) ho má</translation>
+        </message>
+        <message>
+            <source> (high priority)</source>
+            <translation>(vysoká priorita)</translation>
+        </message>
+        <message>
+            <source>Piece #%1</source>
+            <translation>Diel č. %1</translation>
+        </message>
         <message>
             <source>Move Torrent Data To...</source>
             <translation>Presun torrentu...</translation>
@@ -3378,8 +3712,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Ponechať prázdne pre výchozí</translation>
         </message>
         <message>
-            <source>Browse...</source>
-            <translation>Prehľadávať...</translation>
+            <source>Browse…</source>
+            <translation>Prehľadávať…</translation>
         </message>
         <message>
             <source>Category:</source>
@@ -3890,6 +4224,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Spustiť okamžité stiahnutie pri zobrazení dialógu 'Informácie o súbore'</translation>
         </message>
         <message>
+            <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+            <translation>Automaticky vyplniť popis metadátami súboru (bitrate, rozlíšenie, kodek atď.)</translation>
+        </message>
+        <message>
             <source>Show swarm map when downloading torrent metadata</source>
             <translation>Zobraziť mapu swarm pri stiahňovaní metadát torrentu</translation>
         </message>
@@ -4092,10 +4430,6 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>⚠ Nie je v zozname automatického sťahovania prehliadača: %1</translation>
         </message>
         <message>
-            <source>Browse</source>
-            <translation>Prehliadať</translation>
-        </message>
-        <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
             <translation>Uložený priečinok pre torrenty pri použití vlastného priečinka na uloženie.</translation>
         </message>
@@ -4212,16 +4546,16 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Rýchlosť v stavovej lište</translation>
         </message>
         <message>
-            <source>Show estimated online users in status bar</source>
-            <translation>Odhadnutí online používateľov</translation>
-        </message>
-        <message>
-            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>DHT hustota uzlov</translation>
-        </message>
-        <message>
             <source>Show ratio in status bar</source>
             <translation>Pomer</translation>
+        </message>
+        <message>
+            <source>Show torrent connections in status bar</source>
+            <translation>Zobraziť pripojenia torrentov v stavovom riadku</translation>
+        </message>
+        <message>
+            <source>Show DHT nodes in status bar</source>
+            <translation>Zobraziť DHT uzly v stavovom riadku</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
@@ -4480,20 +4814,28 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Vlastný bittorrent user agent</translation>
         </message>
         <message>
-            <source>Bind to network adapter</source>
-            <translation>Pripojiť na sieťovú kartu</translation>
+            <source>Network interface</source>
+            <translation>Sieťové rozhranie</translation>
         </message>
         <message>
-            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Táto karta je zamknutá pre torrentový prevod. Ak sa VPN odpojí alebo karta zmizne, Stellar prestane používať predvolenú trasu a vaše torrenty stratia sieťový prístup namiesto úniku na inú pripojenie.</translation>
+            <source>Torrent traffic is locked to this interface. If your VPN disconnects or the interface goes away, Stellar pauses torrents instead of leaking onto another connection. Bind to your VPN adapter to route all torrent traffic, including IPv6, through the VPN.</source>
+            <translation>Prevádzka torrentov je uzamknutá na toto rozhranie. Ak sa vaša VPN odpojí alebo rozhranie zmizne, Stellar pozastaví torrenty namiesto toho, aby unikli na iné pripojenie. Pripojte sa k adaptéru VPN, aby ste všetku prevádzku torrentov vrátane IPv6 smerovali cez VPN.</translation>
         </message>
         <message>
-            <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Bez viazania na sieťovú kartu. Torrentový prevod nasleduje systémovú trasu.</translation>
+            <source>Any interface: torrent traffic follows the system route, just like your other apps. If a VPN is your active connection it goes through the VPN; if the VPN drops, traffic continues on the normal connection. Pick a specific adapter for strict VPN-only binding.</source>
+            <translation>Akýkoľvek sieťový adaptér: prenos torrentov sleduje systémovú trasu, rovnako ako ostatné aplikácie. Ak je aktívnym pripojením VPN, prenos ide cez VPN; ak VPN vypadne, prenos pokračuje cez bežné pripojenie. Vyberte konkrétny adaptér pre striktné viazanie len na VPN.</translation>
         </message>
         <message>
-            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Viazanie na sieťovú kartu nariadi Stellaru odosielať a prijímať torrentový prevod len cez vybranú kartu. Je to obzvlášť užitočné pre používateľov VPN, pretože zabraňuje náhodným únikom prevodu, keď je VPN nepripojené.</translation>
+            <source>Allow UPnP, NAT-PMP and Local Service Discovery while bound</source>
+            <translation>Povoliť UPnP, NAT-PMP a zisťovanie lokálnych služieb počas viazania</translation>
+        </message>
+        <message>
+            <source>These talk to your local router and can expose your listen port around the tunnel. Only enable this when binding to a trusted LAN adapter, not a VPN.</source>
+            <translation>Tieto komunikujú s vaším lokálnym smerovačom a môžu odhaliť váš port na počúvanie v rámci tunela. Povoľte to len pri pripojení k dôveryhodnému sieťovému adaptéru LAN, nie k VPN.</translation>
+        </message>
+        <message>
+            <source>UPnP, NAT-PMP and Local Service Discovery are disabled while bound, since they talk to the local router and would expose your listen port around the tunnel.</source>
+            <translation>UPnP, NAT-PMP a lokálne vyhľadávanie služieb sú počas viazania zakázané, pretože komunikujú s miestnym smerovačom a odhalili by váš počúvací port mimo tunela.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4948,12 +5290,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>OK</translation>
         </message>
         <message>
-            <source>Default route</source>
-            <translation>Predvolená cesta</translation>
+            <source>Any interface</source>
+            <translation>Akýkoľvek rozhranie</translation>
         </message>
         <message>
-            <source>Let the OS choose the active network adapter.</source>
-            <translation>Nechajte OS vybrať aktívny sieťový adaptér.</translation>
+            <source>Follow the system route (used by your other apps).</source>
+            <translation>Postupujte podľa systémovej trasy (používanej vašimi ostatnými aplikáciami).</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
@@ -5032,8 +5374,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Zdroj: %1</translation>
         </message>
         <message>
-            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>Zdrojová URL nie je uložená v cache. Použite Kontrolu aktualizácií na uloženie IPtoCityDB z update.json.</translation>
+            <source>Resolved automatically from db-ip.com when you update.</source>
+            <translation>Vyriešené automaticky z db-ip.com pri aktualizácii.</translation>
         </message>
         <message>
             <source>Version %1 Beta</source>
@@ -5213,22 +5555,6 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>neobmedzene</translation>
         </message>
         <message>
-            <source>DHT off</source>
-            <translation>DHT vyp.</translation>
-        </message>
-        <message>
-            <source> online (low confidence)</source>
-            <translation> online (nízka dôvera)</translation>
-        </message>
-        <message>
-            <source> online</source>
-            <translation> online</translation>
-        </message>
-        <message>
-            <source>Estimating… (%1%)</source>
-            <translation>Odhad… (%1%)</translation>
-        </message>
-        <message>
             <source>next &gt;&gt;</source>
             <translation>ďalší &gt;&gt;</translation>
         </message>
@@ -5236,6 +5562,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Celkový pomer</translation>
+        </message>
+        <message>
+            <source>Total torrent peer connections</source>
+            <translation>Celkový počet peer pripojení</translation>
+        </message>
+        <message>
+            <source>DHT nodes</source>
+            <translation>DHT uzly</translation>
         </message>
         <message>
             <source>Public IP: </source>
@@ -5675,6 +6009,30 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Priority</source>
+            <translation>Priorita</translation>
+        </message>
+        <message>
+            <source>Low</source>
+            <translation>Nízka</translation>
+        </message>
+        <message>
+            <source>Normal</source>
+            <translation>Normálna</translation>
+        </message>
+        <message>
+            <source>High</source>
+            <translation>Vysoká</translation>
+        </message>
+        <message>
+            <source>Maximum</source>
+            <translation>Maximálna</translation>
+        </message>
+        <message>
+            <source>Mixed</source>
+            <translation>Zmiešaná</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Uložiť do</translation>
@@ -6435,6 +6793,53 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Video Download</source>
             <translation>Stiahnuť video</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadLimitsExceededDialog</name>
+        <message>
+            <source>Download limits exceeded!</source>
+            <translation>Prekročené limity sťahovania!</translation>
+        </message>
+        <message>
+            <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+            <translation>Od %1 do %2 ste stiahli %3 MB. Všetky sťahovania v „%4“ boli zastavené, pretože ste prekročili limit sťahovania %5 MB každých %6.</translation>
+        </message>
+        <message>
+            <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+            <translation>Všetky zastavené sťahovania sa automaticky obnovia o %1 (o %2). Ak chcete obnoviť ihneď, zmeňte nastavenie Limitov sťahovania a stlačte Pokračovať.</translation>
+        </message>
+        <message>
+            <source>now</source>
+            <translation>teraz</translation>
+        </message>
+        <message>
+            <source>1 hour</source>
+            <translation>1 hodina</translation>
+        </message>
+        <message>
+            <source>%1 hours</source>
+            <translation>%1 hodín</translation>
+        </message>
+        <message>
+            <source>1 minute</source>
+            <translation>1 minúta</translation>
+        </message>
+        <message>
+            <source>%1 minutes</source>
+            <translation>%1 minút</translation>
+        </message>
+        <message>
+            <source>less than a minute</source>
+            <translation>menej ako minúta</translation>
+        </message>
+        <message>
+            <source>and</source>
+            <translation>a</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
         </message>
     </context>
 </TS>
