@@ -6333,27 +6333,65 @@ void AppController::showWelcomeBack()
     // Time-of-day greeting. Half the time we instead use a generic fun phrase,
     // so repeated launches don't always say the same clock-based line.
     const int hour = QTime::currentTime().hour();
-    QString timeGreeting;
-    if (hour < 12)
-        timeGreeting = tr("Good morning!");
-    else if (hour < 18)
-        timeGreeting = tr("Good afternoon!");
-    else if (hour < 22)
-        timeGreeting = tr("Good evening!");
-    else
-        timeGreeting = tr("Working late?");
+    QStringList timeGreetings;
+    if (hour < 5) {
+        timeGreetings = {
+            tr("Past midnight already?"),
+            tr("Still up?"),
+            tr("The night is young!"),
+            tr("Can't sleep?"),
+        };
+    } else if (hour < 12) {
+        timeGreetings = {
+            tr("Good morning!"),
+            tr("Rise and shine!"),
+            tr("Top of the morning!"),
+            tr("Morning! Coffee's brewing."),
+        };
+    } else if (hour < 14) {
+        timeGreetings = {
+            tr("Good afternoon!"),
+            tr("Lunch break downloads?"),
+            tr("Midday already!"),
+        };
+    } else if (hour < 18) {
+        timeGreetings = {
+            tr("Good afternoon!"),
+            tr("Hope your day's going well!"),
+            tr("Afternoon!"),
+        };
+    } else if (hour < 22) {
+        timeGreetings = {
+            tr("Good evening!"),
+            tr("Winding down?"),
+            tr("Evening!"),
+            tr("Hope you had a good day!"),
+        };
+    } else {
+        timeGreetings = {
+            tr("Working late?"),
+            tr("Up past bedtime?"),
+            tr("Late night session!"),
+            tr("Don't forget to rest!"),
+        };
+    }
 
     const QStringList funPhrases = {
         tr("Welcome back!"),
         tr("Ready when you are!"),
-        tr("Let's go!"),
         tr("Good to see you!"),
+        tr("Let's get downloading!"),
+        tr("Missed you!"),
+        tr("Back at it!"),
+        tr("Your downloads await!"),
+        tr("Pick up where you left off?"),
+        tr("What are we grabbing today?"),
     };
 
     auto *rng = QRandomGenerator::global();
-    // 50/50 between the time-of-day line and a random fun phrase.
+    // 50/50 between a time-of-day line and a random fun phrase.
     if (rng->bounded(2) == 0)
-        m_welcomeMessage = timeGreeting;
+        m_welcomeMessage = timeGreetings.at(rng->bounded(timeGreetings.size()));
     else
         m_welcomeMessage = funPhrases.at(rng->bounded(funPhrases.size()));
 

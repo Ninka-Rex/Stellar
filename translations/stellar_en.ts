@@ -201,7 +201,42 @@
     </message>
     <message>
         <location filename="../app/src/AppController.cpp" line="6195"/>
+        <source>Past midnight already?</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6195"/>
+        <source>Still up?</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6195"/>
+        <source>The night is young!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6195"/>
+        <source>Can't sleep?</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6195"/>
         <source>Good morning!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6195"/>
+        <source>Rise and shine!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6195"/>
+        <source>Top of the morning!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6195"/>
+        <source>Morning! Coffee's brewing.</source>
         <translation></translation>
     </message>
     <message>
@@ -210,13 +245,63 @@
         <translation></translation>
     </message>
     <message>
+        <location filename="../app/src/AppController.cpp" line="6197"/>
+        <source>Lunch break downloads?</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6197"/>
+        <source>Midday already!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6197"/>
+        <source>Hope your day's going well!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6197"/>
+        <source>Afternoon!</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/src/AppController.cpp" line="6199"/>
         <source>Good evening!</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../app/src/AppController.cpp" line="6199"/>
+        <source>Winding down?</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6199"/>
+        <source>Evening!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6199"/>
+        <source>Hope you had a good day!</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/src/AppController.cpp" line="6201"/>
         <source>Working late?</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6201"/>
+        <source>Up past bedtime?</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6201"/>
+        <source>Late night session!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6201"/>
+        <source>Don't forget to rest!</source>
         <translation></translation>
     </message>
     <message>
@@ -230,13 +315,38 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/src/AppController.cpp" line="6206"/>
-        <source>Let's go!</source>
+        <location filename="../app/src/AppController.cpp" line="6207"/>
+        <source>Good to see you!</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../app/src/AppController.cpp" line="6207"/>
-        <source>Good to see you!</source>
+        <source>Let's get downloading!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6207"/>
+        <source>Missed you!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6207"/>
+        <source>Back at it!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6207"/>
+        <source>Your downloads await!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6207"/>
+        <source>Pick up where you left off?</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/AppController.cpp" line="6207"/>
+        <source>What are we grabbing today?</source>
         <translation></translation>
     </message>
     <message>
