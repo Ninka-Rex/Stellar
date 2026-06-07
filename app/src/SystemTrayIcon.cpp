@@ -237,7 +237,10 @@ void SystemTrayIcon::showNotification(const QString &title, const QString &msg) 
 #if defined(STELLAR_LINUX)
     const QString notifySend = QStandardPaths::findExecutable(QStringLiteral("notify-send"));
     if (!notifySend.isEmpty()) {
-        QProcess::startDetached(notifySend, {
+        // Strip LD_LIBRARY_PATH so system tools don't load bundled AppImage libs.
+        QProcess::startDetached(QStringLiteral("env"), {
+            QStringLiteral("-u"), QStringLiteral("LD_LIBRARY_PATH"),
+            notifySend,
             QStringLiteral("--app-name=Stellar"),
             safeTitle,
             safeMsg
@@ -246,7 +249,9 @@ void SystemTrayIcon::showNotification(const QString &title, const QString &msg) 
     }
     const QString kdialog = QStandardPaths::findExecutable(QStringLiteral("kdialog"));
     if (!kdialog.isEmpty()) {
-        QProcess::startDetached(kdialog, {
+        QProcess::startDetached(QStringLiteral("env"), {
+            QStringLiteral("-u"), QStringLiteral("LD_LIBRARY_PATH"),
+            kdialog,
             QStringLiteral("--title"), safeTitle,
             QStringLiteral("--passivepopup"), safeMsg,
             QStringLiteral("4")
@@ -255,7 +260,9 @@ void SystemTrayIcon::showNotification(const QString &title, const QString &msg) 
     }
     const QString zenity = QStandardPaths::findExecutable(QStringLiteral("zenity"));
     if (!zenity.isEmpty()) {
-        QProcess::startDetached(zenity, {
+        QProcess::startDetached(QStringLiteral("env"), {
+            QStringLiteral("-u"), QStringLiteral("LD_LIBRARY_PATH"),
+            zenity,
             QStringLiteral("--notification"),
             QStringLiteral("--text=%1").arg(QStringLiteral("%1\n%2").arg(safeTitle, safeMsg))
         });

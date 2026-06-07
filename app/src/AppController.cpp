@@ -86,6 +86,21 @@ QJsonArray chromeNativeMessagingOrigins()
         QStringLiteral("chrome-extension://pppelmimeffdigknplngfmhefcbhfcbd/")
     };
 }
+
+// Return system environment stripped of app-internal vars set by the launcher
+// script (LD_LIBRARY_PATH, QT_*). Use when spawning system tools via QProcess
+// so they don't load incompatible bundled libraries from the AppImage.
+QProcessEnvironment cleanSystemEnvironment()
+{
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    env.remove(QStringLiteral("LD_LIBRARY_PATH"));
+    env.remove(QStringLiteral("QT_PLUGIN_PATH"));
+    env.remove(QStringLiteral("QT_QPA_PLATFORM_PLUGIN_PATH"));
+    env.remove(QStringLiteral("QML2_IMPORT_PATH"));
+    env.remove(QStringLiteral("QT_QML_IMPORT_PATH"));
+    env.remove(QStringLiteral("QT_QPA_PLATFORM"));
+    return env;
+}
 }
 #include <QUrl>
 #include <QFile>
@@ -277,6 +292,7 @@ bool writeLinuxDesktopEntry(bool includeTorrent, bool includeMagnet, QString *er
 
 QString runProcessCapture(const QString &program, const QStringList &arguments, int timeoutMs = 10000) {
     QProcess process;
+    process.setProcessEnvironment(cleanSystemEnvironment());
     process.start(program, arguments);
     if (!process.waitForStarted(timeoutMs))
         return {};
@@ -290,6 +306,7 @@ QString runProcessCapture(const QString &program, const QStringList &arguments, 
 
 bool runProcessOk(const QString &program, const QStringList &arguments, QString *errorText = nullptr, int timeoutMs = 15000) {
     QProcess process;
+    process.setProcessEnvironment(cleanSystemEnvironment());
     process.start(program, arguments);
     if (!process.waitForStarted(timeoutMs)) {
         if (errorText)
@@ -3743,6 +3760,7 @@ QString AppController::sandboxedFirefoxIssue() const {
         // Don't trust the override file alone — the user may have set it via
         // Flatseal which writes a different format.
         QProcess p;
+        p.setProcessEnvironment(cleanSystemEnvironment());
         p.start(QStringLiteral("flatpak"),
                 { QStringLiteral("info"), QStringLiteral("--show-permissions"),
                   QStringLiteral("org.mozilla.firefox") });
@@ -3778,6 +3796,7 @@ QString AppController::grantFlatpakFirefoxNativeMessagingPermission() const {
     // sandbox can't reach the host spawning service. A per-user override
     // adds the permission without modifying the system manifest.
     QProcess p;
+    p.setProcessEnvironment(cleanSystemEnvironment());
     p.start(QStringLiteral("flatpak"),
             { QStringLiteral("override"), QStringLiteral("--user"),
               QStringLiteral("--talk-name=org.freedesktop.Flatpak"),
@@ -3801,8 +3820,11 @@ QString AppController::grantFlatpakFirefoxNativeMessagingPermission() const {
 
 bool AppController::openFlatpakFirefoxInDiscover() const {
 #if defined(STELLAR_LINUX)
-    if (QProcess::startDetached(QStringLiteral("plasma-discover"),
-                                { QStringLiteral("--search"), QStringLiteral("org.mozilla.firefox") }))
+    // Strip LD_LIBRARY_PATH so plasma-discover doesn't load bundled AppImage libs.
+    if (QProcess::startDetached(QStringLiteral("env"),
+                                { QStringLiteral("-u"), QStringLiteral("LD_LIBRARY_PATH"),
+                                  QStringLiteral("plasma-discover"),
+                                  QStringLiteral("--search"), QStringLiteral("org.mozilla.firefox") }))
         return true;
     if (QDesktopServices::openUrl(QUrl(QStringLiteral("appstream://org.mozilla.firefox"))))
         return true;
@@ -4844,7 +4866,10 @@ void AppController::openExternalUrl(const QUrl &url) {
     // Bypass QDesktopServices::openUrl on Linux. On KDE it routes through KIO,
     // which may try to "read" https:// URLs as files instead of launching the
     // default browser. xdg-open reliably delegates to the right handler.
-    QProcess::startDetached(QStringLiteral("xdg-open"), {url.toString()});
+    // Strip LD_LIBRARY_PATH so system tools don't load bundled AppImage libs.
+    QProcess::startDetached(QStringLiteral("env"),
+                            {QStringLiteral("-u"), QStringLiteral("LD_LIBRARY_PATH"),
+                             QStringLiteral("xdg-open"), url.toString()});
 #endif
 }
 
@@ -7099,12 +7124,15 @@ bool AppController::shutdownComputer() const
     return QProcess::startDetached(QStringLiteral("shutdown"),
                                    { QStringLiteral("/s"), QStringLiteral("/t"), QStringLiteral("0") });
 #elif defined(Q_OS_LINUX)
-    if (QProcess::startDetached(QStringLiteral("systemctl"),
-                                { QStringLiteral("poweroff") })) {
+    // Strip LD_LIBRARY_PATH so systemctl/shutdown don't load bundled AppImage libs.
+    if (QProcess::startDetached(QStringLiteral("env"),
+                                { QStringLiteral("-u"), QStringLiteral("LD_LIBRARY_PATH"),
+                                  QStringLiteral("systemctl"), QStringLiteral("poweroff") })) {
         return true;
     }
-    return QProcess::startDetached(QStringLiteral("shutdown"),
-                                   { QStringLiteral("-h"), QStringLiteral("now") });
+    return QProcess::startDetached(QStringLiteral("env"),
+                                   { QStringLiteral("-u"), QStringLiteral("LD_LIBRARY_PATH"),
+                                     QStringLiteral("shutdown"), QStringLiteral("-h"), QStringLiteral("now") });
 #else
     return false;
 #endif

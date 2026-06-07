@@ -370,14 +370,20 @@ bundle_qt_runtime() {
         copy_shared_object "$qt_so" "$lib_dir"
     done < <(find "$qt_lib" -maxdepth 1 -type f \( -name 'libQt6*.so.*' -o -name 'libicu*.so.*' -o -name 'libdouble-conversion.so.*' -o -name 'libpcre2-16.so.*' \) 2>/dev/null || true)
 
-    # NOTE: platformthemes (libqgtk3) is deliberately NOT bundled. The GTK3
-    # platform theme plugin drags in the entire host GTK stack (libgtk-3, libgdk-3,
-    # pango, cairo, atk, atspi, epoxy — ~40 libs) and then mismatches the user's
-    # system GTK theme engine, producing transparent menus and a mis-themed title
-    # bar (the bundled GTK != the distro's GTK theme). Stellar fully themes itself
-    # via QML (Material dark/light), so it needs no native GTK integration. Without
-    # the plugin Qt uses its own generic theme — correct, self-contained, and far
-    # smaller. Do not re-add platformthemes here.
+    # NOTE: the GTK3 platform theme (libqgtk3) is deliberately NOT bundled. It
+    # drags in the entire host GTK stack (libgtk-3, libgdk-3, pango, cairo, atk,
+    # atspi, epoxy — ~40 libs) and then mismatches the user's system GTK theme
+    # engine, producing transparent menus and a mis-themed title bar (the bundled
+    # GTK != the distro's GTK theme). Stellar fully themes itself via QML (Material
+    # dark/light), so it needs no native GTK integration.
+    #
+    # However, the xdg-desktop-portal platform theme (libqxdgdesktopportal.so) is
+    # bundled when available. It gives native KDE/GNOME file dialogs via D-Bus IPC
+    # without pulling in GTK — it talks to the portal daemon, not to GTK directly.
+    if [[ -f "$qt_plugins/platformthemes/libqxdgdesktopportal.so" ]]; then
+        mkdir -p "$plugin_dir/platformthemes"
+        cp "$qt_plugins/platformthemes/libqxdgdesktopportal.so" "$plugin_dir/platformthemes/"
+    fi
     for sub in platforms imageformats iconengines styles tls xcbglintegrations wayland-decoration-client wayland-graphics-integration-client wayland-shell-integration; do
         if [[ -d "$qt_plugins/$sub" ]]; then
             mkdir -p "$plugin_dir/$sub"

@@ -435,6 +435,9 @@ QByteArray BrowserCookieReader::chromiumPassphraseFromSecretService(const QStrin
 
     auto tryLookup = [](const QStringList &args) -> QByteArray {
         QProcess proc;
+        QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+        env.remove(QStringLiteral("LD_LIBRARY_PATH"));
+        proc.setProcessEnvironment(env);
         proc.start(QStringLiteral("secret-tool"), QStringList() << QStringLiteral("lookup") << args);
         if (!proc.waitForFinished(3000))
             return {};
@@ -449,6 +452,9 @@ QByteArray BrowserCookieReader::chromiumPassphraseFromSecretService(const QStrin
     // KWallet fallback via kwallet-query (KDE)
     if (passphrase.isEmpty()) {
         QProcess kwallet;
+        QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+        env.remove(QStringLiteral("LD_LIBRARY_PATH"));
+        kwallet.setProcessEnvironment(env);
         kwallet.start(QStringLiteral("kwallet-query"),
                       { QStringLiteral("-r"),
                         appName + QStringLiteral(" Keys"),

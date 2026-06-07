@@ -239,6 +239,9 @@ QVariantMap NetworkInfo::queryActiveWifi() const {
     QString ssid;
     auto runProcess = [](const QString &program, const QStringList &args) -> QString {
         QProcess p;
+        QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+        env.remove(QStringLiteral("LD_LIBRARY_PATH"));
+        p.setProcessEnvironment(env);
         p.start(program, args);
         if (!p.waitForFinished(800))
             return {};
