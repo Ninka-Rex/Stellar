@@ -766,6 +766,14 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     nmLog(QStringLiteral("QGuiApplication constructed."));
 
+    // Stellar is a tray app: its lifetime is controlled explicitly (tray Quit,
+    // quitApp(), requestQuit()), never by Qt's "last window closed" heuristic.
+    // Disabling this is required for the cold-start intercept flow — the main
+    // window stays hidden and only the New Download dialog is shown, so closing
+    // that dialog must NOT be treated as "last window closed → quit". The
+    // main-window close path quits explicitly in Main.qml onClosing instead.
+    app.setQuitOnLastWindowClosed(false);
+
     // Pick a scene-graph backend that actually works on this display before any
     // QQuickWindow is created. Prevents the "Could not initialize GLX" /
     // "EGL not available" qFatal abort on machines without usable hardware GL
@@ -943,10 +951,17 @@ int main(int argc, char *argv[])
     if (!savedLocale.isEmpty())
         controller.applyUiLanguage(savedLocale);
 
+    // A pending-download drop file present at startup means this GUI copy was
+    // cold-started by the native host purely to service an intercepted download.
+    // In that case the user only wants the New Download dialog — keep the main
+    // window hidden so we don't pop the whole app to the foreground.
+    const bool launchedForDownload = QFile::exists(pendingDownloadFilePath());
+
     QQmlApplicationEngine engine;
     engine.addImageProvider(QStringLiteral("fileicon"), new FileIconImageProvider);
     engine.rootContext()->setContextProperty(QStringLiteral("App"), &controller);
     engine.rootContext()->setContextProperty(QStringLiteral("StartMinimized"), startMinimized);
+    engine.rootContext()->setContextProperty(QStringLiteral("LaunchedForDownload"), launchedForDownload);
     engine.addImportPath(QLibraryInfo::path(QLibraryInfo::QmlImportsPath));
 
     const QUrl url(QStringLiteral("qrc:/qt/qml/com/stellar/app/app/qml/Main.qml"));

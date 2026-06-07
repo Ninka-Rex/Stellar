@@ -23,7 +23,13 @@ import com.stellar.app 1.0
 
 ApplicationWindow {
     id: root
-    visible: true
+    // Start hidden when launched at login (--minimized) or cold-started by the
+    // native host purely to service an intercepted download (LaunchedForDownload).
+    // Setting the initial value here — rather than flipping visible=false in
+    // Component.onCompleted — avoids a one-frame flash where the window paints
+    // then immediately hides.
+    visible: !((typeof StartMinimized !== "undefined" && StartMinimized)
+               || (typeof LaunchedForDownload !== "undefined" && LaunchedForDownload))
     width: Math.max(minimumWidth, App.settings.mainWindowWidth > 0 ? App.settings.mainWindowWidth : 1100)
     height: Math.max(minimumHeight, App.settings.mainWindowHeight > 0 ? App.settings.mainWindowHeight : 680)
     // ── Restore saved position; -1 means first run let the OS centre the window naturally. ──
@@ -523,10 +529,19 @@ ApplicationWindow {
     onHeightChanged: { if (_geometrySaveReady && visibility !== Window.Minimized) geometrySaveTimer.restart() }
 
     onClosing: (close) => {
-        if (!isQuitting && App.settings.closeToTray) {
+        if (isQuitting)
+            return
+        if (App.settings.closeToTray) {
             close.accepted = false
             root.hide()
+            return
         }
+        // closeToTray off: closing the main window quits the app. Done
+        // explicitly because quitOnLastWindowClosed is disabled (so that
+        // closing a transient dialog — e.g. the cold-start New Download
+        // dialog while the main window is hidden — never quits Stellar).
+        close.accepted = false
+        root.quitApp()
     }
 
     function quitApp() {
@@ -2940,11 +2955,9 @@ ApplicationWindow {
         loadTips()
         _syncTableActive()
         App.setWindowDarkTitleBar(root, App.settings.darkMode)
-        // When launched by the OS at login, start hidden in the tray instead of
-        // showing the main window.  The tray icon is always visible regardless.
-        if (typeof StartMinimized !== "undefined" && StartMinimized) {
-            root.visible = false
-        }
+        // Initial hidden state (login --minimized / cold-start intercept) is set
+        // by the `visible` binding above to avoid a startup flash. Nothing to do
+        // here — the tray icon is always visible regardless.
         // Allow the window manager to finish placement before we start saving
         // geometry so early xChanged/yChanged signals don't overwrite saved pos.
         Qt.callLater(function() { root._geometrySaveReady = true })
