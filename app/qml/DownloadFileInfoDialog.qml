@@ -188,13 +188,86 @@ Window {
         return (bytes / 1073741824).toFixed(2) + " GB"
     }
 
+    function _fmtDuration(dur) {
+        if (dur <= 0) return ""
+        var h = Math.floor(dur / 3600)
+        var m = Math.floor((dur % 3600) / 60)
+        var s = dur % 60
+        if (h > 0) return h + " hr " + m + " min"
+        return m + " min" + (s > 0 ? " " + s + " sec" : "")
+    }
+
+    // Map a height to a friendly resolution label, else "WxH".
+    function _resLabel(w, h) {
+        if (w <= 0 || h <= 0) return ""
+        if (h >= 2160 || w >= 3840) return w + "x" + h + " (4K)"
+        if (h >= 1440) return w + "x" + h + " (1440p)"
+        if (h >= 1080) return w + "x" + h + " (1080p)"
+        if (h >= 720)  return w + "x" + h + " (720p)"
+        return w + "x" + h
+    }
+
     function _buildDescription(info) {
         var ct   = (info.contentType || "").toLowerCase()
         var name = root.pendingFilename.toLowerCase()
         var parts = []
+
+        // ── Image ──────────────────────────────────────────────────────────────
+        var iw = parseInt(info.imageWidth), ih = parseInt(info.imageHeight)
+        if (iw > 0 && ih > 0) {
+            var ifmt = ""
+            if      (name.endsWith(".png"))  ifmt = "PNG"
+            else if (/\.jpe?g$|\.jpe$/.test(name) || ct.indexOf("jpeg") >= 0) ifmt = "JPEG"
+            else if (name.endsWith(".gif"))  ifmt = "GIF"
+            else if (name.endsWith(".webp")) ifmt = "WebP"
+            else if (name.endsWith(".bmp"))  ifmt = "BMP"
+            else if (/\.tiff?$/.test(name))  ifmt = "TIFF"
+            if (ifmt.length > 0) parts.push(ifmt)
+            parts.push(iw + "x" + ih)
+            var ict = info.imageColorType
+            if (ict && ict.length > 0) parts.push(ict)
+            var ibd = parseInt(info.imageBitDepth)
+            if (ibd > 0) parts.push(ibd + "-bit")
+            return parts.length > 1 ? parts.join(", ") : parts.join(", ")
+        }
+
+        // ── Raw photo ────────────────────────────────────────────────────────────
+        if (/\.(cr2|cr3|nef|arw|dng|orf|rw2|pef|srw|raf)$/.test(name)) {
+            parts.push("RAW")
+            var rw = parseInt(info.imageWidth), rh = parseInt(info.imageHeight)
+            if (rw > 0 && rh > 0) parts.push(rw + "x" + rh)
+            var mk = info.cameraMake, md = info.cameraModel
+            var cam = [mk, md].filter(function(x){ return x && x.length > 0 }).join(" ")
+            if (cam.length > 0) parts.push(cam)
+            return parts.length > 1 ? parts.join(", ") : ""
+        }
+
+        // ── Video ────────────────────────────────────────────────────────────────
+        var vw = parseInt(info.videoWidth), vh = parseInt(info.videoHeight)
+        var vcodec = info.videoCodec
+        var isVideo = ct.indexOf("video/") === 0
+            || /\.(mp4|mov|m4v|mkv|webm|avi|flv)$/.test(name)
+            || vw > 0 || (vcodec && vcodec.length > 0)
+        if (isVideo) {
+            if (vcodec && vcodec.length > 0) parts.push(vcodec)
+            var rl = _resLabel(vw, vh)
+            if (rl.length > 0) parts.push(rl)
+            var vfps = parseInt(info.videoFps)
+            if (vfps > 0) parts.push(vfps + " fps")
+            var vdur = parseInt(info.videoDurationSec)
+            if (vdur > 0) parts.push(_fmtDuration(vdur))
+            // Append embedded audio track summary when known.
+            var akbps = parseInt(info.audioBitrateKbps)
+            var ach = parseInt(info.audioChannels)
+            if (akbps > 0) parts.push("Audio " + akbps + " kbps")
+            else if (ach > 0) parts.push(ach === 1 ? "Audio Mono" : (ach === 2 ? "Audio Stereo" : "Audio " + ach + " ch"))
+            return parts.length >= 1 && (vw > 0 || (vcodec && vcodec.length > 0)) ? parts.join(", ") : ""
+        }
+
+        // ── Audio ────────────────────────────────────────────────────────────────
         var isAudio = ct.indexOf("audio/") === 0 || ct.indexOf("mpeg") >= 0
             || ct.indexOf("flac") >= 0 || ct.indexOf("ogg") >= 0 || ct.indexOf("opus") >= 0
-            || /\.(mp3|flac|ogg|opus|wav|aac|m4a|wma|alac|ape|aiff|mka)$/.test(name)
+            || /\.(mp3|flac|ogg|opus|wav|aac|m4a|m4b|wma|asf|alac|ape|aiff|aif|aifc|mka)$/.test(name)
         if (!isAudio) return ""
         var fmt = ""
         if      (ct.indexOf("flac") >= 0 || name.endsWith(".flac")) fmt = "FLAC"
@@ -202,11 +275,11 @@ Window {
         else if (ct.indexOf("opus") >= 0 || name.endsWith(".opus")) fmt = "Opus"
         else if (ct.indexOf("mpeg") >= 0 || name.endsWith(".mp3"))  fmt = "MP3"
         else if (name.endsWith(".aac"))  fmt = "AAC"
-        else if (name.endsWith(".m4a"))  fmt = "M4A"
+        else if (name.endsWith(".m4a") || name.endsWith(".m4b")) fmt = "M4A"
         else if (name.endsWith(".wav"))  fmt = "WAV"
-        else if (name.endsWith(".wma"))  fmt = "WMA"
+        else if (name.endsWith(".wma") || name.endsWith(".asf"))  fmt = "WMA"
         else if (name.endsWith(".alac")) fmt = "ALAC"
-        else if (name.endsWith(".aiff")) fmt = "AIFF"
+        else if (name.endsWith(".aiff") || name.endsWith(".aif") || name.endsWith(".aifc")) fmt = "AIFF"
         if (fmt.length > 0) parts.push(fmt)
         var kbps = parseInt(info.audioBitrateKbps)
         if (kbps > 0) parts.push(kbps + " kbps")

@@ -80,6 +80,7 @@
     X(bool, bool, showCompletionNotification, ShowCompletionNotification, true, "showCompletionNotification", N) \
     X(bool, bool, showErrorNotification, ShowErrorNotification, true, "showErrorNotification", N) \
     X(bool, bool, startDownloadWhileFileInfo, StartDownloadWhileFileInfo, true, "startDownloadWhileFileInfo", N) \
+    X(bool, bool, fillDescriptionMetadata, FillDescriptionMetadata, true, "fillDescriptionMetadata", N) \
     X(bool, bool, showQueueSelectionOnDownloadLater, ShowQueueSelectionOnDownloadLater, true, "showQueueSelectionOnDownloadLater", N) \
     X(bool, bool, showQueueSelectionOnBatchDownload, ShowQueueSelectionOnBatchDownload, true, "showQueueSelectionOnBatchDownload", N) \
     X(int, int, doubleClickAction, DoubleClickAction, 0, "doubleClickAction", N) \

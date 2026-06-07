@@ -5327,6 +5327,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../app/qml/SettingsDialog.qml" line="1784"/>
+        <source>Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/SettingsDialog.qml" line="1724"/>
         <source>Show swarm map when downloading torrent metadata</source>
         <translation></translation>

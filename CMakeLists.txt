@@ -126,6 +126,7 @@ add_custom_target(StellarBuildTime ALL
 set(BACKEND_SOURCES
     app/src/main.cpp
     app/src/AppController.cpp
+    app/src/MediaMetadata.cpp
     app/src/DownloadItem.cpp
     app/src/DownloadQueue.cpp
     app/src/SegmentedTransfer.cpp
@@ -163,6 +164,7 @@ set(BACKEND_SOURCES
 
 set(BACKEND_HEADERS
     app/src/AppController.h
+    app/src/MediaMetadata.h
     app/src/DownloadItem.h
     app/src/DownloadQueue.h
     app/src/SegmentedTransfer.h

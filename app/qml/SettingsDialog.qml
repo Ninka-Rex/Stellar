@@ -93,6 +93,7 @@ Window {
     property bool   editDhtNodesInStatusBar:    false
     property bool   editShowPublicIpInStatusBar: false
     property bool   editStartDownloadWhileFileInfo: true
+    property bool   editFillDescriptionMetadata: true
     property bool   editShowSwarmMapWhileFetchingMetadata: true
     property bool   editShowQueueSelectionOnDownloadLater: true
     property bool   editShowQueueSelectionOnBatchDownload: true
@@ -439,6 +440,7 @@ Window {
         editGlobalSpeedLimitEnabled !== App.settings.speedLimiterEnabled ||
         editGlobalUploadLimitKBps !== editSavedUploadLimitKBpsBaseline ||
         editStartDownloadWhileFileInfo !== App.settings.startDownloadWhileFileInfo ||
+        editFillDescriptionMetadata !== App.settings.fillDescriptionMetadata ||
         editShowSwarmMapWhileFetchingMetadata !== App.settings.showSwarmMapWhileFetchingMetadata ||
         editUseCustomUserAgent    !== App.settings.useCustomUserAgent ||
         editCustomUserAgent       !== App.settings.customUserAgent ||
@@ -853,6 +855,7 @@ Window {
         App.settings.startImmediately       = editStartImmediately
         App.settings.speedLimiterOnStartup  = editSpeedLimiterOnStartup
         App.settings.startDownloadWhileFileInfo = editStartDownloadWhileFileInfo
+        App.settings.fillDescriptionMetadata = editFillDescriptionMetadata
         App.settings.showSwarmMapWhileFetchingMetadata = editShowSwarmMapWhileFetchingMetadata
         App.settings.showQueueSelectionOnDownloadLater = editShowQueueSelectionOnDownloadLater
         App.settings.showQueueSelectionOnBatchDownload  = editShowQueueSelectionOnBatchDownload
@@ -969,6 +972,7 @@ Window {
         editGlobalSpeedLimitEnabled = App.settings.speedLimiterEnabled
         globalLimitChk.checked = editGlobalSpeedLimitEnabled
         editStartDownloadWhileFileInfo = App.settings.startDownloadWhileFileInfo
+        editFillDescriptionMetadata = App.settings.fillDescriptionMetadata
         editShowSwarmMapWhileFetchingMetadata = App.settings.showSwarmMapWhileFetchingMetadata
         editShowQueueSelectionOnDownloadLater = App.settings.showQueueSelectionOnDownloadLater
         editShowQueueSelectionOnBatchDownload  = App.settings.showQueueSelectionOnBatchDownload
@@ -1778,6 +1782,14 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editStartDownloadWhileFileInfo
                             onCheckedChanged: root.editStartDownloadWhileFileInfo = checked
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                        }
+
+                        StyledCheckBox {
+                            text: qsTr("Auto-fill the description field with file metadata (bitrate, resolution, codec, etc.)")
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editFillDescriptionMetadata
+                            onCheckedChanged: root.editFillDescriptionMetadata = checked
                             contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         }
 
