@@ -169,6 +169,41 @@ Window {
             state.warnBeforeStopping !== root.selectedQueue.warnBeforeStopping
     }
 
+    // ── Drag proxy for file-list → queue-list drag-drop ─────────────────
+    // Invisible 1×1 item that travels with the cursor; DropAreas on queue
+    // rows read dragDownloadId / dragDownloadIds off drop.source.
+    Item {
+        id: schedulerDragProxy
+        width: 1; height: 1
+        visible: false
+        z: 9999
+        parent: root.contentItem   // float above all children
+        Drag.keys: ["text/downloadId"]
+        Drag.hotSpot: Qt.point(0, 0)
+        property string dragDownloadId: ""
+        property var    dragDownloadIds: []
+        property string dragFilename: ""
+
+        // Tooltip-style label that follows the cursor
+        Rectangle {
+            visible: schedulerDragProxy.visible && schedulerDragProxy.dragFilename !== ""
+            width: dragLabel.implicitWidth + 16; height: 22
+            radius: 3
+            color: ColorPalette.selectionBg
+            border.color: "#4488dd"; border.width: 1
+            x: 8; y: 8
+            Text {
+                id: dragLabel
+                anchors.centerIn: parent
+                text: schedulerDragProxy.dragFilename
+                color: ColorPalette.textPrimary
+                font.pixelSize: 11 * App.fontScale
+                elide: Text.ElideMiddle
+                maximumLineCount: 1
+            }
+        }
+    }
+
     // ── Root layout ──────────────────────────────────────────────────────
     RowLayout {
         anchors { fill: parent; margins: 12 }
@@ -206,8 +241,12 @@ Window {
                         width: queueList.width
                         height: 28
                         radius: 0
-                        color: queueList.currentIndex === index ? ColorPalette.selectionBg : "transparent"
-                        border.color: queueList.currentIndex === index ? "#4488dd" : "transparent"
+                        color: queueList.currentIndex === index
+                             ? ColorPalette.selectionBg
+                             : (queueDropArea.containsDrag ? ColorPalette.hoverBg : "transparent")
+                        border.color: queueList.currentIndex === index
+                                    ? "#4488dd"
+                                    : (queueDropArea.containsDrag ? "#4488dd" : "transparent")
                         border.width: 1
 
                         Row {
@@ -228,7 +267,7 @@ Window {
 
                             Text {
                                 text: model.queueName || ""
-                                color: queueList.currentIndex === index ? ColorPalette.accent : ColorPalette.textPrimary
+                                color: ColorPalette.textPrimary
                                 font.pixelSize: 12 * App.fontScale
                                 elide: Text.ElideRight
                                 width: queueList.width - 50
@@ -243,6 +282,23 @@ Window {
                                 root.selectedQueue = queueModel.queueAt(index)
                                 root.captureQueueState(false)
                                 root.checkForChanges()
+                            }
+                        }
+
+                        // Accept drags from the file list to move items into this queue.
+                        DropArea {
+                            id: queueDropArea
+                            anchors.fill: parent
+                            keys: ["text/downloadId"]
+                            enabled: model.queueId !== "download-limits"
+                            onDropped: (drop) => {
+                                if (!drop.source || model.queueId === "download-limits") return
+                                var ids = drop.source.dragDownloadIds && drop.source.dragDownloadIds.length > 0
+                                        ? drop.source.dragDownloadIds
+                                        : (drop.source.dragDownloadId ? [drop.source.dragDownloadId] : [])
+                                for (var i = 0; i < ids.length; i++)
+                                    App.setDownloadQueue(ids[i], model.queueId)
+                                if (ids.length > 0) drop.accept()
                             }
                         }
                     }
@@ -263,7 +319,7 @@ Window {
                     Layout.preferredWidth: 60
                     Layout.preferredHeight: 32
                     text: qsTr("Delete")
-                    enabled: root.selectedQueue !== null && (root.selectedQueue ? (root.selectedQueue.id !== "main-download" && root.selectedQueue.id !== "download-limits") : false)
+                    enabled: root.selectedQueue !== null && (root.selectedQueue ? (root.selectedQueue.id !== "main-download" && root.selectedQueue.id !== "main-sync" && root.selectedQueue.id !== "download-limits") : false)
                     opacity: enabled ? 1.0 : 0.5
                     onClicked: {
                         if (root.selectedQueue) {
@@ -803,19 +859,44 @@ Window {
                         spacing: 8
 
                         Text { text: qsTr("Download"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
-                        Rectangle {
-                            width: 46; height: 26; radius: 2
-                            color: ColorPalette.inputBg
-                            border.color: concurrentInput.activeFocus ? "#4488dd" : ColorPalette.border
-                            TextInput {
-                                id: concurrentInput
-                                anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
-                                text: root.selectedQueue ? String(root.selectedQueue.maxConcurrentDownloads) : "3"
-                                color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
-                                horizontalAlignment: TextInput.AlignHCenter
-                                verticalAlignment: TextInput.AlignVCenter
-                                validator: IntValidator { bottom: 1; top: 10 }
-                                onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) { root.selectedQueue.maxConcurrentDownloads = v; root.checkForChanges() } } }
+                        SpinBox {
+                            id: concurrentSpin
+                            from: 1; to: 10
+                            implicitWidth: 80
+                            implicitHeight: 26
+                            value: root.selectedQueue ? root.selectedQueue.maxConcurrentDownloads : 3
+                            editable: true
+                            contentItem: TextInput {
+                                text: concurrentSpin.textFromValue(concurrentSpin.value, concurrentSpin.locale)
+                                color: ColorPalette.textPrimary
+                                font.pixelSize: 12 * App.fontScale
+                                horizontalAlignment: Text.AlignHCenter
+                                verticalAlignment: Text.AlignVCenter
+                                readOnly: !concurrentSpin.editable
+                                validator: concurrentSpin.validator
+                            }
+                            up.indicator: Rectangle {
+                                x: concurrentSpin.width - width; y: 0
+                                width: 22; height: concurrentSpin.height / 2
+                                color: concurrentSpin.up.pressed ? ColorPalette.toolbarPressBg
+                                     : concurrentSpin.up.hovered ? ColorPalette.toolbarHoverBg
+                                     : ColorPalette.panelBg
+                                Text { anchors.centerIn: parent; text: "+"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
+                            }
+                            down.indicator: Rectangle {
+                                x: concurrentSpin.width - width; y: concurrentSpin.height / 2
+                                width: 22; height: concurrentSpin.height / 2
+                                color: concurrentSpin.down.pressed ? ColorPalette.toolbarPressBg
+                                     : concurrentSpin.down.hovered ? ColorPalette.toolbarHoverBg
+                                     : ColorPalette.panelBg
+                                Text { anchors.centerIn: parent; text: "–"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
+                            }
+                            background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 2 }
+                            onValueModified: {
+                                if (root.selectedQueue) {
+                                    root.selectedQueue.maxConcurrentDownloads = value
+                                    root.checkForChanges()
+                                }
                             }
                         }
                         Text { text: qsTr("files at the same time"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
@@ -969,7 +1050,39 @@ Window {
                                             id: fileMouseArea
                                             anchors.fill: parent
                                             hoverEnabled: true
+                                            drag.target: schedulerDragProxy
                                             onClicked: filesListView.currentIndex = index
+                                            onPressed: {
+                                                if (model.item) {
+                                                    schedulerDragProxy.dragDownloadId  = model.item.id
+                                                    schedulerDragProxy.dragDownloadIds = [model.item.id]
+                                                    schedulerDragProxy.dragFilename    = model.item.filename
+                                                    // Map delegate-local coords to root.contentItem space so the
+                                                    // proxy (parented to contentItem) follows the cursor exactly.
+                                                    var pos = fileMouseArea.mapToItem(root.contentItem, mouseX, mouseY)
+                                                    schedulerDragProxy.x = pos.x
+                                                    schedulerDragProxy.y = pos.y
+                                                }
+                                            }
+                                            onPositionChanged: {
+                                                if (drag.active && schedulerDragProxy.dragDownloadId) {
+                                                    schedulerDragProxy.visible = true
+                                                    schedulerDragProxy.Drag.active = true
+                                                    var pos = fileMouseArea.mapToItem(root.contentItem, mouseX, mouseY)
+                                                    schedulerDragProxy.x = pos.x
+                                                    schedulerDragProxy.y = pos.y
+                                                }
+                                            }
+                                            onReleased: {
+                                                if (schedulerDragProxy.visible) {
+                                                    schedulerDragProxy.Drag.drop()
+                                                    schedulerDragProxy.Drag.active = false
+                                                    schedulerDragProxy.visible = false
+                                                    schedulerDragProxy.dragDownloadId  = ""
+                                                    schedulerDragProxy.dragDownloadIds = []
+                                                    schedulerDragProxy.dragFilename    = ""
+                                                }
+                                            }
                                         }
 
                                         Row {
@@ -993,7 +1106,7 @@ Window {
                                                 Text {
                                                     anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; rightMargin: 4 }
                                                     text: model.item ? model.item.filename : ""
-                                                    color: filesListView.currentIndex === index ? ColorPalette.accent : ColorPalette.textPrimary
+                                                    color: filesListView.currentIndex === index ? ColorPalette.selectionText : ColorPalette.textPrimary
                                                     font.pixelSize: 12 * App.fontScale
                                                     font.bold: filesListView.currentIndex === index
                                                     elide: Text.ElideMiddle
@@ -1011,7 +1124,7 @@ Window {
                                                         if (b < 1073741824) return (b / 1048576).toFixed(1) + " MB"
                                                         return (b / 1073741824).toFixed(2) + " GB"
                                                     }
-                                                    color: filesListView.currentIndex === index ? ColorPalette.accent : ColorPalette.textPrimary
+                                                    color: filesListView.currentIndex === index ? ColorPalette.selectionText : ColorPalette.textPrimary
                                                     font.pixelSize: 12 * App.fontScale
                                                 }
                                             }
@@ -1021,7 +1134,7 @@ Window {
                                                 Text {
                                                     anchors.verticalCenter: parent.verticalCenter
                                                     text: model.item ? model.item.status : "--"
-                                                    color: filesListView.currentIndex === index ? ColorPalette.accent : ColorPalette.textPrimary
+                                                    color: filesListView.currentIndex === index ? ColorPalette.selectionText : ColorPalette.textPrimary
                                                     font.pixelSize: 12 * App.fontScale
                                                 }
                                             }
@@ -1031,7 +1144,7 @@ Window {
                                                 Text {
                                                     anchors.verticalCenter: parent.verticalCenter
                                                     text: model.item ? model.item.timeLeft : "--"
-                                                    color: filesListView.currentIndex === index ? ColorPalette.accent : ColorPalette.textPrimary
+                                                    color: filesListView.currentIndex === index ? ColorPalette.selectionText : ColorPalette.textPrimary
                                                     font.pixelSize: 12 * App.fontScale
                                                 }
                                             }
@@ -1086,7 +1199,7 @@ Window {
                             Layout.preferredHeight: 32
                             text: "↑"
                             enabled: filesListView.currentIndex > 0
-                            background: Rectangle { color: parent.pressed ? ColorPalette.toolbarPressBg : (parent.hovered ? ColorPalette.toolbarHoverBg : ColorPalette.panelBg); radius: 0; border.color: parent.enabled ? "#4488dd" : ColorPalette.border; border.width: 1; opacity: parent.enabled ? 1.0 : 0.5 }
+                            background: Rectangle { color: parent.pressed ? ColorPalette.toolbarPressBg : (parent.hovered ? ColorPalette.toolbarHoverBg : ColorPalette.panelBg); radius: 0; border.color: ColorPalette.border; border.width: 1; opacity: parent.enabled ? 1.0 : 0.5 }
                             onClicked: {
                                 if (filesListView.currentIndex > 0) {
                                     var item = App.downloadModel.data(App.downloadModel.index(filesListView.currentIndex, 0), Qt.UserRole + 2)
@@ -1100,7 +1213,7 @@ Window {
                             Layout.preferredHeight: 32
                             text: "↓"
                             enabled: filesListView.currentIndex >= 0 && filesListView.currentIndex < App.downloadModel.rowCount() - 1
-                            background: Rectangle { color: parent.pressed ? ColorPalette.toolbarPressBg : (parent.hovered ? ColorPalette.toolbarHoverBg : ColorPalette.panelBg); radius: 0; border.color: parent.enabled ? "#4488dd" : ColorPalette.border; border.width: 1; opacity: parent.enabled ? 1.0 : 0.5 }
+                            background: Rectangle { color: parent.pressed ? ColorPalette.toolbarPressBg : (parent.hovered ? ColorPalette.toolbarHoverBg : ColorPalette.panelBg); radius: 0; border.color: ColorPalette.border; border.width: 1; opacity: parent.enabled ? 1.0 : 0.5 }
                             onClicked: {
                                 if (filesListView.currentIndex >= 0) {
                                     var item = App.downloadModel.data(App.downloadModel.index(filesListView.currentIndex, 0), Qt.UserRole + 2)
@@ -1114,7 +1227,7 @@ Window {
                             Layout.preferredHeight: 32
                             text: qsTr("Delete")
                             enabled: filesListView.currentIndex >= 0
-                            background: Rectangle { color: parent.pressed ? ColorPalette.toolbarPressBg : (parent.hovered ? ColorPalette.toolbarHoverBg : ColorPalette.panelBg); radius: 0; border.color: parent.enabled ? "#ff6666" : ColorPalette.border; border.width: 1; opacity: parent.enabled ? 1.0 : 0.5 }
+                            background: Rectangle { color: parent.pressed ? ColorPalette.toolbarPressBg : (parent.hovered ? ColorPalette.toolbarHoverBg : ColorPalette.panelBg); radius: 0; border.color: ColorPalette.border; border.width: 1; opacity: parent.enabled ? 1.0 : 0.5 }
                             onClicked: {
                                 if (filesListView.currentIndex >= 0) {
                                     var item = App.downloadModel.data(App.downloadModel.index(filesListView.currentIndex, 0), Qt.UserRole + 2)
@@ -1211,7 +1324,7 @@ Window {
                     topPadding: 0
                     bottomPadding: 0
                     checked: root.selectedQueue ? root.selectedQueue.hasDownloadLimits : false
-                    onToggled: { if (root.selectedQueue) root.selectedQueue.hasDownloadLimits = checked }
+                    onToggled: { if (root.selectedQueue) { root.selectedQueue.hasDownloadLimits = checked; App.saveQueues() } }
                 }
 
                 RowLayout {
@@ -1231,7 +1344,7 @@ Window {
                             color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                             horizontalAlignment: TextInput.AlignHCenter; verticalAlignment: TextInput.AlignVCenter
                             validator: IntValidator { bottom: 1; top: 100000 }
-                            onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) root.selectedQueue.downloadLimitMBytes = v } }
+                            onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) { root.selectedQueue.downloadLimitMBytes = v; App.saveQueues() } } }
                         }
                     }
                     Text { text: qsTr("MBytes"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
@@ -1246,7 +1359,7 @@ Window {
                             color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
                             horizontalAlignment: TextInput.AlignHCenter; verticalAlignment: TextInput.AlignVCenter
                             validator: IntValidator { bottom: 1; top: 24 }
-                            onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) root.selectedQueue.downloadLimitHours = v } }
+                            onTextEdited: { if (root.selectedQueue) { var v = parseInt(text, 10); if (!isNaN(v) && v >= 1) { root.selectedQueue.downloadLimitHours = v; App.saveQueues() } } }
                         }
                     }
                     Text { text: qsTr("hours"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
@@ -1259,7 +1372,7 @@ Window {
                     topPadding: 0
                     bottomPadding: 0
                     checked: root.selectedQueue ? root.selectedQueue.warnBeforeStopping : true
-                    onToggled: { if (root.selectedQueue) root.selectedQueue.warnBeforeStopping = checked }
+                    onToggled: { if (root.selectedQueue) { root.selectedQueue.warnBeforeStopping = checked; App.saveQueues() } }
                 }
 
                 Item { Layout.fillHeight: true }

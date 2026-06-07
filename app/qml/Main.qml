@@ -908,6 +908,24 @@ ApplicationWindow {
         }
     }
 
+    // ── Queue download limit exceeded ────────────────────────────────────
+    Connections {
+        target: App
+        function onQueueDownloadLimitExceeded(queueId, queueName, usedMB, limitMB, limitHours, windowStart, resumeAt) {
+            downloadLimitsExceededDialog.queueName   = queueName
+            downloadLimitsExceededDialog.usedMB      = usedMB
+            downloadLimitsExceededDialog.limitMB     = limitMB
+            downloadLimitsExceededDialog.limitHours  = limitHours
+            downloadLimitsExceededDialog.windowStart = windowStart
+            downloadLimitsExceededDialog.resumeAt    = resumeAt
+            downloadLimitsExceededDialog.show()
+            downloadLimitsExceededDialog.raise()
+            downloadLimitsExceededDialog.requestActivate()
+        }
+    }
+
+    DownloadLimitsExceededDialog { id: downloadLimitsExceededDialog }
+
     // ── Speed limiter scheduler ──────────────────────────────────────────
     // Evaluated every 60 seconds AND immediately when settings are applied.
     // Each rule: days[], onHour (1-12), onMinute (0-59), onAmPm, offHour,

@@ -8601,4 +8601,62 @@ and audio streams merged by ffmpeg after download.</source>
         <translation></translation>
     </message>
 </context>
+<context>
+    <name>DownloadLimitsExceededDialog</name>
+    <message>
+        <location filename="../app/qml/DownloadLimitsExceededDialog.qml" line="44"/>
+        <source>Download limits exceeded!</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/DownloadLimitsExceededDialog.qml" line="113"/>
+        <source>From %1 to %2 you downloaded %3 MB. All downloads in &quot;%4&quot; have been stopped because you exceeded the download limit of %5 MB every %6.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/DownloadLimitsExceededDialog.qml" line="129"/>
+        <source>All stopped downloads will be resumed automatically at %1 (%2 from now). To resume immediately, change the Download Limits setting and press Resume.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/DownloadLimitsExceededDialog.qml" line="81"/>
+        <source>now</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/DownloadLimitsExceededDialog.qml" line="85"/>
+        <source>1 hour</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/DownloadLimitsExceededDialog.qml" line="86"/>
+        <source>%1 hours</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/DownloadLimitsExceededDialog.qml" line="87"/>
+        <source>1 minute</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/DownloadLimitsExceededDialog.qml" line="88"/>
+        <source>%1 minutes</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/DownloadLimitsExceededDialog.qml" line="90"/>
+        <source>less than a minute</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/DownloadLimitsExceededDialog.qml" line="89"/>
+        <source>and</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/DownloadLimitsExceededDialog.qml" line="150"/>
+        <source>OK</source>
+        <translation></translation>
+    </message>
+</context>
 </TS>

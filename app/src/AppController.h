@@ -30,6 +30,7 @@
 #include <QDateTime>
 #include <QElapsedTimer>
 #include <QTranslator>
+#include <QAbstractNativeEventFilter>
 #include <functional>
 
 #include "DownloadQueue.h"
@@ -583,6 +584,13 @@ signals:
     void dhtNodesChanged();
     void torrentCreationProgress(int percent);
     void torrentCreationFinished(bool success, const QString &errorOrPath);
+    // Emitted when a queue's download limit is exceeded.
+    // resumeAt = timestamp when the rolling window expires and downloads can restart.
+    void queueDownloadLimitExceeded(const QString &queueId, const QString &queueName,
+                                    qint64 usedMB, qint64 limitMB, int limitHours,
+                                    const QDateTime &windowStart, const QDateTime &resumeAt);
+    // Emitted after the system resumes from sleep/hibernate.
+    void systemResumedFromSleep();
 
 private:
     QString generateId() const;
@@ -818,4 +826,17 @@ private:
     static bool ytdlpErrorSuggestsCookies(const QString &reason);
     static QString normalizeYtdlpBrowserName(const QString &browser);
     static QString preferredBrowserFromReason(const QString &reason);
+    void handleSystemWake();
+
+#ifdef Q_OS_WIN
+    // Native event filter for WM_POWERBROADCAST (sleep/wake detection on Windows).
+    class SleepWakeFilter : public QAbstractNativeEventFilter {
+    public:
+        explicit SleepWakeFilter(AppController *controller) : m_controller(controller) {}
+        bool nativeEventFilter(const QByteArray &eventType, void *message, qintptr *result) override;
+    private:
+        AppController *m_controller;
+    };
+    SleepWakeFilter *m_sleepWakeFilter{nullptr};
+#endif
 };

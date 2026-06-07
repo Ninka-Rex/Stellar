@@ -271,6 +271,7 @@ qt_add_qml_module(Stellar
         app/qml/TorrentSearchPluginsDialog.qml
         app/qml/TorrentSearchInstallDialog.qml
         app/qml/StatisticsDialog.qml
+        app/qml/DownloadLimitsExceededDialog.qml
         app/qml/ColorPalette.qml
     RESOURCES
         app/qml/icons/add.svg

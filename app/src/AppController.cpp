@@ -1259,6 +1259,14 @@ AppController::~AppController() {
     }
     // Flush any pending debounced DB write before the object is destroyed.
     if (m_db) m_db->flush();
+#ifdef Q_OS_WIN
+    if (m_sleepWakeFilter) {
+        if (auto *app = QCoreApplication::instance())
+            app->removeNativeEventFilter(m_sleepWakeFilter);
+        delete m_sleepWakeFilter;
+        m_sleepWakeFilter = nullptr;
+    }
+#endif
 }
 
 AppController::AppController(QObject *parent) : QObject(parent) {
@@ -1281,6 +1289,11 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             this,       &AppController::fontScaleChanged);
     // Start the session uptime clock — elapsed time is flushed to settings on destruction.
     m_sessionTimer.start();
+#ifdef Q_OS_WIN
+    m_sleepWakeFilter = new SleepWakeFilter(this);
+    if (auto *app = QCoreApplication::instance())
+        app->installNativeEventFilter(m_sleepWakeFilter);
+#endif
     DownloadItem::configureDateTimeFormat(
         m_settings->lastTryDateStyle(),
         m_settings->lastTryUse24Hour(),
@@ -6155,8 +6168,8 @@ void AppController::watchItem(DownloadItem *item) {
     // (uploaded, downloaded, ratio) are flushed by m_torrentStatsFlushTimer on
     // a 2-minute cadence — see the timer setup in the constructor.
     connect(item, &DownloadItem::doneBytesChanged, this, [this, item]() {
-        if (item && !item->queueId().isEmpty())
-            enforceQueueDownloadLimits(item->queueId());
+        if (item)
+            enforceQueueDownloadLimits(item->queueId()); // also checks global "download-limits"
     });
     connect(item, &DownloadItem::doneBytesChanged, this, [this, item, id]() {
         if (!item)
@@ -6343,6 +6356,46 @@ void AppController::showWelcomeBack()
     });
 }
 
+void AppController::handleSystemWake()
+{
+    // System resumed from sleep — any in-progress HTTP downloads may have stalled.
+    // Pause and re-queue them so they restart cleanly via the stall-retry path.
+    qInfo() << "[SleepWake] System resumed from sleep, checking for stalled downloads";
+    int restarted = 0;
+    for (DownloadItem *item : m_queue->items()) {
+        if (!item)
+            continue;
+        if (item->isTorrent())
+            continue;
+        if (item->status() != QStringLiteral("Downloading"))
+            continue;
+        // Pause then resume — triggers a new connection and avoids half-open TCP stalls.
+        pauseDownload(item->id());
+        resumeDownload(item->id());
+        ++restarted;
+    }
+    if (restarted > 0)
+        qInfo() << "[SleepWake] Restarted" << restarted << "stalled download(s)";
+    emit systemResumedFromSleep();
+}
+
+#ifdef Q_OS_WIN
+bool AppController::SleepWakeFilter::nativeEventFilter(const QByteArray &eventType, void *message, qintptr *result)
+{
+    Q_UNUSED(result)
+    if (eventType != "windows_generic_MSG" && eventType != "windows_dispatcher_MSG")
+        return false;
+    const MSG *msg = static_cast<const MSG *>(message);
+    if (msg->message == WM_POWERBROADCAST) {
+        if (msg->wParam == PBT_APMRESUMEAUTOMATIC || msg->wParam == PBT_APMRESUMESUSPEND) {
+            // Post to event loop so we don't block the native event pump.
+            QMetaObject::invokeMethod(m_controller, &AppController::handleSystemWake, Qt::QueuedConnection);
+        }
+    }
+    return false; // never consume the event
+}
+#endif
+
 void AppController::cleanupTemporaryDirectory()
 {
     const QString tempDirPath = effectiveTemporaryDirectory(m_settings);
@@ -6468,6 +6521,30 @@ qint64 AppController::queueTransferredBytesInWindow(const QString &queueId, int 
     if (queueId.isEmpty() || hours <= 0)
         return 0;
 
+    // "download-limits" is the global limit — sums across ALL queues and unqueued items.
+    const bool isGlobal = (queueId == QStringLiteral("download-limits"));
+
+    if (isGlobal) {
+        // Sum history from all queues
+        qint64 total = 0;
+        for (auto it = m_queueTransferHistory.constBegin(); it != m_queueTransferHistory.constEnd(); ++it) {
+            const QDateTime cutoff = QDateTime::currentDateTime().addSecs(-hours * 3600);
+            for (const auto &entry : it.value()) {
+                if (entry.first >= cutoff)
+                    total += entry.second;
+            }
+        }
+        for (DownloadItem *item : m_queue->items()) {
+            if (!item)
+                continue;
+            if (item->statusEnum() == DownloadItem::Status::Completed
+                || item->statusEnum() == DownloadItem::Status::Error)
+                continue;
+            total += item->doneBytes();
+        }
+        return total;
+    }
+
     pruneQueueTransferHistory(queueId, hours);
 
     qint64 total = 0;
@@ -6497,40 +6574,60 @@ void AppController::recordQueueTransferSample(const QString &queueId, qint64 byt
 
 void AppController::enforceQueueDownloadLimits(const QString &queueId)
 {
-    if (queueId.isEmpty() || !m_queueModel)
+    if (!m_queueModel)
         return;
 
-    Queue *queue = m_queueModel->queueById(queueId);
-    if (!queue || !queue->hasDownloadLimits() || queue->downloadLimitHours() <= 0) {
-        m_queueLimitNotifications.remove(queueId);
-        return;
-    }
+    // Helper lambda: check one queue's limit and stop if exceeded.
+    auto checkOne = [this](const QString &id) {
+        Queue *queue = m_queueModel->queueById(id);
+        if (!queue || !queue->hasDownloadLimits() || queue->downloadLimitHours() <= 0) {
+            m_queueLimitNotifications.remove(id);
+            return;
+        }
+        const qint64 limitBytes = static_cast<qint64>(queue->downloadLimitMBytes()) * 1024 * 1024;
+        if (limitBytes <= 0) {
+            m_queueLimitNotifications.remove(id);
+            return;
+        }
+        const qint64 usedBytes = queueTransferredBytesInWindow(id, queue->downloadLimitHours());
+        if (usedBytes < limitBytes) {
+            m_queueLimitNotifications.remove(id);
+            return;
+        }
+        // Stop: for global ("download-limits"), pause every active/queued item;
+        // for a specific queue, stop only that queue.
+        if (id == QStringLiteral("download-limits")) {
+            for (DownloadItem *item : m_queue->items()) {
+                if (!item) continue;
+                const QString st = item->status();
+                if (st == QStringLiteral("Downloading") || st == QStringLiteral("Queued")
+                        || st == QStringLiteral("Checking") || st == QStringLiteral("Moving")
+                        || st == QStringLiteral("Seeding"))
+                    pauseDownload(item->id());
+            }
+        } else {
+            stopQueue(id);
+        }
+        if (!m_queueLimitNotifications.contains(id)) {
+            m_queueLimitNotifications.insert(id);
+            const qint64 usedMB  = (usedBytes + 512 * 1024) / (1024 * 1024);
+            const qint64 limitMB = queue->downloadLimitMBytes();
+            const QDateTime windowStart = QDateTime::currentDateTime().addSecs(-queue->downloadLimitHours() * 3600LL);
+            const QDateTime resumeAt    = QDateTime::currentDateTime().addSecs(queue->downloadLimitHours() * 3600LL);
+            qInfo() << "[QueueLimit]" << queue->name() << "reached" << usedMB << "MB /" << limitMB << "MB limit."
+                    << "Resumes at" << resumeAt.toString();
+            if (queue->warnBeforeStopping())
+                emit queueDownloadLimitExceeded(id, queue->name(), usedMB, limitMB,
+                                                queue->downloadLimitHours(), windowStart, resumeAt);
+        }
+    };
 
-    const qint64 limitBytes = static_cast<qint64>(queue->downloadLimitMBytes()) * 1024 * 1024;
-    if (limitBytes <= 0) {
-        m_queueLimitNotifications.remove(queueId);
-        return;
-    }
+    // Check the specific queue (if non-empty and not the global pseudo-queue).
+    if (!queueId.isEmpty() && queueId != QStringLiteral("download-limits"))
+        checkOne(queueId);
 
-    const qint64 usedBytes = queueTransferredBytesInWindow(queueId, queue->downloadLimitHours());
-    if (usedBytes < limitBytes) {
-        m_queueLimitNotifications.remove(queueId);
-        return;
-    }
-
-    stopQueue(queueId);
-
-    if (!m_queueLimitNotifications.contains(queueId)) {
-        m_queueLimitNotifications.insert(queueId);
-        const QString message = QStringLiteral("%1 reached its %2 MB / %3 hour limit.")
-            .arg(queue->name())
-            .arg(queue->downloadLimitMBytes())
-            .arg(queue->downloadLimitHours());
-        if (queue->warnBeforeStopping() && m_tray)
-            m_tray->showNotification(QStringLiteral("Queue Limit Reached"), message);
-        else
-            qInfo() << "[QueueLimit]" << message;
-    }
+    // Always check global limits from the "download-limits" pseudo-queue.
+    checkOne(QStringLiteral("download-limits"));
 }
 
 QVariantMap AppController::grabberProjectData(const QString &projectId) const
