@@ -28,6 +28,8 @@ Window {
     height: 500
     minimumWidth: 665
     minimumHeight: 500
+    // Pin the width so a category's longer extension list can't grow the window.
+    maximumWidth: 665
     flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
     title: qsTr("Stellar Preferences")
     color: ColorPalette.cardBg
@@ -1414,7 +1416,12 @@ Window {
                             // ?? Left: category list ??????????????????????????
                             ColumnLayout {
                                 Layout.fillHeight: true
+                                // Pin firmly: otherwise the right form's content-driven
+                                // implicit width (longer ext lists) steals width from this
+                                // soft-sized column, shifting the whole layout per category.
                                 Layout.preferredWidth: 170
+                                Layout.minimumWidth: 170
+                                Layout.maximumWidth: 170
                                 spacing: 4
 
                                 Rectangle {
