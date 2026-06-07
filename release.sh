@@ -737,10 +737,19 @@ build_rpm() {
 
     stage_app "$rpm_root"
 
-    # Build a file list from the staged tree for %files — rpmbuild needs paths
-    # relative to the buildroot, one per line, with directory entries omitted.
+    # Build the %files list from the staged tree (paths relative to the buildroot,
+    # one per line). Every regular file/symlink is listed, plus a %dir entry for
+    # each directory we create under /opt/stellar so rpm OWNS them and removes them
+    # on erase (otherwise the bundle's dir tree is left orphaned). Shared system
+    # dirs (/usr/bin, /usr/share/{applications,icons,metainfo}) are deliberately
+    # NOT owned — they belong to filesystem/other packages — so only their files
+    # are listed there, never the dirs themselves.
     local files_list="$RPM_DIR/stellar.files"
-    find "$rpm_root" -not -type d -printf "/%P\n" | sort > "$files_list"
+    {
+        find "$rpm_root" -not -type d -printf "/%P\n"
+        echo "%dir /opt/stellar"
+        find "$rpm_root/opt/stellar" -mindepth 1 -type d -printf "%%dir /opt/stellar/%P\n"
+    } | sort > "$files_list"
 
     local spec_file="$RPM_DIR/SPECS/stellar.spec"
     cat > "$spec_file" <<SPEC
@@ -762,7 +771,7 @@ AutoReqProv:    no
 #     installed driver, so it comes from the system, not the bundle.
 # Soname form keeps this distro-agnostic (Fedora mesa-libGL, openSUSE Mesa-libGL,
 # etc. all provide libGL.so.1()(64bit)).
-Requires:       libc.so.6()(64bit), libstdc++.so.6()(64bit), libgcc_s.so.1()(64bit), libGL.so.1()(64bit), libGLX.so.0()(64bit), libEGL.so.1()(64bit), libdrm.so.2()(64bit), libgbm.so.1()(64bit), libxcb-glx.so.0()(64bit), libxcb.so.1()(64bit), libX11.so.6()(64bit), libX11-xcb.so.1()(64bit), libwayland-client.so.0()(64bit), libwayland-cursor.so.0()(64bit)
+Requires:       libc.so.6()(64bit), libstdc++.so.6()(64bit), libgcc_s.so.1()(64bit), libGL.so.1()(64bit), libGLX.so.0()(64bit), libEGL.so.1()(64bit), libdrm.so.2()(64bit), libgbm.so.1()(64bit), libxcb-glx.so.0()(64bit), libxcb.so.1()(64bit), libX11.so.6()(64bit), libX11-xcb.so.1()(64bit), libXau.so.6()(64bit), libXdmcp.so.6()(64bit), libwayland-client.so.0()(64bit), libwayland-cursor.so.0()(64bit)
 %global debug_package %{nil}
 # Default __spec_install_pre wipes the buildroot before running %install.
 # Our files are already staged, so disable that wipe (keep env setup only).
