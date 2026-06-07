@@ -686,7 +686,7 @@ private:
     // branch of checkForUpdates() that settles the status bar after the spinner.
     void settleUpdateStatusText();
     void setTorrentPortTestState(bool inProgress, const QString &status, const QString &message);
-    void cacheIpToCityDbUpdateUrl(const QVariantMap &map);
+    void beginIpToCityDbDownload(const QString &resolvedUrl);
     void cacheFfmpegUpdateMetadata(const QVariantMap &map);
     void applyMotdFromMetadata(const QVariantMap &map);
     static QString normalizeMotdText(const QString &rawText);

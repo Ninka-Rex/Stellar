@@ -521,6 +521,38 @@ QString extractDbVersionFromName(const QString &name) {
     return m.hasMatch() ? m.captured(1) : QString();
 }
 
+// Pulls the first dbip-city-lite-YYYY-MM.mmdb.gz download link out of the
+// db-ip.com listing page. The page is untrusted HTML: the host is pinned to
+// download.db-ip.com and the filename shape is fixed, so no arbitrary URL can
+// be smuggled in. Returns an empty string if no matching link is present.
+QString resolveDbIpCityLiteUrl(const QByteArray &pageHtml) {
+    static const QRegularExpression re(
+        QStringLiteral("https://download\\.db-ip\\.com/free/dbip-city-lite-\\d{4}-\\d{2}\\.mmdb\\.gz"),
+        QRegularExpression::CaseInsensitiveOption);
+    const QRegularExpressionMatch m = re.match(QString::fromUtf8(pageHtml));
+    return m.hasMatch() ? m.captured(0) : QString();
+}
+
+// Best-effort fallback when the listing page can't be scraped: db-ip publishes
+// the free DB at a predictable per-month path. May 404 right at a month
+// boundary before the new file is posted, but it's a strictly better last
+// resort than a stale cached URL.
+QString currentMonthDbIpUrl() {
+    return QStringLiteral("https://download.db-ip.com/free/dbip-city-lite-%1.mmdb.gz")
+        .arg(QDate::currentDate().toString(QStringLiteral("yyyy-MM")));
+}
+
+// Accept a resolved GeoIP DB URL only if it's HTTPS, hosted on db-ip's own
+// download host, and points at a dbip-city-lite-YYYY-MM.mmdb.gz file.
+bool isValidDbIpCityLiteUrl(const QString &url) {
+    const QUrl parsed(url);
+    if (parsed.scheme().compare(QStringLiteral("https"), Qt::CaseInsensitive) != 0)
+        return false;
+    if (parsed.host().compare(QStringLiteral("download.db-ip.com"), Qt::CaseInsensitive) != 0)
+        return false;
+    return !extractDbVersionFromName(QFileInfo(parsed.path()).fileName()).isEmpty();
+}
+
 bool extractGzipToFile(const QString &archivePath, const QString &targetPath, QString *errorText) {
 #if defined(Q_OS_WIN)
     const QString inEscaped = QString(archivePath).replace('\'', QStringLiteral("''"));
@@ -5429,7 +5461,6 @@ void AppController::checkForUpdates(bool manual) {
 
         QVariantMap metadata = doc.object().toVariantMap();
         applyMotdFromMetadata(metadata);
-        cacheIpToCityDbUpdateUrl(metadata);
         cacheFfmpegUpdateMetadata(metadata);
 
         const QString chromeUrl  = metadata.value(QStringLiteral("chromeExtensionUrl")).toString().trimmed();
@@ -5779,15 +5810,6 @@ bool AppController::startUpdateInstall() {
     return true;
 }
 
-void AppController::cacheIpToCityDbUpdateUrl(const QVariantMap &map) {
-    const QString url = map.value(QStringLiteral("IPtoCityDB")).toString().trimmed();
-    if (url == m_ipToCityDbUpdateUrl)
-        return;
-    m_ipToCityDbUpdateUrl = url;
-    emit ipToCityDbUpdateUrlChanged();
-    refreshIpToCityDbInfo();
-}
-
 void AppController::cacheFfmpegUpdateMetadata(const QVariantMap &map) {
     auto firstNonEmpty = [&map](const QStringList &keys) -> QString {
         for (const QString &key : keys) {
@@ -5876,21 +5898,53 @@ void AppController::refreshIpToCityDbInfo() {
 void AppController::updateIpToCityDbFromCachedUrl() {
     if (m_ipToCityDbUpdating)
         return;
-    if (m_ipToCityDbUpdateUrl.trimmed().isEmpty()) {
-        m_ipToCityDbUpdateStatus = QStringLiteral("No IP-to-city DB URL is cached yet. Run Check for updates first.");
-        emit ipToCityDbUpdateStateChanged();
+
+    // Resolve the live URL from db-ip's listing page first so the update never
+    // depends on update.json (or any cached value) being current — the free DB
+    // rotates monthly and a stale URL 404s. Fall back to the predictable
+    // current-month path if the page can't be scraped.
+    m_ipToCityDbUpdateStatus = QStringLiteral("Resolving latest database URL...");
+    emit ipToCityDbUpdateStateChanged();
+
+    QNetworkRequest request{QUrl(QStringLiteral("https://db-ip.com/db/download/ip-to-city-lite"))};
+    request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("Stellar/%1").arg(appVersion()));
+    QNetworkReply *reply = m_nam->get(request);
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        const QByteArray payload = reply->error() == QNetworkReply::NoError ? reply->readAll() : QByteArray();
+        reply->deleteLater();
+
+        QString resolved = resolveDbIpCityLiteUrl(payload);
+        if (!isValidDbIpCityLiteUrl(resolved))
+            resolved = currentMonthDbIpUrl();
+
+        if (!isValidDbIpCityLiteUrl(resolved)) {
+            m_ipToCityDbUpdateStatus = QStringLiteral("Could not resolve a valid IP-to-city database URL.");
+            emit ipToCityDbUpdateStateChanged();
+            return;
+        }
+        beginIpToCityDbDownload(resolved);
+    });
+}
+
+void AppController::beginIpToCityDbDownload(const QString &resolvedUrl) {
+    if (m_ipToCityDbUpdating)
         return;
+
+    if (resolvedUrl != m_ipToCityDbUpdateUrl) {
+        m_ipToCityDbUpdateUrl = resolvedUrl;
+        emit ipToCityDbUpdateUrlChanged();
+        refreshIpToCityDbInfo();
     }
 
     const QString tempDir = effectiveTemporaryDirectory(m_settings);
     QDir().mkpath(tempDir);
 
-    QString filename = QFileInfo(QUrl(m_ipToCityDbUpdateUrl).path()).fileName();
+    QString filename = QFileInfo(QUrl(resolvedUrl).path()).fileName();
     if (filename.isEmpty())
         filename = QStringLiteral("dbip-city-lite.mmdb.gz");
 
     DownloadItem *item = createDownloadItem(
-        m_ipToCityDbUpdateUrl,
+        resolvedUrl,
         tempDir,
         QStringLiteral("Other"),
         QStringLiteral("IP-to-city database update"),

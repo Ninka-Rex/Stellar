@@ -6653,7 +6653,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
     </message>
     <message>
         <location filename="../app/qml/SettingsDialog.qml" line="4064"/>
-        <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
+        <source>Resolved automatically from db-ip.com when you update.</source>
         <translation></translation>
     </message>
     <message>

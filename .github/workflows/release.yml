@@ -540,22 +540,17 @@ jobs:
       - name: Show update.json preview (dry run)
         run: |
           VERSION="${{ steps.version.outputs.version }}"
-          DB_URL=$(curl -fsSL "https://db-ip.com/db/download/ip-to-city-lite" \
-            | grep -oE 'https://download\.db-ip\.com/free/dbip-city-lite-[0-9-]+\.mmdb\.gz' \
-            | head -n1)
-          [ -n "$DB_URL" ] || { echo "ERROR: could not resolve dbip-city-lite .mmdb.gz link" >&2; exit 1; }
           WIN_SHA="${{ steps.hashes.outputs.win_sha }}"
           DEB_SHA="${{ steps.hashes.outputs.deb_sha }}"
           RPM_SHA="${{ steps.hashes.outputs.rpm_sha }}"
           BASE="https://github.com/Ninka-Rex/Stellar/releases/download"
-          python3 - "$VERSION" "$WIN_SHA" "$DEB_SHA" "$RPM_SHA" "$DB_URL" <<'PYEOF'
+          python3 - "$VERSION" "$WIN_SHA" "$DEB_SHA" "$RPM_SHA" <<'PYEOF'
           import json, sys
-          version, win_sha, deb_sha, rpm_sha, db_url = sys.argv[1:]
+          version, win_sha, deb_sha, rpm_sha = sys.argv[1:]
           BASE = "https://github.com/Ninka-Rex/Stellar/releases/download"
           with open('update.json', encoding='utf-8') as f:
               data = json.load(f)
           data['version']    = version
-          data['IPtoCityDB'] = db_url
           # Only touch fields for platforms that actually built this run, so a
           # single-platform release doesn't wipe the other platform's URL/sha.
           if win_sha:
@@ -598,22 +593,16 @@ jobs:
         if: ${{ !inputs.dry_run }}
         run: |
           VERSION="${{ steps.version.outputs.version }}"
-          DB_URL=$(curl -fsSL "https://db-ip.com/db/download/ip-to-city-lite" \
-            | grep -oE 'https://download\.db-ip\.com/free/dbip-city-lite-[0-9-]+\.mmdb\.gz' \
-            | head -n1)
-          [ -n "$DB_URL" ] || { echo "ERROR: could not resolve dbip-city-lite .mmdb.gz link" >&2; exit 1; }
           python3 - "$VERSION" \
             "${{ steps.hashes.outputs.win_sha }}" \
             "${{ steps.hashes.outputs.deb_sha }}" \
-            "${{ steps.hashes.outputs.rpm_sha }}" \
-            "$DB_URL" <<'PYEOF'
+            "${{ steps.hashes.outputs.rpm_sha }}" <<'PYEOF'
           import json, sys
-          version, win_sha, deb_sha, rpm_sha, db_url = sys.argv[1:]
+          version, win_sha, deb_sha, rpm_sha = sys.argv[1:]
           BASE = "https://github.com/Ninka-Rex/Stellar/releases/download"
           with open('update.json', encoding='utf-8') as f:
               data = json.load(f)
           data['version']    = version
-          data['IPtoCityDB'] = db_url
           # Only touch fields for platforms that actually built this run, so a
           # single-platform release doesn't wipe the other platform's URL/sha.
           if win_sha:

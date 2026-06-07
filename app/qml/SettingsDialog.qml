@@ -4244,7 +4244,7 @@ Window {
                             Layout.fillWidth: true
                             text: App.ipToCityDbUpdateUrl && App.ipToCityDbUpdateUrl.length > 0
                                 ? qsTr("Source: %1").arg(App.ipToCityDbUpdateUrl)
-                                : qsTr("Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.")
+                                : qsTr("Resolved automatically from db-ip.com when you update.")
                             color: ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
