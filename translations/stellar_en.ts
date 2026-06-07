@@ -1074,6 +1074,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
         <translation type="unfinished">Download</translation>
     </message>
     <message>
+        <source>Click to copy</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/DownloadProgressDialog.qml" line="169"/>
         <source>Receiving data...</source>
         <translation></translation>

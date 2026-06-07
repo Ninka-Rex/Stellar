@@ -29,6 +29,7 @@ QtObject {
 
     // Accent / selection
     readonly property color accent:            "#4488dd"
+    readonly property color accentHover:       "#66a3f0"  // brighter accent on hover (clickable links)
     readonly property color selectionBg:       dark ? "#1a3a6a" : "#cce0ff"
     readonly property color selectionBorder:   "#4488dd"
     readonly property color selectionText:     dark ? "#ffffff" : "#003070"  // text on selectionBg

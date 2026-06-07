@@ -464,14 +464,33 @@ Window {
                             font.pixelSize: 12 * App.fontScale; font.bold: true
                             Layout.preferredWidth: 110; Layout.alignment: Qt.AlignTop
                         }
-                        TextEdit {
+                        Text {
+                            id: addrText
                             Layout.fillWidth: true
+                            // preferredWidth:1 stops the (enormous) implicit text width
+                            // from widening the grid column past the dialog; fillWidth
+                            // then stretches it back to the available cell width, which
+                            // is what elide measures against. These signed blob/CDN URLs
+                            // are huge — show one line with a trailing ellipsis.
+                            Layout.preferredWidth: 1
                             text: item ? item.url.toString() : "--"
-                            color: ColorPalette.accent
+                            color: addrMa.containsMouse ? ColorPalette.accentHover : ColorPalette.accent
                             font.pixelSize: 12 * App.fontScale
-                            readOnly: true; selectByMouse: true; wrapMode: TextEdit.WrapAnywhere
-                            selectionColor: ColorPalette.selectionBg
-                            selectedTextColor: ColorPalette.selectionText
+                            elide: Text.ElideRight
+                            maximumLineCount: 1
+
+                            MouseArea {
+                                id: addrMa
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                acceptedButtons: Qt.LeftButton
+                                onClicked: if (item) App.copyToClipboard(addrText.text)
+                            }
+                            ThemedToolTip {
+                                visible: addrMa.containsMouse && addrText.text.length > 0 && addrText.text !== "--"
+                                text: addrText.text + "\n\n" + qsTr("Click to copy")
+                            }
                         }
 
                         Text {
@@ -479,19 +498,33 @@ Window {
                             font.pixelSize: 12 * App.fontScale; font.bold: true
                             Layout.preferredWidth: 110; Layout.alignment: Qt.AlignTop
                         }
-                        TextEdit {
+                        Text {
+                            id: saveText
                             Layout.fillWidth: true
+                            Layout.preferredWidth: 1
                             text: {
                                 if (!item) return "--"
                                 var p = String(item.savePath || "").replace(/\//g, "\\")
                                 var f = String(item.filename || "")
                                 return p + ((p && f) ? "\\" : "") + f
                             }
-                            color: ColorPalette.textPrimary
+                            color: saveMa.containsMouse ? ColorPalette.accent : ColorPalette.textPrimary
                             font.pixelSize: 12 * App.fontScale
-                            readOnly: true; selectByMouse: true; wrapMode: TextEdit.WrapAnywhere
-                            selectionColor: ColorPalette.selectionBg
-                            selectedTextColor: ColorPalette.selectionText
+                            elide: Text.ElideMiddle
+                            maximumLineCount: 1
+
+                            MouseArea {
+                                id: saveMa
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                acceptedButtons: Qt.LeftButton
+                                onClicked: if (item) App.copyToClipboard(saveText.text)
+                            }
+                            ThemedToolTip {
+                                visible: saveMa.containsMouse && saveText.text.length > 0 && saveText.text !== "--"
+                                text: saveText.text + "\n\n" + qsTr("Click to copy")
+                            }
                         }
 
                         Text {
