@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Dialogs
+import Qt.labs.platform
 
 Window {
     id: root
@@ -35,7 +35,7 @@ Window {
     FileDialog {
         id: fileDialog
         nameFilters: ["Python plugin (*.py)"]
-        onAccepted: App.torrentSearchManager.installPluginFromFile(selectedFile.toString().replace(/^file:\/\/\//, "").replace(/^file:\/\//, ""))
+        onAccepted: App.torrentSearchManager.installPluginFromFile(file.toString().replace(/^file:\/\/\//, "").replace(/^file:\/\//, ""))
     }
 
     ColumnLayout {

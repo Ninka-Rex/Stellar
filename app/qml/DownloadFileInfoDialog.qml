@@ -19,7 +19,7 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import QtQuick.Dialogs
+import Qt.labs.platform
 
 Window {
     id: root
@@ -326,7 +326,7 @@ Window {
             return [qsTr("All files (*)")]
         }
         onAccepted: {
-            var path = pathFromFileUrl(selectedFile)
+            var path = pathFromFileUrl(file)
             if (path.length > 0) {
                 saveAsField.text = path
                 var sep = Math.max(path.lastIndexOf("/"), path.lastIndexOf("\\"))
@@ -371,7 +371,7 @@ Window {
         FolderDialog {
             id: addCatFolderDlg
             onAccepted: {
-                var p = String(selectedFolder)
+                var p = String(folder)
                 if (Qt.platform.os === "windows") p = p.replace(/^file:\/\/\//, "")
                 else p = p.replace(/^file:\/\//, "")
                 addCatFolderField.text = p
@@ -675,7 +675,7 @@ Window {
                             onClicked: {
                                 var cur = saveAsField.text || (savePathForIndex(catCombo.currentIndex) + pendingFilename)
                                 saveAsDlg.currentFolder = fileUrlFromPath(cur.replace(/[\/\\][^\/\\]*$/, ""))
-                                saveAsDlg.selectedFile  = fileUrlFromPath(cur)
+                                saveAsDlg.file  = fileUrlFromPath(cur)
                                 saveAsDlg.open()
                             }
                         }

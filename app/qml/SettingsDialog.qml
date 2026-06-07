@@ -19,7 +19,7 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import QtQuick.Dialogs
+import Qt.labs.platform
 
 Window {
     id: root
@@ -634,7 +634,7 @@ Window {
         currentFolder: root.editDefaultSavePath.length > 0
                        ? fileUrlFromPath(root.editDefaultSavePath) : ""
         onAccepted: {
-            var path = pathFromFileUrl(selectedFolder)
+            var path = pathFromFileUrl(folder)
             root.editDefaultSavePath = path
         }
     }
@@ -644,7 +644,7 @@ Window {
         currentFolder: root.editTemporaryDirectory.length > 0
                        ? fileUrlFromPath(root.editTemporaryDirectory) : ""
         onAccepted: {
-            var path = pathFromFileUrl(selectedFolder)
+            var path = pathFromFileUrl(folder)
             root.editTemporaryDirectory = path
         }
     }
@@ -654,7 +654,7 @@ Window {
         currentFolder: root.editTorrentCustomSavePath.length > 0
                        ? fileUrlFromPath(root.editTorrentCustomSavePath) : ""
         onAccepted: {
-            var path = pathFromFileUrl(selectedFolder)
+            var path = pathFromFileUrl(folder)
             root.editTorrentCustomSavePath = path
         }
     }
@@ -668,7 +668,7 @@ Window {
                      ? ["yt-dlp executable (yt-dlp.exe)", "All files (*)"]
                      : ["yt-dlp executable (yt-dlp)", "All files (*)"]
         onAccepted: {
-            var path = selectedFile.toString()
+            var path = file.toString()
                 .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
             root.editYtdlpCustomBinaryPath = path
         }
@@ -683,7 +683,7 @@ Window {
                      ? ["Executable (*.exe)", "All files (*)"]
                      : ["All files (*)"]
         onAccepted: {
-            var path = selectedFile.toString()
+            var path = file.toString()
                 .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
             root.editYtdlpJsRuntimePath = path
         }
@@ -696,7 +696,7 @@ Window {
         fileMode: FileDialog.SaveFile
         defaultSuffix: "stellarbackup"
         nameFilters: ["Stellar backup (*.stellarbackup)", "All files (*)"]
-        onAccepted: App.exportAllData(root.pathFromFileUrl(selectedFile))
+        onAccepted: App.exportAllData(root.pathFromFileUrl(file))
     }
 
     FileDialog {
@@ -704,7 +704,7 @@ Window {
         title: qsTr("Import Stellar Backup")
         fileMode: FileDialog.OpenFile
         nameFilters: ["Stellar backup (*.stellarbackup)", "All files (*)"]
-        onAccepted: App.importAllData(root.pathFromFileUrl(selectedFile), true)
+        onAccepted: App.importAllData(root.pathFromFileUrl(file), true)
     }
 
     // Result feedback for backup/restore.
@@ -1396,7 +1396,7 @@ Window {
                     FolderDialog {
                         id: catSaveFolderDlg
                         onAccepted: {
-                            var path = pathFromFileUrl(selectedFolder).replace(/\\/g, "/")
+                            var path = pathFromFileUrl(folder).replace(/\\/g, "/")
                             catEditPath.text = path
                         }
                     }

@@ -19,7 +19,7 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import QtQuick.Dialogs
+import Qt.labs.platform
 import QtCore
 
 Window {
@@ -1611,7 +1611,7 @@ Window {
         }
         onAccepted: {
             if (!root.item) return
-            var newPath = pathFromFileUrl(selectedFile)
+            var newPath = pathFromFileUrl(file)
             if (newPath.length > 0) App.moveDownloadFile(root.item.id, newPath)
         }
     }
@@ -1624,7 +1624,7 @@ Window {
         }
         onAccepted: {
             if (!root.item) return
-            var newPath = pathFromFileUrl(selectedFolder)
+            var newPath = pathFromFileUrl(folder)
             if (newPath.length > 0) App.moveDownloadFile(root.item.id, newPath)
         }
     }

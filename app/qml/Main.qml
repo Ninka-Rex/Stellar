@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
-import QtQuick.Dialogs
+import Qt.labs.platform
 import QtQuick.Layouts
 import com.stellar.app 1.0
 
@@ -1066,7 +1066,7 @@ ApplicationWindow {
         fileMode: FileDialog.OpenFile
         nameFilters: [qsTr("Torrent files (*.torrent)"), qsTr("All files (*)")]
         onAccepted: {
-            var path = selectedFile.toString()
+            var path = file.toString()
                 .replace(/^file:\/\/\//, "")
                 .replace(/^file:\/\//, "")
             root._pendingTorrentFilePath = ""
@@ -1081,7 +1081,7 @@ ApplicationWindow {
         onAccepted: {
             if (!root.pendingTorrentExportIds || root.pendingTorrentExportIds.length === 0)
                 return
-            var dir = selectedFolder.toString()
+            var dir = folder.toString()
                 .replace(/^file:\/\/\//, "")
                 .replace(/^file:\/\//, "")
             App.exportTorrentFilesToDirectory(root.pendingTorrentExportIds, dir)
@@ -1099,7 +1099,7 @@ ApplicationWindow {
         nameFilters: [qsTr("SDM Export File (*.ef2)")]
         defaultSuffix: "ef2"
         onAccepted: {
-            var rawPath = selectedFile.toString()
+            var rawPath = file.toString()
                 .replace(/^file:\/\/\//, "")
                 .replace(/^file:\/\//, "")
             var items = root._pendingExportItems || []
@@ -1125,7 +1125,7 @@ ApplicationWindow {
         nameFilters: [qsTr("Text file (*.txt)")]
         defaultSuffix: "txt"
         onAccepted: {
-            var rawPath = selectedFile.toString()
+            var rawPath = file.toString()
                 .replace(/^file:\/\/\//, "")
                 .replace(/^file:\/\//, "")
             var items = root._pendingExportItems || []
@@ -1147,7 +1147,7 @@ ApplicationWindow {
         fileMode: FileDialog.OpenFile
         nameFilters: [qsTr("SDM Export File (*.ef2)")]
         onAccepted: {
-            var rawPath = selectedFile.toString()
+            var rawPath = file.toString()
                 .replace(/^file:\/\/\//, "")
                 .replace(/^file:\/\//, "")
             var text = App.readTextFile(rawPath)
@@ -1199,7 +1199,7 @@ ApplicationWindow {
         fileMode: FileDialog.OpenFile
         nameFilters: [qsTr("Text file (*.txt)")]
         onAccepted: {
-            var rawPath = selectedFile.toString()
+            var rawPath = file.toString()
                 .replace(/^file:\/\/\//, "")
                 .replace(/^file:\/\//, "")
             var text = App.readTextFile(rawPath)

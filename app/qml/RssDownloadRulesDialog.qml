@@ -17,7 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Dialogs
+import Qt.labs.platform
 
 Window {
     id: root
@@ -806,6 +806,6 @@ Window {
 
     FolderDialog {
         id: folderDialog
-        onAccepted: savePathField.text = selectedFolder.toString().replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
+        onAccepted: savePathField.text = folder.toString().replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
     }
 }

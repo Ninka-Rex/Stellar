@@ -19,7 +19,7 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import QtQuick.Dialogs
+import Qt.labs.platform
 
 Window {
     id: root
@@ -529,7 +529,7 @@ Window {
                        ? fileUrlFromPath(root.savePath)
                        : ""
         onAccepted: {
-            var path = pathFromFileUrl(selectedFolder)
+            var path = pathFromFileUrl(folder)
             if (path.length > 0)
                 root.setCustomSavePath(path)
         }

@@ -19,7 +19,7 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import QtQuick.Dialogs
+import Qt.labs.platform
 
 Window {
     id: root
@@ -1553,7 +1553,7 @@ Window {
         title: qsTr("Select file to open when done")
         onAccepted: {
             if (root.selectedQueue)
-                root.selectedQueue.openFilePath = selectedFile.toString().replace("file:///", "")
+                root.selectedQueue.openFilePath = file.toString().replace("file:///", "")
         }
     }
 

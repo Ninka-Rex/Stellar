@@ -19,7 +19,7 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import QtQuick.Dialogs
+import Qt.labs.platform
 import com.stellar.app 1.0
 
 Window {
@@ -211,8 +211,8 @@ Window {
         title: qsTr("Add Files")
         fileMode: FileDialog.OpenFiles
         onAccepted: {
-            for (var i = 0; i < selectedFiles.length; i++) {
-                var p = decodeURIComponent(selectedFiles[i].toString()
+            for (var i = 0; i < files.length; i++) {
+                var p = decodeURIComponent(files[i].toString()
                     .replace(/^file:\/\/\//, "").replace(/^file:\/\//, ""))
                 var dup = false
                 for (var j = 0; j < inputFilesModel.count; j++)
@@ -229,7 +229,7 @@ Window {
         id: addFolderDialog
         title: qsTr("Add Folder")
         onAccepted: {
-            var p = decodeURIComponent(selectedFolder.toString()
+            var p = decodeURIComponent(folder.toString()
                 .replace(/^file:\/\/\//, "").replace(/^file:\/\//, ""))
             var dup = false
             for (var j = 0; j < inputFilesModel.count; j++)
@@ -245,7 +245,7 @@ Window {
         id: saveDirDialog
         title: qsTr("Choose Output Folder")
         onAccepted: {
-            var p = decodeURIComponent(selectedFolder.toString()
+            var p = decodeURIComponent(folder.toString()
                 .replace(/^file:\/\/\//, "").replace(/^file:\/\//, ""))
             saveDirField.text = root._nativePath(p)
         }

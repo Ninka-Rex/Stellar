@@ -614,6 +614,13 @@ if(EXISTS "${_dialogs_src}" AND NOT EXISTS "${_dialogs_dst}/qmldir")
     file(COPY "${_dialogs_src}/" DESTINATION "${_dialogs_dst}")
 endif()
 
+# Qt.labs.platform QML plugin — wraps QFileDialog for native file dialogs
+set(_labs_src "${_qt_root}/qml/Qt/labs/platform")
+set(_labs_dst "${CMAKE_BINARY_DIR}/qml/Qt/labs/platform")
+if(EXISTS "${_labs_src}" AND NOT EXISTS "${_labs_dst}/qmldir")
+    file(COPY "${_labs_src}/" DESTINATION "${_labs_dst}")
+endif()
+
 # ── Copy tips.txt to build output (dev convenience) ──────────────────────────
 file(COPY "${CMAKE_SOURCE_DIR}/tips.txt"
     DESTINATION "${CMAKE_BINARY_DIR}"

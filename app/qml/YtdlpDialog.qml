@@ -19,7 +19,7 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import QtQuick.Dialogs
+import Qt.labs.platform
 
 // YtdlpDialog - format picker shown when a yt-dlp-compatible URL is submitted.
 Window {
@@ -406,7 +406,7 @@ Window {
                        ? fileUrlFromPath(savePathField.text.trim())
                        : fileUrlFromPath(App.settings.defaultSavePath)
         onAccepted: {
-            var p = pathFromFileUrl(selectedFolder)
+            var p = pathFromFileUrl(folder)
             p = p.replace(/\//g,"\\")
             if (p.length > 0 && !p.endsWith("\\")) p += "\\"
             savePathField.text = p

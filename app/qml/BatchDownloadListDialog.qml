@@ -19,7 +19,7 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import QtQuick.Dialogs
+import Qt.labs.platform
 
 Window {
     id: root
@@ -1048,7 +1048,7 @@ Window {
         id: saveDirDialog
         title: qsTr("Select save directory")
         onAccepted: {
-            var path = selectedFolder.toString()
+            var path = folder.toString()
                 .replace(/^file:\/\/\//, "")
                 .replace(/^file:\/\//, "")
             root.selectedDirectory = path
@@ -1061,7 +1061,7 @@ Window {
         title: qsTr("Select save path")
         fileMode: FileDialog.SaveFile
         onAccepted: {
-            var path = selectedFile.toString()
+            var path = file.toString()
                 .replace(/^file:\/\/\//, "")
                 .replace(/^file:\/\//, "")
             editSaveField.text = path
