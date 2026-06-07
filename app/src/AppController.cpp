@@ -2702,8 +2702,12 @@ static QString magnetDisplayName(const QString &uri) {
         return {};
     QUrl url(uri);
     QUrlQuery query(url.query());
-    QString dn = query.queryItemValue(QStringLiteral("dn"));
-    return dn.isEmpty() ? QStringLiteral("Magnetized transfer") : dn.trimmed();
+    const QString raw = query.queryItemValue(QStringLiteral("dn"));
+    if (raw.isEmpty())
+        return QStringLiteral("Magnetized transfer");
+    // queryItemValue returns raw percent-encoded bytes; magnet URIs routinely
+    // carry percent-encoded UTF-8 in the dn parameter.
+    return QUrl::fromPercentEncoding(raw.toUtf8()).trimmed();
 }
 
 DownloadItem *AppController::createTorrentItem(const QString &source, const QString &savePath,
@@ -3090,6 +3094,13 @@ bool AppController::renameTorrentFile(const QString &downloadId, int fileIndex, 
                 break;
             }
         }
+        // Single-file torrent: the sole file IS the torrent name — keep in sync.
+        if (model->isSingleFileTarget()) {
+            if (auto *item = qobject_cast<DownloadItem *>(downloadById(downloadId))) {
+                item->setFilename(trimmed);
+                item->setFilenameManuallySet(true);
+            }
+        }
     }
     return true;
 }
@@ -3109,6 +3120,16 @@ bool AppController::renameTorrentPath(const QString &downloadId, const QString &
 
     if (auto *model = qobject_cast<TorrentFileModel *>(m_torrentSession->fileModel(downloadId)))
         model->renamePath(currentPath, trimmed);
+
+    // When renaming the root folder of a torrent (no path separator), also
+    // update the torrent's display name so the metadata dialog title tracks.
+    if (!currentPath.contains(QLatin1Char('/')) && !currentPath.contains(QLatin1Char('\\'))) {
+        if (auto *item = qobject_cast<DownloadItem *>(downloadById(downloadId))) {
+            item->setFilename(trimmed);
+            item->setFilenameManuallySet(true);
+        }
+    }
+
     return true;
 }
 

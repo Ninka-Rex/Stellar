@@ -2596,7 +2596,10 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
     const auto ti = st.torrent_file.lock();
     if (st.has_metadata && ti) {
         const QString torrentName = QString::fromStdString(ti->name());
-        if (!torrentName.isEmpty())
+        // Never clobber a filename the user manually renamed in the metadata
+        // dialog or file-properties dialog; once set it stays until the user
+        // renames again.
+        if (!torrentName.isEmpty() && !item->isFilenameManuallySet())
             item->setFilename(torrentName);
         const auto bestHash = ti->info_hashes().get_best();
         item->setTorrentInfoHash(toHexString(bestHash.to_string()));

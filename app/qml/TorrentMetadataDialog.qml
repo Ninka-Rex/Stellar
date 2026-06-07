@@ -27,7 +27,7 @@ Window {
     height: 500
     minimumWidth: 720
     minimumHeight: 460
-    title: qsTr("Torrent Metadata")
+    title: item && item.filename ? item.filename : qsTr("Torrent Metadata")
     color: ColorPalette.cardBg
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
