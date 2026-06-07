@@ -123,7 +123,7 @@ QString DownloadItem::addedDateStr() const {
 QString DownloadItem::lastTryDateStr() const {
     return (m_lastTryAt.isValid() && m_lastTryAt.toMSecsSinceEpoch() > 0)
         ? formatDateTime(m_lastTryAt)
-        : QStringLiteral("--");
+        : QStringLiteral("");
 }
 
 QString DownloadItem::formatDateTime(const QDateTime &dt) {

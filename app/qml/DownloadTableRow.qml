@@ -44,7 +44,7 @@ Rectangle {
     clip: true
 
     readonly property string addedDateStr:   item ? item.addedDateStr   : ""
-    readonly property string lastTryDateStr: item ? item.lastTryDateStr : "--"
+    readonly property string lastTryDateStr: item ? item.lastTryDateStr : ""
 
     readonly property bool _sel: { table._selectionVersion; return table.isRowSelected(rowIndex) }
 
@@ -377,7 +377,7 @@ Rectangle {
             Text {
                 anchors { fill: parent; leftMargin: 6 }
                 verticalAlignment: Text.AlignVCenter
-                text: rowRect.item ? (rowRect.item.savePath || "--") : "--"
+                text: rowRect.item ? (rowRect.item.savePath || "") : ""
                 color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 11 * App.fontScale
             }
@@ -392,7 +392,7 @@ Rectangle {
             Text {
                 anchors { fill: parent; leftMargin: 6 }
                 verticalAlignment: Text.AlignVCenter
-                text: rowRect.item ? (rowRect.item.referrer || "--") : "--"
+                text: rowRect.item ? (rowRect.item.referrer || "") : ""
                 color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 11 * App.fontScale
             }
@@ -407,7 +407,7 @@ Rectangle {
             Text {
                 anchors { fill: parent; leftMargin: 6 }
                 verticalAlignment: Text.AlignVCenter
-                text: rowRect.item ? (rowRect.item.parentUrl || "--") : "--"
+                text: rowRect.item ? (rowRect.item.parentUrl || "") : ""
                 color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 11 * App.fontScale
             }
