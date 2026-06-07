@@ -443,7 +443,15 @@ bundle_qt_runtime() {
         exit 1
     fi
 
-    for mod in QtCore QtQml QtQuick QtQuick.2 QtQuick.Controls QtQuick.Controls.Material QtQuick.Dialogs QtQuick.Layouts QtQuick.Shapes Qt5Compat; do
+    # Module dirs are given as relative paths under the Qt qml/ root. Most are a
+    # single dir (QtQuick.Controls is literally a dir of that name); the Qt.labs.*
+    # modules are nested (Qt/labs/<name>). The non-native QtQuick.Dialogs
+    # FileDialog fallback — used whenever no native/portal file dialog backend is
+    # present (common on minimal Linux installs) — imports Qt.labs.folderlistmodel;
+    # without it the FileDialog fails to load and the app segfaults on open().
+    for mod in QtCore QtQml QtQuick QtQuick.2 QtQuick.Controls QtQuick.Controls.Material \
+               QtQuick.Dialogs QtQuick.Layouts QtQuick.Shapes Qt5Compat \
+               Qt/labs/folderlistmodel Qt/labs/platform Qt/labs/qmlmodels; do
         if [[ -d "$qt_qml/$mod" ]]; then
             mkdir -p "$qml_dir/$mod"
             cp -a "$qt_qml/$mod/." "$qml_dir/$mod/"
