@@ -177,31 +177,42 @@ Window {
     readonly property string displayedUserAgent: editUseCustomUserAgent
         ? editCustomUserAgent
         : defaultUserAgent
-    readonly property string lastTryPreview: {
-        var datePart
-        switch (editLastTryDateStyle) {
-        case 1:
-            datePart = "4/10/2026"
-            break
-        case 2:
-            datePart = "10/4/2026"
-            break
-        case 3:
-            datePart = "2026-04-10"
-            break
+    // Sample date/time used for the format combo labels and the live preview.
+    // Refreshed to "now" each time the settings window opens (see onVisibleChanged)
+    // so the examples always reflect the current date instead of a hardcoded one.
+    property var _previewNow: new Date()
+
+    function _pad2(n) { return (n < 10 ? "0" : "") + n }
+
+    // Format _previewNow's date portion for the given style index (0-3).
+    function _previewDatePart(style) {
+        var d = root._previewNow
+        var y = d.getFullYear(), mo = d.getMonth() + 1, day = d.getDate()
+        switch (style) {
+        case 1: return mo + "/" + day + "/" + y
+        case 2: return day + "/" + mo + "/" + y
+        case 3: return y + "-" + root._pad2(mo) + "-" + root._pad2(day)
         default:
-            datePart = "Apr 10 2026"
-            break
+            var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+            return months[d.getMonth()] + " " + day + " " + y
         }
-
-        var timePart
-        if (editLastTryUse24Hour)
-            timePart = editLastTryShowSeconds ? "15:49:22" : "15:49"
-        else
-            timePart = editLastTryShowSeconds ? "3:49:22 PM" : "3:49 PM"
-
-        return datePart + " " + timePart
     }
+
+    function _previewTimePart(use24, showSeconds) {
+        var d = root._previewNow
+        var h = d.getHours(), m = d.getMinutes(), s = d.getSeconds()
+        if (use24)
+            return showSeconds ? root._pad2(h) + ":" + root._pad2(m) + ":" + root._pad2(s)
+                               : root._pad2(h) + ":" + root._pad2(m)
+        var ampm = h >= 12 ? "PM" : "AM"
+        var h12 = h % 12; if (h12 === 0) h12 = 12
+        return showSeconds ? h12 + ":" + root._pad2(m) + ":" + root._pad2(s) + " " + ampm
+                           : h12 + ":" + root._pad2(m) + " " + ampm
+    }
+
+    readonly property string lastTryPreview:
+        _previewDatePart(editLastTryDateStyle) + " "
+        + _previewTimePart(editLastTryUse24Hour, editLastTryShowSeconds)
 
     function _normalizedMonitoredExtensionsText() {
         return monitoredExtsArea
@@ -405,6 +416,7 @@ Window {
 
     onVisibleChanged: {
         if (visible) {
+            _previewNow = new Date()   // refresh date-format samples to current time
             _centerOnOwner()
             refreshTorrentNetworkAdapters()
             refreshTorrentCountryOptions()
@@ -1875,10 +1887,10 @@ Window {
                         ComboBox {
                             id: lastTryDateStyleCombo
                             model: [
-                                "Apr 10 2026",
-                                "4/10/2026",
-                                "10/4/2026",
-                                "2026-04-10"
+                                root._previewDatePart(0),
+                                root._previewDatePart(1),
+                                root._previewDatePart(2),
+                                root._previewDatePart(3)
                             ]
                             currentIndex: root.editLastTryDateStyle
                             implicitWidth: 220

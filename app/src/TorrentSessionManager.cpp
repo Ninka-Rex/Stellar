@@ -1410,6 +1410,43 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
         pack.set_int(libtorrent::settings_pack::max_queued_disk_bytes,
                      settings->torrentDiskWriteQueueMiB() * 1024 * 1024);
 
+    // ── High-throughput tuning (always on, "balanced-fast") ───────────────────
+    // libtorrent's stock defaults are tuned for modest connections and bottleneck
+    // seeding/downloading on fast links. These overrides raise the network send
+    // pipeline and disk/request parallelism for gigabit-class connections at a
+    // modest RAM cost (tens of MB). We deliberately DO NOT touch the keys that are
+    // user-controlled above — connections_limit, unchoke_slots_limit, the rate
+    // limits, and max_queued_disk_bytes are owned by the user's settings and must
+    // not be clobbered here.
+    //
+    // send_buffer_watermark: stock 512 KB caps per-peer upload ramp — on a fat
+    // pipe the buffer drains faster than the 16 KB-block refill can keep up.
+    // Raise to 3 MB so a single fast leecher can be saturated.
+    pack.set_int(libtorrent::settings_pack::send_buffer_watermark, 3 * 1024 * 1024);
+    // watermark = current_upload_rate × factor%. Stock 50 halves the dynamic
+    // target; 150 lets the watermark track high upload rates (per lt docs:
+    // "For high speed upload, this should be set to a greater value than 100").
+    pack.set_int(libtorrent::settings_pack::send_buffer_watermark_factor, 150);
+    // Larger initial send window → faster ramp-up to a new peer (stock 10 KB).
+    pack.set_int(libtorrent::settings_pack::send_buffer_low_watermark, 1 * 1024 * 1024);
+    // Disk I/O worker threads (stock 10). More parallelism keeps the send buffers
+    // fed and write-back flowing on multi-core machines with fast storage.
+    pack.set_int(libtorrent::settings_pack::aio_threads, 16);
+    // Outstanding block requests we'll pipeline to peers (stock 500) — deeper
+    // queue keeps the download pipe full at high bandwidth-delay product.
+    pack.set_int(libtorrent::settings_pack::max_out_request_queue, 1500);
+    // Inbound request queue we allow a peer to keep against us while seeding
+    // (stock 2000) — raise so fast leechers aren't request-starved.
+    pack.set_int(libtorrent::settings_pack::max_allowed_in_request_queue, 4000);
+    // New outgoing connection attempts per tick (stock 30) and the initial burst
+    // when a torrent is added (stock 30) — connect to a swarm faster.
+    pack.set_int(libtorrent::settings_pack::connection_speed, 100);
+    pack.set_int(libtorrent::settings_pack::torrent_connect_boost, 100);
+    // Let the OS size the socket buffers automatically (0). Some platforms cap
+    // these low by default; auto-sizing avoids a hidden TCP throughput ceiling.
+    pack.set_int(libtorrent::settings_pack::send_socket_buffer_size, 0);
+    pack.set_int(libtorrent::settings_pack::recv_socket_buffer_size, 0);
+
     m_session->apply_settings(pack);
 
     // Per-torrent limits are not in settings_pack — apply to all existing handles.
