@@ -32,7 +32,8 @@ public:
         FolderRole,
         DepthRole,
         ExpandedRole,
-        FileIndexRole
+        FileIndexRole,
+        PriorityRole
     };
 
     struct Entry {
@@ -42,6 +43,11 @@ public:
         qint64 downloaded{0};
         bool wanted{true};
         int fileIndex{-1};
+        // libtorrent download priority for wanted files: 1=Low, 4=Normal,
+        // 6=High, 7=Maximum. Independent of `wanted` — when wanted is false the
+        // file is skipped (priority 0 in libtorrent) regardless of this value,
+        // which retains the last chosen level so re-enabling restores it.
+        int priority{4};
     };
 
     explicit TorrentFileModel(QObject *parent = nullptr);
@@ -57,6 +63,12 @@ public:
     // relative path (folders) so callers don't need a valid visible-row number.
     bool setWantedByFileIndex(int fileIndex, bool wanted);
     bool setWantedByPath(const QString &path, bool wanted);
+    // Download priority — accepts only {1,4,6,7}; other values rejected.
+    // Setting a priority implicitly marks the file (and its parent folders)
+    // wanted, since a skipped file has no meaningful priority.
+    Q_INVOKABLE bool setPriority(int row, int priority);
+    bool setPriorityByFileIndex(int fileIndex, int priority);
+    bool setPriorityByPath(const QString &path, int priority);
     Q_INVOKABLE bool toggleExpanded(int row);
     Q_INVOKABLE bool isSingleFileTarget() const;
     Q_INVOKABLE void setLiveUpdatesEnabled(bool enabled) { m_liveUpdatesEnabled = enabled; }
@@ -81,6 +93,7 @@ private:
         bool expanded{true};
         int depth{0};
         int fileIndex{-1};
+        int priority{4};
         Node *parent{nullptr};
         QVector<Node *> children;
     };
@@ -93,6 +106,9 @@ private:
     void collectDescendants(Node *node, QVector<Node *> &out) const;
     void saveCollapsedPaths(Node *node, QSet<QString> &out) const;
     void applyWantedRecursive(Node *node, bool wanted);
+    void applyPriorityRecursive(Node *node, int priority);
+    // Returns common priority of all leaf descendants, or -1 if they differ ("Mixed").
+    int folderPriority(const Node *node) const;
     void recalculateFolderState(Node *node);
     Node *findNodeByPath(Node *node, const QString &path) const;
     void updatePathsRecursive(Node *node);

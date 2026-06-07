@@ -764,28 +764,46 @@ QObject *TorrentSessionManager::trackerModel(const QString &downloadId) const {
 #endif
 }
 
-bool TorrentSessionManager::setFileWanted(const QString &downloadId, int row, bool wanted) {
 #if defined(STELLAR_HAS_LIBTORRENT)
+bool TorrentSessionManager::applyFilePriorities(const QString &downloadId) {
     auto *model = m_fileModels.value(downloadId, nullptr);
     const auto handle = m_handles.value(downloadId);
     if (!model || !handle.is_valid())
         return false;
     auto *fileModel = qobject_cast<TorrentFileModel *>(model);
-    if (!fileModel || !fileModel->setWanted(row, wanted))
+    if (!fileModel)
         return false;
 
     const QVector<TorrentFileModel::Entry> entries = fileModel->fileEntries();
     std::vector<libtorrent::download_priority_t> priorities;
     priorities.reserve(entries.size());
-    for (const auto &entry : entries)
-        priorities.push_back(entry.wanted ? libtorrent::default_priority : libtorrent::dont_download);
+    for (const auto &entry : entries) {
+        if (!entry.wanted) {
+            priorities.push_back(libtorrent::dont_download);
+            continue;
+        }
+        // Defensive clamp: the value crosses from QML and resume data; never
+        // hand libtorrent an out-of-range priority.
+        const int p = std::clamp(entry.priority, 1, 7);
+        priorities.push_back(libtorrent::download_priority_t(std::uint8_t(p)));
+    }
     handle.prioritize_files(priorities);
     saveResumeData(downloadId);
     return true;
+}
 #else
-    Q_UNUSED(downloadId);
-    Q_UNUSED(row);
-    Q_UNUSED(wanted);
+bool TorrentSessionManager::applyFilePriorities(const QString &) { return false; }
+#endif
+
+bool TorrentSessionManager::setFileWanted(const QString &downloadId, int row, bool wanted) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    auto *model = m_fileModels.value(downloadId, nullptr);
+    auto *fileModel = qobject_cast<TorrentFileModel *>(model);
+    if (!fileModel || !fileModel->setWanted(row, wanted))
+        return false;
+    return applyFilePriorities(downloadId);
+#else
+    Q_UNUSED(downloadId); Q_UNUSED(row); Q_UNUSED(wanted);
     return false;
 #endif
 }
@@ -793,21 +811,10 @@ bool TorrentSessionManager::setFileWanted(const QString &downloadId, int row, bo
 bool TorrentSessionManager::setFileWantedByFileIndex(const QString &downloadId, int fileIndex, bool wanted) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     auto *model = m_fileModels.value(downloadId, nullptr);
-    const auto handle = m_handles.value(downloadId);
-    if (!model || !handle.is_valid())
-        return false;
     auto *fileModel = qobject_cast<TorrentFileModel *>(model);
     if (!fileModel || !fileModel->setWantedByFileIndex(fileIndex, wanted))
         return false;
-
-    const QVector<TorrentFileModel::Entry> entries = fileModel->fileEntries();
-    std::vector<libtorrent::download_priority_t> priorities;
-    priorities.reserve(entries.size());
-    for (const auto &entry : entries)
-        priorities.push_back(entry.wanted ? libtorrent::default_priority : libtorrent::dont_download);
-    handle.prioritize_files(priorities);
-    saveResumeData(downloadId);
-    return true;
+    return applyFilePriorities(downloadId);
 #else
     Q_UNUSED(downloadId); Q_UNUSED(fileIndex); Q_UNUSED(wanted);
     return false;
@@ -817,23 +824,51 @@ bool TorrentSessionManager::setFileWantedByFileIndex(const QString &downloadId, 
 bool TorrentSessionManager::setFileWantedByPath(const QString &downloadId, const QString &path, bool wanted) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     auto *model = m_fileModels.value(downloadId, nullptr);
-    const auto handle = m_handles.value(downloadId);
-    if (!model || !handle.is_valid())
-        return false;
     auto *fileModel = qobject_cast<TorrentFileModel *>(model);
     if (!fileModel || !fileModel->setWantedByPath(path, wanted))
         return false;
-
-    const QVector<TorrentFileModel::Entry> entries = fileModel->fileEntries();
-    std::vector<libtorrent::download_priority_t> priorities;
-    priorities.reserve(entries.size());
-    for (const auto &entry : entries)
-        priorities.push_back(entry.wanted ? libtorrent::default_priority : libtorrent::dont_download);
-    handle.prioritize_files(priorities);
-    saveResumeData(downloadId);
-    return true;
+    return applyFilePriorities(downloadId);
 #else
     Q_UNUSED(downloadId); Q_UNUSED(path); Q_UNUSED(wanted);
+    return false;
+#endif
+}
+
+bool TorrentSessionManager::setFilePriority(const QString &downloadId, int row, int priority) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    auto *model = m_fileModels.value(downloadId, nullptr);
+    auto *fileModel = qobject_cast<TorrentFileModel *>(model);
+    if (!fileModel || !fileModel->setPriority(row, priority))
+        return false;
+    return applyFilePriorities(downloadId);
+#else
+    Q_UNUSED(downloadId); Q_UNUSED(row); Q_UNUSED(priority);
+    return false;
+#endif
+}
+
+bool TorrentSessionManager::setFilePriorityByFileIndex(const QString &downloadId, int fileIndex, int priority) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    auto *model = m_fileModels.value(downloadId, nullptr);
+    auto *fileModel = qobject_cast<TorrentFileModel *>(model);
+    if (!fileModel || !fileModel->setPriorityByFileIndex(fileIndex, priority))
+        return false;
+    return applyFilePriorities(downloadId);
+#else
+    Q_UNUSED(downloadId); Q_UNUSED(fileIndex); Q_UNUSED(priority);
+    return false;
+#endif
+}
+
+bool TorrentSessionManager::setFilePriorityByPath(const QString &downloadId, const QString &path, int priority) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    auto *model = m_fileModels.value(downloadId, nullptr);
+    auto *fileModel = qobject_cast<TorrentFileModel *>(model);
+    if (!fileModel || !fileModel->setPriorityByPath(path, priority))
+        return false;
+    return applyFilePriorities(downloadId);
+#else
+    Q_UNUSED(downloadId); Q_UNUSED(path); Q_UNUSED(priority);
     return false;
 #endif
 }
@@ -1874,7 +1909,13 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
                 entry.name = QString::fromStdString(std::string(files.file_name(fileIndex)));
                 entry.path = QString::fromStdString(files.file_path(fileIndex));
                 entry.size = files.file_size(fileIndex);
-                entry.wanted = i < int(priorities.size()) ? priorities[std::size_t(i)] != libtorrent::dont_download : true;
+                {
+                    const int p = i < int(priorities.size()) ? int(std::uint8_t(priorities[std::size_t(i)])) : 4;
+                    entry.wanted = p != 0;
+                    // Skipped files keep Normal as their remembered level so
+                    // re-enabling them restores a sane priority.
+                    entry.priority = p == 0 ? 4 : p;
+                }
                 entry.fileIndex = i;
                 entry.downloaded = i < int(progress.size()) ? qint64(progress[std::size_t(i)]) : 0;
                 entries.push_back(entry);
@@ -1929,7 +1970,11 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
                 entry.name = QString::fromStdString(std::string(files.file_name(fileIndex)));
                 entry.path = QString::fromStdString(files.file_path(fileIndex));
                 entry.size = files.file_size(fileIndex);
-                entry.wanted = i < int(priorities.size()) ? priorities[std::size_t(i)] != libtorrent::dont_download : true;
+                {
+                    const int p = i < int(priorities.size()) ? int(std::uint8_t(priorities[std::size_t(i)])) : 4;
+                    entry.wanted = p != 0;
+                    entry.priority = p == 0 ? 4 : p;
+                }
                 entry.fileIndex = i;
                 entries.push_back(entry);
             }

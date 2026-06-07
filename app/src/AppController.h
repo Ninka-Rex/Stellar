@@ -304,6 +304,9 @@ public:
     Q_INVOKABLE bool setTorrentFileWanted(const QString &downloadId, int row, bool wanted);
     Q_INVOKABLE bool setTorrentFileWantedByIndex(const QString &downloadId, int fileIndex, bool wanted);
     Q_INVOKABLE bool setTorrentFileWantedByPath(const QString &downloadId, const QString &path, bool wanted);
+    Q_INVOKABLE bool setTorrentFilePriority(const QString &downloadId, int row, int priority);
+    Q_INVOKABLE bool setTorrentFilePriorityByIndex(const QString &downloadId, int fileIndex, int priority);
+    Q_INVOKABLE bool setTorrentFilePriorityByPath(const QString &downloadId, const QString &path, int priority);
     Q_INVOKABLE bool addTorrentTracker(const QString &downloadId, const QString &url);
     Q_INVOKABLE bool removeTorrentTracker(const QString &downloadId, const QString &url);
     Q_INVOKABLE bool addTorrentWebSeed(const QString &downloadId, const QString &url);

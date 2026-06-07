@@ -115,7 +115,7 @@ Window {
     // Column order (persisted as JSON key arrays)
     property string peerColOrderJson: '["country","endpoint","port","client","progress","down","up","downloaded","uploaded","type"]'
     property string trkColOrderJson:  '["tracker","status","source","seeders","peers","nextAnnounce","message"]'
-    property string fileColOrderJson: '["name","progress","size"]'
+    property string fileColOrderJson: '["name","progress","size","priority"]'
 
     // Peer column drag-reorder state
     property string _peerColDragFromKey: ""
@@ -157,7 +157,8 @@ Window {
     readonly property var _fileColDefs: [
         { title: qsTr("Name"),     key: "name" },
         { title: qsTr("Progress"), key: "progress" },
-        { title: qsTr("Size"),     key: "size" }
+        { title: qsTr("Size"),     key: "size" },
+        { title: qsTr("Priority"), key: "priority" }
     ]
 
     // Ordered column arrays (reactive on JSON order strings)
@@ -211,7 +212,7 @@ Window {
         return map
     }
     property var _fileColXMap: {
-        var _w = fileColName + fileColProgress + fileColSize
+        var _w = fileColName + fileColProgress + fileColSize + fileColPriority
         var _o = fileColOrderJson
         var map = {}, x = 0
         for (var i = 0; i < _fileColsOrdered.length; i++) {
@@ -226,6 +227,7 @@ Window {
     property real fileColName:     520
     property real fileColProgress: 100
     property real fileColSize:      90
+    property real fileColPriority:  90
 
     // Tracker list column widths
     property real trkColTracker:       400
@@ -356,6 +358,7 @@ Window {
         property alias fileColName: root.fileColName
         property alias fileColProgress: root.fileColProgress
         property alias fileColSize: root.fileColSize
+        property alias fileColPriority: root.fileColPriority
         property alias trkColTracker: root.trkColTracker
         property alias trkColStatus: root.trkColStatus
         property alias trkColSource: root.trkColSource
@@ -1155,7 +1158,21 @@ Window {
         if (key === "name")     return fileColName
         if (key === "progress") return fileColProgress
         if (key === "size")     return fileColSize
+        if (key === "priority") return fileColPriority
         return 80
+    }
+
+    // Priority display helpers. -1 = Mixed (folder with differing children).
+    function priorityLabel(p) {
+        if (p === -1) return qsTr("Mixed")
+        if (p === 1)  return qsTr("Low")
+        if (p === 6)  return qsTr("High")
+        if (p === 7)  return qsTr("Maximum")
+        return qsTr("Normal")
+    }
+    function priorityColor(p) {
+        // Theme-aware primary text; Mixed dimmed.
+        return p === -1 ? ColorPalette.textDisabled : ColorPalette.textPrimary
     }
 
     function _applyPeerColReorder() {
@@ -2643,7 +2660,7 @@ Window {
 
                             Row {
                                 x: -fileList.contentX
-                                width: root.fileColName + root.fileColProgress + root.fileColSize
+                                width: root.fileColName + root.fileColProgress + root.fileColSize + root.fileColPriority
                                 height: parent.height
                                 spacing: 0
 
@@ -2699,6 +2716,7 @@ Window {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: fSizeRh.left; rightMargin: 2 }
                                         text: qsTr("Size"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: true; elide: Text.ElideRight
                                     }
+                                    Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: ColorPalette.border }
                                     Item {
                                         id: fSizeRh; width: 10; height: parent.height; anchors.right: parent.right; z: 10
                                         property real _startW: 0
@@ -2712,6 +2730,27 @@ Window {
                                         }
                                     }
                                 }
+
+                                // Priority (resizable)
+                                Item {
+                                    width: root.fileColPriority; height: parent.height
+                                    Text {
+                                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: fPrioRh.left; rightMargin: 2 }
+                                        text: qsTr("Priority"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; font.bold: true; elide: Text.ElideRight
+                                    }
+                                    Item {
+                                        id: fPrioRh; width: 10; height: parent.height; anchors.right: parent.right; z: 10
+                                        property real _startW: 0
+                                        Rectangle { anchors.right: parent.right; width: 2; height: parent.height
+                                            color: (fPrioDrag.active || fPrioHov.hovered) ? "#6aa0ff" : "transparent"; opacity: 0.8 }
+                                        HoverHandler { id: fPrioHov; cursorShape: Qt.SizeHorCursor }
+                                        DragHandler {
+                                            id: fPrioDrag; target: null; xAxis.enabled: true; yAxis.enabled: false; cursorShape: Qt.SizeHorCursor
+                                            onActiveChanged: if (active) fPrioRh._startW = root.fileColPriority
+                                            onTranslationChanged: if (active) root.fileColPriority = Math.max(50, Math.round(fPrioRh._startW + translation.x))
+                                        }
+                                    }
+                                }
                             }
                         }
 
@@ -2719,7 +2758,7 @@ Window {
                             id: fileList
                             Layout.fillWidth: true; Layout.fillHeight: true
                             clip: true; model: root.torrentFileModel; spacing: 0
-                            contentWidth: root.fileColName + root.fileColProgress + root.fileColSize
+                            contentWidth: root.fileColName + root.fileColProgress + root.fileColSize + root.fileColPriority
                             flickableDirection: Flickable.HorizontalAndVerticalFlick
                             cacheBuffer: 520
                             ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
@@ -2744,6 +2783,7 @@ Window {
                                 required property int    depth
                                 required property bool   expanded
                                 required property int    fileIndex
+                                required property int    priority
 
                                 width: Math.max(fileList.width, fileList.contentWidth); height: 26
                                 color: isFolder ? ColorPalette.toolbarBg : (index % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg)
@@ -2857,6 +2897,15 @@ Window {
                                         color: fd.wanted ? ColorPalette.textPrimary : ColorPalette.textDisabled
                                         font.pixelSize: 12 * App.fontScale; horizontalAlignment: Text.AlignLeft
                                     }
+
+                                    // Priority
+                                    Text {
+                                        width: root.fileColPriority; anchors.verticalCenter: parent.verticalCenter
+                                        text: fd.wanted ? root.priorityLabel(fd.priority) : "—"
+                                        color: fd.wanted ? root.priorityColor(fd.priority) : ColorPalette.textDisabled
+                                        font.pixelSize: 12 * App.fontScale; horizontalAlignment: Text.AlignLeft
+                                        elide: Text.ElideRight
+                                    }
                                 }
 
                                 // Handle right-clicks with a dedicated MouseArea because
@@ -2873,6 +2922,7 @@ Window {
                                         fileCtxPopup._name = fd.name
                                         fileCtxPopup._wanted = fd.wanted
                                         fileCtxPopup._isFolder = fd.isFolder
+                                        fileCtxPopup._priority = fd.priority
                                         var pos = mapToItem(Overlay.overlay, mouse.x, mouse.y)
                                         fileCtxPopup.x = pos.x
                                         fileCtxPopup.y = pos.y
@@ -3006,6 +3056,20 @@ Window {
                             property string _name: ""
                             property bool _wanted: true
                             property bool _isFolder: false
+                            property int _priority: 4
+
+                            function _applyPriority(level) {
+                                if (root.item) {
+                                    if (fileCtxPopup._fileIndex >= 0)
+                                        App.setTorrentFilePriorityByIndex(root.item.id, fileCtxPopup._fileIndex, level)
+                                    else
+                                        App.setTorrentFilePriorityByPath(root.item.id, fileCtxPopup._path, level)
+                                }
+                                filePrioritySubmenu.close()
+                                fileCtxPopup.close()
+                            }
+
+                            onClosed: filePrioritySubmenu.close()
 
                             background: Rectangle {
                                 color: ColorPalette.panelBg
@@ -3070,6 +3134,39 @@ Window {
 
                                 Rectangle { width: 180; height: 1; color: ColorPalette.border }
 
+                                // Priority ▸ — flyout submenu; disabled when skipped.
+                                Rectangle {
+                                    id: filePriorityRow
+                                    width: 180
+                                    height: 34
+                                    enabled: fileCtxPopup._wanted
+                                    opacity: enabled ? 1.0 : 0.45
+                                    color: (priorityCtxHover.containsMouse || filePrioritySubmenu.visible) ? ColorPalette.border : "transparent"
+
+                                    Text {
+                                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
+                                        text: qsTr("Priority")
+                                        color: ColorPalette.textPrimary
+                                        font.pixelSize: 12 * App.fontScale
+                                    }
+                                    Text {
+                                        anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 10 }
+                                        text: "▸"
+                                        color: ColorPalette.textSecond
+                                        font.pixelSize: 11 * App.fontScale
+                                    }
+
+                                    MouseArea {
+                                        id: priorityCtxHover
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        onEntered: if (filePriorityRow.enabled) filePrioritySubmenu.openFlyout()
+                                        onClicked: if (filePriorityRow.enabled) filePrioritySubmenu.openFlyout()
+                                    }
+                                }
+
+                                Rectangle { width: 180; height: 1; color: ColorPalette.border }
+
                                 Rectangle {
                                     width: 180
                                     height: 34
@@ -3102,6 +3199,67 @@ Window {
                                         onClicked: {
                                             fileCtxPopup.close()
                                             renameDialog.openForRename(fileCtxPopup._path, fileCtxPopup._name, fileCtxPopup._fileIndex, fileCtxPopup._isFolder)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // Priority flyout submenu — to the right of the Priority row.
+                        Popup {
+                            id: filePrioritySubmenu
+                            parent: Overlay.overlay
+                            modal: false
+                            padding: 0
+                            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
+                            function openFlyout() {
+                                var p = filePriorityRow.mapToItem(Overlay.overlay, filePriorityRow.width, 0)
+                                x = p.x - 2
+                                y = p.y
+                                open()
+                            }
+
+                            background: Rectangle {
+                                color: ColorPalette.panelBg
+                                border.color: ColorPalette.border
+                                radius: 4
+                            }
+
+                            contentItem: Column {
+                                spacing: 0
+                                Repeater {
+                                    model: [
+                                        { label: qsTr("Low"),     level: 1 },
+                                        { label: qsTr("Normal"),  level: 4 },
+                                        { label: qsTr("High"),    level: 6 },
+                                        { label: qsTr("Maximum"), level: 7 }
+                                    ]
+                                    delegate: Rectangle {
+                                        required property var modelData
+                                        width: 150
+                                        height: 32
+                                        color: filePrioItemHover.containsMouse ? ColorPalette.border : "transparent"
+
+                                        Text {
+                                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 28 }
+                                            text: modelData.label
+                                            color: ColorPalette.textPrimary
+                                            font.pixelSize: 12 * App.fontScale
+                                        }
+                                        Text {
+                                            visible: fileCtxPopup._priority === modelData.level
+                                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
+                                            text: "✓"
+                                            color: ColorPalette.textPrimary
+                                            font.pixelSize: 11 * App.fontScale
+                                            font.bold: true
+                                        }
+                                        MouseArea {
+                                            id: filePrioItemHover
+                                            anchors.fill: parent
+                                            hoverEnabled: true
+                                            onClicked: fileCtxPopup._applyPriority(modelData.level)
                                         }
                                     }
                                 }

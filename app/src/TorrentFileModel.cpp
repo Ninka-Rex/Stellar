@@ -47,7 +47,8 @@ QHash<int, QByteArray> TorrentFileModel::roleNames() const {
         { FolderRole, "isFolder" },
         { DepthRole, "depth" },
         { ExpandedRole, "expanded" },
-        { FileIndexRole, "fileIndex" }
+        { FileIndexRole, "fileIndex" },
+        { PriorityRole, "priority" }
     };
 }
 
@@ -100,6 +101,7 @@ void TorrentFileModel::setEntries(const QVector<Entry> &entries) {
                 child->downloaded = entry.downloaded;
                 child->wanted = entry.wanted;
                 child->fileIndex = entry.fileIndex;
+                child->priority = entry.priority;
                 child->isFolder = false;
             }
 
@@ -242,6 +244,47 @@ bool TorrentFileModel::setWantedByPath(const QString &path, bool wanted) {
     return true;
 }
 
+static bool isValidPriority(int priority) {
+    return priority == 1 || priority == 4 || priority == 6 || priority == 7;
+}
+
+bool TorrentFileModel::setPriority(int row, int priority) {
+    if (row < 0 || row >= m_visibleRows.size() || !isValidPriority(priority))
+        return false;
+    applyPriorityRecursive(m_visibleRows.at(row), priority);
+    recalculateFolderState(m_root);
+    // Priority may re-enable a skipped file, so refresh WantedRole too.
+    if (!m_visibleRows.isEmpty())
+        emit dataChanged(index(0), index(m_visibleRows.size() - 1),
+                         { PriorityRole, WantedRole, ProgressRole, SizeRole });
+    return true;
+}
+
+bool TorrentFileModel::setPriorityByFileIndex(int fileIndex, int priority) {
+    if (!isValidPriority(priority))
+        return false;
+    for (int row = 0; row < m_visibleRows.size(); ++row) {
+        Node *node = m_visibleRows.at(row);
+        if (!node->isFolder && node->fileIndex == fileIndex)
+            return setPriority(row, priority);
+    }
+    return false;
+}
+
+bool TorrentFileModel::setPriorityByPath(const QString &path, int priority) {
+    if (!isValidPriority(priority))
+        return false;
+    Node *node = findNodeByPath(m_root, path);
+    if (!node)
+        return false;
+    applyPriorityRecursive(node, priority);
+    recalculateFolderState(m_root);
+    if (!m_visibleRows.isEmpty())
+        emit dataChanged(index(0), index(m_visibleRows.size() - 1),
+                         { PriorityRole, WantedRole, ProgressRole, SizeRole });
+    return true;
+}
+
 bool TorrentFileModel::toggleExpanded(int row) {
     if (row < 0 || row >= m_visibleRows.size())
         return false;
@@ -306,6 +349,7 @@ QVariant TorrentFileModel::dataForNode(const Node *node, int role) const {
     case DepthRole: return node->depth;
     case ExpandedRole: return node->expanded;
     case FileIndexRole: return node->fileIndex;
+    case PriorityRole: return node->isFolder ? folderPriority(node) : node->priority;
     default: return {};
     }
 }
@@ -455,6 +499,42 @@ void TorrentFileModel::applyWantedRecursive(Node *node, bool wanted) {
         m_fileEntries[node->fileIndex].wanted = wanted;
     for (Node *child : node->children)
         applyWantedRecursive(child, wanted);
+}
+
+void TorrentFileModel::applyPriorityRecursive(Node *node, int priority) {
+    if (!node)
+        return;
+    if (!node->isFolder && node->fileIndex >= 0) {
+        node->priority = priority;
+        // Priority implies wanted — a skipped file has no meaningful level.
+        node->wanted = true;
+        if (node->fileIndex < m_fileEntries.size()) {
+            m_fileEntries[node->fileIndex].priority = priority;
+            m_fileEntries[node->fileIndex].wanted = true;
+        }
+    }
+    for (Node *child : node->children)
+        applyPriorityRecursive(child, priority);
+}
+
+int TorrentFileModel::folderPriority(const Node *node) const {
+    if (!node)
+        return -1;
+    int common = -2; // sentinel: not yet seen any leaf
+    QVector<const Node *> stack{ node };
+    while (!stack.isEmpty()) {
+        const Node *n = stack.takeLast();
+        if (n->isFolder) {
+            for (const Node *c : n->children)
+                stack.push_back(c);
+            continue;
+        }
+        if (common == -2)
+            common = n->priority;
+        else if (common != n->priority)
+            return -1; // differing leaves → Mixed
+    }
+    return common == -2 ? 4 : common;
 }
 
 void TorrentFileModel::recalculateFolderState(Node *node) {

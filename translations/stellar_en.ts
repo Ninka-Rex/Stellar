@@ -1725,6 +1725,36 @@ You may change it in Options → Downloads at a later time.</source>
 <context>
     <name>FilePropertiesDialog</name>
     <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="160"/>
+        <source>Priority</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="1167"/>
+        <source>Low</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="1168"/>
+        <source>Normal</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="1169"/>
+        <source>High</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="1170"/>
+        <source>Maximum</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/FilePropertiesDialog.qml" line="1166"/>
+        <source>Mixed</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/FilePropertiesDialog.qml" line="5642"/>
         <source>Rare</source>
         <translation></translation>
@@ -7569,6 +7599,36 @@ Click to open Statistics</source>
 </context>
 <context>
     <name>TorrentMetadataDialog</name>
+    <message>
+        <location filename="../app/qml/TorrentMetadataDialog.qml" line="80"/>
+        <source>Priority</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/TorrentMetadataDialog.qml" line="82"/>
+        <source>Low</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/TorrentMetadataDialog.qml" line="83"/>
+        <source>Normal</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/TorrentMetadataDialog.qml" line="84"/>
+        <source>High</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/TorrentMetadataDialog.qml" line="85"/>
+        <source>Maximum</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/TorrentMetadataDialog.qml" line="81"/>
+        <source>Mixed</source>
+        <translation></translation>
+    </message>
     <message>
         <location filename="../app/qml/TorrentMetadataDialog.qml" line="568"/>
         <source>Save to</source>

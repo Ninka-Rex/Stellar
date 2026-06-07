@@ -2994,6 +2994,18 @@ bool AppController::setTorrentFileWantedByPath(const QString &downloadId, const 
     return m_torrentSession ? m_torrentSession->setFileWantedByPath(downloadId, path, wanted) : false;
 }
 
+bool AppController::setTorrentFilePriority(const QString &downloadId, int row, int priority) {
+    return m_torrentSession ? m_torrentSession->setFilePriority(downloadId, row, priority) : false;
+}
+
+bool AppController::setTorrentFilePriorityByIndex(const QString &downloadId, int fileIndex, int priority) {
+    return m_torrentSession ? m_torrentSession->setFilePriorityByFileIndex(downloadId, fileIndex, priority) : false;
+}
+
+bool AppController::setTorrentFilePriorityByPath(const QString &downloadId, const QString &path, int priority) {
+    return m_torrentSession ? m_torrentSession->setFilePriorityByPath(downloadId, path, priority) : false;
+}
+
 bool AppController::addTorrentTracker(const QString &downloadId, const QString &url) {
     if (!m_torrentSession)
         return false;

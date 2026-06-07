@@ -71,6 +71,9 @@ public:
     bool setFileWanted(const QString &downloadId, int row, bool wanted);
     bool setFileWantedByFileIndex(const QString &downloadId, int fileIndex, bool wanted);
     bool setFileWantedByPath(const QString &downloadId, const QString &path, bool wanted);
+    bool setFilePriority(const QString &downloadId, int row, int priority);
+    bool setFilePriorityByFileIndex(const QString &downloadId, int fileIndex, int priority);
+    bool setFilePriorityByPath(const QString &downloadId, const QString &path, int priority);
     bool addTracker(const QString &downloadId, const QString &url);
     void mergeTrackers(const QString &downloadId, const QStringList &trackers);
     QString infoHashFromSource(const QString &source) const;
@@ -207,6 +210,12 @@ private:
                       bool forceTrackerUpdate = false, bool trackerOnly = false);
     void updateModels(const QString &downloadId, const libtorrent::torrent_handle &handle,
                       bool forceTrackerUpdate = false, bool trackerOnly = false);
+    // Rebuilds the libtorrent file-priority vector for downloadId from its
+    // TorrentFileModel entries and applies it via prioritize_files(). Skipped
+    // files (wanted=false) get dont_download; wanted files get their stored
+    // priority (clamped to [0,7]). Persists resume data. Shared by all the
+    // setFileWanted*/setFilePriority* mutators.
+    bool applyFilePriorities(const QString &downloadId);
     void requestIpFilterRebuild(); // coalesced via m_ipFilterRebuildPending
     void flushIpFilterRebuild();
     bool addTorrentInternal(DownloadItem *item, bool startPaused, const QString &torrentFilePath, bool deferModels);
@@ -283,6 +292,9 @@ inline bool TorrentSessionManager::renameTorrentFile(const QString &, int, const
 inline QString TorrentSessionManager::torrentCurrentRootName(const QString &) const { return {}; }
 inline bool TorrentSessionManager::setFileWantedByFileIndex(const QString &, int, bool) { return false; }
 inline bool TorrentSessionManager::setFileWantedByPath(const QString &, const QString &, bool) { return false; }
+inline bool TorrentSessionManager::setFilePriority(const QString &, int, int) { return false; }
+inline bool TorrentSessionManager::setFilePriorityByFileIndex(const QString &, int, int) { return false; }
+inline bool TorrentSessionManager::setFilePriorityByPath(const QString &, const QString &, int) { return false; }
 inline void TorrentSessionManager::setTorrentFlags(const QString &, bool, bool, bool) {}
 inline void TorrentSessionManager::setTorrentDownloadMode(const QString &, bool, bool) {}
 inline bool TorrentSessionManager::banPeer(const QString &, const QString &, int, const QString &, const QString &) { return false; }

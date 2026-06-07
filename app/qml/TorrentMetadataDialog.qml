@@ -62,17 +62,31 @@ Window {
     property real fileColName: 300
     property real fileColProgress: 120
     property real fileColSize: 90
+    property real fileColPriority: 90
     signal downloadNowRequested(string downloadId, string savePath, string category, string description)
     signal downloadLaterRequested(string downloadId, string savePath, string category, string description)
 
     function fileTableWidth() {
-        return fileColName + fileColProgress + fileColSize
+        return fileColName + fileColProgress + fileColSize + fileColPriority
     }
 
     function maxNameColWidth(viewportWidth) {
         var viewport = Number(viewportWidth || width)
-        var reserved = fileColProgress + fileColSize + 28
+        var reserved = fileColProgress + fileColSize + fileColPriority + 28
         return Math.max(180, viewport - reserved)
+    }
+
+    // Priority display helpers. -1 = Mixed (folder with differing children).
+    function priorityLabel(p) {
+        if (p === -1) return qsTr("Mixed")
+        if (p === 1)  return qsTr("Low")
+        if (p === 6)  return qsTr("High")
+        if (p === 7)  return qsTr("Maximum")
+        return qsTr("Normal")
+    }
+    function priorityColor(p) {
+        // Theme-aware: primary text (white on dark, black on light); Mixed dimmed.
+        return p === -1 ? ColorPalette.textDisabled : ColorPalette.textPrimary
     }
 
     function _centerOnOwner() {
@@ -1341,6 +1355,20 @@ Window {
                                     elide: Text.ElideRight
                                 }
                             }
+
+                            Rectangle {
+                                width: root.fileColPriority
+                                height: parent.height
+                                color: "transparent"
+                                Text {
+                                    anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: parent.right; rightMargin: 12 }
+                                    text: qsTr("Priority")
+                                    color: ColorPalette.textPrimary
+                                    font.pixelSize: 12 * App.fontScale
+                                    font.bold: true
+                                    elide: Text.ElideRight
+                                }
+                            }
                         }
                     }
 
@@ -1377,6 +1405,7 @@ Window {
                     required property int    depth
                     required property bool   expanded
                     required property int    fileIndex
+                    required property int    priority
 
                     width: Math.max(metaFileList.width, metaFileList.contentWidth)
                     height: 26
@@ -1509,6 +1538,16 @@ Window {
                             elide: Text.ElideRight
                         }
 
+                        Text {
+                            width: Math.max(40, root.fileColPriority)
+                            anchors.verticalCenter: parent.verticalCenter
+                            text: wanted ? root.priorityLabel(priority) : "—"
+                            color: wanted ? root.priorityColor(priority) : ColorPalette.textDisabled
+                            font.pixelSize: 11 * App.fontScale
+                            horizontalAlignment: Text.AlignLeft
+                            elide: Text.ElideRight
+                        }
+
                         Item {
                             width: Math.max(0, metaFileList.contentWidth - root.fileTableWidth())
                             height: parent.height
@@ -1529,6 +1568,7 @@ Window {
                             metaFileCtxPopup._name = metaFd.name
                             metaFileCtxPopup._wanted = metaFd.wanted
                             metaFileCtxPopup._isFolder = metaFd.isFolder
+                            metaFileCtxPopup._priority = metaFd.priority
                             var pos = mapToItem(Overlay.overlay, mouse.x, mouse.y)
                             metaFileCtxPopup.x = pos.x
                             metaFileCtxPopup.y = pos.y
@@ -1654,6 +1694,20 @@ Window {
                 property string _name: ""
                 property bool _wanted: true
                 property bool _isFolder: false
+                property int _priority: 4
+
+                function _applyPriority(level) {
+                    if (root.downloadId.length > 0) {
+                        if (metaFileCtxPopup._fileIndex >= 0)
+                            App.setTorrentFilePriorityByIndex(root.downloadId, metaFileCtxPopup._fileIndex, level)
+                        else
+                            App.setTorrentFilePriorityByPath(root.downloadId, metaFileCtxPopup._path, level)
+                    }
+                    metaPrioritySubmenu.close()
+                    metaFileCtxPopup.close()
+                }
+
+                onClosed: metaPrioritySubmenu.close()
 
                 background: Rectangle {
                     color: ColorPalette.panelBg
@@ -1718,6 +1772,40 @@ Window {
 
                     Rectangle { width: 180; height: 1; color: ColorPalette.border }
 
+                    // Priority ▸ — opens a flyout submenu. Disabled when the file
+                    // is skipped (priority is meaningless for a non-wanted file).
+                    Rectangle {
+                        id: metaPriorityRow
+                        width: 180
+                        height: 34
+                        enabled: metaFileCtxPopup._wanted
+                        opacity: enabled ? 1.0 : 0.45
+                        color: (metaPriorityCtxHover.containsMouse || metaPrioritySubmenu.visible) ? ColorPalette.border : "transparent"
+
+                        Text {
+                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
+                            text: qsTr("Priority")
+                            color: ColorPalette.textPrimary
+                            font.pixelSize: 12 * App.fontScale
+                        }
+                        Text {
+                            anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 10 }
+                            text: "▸"
+                            color: ColorPalette.textSecond
+                            font.pixelSize: 11 * App.fontScale
+                        }
+
+                        MouseArea {
+                            id: metaPriorityCtxHover
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onEntered: if (metaPriorityRow.enabled) metaPrioritySubmenu.openFlyout()
+                            onClicked: if (metaPriorityRow.enabled) metaPrioritySubmenu.openFlyout()
+                        }
+                    }
+
+                    Rectangle { width: 180; height: 1; color: ColorPalette.border }
+
                     Rectangle {
                         width: 180
                         height: 34
@@ -1750,6 +1838,68 @@ Window {
                             onClicked: {
                                 metaFileCtxPopup.close()
                                 metaRenameDialog.openForRename(metaFileCtxPopup._path, metaFileCtxPopup._name, metaFileCtxPopup._fileIndex, metaFileCtxPopup._isFolder)
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Priority flyout submenu — positioned to the right of the Priority
+            // row in the parent context popup.
+            Popup {
+                id: metaPrioritySubmenu
+                parent: Overlay.overlay
+                modal: false
+                padding: 0
+                closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
+                function openFlyout() {
+                    var p = metaPriorityRow.mapToItem(Overlay.overlay, metaPriorityRow.width, 0)
+                    x = p.x - 2
+                    y = p.y
+                    open()
+                }
+
+                background: Rectangle {
+                    color: ColorPalette.panelBg
+                    border.color: ColorPalette.border
+                    radius: 4
+                }
+
+                contentItem: Column {
+                    spacing: 0
+                    Repeater {
+                        model: [
+                            { label: qsTr("Low"),     level: 1 },
+                            { label: qsTr("Normal"),  level: 4 },
+                            { label: qsTr("High"),    level: 6 },
+                            { label: qsTr("Maximum"), level: 7 }
+                        ]
+                        delegate: Rectangle {
+                            required property var modelData
+                            width: 150
+                            height: 32
+                            color: metaPrioItemHover.containsMouse ? ColorPalette.border : "transparent"
+
+                            Text {
+                                anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 28 }
+                                text: modelData.label
+                                color: ColorPalette.textPrimary
+                                font.pixelSize: 12 * App.fontScale
+                            }
+                            Text {
+                                visible: metaFileCtxPopup._priority === modelData.level
+                                anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
+                                text: "✓"
+                                color: ColorPalette.textPrimary
+                                font.pixelSize: 11 * App.fontScale
+                                font.bold: true
+                            }
+                            MouseArea {
+                                id: metaPrioItemHover
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onClicked: metaFileCtxPopup._applyPriority(modelData.level)
                             }
                         }
                     }
