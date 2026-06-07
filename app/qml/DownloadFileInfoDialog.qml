@@ -16,10 +16,10 @@
 
 import QtQuick
 import QtQuick.Window
+import Qt.labs.platform
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import Qt.labs.platform
 
 Window {
     id: root
@@ -674,8 +674,8 @@ Window {
                             id: browseMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
                             onClicked: {
                                 var cur = saveAsField.text || (savePathForIndex(catCombo.currentIndex) + pendingFilename)
-                                saveAsDlg.currentFolder = fileUrlFromPath(cur.replace(/[\/\\][^\/\\]*$/, ""))
-                                saveAsDlg.file  = fileUrlFromPath(cur)
+                                saveAsDlg.folder = fileUrlFromPath(cur.replace(/[\/\\][^\/\\]*$/, ""))
+                                saveAsDlg.currentFile = fileUrlFromPath(cur)
                                 saveAsDlg.open()
                             }
                         }

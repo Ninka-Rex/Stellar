@@ -16,10 +16,10 @@
 
 import QtQuick
 import QtQuick.Window
+import Qt.labs.platform
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import Qt.labs.platform
 
 // YtdlpDialog - format picker shown when a yt-dlp-compatible URL is submitted.
 Window {

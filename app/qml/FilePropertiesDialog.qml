@@ -16,10 +16,10 @@
 
 import QtQuick
 import QtQuick.Window
+import Qt.labs.platform
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
-import Qt.labs.platform
 import QtCore
 
 Window {
@@ -1598,7 +1598,7 @@ Window {
         id: moveFileDialog
         title: _isTorrent ? qsTr("Move Torrent Data To...") : qsTr("Move File To...")
         fileMode: FileDialog.SaveFile
-        currentFolder: {
+        folder: {
             if (!root.item) return ""
             var p = safeStr(root.item.savePath).replace(/\\/g, "/")
             return p ? fileUrlFromPath(p) : ""
