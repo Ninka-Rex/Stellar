@@ -149,12 +149,25 @@ Item {
         bottomPadding: 0
         padding: 0
 
+        // Square, solid panel with a uniform 1px frame. The shared style's
+        // background has a rounded radius; with square highlight rows clipped
+        // flush to it the corners mismatch and the border reads as uneven
+        // (3-sided / doubled). A square frame keeps the border consistent.
+        background: Rectangle {
+            implicitWidth: 200
+            color: ColorPalette.menuBg
+            border.width: 1
+            border.color: ColorPalette.border
+        }
+
         Instantiator {
             model: root.visibleQueues()
 
             delegate: MenuItem {
                 required property var modelData
                 text: modelData.queueName
+                leftPadding: 12
+                rightPadding: 12
                 onTriggered: root.queueSelected(modelData.queueId)
             }
 
