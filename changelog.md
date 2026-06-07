@@ -2,6 +2,36 @@
 
 ---
 
+## Version 0.10.0 Beta - June 7, 2026
+
+### New
+- Light and dark mode with theme toggle in the View menu
+- FTP and FTPS protocol support
+- Torrent file download priority - set Low, Normal, High, or Maximum per file
+- Status bar can now show total peer connections and DHT nodes (Options > General)
+- Loading progress bar on startup
+- Metadata description auto-fill for video, image, and raw file downloads
+
+### Improved
+- HTTP download progress dialog redesigned
+- VPN network adapter binding hardened
+- Libtorrent settings tuned for faster seeding
+- Removed Microsoft Visual C++ Redistributable from the Windows installer
+- Torrent name now updates when you rename the root folder
+
+### Fixed
+- Torrent speed sawtooth pattern
+- Text cut off in statistics and grabber dialogs when using foreign languages
+- Category panel widths shifting when switching between selections
+- Download table column headers truncated too early
+- File info and download complete dialogs missing their own taskbar buttons
+- Queue dropdown menu padding and alignment
+
+### Removed
+- Removed DHT online user estimation
+
+---
+
 ## Version 0.9.0 Beta - June 1, 2026
 
 ### New
