@@ -816,7 +816,7 @@ Window {
     function applySettings() {
         // Always flush the current category form
         if (catPage.catEditId !== "") {
-            var exts = catEditExts.text.split(",").map(function(s) {
+            var exts = catEditExts.text.split(/[\s,]+/).map(function(s) {
                 return s.trim().replace(/^\./, "").toLowerCase()
             }).filter(function(s) { return s.length > 0 })
             var sites = catEditSites.text.split(/\s+/).filter(function(s) { return s.length > 0 })
@@ -1438,7 +1438,7 @@ Window {
                                             if (!d || !d.id) return
                                             root.loadingCategory = true
                                             catEditName.text  = d.label || ""
-                                            catEditExts.text  = (d.extensions || []).join(", ")
+                                            catEditExts.text  = (d.extensions || []).join(" ").toUpperCase()
                                             catEditSites.text = (d.sitePatterns || []).join(" ")
                                             catEditPath.text  = (d.savePath || "").replace(/\\/g, "/")
                                             catPage.catEditBuiltIn = !!d.builtIn
@@ -1449,7 +1449,7 @@ Window {
                                         onCurrentIndexChanged: {
                                             // Always save the previous category before switching
                                             if (catPage.catEditId !== "") {
-                                                var exts = catEditExts.text.split(",").map(function(s) {
+                                                var exts = catEditExts.text.split(/[\s,]+/).map(function(s) {
                                                     return s.trim().replace(/^\./, "").toLowerCase()
                                                 }).filter(function(s) { return s.length > 0 })
                                                 var sites = catEditSites.text.split(/\s+/).filter(function(s) { return s.length > 0 })
@@ -1460,7 +1460,7 @@ Window {
                                             if (!d || !d.id) return
                                             root.loadingCategory = true
                                             catEditName.text  = d.label || ""
-                                            catEditExts.text  = (d.extensions || []).join(", ")
+                                            catEditExts.text  = (d.extensions || []).join(" ").toUpperCase()
                                             catEditSites.text = (d.sitePatterns || []).join(" ")
                                             catEditPath.text  = (d.savePath || "").replace(/\\/g, "/")
                                             catPage.catEditBuiltIn = !!d.builtIn
@@ -1580,7 +1580,7 @@ Window {
                                 ColumnLayout {
                                     Layout.fillWidth: true
                                     spacing: 4
-                                    Text { text: qsTr("File types  (comma-separated, e.g.  mp4, mkv, avi)"); color: "#909090"; font.pixelSize: 11 * App.fontScale }
+                                    Text { text: qsTr("Space or comma-separated. Case-insensitive."); color: "#909090"; font.pixelSize: 11 * App.fontScale }
                                     ScrollView {
                                         Layout.fillWidth: true
                                         implicitHeight: 52
@@ -1591,8 +1591,8 @@ Window {
                                             wrapMode: TextArea.Wrap
                                             font.pixelSize: 12 * App.fontScale; color: ColorPalette.textPrimary
                                             background: null
-                                            padding: 6
-                                            placeholderText: "mp4, mkv, avi, mov"
+                                            leftPadding: 6; rightPadding: 6; bottomPadding: 6; topPadding: 8
+                                            placeholderText: "MP4 MKV AVI MOV"
                                             onTextChanged: if (!root.loadingCategory) root.catDirty = true
                                         }
                                     }
@@ -1993,7 +1993,7 @@ Window {
                                     font.family: "monospace"
                                     color: ColorPalette.textPrimary
                                     background: null
-                                    padding: 6
+                                    leftPadding: 6; rightPadding: 6; bottomPadding: 6; topPadding: 8
                                     text: App.settings.monitoredExtensions.join(" ").toUpperCase()
                                 }
                             }
@@ -2025,7 +2025,7 @@ Window {
                                     font.family: "monospace"
                                     color: ColorPalette.textPrimary
                                     background: null
-                                    padding: 6
+                                    leftPadding: 6; rightPadding: 6; bottomPadding: 6; topPadding: 8
                                     text: App.settings.excludedSites.join(" ")
                                 }
                             }
@@ -2080,7 +2080,7 @@ Window {
                                     font.family: "monospace"
                                     color: ColorPalette.textPrimary
                                     background: null
-                                    padding: 6
+                                    leftPadding: 6; rightPadding: 6; bottomPadding: 6; topPadding: 8
                                     text: App.settings.excludedAddresses.join("\n")
                                 }
                             }
