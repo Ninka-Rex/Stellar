@@ -2710,9 +2710,6 @@ DownloadItem *AppController::createDownloadItem(const QString &url, const QStrin
     const QString id = generateId();
     const QUrl qurl = QUrl::fromUserInput(url);
     auto *item = new DownloadItem(id, qurl);
-    qWarning() << "[DBG] createDownloadItem id=" << id << "url=" << url
-               << "startNow=" << startNow << "silent=" << silentEnqueue
-               << "emitUi=" << emitUiSignal;
 
     if (!filenameOverride.isEmpty()) {
         item->setFilename(filenameOverride);
@@ -3529,8 +3526,6 @@ bool AppController::finalizePendingDownload(const QString &downloadId,
                                             const QString &description,
                                             bool startNow,
                                             const QString &queueId) {
-    qWarning() << "[DBG] finalizePendingDownload id=" << downloadId
-               << "startNow=" << startNow << "path=" << fullSavePath;
     DownloadItem *item = m_downloadModel->itemById(downloadId);
 
     // Item was queued silently (beginPendingDownload with startDownloadWhileFileInfo).

@@ -2549,13 +2549,16 @@ Window {
                 // General
                 Item {
                     ScrollView {
+                        id: generalScroll
                         anchors.fill: parent
                         contentWidth: availableWidth
+                        contentHeight: generalCol.implicitHeight + 24
                         clip: true
 
                     ColumnLayout {
-                        width: parent.width
-                        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
+                        id: generalCol
+                        width: generalScroll.availableWidth - 24
+                        x: 12; y: 12
                         spacing: 10
 
                         Text { text: qsTr("General"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
@@ -2848,8 +2851,6 @@ Window {
                                 onClicked: importBackupDlg.open()
                             }
                         }
-
-                        Item { Layout.fillHeight: true }
                     }
                     } // ScrollView
                 } // General
