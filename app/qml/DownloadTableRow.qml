@@ -362,7 +362,7 @@ Rectangle {
             Text {
                 anchors { fill: parent; leftMargin: 6 }
                 verticalAlignment: Text.AlignVCenter
-                text: rowRect.item ? (rowRect.item.description || "--") : "--"
+                text: rowRect.item ? (rowRect.item.description || "") : ""
                 color: rowRect._sel ? ColorPalette.selectionText : ColorPalette.textPrimary
                 font.pixelSize: 11 * App.fontScale
             }
