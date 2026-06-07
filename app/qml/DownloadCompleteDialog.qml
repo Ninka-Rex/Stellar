@@ -43,7 +43,11 @@ Window {
     height: mainCol.implicitHeight + 24
     color: ColorPalette.cardBg
     title: qsTr("Download complete")
-    flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.MSWindowsFixedSizeDialogHint
+
+    // Detach from the main window so each complete dialog gets its own taskbar
+    // button (IDM-style). Owner set to null at the instantiation site in Main.qml.
+    flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint
+           | Qt.WindowMinimizeButtonHint | Qt.MSWindowsFixedSizeDialogHint
     Material.theme: ColorPalette.materialTheme
     Material.foreground: ColorPalette.textPrimary
     Material.background: ColorPalette.materialBg

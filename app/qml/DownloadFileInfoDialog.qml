@@ -41,8 +41,13 @@ Window {
     minimumWidth: 480
     title: qsTr("Download File Info")
     color: ColorPalette.cardBg
-    modality: Qt.ApplicationModal
-    flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
+
+    // Detach from the main window so each new-download dialog gets its own
+    // taskbar button (IDM-style). Non-modal so it behaves as an independent
+    // window the user can select/minimise separately. Owner set to null at the
+    // instantiation site in Main.qml.
+    flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+           | Qt.WindowMinimizeButtonHint | Qt.MSWindowsFixedSizeDialogHint
 
     Material.theme: ColorPalette.materialTheme
     Material.foreground: ColorPalette.textPrimary
@@ -83,6 +88,10 @@ Window {
             _centerOnOwner()
             raise()
             requestActivate()
+            // Non-modal + detached owner: Windows can re-raise the main window
+            // right after show(), pushing this behind it. Re-assert z-order once
+            // the event loop settles.
+            Qt.callLater(function() { root.raise(); root.requestActivate() })
         }
         if (!visible) {
             if (!_accepted && pendingDownloadId.length > 0)

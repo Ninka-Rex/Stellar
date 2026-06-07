@@ -2710,6 +2710,9 @@ DownloadItem *AppController::createDownloadItem(const QString &url, const QStrin
     const QString id = generateId();
     const QUrl qurl = QUrl::fromUserInput(url);
     auto *item = new DownloadItem(id, qurl);
+    qWarning() << "[DBG] createDownloadItem id=" << id << "url=" << url
+               << "startNow=" << startNow << "silent=" << silentEnqueue
+               << "emitUi=" << emitUiSignal;
 
     if (!filenameOverride.isEmpty()) {
         item->setFilename(filenameOverride);
@@ -2752,7 +2755,11 @@ DownloadItem *AppController::createDownloadItem(const QString &url, const QStrin
     else
         m_queue->enqueueHeld(item);
 
-    if (emitUiSignal)
+    // silentEnqueue means the item must stay hidden until finalizePendingDownload()
+    // surfaces it — emitting downloadAdded here would pop a progress dialog while the
+    // file-info dialog is still open (stealing focus, then ending up behind the main
+    // window) and double up with the dialog finalize opens. Stay silent.
+    if (emitUiSignal && !silentEnqueue)
         emit downloadAdded(item);
     return item;
 }
@@ -3522,6 +3529,8 @@ bool AppController::finalizePendingDownload(const QString &downloadId,
                                             const QString &description,
                                             bool startNow,
                                             const QString &queueId) {
+    qWarning() << "[DBG] finalizePendingDownload id=" << downloadId
+               << "startNow=" << startNow << "path=" << fullSavePath;
     DownloadItem *item = m_downloadModel->itemById(downloadId);
 
     // Item was queued silently (beginPendingDownload with startDownloadWhileFileInfo).

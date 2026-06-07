@@ -1320,7 +1320,8 @@ ApplicationWindow {
     // ── Download File Info dialog (step 2) ───────────────────────────────
     DownloadFileInfoDialog {
         id: fileInfoDialog
-        transientParent: root
+        // Detach from main window so it gets its own taskbar button, IDM-style.
+        transientParent: null
         onDownloadNow: (downloadId, url, savePath, category, desc) => {
             if (root._pendingTorrentFilePath.length > 0) {
                 var pendingTorrentPathNow = root._pendingTorrentFilePath
@@ -2383,7 +2384,8 @@ ApplicationWindow {
     }
 
     // ── Download Complete Dialog ─────────────────────────────────────────
-    DownloadCompleteDialog { id: completeDialog; transientParent: root }
+    // Detach from main window so each gets its own taskbar button, IDM-style.
+    DownloadCompleteDialog { id: completeDialog; transientParent: null }
 
     // ── Settings / About Dialog ──────────────────────────────────────────
     SettingsDialog {
