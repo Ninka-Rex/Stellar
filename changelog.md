@@ -2,6 +2,17 @@
 
 ---
 
+## Version 0.10.1 Beta - June 7, 2026
+
+### Improved
+- The main window now stays hidden when Stellar cold-starts to handle an intercepted download
+
+### Fixed
+- Linux: file picker and save dialogs now use the native desktop picker
+- Linux: "Grant permission" for Flatpak Firefox no longer fails with an OpenSSL version mismatch
+
+---
+
 ## Version 0.10.0 Beta - June 7, 2026
 
 ### New
