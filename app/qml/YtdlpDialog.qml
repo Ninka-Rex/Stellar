@@ -438,7 +438,7 @@ Window {
                 Image {
                     id: headerIcon
                     anchors { left: parent.left; verticalCenter: parent.verticalCenter }
-                    source: "qrc:/qt/qml/com/stellar/app/app/qml/icons/wand.svg"
+                    source: "icons/wand.svg"
                     sourceSize: Qt.size(22, 22)
                     width: 22; height: 22
                     fillMode: Image.PreserveAspectFit

@@ -220,9 +220,9 @@ Window {
                                 fillMode: Image.PreserveAspectFit
                                 anchors.verticalCenter: parent.verticalCenter
                                 source: {
-                                    if (model.queueId === "main-download") return "qrc:/qt/qml/com/stellar/app/app/qml/icons/main_queue.svg"
-                                    if (model.queueId === "main-sync") return "qrc:/qt/qml/com/stellar/app/app/qml/icons/synch_queue.svg"
-                                    return "qrc:/qt/qml/com/stellar/app/app/qml/icons/custom_queue.svg"
+                                    if (model.queueId === "main-download") return "icons/main_queue.svg"
+                                    if (model.queueId === "main-sync") return "icons/synch_queue.svg"
+                                    return "icons/custom_queue.svg"
                                 }
                             }
 

@@ -90,7 +90,7 @@ Window {
                 Layout.preferredHeight: 28
                 sourceSize.width: 28
                 sourceSize.height: 28
-                source: "qrc:/qt/qml/com/stellar/app/app/qml/icons/checkmark.svg"
+                source: "icons/checkmark.svg"
                 fillMode: Image.PreserveAspectFit
                 smooth: true
             }

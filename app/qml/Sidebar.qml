@@ -624,7 +624,7 @@ Rectangle {
                                 anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 4 }
                                 spacing: 2
                                 Text { text: root.queuesExpanded ? "▼" : "▶"; color: "#999"; font.pixelSize: 12 * App.fontScale; width: 16; anchors.verticalCenter: parent.verticalCenter }
-                                Image { width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; source: "qrc:/qt/qml/com/stellar/app/app/qml/icons/queues.svg"; anchors.verticalCenter: parent.verticalCenter }
+                                Image { width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; source: "icons/queues.svg"; anchors.verticalCenter: parent.verticalCenter }
                                 Text { text: qsTr("Queues"); color: root.selectedIndex === -999 ? ColorPalette.selectionText : ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                             }
 
@@ -652,9 +652,9 @@ Rectangle {
                                     spacing: 5
                                     Image {
                                         width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit
-                                        source: queueId === "main-download" ? "qrc:/qt/qml/com/stellar/app/app/qml/icons/main_queue.svg"
-                                              : queueId === "main-sync"     ? "qrc:/qt/qml/com/stellar/app/app/qml/icons/synch_queue.svg"
-                                              :                               "qrc:/qt/qml/com/stellar/app/app/qml/icons/custom_queue.svg"
+                                        source: queueId === "main-download" ? "icons/main_queue.svg"
+                                              : queueId === "main-sync"     ? "icons/synch_queue.svg"
+                                              :                               "icons/custom_queue.svg"
                                     }
                                     Text { text: queueName || ""; color: root.selectedIndex === -100 - index ? ColorPalette.selectionText : ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                 }

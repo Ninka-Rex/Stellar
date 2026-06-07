@@ -429,7 +429,8 @@ file(WRITE "${STELLAR_STYLE_QMLDIR}"
 "module Stellar\n"
 "Menu 1.0 Menu.qml\n"
 "MenuItem 1.0 MenuItem.qml\n"
-"MenuSeparator 1.0 MenuSeparator.qml\n")
+"MenuSeparator 1.0 MenuSeparator.qml\n"
+"ComboBox 1.0 ComboBox.qml\n")
 # Embed the qmldir as ".../Stellar/qmldir" (the generated file has a different
 # name on disk, so alias it) and the two style QML files alongside it.
 set_source_files_properties("${STELLAR_STYLE_QMLDIR}" PROPERTIES
@@ -440,6 +441,8 @@ set_source_files_properties("${CMAKE_CURRENT_SOURCE_DIR}/app/style/MenuItem.qml"
     QT_RESOURCE_ALIAS "MenuItem.qml")
 set_source_files_properties("${CMAKE_CURRENT_SOURCE_DIR}/app/style/MenuSeparator.qml" PROPERTIES
     QT_RESOURCE_ALIAS "MenuSeparator.qml")
+set_source_files_properties("${CMAKE_CURRENT_SOURCE_DIR}/app/style/ComboBox.qml" PROPERTIES
+    QT_RESOURCE_ALIAS "ComboBox.qml")
 qt_add_resources(Stellar "stellar_style"
     PREFIX "/qt/qml/Stellar"
     FILES
@@ -447,6 +450,7 @@ qt_add_resources(Stellar "stellar_style"
         "${CMAKE_CURRENT_SOURCE_DIR}/app/style/Menu.qml"
         "${CMAKE_CURRENT_SOURCE_DIR}/app/style/MenuItem.qml"
         "${CMAKE_CURRENT_SOURCE_DIR}/app/style/MenuSeparator.qml"
+        "${CMAKE_CURRENT_SOURCE_DIR}/app/style/ComboBox.qml"
 )
 
 
