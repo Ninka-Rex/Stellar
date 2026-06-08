@@ -58,6 +58,20 @@ QJsonObject articleToJson(const RssManager::StoredArticle &article)
     };
 }
 
+// SECURITY: feed-supplied download URLs reach the auto-download dispatcher with
+// no user interaction. The downstream handler (AppController) does not enforce a
+// scheme allowlist, so a hostile feed could auto-trigger file:/data:/javascript:
+// URLs. Restrict unattended auto-downloads to network schemes we actually fetch.
+bool isAllowedAutoDownloadScheme(const QString &url)
+{
+    const QString lower = url.trimmed().toLower();
+    return lower.startsWith(QLatin1String("http://"))
+        || lower.startsWith(QLatin1String("https://"))
+        || lower.startsWith(QLatin1String("magnet:"))
+        || lower.startsWith(QLatin1String("ftp://"))
+        || lower.startsWith(QLatin1String("ftps://"));
+}
+
 RssManager::StoredArticle articleFromJson(const QJsonObject &obj)
 {
     RssManager::StoredArticle article;
@@ -443,6 +457,10 @@ void RssManager::applyAutoDownloadRules(const QString &feedId, const QVector<Sto
 
         const QString url = article.downloadUrl.isEmpty() ? article.link : article.downloadUrl;
         if (url.isEmpty())
+            continue;
+        // Reject before touching m_autoDownloadedGuids so a blocked article is
+        // re-evaluated (not silently marked consumed) on the next fetch.
+        if (!isAllowedAutoDownloadScheme(url))
             continue;
 
         for (const QJsonValue &ruleVal : rules) {

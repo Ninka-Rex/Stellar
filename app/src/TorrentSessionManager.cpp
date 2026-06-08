@@ -117,12 +117,13 @@ QString normalizeTorrentUri(const QString &value) {
     const QString trimmed = value.trimmed();
     if (isBareTorrentInfoHash(trimmed))
         return QStringLiteral("magnet:?xt=urn:btih:%1").arg(trimmed.toLower());
-    // Cap magnet URIs to a sane length before handing to libtorrent.
-    // Real-world magnet links with many trackers are well under 4096 chars;
-    // anything longer is either malformed or a DoS attempt.
-    static constexpr int kMaxMagnetLen = 4096;
+    // Sanity ceiling before handing to libtorrent. A magnet with dozens of
+    // trackers legitimately runs to several KB, so the cap is generous (64 KB);
+    // anything larger is malformed or hostile. REJECT rather than truncate —
+    // truncating could chop a magnet mid-"&tr=" and silently corrupt it.
+    static constexpr int kMaxMagnetLen = 64 * 1024;
     if (trimmed.size() > kMaxMagnetLen)
-        return trimmed.left(kMaxMagnetLen);
+        return QString();   // caller treats empty as invalid
     return trimmed;
 }
 
@@ -1550,6 +1551,14 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
 
     if (torrentFilePath.isEmpty()) {
         const QString magnetSource = normalizeTorrentUri(item->torrentSource());
+        // Reject up front: an empty result means the magnet was malformed or
+        // over-length. Guard before the assignment below, otherwise we'd clobber
+        // the item's real source with "".
+        if (magnetSource.isEmpty()) {
+            emit torrentErrored(item->id(),
+                QStringLiteral("Magnet link is malformed or exceeds the maximum allowed length."));
+            return false;
+        }
         if (magnetSource != item->torrentSource())
             item->setTorrentSource(magnetSource);
         libtorrent::add_torrent_params magnetParams =

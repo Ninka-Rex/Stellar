@@ -361,18 +361,27 @@ void SegmentedTransfer::applyRequestHeaders(QNetworkRequest &req, const QUrl &ur
         return out.toUtf8();
     };
 
+    // SECURITY: credential-bearing headers must only travel to the registered
+    // domain of the original download URL. `url` is the destination — after a
+    // HEAD redirect it becomes m_effectiveUrl, which a hostile server can point
+    // at any host (Qt's NoLessSafeRedirectPolicy permits cross-host redirects).
+    // Without this gate, a 302 to attacker.example would leak the item's
+    // Basic-auth credentials and Referer. The NAM cookie jar is already
+    // domain-scoped by Qt, so only the raw-Cookie fallback needs the same gate.
+    const bool sameDomain = m_item && sameRegisteredDomain(url, m_item->url());
+
     // Cookies are injected into the NAM's cookie jar by seedCookieJar()
     // so they survive redirect chains.  Only fall back to the raw header
     // if the jar is unavailable (should never happen in practice).
-    if (m_item && !m_item->cookies().isEmpty() && (!m_nam || !m_nam->cookieJar()))
+    if (m_item && sameDomain && !m_item->cookies().isEmpty() && (!m_nam || !m_nam->cookieJar()))
         req.setRawHeader("Cookie", stripCrlf(m_item->cookies()));
 
     // Referer: critical for hotlink-protected hosters.  Stored on the item
     // by the browser extension but was previously never sent — major gap.
-    if (m_item && !m_item->referrer().isEmpty())
+    if (m_item && sameDomain && !m_item->referrer().isEmpty())
         req.setRawHeader("Referer", stripCrlf(m_item->referrer()));
 
-    if (m_item && !m_item->username().isEmpty()) {
+    if (m_item && sameDomain && !m_item->username().isEmpty()) {
         const QByteArray credentials =
             (m_item->username() + QLatin1Char(':') + m_item->password()).toUtf8().toBase64();
         req.setRawHeader("Authorization", QByteArray("Basic ") + credentials);
