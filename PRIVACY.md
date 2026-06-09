@@ -1,107 +1,50 @@
 # Privacy Policy for Stellar Download Manager
 
-Last updated: April 11, 2026
+Last updated: June 8, 2026
 
-This Privacy Policy applies to:
-
-- Stellar Download Manager desktop application
-- Stellar Download Manager Chrome extension
-- Stellar Download Manager Firefox extension
-
-Stellar Download Manager is designed to help you send downloads from your browser to the Stellar desktop application running on your device.
+Applies to the Stellar Download Manager desktop application and its Chrome and Firefox extensions.
 
 ## Summary
 
-- Stellar Download Manager does not collect your personal data.
-- Stellar Download Manager does not send your personal data to the developer.
-- The browser extensions do not collect your data for the developer.
-- Stellar Download Manager does not sell your personal information.
-- Stellar Download Manager does not use advertising SDKs.
-- Stellar Download Manager does not include third-party analytics or behavioral tracking.
-- Any information handled by Stellar Download Manager is processed locally on your device only to make the app work.
+Stellar does not collect, sell, or transmit your personal data to the developer. There are no analytics, ads, or behavioral tracking. Everything it processes stays on your device and is kept only as long as needed to make the app work.
 
-## Information We Process
+## What Stellar Processes
 
-Stellar Download Manager only processes the minimum information needed to work locally on your device, such as download links, filenames, download status, app settings, and optional authentication data needed for downloads you ask it to handle.
+Stellar processes the minimum needed to function locally: download links, filenames, status, app settings, and any authentication data (such as cookies) for downloads you ask it to handle. This data lives on your device and is retained only for as long as the feature requires — most of it is discarded as soon as a download completes or the app closes.
 
-## How the Browser Extensions Work
+- **Downloads:** History and metadata are stored in local app data files so you can pause, resume, and re-download. Partial and completed files are written to the folders you choose.
+- **Torrents:** When you use the built-in torrent client, your IP address is shared peer-to-peer with trackers and other peers — this is how BitTorrent works, not something Stellar adds. Torrent metadata and fast-resume data are stored locally only while a torrent is active or seeding.
+- **Browser extensions:** Settings (enabled state, monitored extensions, excluded sites) are stored in the browser's local extension storage. To hand a download to the desktop app, the extension reads the current tab URL and, for authenticated downloads, the relevant cookies — passed straight to your local Stellar copy and not retained beyond that handoff.
 
-The Chrome and Firefox extensions request broad site access and download-related permissions because they need to detect downloadable files across sites and hand those downloads off to the native Stellar application.
-
-The browser extensions do not collect personal data for the developer, do not sell data, and do not use analytics or tracking services.
-
-The extensions may:
-
-- Monitor browser download creation events
-- Read the current tab URL to identify the page that initiated a download
-- Access cookies for the relevant download domain, and related parent domains when needed, so authenticated downloads can continue in the desktop app
-- Store extension settings locally in the browser, such as enabled state, monitored extensions, excluded sites, and excluded addresses
-- Communicate with the locally installed Stellar native messaging host on your computer
-
-The extensions are intended to operate locally between your browser and your copy of Stellar Download Manager. They are not designed to send your browsing history or download activity to a remote analytics service.
-
-## How the Desktop App Uses Data
-
-The desktop application uses any locally processed information only to make the app work.
-
-## Local Storage
-
-Stellar Download Manager stores data locally on your device to function properly. This may include:
-
-- Application settings
-- Download history and metadata
-- Queue definitions
-- Partial download files and completed files
-- Extension settings stored by the browser
-
-Based on the current implementation, download history and queue data are stored in local application data files on your device, and extension preferences are stored in the browser's local extension storage.
-
-## Cookies and Authentication Data
-
-If you use the browser extensions to intercept a download from a site that requires authentication, the extension may collect relevant cookies for that download and pass them to the local Stellar desktop application so the requested download can proceed.
-
-These cookies are used for download authorization and compatibility. They are not used for advertising.
+The extensions request broad site access only to detect downloadable files and forward them to the native Stellar app. They do not send your browsing history or download activity anywhere remote.
 
 ## Network Connections
 
-Stellar Download Manager may connect to remote servers only when needed to provide requested functionality, for example:
+Stellar connects to remote servers only to do what you ask:
 
-- Downloading files from URLs you provide or approve
-- Checking for application updates, which sends requests to GitHub servers
-- Fetching release or changelog information
-- Using the grabber/crawler feature on URLs you provide
-- Using yt-dlp functionality you initiate
+- Downloading files, torrents, or yt-dlp/grabber content from URLs you provide or approve
+- Checking for updates and changelogs (GitHub servers)
 
-## Data Sharing
-
-Stellar Download Manager does not collect personal information for the developer.
-
-Stellar Download Manager does not sell or rent your personal information.
-
-Stellar Download Manager does not share your data with data brokers.
-
-Data may be transmitted to:
-
-- The website or file host from which you request a download
-- Browser vendors as part of normal browser extension platform operation
-- Network or proxy services you configure
+Data may reach the file host you download from, trackers and peers for torrents you start, and any proxy you configure — never the developer.
 
 ## Retention and Control
 
-Data stays on your device unless you delete it. You can remove it by clearing download history, clearing extension storage, or uninstalling the app or extension.
+Data stays on your device and is kept only as long as the relevant feature needs it. You can remove it any time by clearing download history, clearing extension storage, or uninstalling the app or extension.
 
 ## Children's Privacy
 
-Stellar Download Manager is not directed to children under 13. We do not collect personal information from children, or from anyone else for that matter.
+Stellar is not directed to children under 13, and does not collect personal information from anyone.
 
 ## Security
 
-Stellar Download Manager is intended to keep data local to your device where practical, but no software or transmission method can guarantee absolute security. You are responsible for securing your device, browser profile, operating system account, and downloaded files.
+Security is taken seriously. Stellar is built to treat every server and downloaded file as hostile: untrusted input is sanitized and validated, downloads run without shell expansion, and the torrent client can be hardened to bind traffic to a chosen network interface. Data is kept local wherever practical.
 
-## Changes to This Policy
+That said, no software can guarantee absolute security, and Stellar is provided "as is" without any warranty — express or implied — including any implied warranty of merchantability or fitness for a particular purpose. You are responsible for securing your device, browser profile, and downloaded files.
 
-This Privacy Policy may be updated from time to time. The latest version should be published with the project source or distribution materials.
+## Changes
+
+This policy may be updated from time to time; the latest version ships with the project source.
 
 ## Contact
 
-If you need to contact the developer about privacy questions, email [admin@stellar.moe](mailto:admin@stellar.moe).
+Privacy questions: [admin@stellardownloadmanager.org](mailto:admin@stellardownloadmanager.org).
