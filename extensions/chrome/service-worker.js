@@ -15,7 +15,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import { handleDownloadCreated, recordModifierKey, forceIntercept } from "./shared/interceptor.js";
-import { ping, requestDownload, shouldIntercept, syncSettingsFromApp, passesGlobalGate } from "./shared/messaging.js";
+import { ping, requestDownload, requestImportLinks, shouldIntercept, syncSettingsFromApp, passesGlobalGate } from "./shared/messaging.js";
 
 const ICONS_ENABLED = {
     16: "icons/milky-way.png",
@@ -190,14 +190,17 @@ chrome.runtime.onInstalled.addListener(async () => {
         title: "Download with Stellar",
         contexts: ["video", "audio", "image"],
     });
+    chrome.contextMenus.create({
+        id: "stellar-download-links",
+        title: "Download all links with Stellar",
+        contexts: ["selection"],
+    });
     await syncSettingsFromApp();
     await refreshIcon();
 });
 
-chrome.contextMenus.onClicked.addListener(async (info) => {
-    const url = info.linkUrl || info.srcUrl || info.pageUrl;
-    if (!url) return;
-    let cookieHeader = "";
+// Collect the cookie header the app needs to re-fetch a URL behind a login.
+async function collectCookieHeader(url) {
     try {
         const urlObj = new URL(url);
         const cookieUrls = [url];
@@ -212,8 +215,38 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
                 if (!seen.has(c.name)) { seen.add(c.name); allCookies.push(c); }
             }
         }
-        cookieHeader = allCookies.map(c => `${c.name}=${c.value}`).join("; ");
+        return allCookies.map(c => `${c.name}=${c.value}`).join("; ");
     } catch { /* cookies permission may not be granted */ }
+    return "";
+}
+
+chrome.contextMenus.onClicked.addListener(async (info, tab) => {
+    if (info.menuItemId === "stellar-download-links") {
+        if (!tab || tab.id === undefined) return;
+        let links = [];
+        try {
+            links = await chrome.tabs.sendMessage(tab.id, { type: "collectSelectedLinks" });
+        } catch (err) {
+            console.error("[Stellar] Could not collect selected links:", err);
+        }
+        if (!Array.isArray(links) || links.length === 0) return;
+        // Cookies for the page host so the app can refetch login-gated links.
+        const cookieHeader = await collectCookieHeader(info.pageUrl || (tab && tab.url) || "");
+        try {
+            await requestImportLinks(links, {
+                referrer: info.pageUrl ?? "",
+                pageUrl: info.pageUrl ?? "",
+                cookies: cookieHeader,
+            });
+        } catch (err) {
+            console.error("[Stellar] Import links failed:", err);
+        }
+        return;
+    }
+
+    const url = info.linkUrl || info.srcUrl || info.pageUrl;
+    if (!url) return;
+    const cookieHeader = await collectCookieHeader(url);
     try {
         await requestDownload({ url, referrer: info.frameUrl ?? info.pageUrl ?? "", pageUrl: info.pageUrl ?? "", cookies: cookieHeader });
     } catch (err) {

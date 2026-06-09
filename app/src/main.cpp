@@ -335,11 +335,16 @@ static int runNativeMessagingHost(int argc, char *argv[])
     QCoreApplication::setApplicationName(QStringLiteral("Stellar"));
     QCoreApplication::setOrganizationName(QStringLiteral("Stellar"));
 
-    if (type == QStringLiteral("download") || type == QStringLiteral("focus")) {
+    if (type == QStringLiteral("download") || type == QStringLiteral("focus")
+        || type == QStringLiteral("importLinks")) {
         QLocalSocket sock;
         sock.connectToServer(QStringLiteral("StellarDownloadManager"));
         if (!sock.waitForConnected(500)) {
-            const bool isDownload = (type == QStringLiteral("download"));
+            // download and importLinks both carry user intent that must survive a
+            // cold start, so they are persisted to the drop file and replayed by
+            // the GUI on launch. focus has no durable payload.
+            const bool isDownload = (type == QStringLiteral("download")
+                                     || type == QStringLiteral("importLinks"));
             // Main app isn't running. For downloads, persist the payload to the
             // drop file and let the GUI replay it on startup.
             //

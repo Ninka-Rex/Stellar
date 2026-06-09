@@ -998,6 +998,35 @@ void AppController::handleIpcPayload(const QByteArray &json) {
             if (!pageUrl.isEmpty())  m_pendingPageUrls[url]  = pageUrl;
             emit interceptedDownloadRequested(url, name);
         }
+    } else if (type == QStringLiteral("importLinks")) {
+        // Multi-link selection from the browser extension. Every element is
+        // untrusted server/page data — type-check each field and validate the
+        // URL scheme before forwarding to the review dialog.
+        const QJsonArray links = obj.value(QStringLiteral("links")).toArray();
+        QVariantList out;
+        for (const QJsonValue &v : links) {
+            if (!v.isObject()) continue;
+            const QJsonObject lo = v.toObject();
+            const QString url = lo.value(QStringLiteral("url")).toString().trimmed();
+            if (url.isEmpty()) continue;
+            const QString low = url.toLower();
+            const bool accepted = low.startsWith(QStringLiteral("http://"))
+                || low.startsWith(QStringLiteral("https://"))
+                || low.startsWith(QStringLiteral("ftp://"))
+                || low.startsWith(QStringLiteral("magnet:"))
+                || low.endsWith(QStringLiteral(".torrent"));
+            if (!accepted) continue;
+            const QString linkText = lo.value(QStringLiteral("text")).toString().trimmed();
+            QVariantMap m;
+            m.insert(QStringLiteral("url"), url);
+            m.insert(QStringLiteral("name"), QString());     // dialog derives from URL
+            m.insert(QStringLiteral("linkText"), linkText);
+            out.append(m);
+        }
+        if (!out.isEmpty()) {
+            emit importLinksRequested(out);
+            emit showWindowRequested();
+        }
     } else if (type == QStringLiteral("focus")) {
         emit showWindowRequested();
     } else if (type == QStringLiteral("cliDownload")) {
@@ -6062,16 +6091,31 @@ double AppController::fontScale() const
     return double(pt) / 10.0;
 }
 
+// Shared predicate: is a single trimmed line a downloadable URL/magnet/infohash?
+static bool isClipboardDownloadLine(const QString &line) {
+    return line.startsWith(QLatin1String("http://")) || line.startsWith(QLatin1String("https://"))
+        || line.startsWith(QLatin1String("ftp://"))
+        || line.startsWith(QLatin1String("magnet:?"), Qt::CaseInsensitive)
+        || isBareTorrentInfoHash(line);
+}
+
 QString AppController::clipboardUrl() const {
     const QString text = QGuiApplication::clipboard()->text().trimmed();
-    if (text.startsWith(QLatin1String("http://")) || text.startsWith(QLatin1String("https://"))
-        || text.startsWith(QLatin1String("ftp://"))
-        || text.startsWith(QLatin1String("magnet:?"), Qt::CaseInsensitive)
-        || isBareTorrentInfoHash(text)) {
-        // Only return the first line in case of multi-line clipboard
-        return text.split(QLatin1Char('\n')).first().trimmed();
+    // Only consider the first line in case of multi-line clipboard.
+    const QString first = text.split(QLatin1Char('\n')).first().trimmed();
+    return isClipboardDownloadLine(first) ? first : QString();
+}
+
+QStringList AppController::clipboardUrls() const {
+    const QString text = QGuiApplication::clipboard()->text();
+    QStringList out;
+    for (const QString &raw : text.split(QLatin1Char('\n'))) {
+        const QString line = raw.trimmed();
+        if (!line.isEmpty() && isClipboardDownloadLine(line))
+            out << line;
     }
-    return {};
+    out.removeDuplicates();
+    return out;
 }
 
 int AppController::recentErrorDownloads() const {

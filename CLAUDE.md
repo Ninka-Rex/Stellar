@@ -102,9 +102,9 @@ Vendored at `third_party/libtorrent-rasterbar-2.0.12`, auto-detected by CMake. O
 - Other `Grabber*.qml` dialogs: settings, filters, schedule, results, statistics, project picker.
 
 **Browser Extensions:**
-- `extensions/shared/{interceptor.js, messaging.js}` — Shared download detection, filter matching, settings sync
-- `extensions/chrome/{service-worker.js, content.js}` — Chrome MV3, modifier key tracking
-- `extensions/firefox/{service-worker.js, content.js}` — Firefox (`browser` API instead of `chrome`)
+- `extensions/chrome/` — Chrome MV3. `service-worker.js`, `content.js`, `page-bridge.js` (blob-URL resolver injected into page), `popup.{html,js}`, `manifest.json` (+ `manifest.store.json` for Web Store build), `icons/`, and `shared/{interceptor.js, messaging.js}` — shared download detection, filter matching, settings sync, native-host messaging. The service worker `import`s from `./shared/`.
+- `extensions/firefox/` — Firefox (`browser` API instead of `chrome`). `service-worker.js`, `content.js`, `popup.{html,js}`, `manifest.json`, `icons/`, `firefox.zip` + `repack.bat` (packaging). **No `shared/` dir** — Firefox inlines the equivalent of chrome's `messaging.js`/`interceptor.js` directly in `service-worker.js`. When editing shared logic, change BOTH `chrome/shared/messaging.js` (an `export`) AND the matching inline function in `firefox/service-worker.js`.
+- **Multi-link selection ("Download all links with Stellar"):** `content.js` (both) exposes `collectSelectedLinks()` — walks `window.getSelection()`, resolves anchor hrefs against the page base, filters to http/https/ftp/magnet/.torrent, returns `[{url,text}]`; answered via a `collectSelectedLinks` `runtime.onMessage` handler. The `stellar-download-links` context menu (`contexts:["selection"]`) queries the active tab's content script, then sends a `importLinks` native message (`requestImportLinks` in chrome `messaging.js` / inline in firefox). Native host (`main.cpp`) forwards `importLinks` over the local socket and drop-files it for cold-start replay, same as `download`. `AppController::handleIpcPayload` validates each link (type-check + scheme allow-list — untrusted input) and emits `importLinksRequested(QVariantList)`; `Main.qml` opens `BatchDownloadListDialog` with `isImport=true`.
 
 **Configuration:**
 - `tips.txt` — One tip per line, displayed in status bar (cycles every 6 hours)

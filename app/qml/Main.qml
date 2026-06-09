@@ -842,6 +842,26 @@ ApplicationWindow {
             fileInfoDialog.isIntercepted   = true
             showAndActivate(fileInfoDialog)
         }
+
+        // Multi-link selection from the browser extension → batch review dialog.
+        function onImportLinksRequested(links) {
+            var fileObjs = []
+            for (var i = 0; i < links.length; ++i) {
+                var l = links[i]
+                if (!l || !l.url)
+                    continue
+                var _name = (l.name && l.name.length > 0)
+                        ? l.name
+                        : (l.url.split('/').pop().split('?')[0] || "")
+                fileObjs.push({ name: _name, url: l.url, linkText: l.linkText || "" })
+            }
+            if (fileObjs.length === 0)
+                return
+            batchDownloadListDialog.files = fileObjs
+            batchDownloadListDialog.isImport = true
+            batchDownloadListDialog.show()
+            batchDownloadListDialog.raise()
+        }
     }
 
     // ── Grabber explore-finished: run completion actions ─────────────────
@@ -3138,6 +3158,25 @@ ApplicationWindow {
             CompactMenuItem { text: qsTr("Add URL…"); shortcutDisplay: "Ctrl+N"; iconSrc: "icons/add_url.svg";  onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
             CompactMenuItem { text: qsTr("Add Torrent File…"); iconSrc: "icons/torrent_file.svg";   onTriggered: addTorrentFileDialog.open() }
             CompactMenuItem { text: qsTr("Add Batch URLs…");   iconSrc: "icons/add.svg";      onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
+            CompactMenuItem {
+                text: qsTr("Add Batch URLs from Clipboard…")
+                iconSrc: "icons/clipboard.svg"
+                onTriggered: {
+                    var urls = App.clipboardUrls()
+                    if (!urls || urls.length === 0)
+                        return
+                    var fileObjs = []
+                    for (var i = 0; i < urls.length; ++i) {
+                        var _u = urls[i]
+                        var _n = _u.split('/').pop().split('?')[0] || ""
+                        fileObjs.push({ name: _n, url: _u })
+                    }
+                    batchDownloadListDialog.files = fileObjs
+                    batchDownloadListDialog.isImport = true
+                    batchDownloadListDialog.show()
+                    batchDownloadListDialog.raise()
+                }
+            }
             CompactSep {}
             CompactMenuItem {
                 id: _exportMenuItem

@@ -394,3 +394,36 @@ document.addEventListener("click", async (event) => {
     const handled = await tryInterceptUrl(href, anchor.getAttribute("download") || "", explicitIntent);
     if (!handled && !explicitIntent) window.location.href = href;
 }, { capture: true });
+
+// Collect every <a href> inside the current text selection so the background
+// script can offer "Download all links with Stellar". Returns [{url, text}].
+function collectSelectedLinks() {
+    const sel = window.getSelection();
+    if (!sel || sel.rangeCount === 0) return [];
+    const out = [];
+    const seen = new Set();
+    const push = (a) => {
+        const raw = a && a.getAttribute ? a.getAttribute("href") : "";
+        if (!raw) return;
+        let href = "";
+        try { href = new URL(raw, location.href).href; } catch { return; }
+        if (seen.has(href)) return;
+        const low = href.toLowerCase();
+        const ok = low.startsWith("http://") || low.startsWith("https://")
+            || low.startsWith("ftp://") || low.startsWith("magnet:")
+            || low.endsWith(".torrent");
+        if (!ok) return;
+        seen.add(href);
+        out.push({ url: href, text: (a.textContent || "").trim().slice(0, 300) });
+    };
+    for (let i = 0; i < sel.rangeCount; i++) {
+        const frag = sel.getRangeAt(i).cloneContents();
+        frag.querySelectorAll("a[href]").forEach(push);
+    }
+    return out;
+}
+
+browser.runtime.onMessage.addListener((msg) => {
+    if (msg && msg.type === "collectSelectedLinks")
+        return Promise.resolve(collectSelectedLinks());
+});

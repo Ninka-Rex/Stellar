@@ -391,6 +391,9 @@ public:
     // Returns combined app + torrent statistics for the Statistics dialog.
     Q_INVOKABLE QVariantMap appStatistics() const;
     Q_INVOKABLE QString clipboardUrl() const;
+    // All downloadable URLs in the clipboard (one per line, de-duplicated) for
+    // the "batch download from clipboard" flow.
+    Q_INVOKABLE QStringList clipboardUrls() const;
     Q_INVOKABLE void setDownloadCategory(const QString &downloadId, const QString &categoryId);
     Q_INVOKABLE void setDownloadQueue(const QString &downloadId, const QString &queueId);
     Q_INVOKABLE QStringList queueIds() const;
@@ -524,6 +527,9 @@ signals:
     void downloadsShowAllRequested();
     void exceptionDialogRequested(const QString &url);
     void interceptedDownloadRequested(const QString &url, const QString &filename);
+    // Multi-link selection from the browser extension; payload is a list of
+    // QVariantMap{ url, name, linkText } for the batch review dialog.
+    void importLinksRequested(const QVariantList &links);
     void grabberBusyChanged();
     void grabberStatusTextChanged();
     void grabberExploreFinished(const QString &projectId);

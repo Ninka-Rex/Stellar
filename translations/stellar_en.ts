@@ -384,6 +384,30 @@
 <context>
     <name>BatchDownloadDialog</name>
     <message>
+        <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>https://www.example.com/pictures/img*.jpg</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>%n link(s)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/BatchDownloadDialog.qml" line="25"/>
         <location filename="../app/qml/BatchDownloadDialog.qml" line="69"/>
         <source>Batch Download</source>
@@ -470,6 +494,26 @@
     <message>
         <location filename="../app/qml/BatchDownloadListDialog.qml" line="68"/>
         <source>File name</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Download from</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Link Text</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Save to</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Hide images located on this web page</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Use link texts as download descriptions</source>
         <translation></translation>
     </message>
     <message>
@@ -3999,6 +4043,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <message>
         <location filename="../app/qml/Main.qml" line="3001"/>
         <source>Add Batch URLs…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Add Batch URLs from Clipboard…</source>
         <translation></translation>
     </message>
     <message>

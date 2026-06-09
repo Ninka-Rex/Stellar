@@ -54,6 +54,8 @@ Window {
     property string selectedDirectory: ""
     property bool hideHtmlFiles: false
     property bool hideRepeatedFiles: false
+    property bool hideWebpageImages: false
+    property bool useLinkTextAsDescription: true
     property var fileOverrides: ({})
     property int selectedRowIndex: -1
     property var _filteredIndices: []
@@ -65,11 +67,12 @@ Window {
 
     property var columnDefs: [
         { title: "", key: "check", widthPx: 36, minWidth: 36, sortable: false, resizable: false, reorderable: false },
-        { title: "", key: "icon", widthPx: 34, minWidth: 30, sortable: false, resizable: true, reorderable: true },
-        { title: qsTr("File name"), key: "name", widthPx: 250, minWidth: 120, sortable: true, resizable: true, reorderable: true },
-        { title: qsTr("Size"), key: "size", widthPx: 110, minWidth: 80, sortable: true, resizable: true, reorderable: true },
-        { title: qsTr("Status"), key: "status", widthPx: 110, minWidth: 90, sortable: true, resizable: true, reorderable: true },
-        { title: "URL", key: "url", widthPx: 520, minWidth: 180, sortable: true, resizable: true, reorderable: true }
+        { title: qsTr("File name"), key: "name", widthPx: 240, minWidth: 140, sortable: true, resizable: true, reorderable: true },
+        { title: qsTr("Size"), key: "size", widthPx: 100, minWidth: 80, sortable: true, resizable: true, reorderable: true },
+        { title: qsTr("Status"), key: "status", widthPx: 100, minWidth: 90, sortable: true, resizable: true, reorderable: true },
+        { title: qsTr("Download from"), key: "url", widthPx: 300, minWidth: 160, sortable: true, resizable: true, reorderable: true },
+        { title: qsTr("Link Text"), key: "linkText", widthPx: 180, minWidth: 100, sortable: true, resizable: true, reorderable: true },
+        { title: qsTr("Save to"), key: "saveto", widthPx: 220, minWidth: 120, sortable: true, resizable: true, reorderable: true }
     ]
 
     function safeString(v) {
@@ -141,16 +144,18 @@ Window {
         return finalName.length > 0 ? "image://fileicon/" + finalName : ""
     }
 
+    // Match the main download list (DownloadTable.formatBytesShort) exactly so
+    // sizes read the same in both places: GB .2f, MB/KB .1f.
     function formatBytes(bytes) {
-        if (bytes < 0)
+        if (!bytes || bytes <= 0)
             return ""
-        if (bytes < 1024)
-            return bytes + " B"
-        if (bytes < 1024 * 1024)
-            return (bytes / 1024).toFixed(bytes >= 1024 * 100 ? 0 : 1) + " KB"
-        if (bytes < 1024 * 1024 * 1024)
-            return (bytes / (1024 * 1024)).toFixed(bytes >= 1024 * 1024 * 100 ? 0 : 1) + " MB"
-        return (bytes / (1024 * 1024 * 1024)).toFixed(2) + " GB"
+        if (bytes >= 1073741824)
+            return (bytes / 1073741824).toFixed(2) + " GB"
+        if (bytes >= 1048576)
+            return (bytes / 1048576).toFixed(1) + " MB"
+        if (bytes >= 1024)
+            return (bytes / 1024).toFixed(1) + " KB"
+        return bytes + " B"
     }
 
     function statusRank(status) {
@@ -170,6 +175,13 @@ Window {
             if (root.hideHtmlFiles) {
                 var u = (row.sourceUrl || "").toLowerCase()
                 if (u.endsWith(".html") || u.endsWith(".htm"))
+                    continue
+            }
+            if (root.hideWebpageImages) {
+                var ui = (row.sourceUrl || "").toLowerCase().split("?")[0]
+                if (ui.endsWith(".jpg") || ui.endsWith(".jpeg") || ui.endsWith(".png")
+                    || ui.endsWith(".gif") || ui.endsWith(".webp") || ui.endsWith(".bmp")
+                    || ui.endsWith(".svg") || ui.endsWith(".ico"))
                     continue
             }
             if (root.hideRepeatedFiles) {
@@ -204,6 +216,22 @@ Window {
         reviewRows = rows
     }
 
+    function effectiveSavePath(row) {
+        if (!row)
+            return ""
+        var ov = root.fileOverrides[row.rowIndex] || {}
+        if (ov.savePath)
+            return safeString(ov.savePath)
+        if (root.saveMode === "oneDirectory")
+            return safeString(root.selectedDirectory)
+        if (root.saveMode === "oneCategory")
+            return safeString(App.categoryModel.savePathForCategory(root.selectedCategoryId || "all"))
+        // perCategory: show the chosen directory if any, else the default path.
+        if (root.selectedDirectory)
+            return safeString(root.selectedDirectory)
+        return safeString(App.categoryModel.savePathForCategory("all"))
+    }
+
     function sortValue(row, key) {
         if (key === "name")
             return safeString(row.displayName).toLowerCase()
@@ -213,6 +241,10 @@ Window {
             return row.statusRank
         if (key === "url")
             return safeString(row.sourceUrl).toLowerCase()
+        if (key === "linkText")
+            return safeString(row.linkText).toLowerCase()
+        if (key === "saveto")
+            return effectiveSavePath(row).toLowerCase()
         return 0
     }
 
@@ -284,6 +316,7 @@ Window {
                 baseName: initialName,
                 displayName: initialName,
                 sourceUrl: safeString(f && f.url),
+                linkText: safeString(f && f.linkText),
                 rowStatus: (_isMagnet || _isTorrent) ? "Found" : "Checking...",
                 statusRank: statusRank((_isMagnet || _isTorrent) ? "Found" : "Checking..."),
                 selected: true,
@@ -370,12 +403,15 @@ Window {
             } else if (root.saveMode === "oneDirectory") {
                 sp = root.selectedDirectory
             }
+            var desc = ov.description || ""
+            if (!desc && root.useLinkTextAsDescription)
+                desc = safeString(row.linkText)
             accepted.push({
                 url: url,
                 filename: row.displayName,
                 savePath: sp,
                 category: cat,
-                description: ov.description || "",
+                description: desc,
                 referer: ov.referer || "",
                 username: ov.username || "",
                 password: ov.password || ""
@@ -420,12 +456,6 @@ Window {
             sortAscending = true
         }
         sortRows()
-    }
-
-    function sortIndicator(key) {
-        if (sortColumn !== key)
-            return ""
-        return sortAscending ? " ^" : " v"
     }
 
     function applyColumnReorder() {
@@ -588,33 +618,33 @@ Window {
                                     anchors.centerIn: parent
                                     topPadding: 0
                                     bottomPadding: 0
-                                    Binding on checked { value: root.allFoundSelected() }
-                                    onClicked: root.setAllSelected(!checked)
+                                    checked: root.allFoundSelected()
+                                    onToggled: root.setAllSelected(!root.allFoundSelected())
                                 }
 
                                 Text {
-                                    visible: modelData.key !== "check" && modelData.key !== "icon"
+                                    visible: modelData.key !== "check"
                                     anchors.left: parent.left
                                     anchors.leftMargin: 8
                                     anchors.verticalCenter: parent.verticalCenter
                                     anchors.right: sortText.left
                                     anchors.rightMargin: 4
                                     text: modelData.title
-                                    color: root.sortColumn === modelData.key ? ColorPalette.accent : ColorPalette.textSecond
-                                    font.pixelSize: 11 * App.fontScale
+                                    color: root.sortColumn === modelData.key ? ColorPalette.accent : ColorPalette.textPrimary
+                                    font.pixelSize: 12 * App.fontScale
                                     font.bold: true
                                     elide: Text.ElideRight
                                 }
 
                                 Text {
                                     id: sortText
-                                    visible: modelData.key !== "check"
                                     anchors.verticalCenter: parent.verticalCenter
                                     anchors.right: resizeHandle.left
-                                    anchors.rightMargin: 5
-                                    text: root.sortIndicator(modelData.key)
-                                    color: ColorPalette.accent
+                                    anchors.rightMargin: 4
+                                    text: root.sortAscending ? "▲" : "▼"
+                                    color: "#88bbff"
                                     font.pixelSize: 9 * App.fontScale
+                                    visible: root.sortColumn === modelData.key
                                 }
 
                                 MouseArea {
@@ -752,8 +782,12 @@ Window {
                         readonly property int rowIndex: modelData && modelData.rowIndex !== undefined ? modelData.rowIndex : 0
                         readonly property bool isSelected: root.selectedRowIndex === rowIndex
                         width: tableFlick.contentWidth
-                        height: 28
-                        color: isSelected ? ColorPalette.selectionBg : (rowIndex % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg)
+                        height: 26
+                        color: isSelected ? ColorPalette.selectionBg
+                            : (rowHover.hovered ? ColorPalette.hoverBg
+                            : (rowIndex % 2 === 0 ? ColorPalette.windowBg : ColorPalette.rowAltBg))
+
+                        HoverHandler { id: rowHover }
 
                         Row {
                             anchors.fill: parent
@@ -767,66 +801,91 @@ Window {
                                     topPadding: 0
                                     bottomPadding: 0
                                     enabled: !!(modelData && modelData.rowStatus === "Found")
-                                    Binding on checked { value: !!(modelData && modelData.selected) }
-                                    onClicked: root.setRowProperty(rowIndex, "selected", !checked)
+                                    checked: !!(modelData && modelData.selected)
+                                    onToggled: root.setRowProperty(rowIndex, "selected", checked)
                                 }
                             }
 
                             Item {
-                                width: root.columnWidth("icon")
+                                width: root.columnWidth("name")
                                 height: parent.height
                                 Image {
-                                    anchors.centerIn: parent
+                                    id: nameIcon
+                                    anchors.left: parent.left
+                                    anchors.leftMargin: 6
+                                    anchors.verticalCenter: parent.verticalCenter
                                     source: modelData ? modelData.iconSource : ""
-                                    width: 16
-                                    height: 16
+                                    width: 18
+                                    height: 18
+                                    sourceSize: Qt.size(18, 18)
                                     smooth: true
                                     fillMode: Image.PreserveAspectFit
                                 }
-                            }
-
-                            Text {
-                                width: root.columnWidth("name")
-                                height: parent.height
-                                leftPadding: 8
-                                verticalAlignment: Text.AlignVCenter
-                                text: modelData ? safeString(modelData.displayName) : ""
-                                color: ColorPalette.textPrimary
-                                font.pixelSize: 12 * App.fontScale
-                                elide: Text.ElideRight
+                                Text {
+                                    anchors.left: nameIcon.right
+                                    anchors.leftMargin: 6
+                                    anchors.right: parent.right
+                                    anchors.rightMargin: 4
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    text: modelData ? safeString(modelData.displayName) : ""
+                                    color: isSelected ? ColorPalette.selectionText : ColorPalette.textPrimary
+                                    font.pixelSize: 12 * App.fontScale
+                                    elide: Text.ElideMiddle
+                                }
                             }
 
                             Text {
                                 width: root.columnWidth("size")
                                 height: parent.height
-                                leftPadding: 8
+                                leftPadding: 6
                                 verticalAlignment: Text.AlignVCenter
                                 text: modelData ? safeString(modelData.sizeText) : ""
-                                color: ColorPalette.textPrimary
-                                font.pixelSize: 11 * App.fontScale
+                                color: isSelected ? ColorPalette.selectionText : ColorPalette.textPrimary
+                                font.pixelSize: 12 * App.fontScale
                                 elide: Text.ElideRight
                             }
 
                             Text {
                                 width: root.columnWidth("status")
                                 height: parent.height
-                                leftPadding: 8
+                                leftPadding: 6
                                 verticalAlignment: Text.AlignVCenter
                                 text: modelData ? safeString(modelData.rowStatus) : ""
-                                color: modelData && modelData.rowStatus === "Found" ? "#78c28b"
-                                    : (modelData && modelData.rowStatus === "Checking..." ? ColorPalette.textSecond : "#d08f8f")
-                                font.pixelSize: 11 * App.fontScale
+                                color: isSelected ? ColorPalette.selectionText : ColorPalette.textPrimary
+                                font.pixelSize: 12 * App.fontScale
                                 elide: Text.ElideRight
                             }
 
                             Text {
                                 width: root.columnWidth("url")
                                 height: parent.height
-                                leftPadding: 8
+                                leftPadding: 6
                                 verticalAlignment: Text.AlignVCenter
                                 text: modelData ? safeString(modelData.sourceUrl) : ""
-                                color: ColorPalette.textSecond
-                                font.pixelSize: 11 * App.fontScale
+                                color: isSelected ? ColorPalette.selectionText : ColorPalette.textPrimary
+                                font.pixelSize: 12 * App.fontScale
+                                elide: Text.ElideMiddle
+                            }
+
+                            Text {
+                                width: root.columnWidth("linkText")
+                                height: parent.height
+                                leftPadding: 6
+                                verticalAlignment: Text.AlignVCenter
+                                text: modelData ? safeString(modelData.linkText) : ""
+                                color: isSelected ? ColorPalette.selectionText : ColorPalette.textPrimary
+                                font.pixelSize: 12 * App.fontScale
+                                elide: Text.ElideRight
+                            }
+
+                            Text {
+                                width: root.columnWidth("saveto")
+                                height: parent.height
+                                leftPadding: 6
+                                verticalAlignment: Text.AlignVCenter
+                                text: modelData ? root.effectiveSavePath(modelData) : ""
+                                color: isSelected ? ColorPalette.selectionText : ColorPalette.textPrimary
+                                font.pixelSize: 12 * App.fontScale
                                 elide: Text.ElideMiddle
                             }
                         }
@@ -1011,9 +1070,17 @@ Window {
                     DlgButton { text: qsTr("Uncheck all"); onClicked: setAllSelected(false) }
                 }
 
-                RowLayout {
+                ColumnLayout {
                     Layout.fillWidth: true
-                    spacing: 6
+                    spacing: 2
+                    StyledCheckBox {
+                        id: useLinkTextChk
+                        text: qsTr("Use link texts as download descriptions")
+                        topPadding: 0; bottomPadding: 0
+                        checked: root.useLinkTextAsDescription
+                        contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                        onToggled: root.useLinkTextAsDescription = checked
+                    }
                     StyledCheckBox {
                         id: hideHtmlChk
                         text: qsTr("Hide HTML files")
@@ -1023,6 +1090,14 @@ Window {
                         onToggled: { root.hideHtmlFiles = checked; root._applyFilters() }
                     }
                     StyledCheckBox {
+                        id: hideImagesChk
+                        text: qsTr("Hide images located on this web page")
+                        topPadding: 0; bottomPadding: 0
+                        checked: root.hideWebpageImages
+                        contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                        onToggled: { root.hideWebpageImages = checked; root._applyFilters() }
+                    }
+                    StyledCheckBox {
                         id: hideRepeatChk
                         text: qsTr("Hide repeated files")
                         topPadding: 0; bottomPadding: 0
@@ -1030,7 +1105,6 @@ Window {
                         contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; leftPadding: parent.indicator.width + 4 }
                         onToggled: { root.hideRepeatedFiles = checked; root._applyFilters() }
                     }
-                    Item { Layout.fillWidth: true }
                 }
             }
         }

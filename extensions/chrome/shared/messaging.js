@@ -339,6 +339,23 @@ export async function requestDownload(details) {
 }
 
 /**
+ * Send a batch of selected links to the Stellar native host for the
+ * "Download all links" review dialog. links = [{ url, text }].
+ */
+export async function requestImportLinks(links, ctx) {
+    const clean = (Array.isArray(links) ? links : [])
+        .filter(l => l && typeof l.url === "string" && l.url)
+        .map(l => ({ url: l.url, text: typeof l.text === "string" ? l.text : "" }));
+    return sendMessage({
+        type:     "importLinks",
+        links:    clean,
+        referrer: ctx?.referrer ?? "",
+        pageUrl:  ctx?.pageUrl  ?? "",
+        cookies:  ctx?.cookies  ?? "",
+    });
+}
+
+/**
  * Ping the native host to check if Stellar is running.
  */
 export async function ping() {

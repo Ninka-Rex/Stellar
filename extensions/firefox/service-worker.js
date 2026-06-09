@@ -412,6 +412,20 @@ async function requestDownload(details) {
     });
 }
 
+// Send a batch of selected links to the native host for the review dialog.
+async function requestImportLinks(links, ctx) {
+    const clean = (Array.isArray(links) ? links : [])
+        .filter(l => l && typeof l.url === "string" && l.url)
+        .map(l => ({ url: l.url, text: typeof l.text === "string" ? l.text : "" }));
+    return browser.runtime.sendNativeMessage(NATIVE_HOST_ID, {
+        type: "importLinks",
+        links: clean,
+        referrer: ctx?.referrer ?? "",
+        pageUrl: ctx?.pageUrl ?? "",
+        cookies: ctx?.cookies ?? "",
+    });
+}
+
 async function ping() {
     const resp = await browser.runtime.sendNativeMessage(NATIVE_HOST_ID, { type: "ping" });
     return resp?.type === "ready";
@@ -606,14 +620,13 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
 browser.runtime.onInstalled.addListener(async () => {
     browser.contextMenus.create({ id: "stellar-download-link", title: "Download with Stellar", contexts: ["link"] });
     browser.contextMenus.create({ id: "stellar-download-media", title: "Download with Stellar", contexts: ["video", "audio", "image"] });
+    browser.contextMenus.create({ id: "stellar-download-links", title: "Download all links with Stellar", contexts: ["selection"] });
     await syncSettingsFromApp();
     await refreshIcon();
 });
 
-browser.contextMenus.onClicked.addListener(async (info) => {
-    const url = info.linkUrl || info.srcUrl || info.pageUrl;
-    if (!url) return;
-    let cookieHeader = "";
+// Collect the cookie header the app needs to re-fetch a URL behind a login.
+async function collectCookieHeader(url) {
     try {
         const urlObj = new URL(url);
         const cookieUrls = [url];
@@ -628,8 +641,37 @@ browser.contextMenus.onClicked.addListener(async (info) => {
                 if (!seen.has(c.name)) { seen.add(c.name); allCookies.push(c); }
             }
         }
-        cookieHeader = allCookies.map(c => `${c.name}=${c.value}`).join("; ");
+        return allCookies.map(c => `${c.name}=${c.value}`).join("; ");
     } catch {}
+    return "";
+}
+
+browser.contextMenus.onClicked.addListener(async (info, tab) => {
+    if (info.menuItemId === "stellar-download-links") {
+        if (!tab || tab.id === undefined) return;
+        let links = [];
+        try {
+            links = await browser.tabs.sendMessage(tab.id, { type: "collectSelectedLinks" });
+        } catch (err) {
+            console.error("[Stellar] Could not collect selected links:", err);
+        }
+        if (!Array.isArray(links) || links.length === 0) return;
+        const cookieHeader = await collectCookieHeader(info.pageUrl || (tab && tab.url) || "");
+        try {
+            await requestImportLinks(links, {
+                referrer: info.pageUrl ?? "",
+                pageUrl: info.pageUrl ?? "",
+                cookies: cookieHeader,
+            });
+        } catch (err) {
+            console.error("[Stellar] Import links failed:", err);
+        }
+        return;
+    }
+
+    const url = info.linkUrl || info.srcUrl || info.pageUrl;
+    if (!url) return;
+    const cookieHeader = await collectCookieHeader(url);
     try {
         await requestDownload({
             url,

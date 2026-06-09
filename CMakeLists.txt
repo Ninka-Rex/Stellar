@@ -281,6 +281,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/delete_done.svg
         app/qml/icons/gear.svg
         app/qml/icons/add_url.svg
+        app/qml/icons/clipboard.svg
         app/qml/icons/start_queue.svg
         app/qml/icons/stop_queue.svg
         app/qml/icons/stop_all.svg
