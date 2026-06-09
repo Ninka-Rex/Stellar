@@ -987,7 +987,12 @@ QString RssManager::extractImageUrl(const QString &html, const QUrl &sourceUrl)
     const QRegularExpressionMatch match = imageRegex.match(html);
     if (!match.hasMatch())
         return {};
-    return sourceUrl.resolved(QUrl(match.captured(1).trimmed())).toString();
+    const QUrl resolved = sourceUrl.resolved(QUrl(match.captured(1).trimmed()));
+    // Only http/https image URLs leave this function — blocks file:// and UNC
+    // probes before the value is stored or reaches a QML Image{} source.
+    if (resolved.scheme() != QStringLiteral("https") && resolved.scheme() != QStringLiteral("http"))
+        return {};
+    return resolved.toString();
 }
 
 QDateTime RssManager::parseDateTime(const QString &value)
