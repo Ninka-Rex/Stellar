@@ -470,6 +470,10 @@ void FtpTransfer::onPrimaryReady(qint64 totalBytes, bool restMaybe, FtpControl *
     s0.conn = primary;
     bindSegmentConnection(0);
     if (!openSegmentFile(s0)) return;
+    // Stamp the stall clock now: if the server acks RETR but never sends a byte,
+    // the Transferring phase exits the control timer, so only the FtpTransfer
+    // stall watchdog catches it — and it ignores segments with lastByteTime == 0.
+    s0.lastByteTime = QDateTime::currentMSecsSinceEpoch();
     s0.conn->retrieve(s0.startOffset, s0.endOffset);
 
     // Bring up the remaining segments (each its own fresh connection) lazily.
@@ -543,6 +547,7 @@ void FtpTransfer::startSegment(Segment &seg) {
         if (m_cancelled || m_failed) return;
         Segment &s = m_segments[index];
         const qint64 resumeFrom = s.startOffset + s.received;
+        s.lastByteTime = QDateTime::currentMSecsSinceEpoch(); // arm stall watchdog (see onPrimaryReady)
         s.conn->retrieve(resumeFrom, s.endOffset);
     });
     bindSegmentConnection(index);
@@ -604,8 +609,11 @@ void FtpTransfer::onSegmentComplete(int index) {
             }
             const QByteArray data = sock->read(cap);
             if (data.isEmpty()) break;
-            seg.file->write(data);
-            seg.received += data.size();
+            const qint64 w = seg.file->write(data);
+            if (w != data.size()) {
+                failTransfer(tr("Disk write failed: %1").arg(seg.file->errorString())); return;
+            }
+            seg.received += w;
         }
     }
 
