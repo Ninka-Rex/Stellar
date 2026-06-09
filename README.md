@@ -30,6 +30,48 @@ Work in progress, but fully functional
 - Categories with custom save folders
 - Available in 77 languages
 
+## Auditing
+
+<details>
+<summary><b>How to audit the browser extension yourself</b></summary>
+
+I understand installing random browser extensions from GitHub can be uncomfortable. You do not have to trust me. The extension is plain JavaScript. Every line you run is a line you can read. This shows you how to check it yourself.
+
+### Chrome
+1. On the `chrome://extensions` page, find the **ID** field for Stellar and copy it.
+2. In a normal browser tab, open these addresses one at a time, putting your ID where shown:
+   - `chrome-extension://YOUR-ID/service-worker.js`
+   - `chrome-extension://YOUR-ID/content.js`
+   - `chrome-extension://YOUR-ID/page-bridge.js`
+   - `chrome-extension://YOUR-ID/popup.js`
+   - `chrome-extension://YOUR-ID/shared/messaging.js`
+   - `chrome-extension://YOUR-ID/shared/interceptor.js`
+3. Each one shows the raw file, audit the code.
+
+### Firefox
+1. On the `about:debugging` page, find the **Internal UUID** field for Stellar and copy it.
+2. In a normal browser tab, open these addresses one at a time, putting your UUID where shown:
+   - `moz-extension://YOUR-UUID/service-worker.js`
+   - `moz-extension://YOUR-UUID/content.js`
+   - `moz-extension://YOUR-UUID/popup.js`
+</details>
+
+<details>
+<summary><b>How to audit the release binaries yourself</b></summary>
+
+Every release is built by a public GitHub Actions workflow ([`release.yml`](.github/workflows/release.yml)) running on GitHub's own runners, straight from the public source - no private build machine. The build logs the SHA256 of each installer, so you can confirm the file you downloaded is exactly what the workflow produced from the public verifiable code.
+
+1. Open the **Actions** tab, find the **Release** run for your version, and open its log.
+2. Expand the **Compute SHA256** step and copy the printed `sha256:` value.
+3. Hash your downloaded file and compare:
+   - Windows: `Get-FileHash StellarSetup-VERSION.exe -Algorithm SHA256`
+   - Linux: `sha256sum stellar_VERSION_amd64.deb`
+4. Matching hashes prove the asset wasn't altered after the build. The same hashes are also committed to `update.json`.
+
+The log shows the exact commit checked out and every command run, so nothing is built outside the public source.
+
+</details>
+
 ## How to Install 📦
 
 Grab the latest installer from the [Releases](../../releases) page.
