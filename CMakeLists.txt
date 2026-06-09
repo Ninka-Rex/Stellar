@@ -10,9 +10,9 @@ option(ENABLE_LIBTORRENT "Enable libtorrent integration scaffolding" ON)
 option(ENABLE_MAXMINDDB "Enable MMDB city lookup support" ON)
 
 set(_stellar_default_libtorrent_source "")
-if(EXISTS "${CMAKE_SOURCE_DIR}/third_party/libtorrent-rasterbar-2.0.12/CMakeLists.txt")
+if(EXISTS "${CMAKE_SOURCE_DIR}/third_party/libtorrent-rasterbar-2.0.13/CMakeLists.txt")
     set(_stellar_default_libtorrent_source
-        "${CMAKE_SOURCE_DIR}/third_party/libtorrent-rasterbar-2.0.12")
+        "${CMAKE_SOURCE_DIR}/third_party/libtorrent-rasterbar-2.0.13")
 endif()
 
 if(ENABLE_MAXMINDDB AND EXISTS "${CMAKE_SOURCE_DIR}/third_party/libmaxminddb/CMakeLists.txt")

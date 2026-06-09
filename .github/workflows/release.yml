@@ -84,10 +84,10 @@ jobs:
         shell: bash
         run: |
           mkdir -p third_party
-          # libtorrent-rasterbar 2.0.12
-          if [ ! -f third_party/libtorrent-rasterbar-2.0.12/CMakeLists.txt ]; then
+          # libtorrent-rasterbar 2.0.13
+          if [ ! -f third_party/libtorrent-rasterbar-2.0.13/CMakeLists.txt ]; then
             curl -fsSL \
-              "https://github.com/arvidn/libtorrent/releases/download/v2.0.12/libtorrent-rasterbar-2.0.12.tar.gz" \
+              "https://github.com/arvidn/libtorrent/releases/download/v2.0.13/libtorrent-rasterbar-2.0.13.tar.gz" \
               -o libtorrent.tar.gz
             tar -xzf libtorrent.tar.gz -C third_party/
             rm libtorrent.tar.gz
@@ -105,7 +105,7 @@ jobs:
       - name: Install Boost (headers only)
         shell: bash
         run: |
-          # libtorrent 2.0.12 needs only Boost::headers + header-only Boost.System,
+          # libtorrent 2.0.13 needs only Boost::headers + header-only Boost.System,
           # so the headers package alone is sufficient — no compiled libs required.
           # The windows-latest image no longer ships a pre-installed Boost at
           # C:/local/boost_*, so fetch a pinned headers archive deterministically.
@@ -349,10 +349,10 @@ jobs:
       - name: Download third-party sources (Linux)
         run: |
           mkdir -p third_party
-          # libtorrent-rasterbar 2.0.12
-          if [ ! -f third_party/libtorrent-rasterbar-2.0.12/CMakeLists.txt ]; then
+          # libtorrent-rasterbar 2.0.13
+          if [ ! -f third_party/libtorrent-rasterbar-2.0.13/CMakeLists.txt ]; then
             curl -fsSL \
-              "https://github.com/arvidn/libtorrent/releases/download/v2.0.12/libtorrent-rasterbar-2.0.12.tar.gz" \
+              "https://github.com/arvidn/libtorrent/releases/download/v2.0.13/libtorrent-rasterbar-2.0.13.tar.gz" \
               -o libtorrent.tar.gz
             tar -xzf libtorrent.tar.gz -C third_party/
             rm libtorrent.tar.gz

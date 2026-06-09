@@ -44,7 +44,7 @@ Ninja generator required; `ninja` must be in PATH. Windows needs MSVC 2022+.
 - Linux: `sudo apt install qt6-base-dev qt6-declarative-dev`
 
 **libtorrent (optional):**
-Vendored at `third_party/libtorrent-rasterbar-2.0.12`, auto-detected by CMake. Override: set `LIBTORRENT_SOURCE_DIR`, `LIBTORRENT_ROOT`, or `LibtorrentRasterbar_DIR`. Disable: `ENABLE_LIBTORRENT=OFF`. CMake sets `STELLAR_HAS_LIBTORRENT=1` when found; without it, torrent/magnet downloads disabled, everything else works.
+Vendored at `third_party/libtorrent-rasterbar-2.0.13`, auto-detected by CMake. Override: set `LIBTORRENT_SOURCE_DIR`, `LIBTORRENT_ROOT`, or `LibtorrentRasterbar_DIR`. Disable: `ENABLE_LIBTORRENT=OFF`. CMake sets `STELLAR_HAS_LIBTORRENT=1` when found; without it, torrent/magnet downloads disabled, everything else works.
 
 **Key build files:**
 - `CMakeLists.txt` — Qt6/CMake config. Resources (icons, tips.txt, QML) must be listed in `qt_add_qml_module()`

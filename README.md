@@ -100,18 +100,18 @@ You will also need to download a GeoIP database for the torrent world map to wor
 
 These libraries must be placed under `third_party/` before configuring, **or** pointed to via CMake variables. The directory is excluded from version control.
 
-#### libtorrent-rasterbar 2.0.12 (required for torrent/magnet support)
+#### libtorrent-rasterbar 2.0.13 (required for torrent/magnet support)
 
 Download the release tarball from GitHub and extract it:
 
 ```bash
 mkdir -p third_party
-curl -L https://github.com/arvidn/libtorrent/releases/download/v2.0.12/libtorrent-rasterbar-2.0.12.tar.gz \
+curl -L https://github.com/arvidn/libtorrent/releases/download/v2.0.13/libtorrent-rasterbar-2.0.13.tar.gz \
     | tar -xz -C third_party/
-# Result: third_party/libtorrent-rasterbar-2.0.12/
+# Result: third_party/libtorrent-rasterbar-2.0.13/
 ```
 
-On Windows, download from <https://github.com/arvidn/libtorrent/releases/tag/v2.0.12> and extract to `third_party\libtorrent-rasterbar-2.0.12\`.
+On Windows, download from <https://github.com/arvidn/libtorrent/releases/tag/v2.0.13> and extract to `third_party\libtorrent-rasterbar-2.0.13\`.
 
 Alternatively, point CMake at an existing source tree or installed package:
 
