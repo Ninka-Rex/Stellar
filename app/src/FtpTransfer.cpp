@@ -280,6 +280,10 @@ private:
         if (peer.isNull()) { failWith(tr("FTP passive-mode address rejected for security."), false); return; }
 
         m_data = new QSslSocket(this);
+        // The data socket is dialled by IP (anti-bounce: only the control peer
+        // is ever contacted), so TLS verification would otherwise check the cert
+        // against the IP literal. Pin it to the real hostname instead.
+        m_data->setPeerVerifyName(m_url.host());
         connect(m_data, &QAbstractSocket::connected, this, [this]() {
             if (m_secure) { installSslDiagnostics(m_data); m_data->startClientEncryption(); }
         });
