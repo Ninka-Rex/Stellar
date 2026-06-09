@@ -629,7 +629,7 @@ void SegmentedTransfer::startSegment(Segment &seg) {
     }
     if (!seg.file->isOpen()) {
         if (!seg.file->open(QIODevice::ReadWrite)) {
-            emit failed(QStringLiteral("Cannot open part file: %1 (%2)")
+            emit failed(tr("Cannot open part file: %1 (%2)")
                         .arg(seg.partPath, seg.file->errorString()));
             return;
         }
@@ -657,7 +657,7 @@ void SegmentedTransfer::startSegment(Segment &seg) {
 #endif
                 if (seg.received > 0) {
                     if (!seg.file->seek(seg.received)) {
-                        emit failed(QStringLiteral("Cannot seek in part file: %1 (%2)")
+                        emit failed(tr("Cannot seek in part file: %1 (%2)")
                                     .arg(seg.partPath, seg.file->errorString()));
                         return;
                     }
@@ -673,7 +673,7 @@ void SegmentedTransfer::startSegment(Segment &seg) {
                          << "— falling back to Append";
                 seg.file->close();
                 if (!seg.file->open(QIODevice::Append)) {
-                    emit failed(QStringLiteral("Cannot open part file: %1 (%2)")
+                    emit failed(tr("Cannot open part file: %1 (%2)")
                                 .arg(seg.partPath, seg.file->errorString()));
                     return;
                 }
@@ -683,7 +683,7 @@ void SegmentedTransfer::startSegment(Segment &seg) {
             // For resumed segments, advance the write cursor past existing data.
             if (seg.received > 0) {
                 if (!seg.file->seek(seg.received)) {
-                    emit failed(QStringLiteral("Cannot seek in part file: %1 (%2)")
+                    emit failed(tr("Cannot seek in part file: %1 (%2)")
                                 .arg(seg.partPath, seg.file->errorString()));
                     return;
                 }
@@ -746,7 +746,7 @@ void SegmentedTransfer::startSegment(Segment &seg) {
         for (const QSslError &e : errors) msgs << e.errorString();
         const QString joined = msgs.join(QStringLiteral("; "));
         qDebug() << "[ST] segment" << idx << "TLS errors:" << joined;
-        if (m_item) m_item->setErrorString(QStringLiteral("TLS: ") + joined);
+        if (m_item) m_item->setErrorString(tr("TLS: %1").arg(joined));
     });
 }
 
@@ -778,7 +778,7 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
             m_htmlInterceptBuf.clear();
             emit failed(tr("The server redirected to a sign-in or error page (%1) instead of "
                            "the file. Re-add the download from your browser (right-click → "
-                           "Download with Stellar) to refresh authentication, then resume — "
+                           "Download with Stellar) to refresh authentication, then resume. "
                            "your partial download will be reused.").arg(redirectHost));
             return;
         }
@@ -854,7 +854,7 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
             qint64 wrote = seg.file->write(m_htmlInterceptBuf);
             if (wrote != m_htmlInterceptBuf.size()) {
                 m_item->setStatus(DownloadItem::Status::Error);
-                emit failed(QStringLiteral("Disk write failed: %1").arg(seg.file->errorString()));
+                emit failed(tr("Disk write failed: %1").arg(seg.file->errorString()));
                 return;
             }
             seg.received += wrote;
@@ -944,14 +944,14 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
                         qDebug() << "[ST] segment" << index << "Content-Range start mismatch:"
                                  << start << "vs expected" << expectedStart;
                         m_item->setStatus(DownloadItem::Status::Error);
-                        emit failed(QStringLiteral("Server returned wrong byte range"));
+                        emit failed(tr("Server returned wrong byte range"));
                         return;
                     }
                     if (okTotal && total > 0 && m_item->totalBytes() > 0 && total != m_item->totalBytes()) {
                         qDebug() << "[ST] segment" << index << "total size changed server-side:"
                                  << total << "vs expected" << m_item->totalBytes();
                         m_item->setStatus(DownloadItem::Status::Error);
-                        emit failed(QStringLiteral("File on server changed size during download"));
+                        emit failed(tr("File on server changed size during download"));
                         return;
                     }
                 }
@@ -976,7 +976,7 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
         QString err = seg.file->errorString();
         qDebug() << "[ST] disk write failed on segment" << index << ":" << err;
         m_item->setStatus(DownloadItem::Status::Error);
-        emit failed(QStringLiteral("Disk write failed: %1").arg(err));
+        emit failed(tr("Disk write failed: %1").arg(err));
         return;
     }
     seg.received += wrote;
@@ -1019,7 +1019,7 @@ void SegmentedTransfer::onSegmentFinished(int index) {
             m_htmlInterceptBuf.clear();
             emit failed(tr("The server redirected to a sign-in or error page (%1) instead of "
                            "the file. Re-add the download from your browser (right-click → "
-                           "Download with Stellar) to refresh authentication, then resume — "
+                           "Download with Stellar) to refresh authentication, then resume. "
                            "your partial download will be reused.").arg(redirectHost));
             return;
         }
@@ -1081,7 +1081,7 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         if (seg.file) seg.file->close();
         if (httpStatus > 0 && isPermanentHttp(httpStatus)) {
             m_item->setStatus(DownloadItem::Status::Error);
-            emit failed(QStringLiteral("HTTP %1 on segment %2 — not retriable")
+            emit failed(tr("HTTP %1 on segment %2 (not retriable)")
                         .arg(httpStatus).arg(index + 1));
             return;
         }
@@ -1104,7 +1104,7 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         if (seg.file) seg.file->close();
         if (isPermanentHttp(httpStatus)) {
             m_item->setStatus(DownloadItem::Status::Error);
-            emit failed(QStringLiteral("HTTP %1 on segment %2 — not retriable")
+            emit failed(tr("HTTP %1 on segment %2 (not retriable)")
                         .arg(httpStatus).arg(index + 1));
             return;
         }
@@ -1135,7 +1135,7 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         if (seg.endOffset < seg.startOffset) {
             qDebug() << "[ST] segment" << index << "invalid range (endOffset < startOffset) — aborting";
             m_item->setStatus(DownloadItem::Status::Error);
-            emit failed(QStringLiteral("Internal error: degenerate segment range"));
+            emit failed(tr("Internal error: degenerate segment range"));
             return;
         }
         qint64 expected = seg.endOffset - seg.startOffset + 1;
@@ -1196,7 +1196,7 @@ void SegmentedTransfer::onProgressTick() {
                     qDebug() << "[ST] throttled disk write failed:" << err;
                     m_progressTimer->stop();
                     m_item->setStatus(DownloadItem::Status::Error);
-                    emit failed(QStringLiteral("Disk write failed: %1").arg(err));
+                    emit failed(tr("Disk write failed: %1").arg(err));
                     return false;
                 }
                 seg.received += w;
@@ -1401,7 +1401,7 @@ void SegmentedTransfer::mergeAndFinish() {
         }
         if (!dirInfo.isWritable()) {
             m_item->setStatus(DownloadItem::Status::Error);
-            emit failed(QStringLiteral("No write permission for download directory: %1")
+            emit failed(tr("No write permission for download directory: %1")
                         .arg(saveDir));
             return;
         }
@@ -1496,7 +1496,7 @@ void SegmentedTransfer::mergeAndFinish() {
                         m_item->setErrorString(msg);
                         emit failed(msg);
                     } else {
-                        m_item->setErrorString(QStringLiteral("The file no longer exists on the server."));
+                        m_item->setErrorString(tr("The file no longer exists on the server."));
                         emit fileDeletedWarning();
                     }
                     return;
@@ -1530,12 +1530,12 @@ void SegmentedTransfer::mergeAndFinish() {
             // Fall back to memory-mapped copy + delete.
             QFile src(partSrc);
             if (!src.open(QIODevice::ReadOnly))
-                return QStringLiteral("Cannot open part file for reading: %1 (%2)")
+                return SegmentedTransfer::tr("Cannot open part file for reading: %1 (%2)")
                     .arg(partSrc, src.errorString());
 
             QFile dst(outPath);
             if (!dst.open(QIODevice::ReadWrite | QIODevice::Truncate))
-                return QStringLiteral("Cannot create output file: %1 (%2)")
+                return SegmentedTransfer::tr("Cannot create output file: %1 (%2)")
                     .arg(outPath, dst.errorString());
 
             const qint64 srcSize = src.size();
@@ -1557,11 +1557,11 @@ void SegmentedTransfer::mergeAndFinish() {
         // Pre-size the output file so the mapping covers the full range.
         QFile outFile(outPath);
         if (!outFile.open(QIODevice::ReadWrite | QIODevice::Truncate))
-            return QStringLiteral("Cannot create output file: %1 (%2)")
+            return SegmentedTransfer::tr("Cannot create output file: %1 (%2)")
                 .arg(outPath, outFile.errorString());
 
         if (totalForAssembly > 0 && !outFile.resize(totalForAssembly))
-            return QStringLiteral("Cannot pre-allocate output file: %1 (%2)")
+            return SegmentedTransfer::tr("Cannot pre-allocate output file: %1 (%2)")
                 .arg(outPath, outFile.errorString());
 
         qint64 written = 0;
@@ -1570,7 +1570,7 @@ void SegmentedTransfer::mergeAndFinish() {
             if (!partFile.open(QIODevice::ReadOnly)) {
                 outFile.close();
                 QFile::remove(outPath);
-                return QStringLiteral("Cannot open part file for reading: %1 (%2)")
+                return SegmentedTransfer::tr("Cannot open part file for reading: %1 (%2)")
                     .arg(part.path, partFile.errorString());
             }
 
@@ -1601,7 +1601,7 @@ void SegmentedTransfer::mergeAndFinish() {
 
         outFile.close();
         if (outFile.error() != QFileDevice::NoError)
-            return QStringLiteral("Output file error after assembly: %1")
+            return SegmentedTransfer::tr("Output file error after assembly: %1")
                 .arg(outFile.errorString());
 
         return {};
@@ -1854,7 +1854,7 @@ void SegmentedTransfer::handleInterstitialPage(const QByteArray &html) {
     if (!sameRegisteredDomain(m_item->url(), newUrl)) {
         qWarning() << "[HTMLIntercept] target URL rejected — domain mismatch:"
                    << newUrl.host() << "vs original" << m_item->url().host();
-        emit failed(tr("The download page pointed to an unexpected host — download aborted for security."));
+        emit failed(tr("The download page pointed to an unexpected host, download aborted for security."));
         return;
     }
 
@@ -1890,7 +1890,7 @@ void SegmentedTransfer::handleInterstitialPage(const QByteArray &html) {
     auto &seg = m_segments[0];
     seg.file = new QFile(seg.partPath);
     if (!seg.file->open(QIODevice::WriteOnly)) {
-        emit failed(QStringLiteral("Cannot open part file: %1").arg(seg.partPath));
+        emit failed(tr("Cannot open part file: %1").arg(seg.partPath));
         return;
     }
 
@@ -2281,7 +2281,7 @@ void SegmentedTransfer::retrySegment(int index, int extraDelayMs) {
 
     if (seg.retryCount >= kMaxSegmentRetries) {
         m_item->setStatus(DownloadItem::Status::Error);
-        emit failed(QStringLiteral("Segment %1 failed after %2 retries").arg(index + 1).arg(kMaxSegmentRetries));
+        emit failed(tr("Segment %1 failed after %2 retries").arg(index + 1).arg(kMaxSegmentRetries));
         return;
     }
 

@@ -5256,6 +5256,114 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="632"/>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="676"/>
+        <source>Cannot open part file: %1 (%2)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="660"/>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="686"/>
+        <source>Cannot seek in part file: %1 (%2)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="749"/>
+        <source>TLS: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="779"/>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1020"/>
+        <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="857"/>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="979"/>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1199"/>
+        <source>Disk write failed: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="947"/>
+        <source>Server returned wrong byte range</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="954"/>
+        <source>File on server changed size during download</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1013"/>
+        <source>The download request failed.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1084"/>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1107"/>
+        <source>HTTP %1 on segment %2 (not retriable)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1138"/>
+        <source>Internal error: degenerate segment range</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1404"/>
+        <source>No write permission for download directory: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1499"/>
+        <source>The file no longer exists on the server.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1533"/>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1573"/>
+        <source>Cannot open part file for reading: %1 (%2)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1538"/>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1560"/>
+        <source>Cannot create output file: %1 (%2)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1564"/>
+        <source>Cannot pre-allocate output file: %1 (%2)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1604"/>
+        <source>Output file error after assembly: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1843"/>
+        <source>The download page did not contain a usable download link.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1857"/>
+        <source>The download page pointed to an unexpected host, download aborted for security.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="1893"/>
+        <source>Cannot open part file: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/SegmentedTransfer.cpp" line="2284"/>
+        <source>Segment %1 failed after %2 retries</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>
