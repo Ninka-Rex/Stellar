@@ -37,6 +37,7 @@ Rectangle {
     signal closeTips()
     signal dismissMotd()
     signal statisticsRequested()
+    signal speedLimiterRequested()
 
     function formatKBps(kbps) {
         if (kbps >= 1000)
@@ -165,23 +166,45 @@ Rectangle {
 
         // System status items
 
-        Row {
+        Item {
+            id: speedLimiterRow
             visible: App.settings.speedLimiterEnabled
-            spacing: 4
             Layout.alignment: Qt.AlignVCenter
-            StatusIcon { source: "icons/snail.svg" }
-            Text {
-                text: {
-                    var limitParts = []
-                    if (App.settings.globalSpeedLimitKBps > 0)
-                        limitParts.push("↓ " + formatKBps(App.settings.globalSpeedLimitKBps))
-                    if (App.settings.globalUploadLimitKBps > 0)
-                        limitParts.push("↑ " + formatKBps(App.settings.globalUploadLimitKBps))
-                    var limStr = limitParts.length > 0 ? limitParts.join(" / ") : qsTr("unlimited")
-                    return qsTr("Speed limiter ") + limStr
+            Layout.fillHeight: true
+            implicitWidth: speedLimiterInner.width
+
+            Row {
+                id: speedLimiterInner
+                spacing: 4
+                anchors.verticalCenter: parent.verticalCenter
+                StatusIcon { source: "icons/snail.svg" }
+                Text {
+                    text: {
+                        var limitParts = []
+                        if (App.settings.globalSpeedLimitKBps > 0)
+                            limitParts.push("↓ " + formatKBps(App.settings.globalSpeedLimitKBps))
+                        if (App.settings.globalUploadLimitKBps > 0)
+                            limitParts.push("↑ " + formatKBps(App.settings.globalUploadLimitKBps))
+                        var limStr = limitParts.length > 0 ? limitParts.join(" / ") : qsTr("unlimited")
+                        return qsTr("Speed limiter ") + limStr
+                    }
+                    color: speedLimiterHover.hovered ? ColorPalette.textHeader : ColorPalette.textSecond
+                    font.pixelSize: 11 * App.fontScale
                 }
-                color: ColorPalette.textSecond
-                font.pixelSize: 11 * App.fontScale
+            }
+
+            HoverHandler { id: speedLimiterHover }
+            ThemedToolTip {
+                visible: speedLimiterHover.hovered
+                delay: 250
+                timeout: 6000
+                text: qsTr("Click to open Speed Limiter settings")
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: root.speedLimiterRequested()
             }
         }
 
@@ -310,7 +333,7 @@ Rectangle {
                 StatusIcon { source: "icons/connections.svg" }
                 Text {
                     text: App.totalConnections
-                    color: connectionsHover.hovered ? ColorPalette.textHeader : ColorPalette.textSecond
+                    color: ColorPalette.textSecond
                     font.pixelSize: 11 * App.fontScale
                 }
             }
@@ -340,7 +363,7 @@ Rectangle {
                 StatusIcon { source: "icons/dht_nodes.svg" }
                 Text {
                     text: App.dhtNodes
-                    color: dhtNodesHover.hovered ? ColorPalette.textHeader : ColorPalette.textSecond
+                    color: ColorPalette.textSecond
                     font.pixelSize: 11 * App.fontScale
                 }
             }

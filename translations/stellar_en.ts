@@ -7088,6 +7088,10 @@ Click to open Statistics</source>
         <translation></translation>
     </message>
     <message>
+        <source>Click to open Speed Limiter settings</source>
+        <translation></translation>
+    </message>
+    <message>
         <source>Total torrent peer connections</source>
         <translation></translation>
     </message>

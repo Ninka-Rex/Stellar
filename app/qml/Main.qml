@@ -4149,6 +4149,12 @@ ApplicationWindow {
                 statisticsDialog.raise()
                 statisticsDialog.requestActivate()
             }
+            onSpeedLimiterRequested: {
+                settingsDialog.initialPage = root.settingsPageSpeedLimiter
+                settingsDialog.show()
+                settingsDialog.raise()
+                settingsDialog.requestActivate()
+            }
         }
     }
 }
