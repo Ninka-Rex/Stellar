@@ -256,26 +256,63 @@ function isApiRpcRequest(url, filenameHint = "", mimeType = "") {
     return false;
 }
 
+// Host-agnostic "this is clearly a download, capture it even without a file
+// extension" test. Cloud download endpoints (Google Drive, Dropbox, Nextcloud,
+// WeTransfer, S3 presigned, ...) expose extensionless URLs like
+// "/download?id=...", "/uc?export=download", "/s/<id>/download" that carry an
+// explicit download signal but no ".ext" for the normal monitored-extension
+// matcher to catch. Matching on those signals — not on a hostname allowlist —
+// covers every such host uniformly. Restricted to extensionless URLs so a normal
+// "video.mp4" link is still left to the extension/MIME matcher and its media
+// carve-outs. The master ON/OFF toggle and exclusion lists are enforced
+// separately at each call site (forceIntercept only overrides ext/MIME matching).
 function forceIntercept(url) {
     try {
         const u = new URL(url);
-        const host = u.hostname.toLowerCase();
         const path = u.pathname.toLowerCase();
-        const isDriveUserContent = host === "drive.usercontent.google.com"
-            || host.endsWith(".drive.usercontent.google.com");
-        const isGoogleDocHost = host === "drive.google.com"
-            || host.endsWith(".drive.google.com")
-            || host === "docs.google.com"
-            || host.endsWith(".docs.google.com");
-        if (!isDriveUserContent && !isGoogleDocHost) return false;
-        // Only intercept URLs that carry explicit download signals — auth/warmup
-        // endpoints on these hosts (e.g. /auth_warmupv) must not be captured.
-        if (path === "/uc" || path.startsWith("/download") || path.includes("/download/")) return true;
-        if (u.searchParams.get("export") === "download") return true;
-        if (u.searchParams.has("response-content-disposition")) return true;
-        if (isDriveUserContent && u.searchParams.has("id")) return true;
-        return false;
+        const sp = u.searchParams;
+
+        const lastSeg = path.split("/").pop() || "";
+        if (lastSeg.includes(".")) return false; // has an extension → not forced
+
+        const dlValue = (sp.get("dl") || "").toLowerCase();
+        const dlIntent = dlValue === "1" || dlValue === "true" || dlValue === "yes" || dlValue === "download";
+
+        return path === "/uc"
+            || path.endsWith("/download")
+            || path.includes("/download/")
+            || sp.get("export") === "download"
+            || sp.get("alt") === "media"
+            || sp.has("response-content-disposition")
+            || sp.has("attachment")
+            || sp.has("filename")
+            || sp.has("download")
+            || dlIntent;
     } catch { return false; }
+}
+
+// Master toggle + exclusion gate, shared by both forceIntercept call sites.
+// forceIntercept overrides only file-extension / MIME matching; it must never
+// override the user's ON/OFF toggle or their excluded sites/addresses.
+function passesGlobalGateSync(url) {
+    if (!liveSettings.enabled) return false;
+    const host = getUrlHost(url);
+    for (const pattern of liveSettings.excludedSites)
+        if (matchesSitePattern(host, pattern)) return false;
+    for (const pattern of liveSettings.excludedAddresses)
+        if (matchesAddressPattern(url, pattern)) return false;
+    return true;
+}
+
+async function passesGlobalGate(url) {
+    const settings = await getSettings();
+    if (!settings.enabled) return false;
+    const host = getUrlHost(url);
+    for (const pattern of settings.excludedSites)
+        if (matchesSitePattern(host, pattern)) return false;
+    for (const pattern of settings.excludedAddresses)
+        if (matchesAddressPattern(url, pattern)) return false;
+    return true;
 }
 
 function isSignedMediaCdnPlaybackUrl(url) {
@@ -425,7 +462,8 @@ browser.webRequest.onHeadersReceived.addListener(
         // Treat it as explicit download intent regardless of URL structure.
         const isAttachment = /^\s*attachment/i.test(contentDisposition);
 
-        if (!forceIntercept(details.url) && !shouldInterceptSync(details.url, contentType, filenameHint, isAttachment)) return {};
+        const forced = forceIntercept(details.url) && passesGlobalGateSync(details.url);
+        if (!forced && !shouldInterceptSync(details.url, contentType, filenameHint, isAttachment)) return {};
 
         const pageUrl = details.documentUrl || details.originUrl || "";
         const referrer = details.originUrl || details.documentUrl || "";
@@ -518,7 +556,8 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
                 const url = message.url || "";
                 const filename = message.filename || "";
                 const explicitIntent = !!message.explicitIntent;
-                const allowed = forceIntercept(url) || await shouldIntercept(url, "", filename, explicitIntent);
+                const forced = forceIntercept(url) && await passesGlobalGate(url);
+                const allowed = forced || await shouldIntercept(url, "", filename, explicitIntent);
                 if (!allowed) {
                     sendResponse({ ok: false, reason: "not-intercepted" });
                     return;

@@ -2,23 +2,31 @@
 // Tracks modifier keys and pre-intercepts likely download links so Chrome
 // doesn't open its native downloads tray before Stellar handoff.
 
-function isForceInterceptHost(url) {
+// Host-agnostic: an extensionless URL carrying an explicit download signal
+// (cloud "download"/"uc?export=download"/"?dl=1" endpoints etc.). Pre-intercepting
+// the click stops Chrome opening its native tray before Stellar handoff. The
+// background script still enforces the ON/OFF toggle and exclusion lists, and a
+// non-intercepted click falls back to normal navigation, so this is safe to keep
+// generic. Mirrors forceIntercept() in shared/interceptor.js.
+function isForceInterceptUrl(url) {
     try {
         const u = new URL(url);
-        const host = u.hostname.toLowerCase();
         const path = u.pathname.toLowerCase();
-        const isDriveUserContent = host === "drive.usercontent.google.com"
-            || host.endsWith(".drive.usercontent.google.com");
-        const isGoogleDocHost = host === "drive.google.com"
-            || host.endsWith(".drive.google.com")
-            || host === "docs.google.com"
-            || host.endsWith(".docs.google.com");
-        if (!isDriveUserContent && !isGoogleDocHost) return false;
-        if (path === "/uc" || path.startsWith("/download") || path.includes("/download/")) return true;
-        if (u.searchParams.get("export") === "download") return true;
-        if (u.searchParams.has("response-content-disposition")) return true;
-        if (isDriveUserContent && u.searchParams.has("id")) return true;
-        return false;
+        const sp = u.searchParams;
+        const lastSeg = path.split("/").pop() || "";
+        if (lastSeg.includes(".")) return false; // has an extension
+        const dlValue = (sp.get("dl") || "").toLowerCase();
+        const dlIntent = dlValue === "1" || dlValue === "true" || dlValue === "yes" || dlValue === "download";
+        return path === "/uc"
+            || path.endsWith("/download")
+            || path.includes("/download/")
+            || sp.get("export") === "download"
+            || sp.get("alt") === "media"
+            || sp.has("response-content-disposition")
+            || sp.has("attachment")
+            || sp.has("filename")
+            || sp.has("download")
+            || dlIntent;
     } catch {
         return false;
     }
@@ -31,7 +39,7 @@ function shouldPreIntercept(anchor, href) {
     if (anchor.hasAttribute("download")) return true;
     if (!href.startsWith("http://") && !href.startsWith("https://") && !href.startsWith("ftp://"))
         return false;
-    if (isForceInterceptHost(href)) return true;
+    if (isForceInterceptUrl(href)) return true;
     return false;
 }
 

@@ -2,7 +2,7 @@
 // webRequest / declarativeNetRequest helpers for intercepting downloads.
 // Imported by the service worker of each browser's extension.
 
-import { requestDownload, extractFilename, shouldIntercept, ping } from "./messaging.js";
+import { requestDownload, extractFilename, shouldIntercept, ping, passesGlobalGate } from "./messaging.js";
 
 // Track last modifier key state to detect bypass requests
 // Auto-clears after 10 seconds (downloads are typically created instantly)
@@ -48,23 +48,38 @@ function suppressUrl(url, ttlMs = FALLBACK_SUPPRESS_TTL_MS) {
     suppressedUrls.set(url, Date.now() + ttlMs);
 }
 
+// Host-agnostic "this is clearly a download, capture it even without a file
+// extension" test. Cloud download endpoints (Google Drive, Dropbox, Nextcloud,
+// WeTransfer, S3 presigned, ...) expose extensionless URLs like
+// "/download?id=...", "/uc?export=download", "/s/<id>/download" that carry an
+// explicit download signal but no ".ext" for the normal monitored-extension
+// matcher to catch. Matching on those signals — not on a hostname allowlist —
+// covers every such host uniformly. Restricted to extensionless URLs so a normal
+// "video.mp4" link is still left to the extension/MIME matcher and its media
+// carve-outs. The master ON/OFF toggle and exclusion lists are enforced
+// separately at each call site (forceIntercept only overrides ext/MIME matching).
 export function forceIntercept(url) {
     try {
         const u = new URL(url);
-        const host = u.hostname.toLowerCase();
         const path = u.pathname.toLowerCase();
-        const isDriveUserContent = host === "drive.usercontent.google.com"
-            || host.endsWith(".drive.usercontent.google.com");
-        const isGoogleDocHost = host === "drive.google.com"
-            || host.endsWith(".drive.google.com")
-            || host === "docs.google.com"
-            || host.endsWith(".docs.google.com");
-        if (!isDriveUserContent && !isGoogleDocHost) return false;
-        if (path === "/uc" || path.startsWith("/download") || path.includes("/download/")) return true;
-        if (u.searchParams.get("export") === "download") return true;
-        if (u.searchParams.has("response-content-disposition")) return true;
-        if (isDriveUserContent && u.searchParams.has("id")) return true;
-        return false;
+        const sp = u.searchParams;
+
+        const lastSeg = path.split("/").pop() || "";
+        if (lastSeg.includes(".")) return false; // has an extension → not forced
+
+        const dlValue = (sp.get("dl") || "").toLowerCase();
+        const dlIntent = dlValue === "1" || dlValue === "true" || dlValue === "yes" || dlValue === "download";
+
+        return path === "/uc"
+            || path.endsWith("/download")
+            || path.includes("/download/")
+            || sp.get("export") === "download"
+            || sp.get("alt") === "media"
+            || sp.has("response-content-disposition")
+            || sp.has("attachment")
+            || sp.has("filename")
+            || sp.has("download")
+            || dlIntent;
     } catch { return false; }
 }
 
@@ -84,7 +99,10 @@ export async function handleDownloadCreated(downloadItem) {
         return;
     }
 
-    if (!forceIntercept(url) && !(await shouldIntercept(url, mime, filename))) return;
+    // forceIntercept overrides only the extension/MIME matching — it must still
+    // honour the master ON/OFF toggle and exclusion lists (passesGlobalGate).
+    const forced = forceIntercept(url) && await passesGlobalGate(url);
+    if (!forced && !(await shouldIntercept(url, mime, filename))) return;
 
     // Cancel the browser-managed download
     chrome.downloads.cancel(downloadItem.id);

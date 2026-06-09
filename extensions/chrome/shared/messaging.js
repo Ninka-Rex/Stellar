@@ -80,6 +80,22 @@ chrome.storage.onChanged.addListener(() => {
     cachedSettingsTime = 0;
 });
 
+// True when interception is enabled AND the URL is not on an excluded site /
+// address. Used to gate the host-agnostic forceIntercept() path so a force
+// capture still honours the master ON/OFF toggle and the user's exclusion lists
+// (forceIntercept only overrides the file-extension / MIME matching, never the
+// toggle or exclusions).
+export async function passesGlobalGate(url) {
+    const settings = await getSettings();
+    if (!settings.enabled) return false;
+    const host = getUrlHost(url);
+    for (const pattern of settings.excludedSites)
+        if (matchesSitePattern(host, pattern)) return false;
+    for (const pattern of settings.excludedAddresses)
+        if (matchesAddressPattern(url, pattern)) return false;
+    return true;
+}
+
 /**
  * Fetch current settings from the running Stellar app and persist them to
  * chrome.storage.local so the extension uses up-to-date filter lists.

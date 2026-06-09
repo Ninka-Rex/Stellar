@@ -120,8 +120,17 @@ private:
 
     void updateSegmentDataOnItem();
     void updateFilenameFromReply(QNetworkReply *reply);
-    bool isConfirmPageUrl(const QUrl &url) const;
-    void handleConfirmPage(const QByteArray &html);
+    // Parse an HTML interstitial ("click to download" / virus-scan / confirmation
+    // page) for the real download target and re-drive the download against it.
+    // Host-agnostic: covers Google Drive's confirmation page and any similar
+    // gateway. Same-domain gated before re-requesting (see sameRegisteredDomain).
+    void handleInterstitialPage(const QByteArray &html);
+    // Extract the real download URL from an HTML interstitial body. Tries, in
+    // order: <meta http-equiv="refresh">, the first plausible <form action>, then
+    // the first download-hinting <a href>. Returns an invalid QUrl if none found.
+    // Relative URLs are resolved against the item URL; caller must still apply the
+    // same-domain security gate.
+    QUrl extractInterstitialTarget(const QByteArray &html) const;
     // True when two URLs share the same registered domain (eTLD+1) and scheme.
     // Used as a security gate before following any URL parsed out of a server
     // response or query string, so credentialed requests never go off-host.
@@ -139,6 +148,11 @@ private:
     // Returns true if a recovery HEAD was issued (caller must return).
     bool tryRecoverMasqueradedUrl(const QString &expectedExt);
     static QString htmlMasqueradeError();
+    // True when the URL path carries no file extension (e.g. "/uc?id=...",
+    // "/download?file=..."). Extensionless cloud-download endpoints are the ones
+    // that gate behind an HTML interstitial and/or a browser User-Agent, so this
+    // drives the interstitial trigger and UA choice without any host allowlist.
+    static bool urlHasNoExtension(const QUrl &url);
     void applyRequestHeaders(QNetworkRequest &req, const QUrl &url) const;
     void applyReplyReadBufferSize(QNetworkReply *reply);
     void retrySegment(int index, int extraDelayMs = 0);
@@ -157,6 +171,11 @@ private:
     bool                   m_htmlIntercepting{false};
     QByteArray             m_htmlInterceptBuf;
     bool                   m_recoveryAttempted{false}; // guards single masquerade-recovery retry
+    // Set when a response looks like an HTML interstitial standing in for a binary
+    // download (text/html, no Content-Disposition, extensionless or binary-ext
+    // URL). Drives the browser-UA choice and the HTML-intercept / auth-wall logic.
+    // Reset at the start of every run. Replaces the old GDrive host allowlist.
+    bool                   m_expectInterstitial{false};
 
     QList<Segment>  m_segments;
     QTimer         *m_progressTimer{nullptr};
@@ -174,8 +193,8 @@ private:
     QNetworkReply  *m_headReply{nullptr};
 
     // Final URL after redirect chain, used for segment GETs when it differs from
-    // m_item->url() (e.g. after a GDrive confirmation-page redirect).
-    // Reset to empty on each fresh start(); populated by onHeadFinished() or by
-    // the range-upgrade path in onSegmentReadyRead().
+    // m_item->url() (e.g. after following an HTML interstitial / confirmation
+    // page to the real file). Reset to empty on each fresh start(); populated by
+    // onHeadFinished() or by the range-upgrade path in onSegmentReadyRead().
     QUrl            m_effectiveUrl;
 };

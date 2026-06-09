@@ -15,7 +15,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import { handleDownloadCreated, recordModifierKey, forceIntercept } from "./shared/interceptor.js";
-import { ping, requestDownload, shouldIntercept, syncSettingsFromApp } from "./shared/messaging.js";
+import { ping, requestDownload, shouldIntercept, syncSettingsFromApp, passesGlobalGate } from "./shared/messaging.js";
 
 const ICONS_ENABLED = {
     16: "icons/milky-way.png",
@@ -133,7 +133,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                 const url = message.url || "";
                 const filename = message.filename || "";
                 const explicitIntent = !!message.explicitIntent;
-                const allowed = forceIntercept(url) || await shouldIntercept(url, "", filename, explicitIntent);
+                const forced = forceIntercept(url) && await passesGlobalGate(url);
+                const allowed = forced || await shouldIntercept(url, "", filename, explicitIntent);
                 if (!allowed) {
                     sendResponse({ ok: false, reason: "not-intercepted" });
                     return;

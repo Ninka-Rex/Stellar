@@ -287,17 +287,20 @@ void SegmentedTransfer::start() {
 
     m_effectiveUrl = QUrl(); // reset on every fresh start
     m_recoveryAttempted = false; // allow one masquerade-recovery retry per run
+    m_expectInterstitial = false; // content-driven; re-evaluated from this run's responses
 
     qDebug() << "[ST] start() url=" << m_item->url().toString()
-             << "isConfirmPage=" << isConfirmPageUrl(m_item->url())
+             << "extensionless=" << urlHasNoExtension(m_item->url())
              << "hasCookies=" << !m_item->cookies().isEmpty()
              << "cookieLen=" << m_item->cookies().size();
 
-    // Google Drive: only discard stale non-resumable metas (single-segment downloads
-    // produced by old code or confirmation-page fallbacks that may contain HTML bytes).
-    // Valid range-based metas (resumeCapable == true) are preserved so partially-
-    // downloaded files survive restarts and hard kills.
-    if (isConfirmPageUrl(m_item->url())) {
+    // Discard stale non-resumable metas (single-segment downloads with no Range
+    // guarantee — produced by old code or by an interstitial-page fallback that
+    // may have buffered HTML bytes into the part file). Valid range-based metas
+    // (resumeCapable == true) are preserved so partially-downloaded files survive
+    // restarts and hard kills. Host-agnostic: a non-resumable single-segment meta
+    // is equally untrustworthy regardless of which server produced it.
+    {
         bool hasValidRangeMeta = false;
         QFile mf(metaPath());
         if (mf.exists() && mf.open(QIODevice::ReadOnly)) {
@@ -325,9 +328,14 @@ void SegmentedTransfer::start() {
 
 // Apply standard headers (UA, cookies, redirects) to any outgoing request.
 void SegmentedTransfer::applyRequestHeaders(QNetworkRequest &req, const QUrl &url) const {
+    // Use a browser-style User-Agent when we already know this is an HTML
+    // interstitial flow, or — before the first response, when we don't yet know —
+    // when the URL is extensionless. Extensionless cloud-download endpoints
+    // (e.g. "/uc?id=...") are the ones that tend to gate on a browser UA.
+    const bool browserStyleUa = m_expectInterstitial || urlHasNoExtension(url);
     req.setHeader(
         QNetworkRequest::UserAgentHeader,
-        resolvedUserAgent(m_useCustomUserAgent, m_customUserAgent, isConfirmPageUrl(url)));
+        resolvedUserAgent(m_useCustomUserAgent, m_customUserAgent, browserStyleUa));
     req.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
                      QNetworkRequest::NoLessSafeRedirectPolicy);
 
@@ -477,14 +485,27 @@ void SegmentedTransfer::onHeadFinished(QNetworkReply *reply) {
 
     m_item->setContentType(contentType);
 
-    // Google Drive may return text/html (virus-scan confirmation page).
-    // Fall back to single GET so we can detect and handle the HTML in onSegmentReadyRead.
-    bool needsHtmlIntercept = isConfirmPageUrl(m_item->url()) && contentType.contains(QStringLiteral("text/html"));
-    if (needsHtmlIntercept) {
+    // Interstitial detection (host-agnostic): the server answered text/html with
+    // no Content-Disposition attachment for an *extensionless* URL (e.g.
+    // "/uc?id=...", "/download?file=..."). That is the signature of a "click to
+    // download" / virus-scan / confirmation gateway page standing in for the real
+    // file. Fall back to a single streaming GET so onSegmentReadyRead can sniff
+    // the HTML and follow it to the real download (handleInterstitialPage).
+    //
+    // Restricted to extensionless URLs so legitimate HTML/text downloads
+    // (".html", ".txt", ".svg", ...) are never intercepted; the binary-extension
+    // masquerade case is handled by the fail-fast guard below instead, since
+    // there we have a concrete expected file and a possible query-param recovery.
+    const QByteArray cdHeader = reply->rawHeader("Content-Disposition");
+    const QByteArray cdLower = cdHeader.toLower();
+    const bool serverAssertsFile = cdLower.contains("attachment") || cdLower.contains("filename");
+    const bool isHtml = contentType.contains(QStringLiteral("text/html"));
+    if (isHtml && !serverAssertsFile && urlHasNoExtension(m_item->url())) {
         reply->deleteLater();
         m_headReply = nullptr;
         m_resumeCapable = false;
         m_item->setResumeCapable(false);
+        m_expectInterstitial = true;
         m_htmlIntercepting = true;
         setupSegments(0, false);
         saveMeta();
@@ -498,9 +519,9 @@ void SegmentedTransfer::onHeadFinished(QNetworkReply *reply) {
     // server answered text/html with no Content-Disposition attachment — an
     // HTML page (login wall, viewer wrapper, error/consent page) standing in
     // for the requested file. Fail fast before any part file is created so we
-    // never persist garbage as e.g. a .pdf. Checked AFTER the GDrive intercept
-    // above (which returns first); GDrive URLs carry no binary extension so
-    // they cannot reach here.
+    // never persist garbage as e.g. a .pdf. Checked AFTER the extensionless
+    // interstitial intercept above (which returns first); binary-extension URLs
+    // cannot reach that branch, so they land here for masquerade recovery/fail.
     if (looksLikeHtmlMasqueradingAsBinary(m_item->url(), contentType,
                                           reply->rawHeader("Content-Disposition"))) {
         const QString expectedExt = QFileInfo(m_item->url().path()).suffix().toLower();
@@ -535,7 +556,7 @@ void SegmentedTransfer::onHeadFinished(QNetworkReply *reply) {
     updateFilenameFromReply(reply);
 
     // Track the final URL after redirects so segment GETs go to the right host
-    // (e.g. GDrive HEAD may redirect to a CDN URL that accepts Range requests).
+    // (e.g. a HEAD may redirect to a CDN URL that accepts Range requests).
     m_effectiveUrl = reply->url();
     reply->deleteLater();
     m_headReply = nullptr;
@@ -734,14 +755,20 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
     auto &seg = m_segments[index];
     if (!seg.reply || !seg.file) return;
 
-    // GDrive auth check: if any segment (including Range-based resume segments)
-    // ends up at accounts.google.com the session cookie has expired.  Abort all
-    // connections immediately so we don't save an HTML login page as file data.
-    // Parts and meta are intentionally left on disk so the user can re-add the
-    // download from the browser (with fresh cookies) and resume from where it stopped.
-    if (isConfirmPageUrl(m_item->url())) {
-        const QString replyHost = seg.reply->url().host().toLower();
-        if (replyHost.contains(QStringLiteral("accounts.google.com"))) {
+    // Auth-wall / off-domain redirect check (host-agnostic): if a reply's final
+    // URL has left the registered domain of the original download AND the body
+    // sniffs as HTML, the server redirected us to a sign-in or error page on an
+    // identity provider (e.g. an "accounts.*" login wall) instead of the file.
+    // Abort all connections immediately so we don't save an HTML login page as
+    // file data. Parts and meta are intentionally left on disk so the user can
+    // re-add the download from the browser (with fresh cookies) and resume from
+    // where it stopped.
+    if (!sameRegisteredDomain(seg.reply->url(), m_item->url())) {
+        const QByteArray peeked = seg.reply->peek(512).trimmed();
+        const QByteArray peekLower = peeked.toLower();
+        const bool bodyIsHtml = peekLower.contains("<html") || peekLower.contains("<!doctype");
+        if (bodyIsHtml) {
+            const QString redirectHost = seg.reply->url().host();
             m_progressTimer->stop();
             for (auto &s : m_segments) {
                 if (s.reply) { s.reply->disconnect(this); s.reply->abort(); s.reply->deleteLater(); s.reply = nullptr; }
@@ -749,15 +776,19 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
             }
             m_htmlIntercepting = false;
             m_htmlInterceptBuf.clear();
-            emit failed(QStringLiteral("Google Drive session expired. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume — your partial download will be reused."));
+            emit failed(tr("The server redirected to a sign-in or error page (%1) instead of "
+                           "the file. Re-add the download from your browser (right-click → "
+                           "Download with Stellar) to refresh authentication, then resume — "
+                           "your partial download will be reused.").arg(redirectHost));
             return;
         }
     }
 
-    // Google Drive HTML interception: buffer the first chunk to sniff content type
+    // HTML interstitial interception: buffer the first chunk to sniff content type
     if (m_htmlIntercepting && index == 0) {
-        // Note: accounts.google.com auth-wall is already caught by the top-level
-        // GDrive auth check above, so we only reach here for non-auth responses.
+        // Note: an off-domain auth-wall redirect is already caught by the
+        // domain-departure check above, so we only reach here for same-domain
+        // responses (the real file, or a same-site confirmation page).
         qDebug() << "[HTMLIntercept] readyRead, replyHost=" << seg.reply->url().host() << "bufSize=" << m_htmlInterceptBuf.size();
 
         // Cap the sniff buffer: confirmation pages are at most a few KB.
@@ -837,7 +868,7 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
     // first bytes and the server announces Accept-Ranges: bytes with a known
     // Content-Length, abort and restart as multi-segment.  This catches any site
     // where HEAD was skipped or failed but the actual GET supports ranges — the
-    // GDrive confirmation-page restart, CDNs that ignore HEAD, etc.
+    // post-interstitial restart to the real file, CDNs that ignore HEAD, etc.
     if (!m_htmlIntercepting
         && m_segments.size() == 1 && seg.endOffset < 0
         && seg.received == 0 && seg.pending.isEmpty()) {
@@ -963,11 +994,13 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         return;
     }
 
-    // Google Drive HTML interception: response finished while still intercepting
-    // means the entire response is small (confirmation page or auth redirect)
+    // HTML interstitial interception: response finished while still intercepting
+    // means the entire response is small (a confirmation page or an off-domain
+    // auth/error redirect).
     if (m_htmlIntercepting && index == 0) {
-        QString replyHost = seg.reply->url().host().toLower();
-        bool isAuthRedirect = replyHost.contains(QStringLiteral("accounts.google.com"));
+        // Off-domain redirect = sign-in / error page on another registered domain.
+        const bool isAuthRedirect = !sameRegisteredDomain(seg.reply->url(), m_item->url());
+        const QString redirectHost = seg.reply->url().host();
 
         if (seg.reply->bytesAvailable() > 0)
             m_htmlInterceptBuf.append(seg.reply->readAll());
@@ -977,21 +1010,24 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         if (seg.file) { seg.file->close(); QFile::remove(seg.partPath); }
 
         if (err != QNetworkReply::NoError) {
-            emit failed(QStringLiteral("Google Drive request failed"));
+            emit failed(tr("The download request failed."));
             return;
         }
 
         if (isAuthRedirect) {
             m_htmlIntercepting = false;
             m_htmlInterceptBuf.clear();
-            emit failed(QStringLiteral("Google Drive session expired. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume — your partial download will be reused."));
+            emit failed(tr("The server redirected to a sign-in or error page (%1) instead of "
+                           "the file. Re-add the download from your browser (right-click → "
+                           "Download with Stellar) to refresh authentication, then resume — "
+                           "your partial download will be reused.").arg(redirectHost));
             return;
         }
 
-        // Small response — check if it's a confirmation page
+        // Small response — check if it's an interstitial page
         QByteArray head = m_htmlInterceptBuf.left(512).trimmed();
         if (head.contains("<html") || head.contains("<!DOCTYPE") || head.contains("<!doctype")) {
-            handleConfirmPage(m_htmlInterceptBuf);
+            handleInterstitialPage(m_htmlInterceptBuf);
         } else {
             // Small non-HTML response — write it as the file
             m_htmlIntercepting = false;
@@ -1449,8 +1485,8 @@ void SegmentedTransfer::mergeAndFinish() {
                     m_item->setStatus(DownloadItem::Status::Error);
                     if (expectedBinaryMismatch) {
                         // Server sent an HTML page in place of the binary; the file
-                        // exists, so the GDrive-flavored "no longer exists" warning
-                        // would be wrong. Use the accurate masquerade message.
+                        // exists, so the "no longer exists" warning would be wrong.
+                        // Use the accurate masquerade message.
                         const QString msg = htmlMasqueradeError();
                         m_item->setErrorString(msg);
                         emit failed(msg);
@@ -1656,10 +1692,12 @@ QString SegmentedTransfer::parseContentDispositionFilename(const QByteArray &hea
     return QString::fromUtf8(val);
 }
 
-bool SegmentedTransfer::isConfirmPageUrl(const QUrl &url) const {
-    const QString host = url.host().toLower();
-    return host.endsWith(QStringLiteral("drive.google.com")) ||
-           host.endsWith(QStringLiteral("drive.usercontent.google.com"));
+bool SegmentedTransfer::urlHasNoExtension(const QUrl &url) {
+    // QUrl::path() excludes the query string, so "/uc?id=..." yields "/uc"
+    // (no suffix) and "/file.zip?x=1" yields suffix "zip". An empty suffix means
+    // the last path segment carries no ".ext" — the shape of cloud-download
+    // gateway endpoints (e.g. "/uc", "/download", "/d/<id>").
+    return QFileInfo(url.path()).suffix().isEmpty();
 }
 
 bool SegmentedTransfer::looksLikeHtmlMasqueradingAsBinary(
@@ -1751,79 +1789,29 @@ bool SegmentedTransfer::tryRecoverMasqueradedUrl(const QString &expectedExt) {
     return true;
 }
 
-void SegmentedTransfer::handleConfirmPage(const QByteArray &html) {
-    qDebug() << "[HTMLIntercept] handling confirmation page, size:" << html.size();
-    // Google Drive virus-scan confirmation page contains a form that
-    // POSTs (or links) to the real download.  We look for the form action
-    // URL or a direct download link.
-    //
-    // Common patterns:
-    //   <form id="download-form" action="URL" method="POST">
-    //   <a id="uc-download-link" ... href="URL">
-    //
-    // We also inject a cookie header (NID) that Google may expect after
-    // the confirmation.  The simplest fix is to append &confirm=t to
-    // the original URL — some GDrive endpoints honour it, some don't.
-    // If the HTML contains a form action URL, use that instead.
+void SegmentedTransfer::handleInterstitialPage(const QByteArray &html) {
+    qDebug() << "[HTMLIntercept] handling interstitial page, size:" << html.size();
 
-    QString page = QString::fromUtf8(html);
+    const QUrl newUrl = extractInterstitialTarget(html);
 
-    // Try to extract form action URL
-    QUrl newUrl;
-    int formIdx = page.indexOf(QStringLiteral("id=\"download-form\""));
-    if (formIdx < 0) formIdx = page.indexOf(QStringLiteral("id=\"downloadForm\""));
-    if (formIdx >= 0) {
-        int actionIdx = page.indexOf(QStringLiteral("action=\""), formIdx);
-        if (actionIdx >= 0) {
-            actionIdx += 8;
-            int endIdx = page.indexOf('"', actionIdx);
-            if (endIdx > actionIdx) {
-                QString actionUrl = page.mid(actionIdx, endIdx - actionIdx);
-                actionUrl.replace(QStringLiteral("&amp;"), QStringLiteral("&"));
-                newUrl = QUrl(actionUrl);
-                if (newUrl.isRelative())
-                    newUrl = m_item->url().resolved(newUrl);
-            }
-        }
-    }
-
-    // Fallback: look for uc-download-link href
-    if (!newUrl.isValid()) {
-        int linkIdx = page.indexOf(QStringLiteral("id=\"uc-download-link\""));
-        if (linkIdx >= 0) {
-            int hrefIdx = page.indexOf(QStringLiteral("href=\""), linkIdx);
-            if (hrefIdx >= 0) {
-                hrefIdx += 6;
-                int endIdx = page.indexOf('"', hrefIdx);
-                if (endIdx > hrefIdx) {
-                    QString linkUrl = page.mid(hrefIdx, endIdx - hrefIdx);
-                    linkUrl.replace(QStringLiteral("&amp;"), QStringLiteral("&"));
-                    newUrl = QUrl(linkUrl);
-                    if (newUrl.isRelative())
-                        newUrl = m_item->url().resolved(newUrl);
-                }
-            }
-        }
-    }
-
-    qDebug() << "[HTMLIntercept] parsed confirmation page, newUrl:" << newUrl;
+    qDebug() << "[HTMLIntercept] parsed interstitial page, newUrl:" << newUrl;
     if (!newUrl.isValid()) {
         qDebug() << "[HTMLIntercept] FAILED to parse, first 2000 bytes:" << html.left(2000);
-        emit failed(QStringLiteral("Google Drive returned a confirmation page that could not be parsed"));
+        emit failed(tr("The download page did not contain a usable download link."));
         return;
     }
 
-    // SECURITY: the action URL parsed from HTML must share the registered domain
-    // of the original download URL before we issue a credentialed request to it.
-    // A spoofed or compromised confirm page could point the action at an attacker-
-    // controlled host; without this check, cookies and Basic-auth would follow.
-    // We compare registered domain (eTLD+1) so subdomains of the same site are
-    // accepted (e.g. drive.google.com → usercontent.google.com) while unrelated
+    // SECURITY: the URL parsed from HTML must share the registered domain of the
+    // original download URL before we issue a credentialed request to it. A
+    // spoofed or compromised interstitial could point at an attacker-controlled
+    // host; without this check, cookies and Basic-auth would follow. We compare
+    // registered domain (eTLD+1) so subdomains of the same site are accepted
+    // (e.g. drive.google.com → drive.usercontent.google.com) while unrelated
     // hosts are rejected outright.
     if (!sameRegisteredDomain(m_item->url(), newUrl)) {
-        qWarning() << "[HTMLIntercept] action URL rejected — domain mismatch:"
+        qWarning() << "[HTMLIntercept] target URL rejected — domain mismatch:"
                    << newUrl.host() << "vs original" << m_item->url().host();
-        emit failed(QStringLiteral("Confirmation page contained an unexpected redirect host — download aborted for security"));
+        emit failed(tr("The download page pointed to an unexpected host — download aborted for security."));
         return;
     }
 
@@ -1878,6 +1866,141 @@ void SegmentedTransfer::handleConfirmPage(const QByteArray &html) {
     saveMeta();
     m_lastReceived = 0;
     m_progressTimer->start();
+}
+
+QUrl SegmentedTransfer::extractInterstitialTarget(const QByteArray &html) const {
+    const QString page = QString::fromUtf8(html);
+
+    // Resolve a raw href/action string into an absolute URL against the item URL,
+    // unescaping HTML entities first. Returns an invalid QUrl on empty input.
+    auto resolve = [this](QString raw) -> QUrl {
+        raw = raw.trimmed();
+        if (raw.isEmpty())
+            return {};
+        raw.replace(QStringLiteral("&amp;"), QStringLiteral("&"));
+        QUrl u(raw);
+        if (u.isRelative())
+            u = m_item->url().resolved(u);
+        return u;
+    };
+
+    // Extract the value of attribute `attr` ("href"/"action"/"name"/"value")
+    // starting the search at `from`, but not past `limit` (use to confine the
+    // search to a single tag so a missing attribute doesn't borrow the next
+    // tag's). Tolerates single or double quotes around the value.
+    auto attrValueAt = [&page](const QString &attr, int from, int limit = -1) -> QString {
+        if (limit < 0) limit = page.size();
+        int eq = page.indexOf(attr + QStringLiteral("="), from);
+        if (eq < 0 || eq >= limit)
+            return {};
+        int vstart = eq + attr.size() + 1;
+        if (vstart >= page.size())
+            return {};
+        const QChar quote = page.at(vstart);
+        if (quote == u'"' || quote == u'\'') {
+            int vend = page.indexOf(quote, vstart + 1);
+            if (vend > vstart)
+                return page.mid(vstart + 1, vend - vstart - 1);
+        }
+        return {};
+    };
+
+    // 1) <meta http-equiv="refresh" content="N; url=...">  — a very common
+    //    interstitial redirect, host-agnostic.
+    {
+        int metaIdx = page.indexOf(QStringLiteral("http-equiv"), 0, Qt::CaseInsensitive);
+        while (metaIdx >= 0) {
+            // Confirm it's a refresh directive, then pull the content= value.
+            int tagStart = page.lastIndexOf('<', metaIdx);
+            int tagEnd = page.indexOf('>', metaIdx);
+            if (tagStart >= 0 && tagEnd > tagStart) {
+                const QString tag = page.mid(tagStart, tagEnd - tagStart + 1);
+                if (tag.contains(QStringLiteral("refresh"), Qt::CaseInsensitive)) {
+                    const QString content = attrValueAt(QStringLiteral("content"), tagStart);
+                    const int urlPos = content.indexOf(QStringLiteral("url="), 0, Qt::CaseInsensitive);
+                    if (urlPos >= 0) {
+                        const QUrl u = resolve(content.mid(urlPos + 4));
+                        if (u.isValid())
+                            return u;
+                    }
+                }
+            }
+            metaIdx = page.indexOf(QStringLiteral("http-equiv"), metaIdx + 1, Qt::CaseInsensitive);
+        }
+    }
+
+    // 2) First <form ... action="..."> — the modern Google Drive confirmation
+    //    page and most "click to download" gateways submit a form. We take the
+    //    first form's action regardless of its id/class (the old code hardcoded
+    //    id="download-form"). Crucially we also merge the form's hidden <input>
+    //    name/value pairs into the action's query string: confirmation forms
+    //    carry the tokens that turn a bare endpoint into a real download (e.g.
+    //    confirm=t, uuid=..., export=download). Submitting the action *without*
+    //    them yields a slow fallback and a missing Content-Disposition (so the
+    //    file saves under the URL's last path segment instead of its real name).
+    //    The same-domain gate in the caller is the security backstop against a
+    //    hostile form action.
+    {
+        int formIdx = page.indexOf(QStringLiteral("<form"), 0, Qt::CaseInsensitive);
+        if (formIdx >= 0) {
+            QUrl u = resolve(attrValueAt(QStringLiteral("action"), formIdx));
+            if (u.isValid()) {
+                // Bound the scan to this form element so we don't pull inputs from
+                // an unrelated later form. Missing </form> → scan to end of page.
+                int formEnd = page.indexOf(QStringLiteral("</form"), formIdx, Qt::CaseInsensitive);
+                if (formEnd < 0) formEnd = page.size();
+
+                QUrlQuery query(u);
+                int inputIdx = page.indexOf(QStringLiteral("<input"), formIdx, Qt::CaseInsensitive);
+                while (inputIdx >= 0 && inputIdx < formEnd) {
+                    int tagEnd = page.indexOf('>', inputIdx);
+                    if (tagEnd < 0 || tagEnd > formEnd) break;
+                    const QString name = attrValueAt(QStringLiteral("name"), inputIdx, tagEnd);
+                    if (!name.isEmpty()) {
+                        // value= may be absent (e.g. <input name="x">) → empty value.
+                        QString value = attrValueAt(QStringLiteral("value"), inputIdx, tagEnd);
+                        value.replace(QStringLiteral("&amp;"), QStringLiteral("&"));
+                        // Don't clobber a param the action URL already carries.
+                        if (!query.hasQueryItem(name))
+                            query.addQueryItem(name, value);
+                    }
+                    inputIdx = page.indexOf(QStringLiteral("<input"), tagEnd + 1, Qt::CaseInsensitive);
+                }
+                u.setQuery(query);
+                return u;
+            }
+        }
+    }
+
+    // 3) First download-hinting <a ... href="...">. We scan anchors and accept the
+    //    first whose tag or href hints a download (id/class/text mentioning
+    //    "download"/"confirm", or an href carrying confirm=/export=download).
+    //    Generalizes the old id="uc-download-link" match.
+    {
+        int aIdx = page.indexOf(QStringLiteral("<a "), 0, Qt::CaseInsensitive);
+        while (aIdx >= 0) {
+            int tagEnd = page.indexOf('>', aIdx);
+            if (tagEnd < 0)
+                break;
+            const QString openTag = page.mid(aIdx, tagEnd - aIdx + 1);
+            const QString href = attrValueAt(QStringLiteral("href"), aIdx);
+            const QString hrefLower = href.toLower();
+            const QString tagLower = openTag.toLower();
+            const bool hints =
+                tagLower.contains(QStringLiteral("download")) ||
+                tagLower.contains(QStringLiteral("confirm")) ||
+                hrefLower.contains(QStringLiteral("confirm=")) ||
+                hrefLower.contains(QStringLiteral("export=download"));
+            if (hints) {
+                const QUrl u = resolve(href);
+                if (u.isValid())
+                    return u;
+            }
+            aIdx = page.indexOf(QStringLiteral("<a "), tagEnd + 1, Qt::CaseInsensitive);
+        }
+    }
+
+    return {};
 }
 
 // Sets the QNAM internal read-buffer cap on a reply so that QNAM stops draining
