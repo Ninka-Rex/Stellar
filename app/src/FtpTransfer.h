@@ -46,6 +46,9 @@ public:
     static constexpr qint64 kMinSegmentSize  = 1 * 1024 * 1024; // 1 MB — below this, single connection
     static constexpr int    kMaxSegments     = 8;               // hard cap on parallel data connections
     static constexpr int    kCommandTimeoutMs = 30'000;         // per-command reply deadline
+    // When the server gives no SIZE, a hostile/broken host can stream forever
+    // and fill the disk. Abort an unknown-length transfer past this ceiling.
+    static constexpr qint64 kMaxUnknownLengthBytes = 64LL * 1024 * 1024 * 1024; // 64 GB
 
     explicit FtpTransfer(DownloadItem *item, int segments, QObject *parent = nullptr);
     ~FtpTransfer() override;

@@ -341,8 +341,17 @@ private:
 
     QString userOrAnon() const { return m_user.isEmpty() ? QStringLiteral("anonymous") : m_user; }
     QString passOrAnon() const { return m_user.isEmpty() ? QStringLiteral("anonymous@") : m_pass; }
+    // Server reply text is untrusted and flows into user-visible error strings.
+    // Strip control chars and bidi/isolate overrides (terminal/RTL spoofing),
+    // collapse whitespace, and cap the length before display.
+    static QString sanitizeServerText(QString t) {
+        static const QRegularExpression bad(
+            QStringLiteral("[\\x00-\\x1f\\x7f\\x{202a}-\\x{202e}\\x{2066}-\\x{2069}]"));
+        t.remove(bad);
+        return t.simplified().left(200);
+    }
     static QString serverMsg(const QString &prefix, const QString &text) {
-        const QString t = text.trimmed();
+        const QString t = sanitizeServerText(text);
         return t.isEmpty() ? (prefix + QLatin1Char('.')) : QStringLiteral("%1: %2").arg(prefix, t);
     }
     QString loginError(const QString &text) const { return serverMsg(tr("FTP login failed"), text); }
@@ -722,6 +731,17 @@ void FtpTransfer::onProgressTick() {
             bool allDone = true;
             for (const auto &s : m_segments) if (!s.done) { allDone = false; break; }
             if (allDone) { m_progressTimer->stop(); mergeAndFinish(); return; }
+        }
+    }
+
+    // Unknown-length guard: a server that never sent SIZE could stream forever.
+    // Once such a segment crosses the ceiling, fail rather than fill the disk.
+    for (const auto &seg : m_segments) {
+        if (seg.endOffset < 0 && seg.received > kMaxUnknownLengthBytes) {
+            failTransfer(tr("FTP transfer exceeded the maximum size for an "
+                            "unknown-length download (%1 GB).")
+                         .arg(kMaxUnknownLengthBytes / (1024 * 1024 * 1024)));
+            return;
         }
     }
 
