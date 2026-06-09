@@ -36,52 +36,72 @@ Rectangle {
     property var categoryDragProxy: null
 
     // ── Multi-selection state ────────────────────────────────────────────
-    property var _selectedRows:     ({})
+    // Selection is keyed by the stable DownloadItem.id, NOT row index. When
+    // sorting by a volatile column the model live-reorders rows every tick; an
+    // index-keyed set would leave the highlight on a position while a different
+    // item slides under it. Id-keying makes selection follow the item.
+    property var _selectedIds:      ({})
     property int _selectionVersion: 0
 
-    function isRowSelected(row) { return !!_selectedRows[row] }
+    function _idForRow(row) {
+        var item = App.downloadModel.itemAt(row)
+        return item ? item.id : ""
+    }
 
-    function _setSelection(rows) {
-        _selectedRows = rows
+    function isRowSelected(row) {
+        var id = _idForRow(row)
+        return id !== "" && !!_selectedIds[id]
+    }
+
+    function _setSelection(ids) {
+        _selectedIds = ids
         _selectionVersion++
     }
 
     function _toggleRow(row) {
-        var r = Object.assign({}, _selectedRows)
-        if (r[row]) delete r[row]
-        else r[row] = true
+        var id = _idForRow(row)
+        if (id === "") return
+        var r = Object.assign({}, _selectedIds)
+        if (r[id]) delete r[id]
+        else r[id] = true
         _setSelection(r)
     }
 
-    function _addRangeTo(anchorRow, row) {
-        var r = Object.assign({}, _selectedRows)
-        var lo = Math.min(anchorRow, row), hi = Math.max(anchorRow, row)
-        for (var i = lo; i <= hi; i++) r[i] = true
+    // Range is inherently positional: resolve the row span to ids at click time,
+    // after which the selection is stable across any reorder.
+    function _addRange(fromRow, toRow) {
+        var r = Object.assign({}, _selectedIds)
+        var lo = Math.min(fromRow, toRow), hi = Math.max(fromRow, toRow)
+        for (var i = lo; i <= hi; i++) {
+            var id = _idForRow(i)
+            if (id !== "") r[id] = true
+        }
         _setSelection(r)
     }
 
     function _clearAndSelect(row) {
         var r = {}
-        if (row >= 0) r[row] = true
+        var id = _idForRow(row)
+        if (id !== "") r[id] = true
         _setSelection(r)
     }
 
-    property int _anchorRow: -1
+    property string _anchorId: ""
 
     readonly property var currentSelectedItem: {
         _selectionVersion
-        if (_anchorRow < 0) return null
-        return App.downloadModel.data(App.downloadModel.index(_anchorRow, 0), Qt.UserRole + 2)
+        if (_anchorId === "") return null
+        return App.downloadModel.itemById(_anchorId)
     }
 
     readonly property string selectedItemStatus: currentSelectedItem ? currentSelectedItem.status : ""
 
-    readonly property bool hasSelection: { _selectionVersion; return Object.keys(_selectedRows).length > 0 }
+    readonly property bool hasSelection: { _selectionVersion; return Object.keys(_selectedIds).length > 0 }
     readonly property int selectedTorrentCountValue: {
         _selectionVersion
         var count = 0
-        for (var row in _selectedRows) {
-            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+        for (var id in _selectedIds) {
+            var item = App.downloadModel.itemById(id)
             if (item && item.isTorrent)
                 count++
         }
@@ -100,16 +120,16 @@ Rectangle {
     // ── Toolbar enabled-state bindings reactive via _selectionVersion ────
     readonly property bool anyPausedSelected: {
         _selectionVersion
-        for (var row in _selectedRows) {
-            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+        for (var id in _selectedIds) {
+            var item = App.downloadModel.itemById(id)
             if (item && item.status === "Paused") return true
         }
         return false
     }
     readonly property bool anyActiveSelected: {
         _selectionVersion
-        for (var row in _selectedRows) {
-            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+        for (var id in _selectedIds) {
+            var item = App.downloadModel.itemById(id)
             if (item && (item.status === "Downloading" || item.status === "Queued" || item.status === "Seeding")) return true
         }
         return false
@@ -120,16 +140,16 @@ Rectangle {
     // Seeding, leaving Error/Checking items un-stoppable (greyed-out Stop).
     readonly property bool anyStoppableSelected: {
         _selectionVersion
-        for (var row in _selectedRows) {
-            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+        for (var id in _selectedIds) {
+            var item = App.downloadModel.itemById(id)
             if (item && item.status !== "Completed" && item.status !== "Paused") return true
         }
         return false
     }
     readonly property bool anyErrorSelected: {
         _selectionVersion
-        for (var row in _selectedRows) {
-            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+        for (var id in _selectedIds) {
+            var item = App.downloadModel.itemById(id)
             if (item && item.status === "Error") return true
         }
         return false
@@ -139,8 +159,8 @@ Rectangle {
         if (status === "Paused")                             return anyPausedSelected
         if (status === "Downloading" || status === "Queued" || status === "Seeding") return anyActiveSelected
         _selectionVersion
-        for (var row in _selectedRows) {
-            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+        for (var id in _selectedIds) {
+            var item = App.downloadModel.itemById(id)
             if (item && item.status === status) return true
         }
         return false
@@ -149,8 +169,8 @@ Rectangle {
     function resumeSelected() {
         _selectionVersion
         var ids = []
-        for (var row in _selectedRows) {
-            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+        for (var id in _selectedIds) {
+            var item = App.downloadModel.itemById(id)
             if (item) ids.push(item.id)
         }
         if (ids.length === 1) App.resumeDownload(ids[0])
@@ -158,23 +178,23 @@ Rectangle {
     }
     function stopSelected() {
         _selectionVersion
-        for (var row in _selectedRows) {
-            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+        for (var id in _selectedIds) {
+            var item = App.downloadModel.itemById(id)
             if (item) App.pauseDownload(item.id)
         }
     }
     function pauseAll()        { App.pauseAllDownloads() }
     function deleteSelected()  {
-        var rows = Object.keys(_selectedRows)
-        if (rows.length === 1) {
+        var selIds = Object.keys(_selectedIds)
+        if (selIds.length === 1) {
             var item = _selectedItem()
             if (item) _openDeleteDialog(item)
-        } else if (rows.length > 1) {
+        } else if (selIds.length > 1) {
             var ids = []
             var fileExists = false
             var hasTorrentSelection = false
-            for (var i = 0; i < rows.length; i++) {
-                var it = App.downloadModel.data(App.downloadModel.index(parseInt(rows[i]), 0), Qt.UserRole + 2)
+            for (var i = 0; i < selIds.length; i++) {
+                var it = App.downloadModel.itemById(selIds[i])
                 if (!it) continue
                 ids.push(it.id)
                 if (it.isTorrent)
@@ -185,19 +205,19 @@ Rectangle {
             if (ids.length > 0) {
                 _openDeleteDialog(null, ids, fileExists, hasTorrentSelection)
                 _setSelection({})
-                _anchorRow = -1
+                _anchorId = ""
             }
         }
     }
     function _selectedItem() {
-        if (_anchorRow < 0) return null
-        return App.downloadModel.data(App.downloadModel.index(_anchorRow, 0), Qt.UserRole + 2)
+        if (_anchorId === "") return null
+        return App.downloadModel.itemById(_anchorId)
     }
     function _selectedItems() {
         _selectionVersion
         var items = []
-        for (var row in _selectedRows) {
-            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+        for (var id in _selectedIds) {
+            var item = App.downloadModel.itemById(id)
             if (item) items.push(item)
         }
         return items
@@ -442,8 +462,8 @@ Rectangle {
         CtxMenuItem {
             text: qsTr("Remove from Queue")
             onTriggered: {
-                for (var row in root._selectedRows) {
-                    var it = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+                for (var id in root._selectedIds) {
+                    var it = App.downloadModel.itemById(id)
                     if (it) App.setDownloadQueue(it.id, "")
                 }
             }
@@ -458,7 +478,7 @@ Rectangle {
         function onDataChanged(topLeft, bottomRight, roles) {
             const lo = topLeft.row, hi = bottomRight.row
             for (var r = lo; r <= hi; r++) {
-                if (root._selectedRows[r]) {
+                if (root.isRowSelected(r)) {
                     root._selectionVersion++
                     return
                 }
@@ -672,7 +692,7 @@ Rectangle {
 
     function deselectAll() {
         _setSelection({})
-        _anchorRow = -1
+        _anchorId = ""
     }
 
     function openSelectedFile() {
@@ -699,7 +719,7 @@ Rectangle {
             if (_itemMatchesFind(item, filterText, filterName, filterDesc, filterLinks, filterMatchCase, filterMatchWhole)) {
                 _findRow = i
                 root._clearAndSelect(i)
-                root._anchorRow = i
+                root._anchorId = item.id
                 tableView.positionViewAtIndex(i, ListView.Center)
                 return
             }
@@ -716,7 +736,7 @@ Rectangle {
             if (_itemMatchesFind(item, filterText, filterName, filterDesc, filterLinks, filterMatchCase, filterMatchWhole)) {
                 _findRow = row
                 root._clearAndSelect(row)
-                root._anchorRow = row
+                root._anchorId = item.id
                 tableView.positionViewAtIndex(row, ListView.Center)
                 return
             }
@@ -757,7 +777,7 @@ Rectangle {
             if (_itemMatchesFind(item, text, name, desc, links, mc, mw)) {
                 _findRow = i
                 root._clearAndSelect(i)
-                root._anchorRow = i
+                root._anchorId = item.id
                 tableView.positionViewAtIndex(i, ListView.Center)
                 return
             }
@@ -773,7 +793,7 @@ Rectangle {
             if (_itemMatchesFind(item, text, name, desc, links, mc, mw)) {
                 _findRow = row
                 root._clearAndSelect(row)
-                root._anchorRow = row
+                root._anchorId = item.id
                 tableView.positionViewAtIndex(row, ListView.Center)
                 return
             }
@@ -873,13 +893,16 @@ Rectangle {
         Keys.onPressed: function(e) {
             if (e.key === Qt.Key_A && (e.modifiers & Qt.ControlModifier)) {
                 var r = {}
+                var lastId = ""
                 for (var i = 0; i < App.downloadModel.rowCount(); i++) {
                     var item = App.downloadModel.data(App.downloadModel.index(i, 0), Qt.UserRole + 2)
-                    if (root.itemMatchesActiveFilter(item))
-                        r[i] = true
+                    if (item && root.itemMatchesActiveFilter(item)) {
+                        r[item.id] = true
+                        lastId = item.id
+                    }
                 }
                 root._setSelection(r)
-                root._anchorRow = Object.keys(r).length > 0 ? parseInt(Object.keys(r).pop()) : -1
+                root._anchorId = lastId
                 e.accepted = true
             } else if (e.key === Qt.Key_Delete) {
                 root.deleteSelected()

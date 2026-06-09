@@ -447,10 +447,8 @@ Rectangle {
                 if (table.categoryDragProxy && rowRect.item) {
                     dragActive = true
                     var selectedIds = []
-                    for (var idx in table._selectedRows) {
-                        var rowIdx = parseInt(idx)
-                        var selectedItem = App.downloadModel.itemAt(rowIdx)
-                        if (selectedItem) selectedIds.push(selectedItem.id)
+                    for (var selId in table._selectedIds) {
+                        if (App.downloadModel.itemById(selId)) selectedIds.push(selId)
                     }
                     if (selectedIds.length === 0 || !table.isRowSelected(rowRect.rowIndex))
                         selectedIds = [rowRect.item.id]
@@ -484,23 +482,24 @@ Rectangle {
             if (mouse.button === Qt.RightButton) {
                 if (!table.isRowSelected(rowRect.rowIndex)) {
                     table._clearAndSelect(rowRect.rowIndex)
-                    table._anchorRow = rowRect.rowIndex
+                    table._anchorId = rowRect.item ? rowRect.item.id : ""
                 }
                 table._ctxItem = rowRect.item
                 table.rowCtxMenu.popup()
             } else if (mouse.modifiers & Qt.ControlModifier) {
                 table._toggleRow(rowRect.rowIndex)
-                table._anchorRow = rowRect.rowIndex
+                table._anchorId = rowRect.item ? rowRect.item.id : ""
             } else if (mouse.modifiers & Qt.ShiftModifier) {
-                if (table._anchorRow >= 0)
-                    table._addRangeTo(table._anchorRow, rowRect.rowIndex)
+                var anchorRow = table._anchorId !== "" ? App.downloadModel.rowForId(table._anchorId) : -1
+                if (anchorRow >= 0)
+                    table._addRange(anchorRow, rowRect.rowIndex)
                 else {
                     table._clearAndSelect(rowRect.rowIndex)
-                    table._anchorRow = rowRect.rowIndex
+                    table._anchorId = rowRect.item ? rowRect.item.id : ""
                 }
             } else {
                 table._clearAndSelect(rowRect.rowIndex)
-                table._anchorRow = rowRect.rowIndex
+                table._anchorId = rowRect.item ? rowRect.item.id : ""
             }
         }
 

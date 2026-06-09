@@ -3974,17 +3974,17 @@ ApplicationWindow {
                     // ── the new (possibly empty) filtered view otherwise Resume/Delete/etc. ──
                     // stay lit when the newly shown category has no items.
                     downloadTable._setSelection({})
-                    downloadTable._anchorRow = -1
+                    downloadTable._anchorId = ""
                 }
                 onQueueSelected: (queueId) => {
                     App.selectedQueue = queueId
                     downloadTable._setSelection({})
-                    downloadTable._anchorRow = -1
+                    downloadTable._anchorId = ""
                 }
                 onGrabberProjectSelected: (projectId) => {
                     App.selectedCategory = projectId
                     downloadTable._setSelection({})
-                    downloadTable._anchorRow = -1
+                    downloadTable._anchorId = ""
                 }
                 onEditGrabberProjectRequested: (projectId) => {
                     grabberDialog.projectId = projectId
@@ -3997,7 +3997,7 @@ ApplicationWindow {
                     if (App.selectedCategory === projectId)
                         App.selectedCategory = "all"
                     downloadTable._setSelection({})
-                    downloadTable._anchorRow = -1
+                    downloadTable._anchorId = ""
                 }
             }
 
@@ -4127,7 +4127,7 @@ ApplicationWindow {
             activeCount:    App.activeDownloads
             completedCount: App.completedDownloads
             // _selectionVersion is the reactive trigger; Object.keys gives the live count.
-            selectedCount: { downloadTable._selectionVersion; return Object.keys(downloadTable._selectedRows).length }
+            selectedCount: { downloadTable._selectionVersion; return Object.keys(downloadTable._selectedIds).length }
             tipsArray:      root.tipsArray
             currentTipIndex: root.currentTipIndex
             showTips:       App.settings.showTips

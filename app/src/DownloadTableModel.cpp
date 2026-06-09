@@ -202,6 +202,11 @@ DownloadItem *DownloadTableModel::itemAt(int row) const {
     return (row >= 0 && row < m_visible.size()) ? m_visible[row] : nullptr;
 }
 
+int DownloadTableModel::rowForId(const QString &id) const {
+    DownloadItem *item = itemById(id);
+    return item ? m_visible.indexOf(item) : -1;
+}
+
 DownloadItem *DownloadTableModel::itemById(const QString &id) const {
     for (auto *item : m_items)
         if (item->id() == id) return item;
