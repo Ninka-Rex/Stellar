@@ -801,13 +801,15 @@ void FtpTransfer::mergeAndFinish() {
 
     const QString outPath = longPath(m_item->savePath() + QStringLiteral("/") + m_item->filename());
 
-    struct PartInfo { QString path; qint64 startOffset; };
+    struct PartInfo { QString path; qint64 startOffset; qint64 expectedLen; };
     QList<PartInfo> parts;
     const bool singleNoRange = (m_segments.size() == 1 && m_segments[0].endOffset < 0);
     if (singleNoRange) {
-        parts.append({ m_segments[0].partPath, 0 });
+        parts.append({ m_segments[0].partPath, 0, -1 });
     } else {
-        for (const auto &seg : m_segments) parts.append({ seg.partPath, seg.startOffset });
+        for (const auto &seg : m_segments)
+            parts.append({ seg.partPath, seg.startOffset,
+                           seg.endOffset >= 0 ? seg.endOffset - seg.startOffset + 1 : -1 });
         std::sort(parts.begin(), parts.end(),
                   [](const PartInfo &a, const PartInfo &b){ return a.startOffset < b.startOffset; });
     }
@@ -857,6 +859,14 @@ void FtpTransfer::mergeAndFinish() {
                 return QStringLiteral("Cannot open part file: %1 (%2)").arg(part.path, pf.errorString());
             }
             const qint64 sz = pf.size();
+            // A part larger than its declared range would copy into the next
+            // segment's bytes and push the output past its true length. Reject
+            // any mismatch rather than assemble a corrupt file.
+            if (part.expectedLen >= 0 && sz != part.expectedLen) {
+                pf.close(); out.close(); QFile::remove(outPath);
+                return QStringLiteral("Part file size mismatch: %1 (expected %2, got %3)")
+                    .arg(part.path).arg(part.expectedLen).arg(sz);
+            }
             qint64 off = 0, outOff = part.startOffset, remaining = sz;
             while (remaining > 0) {
                 const qint64 window = std::min(remaining, kFtpMapWindow);
@@ -1066,6 +1076,21 @@ bool FtpTransfer::loadMeta() {
         done += seg.received;
         m_segments.append(seg);
     }
+
+    // The meta file lives in a user/process-writable directory; a corrupt or
+    // crafted one must not yield overlapping ranges (parts clobber each other in
+    // merge), gaps (zero-filled holes), or an out-of-bounds endOffset — any of
+    // which produce a silently corrupt file reported as complete. Require the
+    // segments to tile [0, total-1] contiguously, in order, with no overlap.
+    qint64 expectStart = 0;
+    for (const auto &seg : m_segments) {
+        if (seg.startOffset != expectStart) return false;     // gap or overlap
+        if (seg.endOffset < seg.startOffset) return false;    // empty/inverted
+        if (seg.endOffset >= total) return false;             // past EOF
+        expectStart = seg.endOffset + 1;
+    }
+    if (expectStart != total) return false;                   // incomplete coverage
+
     m_item->setDoneBytes(done);
     updateSegmentDataOnItem();
     return true;
