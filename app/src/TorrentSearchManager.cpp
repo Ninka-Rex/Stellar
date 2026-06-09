@@ -28,6 +28,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include "FileNameUtils.h"
 #include "StellarPaths.h"
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -638,7 +639,10 @@ void TorrentSearchManager::installPluginFromUrl(const QString &url) {
             emit pluginInstallFinished(false, QStringLiteral("Failed to download plugin."));
             return;
         }
-        QString fileName = QFileInfo(targetUrl.path()).fileName();
+        // QFileInfo().fileName() strips any path components the server URL may
+        // contain, but keep sanitizeFilename() as a second layer so characters
+        // invalid on Windows are also removed before we write to the plugin dir.
+        QString fileName = sanitizeFilename(QFileInfo(targetUrl.path()).fileName());
         if (!fileName.endsWith(QStringLiteral(".py"), Qt::CaseInsensitive))
             fileName += QStringLiteral(".py");
         QDir().mkpath(pluginDirectory());

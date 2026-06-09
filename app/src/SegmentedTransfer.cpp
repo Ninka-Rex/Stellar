@@ -1738,14 +1738,52 @@ QString SegmentedTransfer::htmlMasqueradeError() {
 }
 
 bool SegmentedTransfer::sameRegisteredDomain(const QUrl &a, const QUrl &b) {
-    // Extract eTLD+1: last two dot-separated labels of the hostname. Simple but
-    // sufficient — we're not a browser; this only gates following a URL derived
-    // from a server response/query against the already-trusted original host.
+    // Derive eTLD+1 using a hardcoded set of known multi-label public suffixes.
+    // Qt has no public PSL API; the naive last-two-labels approach misidentifies
+    // co.uk, com.au, github.io etc. as registrable domains, letting unrelated
+    // tenants on the same public suffix compare equal and receive each other's
+    // cookies, credentials, or Referer headers.
+    static const QSet<QString> multiLabelTlds = {
+        // ccTLD second-levels (common)
+        QStringLiteral("co.uk"),  QStringLiteral("org.uk"),  QStringLiteral("me.uk"),
+        QStringLiteral("net.uk"), QStringLiteral("ltd.uk"),  QStringLiteral("plc.uk"),
+        QStringLiteral("co.nz"),  QStringLiteral("net.nz"),  QStringLiteral("org.nz"),
+        QStringLiteral("co.za"),  QStringLiteral("net.za"),  QStringLiteral("org.za"),
+        QStringLiteral("com.au"), QStringLiteral("net.au"),  QStringLiteral("org.au"),
+        QStringLiteral("edu.au"), QStringLiteral("gov.au"),  QStringLiteral("asn.au"),
+        QStringLiteral("com.br"), QStringLiteral("net.br"),  QStringLiteral("org.br"),
+        QStringLiteral("com.ar"), QStringLiteral("net.ar"),  QStringLiteral("org.ar"),
+        QStringLiteral("com.mx"), QStringLiteral("net.mx"),  QStringLiteral("org.mx"),
+        QStringLiteral("com.tr"), QStringLiteral("net.tr"),  QStringLiteral("org.tr"),
+        QStringLiteral("co.jp"),  QStringLiteral("ne.jp"),   QStringLiteral("or.jp"),
+        QStringLiteral("co.in"),  QStringLiteral("net.in"),  QStringLiteral("org.in"),
+        QStringLiteral("co.kr"),  QStringLiteral("ne.kr"),   QStringLiteral("or.kr"),
+        QStringLiteral("com.cn"), QStringLiteral("net.cn"),  QStringLiteral("org.cn"),
+        QStringLiteral("com.hk"), QStringLiteral("net.hk"),  QStringLiteral("org.hk"),
+        QStringLiteral("com.sg"), QStringLiteral("net.sg"),  QStringLiteral("org.sg"),
+        QStringLiteral("com.tw"), QStringLiteral("net.tw"),  QStringLiteral("org.tw"),
+        // Hosting platforms (each subdomain is a distinct tenant)
+        QStringLiteral("github.io"),       QStringLiteral("gitlab.io"),
+        QStringLiteral("vercel.app"),      QStringLiteral("netlify.app"),
+        QStringLiteral("pages.dev"),       QStringLiteral("workers.dev"),
+        QStringLiteral("web.app"),         QStringLiteral("firebaseapp.com"),
+        QStringLiteral("azurewebsites.net"),QStringLiteral("azurestaticapps.net"),
+        QStringLiteral("onrender.com"),    QStringLiteral("fly.dev"),
+        QStringLiteral("railway.app"),     QStringLiteral("pythonanywhere.com"),
+    };
+
     auto registeredDomain = [](const QString &host) -> QString {
         const QStringList parts = host.split(QLatin1Char('.'));
         if (parts.size() < 2) return host;
+        // Check if last three labels form a known multi-label TLD (e.g. co.uk).
+        if (parts.size() >= 3) {
+            const QString twoLabel = parts.at(parts.size() - 2) + QLatin1Char('.') + parts.last();
+            if (multiLabelTlds.contains(twoLabel))
+                return parts.at(parts.size() - 3) + QLatin1Char('.') + twoLabel;
+        }
         return parts.at(parts.size() - 2) + QLatin1Char('.') + parts.last();
     };
+
     if (a.scheme() != b.scheme())
         return false;
     return registeredDomain(a.host().toLower()) == registeredDomain(b.host().toLower());
