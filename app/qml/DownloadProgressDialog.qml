@@ -39,6 +39,18 @@ Window {
     property bool   openFolderWhenDone: false
     property bool   shutdownWhenDone: false
     property bool   completionHandled: false
+    // Latch the error detail so per-segment retries (which flip status
+    // Error→Queued→Error repeatedly) don't show/hide the row each cycle,
+    // bouncing the window up and down. Cleared once the download actually
+    // resumes downloading or completes. `_latchedErrorString` keeps the text
+    // stable while latched even if the live errorString momentarily clears.
+    property bool   _errorLatched: false
+    property string _latchedErrorString: ""
+    // doneBytes snapshot taken when the error latched. The latch clears only
+    // when bytes advance past this mark — i.e. the download genuinely resumed
+    // receiving data — not on the transient Downloading flicker a retry emits
+    // before failing again.
+    property var    _errorBytesMark: 0
     property var    _pendingSegmentData: null
     property int    segmentRowLimit: Math.max(1, App.settings ? App.settings.perHostConnectionLimit : 8)
 
@@ -115,6 +127,9 @@ Window {
         openFolderWhenDone = false
         shutdownWhenDone = false
         completionHandled = item && item.status === "Completed"
+        _errorLatched = false
+        _latchedErrorString = ""
+        _updateErrorLatch()
         syncSegmentList(item ? item.segmentData : [])
         _pendingSegmentData = null
         if (item && item.speedLimitKBps > 0) {
@@ -191,6 +206,39 @@ Window {
             App.shutdownComputer()
     }
 
+    // Maintain the error-detail latch across retry status churn. Latch on
+    // when an error is surfaced; clear only when the download genuinely makes
+    // forward progress (Downloading) or finishes. Transient retry states
+    // (Queued/Connecting/Paused) leave it untouched so the row stays put.
+    function _clearErrorLatch() {
+        _errorLatched = false
+        _latchedErrorString = ""
+    }
+
+    function _updateErrorLatch() {
+        if (!item) { _clearErrorLatch(); return }
+        var s = item.status
+        if (s === "Error") {
+            // Latch on any Error — many failure paths set the status without an
+            // errorString. Capture the message if present; a later
+            // errorStringChanged refreshes it. Fall back to a generic line so
+            // the row is never blank while showing the Error header.
+            // Snapshot doneBytes: the latch only clears once bytes advance past
+            // this, so the transient Downloading flicker during a retry (which
+            // emits no new bytes before failing again) won't clear the row.
+            _errorLatched = true
+            _errorBytesMark = item.doneBytes
+            _latchedErrorString = item.errorString !== ""
+                ? item.errorString
+                : qsTr("Download failed. The server may be unreachable or refusing the request.")
+        } else if (s === "Completed") {
+            _clearErrorLatch()
+        }
+        // Note: Downloading does NOT clear here — only real byte progress does
+        // (see onDoneBytesChanged), so retries that briefly flip to Downloading
+        // don't bounce the row.
+    }
+
     // Push the download's progress + state onto this window's Windows taskbar
     // button (IDM-style). state: 0 none, 1 normal(green), 2 paused(yellow),
     // 3 error(red), 4 indeterminate.
@@ -209,8 +257,23 @@ Window {
 
     Connections {
         target: item
-        function onStatusChanged() { root.handleCompletion(); root._updateTaskbar() }
-        function onDoneBytesChanged() { root._updateTaskbar() }
+        function onStatusChanged() {
+            root.handleCompletion()
+            root._updateTaskbar()
+            root._updateErrorLatch()
+        }
+        function onDoneBytesChanged() {
+            root._updateTaskbar()
+            // Genuine resume: bytes advanced past the error mark → drop the row.
+            if (root._errorLatched && item && item.doneBytes > root._errorBytesMark)
+                root._clearErrorLatch()
+        }
+        function onErrorStringChanged() {
+            // A real message arriving after the Error status replaces the
+            // generic fallback while latched.
+            if (root._errorLatched && item && item.errorString !== "")
+                root._latchedErrorString = item.errorString
+        }
         function onSegmentDataChanged() {
             var nextData = item ? item.segmentData : []
             if (segmentList.moving || segmentList.flicking || segmentList.dragging) {
@@ -537,19 +600,21 @@ Window {
                             color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true
                         }
 
-                        // ── Error detail row only shown when status is Error ──
+                        // ── Error detail row — latched across retries so the
+                        //    row doesn't flicker (and bounce the window) while
+                        //    status churns Error→Queued→Error during retries.
                         Text {
                             text: qsTr("Error detail")
                             color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true
-                            visible: item && item.status === "Error" && item.errorString !== ""
+                            visible: root._errorLatched
                             Layout.preferredWidth: 110; Layout.alignment: Qt.AlignTop
                         }
                         Text {
-                            text: item ? item.errorString : ""
+                            text: root._latchedErrorString
                             color: root.statusColor("Error")
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WrapAnywhere
-                            visible: item && item.status === "Error" && item.errorString !== ""
+                            visible: root._errorLatched
                             Layout.fillWidth: true
                         }
                     }
@@ -654,11 +719,14 @@ Window {
                             }
                         }
 
-                        // Segment table — fixed to its row count so there is no
-                        // empty padding below the last connection.
+                        // Segment table — height reserved up front for the full
+                        // per-host connection count so the window opens at its
+                        // final size and never "pops out" as connections arrive.
+                        // Real rows beyond this (dynamic segmentation) scroll
+                        // inside the fixed area rather than resizing the window.
                         Rectangle {
                             Layout.fillWidth: true
-                            Layout.preferredHeight: 22 + Math.max(1, segmentListModel.count) * 24 + 1
+                            Layout.preferredHeight: 22 + Math.max(segmentRowLimit, segmentListModel.count) * 24 + 1
                             color: ColorPalette.windowBg
                             border.color: ColorPalette.border
                             radius: 3

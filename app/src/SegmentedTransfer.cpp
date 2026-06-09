@@ -1351,7 +1351,12 @@ void SegmentedTransfer::updateSegmentDataOnItem() {
     // Keep enough UI slots to show every connection that has existed so far.
     // Completed ranges should stay visible as fully-filled blue bars instead of
     // being recycled back to gray when a new connection steals more work later.
-    int slotCount = m_segmentCount > 0 ? m_segmentCount : 1;
+    //
+    // Only reserve the full configured per-host count for resume-capable
+    // transfers, where those slots legitimately fill as maybeStealWork() spawns
+    // segments. A non-resumable transfer is single-segment and would otherwise
+    // show a row of phantom "Waiting..." connections that never activate.
+    int slotCount = (m_resumeCapable && m_segmentCount > 0) ? m_segmentCount : 1;
     for (const auto &seg : m_segments) {
         if (seg.uiSlot >= 0)
             slotCount = qMax(slotCount, seg.uiSlot + 1);
