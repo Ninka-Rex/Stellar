@@ -69,6 +69,7 @@
 #include "TorrentFileModel.h"
 #include "YtdlpTransfer.h"
 #include "SegmentedTransfer.h"
+#include "FileNameUtils.h"
 #if defined(STELLAR_WINDOWS)
 #  include <windows.h>
 #  include <shellapi.h>
@@ -1066,7 +1067,9 @@ void AppController::handleIpcPayload(const QByteArray &json) {
             const QString effectiveSave = resolvedFullPath.isEmpty()
                 ? resolvedSavePath
                 : QFileInfo(resolvedFullPath).absolutePath();
-            const QString effectiveName = filename;
+            const QString effectiveName = filename.isEmpty()
+                ? QString()
+                : QFileInfo(sanitizeFilename(filename)).fileName();
             addUrl(url, effectiveSave, {}, {}, startNow, {}, {}, {}, {}, {}, effectiveName);
         }
 
@@ -2694,7 +2697,7 @@ DownloadItem *AppController::createDownloadItem(const QString &url, const QStrin
     auto *item = new DownloadItem(id, qurl);
 
     if (!filenameOverride.isEmpty()) {
-        item->setFilename(filenameOverride);
+        item->setFilename(QFileInfo(sanitizeFilename(filenameOverride)).fileName());
         item->setFilenameManuallySet(true);
     }
 
