@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Genereer een reeks opeenvolgende links van één adres en controleer ze voor het downloaden.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Voeg een reeks opeenvolgende bestanden toe zoals img001.jpg, img002.jpg, img100.jpg in één stap. Zet een sterretje (*) waar het cijfer of de letter verandert; dit wordt het bestandsnaampatroon.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Voorbeeld: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n link(s)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Na OK kun je elke link controleren en eventueel groeperen in een wachtrij voordat ze starten.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Batch downloaden</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Bestandsnaam</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Download van</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Linktekst</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Opslaan in</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Afbeeldingen op deze webpagina verbergen</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Gebruik linkteksten als downloadbeschrijvingen</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3166,12 +3210,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Nu updaten</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Download</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Update %1 downloaden…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar wordt bijgewerkt naar %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>De app wordt nu gesloten en automatisch heropend. Dit kan even duren — even geduld.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Updatepakket gedownload.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Installeer het met je pakketbeheerder om de update te voltooien:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar kon de update-installatiedownload niet starten.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Toon in map</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Debug: Update simuleren</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Torrent-bestand toevoegen…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Batch URLs toevoegen…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Voeg batch-URL's toe van klembord…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4115,6 +4199,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Server retourneerde een HTML-pagina i.p.v. het verwachte bestand. De link moet mogelijk in een browser geopend worden of is verlopen. Niets opgeslagen.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Kan deeltijdelijk bestand niet openen: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Kan niet zoeken in deeltijdelijk bestand: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>De server stuurde door naar een inlog- of foutpagina (%1) in plaats van het bestand. Voeg de download opnieuw toe vanuit je browser (rechtsklik → Downloaden met Stellar) om de authenticatie te vernieuwen en hervatten. Je gedeeltelijke download wordt hergebruikt.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Schrijffout schijf: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Server gaf verkeerd bytebereik terug</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Bestand op server veranderde van grootte tijdens download</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>De downloadaanvraag is mislukt.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 op segment %2 (niet opnieuw te proberen)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Interne fout: ongeldig segmentbereik</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Geen schrijfrechten voor downloadmap: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Het bestand bestaat niet meer op de server.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Kan deelfragment niet openen om te lezen: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Kan uitvoerbestand niet aanmaken: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Kan uitvoerbestand niet vooraf toewijzen: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Fout in uitvoerbestand na samenvoeging: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>De downloadpagina bevatte geen bruikbare downloadlink.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>De downloadpagina verwees naar een onverwachte host, download afgebroken voor veiligheid.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Kan deelfragment niet openen: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Segment %1 mislukt na %2 pogingen</translation>
         </message>
     </context>
     <context>
@@ -5570,6 +5734,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Totaal share ratio</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Klik om snelheidsbegrenzer te openen</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

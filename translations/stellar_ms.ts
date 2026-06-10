@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Jana sekumpulan pautan berurutan dari satu alamat, kemudian semak sebelum memuat turun.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Tambah sekumpulan fail berurutan seperti img001.jpg, img002.jpg, img100.jpg dalam satu langkah. Letakkan tanda bintang (*) di tempat nombor atau huruf berubah, dan ia menjadi corak nama fail.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Contoh: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n pautan</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Selepas OK, anda boleh menyemak setiap pautan, kemudian secara pilihan mengumpulkannya ke dalam baris gilir sebelum ia bermula.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Muat turun dalam batch</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Saiz</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Muat turun dari</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Teks Pautan</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Simpan ke</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Sembunyikan imej yang terdapat pada halaman web ini</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Guna teks pautan sebagai huraian muat turun</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3167,12 +3211,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Kemas Kini Sekarang</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Muat Turun</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Memuat turun kemas kini %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar sedang dikemas kini ke %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Aplikasi akan ditutup dan dibuka semula secara automatik. Ini mungkin mengambil masa seminit — sila tunggu.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Pakej kemas kini dimuat turun.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Pasang dengan pengurus pakej anda untuk selesai mengemas kini:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar tidak dapat memulakan muat turun pemasang kemas kini.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Papar dalam Folder</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Nyahpepijat: Simulasi Kemas Kini Tersedia</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Tambah Fail Torrent…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Tambah URL Pakej…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Tambah URL Kelompok dari Papan Klip…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4116,6 +4200,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Pelayan memulangkan halaman HTML, bukan fail. Pautan mungkin perlu dibuka dalam pelayar atau telah tamat tempoh. Tiada yang disimpan.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Tidak dapat buka fail separa: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Tidak dapat cari dalam fail separa: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Pelayan mengalih ke halaman log masuk atau ralat (%1) bukan fail. Tambah semula muat turun dari pelayar (klik kanan → Muat Turun dengan Stellar) untuk segar pengesahan, kemudian sambung. Muat turun separa anda akan diguna semula.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Tulis cakera gagal: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Pelayan hantar julat bait salah</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Fail di pelayan berubah saiz semasa muat turun</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Permintaan muat turun gagal.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 pada segmen %2 (tidak boleh cuba lagi)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Ralat dalaman: julat segmen rosak</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Tiada keizinan tulis untuk direktori muat turun: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Fail tidak lagi wujud pada pelayan.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Tidak dapat buka fail bahagian untuk dibaca: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Tidak dapat cipta fail output: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Tidak dapat pra-peruntukan fail output: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Ralat fail output selepas pemasangan: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Halaman muat turun tidak mengandungi pautan muat turun yang boleh digunakan.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Halaman muat turun menuju ke hos tidak dijangka, muat turun dibatalkan demi keselamatan.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Tidak dapat buka fail bahagian: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Segmen %1 gagal selepas %2 cubaan</translation>
         </message>
     </context>
     <context>
@@ -5575,6 +5739,10 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Rasio kongsi sepanjang masa</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Klik untuk buka tetapan Had Laju</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

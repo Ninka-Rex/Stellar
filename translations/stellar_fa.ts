@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>ایجاد گروهی از لینک‌های متوالی از یک آدرس، سپس بررسی آن‌ها قبل از دانلود</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>افزودن گروهی از فایل‌های متوالی مانند img001.jpg، img002.jpg، img100.jpg در یک مرحله. یک ستاره (*) در جایی که عدد یا حرف تغییر می‌کند قرار دهید تا به الگوی نام فایل تبدیل شود.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>مثال: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n پیوند</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>پس از تأیید، می‌توانید هر لینک را بررسی کرده و سپس به‌صورت اختیاری آن‌ها را قبل از شروع در یک صف گروه‌بندی کنید.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>دانلود دسته‌ای</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>نام فایل</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>دانلود از</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>متن پیوند</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>ذخیره در</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>مخفی کردن تصاویر موجود در این صفحه وب</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>استفاده از متن لینک به عنوان توضیحات دانلود</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3166,12 +3210,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>به‌روزرسانی</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>دانلود</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>در حال دانلود به‌روزرسانی %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>استلار در حال به‌روزرسانی به %1 است.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>برنامه اکنون بسته و به‌طور خودکار باز می‌شود. ممکن است یک دقیقه طول بکشد — لطفاً منتظر بمانید.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>بسته به‌روزرسانی دانلود شد.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>برای اتمام به‌روزرسانی، آن را با مدیر بسته خود نصب کنید:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>استلار نتوانست دانلود نصب‌کننده به‌روزرسانی را شروع کند.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>نمایش در پوشه</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>اشکال‌زدایی: شبیه‌سازی به‌روزرسانی موجود</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>افزودن فایل تورنت...</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>افزودن آدرس‌های دسته‌ای…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>افزودن نشانی‌های اینترنتی گروهی از کلیپ‌بورد…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4115,6 +4199,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>سرور به‌جای فایل، صفحه HTML برگرداند. لینک ممکن است نیاز به بازشدن در مرورگر داشته باشد یا منقضی شده باشد. چیزی ذخیره نشد.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>ناتوان در باز کردن فایل بخش: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>نمیتوان در فایل بخش جستجو کرد: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>سرور به جای فایل، به یک صفحه ورود یا خطا (%1) هدایت کرد. برای تازه‌سازی احراز هویت، دانلود را دوباره از مرورگر خود اضافه کنید (راست‌کلیک ← دانلود با Stellar)، سپس ادامه دهید. دانلود ناقص شما دوباره استفاده خواهد شد.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>نوشتن روی دیسک ناموفق بود: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>سرور محدوده بایت اشتباهی برگرداند</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>حجم فایل روی سرور در حین دانلود تغییر کرد</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>درخواست دانلود ناموفق بود.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 در بخش %2 (غیرقابل تکرار)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>خطای داخلی: محدوده قطعه ناقص</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>دسترسی نوشتن در پوشه دانلود وجود ندارد: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>فایل دیگر روی سرور موجود نیست.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>باز کردن فایل بخش برای خواندن ممکن نیست: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>ایجاد فایل خروجی ممکن نیست: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>پیش‌تخصیص فایل خروجی ممکن نیست: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>خطای فایل خروجی پس از مونتاژ: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>صفحه دانلود حاوی لینک دانلود قابل استفاده نبود.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>صفحه دانلود به میزبان غیرمنتظره‌ای اشاره داشت، دانلود به دلایل امنیتی متوقف شد.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>باز کردن فایل بخش ممکن نیست: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>بخش %1 پس از %2 تلاش ناموفق ماند</translation>
         </message>
     </context>
     <context>
@@ -5571,6 +5735,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>نسبت اشتراک کل‌زمان</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>برای تنظیمات محدودکننده سرعت کلیک کنید</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

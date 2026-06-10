@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Δημιουργία ακολουθίας συνδέσμων από μία διεύθυνση και έλεγχος πριν τη λήψη.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Προσθήκη ομάδας ακολουθιακών αρχείων όπως img001.jpg, img002.jpg, img100.jpg με ένα βήμα. Βάλτε αστερίσκο (*) όπου αλλάζει ο αριθμός ή το γράμμα και γίνεται μοτίβο ονόματος.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Παράδειγμα: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n σύνδεσμοι</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Μετά το OK μπορείτε να ελέγξετε κάθε σύνδεσμο και προαιρετικά να τα ομαδοποιήσετε σε ουρά πριν ξεκινήσουν.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Ομαδική λήψη</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Όνομα αρχείου</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Λήψη από</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Κείμενο συνδέσμου</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Αποθήκευση σε</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Απόκρυψη εικόνων σε αυτή τη σελίδα</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Χρήση κειμένων συνδέσμων ως περιγραφές λήψης</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3170,12 +3214,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Ενημέρωση</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Λήψη</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Λήψη ενημέρωσης %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Το Stellar ενημερώνεται σε %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Η εφαρμογή θα κλείσει και θα ανοίξει ξανά αυτόματα. Μπορεί να διαρκέσει ένα λεπτό — παρακαλώ περιμένετε.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Το πακέτο ενημέρωσης λήφθηκε.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Εγκαταστήστε το με τον διαχειριστή πακέτων σας για να ολοκληρώσετε την ενημέρωση:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Το Stellar δεν μπόρεσε να ξεκινήσει τη λήψη του προγράμματος εγκατάστασης ενημέρωσης.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Εμφάνιση στον Φάκελο</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Αποσφαλμάτωση: Προσομοίωση Διαθέσιμης Ενημέρωσης</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Προσθήκη αρχείου Torrent…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Προσθήκη URL σε πακέτο…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Προσθήκη μαζικών URL από το πρόχειρο…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4119,6 +4203,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Ο διακομιστής επέστρεψε HTML αντί για αρχείο. Ο σύνδεσμος ίσως απαιτεί άνοιγμα σε browser ή έχει λήξει. Δεν αποθηκεύτηκε τίποτα.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Δεν είναι δυνατό το άνοιγμα του αρχείου τμήματος: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Δεν είναι δυνατή η αναζήτηση στο αρχείο τμήματος: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Ο διακομιστής ανακατεύθυνε σε σελίδα σύνδεσης ή σφάλματος (%1) αντί για το αρχείο. Προσθέστε ξανά τη λήψη από το πρόγραμμα περιήγησής σας (δεξί κλικ → Λήψη με το Stellar) για να ανανεώσετε την πιστοποίηση και μετά συνεχίστε. Η μερική λήψη σας θα επαναχρησιμοποιηθεί.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Η εγγραφή στον δίσκο απέτυχε: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Ο διακομιστής επέστρεψε λανθασμένο εύρος byte</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Το αρχείο στον διακομιστή άλλαξε μέγεθος κατά τη λήψη</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Το αίτημα λήψης απέτυχε.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 στο τμήμα %2 (μη επαναλήψιμο)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Εσωτερικό σφάλμα: εκφυλισμένο εύρος τμήματος</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Δεν υπάρχει άδεια εγγραφής για τον κατάλογο λήψεων: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Το αρχείο δεν υπάρχει πλέον στον διακομιστή.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Αδυναμία ανοίγματος τμήματος για ανάγνωση: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Αδυναμία δημιουργίας αρχείου εξόδου: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Αδυναμία προκατανομής αρχείου εξόδου: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Σφάλμα αρχείου εξόδου μετά τη συναρμολόγηση: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Η σελίδα λήψης δεν περιείχε χρησιμοποιήσιμο σύνδεσμο λήψης.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Η σελίδα λήψης οδηγούσε σε μη αναμενόμενο κεντρικό υπολογιστή, η λήψη ματαιώθηκε για λόγους ασφαλείας.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Αδυναμία ανοίγματος τμήματος: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Το τμήμα %1 απέτυχε μετά από %2 προσπάθειες</translation>
         </message>
     </context>
     <context>
@@ -5579,6 +5743,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 Click to open Statistics</source>
             <translation>Συνολικός λόγος κοινοποίησης
 Κλικ για στατιστικά</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Κλικ για ρυθμίσεις περιορισμού ταχύτητας</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

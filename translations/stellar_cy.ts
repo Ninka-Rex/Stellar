@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Cynhyrchu grŵp o ddolenni dilyniannol o un cyfeiriad, yna eu hadolygu cyn lawrlwytho.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Ychwanegu grŵp o ffeiliau dilyniannol fel img001.jpg, img002.jpg, img100.jpg mewn un cam. Rhowch seren (*) lle mae'r rhif neu'r llythyren yn newid, a daw'n batrwm enw ffeil.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Enghraifft: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n dolen(nau)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Ar ôl OK gallwch adolygu pob dolen, yna opsiynol eu grwpio i mewn i giw cyn iddynt ddechrau.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Llwytho Swp</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Enw ffeil</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Lawrlwytho o</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Testun Dolen</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Cadw i</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Cuddio delweddau ar y dudalen we hon</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Defnyddio testunau dolen fel disgrifiadau llwytho i lawr</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3175,12 +3219,52 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <translation>Diweddaru Nawr</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Llwytho i lawr</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Wrthi'n llwytho diweddariad %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Mae Stellar yn diweddaru i %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Bydd yr ap nawr yn cau ac yn ailagor yn awtomatig. Gall hyn gymryd munud — arhoswch.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Pecyn diweddaru wedi'i lwytho i lawr.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Gosodwch ef gyda'ch rheolwr pecynnau i orffen diweddaru:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Ni allai Stellar ddechrau llwytho gosodwr y diweddariad i lawr.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Dangos yn y Ffolder</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Dadfygio: Efelychu Diweddariad ar Gael</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Ychwanegu Ffeil Torrent…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Ychwanegu URLs swp…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Ychwanegu URLs Swp o'r Clipfwrdd…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4124,6 +4208,86 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Dychwelodd y gweinydd dudalen HTML yn lle'r ffeil ddisgwyliedig. Efallai bod angen agor y ddolen mewn porwr neu ei bod wedi dod i ben. Ni chadwyd dim.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Methu agor ffeil rhan: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Methu chwilio yn y ffeil rannol: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Fe wnaeth y gweinyddwr ailgyfeirio i dudalen mewngofnodi neu wall (%1) yn lle'r ffeil. Ail-ychwanegwch y lawrlwythiad o'ch porwr (de-gliciwch → Lawrlwytho gyda Stellar) i adnewyddu'r dilysiad, yna ailddechrau. Bydd eich lawrlwythiad rhannol yn cael ei ailddefnyddio.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Methwyd ysgrifennu i'r ddisg: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Gweinydd wedi dychwelyd ystod beit anghywir</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Newidiodd maint y ffeil ar y gweinydd yn ystod y lawrlwythiad</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Mae'r cais lawrlwytho wedi methu.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 ar segment %2 (ni ellir ailgeisio)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Gwall mewnol: ystod segment dirywiedig</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Dim caniatâd ysgrifennu i'r cyfeiriadur lawrlwytho: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Nid yw'r ffeil yn bodoli bellach ar y gweinydd.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Methu agor ffeil rannol i'w darllen: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Methu creu ffeil allbwn: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Methu cyn-ddyrannu ffeil allbwn: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Gwall ffeil allbwn ar ôl cydosod: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Nid oedd y dudalen lawrlwytho'n cynnwys dolen lawrlwytho ddefnyddiadwy.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Roedd y dudalen lawrlwytho'n cyfeirio at westeiwr annisgwyl, ataliwyd y lawrlwythiad am resymau diogelwch.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Methu agor ffeil rannol: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Methodd segment %1 ar ôl %2 ymgais</translation>
         </message>
     </context>
     <context>
@@ -5584,6 +5748,10 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
 Click to open Statistics</source>
             <translation>Cymhareb rhannu erioed
 Cliciwch i agor Ystadegau</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Cliciwch i agor gosodiadau Cyfyngydd Cyflymder</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

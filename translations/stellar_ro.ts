@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Generează un grup de linkuri secvențiale dintr-o adresă, apoi revizuiește-le înainte de descărcare.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Adaugă un grup de fișiere secvențiale precum img001.jpg, img002.jpg, img100.jpg într-un singur pas. Pune un asterisc (*) unde se schimbă numărul sau litera, iar acesta devine modelul numelui de fișier.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Exemplu: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n link(uri)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>După OK poți revizui fiecare link, apoi opțional să le grupezi într-o coadă înainte de a începe.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Descărcare în lot</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Mărime</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Descarcă din</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Text link</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Salvează în</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Ascunde imaginile din această pagină web</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Folosește textele linkurilor ca descrieri</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3163,12 +3207,52 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <translation>Actualizare Acum</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Descarcă</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Se descarcă actualizarea %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar se actualizează la %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Aplicația se va închide și redeschide automat. Poate dura un minut — așteptați.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Pachetul de actualizare s-a descărcat.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Instalați-l cu managerul de pachete pentru a finaliza:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar nu a putut porni descărcarea programului de instalare.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Afișează în dosar</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Depanare: Simulează actualizare disponibilă</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Adaugă Fișier Torrent…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Adaugă URL-uri pe lot</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Adaugă URL-uri din clipboard…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4112,6 +4196,86 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Serverul a returnat o pagină HTML în locul fișierului așteptat. Linkul poate necesita deschiderea într-un browser sau poate fi expirat. Nu s-a salvat nimic.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Nu pot deschide fișierul parțial: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Nu pot căuta în fișierul parțial: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Serverul a redirecționat către o pagină de autentificare sau eroare (%1) în locul fișierului. Readaugă descărcarea din browser (clic dreapta → Descarcă cu Stellar) pentru a reîmprospăta autentificarea, apoi reia. Descărcarea parțială va fi refolosită.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Scriere pe disc eșuată: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Serverul a returnat un interval de octeți greșit</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Fișierul de pe server și-a schimbat dimensiunea în timpul descărcării</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Cererea de descărcare a eșuat.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 pe segmentul %2 (fără reîncercare)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Eroare internă: segment de interval degenerat</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Fără permisiune de scriere în directorul de descărcare: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Fișierul nu mai există pe server.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Nu se poate deschide fișierul parțial pentru citire: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Nu se poate crea fișierul de ieșire: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Nu se poate pre-aloca fișierul de ieșire: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Eroare fișier de ieșire după asamblare: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Pagina de descărcare nu conținea un link de descărcare utilizabil.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Pagina de descărcare indica o gazdă neașteptată, descărcare anulată din motive de securitate.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Nu se poate deschide fișierul parțial: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Segmentul %1 a eșuat după %2 reîncercări</translation>
         </message>
     </context>
     <context>
@@ -5567,6 +5731,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Raport partajare</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Click pentru setări limitator viteză</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

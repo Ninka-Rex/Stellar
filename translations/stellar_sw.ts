@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Tengeneza kundi la viungo mfululizo kutoka anwani moja, kisha vikague kabla ya kupakua.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Ongeza kundi la faili mfululizo kama img001.jpg, img002.jpg, img100.jpg kwa hatua moja. Weka nyota (*) mahali namba au herufi inabadilika, nayo inakuwa muundo wa jina la faili.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Mfano: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>Kiungo/Viungo %n</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Baada ya SAWA unaweza kukagua kila kiungo, kisha kwa hiari uvipange kwenye foleni kabla ya kuanza.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Pakia kwa kundi</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Jina la faili</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Pakua kutoka</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Maandishi ya Kiungo</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Hifadhi kwa</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Ficha picha zilizo kwenye ukurasa huu wa wavuti</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Tumia maandishi ya kiungo kama maelezo ya upakuaji</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3161,12 +3205,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Sasisha Sasa</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Pakua</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Inapakua sasisho %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar inasasishwa hadi %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Programu itafungwa na kufunguliwa upya kiotomatiki. Hii inaweza kuchukua dakika moja — tafadhali subiri.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Kifurushi cha sasisho kimepakuliwa.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Sakinisha kwa kidhibiti chako cha vifurushi ili kumaliza kusasisha:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar haikuweza kuanza upakuaji wa kisakinishi cha sasisho.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Onyesha kwenye Folda</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Utatuzi: Iga Sasisho Linapatikana</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Ongeza Faili ya Torrent…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Ongeza URLs…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Ongeza URL za Kundi kutoka kwenye Ubao wa Kunakili…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4110,6 +4194,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Seva ilirudisha ukurasa wa HTML badala ya faili iliyotarajiwa. Kiungo kinaweza kuhitaji kufunguliwa kwenye kivinjari au kinaweza kuwa kimeisha. Hakuna kilichohifadhiwa.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Haiwezi kufungua faili la sehemu: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Haiwezi kutafuta katika faili la sehemu: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Seva ilielekeza kwenye ukurasa wa kuingia au wa hitilafu (%1) badala ya faili. Ongeza upakuaji upya kutoka kwenye kivinjari chako (bofya kulia → Pakua kwa Stellar) ili kuonyesha upya uthibitishaji, kisha endelea. upakuaji wako wa sehemu utatumika tena.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Uandishi wa diski umeshindwa: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Seva ilirudisha masafa ya baiti yasiyo sahihi</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Faili kwenye seva limebadilika ukubwa wakati wa upakuaji</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Ombi la kupakua halikufaulu.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 kwenye sehemu %2 (haiwezi kujaribiwa tena)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Hitilafu ya ndani: sehemu duni ya masafa</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Hakuna ruhusa ya kuandika kwa saraka ya upakuaji: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Faili haipo tena kwenye seva.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Haiwezi kufungua faili sehemu kwa kusoma: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Haiwezi kuunda faili ya matokeo: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Haiwezi kutenga awali faili ya matokeo: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Hitilafu ya faili ya matokeo baada ya mkusanyiko: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Ukurasa wa upakuaji haukuwa na kiungo cha upakuaji kinachoweza kutumika.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Ukurasa wa upakuaji ulielekeza kwa seva isiyotarajiwa, upakuaji umeghairiwa kwa usalama.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Haiwezi kufungua faili sehemu: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Sehemu %1 imeshindwa baada ya majaribio %2</translation>
         </message>
     </context>
     <context>
@@ -5567,6 +5731,10 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Sehemu ya jumla</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Bofya kufungua mipangilio ya Kikomo cha Kasi</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

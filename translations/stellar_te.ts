@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>ఒక చిరునామా నుండి వరుస లింకుల సమూహాన్ని రూపొందించండి, తర్వాత వాటిని డౌన్లోడ్ చేయడానికి ముందు సమీక్షించండి.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>img001.jpg, img002.jpg, img100.jpg వంటి వరుస ఫైళ్ల సమూహాన్ని ఒకే దశలో జోడించండి. సంఖ్య లేదా అక్షరం మారే చోట నక్షత్రం (*) ఉంచండి, అది ఫైల్-పేరు నమూనాగా మారుతుంది.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>ఉదాహరణ: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n లింక్(లు)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>సరే తర్వాత మీరు ప్రతి లింక్ను సమీక్షించవచ్చు, ఆపై అవి ప్రారంభమయ్యే ముందు ఐచ్ఛికంగా వాటిని ఒక క్యూలో సమూహపరచవచ్చు.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>బ్యాచ్ డౌన్‌లోడ్</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>ఫైల్ పేరు</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>డౌన్లోడ్ చేయండి</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>లింక్ టెక్స్ట్</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>సేవ్ చేయండి</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>ఈ వెబ్ పేజీలో ఉన్న చిత్రాలను దాచండి</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>లింక్ టెక్స్ట్‌లను వివరణలుగా ఉపయోగించు</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3175,12 +3219,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ఇప్పుడే నవీకరించు</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>దించు</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>నవీకరణ %1 దించుతోంది…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar %1కి నవీకరించబడుతోంది.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>యాప్ ఇప్పుడు మూసుకుని స్వయంచాలకంగా తిరిగి తెరవబడుతుంది. దీనికి ఒక నిమిషం పట్టవచ్చు — దయచేసి వేచి ఉండండి.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>నవీకరణ ప్యాకేజీ దించబడింది.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>నవీకరణ పూర్తి చేయడానికి మీ ప్యాకేజీ మేనేజర్‌తో దీన్ని స్థాపించండి:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar నవీకరణ స్థాపకం దింపుడును ప్రారంభించలేకపోయింది.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>ఫోల్డర్‌లో చూపించు</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>డీబగ్: నవీకరణ అందుబాటులో ఉన్నట్లు అనుకరించు</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>టొరెంట్ ఫైల్ జోడించు…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>బ్యాచ్ URLలను జోడించు…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>క్లిప్‌బోర్డ్ నుండి బ్యాచ్ URLలను జోడించండి…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4124,6 +4208,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>సర్వర్ ఊహించిన ఫైల్ బదులు HTML పేజీని పంపింది. లింక్‌ని బ్రౌజర్‌లో తెరవాల్సి ఉండవచ్చు లేదా గడువు ముగిసి ఉండవచ్చు. ఏమీ సేవ్ కాలేదు.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>పార్ట్ ఫైల్ తెరవలేకపోయింది: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>పార్ట్ ఫైల్లో సీక్ చేయలేరు: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>సర్వర్ ఫైల్కు బదులుగా సైన్-ఇన్ లేదా ఎర్రర్ పేజీ (%1)కి మళ్లించింది. ప్రామాణీకరణను రిఫ్రెష్ చేయడానికి మీ బ్రౌజర్ నుండి డౌన్లోడ్ను మళ్లీ జోడించండి (రైట్-క్లిక్ → స్టెల్లార్తో డౌన్లోడ్ చేయి), ఆపై కొనసాగించండి. మీ పాక్షిక డౌన్లోడ్ మళ్లీ ఉపయోగించబడుతుంది.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>డిస్క్ రైట్ విఫలమైంది: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>సర్వర్ తప్పు బైట్ పరిధిని తిరిగి ఇచ్చింది</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>డౌన్లోడ్ సమయంలో సర్వర్లోని ఫైల్ పరిమాణం మారింది</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>డౌన్లోడ్ అభ్యర్థన విఫలమైంది.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>సెగ్మెంట్ %2పై HTTP %1 (తిరిగి ప్రయత్నించలేనిది)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>అంతర్గత లోపం: క్షీణించిన విభాగ పరిధి</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>డౌన్లోడ్ డైరెక్టరీకి వ్రాత అనుమతి లేదు: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>సర్వర్లో ఫైల్ ఇక ఉనికిలో లేదు.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>భాగం ఫైల్ను చదవడానికి తెరవలేకపోయింది: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>అవుట్పుట్ ఫైల్ను సృష్టించలేరు: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>అవుట్పుట్ ఫైల్ను ముందే కేటాయించలేకపోయింది: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>అసెంబ్లీ తర్వాత అవుట్పుట్ ఫైల్ లోపం: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>డౌన్లోడ్ పేజీలో ఉపయోగించదగిన డౌన్లోడ్ లింక్ లేదు.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>డౌన్లోడ్ పేజీ ఊహించని హోస్ట్ను సూచించింది, భద్రత కోసం డౌన్లోడ్ రద్దు చేయబడింది.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>పార్ట్ ఫైల్ తెరవలేకపోయింది: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>సెగ్మెంట్ %1 %2 రీట్రైల తర్వాత విఫలమైంది</translation>
         </message>
     </context>
     <context>
@@ -5584,6 +5748,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 Click to open Statistics</source>
             <translation>మొత్తం షేర్ రేషియో
 గణాంకాలు తెరవడానికి క్లిక్ చేయండి</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>స్పీడ్ లిమిటర్ సెట్టింగ్స్ తెరవడానికి క్లిక్ చేయండి</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

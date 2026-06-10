@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Ƙirƙiri jerin hanyoyin haɗi daga adireshi ɗaya, sannan ka duba su kafin saukewa.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Ƙara jerin fayiloli masu jere kamar img001.jpg, img002.jpg, img100.jpg a mataki ɗaya. Sanya alamar tauraro (*) inda lamba ko harafi ke canzawa, ya zama tsarin sunan fayil.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Misali: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n hanyar haɗi</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Bayan OK za ka iya duba kowace hanyar haɗi, sannan zaɓin haɗa su cikin jerin kafin su fara.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Saukar da yawa</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Sunan fayil</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Sauke daga</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Rubutun Haɗi</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Ajiye zuwa</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Ɓoye hotunan da ke wannan shafin yanar</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Yi amfani da rubutun mahaɗi azaman bayanin saukewa</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3175,12 +3219,52 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
             <translation>Sabunta Yanzu</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Sauke</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Ana sauke sabuntawa %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar na sabuntawa zuwa %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>App ɗin zai rufe yanzu kuma ya buɗe kansa. Wannan na iya ɗaukar minti ɗaya — da fatan za a jira.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Kunshin sabuntawa ya sauke.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Shigar da shi tare da mai sarrafa kunshin ku don gama sabuntawa:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar ta kasa fara saukewar mai shigar sabuntawa.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Bayyana a cikin Jakar Fayil</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Debug: Kwaikwayi Akwai Sabuntawa</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Ƙara Fayil ɗin Torrent…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Ƙara URLs Batch…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Ƙara URLs Batch daga Clipboard…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4124,6 +4208,86 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Sabar ta dawo da shafin HTML maimakon fayil ɗin da ake tsammani. Ƙila hanyar tana buƙatar buɗewa a cikin burauza ko kuma ta ƙare. Babu abin da aka ajiye.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Ba za a iya buɗe fayil ɓangare ba: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Ba za a iya nema a fayil ɓangare ba: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Sabar ta tura zuwa shafin shiga ko kuskure (%1) maimakon fayil ɗin. Sake ƙara saukewa daga burauzarka (dama-danna → Saukewa da Stellar) don sabunta tabbaci, sannan ci gaba. za a sake amfani da saukewar ɓangarenka.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Rubutu a faifai ya gaza: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Sabar ta mayar da kewayon byte mara kyau</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Fayil a sabar ya canza girma yayin saukewa</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Buƙatar saukewa ta gaza.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 akan kashi %2 (ba za a iya sake gwadawa ba)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Kuskuren ciki: kewayon sashi mara kyau</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Babu izinin rubutu ga babban fayil ɗin saukewa: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Fayil ɗin ba ya nan akan sabar.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Ba za a iya buɗe fayil ɗin sashi don karantawa ba: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Ba za a iya ƙirƙirar fayil ɗin fitarwa ba: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Ba za a iya ware fayil ɗin fitarwa ba: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Kuskuren fayil ɗin fitarwa bayan haɗawa: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Shafin saukewa bai ƙunshi hanyar saukewa mai amfani ba.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Shafin saukewa ya nuna wani masauki da ba a tsammani ba, an dakatar da saukewa saboda tsaro.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Ba za a iya buɗe fayil ɗin sashi ba: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Kashi %1 ya gaza bayan ƙoƙari %2</translation>
         </message>
     </context>
     <context>
@@ -5584,6 +5748,10 @@ An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabb
 Click to open Statistics</source>
             <translation>Rabon rabawa na kowane lokaci
 Danna don buɗe Ƙididdiga</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Danna don buɗe saitin iyakance gudu</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

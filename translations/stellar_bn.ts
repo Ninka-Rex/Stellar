@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>একটি ঠিকানা থেকে ধারাবাহিক লিঙ্কের গ্রুপ তৈরি করুন, তারপর ডাউনলোডের আগে পর্যালোচনা করুন।</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>এক ধাপে img001.jpg, img002.jpg, img100.jpg-এর মতো ধারাবাহিক ফাইলের গ্রুপ যোগ করুন। যেখানে নম্বর বা অক্ষর পরিবর্তিত হয় সেখানে তারকাচিহ্ন (*) দিন, এবং এটি ফাইল-নামের প্যাটার্ন হয়ে যায়।</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>উদাহরণ: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n লিঙ্ক(গুলি)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>ঠিক আছে-র পর আপনি প্রতিটি লিঙ্ক পর্যালোচনা করতে পারেন, তারপর শুরু হওয়ার আগে ঐচ্ছিকভাবে তাদের একটি সারিতে গ্রুপ করতে পারেন।</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>ব্যাচ ডাউনলোড</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>ফাইলের নাম</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>ডাউনলোড করুন থেকে</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>লিঙ্ক টেক্সট</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>সংরক্ষণ করুন</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>এই ওয়েব পৃষ্ঠায় অবস্থিত ছবি লুকান</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>লিংক টেক্সট ডাউনলোড বিবরণ হিসেবে ব্যবহার করুন</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3170,12 +3214,52 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <translation>এখন আপডেট করুন</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>ডাউনলোড</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>আপডেট %1 ডাউনলোড হচ্ছে…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar %1-এ আপডেট হচ্ছে।</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>অ্যাপ এখন বন্ধ হয়ে আবার চালু হবে। এক মিনিট লাগতে পারে — অপেক্ষা করুন।</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>আপডেট প্যাকেজ ডাউনলোড হয়েছে।</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>আপডেট শেষ করতে প্যাকেজ ম্যানেজার দিয়ে ইনস্টল করুন:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar আপডেট ইনস্টলার ডাউনলোড শুরু করতে পারেনি।</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>ফোল্ডারে দেখান</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>ডিবাগ: আপডেট উপলব্ধ সিমুলেট করুন</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>টরেন্ট ফাইল যোগ করুন…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>ব্যাচ URL যোগ করুন…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>ক্লিপবোর্ড থেকে ব্যাচ URL যোগ করুন…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4119,6 +4203,86 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>সার্ভার প্রত্যাশিত ফাইলের বদলে HTML পৃষ্ঠা ফেরত দিয়েছে। লিংকটি ব্রাউজারে খোলার প্রয়োজন হতে পারে বা মেয়াদ শেষ হয়ে গেছে। কিছুই সংরক্ষিত হয়নি।</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>আংশিক ফাইল খোলা যায়নি: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>আংশিক ফাইলে অবস্থান পরিবর্তন করা যায়নি: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>সার্ভার ফাইলের পরিবর্তে একটি সাইন-ইন বা ত্রুটি পৃষ্ঠায় (%1) পুনঃনির্দেশিত করেছে। প্রমাণীকরণ রিফ্রেশ করতে আপনার ব্রাউজার থেকে ডাউনলোড পুনরায় যোগ করুন (ডান-ক্লিক → Stellar দিয়ে ডাউনলোড), তারপর পুনরায় শুরু করুন। আপনার আংশিক ডাউনলোড পুনরায় ব্যবহৃত হবে।</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ডিস্কে লেখা ব্যর্থ: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>সার্ভার ভুল বাইট রেঞ্জ ফেরত দিয়েছে</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>ডাউনলোডের সময় সার্ভারে ফাইলের আকার পরিবর্তিত হয়েছে</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>ডাউনলোড অনুরোধ ব্যর্থ হয়েছে।</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 সেগমেন্ট %2-এ (পুনরায় চেষ্টাযোগ্য নয়)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>অভ্যন্তরীণ ত্রুটি: অস্বাভাবিক সেগমেন্ট পরিসর</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ডাউনলোড ডিরেক্টরিতে লেখার অনুমতি নেই: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>ফাইলটি সার্ভারে আর নেই।</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>পড়ার জন্য অংশ ফাইল খোলা যাচ্ছে না: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>আউটপুট ফাইল তৈরি করা যাচ্ছে না: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>আউটপুট ফাইল পূর্ব-বরাদ্দ করা যাচ্ছে না: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>সংযোজনের পর আউটপুট ফাইলে ত্রুটি: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>ডাউনলোড পৃষ্ঠায় ব্যবহারযোগ্য ডাউনলোড লিঙ্ক ছিল না।</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>ডাউনলোড পৃষ্ঠা অপ্রত্যাশিত হোস্ট নির্দেশ করেছে, নিরাপত্তার জন্য ডাউনলোড বাতিল।</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>অংশ ফাইল খোলা যাচ্ছে না: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>সেগমেন্ট %1 ব্যর্থ, %2 পুনঃপ্রচেষ্টার পর</translation>
         </message>
     </context>
     <context>
@@ -5579,6 +5743,10 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
 Click to open Statistics</source>
             <translation>সর্বকালের শেয়ার অনুপাত
 পরিসংখ্যান খুলতে ক্লিক করুন</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>স্পিড লিমিটার সেটিংস খুলতে ক্লিক করুন</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

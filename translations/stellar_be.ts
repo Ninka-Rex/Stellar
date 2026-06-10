@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Стварыце групу паслядоўных спасылак з аднаго адраса, а затым праглядзіце іх перад загрузкай.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Дадайце групу паслядоўных файлаў, такіх як img001.jpg, img002.jpg, img100.jpg, за адзін крок. Пастаўце зорачку (*) там, дзе змяняецца лічба ці літара, і гэта стане шаблонам назвы файла.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Прыклад: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n спасылак</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Пасля OK вы можаце праглядзець кожную спасылку, а затым пры жаданні згрупаваць іх у чаргу перад пачаткам.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Пакетнае спампоўванне</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Назва файла</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Спампаваць з</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Тэкст спасылкі</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Захаваць у</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Схаваць выявы на гэтай вэб-старонцы</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Выкарыстоўваць тэкст спасылкі як апісанне</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3169,12 +3213,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Абнавіць зараз</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Спампаваць</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Спампоўка абнаўлення %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar абнаўляецца да %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Праграма зараз закрыецца і перазапусціцца аўтаматычна. Гэта можа заняць хвіліну — калі ласка, пачакайце.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Пакет абнаўлення спампаваны.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Усталюйце яго праз ваш менеджар пакетаў, каб завяршыць абнаўленне:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar не змог пачаць спампоўку ўсталёўшчыка абнаўлення.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Паказаць у тэчцы</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Адладка: Імітаваць даступнасць абнаўлення</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Дадаць файл торэнта…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Дадаць партыю URL…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Дадаць групу URL-адрасоў з буфера абмену...</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4118,6 +4202,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Сервер вярнуў HTML-старонку замест чаканага файла. Спасылка можа патрабаваць адкрыцця ў браўзеры або састарэла. Нічога не захавана.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Не атрымалася адкрыць файл часткі: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Не атрымалася перамясціцца ў частковым файле: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Сервер перанакіраваў на старонку ўваходу або памылкі (%1) замест файла. Дадайце загрузку зноў з браўзера (правы клік → Спампаваць праз Stellar), каб абнавіць аўтэнтыфікацыю, затым працягніце. Ваша частковая загрузка будзе выкарыстана паўторна.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Запіс на дыск не ўдаўся: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Сервер вярнуў няправільны дыяпазон байтаў</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Файл на серверы змяніў памер падчас загрузкі</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Запыт на спампоўванне не атрымаўся.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 на сегменце %2 (не паўтараецца)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Унутраная памылка: недапушчальны дыяпазон сегмента</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Няма правоў на запіс у каталог загрузак: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Файл больш не існуе на серверы.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Не атрымалася адкрыць частковы файл для чытання: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Не атрымалася стварыць выніковы файл: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Не атрымалася папярэдне выдзеліць месца для выніковага файла: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Памылка выніковага файла пасля зборкі: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Старонка загрузкі не ўтрымлівала прыдатнай спасылкі.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Старонка загрузкі вяла на нечаканы хост, загрузка спынена дзеля бяспекі.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Не атрымалася адкрыць частковы файл: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Сегмент %1 не атрымаўся пасля %2 спроб</translation>
         </message>
     </context>
     <context>
@@ -5577,6 +5741,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Сувязь за ўвесь час</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Націсніце, каб адкрыць налады абмежавальніка хуткасці</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Bir manzildan ketma-ket havolalar guruhini yarating, keyin ularni yuklab olishdan oldin ko'rib chiqing.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Ketma-ket fayllar guruhini, masalan, img001.jpg, img002.jpg, img100.jpg kabilarni bir qadamda qo‘shing. Raqam yoki harf o‘zgaradigan joyga yulduzcha (*) qo‘ying va u fayl nomi namunasi bo‘ladi.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Misol: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n ta havola</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>OK tugmasini bosgandan so'ng, har bir havolani ko'rib chiqishingiz, so'ngra ularni boshlashdan oldin ixtiyoriy ravishda navbatga guruhlashingiz mumkin.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Majmua yuklab olish</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Fayl nomi</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Yuklab olish</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Matnni bog‘lash</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Saqlash</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Ushbu veb-sahifadagi rasmlarni yashirish</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Havola matnini tavsif sifatida ishlatish</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3161,12 +3205,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Hozir yangilash</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Yuklab olish</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Yangilanish yuklanmoqda %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar %1 ga yangilanmoqda.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Ilova avtomatik yopiladi va qayta ochiladi. Bir daqiqa vaqt olishi mumkin — iltimos kuting.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Yangilanish paketi yuklab olindi.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Yangilashni yakunlash uchun uni paket menejeringiz bilan o‘rnating:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar yangilanish o‘rnatuvchisini yuklab olishni boshlay olmadi.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Jildda ko‘rsatish</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Nosozlik tuzatish: Yangilanish mavjudligini simulyatsiya qilish</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Torrent fayli qo'shish…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>URL-larni to'plab qo'shish</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Buferdan ommaviy URL qo‘shish…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4110,6 +4194,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Server HTML sahifasini qaytardi, kutilgan fayl o‘rniga. Havola brauzerda ochishni talab qilishi yoki muddati o‘tgan bo‘lishi mumkin. Hech narsa saqlanmadi.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Qism faylni ochib bo‘lmadi: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Qism faylda izlash amalga oshmadi: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Server fayl o‘rniga kirish yoki xato sahifasiga (%1) yo‘naltirdi. Autentifikatsiyani yangilash uchun brauzeringizdan yuklab olishni qayta qo‘shing (o‘ng tugma → Stellar bilan yuklab olish), so‘ng davom ettiring. Qisman yuklab olishingiz qayta ishlatiladi.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Diskka yozish amalga oshmadi: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Server noto‘g‘ri bayt oralig‘ini qaytardi</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Serverdagi fayl hajmi yuklab olish vaqtida o‘zgardi</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Yuklab olish so‘rovi amalga oshmadi.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 segment %2 da (qayta urinilmaydi)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Ichki xato: segment oralig‘i buzilgan</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Yuklab olish katalogiga yozish ruxsati yo‘q: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Fayl serverda endi mavjud emas.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Qism faylni o‘qish uchun ochib bo‘lmadi: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Chiqish faylini yaratib bo‘lmadi: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Chiqish faylini oldindan ajratib bo‘lmadi: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Yig‘ishdan keyin chiqish faylida xato: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Yuklab olish sahifasida foydali havola yo‘q edi.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Yuklab olish sahifasi kutilmagan xostga yo‘naltirdi, xavfsizlik uchun to‘xtatildi.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Qism faylni ochib bo‘lmadi: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>%1 segmenti %2 urinishdan keyin muvaffaqiyatsiz tugadi</translation>
         </message>
     </context>
     <context>
@@ -5569,6 +5733,10 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Uslubiy ulashuv</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Tezlik cheklagich sozlamalarini ochish uchun bosing</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

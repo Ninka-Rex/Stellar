@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>하나의 주소에서 순차적 링크 그룹을 생성한 후 다운로드 전에 검토합니다.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>img001.jpg, img002.jpg, img100.jpg 같은 순차 파일 그룹을 한 번에 추가합니다. 숫자나 문자가 바뀌는 곳에 별표(*)를 넣으면 파일명 패턴이 됩니다.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>예: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>링크 %n개</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>확인 후 각 링크를 검토하고, 필요하면 대기열로 묶어 시작할 수 있습니다.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>일괄 다운로드</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>파일명</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>다운로드 출처</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>링크 텍스트</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>저장 위치</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>이 웹페이지의 이미지 숨기기</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>링크 텍스트를 설명으로 사용</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3162,12 +3206,52 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <translation>지금 업데이트</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>다운로드</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>업데이트 %1 다운로드 중…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar가 %1(으)로 업데이트됩니다.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>앱이 자동으로 닫히고 다시 열립니다. 잠시만 기다려 주세요.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>업데이트 패키지 다운로드 완료.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>패키지 관리자로 설치하여 업데이트 완료:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar가 업데이트 설치 프로그램 다운로드를 시작하지 못했습니다.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>폴더에서 보기</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>디버그: 업데이트 가능 시뮬레이션</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>토렌트 파일 추가…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>배치 URL 추가…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>클립보드에서 일괄 URL 추가…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4111,6 +4195,86 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>서버가 파일 대신 HTML 페이지를 반환했습니다. 링크가 브라우저에서 열어야 하거나 만료되었을 수 있습니다. 저장된 항목 없음.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>부분 파일을 열 수 없음: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>부분 파일에서 탐색 불가: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>서버가 파일 대신 로그인 또는 오류 페이지(%1)로 리디렉션했습니다. 인증을 갱신하려면 브라우저에서 다운로드를 다시 추가(우클릭 → Stellar로 다운로드)한 후 재개하세요. 기존 부분 다운로드는 재사용됩니다.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>디스크 쓰기 실패: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>서버가 잘못된 바이트 범위 반환</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>다운로드 중 서버 파일 크기 변경</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>다운로드 요청 실패</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>세그먼트 %2에서 HTTP %1 (재시도 불가)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>내부 오류: 잘못된 세그먼트 범위</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>다운로드 디렉터리에 쓰기 권한 없음: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>서버에 파일이 더 이상 존재하지 않습니다.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>읽기 위해 부분 파일을 열 수 없음: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>출력 파일을 생성할 수 없음: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>출력 파일을 미리 할당할 수 없음: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>조립 후 출력 파일 오류: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>다운로드 페이지에 사용 가능한 다운로드 링크가 없습니다.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>다운로드 페이지가 예상치 못한 호스트를 가리켜 보안상 다운로드가 중단되었습니다.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>부분 파일을 열 수 없음: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>세그먼트 %1 실패 (%2회 재시도)</translation>
         </message>
     </context>
     <context>
@@ -5568,6 +5732,10 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>전체 공유 비율</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>속도 제한 설정 열기</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

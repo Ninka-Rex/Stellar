@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>1つのアドレスから連番リンクを生成し、ダウンロード前に確認</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>img001.jpg、img002.jpg、img100.jpgのような連番ファイルを一括追加。番号や文字が変わる部分にアスタリスク(*)を入れるとファイル名パターンになります。</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>例: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n リンク</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>OK後、各リンクを確認し、必要に応じて開始前にキューにまとめられます。</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>一括ダウンロード</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>ファイル名</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>ダウンロード元</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>リンクテキスト</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>保存先</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>このウェブページ上の画像を非表示</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>リンクテキストを説明に使用</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3163,12 +3207,52 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
             <translation>今すぐ更新</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>ダウンロード</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>更新 %1 をダウンロード中…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar を %1 に更新中</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>アプリが自動で再起動します。しばらくお待ちください。</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>更新パッケージをダウンロード完了</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>パッケージマネージャーでインストールして更新を完了:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar は更新インストーラーのダウンロードを開始できませんでした</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>フォルダに表示</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>デバッグ: 更新をシミュレート</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation> Torrent ファイルを追加…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>バッチ URL を追加…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>クリップボードからバッチURLを追加…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4112,6 +4196,86 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>サーバーがファイルではなくHTMLページを返しました。リンクはブラウザでの表示が必要か、期限切れの可能性があります。何も保存されませんでした。</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>パーツファイルを開けません: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>パートファイル内でシークできません: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>サーバーがファイルの代わりにサインインまたはエラーページ（%1）にリダイレクトしました。ブラウザからダウンロードを再追加し（右クリック→Stellarでダウンロード）、認証を更新してから再開してください。部分的なダウンロードは再利用されます。</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ディスク書き込みに失敗しました: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>サーバーが誤ったバイトレンジを返しました</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>ダウンロード中にサーバー上のファイルサイズが変更されました</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>ダウンロード要求に失敗しました。</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1（セグメント %2、再試行不可）</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>内部エラー: 無効なセグメント範囲</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ダウンロード先への書込権限なし: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>ファイルはサーバー上に存在しません</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>読取用パートファイルを開けません: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>出力ファイルを作成できません: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>出力ファイルの事前確保に失敗: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>結合後の出力ファイルエラー: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>DLページに有効なリンクなし</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>DLページが予期せぬホストを指したため安全のため中止</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>パートファイルを開けません: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>セグメント%1が%2回の再試行で失敗</translation>
         </message>
     </context>
     <context>
@@ -5571,6 +5735,10 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>総共有率</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>速度制限設定を開く</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

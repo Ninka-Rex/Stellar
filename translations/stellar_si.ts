@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>එක් ලිපිනයකින් අනුක්‍රමික සබැඳි සමූහයක් ජනනය කර, බාගත කිරීමට පෙර ඒවා සමාලෝචනය කරන්න.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>img001.jpg, img002.jpg, img100.jpg වැනි අනුක්‍රමික ගොනු සමූහයක් එක් පියවරකින් එක් කරන්න. අංකය හෝ අකුර වෙනස් වන තැන තරු ලකුණක් (*) දමන්න, එය ගොනු නාම රටාව බවට පත්වේ.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>උදාහරණ: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>සබැඳි %n</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>හරි ක්ලික් කළ පසු ඔබට එක් එක් සබැඳිය සමාලෝචනය කළ හැක, ඉන්පසු ඒවා ආරම්භ වීමට පෙර විකල්ප වශයෙන් පෝලිමකට කාණ්ඩගත කළ හැක.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>කණ්ඩායම් බාගැනීම</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>ගොනු නම</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>බාගත කරන්නේ</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>සබැඳි පෙළ</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>සුරකින්න</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>මෙම වෙබ් පිටුවේ පිහිටි පින්තූර සඟවන්න</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>සබැඳි පෙළ විස්තර ලෙස භාවිත කරන්න</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3175,12 +3219,52 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <translation>දැන් යාවත්කාලීන කරන්න</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>බාගන්න</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>යාවත්කාලීනය %1 බාගනිමින්…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar %1 වෙත යාවත්කාලීන වෙමින්.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>යෙදුම දැන් වැසී ස්වයංක්‍රීයව නැවත විවෘත වේ. මිනිත්තුවක් ගත විය හැක — කරුණාකර රැඳී සිටින්න.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>යාවත්කාලීන පැකේජය බාගත කරන ලදී.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>යාවත්කාලීනය සම්පූර්ණ කිරීමට ඔබේ පැකේජ කළමනාකරු සමඟ ස්ථාපනය කරන්න:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar යාවත්කාලීන ස්ථාපක බාගැනීම ආරම්භ කළ නොහැකි විය.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>ෆෝල්ඩරයේ පෙන්වන්න</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>දෝෂහරණය: යාවත්කාලීනය අනුකරණය කරන්න</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>ටොරන්ට් ගොනුව එක් කරන්න…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>කණ්ඩායම් URL එක් කරන්න…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>පසුරු පුවරුවෙන් කණ්ඩායම් URL එකතු කරන්න…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4124,6 +4208,86 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>බලාපොරොත්තු වූ ගොනුව වෙනුවට සේවාදායකය HTML පිටුවක් ලබා දුනි. සබැඳිය බ්‍රවුසරයක විවෘත කිරීමට අවශ්‍ය විය හැකිය හෝ කල් ඉකුත් වී තිබිය හැකිය. කිසිවක් සුරැකුනේ නැත.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>කොටස් ගොනුව විවෘත කළ නොහැක: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>කොටස් ගොනුවේ සෙවිය නොහැක: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>සේවාදායකය ගොනුව වෙනුවට පිවිසුම් හෝ දෝෂ පිටුවකට (%1) හරවා යැවීය. සත්‍යාපනය ප්‍රබෝධ කිරීමට බ්‍රවුසරයෙන් නැවත බාගැනීම එක් කරන්න (දකුණු-ක්ලික් → Stellar සමඟ බාගන්න), ඉන්පසු නැවත අරඹන්න. ඔබගේ අර්ධ බාගැනීම නැවත භාවිතා වේ.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>තැටි ලිවීම අසාර්ථකයි: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>සේවාදායකය වැරදි බයිට් පරාසයක් ලබා දුනි</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>බාගැනීම අතරතුර සේවාදායකයේ ගොනු ප්‍රමාණය වෙනස් විය</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>බාගැනීමේ ඉල්ලීම අසාර්ථක විය.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 කොටස %2 මත (නැවත උත්සාහ කළ නොහැකි)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>අභ්‍යන්තර දෝෂය: පිරිහුණු කොටස් පරාසය</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>බාගැනීම් නාමාවලිය සඳහා ලිවීමේ අවසරයක් නැත: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>ගොනුව තවදුරටත් සේවාදායකයේ නොපවතී.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>කියවීම සඳහා කොටස් ගොනුව විවෘත කළ නොහැක: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>ප්‍රතිදාන ගොනුව සෑදිය නොහැක: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>ප්‍රතිදාන ගොනුව පෙර-වෙන් කළ නොහැක: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>එකලස් කිරීමෙන් පසු ප්‍රතිදාන ගොනු දෝෂය: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>බාගැනීම් පිටුවේ භාවිත කළ හැකි බාගැනීම් සබැඳියක් අඩංගු නොවීය.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>බාගැනීම් පිටුව අනපේක්ෂිත ධාරකයක් වෙත යොමු විය, ආරක්ෂාව සඳහා බාගැනීම අත්හිටුවන ලදී.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>කොටස් ගොනුව විවෘත කළ නොහැක: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>%1 කොටස %2 නැවත උත්සාහ කිරීමෙන් පසු අසාර්ථක විය</translation>
         </message>
     </context>
     <context>
@@ -5584,6 +5748,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 Click to open Statistics</source>
             <translation>සියලු කාල බෙදාගැනීමේ අනුපාතය
 සංඛ්‍යාලේඛන විවෘත කිරීමට ක්ලික් කරන්න</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>වේග සීමා සැකසුම් විවෘත කිරීමට ක්ලික් කරන්න</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

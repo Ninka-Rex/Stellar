@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Bumuo ng sunod-sunod na link mula sa isang address, pagkatapos suriin bago i-download.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Magdagdag ng grupo ng sunod-sunod na file tulad ng img001.jpg, img002.jpg, img100.jpg sa isang hakbang. Lagyan ng asterisk (*) kung saan nagbabago ang numero o letra, at ito ang magiging pattern ng pangalan ng file.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Halimbawa: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n (na) link</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Pagkatapos ng OK, maaari mong suriin ang bawat link, pagkatapos ay opsyonal na igrupo sa pila bago magsimula.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Batch Download</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Pangalan</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>I-download mula sa</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Teksto ng Link</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>I-save sa</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Itago ang mga larawang nasa web page na ito</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Gamitin ang link text bilang deskripsyon ng download</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3164,12 +3208,52 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>I-update Ngayon</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>I-download</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Dina-download ang update %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Nag-a-update ang Stellar sa %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Kusang isasara at bubuksang muli ang app. Maaaring tumagal nang isang minuto — mangyaring maghintay.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Na-download na ang update package.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>I-install ito gamit ang iyong package manager upang matapos ang pag-update:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Hindi masimulan ng Stellar ang pag-download ng update installer.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Ipakita sa Folder</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Debug: Gayahin ang Available na Update</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Idagdag ang Torrent File…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Idinagdag ang Batch URLs…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Magdagdag ng Batch URLs mula Clipboard…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4113,6 +4197,86 @@ Stellar Options → Browser → Bypass Download Interception</translation>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Nagbalik ang server ng HTML page sa halip na file. Maaaring kailangan buksan sa browser o expired na ang link. Walang na-save.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Hindi mabuksan ang part file: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Hindi makapag-seek sa part file: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Nag-redirect ang server sa sign-in o error page (%1) imbes na file. Idagdag muli ang download mula sa browser (right-click → Download with Stellar) para i-refresh ang authentication, pagkatapos ay i-resume. Gagamitin muli ang partial download.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Nabigo ang pagsulat sa disk: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Maling byte range ang ibinalik ng server</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Nagbago ang laki ng file sa server habang nagda-download</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Nabigo ang download request.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 sa segment %2 (hindi na muling susubukan)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Internal error: degenerate segment range</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Walang pahintulot sa pagsulat sa download directory: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Wala na ang file sa server.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Hindi mabuksan ang part file para basahin: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Hindi malikha ang output file: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Hindi ma-pre-allocate ang output file: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Error sa output file pagkatapos ng assembly: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Walang magamit na download link ang pahina.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Ang pahina ay tumutukoy sa hindi inaasahang host, inabort ang download para sa seguridad.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Hindi mabuksan ang part file: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Nabigo ang segment %1 pagkatapos ng %2 ulit</translation>
         </message>
     </context>
     <context>
@@ -5572,6 +5736,10 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Ratyo ng pagbabahagi (lahat ng panahon)</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>I-click para buksan ang Speed Limiter settings</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Ustvari skupino zaporednih povezav iz enega naslova in jih pred prenosom preglej.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Dodaj skupino zaporednih datotek, npr. img001.jpg, img002.jpg, img100.jpg, v enem koraku. Postavi zvezdico (*) tam, kjer se številka ali črka spreminja, in to postane vzorec imena datoteke.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Primer: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n povezav</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Po potrditvi lahko pregledaš vsako povezavo in jih po želji združiš v vrsto pred začetkom.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Serijski prenos</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Ime datoteke</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Prenesi iz</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Besedilo povezave</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Shrani v</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Skrij slike na tej spletni strani</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Uporabi besedilo povezave kot opis prenosa</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3159,12 +3203,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Posodobi zdaj</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Prenesi</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Prenašanje posodobitve %1 …</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar se posodablja na %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Aplikacija se bo zaprla in samodejno znova odprla. To lahko traja minuto – prosimo, počakajte.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Paket posodobitve prenesen.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Namestite ga z upraviteljem paketov za dokončanje:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar ni mogel začeti prenosa namestitvenega programa.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Pokaži v mapi</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Razhroščevanje: Simuliraj razpoložljivo posodobitev</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Dodaj datoteko BitTorrent…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Dodaj URL-je v paketu</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Dodaj paketne URL-je iz odložišča …</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4108,6 +4192,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Strežnik je vrnil HTML stran namesto pričakovane datoteke. Povezava morda zahteva odpiranje v brskalniku ali pa je potekla. Nič ni bilo shranjeno.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Ni mogoče odpreti datoteke dela: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Ni mogoče iskati v delni datoteki: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Strežnik je preusmeril na stran za prijavo ali napako (%1) namesto na datoteko. Znova dodajte prenos iz brskalnika (desni klik → Prenesi s Stellar), da osvežite avtentikacijo, nato nadaljujte. Vaš delni prenos bo ponovno uporabljen.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Pisanje na disk ni uspelo: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Strežnik je vrnil napačen obseg bajtov</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Datoteka na strežniku je med prenosom spremenila velikost</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Zahteva za prenos ni uspela.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 na segmentu %2 (ni mogoče ponoviti)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Notranja napaka: izrojen obseg segmenta</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Ni dovoljenja za pisanje v mapo za prenos: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Datoteka na strežniku ne obstaja več.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Ni mogoče odpreti datoteke dela za branje: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Ni mogoče ustvariti izhodne datoteke: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Ni mogoče vnaprej dodeliti izhodne datoteke: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Napaka izhodne datoteke po sestavljanju: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Stran za prenos ni vsebovala uporabne povezave za prenos.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Stran za prenos je kazala na nepričakovanega gostitelja, prenos je bil iz varnostnih razlogov prekinjen.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Ni mogoče odpreti datoteke dela: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Segment %1 ni uspel po %2 poskusih</translation>
         </message>
     </context>
     <context>
@@ -5563,6 +5727,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Skupni delež</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Klikni za nastavitve omejevalnika hitrosti</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

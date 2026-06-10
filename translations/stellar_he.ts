@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>צור קבוצת קישורים עוקבים מכתובת אחת, וסקור אותם לפני ההורדה.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>הוסף קבוצת קבצים עוקבים כמו img001.jpg, img002.jpg, img100.jpg בצעד אחד. שים כוכבית (*) במקום בו המספר או האות משתנים, וזה יהפוך לתבנית שם הקובץ.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>דוגמה: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n קישורים</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>לאחר אישור תוכל לסקור כל קישור, ואז לקבץ אותם לתור לפני תחילת ההורדה.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>הורדה בקבוצה</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>שם קובץ</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>הורד מ-</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>טקסט קישור</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>שמור אל</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>הסתר תמונות בדף זה</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>השתמש בטקסט קישור כתיאור הורדה</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3160,12 +3204,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>עדכן עכשיו</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>הורד</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>מוריד עדכון %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar מתעדכן ל־%1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>האפליקציה תיסגר ותיפתח מחדש אוטומטית. זה יכול לקחת דקה — נא להמתין.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>חבילת עדכון הורדה.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>התקן אותה עם מנהל החבילות שלך לסיום העדכון:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar לא הצליח להתחיל בהורדת מתקין העדכון.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>הצג בתיקייה</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>דיבוג: הדמיית עדכון זמין</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>הוסף קובץ Torrent...</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>הוסף כתוביות בקבוצה…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>הוסף כתובות URL מרובות מהלוח...</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4109,6 +4193,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>השרת החזיר דף HTML במקום הקובץ. ייתכן שהקישור דורש פתיחה בדפדפן או שפג תוקפו. דבר לא נשמר.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>לא ניתן לפתוח קובץ חלק: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>לא ניתן לחפש בקובץ חלקי: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>השרת הפנה לדף כניסה או שגיאה (%1) במקום לקובץ. הוסף מחדש את ההורדה מהדפדפן (לחיצה ימנית ← הורד עם Stellar) כדי לרענן את האימות, ולאחר מכן המשך. ההורדה החלקית שלך תשומש מחדש.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>כתיבת דיסק נכשלה: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>השרת החזיר טווח בתים שגוי</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>קובץ בשרת השתנה בגודלו במהלך ההורדה</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>בקשת ההורדה נכשלה.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 במקטע %2 (לא ניתן לניסיון חוזר)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>שגיאה פנימית: טווח מקטעים פגום</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>אין הרשאת כתיבה לתיקיית הורדה: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>הקובץ כבר לא קיים בשרת.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>לא ניתן לפתוח קובץ חלק לקריאה: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>לא ניתן ליצור קובץ פלט: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>לא ניתן להקצות מראש קובץ פלט: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>שגיאת קובץ פלט לאחר הרכבה: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>דף ההורדה לא הכיל קישור הורדה שמיש.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>דף ההורדה הפנה למארח לא צפוי, ההורדה בוטלה מטעמי אבטחה.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>לא ניתן לפתוח קובץ חלק: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>הקטע %1 נכשל לאחר %2 ניסיונות</translation>
         </message>
     </context>
     <context>
@@ -5563,6 +5727,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>نسبة المشاركة الكليّة</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>לחץ לפתיחת הגדרות מגביל מהירות</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

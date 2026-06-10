@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Sugeneruokite nuoseklių nuorodų grupę iš vieno adreso, tada peržiūrėkite jas prieš atsisiunčiant.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Pridėkite nuoseklių failų grupę, pvz., img001.jpg, img002.jpg, img100.jpg vienu žingsniu. Įdėkite žvaigždutę (*) ten, kur keičiasi skaičius ar raidė, ir tai taps failo pavadinimo šablonu.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Pavyzdys: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n nuoroda(-ų)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Po OK galėsite peržiūrėti kiekvieną nuorodą, tada pasirinktinai sugrupuoti jas į eilę prieš pradedant.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Masinis atsisiuntimas</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Failo pavadinimas</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Atsisiųsti iš</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Nuorodos tekstas</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Išsaugoti į</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Slėpti šiame tinklalapyje esančius paveikslėlius</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Naudoti nuorodų tekstus kaip aprašymus</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3169,12 +3213,52 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <translation>Atnaujinti dabar</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Atsisiųsti</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Atsisiunčiamas atnaujinimas %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar atnaujinama į %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Programa užsidarys ir vėl atsidarys automatiškai. Tai gali užtrukti minutę – palaukite.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Atnaujinimo paketas atsisiųstas.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Įdiekite jį su paketų tvarkytuve, kad užbaigtumėte atnaujinimą:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar negalėjo pradėti atnaujinimo diegimo programos atsisiuntimo.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Rodyti aplanke</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Derinti: Imituoti galimą atnaujinimą</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Pridėti BitTorrent failą…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Pridėti URL</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Pridėti URL partiją iš iškarpinės…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4118,6 +4202,86 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Serveris grąžino HTML puslapį vietoj laukto failo. Nuorodą gali reikėti atidaryti naršyklėje arba ji galėjo pasibaigti. Nieko neišsaugota.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Nepavyksta atidaryti dalinio failo: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Nepavyksta pereiti daliniame faile: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Serveris nukreipė į prisijungimo ar klaidos puslapį (%1), o ne į failą. Pridėkite atsisiuntimą iš naršyklės iš naujo (dešiniuoju pelės mygtuku → Atsisiųsti su Stellar), kad atnaujintumėte autentifikaciją, tada tęskite. Jūsų dalinis atsisiuntimas bus panaudotas pakartotinai.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Įrašymo į diską klaida: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Serveris grąžino neteisingą baitų diapazoną</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Failo dydis serveryje pasikeitė atsisiuntimo metu</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Atsisiuntimo užklausa nepavyko.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 segmente %2 (nebandoma pakartotinai)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Vidinė klaida: išsigimęs segmento ruožas</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Nėra rašymo teisės atsisiuntimo katalogui: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Failas serveryje nebeegzistuoja.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Nepavyksta atidaryti dalies failo skaitymui: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Nepavyksta sukurti išvesties failo: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Nepavyksta iš anksto paskirstyti išvesties failo: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Išvesties failo klaida po surinkimo: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Atsisiuntimo puslapyje nebuvo tinkamos atsisiuntimo nuorodos.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Atsisiuntimo puslapis nurodė netikėtą serverį, saugumo sumetimais atsisiuntimas nutrauktas.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Nepavyksta atidaryti dalies failo: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Segmentas %1 nepavyko po %2 bandymų</translation>
         </message>
     </context>
     <context>
@@ -5572,6 +5736,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Viso laiko dalinimosi santykis</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Spustelėkite, kad atidarytumėte greičio ribotuvo nustatymus</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

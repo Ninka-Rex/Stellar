@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>從一個網址產生連續連結群組，下載前可先檢查。</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>一次加入連續檔案群組，例如 img001.jpg、img002.jpg、img100.jpg。在數字或字母變動處加上星號 (*)，即成為檔名模式。</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>範例：https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n 個連結</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>確認後可檢查每個連結，並可選擇在開始前將它們排入佇列。</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>批次下載</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>檔案名稱</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>下載來源</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>連結文字</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>儲存至</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>隱藏此網頁上的圖片</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>使用連結文字作為下載描述</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3161,12 +3205,52 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <translation>立即更新</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>下載</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>正在下載更新 %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar 正在更新至 %1。</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>應用程式將自動關閉並重新開啟，請稍候片刻。</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>已下載更新套件。</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>請用套件管理員安裝以完成更新：</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar 無法啟動更新安裝程式下載。</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>在資料夾中顯示</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>除錯：模擬可用更新</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>新增種子檔案…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>新增批次 URL…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>從剪貼簿新增批次網址…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4110,6 +4194,86 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>伺服器回傳了 HTML 頁面而非預期檔案。連結可能需在瀏覽器中開啟或已過期。未儲存任何內容。</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>無法開啟部分檔案：%1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>無法在部分檔案中搜尋：%1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS：%1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>伺服器重新導向至登入或錯誤頁面 (%1)，而非檔案。請從瀏覽器重新加入下載（右鍵 → 使用 Stellar 下載）以更新驗證，然後繼續。您的部分下載內容將會被重複使用。</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>磁碟寫入失敗：%1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>伺服器傳回了錯誤的位元組範圍</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>下載期間伺服器上的檔案大小發生變更</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>下載請求失敗。</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 在區段 %2 上（不可重試）</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>內部錯誤：區段範圍異常</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>無下載目錄寫入權限：%1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>伺服器上檔案已不存在</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>無法開啟分塊檔讀取：%1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>無法建立輸出檔：%1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>無法預分配輸出檔：%1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>組合後輸出檔錯誤：%1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>下載頁面無可用下載連結</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>下載頁面指向非預期主機，已中止以策安全</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>無法開啟分塊檔：%1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>分段 %1 失敗，已重試 %2 次</translation>
         </message>
     </context>
     <context>
@@ -5569,6 +5733,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>總分享率</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>點擊開啟限速設定</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

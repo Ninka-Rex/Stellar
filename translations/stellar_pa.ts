@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>ਇੱਕ ਪਤੇ ਤੋਂ ਕ੍ਰਮਵਾਰ ਲਿੰਕਾਂ ਦਾ ਸਮੂਹ ਤਿਆਰ ਕਰੋ, ਫਿਰ ਡਾਊਨਲੋਡ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਉਹਨਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ।</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>ਕ੍ਰਮਵਾਰ ਫਾਈਲਾਂ ਦਾ ਸਮੂਹ ਸ਼ਾਮਲ ਕਰੋ ਜਿਵੇਂ img001.jpg, img002.jpg, img100.jpg ਇੱਕ ਕਦਮ ਵਿੱਚ। ਜਿੱਥੇ ਨੰਬਰ ਜਾਂ ਅੱਖਰ ਬਦਲਦਾ ਹੈ ਉੱਥੇ ਤਾਰਾ ਚਿੰਨ੍ਹ (*) ਲਗਾਓ, ਅਤੇ ਇਹ ਫਾਈਲ-ਨਾਮ ਪੈਟਰਨ ਬਣ ਜਾਂਦਾ ਹੈ।</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n ਲਿੰਕ</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>ਠੀਕ ਹੈ ਤੋਂ ਬਾਅਦ ਤੁਸੀਂ ਹਰੇਕ ਲਿੰਕ ਦੀ ਸਮੀਖਿਆ ਕਰ ਸਕਦੇ ਹੋ, ਫਿਰ ਉਹਨਾਂ ਨੂੰ ਸ਼ੁਰੂ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਇੱਕ ਕਤਾਰ ਵਿੱਚ ਸਮੂਹਬੱਧ ਕਰ ਸਕਦੇ ਹੋ।</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>ਬੈਚ ਡਾਊਨਲੋਡ</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>ਫਾਈਲ ਦਾ ਨਾਮ</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>ਇਸ ਤੋਂ ਡਾਊਨਲੋਡ ਕਰੋ</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>ਲਿੰਕ ਟੈਕਸਟ</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>ਸੰਭਾਲੋ</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>ਇਸ ਵੈੱਬ ਪੰਨੇ 'ਤੇ ਸਥਿਤ ਤਸਵੀਰਾਂ ਨੂੰ ਲੁਕਾਓ</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>ਲਿੰਕ ਟੈਕਸਟ ਨੂੰ ਡਾਊਨਲੋਡ ਵੇਰਵੇ ਵਜੋਂ ਵਰਤੋਂ</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3163,12 +3207,52 @@ Stellar ਓਪਸ਼ਨਸ → ਬ੍ਰਾਊਜ਼ਰ → ਡਾਊਨਲੋ�
             <translation>ਹੁਣ ਅਪਡੇਟ ਕਰੋ</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>ਡਾਊਨਲੋਡ</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>ਅੱਪਡੇਟ %1 ਡਾਊਨਲੋਡ ਹੋ ਰਿਹਾ…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar %1 ਵਿੱਚ ਅੱਪਡੇਟ ਹੋ ਰਿਹਾ ਹੈ।</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>ਐਪ ਹੁਣ ਬੰਦ ਹੋ ਕੇ ਆਪਣੇ ਆਪ ਮੁੜ ਖੁੱਲ੍ਹੇਗਾ। ਇੱਕ ਮਿੰਟ ਲੱਗ ਸਕਦਾ — ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ।</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>ਅੱਪਡੇਟ ਪੈਕੇਜ ਡਾਊਨਲੋਡ ਹੋ ਗਿਆ।</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>ਅੱਪਡੇਟ ਪੂਰਾ ਕਰਨ ਲਈ ਇਸਨੂੰ ਆਪਣੇ ਪੈਕੇਜ ਮੈਨੇਜਰ ਨਾਲ ਇੰਸਟਾਲ ਕਰੋ:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar ਅੱਪਡੇਟ ਇੰਸਟਾਲਰ ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਨਹੀਂ ਕਰ ਸਕਿਆ।</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>ਫੋਲਡਰ ਵਿੱਚ ਦਿਖਾਓ</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>ਡੀਬੱਗ: ਅੱਪਡੇਟ ਉਪਲਬਧ ਹੋਣ ਦਾ ਦਿਖਾਵਾ ਕਰੋ</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>ਟੌਰੈਂਟ ਫਾਈਲ ਜੋੜੋ…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>ਬੈਚ URL ਯੋਗ ਕਰੋ…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>ਕਲਿੱਪਬੋਰਡ ਤੋਂ ਬੈਚ URL ਸ਼ਾਮਲ ਕਰੋ…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4112,6 +4196,86 @@ Stellar ਓਪਸ਼ਨਸ → ਬ੍ਰਾਊਜ਼ਰ → ਡਾਊਨਲੋ�
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>ਸਰਵਰ ਨੇ ਫ਼ਾਈਲ ਦੀ ਬਜਾਏ HTML ਪੇਜ਼ ਭੇਜਿਆ। ਲਿੰਕ ਨੂੰ ਬ੍ਰਾਊਜ਼ਰ 'ਚ ਖੋਲ੍ਹਣ ਦੀ ਲੋੜ ਹੋ ਸਕਦੀ ਹੈ ਜਾਂ ਇਹ ਮਿਆਦ ਪੁੱਗ ਗਿਆ। ਕੁਝ ਵੀ ਸੇਵ ਨਹੀਂ ਹੋਇਆ।</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>ਪਾਰਟ ਫ਼ਾਈਲ ਨਹੀਂ ਖੋਲ੍ਹੀ ਜਾ ਸਕਦੀ: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>ਪਾਰਟ ਫ਼ਾਈਲ ਵਿੱਚ ਸੀਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>ਸਰਵਰ ਨੇ ਫ਼ਾਈਲ ਦੀ ਬਜਾਏ ਸਾਈਨ-ਇਨ ਜਾਂ ਗਲਤੀ ਪੰਨੇ (%1) 'ਤੇ ਰੀਡਾਇਰੈਕਟ ਕੀਤਾ। ਪ੍ਰਮਾਣਿਕਤਾ ਤਾਜ਼ਾ ਕਰਨ ਲਈ ਆਪਣੇ ਬ੍ਰਾਊਜ਼ਰ ਤੋਂ ਡਾਊਨਲੋਡ ਮੁੜ-ਸ਼ਾਮਲ ਕਰੋ (ਸੱਜਾ-ਕਲਿੱਕ → Stellar ਨਾਲ ਡਾਊਨਲੋਡ ਕਰੋ), ਫਿਰ ਮੁੜ-ਸ਼ੁਰੂ ਕਰੋ। ਤੁਹਾਡੀ ਅਧੂਰੀ ਡਾਊਨਲੋਡ ਮੁੜ-ਵਰਤੀ ਜਾਵੇਗੀ।</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ਡਿਸਕ ਲਿਖਤ ਅਸਫ਼ਲ: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>ਸਰਵਰ ਨੇ ਗਲਤ ਬਾਈਟ ਰੇਂਜ ਵਾਪਸ ਕੀਤੀ</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>ਡਾਊਨਲੋਡ ਦੌਰਾਨ ਸਰਵਰ 'ਤੇ ਫ਼ਾਈਲ ਦਾ ਆਕਾਰ ਬਦਲ ਗਿਆ</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>ਡਾਊਨਲੋਡ ਬੇਨਤੀ ਅਸਫ਼ਲ ਰਹੀ।</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 ਸੈਗਮੈਂਟ %2 'ਤੇ (ਮੁੜ-ਕੋਸ਼ਿਸ਼ ਯੋਗ ਨਹੀਂ)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>ਅੰਦਰੂਨੀ ਗਲਤੀ: ਡਿਜਨਰੇਟ ਸੈਗਮੈਂਟ ਰੇਂਜ</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ਡਾਊਨਲੋਡ ਡਾਇਰੈਕਟਰੀ ਲਈ ਲਿਖਣ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>ਫਾਈਲ ਹੁਣ ਸਰਵਰ 'ਤੇ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>ਪੜ੍ਹਨ ਲਈ ਭਾਗ ਫਾਈਲ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦੇ: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>ਆਊਟਪੁੱਟ ਫਾਈਲ ਨਹੀਂ ਬਣਾ ਸਕਦੇ: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>ਆਊਟਪੁੱਟ ਫਾਈਲ ਪਹਿਲਾਂ-ਨਿਰਧਾਰਤ ਨਹੀਂ ਕਰ ਸਕਦੇ: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>ਅਸੈਂਬਲੀ ਤੋਂ ਬਾਅਦ ਆਊਟਪੁੱਟ ਫਾਈਲ ਗਲਤੀ: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>ਡਾਊਨਲੋਡ ਪੇਜ ਵਿੱਚ ਵਰਤੋਂਯੋਗ ਡਾਊਨਲੋਡ ਲਿੰਕ ਨਹੀਂ ਸੀ।</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>ਡਾਊਨਲੋਡ ਪੇਜ ਨੇ ਅਚਾਨਕ ਹੋਸਟ ਵੱਲ ਇਸ਼ਾਰਾ ਕੀਤਾ, ਸੁਰੱਖਿਆ ਲਈ ਡਾਊਨਲੋਡ ਰੱਦ ਕੀਤਾ।</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>ਭਾਗ ਫਾਈਲ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਦੇ: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>ਸੈਗਮੈਂਟ %1 %2 ਮੁੜ-ਕੋਸ਼ਿਸ਼ਾਂ ਬਾਅਦ ਫੇਲ੍ਹ ਹੋਇਆ</translation>
         </message>
     </context>
     <context>
@@ -5571,6 +5735,10 @@ Stellar ਨੂੰ VPN ਨੈੱਟਵਰਕ ਇੰਟਰਫੇਸ ਨਾਲ ਬ�
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>ਸਾਰੇ ਸਮੇਂ ਦਾ ਸਾਂਝਾ ਅਨੁਪਾਤ</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>ਸਪੀਡ ਲਿਮਿਟਰ ਸੈਟਿੰਗਾਂ ਖੋਲ੍ਹਣ ਲਈ ਕਲਿੱਕ ਕਰੋ</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

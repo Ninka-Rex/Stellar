@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>ஒரு முகவரியிலிருந்து தொடர் இணைப்புகளை உருவாக்கி, பதிவிறக்கும் முன் மதிப்பாய்வு செய்க.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>img001.jpg, img002.jpg, img100.jpg போன்ற தொடர் கோப்புகளை ஒரே படியில் சேர். எண் அல்லது எழுத்து மாறும் இடத்தில் நட்சத்திரக்குறி (*) இடுக, அது கோப்புப் பெயர் வடிவமாகும்.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>எடுத்துக்காட்டு: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n இணைப்பு(கள்)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>சரி என்பதன் பின் ஒவ்வொரு இணைப்பையும் மதிப்பாய்வு செய்து, தொடங்கும் முன் வரிசையில் குழுவாக்கலாம்.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>தொகுப்புப் பதிவிறக்கம்</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>கோப்பு பெயர்</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>இதிலிருந்து பதிவிறக்கு</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>இணைப்பு உரை</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>இங்கே சேமி</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>இந்த வலைப்பக்கத்தில் உள்ள படங்களை மறை</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>இணைப்பு உரைகளை பதிவிறக்க விளக்கமாக பயன்படுத்து</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3174,12 +3218,52 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <translation>இப்போது புதுப்பி</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>பதிவிறக்கம்</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>புதுப்பிப்பு %1 பதிவிறக்கமாகிறது…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar %1-க்கு புதுப்பிக்கப்படுகிறது.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>செயலி இப்போது மூடப்பட்டு தானாக மீண்டும் திறக்கும். இது ஒரு நிமிடம் ஆகலாம் — காத்திருக்கவும்.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>புதுப்பிப்பு தொகுப்பு பதிவிறக்கப்பட்டது.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>புதுப்பிப்பை முடிக்க உங்கள் தொகுப்பு மேலாளரில் நிறுவவும்:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar-ஆல் புதுப்பிப்பு நிறுவி பதிவிறக்கத்தைத் தொடங்க முடியவில்லை.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>கோப்புறையில் காட்டு</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>பிழைதிருத்தம்: புதுப்பிப்பு உள்ளதை உருவகப்படுத்து</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>டோரண்ட் கோப்பைச் சேர்…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>தொகுப்பு URLகளைச் சேர்…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>கிளிப்போர்டிலிருந்து தொகுதி URLகளைச் சேர்…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4123,6 +4207,86 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>எதிர்பார்த்த கோப்புக்குப் பதிலாக HTML பக்கம் கிடைத்தது. இணைப்பு உலாவியில் திறக்கப்பட வேண்டும் அல்லது காலாவதியாகி இருக்கலாம். எதுவும் சேமிக்கப்படவில்லை.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>பகுதி கோப்பை திறக்க முடியவில்லை: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>பகுதி கோப்பில் நகர முடியவில்லை: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>சேவையகம் கோப்பிற்குப் பதிலாக உள்நுழைவு அல்லது பிழைப் பக்கத்திற்கு (%1) திருப்பிவிட்டது. அங்கீகாரத்தைப் புதுப்பிக்க உங்கள் உலாவியிலிருந்து பதிவிறக்கத்தை மீண்டும் சேர்க்கவும் (வலது கிளிக் → Stellar உடன் பதிவிறக்கு), பின்னர் தொடரவும். உங்கள் பகுதி பதிவிறக்கம் மீண்டும் பயன்படுத்தப்படும்.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>வட்டு எழுதுதல் தோல்வி: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>சேவையகம் தவறான பைட் வரம்பை அனுப்பியது</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>பதிவிறக்கத்தின் போது சேவையகத்தில் கோப்பு அளவு மாறியது</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>பதிவிறக்க கோரிக்கை தோல்வியடைந்தது.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>பிரிவு %2 இல் HTTP %1 (மீண்டும் முயற்சிக்க முடியாது)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>உள் பிழை: சிதைந்த பிரிவு வரம்பு</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>பதிவிறக்க கோப்பகத்திற்கு எழுத அனுமதி இல்லை: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>சேவையகத்தில் கோப்பு இனி இல்லை.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>வாசிக்க பகுதி கோப்பை திறக்க முடியவில்லை: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>வெளியீட்டு கோப்பை உருவாக்க முடியவில்லை: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>வெளியீட்டு கோப்பை முன் ஒதுக்க முடியவில்லை: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>இணைப்புக்குப் பின் வெளியீட்டு கோப்பு பிழை: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>பதிவிறக்க பக்கத்தில் பயன்படுத்தக்கூடிய இணைப்பு இல்லை.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>பதிவிறக்க பக்கம் எதிர்பாராத ஹோஸ்ட்டை சுட்டியது, பாதுகாப்புக்காக பதிவிறக்கம் நிறுத்தப்பட்டது.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>பகுதி கோப்பை திறக்க முடியவில்லை: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>பிரிவு %1 %2 முயற்சிகளுக்குப் பின் தோல்வி</translation>
         </message>
     </context>
     <context>
@@ -5583,6 +5747,10 @@ BitTorrent வழியாக நீங்கள் பகிரும் எத
 Click to open Statistics</source>
             <translation>எல்லா கால பகிர்வு விகிதம்
 புள்ளிவிவரங்களைத் திறக்க கிளிக் செய்க</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>வேக வரம்பு அமைப்புகளைத் திறக்க கிளிக் செய்க</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

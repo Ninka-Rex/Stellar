@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Izveidot secīgu saišu grupu no vienas adreses, tad pārskatīt pirms lejupielādes.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Pievienot secīgu failu grupu, piem., img001.jpg, img002.jpg, img100.jpg vienā solī. Ievieto zvaigznīti (*) vietā, kur mainās cipars vai burts, un tas kļūst par faila nosaukuma veidni.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Piemērs: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n saite(s)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Pēc OK vari pārskatīt katru saiti, pēc tam pēc izvēles grupēt tās rindā pirms sākšanas.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Partijas lejupielāde</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Faila nosaukums</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Lejupielādēt no</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Saites teksts</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Saglabāt uz</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Slēpt šajā lapā esošos attēlus</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Izmantot saišu tekstus kā lejupielādes aprakstus</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3169,12 +3213,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Atjaunināt tagad</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Lejupielādēt</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Lejupielādē atjauninājumu %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar tiek atjaunināts uz %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Lietotne tūlīt aizvērsies un automātiski atvērsies no jauna. Tas var aizņemt minūti — lūdzu, uzgaidiet.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Atjauninājuma pakotne lejupielādēta.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Instalējiet to ar savu pakotņu pārvaldnieku, lai pabeigtu atjaunināšanu:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar nevarēja sākt atjauninājuma instalētāja lejupielādi.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Rādīt mapē</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Atkļūdošana: Simulēt pieejamu atjauninājumu</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Pievienot torrent failu…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Pievienot partijas URL…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Pievienot partijas URL no starpliktuves…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4118,6 +4202,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Serveris atgrieza HTML lapu, nevis gaidīto failu. Saitei var būt nepieciešama atvēršana pārlūkā, vai arī tā var būt beigusies. Nekas netika saglabāts.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Nevar atvērt daļas failu: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Nevar pārvietoties daļējā failā: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Serveris novirzīja uz pierakstīšanās vai kļūdas lapu (%1), nevis failu. Pievienojiet lejupielādi no pārlūkprogrammas vēlreiz (labais klikšķis → Lejupielādēt ar Stellar), lai atjauninātu autentifikāciju, pēc tam atsāciet. Jūsu daļējā lejupielāde tiks izmantota atkārtoti.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Diska rakstīšana neizdevās: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Serveris atgrieza nepareizu baitu diapazonu</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Fails serverī mainījās izmērs lejupielādes laikā</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Lejupielādes pieprasījums neizdevās.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 segmentā %2 (nav atkārtoti mēģināms)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Iekšēja kļūda: deģenerēts segmenta diapazons</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Nav rakstīšanas atļaujas lejupielādes mapei: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Fails serverī vairs nepastāv.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Nevar atvērt daļas failu lasīšanai: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Nevar izveidot izvades failu: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Nevar iepriekš piešķirt vietu izvades failam: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Izvades faila kļūda pēc salikšanas: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Lejupielādes lapa nesaturēja izmantojamu lejupielādes saiti.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Lejupielādes lapa norādīja uz negaidītu resursdatoru, lejupielāde pārtraukta drošības dēļ.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Nevar atvērt daļas failu: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Segments %1 neizdevās pēc %2 mēģinājumiem</translation>
         </message>
     </context>
     <context>
@@ -5578,6 +5742,10 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
 Click to open Statistics</source>
             <translation>Visu laiku dalīšanās koeficients
 Noklikšķiniet, lai atvērtu statistiku</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Noklikšķiniet, lai atvērtu ātruma ierobežotāja iestatījumus</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

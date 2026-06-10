@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>له یوې پتې څخه پرله‌پسې لینکونه جوړ کړئ، بیا یې له ډاونلوډ مخکې وګورئ.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>په یوه ګام کې img001.jpg، img002.jpg، img100.jpg په څېر پرله‌پسې فایلونه اضافه کړئ. چېرته چې شمېره یا توری بدلېږي، ستوری (*) کېږدئ، دا د فایل-نوم بېلګه جوړوي.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>بېلګه: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n لینک(ونه)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>له OK وروسته تاسو هر لینک کتلی شئ، بیا یې د پیل مخکې په یوه کتار کې ډله کولی شئ.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>ګډ ډاونلوډ</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>د فایل نوم</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>ډاونلوډ له</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>لینک متن</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>خوندي کول په</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>په دې وېب پاڼه کې انځورونه پټ کړئ</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>د لېنک متنونه د ډاونلوډ توضیح په توګه وکاروئ</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3169,12 +3213,52 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <translation>اوس تازه کړئ</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>ډاونلوډ</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>تازه کول ډاونلوډېږي %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>سټېلر %1 ته تازه کېږي.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>اپ به اوس بند او په اتومات ډول بیا پرانېستل شي. دا یوه دقیقه وخت نیسي — مهرباني وکړئ صبر وکړئ.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>د تازه کولو بسته ډاونلوډ شوه.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>د تازه کولو بشپړولو لپاره دا د خپل بسته مدیر سره نصب کړئ:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>سټېلر د تازه کولو نصبونکی ډاونلوډ نشو پیلولی.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>په فولډر کې ښکاره کړئ</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>ډیبګ: د تازه کولو شتون انډول کړئ</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>د Torrent فایل اضافه کړ…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>زیات کړئ ډله ییز URL…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>له کلیپبورډ څخه ډله‌ییز URLs اضافه کړئ…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4118,6 +4202,86 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>سرور د متوقع فایل پر ځای HTML پاڼه راوګرځوله. لینک ښايي په براوزر کې پرانیستلو ته اړتیا ولري یا پای ته رسېدلی وي. هیڅ خوندي نه شو.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>د برخې فایل نشي پرانیستل کېدای: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>د برخې فایل کې لټون نشي کېدای: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>سرور د فایل پر ځای د ننوتلو یا تېروتنې پاڼې (%1) ته وګرځاوه. له خپل براوزر څخه ډاونلوډ بیا اضافه کړئ (ښۍ کلیک → له Stellar سره ډاونلوډ) ترڅو تصدیق تازه کړئ، بیا پیل کړئ. ستاسو نیمګړی ډاونلوډ به بیا وکارول شي.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ډیسک لیکنه ناکامه شوه: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>سرور ناسم بایټ رینج ورکړ</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>په سرور کې فایل د ډاونلوډ پر مهال اندازه بدله کړه</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>د ډاونلوډ غوښتنه ناکامه شوه.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 په برخه %2 (د بیا هڅې وړ نه دی)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>داخلي تېروتنه: ناسمه برخه لړۍ</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ډاونلوډ پوښي لپاره د لیکلو اجازه نشته: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>فایل نور په سرور کې شتون نلري.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>د لوستلو لپاره برخه فایل نشي خلاصېدای: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>د محصول فایل نشي جوړېدای: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>د محصول فایل مخکې ځانګړی نشي کېدای: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>له یوځای کېدو وروسته د محصول فایل تېروتنه: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>ډاونلوډ پاڼه کې د کارونې وړ ډاونلوډ لینک نه و.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>ډاونلوډ پاڼې ناڅاپي کوربه ته اشاره وکړه، د امنیت لپاره ډاونلوډ ودرول شو.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>برخه فایل نشي خلاصېدای: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>برخه %1 د %2 بیا هڅو وروسته ناکامه شوه</translation>
         </message>
     </context>
     <context>
@@ -5575,6 +5739,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>د شریکونو تناسب</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>د سرعت محدودونکي ترتیباتو خلاصولو لپاره کلیک وکړئ</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

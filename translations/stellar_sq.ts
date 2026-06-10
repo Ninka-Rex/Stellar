@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Gjeneroni një grup lidhjesh të njëpasnjëshme nga një adresë, pastaj rishikojini ato para se t'i shkarkoni.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Shto një grup skedarësh të njëpasnjëshëm si img001.jpg, img002.jpg, img100.jpg me një hap. Vendos një yll (*) aty ku ndryshon numri ose shkronja, dhe kjo bëhet modeli i emrit të skedarit.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Shembull: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n lidhje</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Pas OK, mund të rishikoni çdo lidhje, pastaj opsionalisht t'i gruponi në një radhë para se të fillojnë.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Shkarkim të grupit</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Emri i skedarit</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Shkarko nga</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Teksti i lidhjes</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Ruaj te</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Fshih imazhet e vendosura në këtë faqe interneti</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Përdor tekstet e lidhjeve si përshkrime shkarkimesh</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3167,12 +3211,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Përditëso Tani</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Shkarko</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Po shkarkohet përditësimi %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar po përditësohet në %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Aplikacioni do të mbyllet dhe rihapet automatikisht. Kjo mund të zgjasë një minutë — ju lutemi prisni.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Paketa e përditësimit u shkarkua.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Instalojeni me menaxhuesin tuaj të paketave për të përfunduar përditësimin:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar nuk mundi të niste shkarkimin e instaluesit të përditësimit.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Shfaq në Dosje</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Debug: Simulo Përditësim të Disponueshëm</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Shto Torrent File…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Shto URL-t në parti</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Shto URL-të e grupit nga Clipboard…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4116,6 +4200,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Serveri ktheu një faqe HTML në vend të skedarit të pritur. Lidhja mund të kërkojë hapje në shfletues ose mund të ketë skaduar. Asgjë nuk u ruajt.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>S’hap dot skedarin e pjesshëm: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>S’kërkoj dot në skedarin e pjesshëm: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Serveri ridrejtoi te një faqe hyrjeje ose gabimi (%1) në vend të skedarit. Rishto shkarkimin nga shfletuesi (djathtas → Shkarko me Stellar) për rifreskuar vërtetimin, pastaj vazhdo. Pjesa e shkarkuar do ripërdoret.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Shkrimi në disk dështoi: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Serveri ktheu interval të gabuar bajtësh</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Skedari në server ndryshoi madhësinë gjatë shkarkimit</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Kërkesa e shkarkimit dështoi.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 në segmentin %2 (i pariprovueshëm)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Gabim i brendshëm: diapazon segmenti i degjeneruar</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Nuk ka leje shkrimi për direktorinë e shkarkimit: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Skedari nuk ekziston më në server.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Nuk mund të hapet skedari i pjesës për lexim: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Nuk mund të krijohet skedari i daljes: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Nuk mund të paracaktohet skedari i daljes: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Gabim në skedarin e daljes pas montimit: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Faqja e shkarkimit nuk përmbante një lidhje të përdorshme shkarkimi.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Faqja e shkarkimit tregoi një host të papritur, shkarkimi u ndërpre për siguri.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Nuk mund të hapet skedari i pjesës: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Segmenti %1 dështoi pas %2 përpjekjesh</translation>
         </message>
     </context>
     <context>
@@ -5573,6 +5737,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Raport i përdorimit</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Kliko për hapjen e kufizuesit të shpejtësisë</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

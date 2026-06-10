@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>ສ້າງກຸ່ມລິ້ງຕໍ່ເນື່ອງຈາກທີ່ຢູ່ດຽວ, ຈາກນັ້ນກວດສອບກ່ອນດາວໂຫຼດ.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>ເພີ່ມກຸ່ມໄຟລ໌ຕໍ່ເນື່ອງ ເຊັ່ນ img001.jpg, img002.jpg, img100.jpg ໃນຂັ້ນຕອນດຽວ. ໃສ່ດອກຈັນ (*) ບ່ອນທີ່ຕົວເລກ ຫຼື ຕົວອັກສອນປ່ຽນ, ແລະມັນຈະກາຍເປັນຮູບແບບຊື່ໄຟລ໌.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>ຕົວຢ່າງ: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n ລິ້ງ</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>ຫຼັງຈາກກົດ ຕົກລົງ ທ່ານສາມາດກວດສອບແຕ່ລະລິ້ງ, ຈາກນັ້ນຈັດກຸ່ມເຂົ້າຄິວກ່ອນເລີ່ມດາວໂຫຼດ.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>ດາວໂຫຼດເປັນຊຸດ</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>ຊື່ໄຟລ໌</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>ດາວໂຫຼດຈາກ</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>ຂໍ້ຄວາມລິ້ງ</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>ບັນທຶກໃສ່</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>ເຊື່ອງຮູບພາບທີ່ຢູ່ໃນໜ້າເວັບນີ້</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>ໃຊ້ຂໍ້ຄວາມລິ້ງເປັນຄຳອະທິບາຍດາວໂຫຼດ</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3177,12 +3221,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ອັບເດດດຽວນີ້</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>ດາວໂຫຼດ</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>ກຳລັງດາວໂຫຼດອັບເດດ %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar ກຳລັງອັບເດດເປັນ %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>ແອັບຈະປິດ ແລະ ເປີດໃໝ່ອັດຕະໂນມັດ. ອາດໃຊ້ເວລາໜຶ່ງນາທີ — ກະລຸນາລໍຖ້າ.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>ດາວໂຫຼດແພັກເກດອັບເດດສຳເລັດແລ້ວ.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>ຕິດຕັ້ງມັນດ້ວຍຕົວຈັດການແພັກເກດຂອງທ່ານເພື່ອສຳເລັດການອັບເດດ:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar ບໍ່ສາມາດເລີ່ມການດາວໂຫຼດຕົວຕິດຕັ້ງອັບເດດໄດ້.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>ເປີດໃນໂຟນເດີ</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>ດີບັກ: ຈຳລອງມີອັບເດດ</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>ເພີ່ມໄຟລ໌ທໍເຣັນ…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>ເພີ່ມ URL ຫຼາຍລາຍການ…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>ເພີ່ມ URL ຈາກຄລິບບອດ…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4126,6 +4210,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>ເຊີບເວີສົ່ງໜ້າ HTML ແທນໄຟລ໌. ລິ້ງອາດຕ້ອງເປີດໃນບຣາວເຊີ ຫຼືໝົດອາຍຸ. ບໍ່ໄດ້ບັນທຶກຫຍັງ.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>ບໍ່ສາມາດເປີດໄຟລ໌ສ່ວນ: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>ບໍ່ສາມາດຊອກຫາໃນໄຟລ໌ສ່ວນ: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>ເຊີບເວີປ່ຽນເສັ້ນທາງໄປໜ້າເຂົ້າສູ່ລະບົບ ຫຼື ໜ້າຜິດພາດ (%1) ແທນໄຟລ໌. ເພີ່ມດາວໂຫຼດຈາກບຣາວເຊີຄືນໃໝ່ (ຄລິກຂວາ → ດາວໂຫຼດດ້ວຍ Stellar) ເພື່ອຣີເຟຣສການຢືນຢັນ, ຈາກນັ້ນສືບຕໍ່. ການດາວໂຫຼດບາງສ່ວນຂອງທ່ານຈະຖືກນຳມາໃຊ້ຄືນ.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ຂຽນດິສກ໌ລົ້ມເຫຼວ: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>ເຊີບເວີສົ່ງຊ່ວງໄບຕ໌ຜິດ</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>ໄຟລ໌ໃນເຊີບເວີປ່ຽນຂະໜາດລະຫວ່າງດາວໂຫຼດ</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>ຄຳຂໍດາວໂຫຼດລົ້ມເຫຼວ.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 ໃນສ່ວນ %2 (ບໍ່ສາມາດລອງໃໝ່ໄດ້)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>ຂໍ້ຜິດພາຍໃນ: ຊ່ວງສ່ວນບໍ່ຖືກຕ້ອງ</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ບໍ່ມີສິດຂຽນສຳລັບໂຟນເດີດາວໂຫຼດ: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>ໄຟລ໌ບໍ່ມີຢູ່ໃນເຊີບເວີອີກຕໍ່ໄປ</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>ບໍ່ສາມາດເປີດໄຟລ໌ສ່ວນເພື່ອອ່ານ: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>ບໍ່ສາມາດສ້າງໄຟລ໌ຜົນລັບ: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>ບໍ່ສາມາດຈອງພື້ນທີ່ລ່ວງໜ້າ: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>ຂໍ້ຜິດພາດໄຟລ໌ຜົນລັບຫຼັງປະກອບ: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>ໜ້າດາວໂຫຼດບໍ່ມີລິ້ງດາວໂຫຼດທີ່ໃຊ້ໄດ້</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>ໜ້າດາວໂຫຼດຊີ້ໄປຍັງໂຮສທີ່ບໍ່ຄາດຄິດ, ຍົກເລີກການດາວໂຫຼດເພື່ອຄວາມປອດໄພ</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>ບໍ່ສາມາດເປີດໄຟລ໌ສ່ວນ: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>ສ່ວນ %1 ລົ້ມເຫຼວຫຼັງລອງໃໝ່ %2 ຄັ້ງ</translation>
         </message>
     </context>
     <context>
@@ -5586,6 +5750,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 Click to open Statistics</source>
             <translation>ອັດຕາສ່ວນແບ່ງປັນທັງໝົດ
 ຄລິກເພື່ອເປີດສະຖິຕິ</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>ກົດເພື່ອເປີດການຕັ້ງຄ່າຈຳກັດຄວາມໄວ</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

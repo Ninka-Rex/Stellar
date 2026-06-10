@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>ഒരു വിലാസത്തിൽ നിന്ന് തുടർച്ചയായ ലിങ്കുകളുടെ ഒരു ഗ്രൂപ്പ് സൃഷ്ടിക്കുക, തുടർന്ന് ഡൗൺലോഡ് ചെയ്യുന്നതിന് മുമ്പ് അവ അവലോകനം ചെയ്യുക.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>img001.jpg, img002.jpg, img100.jpg പോലുള്ള തുടർച്ചയായ ഫയലുകളുടെ ഒരു ഗ്രൂപ്പ് ഒറ്റ ഘട്ടത്തിൽ ചേർക്കുക. നമ്പറോ അക്ഷരമോ മാറുന്നിടത്ത് ഒരു നക്ഷത്രചിഹ്നം (*) ഇടുക, അത് ഫയൽ-നെയിം പാറ്റേൺ ആയി മാറും.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>ഉദാഹരണം: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n ലിങ്ക്(കൾ)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>ശരി ക്ലിക്ക് ചെയ്ത ശേഷം നിങ്ങൾക്ക് ഓരോ ലിങ്കും അവലോകനം ചെയ്യാം, തുടർന്ന് അവ ആരംഭിക്കുന്നതിന് മുമ്പ് ഓപ്ഷണലായി ഒരു ക്യൂവിൽ ഗ്രൂപ്പുചെയ്യാം.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>ബാച്ച് ഡൗൺലോഡ്</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>ഫയൽ പേര്</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>ഇതിൽ നിന്ന് ഡൗൺലോഡ് ചെയ്യുക</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>ലിങ്ക് ടെക്സ്റ്റ്</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>ഇതിലേക്ക് സംരക്ഷിക്കുക</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>ഈ വെബ് പേജിൽ സ്ഥിതിചെയ്യുന്ന ചിത്രങ്ങൾ മറയ്ക്കുക</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>ഡൗൺലോഡ് വിവരണമായി ലിങ്ക് ടെക്സ്റ്റ് ഉപയോഗിക്കുക</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3173,12 +3217,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ഇപ്പോൾ അപ്ഡേറ്റ് ചെയ്യുക</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>ഡൗൺലോഡ്</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>അപ്ഡേറ്റ് %1 ഡൗൺലോഡ് ചെയ്യുന്നു…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar %1-ലേക്ക് അപ്ഡേറ്റ് ചെയ്യുന്നു.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>ആപ്പ് ഇപ്പോൾ അടച്ച് സ്വയം വീണ്ടും തുറക്കും. ഒരു മിനിറ്റ് എടുത്തേക്കാം — ദയവായി കാത്തിരിക്കുക.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>അപ്ഡേറ്റ് പാക്കേജ് ഡൗൺലോഡ് ചെയ്തു.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>അപ്ഡേറ്റ് പൂർത്തിയാക്കാൻ നിങ്ങളുടെ പാക്കേജ് മാനേജർ ഉപയോഗിച്ച് ഇത് ഇൻസ്റ്റാൾ ചെയ്യുക:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar-ന് അപ്ഡേറ്റ് ഇൻസ്റ്റാളർ ഡൗൺലോഡ് ആരംഭിക്കാനായില്ല.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>ഫോൾഡറിൽ കാണിക്കുക</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>ഡീബഗ്: അപ്ഡേറ്റ് ലഭ്യമാണെന്ന് അനുകരിക്കുക</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>ടോറന്റ് ഫയൽ ചേർക്കുക…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>ബാച്ച് URL-കൾ ചേർക്കുക…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>ക്ലിപ്പ്ബോർഡിൽ നിന്ന് ബാച്ച് URL-കൾ ചേർക്കുക…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4122,6 +4206,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>പ്രതീക്ഷിച്ച ഫയലിനു പകരം സെർവർ HTML പേജ് നൽകി. ലിങ്ക് ബ്രൗസറിൽ തുറക്കേണ്ടതോ കാലഹരണപ്പെട്ടതോ ആകാം. ഒന്നും സംരക്ഷിച്ചില്ല.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>ഭാഗ ഫയൽ തുറക്കാനാകുന്നില്ല: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>ഭാഗ ഫയലിൽ തിരയാനാകുന്നില്ല: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>സെർവർ ഫയലിന് പകരം സൈൻ-ഇൻ അല്ലെങ്കിൽ പിശക് പേജിലേക്ക് (%1) റീഡയറക്ട് ചെയ്തു. പ്രാമാണീകരണം പുതുക്കാൻ ബ്രൗസറിൽ നിന്ന് ഡൗൺലോഡ് വീണ്ടും ചേർക്കുക (റൈറ്റ്-ക്ലിക്ക് → Stellar ഉപയോഗിച്ച് ഡൗൺലോഡ് ചെയ്യുക), തുടർന്ന് പുനരാരംഭിക്കുക. നിങ്ങളുടെ ഭാഗിക ഡൗൺലോഡ് വീണ്ടും ഉപയോഗിക്കും.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ഡിസ്ക് എഴുത്ത് പരാജയപ്പെട്ടു: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>സെർവർ തെറ്റായ ബൈറ്റ് ശ്രേണി നൽകി</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>ഡൗൺലോഡ് സമയത്ത് സെർവറിലെ ഫയൽ വലുപ്പം മാറി</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>ഡൗൺലോഡ് അഭ്യർത്ഥന പരാജയപ്പെട്ടു.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 സെഗ്മെന്റ് %2-ൽ (വീണ്ടും ശ്രമിക്കാനാകില്ല)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>ആന്തരിക പിശക്: വികലമായ സെഗ്മെന്റ് ശ്രേണി</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ഡൗൺലോഡ് ഡയറക്ടറിയിലേക്ക് എഴുത്ത് അനുമതിയില്ല: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>ഫയൽ സെർവറിൽ ഇനി നിലവിലില്ല.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>വായിക്കാൻ ഭാഗിക ഫയൽ തുറക്കാനാകില്ല: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>ഔട്ട്പുട്ട് ഫയൽ സൃഷ്ടിക്കാനാകില്ല: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>ഔട്ട്പുട്ട് ഫയൽ മുൻകൂട്ടി അനുവദിക്കാനാകില്ല: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>അസംബ്ലിക്ക് ശേഷം ഔട്ട്പുട്ട് ഫയൽ പിശക്: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>ഡൗൺലോഡ് പേജിൽ ഉപയോഗപ്രദമായ ഡൗൺലോഡ് ലിങ്ക് ഇല്ലായിരുന്നു.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>ഡൗൺലോഡ് പേജ് അപ്രതീക്ഷിത ഹോസ്റ്റിലേക്ക് വിരൽ ചൂണ്ടി, സുരക്ഷയ്ക്കായി ഡൗൺലോഡ് നിർത്തി.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>ഭാഗിക ഫയൽ തുറക്കാനാകില്ല: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>സെഗ്മെന്റ് %1 %2 ശ്രമങ്ങൾക്ക് ശേഷം പരാജയപ്പെട്ടു</translation>
         </message>
     </context>
     <context>
@@ -5580,6 +5744,10 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
 Click to open Statistics</source>
             <translation>എല്ലാ സമയത്തെയും ഷെയർ റേഷ്യോ
 സ്റ്റാറ്റിസ്റ്റിക്സ് തുറക്കാൻ ക്ലിക്ക് ചെയ്യുക</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>വേഗ പരിധി ക്രമീകരണങ്ങൾ തുറക്കാൻ ക്ലിക്ക് ചെയ്യുക</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

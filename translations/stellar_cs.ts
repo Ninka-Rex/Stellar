@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Vygenerovat skupinu po sobě jdoucích odkazů z jedné adresy a před stažením je zkontrolovat.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Přidat skupinu po sobě jdoucích souborů jako img001.jpg, img002.jpg, img100.jpg v jednom kroku. Vložte hvězdičku (*) tam, kde se mění číslo nebo písmeno, a stane se z toho vzor názvu souboru.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Příklad: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n odkaz(y)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Po OK můžete zkontrolovat každý odkaz a poté je volitelně seskupit do fronty před zahájením.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Hromadné stahování</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Název souboru</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Stáhnout z</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Text odkazu</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Uložit do</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Skrýt obrázky na této webové stránce</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Použít texty odkazů jako popisy stahování</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3169,12 +3213,52 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <translation>Aktualizovat nyní</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Stáhnout</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Stahování aktualizace %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar se aktualizuje na %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Aplikace se nyní zavře a automaticky znovu otevře. Může to chvíli trvat — čekejte prosím.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Balíček aktualizace stažen.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Dokončete aktualizaci instalací pomocí správce balíčků:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar nemohl spustit stahování instalačního programu aktualizace.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Zobrazit ve složce</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Ladění: Simulovat dostupnou aktualizaci</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Přidat torrent soubor…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Přidat hromadně URL…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Přidat dávkové URL ze schránky…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4118,6 +4202,86 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Server vrátil HTML stránku místo očekávaného souboru. Odkaz může vyžadovat otevření v prohlížeči nebo mohl vypršet. Nic nebylo uloženo.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Nelze otevřít část souboru: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Nelze hledat v části souboru: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Server přesměroval na přihlašovací nebo chybovou stránku (%1) místo souboru. Přidejte stahování znovu z prohlížeče (pravé tlačítko → Stáhnout pomocí Stellar) pro obnovení ověření a pokračujte. Vaše částečné stažení bude znovu použito.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Zápis na disk selhal: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Server vrátil špatný rozsah bajtů</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Soubor na serveru změnil během stahování velikost</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Požadavek na stažení selhal.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 na segmentu %2 (neopakovatelné)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Interní chyba: degenerovaný rozsah segmentu</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Chybějící oprávnění k zápisu do složky stahování: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Soubor již na serveru neexistuje.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Nelze otevřít část souboru pro čtení: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Nelze vytvořit výstupní soubor: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Nelze předalokovat výstupní soubor: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Chyba výstupního souboru po sestavení: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Stránka stahování neobsahovala použitelný odkaz ke stažení.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Stránka stahování odkazovala na neočekávaného hostitele, stahování bylo z bezpečnostních důvodů přerušeno.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Nelze otevřít část souboru: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Segment %1 selhal po %2 pokusech</translation>
         </message>
     </context>
     <context>
@@ -5578,6 +5742,10 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
 Click to open Statistics</source>
             <translation>Celkový poměr sdílení
 Klikněte pro otevření Statistiky</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Klikni pro nastavení omezovače rychlosti</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

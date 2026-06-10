@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Genereerige ühest aadressist järjestikuste linkide rühm, seejärel vaadake need enne allalaadimist üle.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Lisa sammuna rühm järjestikuseid faile nagu img001.jpg, img002.jpg, img100.jpg. Pane tärn (*) sinna, kus number või täht muutub, ja sellest saab failinime muster.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Näide: https://www.example.com/pildid/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pildid/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n link(i)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Pärast OK-d saate iga linki üle vaadata ja seejärel soovi korral need enne alustamist järjekorda rühmitada.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Partiiladi allalaadimine</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Faili nimi</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Laadi alla</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Lingi tekst</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Salvesta</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Peida sellel veebilehel asuvad pildid</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Kasuta linkide tekste allalaadimiskirjeldustena</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3181,12 +3225,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Uuenda kohe</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Laadi alla</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Uuenduse %1 allalaadimine…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar uuendatakse versioonile %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Rakendus sulgub ja avaneb nüüd automaatselt. See võib võtta minuti — palun oota.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Uuenduspakett alla laaditud.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Uuendamise lõpetamiseks paigalda see oma paketihalduriga:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar ei saanud uuenduse paigaldaja allalaadimist alustada.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Kuva kaustas</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Silumine: Simuleeri uuenduse saadavust</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Lisa torrentifail...</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Lisa partaal URL-id...</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Lisa partii URL-id lõikelaualt…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4130,6 +4214,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Server tagastas HTML-lehe oodatud faili asemel. Link võib vajada brauseris avamist või on aegunud. Midagi ei salvestatud.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Ei saa avada osafaili: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Ei saa osafailis positsioneerida: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Server suunas sisselogimis- või vealehele (%1), mitte faili. Lisage allalaadimine brauserist uuesti (paremklõps → Laadi Stellariga alla), et autentimist värskendada, seejärel jätkake. Teie osaline allalaadimine taaskasutatakse.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Kettale kirjutamine ebaõnnestus: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Server tagastas vale baidivahemiku</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Fail serveris muutis allalaadimise ajal suurust</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Allalaadimistaotlus ebaõnnestus.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 segmendil %2 (ei ole uuesti proovitav)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Sisemine viga: degenereerunud lõiguvahemik</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Allalaadimiskataloogile puudub kirjutamisõigus: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Faili ei ole enam serveris.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Ei saa osa faili lugemiseks avada: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Väljundfaili ei saa luua: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Ei saa eelnevalt eraldada väljundfaili: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Väljundfaili viga pärast koostamist: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Allalaadimisleht ei sisaldanud kasutatavat allalaadimislinki.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Allalaadimisleht viitas ootamatule hostile, allalaadimine katkestati turvalisuse huvides.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Ei saa avada osafaili: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Segment %1 nurjus pärast %2 katset</translation>
         </message>
     </context>
     <context>
@@ -5584,6 +5748,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Koguaja jagamisprotsent</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Klõpsa kiirusepiiraja seadete avamiseks</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

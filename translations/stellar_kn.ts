@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>ಒಂದು ವಿಳಾಸದಿಂದ ಅನುಕ್ರಮ ಲಿಂಕ್ಗಳ ಗುಂಪನ್ನು ರಚಿಸಿ, ನಂತರ ಡೌನ್ಲೋಡ್ ಮಾಡುವ ಮೊದಲು ಅವುಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>img001.jpg, img002.jpg, img100.jpg ನಂತಹ ಅನುಕ್ರಮ ಫೈಲ್ಗಳ ಗುಂಪನ್ನು ಒಂದೇ ಹಂತದಲ್ಲಿ ಸೇರಿಸಿ. ಸಂಖ್ಯೆ ಅಥವಾ ಅಕ್ಷರ ಬದಲಾಗುವ ಸ್ಥಳದಲ್ಲಿ ನಕ್ಷತ್ರ ಚಿಹ್ನೆ (*) ಹಾಕಿ, ಅದು ಫೈಲ್-ಹೆಸರಿನ ಮಾದರಿಯಾಗುತ್ತದೆ.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>ಉದಾಹರಣೆ:  https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n ಲಿಂಕ್(ಗಳು)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>ಸರಿ ನಂತರ ನೀವು ಪ್ರತಿ ಲಿಂಕ್ ಅನ್ನು ಪರಿಶೀಲಿಸಬಹುದು, ನಂತರ ಅವು ಪ್ರಾರಂಭವಾಗುವ ಮೊದಲು ಐಚ್ಛಿಕವಾಗಿ ಅವುಗಳನ್ನು ಒಂದು ಸರದಿಯಲ್ಲಿ ಗುಂಪು ಮಾಡಬಹುದು.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>ಬ್ಯಾಚ್ ಡೌನ್‌ಲೋಡ್</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>ಕಡತದ ಹೆಸರು</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>ಡೌನ್ಲೋಡ್ ಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>ಲಿಂಕ್ ಪಠ್ಯ</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>ಇದಕ್ಕೆ ಉಳಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>ಈ ವೆಬ್ ಪುಟದಲ್ಲಿರುವ ಚಿತ್ರಗಳನ್ನು ಮರೆಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>ಡೌನ್‌ಲೋಡ್ ವಿವರಣೆಗಳಾಗಿ ಲಿಂಕ್ ಪಠ್ಯ ಬಳಸಿ</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3191,12 +3235,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ಈಗ ನವೀಕರಿಸಿ</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>ಡೌನ್‌ಲೋಡ್</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>%1 ನವೀಕರಣ ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar %1 ಗೆ ನವೀಕರಿಸುತ್ತಿದೆ.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>ಆ್ಯಪ್ ಈಗ ಮುಚ್ಚಿ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪುನಃ ತೆರೆಯುತ್ತದೆ. ಒಂದು ನಿಮಿಷ ತೆಗೆದುಕೊಳ್ಳಬಹುದು — ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>ನವೀಕರಣ ಪ್ಯಾಕೇಜ್ ಡೌನ್‌ಲೋಡ್ ಆಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>ನವೀಕರಣ ಮುಗಿಸಲು ನಿಮ್ಮ ಪ್ಯಾಕೇಜ್ ಮ್ಯಾನೇಜರ್‌ನಲ್ಲಿ ಸ್ಥಾಪಿಸಿ:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar ನವೀಕರಣ ಸ್ಥಾಪಕ ಡೌನ್‌ಲೋಡ್ ಪ್ರಾರಂಭಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>ಫೋಲ್ಡರ್‌ನಲ್ಲಿ ತೋರಿಸು</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>ಡೀಬಗ್: ನವೀಕರಣ ಲಭ್ಯತೆ ಅನುಕರಿಸಿ</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>ಟೋರೆಂಟ್ ಫೈಲ್ ಸೇರಿಸಿ…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>ಬ್ಯಾಚ್ URL ಗಳನ್ನು ಸೇರಿಸಿ…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>ಕ್ಲಿಪ್ಬೋರ್ಡ್ನಿಂದ ಬ್ಯಾಚ್ URL ಗಳನ್ನು ಸೇರಿಸಿ…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4140,6 +4224,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>ನಿರೀಕ್ಷಿತ ಫೈಲ್ ಬದಲು ಸರ್ವರ್ HTML ಪುಟ ನೀಡಿತು. ಲಿಂಕ್ ಬ್ರೌಸರ್ನಲ್ಲಿ ತೆರೆಯಬೇಕಾಗಬಹುದು ಅಥವಾ ಅವಧಿ ಮೀರಿರಬಹುದು. ಏನೂ ಉಳಿಸಲಾಗಿಲ್ಲ.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>ಭಾಗ ಫೈಲ್ ತೆರೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>ಭಾಗ ಫೈಲ್ನಲ್ಲಿ ಹುಡುಕಲು ಸಾಧ್ಯವಿಲ್ಲ: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>ಸರ್ವರ್ ಫೈಲ್ ಬದಲಿಗೆ ಸೈನ್-ಇನ್ ಅಥವಾ ದೋಷ ಪುಟಕ್ಕೆ (%1) ಮರುನಿರ್ದೇಶಿಸಿದೆ. ದೃಢೀಕರಣವನ್ನು ನವೀಕರಿಸಲು ನಿಮ್ಮ ಬ್ರೌಸರ್‌ನಿಂದ ಡೌನ್‌ಲೋಡ್ ಅನ್ನು ಮರು-ಸೇರಿಸಿ (ಬಲ ಕ್ಲಿಕ್ → ಸ್ಟೆಲ್ಲಾರ್‌ನೊಂದಿಗೆ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ), ನಂತರ ಮುಂದುವರಿಸಿ. ನಿಮ್ಮ ಭಾಗಶಃ ಡೌನ್‌ಲೋಡ್ ಅನ್ನು ಮರುಬಳಸಲಾಗುತ್ತದೆ.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>ಡಿಸ್ಕ್ ಬರೆಯುವಿಕೆ ವಿಫಲವಾಗಿದೆ: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>ಸರ್ವರ್ ತಪ್ಪಾದ ಬೈಟ್ ಶ್ರೇಣಿಯನ್ನು ಹಿಂತಿರುಗಿಸಿದೆ</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>ಡೌನ್ಲೋಡ್ ಸಮಯದಲ್ಲಿ ಸರ್ವರ್ನಲ್ಲಿರುವ ಫೈಲ್ನ ಗಾತ್ರ ಬದಲಾಗಿದೆ</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>ಡೌನ್ಲೋಡ್ ವಿನಂತಿಯು ವಿಫಲವಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 ವಿಭಾಗ %2 ನಲ್ಲಿ (ಮರುಪ್ರಯತ್ನಿಸಲಾಗದು)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>ಆಂತರಿಕ ದೋಷ: ಅವನತಿ ವಿಭಾಗ ಶ್ರೇಣಿ</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ಡೌನ್ಲೋಡ್ ಡೈರೆಕ್ಟರಿಗೆ ಬರೆಯಲು ಅನುಮತಿ ಇಲ್ಲ: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>ಸರ್ವರ್ನಲ್ಲಿ ಫೈಲ್ ಇನ್ನು ಮುಂದೆ ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>ಭಾಗ ಫೈಲ್ ಅನ್ನು ಓದಲು ತೆರೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>ಔಟ್ಪುಟ್ ಫೈಲ್ ರಚಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>ಔಟ್ಪುಟ್ ಫೈಲ್ ಅನ್ನು ಮೊದಲೇ ನಿಯೋಜಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>ಅಸೆಂಬ್ಲಿ ನಂತರ ಔಟ್ಪುಟ್ ಫೈಲ್ ದೋಷ: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>ಡೌನ್ಲೋಡ್ ಪುಟವು ಬಳಸಬಹುದಾದ ಡೌನ್ಲೋಡ್ ಲಿಂಕ್ ಅನ್ನು ಹೊಂದಿಲ್ಲ.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>ಡೌನ್ಲೋಡ್ ಪುಟವು ಅನಿರೀಕ್ಷಿತ ಹೋಸ್ಟ್ಗೆ ಸೂಚಿಸಿದೆ, ಭದ್ರತೆಗಾಗಿ ಡೌನ್ಲೋಡ್ ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>ಭಾಗ ಫೈಲ್ ತೆರೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>ವಿಭಾಗ %1 %2 ಮರುಪ್ರಯತ್ನಗಳ ನಂತರ ವಿಫಲವಾಗಿದೆ</translation>
         </message>
     </context>
     <context>
@@ -5600,6 +5764,10 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
 Click to open Statistics</source>
             <translation>ಎಲ್ಲಾ ಸಮಯದ ಹಂಚಿಕೆ ಅನುಪಾತ
 ಸಂಖ್ಯಾಶಾಸ್ತ್ರ ತೆರೆಯಲು ಕ್ಲಿಕ್ ಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>ವೇಗ ಮಿತಿ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಲು ಕ್ಲಿಕ್ ಮಾಡಿ</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

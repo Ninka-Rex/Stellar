@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Gin grúpa naisc sheicheamhacha ó sheoladh amháin, ansin déan athbhreithniú orthu sula n-íoslódálfar iad.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Cuir grúpa comhad seicheamhach mar img001.jpg, img002.jpg, img100.jpg leis in aon chéim amháin. Cuir réiltín (*) san áit a n-athraíonn an uimhir nó an litir, agus déantar patrún ainm comhaid de.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictiúir/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n nasc</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Tar éis OK is féidir leat gach nasc a athbhreithniú, ansin iad a ghrúpáil i scuaine roghnach sula dtosaíonn siad.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Íoslódáil Baitche</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Ainm an chomhaid</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Íoslódáil ó</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Téacs Nasc</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Sábháil chuig</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Folaigh íomhánna atá ar an leathanach gréasáin seo</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Úsáid téacs naisc mar thuairiscí íoslódála</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3168,12 +3212,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Nuashonraigh Anois</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Íoslódáil</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Nuashonrú %1 á íoslódáil…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Tá Stellar ag nuashonrú go %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Dúnfaidh agus athosclóidh an aip go huathoibríoch. Tógfaidh sé seo nóiméad — fan le do thoil.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Pacáiste nuashonraithe íoslódáilte.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Suiteáil é le do bhainisteoir pacáiste chun an nuashonrú a chríochnú:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Níorbh fhéidir le Stellar íoslódáil an tsuiteálaí nuashonraithe a thosú.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Taispeáin i bhFillteán</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Dífhabhtaigh: Samhlaigh Nuashonrú ar Fáil</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Cuir Comhad Torrent…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Cuir URLanna Baitche…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Cuir URLanna Baisc leis ón nGearrthaisce…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4117,6 +4201,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>D'fhill an freastalaí leathanach HTML in ionad an chomhaid a rabhthas ag súil leis. Seans go gcaithfear an nasc a oscailt i mbrabhsálaí nó go bhfuil sé imithe in éag. Níor sábháladh aon rud.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Ní féidir comhad páirteach a oscailt: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Ní féidir lorg a dhéanamh i gcomhad páirteach: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Atreoraíodh an freastalaí chuig leathanach sínithe isteach nó earráide (%1) in ionad an chomhaid. Cuir an íoslódáil leis arís ó do bhrabhsálaí (deaschliceáil → Íoslódáil le Stellar) chun an fíordheimhniú a athnuachan, ansin atosaigh. Athúsáidfear d’íoslódáil pháirteach.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Theip ar scríobh diosca: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>D'fhill an freastalaí raon beart mícheart</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>D'athraigh méid an chomhaid ar an bhfreastalaí le linn íoslódála</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Theip ar an iarratas íoslódála.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 ar dheighleog %2 (dothriailte)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Earráid inmheánach: raon deighleog díghineach</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Gan cead scríofa don chomhadlann íoslódála: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Níl an comhad ar an bhfreastalaí a thuilleadh.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Ní féidir comhad páirteach a oscailt le léamh: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Ní féidir comhad aschuir a chruthú: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Ní féidir comhad aschuir a réamh-leithdháileadh: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Earráid comhaid aschuir tar éis cóimeála: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Ní raibh nasc íoslódála inúsáidte ar an leathanach íoslódála.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Dhírigh an leathanach íoslódála ar óstach gan choinne, cuireadh stop leis an íoslódáil ar chúiseanna slándála.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Ní féidir comhad páirteach a oscailt: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Theip ar mhír %1 tar éis %2 iarracht</translation>
         </message>
     </context>
     <context>
@@ -5576,6 +5740,10 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Cóimheas roinnte go léir</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Cliceáil chun socruithe Luasteorannóra a oscailt</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

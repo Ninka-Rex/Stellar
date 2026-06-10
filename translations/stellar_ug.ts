@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>بىر ئادرېستىن تەرتىپلىك ئۇلانمىلار گۇرۇپپىسىنى ھاسىل قىلىپ، چۈشۈرۈشتىن بۇرۇن تەكشۈرۈڭ.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>img001.jpg، img002.jpg، img100.jpg غا ئوخشاش تەرتىپلىك ھۆججەتلەرنى بىر قەدەمدە قوشۇڭ. نومۇر ياكى ھەرپ ئۆزگىرىدىغان جايغا يۇلتۇز (*) قويۇڭ، ئۇ ھۆججەت ئاتى ئەندىزىسى بولىدۇ.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>مىسال: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n ئۇلانما</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>جەزملەشتىن كېيىن ھەر بىر ئۇلانمىنى تەكشۈرۈپ، ئاندىن ئۇلار باشلىنىشتىن بۇرۇن ئۇلارنى ئىختىيارىي گۇرۇپپىلاپ نۆۋەتكە قويالايسىز.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>تۈركۈملەپ چۈشۈرۈش</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>ھۆججەت ئاتى</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>چۈشۈرۈش مەنبەسى</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>ئۇلانما تېكىستى</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>ساقلاش ئورنى</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>بۇ تور بەتتىكى رەسىملەرنى يوشۇر</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>ئۇلىنىش تېكىستلىرىنى چۈشۈرۈش چۈشەندۈرۈشى قىلىپ ئىشلەت</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3174,12 +3218,52 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
             <translation>ھازىر يېڭىلاش</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>چۈشۈر</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>يېڭىلانما %1 چۈشۈرۈلۈۋاتىدۇ…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar %1 غا يېڭىلىنىۋاتىدۇ.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>ئەپ ئەمدى ئۆزلۈكىدىن تاقىلىپ قايتا ئېچىلىدۇ. بىر مىنۇت ۋاقىت كېتىدۇ — سەۋر قىلىڭ.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>يېڭىلانما بوغچىسى چۈشۈرۈلدى.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>يېڭىلاشنى تاماملاش ئۈچۈن ئۇنى بوغچا باشقۇرغۇچىڭىز بىلەن قاچىلاڭ:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar يېڭىلانما قاچىلىغۇچىنى چۈشۈرۈشنى باشلىيالمىدى.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>ھۆججەت قىسقۇچتا كۆرسەت</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>دېباگ: يېڭىلانما بارلىقىنى تەقلىد قىل</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Torrent ھۆججىتىنى قوشۇش…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>URL قوشۇش…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>چاپلاش تاختىسىدىن تۈركۈم URL قوش…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4123,6 +4207,86 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>سېرۋېر كۈتۈلگەن ھۆججەت ئورنىغا HTML بەت قايتۇردى. ئۇلىنىش توركۆرگۈدە ئېچىشنى تەلەپ قىلىشى ياكى ۋاقتى ئۆتكەن بولۇشى مۇمكىن. ھېچنېمە ساقلانمىدى.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>قىسمەن ھۆججەتنى ئاچقىلى بولمىدى: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>قىسمەن ھۆججەتتە ئىزدىگىلى بولمىدى: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>مۇلازىمېتەر ھۆججەت ئورنىغا كىرىش ياكى خاتالىق بېتىگە (%1) قايتا يۆنىلەلدى. دەلىللەشنى يېڭىلاش ئۈچۈن چۈرۈمەڭىزدىن چۈشۈرۈشنى قايتا قوشۇڭ (ئوڭ چېكىڭ → Stellar بىلەن چۈشۈرۈڭ)، ئاندىن داۋاملاشتۇرۇڭ. قىسمەن چۈشۈرۈلگەن ھۆججىتىڭىز قايتا ئىشلىتىلىدۇ.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>دىسكقا يېزىش مەغلۇپ بولدى: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>مۇلازىمېتەر خاتا بايت دائىرىسىنى قايتۇردى</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>چۈشۈرۈش جەريانىدا مۇلازىمېتەردىكى ھۆججەت چوڭلۇقى ئۆزگەردى</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>چۈشۈرۈش تەلىپى مەغلۇپ بولدى.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 بۆلەكتە %2 (قايتا سىنالغىلى بولمايدۇ)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>ئىچكى خاتالىق: بۇزۇلغان بۆلەك دائىرىسى</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>چۈشۈرۈش مۇندەرىجىسىگە يېزىش ھوقۇقى يوق: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>ھۆججەت مۇلازىمېتېردا ئەمدى مەۋجۇت ئەمەس.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>ئوقۇش ئۈچۈن پارچە ھۆججەتنى ئاچالمىدى: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>چىقىرىش ھۆججىتىنى قۇرالمىدى: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>چىقىرىش ھۆججىتىنى ئالدىن تەقسىملىيەلمىدى: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>قۇراشتۇرۇشتىن كېيىن چىقىرىش ھۆججىتىدە خاتالىق: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>چۈشۈرۈش بېتىدە ئىشلىتىشكە بولىدىغان چۈشۈرۈش ئۇلانمىسى يوق.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>چۈشۈرۈش بېتى كۈتۈلمىگەن مۇلازىمېتېرغا ئىشارە قىلدى، بىخەتەرلىك ئۈچۈن چۈشۈرۈش توختىتىلدى.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>پارچە ھۆججەتنى ئاچالمىدى: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>%1 بۆلەك %2 قېتىم قايتا سىناشتىن كېيىن مەغلۇپ بولدى</translation>
         </message>
     </context>
     <context>
@@ -5583,6 +5747,10 @@ BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق �
 Click to open Statistics</source>
             <translation>ئومۇمىي ئۇلىشىش نىسبىتى
 ستاتىستىكىنى ئېچىش ئۈچۈن چېكىڭ</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>سۈرئەت چەكلىگۈچ تەڭشەكلىرىنى ئېچىش ئۈچۈن چېكىڭ</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

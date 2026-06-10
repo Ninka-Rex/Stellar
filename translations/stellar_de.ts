@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Erzeuge eine Reihe fortlaufender Links aus einer Adresse und prüfe sie vor dem Download.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Füge eine Reihe fortlaufender Dateien wie img001.jpg, img002.jpg, img100.jpg in einem Schritt hinzu. Setze einen Stern (*) an die Stelle, wo sich Zahl oder Buchstabe ändert – das wird das Dateinamen-Muster.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Beispiel: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n Link(s)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Nach OK kannst du jeden Link prüfen und optional in eine Warteschlange gruppieren, bevor sie starten.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Batch-Download</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Dateiname</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Herunterladen von</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Link-Text</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Speichern unter</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Bilder auf dieser Webseite ausblenden</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Linktexte als Download-Beschreibung nutzen</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3168,12 +3212,52 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <translation>Jetzt aktualisieren</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Download</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Update %1 wird geladen…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar wird auf %1 aktualisiert.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Die App schließt und öffnet sich automatisch. Dies kann einen Moment dauern – bitte warten.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Update-Paket geladen.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Mit Paketmanager installieren, um Update abzuschließen:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar konnte den Update-Installer-Download nicht starten.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Im Ordner anzeigen</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Debug: Update verfügbar simulieren</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Torrent-Datei hinzufügen…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Batch-URLs hinzufügen…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Stapel-URLs aus der Zwischenablage hinzufügen …</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4117,6 +4201,86 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Server hat eine HTML-Seite statt der erwarteten Datei geliefert. Der Link muss evtl. im Browser geöffnet werden oder ist abgelaufen. Nichts gespeichert.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Teildatei kann nicht geöffnet werden: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>In Teil der Datei kann nicht gesucht werden: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Der Server hat auf eine Anmelde- oder Fehlerseite (%1) umgeleitet, anstatt auf die Datei. Fügen Sie den Download erneut aus Ihrem Browser hinzu (Rechtsklick → Mit Stellar herunterladen), um die Authentifizierung zu aktualisieren, und setzen Sie ihn dann fort. Ihr teilweiser Download wird wiederverwendet.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Festplattenschreibfehler: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Server hat einen falschen Byte-Bereich zurückgegeben</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Datei auf dem Server hat während des Downloads die Größe geändert</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Die Download-Anforderung ist fehlgeschlagen.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 auf Segment %2 (nicht wiederholbar)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Interner Fehler: degenerierter Segmentbereich</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Keine Schreibberechtigung für Download-Verzeichnis: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Die Datei existiert nicht mehr auf dem Server.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Kann Teil-Datei nicht zum Lesen öffnen: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Kann Ausgabedatei nicht erstellen: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Kann Ausgabedatei nicht vorab zuweisen: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Ausgabedatei-Fehler nach Zusammenbau: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Die Download-Seite enthielt keinen nutzbaren Download-Link.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Die Download-Seite verwies auf unerwarteten Host, Download aus Sicherheitsgründen abgebrochen.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Kann Teil-Datei nicht öffnen: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Segment %1 nach %2 Wiederholungen fehlgeschlagen</translation>
         </message>
     </context>
     <context>
@@ -5577,6 +5741,10 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
 Click to open Statistics</source>
             <translation>Gesamt-Share-Ratio
 Klicken für Statistiken</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Klicken, um Geschwindigkeitsbegrenzer-Einstellungen zu öffnen</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

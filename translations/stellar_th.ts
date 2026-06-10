@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>สร้างกลุ่มลิงก์ตามลำดับจากที่อยู่เดียว จากนั้นตรวจสอบก่อนดาวน์โหลด</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>เพิ่มกลุ่มไฟล์ที่เรียงลำดับกัน เช่น img001.jpg, img002.jpg, img100.jpg ในขั้นตอนเดียว ใส่เครื่องหมายดอกจัน (*) ตรงตำแหน่งที่ตัวเลขหรือตัวอักษรเปลี่ยนไป และมันจะกลายเป็นรูปแบบชื่อไฟล์</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>ตัวอย่าง:  https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n ลิงก์</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>หลังจากตกลง คุณสามารถตรวจสอบแต่ละลิงก์ จากนั้นเลือกจัดกลุ่มเป็นคิวก่อนเริ่มต้นได้</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>ดาวน์โหลดแบบรวม</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>ชื่อไฟล์</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>ดาวน์โหลดจาก</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>ข้อความลิงก์</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>บันทึกไปที่</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>ซ่อนรูปภาพที่อยู่ในหน้าเว็บนี้</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>ใช้ข้อความลิงก์เป็นคำอธิบายดาวน์โหลด</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3164,12 +3208,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>เพิ่มไฟล์ Torrent…</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>ดาวน์โหลด</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>กำลังดาวน์โหลดอัปเดต %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar กำลังอัปเดตเป็น %1</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>แอปจะปิดและเปิดใหม่โดยอัตโนมัติ อาจใช้เวลาสักครู่ — โปรดรอ</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>ดาวน์โหลดแพ็กเกจอัปเดตแล้ว</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>ติดตั้งด้วยตัวจัดการแพ็กเกจเพื่ออัปเดตให้เสร็จ:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar ไม่สามารถเริ่มดาวน์โหลดตัวติดตั้งอัปเดตได้</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>แสดงในโฟลเดอร์</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>ดีบัก: จำลองการอัปเดตพร้อมใช้งาน</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>เพิ่มไฟล์ Torrent...</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>เพิ่ม URL แบบแบทช์…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>เพิ่ม URL แบบกลุ่มจากคลิปบอร์ด…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4113,6 +4197,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>เซิร์ฟเวอร์ส่งหน้าเว็บมาแทนไฟล์ที่คาดไว้ ลิงก์อาจต้องเปิดในเบราว์เซอร์หรือหมดอายุแล้ว ไม่ได้บันทึกข้อมูลใดๆ</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>เปิดไฟล์ส่วนย่อยไม่ได้: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>ค้นหาตำแหน่งในไฟล์ส่วนย่อยไม่ได้: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>เซิร์ฟเวอร์เปลี่ยนเส้นทางไปยังหน้าเข้าสู่ระบบหรือหน้าข้อผิดพลาด (%1) แทนที่จะเป็นไฟล์ เพิ่มดาวน์โหลดใหม่จากเบราว์เซอร์ (คลิกขวา → ดาวน์โหลดด้วย Stellar) เพื่อรีเฟรชการยืนยันตัวตน แล้วทำต่อ ข้อมูลที่ดาวน์โหลดไว้บางส่วนจะถูกนำกลับมาใช้ใหม่</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>เขียนดิสก์ล้มเหลว: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>เซิร์ฟเวอร์ส่งช่วงไบต์ผิด</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>ไฟล์บนเซิร์ฟเวอร์เปลี่ยนขนาดระหว่างดาวน์โหลด</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>คำขอดาวน์โหลดล้มเหลว</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 บนเซกเมนต์ %2 (ไม่ลองใหม่)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>ข้อผิดพลาดภายใน: ช่วงเซกเมนต์ผิดปกติ</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ไม่มีสิทธิ์เขียนในไดเรกทอรีดาวน์โหลด: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>ไฟล์นี้ไม่มีอยู่บนเซิร์ฟเวอร์แล้ว</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>ไม่สามารถเปิดไฟล์ส่วนเพื่ออ่าน: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>ไม่สามารถสร้างไฟล์ผลลัพธ์: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>ไม่สามารถจองพื้นที่ไฟล์ผลลัพธ์ล่วงหน้า: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>ข้อผิดพลาดไฟล์ผลลัพธ์หลังประกอบ: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>หน้าดาวน์โหลดไม่มีลิงก์ที่ใช้ได้</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>หน้าดาวน์โหลดชี้ไปยังโฮสต์ที่ไม่คาดคิด ยกเลิกดาวน์โหลดเพื่อความปลอดภัย</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>ไม่สามารถเปิดไฟล์ส่วน: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>เซกเมนต์ %1 ล้มเหลวหลังลอง %2 ครั้ง</translation>
         </message>
     </context>
     <context>
@@ -5570,6 +5734,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>อัตราส่วนการแชร์ตลอดกาล</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>คลิกเพื่อเปิดการตั้งค่าตัวจำกัดความเร็ว</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

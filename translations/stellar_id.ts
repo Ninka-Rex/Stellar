@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Buat grup tautan berurutan dari satu alamat, lalu tinjau sebelum mengunduh.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Tambah grup file berurutan seperti img001.jpg, img002.jpg, img100.jpg dalam satu langkah. Beri tanda bintang (*) di tempat angka atau huruf berubah, dan itu menjadi pola nama file.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Contoh: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n tautan</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Setelah OK, Anda bisa meninjau tiap tautan, lalu mengelompokkannya ke antrean sebelum mulai.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Unduhan Berkelompok</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Nama file</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Unduh dari</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Teks Tautan</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Simpan ke</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Sembunyikan gambar di halaman ini</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Gunakan teks tautan sebagai deskripsi unduhan</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3166,12 +3210,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Update Sekarang</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Unduh</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Mengunduh pembaruan %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar sedang memperbarui ke %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Aplikasi akan menutup dan membuka ulang secara otomatis. Ini bisa memakan waktu sebentar — harap tunggu.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Paket pembaruan terunduh.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Instal dengan manajer paket Anda untuk menyelesaikan pembaruan:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar tidak dapat memulai unduhan penginstal pembaruan.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Tampilkan di Folder</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Debug: Simulasikan Pembaruan Tersedia</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Tambah File Torrent…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Tambah URL Batch…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Tambah URL Batch dari Papan Klip…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4115,6 +4199,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Server mengembalikan halaman HTML, bukan file yang diharapkan. Tautan mungkin perlu dibuka di browser atau sudah kedaluwarsa. Tidak ada yang disimpan.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Tidak dapat membuka file bagian: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Tidak dapat mencari di file bagian: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Server mengalihkan ke halaman masuk atau galat (%1), bukan file. Tambahkan ulang unduhan dari peramban (klik kanan → Unduh dengan Stellar) untuk menyegarkan autentikasi, lalu lanjutkan. Unduhan parsial Anda akan digunakan kembali.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Penulisan disk gagal: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Server mengembalikan rentang byte yang salah</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Ukuran file di server berubah selama pengunduhan</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Permintaan unduhan gagal.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 pada segmen %2 (tidak dapat dicoba ulang)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Kesalahan internal: rentang segmen rusak</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Tidak ada izin tulis untuk direktori unduhan: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Berkas tidak lagi ada di server.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Tidak dapat membuka berkas bagian untuk dibaca: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Tidak dapat membuat berkas keluaran: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Tidak dapat pra-alokasi berkas keluaran: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Kesalahan berkas keluaran setelah perakitan: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Halaman unduhan tidak berisi tautan unduhan yang dapat digunakan.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Halaman unduhan mengarah ke host tak terduga, unduhan dibatalkan demi keamanan.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Tidak dapat membuka berkas bagian: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Segmen %1 gagal setelah %2 kali coba</translation>
         </message>
     </context>
     <context>
@@ -5574,6 +5738,10 @@ Sangat disarankan untuk mengikat Stellar ke antarmuka jaringan VPN dan memverifi
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Rasio berbagi total</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Klik untuk buka pengaturan Pembatas Kecepatan</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

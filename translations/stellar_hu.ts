@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Szekvenciális linkek generálása egy címből, majd ellenőrzés letöltés előtt.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Szekvenciális fájlok (pl. img001.jpg, img002.jpg, img100.jpg) hozzáadása egy lépésben. Tegyen csillagot (*) oda, ahol a szám vagy betű változik, ez lesz a fájlnévminta.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Példa: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n link</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>OK után ellenőrizheti a linkeket, majd opcionálisan sorba rendezheti őket indítás előtt.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Tömeges letöltés</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Fájlnév</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Letöltés innen</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Link szövege</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Mentés ide</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Weboldalon lévő képek elrejtése</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Linkek szövege leírásként</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3163,12 +3207,52 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <translation>Frissítés most</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Letöltés</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>%1 frissítés letöltése…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>A Stellar frissítése erre: %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Az alkalmazás bezárul és újraindul. Ez eltarthat egy percig — kérjük, várjon.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Frissítőcsomag letöltve.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Telepítse a csomagkezelővel a frissítés befejezéséhez:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>A Stellar nem tudta elindítani a frissítő letöltését.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Megjelenítés mappában</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Hibakeresés: Frissítés szimulálása</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Torrent fájl hozzáadása…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Batch URL-ek hozzáadása…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Vágólap URL-címeinek hozzáadása…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4112,6 +4196,86 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>A szerver HTML oldalt adott vissza a várt fájl helyett. Lehet, hogy a linket böngészőben kell megnyitni, vagy lejárt. Semmi sem lett mentve.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Nem nyitható meg a részleges fájl: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Nem lehet pozícionálni a részleges fájlban: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>A szerver bejelentkező vagy hibaoldalra (%1) irányított át a fájl helyett. Adja hozzá újra a letöltést a böngészőből (jobb klikk → Letöltés Stellarral) a hitelesítés frissítéséhez, majd folytassa. A részleges letöltés újra felhasználásra kerül.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Lemezírási hiba: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>A szerver hibás bájttartományt adott vissza</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>A fájl mérete megváltozott a szerveren letöltés közben</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>A letöltési kérés sikertelen.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 a(z) %2 szegmensen (nem újrapróbálható)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Belső hiba: érvénytelen szegmenstartomány</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Nincs írási jog a letöltési könyvtárhoz: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>A fájl már nem létezik a szerveren.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>A részfájl nem nyitható meg olvasásra: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Kimeneti fájl nem hozható létre: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Kimeneti fájl nem foglalható előre: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Kimeneti fájl hiba összeállítás után: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>A letöltési oldal nem tartalmazott használható letöltési linket.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>A letöltési oldal váratlan kiszolgálóra mutatott, a letöltés biztonsági okból megszakítva.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Részfájl nem nyitható meg: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>%1. szegmens %2 újrapróbálkozás után meghiúsult</translation>
         </message>
     </context>
     <context>
@@ -5565,6 +5729,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Összes arány</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Kattints a sebességkorlátozó beállításainak megnyitásához</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

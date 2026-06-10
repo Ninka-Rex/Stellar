@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>Generera en grupp sekventiella länkar från en adress, granska dem sedan innan nedladdning.</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>Lägg till en grupp sekventiella filer som img001.jpg, img002.jpg, img100.jpg i ett steg. Sätt en asterisk (*) där numret eller bokstaven ändras, så blir det filmönstret.</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>Exempel: https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n länk(ar)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>Efter OK kan du granska varje länk, sedan eventuellt gruppera dem i en kö innan de startar.</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>Batchhämtning</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>Filnamn</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>Ladda ner från</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>Länktext</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Spara till</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>Dölj bilder på denna webbsida</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>Använd länktexter som nedladdningsbeskrivningar</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3160,12 +3204,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Uppdatera nu</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>Ladda ner</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>Laddar ner uppdatering %1…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar uppdateras till %1.</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>Appen stängs och öppnas automatiskt. Det kan ta en minut — vänta.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>Uppdateringspaket nedladdat.</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>Installera det med din pakethanterare för att slutföra:</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar kunde inte starta nedladdningen av uppdateringsinstallationsprogrammet.</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>Visa i mapp</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>Debug: Simulera tillgänglig uppdatering</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>Lägg till torrentfil…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>Lägg till batch-URL:er…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>Lägg till batch-URL:er från urklipp…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4109,6 +4193,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>Servern returnerade en HTML-sida istället för förväntad fil. Länken kan kräva öppning i webbläsare eller ha gått ut. Ingenting sparades.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>Kan inte öppna delfil: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>Kan inte söka i delfil: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>Servern omdirigerade till en inloggnings- eller felsida (%1) istället för filen. Lägg till nedladdningen igen från din webbläsare (högerklicka → Ladda ner med Stellar) för att uppdatera autentiseringen och återuppta sedan. Din delvisa nedladdning återanvänds.</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>Diskskrivning misslyckades: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>Servern returnerade fel byte-intervall</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>Filen på servern ändrade storlek under nedladdning</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>Nedladdningsbegäran misslyckades.</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 på segment %2 (kan inte försökas igen)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>Internt fel: degenererat segmentintervall</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>Ingen skrivrättighet för nedladdningsmapp: %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>Filen finns inte längre på servern.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>Kan inte öppna delfil för läsning: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>Kan inte skapa utdatafil: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>Kan inte förallokera utdatafil: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>Utdatafilsfel efter sammansättning: %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>Nedladdningssidan innehöll ingen användbar nedladdningslänk.</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>Nedladdningssidan pekade på en oväntad värd, nedladdning avbruten av säkerhetsskäl.</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>Kan inte öppna delfil: %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>Segment %1 misslyckades efter %2 försök</translation>
         </message>
     </context>
     <context>
@@ -5568,6 +5732,10 @@ Det rekommenderas starkt att binda Stellar till ett VPN-nätverksgränssnitt och
             <source>All-time share ratio
 Click to open Statistics</source>
             <translation>Total delningsratio</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>Klicka för att öppna hastighetsbegränsarens inställningar</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>

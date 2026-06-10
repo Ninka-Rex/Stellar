@@ -330,6 +330,30 @@
     <context>
         <name>BatchDownloadDialog</name>
         <message>
+            <source>Generate a group of sequential links from one address, then review them before downloading.</source>
+            <translation>ከአንድ አድራሻ ተከታታይ የሆኑ የአገናኞች ቡድን ያመንጩ፣ ከዚያ ከማውረድዎ በፊት ይገምግሟቸው።</translation>
+        </message>
+        <message>
+            <source>Add a group of sequential files like img001.jpg, img002.jpg, img100.jpg in one step. Put an asterisk (*) where the number or letter changes, and it becomes the file-name pattern.</source>
+            <translation>በአንድ እርምጃ እንደ img001.jpg፣ img002.jpg፣ img100.jpg ያሉ ተከታታይ ፋይሎችን ቡድን ያክሉ። ቁጥሩ ወይም ፊደሉ በሚቀየርበት ቦታ ኮከብ (*) ያስቀምጡ፣ እና የፋይል ስም ንድፍ ይሆናል።</translation>
+        </message>
+        <message>
+            <source>Example:  https://www.example.com/pictures/img*.jpg</source>
+            <translation>ምሳሌ፦ https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>https://www.example.com/pictures/img*.jpg</source>
+            <translation>https://www.example.com/pictures/img*.jpg</translation>
+        </message>
+        <message>
+            <source>%n link(s)</source>
+            <translation>%n ማገናኛ(ዎች)</translation>
+        </message>
+        <message>
+            <source>After OK you can review each link, then optionally group them into a queue before they start.</source>
+            <translation>እሺ ከተጫኑ በኋላ እያንዳንዱን አገናኝ መገምገም ይችላሉ፣ ከዚያም ከመጀመራቸው በፊት እንደአማራጭ ወደ ወረፋ መቧደን ይችላሉ።</translation>
+        </message>
+        <message>
             <source>Batch Download</source>
             <translation>በቡድን አውርድ</translation>
         </message>
@@ -399,6 +423,26 @@
         <message>
             <source>File name</source>
             <translation>የፋይል ስም</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>ከ... አውርድ</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>የማገናኛ ጽሑፍ</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>ወደ ውስጥ አስቀምጥ</translation>
+        </message>
+        <message>
+            <source>Hide images located on this web page</source>
+            <translation>በዚህ ድረ-ገጽ ላይ የሚገኙ ምስሎችን ደብቅ</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions</source>
+            <translation>የአገናኝ ጽሑፎችን እንደ ማውረጃ መግለጫ ተጠቀም</translation>
         </message>
         <message>
             <source>Size</source>
@@ -3174,12 +3218,52 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>አሁን አዘምን</translation>
         </message>
         <message>
+            <source>Download</source>
+            <translation>አውርድ</translation>
+        </message>
+        <message>
+            <source>Downloading update %1…</source>
+            <translation>ዝማኔ %1 በመውረድ ላይ…</translation>
+        </message>
+        <message>
+            <source>Stellar is updating to %1.</source>
+            <translation>Stellar ወደ %1 እየተዘመነ ነው።</translation>
+        </message>
+        <message>
+            <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+            <translation>መተግበሪያው አሁን ይዘጋና በራሱ ይከፈታል። አንድ ደቂቃ ሊወስድ ይችላል — እባክዎ ይጠብቁ።</translation>
+        </message>
+        <message>
+            <source>Update package downloaded.</source>
+            <translation>የዝማኔ ጥቅል ወርዷል።</translation>
+        </message>
+        <message>
+            <source>Install it with your package manager to finish updating:</source>
+            <translation>ዝማኔውን ለመጨረስ በጥቅል አስተዳዳሪዎ ይጫኑት፦</translation>
+        </message>
+        <message>
+            <source>Stellar could not start the update installer download.</source>
+            <translation>Stellar የዝማኔ ጫኚ ማውረጃውን ማስጀመር አልቻለም።</translation>
+        </message>
+        <message>
+            <source>Reveal in Folder</source>
+            <translation>በአቃፊ ውስጥ አሳይ</translation>
+        </message>
+        <message>
+            <source>Debug: Simulate Update Available</source>
+            <translation>ማረም፦ ዝማኔ መኖሩን አስመስል</translation>
+        </message>
+        <message>
             <source>Add Torrent File…</source>
             <translation>የቶረንት ፋይል አክል…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
             <translation>የURLዎች ቡድን አክል…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs from Clipboard…</source>
+            <translation>የቡድን ዩአርኤሎችን ከቅንጥብ ሰሌዳ አክል…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -4123,6 +4207,86 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
             <translation>አገልጋዩ ከሚጠበቀው ፋይል ይልቅ ኤችቲኤምኤል ገጽ መለሰ። አገናኙ በአሳሽ መከፈት ሊያስፈልገው ወይም ጊዜው አልፎበት ሊሆን ይችላል። ምንም አልተቀመጠም።</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1 (%2)</source>
+            <translation>ክፍል ፋይል መክፈት አልተቻለም: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot seek in part file: %1 (%2)</source>
+            <translation>በክፍል ፋይል ውስጥ መፈለግ አልተቻለም: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>TLS: %1</source>
+            <translation>TLS: %1</translation>
+        </message>
+        <message>
+            <source>The server redirected to a sign-in or error page (%1) instead of the file. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume. your partial download will be reused.</source>
+            <translation>አገልጋዩ ከፋይሉ ይልቅ ወደ መግቢያ ወይም የስህተት ገጽ (%1) አዞሯል። ማረጋገጫን ለማደስ ማውረዱን ከአሳሽዎ እንደገና ያክሉ (በቀኝ ጠቅ ያድርጉ → በስቴላር አውርድ)፣ ከዚያ ይቀጥሉ። ከፊል ማውረድዎ እንደገና ጥቅም ላይ ይውላል።</translation>
+        </message>
+        <message>
+            <source>Disk write failed: %1</source>
+            <translation>የዲስክ ጽሑፍ አልተሳካም: %1</translation>
+        </message>
+        <message>
+            <source>Server returned wrong byte range</source>
+            <translation>አገልጋዩ የተሳሳተ የባይት ክልል መለሰ</translation>
+        </message>
+        <message>
+            <source>File on server changed size during download</source>
+            <translation>በማውረድ ላይ ያለው ፋይል መጠን በአገልጋዩ ላይ ተቀየረ</translation>
+        </message>
+        <message>
+            <source>The download request failed.</source>
+            <translation>የማውረጃ ጥያቄው አልተሳካም።</translation>
+        </message>
+        <message>
+            <source>HTTP %1 on segment %2 (not retriable)</source>
+            <translation>HTTP %1 በክፍል %2 ላይ (እንደገና መሞከር አይቻልም)</translation>
+        </message>
+        <message>
+            <source>Internal error: degenerate segment range</source>
+            <translation>ውስጣዊ ስህተት፦ የተበላሸ ክፍል ክልል</translation>
+        </message>
+        <message>
+            <source>No write permission for download directory: %1</source>
+            <translation>ለማውረጃ ማውጫ የመጻፍ ፈቃድ የለም፦ %1</translation>
+        </message>
+        <message>
+            <source>The file no longer exists on the server.</source>
+            <translation>ፋይሉ ከአሁን በኋላ በአገልጋዩ ላይ የለም።</translation>
+        </message>
+        <message>
+            <source>Cannot open part file for reading: %1 (%2)</source>
+            <translation>የከፊል ፋይል ለማንበብ መክፈት አልተቻለም፦ %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot create output file: %1 (%2)</source>
+            <translation>የውጤት ፋይል መፍጠር አልተቻለም፦ %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Cannot pre-allocate output file: %1 (%2)</source>
+            <translation>የውጤት ፋይል ቅድመ-መደብ አልተቻለም፦ %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Output file error after assembly: %1</source>
+            <translation>ከተሰበሰበ በኋላ የውጤት ፋይል ስህተት፦ %1</translation>
+        </message>
+        <message>
+            <source>The download page did not contain a usable download link.</source>
+            <translation>የማውረጃ ገጹ ጥቅም ላይ የሚውል የማውረጃ አገናኝ አልያዘም።</translation>
+        </message>
+        <message>
+            <source>The download page pointed to an unexpected host, download aborted for security.</source>
+            <translation>የማውረጃ ገጹ ወደማይጠበቅ አስተናጋጅ ጠቁሟል፣ ለደህንነት ሲባል ማውረዱ ተቋርጧል።</translation>
+        </message>
+        <message>
+            <source>Cannot open part file: %1</source>
+            <translation>የከፊል ፋይል መክፈት አልተቻለም፦ %1</translation>
+        </message>
+        <message>
+            <source>Segment %1 failed after %2 retries</source>
+            <translation>ክፍል %1 ከ%2 ሙከራዎች በኋላ አልተሳካም</translation>
         </message>
     </context>
     <context>
@@ -5583,6 +5747,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 Click to open Statistics</source>
             <translation>የሁሉም-ጊዜ ማጋሪያ ጥምርታ
 ስታቲስቲክስ ለመክፈት ጠቅ ያድርጉ</translation>
+        </message>
+        <message>
+            <source>Click to open Speed Limiter settings</source>
+            <translation>የፍጥነት ገደብ ቅንብሮችን ለመክፈት ጠቅ ያድርጉ</translation>
         </message>
         <message>
             <source>Total torrent peer connections</source>
