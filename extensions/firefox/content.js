@@ -8,14 +8,18 @@
 
 "use strict";
 
-// Preemptively intercept likely download link clicks to avoid Firefox opening
-// the native downloads tray before the background script can cancel.
-// Host-agnostic: an extensionless URL carrying an explicit download signal
-// (cloud "download"/"uc?export=download"/"?dl=1" endpoints etc.). Pre-intercepting
-// the click stops Firefox opening its native tray before Stellar handoff. The
-// background script still enforces the ON/OFF toggle and exclusion lists, and a
-// non-intercepted click falls back to normal navigation, so this is safe to keep
-// generic. Mirrors forceIntercept() in the service worker.
+// Preemptively intercept likely download-link clicks so Firefox doesn't open its
+// native downloads tray before the background script can cancel.
+
+// Click-time download test (no server response yet), so match only explicit
+// query-param download signals (cloud "?export=download" / "?dl=1" endpoints
+// etc.). Bare-path signals like "/download" can't be told apart from an ordinary
+// directory named "download" (e.g. github.com/.../app/src/download), so pre-
+// intercepting them would hijack plain navigation. Genuine bare-path cloud
+// downloads are still caught later in onHeadersReceived, where the server has
+// confirmed a real download. The background script still enforces the ON/OFF
+// toggle and exclusion lists, and a non-intercepted click falls back to normal
+// navigation. Mirrors forceIntercept(url, false) in the service worker.
 function isForceInterceptUrl(url) {
     try {
         const u = new URL(url);
@@ -25,10 +29,7 @@ function isForceInterceptUrl(url) {
         if (lastSeg.includes(".")) return false; // has an extension
         const dlValue = (sp.get("dl") || "").toLowerCase();
         const dlIntent = dlValue === "1" || dlValue === "true" || dlValue === "yes" || dlValue === "download";
-        return path === "/uc"
-            || path.endsWith("/download")
-            || path.includes("/download/")
-            || sp.get("export") === "download"
+        return sp.get("export") === "download"
             || sp.get("alt") === "media"
             || sp.has("response-content-disposition")
             || sp.has("attachment")

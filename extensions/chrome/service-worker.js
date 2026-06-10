@@ -133,7 +133,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                 const url = message.url || "";
                 const filename = message.filename || "";
                 const explicitIntent = !!message.explicitIntent;
-                const forced = forceIntercept(url) && await passesGlobalGate(url);
+                const forced = forceIntercept(url, false) && await passesGlobalGate(url);
                 const allowed = forced || await shouldIntercept(url, "", filename, explicitIntent);
                 if (!allowed) {
                     sendResponse({ ok: false, reason: "not-intercepted" });

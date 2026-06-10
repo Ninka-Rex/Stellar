@@ -266,7 +266,17 @@ function isApiRpcRequest(url, filenameHint = "", mimeType = "") {
 // "video.mp4" link is still left to the extension/MIME matcher and its media
 // carve-outs. The master ON/OFF toggle and exclusion lists are enforced
 // separately at each call site (forceIntercept only overrides ext/MIME matching).
-function forceIntercept(url) {
+//
+// `serverConfirmed` distinguishes the call sites' trust levels. In
+// onHeadersReceived the server has already responded (Content-Disposition etc.)
+// — ground truth — so weak bare-path signals ("/download", "/download/") are
+// trustworthy. At click time there is no server response yet, and a bare-path
+// match can't tell a real download action ("/s/<id>/download") from an ordinary
+// directory named "download" (e.g. github.com/.../app/src/download) — pre-
+// intercepting the latter hijacks plain navigation. So at click time require an
+// explicit query-param signal; bare-path cloud downloads are still caught later
+// in onHeadersReceived. Mirrors forceIntercept(url, atDownloadCreated) in chrome.
+function forceIntercept(url, serverConfirmed = true) {
     try {
         const u = new URL(url);
         const path = u.pathname.toLowerCase();
@@ -278,16 +288,19 @@ function forceIntercept(url) {
         const dlValue = (sp.get("dl") || "").toLowerCase();
         const dlIntent = dlValue === "1" || dlValue === "true" || dlValue === "yes" || dlValue === "download";
 
-        return path === "/uc"
-            || path.endsWith("/download")
-            || path.includes("/download/")
-            || sp.get("export") === "download"
+        const querySignal = sp.get("export") === "download"
             || sp.get("alt") === "media"
             || sp.has("response-content-disposition")
             || sp.has("attachment")
             || sp.has("filename")
             || sp.has("download")
             || dlIntent;
+        if (querySignal) return true;
+
+        if (!serverConfirmed) return false;
+        return path === "/uc"
+            || path.endsWith("/download")
+            || path.includes("/download/");
     } catch { return false; }
 }
 
@@ -570,7 +583,7 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
                 const url = message.url || "";
                 const filename = message.filename || "";
                 const explicitIntent = !!message.explicitIntent;
-                const forced = forceIntercept(url) && await passesGlobalGate(url);
+                const forced = forceIntercept(url, false) && await passesGlobalGate(url);
                 const allowed = forced || await shouldIntercept(url, "", filename, explicitIntent);
                 if (!allowed) {
                     sendResponse({ ok: false, reason: "not-intercepted" });

@@ -1,6 +1,21 @@
-// extensions/shared/interceptor.js
-// webRequest / declarativeNetRequest helpers for intercepting downloads.
-// Imported by the service worker of each browser's extension.
+// Stellar Download Manager — Shared Download-Interception Helpers
+// Copyright (C) 2026 Ninka_
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+// Modifier-key bypass tracking, the host-agnostic forceIntercept() test, and the
+// chrome.downloads.onCreated handler. Imported by service-worker.js.
 
 import { requestDownload, extractFilename, shouldIntercept, ping, passesGlobalGate } from "./messaging.js";
 
@@ -58,7 +73,17 @@ function suppressUrl(url, ttlMs = FALLBACK_SUPPRESS_TTL_MS) {
 // "video.mp4" link is still left to the extension/MIME matcher and its media
 // carve-outs. The master ON/OFF toggle and exclusion lists are enforced
 // separately at each call site (forceIntercept only overrides ext/MIME matching).
-export function forceIntercept(url) {
+//
+// `atDownloadCreated` distinguishes the two call sites' trust levels. At
+// chrome.downloads.onCreated the browser already turned the URL into a real
+// download (server sent Content-Disposition/attachment) — ground truth — so the
+// weak bare-path signals ("/download", "/download/") are trustworthy. At click
+// time there is no server response yet, and a bare-path match cannot tell a
+// genuine download action ("/s/<id>/download") from an ordinary directory named
+// "download" (e.g. github.com/.../app/src/download) — pre-intercepting the latter
+// hijacks plain navigation. So at click time we require an explicit query-param
+// download signal; bare-path cloud downloads still get caught later by onCreated.
+export function forceIntercept(url, atDownloadCreated = true) {
     try {
         const u = new URL(url);
         const path = u.pathname.toLowerCase();
@@ -70,16 +95,22 @@ export function forceIntercept(url) {
         const dlValue = (sp.get("dl") || "").toLowerCase();
         const dlIntent = dlValue === "1" || dlValue === "true" || dlValue === "yes" || dlValue === "download";
 
-        return path === "/uc"
-            || path.endsWith("/download")
-            || path.includes("/download/")
-            || sp.get("export") === "download"
+        // Query-param signals: unambiguous, safe at click time too.
+        const querySignal = sp.get("export") === "download"
             || sp.get("alt") === "media"
             || sp.has("response-content-disposition")
             || sp.has("attachment")
             || sp.has("filename")
             || sp.has("download")
             || dlIntent;
+        if (querySignal) return true;
+
+        // Path-only signals: ambiguous (a "/download" segment may just be a
+        // directory). Trust them only once the browser has confirmed a download.
+        if (!atDownloadCreated) return false;
+        return path === "/uc"
+            || path.endsWith("/download")
+            || path.includes("/download/");
     } catch { return false; }
 }
 

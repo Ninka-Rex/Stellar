@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Stellar Integration Module",
-  "version": "0.1.10",
-  "description": "Intercepts browser downloads and sends them to the Stellar download manager.",
+  "version": "0.1.11",
+  "description": "Intercepts browser downloads and sends them to Stellar download manager.",
   "icons": {
     "16":  "icons/milky-way.png",
     "48":  "icons/milky-way.png",

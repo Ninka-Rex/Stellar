@@ -1,13 +1,32 @@
-// content.js – injected into all pages
-// Tracks modifier keys and pre-intercepts likely download links so Chrome
-// doesn't open its native downloads tray before Stellar handoff.
+// Stellar Download Manager — Chrome Extension Content Script
+// Copyright (C) 2026 Ninka_
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-// Host-agnostic: an extensionless URL carrying an explicit download signal
-// (cloud "download"/"uc?export=download"/"?dl=1" endpoints etc.). Pre-intercepting
-// the click stops Chrome opening its native tray before Stellar handoff. The
-// background script still enforces the ON/OFF toggle and exclusion lists, and a
-// non-intercepted click falls back to normal navigation, so this is safe to keep
-// generic. Mirrors forceIntercept() in shared/interceptor.js.
+// Injected into all pages. Tracks modifier keys and pre-intercepts likely
+// download-link clicks so Chrome doesn't open its native downloads tray before
+// the handoff to Stellar.
+
+// Click-time download test (no server response yet), so match only explicit
+// query-param download signals (cloud "?export=download" / "?dl=1" endpoints
+// etc.). Bare-path signals like "/download" can't be told apart from an ordinary
+// directory named "download" (e.g. github.com/.../app/src/download), so pre-
+// intercepting them would hijack plain navigation. Genuine bare-path cloud
+// downloads are still caught afterward by forceIntercept() at onCreated, where
+// the browser has confirmed a real download. The background script still enforces
+// the ON/OFF toggle and exclusion lists, and a non-intercepted click falls back
+// to normal navigation. Mirrors forceIntercept(url, false) in shared/interceptor.js.
 function isForceInterceptUrl(url) {
     try {
         const u = new URL(url);
@@ -17,10 +36,7 @@ function isForceInterceptUrl(url) {
         if (lastSeg.includes(".")) return false; // has an extension
         const dlValue = (sp.get("dl") || "").toLowerCase();
         const dlIntent = dlValue === "1" || dlValue === "true" || dlValue === "yes" || dlValue === "download";
-        return path === "/uc"
-            || path.endsWith("/download")
-            || path.includes("/download/")
-            || sp.get("export") === "download"
+        return sp.get("export") === "download"
             || sp.get("alt") === "media"
             || sp.has("response-content-disposition")
             || sp.has("attachment")
@@ -34,8 +50,8 @@ function isForceInterceptUrl(url) {
 
 function shouldPreIntercept(anchor, href) {
     if (!href) return false;
-    // Click-time interception is now explicit-intent only; otherwise media links
-    // (e.g. in-page MP3 playback) can be hijacked before playback starts.
+    // Click-time interception is explicit-intent only; otherwise media links
+    // (e.g. in-page MP3 playback) could be hijacked before playback starts.
     if (anchor.hasAttribute("download")) return true;
     if (!href.startsWith("http://") && !href.startsWith("https://") && !href.startsWith("ftp://"))
         return false;

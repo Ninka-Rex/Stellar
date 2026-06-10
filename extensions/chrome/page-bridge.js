@@ -1,3 +1,23 @@
+// Stellar Download Manager — Chrome Page Bridge
+// Copyright (C) 2026 Ninka_
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+// Injected into the page's own JS context (not the isolated content-script
+// world) to resolve blob: URLs back to their source URL and to catch
+// programmatic download intents, relaying both to content.js via window.postMessage.
+
 (() => {
     if (window.__stellarPageBlobResolverInstalled) return;
     window.__stellarPageBlobResolverInstalled = true;
