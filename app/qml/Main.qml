@@ -766,9 +766,7 @@ ApplicationWindow {
             root._updateDownloadsTray()
         }
         function onUpdateDialogRequested() {
-            updateAvailableDialog.show()
-            updateAvailableDialog.raise()
-            updateAvailableDialog.requestActivate()
+            updateAvailableDialog.showFromChangelog()
         }
         function onUpdateUpToDate() {
             quickUpdateDialog.messageText = "You are using the latest version of Stellar Download Manager. Please check back again for updates at a later time."
@@ -777,6 +775,10 @@ ApplicationWindow {
             quickUpdateDialog.requestActivate()
         }
         function onUpdateError(message) {
+            // The update dialog shows the error inline when it's open; avoid a
+            // duplicate modal popup in that case.
+            if (updateAvailableDialog.visible)
+                return
             quickUpdateDialog.messageText = message
             quickUpdateDialog.show()
             quickUpdateDialog.raise()
@@ -2571,6 +2573,12 @@ ApplicationWindow {
         modality: Qt.ApplicationModal
         color: ColorPalette.cardBg
         property bool dismissOnClose: true
+        // "changelog" → "downloading" → ("installing" on Win | "downloaded" on Linux).
+        property string mode: "changelog"
+        property string downloadedPath: ""
+        property string downloadedId: ""
+        property string errorText: ""
+        readonly property bool isWindows: Qt.platform.os === "windows"
 
         onVisibleChanged: {
             if (visible) {
@@ -2583,6 +2591,36 @@ ApplicationWindow {
             if (dismissOnClose)
                 App.dismissAvailableUpdate()
             dismissOnClose = true
+        }
+
+        // Reset to the changelog view each time the dialog is (re)shown.
+        function showFromChangelog() {
+            mode = "changelog"
+            downloadedPath = ""
+            downloadedId = ""
+            errorText = ""
+            show(); raise(); requestActivate()
+        }
+
+        Connections {
+            target: App
+            function onUpdateError(message) {
+                if (!updateAvailableDialog.visible)
+                    return
+                updateAvailableDialog.errorText = message
+                updateAvailableDialog.mode = "changelog"
+            }
+            function onUpdateInstallStarting() {
+                updateAvailableDialog.mode = "installing"
+            }
+            function onUpdateDownloadFinished(id, path) {
+                // Windows transitions via onUpdateInstallStarting instead.
+                if (updateAvailableDialog.isWindows)
+                    return
+                updateAvailableDialog.downloadedPath = path
+                updateAvailableDialog.downloadedId = id
+                updateAvailableDialog.mode = "downloaded"
+            }
         }
 
         ColumnLayout {
@@ -2599,8 +2637,10 @@ ApplicationWindow {
 
             Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
+            // ── Changelog (default) ──────────────────────────────────────
             ScrollView {
                 id: updateChangelogScroll
+                visible: updateAvailableDialog.mode === "changelog"
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 clip: true
@@ -2618,30 +2658,205 @@ ApplicationWindow {
                 }
             }
 
+            // ── Downloading the installer ────────────────────────────────
+            ColumnLayout {
+                visible: updateAvailableDialog.mode === "downloading"
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.alignment: Qt.AlignTop
+                spacing: 8
+
+                Text {
+                    Layout.fillWidth: true
+                    text: qsTr("Downloading update %1…").arg(App.updateVersion)
+                    color: ColorPalette.textPrimary
+                    font.pixelSize: 13 * App.fontScale
+                    wrapMode: Text.WordWrap
+                }
+
+                // Themed bar — accent fill on a panel track (default Material
+                // ProgressBar renders red and ignores the app palette).
+                Rectangle {
+                    Layout.fillWidth: true
+                    height: 8
+                    radius: 4
+                    color: ColorPalette.panelBg
+                    border.color: ColorPalette.border
+
+                    Rectangle {
+                        id: dlFill
+                        height: parent.height
+                        radius: parent.radius
+                        color: ColorPalette.accent
+                        // Latch monotonically: doneBytes resets to 0 during the
+                        // Assembling/merge phase, which would otherwise drop the
+                        // bar back to 0. Never let the fill shrink while downloading.
+                        property real frac: 0
+                        Connections {
+                            target: App
+                            function onUpdateDownloadProgressChanged() {
+                                if (App.updateDownloadTotal > 0) {
+                                    var f = Math.max(0, Math.min(1, App.updateDownloadReceived / App.updateDownloadTotal))
+                                    if (f > dlFill.frac)
+                                        dlFill.frac = f
+                                }
+                            }
+                        }
+                        // Reset when (re)entering the downloading state.
+                        Connections {
+                            target: updateAvailableDialog
+                            function onModeChanged() {
+                                if (updateAvailableDialog.mode === "downloading")
+                                    dlFill.frac = 0
+                            }
+                        }
+                        width: frac * parent.width
+                        Behavior on width { NumberAnimation { duration: 120 } }
+                    }
+                }
+
+                Text {
+                    Layout.fillWidth: true
+                    visible: App.updateDownloadTotal > 0
+                    // Mirror the latched bar: once full, show total/total instead
+                    // of the doneBytes dip during Assembling.
+                    text: ((dlFill.frac >= 1 ? App.updateDownloadTotal : App.updateDownloadReceived) / 1048576).toFixed(1)
+                        + " / " + (App.updateDownloadTotal / 1048576).toFixed(1) + " MB"
+                    color: ColorPalette.textSecond
+                    font.pixelSize: 11 * App.fontScale
+                }
+
+                Item { Layout.fillHeight: true }
+            }
+
+            // ── Installing (Windows shutdown notice) ─────────────────────
+            ColumnLayout {
+                visible: updateAvailableDialog.mode === "installing"
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.alignment: Qt.AlignTop
+                spacing: 8
+
+                Text {
+                    Layout.fillWidth: true
+                    text: qsTr("Stellar is updating to %1.").arg(App.updateVersion)
+                    color: ColorPalette.textHeader
+                    font.pixelSize: 14 * App.fontScale
+                    font.bold: true
+                    wrapMode: Text.WordWrap
+                }
+                Text {
+                    Layout.fillWidth: true
+                    text: qsTr("The app will now close and reopen automatically. This can take a minute — please wait.")
+                    color: ColorPalette.textPrimary
+                    font.pixelSize: 13 * App.fontScale
+                    wrapMode: Text.WordWrap
+                }
+                // Themed indeterminate bar: a sliding accent chip on a track.
+                Rectangle {
+                    Layout.fillWidth: true
+                    height: 8
+                    radius: 4
+                    color: ColorPalette.panelBg
+                    border.color: ColorPalette.border
+                    clip: true
+
+                    Rectangle {
+                        id: installChip
+                        height: parent.height
+                        radius: parent.radius
+                        color: ColorPalette.accent
+                        width: parent.width * 0.3
+                        x: 0
+                        SequentialAnimation on x {
+                            running: updateAvailableDialog.mode === "installing"
+                            loops: Animation.Infinite
+                            NumberAnimation { from: -installChip.width; to: installChip.parent.width; duration: 1100; easing.type: Easing.InOutQuad }
+                        }
+                    }
+                }
+
+                Item { Layout.fillHeight: true }
+            }
+
+            // ── Downloaded (Linux reveal) ────────────────────────────────
+            ColumnLayout {
+                visible: updateAvailableDialog.mode === "downloaded"
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                spacing: 10
+
+                Item { Layout.fillHeight: true }
+
+                Text {
+                    Layout.fillWidth: true
+                    text: qsTr("Update package downloaded.")
+                    color: ColorPalette.textHeader
+                    font.pixelSize: 14 * App.fontScale
+                    font.bold: true
+                }
+                Text {
+                    Layout.fillWidth: true
+                    text: qsTr("Install it with your package manager to finish updating:")
+                    color: ColorPalette.textPrimary
+                    font.pixelSize: 13 * App.fontScale
+                    wrapMode: Text.WordWrap
+                }
+                Text {
+                    Layout.fillWidth: true
+                    text: updateAvailableDialog.downloadedPath
+                    color: ColorPalette.textSecondary
+                    font.pixelSize: 11 * App.fontScale
+                    wrapMode: Text.WrapAnywhere
+                }
+
+                Item { Layout.fillHeight: true }
+            }
+
+            // ── Error banner (shared) ────────────────────────────────────
+            Text {
+                Layout.fillWidth: true
+                visible: updateAvailableDialog.errorText.length > 0
+                text: updateAvailableDialog.errorText
+                color: "#e06666"
+                font.pixelSize: 12 * App.fontScale
+                wrapMode: Text.WordWrap
+            }
+
             RowLayout {
                 Layout.alignment: Qt.AlignRight
                 spacing: 8
 
                 DlgButton {
-                    text: qsTr("Update Now")
+                    text: updateAvailableDialog.isWindows ? qsTr("Update Now") : qsTr("Download")
                     primary: true
-                    visible: Qt.platform.os === "windows"
+                    visible: updateAvailableDialog.mode === "changelog"
                     onClicked: {
+                        updateAvailableDialog.errorText = ""
                         if (App.startUpdateInstall()) {
                             updateAvailableDialog.dismissOnClose = false
-                            updateAvailableDialog.close()
+                            updateAvailableDialog.mode = "downloading"
                         } else {
-                            quickUpdateDialog.messageText = "Stellar could not start the update installer download."
-                            quickUpdateDialog.show()
-                            quickUpdateDialog.raise()
+                            updateAvailableDialog.errorText =
+                                qsTr("Stellar could not start the update installer download.")
                         }
                     }
                 }
 
                 DlgButton {
-                    text: qsTr("Cancel")
+                    text: qsTr("Reveal in Folder")
+                    primary: true
+                    visible: updateAvailableDialog.mode === "downloaded"
+                    onClicked: App.openFolderSelectFile(updateAvailableDialog.downloadedId)
+                }
+
+                DlgButton {
+                    text: updateAvailableDialog.mode === "downloaded" ? qsTr("Close") : qsTr("Cancel")
+                    // No cancelling once the Windows installer is launching.
+                    visible: updateAvailableDialog.mode !== "installing"
                     onClicked: {
                         App.dismissAvailableUpdate()
+                        updateAvailableDialog.dismissOnClose = false
                         updateAvailableDialog.close()
                     }
                 }
@@ -3648,6 +3863,7 @@ ApplicationWindow {
             delegate: CompactMenuItem
             implicitWidth: 260; padding: 0
             CompactMenuItem { text: qsTr("Check for Updates"); iconSrc: "icons/satellite_antenna.svg"; onTriggered: App.checkForUpdates(true) }
+            // CompactMenuItem { text: qsTr("Debug: Simulate Update Available"); onTriggered: App.simulateUpdateAvailable() }
             CompactSep {}
             CompactMenuItem { text: qsTr("About Stellar"); shortcutDisplay: "Ctrl+/"; iconSrc: "icons/information.svg"; onTriggered: root.showSettingsPage(root.settingsPageAbout) }
             CompactSep {}

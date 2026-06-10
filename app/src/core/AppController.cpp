@@ -1969,6 +1969,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_queue, &DownloadQueue::itemCompleted, this, [this](DownloadItem *item) {
         const bool isIpToCityUpdateItem = (item && item->id() == m_pendingIpToCityDbDownloadId);
         const bool isFfmpegUpdateItem = (item && item->id() == m_pendingFfmpegDownloadId);
+        const bool isAppUpdateItem = (item && item->id() == m_pendingUpdateDownloadId);
         m_db->save(item);
         m_dirtyIds.remove(item->id());
         m_queueRetryCounts.remove(item->id());
@@ -2011,6 +2012,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         }
         if (!isIpToCityUpdateItem
             && !isFfmpegUpdateItem
+            && !isAppUpdateItem
             && !m_pendingFileInfoDownloads.contains(item->id())
             && m_settings->showCompletionNotification()
             && m_tray
@@ -2022,29 +2024,34 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         }
         if (!isIpToCityUpdateItem
             && !isFfmpegUpdateItem
+            && !isAppUpdateItem
             && !m_pendingFileInfoDownloads.contains(item->id()))
             emit downloadCompleted(item);
 
         if (item && item->id() == m_pendingUpdateDownloadId) {
+            const QString installerId   = item->id();
             const QString installerPath = item->savePath() + QStringLiteral("/") + item->filename();
-            QFile installerFile(installerPath);
-            if (!installerFile.open(QIODevice::ReadOnly)) {
+
+            // Download phase is over; let the dialog leave the progress state.
+            m_updateDownloading = false;
+            emit updateDownloadProgressChanged();
+
+            // Keep the file open across hash check (and, on Windows, across the
+            // short shutdown-notice delay before launch). On Windows an open
+            // handle prevents another process from replacing or deleting the file,
+            // closing the TOCTOU window between hash verification and CreateProcess.
+            // Heap-allocated so it can ride into the delayed-launch lambda below.
+            auto installerFile = std::make_shared<QFile>(installerPath);
+            if (!installerFile->open(QIODevice::ReadOnly)) {
                 emit updateError(QStringLiteral("Stellar downloaded the update, but could not read the installer file."));
             } else {
-                const QByteArray actualHash = QCryptographicHash::hash(installerFile.readAll(), QCryptographicHash::Sha256).toHex();
-                // Intentionally keep installerFile open through the launch call below.
-                // On Windows an open handle prevents another process from replacing or
-                // deleting the file, closing the TOCTOU window between hash verification
-                // and CreateProcess.  The OS will close the handle when we quit anyway.
+                const QByteArray actualHash = QCryptographicHash::hash(installerFile->readAll(), QCryptographicHash::Sha256).toHex();
 
                 // SECURITY: CWE-347 — enforce that a non-empty SHA-256 was supplied
                 // by the update server before launching the installer.  An empty hash
                 // must be treated as a failure (not a pass) so that a tampered
                 // update.json with a missing sha256 field cannot silently bypass
                 // integrity verification and execute an unsigned binary.
-                // verifyFileSha256() now also rejects empty hashes, but this call
-                // site is the gate before QProcess::startDetached so we enforce it
-                // explicitly here as a defence-in-depth measure.
                 const bool hashProvided = !m_pendingUpdateSha256.trimmed().isEmpty();
                 const bool hashMatches  = hashProvided &&
                     actualHash.compare(m_pendingUpdateSha256.trimmed().toUtf8(), Qt::CaseInsensitive) == 0;
@@ -2054,25 +2061,40 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                         : QStringLiteral("The update server did not provide a SHA-256 hash; refusing to launch the installer."));
                 } else {
 #if defined(Q_OS_WIN)
-                    const QStringList args{
-                        QStringLiteral("/VERYSILENT"),
-                        QStringLiteral("/SUPPRESSMSGBOXES"),
-                        QStringLiteral("/NOCANCEL"),
-                        QStringLiteral("/CLOSEAPPLICATIONS"),
-                        QStringLiteral("/FORCECLOSEAPPLICATIONS"),
-                        QStringLiteral("/RESTARTAPPLICATIONS"),
-                        // Inno's normal postinstall launch entry is skipped in
-                        // silent mode, so pass an explicit switch for the
-                        // auto-update path to relaunch Stellar after install.
-                        QStringLiteral("/RESTARTSTELLAR")
-                    };
-                    if (QProcess::startDetached(installerPath, args))
-                        QCoreApplication::quit();
-                    else
-                        emit updateError(QStringLiteral("Stellar downloaded the update, but could not launch the installer."));
+                    // Tell the UI we're about to close so the user gets the
+                    // "closing and reopening, may take a minute" notice, then give
+                    // the event loop a beat to paint it before we tear everything
+                    // down and hand control to the (silent) installer.
+                    emit updateInstallStarting();
+                    // Give the notice time to paint and be read before we hand off
+                    // to the silent installer and quit.
+                    QTimer::singleShot(1500, this, [this, installerPath, installerFile]() {
+                        const QStringList args{
+                            QStringLiteral("/VERYSILENT"),
+                            QStringLiteral("/SUPPRESSMSGBOXES"),
+                            QStringLiteral("/NOCANCEL"),
+                            // We quit ourselves below, so the installer no longer
+                            // needs to force-kill us — dropping /CLOSEAPPLICATIONS
+                            // and /FORCECLOSEAPPLICATIONS lets the app shut down
+                            // gracefully (flush state, save resume data) first.
+                            QStringLiteral("/RESTARTAPPLICATIONS"),
+                            // Inno's normal postinstall launch entry is skipped in
+                            // silent mode, so pass an explicit switch for the
+                            // auto-update path to relaunch Stellar after install.
+                            QStringLiteral("/RESTARTSTELLAR")
+                        };
+                        if (QProcess::startDetached(installerPath, args))
+                            QCoreApplication::quit();
+                        else
+                            emit updateError(QStringLiteral("Stellar downloaded the update, but could not launch the installer."));
+                    });
 #else
                     m_updateStatusText = QStringLiteral("Update package downloaded: %1").arg(installerPath);
                     emit updateStatusTextChanged();
+                    // On Linux we don't auto-install (needs package-manager
+                    // privilege); hand the path back to the dialog so it can offer
+                    // "Reveal in Folder".
+                    emit updateDownloadFinished(installerId, installerPath);
 #endif
                 }
             }
@@ -5820,7 +5842,81 @@ bool AppController::startUpdateInstall() {
     m_pendingUpdateDownloadId = item->id();
     m_pendingUpdateInstallerPath = tempDir + QStringLiteral("/") + filename;
     m_pendingUpdateSha256 = m_updateSha256;
+
+    // Surface live download progress to the update dialog so the user sees the
+    // installer fetching instead of an empty window. Bound directly to the item
+    // (a plain HTTP DownloadItem) rather than the throttled persistence hooks.
+    m_updateDownloading = true;
+    m_updateDownloadReceived = 0;
+    m_updateDownloadTotal = item->totalBytes();
+    emit updateDownloadProgressChanged();
+    connect(item, &DownloadItem::doneBytesChanged, this, [this, item]() {
+        if (m_pendingUpdateDownloadId != item->id())
+            return;
+        m_updateDownloadReceived = item->doneBytes();
+        m_updateDownloadTotal = item->totalBytes();
+        emit updateDownloadProgressChanged();
+    });
+    connect(item, &DownloadItem::totalBytesChanged, this, [this, item]() {
+        if (m_pendingUpdateDownloadId != item->id())
+            return;
+        m_updateDownloadTotal = item->totalBytes();
+        emit updateDownloadProgressChanged();
+    });
     return true;
+}
+
+void AppController::simulateUpdateAvailable() {
+    m_updateVersion = QStringLiteral("99.0.0-test");
+    m_updateChangelog = QStringLiteral(
+        "## Stellar 99.0.0-test (simulated)\n\n"
+        "This is a **debug** update notice for testing the updater UI.\n\n"
+        "- Verbose download progress in the update dialog\n"
+        "- Graceful shutdown notice before installing\n"
+        "- Linux download + reveal flow\n\n"
+        "_Installer URL points at the genuine latest release so the download/"
+        "install path is a real end-to-end test._");
+    m_updateAvailable = true;
+    emit updateAvailableChanged();
+    emit updateDialogRequested();
+
+    // Pull the real installer URL + SHA-256 from the live update.json (ignoring
+    // the version comparison, which would normally say "up to date") so the
+    // Update Now / Download button actually has something to fetch. The simulated
+    // version/changelog above stay on screen; only the URL/sha get filled in.
+    QNetworkRequest request{QUrl(AppController::updateMetadataUrl())};
+    request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("Stellar/%1").arg(appVersion()));
+    QNetworkReply *reply = m_nam->get(request);
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        const QByteArray payload = reply->readAll();
+        const bool ok = reply->error() == QNetworkReply::NoError;
+        reply->deleteLater();
+        if (!ok)
+            return;
+        const QJsonDocument doc = QJsonDocument::fromJson(payload);
+        if (!doc.isObject())
+            return;
+        const QVariantMap map = doc.object().toVariantMap();
+        auto readSha256 = [&](const QString &key) {
+            QString v = map.value(key).toString().trimmed();
+            if (v.startsWith(QStringLiteral("sha256:"), Qt::CaseInsensitive))
+                v = v.mid(7);
+            return v;
+        };
+#if defined(Q_OS_WIN)
+        m_updateInstallerUrl = map.value(QStringLiteral("windowsInstallerUrl")).toString().trimmed();
+        m_updateSha256       = readSha256(QStringLiteral("windowsSha256"));
+#else
+        const bool wantRpm = (AppController::linuxPackageFormat() == QStringLiteral("rpm"));
+        if (wantRpm) {
+            m_updateInstallerUrl = map.value(QStringLiteral("linuxRpmUrl")).toString().trimmed();
+            m_updateSha256       = readSha256(QStringLiteral("linuxRpmSha256"));
+        } else {
+            m_updateInstallerUrl = map.value(QStringLiteral("linuxDebUrl")).toString().trimmed();
+            m_updateSha256       = readSha256(QStringLiteral("linuxDebSha256"));
+        }
+#endif
+    });
 }
 
 void AppController::cacheFfmpegUpdateMetadata(const QVariantMap &map) {

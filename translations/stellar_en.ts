@@ -4036,6 +4036,51 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <translation></translation>
     </message>
     <message>
+        <location filename="../app/qml/Main.qml" line="2478"/>
+        <source>Download</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2479"/>
+        <source>Downloading update %1…</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2480"/>
+        <source>Stellar is updating to %1.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2481"/>
+        <source>The app will now close and reopen automatically. This can take a minute — please wait.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2482"/>
+        <source>Update package downloaded.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2483"/>
+        <source>Install it with your package manager to finish updating:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2484"/>
+        <source>Stellar could not start the update installer download.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2485"/>
+        <source>Reveal in Folder</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/Main.qml" line="2486"/>
+        <source>Debug: Simulate Update Available</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/Main.qml" line="3000"/>
         <source>Add Torrent File…</source>
         <translation></translation>

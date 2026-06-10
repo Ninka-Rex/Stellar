@@ -105,6 +105,9 @@ class AppController : public QObject {
     Q_PROPERTY(QString updateVersion READ updateVersion NOTIFY updateAvailableChanged)
     Q_PROPERTY(QString updateChangelog READ updateChangelog NOTIFY updateAvailableChanged)
     Q_PROPERTY(QString updateStatusText READ updateStatusText NOTIFY updateStatusTextChanged)
+    Q_PROPERTY(bool updateDownloading READ updateDownloading NOTIFY updateDownloadProgressChanged)
+    Q_PROPERTY(qint64 updateDownloadReceived READ updateDownloadReceived NOTIFY updateDownloadProgressChanged)
+    Q_PROPERTY(qint64 updateDownloadTotal READ updateDownloadTotal NOTIFY updateDownloadProgressChanged)
     Q_PROPERTY(QString chromeExtensionUrl  READ chromeExtensionUrl  NOTIFY extensionUrlsChanged)
     Q_PROPERTY(QString firefoxExtensionUrl READ firefoxExtensionUrl NOTIFY extensionUrlsChanged)
     Q_PROPERTY(QString motd READ motd NOTIFY motdChanged)
@@ -189,6 +192,9 @@ public:
     QString updateVersion() const { return m_updateVersion; }
     QString updateChangelog() const { return m_updateChangelog; }
     QString updateStatusText() const { return m_updateStatusText; }
+    bool updateDownloading() const { return m_updateDownloading; }
+    qint64 updateDownloadReceived() const { return m_updateDownloadReceived; }
+    qint64 updateDownloadTotal() const { return m_updateDownloadTotal; }
     QString chromeExtensionUrl()  const { return m_chromeExtensionUrl; }
     QString firefoxExtensionUrl() const { return m_firefoxExtensionUrl; }
     QString motd() const { return m_motd; }
@@ -484,6 +490,9 @@ public:
     Q_INVOKABLE void dismissAvailableUpdate();
     Q_INVOKABLE void dismissMotd();
     Q_INVOKABLE bool startUpdateInstall();
+    // Debug/testing: fakes an "update available" so the whole update dialog flow
+    // can be exercised without a real newer release on the server.
+    Q_INVOKABLE void simulateUpdateAvailable();
     // Applies the translator for the given locale code and returns whether a
     // restart is needed for all UI strings to update (always true for QML apps).
     Q_INVOKABLE void applyUiLanguage(const QString &locale);
@@ -547,6 +556,13 @@ signals:
     void updateDialogRequested();
     void updateUpToDate();
     void updateError(const QString &message);
+    void updateDownloadProgressChanged();
+    // Emitted when the installer download finishes. id = download item id (for
+    // openFolderSelectFile), path = full installer path on disk.
+    void updateDownloadFinished(const QString &id, const QString &path);
+    // Windows only: emitted right before the app quits to launch the installer,
+    // so the QML dialog can show the "closing and reopening" notice.
+    void updateInstallStarting();
     void ipToCityDbInfoChanged();
     void ipToCityDbUpdateUrlChanged();
     void ipToCityDbUpdateStateChanged();
@@ -783,6 +799,9 @@ private:
     QString                 m_pendingUpdateDownloadId;
     QString                 m_pendingUpdateInstallerPath;
     QString                 m_pendingUpdateSha256;
+    bool                    m_updateDownloading{false};
+    qint64                  m_updateDownloadReceived{0};
+    qint64                  m_updateDownloadTotal{0};
     QString                 m_pendingIpToCityDbDownloadId;
     QString                 m_pendingFfmpegDownloadId;
 
