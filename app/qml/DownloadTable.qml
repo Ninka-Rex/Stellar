@@ -882,7 +882,13 @@ Rectangle {
     ListView {
         id: tableView
         anchors { top: header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
-        model: App.downloadModel
+        // Null model during restore so no rows paint over the loading overlay and
+        // no delegates are created mid-restore (the per-row delegate churn was a
+        // major source of cold-start lag). The overlay below is a child of this
+        // ListView, so the ListView itself must stay visible — we suppress the
+        // *content*, not the view. Rows appear populated the instant
+        // restoreInProgress flips false in maybeCompleteRestore().
+        model: App.restoreInProgress ? null : App.downloadModel
         clip: true
         contentWidth: root.visibleContentWidth
         cacheBuffer: 650

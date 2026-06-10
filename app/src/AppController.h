@@ -705,6 +705,10 @@ private:
     // yt-dlp probe) on the singleShot(0) after first paint, off the pre-paint
     // critical path. Idempotent via m_deferredInitDone.
     void deferredInit();
+    // Reads downloads.json and restores the saved list. Called from setQmlReady()
+    // after first paint — never the ctor (the parse + first torrent adds would
+    // block the window from appearing).
+    void restoreDownloads();
     // Hides the restore overlay once the dispatch loop has finished AND every
     // restored torrent's async add has finalized. Idempotent — safe to call from
     // both the dispatch-complete handler and each torrentAddFinalized tick.

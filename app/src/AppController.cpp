@@ -1100,6 +1100,10 @@ void AppController::setQmlReady() {
     deferredInit();
     if (m_qmlReady) return;
     m_qmlReady = true;
+    // Restore the saved download list now (after deferredInit configured the
+    // torrent session). This sets m_restoring=true and kicks the dispatch timer;
+    // the overlay shows and the list stays hidden until restore completes.
+    restoreDownloads();
     // Don't drain IPC payloads yet if the download list is still being restored
     // from the database — duplicate detection would miss existing items and show
     // the wrong dialog. Draining is deferred to the restore-complete callback.
@@ -1712,11 +1716,11 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 m_settings->setTorrentBindInterface(friendly);
         }
     }
-    m_torrentSession->applySettings(m_settings);
-    // If the user already had a bind interface configured but it's not up at
-    // startup (e.g. VPN client not yet connected), suspend the session now so
-    // we don't leak traffic in the window before the periodic check fires.
-    reconcileTorrentBindState();
+    // Initial applySettings() (which constructs the libtorrent session — a
+    // multi-second, thread-spawning, DHT-bootstrapping operation) and the bind
+    // reconcile run in deferredInit(), off the pre-paint critical path. The
+    // re-apply connect below still lives in the ctor so later setting changes
+    // route correctly.
     connect(m_settings, &AppSettings::torrentSettingsChanged, this, [this]() {
         m_torrentSession->applySettings(m_settings);
         // Bind target may have just changed, or the user may have toggled
@@ -2315,7 +2319,13 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     }
     m_tray->setTrayIconStyle(m_settings->trayIconStyle());
     m_tray->show();
+}
 
+// Reads downloads.json and restores the saved download/torrent list. Runs from
+// setQmlReady() (after first paint and after deferredInit() has created+configured
+// the libtorrent session) — never from the constructor, where the synchronous
+// loadAll() parse and the first torrent adds would block first paint.
+void AppController::restoreDownloads() {
     if (m_db->open()) {
         m_restoring = true;
         const auto items = m_db->loadAll();
@@ -6351,6 +6361,15 @@ void AppController::deferredInit()
     if (m_deferredInitDone)
         return;
     m_deferredInitDone = true;
+
+    // Construct + configure the libtorrent session here, not in the ctor. The
+    // session ctor spawns worker threads, opens listen sockets and bootstraps
+    // DHT — multi-second work that previously blocked first paint. Must run
+    // before restoreDownloads() dispatches any torrent add. reconcile suspends
+    // the session immediately if a configured bind interface is not yet up
+    // (VPN-leak guard), still before any peer traffic.
+    m_torrentSession->applySettings(m_settings);
+    reconcileTorrentBindState();
 
     // Apply proxy first so the geo-DB update check and yt-dlp probe route through
     // it. setApplicationProxy is process-wide; for System proxy this does a
