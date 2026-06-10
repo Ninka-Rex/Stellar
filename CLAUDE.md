@@ -88,7 +88,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **Native Messaging Protocol:** JSON `{ type:"download", url, filename, referrer, cookies, modifierKey }`. Length-prefixed: 4-byte LE uint32 + JSON. `modifierKey` (0=none,1=alt,2=ctrl,3=shift) bypasses interception.
 
 **Native Messaging Host Registration (Linux):**
-- `AppController::registerNativeHost()` writes manifests to all known Firefox dirs.
+- `AppController::registerNativeHost()` writes manifests to all known Firefox dirs. Called deferred (`singleShot(0)`) so its disk/registry writes don't block first paint.
 - **Firefox manifest must NOT contain `allowed_origins`** — Firefox silently skips manifests with that Chrome-only field ("No such native application"). Firefox-only manifest without it; Chrome gets its own.
 - **Flatpak Firefox** (`~/.var/app/org.mozilla.firefox/` exists): sandbox can't execute binaries outside its app-data dir. Fix: wrapper script at `~/.var/app/org.mozilla.firefox/stellar-nm-host` calling `exec flatpak-spawn --host <binary> "$@"`, manifest `path` points at wrapper. `flatpak-spawn` available in sandbox at `/usr/bin/flatpak-spawn`.
 - Flatpak Firefox also needs `org.freedesktop.Flatpak=talk` D-Bus permission: `flatpak override --user --talk-name=org.freedesktop.Flatpak org.mozilla.firefox`. Without it `flatpak-spawn --host` is blocked. `sandboxedFirefoxIssue()` detects; `grantFlatpakFirefoxNativeMessagingPermission()` grants.
@@ -237,7 +237,11 @@ Implementation in `DownloadTableModel::onItemProgressChanged`/`onItemChanged`:
 2. One `beginMoveRows`/`endMoveRows` for that move. Qt destination convention: moving down, destination = index *one past* where row ends up; moving up = natural index.
 3. `dataChanged` for row at new position so value renders.
 
-`kVolatileSortCols`: `downspeed`, `speed`, `upspeed`, `progress`, `timeleft`, `ratio`, `uploaded`, `downloaded`, `seeders`, `peers`. Stable columns (`name`, `size`, `status`, `saveto`...) skip bubble.
+`kVolatileSortCols`: `downspeed`, `speed`, `upspeed`, `progress`, `timeleft`, `ratio`, `uploaded`, `downloaded`, `seeders`, `peers`, `status`. Stable columns (`name`, `size`, `saveto`...) skip bubble.
+
+**`flushVolatileSort` must NOT emit a full-table `dataChanged` every tick.** Delegates bind directly to `DownloadItem` properties, so cell values update with no `dataChanged` — the emit is only needed to re-anchor delegates whose row *identity* changed. Skip it entirely when the sort didn't reorder; otherwise emit `{ItemRole}` only, over the changed `[lo,hi]` range. A full-range all-roles emit re-evaluates every binding in every row + triggers the QML selection recompute, and was the dominant seeding-time CPU cost.
+
+**`m_visibleSet` / `m_itemsById` must stay in lock-step with `m_visible` / `m_items`** in every mutation path. They replaced `indexOf`/linear `itemById` that ran per-tick per-torrent (O(n²) while seeding).
 
 **Different from `TorrentPeerModel`.** Peer list permits `layoutChanged` (whole peer set recomputed every tick); download list doesn't — rows stable, only one value changes at a time.
 
@@ -251,12 +255,16 @@ Implementation in `DownloadTableModel::onItemProgressChanged`/`onItemChanged`:
 ## Torrent Search Subsystem
 
 - `App.torrentSearchManager` (Q_PROPERTY). Plugins = `.py` in `pluginDirectory()`; bundled copied on first run via `ensureBundledPluginsInstalled()`. `pythonAvailable` false when no Python on PATH/app dir — search disabled, `statusText` explains.
+- **`refreshRuntimeState()` runs `detectPython()` on a worker thread** (`QtConcurrent::run` → `QFutureWatcher`). It spawns child processes with multi-second timeouts; calling it synchronously in the ctor stalled startup 2-3 s. Keep it off the main thread.
 - `search(query)` spawns runner `QProcess`, streams JSON to `TorrentSearchResultModel`; `clearResults()` resets. Enable/disable in `AppSettings` under `disabledPluginsKey()`. `installPluginFromFile(path)`/`installPluginFromUrl(url)` copy/download `.py`, `refreshPlugins()`.
 
 ## Torrent Session Manager Invariants
 
 - `applySettings()` must run before any `addMagnet()`/`addTorrentFile()` — creates session lazily via `ensureSession()`, starts alert timer.
 - `restoreTorrent()` — re-adds persisted downloads on restart; `item->torrentSource()` decides magnet vs. .torrent.
+- **Add path is split** (`addTorrentInternal` + `finalizeTorrentAdd`). Interactive adds are synchronous (`add_torrent`) so the metadata dialog populates without an alert round-trip. **Restore adds are async** (`async_add_torrent`, avoids a per-torrent session round-trip that serialised cold-start): the `DownloadItem*` rides `params.userdata`, the `add_torrent_alert` branch recovers it and calls `finalizeTorrentAdd`. So at restore time the handle does **not** exist yet — anything needing it (per-torrent speed limits) must live in `finalizeTorrentAdd`, not the restore loop.
+- **Pending-pause race (VPN-leak critical):** a `pause()` before the async add lands only sets `m_pausedIds` (handle still invalid). `finalizeTorrentAdd` must honour `m_pausedIds` even when `startPaused` was false — else `torrentStopOnStartup` fails to pause a restored seeding torrent and it leaks around the VPN.
+- **`m_staticMetadataApplied`:** torrent_info-derived fields (name, hash, comment, web seeds…) are applied once per torrent in `updateItemFromStatus`, not every tick — the per-tick string/`QLocale` conversions × N seeding torrents were wasted CPU.
 - **Share limits** (`checkShareLimits()`): every alert tick for seeding torrents. Per-item limits override global defaults. Types: ratio (`torrentDefaultShareRatio`), seeding time (`...SeedingTimeMins`), inactive seeding time (`...InactiveSeedingTimeMins`). Action (`torrentDefaultShareLimitAction`) forwarded via `torrentShareLimitReached`; AppController decides.
 - **Geo-IP** (`ensureGeoDb()`): lazily opens MaxMindDB (`STELLAR_HAS_MAXMINDDB`) in app dir, cached per IP in `GeoDbState::cache`. Without it geo fields empty — no fallback.
 - **Network binding** (`torrentBindInterface`): see "Torrent Network Binding" below. Bound IPs resolved via `QNetworkInterface`, passed to `listen_interfaces` **and** `outgoing_interfaces`.

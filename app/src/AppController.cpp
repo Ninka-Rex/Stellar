@@ -2419,8 +2419,10 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                         if (s == DownloadItem::Status::Seeding
                                 || s == DownloadItem::Status::Completed)
                             m_restoredSeedingIds.insert(item->id());
+                        // Restore adds asynchronously; per-torrent speed limits
+                        // are applied inside finalizeTorrentAdd once the handle
+                        // exists (a call here would no-op against an empty handle).
                         m_torrentSession->restoreTorrent(item, true);
-                        applyPerTorrentSpeedLimits(m_torrentSession, item);
                     }
                     if (slice.elapsed() >= kRestoreSliceMs)
                         break;

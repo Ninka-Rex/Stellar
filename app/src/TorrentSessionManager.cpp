@@ -711,6 +711,7 @@ void TorrentSessionManager::remove(const QString &downloadId, bool deleteFiles) 
     m_movingIds.remove(downloadId);
     m_firedFinishedIds.remove(downloadId);
     m_staticMetadataApplied.remove(downloadId);
+    m_pendingAsyncAdds.remove(downloadId);
     m_lastResumeSaveRequest.remove(downloadId);
     m_trackerReannounceUntil.remove(downloadId);
     m_trackerAlertSnapshots.remove(downloadId);
@@ -1584,11 +1585,35 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
         }
     }
 
+    // Restore path: add asynchronously. The synchronous add_torrent() is a
+    // session-thread round-trip per torrent — restoring dozens at startup
+    // serialised those round-trips and was a large share of the cold-start
+    // "Loading downloads…" delay. async_add_torrent() returns immediately; the
+    // handle and post-add registration are completed in the add_torrent_alert
+    // handler. The item pointer is carried back via userdata (type-safe void*),
+    // and is guaranteed to outlive the add (owned by the model for the app
+    // lifetime). Interactive adds stay synchronous so the metadata dialog can
+    // populate its file list without waiting an alert tick.
+    if (deferModels) {
+        params.userdata = item;
+        m_pendingAsyncAdds.insert(item->id());
+        m_session->async_add_torrent(std::move(params));
+        return true;
+    }
+
     const libtorrent::torrent_handle handle = m_session->add_torrent(params, ec);
     if (ec || !handle.is_valid()) {
         emit torrentErrored(item->id(), ec ? QString::fromStdString(ec.message()) : QStringLiteral("Failed to add torrent"));
         return false;
     }
+    finalizeTorrentAdd(item, handle, startPaused, deferModels, torrentFilePath);
+    return true;
+}
+
+void TorrentSessionManager::finalizeTorrentAdd(DownloadItem *item, const libtorrent::torrent_handle &handle,
+                                               bool startPaused, bool deferModels, const QString &torrentFilePath) {
+    if (!item || !handle.is_valid())
+        return;
 
     // Apply per-torrent connection and upload-slot limits from settings.
     if (m_settings) {
@@ -1620,10 +1645,21 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
     // offset spreads them across 0-59 seconds of the first 60-second window.
     m_lastResumeSaveRequest[item->id()] =
         QDateTime::currentDateTimeUtc().addSecs(-qint64(qHash(item->id()) % 60u));
-    if (startPaused)
+    // A pause() may have arrived while an async add was still in flight (e.g.
+    // torrentStopOnStartup pausing a restored seeding torrent before its
+    // add_torrent_alert landed). In that case m_pausedIds already holds the id
+    // but the freshly-added handle is running — honour the pause now so it
+    // doesn't leak around a VPN. Otherwise reflect the requested start state.
+    const bool pausePending = m_pausedIds.contains(item->id());
+    if (startPaused || pausePending) {
         m_pausedIds.insert(item->id());
-    else
+        if (pausePending && !startPaused) {
+            handle.unset_flags(libtorrent::torrent_flags::auto_managed);
+            handle.pause();
+        }
+    } else {
         m_pausedIds.remove(item->id());
+    }
     if (!m_fileModels.contains(item->id()))
         m_fileModels[item->id()] = new TorrentFileModel(this);
     if (!m_peerModels.contains(item->id()))
@@ -1660,10 +1696,20 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
             handle.add_http_seed(u.toStdString());
     }
 
+    // Apply persisted per-torrent speed limits here, on the handle we already
+    // hold. The restore path adds asynchronously, so the m_handles entry isn't
+    // populated until this point — AppController's post-restore call to
+    // applyPerTorrentSpeedLimits() would otherwise no-op against an empty handle.
+    const int downKbps = item->perTorrentDownLimitKBps();
+    const int upKbps   = item->perTorrentUpLimitKBps();
+    handle.set_download_limit(downKbps > 0 ? downKbps * 1024 : -1);
+    handle.set_upload_limit(upKbps > 0 ? upKbps * 1024 : -1);
+
     item->setIsTorrent(true);
-    if (!startPaused)
+    const bool effectivePaused = startPaused || m_pausedIds.contains(item->id());
+    if (!effectivePaused)
         item->setLastTryAt(QDateTime::currentDateTime());
-    item->setStatus(startPaused ? DownloadItem::Status::Paused : DownloadItem::Status::Checking);
+    item->setStatus(effectivePaused ? DownloadItem::Status::Paused : DownloadItem::Status::Checking);
     // On the restore path (deferModels) skip the immediate status read: it calls
     // handle.status(), a session-lock IPC round-trip per item that serialised the
     // cold-start restore loop. Restored items already carry status/doneBytes from
@@ -1676,8 +1722,6 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
     // the first alert tick (which previously made it appear to "ping the swarm").
     if (!torrentFilePath.isEmpty() && !deferModels)
         updateModels(item->id(), handle, false);
-
-    return true;
 }
 
 void TorrentSessionManager::processAlerts() {
@@ -1763,6 +1807,28 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
                 emit hasIncomingConnectionChanged();
             }
         }
+        return;
+    }
+
+    if (auto *added = libtorrent::alert_cast<libtorrent::add_torrent_alert>(alert)) {
+        // Completion of an async_add_torrent() submitted on the restore path.
+        // Recover the DownloadItem* from userdata; ignore alerts we didn't tag
+        // (e.g. synchronous interactive adds don't set userdata).
+        DownloadItem *item = added->params.userdata.get<DownloadItem>();
+        if (!item)
+            return;
+        m_pendingAsyncAdds.remove(item->id());
+        if (added->error || !added->handle.is_valid()) {
+            emit torrentErrored(item->id(),
+                added->error ? QString::fromStdString(added->error.message())
+                             : QStringLiteral("Failed to add torrent"));
+            return;
+        }
+        const bool startPaused =
+            (added->params.flags & libtorrent::torrent_flags::paused) != libtorrent::torrent_flags_t{};
+        // torrentFilePath is only used to decide the immediate metadata-model
+        // populate, which is skipped on the restore path anyway — pass empty.
+        finalizeTorrentAdd(item, added->handle, startPaused, /*deferModels=*/true, QString());
         return;
     }
 

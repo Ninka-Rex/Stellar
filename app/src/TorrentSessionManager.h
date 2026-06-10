@@ -219,6 +219,11 @@ private:
     void requestIpFilterRebuild(); // coalesced via m_ipFilterRebuildPending
     void flushIpFilterRebuild();
     bool addTorrentInternal(DownloadItem *item, bool startPaused, const QString &torrentFilePath, bool deferModels);
+    // Post-add registration (handle bookkeeping, flags, trackers, web seeds,
+    // model creation). Runs synchronously for interactive adds and from the
+    // add_torrent_alert handler for the async restore path.
+    void finalizeTorrentAdd(DownloadItem *item, const libtorrent::torrent_handle &handle,
+                            bool startPaused, bool deferModels, const QString &torrentFilePath);
     void checkShareLimits(const QString &id, DownloadItem *item, const AppSettings *settings);
     void refreshPeerBanRules(const AppSettings *settings);
     void rebuildIpFilter();
@@ -244,6 +249,7 @@ private:
     QSet<QString> m_movingIds;
     QSet<QString> m_firedFinishedIds;
     QSet<QString> m_staticMetadataApplied; // torrent IDs whose immutable metadata (name, hash, comment, web seeds…) has been applied once
+    QSet<QString> m_pendingAsyncAdds; // torrent IDs submitted via async_add_torrent, awaiting add_torrent_alert
     QHash<QString, QDateTime> m_seedingStartTimes;
     QHash<QString, qint64> m_lastUploadBytesForInactive;
     QHash<QString, QDateTime> m_lastUploadActivityTime;
