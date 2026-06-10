@@ -22,6 +22,7 @@
 
 #include <QCoreApplication>
 #include <QCryptographicHash>
+#include <QtConcurrentRun>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -81,6 +82,12 @@ TorrentSearchManager::TorrentSearchManager(QNetworkAccessManager *nam, QObject *
       m_pluginModel(new TorrentSearchPluginModel(this)),
       m_resultModel(new TorrentSearchResultModel(this))
 {
+    // When the async Python probe finishes, adopt its result on the main thread.
+    connect(&m_runtimeProbe, &QFutureWatcher<QString>::finished, this, [this]() {
+        const QString python = m_runtimeProbe.result();
+        m_pythonExecutable = python;
+        emit stateChanged();
+    });
     ensureBundledPluginsInstalled();
     refreshPlugins();
     refreshRuntimeState();
@@ -265,11 +272,15 @@ bool TorrentSearchManager::canRunPython(const QString &program) const {
 }
 
 void TorrentSearchManager::refreshRuntimeState() {
-    const QString python = detectPython();
-    const bool changed = m_pythonExecutable != python;
-    m_pythonExecutable = python;
-    if (changed)
-        emit stateChanged();
+    // detectPython() spawns child processes with waitForStarted/waitForFinished
+    // timeouts (up to several seconds when a Windows Store python.exe alias is
+    // on PATH). Running it synchronously here stalled the startup window for
+    // 2-3 s. Probe off the main thread instead; the finished handler in the
+    // constructor adopts the result and emits stateChanged().
+    if (m_runtimeProbe.isRunning())
+        return;
+    m_runtimeProbe.setFuture(QtConcurrent::run([this]() { return detectPython(); }));
+    emit stateChanged();  // reflect pythonDetecting() flipping to true
 }
 
 QVector<TorrentSearchManager::PluginInfo> TorrentSearchManager::scanPlugins() const {

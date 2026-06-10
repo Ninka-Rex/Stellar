@@ -243,7 +243,7 @@ private:
     QSet<QString> m_pausedIds;
     QSet<QString> m_movingIds;
     QSet<QString> m_firedFinishedIds;
-    QSet<QString> m_webSeedsFetched; // tracks which torrent IDs have had static web-seed lists pulled
+    QSet<QString> m_staticMetadataApplied; // torrent IDs whose immutable metadata (name, hash, comment, web seeds…) has been applied once
     QHash<QString, QDateTime> m_seedingStartTimes;
     QHash<QString, qint64> m_lastUploadBytesForInactive;
     QHash<QString, QDateTime> m_lastUploadActivityTime;

@@ -118,8 +118,13 @@ void DownloadTableModel::connectItemSignals(DownloadItem *item) {
     connect(item, &DownloadItem::torrentStatsChanged, this, &DownloadTableModel::onItemProgressChanged);
 }
 
+void DownloadTableModel::rebuildVisibleSet() {
+    m_visibleSet = QSet<DownloadItem *>(m_visible.begin(), m_visible.end());
+}
+
 void DownloadTableModel::addItem(DownloadItem *item) {
     m_items.append(item);
+    m_itemsById.insert(item->id(), item);
     if (m_bulkAdding)
         return;
 
@@ -137,6 +142,7 @@ void DownloadTableModel::addItem(DownloadItem *item) {
         }
         beginInsertRows({}, insertPos, insertPos);
         m_visible.insert(insertPos, item);
+        m_visibleSet.insert(item);
         endInsertRows();
     }
 }
@@ -147,6 +153,7 @@ void DownloadTableModel::removeItem(const QString &id) {
             DownloadItem *item = m_items[i];
             item->disconnect(this);
             m_items.removeAt(i);
+            m_itemsById.remove(id);
             int visRow = m_visible.indexOf(item);
             if (visRow >= 0) {
                 if (m_bulkRemoving) {
@@ -157,6 +164,7 @@ void DownloadTableModel::removeItem(const QString &id) {
                     m_visible.removeAt(visRow);
                     endRemoveRows();
                 }
+                m_visibleSet.remove(item);
             }
             return;
         }
@@ -193,6 +201,7 @@ void DownloadTableModel::endBulkAdd() {
         [this](DownloadItem *a, DownloadItem *b) {
             return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
         });
+    rebuildVisibleSet();
 
     beginResetModel();
     endResetModel();
@@ -208,9 +217,7 @@ int DownloadTableModel::rowForId(const QString &id) const {
 }
 
 DownloadItem *DownloadTableModel::itemById(const QString &id) const {
-    for (auto *item : m_items)
-        if (item->id() == id) return item;
-    return nullptr;
+    return m_itemsById.value(id, nullptr);
 }
 
 DownloadItem *DownloadTableModel::itemByUrl(const QUrl &url) const {
@@ -241,6 +248,7 @@ void DownloadTableModel::setFilterCategory(const QString &filter) {
 
     beginResetModel();
     m_visible = newVisible;
+    rebuildVisibleSet();
     endResetModel();
 }
 
@@ -263,6 +271,7 @@ void DownloadTableModel::setFilterQueue(const QString &filter) {
 
     beginResetModel();
     m_visible = newVisible;
+    rebuildVisibleSet();
     endResetModel();
 }
 
@@ -388,6 +397,7 @@ void DownloadTableModel::rebuildVisible() {
 
     if (m_visible != newVisible) {
         m_visible = newVisible;
+        rebuildVisibleSet();
         emit layoutChanged();
     }
 }
@@ -401,20 +411,21 @@ void DownloadTableModel::onItemChanged() {
     int visRow = m_visible.indexOf(item);
 
     if (shouldBeVisible && visRow < 0) {
-        // Item now matches filter — insert it at the correct position
-        // Build a set for O(1) lookup instead of O(n) contains() per iteration
-        const QSet<DownloadItem *> visibleSet(m_visible.begin(), m_visible.end());
+        // Item now matches filter — insert it at the correct position.
+        // m_visibleSet gives O(1) membership while walking m_items.
         int insertPos = 0;
         for (int i = 0; i < m_items.size(); ++i) {
             if (m_items[i] == item) break;
-            if (visibleSet.contains(m_items[i])) ++insertPos;
+            if (m_visibleSet.contains(m_items[i])) ++insertPos;
         }
         beginInsertRows({}, insertPos, insertPos);
         m_visible.insert(insertPos, item);
+        m_visibleSet.insert(item);
         endInsertRows();
     } else if (!shouldBeVisible && visRow >= 0) {
         beginRemoveRows({}, visRow, visRow);
         m_visible.removeAt(visRow);
+        m_visibleSet.remove(item);
         endRemoveRows();
     } else if (shouldBeVisible && visRow >= 0) {
         // Bubble the changed row to its correct sorted position using
@@ -448,6 +459,21 @@ void DownloadTableModel::onItemProgressChanged() {
     auto *item = qobject_cast<DownloadItem *>(sender());
     if (!item) return;
 
+    // Set of columns whose values change every tick for many rows at once
+    // (upspeed, ratio, uploaded, …). Sorting by one of these uses the coalesced
+    // re-sort path (flushVolatileSort) rather than the single-row bubble in
+    // onItemChanged, which would leave the table permanently mis-sorted because
+    // each tick only fixes the last row to emit.
+    static const QSet<QString> kVolatileSortCols = {
+        QStringLiteral("downspeed"), QStringLiteral("speed"),
+        QStringLiteral("upspeed"),   QStringLiteral("progress"),
+        QStringLiteral("timeleft"),  QStringLiteral("ratio"),
+        QStringLiteral("uploaded"),  QStringLiteral("downloaded"),
+        QStringLiteral("seeders"),   QStringLiteral("peers"),
+        QStringLiteral("status")  // doneBytes secondary sort within Downloading
+    };
+    const bool volatileSort = kVolatileSortCols.contains(m_sortColumn);
+
     // Speed-based filters (torrent_active / torrent_inactive) depend on upload/download
     // speed, which changes every tick. Only invoke the expensive onItemChanged() path
     // when membership actually flips — otherwise fall through to the volatile sort
@@ -455,8 +481,7 @@ void DownloadTableModel::onItemProgressChanged() {
     if (m_filterCategory == QStringLiteral("torrent_active")
         || m_filterCategory == QStringLiteral("torrent_inactive")) {
         const bool shouldBeVisible = matchesFilter(item);
-        const int visRow = m_visible.indexOf(item);
-        if (shouldBeVisible != (visRow >= 0)) {
+        if (shouldBeVisible != m_visibleSet.contains(item)) {
             // Membership changed — full insert/remove path.
             onItemChanged();
             return;
@@ -466,31 +491,20 @@ void DownloadTableModel::onItemProgressChanged() {
         // Item stays visible — fall through to volatile sort logic below.
     }
 
-    const int visRow = m_visible.indexOf(item);
-    if (visRow < 0) return;
-
-    // When the active sort column is volatile (changes every tick for multiple
-    // rows simultaneously — upspeed, ratio, uploaded, etc.), bubbling one row
-    // at a time produces a permanently mis-sorted table: each tick only fixes
-    // the last item to emit, leaving all others stale. Instead, mark this item
-    // dirty and coalesce all dirty items into one stable re-sort on the next
-    // event-loop cycle (interval=0 timer). Non-volatile columns keep the
-    // single-row bubble path in onItemChanged.
-    static const QSet<QString> kVolatileSortCols = {
-        QStringLiteral("downspeed"), QStringLiteral("speed"),
-        QStringLiteral("upspeed"),   QStringLiteral("progress"),
-        QStringLiteral("timeleft"),  QStringLiteral("ratio"),
-        QStringLiteral("uploaded"),  QStringLiteral("downloaded"),
-        QStringLiteral("seeders"),   QStringLiteral("peers"),
-        QStringLiteral("status")  // doneBytes secondary sort within Downloading
-    };
-    if (kVolatileSortCols.contains(m_sortColumn)) {
-        // Mark dirty; flushVolatileSort() is called synchronously by AppController
-        // after the full torrent batch update completes (via torrentBatchUpdated signal),
-        // so sort + dataChanged happen in the same frame as the value update.
-        m_volatileDirty.insert(item);
+    // Hot path while seeding: mark the item dirty without any O(n) lookup.
+    // flushVolatileSort() is called synchronously by AppController after the
+    // full torrent batch update completes (via torrentBatchUpdated), so sort +
+    // dataChanged happen in the same frame as the value update.
+    if (volatileSort) {
+        if (m_visibleSet.contains(item))
+            m_volatileDirty.insert(item);
         return;
     }
+
+    // Non-volatile sort column: only HTTP progress signals reach here. We need
+    // the real row index to emit a targeted dataChanged for that one row.
+    const int visRow = m_visible.indexOf(item);
+    if (visRow < 0) return;
 
     // Skip per-tick repaint when the window is hidden — no visible delegate to
     // update, and the queued dataChanged would have to be flushed all at once on
@@ -511,23 +525,38 @@ void DownloadTableModel::flushVolatileSort() {
     // visible scroll jumps, and with reuseItems:true delegates don't reliably
     // re-bind after layout changes.
     //
-    // Instead: sort m_visible in-place, then emit dataChanged for every row in
-    // the full range. QML re-reads model.item (ItemRole) for each delegate,
-    // getting the correctly-positioned DownloadItem* without any model reset
-    // or delegate destruction.
+    // Snapshot the order before sorting so we can detect whether any rows
+    // actually moved. The common case while seeding is that speeds jitter but
+    // ranks don't flip — then there is nothing to repaint: cell *values* update
+    // through the delegates' direct bindings to DownloadItem properties, with no
+    // dataChanged needed. Emitting a full-table dataChanged every tick regardless
+    // was the dominant per-tick cost (re-evaluates every binding in every row and
+    // triggers the QML selection-state recompute).
+    const QList<DownloadItem *> before = m_visible;
     std::stable_sort(m_visible.begin(), m_visible.end(),
         [this](DownloadItem *a, DownloadItem *b) {
             return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
         });
-    // Keep the list ordered while hidden, but defer the repaint to setUiActive(true).
-    // m_volatileDirty is intentionally NOT cleared so the pending-repaint state is
-    // implied by activeness, not lost — the sort above already applied the values.
-    if (!m_uiActive) {
-        m_volatileDirty.clear();
-        return;
-    }
-    emit dataChanged(index(0, 0), index(m_visible.size() - 1, ColCount - 1));
     m_volatileDirty.clear();
+
+    if (before == m_visible)
+        return;  // order unchanged — nothing to re-anchor
+
+    // Keep the list ordered while hidden, but defer the repaint to setUiActive(true).
+    if (!m_uiActive)
+        return;
+
+    // Only the rows in [lo, hi] changed identity; re-anchoring just those
+    // delegates (and only the ItemRole, the only role the delegate consumes)
+    // rebinds them to the correctly-positioned DownloadItem* without resetting
+    // the model or destroying delegates.
+    int lo = 0;
+    while (lo < before.size() && before[lo] == m_visible[lo])
+        ++lo;
+    int hi = before.size() - 1;
+    while (hi > lo && before[hi] == m_visible[hi])
+        --hi;
+    emit dataChanged(index(lo, 0), index(hi, ColCount - 1), {ItemRole});
 }
 
 void DownloadTableModel::setUiActive(bool active) {
@@ -543,7 +572,10 @@ void DownloadTableModel::setUiActive(bool active) {
             return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
         });
     m_volatileDirty.clear();
-    emit dataChanged(index(0, 0), index(m_visible.size() - 1, ColCount - 1));
+    // Single catch-up repaint of the whole table — values genuinely went stale
+    // while hidden. Restrict to ItemRole (the only role the delegate reads) so
+    // re-binding each row's item pointer cascades through its property bindings.
+    emit dataChanged(index(0, 0), index(m_visible.size() - 1, ColCount - 1), {ItemRole});
 }
 
 int DownloadTableModel::statusSortKey(const QString &status) {

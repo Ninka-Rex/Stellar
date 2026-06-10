@@ -70,8 +70,16 @@ ApplicationWindow {
     // seeding torrents queues up and floods the scene on restore, freezing the
     // GUI for several seconds. Re-activating repaints the whole table once.
     function _syncTableActive() {
-        if (App.downloadModel)
-            App.downloadModel.setUiActive(visible && visibility !== Window.Minimized)
+        if (!App.downloadModel) return
+        var active = visible && visibility !== Window.Minimized
+        // Reactivation triggers one full-table catch-up repaint. Defer it one
+        // frame (Qt.callLater) so the window maps first and feels instant on a
+        // tray restore; the table repaint lands the following frame. Deactivation
+        // must stay synchronous so no repaints leak through while hiding.
+        if (active)
+            Qt.callLater(function() { App.downloadModel.setUiActive(true) })
+        else
+            App.downloadModel.setUiActive(false)
     }
     onVisibilityChanged: _syncTableActive()
 

@@ -15,6 +15,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <QApplication>
+#include <QElapsedTimer>
 #include <QTimer>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -947,8 +948,13 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<NetworkInfo>("com.stellar.app", 1, 0, "NetworkInfo",
         QStringLiteral("Use App.networkInfo"));
 
+    // Cold-start timing — surfaces any synchronous startup blocker that creeps
+    // back in (the AppController ctor and QML load are the two big phases).
+    QElapsedTimer startupTimer;
+    startupTimer.start();
     nmLog(QStringLiteral("Instantiating AppController..."));
     AppController controller;
+    qInfo() << "[Startup] AppController ctor:" << startupTimer.restart() << "ms";
     nmLog(QStringLiteral("AppController instantiated successfully."));
 
     // Load saved UI language before the QML engine starts so that qsTr() calls
@@ -973,7 +979,9 @@ int main(int argc, char *argv[])
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
                      &app, []() { QCoreApplication::exit(-1); }, Qt::QueuedConnection);
     nmLog(QStringLiteral("Loading QML..."));
+    startupTimer.restart();
     engine.load(url);
+    qInfo() << "[Startup] QML load:" << startupTimer.elapsed() << "ms";
     nmLog(QStringLiteral("QML loaded. Executing app."));
 
     // Keep scene graph and D3D/GL resources alive when the window is minimized

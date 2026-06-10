@@ -22,6 +22,7 @@
 #endif
 #include <QGuiApplication>
 #include <QWindow>
+#include <QElapsedTimer>
 #include <QHash>
 #include <QJSEngine>
 #include "StellarPaths.h"
@@ -2281,9 +2282,14 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     }
 
     // ── 5. Finalization ──────────────────────────────────────────────────────────
-    QString err = registerNativeHost();
-    if (err.isEmpty()) qInfo() << "[NativeHost] registered OK";
-    else qWarning() << "[NativeHost] registration FAILED:" << err;
+    // Native-host registration writes manifests / registry keys (and on Linux
+    // may probe Flatpak) — none of it is needed for first paint. Defer it past
+    // the first event-loop cycle so the window maps without waiting on disk I/O.
+    QTimer::singleShot(0, this, [this]() {
+        const QString err = registerNativeHost();
+        if (err.isEmpty()) qInfo() << "[NativeHost] registered OK";
+        else qWarning() << "[NativeHost] registration FAILED:" << err;
+    });
 
     // Show a "starting up" tooltip immediately. The tooltip-timer (5 s
     // cadence) won't tick for several seconds, and the cold-start restore
@@ -2388,12 +2394,22 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             QTimer::singleShot(0, this, finalizeRestore);
         } else {
             auto *restoreTimer = new QTimer(this);
-            restoreTimer->setInterval(1);
+            // PreciseTimer + a per-tick wall-clock budget instead of a fixed
+            // "1 item per timeout". A coarse 1 ms timer rounds up to the OS
+            // tick (~15.6 ms on Windows), so one-item-per-tick paced restore at
+            // ~64 items/sec regardless of how cheap each add was. We now drain
+            // as many items as fit in an ~8 ms slice, then yield so paint events
+            // and IPC drain still interleave.
+            restoreTimer->setTimerType(Qt::PreciseTimer);
+            restoreTimer->setInterval(0);
             int restoreIndex = 0;
             connect(restoreTimer, &QTimer::timeout, this, [this, items, itemCount, restoreTimer, restoreIndex, finalizeRestore]() mutable {
-                constexpr int kRestoreBatchSize = 1;
-                for (int batchCount = 0; batchCount < kRestoreBatchSize && restoreIndex < itemCount; ++batchCount, ++restoreIndex) {
+                constexpr qint64 kRestoreSliceMs = 8;
+                QElapsedTimer slice;
+                slice.start();
+                while (restoreIndex < itemCount) {
                     DownloadItem *item = items.at(restoreIndex);
+                    ++restoreIndex;
                     m_queue->enqueueRestored(item);
                     // watchItem deferred to finalizeRestore — connecting
                     // signal handlers here makes them fire during
@@ -2406,6 +2422,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                         m_torrentSession->restoreTorrent(item, true);
                         applyPerTorrentSpeedLimits(m_torrentSession, item);
                     }
+                    if (slice.elapsed() >= kRestoreSliceMs)
+                        break;
                 }
                 m_restoreDoneCount = restoreIndex;
                 emit restoreProgressChanged();
@@ -2417,75 +2435,6 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             });
             restoreTimer->start();
         }
-        if (false) for (int i = 0; i < itemCount; ++i) {
-            QTimer::singleShot(0, this, [this, item = items.at(i)]() {
-                m_queue->enqueueRestored(item);
-                watchItem(item);
-                if (item->isTorrent()) {
-                    // Record torrents that are already seeding/complete so that
-                    // libtorrent's async torrent_finished_alert — which can arrive
-                    // after m_restoring is cleared — doesn't trigger a spurious
-                    // "Download Complete" popup on startup.
-                    const auto s = item->statusEnum();
-                    if (s == DownloadItem::Status::Seeding
-                            || s == DownloadItem::Status::Completed)
-                        m_restoredSeedingIds.insert(item->id());
-                    m_torrentSession->restoreTorrent(item);
-                    applyPerTorrentSpeedLimits(m_torrentSession, item);
-                }
-            });
-        }
-        // Finalization runs after every per-item singleShot has fired. Since
-        // singleShot(0) preserves dispatch order, posting one more zero-delay
-        // shot here lands strictly after the last item's restore lambda.
-        if (false) QTimer::singleShot(0, this, [this]() {
-            m_restoring = false;
-            emit restoreProgressChanged();
-            // Clear the cached "starting up" tooltip so the next 5 s tooltip-
-            // timer tick replaces it with the live download stats. We don't
-            // setToolTip("") here — that would briefly blank the tooltip
-            // until the timer fires; instead we just invalidate the dedup
-            // guard so the next regularly-scheduled update writes through.
-            m_lastTrayTooltip.clear();
-            // Snapshot restored torrent byte totals so appStatistics() can
-            // subtract them to produce a true session-only transfer figure.
-            for (auto *item : m_downloadModel->allItems()) {
-                if (!item || !item->isTorrent()) continue;
-                m_sessionBaselineUploaded   += item->torrentUploaded();
-                m_sessionBaselineDownloaded += item->torrentDownloaded();
-            }
-            // libtorrent alert polling runs every 1 s; give it 12 s after all
-            // items are enqueued to deliver any deferred torrent_finished_alert
-            // before we stop suppressing completions for restored seeding IDs.
-            QTimer::singleShot(12000, this, [this]() {
-                m_restoredSeedingIds.clear();
-            });
-            // Count completed downloads from the restored items
-            m_completedCount = 0;
-              for (auto *item : m_downloadModel->allItems())
-                  if (item->statusEnum() == DownloadItem::Status::Completed)
-                      m_completedCount++;
-              emit completedDownloadsChanged();
-              checkQueueSchedules();
-              for (int i = 0; i < m_queueModel->rowCount(); ++i) {
-                  Queue *queue = m_queueModel->queueAt(i);
-                  if (queue && queue->startOnIDMStartup() && queue->id() != QStringLiteral("download-limits"))
-                      startQueue(queue->id());
-              }
-              cleanupTemporaryDirectory();
-              if (m_settings->speedLimiterOnStartup() && !m_settings->speedLimiterEnabled()) {
-                  m_settings->setSpeedLimiterEnabled(true);
-                  m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
-              }
-              // Drain IPC payloads that arrived during restore. QML may have
-              // already called setQmlReady() and deferred draining — do it now
-              // that the full download list is in memory so duplicate detection works.
-              if (m_qmlReady && !m_pendingIpcPayloads.isEmpty()) {
-                  const QList<QByteArray> pending = std::exchange(m_pendingIpcPayloads, {});
-                  for (const QByteArray &p : pending)
-                      handleIpcPayload(p);
-              }
-        });
     } else {
         checkQueueSchedules();
         for (int i = 0; i < m_queueModel->rowCount(); ++i) {

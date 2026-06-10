@@ -16,6 +16,7 @@
 
 #pragma once
 #include <QAbstractTableModel>
+#include <QHash>
 #include <QList>
 #include <QSet>
 #include "DownloadItem.h"
@@ -82,12 +83,24 @@ private slots:
 
 private:
     void connectItemSignals(DownloadItem *item);
+    // Rebuilds m_visibleSet from m_visible after a wholesale m_visible rebuild
+    // (filter change, bulk add). Incremental insert/remove paths update the set
+    // directly rather than calling this.
+    void rebuildVisibleSet();
     bool matchesFilter(DownloadItem *item) const;
     int compareItems(DownloadItem *a, DownloadItem *b, const QString &column, bool ascending) const;
     static int statusSortKey(const QString &status);
 
     QList<DownloadItem *> m_items;
     QList<DownloadItem *> m_visible;
+    // O(1) companions to the lists above, kept in lock-step:
+    //   m_visibleSet — membership test for the visible list, replacing the
+    //                  O(n) m_visible.indexOf() that ran ~3× per torrent per
+    //                  alert tick (O(n²) while seeding many torrents).
+    //   m_itemsById  — id→item lookup for itemById(), called per selected row
+    //                  on every selection-state recompute in the QML table.
+    QSet<DownloadItem *>           m_visibleSet;
+    QHash<QString, DownloadItem *> m_itemsById;
     QString               m_filterCategory{QStringLiteral("all")};
     QString               m_filterQueue;
     QString               m_sortColumn{QStringLiteral("added")};

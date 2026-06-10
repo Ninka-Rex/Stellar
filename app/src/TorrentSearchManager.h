@@ -16,6 +16,7 @@
 
 #pragma once
 
+#include <QFutureWatcher>
 #include <QMap>
 #include <QObject>
 #include <QPointer>
@@ -35,6 +36,7 @@ class TorrentSearchManager : public QObject {
     Q_PROPERTY(TorrentSearchResultModel *resultModel READ resultModel CONSTANT)
     Q_PROPERTY(bool searchInProgress READ searchInProgress NOTIFY stateChanged)
     Q_PROPERTY(bool pythonAvailable READ pythonAvailable NOTIFY stateChanged)
+    Q_PROPERTY(bool pythonDetecting READ pythonDetecting NOTIFY stateChanged)
     Q_PROPERTY(QString statusText READ statusText NOTIFY stateChanged)
     Q_PROPERTY(QString pluginDirectory READ pluginDirectory CONSTANT)
 public:
@@ -44,6 +46,9 @@ public:
     TorrentSearchResultModel *resultModel() const { return m_resultModel; }
     bool searchInProgress() const { return m_searchInProgress; }
     bool pythonAvailable() const { return !m_pythonExecutable.isEmpty(); }
+    // True while the (asynchronous) startup Python probe is still running, so
+    // the UI can distinguish "still detecting" from "not found".
+    bool pythonDetecting() const { return m_runtimeProbe.isRunning(); }
     QString statusText() const { return m_statusText; }
     QString pluginDirectory() const;
 
@@ -100,4 +105,9 @@ private:
     QString m_statusText;
     QString m_pythonExecutable;
     QString m_searchStdoutBuffer;
+    // Runs detectPython() off the main thread — it spawns child processes with
+    // multi-second timeouts that otherwise blocked the startup window from
+    // painting. detectPython() is const and touches no member state, so it's
+    // safe to call from the worker thread.
+    QFutureWatcher<QString> m_runtimeProbe;
 };

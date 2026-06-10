@@ -49,6 +49,7 @@
 #include <QThreadPool>
 #include <QtConcurrent>
 #include <algorithm>
+#include <tuple>
 #include <cmath>
 #include <cstdint>
 #include <limits>
@@ -709,7 +710,7 @@ void TorrentSessionManager::remove(const QString &downloadId, bool deleteFiles) 
     m_pausedIds.remove(downloadId);
     m_movingIds.remove(downloadId);
     m_firedFinishedIds.remove(downloadId);
-    m_webSeedsFetched.remove(downloadId);
+    m_staticMetadataApplied.remove(downloadId);
     m_lastResumeSaveRequest.remove(downloadId);
     m_trackerReannounceUntil.remove(downloadId);
     m_trackerAlertSnapshots.remove(downloadId);
@@ -1663,7 +1664,12 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
     if (!startPaused)
         item->setLastTryAt(QDateTime::currentDateTime());
     item->setStatus(startPaused ? DownloadItem::Status::Paused : DownloadItem::Status::Checking);
-    updateItemFromStatus(item, handle);
+    // On the restore path (deferModels) skip the immediate status read: it calls
+    // handle.status(), a session-lock IPC round-trip per item that serialised the
+    // cold-start restore loop. Restored items already carry status/doneBytes from
+    // downloads.json; the first state_update_alert (~1 s later) fills live stats.
+    if (!deferModels)
+        updateItemFromStatus(item, handle);
 
     // For .torrent files the metadata is already present — populate the file
     // model immediately so the metadata dialog shows files without waiting for
@@ -2603,7 +2609,13 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
     // read-lock for every torrent every 2-second tick and was the dominant source
     // of updateItemFromStatus latency (2-6 ms per torrent = 64-200 ms per tick).
     const auto ti = st.torrent_file.lock();
-    if (st.has_metadata && ti) {
+    // All fields derived from torrent_info are immutable once metadata is
+    // present. Deriving them every alert tick (string conversions, a QLocale
+    // construction for the creation date, web-seed list pulls) was pure wasted
+    // CPU that scaled with N seeding torrents — the setters dedupe, so no
+    // signals fired, but the conversions still ran. Apply them once per torrent.
+    if (st.has_metadata && ti && !m_staticMetadataApplied.contains(item->id())) {
+        m_staticMetadataApplied.insert(item->id());
         const QString torrentName = QString::fromStdString(ti->name());
         // Never clobber a filename the user manually renamed in the metadata
         // dialog or file-properties dialog; once set it stays until the user
@@ -2616,6 +2628,7 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
         item->setTorrentIsPrivate(ti->priv());
         item->setTorrentComment(QString::fromStdString(ti->comment()));
         item->setTorrentCreator(QString::fromStdString(ti->creator()));
+        item->setTorrentPiecesTotal(ti->num_pieces());
         // creation_date() returns time_t; 0 means not set.
         const std::time_t cd = ti->creation_date();
         if (cd != 0) {
@@ -2624,20 +2637,13 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
         } else {
             item->setTorrentCreatedOn(QString());
         }
-        // Web seed lists are static once metadata is present. Only fetch from
-        // libtorrent once per torrent lifetime — avoids session-lock IPC on
-        // every 2-second tick for every seeding torrent.
-        const QString &wid = item->id();
-        if (!m_webSeedsFetched.contains(wid)) {
-            m_webSeedsFetched.insert(wid);
-            QStringList urlSeeds, httpSeeds;
-            for (const auto &seed : handle.url_seeds())
-                urlSeeds.push_back(QString::fromStdString(seed));
-            for (const auto &seed : handle.http_seeds())
-                httpSeeds.push_back(QString::fromStdString(seed));
-            item->setTorrentUrlSeeds(urlSeeds);
-            item->setTorrentHttpSeeds(httpSeeds);
-        }
+        QStringList urlSeeds, httpSeeds;
+        for (const auto &seed : handle.url_seeds())
+            urlSeeds.push_back(QString::fromStdString(seed));
+        for (const auto &seed : handle.http_seeds())
+            httpSeeds.push_back(QString::fromStdString(seed));
+        item->setTorrentUrlSeeds(urlSeeds);
+        item->setTorrentHttpSeeds(httpSeeds);
     }
 
     // st.flags carries the same data as handle.flags() — read from the
@@ -2672,8 +2678,8 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
                               : 0.0);
     item->setTorrentAvailability(st.distributed_copies);
     item->setTorrentPiecesDone(st.num_pieces);
-    // Total pieces only knowable once torrent metadata has arrived
-    item->setTorrentPiecesTotal(ti ? ti->num_pieces() : 0);
+    // setTorrentPiecesTotal is applied once in the static-metadata block above
+    // (it's immutable once metadata arrives).
     item->setTorrentActiveTimeSecs(static_cast<qint64>(st.active_duration.count()));
     item->setTorrentSeedingTimeSecs(static_cast<qint64>(st.seeding_duration.count()));
     item->setTorrentWastedBytes(st.total_failed_bytes + st.total_redundant_bytes);
@@ -3301,7 +3307,10 @@ void TorrentSessionManager::createTorrentFile(const QVariantMap &params) {
     // back to the main thread via QMetaObject::invokeMethod.
     QPointer<TorrentSessionManager> self = this;
 
-    QtConcurrent::run([=]() {
+    // Fire-and-forget: the worker reports completion via QMetaObject::invokeMethod
+    // through 'self', so the returned QFuture is intentionally discarded.
+    // std::ignore silences QtConcurrent::run's [[nodiscard]] (MSVC C4858).
+    std::ignore = QtConcurrent::run([=]() {
         namespace lt = libtorrent;
 
         try {
