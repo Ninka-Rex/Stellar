@@ -165,6 +165,11 @@ ApplicationWindow {
 
     function showDownloadProgressForItem(item) {
         if (!item) return
+        // Never open the progress window for an already-finished download — the
+        // complete dialog handles those. Guards a race where a fast (e.g. numbered
+        // duplicate) download completes before the deferred show() runs, leaving an
+        // orphan progress window that onDownloadCompleted already passed by.
+        if (item.status === "Completed") return
         var dlg = _getOrCreateProgressDialog(item)
         if (dlg) {
             dlg.item = item
@@ -1093,8 +1098,7 @@ ApplicationWindow {
                     if (action === 0) {
                         duplicateDialog.existingItem = existing
                         duplicateDialog._pendingUrl  = normalizedUrl
-                        duplicateDialog.show()
-                        duplicateDialog.raise()
+                        showAndActivate(duplicateDialog)
                     } else {
                         _handleDuplicateAction(action, false, existing, normalizedUrl)
                     }
@@ -2439,7 +2443,8 @@ ApplicationWindow {
     // ── Duplicate Download Dialog ────────────────────────────────────────
     DuplicateDownloadDialog {
         id: duplicateDialog
-        transientParent: root
+        // Detached from main window so showing it doesn't surface the main window too.
+        transientParent: null
         property string _pendingUrl: ""
         onResolved: (action, remember) => {
             _handleDuplicateAction(action, remember, existingItem, _pendingUrl)

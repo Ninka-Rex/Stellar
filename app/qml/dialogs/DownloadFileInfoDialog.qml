@@ -174,7 +174,10 @@ Window {
                 root.pendingSize = _formatSize(info.contentLength)
             // Server may have resolved a real filename from Content-Disposition
             // ── or the final redirect URL (e.g. "x64" "LM-Studio-0.4.14-4-x64.deb"). ──
-            if (info.filename && info.filename !== root.pendingFilename) {
+            // But an explicit override (e.g. duplicate "Add numbered name") wins —
+            // don't let the probe clobber it back to the un-numbered server name.
+            if (root.filenameOverride.length === 0
+                    && info.filename && info.filename !== root.pendingFilename) {
                 root.pendingFilename = info.filename
             }
         })

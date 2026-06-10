@@ -48,6 +48,11 @@ Window {
             var isComplete = existingItem && existingItem.status === "Completed"
             selectedAction = isComplete ? 1 : 3
             rememberChk.checked = false
+            // No transient parent — centre on the screen ourselves.
+            if (Screen) {
+                x = Math.round((Screen.width  - width)  / 2) + Screen.virtualX
+                y = Math.round((Screen.height - height) / 2) + Screen.virtualY
+            }
             raise()
             requestActivate()
         }
