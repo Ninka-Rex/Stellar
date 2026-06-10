@@ -56,7 +56,7 @@ public:
     void endBulkAdd();
     Q_INVOKABLE DownloadItem *itemAt(int row) const;
     Q_INVOKABLE int rowForId(const QString &id) const;
-    DownloadItem *itemById(const QString &id) const;
+    Q_INVOKABLE DownloadItem *itemById(const QString &id) const;
     DownloadItem *itemByUrl(const QUrl &url) const;
 
     Q_INVOKABLE void setFilterCategory(const QString &filter);

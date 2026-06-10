@@ -6406,6 +6406,9 @@ void AppController::maybeCompleteRestore()
     m_restoring = false;
     m_restoreDoneCount = m_restoreTotalCount;
     emit restoreProgressChanged();
+    // Status bar binds to these; they aren't driven by the restore loop itself.
+    emit activeDownloadsChanged();
+    emit seedingCountChanged();
 
     // Clear the cached "starting up" tooltip so the next 5 s tooltip-timer tick
     // replaces it with live download stats.

@@ -139,11 +139,12 @@ Rectangle {
     }
 
     // Reactive enabled-state helpers.
-    // Bind directly to readonly properties on DownloadTable rather than calling
-    // functions -- QML only re-evaluates an `enabled:` binding when a *property*
-    // it accessed changes, not when a function's internal state changes.  The
-    // anyPausedSelected / anyActiveSelected properties on DownloadTable emit
-    // change signals (via _selectionVersion) and propagate correctly here.
+    // Per-key enabled state stored as a readonly property so QML's binding
+    // engine can track the dependencies.  When anyPausedSelected, canPauseAll,
+    // etc. change, this entire map re-evaluates, and each ToolbarBtn's enabled
+    // binding (which reads this map) follows.  A plain function call in a binding
+    // expression prevents the engine from seeing the property accesses inside the
+    // switch statement — the binding never re-evaluates.
 
     signal addClicked()
     signal resumeClicked()
@@ -181,16 +182,15 @@ Rectangle {
         else root.stopQueueRequested(queueId)
     }
 
-    // Dynamic enabled state for ToolbarBtn items
-    function _btnEnabled(key) {
-        switch (key) {
-            case "resume":    return downloadTable ? (downloadTable.anyPausedSelected || downloadTable.anyErrorSelected) : false
-            case "stop":      return downloadTable ? downloadTable.anyStoppableSelected : false
-            case "stop_all":  return App.canPauseAll
-            case "delete":    return downloadTable ? downloadTable.hasSelection : false
-            default:          return true
-        }
-    }
+    // Dynamic enabled-state map for ToolbarBtn items.
+    // Keys: toolbar button key string. Values: boolean enabled state that QML's
+    // binding engine can track because this is a property, not a function.
+    readonly property var _btnEnabledMap: ({
+        "resume":   downloadTable ? (downloadTable.anyPausedSelected || downloadTable.anyErrorSelected) : false,
+        "stop":     downloadTable ? downloadTable.anyStoppableSelected : false,
+        "stop_all": App.canPauseAll,
+        "delete":   downloadTable ? downloadTable.hasSelection : false
+    })
 
     // bottom border
     Rectangle {
@@ -222,7 +222,7 @@ Rectangle {
                     smallMode: _sm
                     iconTop: root._iconTop
                     textTop: root._textTop
-                    enabled: root._btnEnabled(modelData.key)
+                    enabled: { var m = root._btnEnabledMap; return (modelData.key in m) ? m[modelData.key] : true }
                     onClicked: root._handleClick(modelData.key)
                 }
 
