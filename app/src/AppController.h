@@ -181,7 +181,7 @@ public:
     int completedDownloads() const { return m_completedCount; }
     bool restoreInProgress() const { return m_restoring; }
     int restoreTotalCount() const { return m_restoreTotalCount; }
-    int restoreDoneCount() const { return m_restoreDoneCount; }
+    int restoreDoneCount() const { return m_restoreNonTorrentDone + m_restoreFinalizedCount; }
     QString welcomeMessage() const { return m_welcomeMessage; }
     bool welcomeVisible() const { return m_welcomeVisible; }
     int recentErrorDownloads() const;
@@ -657,6 +657,16 @@ private:
     bool                    m_restoring{false};
     int                     m_restoreTotalCount{0};
     int                     m_restoreDoneCount{0};
+    // Restore progress now tracks real readiness, not dispatch. Non-torrent
+    // items are "done" the instant they're enqueued (no async add phase);
+    // torrent items only count once their add_torrent_alert finalizes (handle
+    // live). The bar = (non-torrent done + torrents finalized) / total, so it
+    // reaching 100% means every torrent is registered with the session.
+    int                     m_restoreTorrentTotal{0};
+    int                     m_restoreFinalizedCount{0};
+    int                     m_restoreNonTorrentDone{0};
+    bool                    m_restoreDispatchDone{false};
+    bool                    m_deferredInitDone{false};
     QString                 m_welcomeMessage;
     bool                    m_welcomeVisible{false};
     // IDs of torrents that were already seeding/complete when restored from the
@@ -691,6 +701,14 @@ private:
     // Builds a time-of-day greeting (mixed with a random fun phrase) and shows it
     // transiently in the status bar; auto-hides after a few seconds.
     void showWelcomeBack();
+    // Runs the heavy startup I/O (proxy apply, geo-DB open, rss temp cleanup,
+    // yt-dlp probe) on the singleShot(0) after first paint, off the pre-paint
+    // critical path. Idempotent via m_deferredInitDone.
+    void deferredInit();
+    // Hides the restore overlay once the dispatch loop has finished AND every
+    // restored torrent's async add has finalized. Idempotent — safe to call from
+    // both the dispatch-complete handler and each torrentAddFinalized tick.
+    void maybeCompleteRestore();
     void checkQueueSchedules();
     int calculateMinutesUntilNextQueue() const;
     void scheduleGrabberResultsPersist();

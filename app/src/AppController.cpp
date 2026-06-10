@@ -1095,6 +1095,9 @@ void AppController::handleIpcPayload(const QByteArray &json) {
 }
 
 void AppController::setQmlReady() {
+    // Runs on the singleShot(0) after the window's first paint — the right place
+    // to do the heavy startup I/O that used to stall the pre-paint ctor.
+    deferredInit();
     if (m_qmlReady) return;
     m_qmlReady = true;
     // Don't drain IPC payloads yet if the download list is still being restored
@@ -1392,28 +1395,17 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             this, &AppController::hasIncomingConnectionsChanged);
     connect(m_torrentSession, &TorrentSessionManager::dhtNodesChanged,
             this, &AppController::dhtNodesChanged);
-    refreshIpToCityDbInfo();
 
-    // Clean up any orphaned rss_*.torrent temp files left by previous runs
-    // (e.g. crash or power loss before the delete in the network reply lambda).
-    {
-        const QString tempDir = effectiveTemporaryDirectory(m_settings);
-        const QFileInfoList stale = QDir(tempDir).entryInfoList(
-            {QStringLiteral("rss_*.torrent")}, QDir::Files);
-        for (const QFileInfo &fi : stale)
-            QFile::remove(fi.absoluteFilePath());
-    }
-
-    // Public IP is fetched after applyProxy() so the request is routed through
-    // the configured proxy. fetchPublicIp() is also called from applyProxy() so
-    // the map location updates whenever the user switches proxies.
+    // refreshIpToCityDbInfo() (MMDB_open), the rss temp-file disk scan, the
+    // initial applyProxy() (a blocking WinHTTP system-proxy query) and the
+    // yt-dlp --version probe spawn are all moved into deferredInit(), run on the
+    // singleShot(0) after first paint — they were the bulk of pre-paint stall.
 
     // ── Proxy ────────────────────────────────────────────────────────────────────
-    // Apply once on startup, then re-apply whenever any proxy setting changes.
-    // QNetworkProxy::setApplicationProxy is process-wide — every QNetworkAccessManager
-    // that does not have its own explicit proxy set inherits it automatically,
-    // which covers m_nam (downloads, updates, grabber) and the yt-dlp probe NAM.
-    applyProxy();
+    // Initial apply happens in deferredInit(); re-apply whenever any proxy
+    // setting changes. QNetworkProxy::setApplicationProxy is process-wide — every
+    // QNetworkAccessManager that does not have its own explicit proxy set
+    // inherits it automatically (m_nam downloads/updates/grabber, yt-dlp probe).
     auto reconnectProxy = [this]() { applyProxy(); };
     connect(m_settings, &AppSettings::proxyTypeChanged,     this, reconnectProxy);
     connect(m_settings, &AppSettings::proxyHostChanged,     this, reconnectProxy);
@@ -1808,6 +1800,13 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         emit activeDownloadsChanged();
     });
     connect(m_torrentSession, &TorrentSessionManager::torrentErrored, this, [this](const QString &id, const QString &reason) {
+        // An errored add never emits torrentAddFinalized; count it toward restore
+        // progress (before the null-item early-out) so the bar can reach 100%.
+        if (m_restoring) {
+            ++m_restoreFinalizedCount;
+            emit restoreProgressChanged();
+            maybeCompleteRestore();
+        }
         auto *item = m_downloadModel->itemById(id);
         if (!item)
             return;
@@ -1817,6 +1816,17 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         scheduleSave(id);
         scheduleNextTorrentInQueue(queueId);
         emit activeDownloadsChanged();
+    });
+
+    // Each restored torrent's async add finalizes here — advance the restore
+    // progress bar by real readiness, not async_add_torrent dispatch count.
+    connect(m_torrentSession, &TorrentSessionManager::torrentAddFinalized, this,
+            [this](const QString &) {
+        if (!m_restoring)
+            return;
+        ++m_restoreFinalizedCount;
+        emit restoreProgressChanged();
+        maybeCompleteRestore();
     });
 
     // ── yt-dlp Manager wiring ─────────────────────────────────────────────────
@@ -1835,7 +1845,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         if (m_settings->ytdlpAutoUpdate() && m_ytdlpManager->available())
             m_ytdlpManager->selfUpdate();
     });
-    m_ytdlpManager->checkAvailability();
+    // checkAvailability() (spawns yt-dlp --version) moved to deferredInit().
 
     // ── Clipboard URL monitoring ───────────────────────────────────────────────
     // When enabled, watch the system clipboard for URLs whose file extensions
@@ -2321,6 +2331,15 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         const int itemCount = static_cast<int>(items.size());
         m_restoreTotalCount = itemCount;
         m_restoreDoneCount = 0;
+        m_restoreNonTorrentDone = 0;
+        m_restoreFinalizedCount = 0;
+        m_restoreTorrentTotal = 0;
+        for (auto *it : items)
+            if (it && it->isTorrent())
+                ++m_restoreTorrentTotal;
+        // True when the dispatch loop has enqueued every item AND every torrent's
+        // async add has finalized — the point at which we hide the restore overlay.
+        m_restoreDispatchDone = false;
         // Bulk-add mode: addItem() defers per-row insertRows + signal
         // wiring. A single beginResetModel/endResetModel in endBulkAdd
         // replaces 40 individual insert notifications, avoiding QML
@@ -2331,11 +2350,12 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         // showing "Click Add URL to start" before the first per-item restore
         // lambda fires.
         emit restoreProgressChanged();
+        // Runs once the dispatch loop has enqueued every item (all async torrent
+        // adds submitted). This is NOT "restore complete" — torrents are still
+        // landing via add_torrent_alert. The overlay is hidden later by
+        // maybeCompleteRestore() once every torrent has finalized.
         auto finalizeRestore = [this]() {
             m_downloadModel->endBulkAdd();
-            m_restoring = false;
-            m_restoreDoneCount = m_restoreTotalCount;
-            emit restoreProgressChanged();
             // Connect persistence signal handlers now that all set*() calls
             // from addTorrentInternal are done — avoids cascading signal storms.
             for (auto *item : m_downloadModel->allItems())
@@ -2353,12 +2373,6 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 m_sessionBaselineUploaded   += item->torrentUploaded();
                 m_sessionBaselineDownloaded += item->torrentDownloaded();
             }
-            // libtorrent alert polling runs every 1 s; give it 12 s after all
-            // items are enqueued to deliver any deferred torrent_finished_alert
-            // before we stop suppressing completions for restored seeding IDs.
-            QTimer::singleShot(12000, this, [this]() {
-                m_restoredSeedingIds.clear();
-            });
             // Count completed downloads from the restored items
             m_completedCount = 0;
               for (auto *item : m_downloadModel->allItems())
@@ -2388,7 +2402,10 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                   for (const QByteArray &p : pending)
                       handleIpcPayload(p);
               }
-              showWelcomeBack();
+              // Dispatch loop done; torrents may still be finalizing. Let
+              // maybeCompleteRestore() decide when to hide the overlay.
+              m_restoreDispatchDone = true;
+              maybeCompleteRestore();
         };
         if (itemCount == 0) {
             QTimer::singleShot(0, this, finalizeRestore);
@@ -2422,12 +2439,17 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                         // Restore adds asynchronously; per-torrent speed limits
                         // are applied inside finalizeTorrentAdd once the handle
                         // exists (a call here would no-op against an empty handle).
+                        // Progress for this item is counted later when its
+                        // torrentAddFinalized fires.
                         m_torrentSession->restoreTorrent(item, true);
+                    } else {
+                        // Non-torrent items have no async add phase — ready the
+                        // moment they're enqueued.
+                        ++m_restoreNonTorrentDone;
                     }
                     if (slice.elapsed() >= kRestoreSliceMs)
                         break;
                 }
-                m_restoreDoneCount = restoreIndex;
                 emit restoreProgressChanged();
                 if (restoreIndex < itemCount)
                     return;
@@ -6322,6 +6344,62 @@ void AppController::flushTorrentStats() {
         m_lastTorrentPersistUploaded[id]   = uploaded;
         m_lastTorrentPersistDownloaded[id] = downloaded;
     }
+}
+
+void AppController::deferredInit()
+{
+    if (m_deferredInitDone)
+        return;
+    m_deferredInitDone = true;
+
+    // Apply proxy first so the geo-DB update check and yt-dlp probe route through
+    // it. setApplicationProxy is process-wide; for System proxy this does a
+    // blocking WinHTTP query — kept off the pre-paint path.
+    applyProxy();
+
+    // MMDB_open of the geo database (file I/O); result only read by Settings.
+    refreshIpToCityDbInfo();
+
+    // Clean up orphaned rss_*.torrent temp files from a previous crash/power loss.
+    {
+        const QString tempDir = effectiveTemporaryDirectory(m_settings);
+        const QFileInfoList stale = QDir(tempDir).entryInfoList(
+            {QStringLiteral("rss_*.torrent")}, QDir::Files);
+        for (const QFileInfo &fi : stale)
+            QFile::remove(fi.absoluteFilePath());
+    }
+
+    // Spawns yt-dlp --version; completion triggers the optional self-update.
+    if (m_ytdlpManager)
+        m_ytdlpManager->checkAvailability();
+}
+
+void AppController::maybeCompleteRestore()
+{
+    // Only complete once the dispatch loop has finished enqueuing every item
+    // AND every restored torrent's async add has finalized (handle live). Until
+    // then the overlay stays up and the bar tracks real readiness.
+    if (!m_restoring || !m_restoreDispatchDone)
+        return;
+    if (m_restoreFinalizedCount < m_restoreTorrentTotal)
+        return;
+
+    m_restoring = false;
+    m_restoreDoneCount = m_restoreTotalCount;
+    emit restoreProgressChanged();
+
+    // Clear the cached "starting up" tooltip so the next 5 s tooltip-timer tick
+    // replaces it with live download stats.
+    m_lastTrayTooltip.clear();
+
+    // libtorrent alert polling runs every ~2 s; give it 12 s after all torrents
+    // have landed to deliver any deferred torrent_finished_alert before we stop
+    // suppressing completions for restored seeding IDs.
+    QTimer::singleShot(12000, this, [this]() {
+        m_restoredSeedingIds.clear();
+    });
+
+    showWelcomeBack();
 }
 
 void AppController::showWelcomeBack()

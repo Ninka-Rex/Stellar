@@ -461,6 +461,15 @@ TorrentSessionManager::TorrentSessionManager(QObject *parent)
         }
 #endif
     });
+#if defined(STELLAR_HAS_LIBTORRENT)
+    // Paces finalizeTorrentAdd over many event-loop iterations during a cold-start
+    // restore burst. PreciseTimer/interval-0: fires as fast as the loop allows but
+    // yields between slices so paint events interleave. Self-stops when drained.
+    m_finalizeDrainTimer.setTimerType(Qt::PreciseTimer);
+    m_finalizeDrainTimer.setInterval(0);
+    connect(&m_finalizeDrainTimer, &QTimer::timeout, this,
+            &TorrentSessionManager::drainPendingFinalize);
+#endif
 }
 
 TorrentSessionManager::~TorrentSessionManager() {
@@ -1722,6 +1731,30 @@ void TorrentSessionManager::finalizeTorrentAdd(DownloadItem *item, const libtorr
     // the first alert tick (which previously made it appear to "ping the swarm").
     if (!torrentFilePath.isEmpty() && !deferModels)
         updateModels(item->id(), handle, false);
+
+    // The handle is now registered and all persisted state re-applied. Restore
+    // progress tracks this (one emit per torrent actually added to the session),
+    // not the earlier async_add_torrent dispatch.
+    emit torrentAddFinalized(item->id());
+}
+
+void TorrentSessionManager::drainPendingFinalize() {
+    // Same 8 ms-slice pacing the AppController restore loop uses: run as many
+    // finalizes as fit the budget, then yield so the event loop can paint.
+    constexpr qint64 kFinalizeSliceMs = 8;
+    QElapsedTimer slice;
+    slice.start();
+    while (!m_pendingFinalize.empty() && slice.elapsed() < kFinalizeSliceMs) {
+        PendingFinalize job = m_pendingFinalize.front();
+        m_pendingFinalize.pop_front();
+        // The DownloadItem may have been removed while queued (user deleted the
+        // download mid-restore); QPointer guards that.
+        if (job.item)
+            finalizeTorrentAdd(job.item, job.handle, job.startPaused,
+                               /*deferModels=*/true, QString());
+    }
+    if (m_pendingFinalize.empty())
+        m_finalizeDrainTimer.stop();
 }
 
 void TorrentSessionManager::processAlerts() {
@@ -1778,7 +1811,11 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
         // Full peer inspection skipped (no dialog open, no auto-ban rules).
         // Still check incoming connections via one active handle so the
         // status-bar indicator doesn't require opening properties dialog.
-        if (!m_didInspectPeersThisTick) {
+        // While a restore burst is still finalizing, skip even this one
+        // get_peer_info() call — it's non-essential and adds session-lock work
+        // to the same ticks already paying for finalize. The indicator catches
+        // up on the next tick after the worklist drains.
+        if (!m_didInspectPeersThisTick && m_pendingFinalize.empty()) {
             for (const auto &st : update->status) {
                 if (st.num_peers > 0) {
                     std::vector<libtorrent::peer_info> infos;
@@ -1826,9 +1863,14 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
         }
         const bool startPaused =
             (added->params.flags & libtorrent::torrent_flags::paused) != libtorrent::torrent_flags_t{};
-        // torrentFilePath is only used to decide the immediate metadata-model
-        // populate, which is skipped on the restore path anyway — pass empty.
-        finalizeTorrentAdd(item, added->handle, startPaused, /*deferModels=*/true, QString());
+        // Defer finalize out of this alert burst so ~100 restored torrents don't
+        // run finalizeTorrentAdd (trackers, web seeds, model creation, status) all
+        // in one event-loop iteration — the multi-second cold-start UI freeze. The
+        // handle is valid now, so finalizing a few ticks later is safe. A pause()
+        // arriving meanwhile only sets m_pausedIds, which finalizeTorrentAdd honours.
+        m_pendingFinalize.push_back({ QPointer<DownloadItem>(item), added->handle, startPaused });
+        if (!m_finalizeDrainTimer.isActive())
+            m_finalizeDrainTimer.start();
         return;
     }
 

@@ -29,6 +29,7 @@
 #include <QVector>
 #include <atomic>
 #include <memory>
+#include <deque>
 
 class AppSettings;
 class DownloadItem;
@@ -165,6 +166,11 @@ signals:
     void torrentBatchUpdated();
     void torrentFinished(const QString &downloadId);
     void torrentErrored(const QString &downloadId, const QString &reason);
+    // Fired when a torrent's add has been fully registered with the session
+    // (handle live, trackers/limits applied). On the async restore path this is
+    // the true "this torrent is now in the session" signal — the restore
+    // progress bar counts these, not async_add_torrent dispatches.
+    void torrentAddFinalized(const QString &downloadId);
     void torrentShareLimitReached(const QString &downloadId, int action);
     void bannedPeersChanged();
     void torrentCreationProgress(int percent);
@@ -233,6 +239,11 @@ private:
     bool matchAutoBanRule(const libtorrent::peer_info &peer, const QString &client,
                           const QString &countryCode, QString *reason) const;
     void ensureGeoDb();
+    // Drains a few queued finalizeTorrentAdd jobs per tick (8 ms slice) so a
+    // cold-start burst of ~100 add_torrent_alerts doesn't run finalize for all
+    // of them in one event-loop iteration (multi-second UI freeze). Self-stops
+    // when the worklist empties.
+    void drainPendingFinalize();
     void lookupPeerLocation(const QString &endpoint, QString *countryCode,
                             QString *regionCode, QString *regionName, QString *cityName,
                             double *latitude, double *longitude);
@@ -250,6 +261,16 @@ private:
     QSet<QString> m_firedFinishedIds;
     QSet<QString> m_staticMetadataApplied; // torrent IDs whose immutable metadata (name, hash, comment, web seeds…) has been applied once
     QSet<QString> m_pendingAsyncAdds; // torrent IDs submitted via async_add_torrent, awaiting add_torrent_alert
+    // Finalize work deferred out of the add_torrent_alert burst and drained a
+    // few-per-tick by m_finalizeDrainTimer. The handle is valid the moment the
+    // alert lands, so running finalizeTorrentAdd later is safe.
+    struct PendingFinalize {
+        QPointer<DownloadItem>        item;
+        libtorrent::torrent_handle    handle;
+        bool                          startPaused{false};
+    };
+    std::deque<PendingFinalize> m_pendingFinalize;
+    QTimer m_finalizeDrainTimer;
     QHash<QString, QDateTime> m_seedingStartTimes;
     QHash<QString, qint64> m_lastUploadBytesForInactive;
     QHash<QString, QDateTime> m_lastUploadActivityTime;
