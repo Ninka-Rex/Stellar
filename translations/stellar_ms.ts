@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Muat Turun Selesai</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Muat Turun Gagal</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Muat turun gagal.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar memuat turun kemas kini, tetapi tidak dapat membaca fail pemasang.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Pemasang kemas kini yang dimuat turun gagal pengesahan cincangan.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Pelayan kemas kini tidak menyediakan cincangan SHA-256; enggan melancarkan pemasang.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar memuat turun kemas kini, tetapi tidak dapat melancarkan pemasang.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Pakej kemas kini dimuat turun: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Tidak dapat pasang %1 ke %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Pangkalan data IP-ke-bandar berjaya dikemas kini.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Kemas kini pangkalan data IP-ke-bandar gagal.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Muat turun kemas kini pangkalan data IP-ke-bandar gagal.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Muat turun kemas kini pangkalan data IP-ke-bandar gagal: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg berjaya dikemas kini.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Kemas kini FFmpeg gagal.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Muat turun kemas kini FFmpeg gagal.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Muat turun kemas kini FFmpeg gagal: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>DIHENTIKAN</translation>
         </message>

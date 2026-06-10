@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Lawrlwytho'n Gyflawn</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Lawrlwytho Wedi Methu</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Methodd y lawrlwythiad.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Llwythodd Stellar y diweddariad, ond ni allai ddarllen y ffeil gosod.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Methodd y gosodwr diweddariad wedi'i lawrlwytho â dilysu hash.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Ni ddarparodd y gweinydd diweddaru hash SHA-256; gwrthod lansio'r gosodwr.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Llwythodd Stellar y diweddariad, ond ni allai lansio'r gosodwr.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Pecyn diweddaru wedi'i lawrlwytho: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Methu gosod %1 i %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Cronfa ddata IP-i-ddinas wedi'i diweddaru'n llwyddiannus.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Diweddaru cronfa IP-i-ddinas wedi methu.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Lawrlwytho diweddariad cronfa IP-i-ddinas wedi methu.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Lawrlwytho diweddariad cronfa IP-i-ddinas wedi methu: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg wedi'i ddiweddaru'n llwyddiannus.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Diweddariad FFmpeg wedi methu.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Lawrlwytho diweddariad FFmpeg wedi methu.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Lawrlwytho diweddariad FFmpeg wedi methu: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>WEDI'I OEDI</translation>
         </message>

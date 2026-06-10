@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Ներբեռնումն ավարտվեց</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Ներբեռնումը ձախողվեց</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Ներբեռնումը ձախողվեց։</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar-ը ներբեռնեց թարմացումը, բայց չկարողացավ կարդալ տեղադրիչ ֆայլը։</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Ներբեռնված թարմացման տեղադրիչի հեշ ստուգումը ձախողվեց։</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Թարմացման սերվերը SHA-256 հեշ չտրամադրեց. տեղադրիչի գործարկումը մերժվում է։</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar-ը ներբեռնեց թարմացումը, բայց չկարողացավ գործարկել տեղադրիչը։</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Թարմացման փաթեթը ներբեռնված է՝ %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Չհաջողվեց տեղադրել %1-ը %2-ում</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-ից քաղաք տվյալների բազան հաջողությամբ թարմացվեց։</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-ից քաղաք տվյալների բազայի թարմացումը ձախողվեց։</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-ից քաղաք տվյալների բազայի թարմացման ներբեռնումը ձախողվեց։</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-ից քաղաք տվյալների բազայի թարմացման ներբեռնումը ձախողվեց՝ %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg-ը հաջողությամբ թարմացվեց։</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg-ի թարմացումը ձախողվեց։</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg-ի թարմացման ներբեռնումը ձախողվեց։</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg-ի թարմացման ներբեռնումը ձախողվեց՝ %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>ԴԱԴԱՐԵՑՎԱԾ</translation>
         </message>

@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>ההורדה הושלמה</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>ההורדה נכשלה</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>ההורדה נכשלה.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar הוריד את העדכון, אך לא הצליח לקרוא את קובץ ההתקנה.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>התקנת העדכון שהורד נכשלה באימות הגיבוב.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>שרת העדכון לא סיפק גיבוב SHA-256; מסרב להפעיל את ההתקנה.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar הוריד את העדכון, אך לא הצליח להפעיל את ההתקנה.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>חבילת עדכון הורדה: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>לא ניתן להתקין %1 אל %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>מסד נתוני IP-לעיר עודכן בהצלחה.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>עדכון מסד IP-לעיר נכשל.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>הורדת עדכון מסד IP-לעיר נכשלה.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>הורדת עדכון מסד IP-לעיר נכשלה: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg עודכן בהצלחה.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>עדכון FFmpeg נכשל.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>הורדת עדכון FFmpeg נכשלה.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>הורדת עדכון FFmpeg נכשלה: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>מושהה</translation>
         </message>

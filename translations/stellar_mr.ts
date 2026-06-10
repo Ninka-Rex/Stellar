@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>डाउनलोड पूर्ण</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>डाउनलोड अयशस्वी</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>डाउनलोड अयशस्वी झाले.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>स्टेलरने अपडेट डाउनलोड केले, पण इंस्टॉलर फाइल वाचू शकले नाही.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>डाउनलोड केलेले अपडेट इंस्टॉलर हॅश पडताळणीत अयशस्वी ठरले.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>अपडेट सर्व्हरने SHA-256 हॅश दिला नाही; इंस्टॉलर लाँच करण्यास नकार.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>स्टेलरने अपडेट डाउनलोड केले, पण इंस्टॉलर लाँच करू शकले नाही.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>अपडेट पॅकेज डाउनलोड झाले: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 ते %2 मध्ये इंस्टॉल करू शकले नाही</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-टू-सिटी डेटाबेस यशस्वीरित्या अपडेट झाला.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-ते-शहर डेटाबेस अद्यतन अयशस्वी.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-ते-शहर डेटाबेस अद्यतन डाउनलोड अयशस्वी.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-ते-शहर डेटाबेस अद्यतन डाउनलोड अयशस्वी: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg अद्यतन यशस्वी.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg अद्यतन अयशस्वी.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg अद्यतन डाउनलोड अयशस्वी.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg अद्यतन डाउनलोड अयशस्वी: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>थांबवले</translation>
         </message>

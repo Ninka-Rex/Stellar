@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Téléchargement terminé</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Échec du téléchargement</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Le téléchargement a échoué.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar a téléchargé la mise à jour, mais n'a pas pu lire le fichier d'installation.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>La vérification du hachage du programme d'installation a échoué.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Le serveur de mise à jour n'a pas fourni de hachage SHA-256 ; lancement refusé.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar a téléchargé la mise à jour, mais n'a pas pu lancer l'installateur.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Paquet de mise à jour téléchargé : %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Impossible d'installer %1 dans %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Base de données IP-ville mise à jour avec succès.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>MàJ base IP-ville échouée.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Échec du téléchargement de la MàJ base IP-ville.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Échec du téléchargement de la MàJ base IP-ville : %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg mis à jour avec succès.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Échec de la MàJ FFmpeg.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Échec du téléchargement de la MàJ FFmpeg.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Échec du téléchargement de la MàJ FFmpeg : %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>EN PAUSE</translation>
         </message>

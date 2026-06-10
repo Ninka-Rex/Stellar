@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Letöltés kész</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Letöltés sikertelen</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>A letöltés sikertelen.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>A Stellar letöltötte a frissítést, de nem tudta olvasni a telepítőfájlt.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>A letöltött frissítő hash-ellenőrzése sikertelen.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>A frissítőszerver nem adott meg SHA-256 hash-t; a telepítő indítása megtagadva.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>A Stellar letöltötte a frissítést, de nem tudta elindítani a telepítőt.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Frissítőcsomag letöltve: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Nem sikerült telepíteni: %1 → %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP–város adatbázis frissítve.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-város adatbázis frissítése sikertelen.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-város adatbázis frissítés letöltése sikertelen.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-város adatbázis frissítés letöltése sikertelen: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg frissítve.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg frissítés sikertelen.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg frissítés letöltése sikertelen.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg frissítés letöltése sikertelen: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>SZÜNETEL</translation>
         </message>

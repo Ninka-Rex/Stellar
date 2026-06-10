@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Download voltooid</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Download mislukt</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>De download is mislukt.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar heeft de update gedownload, maar kon het installatiebestand niet lezen.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>De hashverificatie van het gedownloade update-installatieprogramma is mislukt.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>De updateserver heeft geen SHA-256-hash verstrekt; installatie geweigerd.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar heeft de update gedownload, maar kon het installatieprogramma niet starten.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Updatepakket gedownload: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Kon %1 niet installeren naar %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-naar-stad-database succesvol bijgewerkt.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-naar-stad database-update mislukt.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Download IP-naar-stad database-update mislukt.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Download IP-naar-stad database-update mislukt: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg succesvol bijgewerkt.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg update mislukt.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Download FFmpeg update mislukt.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Download FFmpeg update mislukt: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>GEPAUZEERD</translation>
         </message>

@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Shkarkimi përfundoi</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Shkarkimi dështoi</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Shkarkimi dështoi.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar shkarkoi përditësimin, por s’lexoi dot instaluesin.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Instaluesi i shkarkuar dështoi verifikimin hash.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Serveri s’dha hash SHA-256; nisja e instaluesit u refuzua.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar shkarkoi përditësimin, por s’e hapi dot instaluesin.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Paketa e përditësimit u shkarkua: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>S’u instalua dot %1 te %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Baza IP-në-qytet u përditësua me sukses.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Përditësimi i bazës IP-në-qytet dështoi.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Shkarkimi i përditësimit të bazës IP-në-qytet dështoi.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Shkarkimi i përditësimit të bazës IP-në-qytet dështoi: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg u përditësua me sukses.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Përditësimi i FFmpeg dështoi.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Shkarkimi i përditësimit të FFmpeg dështoi.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Shkarkimi i përditësimit të FFmpeg dështoi: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>NDALUAR</translation>
         </message>

@@ -185,6 +185,74 @@
 <context>
     <name>AppController</name>
     <message>
+        <source>Download Complete</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Download Failed</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>The download failed.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Stellar downloaded the update, but could not read the installer file.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>The downloaded update installer failed hash verification.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Stellar downloaded the update, but could not launch the installer.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Update package downloaded: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Could not install %1 to %2</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>IP-to-city database updated successfully.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>IP-to-city database update failed.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>IP-to-city database update download failed.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>IP-to-city database update download failed: %1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FFmpeg updated successfully.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FFmpeg update failed.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FFmpeg update download failed.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FFmpeg update download failed: %1</source>
+        <translation></translation>
+    </message>
+    <message>
         <source>PAUSED</source>
         <translation type="vanished">PAUSED</translation>
     </message>

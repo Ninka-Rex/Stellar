@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>பதிவிறக்கம் முடிந்தது</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>பதிவிறக்கம் தோல்வி</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>பதிவிறக்கம் தோல்வியடைந்தது.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>ஸ்டெல்லார் புதுப்பிப்பைப் பதிவிறக்கியது, ஆனால் நிறுவல் கோப்பைப் படிக்க முடியவில்லை.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>பதிவிறக்கிய புதுப்பிப்பு நிறுவியின் ஹாஷ் சரிபார்ப்பு தோல்வி.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>புதுப்பிப்பு சேவையகம் SHA-256 ஹாஷ் வழங்கவில்லை; நிறுவியைத் தொடங்க மறுக்கிறது.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>ஸ்டெல்லார் புதுப்பிப்பைப் பதிவிறக்கியது, ஆனால் நிறுவியைத் தொடங்க முடியவில்லை.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>புதுப்பிப்பு தொகுப்பு பதிவிறக்கம்: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 ஐ %2 இல் நிறுவ முடியவில்லை</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-நகர தரவுத்தளம் வெற்றிகரமாக புதுப்பிக்கப்பட்டது.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-க்கு நகர தரவுத்தள புதுப்பிப்பு தோல்வி.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-க்கு நகர தரவுத்தள புதுப்பிப்பு பதிவிறக்கம் தோல்வி.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-க்கு நகர தரவுத்தள புதுப்பிப்பு பதிவிறக்கம் தோல்வி: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg வெற்றிகரமாக புதுப்பிக்கப்பட்டது.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg புதுப்பிப்பு தோல்வி.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg புதுப்பிப்பு பதிவிறக்கம் தோல்வி.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg புதுப்பிப்பு பதிவிறக்கம் தோல்வி: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>இடைநிறுத்தப்பட்டது</translation>
         </message>

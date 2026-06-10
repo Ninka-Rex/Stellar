@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>ഡൗൺലോഡ് പൂർത്തിയായി</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>ഡൗൺലോഡ് പരാജയപ്പെട്ടു</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>ഡൗൺലോഡ് പരാജയപ്പെട്ടു.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>സ്റ്റെല്ലാർ അപ്ഡേറ്റ് ഡൗൺലോഡ് ചെയ്തു, പക്ഷേ ഇൻസ്റ്റാളർ ഫയൽ വായിക്കാൻ കഴിഞ്ഞില്ല.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>ഡൗൺലോഡ് ചെയ്ത അപ്ഡേറ്റ് ഇൻസ്റ്റാളറിന്റെ ഹാഷ് പരിശോധന പരാജയപ്പെട്ടു.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>അപ്ഡേറ്റ് സെർവർ ഒരു SHA-256 ഹാഷ് നൽകിയില്ല; ഇൻസ്റ്റാളർ സമാരംഭിക്കാൻ വിസമ്മതിക്കുന്നു.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>സ്റ്റെല്ലാർ അപ്ഡേറ്റ് ഡൗൺലോഡ് ചെയ്തു, പക്ഷേ ഇൻസ്റ്റാളർ ലോഞ്ച് ചെയ്യാൻ കഴിഞ്ഞില്ല.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>അപ്ഡേറ്റ് പാക്കേജ് ഡൗൺലോഡ് ചെയ്തു: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 %2-ലേക്ക് ഇൻസ്റ്റാൾ ചെയ്യാൻ കഴിഞ്ഞില്ല</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>ഐപി-ടു-സിറ്റി ഡാറ്റാബേസ് വിജയകരമായി അപ്ഡേറ്റ് ചെയ്തു.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-to-city ഡാറ്റാബേസ് അപ്ഡേറ്റ് പരാജയപ്പെട്ടു.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-to-city ഡാറ്റാബേസ് അപ്ഡേറ്റ് ഡൗൺലോഡ് പരാജയപ്പെട്ടു.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-to-city ഡാറ്റാബേസ് അപ്ഡേറ്റ് ഡൗൺലോഡ് പരാജയപ്പെട്ടു: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg അപ്ഡേറ്റ് വിജയിച്ചു.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg അപ്ഡേറ്റ് പരാജയപ്പെട്ടു.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg അപ്ഡേറ്റ് ഡൗൺലോഡ് പരാജയപ്പെട്ടു.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg അപ്ഡേറ്റ് ഡൗൺലോഡ് പരാജയപ്പെട്ടു: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>താൽക്കാലികമായി നിർത്തി</translation>
         </message>

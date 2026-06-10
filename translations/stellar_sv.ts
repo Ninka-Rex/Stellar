@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Nedladdning klar</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Nedladdning misslyckades</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Nedladdningen misslyckades.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar laddade ner uppdateringen, men kunde inte läsa installationsfilen.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Den nedladdade installationsfilen klarade inte hash-verifieringen.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Uppdateringsservern gav ingen SHA-256-hash; vägrar starta installationen.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar laddade ner uppdateringen, men kunde inte starta installationen.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Uppdateringspaket nedladdat: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Kunde inte installera %1 till %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-till-stad-databas uppdaterad.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-till-stad-databasuppdatering misslyckades.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Nedladdning av IP-till-stad-databas misslyckades.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Nedladdning av IP-till-stad-databas misslyckades: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg uppdaterad.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg-uppdatering misslyckades.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Nedladdning av FFmpeg-uppdatering misslyckades.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Nedladdning av FFmpeg-uppdatering misslyckades: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>PAUSAD</translation>
         </message>

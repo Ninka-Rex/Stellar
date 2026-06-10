@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>ਡਾਊਨਲੋਡ ਪੂਰਾ</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>ਡਾਊਨਲੋਡ ਫੇਲ੍ਹ</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>ਡਾਊਨਲੋਡ ਫੇਲ੍ਹ ਹੋ ਗਿਆ।</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar ਨੇ ਅੱਪਡੇਟ ਡਾਊਨਲੋਡ ਕੀਤਾ, ਪਰ ਇੰਸਟਾਲਰ ਫਾਈਲ ਨਹੀਂ ਪੜ੍ਹ ਸਕਿਆ।</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>ਡਾਊਨਲੋਡ ਕੀਤੇ ਅੱਪਡੇਟ ਇੰਸਟਾਲਰ ਦੀ ਹੈਸ਼ ਪੁਸ਼ਟੀ ਫੇਲ੍ਹ ਹੋ ਗਈ।</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>ਅੱਪਡੇਟ ਸਰਵਰ ਨੇ SHA-256 ਹੈਸ਼ ਨਹੀਂ ਦਿੱਤਾ; ਇੰਸਟਾਲਰ ਲਾਂਚ ਕਰਨ ਤੋਂ ਇਨਕਾਰ।</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar ਨੇ ਅੱਪਡੇਟ ਡਾਊਨਲੋਡ ਕੀਤਾ, ਪਰ ਇੰਸਟਾਲਰ ਲਾਂਚ ਨਹੀਂ ਕਰ ਸਕਿਆ।</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>ਅੱਪਡੇਟ ਪੈਕੇਜ ਡਾਊਨਲੋਡ: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 ਨੂੰ %2 ਵਿੱਚ ਇੰਸਟਾਲ ਨਹੀਂ ਕਰ ਸਕਿਆ</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-ਤੋਂ-ਸ਼ਹਿਰ ਡਾਟਾਬੇਸ ਸਫਲਤਾਪੂਰਵਕ ਅੱਪਡੇਟ ਹੋਇਆ।</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-ਤੋਂ-ਸ਼ਹਿਰ ਡਾਟਾਬੇਸ ਅੱਪਡੇਟ ਫੇਲ੍ਹ।</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-ਤੋਂ-ਸ਼ਹਿਰ ਡਾਟਾਬੇਸ ਅੱਪਡੇਟ ਡਾਊਨਲੋਡ ਫੇਲ੍ਹ।</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-ਤੋਂ-ਸ਼ਹਿਰ ਡਾਟਾਬੇਸ ਅੱਪਡੇਟ ਡਾਊਨਲੋਡ ਫੇਲ੍ਹ: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg ਸਫਲਤਾਪੂਰਵਕ ਅੱਪਡੇਟ ਹੋਇਆ।</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg ਅੱਪਡੇਟ ਫੇਲ੍ਹ।</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg ਅੱਪਡੇਟ ਡਾਊਨਲੋਡ ਫੇਲ੍ਹ।</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg ਅੱਪਡੇਟ ਡਾਊਨਲੋਡ ਫੇਲ੍ਹ: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>ਰੁਕਿਆ</translation>
         </message>

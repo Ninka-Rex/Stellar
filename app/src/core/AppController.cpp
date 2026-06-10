@@ -1795,7 +1795,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 const QString name = item->filename().isEmpty()
                     ? item->url().fileName()
                     : item->filename();
-                m_tray->showNotification(QStringLiteral("Download Complete"), name);
+                m_tray->showNotification(tr("Download Complete"), name);
             }
             emit downloadCompleted(item);
         }
@@ -2020,7 +2020,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             const QString name = item->filename().isEmpty()
                 ? item->url().fileName()
                 : item->filename();
-            m_tray->showNotification(QStringLiteral("Download Complete"), name);
+            m_tray->showNotification(tr("Download Complete"), name);
         }
         if (!isIpToCityUpdateItem
             && !isFfmpegUpdateItem
@@ -2043,7 +2043,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             // Heap-allocated so it can ride into the delayed-launch lambda below.
             auto installerFile = std::make_shared<QFile>(installerPath);
             if (!installerFile->open(QIODevice::ReadOnly)) {
-                emit updateError(QStringLiteral("Stellar downloaded the update, but could not read the installer file."));
+                emit updateError(tr("Stellar downloaded the update, but could not read the installer file."));
             } else {
                 const QByteArray actualHash = QCryptographicHash::hash(installerFile->readAll(), QCryptographicHash::Sha256).toHex();
 
@@ -2057,8 +2057,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                     actualHash.compare(m_pendingUpdateSha256.trimmed().toUtf8(), Qt::CaseInsensitive) == 0;
                 if (!hashProvided || !hashMatches) {
                     emit updateError(hashProvided
-                        ? QStringLiteral("The downloaded update installer failed hash verification.")
-                        : QStringLiteral("The update server did not provide a SHA-256 hash; refusing to launch the installer."));
+                        ? tr("The downloaded update installer failed hash verification.")
+                        : tr("The update server did not provide a SHA-256 hash; refusing to launch the installer."));
                 } else {
 #if defined(Q_OS_WIN)
                     // Tell the UI we're about to close so the user gets the
@@ -2086,10 +2086,10 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                         if (QProcess::startDetached(installerPath, args))
                             QCoreApplication::quit();
                         else
-                            emit updateError(QStringLiteral("Stellar downloaded the update, but could not launch the installer."));
+                            emit updateError(tr("Stellar downloaded the update, but could not launch the installer."));
                     });
 #else
-                    m_updateStatusText = QStringLiteral("Update package downloaded: %1").arg(installerPath);
+                    m_updateStatusText = tr("Update package downloaded: %1").arg(installerPath);
                     emit updateStatusTextChanged();
                     // On Linux we don't auto-install (needs package-manager
                     // privilege); hand the path back to the dialog so it can offer
@@ -2126,13 +2126,13 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 QFile::remove(targetPath);
                 installOk = QFile::copy(archivePath, targetPath);
                 if (!installOk)
-                    failureReason = QStringLiteral("Could not install %1 to %2").arg(sourceName, targetPath);
+                    failureReason = tr("Could not install %1 to %2").arg(sourceName, targetPath);
             }
 
             m_pendingIpToCityDbDownloadId.clear();
             m_ipToCityDbUpdating = false;
             if (installOk) {
-                m_ipToCityDbUpdateStatus = QStringLiteral("IP-to-city database updated successfully.");
+                m_ipToCityDbUpdateStatus = tr("IP-to-city database updated successfully.");
                 refreshIpToCityDbInfo();
                 // Remove stale geo DB files, keep only newly installed one
                 const QDir geoDirClean(targetDir);
@@ -2145,7 +2145,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 }
             } else {
                 m_ipToCityDbUpdateStatus = failureReason.isEmpty()
-                    ? QStringLiteral("IP-to-city database update failed.")
+                    ? tr("IP-to-city database update failed.")
                     : failureReason;
                 refreshIpToCityDbInfo();
             }
@@ -2168,12 +2168,12 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             m_pendingFfmpegDownloadId.clear();
             m_ffmpegUpdating = false;
             if (installOk) {
-                m_ffmpegUpdateStatus = QStringLiteral("FFmpeg updated successfully.");
+                m_ffmpegUpdateStatus = tr("FFmpeg updated successfully.");
                 if (m_ytdlpManager)
                     m_ytdlpManager->checkAvailability();
             } else {
                 m_ffmpegUpdateStatus = failureReason.isEmpty()
-                    ? QStringLiteral("FFmpeg update failed.")
+                    ? tr("FFmpeg update failed.")
                     : failureReason;
             }
             QFile::remove(payloadPath);
@@ -2193,8 +2193,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             m_pendingIpToCityDbDownloadId.clear();
             m_ipToCityDbUpdating = false;
             m_ipToCityDbUpdateStatus = reason.isEmpty()
-                ? QStringLiteral("IP-to-city database update download failed.")
-                : QStringLiteral("IP-to-city database update download failed: %1").arg(reason);
+                ? tr("IP-to-city database update download failed.")
+                : tr("IP-to-city database update download failed: %1").arg(reason);
             QFile::remove(archivePath);
             emit ipToCityDbUpdateStateChanged();
         }
@@ -2203,8 +2203,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             m_pendingFfmpegDownloadId.clear();
             m_ffmpegUpdating = false;
             m_ffmpegUpdateStatus = reason.isEmpty()
-                ? QStringLiteral("FFmpeg update download failed.")
-                : QStringLiteral("FFmpeg update download failed: %1").arg(reason);
+                ? tr("FFmpeg update download failed.")
+                : tr("FFmpeg update download failed: %1").arg(reason);
             QFile::remove(payloadPath);
             emit ffmpegUpdateStateChanged();
         }
@@ -2249,8 +2249,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             const QString name = item->filename().isEmpty()
                 ? item->url().fileName()
                 : item->filename();
-            const QString details = reason.isEmpty() ? QStringLiteral("The download failed.") : reason;
-            m_tray->showNotification(QStringLiteral("Download Failed"), QStringLiteral("%1\n%2").arg(name, details));
+            const QString details = reason.isEmpty() ? tr("The download failed.") : reason;
+            m_tray->showNotification(tr("Download Failed"), QStringLiteral("%1\n%2").arg(name, details));
         }
     });
     connect(m_queue, &DownloadQueue::itemFileDeleted, this, [this](DownloadItem *item) {

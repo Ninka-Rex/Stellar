@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Preuzimanje dovršeno</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Preuzimanje nije uspjelo</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Preuzimanje nije uspjelo.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar je preuzeo ažuriranje, ali ne može pročitati instalacijsku datoteku.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Instalacijska datoteka nije prošla hash provjeru.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Poslužitelj nije dao SHA-256 hash; odbijeno pokretanje instalacije.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar je preuzeo ažuriranje, ali ne može pokrenuti instalaciju.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Paket ažuriranja preuzet: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Nije moguće instalirati %1 u %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Baza IP-u-grad uspješno ažurirana.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Ažuriranje IP-baze gradova nije uspjelo.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Preuzimanje ažuriranja IP-baze gradova nije uspjelo.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Preuzimanje ažuriranja IP-baze gradova nije uspjelo: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg uspješno ažuriran.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Ažuriranje FFmpeg-a nije uspjelo.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Preuzimanje ažuriranja FFmpeg-a nije uspjelo.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Preuzimanje ažuriranja FFmpeg-a nije uspjelo: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>PAUZIRANO</translation>
         </message>

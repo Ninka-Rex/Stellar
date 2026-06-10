@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>ಡೌನ್‌ಲೋಡ್ ಪೂರ್ಣಗೊಂಡಿದೆ</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>ಸ್ಟೆಲ್ಲಾರ್ ನವೀಕರಣವನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದೆ, ಆದರೆ ಇನ್‌ಸ್ಟಾಲರ್ ಫೈಲ್ ಓದಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ನವೀಕರಣ ಇನ್‌ಸ್ಟಾಲರ್ ಹ್ಯಾಶ್ ಪರಿಶೀಲನೆ ವಿಫಲವಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>ನವೀಕರಣ ಸರ್ವರ್ SHA-256 ಹ್ಯಾಶ್ ಒದಗಿಸಲಿಲ್ಲ; ಇನ್‌ಸ್ಟಾಲರ್ ಪ್ರಾರಂಭಿಸಲು ನಿರಾಕರಿಸಲಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>ಸ್ಟೆಲ್ಲಾರ್ ನವೀಕರಣವನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದೆ, ಆದರೆ ಇನ್‌ಸ್ಟಾಲರ್ ಪ್ರಾರಂಭಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>ನವೀಕರಣ ಪ್ಯಾಕೇಜ್ ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 ಅನ್ನು %2 ಗೆ ಸ್ಥಾಪಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-ನಗರ ಡೇಟಾಬೇಸ್ ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಲಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-ನಗರ ಡೇಟಾಬೇಸ್ ನವೀಕರಣ ವಿಫಲವಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-ನಗರ ಡೇಟಾಬೇಸ್ ನವೀಕರಣ ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-ನಗರ ಡೇಟಾಬೇಸ್ ನವೀಕರಣ ಡೌನ್‌ಲೋಡ್ ವಿಫಲ: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಲಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg ನವೀಕರಣ ವಿಫಲವಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg ನವೀಕರಣ ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg ನವೀಕರಣ ಡೌನ್‌ಲೋಡ್ ವಿಫಲ: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ</translation>
         </message>

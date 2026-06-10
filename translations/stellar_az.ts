@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Yükləmə Tamamlandı</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Yükləmə Uğursuz Oldu</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Yükləmə uğursuz oldu.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar yeniləməni yüklədi, lakin quraşdırıcı faylı oxuya bilmədi.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Yüklənmiş yeniləmə quraşdırıcısı hash doğrulamasından keçə bilmədi.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Yeniləmə serveri SHA-256 hash təqdim etmədi; quraşdırıcı işə salınmadı.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar yeniləməni yüklədi, lakin quraşdırıcını işə sala bilmədi.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Yeniləmə paketi yükləndi: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 %2 ünvanına quraşdırıla bilmədi</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-şəhər verilənlər bazası uğurla yeniləndi.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-şəhər bazası yenilənmədi.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-şəhər bazası endirilmədi.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-şəhər bazası endirilmədi: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg yeniləndi.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg yenilənmədi.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg endirilmədi.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg endirilmədi: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>FASİLƏ</translation>
         </message>

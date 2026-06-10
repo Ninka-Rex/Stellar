@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Upakuaji Umekamilika</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Upakuaji Umeshindwa</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Upakuaji umeshindwa.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar ilipakua sasisho, lakini haikuweza kusoma faili ya kisakinishi.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Kisakinishi cha sasisho kilichopakuliwa kimeshindwa uthibitishaji wa heshi.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Seva ya sasisho haikutoa heshi ya SHA-256; inakataa kuzindua kisakinishi.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar ilipakua sasisho, lakini haikuweza kuzindua kisakinishi.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Kifurushi cha sasisho kimepakuliwa: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Haikuweza kusakinisha %1 hadi %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Hifadhidata ya IP-hadi-mji imesasishwa kwa mafanikio.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Usasishaji wa hifadhidata ya IP-kwa-mji umeshindwa.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Upakuaji wa usasishaji wa hifadhidata ya IP-kwa-mji umeshindwa.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Upakuaji wa usasishaji wa hifadhidata ya IP-kwa-mji umeshindwa: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg imesasishwa kwa mafanikio.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Usasishaji wa FFmpeg umeshindwa.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Upakuaji wa usasishaji wa FFmpeg umeshindwa.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Upakuaji wa usasishaji wa FFmpeg umeshindwa: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>IMESIMAMISHWA</translation>
         </message>

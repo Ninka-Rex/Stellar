@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Yuklab olish tugadi</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Yuklab olish muvaffaqiyatsiz</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Yuklab olish muvaffaqiyatsiz tugadi.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar yangilanishni yuklab oldi, lekin o‘rnatuvchi faylni o‘qiy olmadi.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Yuklab olingan yangilanish o‘rnatuvchisi xesh tekshiruvidan o‘tmadi.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Yangilash serveri SHA-256 xeshini taqdim etmadi; o‘rnatuvchini ishga tushirish rad etildi.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar yangilanishni yuklab oldi, lekin o‘rnatuvchini ishga tushira olmadi.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Yangilash paketi yuklab olindi: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 ni %2 ga o‘rnatib bo‘lmadi</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-shahar bazasi muvaffaqiyatli yangilandi.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-manzil-shahar bazasi yangilanishi muvaffaqiyatsiz.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-manzil-shahar bazasi yangilanish yuklab olinishi muvaffaqiyatsiz.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-manzil-shahar bazasi yangilanish yuklab olinishi muvaffaqiyatsiz: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg muvaffaqiyatli yangilandi.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg yangilanishi muvaffaqiyatsiz.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg yangilanish yuklab olinishi muvaffaqiyatsiz.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg yangilanish yuklab olinishi muvaffaqiyatsiz: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>TO'XTATILGAN</translation>
         </message>

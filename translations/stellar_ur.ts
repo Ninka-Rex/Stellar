@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>ڈاؤن لوڈ مکمل</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>ڈاؤن لوڈ ناکام</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>ڈاؤن لوڈ ناکام ہوا۔</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>اسٹیلر نے اپ ڈیٹ ڈاؤن لوڈ کی، لیکن انسٹالر فائل نہیں پڑھ سکا۔</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>ڈاؤن لوڈ کردہ اپ ڈیٹ انسٹالر کی ہیش تصدیق ناکام ہوگئی۔</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>اپ ڈیٹ سرور نے SHA-256 ہیش فراہم نہیں کی؛ انسٹالر لانچ کرنے سے انکار۔</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>اسٹیلر نے اپ ڈیٹ ڈاؤن لوڈ کی، لیکن انسٹالر لانچ نہیں کر سکا۔</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>اپ ڈیٹ پیکج ڈاؤن لوڈ ہوا: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 کو %2 میں انسٹال نہیں کر سکا</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-to-city ڈیٹا بیس کامیابی سے اپ ڈیٹ ہوگیا۔</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-to-city ڈیٹا بیس اپ ڈیٹ ناکام۔</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-to-city ڈیٹا بیس اپ ڈیٹ ڈاؤن لوڈ ناکام۔</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-to-city ڈیٹا بیس اپ ڈیٹ ڈاؤن لوڈ ناکام: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg کامیابی سے اپ ڈیٹ ہوا۔</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg اپ ڈیٹ ناکام۔</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg اپ ڈیٹ ڈاؤن لوڈ ناکام۔</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg اپ ڈیٹ ڈاؤن لوڈ ناکام: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>موقوف</translation>
         </message>

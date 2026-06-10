@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Stahování dokončeno</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Stahování selhalo</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Stahování selhalo.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar stáhl aktualizaci, ale nemohl přečíst instalační soubor.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Instalační soubor selhal při ověření hashe.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Server neposkytl SHA-256 hash; spuštění instalátoru odmítnuto.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar stáhl aktualizaci, ale nemohl spustit instalátor.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Balíček stažen: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Nelze nainstalovat %1 do %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-lokační databáze aktualizována.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Aktualizace IP-city databáze selhala.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Stažení aktualizace IP-city databáze selhalo.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Stažení aktualizace IP-city databáze selhalo: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg úspěšně aktualizován.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Aktualizace FFmpeg selhala.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Stažení aktualizace FFmpeg selhalo.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Stažení aktualizace FFmpeg selhalo: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>POZASTAVENO</translation>
         </message>

@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>ডাউনলোড সম্পন্ন</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>ডাউনলোড ব্যর্থ</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>ডাউনলোড ব্যর্থ হয়েছে।</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>স্টেলার আপডেট ডাউনলোড করেছে, কিন্তু ইনস্টলার ফাইল পড়তে পারেনি।</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>ডাউনলোডকৃত আপডেট ইনস্টলার হ্যাশ যাচাই ব্যর্থ হয়েছে।</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>আপডেট সার্ভার SHA-256 হ্যাশ প্রদান করেনি; ইনস্টলার চালু করতে অস্বীকার করা হচ্ছে।</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>স্টেলার আপডেট ডাউনলোড করেছে, কিন্তু ইনস্টলার চালু করতে পারেনি।</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>আপডেট প্যাকেজ ডাউনলোড হয়েছে: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 থেকে %2-এ ইনস্টল করা যায়নি</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-থেকে-শহর ডাটাবেস সফলভাবে আপডেট হয়েছে।</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>আইপি-টু-সিটি ডাটাবেস আপডেট ব্যর্থ।</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>আইপি-টু-সিটি ডাটাবেস আপডেট ডাউনলোড ব্যর্থ।</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>আইপি-টু-সিটি ডাটাবেস আপডেট ডাউনলোড ব্যর্থ: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg সফলভাবে আপডেট হয়েছে।</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg আপডেট ব্যর্থ।</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg আপডেট ডাউনলোড ব্যর্থ।</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg আপডেট ডাউনলোড ব্যর্থ: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>বিরাম</translation>
         </message>

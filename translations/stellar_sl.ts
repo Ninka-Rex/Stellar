@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Prenos končan</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Prenos ni uspel</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Prenos ni uspel.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar je prenesel posodobitev, vendar ni mogel prebrati namestitvene datoteke.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Namestitvena datoteka ni prestala preverjanja zgoščene vrednosti.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Strežnik za posodobitve ni zagotovil zgoščene vrednosti SHA-256; zagon namestitvenega programa zavrnjen.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar je prenesel posodobitev, vendar ni mogel zagnati namestitvenega programa.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Paket posodobitve prenesen: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Ni mogoče namestiti %1 na %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Zbirka podatkov IP-do-mesta uspešno posodobljena.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Posodobitev baze IP-mesto ni uspela.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Prenos posodobitve baze IP-mesto ni uspel.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Prenos posodobitve baze IP-mesto ni uspel: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg uspešno posodobljen.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Posodobitev FFmpeg ni uspela.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Prenos posodobitve FFmpeg ni uspel.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Prenos posodobitve FFmpeg ni uspel: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>PREKINJENO</translation>
         </message>

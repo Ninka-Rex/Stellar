@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>డౌన్లోడ్ పూర్తయింది</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>డౌన్లోడ్ విఫలమైంది</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>డౌన్లోడ్ విఫలమైంది.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>స్టెల్లార్ నవీకరణను డౌన్లోడ్ చేసింది, కానీ ఇన్స్టాలర్ ఫైల్ను చదవలేకపోయింది.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>డౌన్లోడ్ చేసిన అప్డేట్ ఇన్స్టాలర్ హాష్ ధృవీకరణలో విఫలమైంది.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>అప్డేట్ సర్వర్ SHA-256 హాష్ను అందించలేదు; ఇన్స్టాలర్ను ప్రారంభించడానికి నిరాకరిస్తోంది.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar అప్డేట్ను డౌన్లోడ్ చేసింది, కానీ ఇన్స్టాలర్ను ప్రారంభించలేకపోయింది.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>డౌన్లోడ్ చేసిన ప్యాకేజీని నవీకరించండి: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1ని %2కి ఇన్స్టాల్ చేయలేకపోయింది</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-నుండి-నగరం డేటాబేస్ విజయవంతంగా నవీకరించబడింది.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-to-city డేటాబేస్ నవీకరణ విఫలమైంది.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-to-city డేటాబేస్ నవీకరణ డౌన్‌లోడ్ విఫలమైంది.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-to-city డేటాబేస్ నవీకరణ డౌన్‌లోడ్ విఫలమైంది: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg విజయవంతంగా నవీకరించబడింది.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg నవీకరణ విఫలమైంది.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg నవీకరణ డౌన్‌లోడ్ విఫలమైంది.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg నవీకరణ డౌన్‌లోడ్ విఫలమైంది: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>నిలిపివేయబడింది</translation>
         </message>

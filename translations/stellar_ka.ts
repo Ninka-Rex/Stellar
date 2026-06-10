@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>ჩამოტვირთვა დასრულდა</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>ჩამოტვირთვა ვერ მოხერხდა</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>ჩამოტვირთვა ვერ მოხერხდა.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar-მა განახლება ჩამოტვირთა, მაგრამ ინსტალერის ფაილი ვერ წაიკითხა.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>ჩამოტვირთული განახლების ინსტალერის ჰეშის ვერიფიკაცია ვერ მოხერხდა.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>განახლების სერვერმა SHA-256 ჰეში არ მოგვაწოდა; ინსტალერის გაშვებაზე უარი.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar-მა განახლება ჩამოტვირთა, მაგრამ ინსტალერი ვერ გაუშვა.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>განახლების პაკეტი ჩამოტვირთულია: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1-ის %2-ში ინსტალაცია ვერ მოხერხდა</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-ქალაქის მონაცემთა ბაზა წარმატებით განახლდა.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-ქალაქის მონაცემთა ბაზის განახლება ვერ მოხერხდა.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-ქალაქის მონაცემთა ბაზის ჩამოტვირთვა ვერ მოხერხდა.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-ქალაქის მონაცემთა ბაზის ჩამოტვირთვა ვერ მოხერხდა: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg წარმატებით განახლდა.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg-ის განახლება ვერ მოხერხდა.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg-ის ჩამოტვირთვა ვერ მოხერხდა.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg-ის ჩამოტვირთვა ვერ მოხერხდა: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>შეჩერებულია</translation>
         </message>

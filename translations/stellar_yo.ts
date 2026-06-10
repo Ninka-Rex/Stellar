@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Ìgbasílẹ̀ Ti Parí</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Ìgbasílẹ̀ Kùnà</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Ìgbasílẹ̀ náà kùnà.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar ti ṣe ìgbasílẹ̀ ìmúdójúìwọ̀n, ṣùgbọ́n kò lè ka fáìlì atòlẹ̀sẹ.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Atòlẹ̀sẹ ìmúdójúìwọ̀n tí a ṣe ìgbasílẹ̀ rẹ̀ kùnà ìfidájú hash.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Olùpèsè ìmúdójúìwọ̀n kò pèsè hash SHA-256; kọ̀ láti ṣe ìfilọ́lẹ̀ atòlẹ̀sẹ.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar ti ṣe ìgbasílẹ̀ ìmúdójúìwọ̀n, ṣùgbọ́n kò lè ṣe ìfilọ́lẹ̀ atòlẹ̀sẹ.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Àkójọ ìmúdójúìwọ̀n ti ṣe ìgbasílẹ̀: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Kò lè fi %1 sórí %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Ibi-ìpamọ́ IP-sí-ìlú ti ṣe ìmúdójúìwọ̀n pẹ̀lú àṣeyọrí.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Ìmúdójúwọ̀n àkójọ IP-sí-ìlú kùnà.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Ìgbàsílẹ̀ ìmúdójúwọ̀n àkójọ IP-sí-ìlú kùnà.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Ìgbàsílẹ̀ ìmúdójúwọ̀n àkójọ IP-sí-ìlú kùnà: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg ti ṣe àtúnṣe dáadáa.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Àtúnṣe FFmpeg kùnà.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Ìgbàsílẹ̀ àtúnṣe FFmpeg kùnà.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Ìgbàsílẹ̀ àtúnṣe FFmpeg kùnà: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>DADURO</translation>
         </message>

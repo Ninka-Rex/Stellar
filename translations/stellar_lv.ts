@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Lejupielāde pabeigta</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Lejupielāde neizdevās</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Lejupielāde neizdevās.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar lejupielādēja atjauninājumu, bet nevarēja nolasīt instalācijas failu.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Lejupielādētā atjauninājuma instalētāja jaucējvērtības pārbaude neizdevās.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Atjauninājumu serveris nenodrošināja SHA-256 jaucējvērtību; instalētāja palaišana atteikta.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar lejupielādēja atjauninājumu, bet nevarēja palaist instalētāju.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Atjauninājumu pakotne lejupielādēta: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Nevarēja instalēt %1 uz %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-pilsētu datubāze veiksmīgi atjaunināta.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-pilsētas datubāzes atjaunināšana neizdevās.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-pilsētas datubāzes atjauninājuma lejupielāde neizdevās.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-pilsētas datubāzes atjauninājuma lejupielāde neizdevās: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg veiksmīgi atjaunināts.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg atjaunināšana neizdevās.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg atjauninājuma lejupielāde neizdevās.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg atjauninājuma lejupielāde neizdevās: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>PAUZĒTS</translation>
         </message>

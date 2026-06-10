@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Λήψη ολοκληρώθηκε</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Αποτυχία λήψης</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Η λήψη απέτυχε.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Το Stellar έλαβε την ενημέρωση, αλλά δεν μπόρεσε να διαβάσει το αρχείο εγκατάστασης.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Το ληφθέν αρχείο εγκατάστασης απέτυχε στην επαλήθευση κατακερματισμού.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Ο διακομιστής ενημέρωσης δεν παρείχε κατακερματισμό SHA-256· άρνηση εκκίνησης του προγράμματος εγκατάστασης.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Το Stellar έλαβε την ενημέρωση, αλλά δεν μπόρεσε να εκκινήσει το πρόγραμμα εγκατάστασης.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Λήψη πακέτου ενημέρωσης: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Αδυναμία εγκατάστασης του %1 στο %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Η βάση δεδομένων IP-σε-πόλη ενημερώθηκε επιτυχώς.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Αποτυχία ενημέρωσης βάσης IP-πόλης.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Αποτυχία λήψης ενημέρωσης βάσης IP-πόλης.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Αποτυχία λήψης ενημέρωσης βάσης IP-πόλης: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>Το FFmpeg ενημερώθηκε.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Αποτυχία ενημέρωσης FFmpeg.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Αποτυχία λήψης ενημέρωσης FFmpeg.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Αποτυχία λήψης ενημέρωσης FFmpeg: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>ΣΕ ΠΑΥΣΗ</translation>
         </message>

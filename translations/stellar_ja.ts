@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>ダウンロード完了</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>ダウンロード失敗</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>ダウンロードに失敗しました。</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellarが更新をダウンロードしましたが、インストーラーファイルを読み取れませんでした。</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>ダウンロードした更新インストーラーのハッシュ検証に失敗しました。</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>更新サーバーがSHA-256ハッシュを提供しなかったため、インストーラーの起動を拒否しました。</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellarが更新をダウンロードしましたが、インストーラーを起動できませんでした。</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>更新パッケージをダウンロードしました: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1を%2にインストールできませんでした</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-to-cityデータベースが正常に更新されました。</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-都市DB更新失敗</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-都市DB更新DL失敗</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-都市DB更新DL失敗: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg更新成功</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg更新失敗</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg更新DL失敗</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg更新DL失敗: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>一時停止中</translation>
         </message>

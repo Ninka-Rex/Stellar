@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>ดาวน์โหลดเสร็จ</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>ดาวน์โหลดล้มเหลว</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>การดาวน์โหลดล้มเหลว</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar ดาวน์โหลดอัปเดตแล้ว แต่อ่านไฟล์ติดตั้งไม่ได้</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>ไฟล์ติดตั้งอัปเดตที่ดาวน์โหลดมาตรวจสอบแฮชไม่ผ่าน</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>เซิร์ฟเวอร์อัปเดตไม่ได้ให้แฮช SHA-256; ปฏิเสธการเปิดไฟล์ติดตั้ง</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar ดาวน์โหลดอัปเดตแล้ว แต่เปิดไฟล์ติดตั้งไม่ได้</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>ดาวน์โหลดแพ็กเกจอัปเดตแล้ว: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>ไม่สามารถติดตั้ง %1 ไปยัง %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>อัปเดตฐานข้อมูล IP-to-city สำเร็จแล้ว</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>อัปเดตฐานข้อมูล IP-to-city ล้มเหลว</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>ดาวน์โหลดอัปเดตฐานข้อมูล IP-to-city ล้มเหลว</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>ดาวน์โหลดอัปเดตฐานข้อมูล IP-to-city ล้มเหลว: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>อัปเดต FFmpeg สำเร็จ</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>อัปเดต FFmpeg ล้มเหลว</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>ดาวน์โหลดอัปเดต FFmpeg ล้มเหลว</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>ดาวน์โหลดอัปเดต FFmpeg ล้มเหลว: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>⏸ หยุดชั่วคราว</translation>
         </message>

@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Изтеглянето завършено</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Неуспешно изтегляне</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Изтеглянето неуспешно.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar изтегли актуализацията, но не можа да прочете инсталатора.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Инсталаторът не премина хеш проверка.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Сървърът не предостави SHA-256 хеш; отказ за стартиране на инсталатора.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar изтегли актуализацията, но не можа да стартира инсталатора.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Пакетът изтеглен: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 не можа да се инсталира в %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Базата IP-към-град обновена успешно.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Неуспешно обновяване на IP-град базата.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Неуспешно изтегляне на обновлението за IP-град базата.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Неуспешно изтегляне на обновлението за IP-град базата: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg обновен успешно.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Неуспешно обновяване на FFmpeg.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Неуспешно изтегляне на обновлението за FFmpeg.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Неуспешно изтегляне на обновлението за FFmpeg: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>ПАУЗИРАНО</translation>
         </message>

@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>ទាញយករួចរាល់</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>ទាញយកបរាជ័យ</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>ការទាញយកបានបរាជ័យ។</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar បានទាញយកបច្ចុប្បន្នភាព ប៉ុន្តែមិនអាចអានឯកសារដំឡើងបានទេ។</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>កម្មវិធីដំឡើងបច្ចុប្បន្នភាពដែលបានទាញយក បរាជ័យការផ្ទៀងផ្ទាត់សញ្ញាសម្គាល់។</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>ម៉ាស៊ីនមេបច្ចុប្បន្នភាពមិនបានផ្តល់សញ្ញាសម្គាល់ SHA-256 ទេ បដិសេធការបើកដំណើរការកម្មវិធីដំឡើង។</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar បានទាញយកបច្ចុប្បន្នភាព ប៉ុន្តែមិនអាចបើកដំណើរការកម្មវិធីដំឡើងបានទេ។</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>កញ្ចប់បច្ចុប្បន្នភាពបានទាញយក៖ %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>មិនអាចដំឡើង %1 ទៅ %2 បានទេ</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>មូលដ្ឋានទិន្នន័យ IP-ទៅ-ទីក្រុង បានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ។</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>ការធ្វើបច្ចុប្បន្នភាពទិន្នន័យ IP ទៅទីក្រុងបរាជ័យ។</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>ការទាញយកទិន្នន័យ IP ទៅទីក្រុងបរាជ័យ។</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>ការទាញយកទិន្នន័យ IP ទៅទីក្រុងបរាជ័យ៖ %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg បានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ។</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>ការធ្វើបច្ចុប្បន្នភាព FFmpeg បរាជ័យ។</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>ការទាញយក FFmpeg បរាជ័យ។</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>ការទាញយក FFmpeg បរាជ័យ៖ %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>ផ្អាក</translation>
         </message>

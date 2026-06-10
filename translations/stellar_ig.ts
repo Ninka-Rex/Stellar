@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Nbudata Emechara</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Nbudata Dara</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Nbudata ahụ dara.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar budatara mmelite ahụ, mana enweghị ike ịgụ faịlụ nrụnye.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Nrụnye mmelite ebudatara dara nlele hash.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Sava mmelite enyeghị hash SHA-256; jụrụ ịmalite nrụnye.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar budatara mmelite ahụ, mana enweghị ike ịmalite nrụnye.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Ngwugwu mmelite ebudatara: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Enweghị ike ịwụnye %1 na %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Ebe nchekwa IP-na-obodo emelitere nke ọma.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Mmelite nchekwa data IP-na-obodo dara.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Nbudata mmelite nchekwa data IP-na-obodo dara.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Nbudata mmelite nchekwa data IP-na-obodo dara: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>Emelitere FFmpeg nke ọma.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Mmelite FFmpeg dara.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Nbudata mmelite FFmpeg dara.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Nbudata mmelite FFmpeg dara: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>KWỤSỊRỊ</translation>
         </message>

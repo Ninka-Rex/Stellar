@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Завантаження завершено</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Помилка завантаження</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Завантаження не вдалося.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar завантажив оновлення, але не зміг прочитати файл інсталятора.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Інсталятор оновлення не пройшов перевірку хешу.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Сервер оновлень не надав хеш SHA-256; запуск інсталятора скасовано.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar завантажив оновлення, але не зміг запустити інсталятор.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Пакет оновлення завантажено: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Не вдалося встановити %1 до %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Базу IP-до-міста успішно оновлено.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Не вдалося оновити базу IP-до-міста.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Не вдалося завантажити оновлення бази IP-до-міста.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Не вдалося завантажити оновлення бази IP-до-міста: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg успішно оновлено.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Не вдалося оновити FFmpeg.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Не вдалося завантажити оновлення FFmpeg.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Не вдалося завантажити оновлення FFmpeg: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>ПРИЗУПИНЕНО</translation>
         </message>

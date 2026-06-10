@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Íoslódáil Críochnaithe</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Theip ar Íoslódáil</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Theip ar an íoslódáil.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>D'íoslódáil Stellar an nuashonrú, ach níorbh fhéidir an comhad suiteálaí a léamh.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Theip ar fhíorú hais an suiteálaí nuashonraithe íoslódáilte.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Níor sholáthair an freastalaí nuashonraithe hais SHA-256; diúltaíodh an suiteálaí a sheoladh.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>D'íoslódáil Stellar an nuashonrú, ach níorbh fhéidir an suiteálaí a sheoladh.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Pacáiste nuashonraithe íoslódáilte: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Níorbh fhéidir %1 a shuiteáil go %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Nuashonraíodh an bunachar sonraí IP-go-cathair go rathúil.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Theip ar nuashonrú bunachar IP-go-cathair.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Theip ar íoslódáil nuashonrú bunachar IP-go-cathair.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Theip ar íoslódáil nuashonrú bunachar IP-go-cathair: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>D'éirigh le nuashonrú FFmpeg.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Theip ar nuashonrú FFmpeg.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Theip ar íoslódáil nuashonrú FFmpeg.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Theip ar íoslódáil nuashonrú FFmpeg: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>SOS</translation>
         </message>

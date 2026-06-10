@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Allalaadimine lõpetatud</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Allalaadimine ebaõnnestus</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Allalaadimine ebaõnnestus.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar laadis uuenduse alla, kuid ei suutnud paigaldusfaili lugeda.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Allalaaditud uuenduse paigaldusfaili räsikontroll ebaõnnestus.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Uuendusserver ei esitanud SHA-256 räsi; paigaldaja käivitamisest keeldutakse.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar laadis uuenduse alla, kuid ei suutnud paigaldajat käivitada.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Uuenduspakett alla laaditud: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Ei saanud paigaldada %1 asukohta %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-linna andmebaas uuendatud edukalt.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-linna andmebaasi uuendamine ebaõnnestus.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-linna andmebaasi uuenduse allalaadimine ebaõnnestus.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-linna andmebaasi uuenduse allalaadimine ebaõnnestus: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg uuendatud edukalt.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg uuendamine ebaõnnestus.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg uuenduse allalaadimine ebaõnnestus.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg uuenduse allalaadimine ebaõnnestus: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>PEATATUD</translation>
         </message>

@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Татаж дууслаа</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Татаж чадсангүй</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Татаж чадсангүй.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar шинэчлэлийг татсан боловч суулгагч файлыг уншиж чадсангүй.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Татаж авсан шинэчлэлийн суулгагчийн хэш баталгаажуулалт амжилтгүй боллоо.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Шинэчлэлийн сервер SHA-256 хэш өгөөгүй; суулгагчийг ажиллуулахаас татгалзаж байна.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar шинэчлэлийг татсан боловч суулгагчийг ажиллуулж чадсангүй.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Шинэчлэлийн багц татагдсан: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1-г %2-д суулгаж чадсангүй</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-хотын мэдээллийн сан амжилттай шинэчлэгдлээ.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-хот мэдээллийн сангийн шинэчлэл амжилтгүй.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-хот мэдээллийн сангийн таталт амжилтгүй.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-хот мэдээллийн сангийн таталт амжилтгүй: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg амжилттай шинэчлэгдлээ.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg шинэчлэл амжилтгүй.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg таталт амжилтгүй.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg таталт амжилтгүй: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>ЗОГСООСОН</translation>
         </message>

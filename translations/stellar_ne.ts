@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>डाउनलोड पूरा भयो</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>डाउनलोड असफल</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>डाउनलोड असफल भयो।</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>स्टेलरले अपडेट डाउनलोड गर्यो, तर इन्स्टलर फाइल पढ्न सकेन।</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>डाउनलोड गरिएको अपडेट इन्स्टलर ह्यास प्रमाणीकरणमा असफल भयो।</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>अपडेट सर्भरले SHA-256 ह्यास प्रदान गरेन; इन्स्टलर चलाउन अस्वीकार।</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>स्टेलरले अपडेट डाउनलोड गर्यो, तर इन्स्टलर चलाउन सकेन।</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>अपडेट प्याकेज डाउनलोड भयो: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 लाई %2 मा स्थापना गर्न सकिएन</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-देखि-शहर डाटाबेस सफलतापूर्वक अपडेट भयो।</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-देखि-शहर डाटाबेस अद्यावधिक असफल।</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-देखि-शहर डाटाबेस अद्यावधिक डाउनलोड असफल।</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-देखि-शहर डाटाबेस अद्यावधिक डाउनलोड असफल: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg सफलतापूर्वक अद्यावधिक भयो।</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg अद्यावधिक असफल।</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg अद्यावधिक डाउनलोड असफल।</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg अद्यावधिक डाउनलोड असफल: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>रोकिएको</translation>
         </message>

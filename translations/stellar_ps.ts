@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>ډاونلوډ بشپړ شو</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>ډاونلوډ ناکام شو</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>ډاونلوډ ناکام شو.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>سټیلر تازه معلومات ډاونلوډ کړل، خو انسټالر فایل لوستلای نشو.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>ډاونلوډ شوي تازه انسټالر هش تایید ناکام شو.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>تازه معلومات سرور SHA-256 هش ورنکړ؛ انسټالر پیلولو څخه انکار.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>سټیلر تازه معلومات ډاونلوډ کړل، خو انسټالر پیلولای نشو.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>تازه بسته ډاونلوډ شوه: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 %2 ته نصب نشو</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-څخه-ښار ډیټابیس په بریالیتوب تازه شو.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>د IP-ښار ډیټابیس تازه کول ناکام شول.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>د IP-ښار ډیټابیس تازه کولو ډاونلوډ ناکام شو.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>د IP-ښار ډیټابیس تازه کولو ډاونلوډ ناکام شو: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg په بریالیتوب تازه شو.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg تازه کول ناکام شول.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg تازه کولو ډاونلوډ ناکام شو.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg تازه کولو ډاونلوډ ناکام شو: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>ځنډول شوی</translation>
         </message>

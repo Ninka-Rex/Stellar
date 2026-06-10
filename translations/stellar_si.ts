@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>බාගැනීම සම්පූර්ණයි</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>බාගැනීම අසාර්ථකයි</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>බාගැනීම අසාර්ථක විය.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar යාවත්කාලීනය බාගත කළ නමුත්, ස්ථාපක ගොනුව කියවීමට නොහැකි විය.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>බාගත කළ යාවත්කාලීන ස්ථාපකය හෑෂ් සත්‍යාපනය අසමත් විය.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>යාවත්කාලීන සේවාදායකය SHA-256 හෑෂ් ලබා දුන්නේ නැත; ස්ථාපකය දියත් කිරීම ප්‍රතික්ෂේප කරයි.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar යාවත්කාලීනය බාගත කළ නමුත්, ස්ථාපකය දියත් කිරීමට නොහැකි විය.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>යාවත්කාලීන පැකේජය බාගත කරන ලදී: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 %2 වෙත ස්ථාපනය කළ නොහැකි විය</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-සිට-නගර දත්ත සමුදාය සාර්ථකව යාවත්කාලීන කරන ලදී.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-නගර දත්ත ගබඩා යාවත්කාල අසාර්ථකයි.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-නගර දත්ත ගබඩා යාවත්කාල බාගැනීම අසාර්ථකයි.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-නගර දත්ත ගබඩා යාවත්කාල බාගැනීම අසාර්ථකයි: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg යාවත්කාල සාර්ථකයි.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg යාවත්කාල අසාර්ථකයි.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg යාවත්කාල බාගැනීම අසාර්ථකයි.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg යාවත්කාල බාගැනීම අසාර්ථකයි: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>විරාමිතයි</translation>
         </message>

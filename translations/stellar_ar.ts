@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>اكتمل التنزيل</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>فشل التنزيل</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>فشل التنزيل.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>نزّل Stellar التحديث لكن تعذرت قراءة ملف التثبيت.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>فشل التحقق من تجزئة مثبت التحديث.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>لم يقدم الخادم تجزئة SHA-256؛ رفض تشغيل المثبت.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>نزّل Stellar التحديث لكن تعذر تشغيل المثبت.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>حزمة التحديث نُزّلت: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>تعذر تثبيت %1 إلى %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>تحديث قاعدة بيانات IP للمدينة تم بنجاح.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>فشل تحديث قاعدة بيانات IP للمدن.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>فشل تنزيل تحديث قاعدة بيانات IP للمدن.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>فشل تنزيل تحديث قاعدة بيانات IP للمدن: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>تم تحديث FFmpeg بنجاح.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>فشل تحديث FFmpeg.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>فشل تنزيل تحديث FFmpeg.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>فشل تنزيل تحديث FFmpeg: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>⏸ متوقف</translation>
         </message>

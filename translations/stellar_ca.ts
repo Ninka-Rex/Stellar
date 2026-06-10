@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Baixada completada</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Baixada fallida</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>La baixada ha fallat.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>L'Stellar ha baixat l'actualització, però no ha pogut llegir el fitxer d'instal·lació.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>L'instal·lador baixat ha fallat la verificació de hash.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>El servidor d'actualització no ha proporcionat un hash SHA-256; es rebutja llançar l'instal·lador.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>L'Stellar ha baixat l'actualització, però no ha pogut llançar l'instal·lador.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Paquet d'actualització baixat: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>No s'ha pogut instal·lar %1 a %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Base de dades d'IP a ciutat actualitzada correctament.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Actualització de la base de dades IP-a-ciutat fallida.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Descàrrega de l'actualització de la base de dades IP-a-ciutat fallida.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Descàrrega de l'actualització de la base de dades IP-a-ciutat fallida: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg actualitzat correctament.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Actualització de FFmpeg fallida.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Descàrrega de l'actualització de FFmpeg fallida.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Descàrrega de l'actualització de FFmpeg fallida: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>EN PAUSA</translation>
         </message>

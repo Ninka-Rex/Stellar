@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>چۈشۈرۈش تاماملاندى</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>چۈشۈرۈش مەغلۇپ بولدى</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>چۈشۈرۈش مەغلۇپ بولدى.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar يېڭىلانمىنى چۈشۈردى، ئەمما قاچىلاش ھۆججىتىنى ئوقۇيالمىدى.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>چۈشۈرۈلگەن يېڭىلانما قاچىلىغۇچنىڭ hash دەلىللەشتىن ئۆتەلمىدى.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>يېڭىلانما مۇلازىمېتى SHA-256 hash تەمىنلىمىدى؛ قاچىلىغۇچنى ئىشقا سېلىشنى رەت قىلدى.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar يېڭىلانمىنى چۈشۈردى، ئەمما قاچىلىغۇچنى ئىشقا سالالمىدى.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>يېڭىلانما بوغچىسى چۈشۈرۈلدى: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 نى %2 غا قاچىلىيالمىدى</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-شەھەر ساندانى مۇۋەپپەقىيەتلىك يېڭىلاندى.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP شەھەر ساندانى يېڭىلاش مەغلۇپ بولدى.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP شەھەر ساندانى يېڭىلاش چۈشۈرۈش مەغلۇپ بولدى.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP شەھەر ساندانى يېڭىلاش چۈشۈرۈش مەغلۇپ بولدى: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg مۇۋەپپەقىيەتلىك يېڭىلاندى.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg يېڭىلاش مەغلۇپ بولدى.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg يېڭىلاش چۈشۈرۈش مەغلۇپ بولدى.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg يېڭىلاش چۈشۈرۈش مەغلۇپ بولدى: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>ۋاقىتلىق توختىتىلدى</translation>
         </message>

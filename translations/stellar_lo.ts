@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>ດາວໂຫຼດສຳເລັດ</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>ດາວໂຫຼດລົ້ມເຫຼວ</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>ການດາວໂຫຼດລົ້ມເຫຼວ.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar ດາວໂຫຼດອັບເດດແລ້ວ ແຕ່ບໍ່ສາມາດອ່ານໄຟລ໌ຕົວຕິດຕັ້ງໄດ້.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>ຕົວຕິດຕັ້ງອັບເດດທີ່ດາວໂຫຼດມາບໍ່ຜ່ານການກວດສອບ hash.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>ເຊີບເວີອັບເດດບໍ່ໄດ້ໃຫ້ SHA-256 hash; ປະຕິເສດການເປີດຕົວຕິດຕັ້ງ.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar ດາວໂຫຼດອັບເດດແລ້ວ ແຕ່ບໍ່ສາມາດເປີດຕົວຕິດຕັ້ງໄດ້.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>ແພັກເກດອັບເດດດາວໂຫຼດແລ້ວ: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>ບໍ່ສາມາດຕິດຕັ້ງ %1 ໄປທີ່ %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>ຖານຂໍ້ມູນ IP-to-city ອັບເດດສຳເລັດແລ້ວ.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>ອັບເດດຖານຂໍ້ມູນ IP ເປັນເມືອງລົ້ມເຫຼວ</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>ດາວໂຫຼດອັບເດດຖານຂໍ້ມູນ IP ເປັນເມືອງລົ້ມເຫຼວ</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>ດາວໂຫຼດອັບເດດຖານຂໍ້ມູນ IP ເປັນເມືອງລົ້ມເຫຼວ: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>ອັບເດດ FFmpeg ສຳເລັດ</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>ອັບເດດ FFmpeg ລົ້ມເຫຼວ</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>ດາວໂຫຼດອັບເດດ FFmpeg ລົ້ມເຫຼວ</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>ດາວໂຫຼດອັບເດດ FFmpeg ລົ້ມເຫຼວ: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>ຢຸດຊົ່ວຄາວ</translation>
         </message>

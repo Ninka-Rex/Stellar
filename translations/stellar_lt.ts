@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Atsisiuntimas baigtas</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Atsisiuntimas nepavyko</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Atsisiuntimas nepavyko.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar atsisiuntė naujinimą, bet negalėjo perskaityti diegimo failo.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Atsisiųsto naujinimo diegimo failo maišos patikra nepavyko.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Naujinimų serveris nepateikė SHA-256 maišos; atsisakoma paleisti diegimo programą.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar atsisiuntė naujinimą, bet negalėjo paleisti diegimo programos.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Naujinimo paketas atsisiųstas: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Nepavyko įdiegti %1 į %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP ir miesto duomenų bazė sėkmingai atnaujinta.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP adresų miestų duomenų bazės atnaujinimas nepavyko.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP adresų miestų duomenų bazės atnaujinimo atsisiuntimas nepavyko.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP adresų miestų duomenų bazės atnaujinimo atsisiuntimas nepavyko: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg sėkmingai atnaujintas.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg atnaujinimas nepavyko.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg atnaujinimo atsisiuntimas nepavyko.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg atnaujinimo atsisiuntimas nepavyko: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>SUSTABDYTA</translation>
         </message>

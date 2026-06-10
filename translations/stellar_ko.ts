@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>다운로드 완료</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>다운로드 실패</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>다운로드에 실패했습니다.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar가 업데이트를 다운로드했지만 설치 파일을 읽을 수 없습니다.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>다운로드한 업데이트 설치 파일의 해시 검증에 실패했습니다.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>업데이트 서버가 SHA-256 해시를 제공하지 않아 설치 프로그램 실행을 거부합니다.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar가 업데이트를 다운로드했지만 설치 프로그램을 실행할 수 없습니다.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>업데이트 패키지 다운로드됨: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1을(를) %2에 설치할 수 없습니다.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-도시 DB 업데이트 완료.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-도시 DB 업데이트 실패.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-도시 DB 업데이트 다운로드 실패.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-도시 DB 업데이트 다운로드 실패: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg 업데이트 성공.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg 업데이트 실패.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg 업데이트 다운로드 실패.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg 업데이트 다운로드 실패: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>일시정지됨</translation>
         </message>

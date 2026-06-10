@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>ဒေါင်းလုဒ်ပြီးပါပြီ</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>ဒေါင်းလုဒ်မအောင်မြင်ပါ</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>ဒေါင်းလုဒ်မအောင်မြင်ပါ။</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar က အပ်ဒိတ်ကို ဒေါင်းလုဒ်လုပ်ခဲ့သော်လည်း ထည့်သွင်းသူဖိုင်ကို မဖတ်နိုင်ပါ။</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>ဒေါင်းလုဒ်လုပ်ထားသော အပ်ဒိတ်ထည့်သွင်းသူသည် hash စစ်ဆေးမှု မအောင်မြင်ပါ။</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>အပ်ဒိတ်ဆာဗာက SHA-256 hash မပေးပါ၊ ထည့်သွင်းသူကို စတင်ရန် ငြင်းဆိုသည်။</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar က အပ်ဒိတ်ကို ဒေါင်းလုဒ်လုပ်ခဲ့သော်လည်း ထည့်သွင်းသူကို မစတင်နိုင်ပါ။</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>အပ်ဒိတ်ပက်ကေ့ချ် ဒေါင်းလုဒ်လုပ်ပြီး: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 ကို %2 သို့ မထည့်သွင်းနိုင်ပါ</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-မှ-မြို့ ဒေတာဘေ့စ် အောင်မြင်စွာ အပ်ဒိတ်လုပ်ပြီးပါပြီ။</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP မှ မြို့ဒေတာဘေ့စ် အပ်ဒိတ် မအောင်မြင်ပါ။</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP မှ မြို့ဒေတာဘေ့စ် အပ်ဒိတ် ဒေါင်းလုဒ် မအောင်မြင်ပါ။</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP မှ မြို့ဒေတာဘေ့စ် အပ်ဒိတ် ဒေါင်းလုဒ် မအောင်မြင်ပါ: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg အောင်မြင်စွာ အပ်ဒိတ်လုပ်ပြီးပါပြီ။</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg အပ်ဒိတ် မအောင်မြင်ပါ။</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg အပ်ဒိတ် ဒေါင်းလုဒ် မအောင်မြင်ပါ။</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg အပ်ဒိတ် ဒေါင်းလုဒ် မအောင်မြင်ပါ: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>ခေတ္တရပ်</translation>
         </message>

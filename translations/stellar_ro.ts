@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Descărcare completă</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Descărcare eșuată</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Descărcarea a eșuat.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar a descărcat actualizarea, dar nu a putut citi fișierul de instalare.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Verificarea hash-ului pentru instalatorul descărcat a eșuat.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Serverul de actualizare nu a furnizat un hash SHA-256; lansarea instalatorului a fost refuzată.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar a descărcat actualizarea, dar nu a putut lansa instalatorul.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Pachet actualizare descărcat: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Nu s-a putut instala %1 în %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Baza de date IP-oraș actualizată cu succes.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Actualizarea bazei de date IP-oraș a eșuat.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Descărcarea actualizării bazei de date IP-oraș a eșuat.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Descărcarea actualizării bazei de date IP-oraș a eșuat: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg actualizat cu succes.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Actualizarea FFmpeg a eșuat.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Descărcarea actualizării FFmpeg a eșuat.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Descărcarea actualizării FFmpeg a eșuat: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>PAUZAT</translation>
         </message>

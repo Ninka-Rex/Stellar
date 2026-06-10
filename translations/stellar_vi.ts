@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Tải xong</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Tải thất bại</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Tải thất bại.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar đã tải bản cập nhật, nhưng không đọc được tệp cài đặt.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Tệp cài đặt đã tải không vượt qua kiểm tra hash.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Máy chủ cập nhật không cung cấp hash SHA-256; từ chối chạy trình cài đặt.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar đã tải bản cập nhật, nhưng không khởi chạy được trình cài đặt.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Đã tải gói cập nhật: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Không thể cài %1 vào %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Đã cập nhật CSDL IP-to-city.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Cập nhật CSDL IP-to-city thất bại.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Tải bản cập nhật CSDL IP-to-city thất bại.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Tải bản cập nhật CSDL IP-to-city thất bại: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg cập nhật thành công.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Cập nhật FFmpeg thất bại.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Tải bản cập nhật FFmpeg thất bại.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Tải bản cập nhật FFmpeg thất bại: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>TẠM DỪNG</translation>
         </message>

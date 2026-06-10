@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>İndirme Tamamlandı</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>İndirme Başarısız</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>İndirme başarısız oldu.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar güncellemeyi indirdi, ancak yükleyici dosyası okunamadı.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>İndirilen güncelleme yükleyicisi karma doğrulamasında başarısız oldu.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Güncelleme sunucusu SHA-256 karması sağlamadı; yükleyici başlatılmıyor.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar güncellemeyi indirdi, ancak yükleyici başlatılamadı.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Güncelleme paketi indirildi: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1, %2 konumuna yüklenemedi</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-şehir veritabanı başarıyla güncellendi.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-şehir veritabanı güncellemesi başarısız.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-şehir veritabanı güncelleme indirmesi başarısız.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-şehir veritabanı güncelleme indirmesi başarısız: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg başarıyla güncellendi.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg güncellemesi başarısız.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg güncelleme indirmesi başarısız.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg güncelleme indirmesi başarısız: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>DURAKLATILDI</translation>
         </message>

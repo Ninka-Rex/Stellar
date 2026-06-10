@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Unduhan Rampung</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Unduhan Gagal</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Unduhané gagal.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar wis ngundhuh update, nanging ora bisa maca berkas installer.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Installer update sing diundhuh gagal verifikasi hash.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Server update ora nyedhiyakaké hash SHA-256; ora gelem mbukak installer.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar wis ngundhuh update, nanging ora bisa mbukak installer.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Paket update diundhuh: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Ora bisa nginstal %1 menyang %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Basis data IP-kutha dianyari kanthi sukses.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Update database IP-kutha gagal.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Unduhan update database IP-kutha gagal.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Unduhan update database IP-kutha gagal: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg sukses dianyari.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Update FFmpeg gagal.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Unduhan update FFmpeg gagal.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Unduhan update FFmpeg gagal: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>DIPUNJEDA</translation>
         </message>

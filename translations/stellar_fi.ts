@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Lataus valmis</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Lataus epäonnistui</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Lataus epäonnistui.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar latasi päivityksen, mutta ei voinut lukea asennustiedostoa.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Ladatun päivityksen asennustiedoston tiiviste ei täsmää.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Päivityspalvelin ei antanut SHA-256-tiivistettä; asennuksen käynnistys estetty.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar latasi päivityksen, mutta ei voinut käynnistää asennusta.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Päivityspaketti ladattu: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Ei voitu asentaa %1 kohteeseen %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-sijaintitietokanta päivitetty.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-sijaintitietokannan päivitys epäonnistui.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-sijaintitietokannan päivityslataus epäonnistui.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-sijaintitietokannan päivityslataus epäonnistui: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg päivitetty.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg-päivitys epäonnistui.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg-päivityslataus epäonnistui.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg-päivityslataus epäonnistui: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>KESKEYTETTY</translation>
         </message>

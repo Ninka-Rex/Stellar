@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Saukarwa ta Kammala</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Saukarwa ta Kasa</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Saukarwar ta kasa.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar ya sauke sabuntawa, amma ya kasa karanta fayil ɗin shigarwa.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Fayil ɗin shigar da sabuntawa da aka sauke ya kasa tabbatar da hash.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Sabar sabuntawa ba ta samar da hash SHA-256 ba; ƙin buɗe mai shigarwa.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar ya sauke sabuntawa, amma ya kasa buɗe mai shigarwa.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Kunshin sabuntawa da aka sauke: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Ba a iya shigar da %1 zuwa %2 ba</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Database ɗin IP-zuwa-gari an sabunta cikin nasara.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Sabunta bayanan IP-zuwa-gari ya gaza.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Zazzage sabunta bayanan IP-zuwa-gari ya gaza.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Zazzage sabunta bayanan IP-zuwa-gari ya gaza: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>An sabunta FFmpeg cikin nasara.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Sabunta FFmpeg ya gaza.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Zazzage sabunta FFmpeg ya gaza.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Zazzage sabunta FFmpeg ya gaza: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>DAKATA</translation>
         </message>

@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>下載完成</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>下載失敗</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>下載失敗。</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar 已下載更新，但無法讀取安裝檔案。</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>下載的更新安裝檔雜湊驗證失敗。</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>更新伺服器未提供 SHA-256 雜湊值；拒絕啟動安裝程式。</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar 已下載更新，但無法啟動安裝程式。</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>更新套件已下載：%1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>無法將 %1 安裝至 %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP 地理位置資料庫更新成功。</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP 地理位置資料庫更新失敗。</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP 地理位置資料庫更新下載失敗。</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP 地理位置資料庫更新下載失敗：%1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg 更新成功。</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg 更新失敗。</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg 更新下載失敗。</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg 更新下載失敗：%1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>已暫停</translation>
         </message>

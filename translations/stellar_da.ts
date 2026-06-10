@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Download fuldført</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Download mislykkedes</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Downloadet mislykkedes.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar downloadede opdateringen, men kunne ikke læse installationsfilen.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Hash-verifikation af det downloadede installationsprogram mislykkedes.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Opdateringsserveren leverede ikke en SHA-256-hash; nægter at starte installationsprogrammet.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar downloadede opdateringen, men kunne ikke starte installationsprogrammet.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Opdateringspakke downloadet: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Kunne ikke installere %1 til %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-til-by-database opdateret.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Opdatering af IP-til-by-database mislykkedes.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Download af IP-til-by-database mislykkedes.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Download af IP-til-by-database mislykkedes: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg opdateret.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg opdatering mislykkedes.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Download af FFmpeg opdatering mislykkedes.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Download af FFmpeg opdatering mislykkedes: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>PAUSE</translation>
         </message>

@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Спампавана</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Памылка спампоўкі</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Спампаванне не ўдалося.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar спампаваў абнаўленне, але не змог прачытаць файл усталёўшчыка.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>Праверка хэшу спампаванага ўсталёўшчыка не ўдалася.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Сервер абнаўлення не даў хэш SHA-256; запуск усталёўшчыка адхілены.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar спампаваў абнаўленне, але не змог запусціць усталёўшчык.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Пакет абнаўлення спампаваны: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Не ўдалося ўсталяваць %1 у %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>База IP-горадаў абноўлена.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Не атрымалася абнавіць базу IP-горад.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Не атрымалася спампаваць абнаўленне базы IP-горад.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Не атрымалася спампаваць абнаўленне базы IP-горад: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg паспяхова абноўлены.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Не атрымалася абнавіць FFmpeg.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Не атрымалася спампаваць абнаўленне FFmpeg.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Не атрымалася спампаваць абнаўленне FFmpeg: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>ПРЫПЫНЕНА</translation>
         </message>

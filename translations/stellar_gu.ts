@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>ડાઉનલોડ પૂર્ણ</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>ડાઉનલોડ નિષ્ફળ</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>ડાઉનલોડ નિષ્ફળ થયું.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar એ અપડેટ ડાઉનલોડ કર્યું, પણ ઇન્સ્ટોલર ફાઇલ વાંચી શક્યું નહીં.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>ડાઉનલોડ કરેલ અપડેટ ઇન્સ્ટોલર હેશ ચકાસણીમાં નિષ્ફળ ગયું.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>અપડેટ સર્વરે SHA-256 હેશ આપ્યો નહીં; ઇન્સ્ટોલર લોન્ચ કરવાનો ઇનકાર.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar એ અપડેટ ડાઉનલોડ કર્યું, પણ ઇન્સ્ટોલર લોન્ચ કરી શક્યું નહીં.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>અપડેટ પેકેજ ડાઉનલોડ થયું: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1 થી %2 માં ઇન્સ્ટોલ કરી શકાયું નહીં</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>IP-થી-શહેર ડેટાબેઝ સફળતાપૂર્વક અપડેટ થયો.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>IP-થી-શહેર ડેટાબેઝ અપડેટ નિષ્ફળ.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>IP-થી-શહેર ડેટાબેઝ અપડેટ ડાઉનલોડ નિષ્ફળ.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>IP-થી-શહેર ડેટાબેઝ અપડેટ ડાઉનલોડ નિષ્ફળ: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg સફળતાપૂર્વક અપડેટ થયું.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg અપડેટ નિષ્ફળ.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg અપડેટ ડાઉનલોડ નિષ્ફળ.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg અપડેટ ડાઉનલોડ નિષ્ફળ: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>થોભાવેલ</translation>
         </message>

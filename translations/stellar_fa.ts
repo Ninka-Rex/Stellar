@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>دانلود کامل شد</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>دانلود ناموفق</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>دانلود ناموفق بود.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>استلار به‌روزرسانی را دانلود کرد، اما نتوانست فایل نصب را بخواند.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>تأیید هش فایل نصب دانلودشده ناموفق بود.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>سرور به‌روزرسانی هش SHA-256 ارائه نداد؛ اجرای نصب‌کننده متوقف شد.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>استلار به‌روزرسانی را دانلود کرد، اما نتوانست نصب‌کننده را اجرا کند.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>بسته به‌روزرسانی دانلود شد: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>نصب %1 در %2 ممکن نشد</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>پایگاه داده IP به شهر با موفقیت به‌روز شد.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>به‌روزرسانی پایگاه داده IP به شهر ناموفق بود.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>دانلود به‌روزرسانی پایگاه داده IP به شهر ناموفق بود.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>دانلود به‌روزرسانی پایگاه داده IP به شهر ناموفق بود: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg با موفقیت به‌روزرسانی شد.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>به‌روزرسانی FFmpeg ناموفق بود.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>دانلود به‌روزرسانی FFmpeg ناموفق بود.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>دانلود به‌روزرسانی FFmpeg ناموفق بود: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>مکث</translation>
         </message>

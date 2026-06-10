@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>Download completato</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>Download fallito</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>Il download è fallito.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>Stellar ha scaricato l'aggiornamento, ma non riesce a leggere il file di installazione.</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>La verifica hash dell'installer scaricato è fallita.</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>Il server di aggiornamento non ha fornito un hash SHA-256; avvio installer rifiutato.</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>Stellar ha scaricato l'aggiornamento, ma non riesce ad avviare l'installer.</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>Pacchetto scaricato: %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>Impossibile installare %1 in %2</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>Database IP-città aggiornato con successo.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>Aggiornamento DB IP-città fallito.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>Download aggiornamento DB IP-città fallito.</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>Download aggiornamento DB IP-città fallito: %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg aggiornato con successo.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>Aggiornamento FFmpeg fallito.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>Download aggiornamento FFmpeg fallito.</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>Download aggiornamento FFmpeg fallito: %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>IN PAUSA</translation>
         </message>

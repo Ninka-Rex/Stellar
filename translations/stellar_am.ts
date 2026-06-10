@@ -171,6 +171,74 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>Download Complete</source>
+            <translation>ውርድ ተጠናቋል</translation>
+        </message>
+        <message>
+            <source>Download Failed</source>
+            <translation>ውርድ አልተሳካም</translation>
+        </message>
+        <message>
+            <source>The download failed.</source>
+            <translation>ውርዱ አልተሳካም።</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not read the installer file.</source>
+            <translation>ስቴላር ዝማኔውን አውርዷል፣ ነገር ግን የመጫኛ ፋይሉን ማንበብ አልቻለም።</translation>
+        </message>
+        <message>
+            <source>The downloaded update installer failed hash verification.</source>
+            <translation>የወረደው ዝማኔ መጫኛ የሃሽ ማረጋገጫ ወድቋል።</translation>
+        </message>
+        <message>
+            <source>The update server did not provide a SHA-256 hash; refusing to launch the installer.</source>
+            <translation>የዝማኔ አገልጋዩ SHA-256 ሃሽ አላቀረበም፤ መጫኛውን ለማስጀመር ፈቃደኛ አይደለም።</translation>
+        </message>
+        <message>
+            <source>Stellar downloaded the update, but could not launch the installer.</source>
+            <translation>ስቴላር ዝማኔውን አውርዷል፣ ነገር ግን መጫኛውን ማስጀመር አልቻለም።</translation>
+        </message>
+        <message>
+            <source>Update package downloaded: %1</source>
+            <translation>የዝማኔ ጥቅል ወርዷል፦ %1</translation>
+        </message>
+        <message>
+            <source>Could not install %1 to %2</source>
+            <translation>%1ን ወደ %2 መጫን አልተቻለም</translation>
+        </message>
+        <message>
+            <source>IP-to-city database updated successfully.</source>
+            <translation>የአይፒ-ወደ-ከተማ ዳታቤዝ በተሳካ ሁኔታ ዘምኗል።</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update failed.</source>
+            <translation>የIP-ወደ-ከተማ ዳታቤዝ ማዘመኛ አልተሳካም።</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed.</source>
+            <translation>የIP-ወደ-ከተማ ዳታቤዝ ማዘመኛ ማውረድ አልተሳካም።</translation>
+        </message>
+        <message>
+            <source>IP-to-city database update download failed: %1</source>
+            <translation>የIP-ወደ-ከተማ ዳታቤዝ ማዘመኛ ማውረድ አልተሳካም፦ %1</translation>
+        </message>
+        <message>
+            <source>FFmpeg updated successfully.</source>
+            <translation>FFmpeg በተሳካ ሁኔታ ተዘምኗል።</translation>
+        </message>
+        <message>
+            <source>FFmpeg update failed.</source>
+            <translation>FFmpeg ማዘመን አልተሳካም።</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed.</source>
+            <translation>FFmpeg ማዘመኛ ማውረድ አልተሳካም።</translation>
+        </message>
+        <message>
+            <source>FFmpeg update download failed: %1</source>
+            <translation>FFmpeg ማዘመኛ ማውረድ አልተሳካም፦ %1</translation>
+        </message>
+        <message>
             <source>PAUSED</source>
             <translation>ቆሟል</translation>
         </message>
