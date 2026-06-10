@@ -263,7 +263,10 @@ Rectangle {
                                                   left: parent.left; leftMargin: 22 }
                                         spacing: 5
                                         Image {
-                                            source: categoryIcon; width: 16; height: 16
+                                            // Model stores qml-root-relative paths ("icons/…"); this
+                                            // delegate lives in qml/main/, so resolve up one level.
+                                            source: categoryIcon ? "../" + categoryIcon : ""
+                                            width: 16; height: 16
                                             sourceSize.width: 16; sourceSize.height: 16
                                             fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true
                                             anchors.verticalCenter: parent.verticalCenter
