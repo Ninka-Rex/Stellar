@@ -546,7 +546,7 @@ Window {
             spacing: 8
 
             Image {
-                source: "icons/magnet.svg"
+                source: "../icons/magnet.svg"
                 width: 12; height: 12
                 sourceSize.width: 24; sourceSize.height: 24
                 fillMode: Image.PreserveAspectFit
@@ -999,7 +999,7 @@ Window {
                         Image {
                             id: metaWorldImg
                             anchors.fill: parent
-                            source: ColorPalette.dark ? "icons/world-map.svg" : "icons/world-map-light.svg"
+                            source: ColorPalette.dark ? "../icons/world-map.svg" : "../icons/world-map-light.svg"
                             fillMode: Image.PreserveAspectFit
                             smooth: true
                             sourceSize.width: 2400
@@ -1629,7 +1629,7 @@ Window {
                         Image {
                             Layout.preferredWidth: 16
                             Layout.preferredHeight: 16
-                            source: "icons/rename.svg"
+                            source: "../icons/rename.svg"
                             sourceSize: Qt.size(16, 16)
                             fillMode: Image.PreserveAspectFit
                             asynchronous: true
@@ -1817,7 +1817,7 @@ Window {
                             anchors.leftMargin: 10
                             width: 16
                             height: 16
-                            source: "icons/rename.svg"
+                            source: "../icons/rename.svg"
                             sourceSize: Qt.size(16, 16)
                             fillMode: Image.PreserveAspectFit
                             asynchronous: true

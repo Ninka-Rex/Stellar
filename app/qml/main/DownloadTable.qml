@@ -361,7 +361,7 @@ Rectangle {
             spacing: 6
             Image {
                 visible: _ctxMi.iconSrc !== ""
-                source: _ctxMi.iconSrc !== "" ? "icons/" + _ctxMi.iconSrc : ""
+                source: _ctxMi.iconSrc !== "" ? "../icons/" + _ctxMi.iconSrc : ""
                 width: 14; height: 14
                 sourceSize.width: 14; sourceSize.height: 14
                 fillMode: Image.PreserveAspectFit

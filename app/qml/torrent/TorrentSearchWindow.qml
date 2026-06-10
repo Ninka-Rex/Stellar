@@ -537,7 +537,7 @@ Window {
             // AnimatedImage handles GIF playback natively; playing is gated on
             // visibility so the animation resets cleanly between searches.
             AnimatedImage {
-                source: "icons/milky-way.gif"
+                source: "../icons/milky-way.gif"
                 Layout.preferredWidth:  24
                 Layout.preferredHeight: 24
                 fillMode: Image.PreserveAspectFit

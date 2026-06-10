@@ -707,7 +707,7 @@ Window {
                     spacing: 10
 
                     Image {
-                        source: "icons/grabber.svg"
+                        source: "../icons/grabber.svg"
                         width: 20; height: 20
                         sourceSize: Qt.size(20, 20)
                         fillMode: Image.PreserveAspectFit

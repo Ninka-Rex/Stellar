@@ -74,7 +74,7 @@ Rectangle {
             visible: App.totalDownloads > 0
             spacing: 4
             Layout.alignment: Qt.AlignVCenter
-            StatusIcon { source: "icons/floppy_disk.svg" }
+            StatusIcon { source: "../icons/floppy_disk.svg" }
             Text {
                 text: App.totalDownloads
                 color: ColorPalette.textSecond
@@ -86,7 +86,7 @@ Rectangle {
             visible: App.activeDownloads > 0
             spacing: 4
             Layout.alignment: Qt.AlignVCenter
-            StatusIcon { source: "icons/status_play.svg" }
+            StatusIcon { source: "../icons/status_play.svg" }
             Text {
                 text: App.activeDownloads
                 color: ColorPalette.textSecond
@@ -98,7 +98,7 @@ Rectangle {
             visible: App.seedingCount > 0
             spacing: 4
             Layout.alignment: Qt.AlignVCenter
-            StatusIcon { source: "icons/torrent-categories/seeding.svg" }
+            StatusIcon { source: "../icons/torrent-categories/seeding.svg" }
             Text {
                 text: App.activeSeedingCount + (App.activeSeedingCount !== App.seedingCount ? " (" + App.seedingCount + ")" : "")
                 color: ColorPalette.textSecond
@@ -110,7 +110,7 @@ Rectangle {
             visible: App.pausedCount > 0
             spacing: 4
             Layout.alignment: Qt.AlignVCenter
-            StatusIcon { source: "icons/status_pause.svg" }
+            StatusIcon { source: "../icons/status_pause.svg" }
             Text {
                 text: App.pausedCount
                 color: ColorPalette.textSecond
@@ -122,7 +122,7 @@ Rectangle {
             visible: App.checkingCount > 0
             spacing: 4
             Layout.alignment: Qt.AlignVCenter
-            StatusIcon { source: "icons/torrent-categories/checking.svg" }
+            StatusIcon { source: "../icons/torrent-categories/checking.svg" }
             Text {
                 text: App.checkingCount
                 color: ColorPalette.textSecond
@@ -134,7 +134,7 @@ Rectangle {
             visible: errorCount > 0
             spacing: 4
             Layout.alignment: Qt.AlignVCenter
-            StatusIcon { source: "icons/warning.svg" }
+            StatusIcon { source: "../icons/warning.svg" }
             Text {
                 text: errorCount
                 color: ColorPalette.textSecond
@@ -146,7 +146,7 @@ Rectangle {
             visible: selectedCount > 0
             spacing: 4
             Layout.alignment: Qt.AlignVCenter
-            StatusIcon { source: "icons/magnifying_glass.svg" }
+            StatusIcon { source: "../icons/magnifying_glass.svg" }
             Text {
                 text: selectedCount
                 color: ColorPalette.textSecond
@@ -177,7 +177,7 @@ Rectangle {
                 id: speedLimiterInner
                 spacing: 4
                 anchors.verticalCenter: parent.verticalCenter
-                StatusIcon { source: "icons/snail.svg" }
+                StatusIcon { source: "../icons/snail.svg" }
                 Text {
                     text: {
                         var limitParts = []
@@ -212,7 +212,7 @@ Rectangle {
             visible: App.proxyActive
             spacing: 4
             Layout.alignment: Qt.AlignVCenter
-            StatusIcon { source: "icons/globe.svg" }
+            StatusIcon { source: "../icons/globe.svg" }
             Text {
                 text: qsTr("Proxy on")
                 color: ColorPalette.textSecond
@@ -224,7 +224,7 @@ Rectangle {
             visible: App.checkingForUpdates
             spacing: 4
             Layout.alignment: Qt.AlignVCenter
-            StatusIcon { source: "icons/checking_for_updates.svg" }
+            StatusIcon { source: "../icons/checking_for_updates.svg" }
             Text {
                 text: qsTr("Checking for updates")
                 color: ColorPalette.textSecond
@@ -238,7 +238,7 @@ Rectangle {
             spacing: 4
             Layout.alignment: Qt.AlignVCenter
             StatusIcon {
-                source: "icons/update_available.svg"
+                source: "../icons/update_available.svg"
             }
             Text {
                 text: App.updateStatusText
@@ -253,7 +253,7 @@ Rectangle {
             spacing: 4
             Layout.alignment: Qt.AlignVCenter
             StatusIcon {
-                source: App.torrentBindingOffline ? "icons/warning.svg" : "icons/shield.svg"
+                source: App.torrentBindingOffline ? "../icons/warning.svg" : "../icons/shield.svg"
             }
             Text {
                 text: App.torrentBindingStatusText
@@ -270,7 +270,7 @@ Rectangle {
             visible: App.welcomeVisible && App.welcomeMessage.length > 0
             spacing: 4
             Layout.alignment: Qt.AlignVCenter
-            StatusIcon { source: "icons/waving_hand.svg" }
+            StatusIcon { source: "../icons/waving_hand.svg" }
             Text {
                 text: App.welcomeMessage
                 color: ColorPalette.textSecond
@@ -294,7 +294,7 @@ Rectangle {
                 id: ratioInner
                 spacing: 4
                 anchors.verticalCenter: parent.verticalCenter
-                StatusIcon { source: "icons/yin_yang.svg" }
+                StatusIcon { source: "../icons/yin_yang.svg" }
                 Text {
                     text: App.allTimeRatio.toFixed(3)
                     color: ratioHover.hovered ? ColorPalette.textHeader : ColorPalette.textSecond
@@ -330,7 +330,7 @@ Rectangle {
                 id: connectionsInner
                 spacing: 4
                 anchors.verticalCenter: parent.verticalCenter
-                StatusIcon { source: "icons/connections.svg" }
+                StatusIcon { source: "../icons/connections.svg" }
                 Text {
                     text: App.totalConnections
                     color: ColorPalette.textSecond
@@ -360,7 +360,7 @@ Rectangle {
                 id: dhtNodesInner
                 spacing: 4
                 anchors.verticalCenter: parent.verticalCenter
-                StatusIcon { source: "icons/dht_nodes.svg" }
+                StatusIcon { source: "../icons/dht_nodes.svg" }
                 Text {
                     text: App.dhtNodes
                     color: ColorPalette.textSecond
@@ -411,9 +411,9 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 StatusIcon {
                     source: {
-                        if (!App.publicIp || App.publicIp.length === 0) return "icons/red_circle.svg"
-                        if (!App.hasIncomingConnections) return "icons/fire.svg"
-                        return "icons/globe_showing_americas.svg"
+                        if (!App.publicIp || App.publicIp.length === 0) return "../icons/red_circle.svg"
+                        if (!App.hasIncomingConnections) return "../icons/fire.svg"
+                        return "../icons/globe_showing_americas.svg"
                     }
                 }
                 Text {
@@ -532,7 +532,7 @@ Rectangle {
             Row {
                 spacing: 4
                 Layout.alignment: Qt.AlignVCenter
-                StatusIcon { source: "icons/light_bulb.svg" }
+                StatusIcon { source: "../icons/light_bulb.svg" }
                 Text {
                     text: "Tip: " + (tipsArray.length > currentTipIndex ? tipsArray[currentTipIndex] : "")
                     color: ColorPalette.textSecond
@@ -586,7 +586,7 @@ Rectangle {
                 id: queueTimerInner
                 spacing: 4
                 anchors.verticalCenter: parent.verticalCenter
-                StatusIcon { source: "icons/hourglass_not_done.svg" }
+                StatusIcon { source: "../icons/hourglass_not_done.svg" }
                 Text {
                     text: App.minutesUntilNextQueue === 1
                         ? qsTr("Queue runs in 1 minute")

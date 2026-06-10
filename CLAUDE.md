@@ -21,52 +21,55 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Architecture
 
 **Backend (C++, Qt 6):**
-- `app/src/StellarPaths.{h,cpp}` — **Single source of truth for every on-disk path.** All writable data under one root: `%LOCALAPPDATA%\Stellar\` (Windows) / `$XDG_DATA_HOME/Stellar/` (Linux). Sub-dirs: `data/` (JSON DBs), `resume/` (fast-resume blobs), `plugins/search/`, `bin/` (yt-dlp/ffmpeg), `geo/` (MaxMindDB), `cache/` (Qt RHI pipeline + QML bytecode). **Any new path must go through this namespace** — never `QStandardPaths` directly for writable app data. `migrateIfNeeded()` runs once at startup, moves data from legacy `StellarDownloadManager/` layout.
-- `app/src/AppController.{h,cpp}` — Main app logic, signals/slots, settings integration.
-- `app/src/AppSettings.{h,cpp}` — Settings via `QSettings` INI at `StellarPaths::settingsFile()`. **Not** registry/`QStandardPaths` — always use `QSettings(StellarPaths::settingsFile(), QSettings::IniFormat)` when opening settings outside `AppSettings` (e.g. `main.cpp` native messaging handler).
-- `app/src/DownloadTableModel.{h,cpp}` — QAbstractTableModel for downloads, filter/sort, custom roles
-- `app/src/DownloadQueue.{h,cpp}` — Queue state machine, `scheduleNext()` orchestrates concurrent downloads
-- `app/src/DownloadItem.{h,cpp}` — Single download state (progress, speed, segments, metadata)
-- `app/src/SegmentedTransfer.{h,cpp}` — Multi-segment HTTP download engine (range requests, reassembly)
-- `app/src/CategoryModel.{h,cpp}` — QAbstractListModel for categories, drag-reorder support
-- `app/src/Queue.{h,cpp}` / `QueueDatabase.{h,cpp}` / `QueueModel.{h,cpp}` — Named download queues with persistence and QML list model
-- `app/src/DownloadDatabase.{h,cpp}` — JSON persistence for download list (`StellarPaths::downloadsFile()`). Fast-resume blobs in separate `resume/<id>.resume` files — never inline. Writes debounced via 500 ms `QSaveFile` timer.
-- `app/src/NativeMessagingHost.{h,cpp}` — Extension IPC (length-prefixed JSON over stdin/stdout).
-- `app/src/SystemTrayIcon.{h,cpp}` — Tray icon; right-click → menu, double-click → show window.
-- `app/src/FileIconImageProvider.{h}` — QQuickAsyncImageProvider for file-type icons; caches by full path then extension; needs per-thread COM STA init on Windows.
-- `app/src/FileDragDropHelper.{h,cpp}` — Exposes drag-initiation to QML for dragging files out.
-- `app/src/YtdlpManager.{h,cpp}` — yt-dlp binary: auto-detect, download/update, version check. Detects JS runtime (Deno/Node/Bun/QuickJS) via `detectJsRuntime()`; exposes `jsRuntimeAvailable/Path/Name`. User override via `setCustomJsRuntimePath()` / `AppSettings::ytdlpJsRuntimePath`.
-- `app/src/YtdlpTransfer.{h,cpp}` — Drives single yt-dlp subprocess; parses stdout progress; multi-phase video+audio with accumulated progress. Passes `--js-runtimes <name>` when JS runtime detected.
-- `app/src/TorrentSessionManager.{h,cpp}` — Wraps libtorrent session (optional; `STELLAR_HAS_LIBTORRENT`). Magnet/torrent-file adds, pause/resume/remove, save-resume-data; exposes per-download `TorrentFileModel`/`TorrentPeerModel`/`TorrentTrackerModel`. `available()` false when built without libtorrent. Alert polling on 1 s `QTimer`; `post_torrent_updates()` drives status refreshes. Also: share-limit enforcement (`checkShareLimits()`), geo-IP via optional MaxMindDB (`STELLAR_HAS_MAXMINDDB`), interface binding (`torrentBindInterface`), peer banning (`banPeer()`/`unbanPeer()`, `bannedPeers()`, `refreshPeerBanRules()`).
-- `app/src/TorrentSearchManager.{h,cpp}` — Torrent search. Python `.py` plugins in `pluginDirectory()`; auto-detects Python at startup; installable from file or URL. Exposes `TorrentSearchPluginModel`/`TorrentSearchResultModel`. `search(query)` spawns Python subprocess, streams JSON. `resolveResultLink(row, preferMagnet)` extracts magnet/torrent URL.
-- `app/src/TorrentSearchPluginModel.{h,cpp}` / `TorrentSearchResultModel.{h,cpp}` — List models for plugin list and live search results.
-- `app/src/TorrentFileModel.{h,cpp}` — Tree `QAbstractListModel` for torrent files. `m_visibleRows` = flat list of expanded nodes. `toggleExpanded()`, `setWanted()`/`applyWantedRecursive()`, `updateProgress()`. `setLiveUpdatesEnabled(false)` suspends updates when dialog hidden.
-- `app/src/TorrentPeerModel.{h,cpp}` — Incremental peer model. Identity = `endpoint|port`. Grace-tick (`kPeerRemovalGraceTicks=3`) prevents flicker. `setStructuralUpdatesDeferred(true)` suppresses insert/remove while scrolling. Carries local-node location for map overlay.
-- `app/src/TorrentTrackerModel.{h,cpp}` — Tracker entries: URL, status, tier, seeder/peer counts, geo coords, country code.
+
+Source is grouped by subsystem under `app/src/`: `core/` (app/controller, settings, paths, tray, native messaging, drag-drop, icon provider, network, cookies, data portability), `download/` (item, queue, models, transfers, database, category, media metadata), `queue/` (named queues), `grabber/`, `ytdlp/`, `rss/`, `torrent/`. Includes stay **bare** (`#include "DownloadItem.h"`) — every subdir is on the include path via `target_include_directories`. QML under `app/qml/` mirrors this: `main/`, `components/`, `dialogs/`, `grabber/`, `ytdlp/`, `rss/`, `torrent/`, `singletons/`; **`Main.qml` stays at the qml root** (its qrc path is hardcoded in `core/main.cpp`). `icons/`, `flags/`, `app/style/` do **not** move — referenced by hardcoded qrc paths in C++ and by relative `icons/…` paths in QML. New CMake `BACKEND_SOURCES`/`BACKEND_HEADERS`/`QML_FILES` entries must use the subfolder path.
+
+- `app/src/core/StellarPaths.{h,cpp}` — **Single source of truth for every on-disk path.** All writable data under one root: `%LOCALAPPDATA%\Stellar\` (Windows) / `$XDG_DATA_HOME/Stellar/` (Linux). Sub-dirs: `data/` (JSON DBs), `resume/` (fast-resume blobs), `plugins/search/`, `bin/` (yt-dlp/ffmpeg), `geo/` (MaxMindDB), `cache/` (Qt RHI pipeline + QML bytecode). **Any new path must go through this namespace** — never `QStandardPaths` directly for writable app data. `migrateIfNeeded()` runs once at startup, moves data from legacy `StellarDownloadManager/` layout.
+- `app/src/core/AppController.{h,cpp}` — Main app logic, signals/slots, settings integration.
+- `app/src/core/AppSettings.{h,cpp}` — Settings via `QSettings` INI at `StellarPaths::settingsFile()`. **Not** registry/`QStandardPaths` — always use `QSettings(StellarPaths::settingsFile(), QSettings::IniFormat)` when opening settings outside `AppSettings` (e.g. `main.cpp` native messaging handler).
+- `app/src/download/DownloadTableModel.{h,cpp}` — QAbstractTableModel for downloads, filter/sort, custom roles
+- `app/src/download/DownloadQueue.{h,cpp}` — Queue state machine, `scheduleNext()` orchestrates concurrent downloads
+- `app/src/download/DownloadItem.{h,cpp}` — Single download state (progress, speed, segments, metadata)
+- `app/src/download/SegmentedTransfer.{h,cpp}` — Multi-segment HTTP download engine (range requests, reassembly)
+- `app/src/download/CategoryModel.{h,cpp}` — QAbstractListModel for categories, drag-reorder support
+- `app/src/queue/Queue.{h,cpp}` / `app/src/queue/QueueDatabase.{h,cpp}` / `app/src/queue/QueueModel.{h,cpp}` — Named download queues with persistence and QML list model
+- `app/src/download/DownloadDatabase.{h,cpp}` — JSON persistence for download list (`StellarPaths::downloadsFile()`). Fast-resume blobs in separate `resume/<id>.resume` files — never inline. Writes debounced via 500 ms `QSaveFile` timer.
+- `app/src/core/NativeMessagingHost.{h,cpp}` — Extension IPC (length-prefixed JSON over stdin/stdout).
+- `app/src/core/SystemTrayIcon.{h,cpp}` — Tray icon; right-click → menu, double-click → show window.
+- `app/src/core/FileIconImageProvider.{h}` — QQuickAsyncImageProvider for file-type icons; caches by full path then extension; needs per-thread COM STA init on Windows.
+- `app/src/core/FileDragDropHelper.{h,cpp}` — Exposes drag-initiation to QML for dragging files out.
+- `app/src/ytdlp/YtdlpManager.{h,cpp}` — yt-dlp binary: auto-detect, download/update, version check. Detects JS runtime (Deno/Node/Bun/QuickJS) via `detectJsRuntime()`; exposes `jsRuntimeAvailable/Path/Name`. User override via `setCustomJsRuntimePath()` / `AppSettings::ytdlpJsRuntimePath`.
+- `app/src/ytdlp/YtdlpTransfer.{h,cpp}` — Drives single yt-dlp subprocess; parses stdout progress; multi-phase video+audio with accumulated progress. Passes `--js-runtimes <name>` when JS runtime detected.
+- `app/src/torrent/TorrentSessionManager.{h,cpp}` — Wraps libtorrent session (optional; `STELLAR_HAS_LIBTORRENT`). Magnet/torrent-file adds, pause/resume/remove, save-resume-data; exposes per-download `TorrentFileModel`/`TorrentPeerModel`/`TorrentTrackerModel`. `available()` false when built without libtorrent. Alert polling on 1 s `QTimer`; `post_torrent_updates()` drives status refreshes. Also: share-limit enforcement (`checkShareLimits()`), geo-IP via optional MaxMindDB (`STELLAR_HAS_MAXMINDDB`), interface binding (`torrentBindInterface`), peer banning (`banPeer()`/`unbanPeer()`, `bannedPeers()`, `refreshPeerBanRules()`).
+- `app/src/torrent/TorrentSearchManager.{h,cpp}` — Torrent search. Python `.py` plugins in `pluginDirectory()`; auto-detects Python at startup; installable from file or URL. Exposes `TorrentSearchPluginModel`/`TorrentSearchResultModel`. `search(query)` spawns Python subprocess, streams JSON. `resolveResultLink(row, preferMagnet)` extracts magnet/torrent URL.
+- `app/src/torrent/TorrentSearchPluginModel.{h,cpp}` / `app/src/torrent/TorrentSearchResultModel.{h,cpp}` — List models for plugin list and live search results.
+- `app/src/torrent/TorrentFileModel.{h,cpp}` — Tree `QAbstractListModel` for torrent files. `m_visibleRows` = flat list of expanded nodes. `toggleExpanded()`, `setWanted()`/`applyWantedRecursive()`, `updateProgress()`. `setLiveUpdatesEnabled(false)` suspends updates when dialog hidden.
+- `app/src/torrent/TorrentPeerModel.{h,cpp}` — Incremental peer model. Identity = `endpoint|port`. Grace-tick (`kPeerRemovalGraceTicks=3`) prevents flicker. `setStructuralUpdatesDeferred(true)` suppresses insert/remove while scrolling. Carries local-node location for map overlay.
+- `app/src/torrent/TorrentTrackerModel.{h,cpp}` — Tracker entries: URL, status, tier, seeder/peer counts, geo coords, country code.
 - `cmake/GenerateBuildTime.cmake` — `add_custom_target` at build; writes `AppBuildTime.h` (UTC timestamp).
 - `cmake/FindLibtorrentRasterbar.cmake` — find-module for optional libtorrent; sets `STELLAR_HAS_LIBTORRENT`.
 
 **QML Frontend:**
-- `app/qml/Main.qml` — Root window, tips, tray, menu bar (`CompactMenuItem`), speed schedule timer (`runSpeedScheduleCheck()`), `whatsNewDialog`.
-- `app/qml/DownloadTable.qml` — Download list: multi-select, columns, drag-drop to categories.
-- `app/qml/Sidebar.qml` — Category/queue lists, section drag-reorder, insert-line feedback.
-- `app/qml/SettingsDialog.qml` — Tabbed, Apply/Cancel, dirty tracking. Tabs: 0=Connection, 1=Categories, 2=Downloads, 3=Browser, 4=Speed Limiter, 5=Notifications, 6=General, 7=Media, 8=Torrents, 10=Associations, 11=Language, 12=About (see i18n note).
-- `app/qml/YtdlpDialog.qml` — Video format/quality picker for intercepted yt-dlp URLs.
-- `app/qml/SchedulerDialog.qml` — Queue scheduler: start/stop times, days, concurrency, shutdown actions.
-- `app/qml/DownloadProgressDialog.qml` — Per-download details, segment breakdown, speed override.
-- `app/qml/DownloadCompleteDialog.qml` — After finish: open/reveal/drag-out. `AppSettings::showDownloadComplete`.
-- `app/qml/DownloadFileInfoDialog.qml` — Pending-state metadata fetch; confirm save path before start.
-- `app/qml/FilePropertiesDialog.qml` — Properties for any download (HTTP/FTP/torrent). Torrents: info hash, transfer stats, per-torrent speed limits, inline peer-info popup. Right-click rename via `TapHandler`. Peer rows hover "info" → `peerInfoDialog` (inline `Popup`).
-- `app/qml/TorrentMetadataDialog.qml` — Torrent details (files/peers/trackers tabs); `TapHandler` for right-click file rename.
-- `app/qml/Toolbar.qml` / `ToolbarBtn.qml` / `ToolbarDropdown.qml` — all buttons `width:84, height:62`.
-- `app/qml/DlgButton.qml` — **Shared dialog button**. Props: `primary` (blue), `destructive` (red), default secondary (grey). Use instead of inline `Button` styling.
+- `app/qml/Main.qml` — Root window, tips, tray, menu bar (stays at qml root) (`CompactMenuItem`), speed schedule timer (`runSpeedScheduleCheck()`), `whatsNewDialog`.
+- `app/qml/main/DownloadTable.qml` — Download list: multi-select, columns, drag-drop to categories.
+- `app/qml/main/Sidebar.qml` — Category/queue lists, section drag-reorder, insert-line feedback.
+- `app/qml/dialogs/SettingsDialog.qml` — Tabbed, Apply/Cancel, dirty tracking. Tabs: 0=Connection, 1=Categories, 2=Downloads, 3=Browser, 4=Speed Limiter, 5=Notifications, 6=General, 7=Media, 8=Torrents, 10=Associations, 11=Language, 12=About (see i18n note).
+- `app/qml/ytdlp/YtdlpDialog.qml` — Video format/quality picker for intercepted yt-dlp URLs.
+- `app/qml/dialogs/SchedulerDialog.qml` — Queue scheduler: start/stop times, days, concurrency, shutdown actions.
+- `app/qml/dialogs/DownloadProgressDialog.qml` — Per-download details, segment breakdown, speed override.
+- `app/qml/dialogs/DownloadCompleteDialog.qml` — After finish: open/reveal/drag-out. `AppSettings::showDownloadComplete`.
+- `app/qml/dialogs/DownloadFileInfoDialog.qml` — Pending-state metadata fetch; confirm save path before start.
+- `app/qml/dialogs/FilePropertiesDialog.qml` — Properties for any download (HTTP/FTP/torrent). Torrents: info hash, transfer stats, per-torrent speed limits, inline peer-info popup. Right-click rename via `TapHandler`. Peer rows hover "info" → `peerInfoDialog` (inline `Popup`).
+- `app/qml/torrent/TorrentMetadataDialog.qml` — Torrent details (files/peers/trackers tabs); `TapHandler` for right-click file rename.
+- `app/qml/main/Toolbar.qml` / `app/qml/components/ToolbarBtn.qml` / `app/qml/components/ToolbarDropdown.qml` — all buttons `width:84, height:62`.
+- `app/qml/components/DlgButton.qml` — **Shared dialog button**. Props: `primary` (blue), `destructive` (red), default secondary (grey). Use instead of inline `Button` styling.
 - Other dialogs: `AddUrlDialog.qml`, `BatchDownloadDialog.qml`, etc.
 
 **Grabber Subsystem:**
-- `app/src/GrabberCrawler.{h,cpp}` — Async BFS crawler via `QNetworkAccessManager`; crawls to depth, extracts links matching include/exclude wildcards, probes sizes via HEAD (4 concurrent). Emits `resultFound`/`finished`.
-- `app/src/GrabberProjectModel.{h,cpp}` — saved crawl projects; JSON-persisted (`projectsFilePath()`). `upsertProject()`/`removeProject()`/`moveProject()`.
-- `app/src/GrabberResultModel.{h,cpp}` — live crawl results fed by `GrabberCrawler` signals.
-- `app/qml/GrabberDialog.qml` + other `Grabber*.qml` (settings, filters, schedule, results, statistics, project picker).
+- `app/src/grabber/GrabberCrawler.{h,cpp}` — Async BFS crawler via `QNetworkAccessManager`; crawls to depth, extracts links matching include/exclude wildcards, probes sizes via HEAD (4 concurrent). Emits `resultFound`/`finished`.
+- `app/src/grabber/GrabberProjectModel.{h,cpp}` — saved crawl projects; JSON-persisted (`projectsFilePath()`). `upsertProject()`/`removeProject()`/`moveProject()`.
+- `app/src/grabber/GrabberResultModel.{h,cpp}` — live crawl results fed by `GrabberCrawler` signals.
+- `app/qml/grabber/GrabberDialog.qml` + other `app/qml/grabber/Grabber*.qml` (settings, filters, schedule, results, statistics, project picker).
 
 **Browser Extensions:**
 - `extensions/chrome/` — Chrome MV3. `service-worker.js`, `content.js`, `page-bridge.js` (blob-URL resolver injected into page), `popup.{html,js}`, `manifest.json` (+ `manifest.store.json` for Web Store), `icons/`, `shared/{interceptor.js, messaging.js}` (download detection, filter matching, settings sync, native-host messaging). Service worker `import`s from `./shared/`.
@@ -155,7 +158,7 @@ Non-obvious rules. Breaking any silently corrupts downloads or hangs UI.
 
 **Periodic meta save**: `saveMeta()` every 20 ticks (≈ 5 s) via `m_ticksSinceMetaSave`. Bounds crash/power-loss loss to 5 s per segment.
 
-**Filename sanitization**: `sanitizeFilename()` in `SegmentedTransfer.cpp` = **single entry point**. Strips Windows-invalid chars (`<>:"/\|?*`), rejects reserved names (CON, PRN, LPT1–9...), strips trailing dots/spaces, caps at 200 bytes (room for `.stellar-part-N` under NAME_MAX 255). Any server-supplied filename must go through this — Content-Disposition especially.
+**Filename sanitization**: `sanitizeFilename()` in `download/SegmentedTransfer.cpp` = **single entry point**. Strips Windows-invalid chars (`<>:"/\|?*`), rejects reserved names (CON, PRN, LPT1–9...), strips trailing dots/spaces, caps at 200 bytes (room for `.stellar-part-N` under NAME_MAX 255). Any server-supplied filename must go through this — Content-Disposition especially.
 
 **Part file cleanup**: `cleanupPartFiles()` globs `*.stellar-part-*` plus tracked segments, so orphans from aborted dynamic segmentation don't accumulate.
 
@@ -212,7 +215,7 @@ Pattern from `DownloadProgressDialog.qml` — for high-frequency lists:
 
 Peer list in `FilePropertiesDialog.qml` sensitive to resets — libtorrent refreshes peers continuously, full resets jump `ListView` to top every second.
 
-Rules for `app/src/TorrentPeerModel.cpp`:
+Rules for `app/src/torrent/TorrentPeerModel.cpp`:
 - No full resets for normal refreshes when set can update incrementally; `beginInsertRows`/`beginRemoveRows` for peers entering/leaving.
 - Data-only changes: keep row identity stable, emit `dataChanged()`. Order changes: prefer `layoutAboutToBeChanged()/layoutChanged()` over reset.
 - Deterministic stable sort: `std::stable_sort()` tie-broken on identity (`endpoint|port`). Peer identity = `endpoint|port` only — client string and seed state NOT in key (change mid-session, must not cause churn).

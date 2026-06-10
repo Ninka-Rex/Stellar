@@ -100,7 +100,7 @@ if(ENABLE_LIBTORRENT)
 endif()
 
 # ── Version header (configure time — version numbers only) ────────────────────
-configure_file(app/src/AppVersion.h.in
+configure_file(app/src/core/AppVersion.h.in
                ${CMAKE_BINARY_DIR}/AppVersion.h
                @ONLY)
 
@@ -124,83 +124,83 @@ add_custom_target(StellarBuildTime ALL
 
 # ── Sources ────────────────────────────────────────────────────────────────────
 set(BACKEND_SOURCES
-    app/src/main.cpp
-    app/src/AppController.cpp
-    app/src/MediaMetadata.cpp
-    app/src/DownloadItem.cpp
-    app/src/DownloadQueue.cpp
-    app/src/SegmentedTransfer.cpp
-    app/src/FtpTransfer.cpp
-    app/src/NativeMessagingHost.cpp
-    app/src/CategoryModel.cpp
-    app/src/DownloadTableModel.cpp
-    app/src/AppSettings.cpp
-    app/src/StellarPaths.cpp
-    app/src/DataPortability.cpp
-    app/src/SystemTrayIcon.cpp
-    app/src/DownloadDatabase.cpp
-    app/src/GrabberCrawler.cpp
-    app/src/GrabberProjectModel.cpp
-    app/src/YtdlpManager.cpp
-    app/src/YtdlpTransfer.cpp
-    app/src/GrabberResultModel.cpp
-    app/src/Queue.cpp
-    app/src/QueueDatabase.cpp
-    app/src/QueueModel.cpp
-    app/src/RssArticleModel.cpp
-    app/src/RssFeedModel.cpp
-    app/src/RssManager.cpp
-    app/src/FileDragDropHelper.cpp
-    app/src/TorrentSessionManager.cpp
-    app/src/TorrentFileModel.cpp
-    app/src/TorrentPeerModel.cpp
-    app/src/TorrentTrackerModel.cpp
-    app/src/TorrentSearchPluginModel.cpp
-    app/src/TorrentSearchResultModel.cpp
-    app/src/TorrentSearchManager.cpp
-    app/src/NetworkInfo.cpp
-    app/src/BrowserCookieReader.cpp
+    app/src/core/main.cpp
+    app/src/core/AppController.cpp
+    app/src/core/AppSettings.cpp
+    app/src/core/StellarPaths.cpp
+    app/src/core/DataPortability.cpp
+    app/src/core/SystemTrayIcon.cpp
+    app/src/core/FileDragDropHelper.cpp
+    app/src/core/NativeMessagingHost.cpp
+    app/src/core/NetworkInfo.cpp
+    app/src/core/BrowserCookieReader.cpp
+    app/src/download/MediaMetadata.cpp
+    app/src/download/DownloadItem.cpp
+    app/src/download/DownloadQueue.cpp
+    app/src/download/SegmentedTransfer.cpp
+    app/src/download/FtpTransfer.cpp
+    app/src/download/CategoryModel.cpp
+    app/src/download/DownloadTableModel.cpp
+    app/src/download/DownloadDatabase.cpp
+    app/src/queue/Queue.cpp
+    app/src/queue/QueueDatabase.cpp
+    app/src/queue/QueueModel.cpp
+    app/src/grabber/GrabberCrawler.cpp
+    app/src/grabber/GrabberProjectModel.cpp
+    app/src/grabber/GrabberResultModel.cpp
+    app/src/ytdlp/YtdlpManager.cpp
+    app/src/ytdlp/YtdlpTransfer.cpp
+    app/src/rss/RssArticleModel.cpp
+    app/src/rss/RssFeedModel.cpp
+    app/src/rss/RssManager.cpp
+    app/src/torrent/TorrentSessionManager.cpp
+    app/src/torrent/TorrentFileModel.cpp
+    app/src/torrent/TorrentPeerModel.cpp
+    app/src/torrent/TorrentTrackerModel.cpp
+    app/src/torrent/TorrentSearchPluginModel.cpp
+    app/src/torrent/TorrentSearchResultModel.cpp
+    app/src/torrent/TorrentSearchManager.cpp
 )
 
 set(BACKEND_HEADERS
-    app/src/AppController.h
-    app/src/MediaMetadata.h
-    app/src/DownloadItem.h
-    app/src/DownloadQueue.h
-    app/src/SegmentedTransfer.h
-    app/src/Transfer.h
-    app/src/FtpTransfer.h
-    app/src/FileNameUtils.h
-    app/src/NativeMessagingHost.h
-    app/src/CategoryModel.h
-    app/src/DownloadTableModel.h
-    app/src/AppSettings.h
-    app/src/StellarPaths.h
-    app/src/DataPortability.h
-    app/src/SystemTrayIcon.h
-    app/src/DownloadDatabase.h
-    app/src/GrabberCrawler.h
-    app/src/GrabberProjectModel.h
-    app/src/YtdlpManager.h
-    app/src/YtdlpTransfer.h
-    app/src/GrabberResultModel.h
-    app/src/Queue.h
-    app/src/QueueDatabase.h
-    app/src/QueueModel.h
-    app/src/RssArticleModel.h
-    app/src/RssFeedModel.h
-    app/src/RssManager.h
-    app/src/FileDragDropHelper.h
-    app/src/FileIconImageProvider.h
-    app/src/TorrentSessionManager.h
-    app/src/TorrentFileModel.h
-    app/src/TorrentPeerModel.h
-    app/src/TorrentTrackerModel.h
-    app/src/TorrentSearchPluginModel.h
-    app/src/TorrentSearchResultModel.h
-    app/src/TorrentSearchManager.h
-    app/src/NetworkInfo.h
-    app/src/BrowserCookieReader.h
+    app/src/core/AppController.h
+    app/src/core/AppSettings.h
+    app/src/core/StellarPaths.h
+    app/src/core/DataPortability.h
+    app/src/core/SystemTrayIcon.h
+    app/src/core/FileNameUtils.h
+    app/src/core/FileDragDropHelper.h
+    app/src/core/FileIconImageProvider.h
+    app/src/core/NativeMessagingHost.h
+    app/src/core/NetworkInfo.h
+    app/src/core/BrowserCookieReader.h
+    app/src/download/MediaMetadata.h
+    app/src/download/DownloadItem.h
+    app/src/download/DownloadQueue.h
+    app/src/download/SegmentedTransfer.h
+    app/src/download/Transfer.h
+    app/src/download/FtpTransfer.h
+    app/src/download/CategoryModel.h
+    app/src/download/DownloadTableModel.h
+    app/src/download/DownloadDatabase.h
+    app/src/queue/Queue.h
+    app/src/queue/QueueDatabase.h
+    app/src/queue/QueueModel.h
+    app/src/grabber/GrabberCrawler.h
+    app/src/grabber/GrabberProjectModel.h
+    app/src/grabber/GrabberResultModel.h
+    app/src/ytdlp/YtdlpManager.h
+    app/src/ytdlp/YtdlpTransfer.h
+    app/src/rss/RssArticleModel.h
+    app/src/rss/RssFeedModel.h
+    app/src/rss/RssManager.h
+    app/src/torrent/TorrentSessionManager.h
+    app/src/torrent/TorrentFileModel.h
+    app/src/torrent/TorrentPeerModel.h
+    app/src/torrent/TorrentTrackerModel.h
+    app/src/torrent/TorrentSearchPluginModel.h
+    app/src/torrent/TorrentSearchResultModel.h
+    app/src/torrent/TorrentSearchManager.h
 )
 
 # ── QML Resources ──────────────────────────────────────────────────────────────
@@ -210,69 +210,78 @@ endif()
 
 qt_add_executable(Stellar ${BACKEND_SOURCES} ${BACKEND_HEADERS})
 
-set_source_files_properties(app/qml/ColorPalette.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
-set_source_files_properties(app/qml/LanguageList.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
+set_source_files_properties(app/qml/singletons/ColorPalette.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
+set_source_files_properties(app/qml/singletons/LanguageList.qml PROPERTIES QT_QML_SINGLETON_TYPE TRUE)
 
 qt_add_qml_module(Stellar
     URI com.stellar.app
     VERSION 1.0
     QML_FILES
         app/qml/Main.qml
-        app/qml/Toolbar.qml
-        app/qml/Sidebar.qml
-        app/qml/SidebarItemDragHandler.qml
-        app/qml/SidebarSectionDragHandler.qml
-        app/qml/DownloadTable.qml
-        app/qml/DownloadTableHeader.qml
-        app/qml/DownloadTableRow.qml
-        app/qml/StatusBar.qml
-        app/qml/AddUrlDialog.qml
-        app/qml/ToolbarBtn.qml
-        app/qml/ToolbarDropdown.qml
-        app/qml/DownloadProgressDialog.qml
-        app/qml/DownloadCompleteDialog.qml
-        app/qml/DeleteConfirmDialog.qml
-        app/qml/DownloadFileInfoDialog.qml
-        app/qml/SettingsDialog.qml
-        app/qml/TrayMenuItem.qml
-        app/qml/DuplicateDownloadDialog.qml
-        app/qml/ExportDialog.qml
-        app/qml/AddExceptionDialog.qml
-        app/qml/BrowserIntegrationDialog.qml
-        app/qml/SchedulerDialog.qml
-        app/qml/FilePropertiesDialog.qml
-        app/qml/FindDialog.qml
-        app/qml/ColumnsDialog.qml
-        app/qml/ToolbarDialog.qml
-        app/qml/DeleteDoneConfirmDialog.qml
-        app/qml/BatchDownloadDialog.qml
-        app/qml/BatchDownloadListDialog.qml
-        app/qml/GrabberDialog.qml
-        app/qml/GrabberResultsDialog.qml
-        app/qml/GrabberProjectPickerDialog.qml
-        app/qml/GrabberSettingsDialog.qml
-        app/qml/GrabberScheduleDialog.qml
-        app/qml/GrabberStatisticsDialog.qml
-        app/qml/GrabberIncludeFiltersDialog.qml
-        app/qml/QueueSelectionDialog.qml
-        app/qml/YtdlpDialog.qml
-        app/qml/TorrentMetadataDialog.qml
-        app/qml/TorrentDuplicateDialog.qml
-        app/qml/TorrentSpeedLimitDialog.qml
-        app/qml/TorrentCreatorDialog.qml
-        app/qml/DlgButton.qml
-        app/qml/ThemedToolTip.qml
-        app/qml/StyledCheckBox.qml
-        app/qml/StyledRadioButton.qml
-        app/qml/LanguageList.qml
-        app/qml/RssWindow.qml
-        app/qml/RssDownloadRulesDialog.qml
-        app/qml/TorrentSearchWindow.qml
-        app/qml/TorrentSearchPluginsDialog.qml
-        app/qml/TorrentSearchInstallDialog.qml
-        app/qml/StatisticsDialog.qml
-        app/qml/DownloadLimitsExceededDialog.qml
-        app/qml/ColorPalette.qml
+        # main/ — primary window regions
+        app/qml/main/Toolbar.qml
+        app/qml/main/Sidebar.qml
+        app/qml/main/StatusBar.qml
+        app/qml/main/DownloadTable.qml
+        app/qml/main/DownloadTableHeader.qml
+        app/qml/main/DownloadTableRow.qml
+        # components/ — shared reusable widgets
+        app/qml/components/DlgButton.qml
+        app/qml/components/ThemedToolTip.qml
+        app/qml/components/StyledCheckBox.qml
+        app/qml/components/StyledRadioButton.qml
+        app/qml/components/ToolbarBtn.qml
+        app/qml/components/ToolbarDropdown.qml
+        app/qml/components/TrayMenuItem.qml
+        app/qml/components/CompactMenuItem.qml
+        app/qml/components/SidebarItemDragHandler.qml
+        app/qml/components/SidebarSectionDragHandler.qml
+        # singletons/
+        app/qml/singletons/ColorPalette.qml
+        app/qml/singletons/LanguageList.qml
+        # dialogs/ — general download/app dialogs
+        app/qml/dialogs/AddUrlDialog.qml
+        app/qml/dialogs/DownloadProgressDialog.qml
+        app/qml/dialogs/DownloadCompleteDialog.qml
+        app/qml/dialogs/DeleteConfirmDialog.qml
+        app/qml/dialogs/DeleteDoneConfirmDialog.qml
+        app/qml/dialogs/DownloadFileInfoDialog.qml
+        app/qml/dialogs/SettingsDialog.qml
+        app/qml/dialogs/DuplicateDownloadDialog.qml
+        app/qml/dialogs/ExportDialog.qml
+        app/qml/dialogs/AddExceptionDialog.qml
+        app/qml/dialogs/BrowserIntegrationDialog.qml
+        app/qml/dialogs/SchedulerDialog.qml
+        app/qml/dialogs/FilePropertiesDialog.qml
+        app/qml/dialogs/FindDialog.qml
+        app/qml/dialogs/ColumnsDialog.qml
+        app/qml/dialogs/ToolbarDialog.qml
+        app/qml/dialogs/BatchDownloadDialog.qml
+        app/qml/dialogs/BatchDownloadListDialog.qml
+        app/qml/dialogs/QueueSelectionDialog.qml
+        app/qml/dialogs/StatisticsDialog.qml
+        app/qml/dialogs/DownloadLimitsExceededDialog.qml
+        # grabber/
+        app/qml/grabber/GrabberDialog.qml
+        app/qml/grabber/GrabberResultsDialog.qml
+        app/qml/grabber/GrabberProjectPickerDialog.qml
+        app/qml/grabber/GrabberSettingsDialog.qml
+        app/qml/grabber/GrabberScheduleDialog.qml
+        app/qml/grabber/GrabberStatisticsDialog.qml
+        app/qml/grabber/GrabberIncludeFiltersDialog.qml
+        # ytdlp/
+        app/qml/ytdlp/YtdlpDialog.qml
+        # rss/
+        app/qml/rss/RssWindow.qml
+        app/qml/rss/RssDownloadRulesDialog.qml
+        # torrent/
+        app/qml/torrent/TorrentMetadataDialog.qml
+        app/qml/torrent/TorrentDuplicateDialog.qml
+        app/qml/torrent/TorrentSpeedLimitDialog.qml
+        app/qml/torrent/TorrentCreatorDialog.qml
+        app/qml/torrent/TorrentSearchWindow.qml
+        app/qml/torrent/TorrentSearchPluginsDialog.qml
+        app/qml/torrent/TorrentSearchInstallDialog.qml
     RESOURCES
         app/qml/icons/add.svg
         app/qml/icons/resume.svg
@@ -548,7 +557,16 @@ if(Qt6LinguistTools_FOUND)
 endif()
 
 add_dependencies(Stellar StellarBuildTime)
-target_include_directories(Stellar PRIVATE app/src ${CMAKE_BINARY_DIR})
+target_include_directories(Stellar PRIVATE
+    app/src
+    app/src/core
+    app/src/download
+    app/src/queue
+    app/src/grabber
+    app/src/ytdlp
+    app/src/rss
+    app/src/torrent
+    ${CMAKE_BINARY_DIR})
 
 target_link_libraries(Stellar PRIVATE
     Qt6::Core

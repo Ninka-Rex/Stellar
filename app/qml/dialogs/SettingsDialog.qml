@@ -4806,7 +4806,7 @@ Window {
                             Image {
                                 Layout.preferredWidth: 64
                                 Layout.preferredHeight: 64
-                                source: "icons/milky-way.png"
+                                source: "../icons/milky-way.png"
                                 fillMode: Image.PreserveAspectFit
                                 smooth: true
                             }

@@ -55,7 +55,7 @@ Window {
             Layout.fillWidth: true
 
             Image {
-                source: "icons/information.svg"
+                source: "../icons/information.svg"
                 width: 16; height: 16
                 sourceSize.width: 32; sourceSize.height: 32
                 fillMode: Image.PreserveAspectFit
@@ -103,7 +103,7 @@ Window {
                     spacing: 6
 
                     Image {
-                        source: "icons/link.svg"
+                        source: "../icons/link.svg"
                         width: 12; height: 12
                         sourceSize.width: 24; sourceSize.height: 24
                         fillMode: Image.PreserveAspectFit

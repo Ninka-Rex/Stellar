@@ -655,7 +655,7 @@ Window {
                             ]
                             delegate: ToolbarBtn {
                                 label: modelData.label
-                                iconSrc: "icons/" + modelData.icon
+                                iconSrc: "../icons/" + modelData.icon
                                 width: modelData.btnWidth
                                 height: 72
                                 enabled: {
@@ -754,7 +754,7 @@ Window {
                                         spacing: 5
 
                                         Image {
-                                            source: "icons/categories/all_downloads.svg"
+                                            source: "../icons/categories/all_downloads.svg"
                                             width: 14; height: 14
                                             sourceSize.width: 14; sourceSize.height: 14
                                             fillMode: Image.PreserveAspectFit
@@ -792,7 +792,7 @@ Window {
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
-                                            source: "icons/cloud_copylink.svg"
+                                            source: "../icons/cloud_copylink.svg"
                                             width: 14; height: 14
                                             sourceSize.width: 14; sourceSize.height: 14
                                             fillMode: Image.PreserveAspectFit
@@ -844,7 +844,7 @@ Window {
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
                                             Image {
-                                                source: modelData.isDomain ? "icons/globe.svg" : "icons/page.svg"
+                                                source: modelData.isDomain ? "../icons/globe.svg" : "../icons/page.svg"
                                                 width: 14; height: 14
                                                 sourceSize.width: 14; sourceSize.height: 14
                                                 fillMode: Image.PreserveAspectFit
@@ -894,7 +894,7 @@ Window {
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
-                                            source: "icons/folder_view.svg"
+                                            source: "../icons/folder_view.svg"
                                             width: 14; height: 14
                                             sourceSize.width: 14; sourceSize.height: 14
                                             fillMode: Image.PreserveAspectFit
@@ -946,7 +946,7 @@ Window {
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
                                             Image {
-                                                source: "icons/folder.svg"
+                                                source: "../icons/folder.svg"
                                                 width: 14; height: 14
                                                 sourceSize.width: 14; sourceSize.height: 14
                                                 fillMode: Image.PreserveAspectFit

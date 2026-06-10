@@ -86,7 +86,7 @@ Window {
         RowLayout {
             spacing: 10
             Image {
-                source: "icons/delete.svg"
+                source: "../icons/delete.svg"
                 width: 22; height: 22
                 Layout.alignment: Qt.AlignVCenter
                 smooth: true

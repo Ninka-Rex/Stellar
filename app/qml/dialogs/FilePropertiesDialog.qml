@@ -547,47 +547,47 @@ Window {
         if (!name)
             return ""
         if (name.indexOf("stellar") !== -1)
-            return "icons/milky-way.png"
+            return "../icons/milky-way.png"
         if (name.indexOf("qbittorrent") !== -1 || name.indexOf("qbittorrent enhanced") !== -1)
-            return "icons/torrent-client-logos/qbittorrent.png"
+            return "../icons/torrent-client-logos/qbittorrent.png"
         if (name.indexOf("transmission") !== -1)
-            return "icons/torrent-client-logos/transmission.png"
+            return "../icons/torrent-client-logos/transmission.png"
         if (name.indexOf("deluge") !== -1)
-            return "icons/torrent-client-logos/deluge.png"
+            return "../icons/torrent-client-logos/deluge.png"
         if (name.indexOf("ktorrent") !== -1)
-            return "icons/torrent-client-logos/ktorrent.png"
+            return "../icons/torrent-client-logos/ktorrent.png"
         if (name.indexOf("tixati") !== -1)
-            return "icons/torrent-client-logos/tixati-icon.png"
+            return "../icons/torrent-client-logos/tixati-icon.png"
         if (name.indexOf("picotorrent") !== -1)
-            return "icons/torrent-client-logos/picotorrent.png"
+            return "../icons/torrent-client-logos/picotorrent.png"
         if (name.indexOf("biglybt") !== -1 || name.indexOf("vuze") !== -1 || name.indexOf("azureus") !== -1)
             return name.indexOf("biglybt") !== -1
-                ? "icons/torrent-client-logos/biglybt.png"
-                : "icons/torrent-client-logos/vuze.png"
+                ? "../icons/torrent-client-logos/biglybt.png"
+                : "../icons/torrent-client-logos/vuze.png"
         if (name.indexOf("utorrent") !== -1 || name.indexOf("\u00b5torrent") !== -1 || name.indexOf("\u03bctorrent") !== -1 || name.indexOf("microtorrent") !== -1)
-            return "icons/torrent-client-logos/utorrent.png"
+            return "../icons/torrent-client-logos/utorrent.png"
         if (name.indexOf("bitcomet") !== -1)
-            return "icons/torrent-client-logos/bitcomet.png"
+            return "../icons/torrent-client-logos/bitcomet.png"
         if (name.indexOf("bittorrent") !== -1)
-            return "icons/torrent-client-logos/bittorrent.png"
+            return "../icons/torrent-client-logos/bittorrent.png"
         if (name.indexOf("bitlord") !== -1)
-            return "icons/torrent-client-logos/BitLord_logo_2022.png"
+            return "../icons/torrent-client-logos/BitLord_logo_2022.png"
         if (name.indexOf("frostwire") !== -1)
-            return "icons/torrent-client-logos/frostwire.png"
+            return "../icons/torrent-client-logos/frostwire.png"
         if (name.indexOf("folx") !== -1)
-            return "icons/torrent-client-logos/folx.png"
+            return "../icons/torrent-client-logos/folx.png"
         if (name.indexOf("libretorrent") !== -1)
-            return "icons/torrent-client-logos/libretorrent.png"
+            return "../icons/torrent-client-logos/libretorrent.png"
         if (name.indexOf("libtorrent") !== -1 || name.indexOf("rasterbar") !== -1)
-            return "icons/torrent-client-logos/Libtorrent-rasterbar-logo.png"
+            return "../icons/torrent-client-logos/Libtorrent-rasterbar-logo.png"
         if (name.indexOf("elementum") !== -1)
-            return "icons/torrent-client-logos/elementum.png"
+            return "../icons/torrent-client-logos/elementum.png"
         if (name.indexOf("fdm") !== -1 || name.indexOf("free download manager") !== -1)
-            return "icons/torrent-client-logos/FDM.png"
+            return "../icons/torrent-client-logos/FDM.png"
         if (name.indexOf("xunlei") !== -1 || name.indexOf("thunder") !== -1)
-            return "icons/torrent-client-logos/XunLei.png"
+            return "../icons/torrent-client-logos/XunLei.png"
         if (name.indexOf("mediaget") !== -1)
-            return "icons/torrent-client-logos/MediaGet2.png"
+            return "../icons/torrent-client-logos/MediaGet2.png"
         return ""
     }
 
@@ -2982,7 +2982,7 @@ Window {
                                     Image {
                                         Layout.preferredWidth: 16
                                         Layout.preferredHeight: 16
-                                        source: "icons/rename.svg"
+                                        source: "../icons/rename.svg"
                                         sourceSize: Qt.size(16, 16)
                                         fillMode: Image.PreserveAspectFit
                                         asynchronous: true
@@ -3178,7 +3178,7 @@ Window {
                                         anchors.leftMargin: 10
                                         width: 16
                                         height: 16
-                                        source: "icons/rename.svg"
+                                        source: "../icons/rename.svg"
                                         sourceSize: Qt.size(16, 16)
                                         fillMode: Image.PreserveAspectFit
                                         asynchronous: true
@@ -3769,7 +3769,7 @@ Window {
                                                     Image {
                                                         id: mapImage
                                                         anchors.fill: parent
-                                                        source: ColorPalette.dark ? "icons/world-map.svg" : "icons/world-map-light.svg"
+                                                        source: ColorPalette.dark ? "../icons/world-map.svg" : "../icons/world-map-light.svg"
                                                         fillMode: Image.Stretch
                                                         smooth: true
                                                         sourceSize.width: 1200
@@ -4349,7 +4349,7 @@ Window {
                                         Image {
                                             id: worldMapImage
                                             anchors.fill: parent
-                                            source: ColorPalette.dark ? "icons/world-map.svg" : "icons/world-map-light.svg"
+                                            source: ColorPalette.dark ? "../icons/world-map.svg" : "../icons/world-map-light.svg"
                                             fillMode: Image.PreserveAspectFit
                                             smooth: true
                                             sourceSize.width: 2400
@@ -4846,7 +4846,7 @@ Window {
                                                 spacing: 5
                                                 width: parent.width
                                                 Image {
-                                                    source: "icons/milky-way.png"
+                                                    source: "../icons/milky-way.png"
                                                     width: 14; height: 14
                                                     fillMode: Image.PreserveAspectFit
                                                     smooth: true
