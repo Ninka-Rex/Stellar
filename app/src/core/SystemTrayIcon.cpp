@@ -237,7 +237,7 @@ void SystemTrayIcon::showNotification(const QString &title, const QString &msg) 
 #if defined(STELLAR_LINUX)
     const QString notifySend = QStandardPaths::findExecutable(QStringLiteral("notify-send"));
     if (!notifySend.isEmpty()) {
-        // Strip LD_LIBRARY_PATH so system tools don't load bundled AppImage libs.
+        // Strip LD_LIBRARY_PATH so system tools don't load our bundled Qt libs.
         QProcess::startDetached(QStringLiteral("env"), {
             QStringLiteral("-u"), QStringLiteral("LD_LIBRARY_PATH"),
             notifySend,

@@ -89,9 +89,10 @@ QJsonArray chromeNativeMessagingOrigins()
     };
 }
 
-// Return system environment stripped of app-internal vars set by the launcher
-// script (LD_LIBRARY_PATH, QT_*). Use when spawning system tools via QProcess
-// so they don't load incompatible bundled libraries from the AppImage.
+// Return system environment stripped of app-internal vars set by the
+// /usr/bin/stellar launcher script (LD_LIBRARY_PATH, QT_*). Use when spawning
+// system tools via QProcess so they don't load the incompatible Qt libraries
+// bundled under /opt/stellar/lib.
 QProcessEnvironment cleanSystemEnvironment()
 {
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
@@ -140,6 +141,24 @@ constexpr qint64 kBindSuspendGraceMs = 15000;
 constexpr qint64 kTorrentSpeedHistoryRetentionMs = 24LL * 60LL * 60LL * 1000LL;
 constexpr int kMaxMotdLengthChars = 280;
 constexpr qint64 kMotdDismissDurationMs = 7LL * 24LL * 60LL * 60LL * 1000LL;
+
+// Open a local file or directory with the desktop's default handler.
+// On Linux QDesktopServices::openUrl() spawns xdg-open/kde-open as a child
+// process that inherits the launcher script's LD_LIBRARY_PATH/QT_* exports,
+// making those system Qt tools load the bundled Qt libraries and die silently.
+// Spawn xdg-open ourselves with a clean environment instead.
+void openLocalPath(const QString &path)
+{
+#if defined(STELLAR_LINUX)
+    QProcess proc;
+    proc.setProgram(QStringLiteral("xdg-open"));
+    proc.setArguments({ path });
+    proc.setProcessEnvironment(cleanSystemEnvironment());
+    proc.startDetached();
+#else
+    QDesktopServices::openUrl(QUrl::fromLocalFile(path));
+#endif
+}
 
 QString cleanedYtdlpError(const QString &reason) {
     QString text = reason;
@@ -1993,7 +2012,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 }
                 if (queueFinished) {
                     if (queue->openFileWhenDone() && !queue->openFilePath().isEmpty())
-                        QDesktopServices::openUrl(QUrl::fromLocalFile(queue->openFilePath()));
+                        openLocalPath(queue->openFilePath());
                     if (queue->turnOffComputerWhenDone()) {
 #if defined(Q_OS_WIN)
                         if (queue->forceProcessesToTerminate())
@@ -3699,17 +3718,17 @@ void AppController::openExtensionFolder() const {
     const QString appDir = QCoreApplication::applicationDirPath();
     const QString installedPath = appDir + QStringLiteral("/extensions/firefox");
     if (QFile::exists(installedPath)) {
-        QDesktopServices::openUrl(QUrl::fromLocalFile(installedPath));
+        openLocalPath(installedPath);
         return;
     }
     // Dev build: binary is in build/windows-debug/ — project root is 3 levels up
     const QString devPath = QDir::cleanPath(appDir + QStringLiteral("/../../../extensions/firefox"));
     if (QFile::exists(devPath)) {
-        QDesktopServices::openUrl(QUrl::fromLocalFile(devPath));
+        openLocalPath(devPath);
         return;
     }
     // Final fallback: just open the app directory
-    QDesktopServices::openUrl(QUrl::fromLocalFile(appDir));
+    openLocalPath(appDir);
 }
 
 QString AppController::nativeHostManifestPath() const {
@@ -3857,7 +3876,7 @@ QString AppController::grantFlatpakFirefoxNativeMessagingPermission() const {
 
 bool AppController::openFlatpakFirefoxInDiscover() const {
 #if defined(STELLAR_LINUX)
-    // Strip LD_LIBRARY_PATH so plasma-discover doesn't load bundled AppImage libs.
+    // Strip LD_LIBRARY_PATH so plasma-discover doesn't load our bundled Qt libs.
     if (QProcess::startDetached(QStringLiteral("env"),
                                 { QStringLiteral("-u"), QStringLiteral("LD_LIBRARY_PATH"),
                                   QStringLiteral("plasma-discover"),
@@ -4816,24 +4835,24 @@ void AppController::openFile(const QString &id) {
         }
 
         if (QFileInfo::exists(rootPath)) {
-            QDesktopServices::openUrl(QUrl::fromLocalFile(rootPath));
+            openLocalPath(rootPath);
             return;
         }
 
-        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
+        openLocalPath(item->savePath());
         return;
     }
     if (item->filename().isEmpty()) {
-        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
+        openLocalPath(item->savePath());
         return;
     }
-    QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath() + QStringLiteral("/") + item->filename()));
+    openLocalPath(item->savePath() + QStringLiteral("/") + item->filename());
 }
 
 void AppController::openFolder(const QString &id) {
     auto *item = m_downloadModel->itemById(id);
     if (!item) return;
-    QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
+    openLocalPath(item->savePath());
 }
 
 void AppController::openFolderSelectFile(const QString &id) {
@@ -4865,34 +4884,35 @@ void AppController::openFolderSelectFile(const QString &id) {
 
 #else
     if (item->filename().isEmpty()) {
-        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
+        openLocalPath(item->savePath());
         return;
     }
     const QString filePath = item->savePath() + QLatin1Char('/') + item->filename();
     if (!QFileInfo::exists(filePath)) {
-        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
+        openLocalPath(item->savePath());
         return;
     }
     // Try common Linux file managers' "select" syntax. Falls back to plain
-    // open-the-directory if none are available, matching prior behavior.
+    // open-the-directory if none are installed. File managers are Qt/GTK apps
+    // launched as children — clean environment required, same as openLocalPath.
     auto tryRun = [](const QString &program, const QStringList &args) -> bool {
-        return QProcess::startDetached(program, args);
+        if (QStandardPaths::findExecutable(program).isEmpty())
+            return false;
+        QProcess proc;
+        proc.setProgram(program);
+        proc.setArguments(args);
+        proc.setProcessEnvironment(cleanSystemEnvironment());
+        return proc.startDetached();
     };
-    // Nautilus / Nemo / Caja accept the URI directly and select the target.
-    if (tryRun(QStringLiteral("xdg-mime"),
-               {QStringLiteral("query"), QStringLiteral("default"),
-                QStringLiteral("inode/directory")})) {
-        // Best-effort: try the major file managers in order. Ignore failures.
-        if (tryRun(QStringLiteral("nautilus"),
-                   {QStringLiteral("--select"), filePath}))
-            return;
-        if (tryRun(QStringLiteral("nemo"), {filePath}))
-            return;
-        if (tryRun(QStringLiteral("dolphin"),
-                   {QStringLiteral("--select"), filePath}))
-            return;
-    }
-    QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
+    if (tryRun(QStringLiteral("nautilus"),
+               {QStringLiteral("--select"), filePath}))
+        return;
+    if (tryRun(QStringLiteral("dolphin"),
+               {QStringLiteral("--select"), filePath}))
+        return;
+    if (tryRun(QStringLiteral("nemo"), {filePath}))
+        return;
+    openLocalPath(item->savePath());
 #endif
 }
 
@@ -4902,11 +4922,13 @@ void AppController::openExternalUrl(const QUrl &url) {
 #else
     // Bypass QDesktopServices::openUrl on Linux. On KDE it routes through KIO,
     // which may try to "read" https:// URLs as files instead of launching the
-    // default browser. xdg-open reliably delegates to the right handler.
-    // Strip LD_LIBRARY_PATH so system tools don't load bundled AppImage libs.
-    QProcess::startDetached(QStringLiteral("env"),
-                            {QStringLiteral("-u"), QStringLiteral("LD_LIBRARY_PATH"),
-                             QStringLiteral("xdg-open"), url.toString()});
+    // default browser. xdg-open reliably delegates to the right handler; clean
+    // environment keeps the handler from loading our bundled Qt libraries.
+    QProcess proc;
+    proc.setProgram(QStringLiteral("xdg-open"));
+    proc.setArguments({ url.toString() });
+    proc.setProcessEnvironment(cleanSystemEnvironment());
+    proc.startDetached();
 #endif
 }
 
@@ -4924,7 +4946,7 @@ void AppController::openFileWith(const QString &id) {
     ShellExecuteW(nullptr, L"open", L"rundll32.exe", params.c_str(), nullptr, SW_SHOWNORMAL);
 #else
     // No portable "Open With" picker on Linux; fall back to default open.
-    QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
+    openLocalPath(filePath);
 #endif
 }
 
@@ -7318,7 +7340,7 @@ bool AppController::shutdownComputer() const
     return QProcess::startDetached(QStringLiteral("shutdown"),
                                    { QStringLiteral("/s"), QStringLiteral("/t"), QStringLiteral("0") });
 #elif defined(Q_OS_LINUX)
-    // Strip LD_LIBRARY_PATH so systemctl/shutdown don't load bundled AppImage libs.
+    // Strip LD_LIBRARY_PATH so systemctl/shutdown don't load our bundled libs.
     if (QProcess::startDetached(QStringLiteral("env"),
                                 { QStringLiteral("-u"), QStringLiteral("LD_LIBRARY_PATH"),
                                   QStringLiteral("systemctl"), QStringLiteral("poweroff") })) {
