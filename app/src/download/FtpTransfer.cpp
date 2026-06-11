@@ -83,6 +83,10 @@ public:
     void start() {
         m_phase = Phase::Connecting;
         m_control = new QSslSocket(this);   // speaks plaintext until startClientEncryption()
+        // Bound the control socket's receive buffer. A hostile server can stream an
+        // endless line with no CRLF; without a cap Qt buffers it all (memory DoS).
+        // Real FTP replies are well under this; canReadLine() still works normally.
+        m_control->setReadBufferSize(kMaxControlBufferBytes);
         connect(m_control, &QAbstractSocket::connected, this, [this]() { m_phase = Phase::Greeting; armTimer(); });
         connect(m_control, &QIODevice::readyRead, this, &FtpControl::onControlReadyRead);
         connect(m_control, &QAbstractSocket::errorOccurred, this, [this](QAbstractSocket::SocketError){
@@ -159,6 +163,12 @@ private:
             }
             m_replyCode = code; m_replyText = m.captured(3);
             return true;
+        }
+        // Cap the accumulated multiline reply. A server can otherwise send endless
+        // "NNN-" continuation lines and grow m_replyText without limit (memory DoS).
+        if (m_replyText.size() > kMaxReplyTextChars) {
+            failWith(tr("FTP reply too long."), false);
+            return false;
         }
         if (m.hasMatch() && m.captured(2) == QStringLiteral(" ") && m.captured(1).toInt() == m_mlCode) {
             m_replyCode = m_mlCode; m_replyText += QLatin1Char('\n') + m.captured(3);
@@ -376,6 +386,10 @@ private:
     Phase   m_phase{Phase::Connecting};
     bool    m_manualPump{false};
 
+    // DoS bounds for control-reply parsing (hostile/endless server output).
+    static constexpr qint64 kMaxControlBufferBytes = 64 * 1024; // socket recv cap
+    static constexpr int     kMaxReplyTextChars     = 64 * 1024; // multiline accum cap
+
     bool    m_inMultiline{false};
     int     m_mlCode{0}, m_replyCode{0};
     QString m_replyText;
@@ -559,6 +573,10 @@ void FtpTransfer::startSegment(Segment &seg) {
     const int index = seg.index;
     connect(seg.conn, &FtpControl::ready, this, [this, index](qint64) {
         if (m_cancelled || m_failed) return;
+        // Bounds-check: collapseToSingleConnection() can shrink m_segments, and
+        // although teardownSegment() disconnects first today, a stale index here
+        // would be an out-of-bounds access — fail closed rather than rely on that.
+        if (index < 0 || index >= m_segments.size()) return;
         Segment &s = m_segments[index];
         const qint64 resumeFrom = s.startOffset + s.received;
         s.lastByteTime = QDateTime::currentMSecsSinceEpoch(); // arm stall watchdog (see onPrimaryReady)
