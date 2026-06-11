@@ -49,11 +49,9 @@ I understand installing random browser extensions from GitHub can be uncomfortab
 3. Each one shows the raw file, audit the code.
 
 ### Firefox
-1. On the `about:debugging` page, find the **Internal UUID** field for Stellar and copy it.
-2. In a normal browser tab, open these addresses one at a time, putting your UUID where shown:
-   - `moz-extension://YOUR-UUID/service-worker.js`
-   - `moz-extension://YOUR-UUID/content.js`
-   - `moz-extension://YOUR-UUID/popup.js`
+1. Download the `StellarFirefox.xpi` file.
+2. Rename `.xpi` to `.zip` and extract.
+3. View the `.js` files.
 </details>
 
 <details>

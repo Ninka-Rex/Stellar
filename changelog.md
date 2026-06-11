@@ -2,6 +2,37 @@
 
 ---
 
+## Version 0.10.2 Beta - June 11, 2026
+
+FIREFOX USERS: Please update your browser extension!
+
+CHROME USERS: Please allow more time for Google to approve the update!
+
+You shouldn't be using Google Chrome anyway.
+
+### New
+- Batch download selected files in your browser by highlighting all links > Download with Stellar
+- Status bar: click the speed limiter to open speed limiter settings
+- Added polish to the batch download dialog
+- Added Tasks > Add Batch URLs from Clipboard
+- Added instructions to README.md on how to audit the browser extension code yourself
+
+### Improved
+- Improved the auto-updater to be more polished and verbose
+- Greatly improved startup time, tons of optimizations to reduce CPU usage
+- Updated Chrome and Firefox extensions to intercept downloads more accurately
+- Updated libtorrent to 2.0.13
+
+### Fixed
+- Fixed minor security issues found by Claude Fable 5
+- Selected downloads or torrents stay highlighted even if they move position in the file list during sorting
+- Fixed an issue where duplicate downloads wouldn't be assigned numbered filenames
+- Detatched the duplicate download dialog from the main window, so it doesn't open after an intercept
+- Search box not being theme-aware
+- Yt-dlp downloads not getting overwritten when asked to
+
+---
+
 ## Version 0.10.1 Beta - June 7, 2026
 
 ### Improved
