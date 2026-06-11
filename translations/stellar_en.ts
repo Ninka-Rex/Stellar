@@ -5481,6 +5481,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
 <context>
     <name>SettingsDialog</name>
     <message>
+        <source>Used for merging video and audio streams.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Used for BitTorrent protocol support.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Used for video metadata extraction and media downloading features.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Thanks for using Stellar</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1007"/>
         <location filename="../app/qml/dialogs/SettingsDialog.qml" line="1050"/>
         <source>Connection</source>
@@ -6089,7 +6117,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </message>
     <message>
         <location filename="../app/qml/dialogs/SettingsDialog.qml" line="2743"/>
-        <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+        <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

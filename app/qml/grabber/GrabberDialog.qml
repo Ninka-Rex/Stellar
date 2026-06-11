@@ -139,6 +139,9 @@ Window {
         bottomPadding: 0
         leftPadding: 0
         rightPadding: 0
+        // Fill the wizard column so long (translated) labels wrap instead of
+        // spilling off the right edge. Harmless when not in a Layout.
+        Layout.fillWidth: true
         indicator: Rectangle {
             implicitWidth: 14
             implicitHeight: 14
@@ -162,6 +165,7 @@ Window {
             font.pixelSize: 13 * App.fontScale
             leftPadding: parent.indicator.width + parent.spacing
             verticalAlignment: Text.AlignVCenter
+            wrapMode: Text.WordWrap
         }
     }
 
@@ -171,6 +175,7 @@ Window {
         bottomPadding: 0
         leftPadding: 0
         rightPadding: 0
+        Layout.fillWidth: true
         indicator: Rectangle {
             implicitWidth: 14
             implicitHeight: 14
@@ -195,6 +200,7 @@ Window {
             font.pixelSize: 13 * App.fontScale
             leftPadding: parent.indicator.width + parent.spacing
             verticalAlignment: Text.AlignVCenter
+            wrapMode: Text.WordWrap
         }
     }
 
@@ -1242,13 +1248,13 @@ Window {
                                     StepLabel { text: qsTr("Download if file size is"); font.bold: true }
                                     RowLayout {
                                         spacing: 8
-                                        WizardCheckBox { id: minSizeEnabled; text: qsTr("Not less than") }
+                                        WizardCheckBox { id: minSizeEnabled; Layout.fillWidth: false; text: qsTr("Not less than") }
                                         WizardTextField { id: minSizeField; Layout.preferredWidth: 76; enabled: minSizeEnabled.checked; text: "1" }
                                         StepLabel { text: qsTr("Bytes") }
                                     }
                                     RowLayout {
                                         spacing: 8
-                                        WizardCheckBox { id: maxSizeEnabled; text: qsTr("Not more than") }
+                                        WizardCheckBox { id: maxSizeEnabled; Layout.fillWidth: false; text: qsTr("Not more than") }
                                         WizardTextField { id: maxSizeField; Layout.preferredWidth: 76; enabled: maxSizeEnabled.checked; text: "10" }
                                         StepLabel { text: qsTr("Bytes") }
                                     }

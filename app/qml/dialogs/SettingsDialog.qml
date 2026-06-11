@@ -1133,19 +1133,19 @@ Window {
                         GridLayout {
                             columns: 3; columnSpacing: 10; rowSpacing: 10
 
-                            Text { text: qsTr("Maximum simultaneous downloads:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                            Text { text: qsTr("Maximum simultaneous downloads:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             ThemedSpin { from: 1; to: 16; value: root.editMaxConcurrent; onValueModified: root.editMaxConcurrent = value }
                             Item {}
 
-                            Text { text: qsTr("Segments per download:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                            Text { text: qsTr("Segments per download:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             ThemedSpin { from: 1; to: 16; value: root.editSegmentsPerDownload; onValueModified: root.editSegmentsPerDownload = value }
                             Item {}
 
-                            Text { text: qsTr("Connection timeout (seconds):"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                            Text { text: qsTr("Connection timeout (seconds):"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             ThemedSpin { from: 5; to: 120; value: root.editConnectionTimeoutSecs; onValueModified: root.editConnectionTimeoutSecs = value }
                             Item {}
 
-                            Text { text: qsTr("Retry failed downloads:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                            Text { text: qsTr("Retry failed downloads:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             ThemedSpin { from: 0; to: 10; value: root.editMaxRetries; onValueModified: root.editMaxRetries = value }
                             Text { text: qsTr("times"); color: ColorPalette.textSecond; font.pixelSize: 13 * App.fontScale }
                         }
@@ -1587,7 +1587,7 @@ Window {
                                 ColumnLayout {
                                     Layout.fillWidth: true
                                     spacing: 4
-                                    Text { text: qsTr("Space or comma-separated. Case-insensitive."); color: "#909090"; font.pixelSize: 11 * App.fontScale }
+                                    Text { text: qsTr("Space or comma-separated. Case-insensitive."); color: "#909090"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                                     ScrollView {
                                         Layout.fillWidth: true
                                         implicitHeight: 52
@@ -1636,7 +1636,7 @@ Window {
                                 ColumnLayout {
                                     Layout.fillWidth: true
                                     spacing: 4
-                                    Text { text: qsTr("Auto-assign from sites  (space-separated, * wildcard)"); color: "#909090"; font.pixelSize: 11 * App.fontScale }
+                                    Text { text: qsTr("Auto-assign from sites  (space-separated, * wildcard)"); color: "#909090"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                                     TextField {
                                         id: catEditSites
                                         Layout.fillWidth: true
@@ -1711,7 +1711,7 @@ Window {
                         Text { text: qsTr("Downloads"); color: ColorPalette.textHeader; font.pixelSize: 16 * App.fontScale; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        Text { text: qsTr("Default save folder:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                        Text { text: qsTr("Default save folder:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -1730,7 +1730,7 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        Text { text: qsTr("Custom save folder for torrents:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                        Text { text: qsTr("Custom save folder for torrents:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -1756,7 +1756,7 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        Text { text: qsTr("Stellar temporary directory:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                        Text { text: qsTr("Stellar temporary directory:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -1785,7 +1785,7 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editStartImmediately
                             onCheckedChanged: root.editStartImmediately = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         StyledCheckBox {
@@ -1793,7 +1793,7 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowDownloadComplete
                             onCheckedChanged: root.editShowDownloadComplete = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         StyledCheckBox {
@@ -1801,7 +1801,7 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editStartDownloadWhileFileInfo
                             onCheckedChanged: root.editStartDownloadWhileFileInfo = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         StyledCheckBox {
@@ -1809,7 +1809,7 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editFillDescriptionMetadata
                             onCheckedChanged: root.editFillDescriptionMetadata = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         StyledCheckBox {
@@ -1817,7 +1817,7 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowSwarmMapWhileFetchingMetadata
                             onCheckedChanged: root.editShowSwarmMapWhileFetchingMetadata = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         StyledCheckBox {
@@ -1825,14 +1825,14 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowQueueSelectionOnDownloadLater
                             onCheckedChanged: root.editShowQueueSelectionOnDownloadLater = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         StyledCheckBox {
                             text: qsTr("Show queue selection panel on closing batch downloads dialog")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowQueueSelectionOnBatchDownload
                             onCheckedChanged: root.editShowQueueSelectionOnBatchDownload = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         Text {
                             text: qsTr("Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting.")
@@ -1843,7 +1843,7 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        Text { text: qsTr("If a duplicate URL is added:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                        Text { text: qsTr("If a duplicate URL is added:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         ComboBox {
                             id: duplicateActionCombo
                             model: [
@@ -1853,21 +1853,23 @@ Window {
                                 qsTr("Resume / show complete dialog")
                             ]
                             currentIndex: root.editDuplicateAction
+                            Layout.fillWidth: true
                             implicitWidth: 260
                             font.pixelSize: 12 * App.fontScale
                             background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                             contentItem: Text {
-                                leftPadding: 8
+                                leftPadding: 8; rightPadding: duplicateActionCombo.indicator.width + 4
                                 text: duplicateActionCombo.displayText
                                 color: ColorPalette.textPrimary; font: duplicateActionCombo.font
                                 verticalAlignment: Text.AlignVCenter
+                                elide: Text.ElideRight
                             }
                             onCurrentIndexChanged: root.editDuplicateAction = currentIndex
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        Text { text: qsTr("Double-clicking on a download in the file list:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                        Text { text: qsTr("Double-clicking on a download in the file list:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         ComboBox {
                             id: doubleClickActionCombo
                             model: [
@@ -1876,21 +1878,23 @@ Window {
                                 qsTr("Open folder")
                             ]
                             currentIndex: root.editDoubleClickAction
+                            Layout.fillWidth: true
                             implicitWidth: 260
                             font.pixelSize: 12 * App.fontScale
                             background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                             contentItem: Text {
-                                leftPadding: 8
+                                leftPadding: 8; rightPadding: doubleClickActionCombo.indicator.width + 4
                                 text: doubleClickActionCombo.displayText
                                 color: ColorPalette.textPrimary; font: doubleClickActionCombo.font
                                 verticalAlignment: Text.AlignVCenter
+                                elide: Text.ElideRight
                             }
                             onCurrentIndexChanged: root.editDoubleClickAction = currentIndex
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-                        Text { text: qsTr("Last try date format:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                        Text { text: qsTr("Last try date format:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         ComboBox {
                             id: lastTryDateStyleCombo
                             model: [
@@ -1912,7 +1916,7 @@ Window {
                             onCurrentIndexChanged: root.editLastTryDateStyle = currentIndex
                         }
 
-                        Text { text: qsTr("Time format:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale }
+                        Text { text: qsTr("Time format:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         ComboBox {
                             id: lastTryTimeModeCombo
                             model: [
@@ -1937,7 +1941,7 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editLastTryShowSeconds
                             onCheckedChanged: root.editLastTryShowSeconds = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         Rectangle {
@@ -2157,7 +2161,7 @@ Window {
                                 text: qsTr("Enable speed limiter")
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: root.editGlobalSpeedLimitEnabled = checked
-                                contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                                contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                             }
 
                             RowLayout {
@@ -2230,7 +2234,7 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedLimiterOnStartup
                             onCheckedChanged: root.editSpeedLimiterOnStartup = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
@@ -2243,7 +2247,7 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedScheduleEnabled
                             onCheckedChanged: root.editSpeedScheduleEnabled = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         ColumnLayout {
@@ -2563,14 +2567,14 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowCompletionNotification
                             onCheckedChanged: root.editShowCompletionNotification = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         StyledCheckBox {
                             text: qsTr("Show notification on download error")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowErrorNotification
                             onCheckedChanged: root.editShowErrorNotification = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         Item { Layout.fillHeight: true }
@@ -2600,35 +2604,35 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editMinimizeToTray
                             onCheckedChanged: root.editMinimizeToTray = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         StyledCheckBox {
                             text: qsTr("Close to system tray")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editCloseToTray
                             onCheckedChanged: root.editCloseToTray = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         StyledCheckBox {
                             text: qsTr("Launch Stellar on startup")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editLaunchOnStartup
                             onCheckedChanged: root.editLaunchOnStartup = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         StyledCheckBox {
                             text: qsTr("Pause torrents on startup")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editTorrentStopOnStartup
                             onCheckedChanged: root.editTorrentStopOnStartup = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         StyledCheckBox {
                             text: qsTr("Show tips in bottom bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowTips
                             onCheckedChanged: root.editShowTips = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
                         Text { text: qsTr("Appearance"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
@@ -2769,49 +2773,49 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedInTrayTooltip
                             onCheckedChanged: root.editSpeedInTrayTooltip = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         StyledCheckBox {
                             text: qsTr("Show speed in title bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedInTitleBar
                             onCheckedChanged: root.editSpeedInTitleBar = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         StyledCheckBox {
                             text: qsTr("Show speed in status bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedInStatusBar
                             onCheckedChanged: root.editSpeedInStatusBar = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         StyledCheckBox {
                             text: qsTr("Show ratio in status bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editRatioInStatusBar
                             onCheckedChanged: root.editRatioInStatusBar = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         StyledCheckBox {
                             text: qsTr("Show torrent connections in status bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editConnectionsInStatusBar
                             onCheckedChanged: root.editConnectionsInStatusBar = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         StyledCheckBox {
                             text: qsTr("Show DHT nodes in status bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editDhtNodesInStatusBar
                             onCheckedChanged: root.editDhtNodesInStatusBar = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         StyledCheckBox {
                             text: qsTr("Show Public IP in Status Bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowPublicIpInStatusBar
                             onCheckedChanged: root.editShowPublicIpInStatusBar = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         Text {
                             text: qsTr("Detects your public IP via libtorrent and your active connection type. Hover the indicator to see WiFi SSID/signal or warnings about incoming connections.")
@@ -2831,7 +2835,7 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editAutoCheckUpdates
                             onCheckedChanged: root.editAutoCheckUpdates = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
@@ -2843,7 +2847,7 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editClipboardMonitorEnabled
                             onCheckedChanged: root.editClipboardMonitorEnabled = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         Text {
@@ -3289,7 +3293,7 @@ Window {
                                     root.editTorrentEnabled = false
                                 }
                             }
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         // Legal notice shown when enabling BitTorrent
@@ -3368,7 +3372,7 @@ Window {
                             columnSpacing: 10
                             rowSpacing: 8
 
-                            Text { text: qsTr("Listen port"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Listen port"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             TextField {
                                 Layout.preferredWidth: 120
                                 text: String(root.editTorrentListenPort)
@@ -3378,7 +3382,7 @@ Window {
                                 onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n)) root.editTorrentListenPort = n }
                             }
 
-                            Text { text: qsTr("Global max connections"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Global max connections"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             TextField {
                                 Layout.preferredWidth: 120
                                 text: String(root.editTorrentConnectionsLimit)
@@ -3388,7 +3392,7 @@ Window {
                                 onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n) && n >= 1) root.editTorrentConnectionsLimit = n }
                             }
 
-                            Text { text: qsTr("Max connections per torrent"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Max connections per torrent"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             TextField {
                                 Layout.preferredWidth: 120
                                 text: String(root.editTorrentConnectionsLimitPerTorrent)
@@ -3398,7 +3402,7 @@ Window {
                                 onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n) && n >= 0) root.editTorrentConnectionsLimitPerTorrent = n }
                             }
 
-                            Text { text: qsTr("Global max upload slots"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Global max upload slots"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             TextField {
                                 Layout.preferredWidth: 120
                                 text: String(root.editTorrentUploadSlotsLimit)
@@ -3408,7 +3412,7 @@ Window {
                                 onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n) && n >= 0) root.editTorrentUploadSlotsLimit = n }
                             }
 
-                            Text { text: qsTr("Max upload slots per torrent"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Max upload slots per torrent"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             TextField {
                                 Layout.preferredWidth: 120
                                 text: String(root.editTorrentUploadSlotsLimitPerTorrent)
@@ -3419,9 +3423,9 @@ Window {
                             }
 
                             Item {}
-                            Text { text: qsTr("0 = unlimited (per-torrent fields and global upload slots)"); color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale }
+                            Text { text: qsTr("0 = unlimited (per-torrent fields and global upload slots)"); color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
 
-                            Text { text: qsTr("Protocol"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Protocol"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             ComboBox {
                                 id: torrentProtocolCombo
                                 Layout.preferredWidth: 160
@@ -3542,7 +3546,7 @@ Window {
 
                         Text { text: qsTr("Advanced"); color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
 
-                        Text { text: qsTr("Custom bittorrent user agent"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Custom bittorrent user agent"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                         TextField {
                             Layout.fillWidth: true
                             text: root.editTorrentCustomUserAgent
@@ -3552,7 +3556,7 @@ Window {
                             background: Rectangle { color: ColorPalette.inputBg; border.color: parent.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3 }
                         }
 
-                        Text { text: qsTr("Network interface"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Network interface"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
 
                         ComboBox {
                             id: torrentAdapterCombo
@@ -3706,7 +3710,7 @@ Window {
                             checked: root.editTorrentPieceExtentAffinity
                             onToggled: root.editTorrentPieceExtentAffinity = checked
                             topPadding: 0; bottomPadding: 0
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
                         Text {
                             Layout.fillWidth: true
@@ -3721,7 +3725,7 @@ Window {
                             checked: root.editTorrentCoalesceReads
                             onToggled: root.editTorrentCoalesceReads = checked
                             topPadding: 0; bottomPadding: 0
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         StyledCheckBox {
@@ -3729,7 +3733,7 @@ Window {
                             checked: root.editTorrentCoalesceWrites
                             onToggled: root.editTorrentCoalesceWrites = checked
                             topPadding: 0; bottomPadding: 0
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         Text {
@@ -3830,7 +3834,7 @@ Window {
                             wrapMode: Text.WordWrap
                         }
 
-                        Text { text: qsTr("Encryption Mode"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Encryption Mode"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
 
                         ComboBox {
                             id: encryptionModeCombo
@@ -3884,7 +3888,7 @@ Window {
                             }
                         }
 
-                        Text { text: qsTr("Blocked user agents"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Blocked user agents"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.preferredHeight: 96
@@ -3916,7 +3920,7 @@ Window {
                             wrapMode: Text.WordWrap
                         }
 
-                        Text { text: qsTr("Manually ban peer"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Manually ban peer"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -3953,7 +3957,7 @@ Window {
                             wrapMode: Text.WordWrap
                         }
 
-                        Text { text: qsTr("Block peers by country"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Block peers by country"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -4121,7 +4125,7 @@ Window {
                             }
                         }
 
-                        Text { text: qsTr("Manually banned peers"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                        Text { text: qsTr("Manually banned peers"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.preferredHeight: 160
@@ -4380,7 +4384,7 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editRssEnabled
                             onCheckedChanged: root.editRssEnabled = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         GridLayout {
@@ -4390,7 +4394,7 @@ Window {
                             rowSpacing: 8
                             enabled: root.editRssEnabled
 
-                            Text { text: qsTr("Feeds refresh interval"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Feeds refresh interval"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             TextField {
                                 Layout.preferredWidth: 80
                                 text: String(root.editRssRefreshIntervalMins)
@@ -4408,7 +4412,7 @@ Window {
                             }
                             Text { text: qsTr("minutes"); color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale }
 
-                            Text { text: qsTr("Same host request delay"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Same host request delay"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             TextField {
                                 Layout.preferredWidth: 80
                                 text: String(Math.round(root.editRssSameHostDelayMs / 1000))
@@ -4426,7 +4430,7 @@ Window {
                             }
                             Text { text: qsTr("seconds"); color: ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale }
 
-                            Text { text: qsTr("Maximum articles per feed"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
+                            Text { text: qsTr("Maximum articles per feed"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             TextField {
                                 Layout.preferredWidth: 80
                                 text: String(root.editRssMaxArticlesPerFeed)
@@ -4454,7 +4458,7 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editRssAutoDownloadEnabled
                             onCheckedChanged: root.editRssAutoDownloadEnabled = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         DlgButton {
@@ -4475,7 +4479,7 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editRssSmartFilterRepack
                             onCheckedChanged: root.editRssSmartFilterRepack = checked
-                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4 }
+                            contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap }
                         }
 
                         Text { text: qsTr("Episode detection patterns (one per line):"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale }
@@ -4991,8 +4995,8 @@ Window {
                             Text {
                                 Layout.fillWidth: true
                                 text: "Copyright \u00A9 2000\u2013present the FFmpeg developers. " +
-                                      "Used for merging video and audio streams. " +
-                                      "FFmpeg is a trademark of Fabrice Bellard."
+                                      qsTr("Used for merging video and audio streams.") + " " +
+                                      qsTr("FFmpeg is a trademark of Fabrice Bellard.")
                                 color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
@@ -5030,7 +5034,7 @@ Window {
                             Text {
                                 Layout.fillWidth: true
                                 text: "Copyright \u00A9 Arvid Norberg and contributors. " +
-                                      "Used for BitTorrent protocol support."
+                                      qsTr("Used for BitTorrent protocol support.")
                                 color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
@@ -5068,7 +5072,7 @@ Window {
                             Text {
                                 Layout.fillWidth: true
                                 text: "yt-dlp contributors (The Unlicense, public-domain dedication). " +
-                                      "Used for video metadata extraction and media downloading features."
+                                      qsTr("Used for video metadata extraction and media downloading features.")
                                 color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
@@ -5105,7 +5109,8 @@ Window {
                             }
                             Text {
                                 Layout.fillWidth: true
-                                text: "Copyright \u00A9 The Qt Company Ltd. Used under the LGPL-3 with the Qt LGPL exception."
+                                text: "Copyright \u00A9 The Qt Company Ltd. " +
+                                      qsTr("Used under the LGPL-3 with the Qt LGPL exception.")
                                 color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
@@ -5132,7 +5137,7 @@ Window {
                             }
                             Text {
                                 Layout.fillWidth: true
-                                text: "Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0."
+                                text: qsTr("Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.")
                                 color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale
                                 wrapMode: Text.WordWrap
                             }
@@ -5155,7 +5160,7 @@ Window {
                         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.rowAltBg; Layout.bottomMargin: 12 }
 
                         Text {
-                            text: "Thanks for using Stellar \uD83D\uDC99"
+                            text: qsTr("Thanks for using Stellar") + " \uD83D\uDC99"
                             color: "#505050"; font.pixelSize: 11 * App.fontScale
                             Layout.bottomMargin: 12
                         }

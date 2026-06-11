@@ -16,6 +16,7 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 
 // Theme-aware CheckBox with an explicit indicator so the box is always
 // visible in both light and dark mode (Material's default unchecked box
@@ -24,6 +25,9 @@ CheckBox {
     id: root
     topPadding: 0
     bottomPadding: 0
+    // Fill the parent layout so long (translated) labels wrap instead of
+    // overflowing the dialog. Harmlessly ignored when not in a Layout.
+    Layout.fillWidth: true
     indicator: Rectangle {
         implicitWidth: 16
         implicitHeight: 16
@@ -47,6 +51,7 @@ CheckBox {
         color: root.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
         font.pixelSize: 13 * App.fontScale
         verticalAlignment: Text.AlignVCenter
+        wrapMode: Text.WordWrap
         leftPadding: root.indicator.width + 6
     }
 }
