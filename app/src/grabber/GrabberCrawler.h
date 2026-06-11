@@ -123,6 +123,11 @@ private:
     QString basicAuthHeader() const;
     QString filenameForUrl(const QUrl &url) const;
     QString wildcardToRegex(const QString &pattern) const;
+    // Compiles and caches a pattern list. Called only on the main thread (from
+    // start()); classifyLinks() worker threads use matchesAnyPattern() which only
+    // reads the prebuilt cache, so the QHash is never mutated concurrently.
+    const QList<QRegularExpression> &compilePatterns(const QString &cacheKey,
+                                                     const QStringList &patterns) const;
     bool matchesAnyPattern(const QString &text, const QStringList &patterns) const;
     bool isSameSite(const QUrl &url) const;
     bool isWithinMainDomain(const QUrl &url) const;

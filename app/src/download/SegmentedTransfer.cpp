@@ -140,8 +140,11 @@ bool mappedRangeCopy(QFile &src, qint64 srcOff, qint64 size,
         const qint64 window = std::min(remaining, kMapWindow);
         uchar *srcPtr = src.map(srcOff, window);
         if (!srcPtr) {
+            // Map failed (network drive, address-space pressure). Fall back to a
+            // streamed copy of ALL remaining bytes — not just this window, which
+            // would silently truncate any file larger than kMapWindow.
             if (src.seek(srcOff) && dst.seek(dstOff))
-                return copyFileContents(src, dst, window, errorOut);
+                return copyFileContents(src, dst, remaining, errorOut);
             if (errorOut)
                 *errorOut = QStringLiteral("Cannot map source at %1: %2")
                     .arg(srcOff).arg(src.errorString());

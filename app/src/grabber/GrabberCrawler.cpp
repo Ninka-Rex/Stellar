@@ -62,6 +62,38 @@ void GrabberCrawler::start(const QVariantMap &project)
     if (m_startPathPrefix.isEmpty())
         m_startPathPrefix = QStringLiteral("/");
 
+    // Precompile every pattern list on the (single-threaded) main thread before
+    // any worker starts. classifyLinks() runs on QtConcurrent threads and matches
+    // patterns concurrently; a lazy cache mutated from those threads is a data
+    // race on QHash (corruption/crash). Populating it fully here makes it
+    // immutable for the duration of the crawl, so the worker-thread reads are safe.
+    m_patternCache.clear();
+    const QStringList patternKeys = {
+        QStringLiteral("exploreIncludePatterns"),
+        QStringLiteral("exploreExcludePatterns"),
+        QStringLiteral("logoutPatterns"),
+        QStringLiteral("fileIncludePatterns"),
+        QStringLiteral("fileExcludePatterns"),
+        QStringLiteral("filePathIncludePatterns"),
+        QStringLiteral("filePathExcludePatterns")
+    };
+    QSet<QString> primed;
+    auto prime = [&](const QStringList &patterns) {
+        if (patterns.isEmpty())
+            return;
+        const QString cacheKey = patterns.join(QLatin1Char('\0'));
+        if (primed.contains(cacheKey))
+            return;
+        primed.insert(cacheKey);
+        compilePatterns(cacheKey, patterns);
+    };
+    for (const QString &key : patternKeys)
+        prime(project.value(key).toStringList());
+    // checkUrlDepthAndPatterns concatenates explore-exclude + logout patterns into
+    // a single list, so prime that combined key too.
+    prime(project.value(QStringLiteral("exploreExcludePatterns")).toStringList()
+          + project.value(QStringLiteral("logoutPatterns")).toStringList());
+
     m_pendingPages.enqueue({ m_startUrl, 0, QString() });
     emit progressChanged(QStringLiteral("Exploring %1").arg(m_startUrl.toString()));
     pumpQueue();
@@ -507,25 +539,38 @@ QString GrabberCrawler::wildcardToRegex(const QString &pattern) const
     return QStringLiteral("^") + regex + QStringLiteral("$");
 }
 
+const QList<QRegularExpression> &GrabberCrawler::compilePatterns(const QString &cacheKey,
+                                                                 const QStringList &patterns) const
+{
+    auto it = m_patternCache.find(cacheKey);
+    if (it != m_patternCache.end())
+        return *it;
+    QList<QRegularExpression> compiled;
+    compiled.reserve(patterns.size());
+    for (const QString &pattern : patterns) {
+        const QString trimmed = pattern.trimmed();
+        if (trimmed.isEmpty())
+            continue;
+        compiled.append(QRegularExpression(wildcardToRegex(trimmed),
+                                           QRegularExpression::CaseInsensitiveOption));
+    }
+    return *m_patternCache.insert(cacheKey, std::move(compiled));
+}
+
 bool GrabberCrawler::matchesAnyPattern(const QString &text, const QStringList &patterns) const
 {
     if (patterns.isEmpty())
         return false;
 
+    // Read-only lookup: the cache is fully populated by compilePatterns() in
+    // start() on the main thread before any worker runs, so this runs lock-free
+    // on QtConcurrent threads. A pattern list not seen at start() (shouldn't
+    // happen) falls back to matching nothing rather than mutating the cache from
+    // a worker thread, which would be a data race.
     const QString cacheKey = patterns.join(QLatin1Char('\0'));
-    auto it = m_patternCache.find(cacheKey);
-    if (it == m_patternCache.end()) {
-        QList<QRegularExpression> compiled;
-        compiled.reserve(patterns.size());
-        for (const QString &pattern : patterns) {
-            const QString trimmed = pattern.trimmed();
-            if (trimmed.isEmpty())
-                continue;
-            compiled.append(QRegularExpression(wildcardToRegex(trimmed),
-                                               QRegularExpression::CaseInsensitiveOption));
-        }
-        it = m_patternCache.insert(cacheKey, std::move(compiled));
-    }
+    auto it = m_patternCache.constFind(cacheKey);
+    if (it == m_patternCache.constEnd())
+        return false;
 
     for (const QRegularExpression &re : *it) {
         if (re.match(text).hasMatch())

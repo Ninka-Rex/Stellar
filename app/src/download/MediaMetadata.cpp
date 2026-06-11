@@ -131,7 +131,9 @@ static OggInfo parseOggVorbis(const QByteArray &data) {
 struct OpusInfo { int sampleRate{0}; int channels{0}; };
 static OpusInfo parseOpus(const QByteArray &data) {
     int idx = data.indexOf("OpusHead");
-    if (idx < 0 || idx + 11 >= data.size()) return {};
+    // Reads v[0] (channels) and v[4..7] (sample rate) = data[idx+9 .. idx+16],
+    // so the buffer must hold at least idx+17 bytes.
+    if (idx < 0 || !inBounds(data, idx + 9, 8)) return {};
     const quint8 *v = (const quint8 *)data.constData() + idx + 9;
     int ch = v[0];
     int sr = v[4]|(v[5]<<8)|(v[6]<<16)|(v[7]<<24);
