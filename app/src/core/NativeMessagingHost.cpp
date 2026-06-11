@@ -19,6 +19,7 @@
 #include <QJsonObject>
 #include <QDataStream>
 #include <QFile>
+#include <cstring>
 #ifdef Q_OS_WIN
 #  include <io.h>
 #  include <fcntl.h>
@@ -49,33 +50,49 @@ void NativeMessagingHost::start() {
 }
 
 void NativeMessagingHost::readMessage() {
-    // Temporarily disable the notifier while we do blocking reads so it
-    // doesn't re-fire before we've consumed the current message.
-    m_stdinNotifier->setEnabled(false);
+    // Non-blocking, buffered accumulation. The notifier fires when bytes are
+    // ready; we read whatever is available (never demanding a fixed count, which
+    // would block the GUI thread on a partial browser write) and parse only the
+    // complete frames the buffer holds. A short read just leaves a partial frame
+    // buffered for the next activation — the host never wedges.
+    static constexpr qint64 kReadChunk = 64 * 1024;
+    const qint64 avail = m_stdin.bytesAvailable();
+    const qint64 want = avail > 0 ? qMin(avail, kReadChunk) : kReadChunk;
+    const QByteArray chunk = m_stdin.read(want);
 
-    quint32 len = 0;
-    if (m_stdin.read(reinterpret_cast<char *>(&len), 4) != 4) {
-        // stdin closed — browser exited; stop the event loop gracefully.
-        m_stdinNotifier->setEnabled(false);
+    if (chunk.isEmpty()) {
+        // EOF — stdin closed (browser exited). Stop reading; no recovery needed.
+        if (m_stdin.atEnd())
+            m_stdinNotifier->setEnabled(false);
         return;
     }
 
-    // SECURITY: CWE-789 — Chrome and Firefox cap native messages at 1 MB.
-    // Reject oversized lengths before allocating to prevent a 4 GB allocation
-    // from a malicious or misbehaving caller.
-    if (len == 0 || len > kMaxNativeMessageSize) {
-        m_stdinNotifier->setEnabled(false);
-        return;
-    }
+    m_buf.append(chunk);
+    if (!drainBuffer())
+        m_stdinNotifier->setEnabled(false); // fatal protocol error: stop reading
+}
 
-    QByteArray json(static_cast<int>(len), Qt::Uninitialized);
-    if (m_stdin.read(json.data(), len) != static_cast<qint64>(len)) {
-        m_stdinNotifier->setEnabled(false);
-        return;
-    }
+bool NativeMessagingHost::drainBuffer() {
+    for (;;) {
+        if (m_buf.size() < 4)
+            return true; // need the 4-byte length header first
 
-    m_stdinNotifier->setEnabled(true);
-    handleMessage(json);
+        quint32 len = 0;
+        std::memcpy(&len, m_buf.constData(), 4); // native byte order, per protocol
+
+        // SECURITY: CWE-789 — Chrome and Firefox cap native messages at 1 MB.
+        // Reject oversized lengths before buffering a payload to prevent a giant
+        // allocation from a malicious or misbehaving caller.
+        if (len == 0 || len > kMaxNativeMessageSize)
+            return false;
+
+        if (m_buf.size() < static_cast<int>(4 + len))
+            return true; // full payload not yet arrived — wait for more bytes
+
+        const QByteArray json = m_buf.mid(4, static_cast<int>(len));
+        m_buf.remove(0, static_cast<int>(4 + len));
+        handleMessage(json);
+    }
 }
 
 void NativeMessagingHost::handleMessage(const QByteArray &json) {

@@ -281,7 +281,8 @@ public:
                                            const QString &videoTitle = {},
                                            bool playlistMode = false,
                                            int  maxItems = 0,
-                                           const QVariantMap &extraOptions = {});
+                                           const QVariantMap &extraOptions = {},
+                                           bool overwriteExisting = false);
 
     // Start a yt-dlp download.  Item must already be in the queue as a held item
     // (enqueueHeld) so it appears in the UI.  formatId is a yt-dlp format selector.
@@ -865,7 +866,8 @@ private:
                           const QString &containerFormat, bool resume,
                           const QString &outputTemplate = {},
                           bool playlistMode = false, int maxItems = 0,
-                          const YtdlpOptions &options = {});
+                          const YtdlpOptions &options = {},
+                          bool forceOverwrites = false);
     void onYtdlpWorkerFinished(const QString &id);
     void onYtdlpWorkerFailed(const QString &id, const QString &reason);
     // Returns the path to ffmpeg if found next to yt-dlp or on system PATH.

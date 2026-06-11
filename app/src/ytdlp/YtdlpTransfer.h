@@ -201,6 +201,7 @@ public:
                            const YtdlpOptions &options       = {},
                            const QString    &jsRuntimePath   = {},
                            const QString    &jsRuntimeName   = {},
+                           bool              forceOverwrites = false,
                            QObject          *parent          = nullptr);
     ~YtdlpTransfer() override;
 
@@ -227,6 +228,10 @@ private slots:
     void onProcessError(QProcess::ProcessError err);
 
 private:
+    // Kill the yt-dlp subprocess and free it asynchronously (no waitForFinished,
+    // so the GUI thread never blocks). Detaches our slots, clears m_process.
+    void killProcessAsync();
+
     // Dispatch a single, complete line of yt-dlp stdout.
     void handleLine(const QString &line);
 
@@ -254,6 +259,7 @@ private:
     YtdlpOptions  m_options;              // extra per-download flags
     QString       m_jsRuntimePath;       // path to JS runtime for EJS n-challenge solving
     QString       m_jsRuntimeName;       // "deno", "node", "bun", or "quickjs"
+    bool          m_forceOverwrites{false}; // --force-overwrites (user chose "Overwrite existing")
     bool          m_aborted{false};
 
     // Accumulation buffer for incomplete stdout lines.

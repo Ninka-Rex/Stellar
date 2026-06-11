@@ -1353,9 +1353,22 @@ ApplicationWindow {
                 App.resumeDownload(existing.id)
             }
         } else if (action === 2) {
-            // Overwrite: remove existing entry, then proceed to file info dialog
-            App.deleteDownload(existing.id, 0)
-            _showFileInfoDialog(url, "")
+            // Overwrite: re-add the download.
+            if (App.isLikelyYtdlpUrl(url)) {
+                // yt-dlp names the file from video metadata, so the collision
+                // scan would otherwise append _2. overwriteExisting tells the
+                // backend to skip that rename and force yt-dlp to overwrite.
+                // Defer removing the existing entry until the user actually starts
+                // the download in the format picker — stash its id and delete it
+                // in onDownloadRequested. Cancelling the picker leaves it intact.
+                _showYtdlpDialog(url)
+                ytdlpDialog.overwriteExisting = true
+                _ytdlpOverwriteExistingId = existing.id
+            } else {
+                // Non-yt-dlp goes straight to the file-info dialog; remove now.
+                App.deleteDownload(existing.id, 0)
+                _showFileInfoDialog(url, "")
+            }
         } else {
             // AddNumbered: for yt-dlp URLs the filename is chosen by yt-dlp itself
             // ── (from video metadata), so generating a numbered name here has no effect ──
@@ -1371,6 +1384,11 @@ ApplicationWindow {
             }
         }
     }
+
+    // Id of an existing download to remove when the user confirms an "Overwrite"
+    // yt-dlp download. Deleted in onDownloadRequested (not on dialog open), so
+    // cancelling the format picker leaves the existing entry untouched.
+    property string _ytdlpOverwriteExistingId: ""
 
     // Pending auth from AddUrlDialog step 1
     property string _pendingUsername: ""
@@ -1509,9 +1527,15 @@ ApplicationWindow {
         id: ytdlpDialog
         transientParent: root
 
-        onDownloadRequested: (url, formatId, containerFormat, savePath, category, uniqueFilename, videoTitle, playlistMode, maxItems, extraOptions) => {
-            App.finalizeYtdlpDownload(url, savePath, category, formatId, containerFormat, uniqueFilename, videoTitle, playlistMode, maxItems, extraOptions)
+        onDownloadRequested: (url, formatId, containerFormat, savePath, category, uniqueFilename, videoTitle, playlistMode, maxItems, extraOptions, overwriteExisting) => {
+            // Now that the user has committed, remove the entry being overwritten.
+            if (overwriteExisting && root._ytdlpOverwriteExistingId.length > 0) {
+                App.deleteDownload(root._ytdlpOverwriteExistingId, 0)
+                root._ytdlpOverwriteExistingId = ""
+            }
+            App.finalizeYtdlpDownload(url, savePath, category, formatId, containerFormat, uniqueFilename, videoTitle, playlistMode, maxItems, extraOptions, overwriteExisting)
         }
+        onClosing: root._ytdlpOverwriteExistingId = ""  // cancelled — keep existing entry
         onOpenSettingsRequested: (page) => showSettingsPage(page)
     }
 

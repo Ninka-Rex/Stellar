@@ -28,13 +28,17 @@ Window {
     // ?? Public API ????????????????????????????????????????????????????????????
     property string pendingUrl: ""
     property bool   uniqueFilename: false
+    // Set when the user picked "Overwrite existing file" in the duplicate dialog.
+    // Tells the backend to skip the _2/_3 collision rename and force yt-dlp to
+    // overwrite the existing file instead.
+    property bool   overwriteExisting: false
 
     signal openSettingsRequested(int page)
     signal downloadRequested(string url, string formatId,
                              string containerFormat, string savePath, string category,
                              bool uniqueFilename, string videoTitle,
                              bool playlistMode, int maxItems,
-                             var extraOptions)
+                             var extraOptions, bool overwriteExisting)
 
     // ?? Window ????????????????????????????????????????????????????????????????
     width:        620
@@ -188,7 +192,7 @@ Window {
     onPendingUrlChanged: { if (visible && pendingUrl.length > 0 && !_accepted) _startProbe() }
 
     function _reset() {
-        pendingUrl = ""; uniqueFilename = false
+        pendingUrl = ""; uniqueFilename = false; overwriteExisting = false
         _probeId = ""; _title = ""; _formats = []
         _probing = false; _probeError = ""; _accepted = false
         subsCheck.checked = false; autoSubsCheck.checked = false
@@ -1286,7 +1290,8 @@ Window {
                     }
                     root.downloadRequested(root._channelScopedUrl(scope), formatId, container,
                                            savePath, catId, root.uniqueFilename, root._title,
-                                           isPl, nItems, root._buildExtraOptions())
+                                           isPl, nItems, root._buildExtraOptions(),
+                                           root.overwriteExisting)
                     root.close()
                 }
             }

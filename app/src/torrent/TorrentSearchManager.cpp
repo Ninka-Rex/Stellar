@@ -39,6 +39,9 @@
 #include <QSet>
 #include <QStandardPaths>
 
+#include <cmath>
+#include <limits>
+
 namespace {
 QString userPluginDir() {
     return StellarPaths::searchPluginsDir();
@@ -63,7 +66,13 @@ TorrentSearchResultModel::Entry entryFromJsonObject(const QJsonObject &obj) {
     TorrentSearchResultModel::Entry entry;
     entry.name = obj.value(QStringLiteral("name")).toString();
     entry.sizeText = obj.value(QStringLiteral("size")).toString();
-    entry.sizeBytes = static_cast<qint64>(obj.value(QStringLiteral("sizeBytes")).toDouble(-1));
+    // sizeBytes comes from an untrusted plugin's JSON; an out-of-range or
+    // non-finite double is UB when cast to qint64. Clamp before converting.
+    const double rawSize = obj.value(QStringLiteral("sizeBytes")).toDouble(-1);
+    entry.sizeBytes = (!std::isfinite(rawSize) || rawSize < 0.0)
+        ? -1
+        : (rawSize >= 9.2e18 ? std::numeric_limits<qint64>::max()
+                             : static_cast<qint64>(rawSize));
     entry.seeders = obj.value(QStringLiteral("seeders")).toInt(-1);
     entry.leechers = obj.value(QStringLiteral("leechers")).toInt(-1);
     entry.engine = obj.value(QStringLiteral("engine")).toString();

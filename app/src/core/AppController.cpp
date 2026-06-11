@@ -8087,7 +8087,8 @@ void AppController::finalizeYtdlpDownload(const QString &url,
                                            const QString &videoTitle,
                                            bool playlistMode,
                                            int  maxItems,
-                                           const QVariantMap &extraOptions) {
+                                           const QVariantMap &extraOptions,
+                                           bool overwriteExisting) {
     // Create the DownloadItem here — not before.  This is intentionally later than
     // the regular HTTP flow (which creates the item as soon as the URL is submitted)
     // so that yt-dlp downloads only appear in the list once the user has confirmed
@@ -8130,14 +8131,36 @@ void AppController::finalizeYtdlpDownload(const QString &url,
 
     const QString container = containerFormat.isEmpty() ? QStringLiteral("mp4") : containerFormat;
 
+    // Convert QML-supplied options map to a typed struct, then serialise to JSON
+    // so the options survive an app restart and can be replayed on resume.
+    const YtdlpOptions opts = YtdlpOptions::fromVariantMap(extraOptions);
+    const QString optsJson  = opts.toJson();
+    if (!optsJson.isEmpty())
+        item->setYtdlpExtraOptions(optsJson);
+
+    // Surface the item in the list IMMEDIATELY, before any filesystem work, so it
+    // appears the instant the user clicks Download. The collision scan below
+    // (entryInfoList over the save dir) can take noticeable time on a large
+    // folder; doing it first delayed the row's appearance by seconds.
+    // enqueueHeld emits DownloadQueue::itemAdded, whose slot already does
+    // addItem() + (when not restoring) m_db->save() + watchItem() — so we must
+    // NOT call save/watchItem again here (double-wires every connection).
+    item->setYtdlpFormatId(formatId + QLatin1Char('|') + container
+                           + QLatin1Char('|') + QStringLiteral("%(title)s.%(ext)s"));
+    m_queue->enqueueHeld(item);
+    emit downloadAdded(item);
+
     // Always scan the save directory for a base-name collision before launching
     // yt-dlp.  Without this, yt-dlp's default behaviour is to skip an existing
     // file silently ("has already been downloaded") and exit 0, which makes the
     // app report a successful download when nothing was actually downloaded.
     // If a collision is found, append _2/_3/…_N until the name is free.
     // Pure filesystem check — no extra yt-dlp subprocess needed.
+    // When the user explicitly chose "Overwrite existing file", skip the
+    // collision rename entirely — yt-dlp is told to --force-overwrites below, so
+    // the file keeps its original name instead of gaining a _2 suffix.
     QString outputTemplate = QStringLiteral("%(title)s.%(ext)s");
-    if (!videoTitle.isEmpty()) {
+    if (!videoTitle.isEmpty() && !overwriteExisting) {
         QDir dir(saveDir);
         dir.mkpath(saveDir);
 
@@ -8165,28 +8188,14 @@ void AppController::finalizeYtdlpDownload(const QString &url,
     if (playlistMode && outputTemplate == QStringLiteral("%(title)s.%(ext)s"))
         outputTemplate = QStringLiteral("%(uploader)s/%(title)s.%(ext)s");
 
-    // Store "formatId|container|outputTemplate" so resume/redownload can replay
-    // the same settings (keeps numbered names consistent on retry).
+    // Store the final "formatId|container|outputTemplate" so resume/redownload can
+    // replay the same settings (keeps numbered names consistent on retry). The
+    // setter fires a save via the watchItem connection wired by enqueueHeld.
     item->setYtdlpFormatId(formatId + QLatin1Char('|') + container
                            + QLatin1Char('|') + outputTemplate);
 
-    // Enqueue the item (triggers m_downloadModel->addItem via itemAdded signal),
-    // persist it, and notify the UI.  The queue's scheduleNext() skips yt-dlp
-    // items so this won't try to start a SegmentedTransfer.
-    // Convert QML-supplied options map to a typed struct, then serialise to JSON
-    // so the options survive an app restart and can be replayed on resume.
-    const YtdlpOptions opts = YtdlpOptions::fromVariantMap(extraOptions);
-    const QString optsJson  = opts.toJson();
-    if (!optsJson.isEmpty())
-        item->setYtdlpExtraOptions(optsJson);
-
-    m_queue->enqueueHeld(item);
-    m_db->save(item);
-    watchItem(item);
-    emit downloadAdded(item);
-
     startYtdlpWorker(item, formatId, container, /*resume=*/false, outputTemplate,
-                     playlistMode, maxItems, opts);
+                     playlistMode, maxItems, opts, /*forceOverwrites=*/overwriteExisting);
 }
 
 void AppController::startYtdlpDownload(const QString &downloadId, const QString &formatId,
@@ -8290,7 +8299,8 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
                                       const QString &containerFormat, bool resume,
                                       const QString &outputTemplate,
                                       bool playlistMode, int maxItems,
-                                      const YtdlpOptions &options) {
+                                      const YtdlpOptions &options,
+                                      bool forceOverwrites) {
     if (!item) return;
 
     // Abort any existing worker for this item (e.g., a stale one from a previous run).
@@ -8325,6 +8335,7 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
                                      playlistMode, maxItems, options,
                                      m_ytdlpManager->jsRuntimePath(),
                                      m_ytdlpManager->jsRuntimeName(),
+                                     forceOverwrites,
                                      this);
     m_ytdlpWorkers[item->id()] = worker;
     if (playlistMode) {

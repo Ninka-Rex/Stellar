@@ -15,11 +15,15 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "YtdlpTransfer.h"
+#include "FileNameUtils.h"
 #include <QRegularExpression>
 #include <QDebug>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#include <QTimer>
+#include <cmath>
+#include <limits>
 
 // ── Constructor / Destructor ──────────────────────────────────────────────────
 
@@ -38,6 +42,7 @@ YtdlpTransfer::YtdlpTransfer(DownloadItem *item,
                               const YtdlpOptions &options,
                               const QString    &jsRuntimePath,
                               const QString    &jsRuntimeName,
+                              bool              forceOverwrites,
                               QObject          *parent)
     : QObject(parent)
     , m_item(item)
@@ -74,6 +79,7 @@ YtdlpTransfer::YtdlpTransfer(DownloadItem *item,
     , m_options(options)
     , m_jsRuntimePath(jsRuntimePath)
     , m_jsRuntimeName(jsRuntimeName)
+    , m_forceOverwrites(forceOverwrites)
 {
 }
 
@@ -178,6 +184,12 @@ void YtdlpTransfer::start() {
 
     if (m_resume)
         args << QStringLiteral("--continue");
+
+    // User chose "Overwrite existing file" in the duplicate dialog: force yt-dlp
+    // to overwrite rather than silently skip an existing file. Without this the
+    // backend's collision scan would have renamed the output to <name>_2.
+    if (m_forceOverwrites)
+        args << QStringLiteral("--force-overwrites");
 
     // yt-dlp does not inherit Qt's application-level proxy — it must be told explicitly.
     // Pass an empty string to "--proxy" to force yt-dlp to use NO proxy (overrides
@@ -306,27 +318,34 @@ void YtdlpTransfer::start() {
     qDebug() << "[YtdlpTransfer] started:" << m_ytdlpPath << args;
 }
 
+// Tear down the yt-dlp subprocess WITHOUT blocking the GUI thread. The old code
+// called waitForFinished(3000), freezing the UI for up to 3 s. Instead we detach
+// our slots, kill the process, and let it self-reap: deleteLater fires on the
+// process's own finished() signal, or unconditionally as a fallback so a process
+// that never reports exit is still freed.
+void YtdlpTransfer::killProcessAsync() {
+    if (!m_process)
+        return;
+    QProcess *proc = m_process;
+    m_process = nullptr;
+    disconnect(proc, nullptr, this, nullptr);
+    connect(proc, qOverload<int, QProcess::ExitStatus>(&QProcess::finished),
+            proc, &QObject::deleteLater);
+    proc->kill();
+    // Fallback: if finished() never arrives (zombie/detached), free after a
+    // grace period anyway. Does not block — runs on the event loop.
+    QTimer::singleShot(5000, proc, &QObject::deleteLater);
+}
+
 void YtdlpTransfer::pause() {
-    if (m_process) {
-        disconnect(m_process, nullptr, this, nullptr);
-        m_process->kill();
-        m_process->waitForFinished(3000);
-        m_process->deleteLater();
-        m_process = nullptr;
-    }
+    killProcessAsync();
     m_item->setStatus(DownloadItem::Status::Paused);
     m_item->setSpeed(0);
 }
 
 void YtdlpTransfer::abort() {
     m_aborted = true;
-    if (m_process) {
-        disconnect(m_process, nullptr, this, nullptr);
-        m_process->kill();
-        m_process->waitForFinished(3000);
-        m_process->deleteLater();
-        m_process = nullptr;
-    }
+    killProcessAsync();
     m_item->setSpeed(0);
 }
 
@@ -377,7 +396,7 @@ void YtdlpTransfer::handleLine(const QString &line) {
         const QString path = line.mid(kDestPrefix.size()).trimmed();
         const int sep = qMax(path.lastIndexOf(QLatin1Char('/')),
                              path.lastIndexOf(QLatin1Char('\\')));
-        const QString filename = (sep >= 0) ? path.mid(sep + 1) : path;
+        const QString filename = sanitizeFilename((sep >= 0) ? path.mid(sep + 1) : path);
         if (!filename.isEmpty()) {
             m_item->setFilename(filename);
             if (m_playlistMode && m_playlistCurrentIndex > 0)
@@ -398,7 +417,7 @@ void YtdlpTransfer::handleLine(const QString &line) {
             // name may be a bare filename or a full path depending on yt-dlp version
             const int sep = qMax(name.lastIndexOf(QLatin1Char('/')),
                                  name.lastIndexOf(QLatin1Char('\\')));
-            const QString filename = (sep >= 0) ? name.mid(sep + 1) : name;
+            const QString filename = sanitizeFilename((sep >= 0) ? name.mid(sep + 1) : name);
             if (!filename.isEmpty()) {
                 m_item->setFilename(filename);
                 if (m_playlistMode && m_playlistCurrentIndex > 0) {
@@ -431,7 +450,7 @@ void YtdlpTransfer::handleLine(const QString &line) {
             const QString path = line.mid(quoteOpen + 1, quoteClose - quoteOpen - 1);
             const int sep = qMax(path.lastIndexOf(QLatin1Char('/')),
                                  path.lastIndexOf(QLatin1Char('\\')));
-            const QString filename = (sep >= 0) ? path.mid(sep + 1) : path;
+            const QString filename = sanitizeFilename((sep >= 0) ? path.mid(sep + 1) : path);
             if (!filename.isEmpty()) {
                 m_item->setFilename(filename);
                 if (m_playlistMode && m_playlistCurrentIndex > 0)
@@ -444,7 +463,13 @@ void YtdlpTransfer::handleLine(const QString &line) {
     }
 
     qDebug() << "[yt-dlp]" << line;
+    // Bound the captured-output buffer: a long playlist or a chatty/hostile
+    // process could otherwise grow m_allLines without limit. Only the tail is
+    // used for the failure message, so keep the most recent lines.
+    static constexpr int kMaxCapturedLines = 200;
     m_allLines.append(line);
+    if (m_allLines.size() > kMaxCapturedLines)
+        m_allLines.remove(0, m_allLines.size() - kMaxCapturedLines);
 }
 
 bool YtdlpTransfer::tryParseProgressLine(const QString &line) {
@@ -655,18 +680,30 @@ void YtdlpTransfer::onProcessError(QProcess::ProcessError err) {
 // ── Unit conversion ───────────────────────────────────────────────────────────
 
 qint64 YtdlpTransfer::parseSizeToBytes(double value, const QString &unit) {
+    // Converting an out-of-range or non-finite double to qint64 is undefined
+    // behaviour. yt-dlp progress lines are untrusted text, so a crafted/garbled
+    // unit+value could otherwise UB-crash here. Clamp every result to [0, max].
+    auto toBytes = [](double bytes) -> qint64 {
+        if (!std::isfinite(bytes) || bytes <= 0.0)
+            return 0;
+        constexpr double kMax = 9.2e18; // < INT64_MAX, safe to cast
+        if (bytes >= kMax)
+            return std::numeric_limits<qint64>::max();
+        return static_cast<qint64>(bytes);
+    };
+
     const QString u = unit.toLower();
     // IEC binary prefixes (yt-dlp default)
-    if (u == QStringLiteral("tib")) return static_cast<qint64>(value * 1099511627776.0);
-    if (u == QStringLiteral("gib")) return static_cast<qint64>(value * 1073741824.0);
-    if (u == QStringLiteral("mib")) return static_cast<qint64>(value * 1048576.0);
-    if (u == QStringLiteral("kib")) return static_cast<qint64>(value * 1024.0);
-    if (u == QStringLiteral("b"))   return static_cast<qint64>(value);
+    if (u == QStringLiteral("tib")) return toBytes(value * 1099511627776.0);
+    if (u == QStringLiteral("gib")) return toBytes(value * 1073741824.0);
+    if (u == QStringLiteral("mib")) return toBytes(value * 1048576.0);
+    if (u == QStringLiteral("kib")) return toBytes(value * 1024.0);
+    if (u == QStringLiteral("b"))   return toBytes(value);
     // SI decimal prefixes (fallback)
-    if (u == QStringLiteral("tb"))  return static_cast<qint64>(value * 1000000000000.0);
-    if (u == QStringLiteral("gb"))  return static_cast<qint64>(value * 1000000000.0);
-    if (u == QStringLiteral("mb"))  return static_cast<qint64>(value * 1000000.0);
-    if (u == QStringLiteral("kb"))  return static_cast<qint64>(value * 1000.0);
+    if (u == QStringLiteral("tb"))  return toBytes(value * 1000000000000.0);
+    if (u == QStringLiteral("gb"))  return toBytes(value * 1000000000.0);
+    if (u == QStringLiteral("mb"))  return toBytes(value * 1000000.0);
+    if (u == QStringLiteral("kb"))  return toBytes(value * 1000.0);
     // Unknown unit — treat value as raw bytes
-    return static_cast<qint64>(value);
+    return toBytes(value);
 }

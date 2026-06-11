@@ -51,7 +51,14 @@ private slots:
 private:
     void writeMessage(const QByteArray &json);
     void handleMessage(const QByteArray &json);
+    // Parse as many complete frames as m_buf holds; leaves any partial frame
+    // buffered for the next notifier activation. Returns false on a fatal
+    // protocol error (oversized frame), which permanently stops reading.
+    bool drainBuffer();
 
     QSocketNotifier *m_stdinNotifier{nullptr};
     QFile            m_stdin;
+    // Accumulates bytes across notifier activations so a partial write from the
+    // browser never blocks the GUI thread and never wedges the notifier.
+    QByteArray       m_buf;
 };
