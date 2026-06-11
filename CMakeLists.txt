@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(Stellar VERSION 0.10.2 LANGUAGES C CXX)
+project(Stellar VERSION 0.10.3 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -313,6 +313,8 @@ qt_add_qml_module(Stellar
         app/qml/icons/columns.svg
         app/qml/icons/categories.svg
         app/qml/icons/arrow_down.svg
+        app/qml/icons/down_arrow.svg
+        app/qml/icons/clockwise_vertical_arrows.svg
         app/qml/icons/rename.svg
         app/qml/icons/new_file.svg
         app/qml/icons/exit.svg

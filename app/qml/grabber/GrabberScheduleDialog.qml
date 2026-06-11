@@ -151,10 +151,10 @@ Window {
             x: parent.width - width - 6
             y: (parent.height - height) / 2
             text: "▾"
-            color: "#888"
+            color: ColorPalette.textMuted
             font.pixelSize: 8 * App.fontScale
         }
-        popup.background: Rectangle { color: ColorPalette.inputBg; border.color: "#444"; radius: 3 }
+        popup.background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
     }
 
     // ── Computed day-of-week for the "Once at" date ──────────────────────
@@ -302,7 +302,7 @@ Window {
                 spacing: 2
                 anchors.verticalCenter: parent.verticalCenter
                 Text { text: qsTr("Project:"); color: ColorPalette.textMuted; font.pixelSize: 11 * App.fontScale }
-                Text { text: projectName; color: "#f0f0f0"; font.pixelSize: 14 * App.fontScale; font.bold: true }
+                Text { text: projectName; color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true }
             }
         }
 
@@ -319,7 +319,7 @@ Window {
                 Layout.preferredWidth: 286
                 Layout.fillHeight: true
                 color: ColorPalette.inputBg
-                border.color: "#333333"
+                border.color: ColorPalette.border
                 radius: 3
 
                 ColumnLayout {
@@ -376,7 +376,7 @@ Window {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 color: ColorPalette.inputBg
-                border.color: "#333333"
+                border.color: ColorPalette.border
                 radius: 3
 
                 ColumnLayout {
@@ -395,7 +395,7 @@ Window {
                             enabled: startAtChk.checked
                             opacity: enabled ? 1.0 : 0.45
                             DarkSpin { id: startHourSpin;   minVal: 1; maxVal: 12; value: 11; implicitWidth: 50 }
-                            Text { text: ":"; color: "#aaa"; font.pixelSize: 13 * App.fontScale; anchors.verticalCenter: parent.verticalCenter; leftPadding: 1; rightPadding: 1 }
+                            Text { text: ":"; color: ColorPalette.textSecond; font.pixelSize: 13 * App.fontScale; anchors.verticalCenter: parent.verticalCenter; leftPadding: 1; rightPadding: 1 }
                             DarkSpin { id: startMinuteSpin; minVal: 0; maxVal: 59; value: 0; zeroPad: true; implicitWidth: 50 }
                             Item { width: 4 }
                             DarkCombo { id: startAmpmCombo; model: ["AM","PM"]; currentIndex: 1; implicitWidth: 62 }
@@ -432,7 +432,7 @@ Window {
                                     anchors.verticalCenter: parent.verticalCenter
                                     width: 68; elide: Text.ElideRight
                                 }
-                                Text { text: ","; color: "#888"; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                Text { text: ","; color: ColorPalette.textMuted; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                 DarkCombo {
                                     id: onceDateMonthCombo
                                     model: [qsTr("January"),qsTr("February"),qsTr("March"),qsTr("April"),qsTr("May"),qsTr("June"),
@@ -446,7 +446,7 @@ Window {
                                     value: new Date().getDate()
                                     implicitWidth: 50
                                 }
-                                Text { text: ","; color: "#888"; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                Text { text: ","; color: ColorPalette.textMuted; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                 DarkSpin {
                                     id: onceDateYearSpinbox
                                     minVal: 2025; maxVal: 2040
@@ -511,7 +511,7 @@ Window {
                             enabled: stopEnabledChk.checked
                             opacity: enabled ? 1.0 : 0.45
                             DarkSpin { id: stopHourSpin;   minVal: 1; maxVal: 12; value: 7;  implicitWidth: 50 }
-                            Text { text: ":"; color: "#aaa"; font.pixelSize: 13 * App.fontScale; anchors.verticalCenter: parent.verticalCenter; leftPadding: 1; rightPadding: 1 }
+                            Text { text: ":"; color: ColorPalette.textSecond; font.pixelSize: 13 * App.fontScale; anchors.verticalCenter: parent.verticalCenter; leftPadding: 1; rightPadding: 1 }
                             DarkSpin { id: stopMinuteSpin; minVal: 0; maxVal: 59; value: 30; zeroPad: true; implicitWidth: 50 }
                             Item { width: 4 }
                             DarkCombo { id: stopAmpmCombo; model: ["AM","PM"]; currentIndex: 0; implicitWidth: 62 }

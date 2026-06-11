@@ -47,6 +47,9 @@ Window {
     property bool sortAscending: true
     property string resizingColumnKey: ""
     property real resizingColumnWidth: 0
+    // ── Column drag-reorder state ────────────────────────────────────────
+    property string reorderColumnKey: ""   // column currently being dragged
+    property int    reorderDropIndex: -1   // insertion slot (0..columnDefs.length)
     property var selectedRows: ({})
     property int selectionVersion: 0
     property int anchorRow: -1
@@ -297,6 +300,54 @@ Window {
         for (var i = 0; i < columnDefs.length; ++i) total += columnWidth(columnDefs[i].key)
         return total
     }
+    function columnIndex(key) {
+        for (var i = 0; i < columnDefs.length; ++i)
+            if (columnDefs[i].key === key) return i
+        return -1
+    }
+    // Left edge x of a column (sum of widths before it).
+    function columnLeft(key) {
+        var x = 0
+        for (var i = 0; i < columnDefs.length; ++i) {
+            if (columnDefs[i].key === key) return x
+            x += columnWidth(columnDefs[i].key)
+        }
+        return x
+    }
+    // Map an x position (in header-row coordinates) to an insertion slot.
+    // Returns an index in [1, columnDefs.length]; the "check" column (slot 0)
+    // is pinned so the minimum drop slot is 1. Snaps to the boundary nearest x.
+    function _dropIndexForX(x) {
+        var edge = 0
+        var best = 1
+        var bestDist = Number.MAX_VALUE
+        for (var i = 0; i < columnDefs.length; ++i) {
+            // Boundary before column i sits at `edge` (skip slot 0 — check pinned).
+            if (i >= 1) {
+                var d = Math.abs(x - edge)
+                if (d < bestDist) { bestDist = d; best = i }
+            }
+            edge += columnWidth(columnDefs[i].key)
+        }
+        // Trailing edge (drop at very end).
+        if (Math.abs(x - edge) < bestDist) best = columnDefs.length
+        return best
+    }
+
+    // Move dragged column to a new insertion slot. The "check" column is fixed
+    // at index 0 and is never a drop target nor draggable.
+    function moveColumn(key, dropSlot) {
+        var from = columnIndex(key)
+        if (from < 0) return
+        var to = dropSlot
+        if (to > from) to -= 1          // removing the source shifts later slots left
+        if (to < 1) to = 1              // keep "check" pinned first
+        if (to === from) return
+        var defs = columnDefs.slice()
+        var moved = defs.splice(from, 1)[0]
+        defs.splice(to, 0, moved)
+        columnDefs = defs
+    }
     function sortBy(column) {
         if (sortColumn === column) sortAscending = !sortAscending
         else { sortColumn = column; sortAscending = true }
@@ -456,7 +507,15 @@ Window {
                     contentItem: RowLayout {
                         spacing: 6
                         anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                        Item { Layout.preferredWidth: 0; Layout.preferredHeight: 14 }
+                        Image {
+                            Layout.preferredWidth: _cmi.icon.source.toString().length > 0 ? 14 : 0
+                            Layout.preferredHeight: 14
+                            source: _cmi.icon.source
+                            sourceSize.width: 14; sourceSize.height: 14
+                            fillMode: Image.PreserveAspectFit
+                            smooth: true; mipmap: true
+                            visible: _cmi.icon.source.toString().length > 0
+                        }
                         Text {
                             text: _cmi.text; font: _cmi.font
                             color: _cmi.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
@@ -485,15 +544,15 @@ Window {
                 Menu {
                     title: qsTr("Project")
                     delegate: CompactMenuItem
-                    implicitWidth: 200; padding: 0
-                    CompactMenuItem { text: qsTr("Edit current project"); onTriggered: root.editProjectRequested(root.projectId) }
-                    CompactMenuItem { text: qsTr("Close"); onTriggered: root.close() }
+                    implicitWidth: 220; padding: 0
+                    CompactMenuItem { text: qsTr("Edit current project"); icon.source: "../icons/wand.svg"; onTriggered: root.editProjectRequested(root.projectId) }
+                    CompactMenuItem { text: qsTr("Close"); icon.source: "../icons/exit.svg"; onTriggered: root.close() }
                 }
                 Menu {
                     title: qsTr("Options")
                     delegate: CompactMenuItem
                     implicitWidth: 200; padding: 0
-                    CompactMenuItem { text: qsTr("Grabber settings"); onTriggered: root.openGrabberSettings() }
+                    CompactMenuItem { text: qsTr("Grabber settings"); icon.source: "../icons/gear.svg"; onTriggered: root.openGrabberSettings() }
                 }
             }
 
@@ -627,37 +686,37 @@ Window {
             // ── Toolbar ──────────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
-                height: 72
+                height: 40
                 color: ColorPalette.panelBg
 
                 Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.dividerBg }
 
-                Flickable {
+                Item {
                     anchors.fill: parent
                     clip: true
-                    contentWidth: toolbarRow.implicitWidth
-                    contentHeight: toolbarRow.implicitHeight
-                    ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AsNeeded }
-                    ScrollBar.vertical: ScrollBar { policy: ScrollBar.AlwaysOff }
 
                     Row {
                         id: toolbarRow
+                        anchors.left: parent.left
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
                         spacing: 1
                         Repeater {
                             model: [
-                                { label: qsTr("Start\nExploring"),   action: "start",         icon: "resume.svg",         btnWidth: 88 },
-                                { label: qsTr("Stop\nExploring"),    action: "stop",          icon: "pause.svg",          btnWidth: 88 },
-                                { label: qsTr("Start\nDownloading"), action: "download",      icon: "arrow_down.svg",     btnWidth: 96 },
-                                { label: qsTr("Stop\nDownloads"),    action: "stopDownloads", icon: "stop_all.svg",   btnWidth: 88 },
-                                { label: qsTr("Update\nAll"),        action: "update",        icon: "update.svg",         btnWidth: 80 },
-                                { label: qsTr("Schedule\nProject"),  action: "schedule",      icon: "scheduler.svg",          btnWidth: 88 },
-                                { label: qsTr("Statistics"),         action: "stats",         icon: "bar_chart.svg",      btnWidth: 84 }
+                                { label: qsTr("Start Exploring"),   action: "start",         icon: "resume.svg",                       btnWidth: 130 },
+                                { label: qsTr("Stop Exploring"),    action: "stop",          icon: "pause.svg",                        btnWidth: 130 },
+                                { label: qsTr("Start Downloading"), action: "download",      icon: "down_arrow.svg",                   btnWidth: 146 },
+                                { label: qsTr("Stop Downloads"),    action: "stopDownloads", icon: "stop_all.svg",                     btnWidth: 134 },
+                                { label: qsTr("Update All"),        action: "update",        icon: "clockwise_vertical_arrows.svg",    btnWidth: 116 },
+                                { label: qsTr("Schedule Project"),  action: "schedule",      icon: "scheduler.svg",                    btnWidth: 138 },
+                                { label: qsTr("Statistics"),        action: "stats",         icon: "bar_chart.svg",                    btnWidth: 116 }
                             ]
                             delegate: ToolbarBtn {
                                 label: modelData.label
                                 iconSrc: "../icons/" + modelData.icon
+                                horizontalMode: true
                                 width: modelData.btnWidth
-                                height: 72
+                                height: toolbarRow.height
                                 enabled: {
                                     if (modelData.action === "stop") return App.grabberBusy
                                     if (modelData.action === "schedule" || modelData.action === "stats" || modelData.action === "update")
@@ -695,27 +754,27 @@ Window {
                 Layout.fillHeight: true
                 spacing: 0
 
-                // ── Sidebar ──────────────────────────────────────────────
+                // ── Sidebar (mirrors the main-window Sidebar styling) ─────
                 Rectangle {
                     Layout.preferredWidth: 198
                     Layout.fillHeight: true
-                    color: ColorPalette.inputBg
+                    color: ColorPalette.toolbarBg
 
-                    // "Categories" header bar
+                    // "Categories" header bar — same look as main Sidebar.qml
                     Rectangle {
                         id: sideHeader
                         anchors { top: parent.top; left: parent.left; right: parent.right }
                         height: 26
-                        color: ColorPalette.panelBg
+                        color: ColorPalette.dividerBg
 
                         // Left accent
-                        Rectangle { width: 3; height: parent.height; color: "#4488dd" }
+                        Rectangle { width: 3; height: parent.height; color: "#5588cc" }
 
                         Text {
-                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
+                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8 }
                             text: qsTr("Categories")
                             color: ColorPalette.textPrimary
-                            font.pixelSize: 11 * App.fontScale
+                            font.pixelSize: 12 * App.fontScale
                             font.bold: true
                         }
                         Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
@@ -723,7 +782,7 @@ Window {
 
                     Rectangle {
                         anchors { top: sideHeader.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
-                        color: ColorPalette.inputBg
+                        color: ColorPalette.toolbarBg
 
                         ScrollView {
                             anchors.fill: parent
@@ -763,7 +822,7 @@ Window {
                                         }
                                         Text {
                                             text: qsTr("All Files")
-                                            color: sideMode === "all" ? "#4488dd" : ColorPalette.textPrimary
+                                            color: sideMode === "all" ? ColorPalette.selectionText : ColorPalette.textPrimary
                                             font.pixelSize: 12 * App.fontScale
                                             font.bold: sideMode === "all"
                                             anchors.verticalCenter: parent.verticalCenter
@@ -780,32 +839,33 @@ Window {
                                 // ── Link View section header ─────────────
                                 Rectangle {
                                     width: sidebarColumn.width
-                                    height: 24
-                                    color: ColorPalette.panelBg
+                                    height: 28
+                                    color: linkHeaderHover.containsMouse ? ColorPalette.hoverBg : "transparent"
 
                                     Row {
-                                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8 }
-                                        spacing: 5
+                                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 4 }
+                                        spacing: 2
                                         Text {
                                             text: isSectionExpanded("link") ? "▼" : "▶"
-                                            color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; width: 12
+                                            color: "#999"; font.pixelSize: 12 * App.fontScale; width: 16
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
                                             source: "../icons/cloud_copylink.svg"
-                                            width: 14; height: 14
-                                            sourceSize.width: 14; sourceSize.height: 14
+                                            width: 16; height: 16
+                                            sourceSize.width: 16; sourceSize.height: 16
                                             fillMode: Image.PreserveAspectFit
                                             smooth: true; mipmap: true
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Text {
                                             text: qsTr("Link View")
-                                            color: ColorPalette.textMuted
-                                            font.pixelSize: 11 * App.fontScale
+                                            color: ColorPalette.textPrimary
+                                            font.pixelSize: 12 * App.fontScale
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                     }
+                                    HoverHandler { id: linkHeaderHover }
                                     MouseArea {
                                         anchors.fill: parent
                                         onClicked: {
@@ -813,7 +873,6 @@ Window {
                                             root.rebuildSidebarTrees()
                                         }
                                     }
-                                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
                                 }
 
                                 // ── Link View items ──────────────────────
@@ -853,8 +912,8 @@ Window {
                                             }
                                             Text {
                                                 text: modelData.label
-                                                color: isSelected ? "#4488dd" : ColorPalette.textSecond
-                                                font.pixelSize: 11 * App.fontScale
+                                                color: isSelected ? ColorPalette.selectionText : ColorPalette.textPrimary
+                                                font.pixelSize: 12 * App.fontScale
                                                 font.bold: modelData.isDomain
                                                 elide: Text.ElideRight
                                                 width: sidebarColumn.width - (10 + modelData.depth * 14 + 12 + 14 + 12)
@@ -882,32 +941,33 @@ Window {
                                 // ── Folder View section header ───────────
                                 Rectangle {
                                     width: sidebarColumn.width
-                                    height: 24
-                                    color: ColorPalette.panelBg
+                                    height: 28
+                                    color: folderHeaderHover.containsMouse ? ColorPalette.hoverBg : "transparent"
 
                                     Row {
-                                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8 }
-                                        spacing: 5
+                                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 4 }
+                                        spacing: 2
                                         Text {
                                             text: isSectionExpanded("folder") ? "▼" : "▶"
-                                            color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; width: 12
+                                            color: "#999"; font.pixelSize: 12 * App.fontScale; width: 16
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
                                             source: "../icons/folder_view.svg"
-                                            width: 14; height: 14
-                                            sourceSize.width: 14; sourceSize.height: 14
+                                            width: 16; height: 16
+                                            sourceSize.width: 16; sourceSize.height: 16
                                             fillMode: Image.PreserveAspectFit
                                             smooth: true; mipmap: true
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Text {
                                             text: qsTr("Folder View")
-                                            color: ColorPalette.textMuted
-                                            font.pixelSize: 11 * App.fontScale
+                                            color: ColorPalette.textPrimary
+                                            font.pixelSize: 12 * App.fontScale
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                     }
+                                    HoverHandler { id: folderHeaderHover }
                                     MouseArea {
                                         anchors.fill: parent
                                         onClicked: {
@@ -915,7 +975,6 @@ Window {
                                             root.rebuildSidebarTrees()
                                         }
                                     }
-                                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
                                 }
 
                                 // ── Folder View items ────────────────────
@@ -955,8 +1014,8 @@ Window {
                                             }
                                             Text {
                                                 text: modelData.label
-                                                color: isSelected ? "#4488dd" : ColorPalette.textSecond
-                                                font.pixelSize: 11 * App.fontScale
+                                                color: isSelected ? ColorPalette.selectionText : ColorPalette.textPrimary
+                                                font.pixelSize: 12 * App.fontScale
                                                 font.bold: modelData.depth === 0
                                                 elide: Text.ElideRight
                                                 width: sidebarColumn.width - (10 + modelData.depth * 14 + 12 + 14 + 12)
@@ -1026,12 +1085,18 @@ Window {
                                 Repeater {
                                     model: root.columnDefs
                                     delegate: Rectangle {
+                                        id: headerCell
                                         required property var modelData
+                                        required property int index
                                         property real dragStartWidth: 0
                                         width: root.columnWidth(modelData.key)
                                         height: parent.height
                                         readonly property bool isSortable: modelData.key !== "check"
-                                        color: (isSortable && headerCellMouse.containsMouse) ? ColorPalette.border : "transparent"
+                                        readonly property bool isReordering: root.reorderColumnKey === modelData.key
+                                        color: isReordering ? ColorPalette.selectionBg
+                                             : (isSortable && headerCellMouse.containsMouse) ? ColorPalette.border
+                                             : "transparent"
+                                        opacity: isReordering ? 0.6 : 1.0
 
                                         Item {
                                             anchors.fill: parent
@@ -1047,53 +1112,106 @@ Window {
                                         Text {
                                             anchors.verticalCenter: parent.verticalCenter
                                             anchors.left: parent.left; anchors.leftMargin: 8
+                                            anchors.right: parent.right; anchors.rightMargin: 6
                                             visible: modelData.key !== "check"
                                             text: modelData.title + root.sortIndicator(modelData.key)
-                                            color: root.sortColumn === modelData.key ? "#6699cc" : ColorPalette.textSecond
+                                            color: root.sortColumn === modelData.key ? ColorPalette.accent : ColorPalette.textPrimary
+                                            elide: Text.ElideRight
                                             font.bold: true; font.pixelSize: 11 * App.fontScale
                                         }
 
+                                        // Blue insert-line shown at this column's left edge while a
+                                        // reorder drag would drop here.
+                                        Rectangle {
+                                            visible: root.reorderColumnKey.length > 0
+                                                  && root.reorderDropIndex === headerCell.index
+                                                  && root.reorderColumnKey !== modelData.key
+                                            anchors { top: parent.top; bottom: parent.bottom; left: parent.left }
+                                            width: 2; color: "#4488dd"; z: 30
+                                        }
+
+                                        // Body click/drag area: left-click sorts, click-drag reorders.
+                                        // The right 10px are reserved for the resize grip below.
                                         MouseArea {
                                             id: headerCellMouse
                                             anchors.fill: parent
                                             anchors.rightMargin: modelData.key === "check" ? 0 : 10
                                             enabled: modelData.key !== "check"
                                             hoverEnabled: true
-                                            cursorShape: modelData.key !== "check" ? Qt.PointingHandCursor : Qt.ArrowCursor
-                                            onClicked: root.sortBy(modelData.key)
-                                        }
-
-                                        Rectangle {
-                                            anchors.top: parent.top; anchors.bottom: parent.bottom; anchors.right: parent.right
-                                            width: 1
-                                            color: resizeHover.hovered || resizeDrag.active || root.resizingColumnKey === modelData.key
-                                                   ? "#4488dd" : ColorPalette.border
-                                        }
-
-                                        HoverHandler { id: resizeHover; cursorShape: modelData.key === "check" ? Qt.ArrowCursor : Qt.SizeHorCursor }
-
-                                        DragHandler {
-                                            id: resizeDrag
-                                            enabled: modelData.key !== "check"
-                                            target: null; xAxis.enabled: true; yAxis.enabled: false
-                                            onActiveChanged: {
-                                                if (active) {
-                                                    dragStartWidth = root.columnWidth(modelData.key)
-                                                    root.resizingColumnKey = modelData.key
-                                                    root.resizingColumnWidth = dragStartWidth
-                                                } else if (root.resizingColumnKey === modelData.key) {
-                                                    root.setColumnWidth(modelData.key, root.resizingColumnWidth)
-                                                    root.resizingColumnKey = ""
+                                            cursorShape: root.reorderColumnKey.length > 0 ? Qt.ClosedHandCursor : Qt.PointingHandCursor
+                                            preventStealing: true
+                                            property real pressX: 0
+                                            property bool dragging: false
+                                            onPressed: (mouse) => { pressX = mouse.x; dragging = false }
+                                            onPositionChanged: (mouse) => {
+                                                if (!pressed) return
+                                                var globalX = headerCell.x + mouse.x
+                                                if (!dragging && Math.abs(mouse.x - pressX) > 6) {
+                                                    dragging = true
+                                                    root.reorderColumnKey = modelData.key
                                                 }
+                                                if (dragging)
+                                                    root.reorderDropIndex = root._dropIndexForX(globalX)
                                             }
-                                            onTranslationChanged: {
-                                                if (!active) return
-                                                root.resizingColumnWidth = Math.max(
-                                                    modelData.key === "check" ? 34 : 60, dragStartWidth + translation.x)
+                                            onReleased: {
+                                                if (dragging && root.reorderDropIndex >= 0)
+                                                    root.moveColumn(modelData.key, root.reorderDropIndex)
+                                                else if (!dragging)
+                                                    root.sortBy(modelData.key)
+                                                root.reorderColumnKey = ""
+                                                root.reorderDropIndex = -1
+                                                dragging = false
+                                            }
+                                        }
+
+                                        // Resize grip — narrow right-edge zone, only paints while
+                                        // hovered/dragging so the header isn't carved by a divider
+                                        // on every column.
+                                        Item {
+                                            id: resizeGrip
+                                            width: 10
+                                            anchors { top: parent.top; bottom: parent.bottom; right: parent.right }
+                                            visible: modelData.key !== "check"
+
+                                            Rectangle {
+                                                anchors.right: parent.right; anchors.top: parent.top; anchors.bottom: parent.bottom
+                                                width: 1
+                                                color: resizeHover.hovered || resizeDrag.active || root.resizingColumnKey === modelData.key
+                                                       ? "#4488dd" : "transparent"
+                                            }
+
+                                            HoverHandler { id: resizeHover; cursorShape: Qt.SizeHorCursor }
+
+                                            DragHandler {
+                                                id: resizeDrag
+                                                target: null; xAxis.enabled: true; yAxis.enabled: false
+                                                onActiveChanged: {
+                                                    if (active) {
+                                                        dragStartWidth = root.columnWidth(modelData.key)
+                                                        root.resizingColumnKey = modelData.key
+                                                        root.resizingColumnWidth = dragStartWidth
+                                                    } else if (root.resizingColumnKey === modelData.key) {
+                                                        root.setColumnWidth(modelData.key, root.resizingColumnWidth)
+                                                        root.resizingColumnKey = ""
+                                                    }
+                                                }
+                                                onTranslationChanged: {
+                                                    if (!active) return
+                                                    root.resizingColumnWidth = Math.max(60, dragStartWidth + translation.x)
+                                                }
                                             }
                                         }
                                     }
                                 }
+                            }
+
+                            // Trailing reorder insert-line (drop at the very end).
+                            Rectangle {
+                                visible: root.reorderColumnKey.length > 0
+                                      && root.reorderDropIndex === root.columnDefs.length
+                                x: root.totalColumnWidth() - 2
+                                anchors { top: parent.top; bottom: parent.bottom }
+                                width: 2; color: "#4488dd"; z: 30
                             }
                         }
 
@@ -1158,12 +1276,14 @@ Window {
                                     }
                                 }
 
-                                Row {
+                                // Cells positioned by columnLeft(key) rather than a sequential
+                                // Row so header reordering moves the data cells with the header.
+                                // Fixed element set (no Repeater) per CLAUDE.md QML-perf rules.
+                                Item {
                                     anchors.fill: parent
-                                    spacing: 0
 
                                     Item {
-                                        width: root.columnWidth("check"); height: parent.height
+                                        x: root.columnLeft("check"); width: root.columnWidth("check"); height: parent.height
                                         StyledCheckBox {
                                             anchors.centerIn: parent
                                             checked: resultChecked
@@ -1171,25 +1291,23 @@ Window {
                                             onToggled: App.setGrabberResultChecked(index, checked)
                                         }
                                     }
-                                    Text { width: root.columnWidth("filename"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: filename; color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textPrimary; elide: Text.ElideRight; font.pixelSize: 12 * App.fontScale }
-                                    Text { width: root.columnWidth("filetype"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: fileTypeLabel(filename, url); color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textSecond; elide: Text.ElideRight; font.pixelSize: 11 * App.fontScale }
-                                    Text { width: root.columnWidth("size"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: sizeText; color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
+                                    Text { x: root.columnLeft("filename"); width: root.columnWidth("filename"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: filename; color: ColorPalette.textPrimary; elide: Text.ElideRight; font.pixelSize: 12 * App.fontScale }
+                                    Text { x: root.columnLeft("filetype"); width: root.columnWidth("filetype"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: fileTypeLabel(filename, url); color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textSecond; elide: Text.ElideRight; font.pixelSize: 11 * App.fontScale }
+                                    Text { x: root.columnLeft("size"); width: root.columnWidth("size"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: sizeText; color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
                                     Text {
-                                        width: root.columnWidth("status"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter
+                                        x: root.columnLeft("status"); width: root.columnWidth("status"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter
                                         property string statusVal: computeStatus(url)
                                         text: statusVal
-                                        color: root.isRowSelected(index) ? ColorPalette.textPrimary
-                                             : statusVal === "Ready" ? "#55bb77"
-                                             : statusVal === "Already in list" ? "#cc9944" : ColorPalette.textSecond
+                                        color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textSecond
                                         elide: Text.ElideRight; font.pixelSize: 11 * App.fontScale
                                     }
-                                    Text { width: root.columnWidth("linktext"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: baseHost(sourcePage.length > 0 ? sourcePage : url); color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textSecond; elide: Text.ElideRight; font.pixelSize: 11 * App.fontScale }
-                                    Text { width: root.columnWidth("downloadfrom"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: url; color: root.isRowSelected(index) ? "#88aadd" : "#6688aa"; elide: Text.ElideMiddle; font.pixelSize: 11 * App.fontScale }
-                                    Text { width: root.columnWidth("saveto"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: saveToText(filename); color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textSecond; elide: Text.ElideMiddle; font.pixelSize: 11 * App.fontScale }
+                                    Text { x: root.columnLeft("linktext"); width: root.columnWidth("linktext"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: baseHost(sourcePage.length > 0 ? sourcePage : url); color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textSecond; elide: Text.ElideRight; font.pixelSize: 11 * App.fontScale }
+                                    Text { x: root.columnLeft("downloadfrom"); width: root.columnWidth("downloadfrom"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: url; color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textSecond; elide: Text.ElideMiddle; font.pixelSize: 11 * App.fontScale }
+                                    Text { x: root.columnLeft("saveto"); width: root.columnWidth("saveto"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: saveToText(filename); color: root.isRowSelected(index) ? ColorPalette.textPrimary : ColorPalette.textSecond; elide: Text.ElideMiddle; font.pixelSize: 11 * App.fontScale }
                                 }
 
                                 Rectangle {
-                                    anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.panelBg
+                                    anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.dividerBg
                                 }
                             }
                         }

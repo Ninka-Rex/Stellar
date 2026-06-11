@@ -624,7 +624,15 @@ Window {
                     contentItem: RowLayout {
                         spacing: 6
                         anchors.verticalCenter: parent ? parent.verticalCenter : undefined
-                        Item { Layout.preferredWidth: 0; Layout.preferredHeight: 14 }
+                        Image {
+                            Layout.preferredWidth: _cmi.icon.source.toString().length > 0 ? 14 : 0
+                            Layout.preferredHeight: 14
+                            source: _cmi.icon.source
+                            sourceSize.width: 14; sourceSize.height: 14
+                            fillMode: Image.PreserveAspectFit
+                            smooth: true; mipmap: true
+                            visible: _cmi.icon.source.toString().length > 0
+                        }
                         Text {
                             text: _cmi.text; font: _cmi.font
                             color: _cmi.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
@@ -651,13 +659,14 @@ Window {
                 }
 
                 Menu {
+                    id: _projectMenu
                     title: qsTr("Project")
                     delegate: CompactMenuItem
                     implicitWidth: 240; padding: 0
-                    CompactMenuItem { text: qsTr("New");  onTriggered: { root.projectId = ""; loadProject({ savePath: App.settings.defaultSavePath, ignorePopupWindows: true, exploreThisLevels: 2, hideDuplicateFiles: true }) } }
-                    CompactMenuItem { text: qsTr("Load"); onTriggered: { projectPickerDialog.selectedProjectId = ""; projectPickerDialog.show(); projectPickerDialog.raise() } }
-                    CompactMenuItem { text: qsTr("Save"); onTriggered: saveProjectOnly() }
-                    CompactMenuItem { text: qsTr("Save current settings as a template"); onTriggered: saveTemplatePopup.open() }
+                    CompactMenuItem { text: qsTr("New");  icon.source: "../icons/new_file.svg"; onTriggered: { root.projectId = ""; loadProject({ savePath: App.settings.defaultSavePath, ignorePopupWindows: true, exploreThisLevels: 2, hideDuplicateFiles: true }) } }
+                    CompactMenuItem { text: qsTr("Load"); icon.source: "../icons/folder.svg"; onTriggered: { projectPickerDialog.selectedProjectId = ""; projectPickerDialog.show(); projectPickerDialog.raise() } }
+                    CompactMenuItem { text: qsTr("Save"); icon.source: "../icons/floppy_disk.svg"; onTriggered: saveProjectOnly() }
+                    CompactMenuItem { text: qsTr("Save current settings as a template"); icon.source: "../icons/copy.svg"; onTriggered: saveTemplatePopup.open() }
                     MenuSeparator {}
                     CompactMenuItem {
                         id: _recentProjectsItem
@@ -676,7 +685,13 @@ Window {
                                 model: root.recentProjectRows
                                 delegate: CompactMenuItem {
                                     text: modelData.name || "Project"
-                                    onTriggered: loadProjectById(modelData.id)
+                                    // The submenu is popped manually (not a real Qt submenu), so
+                                    // triggering a child doesn't dismiss the parent — close both.
+                                    onTriggered: {
+                                        loadProjectById(modelData.id)
+                                        _recentProjectsMenu.close()
+                                        _projectMenu.close()
+                                    }
                                 }
                                 onObjectAdded:   function(index, object) { _recentProjectsMenu.insertItem(index, object) }
                                 onObjectRemoved: function(index, object) { _recentProjectsMenu.removeItem(object) }
@@ -685,13 +700,13 @@ Window {
                         Timer { id: _recentProjectsCloseTimer; interval: 300; onTriggered: { if (!_recentProjectsMenu.activeFocus) _recentProjectsMenu.close() } }
                     }
                     MenuSeparator {}
-                    CompactMenuItem { text: qsTr("Close"); onTriggered: root.close() }
+                    CompactMenuItem { text: qsTr("Close"); icon.source: "../icons/exit.svg"; onTriggered: root.close() }
                 }
                 Menu {
                     title: qsTr("Options")
                     delegate: CompactMenuItem
                     implicitWidth: 200; padding: 0
-                    CompactMenuItem { text: qsTr("Grabber settings"); onTriggered: { grabberSettingsDialog.show(); grabberSettingsDialog.raise() } }
+                    CompactMenuItem { text: qsTr("Grabber settings"); icon.source: "../icons/gear.svg"; onTriggered: { grabberSettingsDialog.show(); grabberSettingsDialog.raise() } }
                 }
 
             }
