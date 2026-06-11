@@ -4348,6 +4348,34 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>비디오와 오디오 스트림 병합에 사용.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg는 Fabrice Bellard의 상표입니다.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>BitTorrent 프로토콜 지원에 사용.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>비디오 메타데이터 추출 및 미디어 다운로드 기능에 사용.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>LGPL-3 및 Qt LGPL 예외 조항에 따라 사용.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar는 Creative Commons Attribution 4.0에 따라 배포된 DB-IP City Lite 지리 위치 데이터베이스를 사용합니다.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Stellar를 이용해 주셔서 감사합니다</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>연결</translation>
         </message>
@@ -4826,8 +4854,8 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <translation>백업 및 복원</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>설정, 다운로드, 토렌트(공유 비율 포함), 대기열, 카테고리, 통계를 단일 백업 파일로 내보냅니다. 나중에 새 Stellar 설치에 가져와 모두 복원하세요. 가져오면 현재 데이터가 대체되며(타임스탬프 백업 보관) Stellar가 재시작됩니다.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>설정, 다운로드, 토렌트(공유 비율 포함), 대기열, 카테고리 및 통계를 단일 백업 파일로 내보냅니다. 나중에 새 Stellar 설치본으로 가져와 모두 복원하세요. 가져오기는 현재 데이터를 대체하며(타임스탬프 백업 유지) Stellar를 다시 시작합니다.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6555,6 +6583,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>토렌트 검색 엔진</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>검색어 입력.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>먼저 검색 플러그인을 하나 이상 활성화하세요.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python을 찾을 수 없습니다. Python을 설치하거나 PATH에 추가한 후 검색 엔진을 다시 여세요.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>%1개 플러그인 검색 중...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1개 결과 찾음.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Python 플러그인 파일 선택.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 설치 완료.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 설치 실패.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>올바른 플러그인 URL 입력.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>플러그인 URL은 HTTPS여야 함.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>네트워크 관리자 사용 불가.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>플러그인 다운로드 실패.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>플러그인 파일 쓰기 실패.</translation>
         </message>
     </context>
     <context>

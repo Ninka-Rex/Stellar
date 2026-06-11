@@ -4350,6 +4350,34 @@ Stellar ઓપ્શન્સ → બ્રાઉઝર → ડાઉનલો�
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>વિડિયો અને ઑડિયો સ્ટ્રીમ મર્જ કરવા માટે વપરાય છે.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg એ Fabrice Bellard નો ટ્રેડમાર્ક છે.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>BitTorrent પ્રોટોકોલ સપોર્ટ માટે વપરાય છે.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>વિડિયો મેટાડેટા એક્સટ્રેક્શન અને મીડિયા ડાઉનલોડ સુવિધાઓ માટે વપરાય છે.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Qt LGPL અપવાદ સાથે LGPL-3 હેઠળ વપરાય છે.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar DB-IP City Lite જીઓલોકેશન ડેટાબેઝ વાપરે છે, જે Creative Commons Attribution 4.0 હેઠળ વિતરિત છે.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Stellar વાપરવા બદલ આભાર</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>જોડાણ</translation>
         </message>
@@ -4828,8 +4856,8 @@ Stellar ઓપ્શન્સ → બ્રાઉઝર → ડાઉનલો�
             <translation>બેકઅપ અને પુનઃસ્થાપન</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>բոլոր կարգավորումները, ներբեռնումները, թորենթները (դրանց տարածման գործակիցներով), հերթերը, կատեգորիաները և վիճակագրությունը արտահանել մեկ պահուստային ֆայլի մեջ: Այն հետագայում ներմուծել նոր Stellar տեղադրման մեջ՝ ամեն ինչ վերականգնելու համար: Ներմուծումը փոխարինում է ընթացիկ տվյալները (ժամանակադրոշմով պահուստավորումը պահպանվում է) և վերագործարկում Stellar-ը:</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>બધું એક્સપોર્ટ કરો - સેટિંગ્સ, ડાઉનલોડ્સ, ટોરેન્ટ્સ (તેમના શેર રેશિયો સાથે), કતારો, શ્રેણીઓ અને આંકડા - એક બેકઅપ ફાઇલમાં. પછીથી નવા Stellar ઇન્સ્ટોલમાં બધું પુનઃસ્થાપિત કરવા ઇમ્પોર્ટ કરો. ઇમ્પોર્ટ વર્તમાન ડેટાને બદલે છે (ટાઇમસ્ટેમ્પ્ડ બેકઅપ રાખવામાં આવે છે) અને Stellar પુનઃશરૂ કરે છે.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6559,6 +6587,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>ટોરન્ટ શોધ એન્જિન</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>શોધ ક્વેરી દાખલ કરો.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>પહેલા ઓછામાં ઓછું એક શોધ પ્લગઇન સક્રિય કરો.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python મળ્યું નહીં. Python ઇન્સ્ટોલ કરો અથવા PATH માં ઉમેરો, પછી સર્ચ એન્જિન ફરી ખોલો.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>%1 પ્લગઇન(ઓ) શોધે છે...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1 પરિણામ(ઓ) મળ્યાં.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Python પ્લગઇન ફાઇલ પસંદ કરો.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 ઇન્સ્ટોલ થયું.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 ઇન્સ્ટોલ કરવામાં નિષ્ફળ.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>માન્ય પ્લગઇન URL દાખલ કરો.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>પ્લગઇન URL HTTPS વાપરવું જ જોઈએ.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>નેટવર્ક મેનેજર ઉપલબ્ધ નથી.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>પ્લગઇન ડાઉનલોડ કરવામાં નિષ્ફળ.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>પ્લગઇન ફાઇલ લખવામાં નિષ્ફળ.</translation>
         </message>
     </context>
     <context>

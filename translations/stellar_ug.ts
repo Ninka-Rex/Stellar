@@ -4360,6 +4360,34 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>ۋىدېئو ۋە ئاۋاز ئېقىملىرىنى بىرلەشتۈرۈشكە ئىشلىتىلىدۇ.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg Fabrice Bellard نىڭ سودا ماركىسى.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>BitTorrent كېلىشىمىنى قوللاشقا ئىشلىتىلىدۇ.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>ۋىدېئو مېتا-سانلىق مەلۇمات ئېلىش ۋە مېدىيا چۈشۈرۈش ئىقتىدارلىرىغا ئىشلىتىلىدۇ.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Qt LGPL ئەھۋالى بىلەن LGPL-3 ئاستىدا ئىشلىتىلىدۇ.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar Creative Commons Attribution 4.0 بويىچە تارقىتىلغان DB-IP City Lite جۇغراپىيەلىك ئورۇن ساندانىنى ئىشلىتىدۇ.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Stellar نى ئىشلەتكەنلىكىڭىزگە رەھمەت</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>باغلىنىش</translation>
         </message>
@@ -4838,8 +4866,8 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
             <translation>زاپاسلاش ۋە ئەسلىگە كەلتۈرۈش</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>ھەممىنى — تەڭشەكلەر، چۈشۈرۈلگەنلەر، توررېنتلار (ئۇلارنىڭ ئۇلاش نىسبىتى بىلەن)، نۆۋەتلەر، كاتېگورىيەلەر ۋە ستاتىستىكىلارنى — بىر زاپاس ھۆججەتكە چىقار. كېيىن يېڭى Stellar قا ئىمپورت قىلىپ ھەممىنى ئەسلىگە كەلتۈر. ئىمپورت ھازىرقى سانلىق مەلۇماتنى ئالماشتۇرىدۇ (ۋاقىت بەلگىسى قويۇلغان زاپاس ساقلىنىدۇ) ۋە Stellar نى قايتا قوزغىتىدۇ.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>ھەممىنى - تەڭشەكلەر، چۈشۈرۈلگەنلەر، توررېنتلار (ئۇلارنىڭ ئورتاقلىشىش نىسبىتى بىلەن)، نۆۋەتلەر، كاتېگورىيەلەر ۋە ستاتىستىكىلارنى - بىر زاپاس ھۆججەتكە چىقىرىڭ. كېيىن ھەممىنى ئەسلىگە كەلتۈرۈش ئۈچۈن يېڭى Stellar قاچىلانمىسىغا ئىمپورت قىلىڭ. ئىمپورت قىلىش نۆۋەتتىكى سانلىق مەلۇماتنى ئالماشتۇرىدۇ (ۋاقىت بەلگىسى قويۇلغان زاپاس ساقلىنىدۇ) ۋە Stellar نى قايتا قوزغايدۇ.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6570,6 +6598,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>توررېنت ئىزدەش ماتورى</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>ئىزدەش سوئالىنى كىرگۈزۈڭ.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>ئالدى بىلەن كەم دېگەندە بىر ئىزدەش قىستۇرمىسىنى قوزغىتىڭ.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python تېپىلمىدى. Python نى قاچىلاڭ ياكى PATH غا قوشۇڭ، ئاندىن ئىزدەش ماتورىنى قايتا ئېچىڭ.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>%1 قىستۇرما(لار) ئىزدەۋاتىدۇ...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1 نەتىجە تېپىلدى.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Python قىستۇرما ھۆججىتىنى تاللاڭ.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 قاچىلاندى.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 نى قاچىلاش مەغلۇپ بولدى.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>ئىناۋەتلىك قىستۇرما URL نى كىرگۈزۈڭ.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>قىستۇرما URL چوقۇم HTTPS ئىشلىتىشى كېرەك.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>تور باشقۇرغۇچى ئىشلەتكىلى بولمايدۇ.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>قىستۇرمىنى چۈشۈرۈش مەغلۇپ بولدى.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>پىلاگىن ھۆججىتىنى يېزىش مەغلۇپ بولدى.</translation>
         </message>
     </context>
     <context>

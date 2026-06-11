@@ -4346,6 +4346,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>भिडियो र अडियो स्ट्रिम मर्ज गर्न प्रयोग गरिन्छ।</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg Fabrice Bellard को ट्रेडमार्क हो।</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>BitTorrent प्रोटोकल समर्थनको लागि प्रयोग गरिन्छ।</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>भिडियो मेटाडेटा निकासी र मिडिया डाउनलोड सुविधाहरूको लागि प्रयोग गरिन्छ।</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Qt LGPL अपवाद सहित LGPL-3 अन्तर्गत प्रयोग गरिन्छ।</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar ले Creative Commons Attribution 4.0 अन्तर्गत वितरित DB-IP City Lite जियोलोकेशन डाटाबेस प्रयोग गर्दछ।</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Stellar प्रयोग गर्नुभएकोमा धन्यवाद</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>जडान</translation>
         </message>
@@ -4824,8 +4852,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ब्याकअप र पुनर्स्थापना</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>सबै निर्यात गर्नुहोस् — सेटिङ्हरू, डाउनलोडहरू, टोरेन्टहरू (तिनीहरूको साझेदारी अनुपातसहित), कतारहरू, कोटीहरू र तथ्याङ्कहरू — एउटै ब्याकअप फाइलमा। पछि नयाँ Stellar स्थापनामा सबै पुनर्स्थापना गर्न यसलाई आयात गर्नुहोस्। आयातले हालको डेटा प्रतिस्थापन गर्छ (टाइमस्ट्याम्प गरिएको ब्याकअप राखिन्छ) र Stellar पुन: सुरु हुन्छ।</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>सबै निर्यात गर्नुहोस् - सेटिङ, डाउनलोड, टोरेन्ट (शेयर अनुपात सहित), क्यू, श्रेणी र तथ्याङ्क - एउटै ब्याकअप फाइलमा। पुनर्स्थापना गर्न पछि नयाँ Stellar स्थापनामा आयात गर्नुहोस्। आयातले हालको डेटा बदल्छ (टाइमस्ट्याम्प गरिएको ब्याकअप राखिन्छ) र Stellar पुनः सुरु हुन्छ।</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6555,6 +6583,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>टोरन्ट खोज इन्जिन</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>खोज क्वेरी प्रविष्ट गर्नुहोस्।</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>पहिले कम्तिमा एउटा खोज प्लगइन सक्षम गर्नुहोस्।</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python भेटिएन। Python स्थापना गर्नुहोस् वा PATH मा थप्नुहोस्, अनि खोज इन्जिन पुन: खोल्नुहोस्।</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>%1 प्लगइन(हरू) खोज्दै...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1 परिणाम(हरू) भेटियो।</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Python प्लगइन फाइल छान्नुहोस्।</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 स्थापना भयो।</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 स्थापना गर्न असफल।</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>मान्य प्लगइन URL हाल्नुहोस्।</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>प्लगइन URL HTTPS प्रयोग गर्नुपर्छ।</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>सञ्जाल प्रबन्धक उपलब्ध छैन।</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>प्लगइन डाउनलोड गर्न असफल।</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>प्लगइन फाइल लेख्न असफल।</translation>
         </message>
     </context>
     <context>

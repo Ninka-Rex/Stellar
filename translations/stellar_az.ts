@@ -4355,6 +4355,34 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Video və audio axınlarını birləşdirmək üçün istifadə olunur.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg Fabrice Bellard-ın ticarət nişanıdır.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>BitTorrent protokol dəstəyi üçün istifadə olunur.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Video metadata çıxarışı və media yükləmə xüsusiyyətləri üçün istifadə olunur.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Qt LGPL istisnası ilə LGPL-3 altında istifadə olunur.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar, Creative Commons Attribution 4.0 lisenziyası altında yayımlanan DB-IP City Lite geolokasiya verilənlər bazasından istifadə edir.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Stellar istifadə etdiyiniz üçün təşəkkür edirik</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Əlaqə</translation>
         </message>
@@ -4833,8 +4861,8 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
             <translation>Yedəkləmə və Bərpa</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Hər şeyi ixrac et — parametrlər, yükləmələr, torrentlər (paylaşım nisbətləri ilə), növbələr, kateqoriyalar və statistika — tək bir ehtiyat faylına. Daha sonra onu təzə Stellar quraşdırmasına idxal edərək hamısını bərpa et. İdxal cari məlumatları əvəz edir (zaman damğalı ehtiyat saxlanılır) və Stellar yenidən başladılır.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Hər şeyi ixrac et - parametrlər, yükləmələr, torrentlər (paylaşım nisbətləri ilə), növbələr, kateqoriyalar və statistika - tək bir ehtiyat faylına. Daha sonra onu təzə Stellar quraşdırmasına idxal edərək hər şeyi bərpa et. İdxal cari məlumatları əvəz edir (zaman damğalı ehtiyat saxlanılır) və Stellar yenidən başladılır.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6562,6 +6590,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrent axtarış mühərriki</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Axtarış sorğusunu daxil edin.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Ən azı bir axtarış plaginini əvvəlcə aktiv edin.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python tapılmadı. Python-u quraşdırın və ya PATH-ə əlavə edin, sonra Axtarış Motorunu yenidən açın.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>%1 plagin(lər) axtarılır...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1 nəticə tapıldı.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Python plagin faylını seçin.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 quraşdırıldı.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 quraşdırılmadı.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Düzgün plagin URL-i daxil edin.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>Plagin URL-i HTTPS olmalıdır.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Şəbəkə meneceri əlçatan deyil.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Plagin endirilmədi.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Plugin faylı yazıla bilmədi.</translation>
         </message>
     </context>
     <context>

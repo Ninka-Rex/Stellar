@@ -4356,6 +4356,34 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>ভিডিও ও অডিও স্ট্রিম একত্রীকরণে ব্যবহৃত।</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg ফ্যাব্রিস বেলার্ডের ট্রেডমার্ক।</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>BitTorrent প্রোটোকল সমর্থনে ব্যবহৃত।</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>ভিডিও মেটাডেটা নিষ্কাশন ও মিডিয়া ডাউনলোড বৈশিষ্ট্যে ব্যবহৃত।</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Qt LGPL ব্যতিক্রমসহ LGPL-3-এর অধীনে ব্যবহৃত।</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar ক্রিয়েটিভ কমন্স অ্যাট্রিবিউশন ৪.০-এর অধীনে বিতরিত DB-IP City Lite জিওলোকেশন ডাটাবেস ব্যবহার করে।</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Stellar ব্যবহারের জন্য ধন্যবাদ</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>সংযোগ</translation>
         </message>
@@ -4834,8 +4862,8 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <translation>ব্যাকআপ ও পুনরুদ্ধার</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>সবকিছু রপ্তানি করুন — সেটিংস, ডাউনলোড, টরেন্ট (শেয়ার অনুপাত সহ), সারি, বিভাগ ও পরিসংখ্যান — একটি একক ব্যাকআপ ফাইলে। পরে একটি নতুন Stellar ইনস্টলে তা আমদানি করে সব পুনরুদ্ধার করুন। আমদানি বর্তমান ডেটা প্রতিস্থাপন করে (একটি টাইমস্ট্যাম্পযুক্ত ব্যাকআপ রাখা হয়) এবং Stellar পুনরায় চালু করে।</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>সব রপ্তানি করুন - সেটিংস, ডাউনলোড, টরেন্ট (শেয়ার অনুপাতসহ), সারি, বিভাগ ও পরিসংখ্যান - একটি ব্যাকআপ ফাইলে। পরে নতুন Stellar ইনস্টলে ইম্পোর্ট করে পুনরুদ্ধার করুন। ইম্পোর্ট বর্তমান ডেটা প্রতিস্থাপন করে (টাইমস্ট্যাম্পযুক্ত ব্যাকআপ রাখা হয়) ও Stellar পুনরায় চালু করে।</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6566,6 +6594,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>টরেন্ট অনুসন্ধান ইঞ্জিন</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>অনুসন্ধান ক্যোয়ারী লিখুন।</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>প্রথমে অন্তত একটি অনুসন্ধান প্লাগইন সক্রিয় করুন।</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>পাইথন পাওয়া যায়নি। পাইথন ইনস্টল করুন বা PATH-এ যোগ করুন, তারপর সার্চ ইঞ্জিন পুনরায় খুলুন।</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>%1টি প্লাগইন খোঁজা হচ্ছে...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1টি ফলাফল পাওয়া গেছে।</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>একটি পাইথন প্লাগইন ফাইল বাছুন।</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 ইনস্টল হয়েছে।</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 ইনস্টল ব্যর্থ।</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>বৈধ প্লাগইন URL দিন।</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>প্লাগইন URL অবশ্যই HTTPS হতে হবে।</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>নেটওয়ার্ক ম্যানেজার অনুপলব্ধ।</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>প্লাগইন ডাউনলোড ব্যর্থ।</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>প্লাগইন ফাইল লেখা ব্যর্থ।</translation>
         </message>
     </context>
     <context>

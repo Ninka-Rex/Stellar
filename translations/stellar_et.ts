@@ -4367,6 +4367,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Kasutatakse video ja heli voogude ühendamiseks.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg on Fabrice Bellardi kaubamärk.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Kasutatakse BitTorrenti protokolli toeks.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Kasutatakse video metaandmete eraldamiseks ja meedia allalaadimise funktsioonideks.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Kasutatakse LGPL-3 litsentsi alusel koos Qt LGPL erandiga.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar kasutab DB-IP City Lite geograafilise asukoha andmebaasi, mida levitatakse Creative Commons Attribution 4.0 litsentsi alusel.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Täname Stellari kasutamast</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Ühendus</translation>
         </message>
@@ -4845,8 +4873,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Varundamine ja taastamine</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Ekspordi kõik — seaded, allalaadimised, torrentid (koos jagamissuhetega), järjekorrad, kategooriad ja statistika — ühte varundusfaili. Impordi see hiljem värskesse Stellari installi, et kõik taastada. Importimine asendab praegused andmed (ajamärgendiga varukoopia säilitatakse) ja taaskäivitab Stellari.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Ekspordi kõik – seaded, allalaadimised, torrentid (koos jagamissuhetega), järjekorrad, kategooriad ja statistika – ühte varufaili. Impordi see hiljem uude Stellari installi, et kõik taastada. Importimine asendab praegused andmed (ajamärgendiga varukoopia säilitatakse) ja taaskäivitab Stellari.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6571,6 +6599,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrenti otsingumootor</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Sisesta otsingupäring.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Luba esmalt vähemalt üks otsinguplugin.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Pythonit ei leitud. Installi Python või lisa see PATH-i, seejärel ava otsingumootor uuesti.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Otsin %1 pluginat...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Leiti %1 tulemus(t).</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Vali Pythoni pluginafail.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Installitud: %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 installimine ebaõnnestus.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Sisesta kehtiv plugina URL.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>Plugina URL peab kasutama HTTPS-i.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Võrguhaldur pole saadaval.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Plugina allalaadimine ebaõnnestus.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Pistikprogrammi faili kirjutamine ebaõnnestus.</translation>
         </message>
     </context>
     <context>

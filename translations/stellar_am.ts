@@ -4360,6 +4360,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>ለቪዲዮ እና ኦዲዮ ዥረቶች ማዋሀድ ያገለግላል።</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>ኤፍኤፍምፔግ የፋብሪስ ቤላርድ የንግድ ምልክት ነው።</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>ለBitTorrent ፕሮቶኮል ድጋፍ የሚውል</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>ለቪዲዮ ሜታዳታ ማውጣት እና ሚዲያ ማውረድ ባህሪያት ያገለግላል።</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>በLGPL-3 ከQt LGPL ልዩ ሁኔታ ጋር ጥቅም ላይ ውሏል።</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>ስቴላር በCreative Commons Attribution 4.0 ስር የተሰራጨውን DB-IP City Lite ጂኦግራፊያዊ አካባቢ ዳታቤዝ ይጠቀማል።</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>ስቴላርን ስለተጠቀሙ እናመሰግናለን</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>ግንኙነት</translation>
         </message>
@@ -4838,8 +4866,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ምትኬ እና መልሶ ማግኛ</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>ሁሉንም ነገር — ቅንብሮች፣ ማውረዶች፣ ቶረንቶች (ከማጋሪያ ምጣኔያቸው ጋር)፣ ወረፋዎች፣ ምድቦች እና ስታቲስቲክስ — ወደ አንድ ምትኬ ፋይል ላክ። ሁሉንም ለመመለስ በኋላ ወደ አዲስ Stellar ጭነት አስመጣው። ማስመጣት የአሁኑን ውሂብ ይተካዋል (የጊዜ ማህተም ያለው ምትኬ ይቀመጣል) እና Stellarን እንደገና ያስጀምረዋል።</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>ቅንብሮችን፣ የወረዱትን፣ ቶረንቶችን (ከማጋሪያ መጠናቸው ጋር)፣ ወረፋዎችን፣ ምድቦችን እና ስታቲስቲክስን ሁሉንም ወደ አንድ መጠባበቂያ ፋይል ላክ። ሁሉንም ለመመለስ በኋላ ወደ አዲስ ስቴላር ጭነት አስመጣው። ማስመጣት የአሁኑን ውሂብ ይተካዋል (በሰዓት ማህተም የተደረገ መጠባበቂያ ይቀመጣል) እና ስቴላርን እንደገና ያስጀምረዋል።</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6570,6 +6598,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>የቶረንት ፍለጋ ሞተር</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>የፍለጋ መጠይቅ ያስገቡ</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>ቢያንስ አንድ የፍለጋ ተሰኪ መጀመሪያ ያንቁ</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python አልተገኘም። Python ይጫኑ ወይም ወደ PATH ያክሉት፣ ከዚያ ፍለጋ ሞተርን እንደገና ይክፈቱ።</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>%1 ተሰኪ(ዎች) በመፈለግ ላይ...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1 ውጤት(ቶች) ተገኝተዋል።</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Python ተሰኪ ፋይል ይምረጡ።</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 ተጭኗል።</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 መጫን አልተሳካም።</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>ትክክለኛ የተሰኪ URL ያስገቡ።</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>የተሰኪ URL HTTPS መጠቀም አለበት።</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>የአውታረ መረብ አስተዳዳሪ አይገኝም።</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>ተሰኪ ማውረድ አልተሳካም።</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>ተሰኪ ፋይል መጻፍ አልተሳካም።</translation>
         </message>
     </context>
     <context>

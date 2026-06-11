@@ -4363,6 +4363,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>ໃຊ້ສຳລັບການຮວມສາຍວິດີໂອ ແລະ ສຽງ.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg ເປັນເຄື່ອງໝາຍການຄ້າຂອງ Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>ໃຊ້ສຳລັບຮອງຮັບໂປຣໂຕຄອນ BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>ໃຊ້ສຳລັບສະກັດເມຕາເດຕ້າວິດີໂອ ແລະ ຄຸນສົມບັດດາວໂຫຼດສື່.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>ໃຊ້ພາຍໃຕ້ LGPL-3 ພ້ອມຂໍ້ຍົກເວັ້ນ Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar ໃຊ້ຖານຂໍ້ມູນພູມສາດ DB-IP City Lite, ແຈກຢາຍພາຍໃຕ້ Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>ຂອບໃຈທີ່ໃຊ້ Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>ການເຊື່ອມຕໍ່</translation>
         </message>
@@ -4841,8 +4869,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ສຳຮອງ ແລະ ກູ້ຄືນ</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>ສົ່ງອອກທຸກຢ່າງ — ການຕັ້ງຄ່າ, ດາວໂຫຼດ, ທໍເຣັນ (ພ້ອມອັດຕາສ່ວນແບ່ງປັນ), ຄິວ, ໝວດໝູ່ ແລະ ສະຖິຕິ — ເປັນໄຟລ໌ສຳຮອງດຽວ. ນຳເຂົ້າມັນພາຍຫຼັງໃສ່ Stellar ທີ່ຕິດຕັ້ງໃໝ່ ເພື່ອກູ້ຄືນທັງໝົດ. ການນຳເຂົ້າຈະແທນທີ່ຂໍ້ມູນປັດຈຸບັນ (ສຳຮອງເວລາໄວ້) ແລະ ເລີ່ມ Stellar ໃໝ່.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>ສົ່ງອອກທຸກຢ່າງ - ການຕັ້ງຄ່າ, ດາວໂຫຼດ, ທໍເຣັນ (ພ້ອມອັດຕາສ່ວນແບ່ງປັນ), ຄິວ, ໝວດໝູ່ ແລະ ສະຖິຕິ - ໄປຍັງໄຟລ໌ສຳຮອງດຽວ. ນຳເຂົ້າພາຍຫຼັງໃສ່ Stellar ທີ່ຕິດຕັ້ງໃໝ່ ເພື່ອກູ້ຄືນທັງໝົດ. ການນຳເຂົ້າຈະແທນທີ່ຂໍ້ມູນປັດຈຸບັນ (ສຳຮອງເວລາໄວ້) ແລະ ເລີ່ມ Stellar ໃໝ່.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6573,6 +6601,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>ເຄື່ອງມືຄົ້ນຫາທໍເຣັນ</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>ປ້ອນຄຳຄົ້ນຫາ.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>ເປີດໃຊ້ປລັກອິນຄົ້ນຫາຢ່າງໜ້ອຍໜຶ່ງກ່ອນ.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>ບໍ່ພົບ Python. ຕິດຕັ້ງ Python ຫຼືເພີ່ມໃສ່ PATH, ຈາກນັ້ນເປີດ Search Engine ໃໝ່.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>ກຳລັງຄົ້ນຫາປລັກອິນ %1 ອັນ...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>ພົບ %1 ຜົນໄດ້ຮັບ.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>ເລືອກໄຟລ໌ປລັກອິນ Python.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>ຕິດຕັ້ງ %1 ແລ້ວ.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>ຕິດຕັ້ງ %1 ບໍ່ສຳເລັດ.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>ໃສ່ URL ປລັກອິນທີ່ຖືກຕ້ອງ.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>URL ປລັກອິນຕ້ອງໃຊ້ HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>ຕົວຈັດການເຄືອຂ່າຍບໍ່ພ້ອມໃຊ້ງານ.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>ດາວໂຫຼດປລັກອິນບໍ່ສຳເລັດ.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>ຂຽນໄຟລ໌ປລັກອິນບໍ່ສຳເລັດ.</translation>
         </message>
     </context>
     <context>

@@ -4353,6 +4353,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Օգտագործվում է վիդեո և աուդիո հոսքերի միաձուլման համար։</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg-ը Fabrice Bellard-ի ապրանքանիշն է։</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Օգտագործվում է BitTorrent արձանագրության աջակցման համար։</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Օգտագործվում է վիդեո մետատվյալների կորզման և մեդիա ներբեռնման հատկությունների համար։</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Օգտագործվում է LGPL-3 ներքո՝ Qt LGPL բացառությամբ։</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar-ը օգտագործում է DB-IP City Lite աշխարհագրական տվյալների բազան, տարածված Creative Commons Attribution 4.0-ով։</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Շնորհակալություն Stellar-ից օգտվելու համար</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Կապ</translation>
         </message>
@@ -4831,8 +4859,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Պահուստավորում և վերականգնում</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Արտահանել ամեն ինչ՝ կարգավորումները, ներբեռնումները, թորենտները (իրենց բաշխման գործակիցներով), հերթերը, կատեգորիաները և վիճակագրությունը մեկ պահուստային ֆայլում: Հետագայում ներմուծեք այն նոր Stellar տեղադրման մեջ՝ ամեն ինչ վերականգնելու համար: Ներմուծումը փոխարինում է ընթացիկ տվյալները (պահվում է ժամադրոշմավորված պահուստ) և վերագործարկում Stellar-ը:</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Արտահանել ամեն ինչ՝ կարգավորումներ, ներբեռնումներ, թորենտներ (իրենց բաշխման գործակիցներով), հերթեր, կատեգորիաներ և վիճակագրություն մեկ պահուստային ֆայլում։ Հետագայում ներմուծեք այն նոր Stellar տեղադրման մեջ՝ ամեն ինչ վերականգնելու համար։ Ներմուծումը փոխարինում է ընթացիկ տվյալները (ժամադրոշմավորված պահուստը պահվում է) և վերագործարկում Stellar-ը։</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6557,6 +6585,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Տորենտների որոնման շարժիչ</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Մուտքագրեք որոնման հարցում։</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Նախ միացրեք գոնե մեկ որոնման փլագին։</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python-ը չգտնվեց: Տեղադրեք Python-ը կամ ավելացրեք PATH-ում, ապա վերաբացեք Search Engine-ը:</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Որոնվում է %1 plugin(ներ)...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Գտնվել է %1 արդյունք:</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Ընտրեք Python plugin-ի ֆայլ:</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Տեղադրվեց %1:</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1-ի տեղադրումը ձախողվեց:</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Մուտքագրեք վավեր plugin URL:</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>Plugin URL-ը պետք է օգտագործի HTTPS:</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Ցանցի կառավարիչը անհասանելի է:</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Plugin-ի ներբեռնումը ձախողվեց:</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Չհաջողվեց գրել plugin-ի ֆայլը։</translation>
         </message>
     </context>
     <context>

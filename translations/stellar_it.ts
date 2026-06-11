@@ -4345,6 +4345,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Utilizzato per unire flussi video e audio.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg è un marchio registrato di Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Utilizzato per il supporto del protocollo BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Utilizzato per l'estrazione dei metadati video e le funzionalità di download dei media.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Utilizzato sotto LGPL-3 con l'eccezione Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar utilizza il database di geolocalizzazione DB-IP City Lite, distribuito sotto licenza Creative Commons Attribuzione 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Grazie per aver usato Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Connessione</translation>
         </message>
@@ -4823,8 +4851,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Backup e ripristino</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Esporta tutto — impostazioni, download, torrent (con rapporti di condivisione), code, categorie e statistiche — in un unico file di backup. Importalo in una nuova installazione di Stellar per ripristinare tutto. L'importazione sostituisce i dati attuali (viene conservato un backup con data e ora) e riavvia Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Esporta tutto - impostazioni, download, torrent (con i loro rapporti di condivisione), code, categorie e statistiche - in un unico file di backup. Importalo successivamente in una nuova installazione di Stellar per ripristinare tutto. L'importazione sostituisce i dati attuali (viene conservato un backup con data e ora) e riavvia Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6554,6 +6582,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Motore Torrent</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Inserisci una query di ricerca.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Abilita prima almeno un plugin di ricerca.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python non trovato. Installa Python o aggiungilo al PATH, poi riapri Search Engine.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Ricerca %1 plugin...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Trovati %1 risultati.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Scegli un file plugin Python.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Installato %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Installazione %1 fallita.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Inserisci un URL plugin valido.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>L'URL del plugin deve usare HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Gestore di rete non disponibile.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Download plugin fallito.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Impossibile scrivere il file plugin.</translation>
         </message>
     </context>
     <context>

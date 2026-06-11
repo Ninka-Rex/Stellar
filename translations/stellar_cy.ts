@@ -4361,6 +4361,34 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Defnyddir i gyfuno ffrydiau fideo a sain.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>Mae FFmpeg yn nod masnach Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Defnyddir ar gyfer cefnogaeth protocol BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Defnyddir ar gyfer echdynnu metadata fideo a nodweddion lawrlwytho cyfryngau.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Defnyddir o dan LGPL-3 gydag eithriad Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Mae Stellar yn defnyddio cronfa ddata geoleoli DB-IP City Lite, a ddosberthir o dan Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Diolch am ddefnyddio Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Cysylltiad</translation>
         </message>
@@ -4839,8 +4867,8 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <translation>Wrth Gefn ac Adfer</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Allforio popeth — gosodiadau, llwythiadau i lawr, torrents (gyda'u cymarebau rhannu), ciwiau, categorïau ac ystadegau — i un ffeil wrth gefn. Ei fewnforio'n ddiweddarach i osodiad Stellar newydd i adfer y cyfan. Mae mewnforio yn disodli'r data cyfredol (cedwir copi wrth gefn gyda stamp amser) ac yn ailgychwyn Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Allforio popeth - gosodiadau, lawrlwythiadau, torrents (gyda'u cymarebau rhannu), ciwiau, categorïau ac ystadegau - i un ffeil wrth gefn. Mewnforiwch hi'n ddiweddarach i osodiad Stellar newydd i'w hadfer i gyd. Mae mewnforio yn disodli'r data cyfredol (cedwir copi wrth gefn gyda stamp amser) ac yn ailgychwyn Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6571,6 +6599,61 @@ Cliciwch i agor Ystadegau</translation>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Peiriant Chwilio Torrent</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Rhowch ymholiad chwilio.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Galluogwch o leiaf un ategyn chwilio yn gyntaf.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Heb ddod o hyd i Python. Gosodwch Python neu ei ychwanegu at PATH, yna ailagorwch y Peiriant Chwilio.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Yn chwilio %1 ategyn/ategion...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Wedi dod o hyd i %1 canlyniad.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Dewiswch ffeil ategyn Python.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Wedi gosod %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Methu gosod %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Rhowch URL ategyn dilys.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>Rhaid i URL ategyn ddefnyddio HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Rheolwr rhwydwaith ddim ar gael.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Methu lawrlwytho ategyn.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Methwyd ysgrifennu ffeil ategyn.</translation>
         </message>
     </context>
     <context>

@@ -4355,6 +4355,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Izmanto video un audio straumju sapludināšanai.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg ir Fabrice Bellard preču zīme.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Izmanto BitTorrent protokola atbalstam.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Izmanto video metadatu ieguvei un multivides lejupielādes funkcijām.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Izmanto saskaņā ar LGPL-3 ar Qt LGPL izņēmumu.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar izmanto DB-IP City Lite ģeolokācijas datubāzi, kas izplatīta saskaņā ar Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Paldies, ka izmantojat Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Savienojums</translation>
         </message>
@@ -4833,8 +4861,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Dublēšana un atjaunošana</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Eksportē visu — iestatījumus, lejupielādes, torrentus (ar to koplietošanas koeficientiem), rindas, kategorijas un statistiku — vienā dublējuma failā. Importē to vēlāk jaunā Stellar instalācijā, lai visu atjaunotu. Importēšana aizstāj pašreizējos datus (tiek saglabāta dublējuma kopija ar laikspiedolu) un restartē Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Eksportēt visu — iestatījumus, lejupielādes, torrentus (ar to koplietošanas koeficientiem), rindas, kategorijas un statistiku — vienā dublējuma failā. Importējiet to vēlāk jaunā Stellar instalācijā, lai visu atjaunotu. Importēšana aizstāj pašreizējos datus (tiek saglabāta dublējumkopija ar laikspiedolu) un restartē Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6565,6 +6593,61 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrentu meklētājs</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Ievadiet meklēšanas vaicājumu.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Vispirms iespējojiet vismaz vienu meklēšanas spraudni.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python netika atrasts. Instalējiet Python vai pievienojiet to PATH, pēc tam atkārtoti atveriet meklētājprogrammu.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Meklē %1 spraudni(-ņus)...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Atrasts %1 rezultāts(-i).</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Izvēlieties Python spraudņa failu.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Instalēts %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Neizdevās instalēt %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Ievadiet derīgu spraudņa URL.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>Spraudņa URL jāizmanto HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Tīkla pārvaldnieks nav pieejams.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Neizdevās lejupielādēt spraudni.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Neizdevās ierakstīt spraudņa failu.</translation>
         </message>
     </context>
     <context>

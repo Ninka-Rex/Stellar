@@ -4350,6 +4350,34 @@ Stellar Options → Browser → Bypass Download Interception</translation>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Ginagamit sa pagsasama ng video at audio streams.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>Ang FFmpeg ay trademark ni Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Ginagamit para sa suporta ng BitTorrent protocol.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Ginagamit sa pagkuha ng video metadata at pag-download ng media.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Ginagamit sa ilalim ng LGPL-3 na may Qt LGPL exception.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Gumagamit ang Stellar ng DB-IP City Lite geolocation database, na ipinamamahagi sa ilalim ng Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Salamat sa paggamit ng Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Koneksyon</translation>
         </message>
@@ -4828,8 +4856,8 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <translation>Backup at Restore</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>I-export lahat — settings, downloads, torrents (kasama ang share ratios), queues, categories at statistics — sa iisang backup file. I-import ito sa bagong Stellar install para maibalik lahat. Pinapalitan ng import ang kasalukuyang data (may timestamped backup na itatabi) at ire-restart ang Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>I-export lahat - settings, downloads, torrents (kasama ang share ratios), queues, categories at statistics - sa iisang backup file. I-import ito sa bagong Stellar install para maibalik lahat. Pinapalitan ng pag-import ang kasalukuyang data (may timestamped backup na itinatago) at nire-restart ang Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6559,6 +6587,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Hahanapin sa Torrent Engine</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Maglagay ng search query.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Mag-enable muna ng kahit isang search plugin.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Hindi nahanap ang Python. I-install ang Python o idagdag sa PATH, saka buksan muli ang Search Engine.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Naghahanap ng %1 plugin...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Nakahanap ng %1 resulta.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Pumili ng Python plugin file.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Na-install ang %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Nabigong i-install ang %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Maglagay ng wastong plugin URL.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>Dapat HTTPS ang plugin URL.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Hindi available ang network manager.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Nabigong i-download ang plugin.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Hindi maisulat ang plugin file.</translation>
         </message>
     </context>
     <context>

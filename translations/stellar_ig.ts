@@ -4361,6 +4361,34 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Eji ejikọ vidiyo na iyi ọdịyo.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg bụ ụghalaahịa nke Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Eji maka nkwado usoro BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Eji maka mmịpụta metadata vidiyo na njirimara nbudata mgbasa ozi.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Eji n'okpuru LGPL-3 na ewepu Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar na-eji nchekwa data DB-IP City Lite geolocation, ekesara n'okpuru Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Daalụ maka iji Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Njikọ</translation>
         </message>
@@ -4839,8 +4867,8 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
             <translation>Nchekwa &amp; Weghachi</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Bupụ ihe niile — ntọala, nbudata, torrents (yana oke nkekọrịta ha), kwụ n'ahịrị, ngalaba na ọnụọgụ — gaa n'otu faịlụ nchekwa. Bubata ya ma emechaa n'ime nrụnye Stellar ọhụrụ iji weghachi ya niile. Mbubata na-edochi data dị ugbu a (a na-edobe nchekwa nwere akara oge) ma malitegharịa Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Bupụ ihe niile - ntọala, nbudata, torrents (na oke nkekọrịta ha), kwụ n'ahịrị, ngalaba na ọnụọgụ - gaa n'otu faịlụ ndabere. Bubata ya ma emechaa n'ime nwụnye Stellar ọhụrụ iji weghachi ya niile. Mbubata na-anọchi data dị ugbu a (a na-edobe ndabere nwere akara oge) ma malitegharịa Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6571,6 +6599,61 @@ Pịa imeghe Ọnụọgụ</translation>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Injin Ọchụchọ Torrent</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Tinye ajụjụ ọchụchọ.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Bu ụzọ gbanye ma ọ dịkarịa ala otu ngwa nchọta.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Achọtaghị Python. Wụnye Python ma ọ bụ tinye ya na PATH, wee mepee Search Engine ọzọ.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Na-achọ %1 plugin(s)...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Achọtara %1 nsonaazụ.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Họrọ faịlụ plugin Python.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Awụnyela %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Ọdịda ịwụnye %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Tinye URL plugin ziri ezi.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>URL plugin ga-eji HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Onye njikwa netwọk adịghị.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Ọdịda ibudata plugin.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Edeghị faịlụ ngwa mgbakwunye.</translation>
         </message>
     </context>
     <context>

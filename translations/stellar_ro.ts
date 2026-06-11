@@ -4349,6 +4349,34 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Folosit pentru îmbinarea fluxurilor video și audio.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg este o marcă înregistrată a lui Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Folosit pentru suportul protocolului BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Folosit pentru extragerea metadatelor video și funcții de descărcare media.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Folosit sub licența LGPL-3 cu excepția Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar folosește baza de date de geolocalizare DB-IP City Lite, distribuită sub Creative Commons Atribuire 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Mulțumim că folosești Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Conexiune</translation>
         </message>
@@ -4827,8 +4855,8 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <translation>Backup și restaurare</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Exportă tot — setări, descărcări, torrente (cu rapoarte), cozi, categorii și statistici — într-un singur fișier de backup. Importă-l ulterior într-o instalare Stellar nouă pentru a restaura totul. Importul înlocuiește datele curente (se păstrează un backup datat) și repornește Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Exportă totul - setări, descărcări, torrente (cu rapoartele lor), cozi, categorii și statistici - într-un singur fișier de backup. Importă-l ulterior într-o instalare nouă Stellar pentru a restaura totul. Importul înlocuiește datele curente (se păstrează un backup marcat temporal) și repornește Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6554,6 +6582,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Motor Căutare Torrent</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Introdu o interogare de căutare.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Activează mai întâi cel puțin un plugin de căutare.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python nu a fost găsit. Instalați Python sau adăugați-l în PATH, apoi redeschideți motorul de căutare.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Se caută %1 plugin(uri)...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>S-au găsit %1 rezultat(e).</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Alegeți un fișier plugin Python.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>S-a instalat %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Instalarea %1 a eșuat.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Introduceți un URL de plugin valid.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>URL-ul pluginului trebuie să folosească HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Managerul de rețea nu este disponibil.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Descărcarea pluginului a eșuat.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Nu s-a putut scrie fișierul plugin.</translation>
         </message>
     </context>
     <context>

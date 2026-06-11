@@ -4347,6 +4347,34 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>用於合併影片與音訊串流。</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg 是 Fabrice Bellard 的商標。</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>用於 BitTorrent 協定支援。</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>用於影片元資料提取與媒體下載功能。</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>基於 LGPL-3 授權，並包含 Qt LGPL 例外條款。</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar 使用 DB-IP City Lite 地理位置資料庫，依創用 CC 姓名標示 4.0 授權散布。</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>感謝使用 Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>連線</translation>
         </message>
@@ -4825,8 +4853,8 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <translation>備份與還原</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>匯出所有內容——設定、下載、種子（含分享率）、佇列、分類與統計——至單一備份檔。之後可匯入至全新 Stellar 安裝以全部還原。匯入會取代目前資料（會保留時間戳備份）並重啟 Stellar。</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>匯出所有內容——設定、下載、torrent（含分享率）、佇列、分類與統計——至單一備份檔。之後可匯入全新安裝的 Stellar 以全部還原。匯入會取代目前資料（保留時間戳備份）並重啟 Stellar。</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6556,6 +6584,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrent 搜尋引擎</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>輸入搜尋查詢。</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>請先啟用至少一個搜尋外掛。</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>找不到 Python。請安裝 Python 或將其加入 PATH，然後重新開啟搜尋引擎。</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>正在搜尋 %1 個外掛...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>找到 %1 個結果。</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>選擇一個 Python 外掛檔案。</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>已安裝 %1。</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>無法安裝 %1。</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>請輸入有效的外掛 URL。</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>外掛 URL 必須使用 HTTPS。</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>網路管理員無法使用。</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>下載外掛失敗。</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>無法寫入外掛檔案。</translation>
         </message>
     </context>
     <context>

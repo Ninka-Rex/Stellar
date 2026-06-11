@@ -4377,6 +4377,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>ವೀಡಿಯೊ ಮತ್ತು ಆಡಿಯೊ ಸ್ಟ್ರೀಮ್‌ಗಳನ್ನು ವಿಲೀನಗೊಳಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg ಫ್ಯಾಬ್ರಿಸ್ ಬೆಲ್ಲಾರ್ಡ್ ಅವರ ಟ್ರೇಡ್ಮಾರ್ಕ್ ಆಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>BitTorrent ಪ್ರೋಟೋಕಾಲ್ ಬೆಂಬಲಕ್ಕಾಗಿ ಬಳಸಲಾಗಿದೆ</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>ವೀಡಿಯೊ ಮೆಟಾಡೇಟಾ ಹೊರತೆಗೆಯುವಿಕೆ ಮತ್ತು ಮಾಧ್ಯಮ ಡೌನ್ಲೋಡ್ ವೈಶಿಷ್ಟ್ಯಗಳಿಗಾಗಿ ಬಳಸಲಾಗುತ್ತದೆ.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Qt LGPL ವಿನಾಯಿತಿಯೊಂದಿಗೆ LGPL-3 ಅಡಿಯಲ್ಲಿ ಬಳಸಲಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>ಸ್ಟೆಲ್ಲಾರ್ ಕ್ರಿಯೇಟಿವ್ ಕಾಮನ್ಸ್ ಅಟ್ರಿಬ್ಯೂಷನ್ 4.0 ಅಡಿಯಲ್ಲಿ ವಿತರಿಸಲಾದ DB-IP ಸಿಟಿ ಲೈಟ್ ಜಿಯೋಲೊಕೇಶನ್ ಡೇಟಾಬೇಸ್ ಅನ್ನು ಬಳಸುತ್ತದೆ.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Stellar ಬಳಸಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>ಸಂಪರ್ಕ</translation>
         </message>
@@ -4855,8 +4883,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ಬ್ಯಾಕಪ್ ಮತ್ತು ಮರುಸ್ಥಾಪನೆ</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>ಸೆಟ್ಟಿಂಗ್ಗಳು, ಡೌನ್ಲೋಡ್ಗಳು, ಟೊರೆಂಟ್ಗಳು (ಅವುಗಳ ಹಂಚಿಕೆ ಅನುಪಾತಗಳೊಂದಿಗೆ), ಸರತಿ ಸಾಲುಗಳು, ವರ್ಗಗಳು ಮತ್ತು ಅಂಕಿಅಂಶಗಳು — ಎಲ್ಲವನ್ನೂ ಒಂದೇ ಬ್ಯಾಕಪ್ ಫೈಲ್ಗೆ ರಫ್ತು ಮಾಡಿ. ನಂತರ ಅದನ್ನು ಹೊಸ ಸ್ಟೆಲ್ಲಾರ್ ಸ್ಥಾಪನೆಗೆ ಆಮದು ಮಾಡಿಕೊಂಡು ಎಲ್ಲವನ್ನೂ ಮರುಸ್ಥಾಪಿಸಿ. ಆಮದು ಮಾಡಿಕೊಳ್ಳುವುದು ಪ್ರಸ್ತುತ ಡೇಟಾವನ್ನು ಬದಲಾಯಿಸುತ್ತದೆ (ಟೈಮ್ಸ್ಟ್ಯಾಂಪ್ ಮಾಡಿದ ಬ್ಯಾಕಪ್ ಅನ್ನು ಇರಿಸಲಾಗುತ್ತದೆ) ಮತ್ತು ಸ್ಟೆಲ್ಲಾರ್ ಅನ್ನು ಮರುಪ್ರಾರಂಭಿಸುತ್ತದೆ.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>ಸೆಟ್ಟಿಂಗ್‌ಗಳು, ಡೌನ್‌ಲೋಡ್‌ಗಳು, ಟೊರೆಂಟ್‌ಗಳು (ಅವುಗಳ ಹಂಚಿಕೆ ಅನುಪಾತಗಳೊಂದಿಗೆ), ಸರತಿ ಸಾಲುಗಳು, ವರ್ಗಗಳು ಮತ್ತು ಅಂಕಿಅಂಶಗಳು - ಎಲ್ಲವನ್ನೂ ಒಂದೇ ಬ್ಯಾಕಪ್ ಫೈಲ್‌ಗೆ ರಫ್ತು ಮಾಡಿ. ನಂತರ ಅದನ್ನು ಹೊಸ ಸ್ಟೆಲ್ಲಾರ್ ಸ್ಥಾಪನೆಗೆ ಆಮದು ಮಾಡಿಕೊಂಡು ಎಲ್ಲವನ್ನೂ ಮರುಸ್ಥಾಪಿಸಿ. ಆಮದು ಮಾಡಿಕೊಳ್ಳುವುದು ಪ್ರಸ್ತುತ ಡೇಟಾವನ್ನು ಬದಲಾಯಿಸುತ್ತದೆ (ಟೈಮ್‌ಸ್ಟ್ಯಾಂಪ್ ಮಾಡಿದ ಬ್ಯಾಕಪ್ ಅನ್ನು ಇರಿಸಲಾಗುತ್ತದೆ) ಮತ್ತು ಸ್ಟೆಲ್ಲಾರ್ ಅನ್ನು ಮರುಪ್ರಾರಂಭಿಸುತ್ತದೆ.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6587,6 +6615,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>ಟರೆಂಟ್ ಹುಡುಕಾಟ ಎಂಜಿನ್</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>ಹುಡುಕಾಟ ಪ್ರಶ್ನೆಯನ್ನು ನಮೂದಿಸಿ.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>ಕನಿಷ್ಠ ಒಂದು ಹುಡುಕಾಟ ಪ್ಲಗಿನ್ ಅನ್ನು ಮೊದಲು ಸಕ್ರಿಯಗೊಳಿಸಿ.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python ಕಂಡುಬಂದಿಲ್ಲ. Python ಸ್ಥಾಪಿಸಿ ಅಥವಾ PATH ಗೆ ಸೇರಿಸಿ, ನಂತರ ಸರ್ಚ್ ಇಂಜಿನ್ ಪುನಃ ತೆರೆಯಿರಿ.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>%1 ಪ್ಲಗಿನ್(ಗಳ) ಹುಡುಕಾಟ...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1 ಫಲಿತಾಂಶ(ಗಳು) ಸಿಕ್ಕಿದೆ.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Python ಪ್ಲಗಿನ್ ಫೈಲ್ ಆಯ್ಕೆಮಾಡಿ.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 ಸ್ಥಾಪಿಸಲಾಗಿದೆ.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 ಸ್ಥಾಪಿಸಲು ವಿಫಲ.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>ಮಾನ್ಯ ಪ್ಲಗಿನ್ URL ನಮೂದಿಸಿ.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>ಪ್ಲಗಿನ್ URL HTTPS ಬಳಸಬೇಕು.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>ನೆಟ್ವರ್ಕ್ ಮ್ಯಾನೇಜರ್ ಲಭ್ಯವಿಲ್ಲ.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>ಪ್ಲಗಿನ್ ಡೌನ್ಲೋಡ್ ವಿಫಲ.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>ಪ್ಲಗಿನ್ ಫೈಲ್ ಬರೆಯಲು ವಿಫಲವಾಗಿದೆ.</translation>
         </message>
     </context>
     <context>

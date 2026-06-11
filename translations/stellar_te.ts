@@ -4361,6 +4361,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>వీడియో మరియు ఆడియో స్ట్రీమ్‌లను విలీనం చేయడానికి ఉపయోగిస్తారు.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg అనేది ఫాబ్రిస్ బెల్లార్డ్ యొక్క ట్రేడ్మార్క్.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>బిట్టొరెంట్ ప్రోటోకాల్ మద్దతు కోసం ఉపయోగించబడింది</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>వీడియో మెటాడేటా వెలికితీత మరియు మీడియా డౌన్లోడ్ ఫీచర్ల కోసం ఉపయోగించబడింది.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>LGPL-3 కింద Qt LGPL మినహాయింపుతో ఉపయోగించబడింది.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>స్టెల్లార్ DB-IP సిటీ లైట్ జియోలొకేషన్ డేటాబేస్ను ఉపయోగిస్తుంది, ఇది క్రియేటివ్ కామన్స్ అట్రిబ్యూషన్ 4.0 కింద పంపిణీ చేయబడింది.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>స్టెల్లార్ ఉపయోగించినందుకు ధన్యవాదాలు</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>కనెక్షన్</translation>
         </message>
@@ -4839,8 +4867,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>బ్యాకప్ &amp; రీస్టోర్</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>సెట్టింగ్లు, డౌన్లోడ్లు, టొరెంట్లు (వాటి షేర్ నిష్పత్తులతో సహా), క్యూలు, వర్గాలు మరియు గణాంకాలు — అన్నింటినీ ఒకే బ్యాకప్ ఫైల్కు ఎగుమతి చేయండి. తర్వాత దాన్ని తాజా స్టెల్లార్ ఇన్స్టాల్లో దిగుమతి చేసుకుని అన్నింటినీ పునరుద్ధరించండి. దిగుమతి చేయడం ప్రస్తుత డేటాను భర్తీ చేస్తుంది (టైమ్స్టాంప్ చేయబడిన బ్యాకప్ ఉంచబడుతుంది) మరియు స్టెల్లార్ను పునఃప్రారంభిస్తుంది.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>సెట్టింగ్లు, డౌన్లోడ్లు, టొరెంట్లు (వాటి షేర్ నిష్పత్తులతో సహా), క్యూలు, వర్గాలు మరియు గణాంకాలు - అన్నింటినీ ఒకే బ్యాకప్ ఫైల్కు ఎగుమతి చేయండి. తర్వాత తాజా స్టెల్లార్ ఇన్స్టాల్లో దిగుమతి చేసి అన్నింటినీ పునరుద్ధరించండి. దిగుమతి ప్రస్తుత డేటాను భర్తీ చేస్తుంది (టైమ్స్టాంప్ చేసిన బ్యాకప్ ఉంచబడుతుంది) మరియు స్టెల్లార్ను పునఃప్రారంభిస్తుంది.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6571,6 +6599,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>టొరెంట్ శోధన యంత్రం</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>శోధన ప్రశ్నను నమోదు చేయండి.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>ముందుగా కనీసం ఒక శోధన ప్లగిన్ను ప్రారంభించండి.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python కనుగొనబడలేదు. Python ను ఇన్‌స్టాల్ చేయండి లేదా PATH కి జోడించండి, తర్వాత శోధన యంత్రాన్ని తిరిగి తెరవండి.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>%1 ప్లగిన్(ల) కోసం శోధిస్తోంది...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1 ఫలితా(లు) కనుగొనబడ్డాయి.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Python ప్లగిన్ ఫైల్‌ను ఎంచుకోండి.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 ఇన్‌స్టాల్ చేయబడింది.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 ఇన్‌స్టాల్ చేయడంలో విఫలమైంది.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>చెల్లుబాటు అయ్యే ప్లగిన్ URL ని నమోదు చేయండి.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>ప్లగిన్ URL తప్పనిసరిగా HTTPS ఉపయోగించాలి.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>నెట్‌వర్క్ నిర్వాహకి అందుబాటులో లేదు.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>ప్లగిన్‌ను డౌన్‌లోడ్ చేయడంలో విఫలమైంది.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>ప్లగిన్ ఫైల్ రాయడంలో విఫలమైంది.</translation>
         </message>
     </context>
     <context>

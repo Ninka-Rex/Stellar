@@ -4361,6 +4361,34 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>වීඩියෝ සහ ශ්‍රව්‍ය ධාරා ඒකාබද්ධ කිරීමට භාවිතා කරයි.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg යනු Fabrice Bellard ගේ වෙළඳ ලකුණකි.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>BitTorrent ප්‍රොටෝකෝල සහාය සඳහා භාවිතා කරයි.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>වීඩියෝ පාරදත්ත උපුටා ගැනීම සහ මාධ්‍ය බාගැනීමේ විශේෂාංග සඳහා භාවිතා කරයි.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Qt LGPL ව්‍යතිරේකය සමඟ LGPL-3 යටතේ භාවිතා කරයි.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar විසින් Creative Commons Attribution 4.0 යටතේ බෙදා හරින DB-IP City Lite භූ පිහිටුම් දත්ත ගබඩාව භාවිතා කරයි.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Stellar භාවිතා කිරීම ගැන ස්තුතියි</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>සම්බන්ධතාව</translation>
         </message>
@@ -4839,8 +4867,8 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <translation>උපස්ථ සහ ප්‍රතිස්ථාපනය</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>සියල්ල අපනයනය කරන්න — සැකසුම්, බාගැනීම්, ටොරන්ට් (ඒවායේ බෙදාගැනීමේ අනුපාත සමඟ), පෝලිම්, ප්‍රවර්ග සහ සංඛ්‍යාලේඛන — තනි උපස්ථ ගොනුවකට. පසුව එය නැවුම් ස්ටෙලර් ස්ථාපනයකට ආයාත කර සියල්ල ප්‍රතිෂ්ඨාපනය කරන්න. ආයාත කිරීම වත්මන් දත්ත ප්‍රතිස්ථාපනය කරයි (කාල මුද්‍රා සහිත උපස්ථයක් තබා ගනී) සහ ස්ටෙලර් නැවත ආරම්භ කරයි.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>සියල්ල අපනයනය කරන්න - සැකසුම්, බාගැනීම්, ටොරන්ට් (ඒවායේ බෙදාගැනීමේ අනුපාත සමඟ), පෝලිම්, ප්‍රවර්ග සහ සංඛ්‍යාලේඛන - තනි උපස්ථ ගොනුවකට. සියල්ල ප්‍රතිසාධනය කිරීමට පසුව එය නව Stellar ස්ථාපනයකට ආයාත කරන්න. ආයාත කිරීම වත්මන් දත්ත ප්‍රතිස්ථාපනය කරයි (කාල මුද්‍රා සහිත උපස්ථයක් තබා ගනී) සහ Stellar නැවත ආරම්භ කරයි.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6571,6 +6599,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>ටොරන්ට් සෙවුම් යන්ත්‍රය</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>සෙවුම් විමසුමක් ඇතුළත් කරන්න.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>පළමුව අවම වශයෙන් එක් සෙවුම් ප්ලගිනයක් සක්‍රීය කරන්න.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python සොයාගත නොහැක. Python ස්ථාපනය කර හෝ PATH එකට එක් කර, සෙවුම් යන්ත්රය නැවත විවෘත කරන්න.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>%1 ප්ලගීන සොයමින්...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>ප්‍රතිඵල %1 ක් හමු විය.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Python ප්ලගීන ගොනුවක් තෝරන්න.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 ස්ථාපිතයි.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 ස්ථාපනය අසාර්ථකයි.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>වලංගු ප්ලගීන URL එකක් ඇතුළත් කරන්න.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>ප්ලගීන URL HTTPS විය යුතුය.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>ජාල කළමනාකරු නොමැත.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>ප්ලගීනය බාගැනීම අසාර්ථකයි.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>ප්ලගින ගොනුව ලිවීමට අසමත් විය.</translation>
         </message>
     </context>
     <context>

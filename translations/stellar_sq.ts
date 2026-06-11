@@ -4353,6 +4353,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Përdoret për bashkimin e transmetimeve video dhe audio.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg është markë tregtare e Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Përdoret për mbështetjen e protokollit BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Përdoret për nxjerrjen e metadatave të videos dhe veçoritë e shkarkimit të mediave.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Përdoret nën LGPL-3 me përjashtimin Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar përdor bazën e të dhënave të gjeolokacionit DB-IP City Lite, shpërndarë nën Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Faleminderit që përdorni Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Lidhja</translation>
         </message>
@@ -4831,8 +4859,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Rezervimi dhe Rikthimi</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Eksporto gjithçka — cilësimet, shkarkimet, torrentët (me raportet e ndarjes së tyre), radhët, kategoritë dhe statistikat — në një skedar të vetëm rezervë. Importoje më vonë në një instalim të ri të Stellar për ta rikthyer të gjithë. Importimi zëvendëson të dhënat aktuale (ruhet një kopje rezervë me vulë kohore) dhe rinis Stellar-in.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Eksporto gjithçka - cilësimet, shkarkimet, torrentët (me raportet e ndarjes), radhët, kategoritë dhe statistikat - në një skedar të vetëm rezervë. Importoje më vonë në një instalim të ri të Stellar për ta rikthyer të gjithë. Importimi zëvendëson të dhënat aktuale (ruhet një kopje rezervë me vulë kohore) dhe rinis Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6560,6 +6588,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Motor Kërkimi Torrent</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Shkruaj një kërkim.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Aktivizo së paku një shtojcë kërkimi fillimisht.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python nuk u gjet. Instalo Python ose shtoje në PATH, pastaj rihap Motorin e Kërkimit.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Duke kërkuar %1 shtojca...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>U gjetën %1 rezultate.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Zgjidh një skedar shtojce Python.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>U instalua %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Dështoi instalimi i %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Shkruaj një URL të vlefshme shtojce.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>URL e shtojcës duhet të përdorë HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Menaxheri i rrjetit nuk disponohet.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Dështoi shkarkimi i shtojcës.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>S’u shkrua dot skedari i shtojcës.</translation>
         </message>
     </context>
     <context>

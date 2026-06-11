@@ -4356,6 +4356,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Използва се за сливане на видео и аудио потоци.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg е търговска марка на Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Използва се за поддръжка на BitTorrent протокол.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Използва се за извличане на метаданни от видео и функции за изтегляне на медия.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Използва се под LGPL-3 с изключението за Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar използва геолокационната база данни DB-IP City Lite, разпространявана под Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Благодарим, че използвате Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Връзка</translation>
         </message>
@@ -4834,8 +4862,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Архивиране и възстановяване</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Експортирай всичко — настройки, изтегляния, торенти (със съотношения), опашки, категории и статистика — в един архивен файл. Импортирай го по-късно в чиста инсталация на Stellar, за да възстановиш всичко. Импортирането заменя текущите данни (запазва се архив с дата) и рестартира Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Експортирайте всичко – настройки, изтегляния, торенти (със съотношенията им), опашки, категории и статистики – в един архивен файл. Импортирайте го по-късно в нова инсталация на Stellar, за да възстановите всичко. Импортирането заменя текущите данни (запазва се архивиране с времеви печат) и рестартира Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6566,6 +6594,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Търсачка за торенти</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Въведете заявка за търсене.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Първо активирайте поне един плъгин за търсене.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python не беше намерен. Инсталирайте Python или го добавете към PATH, след което отворете отново търсачката.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Търсене на %1 приставка(и)...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Намерени са %1 резултата.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Изберете файл с плъгин за Python.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Инсталиран %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Неуспешно инсталиране на %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Въведете валиден URL адрес на плъгин.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>URL адресът на приставката трябва да използва HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Мрежовият мениджър не е наличен.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Неуспешно изтегляне на приставката.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Неуспешно записване на файла с приставката.</translation>
         </message>
     </context>
     <context>

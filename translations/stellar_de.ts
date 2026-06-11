@@ -4354,6 +4354,34 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Wird zum Zusammenführen von Video- und Audiostreams verwendet.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg ist eine Marke von Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Wird für die Unterstützung des BitTorrent-Protokolls verwendet.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Wird für die Extraktion von Videometadaten und Medien-Download-Funktionen verwendet.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Verwendet unter der LGPL-3 mit der Qt LGPL-Ausnahme.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar verwendet die DB-IP City Lite-Geolokalisierungsdatenbank, die unter der Creative Commons Attribution 4.0-Lizenz vertrieben wird.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Danke, dass Sie Stellar verwenden</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Verbindung</translation>
         </message>
@@ -4832,8 +4860,8 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <translation>Sichern &amp; Wiederherstellen</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Alles exportieren — Einstellungen, Downloads, Torrents (mit ihren Share-Ratios), Warteschlangen, Kategorien und Statistiken — in eine einzige Sicherungsdatei. Später in eine frische Stellar-Installation importieren, um alles wiederherzustellen. Der Import ersetzt die aktuellen Daten (eine mit Zeitstempel versehene Sicherung wird aufbewahrt) und startet Stellar neu.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Alle Einstellungen, Downloads, Torrents (mit ihren Share-Ratios), Warteschlangen, Kategorien und Statistiken in eine einzige Sicherungsdatei exportieren. Später in eine frische Stellar-Installation importieren, um alles wiederherzustellen. Der Import ersetzt die aktuellen Daten (eine mit Zeitstempel versehene Sicherung wird aufbewahrt) und startet Stellar neu.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6564,6 +6592,61 @@ Klicken für Statistiken</translation>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrent-Suchmaschine</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Suchbegriff eingeben.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Aktivieren Sie zuerst mindestens ein Such-Plugin.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python wurde nicht gefunden. Installiere Python oder füge es zum PATH hinzu, dann öffne die Suchmaschine erneut.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Durchsuche %1 Plugin(s)...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1 Ergebnis(se) gefunden.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Wähle eine Python-Plugin-Datei.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 installiert.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Installation von %1 fehlgeschlagen.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Gültige Plugin-URL eingeben.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>Plugin-URL muss HTTPS verwenden.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Netzwerkmanager nicht verfügbar.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Plugin-Download fehlgeschlagen.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Plugin-Datei konnte nicht geschrieben werden.</translation>
         </message>
     </context>
     <context>

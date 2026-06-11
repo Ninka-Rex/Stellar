@@ -4361,6 +4361,34 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Ana amfani don haɗa rafukan bidiyo da sauti.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg alamar kasuwanci ce ta Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Ana amfani don goyon bayan ka'idar BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Ana amfani don cire bayanan bidiyo da fasalin saukar da kafofin watsa labarai.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Ana amfani ƙarƙashin LGPL-3 tare da keɓancewar Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar na amfani da bayanan DB-IP City Lite, wanda aka rarraba ƙarƙashin Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Godiya da amfani da Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Haɗi</translation>
         </message>
@@ -4839,8 +4867,8 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
             <translation>Ajiyewa &amp; Maidowa</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Fitar da komai — saiti, abubuwan saukewa, torrents (tare da rabon rabawa), layuka, rukunoni da kididdiga — zuwa fayil ɗin ajiya guda. Shigo da shi daga baya cikin sabon shigar Stellar don maido da shi duka. Shigo da shi yana maye gurbin bayanan yanzu (ana ajiye ajiyar mai alamar lokaci) kuma yana sake kunna Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Fitar da komai - saiti, saukarwa, torrents (tare da rabon rabawa), layuka, rukunoni da ƙididdiga - zuwa fayil ɗin ajiya ɗaya. Shigo da shi daga baya cikin sabon shigar Stellar don maido da shi duka. Shigo da shi yana maye gurbin bayanan yanzu (ana adana ajiyar mai alamar lokaci) kuma yana sake kunna Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6571,6 +6599,61 @@ Danna don buɗe Ƙididdiga</translation>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Injin Binciken Torrent</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Shigar da tambayar bincike.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Fara kunna aƙalla plugin ɗin bincike ɗaya.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Ba a sami Python ba. Shigar da Python ko ƙara shi zuwa PATH, sannan sake buɗe Injin Bincike.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Ana binciken %1 plugin(s)...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>An sami sakamako %1.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Zaɓi fayil ɗin plugin na Python.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>An shigar da %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>An kasa shigar da %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Shigar da URL plugin mai inganci.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>Dole ne URL plugin ya yi amfani da HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Mai sarrafa cibiyar sadarwa ba ya nan.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>An kasa sauke plugin.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>An kasa rubuta fayil ɗin plugin.</translation>
         </message>
     </context>
     <context>

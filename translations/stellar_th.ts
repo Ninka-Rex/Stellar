@@ -4350,6 +4350,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>ใช้สำหรับรวมสตรีมวิดีโอและเสียง</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg เป็นเครื่องหมายการค้าของ Fabrice Bellard</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>ใช้สำหรับรองรับโปรโตคอล BitTorrent</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>ใช้สำหรับดึงข้อมูลเมตาวิดีโอและฟีเจอร์ดาวน์โหลดสื่อ</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>ใช้ภายใต้ LGPL-3 พร้อมข้อยกเว้น Qt LGPL</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar ใช้ฐานข้อมูลตำแหน่งทางภูมิศาสตร์ DB-IP City Lite ซึ่งเผยแพร่ภายใต้ Creative Commons Attribution 4.0</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>ขอบคุณที่ใช้ Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>การเชื่อมต่อ</translation>
         </message>
@@ -4828,8 +4856,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>สำรองและกู้คืน</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>ส่งออกทุกอย่าง — การตั้งค่า, ไฟล์ที่ดาวน์โหลด, ทอร์เรนต์ (พร้อมอัตราการแชร์), คิว, หมวดหมู่ และสถิติ — ไปยังไฟล์สำรองข้อมูลเดียว นำเข้ามาในภายหลังในการติดตั้ง Stellar ใหม่เพื่อกู้คืนทั้งหมด การนำเข้าจะแทนที่ข้อมูลปัจจุบัน (ไฟล์สำรองข้อมูลที่มีการประทับเวลาจะถูกเก็บไว้) และรีสตาร์ท Stellar</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>ส่งออกทุกอย่าง - การตั้งค่า, ดาวน์โหลด, ทอร์เรนต์ (พร้อมอัตราแชร์), คิว, หมวดหมู่ และสถิติ - ไปยังไฟล์สำรองไฟล์เดียว นำเข้าในภายหลังสู่การติดตั้ง Stellar ใหม่เพื่อกู้คืนทั้งหมด การนำเข้าจะแทนที่ข้อมูลปัจจุบัน (สำรองข้อมูลเดิมพร้อมประทับเวลาไว้) และรีสตาร์ท Stellar</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6557,6 +6585,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>เครื่องยนต์ค้นหา Torrent</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>ป้อนคำค้นหา</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>เปิดใช้งานปลั๊กอินค้นหาอย่างน้อยหนึ่งตัวก่อน</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>ไม่พบ Python ติดตั้ง Python หรือเพิ่มลงใน PATH แล้วเปิด Search Engine ใหม่</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>กำลังค้นหาปลั๊กอิน %1 รายการ...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>พบ %1 ผลลัพธ์</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>เลือกไฟล์ปลั๊กอิน Python</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>ติดตั้ง %1 แล้ว</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>ติดตั้ง %1 ไม่สำเร็จ</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>ป้อน URL ปลั๊กอินที่ถูกต้อง</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>URL ปลั๊กอินต้องใช้ HTTPS</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>ตัวจัดการเครือข่ายไม่พร้อมใช้งาน</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>ดาวน์โหลดปลั๊กอินไม่สำเร็จ</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>เขียนไฟล์ปลั๊กอินไม่สำเร็จ</translation>
         </message>
     </context>
     <context>

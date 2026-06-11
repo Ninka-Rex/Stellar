@@ -4360,6 +4360,34 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>வீடியோ மற்றும் ஆடியோ ஸ்ட்ரீம்களை இணைக்கப் பயன்படுகிறது.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg என்பது Fabrice Bellard-ன் வர்த்தக முத்திரை.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>BitTorrent நெறிமுறை ஆதரவுக்குப் பயன்படுகிறது.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>வீடியோ மெட்டாடேட்டா பிரித்தெடுப்பு மற்றும் மீடியா பதிவிறக்க அம்சங்களுக்குப் பயன்படுகிறது.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Qt LGPL விதிவிலக்குடன் LGPL-3-ன் கீழ் பயன்படுத்தப்படுகிறது.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar, Creative Commons Attribution 4.0-ன் கீழ் விநியோகிக்கப்படும் DB-IP City Lite புவிஇருப்பிடத் தரவுத்தளத்தைப் பயன்படுத்துகிறது.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Stellar-ஐப் பயன்படுத்தியதற்கு நன்றி</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>இணைப்பு</translation>
         </message>
@@ -4838,8 +4866,8 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
             <translation>காப்பு &amp; மீட்டமை</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>எல்லாவற்றையும் — அமைப்புகள், பதிவிறக்கங்கள், டொரண்டுகள் (பகிர்வு விகிதங்களுடன்), வரிசைகள், வகைகள் மற்றும் புள்ளிவிவரங்கள் — ஒரே காப்பு கோப்பில் ஏற்றுமதி செய்க. புதிய Stellar நிறுவலில் இறக்குமதி செய்து அனைத்தையும் மீட்டமைக்கவும். இறக்குமதி செய்வது தற்போதைய தரவை மாற்றும் (நேரமுத்திரையிட்ட காப்பு வைக்கப்படும்) மற்றும் Stellar மறுதொடக்கம் செய்யும்.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>எல்லாவற்றையும் ஏற்றுமதி செய் - அமைப்புகள், பதிவிறக்கங்கள், டோரண்டுகள் (பகிர்வு விகிதங்களுடன்), வரிசைகள், வகைகள் மற்றும் புள்ளிவிவரங்கள் - ஒரே காப்பு கோப்பில். பின்னர் புதிய Stellar நிறுவலில் இறக்குமதி செய்து அனைத்தையும் மீட்டெடுக்கவும். இறக்குமதி தற்போதைய தரவை மாற்றி (நேரமுத்திரையிட்ட காப்பு வைக்கப்படும்) Stellar-ஐ மறுதொடக்கம் செய்கிறது.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6570,6 +6598,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>டோரண்ட் தேடுபொறி</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>தேடல் வினவலை உள்ளிடுக.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>முதலில் குறைந்தது ஒரு தேடல் செருகுநிரலையாவது இயக்கு.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python கிடைக்கவில்லை. Python ஐ நிறுவவும் அல்லது PATH இல் சேர்க்கவும், பின் தேடுபொறியை மீண்டும் திறக்கவும்.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>%1 செருகுநிரல்(களை) தேடுகிறது...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1 முடிவு(கள்) கிடைத்தது.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Python செருகுநிரல் கோப்பைத் தேர்ந்தெடுக்கவும்.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 நிறுவப்பட்டது.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 நிறுவத் தோல்வி.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>சரியான செருகுநிரல் URL ஐ உள்ளிடவும்.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>செருகுநிரல் URL HTTPS ஐப் பயன்படுத்த வேண்டும்.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>பிணைய மேலாளர் கிடைக்கவில்லை.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>செருகுநிரலைப் பதிவிறக்கத் தோல்வி.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>செருகுநிரல் கோப்பை எழுத முடியவில்லை.</translation>
         </message>
     </context>
     <context>

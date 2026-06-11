@@ -4349,6 +4349,34 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Videó és hangsávok egyesítéséhez.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>Az FFmpeg a Fabrice Bellard védjegye.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>BitTorrent protokoll támogatáshoz.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Videó metaadatok kinyeréséhez és média letöltési funkciókhoz.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>LGPL-3 alatt használt, a Qt LGPL kivétellel.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>A Stellar a DB-IP City Lite geolokációs adatbázist használja, Creative Commons Attribution 4.0 licenc alatt.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Köszönjük, hogy a Stellart használod</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Kapcsolat</translation>
         </message>
@@ -4827,8 +4855,8 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
             <translation>Bizt. mentés és visszaállítás</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Minden exportálása — beállítások, letöltések, torrentek (megosztási arányokkal), sorok, kategóriák és statisztikák — egyetlen biztonsági fájlba. Később importálhatja egy friss Stellar telepítésbe a teljes visszaállításhoz. Az importálás felülírja a jelenlegi adatokat (időbélyeges biztonsági mentés megmarad) és újraindítja a Stellart.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Minden exportálása – beállítások, letöltések, torrentek (megosztási aránnyal), sorok, kategóriák és statisztikák – egy biztonsági fájlba. Később importálva egy friss Stellar telepítésbe minden visszaáll. Az importálás felülírja a jelenlegi adatokat (időbélyeges biztonsági mentés megmarad) és újraindítja a Stellart.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6553,6 +6581,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrent keresőmotor</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Írj be egy keresési kifejezést.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Előbb engedélyezz legalább egy kereső bővítményt.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>A Python nem található. Telepítsd a Pythont, vagy add a PATH-hoz, majd nyisd meg újra a keresőmotort.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>%1 bővítmény keresése...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1 találat.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Válassz egy Python bővítményfájlt.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 telepítve.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 telepítése sikertelen.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Adj meg egy érvényes bővítmény URL-t.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>A bővítmény URL-jének HTTPS-t kell használnia.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>A hálózatkezelő nem érhető el.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>A bővítmény letöltése sikertelen.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Nem sikerült a bővítményfájl írása.</translation>
         </message>
     </context>
     <context>

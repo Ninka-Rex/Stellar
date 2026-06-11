@@ -4352,6 +4352,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>برای ادغام جریان‌های ویدئو و صدا استفاده می‌شود.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>افافامپگ علامت تجاری فابریس بلارد است.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>برای پشتیبانی از پروتکل بیتتورنت استفاده میشود.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>برای استخراج فراداده ویدیو و قابلیت‌های دانلود رسانه استفاده می‌شود.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>تحت مجوز LGPL-3 با استثنای Qt LGPL استفاده شده است.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>استلار از پایگاه داده موقعیتیابی جغرافیایی DB-IP City Lite استفاده میکند که تحت مجوز Creative Commons Attribution 4.0 توزیع شده است.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>با تشکر از استفاده شما از استلار</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>اتصال</translation>
         </message>
@@ -4830,8 +4858,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>پشتیبان‌گیری و بازیابی</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>همه چیز — تنظیمات، دانلودها، تورنت‌ها (با نسبت‌های اشتراک‌گذاری)، صف‌ها، دسته‌بندی‌ها و آمار — را در یک فایل پشتیبان واحد خروجی بگیرید. بعداً آن را در یک نصب تازه استلار وارد کنید تا همه را بازیابی کنید. وارد کردن جایگزین داده‌های فعلی می‌شود (یک پشتیبان دارای برچسب زمانی نگهداری می‌شود) و استلار را راه‌اندازی مجدد می‌کند.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>همه چیز - تنظیمات، دانلودها، تورنت‌ها (با نسبت‌های اشتراک‌گذاری)، صف‌ها، دسته‌بندی‌ها و آمار - را در یک فایل پشتیبان واحد صادر کنید. بعداً آن را در یک نصب تازه استلار وارد کنید تا همه را بازیابی کنید. وارد کردن، داده‌های فعلی را جایگزین می‌کند (یک نسخه پشتیبان با برچسب زمانی نگهداری می‌شود) و استلار را مجدداً راه‌اندازی می‌کند.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6558,6 +6586,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>موتور جستجوی تورنت</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>یک عبارت جستجو وارد کنید.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>ابتدا حداقل یک افزونه جستجو را فعال کنید.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>پایتون پیدا نشد. پایتون را نصب کنید یا به PATH اضافه کنید، سپس موتور جستجو را باز کنید.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>در حال جستجوی %1 افزونه...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1 نتیجه پیدا شد.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>فایل افزونه پایتون را انتخاب کنید.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 نصب شد.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>نصب %1 ناموفق بود.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>آدرس اینترنتی معتبر افزونه را وارد کنید.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>آدرس افزونه باید HTTPS باشد.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>مدیر شبکه در دسترس نیست.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>دانلود افزونه ناموفق بود.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>نوشتن فایل افزونه ناموفق بود.</translation>
         </message>
     </context>
     <context>

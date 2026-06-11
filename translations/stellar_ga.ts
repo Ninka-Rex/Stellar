@@ -4354,6 +4354,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Úsáidte chun sruthanna físe agus fuaime a chumasc.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>Is trádmharc de chuid Fabrice Bellard é FFmpeg.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Úsáidte le haghaidh tacaíochta prótacail BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Úsáidtear é le haghaidh eastóscadh meiteashonraí físeáin agus gnéithe íoslódála meán.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Úsáidte faoin LGPL-3 le heisceacht Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Úsáideann Stellar an bunachar geolocation DB-IP City Lite, a dháiltear faoi Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Go raibh maith agat as Stellar a úsáid</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Ceangal</translation>
         </message>
@@ -4832,8 +4860,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Cúltaca &amp; Athchóirigh</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Easpórtáil gach rud — socruithe, íoslódálacha, tórantáin (lena gcóimheasa roinnte), ciúnna, catagóirí agus staitisticí — go comhad cúltaca amháin. Iompórtáil níos déanaí é isteach i suiteáil úr Stellar chun é ar fad a athchóiriú. Athchuirfidh iompórtáil na sonraí reatha (coimeádtar cúltaca le stampa ama) agus atosóidh sé Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Easpórtáil gach rud - socruithe, íoslódálacha, torentaí (lena gcóimheasa roinnte), ciúnna, catagóirí agus staitisticí - go comhad cúltaca amháin. Iompórtáil níos déanaí é isteach i suiteáil úr Stellar chun é a athchóiriú ar fad. Athsholáthraíonn iompórtáil na sonraí reatha (coimeádtar cúltaca le stampa ama) agus atosaíonn sé Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6563,6 +6591,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Inneall Cuardaigh Torrent</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Cuir isteach ceist chuardaigh.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Cumasaigh ar a laghad breiseán cuardaigh amháin ar dtús.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Níor aimsíodh Python. Suiteáil Python nó cuir le PATH é, ansin athoscail an tInneall Cuardaigh.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Ag cuardach %1 breiseán...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Aimsíodh %1 toradh.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Roghnaigh comhad breiseáin Python.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Suiteáladh %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Theip ar shuiteáil %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Iontráil URL bailí breiseáin.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>Ní mór HTTPS a bheith ag URL an bhreiseáin.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Níl an bainisteoir líonra ar fáil.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Theip ar íoslódáil an bhreiseáin.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Theip ar scríobh comhad an bhreiseáin.</translation>
         </message>
     </context>
     <context>

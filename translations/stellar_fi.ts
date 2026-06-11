@@ -4351,6 +4351,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Käytetään video- ja äänivirtojen yhdistämiseen.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg on Fabrice Bellardin tavaramerkki.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Käytetään BitTorrent-protokollan tukemiseen.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Käytetään videon metatietojen purkamiseen ja median latausominaisuuksiin.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Käytetään LGPL-3:n alaisuudessa Qt LGPL -poikkeuksella.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar käyttää DB-IP City Lite -geopaikannustietokantaa, jota jaetaan Creative Commons Nimeä 4.0 -lisenssillä.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Kiitos, että käytät Stellaria</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Yhteys</translation>
         </message>
@@ -4829,8 +4857,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Varmuuskopiointi ja palautus</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Vie kaikki — asetukset, lataukset, torrentit (jakosuhteineen), jonot, luokat ja tilastot — yhteen varmuuskopiotiedostoon. Tuo se myöhemmin uuteen Stellar-asennukseen palauttaaksesi kaiken. Tuonti korvaa nykyiset tiedot (aikaleimattu varmuuskopio säilytetään) ja käynnistää Stellarin uudelleen.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Vie kaikki – asetukset, lataukset, torrentit (jakosuhteineen), jonot, kategoriat ja tilastot – yhteen varmuuskopiotiedostoon. Tuo se myöhemmin uuteen Stellar-asennukseen palauttaaksesi kaiken. Tuonti korvaa nykyiset tiedot (aikaleimattu varmuuskopio säilytetään) ja käynnistää Stellarin uudelleen.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6560,6 +6588,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrent-hakukone</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Anna hakusana.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Ota ensin käyttöön vähintään yksi hakulaajennus.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Pythonia ei löytynyt. Asenna Python tai lisää se PATH:iin ja avaa hakukone uudelleen.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Etsitään %1 liitännäistä...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Löytyi %1 tulos(ta).</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Valitse Python-liitännäistiedosto.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Asennettu %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Asennus epäonnistui: %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Anna kelvollinen liitännäis-URL.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>Liitännäis-URL:n on käytettävä HTTPS:ää.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Verkonhallinta ei ole käytettävissä.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Liitännäisen lataus epäonnistui.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Lisäosatiedoston kirjoitus epäonnistui.</translation>
         </message>
     </context>
     <context>

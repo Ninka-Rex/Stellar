@@ -4362,6 +4362,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>ប្រើសម្រាប់បញ្ចូលគ្នានូវស្ទ្រីមវីដេអូ និងអូឌីយ៉ូ។</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg គឺជាពាណិជ្ជសញ្ញារបស់ Fabrice Bellard។</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>ប្រើសម្រាប់គាំទ្រពិធីការ BitTorrent។</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>ប្រើសម្រាប់ទាញយកទិន្នន័យមេតាវីដេអូ និងមុខងារទាញយកមេឌៀ។</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>ប្រើក្រោមអាជ្ញាបណ្ណ LGPL-3 ជាមួយករណីលើកលែង Qt LGPL។</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar ប្រើប្រាស់មូលដ្ឋានទិន្នន័យ DB-IP City Lite ដែលចែកចាយក្រោម Creative Commons Attribution 4.0។</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>សូមអរគុណសម្រាប់ការប្រើប្រាស់ Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>ការតភ្ជាប់</translation>
         </message>
@@ -4840,8 +4868,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>បម្រុងទុក និងស្ដារ</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>នាំចេញទាំងអស់ — ការកំណត់, ទាញយក, តោរ៉ង់ (ជាមួយសមាមាត្រចែករំលែក), ជួរ, ប្រភេទ និងស្ថិតិ — ទៅឯកសារបម្រុងទុកតែមួយ។ នាំចូលវាពេលក្រោយទៅក្នុងការដំឡើង Stellar ថ្មីដើម្បីស្ដារទាំងអស់។ ការនាំចូលជំនួសទិន្នន័យបច្ចុប្បន្ន (បម្រុងទុកដែលមានត្រាពេលវេលាត្រូវបានរក្សាទុក) ហើយចាប់ផ្ដើម Stellar ឡើងវិញ។</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>នាំចេញទាំងអស់ - ការកំណត់, ការទាញយក, torrents (ជាមួយសមាមាត្រចែករំលែក), ជួរ, ប្រភេទ និងស្ថិតិ - ទៅកាន់ឯកសារបម្រុងទុកតែមួយ។ នាំចូលវាពេលក្រោយទៅក្នុងការដំឡើង Stellar ថ្មីដើម្បីស្ដារវាទាំងអស់ឡើងវិញ។ ការនាំចូលជំនួសទិន្នន័យបច្ចុប្បន្ន (ការបម្រុងទុកដែលមានត្រាពេលវេលាត្រូវបានរក្សាទុក) ហើយចាប់ផ្ដើម Stellar ឡើងវិញ។</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6572,6 +6600,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>ម៉ាស៊ីនស្វែងរក Torrent</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>បញ្ចូលសំណួរស្វែងរក។</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>បើកដំណើរការកម្មវិធីជំនួយស្វែងរកយ៉ាងហោចណាស់មួយជាមុនសិន។</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>រកមិនឃើញ Python ទេ។ ដំឡើង Python ឬបន្ថែមវាទៅ PATH បន្ទាប់មកបើកម៉ាស៊ីនស្វែងរកឡើងវិញ។</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>កំពុងស្វែងរកកម្មវិធីជំនួយ %1...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>រកឃើញ %1 លទ្ធផល។</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>ជ្រើសរើសឯកសារកម្មវិធីជំនួយ Python។</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>បានដំឡើង %1។</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>បរាជ័យក្នុងការដំឡើង %1។</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>បញ្ចូល URL កម្មវិធីជំនួយត្រឹមត្រូវ។</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>URL កម្មវិធីជំនួយត្រូវប្រើ HTTPS។</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>កម្មវិធីគ្រប់គ្រងបណ្តាញមិនអាចប្រើបានទេ។</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>បរាជ័យក្នុងការទាញយកកម្មវិធីជំនួយ។</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>មិនអាចសរសេរឯកសារកម្មវិធីបន្ថែមបានទេ។</translation>
         </message>
     </context>
     <context>

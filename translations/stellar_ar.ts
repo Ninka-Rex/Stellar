@@ -4356,6 +4356,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>يُستخدم لدمج مسارات الفيديو والصوت.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg علامة تجارية لـ Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>يُستخدم لدعم بروتوكول BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>يُستخدم لاستخراج بيانات الفيديو وميزات تنزيل الوسائط.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>يُستخدم بموجب LGPL-3 مع استثناء Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>يستخدم Stellar قاعدة بيانات DB-IP City Lite لتحديد المواقع، منشورة بموجب Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>شكراً لاستخدام Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>الاتصال</translation>
         </message>
@@ -4834,8 +4862,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>النسخ الاحتياطي والاستعادة</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>تصدير كل شيء — الإعدادات، التنزيلات، التورنت (مع نسب المشاركة)، قوائم الانتظار، الفئات والإحصائيات — إلى ملف نسخ احتياطي واحد. استورده لاحقًا إلى تثبيت جديد لـ Stellar لاستعادة كل شيء. الاستيراد يستبدل البيانات الحالية (يُحتفظ بنسخة احتياطية مؤرخة) ويعيد تشغيل Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>صدّر كل شيء - الإعدادات، التنزيلات، التورنت (مع نسب المشاركة)، الطوابير، الفئات والإحصائيات - إلى ملف نسخ احتياطي واحد. استورده لاحقاً في تثبيت Stellar جديد لاستعادة كل شيء. الاستيراد يستبدل البيانات الحالية (يُحتفظ بنسخة احتياطية مؤرخة) ويعيد تشغيل Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6565,6 +6593,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>محرك بحث التورنت</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>أدخل استعلام بحث.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>فعّل إضافة بحث واحدة على الأقل أولاً.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>لم يتم العثور على Python. ثبته أو أضفه إلى PATH ثم أعد فتح محرك البحث.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>البحث في %1 ملحق...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>تم العثور على %1 نتيجة.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>اختر ملف ملحق Python.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>تم تثبيت %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>فشل تثبيت %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>أدخل رابط ملحق صالح.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>يجب أن يستخدم رابط الملحق HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>مدير الشبكة غير متاح.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>فشل تنزيل الملحق.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>فشل كتابة ملف الملحق.</translation>
         </message>
     </context>
     <context>

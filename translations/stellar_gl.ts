@@ -4357,6 +4357,34 @@ Opcións de Stellar → Navegador → Evitar intercepción de descargas</transla
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Utilízase para fusionar fluxos de vídeo e audio.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg é unha marca rexistrada de Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Utilízase para a compatibilidade co protocolo BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Utilizado para a extracción de metadatos de vídeo e funcións de descarga de medios.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Utilizado baixo a LGPL-3 coa excepción Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar utiliza a base de datos de xeolocalización DB-IP City Lite, distribuída baixo a licenza Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Grazas por usar Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Conexión</translation>
         </message>
@@ -4835,8 +4863,8 @@ Opcións de Stellar → Navegador → Evitar intercepción de descargas</transla
             <translation>Copia de seguridade e restauración</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Exporta todo — configuración, descargas, torrents (coas súas ratios), colas, categorías e estatísticas — a un único ficheiro de copia. Impórtao despois nunha instalación nova de Stellar para restauralo todo. A importación substitúe os datos actuais (gárdase unha copia con data) e reinicia Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Exportar todo: configuración, descargas, torrents (cos seus ratios de compartición), colas, categorías e estatísticas a un único ficheiro de copia de seguridade. Impórtao despois nunha instalación limpa de Stellar para restauralo todo. A importación substitúe os datos actuais (gárdase unha copia de seguridade con marca de tempo) e reinicia Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6567,6 +6595,61 @@ Preme para abrir Estatísticas</translation>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Motor de busca de torrents</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Introduza unha consulta de busca.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Activa polo menos un complemento de busca primeiro.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Non se atopou Python. Instálao ou engádeo ao PATH e reabre o Buscador.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Buscando %1 complemento(s)...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Atopáronse %1 resultado(s).</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Escolle un ficheiro de complemento Python.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Instalouse %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Erro ao instalar %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Introduce un URL de complemento válido.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>O URL do complemento debe usar HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>O xestor de rede non está dispoñible.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Erro ao descargar o complemento.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Non se puido escribir o ficheiro do complemento.</translation>
         </message>
     </context>
     <context>

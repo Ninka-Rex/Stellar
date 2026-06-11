@@ -4353,6 +4353,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Digunakan untuk menggabungkan strim video dan audio.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg ialah tanda dagangan Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Digunakan untuk sokongan protokol BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Digunakan untuk pengekstrakan metadata video dan ciri muat turun media.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Digunakan di bawah LGPL-3 dengan pengecualian Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar menggunakan pangkalan data geolokasi DB-IP City Lite, diedarkan di bawah Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Terima kasih menggunakan Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Sambungan</translation>
         </message>
@@ -4831,8 +4859,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Sandar &amp; Pulih</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Eksport semua — tetapan, muat turun, torrent (dengan nisbah kongsi), giliran, kategori dan statistik — ke satu fail sandar. Import kemudian ke pemasangan Stellar baharu untuk pulihkan semua. Import ganti data semasa (sandar bertanda masa disimpan) dan mulakan semula Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Eksport semua - tetapan, muat turun, torrent (dengan nisbah kongsi), giliran, kategori dan statistik - ke satu fail sandaran. Import kemudian ke pemasangan Stellar baharu untuk pulihkan semua. Import menggantikan data semasa (sandaran bertanda masa disimpan) dan mulakan semula Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6562,6 +6590,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Enjin Carian Torrent</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Masukkan pertanyaan carian.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Dayakan sekurang-kurangnya satu pemalam carian dahulu.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python tidak ditemui. Pasang Python atau tambah ke PATH, kemudian buka semula Enjin Carian.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Mencari %1 pemalam...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Ditemui %1 hasil.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Pilih fail pemalam Python.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 dipasang.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Gagal memasang %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Masukkan URL pemalam yang sah.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>URL pemalam mesti guna HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Pengurus rangkaian tiada.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Gagal muat turun pemalam.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Gagal menulis fail pemalam.</translation>
         </message>
     </context>
     <context>

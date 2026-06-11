@@ -4348,6 +4348,34 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Brukt for å flette video- og lydstrømmer.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg er et varemerke for Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Brukt for BitTorrent-protokollstøtte.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Brukt for uthenting av videometadata og nedlastingsfunksjoner.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Brukt under LGPL-3 med Qt LGPL-unntaket.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar bruker DB-IP City Lite geolokaliseringsdatabase, distribuert under Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Takk for at du bruker Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Tilkobling</translation>
         </message>
@@ -4826,8 +4854,8 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <translation>Sikkerhetskopiering og gjenoppretting</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Eksporter alt — innstillinger, nedlastinger, torrenter (med delingsforhold), køer, kategorier og statistikk — til én enkelt sikkerhetskopifil. Importer den senere til en ny Stellar-installasjon for å gjenopprette alt. Import erstatter gjeldende data (en tidsstemplet sikkerhetskopi beholdes) og starter Stellar på nytt.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Eksporter alt – innstillinger, nedlastinger, torrenter (med delingsratio), køer, kategorier og statistikk – til én sikkerhetskopifil. Importer den senere i en ny Stellar-installasjon for å gjenopprette alt. Import erstatter nåværende data (en tidsstemplet sikkerhetskopi beholdes) og starter Stellar på nytt.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6557,6 +6585,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrentsøkemotor</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Skriv inn et søk.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Aktiver minst én søkeplugin først.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python ble ikke funnet. Installer Python eller legg det til i PATH, og åpne søkemotoren på nytt.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Søker i %1 plugin(er)...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Fant %1 resultat(er).</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Velg en Python-plugin-fil.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Installert %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Kunne ikke installere %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Angi en gyldig plugin-URL.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>Plugin-URL må bruke HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Nettverksbehandler er utilgjengelig.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Kunne ikke laste ned plugin.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Kunne ikke skrive plugin-fil.</translation>
         </message>
     </context>
     <context>

@@ -4355,6 +4355,34 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>د ویډیو او آډیو جریانونو یوځای کولو لپاره کارول کیږي.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg د فابریس بیلارډ سوداګریز نښه ده.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>د BitTorrent پروتوکول ملاتړ لپاره کارول کیږي</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>د ویډیو میټاډاټا استخراج او میډیا ډاونلوډ کولو ځانګړتیاو لپاره کارول کیږي.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>د LGPL-3 سره د Qt LGPL استثنا لاندې کارول شوی</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>ستلر د DB-IP City Lite جیولوکیشن ډیټابیس کاروي، چې د Creative Commons Attribution 4.0 لاندې ویشل شوی.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>د Stellar کارولو لپاره مننه</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>پیوستون</translation>
         </message>
@@ -4833,8 +4861,8 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <translation>بیک اپ او بیا رغونه</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>هرڅه صادر کړئ — ترتیبات، ډاونلوډونه، تورنټونه (د هغوی د شریکولو تناسب سره)، کتارونه، کټګورۍ او احصایې — یو واحد بیک اپ فایل ته. وروسته یې په تازه سټیلر نصب کې وارد کړئ ترڅو ټول بیرته راوګرځوئ. واردول اوسني معلومات ځای په ځای کوي (یو د وخت نښه لرونکی بیک اپ ساتل کیږي) او سټیلر بیا پیلوي.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>ټول شیان صادر کړئ - تنظیمات، ډاونلوډونه، ټورنټونه (د دوی د شریکولو تناسب سره)، کتارونه، کټګورۍ او احصایې - یو واحد بیک اپ فایل ته. وروسته یې په تازه سټلر نصب کې وارد کړئ ترڅو ټول بیرته راوباسئ. واردول اوسني معلومات ځای په ځای کوي (د وخت نښه لرونکی بیک اپ ساتل کیږي) او سټلر بیا پیلوي.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6562,6 +6590,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>د ټورنټ لټون انجن</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>یوه لټون پوښتنه دننه کړئ.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>لږ تر لږه یو لټون پلګ ان لومړی فعال کړئ.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python ونه موندل شو. Python نصب کړئ یا PATH ته یې اضافه کړئ، بیا لټون ماشین بیا پرانیزئ.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>د %1 پلګین(ونه) لټول...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1 پایلې وموندل شوې.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>د Python پلګین فایل غوره کړئ.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 نصب شو.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 نصب نشو.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>یو باوري پلګین URL دننه کړئ.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>پلګین URL باید HTTPS وکاروي.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>د شبکې مدیر شتون نلري.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>پلګین ډاونلوډ نشو.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>د پلګ ان فایل لیکل پاتې شو.</translation>
         </message>
     </context>
     <context>

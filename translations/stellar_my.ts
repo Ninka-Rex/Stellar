@@ -4360,6 +4360,34 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>ဗီဒီယိုနှင့် အသံလမ်းကြောင်းများ ပေါင်းစည်းရန် သုံးသည်။</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg သည် Fabrice Bellard ၏ ကုန်အမှတ်တံဆိပ်ဖြစ်သည်။</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>BitTorrent ပရိုတိုကော ပံ့ပိုးမှုအတွက် သုံးသည်။</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>ဗီဒီယို မက်တာဒေတာ ထုတ်ယူခြင်းနှင့် မီဒီယာ ဒေါင်းလုဒ် အင်္ဂါရပ်များအတွက် သုံးသည်။</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Qt LGPL ခြွင်းချက်ဖြင့် LGPL-3 အောက်တွင် သုံးသည်။</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar သည် Creative Commons Attribution 4.0 အောက်တွင် ဖြန့်ဝေထားသော DB-IP City Lite ပထဝီတည်နေရာ ဒေတာဘေ့စ်ကို အသုံးပြုသည်။</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Stellar ကိုသုံးတဲ့အတွက် ကျေးဇူးပါ</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>ချိတ်ဆက်မှု</translation>
         </message>
@@ -4838,8 +4866,8 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
             <translation>အရန်သိမ်းခြင်းနှင့်ပြန်လည်ရယူခြင်း</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>ဆက်တင်များ၊ ဒေါင်းလုဒ်များ၊ တိုရန့်များ (၎င်းတို့၏မျှဝေမှုအချိုးများနှင့်အတူ)၊ တန်းစီများ၊ အမျိုးအစားများနှင့် စာရင်းအင်းများအားလုံးကို အရန်ဖိုင်တစ်ခုတည်းသို့ ထုတ်ယူပါ။ အားလုံးပြန်လည်ရယူရန် ၎င်းကို Stellar အသစ်တပ်ဆင်မှုတစ်ခုသို့ နောက်မှသွင်းယူပါ။ သွင်းယူခြင်းသည် လက်ရှိဒေတာကိုအစားထိုးပြီး (အချိန်တံဆိပ်တပ်ထားသောအရန်ကိုသိမ်းထားသည်) Stellar ကိုပြန်လည်စတင်ပါသည်။</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>ဆက်တင်များ၊ ဒေါင်းလုဒ်များ၊ တိုရန့်များ (၎င်းတို့၏ မျှဝေအချိုးများနှင့်အတူ)၊ တန်းစီများ၊ အမျိုးအစားများနှင့် စာရင်းဇယားများ အားလုံးကို backup ဖိုင်တစ်ခုတည်းသို့ ထုတ်ယူပါ။ အားလုံးပြန်လည်ရယူရန် နောက်ပိုင်းတွင် Stellar အသစ်တစ်ခုထဲသို့ သွင်းပါ။ သွင်းခြင်းသည် လက်ရှိဒေတာကို အစားထိုးပြီး (အချိန်တံဆိပ်တပ်ထားသော backup ကို သိမ်းထားသည်) Stellar ကို ပြန်လည်စတင်သည်။</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6570,6 +6598,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>တောရင့်ရှာဖွေရေးအင်ဂျင်</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>ရှာဖွေရန် စာသားထည့်ပါ။</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>ပထမဦးစွာ အနည်းဆုံး ရှာဖွေရေး ပလပ်အင်တစ်ခုကို ဖွင့်ပါ။</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python မတွေ့ပါ။ Python ကို ထည့်သွင်းပါ သို့မဟုတ် PATH သို့ ထည့်ပါ၊ ထို့နောက် ရှာဖွေရေးအင်ဂျင်ကို ပြန်ဖွင့်ပါ။</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>%1 ပလပ်အင်များ ရှာဖွေနေသည်...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>ရလဒ် %1 ခု တွေ့ရှိသည်။</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Python ပလပ်အင်ဖိုင် ရွေးပါ။</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 ထည့်သွင်းပြီးပါပြီ။</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 ထည့်သွင်းမှု မအောင်မြင်ပါ။</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>ပလပ်အင် URL အမှန်ထည့်ပါ။</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>ပလပ်အင် URL သည် HTTPS ဖြစ်ရမည်။</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>ကွန်ရက်မန်နေဂျာ မရနိုင်ပါ။</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>ပလပ်အင် ဒေါင်းလုဒ်လုပ်မှု မအောင်မြင်ပါ။</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>ပလပ်အင်ဖိုင်ရေးရန် မအောင်မြင်ပါ။</translation>
         </message>
     </context>
     <context>

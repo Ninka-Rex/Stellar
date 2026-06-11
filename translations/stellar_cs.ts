@@ -4355,6 +4355,34 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Používá se pro slučování video a audio stop.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg je ochranná známka Fabrice Bellarda.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Používá se pro podporu protokolu BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Používá se pro extrakci metadat videa a funkce stahování médií.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Používáno pod LGPL-3 s výjimkou Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar používá geolokační databázi DB-IP City Lite, šířenou pod Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Děkujeme za používání Stellaru</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Připojení</translation>
         </message>
@@ -4833,8 +4861,8 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <translation>Záloha a obnova</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Exportuj vše — nastavení, stahování, torrenty (s podíly), fronty, kategorie a statistiky — do jednoho souboru. Importuj později do čisté instalace Stellar pro obnovu. Import nahradí aktuální data (časová záloha zůstane) a restartuje Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Exportovat vše – nastavení, stahování, torrenty (s poměry sdílení), fronty, kategorie a statistiky – do jediného záložního souboru. Importujte jej později do čisté instalace Stellaru pro obnovení. Import nahradí aktuální data (záloha s časovým razítkem je uchována) a restartuje Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6565,6 +6593,61 @@ Klikněte pro otevření Statistiky</translation>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Vyhledávač torrentů</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Zadejte vyhledávací dotaz.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Nejprve povolte alespoň jeden vyhledávací plugin.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python nebyl nalezen. Nainstalujte Python nebo jej přidejte do PATH a znovu otevřete vyhledávač.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Hledám %1 plugin(y)...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Nalezeno %1 výsledků.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Vyberte soubor Python pluginu.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Nainstalováno: %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Instalace %1 selhala.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Zadejte platnou URL pluginu.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>URL pluginu musí používat HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Správce sítě není dostupný.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Stažení pluginu selhalo.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Nepodařilo se zapsat soubor pluginu.</translation>
         </message>
     </context>
     <context>

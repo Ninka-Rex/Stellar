@@ -4362,6 +4362,34 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Lò fún pípapọ̀ fídíò àti àwọn ìṣàn ohùn.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg jẹ́ àmì ìdánimọ̀ Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Lò fún àtìlẹ́yìn ìlànà BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Lò fún yíyọ àkọsílẹ̀ fídíò àti àwọn ànímọ́ gbígbàwọlé mídíà.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Lò lábẹ́ LGPL-3 pẹ̀lú ìyàtọ̀ Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar ń lo àkójọpọ̀ ìpìlẹ̀ ààyè DB-IP City Lite, tí a pín lábẹ́ Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Ọpẹ́ fún lílo Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Ìsopọ̀</translation>
         </message>
@@ -4840,8 +4868,8 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <translation>Àfẹyìntì &amp; Ìmúpadà</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Ṣe àkójáde ohun gbogbo — ètò, àwọn ìgàsílẹ̀, torrents (pẹ̀lú ìpín wọn), ìtò, àwọn ẹ̀ka àti ìṣirò — sí fáìlì àfẹyìntì kan. Gbé e wọlé pẹ̀lú ìfisori Stellar tuntun láti mú gbogbo rẹ̀ padà. Gbígbé wọlé rọ́pò dátà lọ́wọ́lọ́wọ́ (a tọ́jú àfẹyìntì àkókò kan) ó sì tún Stellar bẹ̀rẹ̀.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Ṣe àkójọ ohun gbogbo - àwọn ètò, àwọn gbígbàwọlé, àwọn torrents (pẹ̀lú àwọn ìpín ìpínkiri wọn), àwọn ìlà, àwọn ẹ̀ka àti àwọn ìṣirò - sínú fáìlì àfẹyìntì kan ṣoṣo. Gbé e wọlé sí ìgbékalẹ̀ Stellar tuntun láti mú gbogbo rẹ̀ padà. Gbígbé wọlé ń rọ́pò àwọn dátà lọ́wọ́lọ́wọ́ (a tọ́jú àfẹyìntì àkókò kan) ó sì tún Stellar bẹ̀rẹ̀.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6572,6 +6600,61 @@ Tẹ láti ṣí Ìṣirò</translation>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Ẹ́njìnnì ìwádi Torrent</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Tẹ ìbéèrè ìwádií.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Jẹ́ kí ó kéré tán, ṣiṣẹ́ ìpilẹ̀ṣẹ̀ ìwádií kan.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>A ko ri Python. Fi Python sori ẹrọ tabi fi kun si PATH, lẹhinna tun Ṣàwárí Ẹ̀rọ ṣiṣẹ.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Ń ṣàwárí %1 àfikún...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>A rí %1 èsì.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Yan fáìlì àfikún Python kan.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Ti fi %1 sori ẹrọ.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Kùnà láti fi %1 sori ẹrọ.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Tẹ URL àfikún tó wúlò.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>URL àfikún gbọdọ lo HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Olùṣàkóso nẹ́tíwọ́ọ̀kì kò sí.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Kùnà láti ṣe igbasilẹ àfikún.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Kọ faili plugini kùnà.</translation>
         </message>
     </context>
     <context>

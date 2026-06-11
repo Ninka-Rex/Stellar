@@ -4345,6 +4345,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Видео болон аудио урсгалыг нэгтгэхэд ашиглагдана.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg нь Fabrice Bellard-ын барааны тэмдэг юм.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>BitTorrent протоколын дэмжлэгт ашиглагдана.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Видео мета өгөгдөл задлах болон медиа татах функцүүдэд ашиглагдана.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>LGPL-3 лицензийн дагуу Qt LGPL онцгой тохиолдолтой ашиглагдана.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar нь Creative Commons Attribution 4.0-ийн дагуу түгээгдсэн DB-IP City Lite геолокацийн санг ашигладаг.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Stellar-г ашигласанд баярлалаа</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Холболт</translation>
         </message>
@@ -4823,8 +4851,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Нөөцлөлт ба сэргээх</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Бүх зүйлийг — тохиргоо, таталт, торрент (хуваалцах харьцаатай), дараалал, ангилал, статистик — нэг нөөц файлд экспортлох. Дараа нь шинэ Stellar суулгацад импортлон бүгдийг сэргээх. Импорт хийхэд одоогийн өгөгдлийг сольж (цаг тэмдэгтэй нөөц хадгалагдана) Stellar-ыг дахин эхлүүлнэ.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Бүх зүйлийг - тохиргоо, таталтууд, торрент (хуваалцах харьцаатай), дараалал, ангилал, статистик - нэг нөөц файлд экспортлох. Дараа нь шинэ Stellar суулгацад импортлон бүгдийг сэргээх. Импорт хийхэд одоогийн өгөгдлийг сольж (цаг тэмдэгтэй нөөц хадгалагдана) Stellar-г дахин эхлүүлнэ.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6554,6 +6582,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrent хайлтын хөтөч</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Хайх асуулга оруулна уу.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Эхлээд дор хаяж нэг хайлтын залгаасыг идэвхжүүлнэ үү.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python олдсонгүй. Python суулгах эсвэл PATH-д нэмээд Хайлтын Системийг дахин нээнэ үү.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>%1 нэмэлт хайж байна...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1 үр дүн олдлоо.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Python нэмэлт файл сонгоно уу.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 суулгалаа.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 суулгаж чадсангүй.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Зөв нэмэлт URL оруулна уу.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>Нэмэлт URL HTTPS байх ёстой.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Сүлжээ менежер боломжгүй.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Нэмэлт татаж чадсангүй.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Плагин файлыг бичихэд алдаа гарлаа.</translation>
         </message>
     </context>
     <context>

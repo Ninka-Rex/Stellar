@@ -4359,6 +4359,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>വീഡിയോ, ഓഡിയോ സ്ട്രീമുകൾ ലയിപ്പിക്കാൻ ഉപയോഗിക്കുന്നു.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg ഫാബ്രിസ് ബെല്ലാർഡിന്റെ വ്യാപാരമുദ്രയാണ്.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>BitTorrent പ്രോട്ടോക്കോൾ പിന്തുണയ്ക്കായി ഉപയോഗിക്കുന്നു.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>വീഡിയോ മെറ്റാഡാറ്റ എക്സ്ട്രാക്ഷനും മീഡിയ ഡൗൺലോഡ് ഫീച്ചറുകൾക്കും ഉപയോഗിക്കുന്നു.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Qt LGPL ഒഴിവാക്കലോടെ LGPL-3 പ്രകാരം ഉപയോഗിക്കുന്നു.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>ക്രിയേറ്റീവ് കോമൺസ് ആട്രിബ്യൂഷൻ 4.0 പ്രകാരം വിതരണം ചെയ്യുന്ന DB-IP സിറ്റി ലൈറ്റ് ജിയോലൊക്കേഷൻ ഡാറ്റാബേസ് Stellar ഉപയോഗിക്കുന്നു.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Stellar ഉപയോഗിച്ചതിന് നന്ദി</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>കണക്ഷൻ</translation>
         </message>
@@ -4837,8 +4865,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>ബാക്കപ്പും പുനഃസ്ഥാപിക്കലും</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>എല്ലാം കയറ്റുമതി ചെയ്യുക — ക്രമീകരണങ്ങൾ, ഡൗൺലോഡുകൾ, ടോറന്റുകൾ (അവയുടെ പങ്കിടൽ അനുപാതങ്ങൾ സഹിതം), ക്യൂകൾ, വിഭാഗങ്ങൾ, സ്ഥിതിവിവരക്കണക്കുകൾ — ഒരൊറ്റ ബാക്കപ്പ് ഫയലിലേക്ക്. പിന്നീട് ഒരു പുതിയ സ്റ്റെല്ലാർ ഇൻസ്റ്റാളിലേക്ക് ഇറക്കുമതി ചെയ്ത് എല്ലാം പുനഃസ്ഥാപിക്കുക. ഇറക്കുമതി ചെയ്യുന്നത് നിലവിലെ ഡാറ്റയെ മാറ്റിസ്ഥാപിക്കുന്നു (ടൈംസ്റ്റാമ്പ് ചെയ്ത ഒരു ബാക്കപ്പ് സൂക്ഷിക്കുന്നു) കൂടാതെ സ്റ്റെല്ലാർ പുനരാരംഭിക്കുന്നു.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>എല്ലാം കയറ്റുമതി ചെയ്യുക - ക്രമീകരണങ്ങൾ, ഡൗൺലോഡുകൾ, ടോറന്റുകൾ (ഷെയർ റേഷ്യോ സഹിതം), ക്യൂകൾ, വിഭാഗങ്ങൾ, സ്ഥിതിവിവരക്കണക്കുകൾ - ഒരൊറ്റ ബാക്കപ്പ് ഫയലിലേക്ക്. പിന്നീട് പുതിയ Stellar ഇൻസ്റ്റാളിലേക്ക് ഇറക്കുമതി ചെയ്ത് എല്ലാം പുനഃസ്ഥാപിക്കുക. ഇറക്കുമതി നിലവിലെ ഡാറ്റ മാറ്റിസ്ഥാപിക്കുകയും (ടൈംസ്റ്റാമ്പ് ചെയ്ത ബാക്കപ്പ് സൂക്ഷിക്കുന്നു) Stellar പുനരാരംഭിക്കുകയും ചെയ്യുന്നു.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6567,6 +6595,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>ടോറന്റ് തിരയൽ എഞ്ചിൻ</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>ഒരു തിരയൽ അന്വേഷണം നൽകുക.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>ആദ്യം ഒരു തിരയൽ പ്ലഗിൻ പ്രവർത്തനക്ഷമമാക്കുക.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python കണ്ടെത്തിയില്ല. Python ഇൻസ്റ്റാൾ ചെയ്യുക അല്ലെങ്കിൽ PATH-ൽ ചേർക്കുക, എന്നിട്ട് Search Engine വീണ്ടും തുറക്കുക.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>%1 പ്ലഗിൻ(കൾ) തിരയുന്നു...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>%1 ഫലം(ങ്ങൾ) കണ്ടെത്തി.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>ഒരു Python പ്ലഗിൻ ഫയൽ തിരഞ്ഞെടുക്കുക.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>%1 ഇൻസ്റ്റാൾ ചെയ്തു.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>%1 ഇൻസ്റ്റാൾ ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>സാധുവായ പ്ലഗിൻ URL നൽകുക.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>പ്ലഗിൻ URL HTTPS ഉപയോഗിക്കണം.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>നെറ്റ്വർക്ക് മാനേജർ ലഭ്യമല്ല.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>പ്ലഗിൻ ഡൗൺലോഡ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>പ്ലഗിൻ ഫയൽ എഴുതുന്നതിൽ പരാജയപ്പെട്ടു.</translation>
         </message>
     </context>
     <context>

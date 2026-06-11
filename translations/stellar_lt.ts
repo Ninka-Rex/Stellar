@@ -4355,6 +4355,34 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Naudojamas vaizdo ir garso srautų sujungimui.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg yra Fabrice'o Bellard'o prekės ženklas.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Naudojama BitTorrent protokolo palaikymui.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Naudojama vaizdo metaduomenų išgavimui ir medijos atsisiuntimo funkcijoms.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Naudojama pagal LGPL-3 su Qt LGPL išimtimi.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>„Stellar“ naudoja DB-IP City Lite geografinės vietos nustatymo duomenų bazę, platinamą pagal „Creative Commons Attribution 4.0“ licenciją.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Dėkojame, kad naudojatės „Stellar“</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Ryšys</translation>
         </message>
@@ -4833,8 +4861,8 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <translation>Atsarginė kopija ir atkūrimas</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Eksportuoti viską – nustatymus, atsisiuntimus, torrentus (su dalijimosi santykiais), eiles, kategorijas ir statistiką – į vieną atsarginę kopiją. Vėliau importuokite į naują Stellar diegimą, kad viską atkurtumėte. Importavimas pakeičia dabartinius duomenis (išsaugoma kopija su laiko žyma) ir iš naujo paleidžia Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Eksportuoti viską – nustatymus, atsisiuntimus, torrentus (su jų dalijimosi santykiais), eiles, kategorijas ir statistiką – į vieną atsarginę kopiją. Vėliau importuokite ją į naują „Stellar“ diegimą, kad viską atkurtumėte. Importavimas pakeičia dabartinius duomenis (išsaugoma laiko žyma pažymėta atsarginė kopija) ir iš naujo paleidžia „Stellar“.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6559,6 +6587,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrento paieškos variklis</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Įveskite paieškos užklausą.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Pirmiausia įjunkite bent vieną paieškos įskiepį.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python nerastas. Įdiekite Python arba pridėkite prie PATH, tada paleiskite paieškos variklį iš naujo.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Ieškoma %1 papildinio(-ių)...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Rasta %1 rezultatas(-ų).</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Pasirinkite Python papildinio failą.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Įdiegta: %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Nepavyko įdiegti: %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Įveskite tinkamą papildinio URL.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>Papildinio URL turi naudoti HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Tinklo valdiklis nepasiekiamas.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Nepavyko atsisiųsti papildinio.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Nepavyko įrašyti įskiepio failo.</translation>
         </message>
     </context>
     <context>

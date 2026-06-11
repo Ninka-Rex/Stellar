@@ -4355,6 +4355,34 @@ Opcje Stellar → Przeglądarka → Omijaj przechwytywanie pobierania</translati
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Używane do łączenia strumieni wideo i audio.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg jest znakiem towarowym firmy Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Używane do obsługi protokołu BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Używane do ekstrakcji metadanych wideo i funkcji pobierania multimediów.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Używane na licencji LGPL-3 z wyjątkiem Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar korzysta z bazy danych geolokalizacyjnej DB-IP City Lite, rozpowszechnianej na licencji Creative Commons Uznanie autorstwa 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Dziękujemy za korzystanie ze Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Połączenie</translation>
         </message>
@@ -4833,8 +4861,8 @@ Opcje Stellar → Przeglądarka → Omijaj przechwytywanie pobierania</translati
             <translation>Kopia i przywracanie</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Eksportuj wszystko — ustawienia, pobrania, torrenty (z ratio), kolejki, kategorie i statystyki — do pliku kopii. Zaimportuj go później do nowej instalacji Stellar, by wszystko przywrócić. Import zastępuje bieżące dane (kopia z datą jest zachowana) i restartuje Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Eksportuj wszystko – ustawienia, pobrane pliki, torrenty (wraz ze wskaźnikami udostępniania), kolejki, kategorie i statystyki – do jednego pliku kopii zapasowej. Zaimportuj go później do nowej instalacji Stellar, aby wszystko przywrócić. Importowanie zastępuje bieżące dane (kopia zapasowa z datą i godziną jest zachowywana) i ponownie uruchamia Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6561,6 +6589,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Silnik wyszukiwania torrent</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Wprowadź zapytanie wyszukiwania.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Najpierw włącz co najmniej jedną wtyczkę wyszukiwania.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Nie znaleziono Pythona. Zainstaluj Pythona lub dodaj go do PATH, a następnie otwórz ponownie wyszukiwarkę.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Wyszukiwanie %1 wtyczek...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Znaleziono %1 wyników.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Wybierz plik wtyczki Pythona.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Zainstalowano %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Nie udało się zainstalować %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Wprowadź prawidłowy URL wtyczki.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>URL wtyczki musi używać HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Menedżer sieci jest niedostępny.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Nie udało się pobrać wtyczki.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Nie można zapisać pliku wtyczki.</translation>
         </message>
     </context>
     <context>

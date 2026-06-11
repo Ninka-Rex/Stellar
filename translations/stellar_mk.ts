@@ -4354,6 +4354,34 @@ Stellar Options → Browser → Bypass Download Interception</source>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Се користи за спојување видео и аудио стримови.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg е заштитен знак на Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Се користи за поддршка на BitTorrent протоколот.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Се користи за екстракција на видео метаподатоци и функции за преземање медиуми.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Се користи под LGPL-3 со Qt LGPL исклучок.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar ја користи DB-IP City Lite базата за геолокација, дистрибуирана под Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Ви благодариме што користите Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Поврзување</translation>
         </message>
@@ -4832,8 +4860,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <translation>Резервна копија и враќање</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Извези сѐ — поставки, преземања, торенти (со нивните удели), редици, категории и статистики — во една резервна датотека. Подоцна увези ја во нова Stellar инсталација за да вратиш сѐ. Увозот ги заменува тековните податоци (се чува временски обележана резервна копија) и го рестартира Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Извези сè - поставки, преземања, торенти (со нивните коефициенти), редици, категории и статистики - во една резервна датотека. Подоцна увезете ја во нова Stellar инсталација за да вратите сè. Увозот ги заменува тековните податоци (се чува временска резервна копија) и го рестартира Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6557,6 +6585,61 @@ Click to open Statistics</source>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Мотор за пребарување на торент</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Внесете барање за пребарување.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Прво овозможете барем еден приклучок за пребарување.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python не е пронајден. Инсталирајте Python или додајте го во PATH, потоа отворете го пребарувачот повторно.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Пребарувам %1 приклучок/ци...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Пронајдени %1 резултат/и.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Изберете датотека за Python приклучок.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Инсталиран %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Не успеа инсталација на %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Внесете валидна URL адреса за приклучок.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>URL-то на приклучокот мора да користи HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Мрежниот менаџер е недостапен.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Не успеа преземање на приклучокот.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Неуспешно запишување на датотеката со додатокот.</translation>
         </message>
     </context>
     <context>

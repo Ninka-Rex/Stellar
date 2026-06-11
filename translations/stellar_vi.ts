@@ -4354,6 +4354,34 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Dùng để ghép luồng video và âm thanh.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg là thương hiệu của Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Dùng để hỗ trợ giao thức BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Dùng để trích xuất siêu dữ liệu video và tải nội dung.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Dùng theo giấy phép LGPL-3 với ngoại lệ Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar dùng cơ sở dữ liệu định vị DB-IP City Lite, phân phối theo Creative Commons Ghi công 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Cảm ơn đã dùng Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Kết nối</translation>
         </message>
@@ -4832,8 +4860,8 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <translation>Sao lưu &amp; Phục hồi</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Xuất tất cả — cài đặt, tải về, torrent (kèm tỉ lệ chia sẻ), hàng đợi, danh mục và thống kê — vào một tệp sao lưu. Nhập lại sau vào bản cài Stellar mới để phục hồi toàn bộ. Việc nhập sẽ thay thế dữ liệu hiện tại (một bản sao lưu có dấu thời gian được giữ lại) và khởi động lại Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Xuất tất cả – cài đặt, tải về, torrent (kèm tỉ lệ chia sẻ), hàng đợi, danh mục và thống kê – vào một tệp sao lưu. Nhập lại sau vào bản cài Stellar mới để khôi phục. Nhập sẽ thay thế dữ liệu hiện tại (có giữ bản sao lưu đánh dấu thời gian) và khởi động lại Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6564,6 +6592,61 @@ Nhấp để xem thống kê</translation>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Công cụ Tìm kiếm Torrent</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Nhập truy vấn tìm kiếm.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Trước tiên hãy bật ít nhất một plugin tìm kiếm.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Không tìm thấy Python. Cài Python hoặc thêm vào PATH, rồi mở lại Cỗ máy Tìm kiếm.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Đang tìm %1 plugin...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Tìm thấy %1 kết quả.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Chọn tệp plugin Python.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Đã cài %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Cài %1 thất bại.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Nhập URL plugin hợp lệ.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>URL plugin phải dùng HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Trình quản lý mạng không khả dụng.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Tải plugin thất bại.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Không thể ghi tệp plugin.</translation>
         </message>
     </context>
     <context>

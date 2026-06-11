@@ -4360,6 +4360,34 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
     <context>
         <name>SettingsDialog</name>
         <message>
+            <source>Used for merging video and audio streams.</source>
+            <translation>Kanggo nggabung video lan audio.</translation>
+        </message>
+        <message>
+            <source>FFmpeg is a trademark of Fabrice Bellard.</source>
+            <translation>FFmpeg iku merek dagang Fabrice Bellard.</translation>
+        </message>
+        <message>
+            <source>Used for BitTorrent protocol support.</source>
+            <translation>Kanggo dhukungan protokol BitTorrent.</translation>
+        </message>
+        <message>
+            <source>Used for video metadata extraction and media downloading features.</source>
+            <translation>Kanggo ekstrak metadata video lan fitur undhuh media.</translation>
+        </message>
+        <message>
+            <source>Used under the LGPL-3 with the Qt LGPL exception.</source>
+            <translation>Digunakake miturut LGPL-3 karo pangecualian Qt LGPL.</translation>
+        </message>
+        <message>
+            <source>Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0.</source>
+            <translation>Stellar nggunakake basis data geolokasi DB-IP City Lite, disebar miturut Creative Commons Attribution 4.0.</translation>
+        </message>
+        <message>
+            <source>Thanks for using Stellar</source>
+            <translation>Matur nuwun wis nggunakake Stellar</translation>
+        </message>
+        <message>
             <source>Connection</source>
             <translation>Sambungan</translation>
         </message>
@@ -4838,8 +4866,8 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
             <translation>Serep &amp; Pulihake</translation>
         </message>
         <message>
-            <source>Export everything — settings, downloads, torrents (with their share ratios), queues, categories and statistics — to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
-            <translation>Ekspor kabeh — setelan, unduhan, torrent (karo rasio enggo bareng), antrian, kategori lan statistik — dadi siji berkas serep. Impor mengko nang Stellar anyar ben pulih kabeh. Impor ngganti data saiki (serep karo cap wektu disimpen) lan miwiti maneh Stellar.</translation>
+            <source>Export everything - settings, downloads, torrents (with their share ratios), queues, categories and statistics - to a single backup file. Import it later into a fresh Stellar install to restore it all. Importing replaces the current data (a timestamped backup is kept) and restarts Stellar.</source>
+            <translation>Èkspor kabèh - setèlan, undhuhan, torrent (karo rasio bagèan), antrian, kategori lan statistik - menyang siji berkas serep. Impor mengko ing instalasi Stellar anyar kanggo mulihaké. Impor ngganti data saiki (serep kanthi cap wektu disimpen) lan miwiti manèh Stellar.</translation>
         </message>
         <message>
             <source>Export All Data…</source>
@@ -6570,6 +6598,61 @@ Klik kanggo mbukak Statistik</translation>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Mesin Telusur Torrent</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchManager</name>
+        <message>
+            <source>Enter a search query.</source>
+            <translation>Lebokaké pitakon golèk.</translation>
+        </message>
+        <message>
+            <source>Enable at least one search plugin first.</source>
+            <translation>Uripaké paling ora siji plugin golèk dhisik.</translation>
+        </message>
+        <message>
+            <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+            <translation>Python ora ditemokake. Instal Python utawa tambahake menyang PATH, banjur bukak maneh Search Engine.</translation>
+        </message>
+        <message>
+            <source>Searching %1 plugin(s)...</source>
+            <translation>Nggoleki %1 plugin...</translation>
+        </message>
+        <message>
+            <source>Found %1 result(s).</source>
+            <translation>Nemokake %1 asil.</translation>
+        </message>
+        <message>
+            <source>Pick a Python plugin file.</source>
+            <translation>Pilih file plugin Python.</translation>
+        </message>
+        <message>
+            <source>Installed %1.</source>
+            <translation>Kepasang %1.</translation>
+        </message>
+        <message>
+            <source>Failed to install %1.</source>
+            <translation>Gagal masang %1.</translation>
+        </message>
+        <message>
+            <source>Enter a valid plugin URL.</source>
+            <translation>Lebokake URL plugin sing bener.</translation>
+        </message>
+        <message>
+            <source>Plugin URL must use HTTPS.</source>
+            <translation>URL plugin kudu nganggo HTTPS.</translation>
+        </message>
+        <message>
+            <source>Network manager is unavailable.</source>
+            <translation>Manajer jaringan ora kasedhiya.</translation>
+        </message>
+        <message>
+            <source>Failed to download plugin.</source>
+            <translation>Gagal ngundhuh plugin.</translation>
+        </message>
+        <message>
+            <source>Failed to write plugin file.</source>
+            <translation>Gagal nulis berkas plugin.</translation>
         </message>
     </context>
     <context>
