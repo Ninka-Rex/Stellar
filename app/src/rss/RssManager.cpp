@@ -663,8 +663,16 @@ void RssManager::handleReplyFinished(const QString &feedId, QNetworkReply *reply
                 }
                 setStatusText(QStringLiteral("Updated \"%1\".").arg(feed.title));
 
-                if (!newArticles.isEmpty())
-                    applyAutoDownloadRules(feed.id, newArticles);
+                // Defer auto-download rule evaluation: applyAutoDownloadRules emits
+                // downloadTriggered, and a connected slot may re-enter RssManager and
+                // mutate m_feeds, dangling the `feed` reference held here. Queue it so
+                // it runs after this handler returns and the reference is dropped.
+                if (!newArticles.isEmpty()) {
+                    const QString feedId = feed.id;
+                    QMetaObject::invokeMethod(this, [this, feedId, newArticles]() {
+                        applyAutoDownloadRules(feedId, newArticles);
+                    }, Qt::QueuedConnection);
+                }
             }
         }
     } else {
@@ -908,6 +916,10 @@ QString RssManager::sanitizeHtml(const QString &html)
         QStringLiteral("strong"), QStringLiteral("u"), QStringLiteral("s"),
         QStringLiteral("br"), QStringLiteral("p"),     QStringLiteral("ul"),
         QStringLiteral("ol"), QStringLiteral("li"),    QStringLiteral("blockquote"),
+        // "a" must be present so the opening-tag allowlist check below doesn't
+        // drop links before the dedicated <a href> sanitizer runs; it also lets
+        // the closing </a> through. The href branch still strips unsafe schemes.
+        QStringLiteral("a"),
     };
 
     QString out;
