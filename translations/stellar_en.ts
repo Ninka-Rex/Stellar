@@ -8267,6 +8267,75 @@ Click to open Statistics</source>
     </message>
 </context>
 <context>
+    <name>TorrentSearchManager</name>
+    <message>
+        <location filename="../app/src/torrent/TorrentSearchManager.cpp" line="371"/>
+        <source>Enter a search query.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/torrent/TorrentSearchManager.cpp" line="382"/>
+        <source>Enable at least one search plugin first.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/torrent/TorrentSearchManager.cpp" line="386"/>
+        <source>Python was not found. Install Python or add it to PATH, then reopen Search Engine.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/torrent/TorrentSearchManager.cpp" line="413"/>
+        <source>Searching %1 plugin(s)...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/torrent/TorrentSearchManager.cpp" line="468"/>
+        <source>Found %1 result(s).</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/torrent/TorrentSearchManager.cpp" line="629"/>
+        <source>Pick a Python plugin file.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/torrent/TorrentSearchManager.cpp" line="643"/>
+        <location filename="../app/src/torrent/TorrentSearchManager.cpp" line="693"/>
+        <source>Installed %1.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/torrent/TorrentSearchManager.cpp" line="644"/>
+        <source>Failed to install %1.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/torrent/TorrentSearchManager.cpp" line="651"/>
+        <source>Enter a valid plugin URL.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/torrent/TorrentSearchManager.cpp" line="658"/>
+        <source>Plugin URL must use HTTPS.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/torrent/TorrentSearchManager.cpp" line="662"/>
+        <source>Network manager is unavailable.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/torrent/TorrentSearchManager.cpp" line="671"/>
+        <source>Failed to download plugin.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/src/torrent/TorrentSearchManager.cpp" line="683"/>
+        <source>Failed to write plugin file.</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>TorrentSpeedLimitDialog</name>
     <message>
         <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="30"/>

@@ -368,7 +368,7 @@ void TorrentSearchManager::search(const QString &query) {
     refreshRuntimeState();
     const QString trimmed = query.trimmed();
     if (trimmed.isEmpty()) {
-        setStatusText(QStringLiteral("Enter a search query."));
+        setStatusText(tr("Enter a search query."));
         return;
     }
     refreshPlugins();
@@ -379,11 +379,11 @@ void TorrentSearchManager::search(const QString &query) {
             enabledPlugins << plugin.value(QStringLiteral("fileName")).toString();
     }
     if (enabledPlugins.isEmpty()) {
-        setStatusText(QStringLiteral("Enable at least one search plugin first."));
+        setStatusText(tr("Enable at least one search plugin first."));
         return;
     }
     if (m_pythonExecutable.isEmpty()) {
-        setStatusText(QStringLiteral("Python was not found. Install Python or add it to PATH, then reopen Search Engine."));
+        setStatusText(tr("Python was not found. Install Python or add it to PATH, then reopen Search Engine."));
         return;
     }
     if (m_searchProcess) {
@@ -410,7 +410,7 @@ void TorrentSearchManager::search(const QString &query) {
     proc->setArguments(args);
     proc->setProcessChannelMode(QProcess::SeparateChannels);
     setSearchInProgress(true);
-    setStatusText(QStringLiteral("Searching %1 plugin(s)...").arg(enabledPlugins.size()));
+    setStatusText(tr("Searching %1 plugin(s)...").arg(enabledPlugins.size()));
     connect(proc, &QProcess::readyReadStandardOutput, this, [this, proc]() {
         m_searchStdoutBuffer += QString::fromUtf8(proc->readAllStandardOutput());
         while (true) {
@@ -465,7 +465,7 @@ void TorrentSearchManager::search(const QString &query) {
         m_searchStdoutBuffer.clear();
         setSearchInProgress(false);
         setStatusText(!message.isEmpty() ? message
-                                         : QStringLiteral("Found %1 result(s).").arg(m_resultModel->rowCount()));
+                                         : tr("Found %1 result(s).").arg(m_resultModel->rowCount()));
         proc->deleteLater();
         if (m_searchProcess == proc)
             m_searchProcess = nullptr;
@@ -626,7 +626,7 @@ bool TorrentSearchManager::uninstallPlugin(const QString &fileName) {
 bool TorrentSearchManager::installPluginFromFile(const QString &filePath) {
     QFileInfo info(filePath);
     if (!info.exists() || info.suffix().compare(QStringLiteral("py"), Qt::CaseInsensitive) != 0) {
-        emit pluginInstallFinished(false, QStringLiteral("Pick a Python plugin file."));
+        emit pluginInstallFinished(false, tr("Pick a Python plugin file."));
         return false;
     }
     QDir().mkpath(pluginDirectory());
@@ -640,26 +640,26 @@ bool TorrentSearchManager::installPluginFromFile(const QString &filePath) {
             approvePlugin(info.fileName(), hash);
     }
     refreshPlugins();
-    emit pluginInstallFinished(ok, ok ? QStringLiteral("Installed %1.").arg(info.fileName())
-                                      : QStringLiteral("Failed to install %1.").arg(info.fileName()));
+    emit pluginInstallFinished(ok, ok ? tr("Installed %1.").arg(info.fileName())
+                                      : tr("Failed to install %1.").arg(info.fileName()));
     return ok;
 }
 
 void TorrentSearchManager::installPluginFromUrl(const QString &url) {
     const QUrl targetUrl = QUrl::fromUserInput(url.trimmed());
     if (!targetUrl.isValid() || targetUrl.isEmpty()) {
-        emit pluginInstallFinished(false, QStringLiteral("Enter a valid plugin URL."));
+        emit pluginInstallFinished(false, tr("Enter a valid plugin URL."));
         return;
     }
     // The downloaded file is Python code that gets auto-approved and later executed
     // by the search runner. Require HTTPS so the payload can't be swapped in transit
     // by a MITM on a plaintext connection.
     if (targetUrl.scheme().compare(QStringLiteral("https"), Qt::CaseInsensitive) != 0) {
-        emit pluginInstallFinished(false, QStringLiteral("Plugin URL must use HTTPS."));
+        emit pluginInstallFinished(false, tr("Plugin URL must use HTTPS."));
         return;
     }
     if (!m_nam) {
-        emit pluginInstallFinished(false, QStringLiteral("Network manager is unavailable."));
+        emit pluginInstallFinished(false, tr("Network manager is unavailable."));
         return;
     }
     QNetworkReply *reply = m_nam->get(QNetworkRequest(targetUrl));
@@ -668,7 +668,7 @@ void TorrentSearchManager::installPluginFromUrl(const QString &url) {
         const bool ok = reply->error() == QNetworkReply::NoError;
         reply->deleteLater();
         if (!ok) {
-            emit pluginInstallFinished(false, QStringLiteral("Failed to download plugin."));
+            emit pluginInstallFinished(false, tr("Failed to download plugin."));
             return;
         }
         // QFileInfo().fileName() strips any path components the server URL may
@@ -680,7 +680,7 @@ void TorrentSearchManager::installPluginFromUrl(const QString &url) {
         QDir().mkpath(pluginDirectory());
         QFile file(QDir(pluginDirectory()).filePath(fileName));
         if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-            emit pluginInstallFinished(false, QStringLiteral("Failed to write plugin file."));
+            emit pluginInstallFinished(false, tr("Failed to write plugin file."));
             return;
         }
         file.write(payload);
@@ -690,6 +690,6 @@ void TorrentSearchManager::installPluginFromUrl(const QString &url) {
             QCryptographicHash::hash(payload, QCryptographicHash::Sha256).toHex());
         approvePlugin(fileName, hash);
         refreshPlugins();
-        emit pluginInstallFinished(true, QStringLiteral("Installed %1.").arg(fileName));
+        emit pluginInstallFinished(true, tr("Installed %1.").arg(fileName));
     });
 }
