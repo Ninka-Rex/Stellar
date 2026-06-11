@@ -160,7 +160,8 @@ QStringList AppSettings::defaultExcludedAddresses() {
         "https://web.whatsapp.com/img/*",
         "https://www.bing.com/images/search?q=images/AutoApply*.mp4",
         "https://www.sysiad.net/hosifre/software_count.php",
-        "https://www.youtube.com/search/audio/*.mp3"
+        "https://www.youtube.com/search/audio/*.mp3",
+        "https://lmstudio.ai/download"
     };
 }
 
