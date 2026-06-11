@@ -198,6 +198,14 @@ private:
     struct GeoDbState;
     void ensureSession();
     void configureSession(const AppSettings *settings);
+    // DHT auto-suspend: DHT is a session-wide overlay that keeps a populated
+    // routing table (and gossips our existence to bootstrap nodes) even with no
+    // torrents. We only run it while at least one torrent is present, gated by the
+    // user's master torrentEnableDht switch. dhtShouldRun() is the single source of
+    // truth; reconcileDhtState() flips the live session's enable_dht when the
+    // active-torrent count crosses 0<->1 without a full reconfigure.
+    bool dhtShouldRun() const;
+    void reconcileDhtState();
     void processAlerts();
     void handleAlert(libtorrent::alert *alert);
     QString idForHandle(const libtorrent::torrent_handle &handle) const;
@@ -292,6 +300,9 @@ private:
     QString m_externalAddress;
     bool    m_hasIncomingConnection{false};
     int     m_dhtNodes{0};
+    // Last enable_dht value applied to the live session, so reconcileDhtState()
+    // only issues apply_settings when the desired state actually changes.
+    bool    m_dhtRunning{false};
     bool    m_hasIncomingPending{false};
     bool    m_didInspectPeersThisTick{false};
     QString m_localCountryCode;

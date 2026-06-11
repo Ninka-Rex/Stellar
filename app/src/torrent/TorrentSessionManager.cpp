@@ -434,8 +434,17 @@ TorrentSessionManager::TorrentSessionManager(QObject *parent)
         processAlerts();
         if (m_session) {
             m_session->post_torrent_updates();
+            // Catch-all for DHT auto-suspend: the explicit add/remove/pause/resume
+            // hooks cover the common transitions, but a torrent can also stop via
+            // paths that don't route through them (auto-managed pause, completion).
+            // This is a no-op whenever the desired state already matches, so it's
+            // cheap to run every tick and guarantees DHT tracks the active set.
+            reconcileDhtState();
             // Refresh global DHT node count; arrives async as dht_stats_alert.
-            if (m_settings && m_settings->torrentEnableDht()) {
+            // Only poll while DHT is actually running (user switch + auto-suspend);
+            // otherwise force the reported count to zero so the UI reflects the
+            // suspended overlay instead of a stale node count.
+            if (dhtShouldRun()) {
                 m_session->post_dht_stats();
             } else if (m_dhtNodes != 0) {
                 m_dhtNodes = 0;
@@ -542,6 +551,49 @@ void TorrentSessionManager::applySettings(const AppSettings *settings) {
 #endif
 }
 
+bool TorrentSessionManager::dhtShouldRun() const {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    if (!m_settings || !m_settings->torrentEnableDht())
+        return false;
+    // Auto-suspend: run DHT only while at least one torrent is *active*. A stopped
+    // (paused) torrent stays in m_handles but makes no announces, so it shouldn't
+    // hold the session-wide DHT overlay open — otherwise "all torrents stopped"
+    // still gossips our existence to bootstrap nodes. Pending async adds count as
+    // active (they're starting), so a freshly added magnet turns DHT on at once.
+    if (!m_pendingAsyncItems.isEmpty())
+        return true;
+    for (auto it = m_handles.constBegin(); it != m_handles.constEnd(); ++it) {
+        if (!m_pausedIds.contains(it.key()))
+            return true;
+    }
+    return false;
+#else
+    return false;
+#endif
+}
+
+void TorrentSessionManager::reconcileDhtState() {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    if (!m_session)
+        return;
+    const bool desired = dhtShouldRun();
+    if (desired == m_dhtRunning)
+        return;
+    // Flip only enable_dht on the live session — a targeted apply_settings avoids
+    // the cost/side-effects of a full configureSession() on every add/remove.
+    libtorrent::settings_pack pack;
+    pack.set_bool(libtorrent::settings_pack::enable_dht, desired);
+    m_session->apply_settings(pack);
+    m_dhtRunning = desired;
+    // When suspending, zero the reported node count right away; the poll loop is
+    // gated on dhtShouldRun() so it won't refresh it back up.
+    if (!desired && m_dhtNodes != 0) {
+        m_dhtNodes = 0;
+        emit dhtNodesChanged();
+    }
+#endif
+}
+
 bool TorrentSessionManager::addMagnet(DownloadItem *item, bool startPaused, bool deferModels) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     return addTorrentInternal(item, startPaused, QString(), deferModels);
@@ -613,6 +665,8 @@ void TorrentSessionManager::pause(const QString &downloadId) {
     }
     if (auto *peerModel = qobject_cast<TorrentPeerModel *>(m_peerModels.value(downloadId, nullptr)))
         peerModel->setEntries({});
+    // Pausing the last active torrent suspends DHT.
+    reconcileDhtState();
 #else
     Q_UNUSED(downloadId);
 #endif
@@ -676,6 +730,8 @@ void TorrentSessionManager::resume(DownloadItem *item) {
     m_pausedIds.remove(item->id());
     handle.unset_flags(libtorrent::torrent_flags::auto_managed);
     handle.resume();
+    // Resuming a torrent while all others were stopped re-activates DHT.
+    reconcileDhtState();
     item->setLastTryAt(QDateTime::currentDateTime());
     // Don't call updateItemFromStatus here — it acquires the session mutex per torrent
     // and causes UI freezes when resuming many torrents at once. The alert timer fires
@@ -745,6 +801,8 @@ void TorrentSessionManager::remove(const QString &downloadId, bool deleteFiles) 
             flags |= libtorrent::session_handle::delete_files;
         m_session->remove_torrent(handle, flags);
     }
+    // Removing the last torrent suspends DHT (no-op while torrents remain).
+    reconcileDhtState();
 #else
     Q_UNUSED(downloadId);
     Q_UNUSED(deleteFiles);
@@ -1258,7 +1316,9 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
     // nothing rather than falling back to all interfaces (which would leak).
     const bool bindFailClosed = boundToInterface && bindAddrs.isEmpty();
 
-    pack.set_bool(libtorrent::settings_pack::enable_dht, settings->torrentEnableDht());
+    // DHT is gated by both the user switch and auto-suspend (run only while at
+    // least one torrent is present). See dhtShouldRun().
+    pack.set_bool(libtorrent::settings_pack::enable_dht, dhtShouldRun());
     // Auto-harden when bound to a specific interface: UPnP and NAT-PMP map ports via
     // the LAN gateway (off-VPN, exposing the listen port) and LSD broadcasts to the
     // local network, so all three leak around the bound interface. Disable them while
@@ -1507,6 +1567,9 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
     pack.set_int(libtorrent::settings_pack::recv_socket_buffer_size, 0);
 
     m_session->apply_settings(pack);
+    // Keep the DHT auto-suspend tracker in lock-step: this pack set enable_dht to
+    // dhtShouldRun(), so reconcileDhtState() must not re-issue the same value.
+    m_dhtRunning = dhtShouldRun();
 
     // Per-torrent limits are not in settings_pack — apply to all existing handles.
     // 0 = unlimited (-1 in libtorrent API).
@@ -1623,6 +1686,8 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
         // pointer, and can still report progress for an orphaned add via the id.
         m_pendingAsyncItems.insert(item, { item->id(), QPointer<DownloadItem>(item) });
         m_session->async_add_torrent(std::move(params));
+        // First pending add resumes DHT (no-op if already running).
+        reconcileDhtState();
         return true;
     }
 
@@ -1665,6 +1730,8 @@ void TorrentSessionManager::finalizeTorrentAdd(DownloadItem *item, const libtorr
     m_handles[item->id()] = handle;
     m_handleToId[handle] = item->id();
     m_items[item->id()] = item;
+    // First torrent present resumes DHT (no-op if already running).
+    reconcileDhtState();
     // Stagger resume-data saves so all torrents added at the same time don't
     // pile their save_resume_data requests into one alert tick. A hash-derived
     // offset spreads them across 0-59 seconds of the first 60-second window.
@@ -1752,6 +1819,12 @@ void TorrentSessionManager::finalizeTorrentAdd(DownloadItem *item, const libtorr
     // progress tracks this (one emit per torrent actually added to the session),
     // not the earlier async_add_torrent dispatch.
     emit torrentAddFinalized(item->id());
+
+    // Re-check DHT now that the final paused state is known: a restored torrent that
+    // resolved to paused (e.g. torrentStopOnStartup) must not hold DHT open, and the
+    // async finalize that moved this id from m_pendingAsyncItems into m_handles needs
+    // the active-count recomputed against the real paused set.
+    reconcileDhtState();
 }
 
 void TorrentSessionManager::drainPendingFinalize() {
@@ -1894,12 +1967,16 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
                 m_session->remove_torrent(added->handle);
             if (!pendingId.isEmpty())
                 emit torrentErrored(pendingId, QStringLiteral("Download was removed during startup."));
+            // A failed/orphaned add may have been the only pending torrent — re-check
+            // DHT so it suspends again if nothing else remains.
+            reconcileDhtState();
             return;
         }
         if (added->error || !added->handle.is_valid()) {
             emit torrentErrored(item->id(),
                 added->error ? QString::fromStdString(added->error.message())
                              : QStringLiteral("Failed to add torrent"));
+            reconcileDhtState();
             return;
         }
         const bool startPaused =
@@ -3425,6 +3502,8 @@ void TorrentSessionManager::checkShareLimits(const QString &id, DownloadItem *it
     if (limitReached) {
         m_pausedIds.insert(id);
         emit torrentShareLimitReached(id, effectiveAction);
+        // Share-limit stop may have just deactivated the last active torrent.
+        reconcileDhtState();
     }
 }
 
