@@ -4015,12 +4015,11 @@ ApplicationWindow {
             Layout.fillWidth: true
             height: 36
             visible: root.findBarActive
-            color: "#1e2030"
-            border.color: "#3a3a55"
+            color: ColorPalette.headerStripBg
             border.width: 0
 
             // Top separator line
-            Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#3a3a55" }
+            Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: ColorPalette.border }
 
             // Escape to close
             Keys.onEscapePressed: root.closeFindBar()
@@ -4031,7 +4030,7 @@ ApplicationWindow {
 
                 Text {
                     text: qsTr("Find:")
-                    color: "#9090a0"
+                    color: ColorPalette.textSecond
                     font.pixelSize: 12 * App.fontScale
                     verticalAlignment: Text.AlignVCenter
                     Layout.alignment: Qt.AlignVCenter
@@ -4043,7 +4042,7 @@ ApplicationWindow {
                     implicitHeight: 24
                     font.pixelSize: 12 * App.fontScale
                     color: ColorPalette.textPrimary
-                    background: Rectangle { color: "#2a2a3a"; border.color: "#4a4a6a"; radius: 3 }
+                    background: Rectangle { color: ColorPalette.inputBg; border.color: findBarField.activeFocus ? ColorPalette.borderFocus : ColorPalette.border; radius: 3 }
                     leftPadding: 6
 
                     Keys.onEscapePressed: root.closeFindBar()
@@ -4076,9 +4075,9 @@ ApplicationWindow {
                 Rectangle {
                     implicitWidth: 46; implicitHeight: 24; radius: 3
                     color: findBtnMa.containsMouse ? "#2a5faa" : ColorPalette.selectionBg
-                    border.color: "#4488dd"; border.width: 1
+                    border.color: ColorPalette.selectionBorder; border.width: 1
                     Layout.alignment: Qt.AlignVCenter
-                    Text { anchors.centerIn: parent; text: qsTr("Find"); color: ColorPalette.textHeader; font.pixelSize: 12 * App.fontScale; font.bold: true }
+                    Text { anchors.centerIn: parent; text: qsTr("Find"); color: findBtnMa.containsMouse ? "#ffffff" : ColorPalette.selectionText; font.pixelSize: 12 * App.fontScale; font.bold: true }
                     MouseArea {
                         id: findBtnMa
                         anchors.fill: parent
@@ -4092,10 +4091,10 @@ ApplicationWindow {
                 Rectangle {
                     id: findSettingsBtn
                     implicitWidth: 68; implicitHeight: 24; radius: 3
-                    color: findSettingsMa.containsMouse ? "#333345" : "#28283a"
-                    border.color: "#4a4a6a"; border.width: 1
+                    color: findSettingsMa.containsMouse ? ColorPalette.buttonSecondaryHoverBg : ColorPalette.buttonSecondaryBg
+                    border.color: ColorPalette.border; border.width: 1
                     Layout.alignment: Qt.AlignVCenter
-                    Text { anchors.centerIn: parent; text: qsTr("Settings ▾"); color: "#b0b0c0"; font.pixelSize: 11 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: qsTr("Settings ▾"); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale }
                     MouseArea {
                         id: findSettingsMa
                         anchors.fill: parent
@@ -4110,14 +4109,14 @@ ApplicationWindow {
                         x: findSettingsBtn.width - width
                         width: 280
                         padding: 10
-                        background: Rectangle { color: "#252535"; border.color: "#4a4a6a"; border.width: 1; radius: 4 }
+                        background: Rectangle { color: ColorPalette.panelBg; border.color: ColorPalette.border; border.width: 1; radius: 4 }
                         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
                         ColumnLayout {
                             width: parent.width
                             spacing: 2
 
-                            Text { text: qsTr("Search in:"); color: "#808090"; font.pixelSize: 11 * App.fontScale; bottomPadding: 2 }
+                            Text { text: qsTr("Search in:"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; bottomPadding: 2 }
 
                             StyledCheckBox {
                                 text: qsTr("File name or part of the name")
@@ -4141,7 +4140,7 @@ ApplicationWindow {
                                 contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
                             }
 
-                            Rectangle { width: parent.width; height: 1; color: "#3a3a4a"; Layout.topMargin: 4; Layout.bottomMargin: 4 }
+                            Rectangle { width: parent.width; height: 1; color: ColorPalette.border; Layout.topMargin: 4; Layout.bottomMargin: 4 }
 
                             StyledCheckBox {
                                 text: qsTr("Match case")
@@ -4166,7 +4165,7 @@ ApplicationWindow {
                     implicitWidth: 22; implicitHeight: 22; radius: 3
                     color: closeFindMa.containsMouse ? "#553333" : "transparent"
                     Layout.alignment: Qt.AlignVCenter
-                    Text { anchors.centerIn: parent; text: "✕"; color: "#a0a0a0"; font.pixelSize: 16 * App.fontScale }
+                    Text { anchors.centerIn: parent; text: "✕"; color: closeFindMa.containsMouse ? "#ffffff" : ColorPalette.textSecond; font.pixelSize: 16 * App.fontScale }
                     MouseArea {
                         id: closeFindMa
                         anchors.fill: parent

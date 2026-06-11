@@ -83,7 +83,7 @@ Window {
                 id: searchField
                 Layout.fillWidth: true
                 color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale
-                background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
+                background: Rectangle { color: ColorPalette.inputBg; border.color: searchField.activeFocus ? ColorPalette.borderFocus : ColorPalette.border; radius: 3 }
                 leftPadding: 8
                 Keys.onReturnPressed: root.doFind()
                 Keys.onEnterPressed:  root.doFind()
@@ -92,7 +92,7 @@ Window {
 
         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
-        Text { text: qsTr("Search in:"); color: "#909090"; font.pixelSize: 12 * App.fontScale }
+        Text { text: qsTr("Search in:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
 
         StyledCheckBox {
             text: qsTr("File name or part of the name")
@@ -168,13 +168,13 @@ Window {
                     Behavior on color { ColorAnimation { duration: 80 } }
                     Behavior on border.color { ColorAnimation { duration: 80 } }
                 }
-                contentItem: Text { text: parent.text; color: ColorPalette.textHeader; font.pixelSize: 13 * App.fontScale; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+                contentItem: Text { text: parent.text; color: root._finding ? "#ffffff" : ColorPalette.selectionText; font.pixelSize: 13 * App.fontScale; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
                 onClicked: root.doFind()
             }
             Button {
                 text: qsTr("Cancel")
                 implicitWidth: 80
-                background: Rectangle { color: ColorPalette.border; radius: 3; border.color: "#555"; border.width: 1 }
+                background: Rectangle { color: ColorPalette.buttonSecondaryBg; radius: 3; border.color: ColorPalette.border; border.width: 1 }
                 contentItem: Text { text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
                 onClicked: root.close()
             }
