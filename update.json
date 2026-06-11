@@ -10,5 +10,5 @@
   "ffmpegWindowsUrl": "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip",
   "ffmpegLinuxUrl": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz",
   "chromeExtensionUrl": "https://chromewebstore.google.com/detail/stellar-integration-modul/pppelmimeffdigknplngfmhefcbhfcbd",
-  "firefoxExtensionUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/0.8.2/StellarFirefox-0.1.9.xpi"
+  "firefoxExtensionUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/0.10.2/StellarFirefox-0.1.11.xpi"
 }
