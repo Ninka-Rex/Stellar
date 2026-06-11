@@ -2,6 +2,25 @@
 
 ---
 
+## Version 0.10.3 Beta - June 11, 2026
+
+FIREFOX USERS: Please update your browser extension! (Help > Browser Integration > Browser Extensions)
+
+CHROME USERS: Please allow more time for Google to approve the update!
+
+### New
+- DHT now turns off when no torrents are active, no connections to bootstrap nodes
+
+### Improved
+- Refactored the Grabber to be more polished and consistent with the rest of the program
+
+### Fixed
+- Fixed missing translations in the torrent search engine
+- Fixed some text not being wrapped in settings when using a foreign language
+- Fixed open file / open folder buttons not working on Linux
+
+---
+
 ## Version 0.10.2 Beta - June 11, 2026
 
 FIREFOX USERS: Please update your browser extension!
