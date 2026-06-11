@@ -28,7 +28,10 @@
 #include <QVariantMap>
 #include <QPointer>
 
+#include <functional>
+
 class QNetworkAccessManager;
+class QNetworkReply;
 
 class GrabberCrawler : public QObject {
     Q_OBJECT
@@ -101,6 +104,9 @@ private:
     int m_generation{0};
     int m_activeReplies{0};
     int m_activeMetadataReplies{0};
+    // In-flight async DNS lookups inside guardHostThen. Tracked so finishIfDone()
+    // never declares the crawl complete while a host is still being resolved.
+    int m_pendingGuards{0};
     int m_pagesFetched{0};
     int m_maxConcurrent{4};
     QUrl m_startUrl;
@@ -113,6 +119,15 @@ private:
     void finishIfDone();
     void fetchPage(const PageTask &task);
     void probeResultMetadata(int row);
+    // SSRF gate: resolves host (literal IP synchronously, hostname via async DNS)
+    // and invokes onSafe() only if NONE of the resolved addresses is private/
+    // loopback/link-local. Result cached per host. Generation-guarded so a
+    // cancelled crawl never fires the callback. onSafe runs on the main thread.
+    void guardHostThen(const QString &host, int gen, std::function<void()> onSafe,
+                       std::function<void()> onBlocked = {});
+    // Connects a reply's redirected() signal so every redirect hop is SSRF-checked
+    // before it is followed; an unsafe target aborts the reply.
+    void guardRedirects(QNetworkReply *reply, int gen);
     // classifyLinks: runs entirely off the UI thread.  Reads only immutable-during-crawl
     // members (m_project, m_startUrl, m_rootDomain, m_startPathPrefix) so no locking needed.
     OffThreadResult classifyLinks(const QUrl &resolvedUrl, const QByteArray &html, int taskDepth) const;

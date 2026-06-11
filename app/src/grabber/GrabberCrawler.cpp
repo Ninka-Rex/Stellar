@@ -27,6 +27,12 @@
 #include <QRegularExpression>
 #include <QtConcurrent>
 
+// Cap the bytes we read from any single crawled page. An HTML page that is
+// larger than this is almost certainly not a real navigation page, and a
+// hostile host could otherwise stream gigabytes to exhaust memory (DoS). We
+// only ever parse the prefix; links beyond the cap are not harvested.
+static constexpr qint64 kMaxPageBytes = 16LL * 1024 * 1024; // 16 MiB
+
 GrabberCrawler::GrabberCrawler(QNetworkAccessManager *nam, QObject *parent)
     : QObject(parent), m_nam(nam)
 {
@@ -51,6 +57,7 @@ void GrabberCrawler::start(const QVariantMap &project)
     m_results.clear();
     m_activeReplies = 0;
     m_activeMetadataReplies = 0;
+    m_pendingGuards = 0;
     m_pendingMetadataRows.clear();
     m_pagesFetched = 0;
     m_maxConcurrent = qBound(1, project.value(QStringLiteral("filesToExploreAtOnce"), 4).toInt(), 10);
@@ -94,9 +101,19 @@ void GrabberCrawler::start(const QVariantMap &project)
     prime(project.value(QStringLiteral("exploreExcludePatterns")).toStringList()
           + project.value(QStringLiteral("logoutPatterns")).toStringList());
 
-    m_pendingPages.enqueue({ m_startUrl, 0, QString() });
+    // SSRF: the start URL is user-supplied and otherwise unchecked. Gate it
+    // through the same host guard as discovered links so a start URL pointing at
+    // a private/loopback/metadata address is never fetched.
     emit progressChanged(QStringLiteral("Exploring %1").arg(m_startUrl.toString()));
-    pumpQueue();
+    const int gen = m_generation;
+    const QUrl startUrl = m_startUrl;
+    guardHostThen(startUrl.host().toLower(), gen, [this, startUrl]() {
+        m_pendingPages.enqueue({ startUrl, 0, QString() });
+        pumpQueue();
+    }, [this]() {
+        m_running = false;
+        emit failed(QStringLiteral("Start page resolves to a private or local network address."));
+    });
 }
 
 void GrabberCrawler::cancel()
@@ -110,6 +127,7 @@ void GrabberCrawler::cancel()
     m_results.clear();
     m_activeReplies = 0;
     m_activeMetadataReplies = 0;
+    m_pendingGuards = 0;
     m_resolvedHostCache.clear();
 }
 
@@ -130,6 +148,11 @@ void GrabberCrawler::finishIfDone()
     if (m_activeReplies > 0 || !m_pendingPages.isEmpty()) {
         return;
     }
+
+    // An async host guard may still be resolving and could re-enqueue a page or
+    // probe. Don't finish until all are settled.
+    if (m_pendingGuards > 0)
+        return;
 
     // Metadata probing runs concurrently with crawling (started in maybeAddFileResult),
     // so by the time the last page finishes there may still be in-flight HEAD replies
@@ -204,6 +227,18 @@ void GrabberCrawler::fetchPage(const PageTask &task)
     ++m_activeReplies;
     const int gen = m_generation;
 
+    // SSRF: re-check every redirect hop (NoLessSafeRedirectPolicy permits
+    // cross-host redirects, which could target a private/loopback address).
+    guardRedirects(reply, gen);
+
+    // Memory-DoS guard: abort as soon as the body exceeds the page cap rather
+    // than buffering an unbounded response from a hostile host.
+    connect(reply, &QNetworkReply::downloadProgress, this,
+            [reply](qint64 received, qint64 /*total*/) {
+        if (received > kMaxPageBytes)
+            reply->abort();
+    });
+
     connect(reply, &QNetworkReply::finished, this, [this, reply, task, gen]() {
         if (gen != m_generation) {
             reply->deleteLater();
@@ -223,7 +258,9 @@ void GrabberCrawler::fetchPage(const PageTask &task)
             return;
         }
 
-        const QByteArray html = reply->readAll();
+        QByteArray html = reply->readAll();
+        if (html.size() > kMaxPageBytes)
+            html.truncate(static_cast<int>(kMaxPageBytes));
         const QUrl resolvedUrl = reply->url();
         reply->deleteLater();
 
@@ -244,49 +281,17 @@ void GrabberCrawler::fetchPage(const PageTask &task)
             emit progressChanged(result.progressText);
 
             // ── Candidate pages ────────────────────────────────────────────
+            // Every candidate is SSRF-gated through guardHostThen: literal IPs
+            // resolve synchronously, hostnames via async DNS, and only safe
+            // hosts are enqueued. Unsafe hosts are silently dropped.
             for (const OffThreadResult::PageCandidate &cand : result.pages) {
-                // SSRF mitigation: never allow a request to a host before we know
-                // whether it resolves to a private/loopback address.  Literal IPs
-                // are checked synchronously; hostnames are resolved asynchronously
-                // and the candidate is held until the result arrives.
                 const QString host = cand.url.host().toLower();
-                if (!m_resolvedHostCache.contains(host)) {
-                    QHostAddress literalAddr;
-                    if (literalAddr.setAddress(host)) {
-                        // Literal IP — result is immediate, no async needed.
-                        m_resolvedHostCache[host] = isPrivateOrLoopbackHost(host);
-                    } else {
-                        // Unknown hostname: queue the candidate and resolve first.
-                        // The resolved callback will re-enqueue it if safe.
-                        m_resolvedHostCache[host] = true; // block until DNS confirms safe
-                        const int capturedGen = gen;
-                        QHostInfo::lookupHost(host, this,
-                        [this, host, capturedGen, cand](const QHostInfo &info) {
-                            if (capturedGen != m_generation) return;
-                            bool isPrivate = false;
-                            for (const QHostAddress &addr : info.addresses()) {
-                                if (isPrivateOrLoopbackHost(addr.toString())) {
-                                    isPrivate = true;
-                                    break;
-                                }
-                            }
-                            m_resolvedHostCache[host] = isPrivate;
-                            if (!isPrivate) {
-                                // Now safe — enqueue if not already seen.
-                                const QString normalized = normalizeUrl(cand.url);
-                                if (!normalized.isEmpty() && !m_seenPages.contains(normalized))
-                                    m_pendingPages.enqueue({ cand.url, cand.depth, cand.sourcePage });
-                                pumpQueue();
-                            }
-                        });
-                        continue; // don't enqueue below; DNS callback handles it
-                    }
-                }
-                if (m_resolvedHostCache.value(host)) continue; // known private
-
-                const QString normalized = normalizeUrl(cand.url);
-                if (normalized.isEmpty() || m_seenPages.contains(normalized)) continue;
-                m_pendingPages.enqueue({ cand.url, cand.depth, cand.sourcePage });
+                guardHostThen(host, gen, [this, cand]() {
+                    const QString normalized = normalizeUrl(cand.url);
+                    if (normalized.isEmpty() || m_seenPages.contains(normalized)) return;
+                    m_pendingPages.enqueue({ cand.url, cand.depth, cand.sourcePage });
+                    pumpQueue();
+                });
             }
 
             // ── Candidate files ────────────────────────────────────────────
@@ -437,28 +442,37 @@ void GrabberCrawler::probeResultMetadata(int row)
     if (!url.isValid())
         return;
 
-    QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("Stellar Grabber"));
-
-    const bool sameOrigin = url.host().compare(m_startUrl.host(), Qt::CaseInsensitive) == 0
-                         && url.scheme() == m_startUrl.scheme();
-    const QString auth = sameOrigin ? basicAuthHeader() : QString();
-    if (!auth.isEmpty()) {
-        request.setRawHeader("Authorization", auth.toUtf8());
-        request.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
-                             QNetworkRequest::SameOriginRedirectPolicy);
-    } else {
-        request.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
-                             QNetworkRequest::NoLessSafeRedirectPolicy);
-    }
-
-    QNetworkReply *reply = m_nam->head(request);
-    ++m_activeMetadataReplies;
     const int gen = m_generation;
-    emit progressChanged(QStringLiteral("Contacting server for file size (%1/%2)")
-                         .arg(row + 1).arg(m_results.size()));
 
-    connect(reply, &QNetworkReply::finished, this, [this, reply, row, gen]() {
+    // SSRF: file-result HEAD probes are outbound requests to link targets, so
+    // they need the same host gate as page fetches. An unsafe host is dropped;
+    // the metadata queue keeps draining via the pump below.
+    guardHostThen(url.host().toLower(), gen, [this, url, row, gen]() {
+        if (gen != m_generation || !m_running)
+            return;
+
+        QNetworkRequest request(url);
+        request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("Stellar Grabber"));
+
+        const bool sameOrigin = url.host().compare(m_startUrl.host(), Qt::CaseInsensitive) == 0
+                             && url.scheme() == m_startUrl.scheme();
+        const QString auth = sameOrigin ? basicAuthHeader() : QString();
+        if (!auth.isEmpty()) {
+            request.setRawHeader("Authorization", auth.toUtf8());
+            request.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
+                                 QNetworkRequest::SameOriginRedirectPolicy);
+        } else {
+            request.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
+                                 QNetworkRequest::NoLessSafeRedirectPolicy);
+        }
+
+        QNetworkReply *reply = m_nam->head(request);
+        ++m_activeMetadataReplies;
+        guardRedirects(reply, gen);
+        emit progressChanged(QStringLiteral("Contacting server for file size (%1/%2)")
+                             .arg(row + 1).arg(m_results.size()));
+
+        connect(reply, &QNetworkReply::finished, this, [this, reply, row, gen]() {
         if (gen != m_generation) {
             reply->deleteLater();
             return;
@@ -474,6 +488,14 @@ void GrabberCrawler::probeResultMetadata(int row)
         }
 
         reply->deleteLater();
+        if (m_running) {
+            pumpMetadataQueue();
+            finishIfDone();
+        }
+        });
+    }, [this]() {
+        // Host blocked: no reply was created, so drain the next queued row and
+        // re-evaluate completion (guardHostThen already released its pending slot).
         if (m_running) {
             pumpMetadataQueue();
             finishIfDone();
@@ -577,6 +599,85 @@ bool GrabberCrawler::matchesAnyPattern(const QString &text, const QStringList &p
             return true;
     }
     return false;
+}
+
+void GrabberCrawler::guardHostThen(const QString &host, int gen,
+                                   std::function<void()> onSafe,
+                                   std::function<void()> onBlocked)
+{
+    auto blocked = [onBlocked]() { if (onBlocked) onBlocked(); };
+
+    // Cached result — synchronous decision.
+    if (m_resolvedHostCache.contains(host)) {
+        if (m_resolvedHostCache.value(host)) { blocked(); return; }
+        onSafe();
+        return;
+    }
+
+    // Literal IP — decide synchronously, no DNS.
+    QHostAddress literalAddr;
+    if (literalAddr.setAddress(host)) {
+        const bool isPrivate = isPrivateOrLoopbackHost(host);
+        m_resolvedHostCache[host] = isPrivate;
+        if (isPrivate) { blocked(); return; }
+        onSafe();
+        return;
+    }
+
+    // Hostname: resolve asynchronously. Mark blocked until DNS confirms safe so
+    // concurrent candidates for the same host don't all spawn lookups, and so a
+    // never-completing lookup fails closed. The callback fires onSafe/onBlocked.
+    m_resolvedHostCache[host] = true;
+    ++m_pendingGuards;
+    QHostInfo::lookupHost(host, this,
+        [this, host, gen, onSafe, blocked](const QHostInfo &info) {
+            --m_pendingGuards;
+            if (gen != m_generation || !m_running)
+                return;
+            bool isPrivate = info.addresses().isEmpty(); // no address resolved → fail closed
+            for (const QHostAddress &addr : info.addresses()) {
+                if (isPrivateOrLoopbackHost(addr.toString())) {
+                    isPrivate = true;
+                    break;
+                }
+            }
+            m_resolvedHostCache[host] = isPrivate;
+            if (isPrivate)
+                blocked();
+            else
+                onSafe();
+            // onSafe/onBlocked may have re-enqueued work (or not); either way the
+            // pending-guard count just dropped, so re-evaluate completion to avoid
+            // a crawl that hangs because the last outstanding item was a guard.
+            finishIfDone();
+        });
+}
+
+void GrabberCrawler::guardRedirects(QNetworkReply *reply, int gen)
+{
+    // NoLessSafeRedirectPolicy still permits cross-host redirects to private/
+    // loopback targets. Re-check each hop's host; abort the reply on an unsafe
+    // target. Literal IPs are checked inline; for hostnames we conservatively
+    // abort if the host isn't already cached as safe (a DNS round-trip here would
+    // race the redirect, so fail closed rather than follow blindly).
+    connect(reply, &QNetworkReply::redirected, this,
+            [this, reply, gen](const QUrl &target) {
+        if (gen != m_generation) {
+            reply->abort();
+            return;
+        }
+        const QString host = target.host().toLower();
+        QHostAddress literalAddr;
+        if (literalAddr.setAddress(host)) {
+            if (isPrivateOrLoopbackHost(host))
+                reply->abort();
+            return;
+        }
+        // Hostname: only follow if a prior guard already proved this host safe.
+        const auto it = m_resolvedHostCache.constFind(host);
+        if (it == m_resolvedHostCache.constEnd() || it.value())
+            reply->abort();
+    });
 }
 
 // SECURITY: SSRF protection (CWE-918).
