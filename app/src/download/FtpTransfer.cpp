@@ -36,6 +36,7 @@
 #include <QRegularExpression>
 #include <QtConcurrent/QtConcurrent>
 #include <QFutureWatcher>
+#include <QPointer>
 #include <algorithm>
 
 static constexpr qint64 kFtpMapWindow = 256LL * 1024 * 1024;
@@ -845,10 +846,15 @@ void FtpTransfer::mergeAndFinish() {
         emit finished();
     });
 
-    auto *itemPtr = m_item;
+    // QPointer guard: a large merge can outlive the download if the user deletes
+    // it mid-assembly, freeing the DownloadItem. Gate the worker deref and the
+    // queued invoke's receiver on the pointer still being valid.
+    QPointer<DownloadItem> itemPtr = m_item;
     watcher->setFuture(QtConcurrent::run([singleNoRange, parts, outPath, itemPtr, total]() -> QString {
         auto report = [&](qint64 written) {
-            QMetaObject::invokeMethod(itemPtr, [itemPtr, written]() { itemPtr->setDoneBytes(written); },
+            DownloadItem *item = itemPtr.data();
+            if (!item) return;
+            QMetaObject::invokeMethod(item, [item, written]() { item->setDoneBytes(written); },
                                       Qt::QueuedConnection);
         };
         if (singleNoRange) {

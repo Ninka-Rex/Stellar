@@ -36,6 +36,7 @@
 #include <QSet>
 #include <QNetworkCookieJar>
 #include <QNetworkCookie>
+#include <QPointer>
 #include <algorithm>
 #include <cstring>
 #include <limits>
@@ -454,6 +455,17 @@ void SegmentedTransfer::sendHeadRequest(const QUrl &overrideUrl) {
     QNetworkRequest req(targetUrl);
     applyRequestHeaders(req, targetUrl);
     req.setTransferTimeout(15'000); // 15 s — don't hang forever on a dead server
+
+    // Tear down any in-flight HEAD before reassigning m_headReply. The masquerade-
+    // recovery path can re-enter here while the previous HEAD is still live; without
+    // this its finished() lambda would fire later and call onHeadFinished(m_headReply)
+    // against the new reply pointer, double-processing the response.
+    if (m_headReply) {
+        m_headReply->disconnect(this);
+        m_headReply->abort();
+        m_headReply->deleteLater();
+        m_headReply = nullptr;
+    }
 
     m_headReply = m_nam->head(req);
     connect(m_headReply, &QNetworkReply::finished, this, [this]() {
@@ -972,6 +984,17 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
     QByteArray data = seg.reply->readAll();
     if (data.isEmpty()) return;
 
+    // Clamp to the segment's remaining range. A hostile (or buggy) server can
+    // answer a Range request with a valid Content-Range header but a body longer
+    // than the requested range; writing those extra bytes overruns this segment's
+    // part file and corrupts the neighbouring segment's bytes at merge time.
+    if (seg.endOffset >= 0) {
+        const qint64 remaining = (seg.endOffset - seg.startOffset + 1) - seg.received;
+        if (remaining <= 0) return;
+        if (data.size() > remaining)
+            data.truncate(static_cast<int>(remaining));
+    }
+
     qint64 wrote = seg.file->write(data);
     if (wrote != data.size()) {
         // Disk full, permission denied, I/O error — fatal.  Abort
@@ -1034,12 +1057,29 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         } else {
             // Small non-HTML response — write it as the file
             m_htmlIntercepting = false;
-            if (!seg.file) seg.file = new QFile(seg.partPath);
-            if (seg.file->open(QIODevice::WriteOnly)) {
-                seg.file->write(m_htmlInterceptBuf);
-                seg.received = m_htmlInterceptBuf.size();
-                seg.file->close();
+            if (!seg.file) seg.file = new QFile(longPath(seg.partPath));
+            if (!seg.file->open(QIODevice::WriteOnly)) {
+                // Bail out instead of marking the segment done with an empty part
+                // file, which would otherwise be assembled and reported Completed.
+                m_htmlInterceptBuf.clear();
+                m_progressTimer->stop();
+                m_item->setStatus(DownloadItem::Status::Error);
+                emit failed(tr("Cannot open part file: %1 (%2)")
+                            .arg(seg.partPath, seg.file->errorString()));
+                return;
             }
+            const qint64 wrote = seg.file->write(m_htmlInterceptBuf);
+            if (wrote != m_htmlInterceptBuf.size()) {
+                const QString err = seg.file->errorString();
+                seg.file->close();
+                m_htmlInterceptBuf.clear();
+                m_progressTimer->stop();
+                m_item->setStatus(DownloadItem::Status::Error);
+                emit failed(tr("Disk write failed: %1").arg(err));
+                return;
+            }
+            seg.received = wrote;
+            seg.file->close();
             m_htmlInterceptBuf.clear();
             seg.done = true;
             m_progressTimer->stop();
@@ -1192,7 +1232,16 @@ void SegmentedTransfer::onProgressTick() {
             qint64 remaining = totalBudget;
 
             // Lambda to write data to a segment's file, returns false on disk error.
-            auto writeToDisk = [&](Segment &seg, const QByteArray &data) -> bool {
+            // Clamps to the segment's remaining range first: a server may send more
+            // body than the requested Range, and those extra bytes would overrun the
+            // part file and corrupt the neighbouring segment at merge time.
+            auto writeToDisk = [&](Segment &seg, QByteArray data) -> bool {
+                if (seg.endOffset >= 0) {
+                    const qint64 rem = (seg.endOffset - seg.startOffset + 1) - seg.received;
+                    if (rem <= 0) return true;
+                    if (data.size() > rem)
+                        data.truncate(static_cast<int>(rem));
+                }
                 qint64 w = seg.file->write(data);
                 if (w != data.size()) {
                     QString err = seg.file->errorString();
@@ -1425,7 +1474,7 @@ void SegmentedTransfer::mergeAndFinish() {
     // Collect part paths in byte order before leaving the main thread.
     // Dynamic segmentation can append segments out of array order; sort by
     // startOffset so the concatenated file is correct.
-    struct PartInfo { QString path; qint64 startOffset; };
+    struct PartInfo { QString path; qint64 startOffset; qint64 expectedLen; };
     QList<PartInfo> parts;
     parts.reserve(static_cast<int>(m_segments.size()));
 
@@ -1434,10 +1483,11 @@ void SegmentedTransfer::mergeAndFinish() {
         QString partSrc = m_segments[0].partPath;
         if (!QFile::exists(partSrc) && m_segments[0].file)
             partSrc = m_segments[0].file->fileName();
-        parts.append({ partSrc, 0 });
+        parts.append({ partSrc, 0, -1 });
     } else {
         for (const auto &seg : m_segments)
-            parts.append({ seg.partPath, seg.startOffset });
+            parts.append({ seg.partPath, seg.startOffset,
+                           seg.endOffset >= 0 ? seg.endOffset - seg.startOffset + 1 : -1 });
         std::sort(parts.begin(), parts.end(),
                   [](const PartInfo &a, const PartInfo &b) {
                       return a.startOffset < b.startOffset;
@@ -1511,13 +1561,19 @@ void SegmentedTransfer::mergeAndFinish() {
         emit finished();
     });
 
-    auto *itemPtr = m_item;
+    // Guard the item with a QPointer: a multi-GB merge takes seconds to minutes,
+    // during which the user may delete the download and free the DownloadItem.
+    // The worker must never deref a raw dangling pointer, and the queued invoke
+    // needs a live receiver — both are gated on the QPointer still being valid.
+    QPointer<DownloadItem> itemPtr = m_item;
     watcher->setFuture(QtConcurrent::run([singleNoRange, parts, outPath, itemPtr, totalForAssembly]() -> QString {
         // Reports current assembled-bytes count to the main thread via a queued
         // invocation — safe to call from the worker thread.
         auto reportProgress = [&](qint64 written) {
-            QMetaObject::invokeMethod(itemPtr, [itemPtr, written]() {
-                itemPtr->setDoneBytes(written);
+            DownloadItem *item = itemPtr.data();
+            if (!item) return;
+            QMetaObject::invokeMethod(item, [item, written]() {
+                item->setDoneBytes(written);
             }, Qt::QueuedConnection);
         };
 
@@ -1578,6 +1634,16 @@ void SegmentedTransfer::mergeAndFinish() {
             }
 
             const qint64 partSize = partFile.size();
+            // A part larger than its declared range would copy into the next
+            // segment's bytes and push the output past its true length. Reject any
+            // mismatch rather than assemble a corrupt file reported as complete.
+            if (part.expectedLen >= 0 && partSize != part.expectedLen) {
+                partFile.close();
+                outFile.close();
+                QFile::remove(outPath);
+                return SegmentedTransfer::tr("Part file size mismatch: %1 (expected %2, got %3)")
+                    .arg(part.path).arg(part.expectedLen).arg(partSize);
+            }
             qint64 partOff = 0;
             qint64 outOff  = part.startOffset;
             qint64 remaining = partSize;
@@ -2571,6 +2637,26 @@ bool SegmentedTransfer::loadMeta() {
         seg.done = (seg.received >= expectedLength && expectedLength > 0);
         done += seg.received;
         m_segments.append(seg);
+    }
+
+    // The meta file lives in a user/process-writable directory; a corrupt or
+    // crafted one must not yield overlapping ranges (parts clobber each other in
+    // merge), gaps (zero-filled holes), or an out-of-bounds endOffset — any of
+    // which produce a silently corrupt file reported as complete. When every
+    // segment is range-based, require them to tile [0, totalBytes-1] contiguously,
+    // in order, with no overlap. A lone non-ranged segment (endOffset == -1) is
+    // the single-stream fallback and is exempt.
+    const bool allRanged = std::all_of(m_segments.cbegin(), m_segments.cend(),
+                                       [](const Segment &s) { return s.endOffset >= 0; });
+    if (allRanged) {
+        qint64 expectStart = 0;
+        for (const auto &seg : m_segments) {
+            if (seg.startOffset != expectStart) return false;   // gap or overlap
+            if (seg.endOffset < seg.startOffset) return false;  // empty/inverted
+            if (seg.endOffset >= totalBytes) return false;      // past EOF
+            expectStart = seg.endOffset + 1;
+        }
+        if (expectStart != totalBytes) return false;            // incomplete coverage
     }
 
     if (done > totalBytes)
