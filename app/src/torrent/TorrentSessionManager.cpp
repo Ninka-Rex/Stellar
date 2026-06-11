@@ -19,6 +19,7 @@
 #include "AppSettings.h"
 #include "AppVersion.h"
 #include "DownloadItem.h"
+#include "FileNameUtils.h"
 #include "StellarPaths.h"
 #include "TorrentFileModel.h"
 #include "TorrentPeerModel.h"
@@ -527,6 +528,8 @@ void TorrentSessionManager::applySettings(const AppSettings *settings) {
         m_items.clear();
         m_pausedIds.clear();
         m_firedFinishedIds.clear();
+        m_pendingAsyncAdds.clear();
+        m_pendingAsyncItems.clear();
         return;
     }
     ensureSession();
@@ -721,6 +724,15 @@ void TorrentSessionManager::remove(const QString &downloadId, bool deleteFiles) 
     m_firedFinishedIds.remove(downloadId);
     m_staticMetadataApplied.remove(downloadId);
     m_pendingAsyncAdds.remove(downloadId);
+    // Drop any pending-async entry for this id (keyed by raw pointer, so match on
+    // the stored id). The QPointer goes null when the item is freed, but clearing
+    // the entry now avoids a stale key lingering until its add_torrent_alert lands.
+    for (auto it = m_pendingAsyncItems.begin(); it != m_pendingAsyncItems.end(); ) {
+        if (it.value().id == downloadId)
+            it = m_pendingAsyncItems.erase(it);
+        else
+            ++it;
+    }
     m_lastResumeSaveRequest.remove(downloadId);
     m_trackerReannounceUntil.remove(downloadId);
     m_trackerAlertSnapshots.remove(downloadId);
@@ -1606,6 +1618,10 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
     if (deferModels) {
         params.userdata = item;
         m_pendingAsyncAdds.insert(item->id());
+        // Record id + QPointer keyed by the raw pointer so add_torrent_alert can
+        // verify the item is still alive without dereferencing the userdata raw
+        // pointer, and can still report progress for an orphaned add via the id.
+        m_pendingAsyncItems.insert(item, { item->id(), QPointer<DownloadItem>(item) });
         m_session->async_add_torrent(std::move(params));
         return true;
     }
@@ -1851,10 +1867,35 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
         // Completion of an async_add_torrent() submitted on the restore path.
         // Recover the DownloadItem* from userdata; ignore alerts we didn't tag
         // (e.g. synchronous interactive adds don't set userdata).
-        DownloadItem *item = added->params.userdata.get<DownloadItem>();
-        if (!item)
+        DownloadItem *rawItem = added->params.userdata.get<DownloadItem>();
+        if (!rawItem)
             return;
-        m_pendingAsyncAdds.remove(item->id());
+        // userdata is a raw void* carried across the async add; the item could have
+        // been removed (user deleted the download) before this alert landed, leaving
+        // rawItem dangling. m_pendingAsyncItems holds a QPointer keyed by the pointer
+        // VALUE — look it up without dereferencing rawItem. If the entry is missing
+        // (already finalized/removed) or the QPointer is null (item freed), this add
+        // is orphaned: drop the handle and bail. (m_items is NOT a valid check here —
+        // it isn't populated until finalizeTorrentAdd, which runs later.)
+        const auto pendingIt = m_pendingAsyncItems.constFind(rawItem);
+        const QString pendingId = (pendingIt != m_pendingAsyncItems.constEnd())
+                                      ? pendingIt.value().id : QString();
+        DownloadItem *item = (pendingIt != m_pendingAsyncItems.constEnd())
+                                 ? pendingIt.value().item.data()
+                                 : nullptr;
+        m_pendingAsyncItems.remove(rawItem);
+        if (!pendingId.isEmpty())
+            m_pendingAsyncAdds.remove(pendingId);
+        if (!item) {
+            // Removed mid-add. Drop the orphaned handle so it doesn't run untracked,
+            // and emit torrentErrored so the restore progress bar still advances past
+            // this item (the finalize that would normally count it never runs).
+            if (added->handle.is_valid() && m_session)
+                m_session->remove_torrent(added->handle);
+            if (!pendingId.isEmpty())
+                emit torrentErrored(pendingId, QStringLiteral("Download was removed during startup."));
+            return;
+        }
         if (added->error || !added->handle.is_valid()) {
             emit torrentErrored(item->id(),
                 added->error ? QString::fromStdString(added->error.message())
@@ -2724,7 +2765,11 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
     // signals fired, but the conversions still ran. Apply them once per torrent.
     if (st.has_metadata && ti && !m_staticMetadataApplied.contains(item->id())) {
         m_staticMetadataApplied.insert(item->id());
-        const QString torrentName = QString::fromStdString(ti->name());
+        // ti->name() is attacker-controlled torrent metadata and flows into
+        // open-file/reveal path joins in QML; route it through sanitizeFilename()
+        // to strip separators, ".."/".", and reserved/illegal names per the
+        // single-entry-point rule in CLAUDE.md.
+        const QString torrentName = sanitizeFilename(QString::fromStdString(ti->name()));
         // Never clobber a filename the user manually renamed in the metadata
         // dialog or file-properties dialog; once set it stays until the user
         // renames again.
@@ -2873,7 +2918,9 @@ bool TorrentSessionManager::renameTorrentFile(const QString &downloadId, int fil
     const auto handle = m_handles.value(downloadId);
     if (!handle.is_valid() || fileIndex < 0)
         return false;
-    const QString trimmed = newName.trimmed();
+    // newName is a single leaf component supplied from the UI; sanitize so a value
+    // containing '/', '\\' or '..' can't relocate the file outside its directory.
+    const QString trimmed = sanitizeFilename(newName.trimmed());
     if (trimmed.isEmpty())
         return false;
 
@@ -2912,7 +2959,9 @@ bool TorrentSessionManager::renameTorrentPath(const QString &downloadId, const Q
 
     QString trimmedPath = currentPath.trimmed();
     trimmedPath.replace(QLatin1Char('\\'), QLatin1Char('/'));
-    const QString trimmedName = newName.trimmed();
+    // newName renames a single folder/file component; sanitize so '/', '\\' or
+    // '..' can't escape the parent directory when spliced into child paths below.
+    const QString trimmedName = sanitizeFilename(newName.trimmed());
     if (trimmedPath.isEmpty() || trimmedName.isEmpty())
         return false;
 
@@ -3421,6 +3470,22 @@ void TorrentSessionManager::createTorrentFile(const QVariantMap &params) {
     std::ignore = QtConcurrent::run([=]() {
         namespace lt = libtorrent;
 
+        // QMetaObject::invokeMethod requires a live context object; a null QPointer
+        // passed as the receiver is undefined. Gate every cross-thread emit on self
+        // still being valid here, before the invoke — not only inside the lambda.
+        auto postFinished = [self](bool ok, const QString &msg) {
+            if (!self) return;
+            QMetaObject::invokeMethod(self, [self, ok, msg]() {
+                if (self) emit self->torrentCreationFinished(ok, msg);
+            }, Qt::QueuedConnection);
+        };
+        auto postProgress = [self](int pct) {
+            if (!self) return;
+            QMetaObject::invokeMethod(self, [self, pct]() {
+                if (self) emit self->torrentCreationProgress(pct);
+            }, Qt::QueuedConnection);
+        };
+
         try {
             lt::file_storage fs;
 
@@ -3429,11 +3494,7 @@ void TorrentSessionManager::createTorrentFile(const QVariantMap &params) {
                 const std::string stdPath = inputPath.toStdString();
                 QFileInfo fi(inputPath);
                 if (!fi.exists()) {
-                    QMetaObject::invokeMethod(self, [=]() {
-                        if (self) emit self->torrentCreationFinished(
-                            false,
-                            QStringLiteral("Path not found: %1").arg(inputPath));
-                    }, Qt::QueuedConnection);
+                    postFinished(false, QStringLiteral("Path not found: %1").arg(inputPath));
                     return;
                 }
                 // add_files handles both single files and whole directory trees.
@@ -3441,9 +3502,7 @@ void TorrentSessionManager::createTorrentFile(const QVariantMap &params) {
             }
 
             if (fs.num_files() == 0 || fs.total_size() == 0) {
-                QMetaObject::invokeMethod(self, [=]() {
-                    if (self) emit self->torrentCreationFinished(false, QStringLiteral("No files found to hash"));
-                }, Qt::QueuedConnection);
+                postFinished(false, QStringLiteral("No files found to hash"));
                 return;
             }
 
@@ -3500,24 +3559,17 @@ void TorrentSessionManager::createTorrentFile(const QVariantMap &params) {
                     if (totalPieces > 0) {
                         const int pct = static_cast<int>(
                             (static_cast<int>(p) + 1) * 100 / totalPieces);
-                        QMetaObject::invokeMethod(self, [=]() {
-                            if (self) emit self->torrentCreationProgress(pct);
-                        }, Qt::QueuedConnection);
+                        postProgress(pct);
                     }
                 }, ec);
 
             if (ec) {
-                const QString msg = QString::fromStdString(ec.message());
-                QMetaObject::invokeMethod(self, [=]() {
-                    if (self) emit self->torrentCreationFinished(false, msg);
-                }, Qt::QueuedConnection);
+                postFinished(false, QString::fromStdString(ec.message()));
                 return;
             }
 
             if (cancelFlag->load(std::memory_order_acquire)) {
-                QMetaObject::invokeMethod(self, [=]() {
-                    if (self) emit self->torrentCreationFinished(false, QStringLiteral("cancelled"));
-                }, Qt::QueuedConnection);
+                postFinished(false, QStringLiteral("cancelled"));
                 return;
             }
 
@@ -3526,30 +3578,19 @@ void TorrentSessionManager::createTorrentFile(const QVariantMap &params) {
 
             QSaveFile file(outputPath);
             if (!file.open(QIODevice::WriteOnly)) {
-                const QString msg = file.errorString();
-                QMetaObject::invokeMethod(self, [=]() {
-                    if (self) emit self->torrentCreationFinished(false, msg);
-                }, Qt::QueuedConnection);
+                postFinished(false, file.errorString());
                 return;
             }
             file.write(buf.data(), static_cast<qint64>(buf.size()));
             if (!file.commit()) {
-                const QString msg = file.errorString();
-                QMetaObject::invokeMethod(self, [=]() {
-                    if (self) emit self->torrentCreationFinished(false, msg);
-                }, Qt::QueuedConnection);
+                postFinished(false, file.errorString());
                 return;
             }
 
-            QMetaObject::invokeMethod(self, [=]() {
-                if (self) emit self->torrentCreationFinished(true, outputPath);
-            }, Qt::QueuedConnection);
+            postFinished(true, outputPath);
 
         } catch (const std::exception &ex) {
-            const QString msg = QString::fromLocal8Bit(ex.what());
-            QMetaObject::invokeMethod(self, [=]() {
-                if (self) emit self->torrentCreationFinished(false, msg);
-            }, Qt::QueuedConnection);
+            postFinished(false, QString::fromLocal8Bit(ex.what()));
         }
     });
 }

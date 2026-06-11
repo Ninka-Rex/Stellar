@@ -261,6 +261,16 @@ private:
     QSet<QString> m_firedFinishedIds;
     QSet<QString> m_staticMetadataApplied; // torrent IDs whose immutable metadata (name, hash, comment, web seeds…) has been applied once
     QSet<QString> m_pendingAsyncAdds; // torrent IDs submitted via async_add_torrent, awaiting add_torrent_alert
+    // Raw-pointer → (id, QPointer) map for items submitted via async_add_torrent.
+    // The add_torrent_alert carries the item back as a raw void* (userdata); it can't
+    // be dereferenced safely if the item was deleted mid-add. Keyed by the pointer
+    // VALUE (never dereferenced), the QPointer reads back null when the item was
+    // freed, so the alert can tell "live" from "removed" without touching dangling
+    // memory. The id is captured at dispatch (item alive then) so the orphan path can
+    // still advance restore progress without a deref. Populated before
+    // async_add_torrent, erased in the alert handler.
+    struct PendingAsyncAdd { QString id; QPointer<DownloadItem> item; };
+    QHash<DownloadItem *, PendingAsyncAdd> m_pendingAsyncItems;
     // Finalize work deferred out of the add_torrent_alert burst and drained a
     // few-per-tick by m_finalizeDrainTimer. The handle is valid the moment the
     // alert lands, so running finalizeTorrentAdd later is safe.

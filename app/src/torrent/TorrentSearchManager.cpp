@@ -378,8 +378,13 @@ void TorrentSearchManager::search(const QString &query) {
         return;
     }
     if (m_searchProcess) {
+        // Disconnect before killing: otherwise the old process's readyRead/finished
+        // lambdas stay live, share m_searchStdoutBuffer, append stale results to the
+        // new m_resultModel, and flip setSearchInProgress(false) under the new search.
+        m_searchProcess->disconnect(this);
         m_searchProcess->kill();
         m_searchProcess->deleteLater();
+        m_searchProcess = nullptr;
     }
     auto *proc = new QProcess(this);
     m_searchProcess = proc;
@@ -635,6 +640,13 @@ void TorrentSearchManager::installPluginFromUrl(const QString &url) {
     const QUrl targetUrl = QUrl::fromUserInput(url.trimmed());
     if (!targetUrl.isValid() || targetUrl.isEmpty()) {
         emit pluginInstallFinished(false, QStringLiteral("Enter a valid plugin URL."));
+        return;
+    }
+    // The downloaded file is Python code that gets auto-approved and later executed
+    // by the search runner. Require HTTPS so the payload can't be swapped in transit
+    // by a MITM on a plaintext connection.
+    if (targetUrl.scheme().compare(QStringLiteral("https"), Qt::CaseInsensitive) != 0) {
+        emit pluginInstallFinished(false, QStringLiteral("Plugin URL must use HTTPS."));
         return;
     }
     if (!m_nam) {
