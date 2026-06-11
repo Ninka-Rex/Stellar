@@ -148,7 +148,9 @@ static WavInfo parseWav(const QByteArray &data) {
         || std::memcmp(data.constData() + 8, "WAVE", 4) != 0)
         return {};
     int off = 12;
+    int guard = 0;
     while (inBounds(data, off, 8)) {
+        if (++guard > 4096) break;        // bound walk; crafted file can't spin the GUI
         const char *id = data.constData() + off;
         quint32 sz = rdU32LE(data, off + 4);
         int body = off + 8;
@@ -165,6 +167,10 @@ static WavInfo parseWav(const QByteArray &data) {
         }
         quint32 advance = sz + (sz & 1u);
         if (advance == 0) break;
+        // Reject chunk sizes that overflow a signed int: off is int, and a
+        // negative (int)advance would jump the cursor backwards onto an earlier
+        // offset and spin forever on a crafted file.
+        if (advance > (quint32)INT_MAX) break;
         if ((quint64)body + advance < (quint64)body) break;
         off = body + (int)advance;
     }
@@ -194,7 +200,9 @@ static AiffInfo parseAiff(const QByteArray &data) {
     if (std::memcmp(form, "AIFF", 4) != 0 && std::memcmp(form, "AIFC", 4) != 0)
         return {};
     int off = 12;
+    int guard = 0;
     while (inBounds(data, off, 8)) {
+        if (++guard > 4096) break;        // bound walk; crafted file can't spin the GUI
         const char *id = data.constData() + off;
         quint32 sz = rdU32BE(data, off + 4);
         int body = off + 8;
@@ -210,6 +218,9 @@ static AiffInfo parseAiff(const QByteArray &data) {
         }
         quint32 advance = sz + (sz & 1u);
         if (advance == 0) break;
+        // Reject chunk sizes that overflow a signed int (see parseWav): a negative
+        // (int)advance would rewind off and spin forever on a crafted file.
+        if (advance > (quint32)INT_MAX) break;
         if ((quint64)body + advance < (quint64)body) break;
         off = body + (int)advance;
     }
