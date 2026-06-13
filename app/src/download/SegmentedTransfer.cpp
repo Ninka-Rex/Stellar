@@ -37,6 +37,7 @@
 #include <QNetworkCookieJar>
 #include <QNetworkCookie>
 #include <QPointer>
+#include <QThread>
 #include <algorithm>
 #include <cstring>
 #include <limits>
@@ -274,12 +275,89 @@ SegmentedTransfer::~SegmentedTransfer() {
             seg.reply->deleteLater();
             seg.reply = nullptr;
         }
+    }
+    // Drain queued writes BEFORE closing/deleting the QFile objects the writer
+    // jobs hold raw pointers to, then tear the thread down.
+    flushDiskWrites();
+    if (m_writerThread) {
+        m_writerThread->quit();
+        m_writerThread->wait();
+        // Safe to delete from here now the worker's thread has stopped.
+        delete m_writerObj;
+        m_writerObj = nullptr;
+        delete m_writerThread;
+        m_writerThread = nullptr;
+    }
+    for (auto &seg : m_segments) {
         if (seg.file) {
             seg.file->close();
             delete seg.file;
             seg.file = nullptr;
         }
     }
+}
+
+void SegmentedTransfer::ensureDiskWriter() {
+    if (m_writerThread) return;
+    m_writerThread = new QThread; // unparented: destroyed manually in the dtor after quit()+wait()
+    m_writerThread->setObjectName(QStringLiteral("StellarDiskWriter"));
+    m_writerObj = new QObject;
+    m_writerObj->moveToThread(m_writerThread);
+    m_writerThread->start();
+}
+
+void SegmentedTransfer::enqueueSegmentWrite(Segment &seg, QByteArray data) {
+    ensureDiskWriter();
+    QFile *file = seg.file;
+    auto flushed = seg.flushed;
+    const qint64 n = data.size();
+    m_queuedWriteBytes.fetch_add(n, std::memory_order_relaxed);
+    QMetaObject::invokeMethod(m_writerObj,
+        [this, file, flushed, data = std::move(data), n]() {
+            if (m_writerFailed.load(std::memory_order_relaxed)) {
+                m_queuedWriteBytes.fetch_sub(n, std::memory_order_relaxed);
+                return;
+            }
+            const qint64 w = file->write(data);
+            m_queuedWriteBytes.fetch_sub(n, std::memory_order_relaxed);
+            if (w == n) {
+                flushed->fetch_add(w, std::memory_order_relaxed);
+                return;
+            }
+            m_writerFailed.store(true, std::memory_order_relaxed);
+            const QString err = file->errorString();
+            // `this` as context: Qt drops the queued call if we're destroyed first.
+            QMetaObject::invokeMethod(this, [this, err]() {
+                onAsyncWriteFailed(err);
+            }, Qt::QueuedConnection);
+        }, Qt::QueuedConnection);
+}
+
+void SegmentedTransfer::flushDiskWrites() {
+    if (!m_writerObj) return;
+    // FIFO barrier: this no-op runs after every previously queued write/close.
+    QMetaObject::invokeMethod(m_writerObj, []() {}, Qt::BlockingQueuedConnection);
+}
+
+void SegmentedTransfer::closeSegmentFile(Segment &seg) {
+    if (!seg.file) return;
+    if (m_writerObj) {
+        QFile *file = seg.file;
+        QMetaObject::invokeMethod(m_writerObj, [file]() { file->close(); },
+                                  Qt::QueuedConnection);
+    } else {
+        seg.file->close();
+    }
+}
+
+void SegmentedTransfer::onAsyncWriteFailed(const QString &error) {
+    if (m_writerFailureHandled) return;
+    m_writerFailureHandled = true;
+    if (m_cancelled || m_paused || !m_item) return;
+    qDebug() << "[ST] async disk write failed:" << error;
+    m_progressTimer->stop();
+    m_item->setStatus(DownloadItem::Status::Error);
+    emit failed(tr("Disk write failed: %1").arg(error));
 }
 
 void SegmentedTransfer::start() {
@@ -292,6 +370,8 @@ void SegmentedTransfer::start() {
     m_effectiveUrl = QUrl(); // reset on every fresh start
     m_recoveryAttempted = false; // allow one masquerade-recovery retry per run
     m_expectInterstitial = false; // content-driven; re-evaluated from this run's responses
+    m_writerFailed.store(false, std::memory_order_relaxed);
+    m_writerFailureHandled = false;
 
     qDebug() << "[ST] start() url=" << m_item->url().toString()
              << "extensionless=" << urlHasNoExtension(m_item->url())
@@ -636,6 +716,11 @@ void SegmentedTransfer::startAllSegments() {
 }
 
 void SegmentedTransfer::startSegment(Segment &seg) {
+    // Drain queued async writes/closes before reopening or seeking this file on
+    // the main thread (retry and steal paths restart segments whose writes may
+    // still be in flight on the writer thread).
+    flushDiskWrites();
+
     // Open part file for reading and writing (needed for pre-allocation and
     // memory-mapped I/O).  ReadWrite gives us explicit control over the write
     // cursor; Append would force all writes to end-of-file regardless of seek.
@@ -778,7 +863,13 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
     // file data. Parts and meta are intentionally left on disk so the user can
     // re-add the download from the browser (with fresh cookies) and resume from
     // where it stopped.
-    if (!sameRegisteredDomain(seg.reply->url(), m_item->url())) {
+    //
+    // Only sniff on the FIRST chunk of a segment (received == 0). The redirect
+    // target and body type are fixed once the response starts; re-running the
+    // registered-domain parse + peek()/toLower() on every readyRead is pure
+    // overhead that becomes a main-thread bottleneck at high throughput
+    // (localhost / gigabit), stalling the UI ("Not Responding").
+    if (seg.received == 0 && !sameRegisteredDomain(seg.reply->url(), m_item->url())) {
         const QByteArray peeked = seg.reply->peek(512).trimmed();
         const QByteArray peekLower = peeked.toLower();
         const bool bodyIsHtml = peekLower.contains("<html") || peekLower.contains("<!doctype");
@@ -873,6 +964,7 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
                 return;
             }
             seg.received += wrote;
+            seg.flushed->fetch_add(wrote, std::memory_order_relaxed);
             m_htmlInterceptBuf.clear();
         }
         // Otherwise keep buffering until finished (confirmation pages are small)
@@ -981,6 +1073,14 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
         return;
     }
 
+    // Backpressure: when the writer queue is at its cap the disk is behind the
+    // network. Stop reading — data stays in QNAM's bounded read buffer, then in
+    // the kernel socket buffer, and TCP flow control slows the server down to
+    // disk speed. onProgressTick re-drains once the writer catches up (readyRead
+    // won't re-fire for bytes that already arrived).
+    if (m_queuedWriteBytes.load(std::memory_order_relaxed) >= kMaxQueuedWriteBytes)
+        return;
+
     QByteArray data = seg.reply->readAll();
     if (data.isEmpty()) return;
 
@@ -995,17 +1095,11 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
             data.truncate(static_cast<int>(remaining));
     }
 
-    qint64 wrote = seg.file->write(data);
-    if (wrote != data.size()) {
-        // Disk full, permission denied, I/O error — fatal.  Abort
-        // everything; retrying won't help if the disk is full.
-        QString err = seg.file->errorString();
-        qDebug() << "[ST] disk write failed on segment" << index << ":" << err;
-        m_item->setStatus(DownloadItem::Status::Error);
-        emit failed(tr("Disk write failed: %1").arg(err));
-        return;
-    }
-    seg.received += wrote;
+    // Hand off to the writer thread. `received` counts bytes accepted from the
+    // network and may run ahead of disk by up to kMaxQueuedWriteBytes; every
+    // path that touches the part file on the main thread barriers first.
+    seg.received += data.size();
+    enqueueSegmentWrite(seg, std::move(data));
 }
 
 void SegmentedTransfer::onSegmentFinished(int index) {
@@ -1016,7 +1110,7 @@ void SegmentedTransfer::onSegmentFinished(int index) {
     if (m_cancelled || m_paused) {
         seg.reply->deleteLater();
         seg.reply = nullptr;
-        if (seg.file) seg.file->close();
+        closeSegmentFile(seg);
         return;
     }
 
@@ -1079,6 +1173,7 @@ void SegmentedTransfer::onSegmentFinished(int index) {
                 return;
             }
             seg.received = wrote;
+            seg.flushed->store(wrote, std::memory_order_relaxed);
             seg.file->close();
             m_htmlInterceptBuf.clear();
             seg.done = true;
@@ -1097,8 +1192,19 @@ void SegmentedTransfer::onSegmentFinished(int index) {
             if (m_speedLimitKBps > 0) {
                 seg.pending.append(data); // small tail; drained by onProgressTick
             } else if (seg.file) {
-                seg.file->write(data);
-                seg.received += data.size();
+                // Same clamp as onSegmentReadyRead — a server can deliver more
+                // body than the requested range right at connection close.
+                if (seg.endOffset >= 0) {
+                    const qint64 remaining = (seg.endOffset - seg.startOffset + 1) - seg.received;
+                    if (remaining <= 0)
+                        data.clear();
+                    else if (data.size() > remaining)
+                        data.truncate(static_cast<int>(remaining));
+                }
+                if (!data.isEmpty()) {
+                    seg.received += data.size();
+                    enqueueSegmentWrite(seg, std::move(data));
+                }
             }
         }
     }
@@ -1121,7 +1227,7 @@ void SegmentedTransfer::onSegmentFinished(int index) {
     };
 
     if (err != QNetworkReply::NoError && err != QNetworkReply::OperationCanceledError) {
-        if (seg.file) seg.file->close();
+        closeSegmentFile(seg); // ordered after any queued writes
         if (httpStatus > 0 && isPermanentHttp(httpStatus)) {
             m_item->setStatus(DownloadItem::Status::Error);
             emit failed(tr("HTTP %1 on segment %2 (not retriable)")
@@ -1144,7 +1250,7 @@ void SegmentedTransfer::onSegmentFinished(int index) {
     // Some servers return 4xx/5xx with err==NoError (they just close cleanly
     // after sending an HTML error body).  Catch that here.
     if (httpStatus >= 400) {
-        if (seg.file) seg.file->close();
+        closeSegmentFile(seg);
         if (isPermanentHttp(httpStatus)) {
             m_item->setStatus(DownloadItem::Status::Error);
             emit failed(tr("HTTP %1 on segment %2 (not retriable)")
@@ -1185,7 +1291,7 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         if (seg.received < expected) {
             qDebug() << "[ST] segment" << index << "short:"
                      << seg.received << "of" << expected << "— retrying";
-            if (seg.file) seg.file->close();
+            closeSegmentFile(seg);
             retrySegment(index);
             return;
         }
@@ -1193,7 +1299,7 @@ void SegmentedTransfer::onSegmentFinished(int index) {
 
     seg.retryCount = 0;
     seg.done = true;
-    if (seg.file) seg.file->close();
+    closeSegmentFile(seg);
 
     // Completed segments keep their own UI slot so the dialog can continue
     // showing them as fully filled even if a replacement connection starts.
@@ -1252,6 +1358,7 @@ void SegmentedTransfer::onProgressTick() {
                     return false;
                 }
                 seg.received += w;
+                seg.flushed->fetch_add(w, std::memory_order_relaxed);
                 seg.lastByteTime = QDateTime::currentMSecsSinceEpoch();
                 remaining -= w;
                 return true;
@@ -1332,13 +1439,36 @@ void SegmentedTransfer::onProgressTick() {
         }
     }
 
+    // Unthrottled: re-drain replies that paused on writer-queue backpressure.
+    // readyRead only fires on NEW network data — bytes already sitting in
+    // QNAM's buffer when the queue was full need an explicit pull once the
+    // writer catches up, or a fully-buffered (TCP-stalled) reply never drains.
+    if (m_speedLimitKBps == 0 && !m_htmlIntercepting) {
+        for (int i = 0; i < m_segments.size(); ++i) {
+            if (m_queuedWriteBytes.load(std::memory_order_relaxed) >= kMaxQueuedWriteBytes)
+                break;
+            auto &seg = m_segments[i];
+            if (seg.done || !seg.reply || seg.networkDone) continue;
+            if (seg.reply->bytesAvailable() > 0)
+                onSegmentReadyRead(i);
+        }
+    }
+
     // Stall detection: if a live reply hasn't delivered any bytes within the
     // stall window, the connection is likely hung — kill it and retry.
     {
+        const bool diskBackpressured =
+            m_queuedWriteBytes.load(std::memory_order_relaxed) >= kMaxQueuedWriteBytes;
         qint64 now = QDateTime::currentMSecsSinceEpoch();
         for (int i = 0; i < m_segments.size(); ++i) {
             auto &seg = m_segments[i];
             if (seg.done || !seg.reply || seg.lastByteTime == 0) continue;
+            if (diskBackpressured) {
+                // Disk-slow, not network-dead: the connection is intentionally
+                // not being read. Re-stamp so it isn't killed as stalled.
+                seg.lastByteTime = now;
+                continue;
+            }
             if (now - seg.lastByteTime > kStallTimeoutMs) {
                 qDebug() << "[ST] segment" << i << "stalled (" << (now - seg.lastByteTime) << "ms) — retrying";
                 seg.reply->disconnect(this);
@@ -1441,6 +1571,10 @@ void SegmentedTransfer::updateSegmentDataOnItem() {
 }
 
 void SegmentedTransfer::mergeAndFinish() {
+    // Every queued write and close must be on disk before the assembly worker
+    // reads the part files.
+    flushDiskWrites();
+
     // Check write access to the save directory before attempting assembly.
     // Catches missing permissions on Windows (ACLs) and Linux (read-only mounts)
     // before we spin up the worker thread and fail deep in I/O with a cryptic error.
@@ -2121,7 +2255,12 @@ QUrl SegmentedTransfer::extractInterstitialTarget(const QByteArray &html) const 
 void SegmentedTransfer::applyReplyReadBufferSize(QNetworkReply *reply) {
     if (!reply) return;
     if (m_speedLimitKBps <= 0) {
-        reply->setReadBufferSize(0); // unlimited
+        // Finite even when unthrottled: this is the backpressure link between
+        // the writer-queue cap and TCP flow control. Unlimited (0) would let
+        // QNAM buffer the whole stream in RAM whenever the disk falls behind
+        // the network. 16 MB/reply keeps multi-gigabit links saturated while
+        // bounding worst-case RAM to ~16 MB × active connections.
+        reply->setReadBufferSize(kUnthrottledReadBufferBytes);
         return;
     }
     int activeSegs = 0;
@@ -2135,6 +2274,12 @@ void SegmentedTransfer::applyReplyReadBufferSize(QNetworkReply *reply) {
 void SegmentedTransfer::setSpeedLimitKBps(int kbps) {
     int oldLimit = m_speedLimitKBps;
     m_speedLimitKBps = kbps;
+
+    // Unlimited → throttled: the throttled path writes synchronously on the
+    // main thread; drain the async queue first so writes to each part file
+    // stay strictly ordered.
+    if (oldLimit == 0 && kbps > 0)
+        flushDiskWrites();
 
     // Update read-buffer cap on all live replies so backpressure takes effect now.
     for (auto &seg : m_segments)
@@ -2153,6 +2298,7 @@ void SegmentedTransfer::setSpeedLimitKBps(int kbps) {
             if (!seg.pending.isEmpty() && seg.file) {
                 seg.file->write(seg.pending);
                 seg.received += seg.pending.size();
+                seg.flushed->fetch_add(seg.pending.size(), std::memory_order_relaxed);
                 seg.pending.clear();
             }
             // Drain whatever the reply has buffered in QNAM — now that we're
@@ -2163,6 +2309,7 @@ void SegmentedTransfer::setSpeedLimitKBps(int kbps) {
                     QByteArray data = seg.reply->readAll();
                     seg.file->write(data);
                     seg.received += data.size();
+                    seg.flushed->fetch_add(data.size(), std::memory_order_relaxed);
                 }
             }
             if (seg.networkDone && !seg.done) {
@@ -2187,6 +2334,10 @@ void SegmentedTransfer::pause() {
     m_paused = true;
 
     m_progressTimer->stop();
+
+    // Land queued writes before the direct close/saveMeta below. Bounded by
+    // kMaxQueuedWriteBytes of disk time — acceptable for an explicit user action.
+    flushDiskWrites();
 
     for (int i = 0; i < m_segments.size(); ++i) {
         auto &seg = m_segments[i];
@@ -2254,6 +2405,9 @@ bool SegmentedTransfer::relocateOutput(const QString &newSavePath, const QString
 
     if (oldSavePath == newSavePath && oldFilename == newFilename)
         return true;
+
+    // Part files are about to be closed/renamed on the main thread.
+    flushDiskWrites();
 
     QDir().mkpath(newSavePath);
 
@@ -2325,6 +2479,13 @@ void SegmentedTransfer::abort() {
             seg.reply->deleteLater();
             seg.reply = nullptr;
         }
+    }
+
+    // Queued writes hold raw QFile pointers — drain before deleting the objects
+    // and removing the part files.
+    flushDiskWrites();
+
+    for (auto &seg : m_segments) {
         if (seg.file) {
             seg.file->close();
             delete seg.file;
@@ -2431,6 +2592,10 @@ bool SegmentedTransfer::maybeStealWork(int freedUiSlot) {
     victim.reply->abort();
     victim.reply->deleteLater();
     victim.reply = nullptr;
+    // Victim may have writes queued on the writer thread; drain before the
+    // main-thread close (startSegment below reopens and seeks to `received`,
+    // which is only on disk once the queue is empty).
+    flushDiskWrites();
     if (victim.file && victim.file->isOpen()) victim.file->close();
 
     // Shrink the victim to the first half. The victim keeps its own UI slot —
@@ -2476,6 +2641,9 @@ void SegmentedTransfer::fallbackToSingleSegment() {
     if (m_cancelled || m_paused) return;
 
     m_progressTimer->stop();
+
+    // Queued writes reference the QFile objects deleted below.
+    flushDiskWrites();
 
     for (auto &seg : m_segments) {
         if (seg.reply) {
@@ -2560,7 +2728,11 @@ bool SegmentedTransfer::saveMeta() {
         QJsonObject s;
         s[QStringLiteral("startOffset")] = seg.startOffset;
         s[QStringLiteral("endOffset")]   = seg.endOffset;
-        s[QStringLiteral("received")]    = seg.received;
+        // Persist bytes actually on disk, not bytes accepted from the network —
+        // `received` can run ahead of the writer thread by the queue cap, and a
+        // meta overstating disk contents resumes past a hole of stale bytes.
+        s[QStringLiteral("received")]    = std::min(seg.received,
+                                                    seg.flushed->load(std::memory_order_relaxed));
         s[QStringLiteral("done")]        = seg.done;
         segs.append(s);
     }
@@ -2629,11 +2801,17 @@ bool SegmentedTransfer::loadMeta() {
         const qint64 savedReceived = s[QStringLiteral("received")].toVariant().toLongLong();
         const QFileInfo partInfo(seg.partPath);
         const qint64 actualSize = partInfo.exists() ? partInfo.size() : 0;
-        seg.received = std::clamp(actualSize, 0ll, expectedLength);
-        if (savedReceived > seg.received) {
+        // Trust the SMALLER of meta and file size. startSegment() preallocates
+        // part files to their full range (resize/SetEndOfFile), so after a crash
+        // the file size equals the full segment even when only a fraction was
+        // written — taking actualSize alone would mark half-empty segments done
+        // and assemble zero-filled holes into a "completed" file.
+        seg.received = std::clamp(std::min(savedReceived, actualSize), 0ll, expectedLength);
+        if (savedReceived > actualSize) {
             qDebug() << "[ST] loadMeta clamped" << seg.partPath
                      << "from" << savedReceived << "to" << seg.received;
         }
+        seg.flushed->store(seg.received, std::memory_order_relaxed);
         seg.done = (seg.received >= expectedLength && expectedLength > 0);
         done += seg.received;
         m_segments.append(seg);

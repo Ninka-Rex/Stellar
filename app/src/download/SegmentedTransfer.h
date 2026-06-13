@@ -23,8 +23,12 @@
 #include <QTimer>
 #include <QList>
 #include <QVariantMap>
+#include <atomic>
+#include <memory>
 #include "DownloadItem.h"
 #include "Transfer.h"
+
+class QThread;
 
 class SegmentedTransfer : public Transfer {
     Q_OBJECT
@@ -46,6 +50,14 @@ public:
     // Throttle read-buffer sizing
     static constexpr int kReadBufferSeconds      = 4;                // QNAM buffer = N seconds of budget/seg
     static constexpr qint64 kMinReadBufferBytes  = 128 * 1024;       // floor so low-rate/many-seg don't starve
+
+    // Async disk-writer sizing. Streaming writes go to a dedicated writer
+    // thread; when the disk can't keep up with the network the queue fills to
+    // this cap, reads stop, QNAM's bounded read buffer fills, and TCP
+    // backpressure slows the server — instead of QFile::write() blocking the
+    // GUI thread for seconds ("Not Responding" at >1 GB/s on localhost).
+    static constexpr qint64 kMaxQueuedWriteBytes      = 64LL * 1024 * 1024;  // 64 MB in-flight cap
+    static constexpr qint64 kUnthrottledReadBufferBytes = 16LL * 1024 * 1024; // per-reply QNAM buffer
 
     explicit SegmentedTransfer(DownloadItem *item,
                                QNetworkAccessManager *nam,
@@ -98,6 +110,14 @@ private:
         // of the segment they were spawned from, so the row "recycles" to the
         // newer connection rather than accumulating completed/stolen rows.
         int    uiSlot{-1};
+        // Bytes actually flushed to disk by the writer thread (or by the
+        // synchronous throttled path). `received` counts bytes accepted from
+        // the network — it can run ahead of `flushed` by up to
+        // kMaxQueuedWriteBytes while writes are queued. saveMeta() persists
+        // flushed (never received) so a crash mid-queue can't leave the meta
+        // claiming bytes the part file doesn't have. shared_ptr so writer-thread
+        // jobs outliving a segment-list rebuild touch valid memory.
+        std::shared_ptr<std::atomic<qint64>> flushed{std::make_shared<std::atomic<qint64>>(0)};
     };
 
     void sendHeadRequest(const QUrl &overrideUrl = QUrl());
@@ -161,6 +181,22 @@ private:
     void startNextPendingSegment();
     void seedCookieJar();
 
+    // --- Async disk writer -------------------------------------------------
+    // Streaming segment writes run on a dedicated thread so a slow/saturated
+    // disk never blocks the GUI thread. All ops on one segment's QFile are
+    // FIFO-ordered through the writer's event queue; the main thread must call
+    // flushDiskWrites() before touching a part file directly (reopen, seek,
+    // delete, rename, merge).
+    void ensureDiskWriter();
+    void enqueueSegmentWrite(Segment &seg, QByteArray data);
+    // Blocking barrier: returns once every queued write/close has executed.
+    // Bounded by kMaxQueuedWriteBytes of disk time; no-op when no writer.
+    void flushDiskWrites();
+    // Close a segment's file ordered after its queued writes (direct close
+    // when no writer thread exists).
+    void closeSegmentFile(Segment &seg);
+    void onAsyncWriteFailed(const QString &error);
+
     DownloadItem          *m_item{nullptr};
     QNetworkAccessManager *m_nam{nullptr};
     int                    m_segmentCount;
@@ -191,6 +227,16 @@ private:
 
     // HEAD reply kept alive until processed
     QNetworkReply  *m_headReply{nullptr};
+
+    // Async disk writer state. m_writerObj lives in m_writerThread; jobs are
+    // posted with QMetaObject::invokeMethod. m_queuedWriteBytes is the
+    // backpressure gauge (incremented at enqueue on the main thread,
+    // decremented by the writer after each write).
+    QThread             *m_writerThread{nullptr};
+    QObject             *m_writerObj{nullptr};
+    std::atomic<qint64>  m_queuedWriteBytes{0};
+    std::atomic<bool>    m_writerFailed{false};   // writer-side: skip writes after first error
+    bool                 m_writerFailureHandled{false}; // main-thread: emit failed() once
 
     // Final URL after redirect chain, used for segment GETs when it differs from
     // m_item->url() (e.g. after following an HTML interstitial / confirmation

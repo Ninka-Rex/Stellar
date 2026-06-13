@@ -4,6 +4,7 @@ note/
 releases/
 backups/
 docs/
+speedtest-server/
 packaging/windows/output
 third_party/
 .claude/
