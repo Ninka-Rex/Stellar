@@ -759,10 +759,9 @@ Window {
 
                     Text { text: qsTr("Category"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
 
-                    ComboBox {
+                    StyledComboBox {
                         id: categoryCombo
                         implicitWidth: 140
-                        implicitHeight: 32
                         model: root.categoryLabels
                         currentIndex: root.categoryIndex()
                         onActivated: {

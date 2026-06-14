@@ -2175,11 +2175,10 @@ Window {
 
                                 // Category
                                 Text { text: qsTr("Category"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.alignment: Qt.AlignVCenter }
-                                ComboBox {
+                                StyledComboBox {
                                     id: categoryCombo
                                     Layout.preferredWidth: 180
                                     Layout.fillWidth: false
-                                    implicitHeight: 26
                                     model: App.categoryModel
                                     textRole: "categoryLabel"
                                     valueRole: "categoryId"
@@ -2693,9 +2692,8 @@ Window {
                             RowLayout {
                                 spacing: 6
                                 Text { text: qsTr("Span"); color: ColorPalette.textDisabled; font.pixelSize: 11 * App.fontScale }
-                                ComboBox {
+                                StyledComboBox {
                                     implicitWidth: 90
-                                    implicitHeight: 24
                                     model: root.speedSpanOptions.map(function(o){ return o.label })
                                     currentIndex: root.speedSpanIndex
                                     onActivated: root.speedSpanIndex = currentIndex

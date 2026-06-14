@@ -986,7 +986,7 @@ Window {
                         width: parent.width
                         height: visible ? categoryCombo.implicitHeight : 0
                         visible: root.saveMode === "oneCategory"
-                        ComboBox {
+                        StyledComboBox {
                             id: categoryCombo
                             anchors.left: parent.left
                             anchors.right: parent.right
@@ -994,7 +994,6 @@ Window {
                             model: App.categoryModel
                             textRole: "categoryLabel"
                             valueRole: "categoryId"
-                            implicitHeight: 28
                             background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 4 }
                             contentItem: Text { leftPadding: 8; text: categoryCombo.displayText; color: ColorPalette.textPrimary; font: categoryCombo.font; verticalAlignment: Text.AlignVCenter }
                             onActivated: root.selectedCategoryId = currentValue

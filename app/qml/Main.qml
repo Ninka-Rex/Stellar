@@ -414,10 +414,9 @@ ApplicationWindow {
                         font.pixelSize: 11 * App.fontScale
                     }
 
-                    ComboBox {
+                    StyledComboBox {
                         id: cookieBrowserCombo
                         Layout.preferredWidth: 130
-                        implicitHeight: 26
                         model: ["Chrome","Firefox","Edge","Brave","Opera","Vivaldi","Safari"]
                         contentItem: Text {
                             leftPadding: 8

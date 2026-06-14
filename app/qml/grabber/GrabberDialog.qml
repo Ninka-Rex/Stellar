@@ -114,7 +114,7 @@ Window {
         background: FieldBox {}
     }
 
-    component WizardCombo: ComboBox {
+    component WizardCombo: StyledComboBox {
         font.pixelSize: 13 * App.fontScale
         background: FieldBox {}
         contentItem: Text {
@@ -1171,7 +1171,7 @@ Window {
                                 RowLayout {
                                     Layout.fillWidth: true
                                     spacing: 8
-                                    ComboBox {
+                                    StyledComboBox {
                                         id: includeFilterCombo
                                         Layout.fillWidth: true
                                         model: root.filterLabels(root.includeFilterRows())
@@ -1210,7 +1210,7 @@ Window {
                                 RowLayout {
                                     Layout.fillWidth: true
                                     spacing: 8
-                                    ComboBox {
+                                    StyledComboBox {
                                         id: excludeFilterCombo
                                         Layout.fillWidth: true
                                         model: root.filterLabels(root.excludeFilterRows())

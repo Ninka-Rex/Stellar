@@ -94,7 +94,7 @@ Window {
             Layout.fillWidth: true
             spacing: 8
             Text { text: qsTr("Queue"); color: "#c7cfdb"; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 44 }
-            ComboBox {
+            StyledComboBox {
                 id: queueCombo
                 Layout.fillWidth: true
                 model: queueNames
@@ -104,7 +104,6 @@ Window {
             Button {
                 text: "+"
                 implicitWidth: 32
-                implicitHeight: 30
                 background: Rectangle { color: "#2d3440"; border.color: "#4a5a72"; radius: 4 }
                 contentItem: Text { text: parent.text; color: ColorPalette.textHeader; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter; font.pixelSize: 16 * App.fontScale; font.bold: true }
                 onClicked: createQueuePopup.open()

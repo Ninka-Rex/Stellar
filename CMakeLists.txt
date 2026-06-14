@@ -229,6 +229,7 @@ qt_add_qml_module(Stellar
         app/qml/components/DlgButton.qml
         app/qml/components/ThemedToolTip.qml
         app/qml/components/StyledCheckBox.qml
+        app/qml/components/StyledComboBox.qml
         app/qml/components/StyledRadioButton.qml
         app/qml/components/ToolbarBtn.qml
         app/qml/components/ToolbarDropdown.qml

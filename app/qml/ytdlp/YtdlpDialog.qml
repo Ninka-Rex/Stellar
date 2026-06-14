@@ -577,9 +577,9 @@ Window {
 
                         Text { text: qsTr("Cookies from browser:"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
 
-                        ComboBox {
+                        StyledComboBox {
                             id: errCookieCombo
-                            implicitWidth: 110; implicitHeight: 24; font.pixelSize: 11 * App.fontScale
+                            implicitWidth: 110; font.pixelSize: 11 * App.fontScale
                             model: ["None","Chrome","Firefox","Edge","Brave","Opera","Vivaldi","Safari"]
                             // Sync with the advanced-tab cookies combo so they share state
                             currentIndex: cookiesBrowserCombo.currentIndex
@@ -626,7 +626,6 @@ Window {
                     Item {
                         id: fmtDropWrapper
                         Layout.fillWidth: true
-                        implicitHeight: 30
 
                         Rectangle {
                             id: fmtTrigger
@@ -1056,8 +1055,8 @@ Window {
 
                             Text { text: qsTr("Cookies:"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
                             RowLayout { spacing: 6
-                                ComboBox {
-                                    id: cookiesBrowserCombo; implicitWidth: 100; implicitHeight: 24; font.pixelSize: 11 * App.fontScale; currentIndex: 0
+                                StyledComboBox {
+                                    id: cookiesBrowserCombo; implicitWidth: 100; font.pixelSize: 11 * App.fontScale; currentIndex: 0
                                     model: ["None","Chrome","Firefox","Edge","Brave","Opera","Vivaldi","Safari"]
                                     Component.onCompleted: {
                                         var v = (App.settings.ytdlpDefaultCookieBrowser || "").toLowerCase()
@@ -1194,7 +1193,7 @@ Window {
                 RowLayout {
                     Layout.fillWidth: true; spacing: 8
                     Text { text: qsTr("Category:"); color: ColorPalette.textMuted; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: 58 }
-                    ComboBox {
+                    StyledComboBox {
                         id: catCombo; Layout.fillWidth: true; font.pixelSize: 12 * App.fontScale; model: root.categoryLabels
                         contentItem: Text { leftPadding: 8; text: catCombo.displayText; color: ColorPalette.textPrimary; font: catCombo.font; verticalAlignment: Text.AlignVCenter }
                         background: Rectangle { color: ColorPalette.inputBg; border.color: catCombo.activeFocus ? "#4488dd" : ColorPalette.border; radius: 3 }
@@ -1213,7 +1212,7 @@ Window {
                     }
 
                     Text { text: qsTr("Format:"); color: ColorPalette.textMuted; font.pixelSize: 11 * App.fontScale }
-                    ComboBox {
+                    StyledComboBox {
                         id: containerCombo; implicitWidth: 90; font.pixelSize: 12 * App.fontScale
                         property bool _audioOnly: { var f = root._formats[formatList.currentIndex]; return f ? (f.height === 0) : false }
                         on_AudioOnlyChanged: currentIndex = 0

@@ -284,7 +284,7 @@ Window {
                 visible: categoryEnabled
                 spacing: 6
                 Text { text: qsTr("Category"); color: "#d4d4d4"; font.pixelSize: 12 * App.fontScale }
-                ComboBox {
+                StyledComboBox {
                     id: categoryCombo
                     Layout.fillWidth: true
                     model: categoryLabelOptions

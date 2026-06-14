@@ -1609,7 +1609,6 @@ Window {
                                     TextField {
                                         id: catEditName
                                         Layout.fillWidth: true
-                                        implicitHeight: 30
                                         font.pixelSize: 12 * App.fontScale; color: ColorPalette.textPrimary
                                         background: Rectangle { color: ColorPalette.dividerBg; border.color: "#4a4a4a"; radius: 3 }
                                         leftPadding: 8
@@ -1674,7 +1673,6 @@ Window {
                                     TextField {
                                         id: catEditSites
                                         Layout.fillWidth: true
-                                        implicitHeight: 30
                                         placeholderText: "*.youtube.com *.vimeo.com"
                                         placeholderTextColor: "#888888"
                                         font.pixelSize: 12 * App.fontScale; color: ColorPalette.textPrimary
@@ -1701,7 +1699,6 @@ Window {
                                         TextField {
                                             id: catEditPath
                                             Layout.fillWidth: true
-                                            implicitHeight: 30
                                             font.pixelSize: 12 * App.fontScale; color: ColorPalette.textPrimary
                                             background: Rectangle { color: ColorPalette.dividerBg; border.color: ColorPalette.border; radius: 3 }
                                             leftPadding: 8
@@ -1878,7 +1875,7 @@ Window {
                         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                         Text { text: qsTr("If a duplicate URL is added:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
-                        ComboBox {
+                        StyledComboBox {
                             id: duplicateActionCombo
                             model: [
                                 qsTr("Ask me what to do"),
@@ -1904,7 +1901,7 @@ Window {
                         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                         Text { text: qsTr("Double-clicking on a download in the file list:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
-                        ComboBox {
+                        StyledComboBox {
                             id: doubleClickActionCombo
                             model: [
                                 qsTr("Open file properties dialog"),
@@ -1929,7 +1926,7 @@ Window {
                         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
 
                         Text { text: qsTr("Last try date format:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
-                        ComboBox {
+                        StyledComboBox {
                             id: lastTryDateStyleCombo
                             model: [
                                 root._previewDatePart(0),
@@ -1951,7 +1948,7 @@ Window {
                         }
 
                         Text { text: qsTr("Time format:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; wrapMode: Text.WordWrap; Layout.fillWidth: true }
-                        ComboBox {
+                        StyledComboBox {
                             id: lastTryTimeModeCombo
                             model: [
                                 qsTr("24-hour time"),
@@ -2152,7 +2149,7 @@ Window {
 
                             Row {
                                 spacing: 12
-                                ComboBox {
+                                StyledComboBox {
                                     id: bypassKeyCombo
                                     model: [qsTr("None"), "Alt", "Ctrl", "Shift"]
                                     currentIndex: root.editBypassInterceptKey
@@ -2439,10 +2436,10 @@ Window {
                                                 }
                                             }
                                             // AM/PM combo for On time - same style as DarkCombo
-                                            ComboBox {
+                                            StyledComboBox {
                                                 model: ["AM","PM"]
                                                 currentIndex: (ruleCard.rule.onAmPm || "AM") === "PM" ? 1 : 0
-                                                implicitWidth: 62; implicitHeight: 26
+                                                implicitWidth: 62
                                                 font.pixelSize: 12 * App.fontScale
                                                 contentItem: Text {
                                                     leftPadding: 8; rightPadding: 20
@@ -2493,10 +2490,10 @@ Window {
                                                 }
                                             }
                                             // AM/PM combo for Off time
-                                            ComboBox {
+                                            StyledComboBox {
                                                 model: ["AM","PM"]
                                                 currentIndex: (ruleCard.rule.offAmPm || "PM") === "PM" ? 1 : 0
-                                                implicitWidth: 62; implicitHeight: 26
+                                                implicitWidth: 62
                                                 font.pixelSize: 12 * App.fontScale
                                                 contentItem: Text {
                                                     leftPadding: 8; rightPadding: 20
@@ -2679,10 +2676,9 @@ Window {
                                 font.pixelSize: 13 * App.fontScale
                                 Layout.alignment: Qt.AlignVCenter
                             }
-                            ComboBox {
+                            StyledComboBox {
                                 id: uiScaleCombo
                                 implicitWidth: 150
-                                implicitHeight: 26
                                 readonly property var scaleValues: [0.0, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0]
                                 model: [qsTr("System default"), "75%", "100%", "125%", "150%", "175%", "200%", "250%", "300%"]
                                 currentIndex: {
@@ -2690,18 +2686,6 @@ Window {
                                     return idx >= 0 ? idx : 0
                                 }
                                 onActivated: root.editUiScaleFactor = scaleValues[currentIndex]
-                                contentItem: Text {
-                                    leftPadding: 8
-                                    text: uiScaleCombo.displayText
-                                    color: ColorPalette.textPrimary
-                                    font.pixelSize: 13 * App.fontScale
-                                    verticalAlignment: Text.AlignVCenter
-                                }
-                                background: Rectangle {
-                                    color: ColorPalette.inputBg
-                                    border.color: uiScaleCombo.activeFocus ? "#4488dd" : ColorPalette.border
-                                    radius: 2
-                                }
                             }
                         }
 
@@ -2713,10 +2697,9 @@ Window {
                                 font.pixelSize: 13 * App.fontScale
                                 Layout.alignment: Qt.AlignVCenter
                             }
-                            ComboBox {
+                            StyledComboBox {
                                 id: fontSizeCombo
                                 implicitWidth: 150
-                                implicitHeight: 26
                                 readonly property var fontValues: [0, 8, 9, 10, 11, 12, 13, 14, 16, 18, 20]
                                 model: [qsTr("System default"), "8pt", "9pt", "10pt", "11pt", "12pt", "13pt", "14pt", "16pt", "18pt", "20pt"]
                                 currentIndex: {
@@ -2747,10 +2730,9 @@ Window {
                                 font.pixelSize: 13 * App.fontScale
                                 Layout.alignment: Qt.AlignVCenter
                             }
-                            ComboBox {
+                            StyledComboBox {
                                 id: trayIconStyleCombo
                                 implicitWidth: 130
-                                implicitHeight: 26
                                 model: [qsTr("Colored"), qsTr("White"), qsTr("Black")]
                                 currentIndex: root.editTrayIconStyle
                                 onActivated: root.editTrayIconStyle = currentIndex
@@ -2777,10 +2759,9 @@ Window {
                                 font.pixelSize: 13 * App.fontScale
                                 Layout.alignment: Qt.AlignVCenter
                             }
-                            ComboBox {
+                            StyledComboBox {
                                 id: themeCombo
                                 implicitWidth: 130
-                                implicitHeight: 26
                                 model: [qsTr("Dark"), qsTr("Light")]
                                 currentIndex: root.editDarkMode ? 0 : 1
                                 onActivated: root.editDarkMode = (currentIndex === 0)
@@ -3233,10 +3214,9 @@ Window {
                                 Layout.fillWidth: true
                             }
 
-                            ComboBox {
+                            StyledComboBox {
                                 id: ytdlpCookieBrowserCombo
                                 Layout.preferredWidth: 140
-                                implicitHeight: 26
                                 font.pixelSize: 11 * App.fontScale
                                 model: ["None","Chrome","Firefox","Edge","Brave","Opera","Vivaldi","Safari"]
 
@@ -3460,7 +3440,7 @@ Window {
                             Text { text: qsTr("0 = unlimited (per-torrent fields and global upload slots)"); color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
 
                             Text { text: qsTr("Protocol"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
-                            ComboBox {
+                            StyledComboBox {
                                 id: torrentProtocolCombo
                                 Layout.preferredWidth: 160
                                 model: [qsTr("TCP and µTP"), qsTr("µTP only"), qsTr("TCP only")]
@@ -3597,7 +3577,7 @@ Window {
 
                         Text { text: qsTr("Network interface"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
 
-                        ComboBox {
+                        StyledComboBox {
                             id: torrentAdapterCombo
                             Layout.fillWidth: true
                             model: root.torrentAdapterOptions
@@ -3790,7 +3770,7 @@ Window {
 
                             Text { text: qsTr("Disk I/O type"); color: "#a0a0a0"; font.pixelSize: 11 * App.fontScale; Layout.alignment: Qt.AlignVCenter }
 
-                            ComboBox {
+                            StyledComboBox {
                                 id: diskIoTypeCombo
                                 implicitWidth: 140
                                 model: [qsTr("Default"), qsTr("Memory-mapped"), qsTr("POSIX")]
@@ -3875,7 +3855,7 @@ Window {
 
                         Text { text: qsTr("Encryption Mode"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
 
-                        ComboBox {
+                        StyledComboBox {
                             id: encryptionModeCombo
                             implicitWidth: 220
                             model: [qsTr("Prefer encryption"), qsTr("Require encryption"), qsTr("Allow encryption")]
@@ -4001,7 +3981,7 @@ Window {
                             Layout.fillWidth: true
                             spacing: 8
 
-                            ComboBox {
+                            StyledComboBox {
                                 id: blockedCountryCombo
                                 Layout.fillWidth: true
                                 model: root.torrentCountryOptions
@@ -4708,10 +4688,9 @@ Window {
                                 font.pixelSize: 13 * App.fontScale
                             }
 
-                            ComboBox {
+                            StyledComboBox {
                                 id: languageCombo
                                 implicitWidth: 220
-                                implicitHeight: 28
 
                                 // Shared list (UTF-8 native names) from the LanguageList singleton.
                                 readonly property var langEntries: LanguageList.entries

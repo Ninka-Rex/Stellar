@@ -488,13 +488,12 @@ Window {
                                     onTextEdited: root.updateSelectedQueueTime("startTime", startHourInput.text, text, startAmPmCombo.currentText)
                                 }
                             }
-                            ComboBox {
+                            StyledComboBox {
                                 id: startAmPmCombo
                                 model: ["AM", "PM"]
                                 currentIndex: parent.startParts.amPm === "PM" ? 1 : 0
                                 enabled: hasStartTimeCb.checked && root.selectedQueue !== null
                                 implicitWidth: 62
-                                implicitHeight: 26
                                 font.pixelSize: 12 * App.fontScale
                                 contentItem: Text {
                                     leftPadding: 8
@@ -711,13 +710,12 @@ Window {
                                     onTextEdited: root.updateSelectedQueueTime("stopTime", stopHourInput.text, text, stopAmPmCombo.currentText)
                                 }
                             }
-                            ComboBox {
+                            StyledComboBox {
                                 id: stopAmPmCombo
                                 model: ["AM", "PM"]
                                 currentIndex: parent.stopParts.amPm === "PM" ? 1 : 0
                                 enabled: hasStopTimeCb.checked && root.selectedQueue !== null
                                 implicitWidth: 62
-                                implicitHeight: 26
                                 font.pixelSize: 12 * App.fontScale
                                 contentItem: Text {
                                     leftPadding: 8

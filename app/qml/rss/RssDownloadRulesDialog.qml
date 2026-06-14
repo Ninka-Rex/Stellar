@@ -544,7 +544,7 @@ Window {
                                     }
 
                                     Text { text: qsTr("Category:"); color: ColorPalette.infoBoxText; font.pixelSize: 12 * App.fontScale }
-                                    ComboBox {
+                                    StyledComboBox {
                                         id: catCombo
                                         Layout.fillWidth: true
                                         model: root.categoryLabels
@@ -578,7 +578,7 @@ Window {
                                     }
 
                                     Text { text: qsTr("Queue:"); color: ColorPalette.infoBoxText; font.pixelSize: 12 * App.fontScale }
-                                    ComboBox {
+                                    StyledComboBox {
                                         id: queueCombo
                                         Layout.fillWidth: true
                                         model: root.queueNames

@@ -130,8 +130,7 @@ Window {
     }
 
     // Dark-styled ComboBox
-    component DarkCombo: ComboBox {
-        implicitHeight: 26
+    component DarkCombo: StyledComboBox {
         font.pixelSize: 12 * App.fontScale
         contentItem: Text {
             leftPadding: 8

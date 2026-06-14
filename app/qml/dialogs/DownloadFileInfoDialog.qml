@@ -619,7 +619,7 @@ Window {
                     Rectangle {
                         implicitWidth: 160; implicitHeight: 22
                         color: ColorPalette.inputBg; border.color: ColorPalette.border; border.width: 1; radius: 2
-                        ComboBox {
+                        StyledComboBox {
                             id: catCombo
                             anchors.fill: parent
                             model: root.categoryLabels
