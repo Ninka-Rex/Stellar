@@ -129,10 +129,6 @@ Root: HKCU; Subkey: "Software\Mozilla\NativeMessagingHosts\com.stellar.downloadm
 [Run]
 Filename: "{app}\{#AppExeName}"; Description: "Launch {#AppName}"; Flags: nowait postinstall skipifsilent
 
-[UninstallRun]
-; Kill any running instance before uninstall
-Filename: "taskkill.exe"; Parameters: "/f /im {#AppExeName}"; Flags: runhidden; RunOnceId: "KillStellar"
-
 [UninstallDelete]
 ; Clean up user data only if the user explicitly opts in — we don't wipe downloads.json silently.
 ; Log/temp files that are safe to remove:
@@ -157,12 +153,60 @@ begin
   end;
 end;
 
-function PrepareToInstall(var NeedsRestart: Boolean): String;
+// True while a Stellar.exe process exists. Uses taskkill's query-only behaviour:
+// "/im Stellar.exe" with no "/f" returns 0 when at least one matching process was
+// found (and signalled) and 128 ("not found") once they are all gone. We only read
+// the exit code here — the WM_CLOSE it sends is harmless (the app hides to tray on
+// it, it does not kill), so this doubles as a poll without force-killing anything.
+function StellarIsRunning(): Boolean;
 var
   ResultCode: Integer;
 begin
-  Exec(ExpandConstant('{sys}\taskkill.exe'), '/f /im {#AppExeName}', '', SW_HIDE,
-    ewWaitUntilTerminated, ResultCode);
+  Result := False;
+  if Exec(ExpandConstant('{sys}\taskkill.exe'), '/im {#AppExeName}', '', SW_HIDE,
+          ewWaitUntilTerminated, ResultCode) then
+    Result := (ResultCode = 0);
+end;
+
+// Ask any running Stellar to shut down gracefully (flushing its download DB and
+// torrent resume data), then wait for the process to actually disappear before
+// touching its files. Force-kill is a last resort only after the grace window.
+procedure ShutDownStellar();
+var
+  ResultCode: Integer;
+  ExePath: String;
+  Waited: Integer;
+begin
+  ExePath := ExpandConstant('{app}\{#AppExeName}');
+  // On a first install the exe isn't present yet (this runs before [Files]); there
+  // is nothing to shut down. The graceful path only applies to upgrades/uninstall.
+  if not FileExists(ExePath) then
+    Exit;
+
+  // Newer builds understand --quit: it signals the running instance to close
+  // gracefully and returns. Older builds (<= 0.10.3) don't have the switch and
+  // simply no-op, so we never depend on it — the wait loop below is what actually
+  // gates progress, and a stubborn old instance just falls through to force-kill.
+  Exec(ExePath, '--quit', ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, ResultCode);
+
+  // Wait for the process to be gone. Only proceed once it actually exits, so we
+  // never replace files out from under a still-running instance.
+  Waited := 0;
+  while StellarIsRunning() and (Waited < 30000) do begin
+    Sleep(300);
+    Waited := Waited + 300;
+  end;
+
+  // Last resort: an instance that never exited (no --quit support, or hung) gets
+  // force-killed so the install/uninstall isn't blocked by a locked exe.
+  if StellarIsRunning() then
+    Exec(ExpandConstant('{sys}\taskkill.exe'), '/f /im {#AppExeName}', '', SW_HIDE,
+      ewWaitUntilTerminated, ResultCode);
+end;
+
+function PrepareToInstall(var NeedsRestart: Boolean): String;
+begin
+  ShutDownStellar();
   Result := '';
 end;
 
@@ -174,4 +218,11 @@ begin
     Exec(ExpandConstant('{app}\{#AppExeName}'), '', ExpandConstant('{app}'),
       SW_SHOWNORMAL, ewNoWait, ResultCode);
   end;
+end;
+
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+begin
+  // Gracefully stop Stellar before removing its files (was a hard taskkill).
+  if CurUninstallStep = usUninstall then
+    ShutDownStellar();
 end;

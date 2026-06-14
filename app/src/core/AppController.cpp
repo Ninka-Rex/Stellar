@@ -1050,7 +1050,13 @@ void AppController::handleIpcPayload(const QByteArray &json) {
         }
     } else if (type == QStringLiteral("focus")) {
         emit showWindowRequested();
-    } else if (type == QStringLiteral("cliDownload")) {
+    } else if (type == QStringLiteral("quit")) {
+        // Graceful external shutdown (e.g. the Windows installer/uninstaller before
+        // replacing files). Bypasses the closeToTray setting — the window-close path
+        // would only hide to tray — and runs the normal shutdown so the download DB
+        // and torrent resume data are flushed. The IPC server socket closes when the
+        // process exits, which is what the caller waits on.
+        requestQuit();
         // IDM-compatible CLI: Stellar.exe /d URL [/p path] [/f name] [/n] [/a] [/h] [/q]
         const QString url      = obj.value(QStringLiteral("url")).toString();
         const QString savePath = obj.value(QStringLiteral("savePath")).toString().trimmed();

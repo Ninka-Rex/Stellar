@@ -2833,7 +2833,7 @@ ApplicationWindow {
                 Text {
                     Layout.fillWidth: true
                     text: updateAvailableDialog.downloadedPath
-                    color: ColorPalette.textSecondary
+                    color: ColorPalette.textSecond
                     font.pixelSize: 11 * App.fontScale
                     wrapMode: Text.WrapAnywhere
                 }

@@ -548,6 +548,56 @@ static QByteArray makeCliStartSchedulerPayload()
     }).toJson(QJsonDocument::Compact);
 }
 
+// Handle --quit: tell a running instance to shut down gracefully, then block
+// until it has actually exited so the caller (the installer) can safely replace
+// files. Returns once the instance is gone or the wait budget is exhausted.
+static int runQuitMode(int argc, char *argv[])
+{
+    QCoreApplication coreApp(argc, argv);
+    QCoreApplication::setApplicationName(QStringLiteral("Stellar"));
+    QCoreApplication::setOrganizationName(QStringLiteral("Stellar"));
+
+    const QString kServer = QStringLiteral("StellarDownloadManager");
+
+    {
+        QLocalSocket sock;
+        sock.connectToServer(kServer);
+        if (!sock.waitForConnected(500)) {
+            // Nothing running — already "shut down".
+            nmLog(QStringLiteral("--quit: no running instance"));
+            return 0;
+        }
+        const QByteArray payload = QJsonDocument(QJsonObject{
+            {QStringLiteral("type"), QStringLiteral("quit")}
+        }).toJson(QJsonDocument::Compact);
+        sock.write(payload);
+        sock.flush();
+        sock.waitForBytesWritten(3000);
+        nmLog(QStringLiteral("--quit: shutdown request sent, waiting for exit..."));
+    }
+
+    // Poll until the instance releases its single-instance server. A fresh
+    // connect attempt that can no longer reach the server means the process has
+    // exited (or is past the point of servicing IPC and tearing down). Cap the
+    // wait so a hung instance can't block the installer forever; the installer's
+    // own force-kill fallback (PrepareToInstall) covers that edge case.
+    const int kMaxWaitMs = 30'000;
+    int waited = 0;
+    while (waited < kMaxWaitMs) {
+        QLocalSocket probe;
+        probe.connectToServer(kServer);
+        if (!probe.waitForConnected(200)) {
+            nmLog(QStringLiteral("--quit: instance has exited"));
+            return 0;
+        }
+        probe.abort();
+        QThread::msleep(200);
+        waited += 400;
+    }
+    nmLog(QStringLiteral("--quit: timed out waiting for instance to exit"));
+    return 0;
+}
+
 // Run CLI mode: forward the command to a running instance via IPC, or launch
 // the GUI with the payload stored in the drop file (same cold-start pattern
 // used by the native messaging host).
@@ -720,6 +770,7 @@ int main(int argc, char *argv[])
     bool forceGui = false;
     bool startMinimized = false;
     bool isRelaunch = false;
+    bool requestShutdown = false;
     for (int i = 1; i < argc; ++i) {
         if (qstrcmp(argv[i], "--gui") == 0)
             forceGui = true;
@@ -727,7 +778,16 @@ int main(int argc, char *argv[])
             startMinimized = true;
         else if (qstrcmp(argv[i], "--relaunch") == 0)
             isRelaunch = true;
+        else if (qstrcmp(argv[i], "--quit") == 0)
+            requestShutdown = true;
     }
+
+    // --quit: ask a running instance to shut down gracefully and wait for it to
+    // exit. Used by the Windows installer/uninstaller so it can replace files
+    // without force-killing Stellar (which would skip the DB/resume-data flush).
+    // If no instance is running there is nothing to do.
+    if (requestShutdown)
+        return runQuitMode(argc, argv);
 
     // Parse IDM-compatible CLI switches.  If any are present and --gui was not
     // explicitly requested, run in CLI mode (no GUI window opened by this copy).
