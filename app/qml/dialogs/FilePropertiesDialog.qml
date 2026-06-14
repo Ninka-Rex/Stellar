@@ -4759,6 +4759,10 @@ Window {
                                             Row {
                                                 spacing: 5
                                                 width: parent.width
+                                                // Empty client name = anonymous mode (libtorrent blanks the
+                                                // user-agent the client broadcasts) — hide the row so the
+                                                // tooltip matches what the swarm actually sees.
+                                                visible: !!root.torrentPeerModel && root.torrentPeerModel.localClientName.length > 0
                                                 Image {
                                                     source: "../icons/milky-way.png"
                                                     width: 14; height: 14
@@ -4767,9 +4771,7 @@ Window {
                                                     anchors.verticalCenter: parent.verticalCenter
                                                 }
                                                 Text {
-                                                    text: root.torrentPeerModel && root.torrentPeerModel.localClientName.length > 0
-                                                          ? root.torrentPeerModel.localClientName
-                                                          : ("Stellar/" + App.appVersion)
+                                                    text: root.torrentPeerModel ? root.torrentPeerModel.localClientName : ""
                                                     color: ColorPalette.textPrimary
                                                     font.pixelSize: 12 * App.fontScale
                                                     anchors.verticalCenter: parent.verticalCenter

@@ -156,6 +156,7 @@
     X(bool, bool, torrentEnablePex, TorrentEnablePex, true, "torrentEnablePex", T) \
     X(bool, bool, torrentAutoBanAbusivePeers, TorrentAutoBanAbusivePeers, false, "torrentAutoBanAbusivePeers", T) \
     X(bool, bool, torrentAutoBanMediaPlayerPeers, TorrentAutoBanMediaPlayerPeers, false, "torrentAutoBanMediaPlayerPeers", T) \
+    X(bool, bool, torrentAnonymousMode, TorrentAnonymousMode, false, "torrentAnonymousMode", T) \
     X(int, int, torrentEncryptionMode, TorrentEncryptionMode, 0, "torrentEncryptionMode", T) \
     X(int, int, torrentStorageMode, TorrentStorageMode, 0, "torrentStorageMode", T) \
     X(bool, bool, torrentPieceExtentAffinity, TorrentPieceExtentAffinity, false, "torrentPieceExtentAffinity", T) \

@@ -315,6 +315,15 @@ QString defaultTorrentUserAgent(const AppSettings *settings) {
     return QStringLiteral("Stellar/%1").arg(QStringLiteral(STELLAR_VERSION));
 }
 
+// User-agent as actually broadcast to the swarm. In anonymous mode libtorrent blanks
+// the user-agent, so the local-client tooltip on the swarm map must match — show an
+// empty string rather than the real Stellar/<version> the client no longer sends.
+QString reportedTorrentUserAgent(const AppSettings *settings) {
+    if (settings && settings->torrentAnonymousMode())
+        return QString();
+    return defaultTorrentUserAgent(settings);
+}
+
 QString normalizePeerEndpoint(const QString &endpoint) {
     return QHostAddress(endpoint.trimmed()).toString();
 }
@@ -1359,7 +1368,12 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
     // so IPv6 rides the VPN when the VPN provides a v6 address; a v4-only VPN simply
     // yields a v4-only bind and never falls back to an all-interfaces [::] catch-all
     // that would leak native IPv6.
-    const bool hardenDiscovery = boundToInterface && !settings->torrentAllowDiscoveryWhenBound();
+    // Anonymous mode also force-disables LAN/gateway discovery (matches qBittorrent):
+    // LSD broadcasts to the LAN, UPnP/NAT-PMP map ports via the gateway — all leak
+    // identifying info the anonymous flag otherwise suppresses.
+    const bool hardenDiscovery =
+        (boundToInterface && !settings->torrentAllowDiscoveryWhenBound())
+        || settings->torrentAnonymousMode();
     pack.set_bool(libtorrent::settings_pack::enable_lsd,
                   hardenDiscovery ? false : settings->torrentEnableLsd());
     pack.set_bool(libtorrent::settings_pack::enable_upnp,
@@ -1424,6 +1438,11 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
                       STELLAR_VERSION_PATCH);
         pack.set_str(libtorrent::settings_pack::peer_fingerprint, fp);
     }
+    // Anonymous mode (qBittorrent-equivalent): libtorrent blanks the user-agent sent
+    // to trackers, drops the client fingerprint from the peer-id and extension
+    // handshake, and omits announce_ip. Does NOT hide the IP — see warning in UI.
+    pack.set_bool(libtorrent::settings_pack::anonymous_mode,
+                  settings->torrentAnonymousMode());
     // Apply the bind decision computed above. When fail-closed (mode 1 with the
     // configured adapter unavailable), bind to NOTHING — empty interfaces stop all
     // traffic rather than letting libtorrent's all-interfaces default leak the real
@@ -2273,7 +2292,7 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
                     const int listenPort = m_session ? m_session->listen_port() : 0;
                     peerModel->setLocalInfo(m_externalAddress, listenPort, m_localCountryCode,
                                             m_localRegionName, m_localCityName,
-                                            defaultTorrentUserAgent(m_settings));
+                                            reportedTorrentUserAgent(m_settings));
                 }
             }
             peerModel->setEntries({});
@@ -2292,7 +2311,7 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
             const int listenPort = m_session ? m_session->listen_port() : 0;
             peerModel->setLocalInfo(m_externalAddress, listenPort, m_localCountryCode,
                                     m_localRegionName, m_localCityName,
-                                    defaultTorrentUserAgent(m_settings));
+                                    reportedTorrentUserAgent(m_settings));
         }
     } else {
         peerModel = nullptr;
@@ -3435,7 +3454,7 @@ void TorrentSessionManager::setDetectedExternalAddress(const QString &ipAddress)
         if (auto *peerModel = qobject_cast<TorrentPeerModel *>(it.value())) {
             peerModel->setLocalLocation(m_hasLocalCoordinates, m_localLatitude, m_localLongitude);
             peerModel->setLocalInfo(ip, listenPort, countryCode, regionName, cityName,
-                                    defaultTorrentUserAgent(m_settings));
+                                    reportedTorrentUserAgent(m_settings));
         }
     }
     emit externalAddressChanged();
@@ -3477,7 +3496,7 @@ void TorrentSessionManager::setDetectedExternalAddress(const QString &ipAddress,
         if (auto *peerModel = qobject_cast<TorrentPeerModel *>(it.value())) {
             peerModel->setLocalLocation(m_hasLocalCoordinates, m_localLatitude, m_localLongitude);
             peerModel->setLocalInfo(ip, listenPort, countryCode, regionName, cityName,
-                                    defaultTorrentUserAgent(m_settings));
+                                    reportedTorrentUserAgent(m_settings));
         }
     }
     emit externalAddressChanged();

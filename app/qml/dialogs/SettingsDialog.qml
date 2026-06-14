@@ -138,6 +138,7 @@ Window {
     property var    editTorrentBannedPeers: []
     property bool   editTorrentAutoBanAbusivePeers: false
     property bool   editTorrentAutoBanMediaPlayerPeers: false
+    property bool   editTorrentAnonymousMode: false
     property int    editTorrentEncryptionMode: 0
     property int    editTorrentStorageMode: 0
     property bool   editTorrentPieceExtentAffinity: false
@@ -540,6 +541,7 @@ Window {
         JSON.stringify(editTorrentBannedPeers) !== JSON.stringify(App.settings.torrentBannedPeers) ||
         editTorrentAutoBanAbusivePeers !== App.settings.torrentAutoBanAbusivePeers ||
         editTorrentAutoBanMediaPlayerPeers !== App.settings.torrentAutoBanMediaPlayerPeers ||
+        editTorrentAnonymousMode !== App.settings.torrentAnonymousMode ||
         editTorrentEncryptionMode !== App.settings.torrentEncryptionMode ||
         editTorrentStorageMode    !== App.settings.torrentStorageMode    ||
         editTorrentPieceExtentAffinity !== App.settings.torrentPieceExtentAffinity ||
@@ -954,6 +956,7 @@ Window {
         App.settings.torrentBannedPeers = editTorrentBannedPeers
         App.settings.torrentAutoBanAbusivePeers = editTorrentAutoBanAbusivePeers
         App.settings.torrentAutoBanMediaPlayerPeers = editTorrentAutoBanMediaPlayerPeers
+        App.settings.torrentAnonymousMode = editTorrentAnonymousMode
         App.settings.torrentEncryptionMode = editTorrentEncryptionMode
         App.settings.torrentStorageMode    = editTorrentStorageMode
         App.settings.torrentPieceExtentAffinity = editTorrentPieceExtentAffinity
@@ -1071,6 +1074,7 @@ Window {
         editTorrentBannedPeers = App.settings.torrentBannedPeers.slice()
         editTorrentAutoBanAbusivePeers = App.settings.torrentAutoBanAbusivePeers
         editTorrentAutoBanMediaPlayerPeers = App.settings.torrentAutoBanMediaPlayerPeers
+        editTorrentAnonymousMode = App.settings.torrentAnonymousMode
         editTorrentEncryptionMode = App.settings.torrentEncryptionMode
         editTorrentStorageMode    = App.settings.torrentStorageMode
         editTorrentPieceExtentAffinity = App.settings.torrentPieceExtentAffinity
@@ -3504,10 +3508,15 @@ Window {
                             property alias cbChecked: cb.checked
                             property alias label: labelText.text
                             property alias description: descText.text
+                            // When false the row is greyed out and not toggleable — used for
+                            // services anonymous mode force-disables (LSD/UPnP/NAT-PMP).
+                            property bool rowEnabled: true
                             signal toggled(bool checked)
                             spacing: 8
+                            opacity: rowEnabled ? 1.0 : 0.5
                             StyledCheckBox {
                                 id: cb
+                                enabled: parent.rowEnabled
                                 topPadding: 0; bottomPadding: 0
                                 // Bare indicator-only checkbox: the label/description live in
                                 // the sibling Column, so don't let fillWidth stretch the empty
@@ -3538,19 +3547,28 @@ Window {
                         }
                         NetCheckRow {
                             label: "LSD"
-                            description: qsTr("Discover peers on your local network without going through the internet.")
+                            description: root.editTorrentAnonymousMode
+                                ? qsTr("Disabled by anonymous mode.")
+                                : qsTr("Discover peers on your local network without going through the internet.")
+                            rowEnabled: !root.editTorrentAnonymousMode
                             cbChecked: root.editTorrentEnableLsd
                             onToggled: (v) => root.editTorrentEnableLsd = v
                         }
                         NetCheckRow {
                             label: "UPnP"
-                            description: qsTr("Automatically open a port on your router so peers can connect to you.")
+                            description: root.editTorrentAnonymousMode
+                                ? qsTr("Disabled by anonymous mode.")
+                                : qsTr("Automatically open a port on your router so peers can connect to you.")
+                            rowEnabled: !root.editTorrentAnonymousMode
                             cbChecked: root.editTorrentEnableUpnp
                             onToggled: (v) => root.editTorrentEnableUpnp = v
                         }
                         NetCheckRow {
                             label: "NAT-PMP"
-                            description: qsTr("Like UPnP but for Apple routers - enable both and whichever your router supports will be used.")
+                            description: root.editTorrentAnonymousMode
+                                ? qsTr("Disabled by anonymous mode.")
+                                : qsTr("Like UPnP but for Apple routers - enable both and whichever your router supports will be used.")
+                            rowEnabled: !root.editTorrentAnonymousMode
                             cbChecked: root.editTorrentEnableNatPmp
                             onToggled: (v) => root.editTorrentEnableNatPmp = v
                         }
@@ -3851,6 +3869,40 @@ Window {
                             color: ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
                             wrapMode: Text.WordWrap
+                        }
+
+                        StyledCheckBox {
+                            text: qsTr("Anonymous mode")
+                            topPadding: 0
+                            bottomPadding: 0
+                            checked: root.editTorrentAnonymousMode
+                            onCheckedChanged: root.editTorrentAnonymousMode = checked
+                            contentItem: Text {
+                                text: parent.text
+                                color: ColorPalette.textPrimary
+                                font.pixelSize: 13 * App.fontScale
+                                leftPadding: parent.indicator.width + 4
+                                wrapMode: Text.WordWrap
+                            }
+                        }
+
+                        Rectangle {
+                            Layout.fillWidth: true
+                            visible: root.editTorrentAnonymousMode
+                            color: ColorPalette.infoBoxBg
+                            border.color: ColorPalette.infoBoxBorder
+                            radius: 3
+                            implicitHeight: anonWarnTxt.implicitHeight + 12
+
+                            Text {
+                                id: anonWarnTxt
+                                anchors.fill: parent
+                                anchors.margins: 6
+                                color: ColorPalette.warningText
+                                font.pixelSize: 11 * App.fontScale
+                                wrapMode: Text.WordWrap
+                                text: qsTr("Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.")
+                            }
                         }
 
                         Text { text: qsTr("Encryption Mode"); color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }

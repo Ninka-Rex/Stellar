@@ -6604,6 +6604,21 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <translation></translation>
     </message>
     <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="4153"/>
+        <source>Anonymous mode</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="4178"/>
+        <source>Anonymous mode does not hide your IP address. It only limits the information your client broadcasts (user-agent and client fingerprint). For real privacy, use a VPN.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/SettingsDialog.qml" line="3545"/>
+        <source>Disabled by anonymous mode.</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/dialogs/SettingsDialog.qml" line="3895"/>
         <source>Auto Ban BitTorrent Media Player Peer</source>
         <translation></translation>
