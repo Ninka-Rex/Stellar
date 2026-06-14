@@ -26,7 +26,7 @@ Window {
     id: root
 
     width:        500
-    height:       522
+    height:       500
     minimumWidth: 460
     maximumWidth: 700
     title: qsTr("Create Torrent")
