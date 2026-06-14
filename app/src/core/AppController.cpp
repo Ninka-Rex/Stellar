@@ -2802,7 +2802,13 @@ DownloadItem *AppController::createTorrentItem(const QString &source, const QStr
         : QFileInfo(trimmed).completeBaseName();
     if (!filename.isEmpty()) {
         item->setFilename(filename);
-        item->setFilenameManuallySet(true);
+        // The "Magnetized transfer" placeholder (no-dn magnet / raw infohash) is a
+        // fallback, not a user choice — leave it un-flagged so updateItemFromStatus()
+        // replaces it with the real root name once metadata arrives. A real dn name
+        // or a .torrent filename IS user-visible and must survive metadata fetch.
+        const bool isPlaceholder =
+            filename.compare(QStringLiteral("Magnetized transfer"), Qt::CaseInsensitive) == 0;
+        item->setFilenameManuallySet(!isPlaceholder);
     }
 
     const QString resolvedCategory = !category.isEmpty()

@@ -160,6 +160,11 @@ libtorrent::span<char const> asSpan(const QByteArray &data) {
 constexpr qint64 kTrackerSnapshotWorkingExpiryNever = std::numeric_limits<qint64>::max();
 constexpr qint64 kTrackerSnapshotErrorExpirySecs = 7200; // two announce cycles
 
+// Minimum gap between forced DHT re-announces for a still-peerless metadata-less
+// torrent (see shouldReannounceDht). Long enough not to hammer the DHT, short
+// enough that a torrent stuck behind the add/DHT-bootstrap race recovers quickly.
+constexpr qint64 kDhtReannounceIntervalMs = 20'000;
+
 const libtorrent::announce_infohash *firstTrackerInfohash(const libtorrent::announce_entry &tracker) {
     for (const auto &endpoint : tracker.endpoints) {
         for (const auto &infohash : endpoint.info_hashes)
@@ -456,6 +461,12 @@ TorrentSessionManager::TorrentSessionManager(QObject *parent)
             // If no peers have connected yet the state is static and the metadata
             // dialog shows a stale peer count. Force a refresh for every torrent
             // that still lacks metadata so the UI stays live.
+            // DHT has bootstrapped nodes — the precondition for rescuing a torrent
+            // whose initial get_peers fired before DHT was up (the add/DHT-enable
+            // race: add_torrent runs before reconcileDhtState turns DHT on, so the
+            // first trackerless torrent's one lookup hits a dead overlay and won't
+            // retry until the ~15 min native announce interval).
+            const bool dhtUp = dhtShouldRun() && m_dhtNodes > 0;
             for (auto it = m_items.constBegin(); it != m_items.constEnd(); ++it) {
                 DownloadItem *item = it.value().data();
                 if (!item || item->torrentHasMetadata())
@@ -463,10 +474,18 @@ TorrentSessionManager::TorrentSessionManager(QObject *parent)
                 if (m_pausedIds.contains(it.key()))
                     continue;
                 const auto handle = m_handles.value(it.key());
-                if (handle.is_valid()) {
-                    updateItemFromStatus(item, handle);
-                    updateModels(it.key(), handle);
+                if (!handle.is_valid())
+                    continue;
+                const auto st = handle.status();
+                // Re-kick the DHT announce for any still-peerless metadata-less
+                // torrent now that nodes exist. Throttled per-torrent; stops the
+                // moment a peer connects or metadata arrives.
+                if (dhtUp && !st.has_metadata && st.num_peers == 0
+                        && shouldReannounceDht(it.key())) {
+                    handle.force_dht_announce();
                 }
+                updateItemFromStatus(item, handle, st);
+                updateModels(it.key(), handle, st);
             }
         }
 #endif
@@ -592,6 +611,15 @@ void TorrentSessionManager::reconcileDhtState() {
         emit dhtNodesChanged();
     }
 #endif
+}
+
+bool TorrentSessionManager::shouldReannounceDht(const QString &downloadId) {
+    const qint64 now = QDateTime::currentMSecsSinceEpoch();
+    const qint64 last = m_lastDhtReannounceMs.value(downloadId, 0);
+    if (now - last < kDhtReannounceIntervalMs)
+        return false;
+    m_lastDhtReannounceMs[downloadId] = now;
+    return true;
 }
 
 bool TorrentSessionManager::addMagnet(DownloadItem *item, bool startPaused, bool deferModels) {
@@ -790,6 +818,7 @@ void TorrentSessionManager::remove(const QString &downloadId, bool deleteFiles) 
             ++it;
     }
     m_lastResumeSaveRequest.remove(downloadId);
+    m_lastDhtReannounceMs.remove(downloadId);
     m_trackerReannounceUntil.remove(downloadId);
     m_trackerAlertSnapshots.remove(downloadId);
     m_seedingStartTimes.remove(downloadId);

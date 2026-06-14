@@ -206,6 +206,10 @@ private:
     // active-torrent count crosses 0<->1 without a full reconfigure.
     bool dhtShouldRun() const;
     void reconcileDhtState();
+    // Throttle for the DHT re-announce that rescues a trackerless torrent whose
+    // initial get_peers fired before DHT had bootstrapped. Returns true at most
+    // once per kDhtReannounceIntervalMs per torrent.
+    bool shouldReannounceDht(const QString &downloadId);
     void processAlerts();
     void handleAlert(libtorrent::alert *alert);
     QString idForHandle(const libtorrent::torrent_handle &handle) const;
@@ -293,6 +297,7 @@ private:
     QHash<QString, qint64> m_lastUploadBytesForInactive;
     QHash<QString, QDateTime> m_lastUploadActivityTime;
     QHash<QString, QDateTime> m_lastResumeSaveRequest;
+    QHash<QString, qint64> m_lastDhtReannounceMs;
     QHash<QString, QHash<QString, QDateTime>> m_trackerReannounceUntil;
     QHash<QString, QHash<QString, TrackerAlertSnapshot>> m_trackerAlertSnapshots;
     QHash<QString, QString> m_trackerIpCache;
