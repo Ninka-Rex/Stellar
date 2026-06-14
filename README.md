@@ -88,6 +88,29 @@ Grab the latest installer from the [Releases](../../releases) page.
   sudo zypper install ./stellar-*.rpm     # openSUSE
   ```
 
+## How to Uninstall 🗑️
+
+<details>
+<summary><b>How to remove Stellar</b></summary>
+
+- Windows: uninstall from **Settings → Apps → Installed apps**, or run the `unins000.exe` in the install folder.
+- Linux (Debian / Ubuntu / Mint / Pop!_OS / …):
+
+  ```bash
+  sudo apt remove stellar
+  ```
+
+- Linux (Fedora / RHEL / Rocky / Alma / openSUSE / …):
+
+  ```bash
+  sudo dnf remove stellar        # Fedora / RHEL family
+  sudo zypper remove stellar     # openSUSE
+  ```
+
+> **KDE Plasma note:** right-clicking the app in the start menu and choosing **Uninstall** opens Discover and will fail with *"no entry for appstream://…"*. This is a known Plasma limitation for any package installed manually (i.e. not from a repository Discover tracks)
+
+</details>
+
 ## Building 🔨
 
 Requires CMake, Ninja, Qt 6 (Core, Quick, Network, QuickControls2, LinguistTools), Boost, and OpenSSL. libtorrent and libmaxminddb are **not bundled** - see [Third-party source dependencies](#third-party-source-dependencies) below for how to obtain them.
