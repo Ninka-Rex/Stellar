@@ -4370,9 +4370,93 @@ QString AppController::registerNativeHost() const {
         }
     }
 
-    if (!anyOk)
+    const bool firefoxOk = anyOk;
+
+    // --- Chromium-family registration ---------------------------------------
+    //
+    // Every Chromium-based browser reads native-messaging host manifests from a
+    // "NativeMessagingHosts/" sub-dir inside its own per-user config directory.
+    // Chrome uses the Chrome schema (allowed_origins with chrome-extension://
+    // IDs) — NOT the Firefox schema (allowed_extensions).  The `json` manifest
+    // built above already carries allowed_origins; Chromium silently ignores the
+    // extra allowed_extensions field, so we can reuse it verbatim (DRY).
+    //
+    // We cannot enumerate forks by a fixed list alone — Helium, for example, has
+    // no stable, documented config-dir name.  So we combine two strategies:
+    //   1. A list of well-known config dirs (native, Snap, Flatpak variants).
+    //   2. A glob over ~/.config/* picking up any directory that looks like a
+    //      Chromium profile (contains a "Local State" file).  This catches
+    //      Helium and any future fork regardless of its exact folder name.
+    const QString configHome = []() {
+        const QString xdg = QString::fromLocal8Bit(qgetenv("XDG_CONFIG_HOME"));
+        return xdg.isEmpty() ? QDir::homePath() + QStringLiteral("/.config") : xdg;
+    }();
+
+    QStringList chromiumConfigDirs = {
+        configHome + QStringLiteral("/google-chrome"),
+        configHome + QStringLiteral("/google-chrome-beta"),
+        configHome + QStringLiteral("/google-chrome-unstable"),
+        configHome + QStringLiteral("/chromium"),
+        configHome + QStringLiteral("/BraveSoftware/Brave-Browser"),
+        configHome + QStringLiteral("/microsoft-edge"),
+        configHome + QStringLiteral("/vivaldi"),
+        configHome + QStringLiteral("/opera"),
+        configHome + QStringLiteral("/helium"),
+        configHome + QStringLiteral("/net.imput.helium"),
+        // Snap confines config under ~/snap/<pkg>/current/.config/<dir>.
+        QDir::homePath() + QStringLiteral("/snap/chromium/current/.config/chromium"),
+        QDir::homePath() + QStringLiteral("/snap/brave/current/.config/BraveSoftware/Brave-Browser"),
+        // Flatpak confines config under ~/.var/app/<id>/config/<dir>.
+        QDir::homePath() + QStringLiteral("/.var/app/com.google.Chrome/config/google-chrome"),
+        QDir::homePath() + QStringLiteral("/.var/app/org.chromium.Chromium/config/chromium"),
+        QDir::homePath() + QStringLiteral("/.var/app/com.brave.Browser/config/BraveSoftware/Brave-Browser"),
+        QDir::homePath() + QStringLiteral("/.var/app/com.microsoft.Edge/config/microsoft-edge"),
+        QDir::homePath() + QStringLiteral("/.var/app/net.imput.helium/config/helium"),
+    };
+
+    // Strategy 2: discover unknown Chromium forks (e.g. Helium under a different
+    // folder name) by scanning ~/.config for "Local State" — a file every
+    // Chromium profile root writes.  Avoids hard-coding fork-specific names.
+    {
+        QDir cfg(configHome);
+        const QStringList subDirs =
+            cfg.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+        for (const QString &sub : subDirs) {
+            const QString candidate = configHome + QLatin1Char('/') + sub;
+            if (QFile::exists(candidate + QStringLiteral("/Local State"))
+                && !chromiumConfigDirs.contains(candidate)) {
+                chromiumConfigDirs << candidate;
+            }
+        }
+    }
+
+    bool chromiumOk = false;
+    for (const QString &browserDir : chromiumConfigDirs) {
+        // Only register where the browser's config root already exists — never
+        // create config dirs for browsers the user hasn't installed.
+        if (!QDir(browserDir).exists())
+            continue;
+
+        const QString nmhDir = browserDir + QStringLiteral("/NativeMessagingHosts");
+        if (!QDir().mkpath(nmhDir)) {
+            lastError = QStringLiteral("Could not create directory: ") + nmhDir;
+            continue;
+        }
+
+        const QString dest = nmhDir + QStringLiteral("/com.stellar.downloadmanager.json");
+        QFile f(dest);
+        if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+            lastError = QStringLiteral("Could not write manifest to: ") + dest
+                        + QStringLiteral("\nError: ") + f.errorString();
+            continue;
+        }
+        f.write(json);  // Chrome-schema manifest (allowed_origins).
+        chromiumOk = true;
+    }
+
+    if (!firefoxOk && !chromiumOk)
         return lastError.isEmpty()
-               ? QStringLiteral("No Firefox installation directories found.")
+               ? QStringLiteral("No supported browser installation directories found.")
                : lastError;
 #else
     return QStringLiteral("Automatic registration is not supported on this platform.\nPlease register manually using the instructions below.");
