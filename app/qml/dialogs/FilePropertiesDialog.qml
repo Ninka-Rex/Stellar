@@ -2378,16 +2378,16 @@ Window {
                 // Speed
                 Item {
                     ColumnLayout {
-                        anchors { fill: parent; margins: 10 }
+                        anchors { fill: parent; topMargin: 0; leftMargin: 0; rightMargin: 0; bottomMargin: 8 }
                         spacing: 8
 
-                        // Graph card - fills remaining space
+                        // Graph card - edge-to-edge, no border/radius so the plot butts
+                        // up against the tab strip and the panel sides.
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
-                            color: ColorPalette.inputBg
-                            border.color: ColorPalette.border
-                            radius: 3
+                            color: ColorPalette.mapCanvasBg
+                            radius: 0
                             clip: true
 
                             // Main graph canvas - only repaints when data/span changes.
@@ -2396,7 +2396,7 @@ Window {
                             Canvas {
                                 id: speedGraphCanvasLoader
                                 anchors.fill: parent
-                                anchors.margins: 10
+                                anchors.margins: 0
                                 antialiasing: true
                                 renderTarget: Canvas.Image
                                 Component.onCompleted: root.speedGraphCanvasRef = speedGraphCanvasLoader
@@ -2657,6 +2657,8 @@ Window {
                         // Stats row + time span selector at the bottom
                         RowLayout {
                             Layout.fillWidth: true
+                            Layout.leftMargin: 10
+                            Layout.rightMargin: 10
                             spacing: 0
 
                             // Stats grid on the left
@@ -2675,14 +2677,14 @@ Window {
                                 Text { text: qsTr("Down"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
                                 Text { text: root.compactSpeed(speedStatsCard._down.current); color: "#4ea2ff"; font.bold: true; font.pixelSize: 12 * App.fontScale }
                                 Text { text: "avg"; color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale }
-                                Text { text: root.compactSpeed(speedStatsCard._down.avg); color: "#7ba8d0"; font.pixelSize: 11 * App.fontScale }
+                                Text { text: root.compactSpeed(speedStatsCard._down.avg); color: "#4ea2ff"; font.pixelSize: 11 * App.fontScale }
                                 Text { text: "peak " + root.compactSpeed(speedStatsCard._down.max); color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale }
 
                                 Rectangle { width: 8; height: 8; radius: 4; color: "#3dba6a" }
                                 Text { text: qsTr("Up"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale }
                                 Text { text: root.compactSpeed(speedStatsCard._up.current); color: "#4cc87a"; font.bold: true; font.pixelSize: 12 * App.fontScale }
                                 Text { text: "avg"; color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale }
-                                Text { text: root.compactSpeed(speedStatsCard._up.avg); color: "#7abf9a"; font.pixelSize: 11 * App.fontScale }
+                                Text { text: root.compactSpeed(speedStatsCard._up.avg); color: "#4cc87a"; font.pixelSize: 11 * App.fontScale }
                                 Text { text: "peak " + root.compactSpeed(speedStatsCard._up.max); color: ColorPalette.textDisabled; font.pixelSize: 10 * App.fontScale }
                             }
 
