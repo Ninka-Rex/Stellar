@@ -63,8 +63,10 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 [Tasks]
 Name: "desktopicon"; Description: "Create a &desktop shortcut"; GroupDescription: "Additional icons:"; Flags: unchecked
 Name: "quicklaunch";  Description: "Pin to &taskbar"; GroupDescription: "Additional icons:"; Flags: unchecked
-Name: "chromeext";    Description: "Register &Chrome native messaging host"; GroupDescription: "Browser integration:"
-Name: "firefoxext";   Description: "Register &Firefox native messaging host"; GroupDescription: "Browser integration:"
+; NOTE: Chrome/Firefox native messaging hosts are registered by the app itself on
+; first launch (AppController::registerNativeHost), pointing each browser at its own
+; manifest in {app}. No installer task is needed; the [Registry] section below only
+; tags those app-written keys for removal at uninstall.
 
 [Files]
 ; Main executable
@@ -109,24 +111,20 @@ Source: "{#BuildDir}\yt-dlp.exe";              DestDir: "{app}";          Flags:
 Source: "{#BuildDir}\ffmpeg.exe";              DestDir: "{app}";          Flags: ignoreversion skipifsourcedoesntexist
 Source: "{#BuildDir}\ffprobe.exe";             DestDir: "{app}";          Flags: ignoreversion skipifsourcedoesntexist
 
-; Native messaging manifest (path placeholder filled by [Registry])
-Source: "native-host-manifest-installed.json";  DestDir: "{app}";          DestName: "native-host-manifest.json"; Flags: ignoreversion
-
 [Icons]
 Name: "{group}\Stellar Download Manager"; Filename: "{app}\{#AppExeName}"; IconFilename: "{app}\{#AppExeName}"
 Name: "{group}\Uninstall Stellar";        Filename: "{uninstallexe}"
 Name: "{userdesktop}\Stellar Download Manager"; Filename: "{app}\{#AppExeName}"; Tasks: desktopicon
 
 [Registry]
-; Chrome native messaging host
+; The app registers these native messaging host keys itself on first launch
+; (pointing each browser at its own manifest in {app}). dontcreatekey means the
+; installer never writes them; uninsdeletekey makes the uninstaller remove the
+; app-written keys so nothing is left behind.
 Root: HKCU; Subkey: "Software\Google\Chrome\NativeMessagingHosts\com.stellar.downloadmanager"; \
-  ValueType: string; ValueName: ""; ValueData: "{app}\native-host-manifest.json"; \
-  Tasks: chromeext; Flags: uninsdeletekey
-
-; Firefox native messaging host
+  Flags: dontcreatekey uninsdeletekey
 Root: HKCU; Subkey: "Software\Mozilla\NativeMessagingHosts\com.stellar.downloadmanager"; \
-  ValueType: string; ValueName: ""; ValueData: "{app}\native-host-manifest.json"; \
-  Tasks: firefoxext; Flags: uninsdeletekey
+  Flags: dontcreatekey uninsdeletekey
 
 [Run]
 Filename: "{app}\{#AppExeName}"; Description: "Launch {#AppName}"; Flags: nowait postinstall skipifsilent
