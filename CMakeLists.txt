@@ -236,6 +236,7 @@ qt_add_qml_module(Stellar
         app/qml/components/CompactMenuItem.qml
         app/qml/components/SidebarItemDragHandler.qml
         app/qml/components/SidebarSectionDragHandler.qml
+        app/qml/components/TorrentProgressBar.qml
         # singletons/
         app/qml/singletons/ColorPalette.qml
         app/qml/singletons/LanguageList.qml
@@ -277,7 +278,7 @@ qt_add_qml_module(Stellar
         # torrent/
         app/qml/torrent/TorrentMetadataDialog.qml
         app/qml/torrent/TorrentDuplicateDialog.qml
-        app/qml/torrent/TorrentSpeedLimitDialog.qml
+        app/qml/torrent/TorrentSettingsPanel.qml
         app/qml/torrent/TorrentCreatorDialog.qml
         app/qml/torrent/TorrentSearchWindow.qml
         app/qml/torrent/TorrentSearchPluginsDialog.qml

@@ -2171,6 +2171,11 @@ You may change it in Options → Downloads at a later time.</source>
     </message>
     <message>
         <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="1964"/>
+        <source>Settings</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/dialogs/FilePropertiesDialog.qml" line="1964"/>
         <source>Swarm Map</source>
         <translation></translation>
     </message>
@@ -8008,6 +8013,16 @@ Click to open Statistics</source>
         <source>Files</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../app/qml/torrent/TorrentMetadataDialog.qml" line="846"/>
+        <source>Settings</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../app/qml/torrent/TorrentMetadataDialog.qml" line="600"/>
+        <source>Fetching metadata…</source>
+        <translation></translation>
+    </message>
     <message numerus="yes">
         <location filename="../app/qml/torrent/TorrentMetadataDialog.qml" line="1224"/>
         <source>%n item(s)</source>
@@ -8364,156 +8379,134 @@ Click to open Statistics</source>
     </message>
 </context>
 <context>
-    <name>TorrentSpeedLimitDialog</name>
+    <name>TorrentSettingsPanel</name>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="30"/>
-        <source>Torrent Settings</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="188"/>
-        <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="212"/>
-        <source>Close</source>
-        <translation type="unfinished">Close</translation>
-    </message>
-    <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="216"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="166"/>
         <source>Apply</source>
         <translation type="unfinished">Apply</translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="272"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="216"/>
         <source>BANDWIDTH LIMITS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="276"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="220"/>
         <source>Download:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="291"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="235"/>
         <source>Upload:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="321"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="265"/>
         <source>SHARE LIMITS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="325"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="269"/>
         <source>Ratio:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="327"/>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="359"/>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="391"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="271"/>
         <source>Default</source>
         <translation type="unfinished">Default</translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="327"/>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="359"/>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="391"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="271"/>
         <source>Unlimited</source>
         <translation type="unfinished">Unlimited</translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="327"/>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="359"/>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="391"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="271"/>
         <source>Set to</source>
         <translation type="unfinished">Set to</translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="357"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="301"/>
         <source>Seeding time:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="383"/>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="415"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="327"/>
         <source>min</source>
         <translation type="unfinished">min</translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="389"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="333"/>
         <source>Inactive time:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="437"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="381"/>
         <source>PEER DISCOVERY</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="441"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="385"/>
         <source>DHT</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="441"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="385"/>
         <source>Distributed Hash Table</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="448"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="392"/>
         <source>PeX</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="448"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="392"/>
         <source>Peer Exchange</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="455"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="399"/>
         <source>LSD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="455"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="399"/>
         <source>Local Service Discovery</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="469"/>
-        <source>🔒 Private torrent</source>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="413"/>
+        <source>⚠ Private torrent</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="472"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="416"/>
         <source>DHT and PeX disabled by libtorrent.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="490"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="434"/>
         <source>DOWNLOAD MODE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="494"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="438"/>
         <source>Sequential download</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="495"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="439"/>
         <source>Pieces downloaded in order (piece 0 → last)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="501"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="445"/>
         <source>Prioritize first &amp; last pieces</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../app/qml/torrent/TorrentSpeedLimitDialog.qml" line="502"/>
+        <location filename="../app/qml/torrent/TorrentSettingsPanel.qml" line="446"/>
         <source>Front-loads header/footer for early playback</source>
         <translation></translation>
     </message>

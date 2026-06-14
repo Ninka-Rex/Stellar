@@ -1,4 +1,4 @@
-﻿// Stellar Download Manager
+// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -15,26 +15,16 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import QtQuick
-import QtQuick.Window
 import QtQuick.Controls
-import QtQuick.Controls.Material
 import QtQuick.Layouts
 
-Window {
+// Embeddable per-torrent settings panel: bandwidth limits, share limits,
+// peer discovery and download mode. Lives as a "Settings" tab inside the
+// torrent properties / metadata dialogs (replaces the old standalone
+// TorrentSpeedLimitDialog window). Host passes the DownloadItem via
+// `torrentItem`; an "Apply" bar at the bottom commits all four groups.
+Item {
     id: root
-
-    width:         470
-    height:        388
-    minimumWidth:  450
-    minimumHeight: 360
-    title:         qsTr("Torrent Settings")
-    color:         ColorPalette.cardBg
-    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
-    modality: Qt.NonModal
-
-    Material.theme:      ColorPalette.materialTheme
-    Material.background: ColorPalette.materialBg
-    Material.accent:     "#4488dd"
 
     property var torrentItem: null
 
@@ -121,78 +111,59 @@ Window {
         if (inactiveInput) inactiveInput.text = _inactiveText
     }
 
-    component InlineCheck: RowLayout {
+    // Self-contained checkbox row: box + label sit tight together. Built from
+    // a Row + box Rectangle (NOT StyledCheckBox) so there's no Material content
+    // spacing flinging the label across the panel.
+    component InlineCheck: Item {
         id: chkRoot
-        property alias checked: chk.checked
-        property alias enabled: chk.enabled
+        property bool checked: false
+        property bool enabled: true
         property string label: ""
         property string subtext: ""
         signal toggled()
-        spacing: 7
-        StyledCheckBox {
-            id: chk
-            topPadding: 0; bottomPadding: 0
-            onToggled: chkRoot.toggled()
-            contentItem: Item {}
-            indicator: Rectangle {
-                implicitWidth: 14; implicitHeight: 14; radius: 2
-                color: chk.checked ? "#4488dd" : ColorPalette.inputBg
-                border.color: chk.checked ? "#4488dd" : (chk.enabled ? ColorPalette.border : "#2a2a2a")
-                opacity: chk.enabled ? 1.0 : 0.5
+        implicitHeight: chkRow.implicitHeight
+
+        Row {
+            id: chkRow
+            anchors.verticalCenter: parent.verticalCenter
+            spacing: 7
+
+            Rectangle {
+                width: 14; height: 14; radius: 2
+                anchors.verticalCenter: parent.verticalCenter
+                color: chkRoot.checked ? "#4488dd" : ColorPalette.inputBg
+                border.color: chkRoot.checked ? "#4488dd" : (chkRoot.enabled ? ColorPalette.border : "#2a2a2a")
+                opacity: chkRoot.enabled ? 1.0 : 0.5
                 Text {
-                    visible: chk.checked
+                    visible: chkRoot.checked
                     anchors.centerIn: parent
                     text: "✓"; color: "#fff"; font.pixelSize: 9 * App.fontScale; font.bold: true
                 }
             }
-        }
-        ColumnLayout {
-            Layout.fillWidth: true; spacing: 0
-            Text { text: chkRoot.label; color: chk.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale }
-            Text {
-                visible: chkRoot.subtext.length > 0
-                text: chkRoot.subtext; color: "#7a8a9a"; font.pixelSize: 10 * App.fontScale
+            Column {
+                anchors.verticalCenter: parent.verticalCenter
+                spacing: 0
+                Text { text: chkRoot.label; color: chkRoot.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled; font.pixelSize: 12 * App.fontScale }
+                Text {
+                    visible: chkRoot.subtext.length > 0
+                    text: chkRoot.subtext; color: "#7a8a9a"; font.pixelSize: 10 * App.fontScale
+                }
             }
+        }
+
+        // Parent owns the state: emit toggled with the would-be new value via
+        // the `checked` arg pattern used by callers (onToggled reads `checked`,
+        // which is still the OLD value here, matching the old StyledCheckBox
+        // semantics where callers do `= !checked`).
+        MouseArea {
+            anchors.fill: parent
+            enabled: chkRoot.enabled
+            cursorShape: Qt.PointingHandCursor
+            onClicked: chkRoot.toggled()
         }
     }
 
-    // Header strip
-    Rectangle {
-        id: headerStrip
-        anchors { left: parent.left; right: parent.right; top: parent.top }
-        height: 40
-        color: ColorPalette.headerStripBg
-
-        RowLayout {
-            anchors { fill: parent; leftMargin: 10; rightMargin: 10; topMargin: 6; bottomMargin: 6 }
-            spacing: 9
-
-            Image {
-                Layout.preferredWidth: 24; Layout.preferredHeight: 24
-                source: {
-                    if (!root.torrentItem) return ""
-                    var p = String(root.torrentItem.savePath || "").replace(/\\/g, "/")
-                    var f = String(root.torrentItem.filename || "")
-                    return (p && f) ? ("image://fileicon/" + p + "/" + f) : ""
-                }
-                sourceSize: Qt.size(24, 24); fillMode: Image.PreserveAspectFit; asynchronous: true
-            }
-            ColumnLayout {
-                Layout.fillWidth: true; spacing: 1
-                Text {
-                    Layout.fillWidth: true
-                    text: root.torrentItem ? root.torrentItem.filename : ""
-                    color: ColorPalette.textHeader; font.pixelSize: 13 * App.fontScale; font.weight: Font.Medium; elide: Text.ElideMiddle
-                }
-                Text {
-                    text: qsTr("Per-torrent speed, share limits, peer discovery, and download mode")
-                    color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale
-                }
-            }
-        }
-    }
-
-    // ?? Button bar anchored to bottom so it is never clipped ?????????????
+    // Apply bar anchored to bottom so it is never clipped.
     Rectangle {
         id: buttonBar
         anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
@@ -208,10 +179,6 @@ Window {
             anchors { fill: parent; leftMargin: 12; rightMargin: 12; topMargin: 8; bottomMargin: 8 }
             spacing: 8
             Item { Layout.fillWidth: true }
-            DlgButton {
-                text: qsTr("Close")
-                onClicked: root.close()
-            }
             DlgButton {
                 text: qsTr("Apply")
                 primary: true
@@ -243,22 +210,19 @@ Window {
         }
     }
 
-    // ?? Scrollable content area sits between header and button bar ???????
-    ScrollView {
-        anchors { left: parent.left; right: parent.right; top: headerStrip.bottom; bottom: buttonBar.top }
-        contentWidth: availableWidth
-        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-
-        ColumnLayout {
-            width: parent.width
-            spacing: 0
+    // Content sits above the Apply bar. No ScrollView — everything fits in the
+    // tab height; sections size to content and the last row absorbs slack so
+    // there's no dead whitespace and nothing to scroll.
+    ColumnLayout {
+        anchors { left: parent.left; right: parent.right; top: parent.top; bottom: buttonBar.top; margins: 8 }
+        spacing: 6
 
             ColumnLayout {
                 Layout.fillWidth: true
-                Layout.margins: 8
+                Layout.fillHeight: true
                 spacing: 6
 
-                // ?? Bandwidth limits ?????????????????????????????????????
+                // Bandwidth limits
                 Rectangle {
                     Layout.fillWidth: true
                     color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
@@ -307,7 +271,7 @@ Window {
                     }
                 }
 
-                // ?? Share limits ?????????????????????????????????????????
+                // Share limits
                 Rectangle {
                     Layout.fillWidth: true
                     color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
@@ -418,8 +382,7 @@ Window {
                     }
                 }
 
-                // ?? Peer discovery + Download mode (side by side, equal height) ??
-                // Height driven by the taller column; both rects share that height.
+                // Peer discovery + Download mode (side by side, equal height).
                 Item {
                     Layout.fillWidth: true
                     implicitHeight: Math.max(pdCol.implicitHeight, dmCol.implicitHeight) + 12
@@ -441,20 +404,20 @@ Window {
                                 label: qsTr("DHT"); subtext: qsTr("Distributed Hash Table")
                                 checked: !root._editDisableDht
                                 enabled: !root.torrentItem || !root.torrentItem.torrentIsPrivate
-                                onToggled: root._editDisableDht = !checked
+                                onToggled: root._editDisableDht = !root._editDisableDht
                             }
                             InlineCheck {
                                 Layout.fillWidth: true
                                 label: qsTr("PeX"); subtext: qsTr("Peer Exchange")
                                 checked: !root._editDisablePex
                                 enabled: !root.torrentItem || !root.torrentItem.torrentIsPrivate
-                                onToggled: root._editDisablePex = !checked
+                                onToggled: root._editDisablePex = !root._editDisablePex
                             }
                             InlineCheck {
                                 Layout.fillWidth: true
                                 label: qsTr("LSD"); subtext: qsTr("Local Service Discovery")
                                 checked: !root._editDisableLsd
-                                onToggled: root._editDisableLsd = !checked
+                                onToggled: root._editDisableLsd = !root._editDisableLsd
                             }
 
                             Rectangle {
@@ -492,21 +455,24 @@ Window {
                             InlineCheck {
                                 Layout.fillWidth: true
                                 label: qsTr("Sequential download")
-                                subtext: qsTr("Pieces downloaded in order (piece 0 ? last)")
+                                subtext: qsTr("Pieces downloaded in order (piece 0 → last)")
                                 checked: root._editSequential
-                                onToggled: root._editSequential = checked
+                                onToggled: root._editSequential = !root._editSequential
                             }
                             InlineCheck {
                                 Layout.fillWidth: true
                                 label: qsTr("Prioritize first & last pieces")
                                 subtext: qsTr("Front-loads header/footer for early playback")
                                 checked: root._editFirstLastPieces
-                                onToggled: root._editFirstLastPieces = checked
+                                onToggled: root._editFirstLastPieces = !root._editFirstLastPieces
                             }
                         }
                     }
                 }
+
+                // Absorb leftover vertical space so sections stay top-packed
+                // (no gaps stretched between them) in tall dialogs.
+                Item { Layout.fillWidth: true; Layout.fillHeight: true }
             }
         }
-    }
 }

@@ -35,6 +35,69 @@ Window {
     Material.background: ColorPalette.materialBg
     Material.accent: "#4488dd"
 
+    // Thin context-menu row, matching DownloadTable.qml's CtxMenuItem (22px,
+    // opaque bg, icon+text, ✓ for checkable rows, ▶ for submenus).
+    component FileCtxMenuItem: MenuItem {
+        id: _fcmi
+        implicitHeight: 22
+        height: 22
+        topPadding: 0; bottomPadding: 0; verticalPadding: 0
+        leftPadding: 8; rightPadding: 12
+        spacing: 0
+        font.pixelSize: 12 * App.fontScale
+        property string iconSrc: ""
+        // Blank out the default indicator/arrow — the check (✓) and submenu
+        // arrow (▶) are rendered inside contentItem so they never overlap the
+        // label (a separate indicator isn't shifted past by MenuItem).
+        indicator: Item { width: 0; height: 0 }
+        arrow: Item { width: 0; height: 0 }
+        contentItem: Row {
+            spacing: 6
+            // Check slot — fixed gutter only for checkable rows.
+            Item {
+                visible: _fcmi.checkable
+                width: visible ? 14 : 0
+                height: 14
+                anchors.verticalCenter: parent.verticalCenter
+                Text {
+                    visible: _fcmi.checked
+                    anchors.centerIn: parent
+                    text: "✓"; font.pixelSize: 10 * App.fontScale; font.bold: true
+                    color: ColorPalette.textPrimary
+                }
+            }
+            Image {
+                visible: _fcmi.iconSrc !== ""
+                source: _fcmi.iconSrc !== "" ? "../icons/" + _fcmi.iconSrc : ""
+                width: 14; height: 14
+                sourceSize.width: 14; sourceSize.height: 14
+                fillMode: Image.PreserveAspectFit
+                smooth: true
+                anchors.verticalCenter: parent.verticalCenter
+            }
+            Text {
+                text: _fcmi.text
+                font: _fcmi.font
+                color: _fcmi.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
+                anchors.verticalCenter: parent.verticalCenter
+            }
+            // Submenu arrow trails the label with a small gap.
+            Item { visible: _fcmi.subMenu !== null; width: visible ? 24 : 0; height: 1 }
+            Text {
+                visible: _fcmi.subMenu !== null
+                anchors.verticalCenter: parent.verticalCenter
+                text: "▶"; font.pixelSize: 8 * App.fontScale; color: ColorPalette.textMuted
+            }
+        }
+        background: Rectangle {
+            implicitHeight: 22
+            // Opaque, never "transparent" — see CLAUDE.md "Linux Software-Backend Menus".
+            color: _fcmi.highlighted ? ColorPalette.selectionBg : ColorPalette.menuBg
+        }
+    }
+
     property var item: null
     readonly property bool _isTorrent: item ? !!item.isTorrent : false
     readonly property var torrentFileModel:    _isTorrent ? App.torrentFileModel(item.id)    : null
@@ -1106,6 +1169,40 @@ Window {
         return isFinite(v) ? v.toFixed(2) : "0.00"
     }
 
+    // Ratio colour ramp (shared with StatisticsDialog): red→orange→green→lime→cyan→blue→purple→magenta
+    function ratioColor(r) {
+        r = r || 0
+        function lerp(a, b, t) {
+            return Math.round(a + (b - a) * Math.max(0, Math.min(1, t)))
+        }
+        function rgb(hr, hg, hb) {
+            return "#" + ("0" + hr.toString(16)).slice(-2)
+                       + ("0" + hg.toString(16)).slice(-2)
+                       + ("0" + hb.toString(16)).slice(-2)
+        }
+        var stops = [
+            [0.0,  255, 85,  85],
+            [0.5,  255, 153, 68],
+            [1.0,  85,  204, 102],
+            [2.0,  153, 238, 85],
+            [4.0,  68,  221, 204],
+            [6.0,  68,  153, 255],
+            [8.0,  170, 85,  255],
+            [10.0, 255, 68,  204]
+        ]
+        if (r <= stops[0][0]) return rgb(stops[0][1], stops[0][2], stops[0][3])
+        if (r >= stops[stops.length-1][0]) return rgb(stops[stops.length-1][1], stops[stops.length-1][2], stops[stops.length-1][3])
+        for (var i = 1; i < stops.length; i++) {
+            if (r <= stops[i][0]) {
+                var t = (r - stops[i-1][0]) / (stops[i][0] - stops[i-1][0])
+                return rgb(lerp(stops[i-1][1], stops[i][1], t),
+                           lerp(stops[i-1][2], stops[i][2], t),
+                           lerp(stops[i-1][3], stops[i][3], t))
+            }
+        }
+        return "#ff44cc"
+    }
+
     // Formats seconds into human-readable "Xh Xm" / "Xm Xs" / "Xs" / "-"
     function formatDuration(secs) {
         var s = Math.max(0, secs | 0)
@@ -1663,17 +1760,6 @@ Window {
             spacing: 6
             DlgButton {
                 visible: root._isTorrent
-                text: qsTr("Torrent Settings...")
-                enabled: !!root.item
-                onClicked: {
-                    speedLimitDialog.torrentItem = root.item
-                    speedLimitDialog.show()
-                    speedLimitDialog.raise()
-                    speedLimitDialog.requestActivate()
-                }
-            }
-            DlgButton {
-                visible: root._isTorrent
                 text: qsTr("Verify Local Data")
                 enabled: !!root.item && !root._torrentIsMoving
                 onClicked: { if (root.item) App.forceRecheckTorrent(root.item.id) }
@@ -1709,11 +1795,6 @@ Window {
             }
             DlgButton { text: qsTr("Close"); primary: true; onClicked: root.close() }
         }
-    }
-
-    // ?? Per-torrent speed limit dialog (opened from General tab) ?????????????
-    TorrentSpeedLimitDialog {
-        id: speedLimitDialog
     }
 
     // ??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
@@ -1955,13 +2036,10 @@ Window {
                                 : ""
                             color: ColorPalette.textHeader; font.pixelSize: 11 * App.fontScale
                         }
-                        Rectangle {
-                            Layout.fillWidth: true; height: 5; radius: 2
-                            color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg
-                            Rectangle {
-                                width: Math.max(0, parent.width * (root.item ? root.clampPct(root.item.progress) : 0))
-                                height: parent.height; radius: parent.radius; color: "#4488dd"
-                            }
+                        TorrentProgressBar {
+                            Layout.fillWidth: true
+                            implicitHeight: 5
+                            item: root.item
                         }
                         // ? down speed
                         Text {
@@ -1997,7 +2075,7 @@ Window {
                 Row {
                     anchors.fill: parent; spacing: 0
                     Repeater {
-                        model: [qsTr("General"), qsTr("Speed"), qsTr("Files"), qsTr("Peers"), qsTr("Swarm Map"), qsTr("Trackers"), qsTr("Web Seeds"), qsTr("Piece Map")]
+                        model: [qsTr("General"), qsTr("Speed"), qsTr("Files"), qsTr("Peers"), qsTr("Swarm Map"), qsTr("Trackers"), qsTr("Web Seeds"), qsTr("Piece Map"), qsTr("Settings")]
                         delegate: Rectangle {
                             width: tabLbl.implicitWidth + 28; height: parent.height
                             color: root.currentTab === index
@@ -2050,7 +2128,7 @@ Window {
                             GridLayout {
                                 id: infoGrid
                                 Layout.fillWidth: true
-                                Layout.topMargin: 8
+                                Layout.topMargin: 2
                                 columns: 2
                                 columnSpacing: 8
                                 rowSpacing: 5
@@ -2205,31 +2283,32 @@ Window {
                                 Layout.topMargin: 7
                                 columns: 6; columnSpacing: 8; rowSpacing: 5
                                 property real lw: 80
+                                // Equal value-column width so the three label/value pairs
+                                // stay evenly spaced regardless of content length.
+                                property real vw: 120
 
                                 Text { text: qsTr("Downloaded");  color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.compactBytes(root.item.torrentDownloaded) : "-"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
+                                Text { text: root.item ? root.compactBytes(root.item.torrentDownloaded) : "-"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw }
                                 Text { text: qsTr("Uploaded");    color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.compactBytes(root.item.torrentUploaded) : "-";   color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
+                                Text { text: root.item ? root.compactBytes(root.item.torrentUploaded) : "-";   color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw }
                                 Text { text: qsTr("Wasted");      color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
                                 Text {
                                     text: { if (!root.item) return "-"; var w = root.item.torrentWastedBytes; return (w > 0) ? root.compactBytes(w) : "-" }
                                     color: (root.item && root.item.torrentWastedBytes > 0) ? "#b8924a" : ColorPalette.textPrimary
-                                    font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true
+                                    font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw
                                 }
-
-                                Text { text: qsTr("Down speed");  color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.compactSpeed(root.item.speed) : "-"; color: "#4ea2ff"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
-                                Text { text: qsTr("Up speed");    color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "-"; color: "#4cc87a"; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
-                                Text { text: qsTr("Connections"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? String(root.item.torrentConnections | 0) : "-"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
 
                                 Text { text: qsTr("Share ratio"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
                                 Text {
                                     text: root.item ? root.ratioText(root.item.torrentRatio) : "-"
-                                    color: { if (!root.item) return ColorPalette.textPrimary; var r = Number(root.item.torrentRatio); return r >= 1.0 ? "#5eaa6e" : r >= 0.5 ? "#c09a50" : ColorPalette.textPrimary }
-                                    font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true
+                                    color: root.item ? root.ratioColor(Number(root.item.torrentRatio)) : ColorPalette.textPrimary
+                                    font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw
                                 }
+                                Text { text: qsTr("Seed time");   color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "-"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw }
+                                Text { text: qsTr("Connections"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? String(root.item.torrentConnections | 0) : "-"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw }
+
                                 // Pieces + Availability on their own row - piece text can be long
                                 Text { text: qsTr("Pieces");      color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw; Layout.columnSpan: 1 }
                                 Text {
@@ -2240,31 +2319,23 @@ Window {
                                         if (total <= 0) return done > 0 ? String(done) : "-"
                                         return done + " / " + total + " (" + Math.round(done / total * 100) + "%)"
                                     }
-                                    color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 1
+                                    color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw; Layout.columnSpan: 1
                                 }
                                 Text { text: qsTr("Availability"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
                                 Text {
                                     text: { if (!root.item) return "-"; var av = root.item.torrentAvailability; return (typeof av === "number" && av > 0) ? av.toFixed(2) : "-" }
-                                    color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true
+                                    color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw
                                 }
-
+                                // Pad remaining 2 cols so Metadata row label/value don't shift sides.
                                 Text { text: qsTr("Metadata"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
                                 Text {
                                     text: (!!root.item && root.item.torrentHasMetadata) ? qsTr("Available") : qsTr("Fetching…")
-                                    color: (!!root.item && root.item.torrentHasMetadata) ? "#5eaa6e" : "#c09a50"
-                                    font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.columnSpan: 3
-                                }
+                                    color: ColorPalette.textPrimary
+                                    font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw }
 
                                 Text { text: qsTr("Active time"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "-";   color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
-                                Text { text: qsTr("Seed time");   color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "-"; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true }
-                                // Padding item to complete the 6-column row before metadata rows.
-                                // Seed time label+value already used 2 of 6 columns, so this
-                                // must span the remaining 4 — otherwise the next row's label
-                                // wraps into the wrong column and label/value swap sides.
-                                // Always present so the grid stays aligned regardless of which
-                                // metadata fields are populated.
+                                Text { text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "-";   color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; Layout.fillWidth: true; Layout.preferredWidth: parent.vw }
+                                // Fill remaining 4 cols so following metadata rows start at column 0.
                                 Item { Layout.columnSpan: 4; Layout.fillWidth: true }
 
                                 // Each metadata field gets its own full row (label + 5-col value)
@@ -2867,7 +2938,7 @@ Window {
 
                                         Text {
                                             id: progPctLbl
-                                            anchors { left: parent.left; verticalCenter: parent.verticalCenter }
+                                            anchors { left: parent.left; leftMargin: 6; verticalCenter: parent.verticalCenter }
                                             text: Math.round(root.clampPct(fd.progress) * 100) + "%"
                                             color: fd.wanted ? ColorPalette.textPrimary : ColorPalette.textDisabled
                                             font.pixelSize: 11 * App.fontScale
@@ -2890,17 +2961,19 @@ Window {
                                         }
                                     }
 
-                                    // Size
+                                    // Size — leftPadding:6 matches the header cell's leftMargin:6
                                     Text {
                                         width: root.fileColSize; anchors.verticalCenter: parent.verticalCenter
+                                        leftPadding: 6
                                         text: root.compactBytes(fd.size)
                                         color: fd.wanted ? ColorPalette.textPrimary : ColorPalette.textDisabled
                                         font.pixelSize: 12 * App.fontScale; horizontalAlignment: Text.AlignLeft
                                     }
 
-                                    // Priority
+                                    // Priority — leftPadding:6 matches the header cell's leftMargin:6
                                     Text {
                                         width: root.fileColPriority; anchors.verticalCenter: parent.verticalCenter
+                                        leftPadding: 6
                                         text: fd.wanted ? root.priorityLabel(fd.priority) : "—"
                                         color: fd.wanted ? root.priorityColor(fd.priority) : ColorPalette.textDisabled
                                         font.pixelSize: 12 * App.fontScale; horizontalAlignment: Text.AlignLeft
@@ -2916,17 +2989,13 @@ Window {
                                     onClicked: function(mouse) {
                                         if (mouse.button !== Qt.RightButton)
                                             return
-                                        fileCtxPopup._row = fd.index
-                                        fileCtxPopup._fileIndex = fd.fileIndex
-                                        fileCtxPopup._path = fd.path
-                                        fileCtxPopup._name = fd.name
-                                        fileCtxPopup._wanted = fd.wanted
-                                        fileCtxPopup._isFolder = fd.isFolder
-                                        fileCtxPopup._priority = fd.priority
-                                        var pos = mapToItem(Overlay.overlay, mouse.x, mouse.y)
-                                        fileCtxPopup.x = pos.x
-                                        fileCtxPopup.y = pos.y
-                                        fileCtxPopup.open()
+                                        fileCtxMenu._fileIndex = fd.fileIndex
+                                        fileCtxMenu._path = fd.path
+                                        fileCtxMenu._name = fd.name
+                                        fileCtxMenu._wanted = fd.wanted
+                                        fileCtxMenu._isFolder = fd.isFolder
+                                        fileCtxMenu._priority = fd.priority
+                                        fileCtxMenu.popup()
                                     }
                                 }
                             }
@@ -3044,13 +3113,12 @@ Window {
                             }
                         }
 
-                        Popup {
-                            id: fileCtxPopup
-                            parent: Overlay.overlay
-                            modal: false
-                            padding: 0
-                            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-                            property int _row: -1
+                        // Thin right-click menu — mirrors the main download table's
+                        // CtxMenuItem style (22px rows, opaque bg). See DownloadTable.qml.
+                        Menu {
+                            id: fileCtxMenu
+                            topPadding: 0; bottomPadding: 0
+                            delegate: FileCtxMenuItem {}
                             property int _fileIndex: -1
                             property string _path: ""
                             property string _name: ""
@@ -3060,209 +3128,57 @@ Window {
 
                             function _applyPriority(level) {
                                 if (root.item) {
-                                    if (fileCtxPopup._fileIndex >= 0)
-                                        App.setTorrentFilePriorityByIndex(root.item.id, fileCtxPopup._fileIndex, level)
+                                    if (fileCtxMenu._fileIndex >= 0)
+                                        App.setTorrentFilePriorityByIndex(root.item.id, fileCtxMenu._fileIndex, level)
                                     else
-                                        App.setTorrentFilePriorityByPath(root.item.id, fileCtxPopup._path, level)
+                                        App.setTorrentFilePriorityByPath(root.item.id, fileCtxMenu._path, level)
                                 }
-                                filePrioritySubmenu.close()
-                                fileCtxPopup.close()
                             }
 
-                            onClosed: filePrioritySubmenu.close()
-
-                            background: Rectangle {
-                                color: ColorPalette.panelBg
-                                border.color: ColorPalette.border
-                                radius: 4
-                            }
-
-                            contentItem: Column {
-                                spacing: 0
-
-                                Rectangle {
-                                    width: 180
-                                    height: 34
-                                    color: downloadCtxHover.containsMouse ? ColorPalette.border : "transparent"
-
-                                    Row {
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 10
-                                        spacing: 8
-
-                                        Rectangle {
-                                            width: 14
-                                            height: 14
-                                            radius: 2
-                                            color: fileCtxPopup._wanted ? "#4488dd" : ColorPalette.inputBg
-                                            border.color: fileCtxPopup._wanted ? "#4488dd" : ColorPalette.border
-                                            Text {
-                                                visible: fileCtxPopup._wanted
-                                                anchors.centerIn: parent
-                                                text: "✓"
-                                                color: ColorPalette.textPrimary
-                                                font.pixelSize: 10 * App.fontScale
-                                                font.bold: true
-                                            }
-                                        }
-
-                                        Text {
-                                            text: qsTr("Download")
-                                            color: ColorPalette.textPrimary
-                                            font.pixelSize: 12 * App.fontScale
-                                        }
-                                    }
-
-                                    MouseArea {
-                                        id: downloadCtxHover
-                                        anchors.fill: parent
-                                        hoverEnabled: true
-                                        onClicked: {
-                                            if (root.item) {
-                                                // Use stable identifiers instead of the visible row
-                                                // number, which changes when folders expand/collapse.
-                                                if (fileCtxPopup._fileIndex >= 0)
-                                                    App.setTorrentFileWantedByIndex(root.item.id, fileCtxPopup._fileIndex, !fileCtxPopup._wanted)
-                                                else
-                                                    App.setTorrentFileWantedByPath(root.item.id, fileCtxPopup._path, !fileCtxPopup._wanted)
-                                            }
-                                            fileCtxPopup.close()
-                                        }
-                                    }
-                                }
-
-                                Rectangle { width: 180; height: 1; color: ColorPalette.border }
-
-                                // Priority ▸ — flyout submenu; disabled when skipped.
-                                Rectangle {
-                                    id: filePriorityRow
-                                    width: 180
-                                    height: 34
-                                    enabled: fileCtxPopup._wanted
-                                    opacity: enabled ? 1.0 : 0.45
-                                    color: (priorityCtxHover.containsMouse || filePrioritySubmenu.visible) ? ColorPalette.border : "transparent"
-
-                                    Text {
-                                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
-                                        text: qsTr("Priority")
-                                        color: ColorPalette.textPrimary
-                                        font.pixelSize: 12 * App.fontScale
-                                    }
-                                    Text {
-                                        anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 10 }
-                                        text: "▸"
-                                        color: ColorPalette.textSecond
-                                        font.pixelSize: 11 * App.fontScale
-                                    }
-
-                                    MouseArea {
-                                        id: priorityCtxHover
-                                        anchors.fill: parent
-                                        hoverEnabled: true
-                                        onEntered: if (filePriorityRow.enabled) filePrioritySubmenu.openFlyout()
-                                        onClicked: if (filePriorityRow.enabled) filePrioritySubmenu.openFlyout()
-                                    }
-                                }
-
-                                Rectangle { width: 180; height: 1; color: ColorPalette.border }
-
-                                Rectangle {
-                                    width: 180
-                                    height: 34
-                                    color: renameCtxHover.containsMouse ? ColorPalette.border : "transparent"
-
-                                    Image {
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 10
-                                        width: 16
-                                        height: 16
-                                        source: "../icons/rename.svg"
-                                        sourceSize: Qt.size(16, 16)
-                                        fillMode: Image.PreserveAspectFit
-                                        asynchronous: true
-                                    }
-                                    Text {
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 32
-                                        text: qsTr("Rename...")
-                                        color: ColorPalette.textPrimary
-                                        font.pixelSize: 12 * App.fontScale
-                                    }
-
-                                    MouseArea {
-                                        id: renameCtxHover
-                                        anchors.fill: parent
-                                        hoverEnabled: true
-                                        onClicked: {
-                                            fileCtxPopup.close()
-                                            renameDialog.openForRename(fileCtxPopup._path, fileCtxPopup._name, fileCtxPopup._fileIndex, fileCtxPopup._isFolder)
-                                        }
+                            FileCtxMenuItem {
+                                text: qsTr("Download")
+                                checkable: true
+                                checked: fileCtxMenu._wanted
+                                onTriggered: {
+                                    if (root.item) {
+                                        // Stable identifiers — visible row number shifts on expand/collapse.
+                                        if (fileCtxMenu._fileIndex >= 0)
+                                            App.setTorrentFileWantedByIndex(root.item.id, fileCtxMenu._fileIndex, !fileCtxMenu._wanted)
+                                        else
+                                            App.setTorrentFileWantedByPath(root.item.id, fileCtxMenu._path, !fileCtxMenu._wanted)
                                     }
                                 }
                             }
-                        }
-
-                        // Priority flyout submenu — to the right of the Priority row.
-                        Popup {
-                            id: filePrioritySubmenu
-                            parent: Overlay.overlay
-                            modal: false
-                            padding: 0
-                            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-
-                            function openFlyout() {
-                                var p = filePriorityRow.mapToItem(Overlay.overlay, filePriorityRow.width, 0)
-                                x = p.x - 2
-                                y = p.y
-                                open()
-                            }
-
-                            background: Rectangle {
-                                color: ColorPalette.panelBg
-                                border.color: ColorPalette.border
-                                radius: 4
-                            }
-
-                            contentItem: Column {
-                                spacing: 0
-                                Repeater {
-                                    model: [
-                                        { label: qsTr("Low"),     level: 1 },
-                                        { label: qsTr("Normal"),  level: 4 },
-                                        { label: qsTr("High"),    level: 6 },
-                                        { label: qsTr("Maximum"), level: 7 }
-                                    ]
-                                    delegate: Rectangle {
-                                        required property var modelData
-                                        width: 150
-                                        height: 32
-                                        color: filePrioItemHover.containsMouse ? ColorPalette.border : "transparent"
-
-                                        Text {
-                                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 28 }
-                                            text: modelData.label
-                                            color: ColorPalette.textPrimary
-                                            font.pixelSize: 12 * App.fontScale
-                                        }
-                                        Text {
-                                            visible: fileCtxPopup._priority === modelData.level
-                                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
-                                            text: "✓"
-                                            color: ColorPalette.textPrimary
-                                            font.pixelSize: 11 * App.fontScale
-                                            font.bold: true
-                                        }
-                                        MouseArea {
-                                            id: filePrioItemHover
-                                            anchors.fill: parent
-                                            hoverEnabled: true
-                                            onClicked: fileCtxPopup._applyPriority(modelData.level)
-                                        }
-                                    }
+                            MenuSeparator {}
+                            // Submenu rendered DownloadTable-style: a plain item with an
+                            // inline ▶ that pops a child Menu manually on hover. A real
+                            // Menu{title} subMenu renders the style file's tiny PNG arrow.
+                            FileCtxMenuItem {
+                                id: _fpPriorityItem
+                                text: qsTr("Priority") + "  ▶"
+                                enabled: fileCtxMenu._wanted
+                                onTriggered: _fpPriorityMenu.popup(_fpPriorityItem.width, 0)
+                                onHoveredChanged: {
+                                    if (hovered) { _fpPriorityMenu.popup(_fpPriorityItem.width, 0) }
+                                    else { _fpPriorityCloseTimer.restart() }
                                 }
+                                Menu {
+                                    id: _fpPriorityMenu
+                                    delegate: FileCtxMenuItem {}
+                                    topPadding: 0; bottomPadding: 0
+                                    onAboutToHide: _fpPriorityCloseTimer.stop()
+                                    FileCtxMenuItem { text: qsTr("Low");     checkable: true; checked: fileCtxMenu._priority === 1; onTriggered: fileCtxMenu._applyPriority(1) }
+                                    FileCtxMenuItem { text: qsTr("Normal");  checkable: true; checked: fileCtxMenu._priority === 4; onTriggered: fileCtxMenu._applyPriority(4) }
+                                    FileCtxMenuItem { text: qsTr("High");    checkable: true; checked: fileCtxMenu._priority === 6; onTriggered: fileCtxMenu._applyPriority(6) }
+                                    FileCtxMenuItem { text: qsTr("Maximum"); checkable: true; checked: fileCtxMenu._priority === 7; onTriggered: fileCtxMenu._applyPriority(7) }
+                                }
+                                Timer { id: _fpPriorityCloseTimer; interval: 300; onTriggered: { if (!_fpPriorityMenu.activeFocus) _fpPriorityMenu.close() } }
+                            }
+                            MenuSeparator {}
+                            FileCtxMenuItem {
+                                text: qsTr("Rename...")
+                                iconSrc: "rename.svg"
+                                onTriggered: renameDialog.openForRename(fileCtxMenu._path, fileCtxMenu._name, fileCtxMenu._fileIndex, fileCtxMenu._isFolder)
                             }
                         }
                     }
@@ -6051,6 +5967,14 @@ Window {
                                 }
                             }
                         }
+                    }
+                }
+
+                // ?? Settings (per-torrent limits / discovery / mode) ??????????
+                Item {
+                    TorrentSettingsPanel {
+                        anchors.fill: parent
+                        torrentItem: root.currentTab === 8 ? root.item : null
                     }
                 }
             }

@@ -414,14 +414,46 @@ Rectangle {
         }
     }
 
-    Rectangle {
+    // Progress strip along the row bottom. Blue while downloading; an orange
+    // sweeping sliver while a magnet is still fetching metadata. Hidden while
+    // seeding (a full-width strip there is just noise) and otherwise.
+    Item {
+        id: progStrip
         anchors { bottom: parent.bottom; bottomMargin: 1 }
         x: listView.contentX
-        readonly property real _viewportWidth: Math.max(0, Math.min(listView.width, rowRect.width - listView.contentX))
-        width: rowRect.item ? rowRect.item.progress * _viewportWidth : 0
         height: 3
-        color: "#4488dd"
-        visible: rowRect.item && rowRect.item.status === "Downloading"
+        readonly property real _viewportWidth: Math.max(0, Math.min(listView.width, rowRect.width - listView.contentX))
+        width: _viewportWidth
+        readonly property bool _metadataPending: rowRect.item && rowRect.item.isTorrent && !rowRect.item.torrentHasMetadata
+        visible: rowRect.item && (rowRect.item.status === "Downloading" || _metadataPending)
+
+        // Determinate blue fill (active download).
+        Rectangle {
+            visible: !progStrip._metadataPending
+            anchors { left: parent.left; bottom: parent.bottom }
+            width: rowRect.item ? rowRect.item.progress * progStrip._viewportWidth : 0
+            height: parent.height
+            color: ColorPalette.progressDownloading
+        }
+
+        // Orange sliver that squeezes thin against each edge, fattens crossing
+        // the middle, then back (matches TorrentProgressBar).
+        property real _pos: 0
+        readonly property real _sweepW: progStrip.width * (0.16 + 0.42 * Math.sin(Math.PI * _pos))
+        SequentialAnimation on _pos {
+            running: progStrip._metadataPending && progStrip.visible
+            loops: Animation.Infinite
+            NumberAnimation { from: 0; to: 1; duration: 950; easing.type: Easing.InOutQuad }
+            NumberAnimation { from: 1; to: 0; duration: 950; easing.type: Easing.InOutQuad }
+        }
+        Rectangle {
+            visible: progStrip._metadataPending
+            y: 0
+            height: parent.height
+            color: ColorPalette.progressMetadata
+            width: progStrip._sweepW
+            x: progStrip._pos * (progStrip.width - progStrip._sweepW)
+        }
     }
 
     MouseArea {

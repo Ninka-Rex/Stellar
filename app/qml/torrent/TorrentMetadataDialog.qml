@@ -23,9 +23,9 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    width: 780
+    width: 800
     height: 500
-    minimumWidth: 720
+    minimumWidth: 800
     minimumHeight: 460
     title: item && item.filename ? item.filename : qsTr("Torrent Metadata")
     color: ColorPalette.cardBg
@@ -38,6 +38,68 @@ Window {
 
     property string downloadId: ""
     property bool startWhenReady: true
+    // 0 = Files, 1 = Settings
+    property int metaTab: 0
+
+    // Thin context-menu row, matching DownloadTable.qml's CtxMenuItem (22px,
+    // opaque bg, icon+text, ✓ for checkable rows, ▶ for submenus).
+    component MetaCtxMenuItem: MenuItem {
+        id: _mcmi
+        implicitHeight: 22
+        height: 22
+        topPadding: 0; bottomPadding: 0; verticalPadding: 0
+        leftPadding: 8; rightPadding: 12
+        spacing: 0
+        font.pixelSize: 12 * App.fontScale
+        property string iconSrc: ""
+        // Blank default indicator/arrow — submenu arrow (▶) is appended to the
+        // title text instead (matches DownloadTable's "Move to Queue ▶").
+        indicator: Item { width: 0; height: 0 }
+        arrow: Item { width: 0; height: 0 }
+        contentItem: Row {
+            spacing: 6
+            Item {
+                visible: _mcmi.checkable
+                width: visible ? 14 : 0
+                height: 14
+                anchors.verticalCenter: parent.verticalCenter
+                Text {
+                    visible: _mcmi.checked
+                    anchors.centerIn: parent
+                    text: "✓"; font.pixelSize: 10 * App.fontScale; font.bold: true
+                    color: ColorPalette.textPrimary
+                }
+            }
+            Image {
+                visible: _mcmi.iconSrc !== ""
+                source: _mcmi.iconSrc !== "" ? "../icons/" + _mcmi.iconSrc : ""
+                width: 14; height: 14
+                sourceSize.width: 14; sourceSize.height: 14
+                fillMode: Image.PreserveAspectFit
+                smooth: true
+                anchors.verticalCenter: parent.verticalCenter
+            }
+            Text {
+                text: _mcmi.text
+                font: _mcmi.font
+                color: _mcmi.enabled ? ColorPalette.textPrimary : ColorPalette.textDisabled
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
+                anchors.verticalCenter: parent.verticalCenter
+            }
+            Item { visible: _mcmi.subMenu !== null; width: visible ? 8 : 0; height: 1 }
+            Text {
+                visible: _mcmi.subMenu !== null
+                anchors.verticalCenter: parent.verticalCenter
+                text: "▶"; font.pixelSize: 8 * App.fontScale; color: ColorPalette.textMuted
+            }
+        }
+        background: Rectangle {
+            implicitHeight: 22
+            // Opaque, never "transparent" — see CLAUDE.md "Linux Software-Backend Menus".
+            color: _mcmi.highlighted ? ColorPalette.selectionBg : ColorPalette.menuBg
+        }
+    }
     readonly property var item: downloadId.length > 0 ? App.downloadById(downloadId) : null
     readonly property var fileModel: downloadId.length > 0 ? App.torrentFileModel(downloadId) : null
     // Latched true once metadata arrives; never flips back. Prevents the Loader
@@ -537,205 +599,306 @@ Window {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 12
-        spacing: 6
+        spacing: 0
 
-        // Title + status on one line
-        RowLayout {
-            Layout.fillWidth: true
-            spacing: 8
-
-            Image {
-                source: "../icons/magnet.svg"
-                width: 12; height: 12
-                sourceSize.width: 24; sourceSize.height: 24
-                fillMode: Image.PreserveAspectFit
-                smooth: true
-                Layout.alignment: Qt.AlignVCenter
-            }
-
-            Text {
-                text: root.item && root.item.filename && root.item.filename.length > 0
-                      ? root.item.filename
-                      : (root.pendingSourceLabel.length > 0 ? root.pendingSourceLabel : qsTr("Torrent Metadata"))
-                color: ColorPalette.textHeader
-                font.pixelSize: 15 * App.fontScale
-                font.bold: true
-                Layout.fillWidth: true
-                elide: Text.ElideRight
-            }
-
-            Text {
-                visible: !!root.item && root.item.status === "Error"
-                text: root.item ? root.item.errorString : ""
-                color: "#e07b7b"
-                font.pixelSize: 12 * App.fontScale
-                elide: Text.ElideRight
-                Layout.maximumWidth: 260
-            }
-        }
-
-        // Compact form: save path + category + description on two rows
-        RowLayout {
-            Layout.fillWidth: true
-            spacing: 6
-
-            Text { text: qsTr("Save to"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
-
-            TextField {
-                id: savePathField
-                Layout.fillWidth: true
-                Layout.preferredHeight: 32
-                text: root.savePath
-                color: ColorPalette.textPrimary
-                background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
-                leftPadding: 6
-                rightPadding: 6
-                topPadding: 0; bottomPadding: 0
-                verticalAlignment: TextInput.AlignVCenter
-                onTextChanged: {
-                    root.savePath = text
-                    root.refreshSavePathMode()
-                    root.syncPersistentCustomSaveState()
-                }
-            }
-
-            DlgButton {
-                text: qsTr("Save As...")
-                Layout.preferredHeight: 32
-                onClicked: saveFolderDialog.open()
-            }
-
-            // Separator
-            Rectangle { width: 1; height: 22; color: ColorPalette.border }
-
-            Text { text: qsTr("Category"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
-
-            ComboBox {
-                id: categoryCombo
-                implicitWidth: 140
-                implicitHeight: 32
-                model: root.categoryLabels
-                currentIndex: root.categoryIndex()
-                onActivated: {
-                    root.category = root.categoryIds[currentIndex] || "all"
-                    root.applyCategorySavePath(false)
-                }
-                contentItem: Text {
-                    text: categoryCombo.displayText
-                    color: ColorPalette.textPrimary
-                    verticalAlignment: Text.AlignVCenter
-                    leftPadding: 6
-                    elide: Text.ElideRight
-                    font.pixelSize: 12 * App.fontScale
-                }
-                background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
-            }
-        }
-
-        // Second row: checkboxes + description
-        RowLayout {
-            Layout.fillWidth: true
-            spacing: 8
-            visible: !!root.item
-
-            StyledCheckBox {
-                id: customSavePathCheck
-                text: qsTr("Custom save folder")
-                checked: root.useCustomSavePath
-                topPadding: 0; bottomPadding: 0
-                onToggled: {
-                    root.useCustomSavePath = checked
-                    root.syncPersistentCustomSaveState()
-                    if (!checked)
-                        root.applyCategorySavePath(true)
-                    else {
-                        var rememberedPath = root.rememberedCustomSavePath()
-                        if (rememberedPath.length > 0)
-                            root.savePath = rememberedPath
-                    }
-                }
-                contentItem: Text {
-                    text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
-                    leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter
-                }
-            }
-
-            StyledCheckBox {
-                text: qsTr("Remember")
-                checked: root.rememberCustomSavePath
-                enabled: root.useCustomSavePath
-                topPadding: 0; bottomPadding: 0
-                onToggled: root.rememberCustomSavePath = checked
-                contentItem: Text {
-                    text: parent.text
-                    color: parent.enabled ? ColorPalette.textPrimary : "#6f6f6f"; font.pixelSize: 12 * App.fontScale
-                    leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter
-                }
-            }
-
-            Text {
-                text: qsTr("Use category folder")
-                color: root.useCustomSavePath ? "#66aaff" : "#5f5f5f"
-                font.pixelSize: 12 * App.fontScale; font.underline: root.useCustomSavePath
-                MouseArea {
-                    anchors.fill: parent
-                    enabled: root.useCustomSavePath
-                    cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
-                    onClicked: {
-                        root.useCustomSavePath = false
-                        root.syncPersistentCustomSaveState()
-                        root.applyCategorySavePath(true)
-                    }
-                }
-            }
-
-            Rectangle { width: 1; height: 18; color: ColorPalette.border }
-
-            Text { text: qsTr("Description"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
-            TextField {
-                Layout.fillWidth: true
-                implicitHeight: 26
-                text: root.description
-                color: ColorPalette.textPrimary
-                background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
-                leftPadding: 6; rightPadding: 6; topPadding: 0; bottomPadding: 0
-                verticalAlignment: TextInput.AlignVCenter
-                font.pixelSize: 12 * App.fontScale
-                onTextChanged: root.description = text
-            }
-        }
-
+        // ?? Fancy header — icon + filename + status + progress ?????????????
+        // Mirrors FilePropertiesDialog's torrent header. While a magnet is
+        // still fetching metadata the bar shows an orange indeterminate sweep.
         Rectangle {
             Layout.fillWidth: true
-            Layout.fillHeight: true
-            color: ColorPalette.inputBg
-            border.color: ColorPalette.border
-            radius: 6
-            clip: true
+            Layout.preferredHeight: metaHeaderCol.implicitHeight + 12
+            color: ColorPalette.headerStripBg
 
-            Loader {
-                id: contentLoader
-                anchors.fill: parent
-                active: !!root.item
-                sourceComponent: root._metadataArrived ? filesView : waitingView
+            ColumnLayout {
+                id: metaHeaderCol
+                anchors { fill: parent; leftMargin: 14; rightMargin: 14; topMargin: 6; bottomMargin: 6 }
+                spacing: 4
+
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 8
+
+                    Image {
+                        Layout.preferredWidth: 22; Layout.preferredHeight: 22
+                        source: {
+                            if (!root.item) return "../icons/magnet.svg"
+                            var p = String(root.item.savePath || "").replace(/\\/g, "/")
+                            var f = String(root.item.filename || "")
+                            return (p && f) ? ("image://fileicon/" + p + "/" + f) : "../icons/magnet.svg"
+                        }
+                        sourceSize: Qt.size(22, 22)
+                        fillMode: Image.PreserveAspectFit
+                        smooth: true
+                        asynchronous: true
+                        Layout.alignment: Qt.AlignVCenter
+                    }
+
+                    Text {
+                        text: root.item && root.item.filename && root.item.filename.length > 0
+                              ? root.item.filename
+                              : (root.pendingSourceLabel.length > 0 ? root.pendingSourceLabel : qsTr("Torrent Metadata"))
+                        color: ColorPalette.textHeader
+                        font.pixelSize: 14 * App.fontScale
+                        font.bold: true
+                        Layout.fillWidth: true
+                        elide: Text.ElideMiddle
+                    }
+
+                    Text {
+                        visible: !!root.item && root.item.status === "Error"
+                        text: root.item ? root.item.errorString : ""
+                        color: "#e07b7b"
+                        font.pixelSize: 12 * App.fontScale
+                        elide: Text.ElideRight
+                        Layout.maximumWidth: 260
+                    }
+
+                    Text {
+                        visible: !!root.item && root.item.status !== "Error"
+                        text: !root.item ? ""
+                              : (root.item.isTorrent && !root.item.torrentHasMetadata)
+                                ? qsTr("Fetching metadata…")
+                                : (root.item.statusText || "")
+                        color: ColorPalette.textHeader
+                        font.pixelSize: 11 * App.fontScale
+                        font.bold: true
+                    }
+                }
+
+                TorrentProgressBar {
+                    Layout.fillWidth: true
+                    implicitHeight: 5
+                    item: root.item
+                }
+            }
+        }
+
+        // Body padding container — the original 12px margins applied per-region
+        // so the header/tab strip can span full-width.
+        ColumnLayout {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.margins: 12
+            spacing: 6
+
+        // Tab strip directly below the header: Files | Settings.
+        Rectangle {
+            Layout.fillWidth: true; height: 30
+            color: ColorPalette.panelBg
+
+            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
+
+            Row {
+                anchors.fill: parent; spacing: 0
+                Repeater {
+                    model: [qsTr("Files"), qsTr("Settings")]
+                    delegate: Rectangle {
+                        required property int index
+                        required property string modelData
+                        width: metaTabLbl.implicitWidth + 28; height: parent.height
+                        color: root.metaTab === index
+                               ? ColorPalette.cardBg
+                               : (metaTabHov.containsMouse ? ColorPalette.hoverBg : "transparent")
+                        Text {
+                            id: metaTabLbl; anchors.centerIn: parent
+                            text: modelData
+                            color: root.metaTab === index ? ColorPalette.textHeader : ColorPalette.textSecond
+                            font.pixelSize: 12 * App.fontScale
+                        }
+                        MouseArea {
+                            id: metaTabHov; anchors.fill: parent; hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: root.metaTab = index
+                        }
+                    }
+                }
+            }
+        }
+
+        StackLayout {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            currentIndex: root.metaTab
+
+            // ?? Files page — save options + description + file list ???????????
+            ColumnLayout {
+                spacing: 6
+
+                // Save path + category
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 6
+
+                    Text { text: qsTr("Save to"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
+
+                    TextField {
+                        id: savePathField
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 32
+                        text: root.savePath
+                        color: ColorPalette.textPrimary
+                        background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
+                        leftPadding: 6
+                        rightPadding: 6
+                        topPadding: 0; bottomPadding: 0
+                        verticalAlignment: TextInput.AlignVCenter
+                        onTextChanged: {
+                            root.savePath = text
+                            root.refreshSavePathMode()
+                            root.syncPersistentCustomSaveState()
+                        }
+                    }
+
+                    DlgButton {
+                        text: qsTr("Save As...")
+                        Layout.preferredHeight: 32
+                        onClicked: saveFolderDialog.open()
+                    }
+
+                    Rectangle { width: 1; height: 22; color: ColorPalette.border }
+
+                    Text { text: qsTr("Category"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale }
+
+                    ComboBox {
+                        id: categoryCombo
+                        implicitWidth: 140
+                        implicitHeight: 32
+                        model: root.categoryLabels
+                        currentIndex: root.categoryIndex()
+                        onActivated: {
+                            root.category = root.categoryIds[currentIndex] || "all"
+                            root.applyCategorySavePath(false)
+                        }
+                        contentItem: Text {
+                            text: categoryCombo.displayText
+                            color: ColorPalette.textPrimary
+                            verticalAlignment: Text.AlignVCenter
+                            leftPadding: 6
+                            elide: Text.ElideRight
+                            font.pixelSize: 12 * App.fontScale
+                        }
+                        background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
+                    }
+                }
+
+                // Checkboxes
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 8
+                    visible: !!root.item
+
+                    StyledCheckBox {
+                        id: customSavePathCheck
+                        text: qsTr("Custom save folder")
+                        checked: root.useCustomSavePath
+                        Layout.fillWidth: false
+                        topPadding: 0; bottomPadding: 0
+                        onToggled: {
+                            root.useCustomSavePath = checked
+                            root.syncPersistentCustomSaveState()
+                            if (!checked)
+                                root.applyCategorySavePath(true)
+                            else {
+                                var rememberedPath = root.rememberedCustomSavePath()
+                                if (rememberedPath.length > 0)
+                                    root.savePath = rememberedPath
+                            }
+                        }
+                        contentItem: Text {
+                            text: parent.text; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale
+                            leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+
+                    StyledCheckBox {
+                        text: qsTr("Remember")
+                        checked: root.rememberCustomSavePath
+                        enabled: root.useCustomSavePath
+                        Layout.fillWidth: false
+                        topPadding: 0; bottomPadding: 0
+                        onToggled: root.rememberCustomSavePath = checked
+                        contentItem: Text {
+                            text: parent.text
+                            color: parent.enabled ? ColorPalette.textPrimary : "#6f6f6f"; font.pixelSize: 12 * App.fontScale
+                            leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+
+                    Text {
+                        text: qsTr("Use category folder")
+                        color: root.useCustomSavePath ? "#66aaff" : "#5f5f5f"
+                        font.pixelSize: 12 * App.fontScale; font.underline: root.useCustomSavePath
+                        MouseArea {
+                            anchors.fill: parent
+                            enabled: root.useCustomSavePath
+                            cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
+                            onClicked: {
+                                root.useCustomSavePath = false
+                                root.syncPersistentCustomSaveState()
+                                root.applyCategorySavePath(true)
+                            }
+                        }
+                    }
+
+                    Item { Layout.fillWidth: true }
+                }
+
+                // Description
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 6
+                    visible: !!root.item
+
+                    Text {
+                        text: qsTr("Description")
+                        color: ColorPalette.textSecond
+                        font.pixelSize: 12 * App.fontScale
+                        Layout.alignment: Qt.AlignVCenter
+                    }
+                    TextField {
+                        Layout.fillWidth: true
+                        implicitHeight: 26
+                        horizontalAlignment: TextInput.AlignLeft
+                        text: root.description
+                        color: ColorPalette.textPrimary
+                        background: Rectangle { color: ColorPalette.inputBg; border.color: ColorPalette.border; radius: 3 }
+                        leftPadding: 6; rightPadding: 6; topPadding: 0; bottomPadding: 0
+                        verticalAlignment: TextInput.AlignVCenter
+                        font.pixelSize: 12 * App.fontScale
+                        onTextChanged: root.description = text
+                    }
+                }
+
+                // File list
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    color: ColorPalette.inputBg
+                    border.color: ColorPalette.border
+                    radius: 6
+                    clip: true
+
+                    Loader {
+                        id: contentLoader
+                        anchors.fill: parent
+                        active: !!root.item
+                        sourceComponent: root._metadataArrived ? filesView : waitingView
+                    }
+                }
+            }
+
+            // Settings page
+            Item {
+                TorrentSettingsPanel {
+                    anchors.fill: parent
+                    torrentItem: root.metaTab === 1 ? root.item : null
+                }
             }
         }
 
         RowLayout {
             Layout.fillWidth: true
             spacing: 8
-
-            DlgButton {
-                text: qsTr("Torrent Settings...")
-                enabled: !!root.item
-                onClicked: {
-                    metaTorrentSettingsDlg.torrentItem = root.item
-                    metaTorrentSettingsDlg.show()
-                    metaTorrentSettingsDlg.raise()
-                    metaTorrentSettingsDlg.requestActivate()
-                }
-            }
 
             Item { Layout.fillWidth: true }
 
@@ -771,11 +934,7 @@ Window {
                 }
             }
         }
-    }
-
-    TorrentSpeedLimitDialog {
-        id: metaTorrentSettingsDlg
-        transientParent: root
+        } // body ColumnLayout
     }
 
     Component {
@@ -1531,6 +1690,7 @@ Window {
                         Text {
                             width: Math.max(40, root.fileColSize)
                             anchors.verticalCenter: parent.verticalCenter
+                            leftPadding: 6   // align with header cell's leftMargin:6
                             text: root.formatBytes(size)
                             color: wanted ? ColorPalette.textPrimary : ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
@@ -1541,6 +1701,7 @@ Window {
                         Text {
                             width: Math.max(40, root.fileColPriority)
                             anchors.verticalCenter: parent.verticalCenter
+                            leftPadding: 6   // align with header cell's leftMargin:6
                             text: wanted ? root.priorityLabel(priority) : "—"
                             color: wanted ? root.priorityColor(priority) : ColorPalette.textDisabled
                             font.pixelSize: 11 * App.fontScale
@@ -1562,17 +1723,13 @@ Window {
                         onClicked: function(mouse) {
                             if (mouse.button !== Qt.RightButton)
                                 return
-                            metaFileCtxPopup._row = metaFd.index
-                            metaFileCtxPopup._fileIndex = metaFd.fileIndex
-                            metaFileCtxPopup._path = metaFd.path
-                            metaFileCtxPopup._name = metaFd.name
-                            metaFileCtxPopup._wanted = metaFd.wanted
-                            metaFileCtxPopup._isFolder = metaFd.isFolder
-                            metaFileCtxPopup._priority = metaFd.priority
-                            var pos = mapToItem(Overlay.overlay, mouse.x, mouse.y)
-                            metaFileCtxPopup.x = pos.x
-                            metaFileCtxPopup.y = pos.y
-                            metaFileCtxPopup.open()
+                            metaFileCtxMenu._fileIndex = metaFd.fileIndex
+                            metaFileCtxMenu._path = metaFd.path
+                            metaFileCtxMenu._name = metaFd.name
+                            metaFileCtxMenu._wanted = metaFd.wanted
+                            metaFileCtxMenu._isFolder = metaFd.isFolder
+                            metaFileCtxMenu._priority = metaFd.priority
+                            metaFileCtxMenu.popup()
                         }
                     }
                     }
@@ -1682,13 +1839,12 @@ Window {
                 }
             }
 
-            Popup {
-                id: metaFileCtxPopup
-                parent: Overlay.overlay
-                modal: false
-                padding: 0
-                closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-                property int _row: -1
+            // Thin right-click menu — mirrors the main download table's
+            // CtxMenuItem style (22px rows, opaque bg). See DownloadTable.qml.
+            Menu {
+                id: metaFileCtxMenu
+                topPadding: 0; bottomPadding: 0
+                delegate: MetaCtxMenuItem {}
                 property int _fileIndex: -1
                 property string _path: ""
                 property string _name: ""
@@ -1698,211 +1854,57 @@ Window {
 
                 function _applyPriority(level) {
                     if (root.downloadId.length > 0) {
-                        if (metaFileCtxPopup._fileIndex >= 0)
-                            App.setTorrentFilePriorityByIndex(root.downloadId, metaFileCtxPopup._fileIndex, level)
+                        if (metaFileCtxMenu._fileIndex >= 0)
+                            App.setTorrentFilePriorityByIndex(root.downloadId, metaFileCtxMenu._fileIndex, level)
                         else
-                            App.setTorrentFilePriorityByPath(root.downloadId, metaFileCtxPopup._path, level)
+                            App.setTorrentFilePriorityByPath(root.downloadId, metaFileCtxMenu._path, level)
                     }
-                    metaPrioritySubmenu.close()
-                    metaFileCtxPopup.close()
                 }
 
-                onClosed: metaPrioritySubmenu.close()
-
-                background: Rectangle {
-                    color: ColorPalette.panelBg
-                    border.color: ColorPalette.border
-                    radius: 4
-                }
-
-                contentItem: Column {
-                    spacing: 0
-
-                    Rectangle {
-                        width: 180
-                        height: 34
-                        color: metaDownloadCtxHover.containsMouse ? ColorPalette.border : "transparent"
-
-                        Row {
-                            anchors.verticalCenter: parent.verticalCenter
-                            anchors.left: parent.left
-                            anchors.leftMargin: 10
-                            spacing: 8
-
-                            Rectangle {
-                                width: 14
-                                height: 14
-                                radius: 2
-                                color: metaFileCtxPopup._wanted ? "#4488dd" : ColorPalette.inputBg
-                                border.color: metaFileCtxPopup._wanted ? "#4488dd" : ColorPalette.border
-                                Text {
-                                    visible: metaFileCtxPopup._wanted
-                                    anchors.centerIn: parent
-                                    text: "✓"
-                                    color: ColorPalette.textPrimary
-                                    font.pixelSize: 10 * App.fontScale
-                                    font.bold: true
-                                }
-                            }
-
-                            Text {
-                                text: qsTr("Download")
-                                color: ColorPalette.textPrimary
-                                font.pixelSize: 12 * App.fontScale
-                            }
-                        }
-
-                        MouseArea {
-                            id: metaDownloadCtxHover
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onClicked: {
-                                if (root.downloadId.length > 0) {
-                                    // Use stable identifiers instead of the visible row
-                                    // number, which changes when folders expand/collapse.
-                                    if (metaFileCtxPopup._fileIndex >= 0)
-                                        App.setTorrentFileWantedByIndex(root.downloadId, metaFileCtxPopup._fileIndex, !metaFileCtxPopup._wanted)
-                                    else
-                                        App.setTorrentFileWantedByPath(root.downloadId, metaFileCtxPopup._path, !metaFileCtxPopup._wanted)
-                                }
-                                metaFileCtxPopup.close()
-                            }
-                        }
-                    }
-
-                    Rectangle { width: 180; height: 1; color: ColorPalette.border }
-
-                    // Priority ▸ — opens a flyout submenu. Disabled when the file
-                    // is skipped (priority is meaningless for a non-wanted file).
-                    Rectangle {
-                        id: metaPriorityRow
-                        width: 180
-                        height: 34
-                        enabled: metaFileCtxPopup._wanted
-                        opacity: enabled ? 1.0 : 0.45
-                        color: (metaPriorityCtxHover.containsMouse || metaPrioritySubmenu.visible) ? ColorPalette.border : "transparent"
-
-                        Text {
-                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
-                            text: qsTr("Priority")
-                            color: ColorPalette.textPrimary
-                            font.pixelSize: 12 * App.fontScale
-                        }
-                        Text {
-                            anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 10 }
-                            text: "▸"
-                            color: ColorPalette.textSecond
-                            font.pixelSize: 11 * App.fontScale
-                        }
-
-                        MouseArea {
-                            id: metaPriorityCtxHover
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onEntered: if (metaPriorityRow.enabled) metaPrioritySubmenu.openFlyout()
-                            onClicked: if (metaPriorityRow.enabled) metaPrioritySubmenu.openFlyout()
-                        }
-                    }
-
-                    Rectangle { width: 180; height: 1; color: ColorPalette.border }
-
-                    Rectangle {
-                        width: 180
-                        height: 34
-                        color: metaRenameCtxHover.containsMouse ? ColorPalette.border : "transparent"
-
-                        Image {
-                            anchors.verticalCenter: parent.verticalCenter
-                            anchors.left: parent.left
-                            anchors.leftMargin: 10
-                            width: 16
-                            height: 16
-                            source: "../icons/rename.svg"
-                            sourceSize: Qt.size(16, 16)
-                            fillMode: Image.PreserveAspectFit
-                            asynchronous: true
-                        }
-                        Text {
-                            anchors.verticalCenter: parent.verticalCenter
-                            anchors.left: parent.left
-                            anchors.leftMargin: 32
-                            text: qsTr("Rename...")
-                            color: ColorPalette.textPrimary
-                            font.pixelSize: 12 * App.fontScale
-                        }
-
-                        MouseArea {
-                            id: metaRenameCtxHover
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onClicked: {
-                                metaFileCtxPopup.close()
-                                metaRenameDialog.openForRename(metaFileCtxPopup._path, metaFileCtxPopup._name, metaFileCtxPopup._fileIndex, metaFileCtxPopup._isFolder)
-                            }
+                MetaCtxMenuItem {
+                    text: qsTr("Download")
+                    checkable: true
+                    checked: metaFileCtxMenu._wanted
+                    onTriggered: {
+                        if (root.downloadId.length > 0) {
+                            // Stable identifiers — visible row number shifts on expand/collapse.
+                            if (metaFileCtxMenu._fileIndex >= 0)
+                                App.setTorrentFileWantedByIndex(root.downloadId, metaFileCtxMenu._fileIndex, !metaFileCtxMenu._wanted)
+                            else
+                                App.setTorrentFileWantedByPath(root.downloadId, metaFileCtxMenu._path, !metaFileCtxMenu._wanted)
                         }
                     }
                 }
-            }
-
-            // Priority flyout submenu — positioned to the right of the Priority
-            // row in the parent context popup.
-            Popup {
-                id: metaPrioritySubmenu
-                parent: Overlay.overlay
-                modal: false
-                padding: 0
-                closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-
-                function openFlyout() {
-                    var p = metaPriorityRow.mapToItem(Overlay.overlay, metaPriorityRow.width, 0)
-                    x = p.x - 2
-                    y = p.y
-                    open()
-                }
-
-                background: Rectangle {
-                    color: ColorPalette.panelBg
-                    border.color: ColorPalette.border
-                    radius: 4
-                }
-
-                contentItem: Column {
-                    spacing: 0
-                    Repeater {
-                        model: [
-                            { label: qsTr("Low"),     level: 1 },
-                            { label: qsTr("Normal"),  level: 4 },
-                            { label: qsTr("High"),    level: 6 },
-                            { label: qsTr("Maximum"), level: 7 }
-                        ]
-                        delegate: Rectangle {
-                            required property var modelData
-                            width: 150
-                            height: 32
-                            color: metaPrioItemHover.containsMouse ? ColorPalette.border : "transparent"
-
-                            Text {
-                                anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 28 }
-                                text: modelData.label
-                                color: ColorPalette.textPrimary
-                                font.pixelSize: 12 * App.fontScale
-                            }
-                            Text {
-                                visible: metaFileCtxPopup._priority === modelData.level
-                                anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
-                                text: "✓"
-                                color: ColorPalette.textPrimary
-                                font.pixelSize: 11 * App.fontScale
-                                font.bold: true
-                            }
-                            MouseArea {
-                                id: metaPrioItemHover
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                onClicked: metaFileCtxPopup._applyPriority(modelData.level)
-                            }
-                        }
+                MenuSeparator {}
+                // Submenu rendered DownloadTable-style: a plain item with an inline
+                // ▶ that pops a child Menu manually on hover. A real Menu{title}
+                // subMenu would render the style file's tiny PNG arrow far-right.
+                MetaCtxMenuItem {
+                    id: _priorityItem
+                    text: qsTr("Priority") + "  ▶"
+                    enabled: metaFileCtxMenu._wanted
+                    onTriggered: _priorityMenu.popup(_priorityItem.width, 0)
+                    onHoveredChanged: {
+                        if (hovered) { _priorityMenu.popup(_priorityItem.width, 0) }
+                        else { _priorityCloseTimer.restart() }
                     }
+                    Menu {
+                        id: _priorityMenu
+                        delegate: MetaCtxMenuItem {}
+                        topPadding: 0; bottomPadding: 0
+                        onAboutToHide: _priorityCloseTimer.stop()
+                        MetaCtxMenuItem { text: qsTr("Low");     checkable: true; checked: metaFileCtxMenu._priority === 1; onTriggered: metaFileCtxMenu._applyPriority(1) }
+                        MetaCtxMenuItem { text: qsTr("Normal");  checkable: true; checked: metaFileCtxMenu._priority === 4; onTriggered: metaFileCtxMenu._applyPriority(4) }
+                        MetaCtxMenuItem { text: qsTr("High");    checkable: true; checked: metaFileCtxMenu._priority === 6; onTriggered: metaFileCtxMenu._applyPriority(6) }
+                        MetaCtxMenuItem { text: qsTr("Maximum"); checkable: true; checked: metaFileCtxMenu._priority === 7; onTriggered: metaFileCtxMenu._applyPriority(7) }
+                    }
+                    Timer { id: _priorityCloseTimer; interval: 300; onTriggered: { if (!_priorityMenu.activeFocus) _priorityMenu.close() } }
+                }
+                MenuSeparator {}
+                MetaCtxMenuItem {
+                    text: qsTr("Rename...")
+                    iconSrc: "rename.svg"
+                    onTriggered: metaRenameDialog.openForRename(metaFileCtxMenu._path, metaFileCtxMenu._name, metaFileCtxMenu._fileIndex, metaFileCtxMenu._isFolder)
                 }
             }
         }

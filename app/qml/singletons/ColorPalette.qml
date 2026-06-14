@@ -50,6 +50,15 @@ QtObject {
     // Header strips (dark accent bars at top of dialogs)
     readonly property color headerStripBg: dark ? "#222228" : "#dde4f0"
 
+    // Progress-bar fill by download state. Blue = actively downloading,
+    // green = seeding/complete, orange = magnet still fetching metadata
+    // (shown as an indeterminate sliver, see TorrentProgressBar.qml).
+    readonly property color progressDownloading: "#4488dd"
+    readonly property color progressSeeding:     dark ? "#3fae5a" : "#2f9d4a"
+    readonly property color progressMetadata:    "#e08a2b"
+    readonly property color progressTrack:       dark ? "#111111" : "#d2d2d2"
+    readonly property color progressTrackBorder: dark ? "#2f2f2f" : "#bcbcbc"
+
     // Swarm / piece map (data-viz canvas + panels). Light repaint in light mode.
     readonly property color mapCanvasBg:  dark ? "#0d141c" : "#eef3f8"
     readonly property color mapPanelBg:   dark ? "#101821" : "#f4f7fb"
