@@ -4150,6 +4150,54 @@ QString AppController::setMagnetAssociationDefault() const {
 #endif
 }
 
+namespace {
+// Write payload to path only when the current contents differ. Avoids the
+// per-startup churn of rewriting identical native-host manifests every launch.
+// Returns false only on a real write failure.
+bool writeFileIfChanged(const QString &path, const QByteArray &payload) {
+    QFile existing(path);
+    if (existing.open(QIODevice::ReadOnly)) {
+        const QByteArray current = existing.readAll();
+        existing.close();
+        if (current == payload)
+            return true;
+    }
+    QFile f(path);
+    if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate))
+        return false;
+    return f.write(payload) == payload.size();
+}
+
+#if defined(STELLAR_WINDOWS)
+// Read the default (unnamed) REG_SZ value of an HKCU subkey. Returns false if
+// the key/value is absent or not a string.
+bool readRegistryDefaultString(const QString &subKey, QString &out) {
+    HKEY hKey = nullptr;
+    if (RegOpenKeyExW(HKEY_CURRENT_USER,
+                      reinterpret_cast<LPCWSTR>(subKey.utf16()),
+                      0, KEY_QUERY_VALUE, &hKey) != ERROR_SUCCESS || !hKey)
+        return false;
+
+    DWORD type = 0, bytes = 0;
+    LONG res = RegQueryValueExW(hKey, L"", nullptr, &type, nullptr, &bytes);
+    if (res != ERROR_SUCCESS || type != REG_SZ || bytes == 0) {
+        RegCloseKey(hKey);
+        return false;
+    }
+    std::wstring buf(bytes / sizeof(wchar_t), L'\0');
+    res = RegQueryValueExW(hKey, L"", nullptr, nullptr,
+                           reinterpret_cast<LPBYTE>(buf.data()), &bytes);
+    RegCloseKey(hKey);
+    if (res != ERROR_SUCCESS)
+        return false;
+    if (!buf.empty() && buf.back() == L'\0')  // drop trailing NUL counted in bytes
+        buf.pop_back();
+    out = QString::fromWCharArray(buf.c_str());
+    return true;
+}
+#endif
+} // namespace
+
 QString AppController::registerNativeHost() const {
     const QString manifestPath = nativeHostManifestPath();
 
@@ -4211,11 +4259,8 @@ QString AppController::registerNativeHost() const {
     // Write the manifest source file (used for manual cp instructions).
     {
         QDir().mkpath(QFileInfo(manifestPath).absolutePath());
-        QFile f(manifestPath);
-        if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate))
-            return QStringLiteral("Could not write manifest file: ") + manifestPath
-                   + QStringLiteral("\nError: ") + f.errorString();
-        f.write(json);
+        if (!writeFileIfChanged(manifestPath, json))
+            return QStringLiteral("Could not write manifest file: ") + manifestPath;
     }
 
 #else
@@ -4242,20 +4287,10 @@ QString AppController::registerNativeHost() const {
     const QByteArray chromeJson  = QJsonDocument(chromeManifest).toJson(QJsonDocument::Indented);
 
     QDir().mkpath(QCoreApplication::applicationDirPath());
-    {
-        QFile f(manifestPath);
-        if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate))
-            return QStringLiteral("Could not write Firefox native host manifest: ") + manifestPath
-                   + QStringLiteral("\nError: ") + f.errorString();
-        f.write(firefoxJson);
-    }
-    {
-        QFile f(chromeManifestPath);
-        if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate))
-            return QStringLiteral("Could not write Chrome native host manifest: ") + chromeManifestPath
-                   + QStringLiteral("\nError: ") + f.errorString();
-        f.write(chromeJson);
-    }
+    if (!writeFileIfChanged(manifestPath, firefoxJson))
+        return QStringLiteral("Could not write Firefox native host manifest: ") + manifestPath;
+    if (!writeFileIfChanged(chromeManifestPath, chromeJson))
+        return QStringLiteral("Could not write Chrome native host manifest: ") + chromeManifestPath;
 #endif
 
 #if defined(STELLAR_WINDOWS)
@@ -4269,6 +4304,12 @@ QString AppController::registerNativeHost() const {
     };
 
     for (const auto &target : regTargets) {
+        // Skip the write when the key already points at the same manifest path —
+        // avoids needless registry churn on every startup.
+        QString current;
+        if (readRegistryDefaultString(target.first, current) && current == target.second)
+            continue;
+
         const std::wstring wval = reinterpret_cast<const wchar_t *>(target.second.utf16());
         HKEY hKey = nullptr;
         LONG res = RegCreateKeyExW(
@@ -4354,26 +4395,11 @@ QString AppController::registerNativeHost() const {
             continue;
         }
         const QString dest = mozDir + QStringLiteral("/com.stellar.downloadmanager.json");
-        QFile::remove(dest);
-        if (entry.jsonOverride) {
-            QFile f(dest);
-            if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-                lastError = QStringLiteral("Could not write manifest to: ") + dest
-                            + QStringLiteral("\nError: ") + f.errorString();
-            } else {
-                f.write(*entry.jsonOverride);
-                anyOk = true;
-            }
-        } else {
-            QFile f(dest);
-            if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-                lastError = QStringLiteral("Could not write manifest to: ") + dest
-                            + QStringLiteral("\nError: ") + f.errorString();
-            } else {
-                f.write(firefoxOnlyJson);
-                anyOk = true;
-            }
-        }
+        const QByteArray &payload = entry.jsonOverride ? *entry.jsonOverride : firefoxOnlyJson;
+        if (!writeFileIfChanged(dest, payload))
+            lastError = QStringLiteral("Could not write manifest to: ") + dest;
+        else
+            anyOk = true;
     }
 
     const bool firefoxOk = anyOk;
@@ -4450,13 +4476,10 @@ QString AppController::registerNativeHost() const {
         }
 
         const QString dest = nmhDir + QStringLiteral("/com.stellar.downloadmanager.json");
-        QFile f(dest);
-        if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-            lastError = QStringLiteral("Could not write manifest to: ") + dest
-                        + QStringLiteral("\nError: ") + f.errorString();
+        if (!writeFileIfChanged(dest, json)) {  // Chrome-schema manifest (allowed_origins).
+            lastError = QStringLiteral("Could not write manifest to: ") + dest;
             continue;
         }
-        f.write(json);  // Chrome-schema manifest (allowed_origins).
         chromiumOk = true;
     }
 
