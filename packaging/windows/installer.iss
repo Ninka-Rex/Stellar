@@ -89,7 +89,10 @@ Source: "{#BuildDir}\qml\*";                    DestDir: "{app}\qml";           
 ; App content files
 Source: "{#BuildDir}\tips.txt";                  DestDir: "{app}";                      Flags: ignoreversion skipifsourcedoesntexist
 
-; Bundled IP-to-city database (free DB-IP lite, updated periodically)
+; Bundled IP-to-city database (free DB-IP lite, updated periodically).
+; The filename is month-stamped (dbip-city-lite-YYYY-MM.mmdb), so a newer
+; bundle never overwrites the old file — it lands beside it. The
+; [InstallDelete] entry below wipes any prior copy first so they don't pile up.
 Source: "{#BuildDir}\data\dbip-city-lite-*.mmdb"; DestDir: "{app}\data"; Flags: ignoreversion skipifsourcedoesntexist
 
 ; Third-party license notices (required for LGPL/GPL compliance — FFmpeg, Qt, SQLite)
@@ -110,6 +113,12 @@ Source: "{#BuildDir}\yt-dlp.exe";              DestDir: "{app}";          Flags:
 ; chapter modification via SponsorBlock, etc.).
 Source: "{#BuildDir}\ffmpeg.exe";              DestDir: "{app}";          Flags: ignoreversion skipifsourcedoesntexist
 Source: "{#BuildDir}\ffprobe.exe";             DestDir: "{app}";          Flags: ignoreversion skipifsourcedoesntexist
+
+[InstallDelete]
+; Month-stamped geo DB: a new bundle has a different filename and won't
+; overwrite the old one, so remove every prior copy before [Files] copies the
+; fresh DB in. The new file is copied afterwards, so this never deletes it.
+Type: files; Name: "{app}\data\dbip-city-lite-*.mmdb"
 
 [Icons]
 Name: "{group}\Stellar Download Manager"; Filename: "{app}\{#AppExeName}"; IconFilename: "{app}\{#AppExeName}"
