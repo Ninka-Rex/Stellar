@@ -72,8 +72,12 @@ Window {
             deleteFileChk.checked = false
             permDeleteChk.checked = false
             // ── Kick the layout engine reused Window can have stale layout state ──
-            // from a previous open with different visible children.
-            Qt.callLater(function() { contentColumn.forceLayout() })
+            // from a previous open with different visible children. ColumnLayout has
+            // no forceLayout(); nudge a managed property to force a relayout pass.
+            Qt.callLater(function() {
+                contentColumn.height = contentColumn.height + 1
+                contentColumn.height = contentColumn.height - 1
+            })
         }
     }
 
