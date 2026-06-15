@@ -149,16 +149,24 @@ jobs:
           MSYS_NO_PATHCONV: "1"
           MSYS2_ARG_CONV_EXCL: "*"
         run: |
-          ASSET_URL=$(curl -fsSL \
+          set -euo pipefail
+          # Two-step resolve: a failed/rate-limited API call must abort loudly,
+          # not leave ASSET_URL empty for the download curl.
+          API_JSON=$(curl -fsSL \
             -H "Authorization: Bearer $GH_TOKEN" \
-            "https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest" \
-            | python3 -c "
+            "https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest")
+          ASSET_URL=$(printf '%s' "$API_JSON" | python3 -c "
           import sys, json
           data = json.load(sys.stdin)
-          for a in data['assets']:
+          for a in data.get('assets', []):
               if a['name'] == 'ffmpeg-master-latest-win64-gpl.zip':
                   print(a['browser_download_url']); break
           ")
+          if [ -z "$ASSET_URL" ]; then
+            echo 'ERROR: could not resolve win64-gpl asset URL from BtbN release' >&2
+            printf '%s\n' "$API_JSON" | head -c 500 >&2
+            exit 1
+          fi
           curl -fsSL "$ASSET_URL" -o ffmpeg-win.zip
           python3 -c "
           import zipfile, shutil, os
@@ -411,16 +419,26 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ASSET_URL=$(curl -fsSL \
+          set -euo pipefail
+          # Resolve in two steps so a failed/rate-limited API call aborts loudly
+          # instead of leaving ASSET_URL empty and tripping the download curl
+          # with "curl: (3) ... missing URL". bash -e alone doesn't catch a
+          # failure on the left side of a pipe.
+          API_JSON=$(curl -fsSL \
             -H "Authorization: Bearer $GH_TOKEN" \
-            "https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest" \
-            | python3 -c "
+            "https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest")
+          ASSET_URL=$(printf '%s' "$API_JSON" | python3 -c "
           import sys, json
           data = json.load(sys.stdin)
-          for a in data['assets']:
+          for a in data.get('assets', []):
               if a['name'] == 'ffmpeg-master-latest-linux64-gpl.tar.xz':
                   print(a['browser_download_url']); break
           ")
+          if [ -z "$ASSET_URL" ]; then
+            echo 'ERROR: could not resolve linux64-gpl asset URL from BtbN release' >&2
+            printf '%s\n' "$API_JSON" | head -c 500 >&2
+            exit 1
+          fi
           curl -fsSL "$ASSET_URL" -o ffmpeg-linux.tar.xz
           mkdir ffmpeg-extract
           tar -xf ffmpeg-linux.tar.xz -C ffmpeg-extract --strip-components=1
