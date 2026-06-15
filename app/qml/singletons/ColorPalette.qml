@@ -54,7 +54,7 @@ QtObject {
     // green = seeding/complete, orange = magnet still fetching metadata
     // (shown as an indeterminate sliver, see TorrentProgressBar.qml).
     readonly property color progressDownloading: "#4488dd"
-    readonly property color progressSeeding:     dark ? "#3fae5a" : "#2f9d4a"
+    readonly property color progressGreen:       dark ? "#3fae5a" : "#2f9d4a"
     readonly property color progressMetadata:    "#e08a2b"
     readonly property color progressTrack:       dark ? "#111111" : "#d2d2d2"
     readonly property color progressTrackBorder: dark ? "#2f2f2f" : "#bcbcbc"

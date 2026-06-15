@@ -391,7 +391,8 @@ Window {
                         clip: true
                         Rectangle {
                             width: Math.max(0, parent.width * (item ? item.progress : 0))
-                            height: parent.height; radius: parent.radius; color: ColorPalette.accent
+                            height: parent.height; radius: parent.radius
+                            color: (item && item.status === "Assembling") ? ColorPalette.progressGreen : ColorPalette.accent
                             Behavior on width { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
                         }
                     }

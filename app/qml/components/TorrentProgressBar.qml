@@ -43,7 +43,7 @@ Rectangle {
         if (metadataPending) return ColorPalette.progressMetadata
         if (!item) return ColorPalette.progressDownloading
         var s = item.status
-        if (s === "Seeding" || s === "Completed") return ColorPalette.progressSeeding
+        if (s === "Seeding" || s === "Completed") return ColorPalette.progressGreen
         return ColorPalette.progressDownloading
     }
 
