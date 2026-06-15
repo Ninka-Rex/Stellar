@@ -1491,6 +1491,19 @@ void SegmentedTransfer::onProgressTick() {
     qint64 delta = totalReceived - m_lastReceived;
     m_lastReceived = totalReceived;
 
+    static constexpr int kTicksPerSecond = 1000 / kTickIntervalMs;
+
+    // Per-connection speed: light single EMA per segment. Cheap (one subtract +
+    // one multiply-add per segment per tick); done/idle connections decay to 0.
+    constexpr double kSegEmaAlpha = 0.3;
+    for (auto &seg : m_segments) {
+        if (seg.done) { seg.speedBps = 0.0; seg.lastTickReceived = seg.received; continue; }
+        qint64 segDelta = seg.received - seg.lastTickReceived;
+        seg.lastTickReceived = seg.received;
+        double inst = double(segDelta) * kTicksPerSecond;
+        seg.speedBps = kSegEmaAlpha * inst + (1.0 - kSegEmaAlpha) * seg.speedBps;
+    }
+
     // Maintain sliding window of per-tick byte deltas
     m_speedSamples.append(delta);
     if (m_speedSamples.size() > kSpeedWindowTicks)
@@ -1501,7 +1514,6 @@ void SegmentedTransfer::onProgressTick() {
     qint64 displaySum = 0;
     for (int i = (int)m_speedSamples.size() - displayN; i < (int)m_speedSamples.size(); ++i)
         displaySum += m_speedSamples[i];
-    static constexpr int kTicksPerSecond = 1000 / kTickIntervalMs;
     qint64 speedBps = displayN > 0 ? (displaySum * kTicksPerSecond / displayN) : 0;
     m_item->setSpeed(speedBps);
 
@@ -1550,6 +1562,7 @@ void SegmentedTransfer::updateSegmentDataOnItem() {
         m[QStringLiteral("startByte")] = qint64(0);
         m[QStringLiteral("endByte")]   = qint64(-1);
         m[QStringLiteral("received")]  = qint64(0);
+        m[QStringLiteral("speed")]     = qint64(0);
         m[QStringLiteral("info")]      = QStringLiteral("Waiting...");
         list.append(m);
     }
@@ -1559,6 +1572,7 @@ void SegmentedTransfer::updateSegmentDataOnItem() {
         m[QStringLiteral("startByte")] = seg.startOffset;
         m[QStringLiteral("endByte")]   = seg.endOffset;
         m[QStringLiteral("received")]  = seg.received;
+        m[QStringLiteral("speed")]     = qint64(seg.speedBps);
         if (seg.done)
             m[QStringLiteral("info")] = QStringLiteral("Complete");
         else if (seg.reply)

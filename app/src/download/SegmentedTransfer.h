@@ -99,6 +99,8 @@ private:
         bool networkDone{false}; // reply finished but pending not yet flushed
         int    retryCount{0};    // number of retries attempted for this segment
         qint64 lastByteTime{0};  // QDateTime::currentMSecsSinceEpoch() of last received byte
+        qint64 lastTickReceived{0}; // seg.received snapshot at previous progress tick
+        double speedBps{0.0};       // EMA-smoothed per-connection speed (bytes/sec)
         // True after maybeStealWork() has shortened this segment's endOffset
         // and handed the second half to a new dynamic segment. Used by the UI
         // to flag the slot as "stolen from" (red marker on the progress bar)

@@ -754,6 +754,7 @@ Window {
                                         spacing: 0
                                         Text { width: 34;  text: qsTr("N.");         color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
                                         Text { width: 110; text: qsTr("Downloaded"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { width: 90;  text: qsTr("Speed");      color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
                                         Text {             text: qsTr("Info");       color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
                                     }
                                 }
@@ -783,6 +784,7 @@ Window {
                                             spacing: 0
                                             Text { width: 34;  text: (index + 1) + ".";       color: ColorPalette.textSecond;    font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                             Text { width: 110; text: root.fmtBytes(received); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                            Text { width: 90;  text: speed > 0 ? root.fmtSpeed(speed) : ""; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                             Text {             text: info ?? "";              color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         }
                                     }
