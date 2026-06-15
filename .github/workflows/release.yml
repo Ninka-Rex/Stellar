@@ -140,34 +140,15 @@ jobs:
 
       - name: Download ffmpeg + ffprobe (BtbN GPL)
         shell: bash
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Git-Bash (MSYS) rewrites args containing ':' as path lists, mangling
-          # the "Authorization: Bearer ..." header and the URL -> curl sees a bare
-          # ':' and dies before any request (0s, "option : blank argument").
-          # Disable MSYS arg/path conversion for this step. Linux step is exempt.
-          MSYS_NO_PATHCONV: "1"
-          MSYS2_ARG_CONV_EXCL: "*"
         run: |
           set -euo pipefail
-          # Two-step resolve: a failed/rate-limited API call must abort loudly,
-          # not leave ASSET_URL empty for the download curl.
-          API_JSON=$(curl -fsSL \
-            -H "Authorization: Bearer $GH_TOKEN" \
-            "https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest")
-          ASSET_URL=$(printf '%s' "$API_JSON" | python3 -c "
-          import sys, json
-          data = json.load(sys.stdin)
-          for a in data.get('assets', []):
-              if a['name'] == 'ffmpeg-master-latest-win64-gpl.zip':
-                  print(a['browser_download_url']); break
-          ")
-          if [ -z "$ASSET_URL" ]; then
-            echo 'ERROR: could not resolve win64-gpl asset URL from BtbN release' >&2
-            printf '%s\n' "$API_JSON" | head -c 500 >&2
-            exit 1
-          fi
-          curl -fsSL "$ASSET_URL" -o ffmpeg-win.zip
+          # BtbN keeps a permanent "latest" tag with stable asset filenames.
+          # Hit the release-download URL directly instead of the GitHub API:
+          # the /releases/latest API races the autobuild's asset upload (assets
+          # can be empty for a minute after a new build tags), is rate-limited,
+          # and on Git-Bash mangles the ':'-bearing header/URL args.
+          curl -fsSL -o ffmpeg-win.zip \
+            "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip"
           python3 -c "
           import zipfile, shutil, os
           with zipfile.ZipFile('ffmpeg-win.zip') as z:
@@ -416,30 +397,12 @@ jobs:
           sudo chmod +x /usr/local/bin/yt-dlp
 
       - name: Download ffmpeg + ffprobe (BtbN Linux)
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          # Resolve in two steps so a failed/rate-limited API call aborts loudly
-          # instead of leaving ASSET_URL empty and tripping the download curl
-          # with "curl: (3) ... missing URL". bash -e alone doesn't catch a
-          # failure on the left side of a pipe.
-          API_JSON=$(curl -fsSL \
-            -H "Authorization: Bearer $GH_TOKEN" \
-            "https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest")
-          ASSET_URL=$(printf '%s' "$API_JSON" | python3 -c "
-          import sys, json
-          data = json.load(sys.stdin)
-          for a in data.get('assets', []):
-              if a['name'] == 'ffmpeg-master-latest-linux64-gpl.tar.xz':
-                  print(a['browser_download_url']); break
-          ")
-          if [ -z "$ASSET_URL" ]; then
-            echo 'ERROR: could not resolve linux64-gpl asset URL from BtbN release' >&2
-            printf '%s\n' "$API_JSON" | head -c 500 >&2
-            exit 1
-          fi
-          curl -fsSL "$ASSET_URL" -o ffmpeg-linux.tar.xz
+          # Direct download from BtbN's permanent "latest" tag (stable filename).
+          # Avoids the /releases/latest API race vs. autobuild asset upload.
+          curl -fsSL -o ffmpeg-linux.tar.xz \
+            "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz"
           mkdir ffmpeg-extract
           tar -xf ffmpeg-linux.tar.xz -C ffmpeg-extract --strip-components=1
           sudo cp ffmpeg-extract/bin/ffmpeg  /usr/local/bin/ffmpeg
