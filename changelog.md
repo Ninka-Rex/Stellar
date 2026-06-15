@@ -2,6 +2,23 @@
 
 ---
 
+## Version 0.10.4 Beta - June 15, 2026
+
+### New
+- Bittorrent anonymous mode - hides your user agent and peer ID, not IP
+
+### Improved
+- Optimized the download engine to smoothly handle downloads up to 20 Gbps
+- Download engine handling of 429 errors
+- Improved handling of trackerless torrents and downloads via infohash
+
+### Fixed
+- Chromium browser integration not working on Linux
+- Fixed a bug where delete and confirm buttons sometimes wouldn't show in the Delete dialog
+- Fixed minor UI issues
+
+---
+
 ## Version 0.10.3 Beta - June 11, 2026
 
 FIREFOX USERS: Please update your browser extension! (Help > Browser Integration > Browser Extensions)
