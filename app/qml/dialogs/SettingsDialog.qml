@@ -1277,7 +1277,7 @@ Window {
                             Rectangle {
                                 Layout.fillWidth: true
                                 Layout.minimumWidth: 200
-                                Layout.preferredHeight: 140
+                                Layout.preferredHeight: 180
                                 color: ColorPalette.dividerBg
                                 border.color: ColorPalette.border
                                 radius: 3
@@ -1305,7 +1305,7 @@ Window {
                                         Layout.fillWidth: true
                                         Layout.fillHeight: true
                                         clip: true
-                                        model: root.serverConnModel
+                                        model: serverConnModel
                                         ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
                                         currentIndex: -1
                                         delegate: Rectangle {

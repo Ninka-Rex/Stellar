@@ -213,13 +213,15 @@ Item {
     // Content sits above the Apply bar. No ScrollView — everything fits in the
     // tab height; sections size to content and the last row absorbs slack so
     // there's no dead whitespace and nothing to scroll.
-    ColumnLayout {
+    RowLayout {
         anchors { left: parent.left; right: parent.right; top: parent.top; bottom: buttonBar.top; margins: 8 }
-        spacing: 6
+        spacing: 8
 
+            // Left column: bandwidth + share limits.
             ColumnLayout {
                 Layout.fillWidth: true
-                Layout.fillHeight: true
+                Layout.preferredWidth: 1
+                Layout.alignment: Qt.AlignTop
                 spacing: 6
 
                 // Bandwidth limits
@@ -251,8 +253,12 @@ Item {
                                 }
                             }
                             Text { text: "KB/s"; color: "#666"; font.pixelSize: 12 * App.fontScale }
-                            Item { Layout.preferredWidth: 8 }
-                            Text { text: qsTr("Upload:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 50 }
+                            Item { Layout.fillWidth: true }
+                        }
+
+                        RowLayout {
+                            Layout.fillWidth: true; spacing: 8
+                            Text { text: qsTr("Upload:"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; Layout.preferredWidth: 66 }
                             Rectangle {
                                 Layout.preferredWidth: 86; height: 22; radius: 2
                                 color: ColorPalette.inputBg; border.color: upInput.activeFocus ? "#4488dd" : ColorPalette.border
@@ -382,96 +388,102 @@ Item {
                     }
                 }
 
-                // Peer discovery + Download mode (side by side, equal height).
-                Item {
+                // Absorb leftover vertical space so left-column sections stay
+                // top-packed (no gaps stretched between them) in tall dialogs.
+                Item { Layout.fillWidth: true; Layout.fillHeight: true }
+            }
+
+            // Right column: peer discovery + download mode, stacked vertically.
+            ColumnLayout {
+                Layout.fillWidth: true
+                Layout.preferredWidth: 1
+                Layout.alignment: Qt.AlignTop
+                spacing: 6
+
+                // Peer discovery
+                Rectangle {
                     Layout.fillWidth: true
-                    implicitHeight: Math.max(pdCol.implicitHeight, dmCol.implicitHeight) + 12
+                    color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
+                    implicitHeight: pdCol.implicitHeight + 12
 
-                    Rectangle {
-                        anchors { left: parent.left; top: parent.top; bottom: parent.bottom }
-                        width: (parent.width - 6) / 2
-                        color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
+                    ColumnLayout {
+                        id: pdCol
+                        anchors { fill: parent; margins: 6 }
+                        spacing: 5
 
-                        ColumnLayout {
-                            id: pdCol
-                            anchors { fill: parent; margins: 6 }
-                            spacing: 5
+                        Text { text: qsTr("PEER DISCOVERY"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
 
-                            Text { text: qsTr("PEER DISCOVERY"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
-
-                            InlineCheck {
-                                Layout.fillWidth: true
-                                label: qsTr("DHT"); subtext: qsTr("Distributed Hash Table")
-                                checked: !root._editDisableDht
-                                enabled: !root.torrentItem || !root.torrentItem.torrentIsPrivate
-                                onToggled: root._editDisableDht = !root._editDisableDht
-                            }
-                            InlineCheck {
-                                Layout.fillWidth: true
-                                label: qsTr("PeX"); subtext: qsTr("Peer Exchange")
-                                checked: !root._editDisablePex
-                                enabled: !root.torrentItem || !root.torrentItem.torrentIsPrivate
-                                onToggled: root._editDisablePex = !root._editDisablePex
-                            }
-                            InlineCheck {
-                                Layout.fillWidth: true
-                                label: qsTr("LSD"); subtext: qsTr("Local Service Discovery")
-                                checked: !root._editDisableLsd
-                                onToggled: root._editDisableLsd = !root._editDisableLsd
-                            }
-
-                            Rectangle {
-                                Layout.fillWidth: true
-                                visible: !!root.torrentItem && root.torrentItem.torrentIsPrivate
-                                color: "#1a1208"; border.color: "#6a4a00"; radius: 3
-                                implicitHeight: pvtNote.implicitHeight + 10
-                                ColumnLayout {
-                                    id: pvtNote
-                                    anchors { fill: parent; margins: 6 }
-                                    spacing: 2
-                                    Text { text: qsTr("⚠ Private torrent"); color: "#cc9955"; font.pixelSize: 11 * App.fontScale; font.bold: true }
-                                    Text {
-                                        Layout.fillWidth: true
-                                        text: qsTr("DHT and PeX disabled by libtorrent.")
-                                        color: "#a08040"; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap
-                                    }
-                                }
-                            }
+                        InlineCheck {
+                            Layout.fillWidth: true
+                            label: qsTr("DHT"); subtext: qsTr("Distributed Hash Table")
+                            checked: !root._editDisableDht
+                            enabled: !root.torrentItem || !root.torrentItem.torrentIsPrivate
+                            onToggled: root._editDisableDht = !root._editDisableDht
                         }
-                    }
+                        InlineCheck {
+                            Layout.fillWidth: true
+                            label: qsTr("PeX"); subtext: qsTr("Peer Exchange")
+                            checked: !root._editDisablePex
+                            enabled: !root.torrentItem || !root.torrentItem.torrentIsPrivate
+                            onToggled: root._editDisablePex = !root._editDisablePex
+                        }
+                        InlineCheck {
+                            Layout.fillWidth: true
+                            label: qsTr("LSD"); subtext: qsTr("Local Service Discovery")
+                            checked: !root._editDisableLsd
+                            onToggled: root._editDisableLsd = !root._editDisableLsd
+                        }
 
-                    Rectangle {
-                        anchors { right: parent.right; top: parent.top; bottom: parent.bottom }
-                        width: (parent.width - 6) / 2
-                        color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
-
-                        ColumnLayout {
-                            id: dmCol
-                            anchors { fill: parent; margins: 6 }
-                            spacing: 5
-
-                            Text { text: qsTr("DOWNLOAD MODE"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
-
-                            InlineCheck {
-                                Layout.fillWidth: true
-                                label: qsTr("Sequential download")
-                                subtext: qsTr("Pieces downloaded in order (piece 0 → last)")
-                                checked: root._editSequential
-                                onToggled: root._editSequential = !root._editSequential
-                            }
-                            InlineCheck {
-                                Layout.fillWidth: true
-                                label: qsTr("Prioritize first & last pieces")
-                                subtext: qsTr("Front-loads header/footer for early playback")
-                                checked: root._editFirstLastPieces
-                                onToggled: root._editFirstLastPieces = !root._editFirstLastPieces
+                        Rectangle {
+                            Layout.fillWidth: true
+                            visible: !!root.torrentItem && root.torrentItem.torrentIsPrivate
+                            color: "#1a1208"; border.color: "#6a4a00"; radius: 3
+                            implicitHeight: pvtNote.implicitHeight + 10
+                            ColumnLayout {
+                                id: pvtNote
+                                anchors { fill: parent; margins: 6 }
+                                spacing: 2
+                                Text { text: qsTr("⚠ Private torrent"); color: "#cc9955"; font.pixelSize: 11 * App.fontScale; font.bold: true }
+                                Text {
+                                    Layout.fillWidth: true
+                                    text: qsTr("DHT and PeX disabled by libtorrent.")
+                                    color: "#a08040"; font.pixelSize: 10 * App.fontScale; wrapMode: Text.WordWrap
+                                }
                             }
                         }
                     }
                 }
 
-                // Absorb leftover vertical space so sections stay top-packed
-                // (no gaps stretched between them) in tall dialogs.
+                // Download mode
+                Rectangle {
+                    Layout.fillWidth: true
+                    color: ColorPalette.cardBg; border.color: ColorPalette.dividerBg; radius: 3
+                    implicitHeight: dmCol.implicitHeight + 12
+
+                    ColumnLayout {
+                        id: dmCol
+                        anchors { fill: parent; margins: 6 }
+                        spacing: 5
+
+                        Text { text: qsTr("DOWNLOAD MODE"); color: ColorPalette.infoBoxText; font.pixelSize: 10 * App.fontScale; font.bold: true }
+
+                        InlineCheck {
+                            Layout.fillWidth: true
+                            label: qsTr("Sequential download")
+                            subtext: qsTr("Pieces downloaded in order (piece 0 → last)")
+                            checked: root._editSequential
+                            onToggled: root._editSequential = !root._editSequential
+                        }
+                        InlineCheck {
+                            Layout.fillWidth: true
+                            label: qsTr("Prioritize first & last pieces")
+                            subtext: qsTr("Front-loads header/footer for early playback")
+                            checked: root._editFirstLastPieces
+                            onToggled: root._editFirstLastPieces = !root._editFirstLastPieces
+                        }
+                    }
+                }
+
                 Item { Layout.fillWidth: true; Layout.fillHeight: true }
             }
         }

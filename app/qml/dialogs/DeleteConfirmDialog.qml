@@ -35,14 +35,15 @@ Window {
 
     signal confirmed(int deleteMode)
 
-    readonly property int _dialogHeight: (fileExists || hasTorrentSelection) ? 188 : 130
+    // Height set imperatively per open (not bound) — binding min/max to a live
+    // content height fights the WM resize and oscillates ("Unable to set geometry"
+    // spam). Two checkbox layouts: 157 with options, 104 without.
+    readonly property int _dialogHeight: (fileExists || hasTorrentSelection) ? 157 : 104
 
     width: 400
     height: _dialogHeight
     minimumWidth: 360
     maximumWidth: 520
-    minimumHeight: _dialogHeight
-    maximumHeight: _dialogHeight
     color: ColorPalette.cardBg
     title: qsTr("Confirm Delete")
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
@@ -65,25 +66,22 @@ Window {
 
     onVisibleChanged: {
         if (visible) {
-            minimumHeight = _dialogHeight
-            maximumHeight = _dialogHeight
-            height = _dialogHeight
-            _centerOnOwner()
             deleteFileChk.checked = false
             permDeleteChk.checked = false
-            // ── Kick the layout engine reused Window can have stale layout state ──
-            // from a previous open with different visible children. ColumnLayout has
-            // no forceLayout(); nudge a managed property to force a relayout pass.
-            Qt.callLater(function() {
-                contentColumn.height = contentColumn.height + 1
-                contentColumn.height = contentColumn.height - 1
-            })
+            // Resize a reused Window to the current layout. Drop min to 0 first so
+            // neither shrink (max<old-min) nor grow (max>old-min) makes min>max
+            // transiently, then set max, height, min.
+            minimumHeight = 0
+            maximumHeight = _dialogHeight
+            height = _dialogHeight
+            minimumHeight = _dialogHeight
+            _centerOnOwner()
         }
     }
 
     ColumnLayout {
         id: contentColumn
-        anchors { fill: parent; margins: 12 }
+        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
         spacing: 6
 
         // Icon + message
@@ -163,10 +161,9 @@ Window {
             }
         }
 
-        Item { Layout.fillHeight: true }
-
         // Buttons
         RowLayout {
+            Layout.topMargin: 4
             Layout.fillWidth: true
             spacing: 8
 
