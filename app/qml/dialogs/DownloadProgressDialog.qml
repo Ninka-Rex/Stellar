@@ -52,7 +52,12 @@ Window {
     // before failing again.
     property var    _errorBytesMark: 0
     property var    _pendingSegmentData: null
-    property int    segmentRowLimit: Math.max(1, App.settings ? App.settings.perHostConnectionLimit : 8)
+    // Default visible-row count for the connections list height. The actual
+    // number of rows shown is driven by the data (segmentListModel.count) and is
+    // never truncated — dynamic segmentation can grow connections past the
+    // configured default up to the engine cap (32), and the live lead connections
+    // must always be visible. See _segmentRows().
+    property int    segmentRowLimit: Math.max(1, App.settings ? App.settings.segmentsPerDownload : 8)
 
     width: 620
     minimumWidth: 440
@@ -82,10 +87,13 @@ Window {
     }
 
     function _segmentRows(data) {
-        var rows = _normalizeSegmentData(data)
-        if (rows.length <= segmentRowLimit)
-            return rows
-        return rows.slice(rows.length - segmentRowLimit)
+        // Never truncate: the C++ engine already caps the slot count at the
+        // dynamic-segment ceiling (32) and orders the list by slot index, so the
+        // live lead connections are at the front (slots 0,1…). The old code kept
+        // the LAST N rows, which on a connection-limited server dropped the two
+        // actively-downloading connections and showed only the trailing
+        // "Disconnected" excess rows. Show every row; the list scrolls.
+        return _normalizeSegmentData(data)
     }
 
     function syncSegmentList(data) {
@@ -683,6 +691,22 @@ Window {
                             radius: 3
                             clip: true
 
+                            // Persistent completed ranges: solid blue across every
+                            // fully-downloaded file region, kept even after the
+                            // connection row that fetched it is recycled by
+                            // work-stealing. Drawn UNDER the live-segment layer.
+                            Repeater {
+                                model: (item && item.completedRanges) ? item.completedRanges : []
+                                delegate: Rectangle {
+                                    readonly property var  seg:   modelData
+                                    readonly property real total: (item && item.totalBytes > 0) ? item.totalBytes : 1
+                                    x:      seg.startByte / total * parent.width
+                                    width:  Math.max(1, (seg.endByte - seg.startByte + 1) / total * parent.width)
+                                    height: parent.height
+                                    color:  ColorPalette.accent
+                                }
+                            }
+
                             Repeater {
                                 model: (item && item.segmentData) ? item.segmentData : []
                                 delegate: Item {
@@ -727,9 +751,10 @@ Window {
                         // inside the fixed area rather than resizing the window.
                         Rectangle {
                             Layout.fillWidth: true
-                            Layout.preferredHeight: 22 + Math.max(segmentRowLimit, segmentListModel.count) * 24 + 1
+                            // Reserve height for up to 8 connection rows; beyond
+                            // that the list scrolls instead of growing the window.
+                            Layout.preferredHeight: 22 + Math.min(8, Math.max(segmentRowLimit, segmentListModel.count)) * 24 + 1
                             color: ColorPalette.windowBg
-                            border.color: ColorPalette.border
                             radius: 3
                             clip: true
 
@@ -753,7 +778,7 @@ Window {
                                         anchors { fill: parent; leftMargin: 8 }
                                         spacing: 0
                                         Text { width: 34;  text: qsTr("N.");         color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { width: 110; text: qsTr("Downloaded"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { width: 90; text: qsTr("Downloaded"); color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
                                         Text { width: 90;  text: qsTr("Speed");      color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
                                         Text {             text: qsTr("Info");       color: ColorPalette.textSecond; font.pixelSize: 11 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
                                     }
@@ -783,7 +808,7 @@ Window {
                                             anchors { fill: parent; leftMargin: 8 }
                                             spacing: 0
                                             Text { width: 34;  text: (index + 1) + ".";       color: ColorPalette.textSecond;    font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
-                                            Text { width: 110; text: root.fmtBytes(received); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                            Text { width: 90; text: root.fmtBytes(received); color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                             Text { width: 90;  text: speed > 0 ? root.fmtSpeed(speed) : ""; color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                             Text {             text: info ?? "";              color: ColorPalette.textPrimary; font.pixelSize: 11 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
                                         }

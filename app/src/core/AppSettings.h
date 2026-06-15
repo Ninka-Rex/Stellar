@@ -45,6 +45,7 @@
     X(int, int, maxRetries, MaxRetries, 3, "maxRetries", N) \
     X(int, int, connectionTimeoutSecs, ConnectionTimeoutSecs, 30, "connectionTimeoutSecs", N) \
     X(int, int, perHostConnectionLimit, PerHostConnectionLimit, 8, "perHostConnectionLimit", N) \
+    X(QString, const QString &, perServerConnLimitsJson, PerServerConnLimitsJson, QStringLiteral("[]"), "perServerConnLimitsJson", N) \
     X(int, int, globalUploadLimitKBps, GlobalUploadLimitKBps, 0, "globalUploadLimitKBps", N) \
     /* ── UI: general ── */ \
     X(bool, bool, minimizeToTray, MinimizeToTray, true, "minimizeToTray", N) \

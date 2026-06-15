@@ -64,10 +64,75 @@ Window {
         return p.replace(/^file:\/\//, "")
     }
 
+    // ── Per-server connection-count exceptions (Connections tab) ──────────
+    // editPerServerConnLimitsJson is the source of truth; serverConnModel is a
+    // view rebuilt from it for the table. Each entry: {scheme, server, conns}.
+    ListModel { id: serverConnModel }
+
+    function reloadServerConnModel() {
+        serverConnModel.clear()
+        var arr = []
+        try { arr = JSON.parse(root.editPerServerConnLimitsJson || "[]") } catch (e) { arr = [] }
+        if (!Array.isArray(arr)) arr = []
+        for (var i = 0; i < arr.length; ++i) {
+            var e = arr[i] || {}
+            serverConnModel.append({
+                server: String(e.server || ""),
+                conns:  Math.max(1, Math.min(32, parseInt(e.conns) || 1))
+            })
+        }
+    }
+
+    function commitServerConnModel() {
+        var arr = []
+        for (var i = 0; i < serverConnModel.count; ++i) {
+            var e = serverConnModel.get(i)
+            arr.push({ server: e.server, conns: e.conns })
+        }
+        root.editPerServerConnLimitsJson = JSON.stringify(arr)
+    }
+
+    function openServerConnDialog(index) {
+        if (index >= 0 && index < serverConnModel.count) {
+            var e = serverConnModel.get(index)
+            serverConnDialog.editIndex = index
+            serverConnDialog.serverValue = e.server
+            serverConnDialog.connsValue  = e.conns
+        } else {
+            serverConnDialog.editIndex = -1
+            serverConnDialog.serverValue = ""
+            serverConnDialog.connsValue  = 1
+        }
+        serverConnDialog.show()
+        serverConnDialog.raise()
+        serverConnDialog.requestActivate()
+    }
+
+    function deleteServerConnRule(index) {
+        if (index < 0 || index >= serverConnModel.count) return
+        serverConnModel.remove(index)
+        commitServerConnModel()
+    }
+
+    function applyServerConnRule(index, server, conns) {
+        var row = { server: server, conns: conns }
+        if (index >= 0 && index < serverConnModel.count)
+            serverConnModel.set(index, row)
+        else
+            serverConnModel.append(row)
+        commitServerConnModel()
+    }
+
+    ServerConnLimitDialog {
+        id: serverConnDialog
+        onAccepted: root.applyServerConnRule(editIndex, serverValue, connsValue)
+    }
+
     // Plain var properties - no live binding to App.settings so that
     // settingsChanged can detect when the user has made changes.
     property int    editMaxConcurrent:         0
     property int    editSegmentsPerDownload:   0
+    property string editPerServerConnLimitsJson: "[]"
     property string editDefaultSavePath:       ""
     property string editTemporaryDirectory:    ""
     property string editTorrentCustomSavePath: ""
@@ -475,6 +540,7 @@ Window {
     readonly property bool settingsChanged:
         editMaxConcurrent         !== App.settings.maxConcurrent        ||
         editSegmentsPerDownload   !== App.settings.segmentsPerDownload  ||
+        editPerServerConnLimitsJson !== App.settings.perServerConnLimitsJson ||
         editDefaultSavePath       !== App.settings.defaultSavePath      ||
         editTemporaryDirectory    !== App.settings.temporaryDirectory   ||
         editTorrentCustomSavePath !== App.settings.torrentCustomSavePath ||
@@ -882,6 +948,7 @@ Window {
 
         App.settings.maxConcurrent         = editMaxConcurrent
         App.settings.segmentsPerDownload   = editSegmentsPerDownload
+        App.settings.perServerConnLimitsJson = editPerServerConnLimitsJson
         App.settings.defaultSavePath       = editDefaultSavePath
         App.settings.temporaryDirectory    = editTemporaryDirectory
         App.settings.torrentCustomSavePath = editTorrentCustomSavePath
@@ -1000,6 +1067,8 @@ Window {
         refreshTorrentNetworkAdapters()
         editMaxConcurrent         = App.settings.maxConcurrent
         editSegmentsPerDownload   = App.settings.segmentsPerDownload
+        editPerServerConnLimitsJson = App.settings.perServerConnLimitsJson || "[]"
+        reloadServerConnModel()
         editDefaultSavePath       = App.settings.defaultSavePath
         editTemporaryDirectory    = App.settings.temporaryDirectory
         editTorrentCustomSavePath = App.settings.torrentCustomSavePath
@@ -1175,8 +1244,8 @@ Window {
                             ThemedSpin { from: 1; to: 16; value: root.editMaxConcurrent; onValueModified: root.editMaxConcurrent = value }
                             Item {}
 
-                            Text { text: qsTr("Segments per download:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
-                            ThemedSpin { from: 1; to: 16; value: root.editSegmentsPerDownload; onValueModified: root.editSegmentsPerDownload = value }
+                            Text { text: qsTr("Default max. connections per download:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
+                            ThemedSpin { from: 1; to: 32; value: root.editSegmentsPerDownload; onValueModified: root.editSegmentsPerDownload = value }
                             Item {}
 
                             Text { text: qsTr("Connection timeout (seconds):"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
@@ -1186,6 +1255,88 @@ Window {
                             Text { text: qsTr("Retry failed downloads:"); color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale; Layout.fillWidth: true; wrapMode: Text.WordWrap }
                             ThemedSpin { from: 0; to: 10; value: root.editMaxRetries; onValueModified: root.editMaxRetries = value }
                             Text { text: qsTr("times"); color: ColorPalette.textSecond; font.pixelSize: 13 * App.fontScale }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }
+
+                        // ── Per-server connection-count exceptions ──────────────
+                        Text {
+                            text: qsTr("Max. connections number")
+                            color: ColorPalette.textHeader; font.pixelSize: 14 * App.fontScale; font.bold: true
+                        }
+                        Text {
+                            text: qsTr("Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.")
+                            color: ColorPalette.textPrimary; font.pixelSize: 13 * App.fontScale
+                            wrapMode: Text.WordWrap; Layout.fillWidth: true
+                        }
+
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 10
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.minimumWidth: 200
+                                Layout.preferredHeight: 140
+                                color: ColorPalette.dividerBg
+                                border.color: ColorPalette.border
+                                radius: 3
+                                clip: true
+
+                                ColumnLayout {
+                                    anchors.fill: parent
+                                    spacing: 0
+
+                                    // header
+                                    Rectangle {
+                                        Layout.fillWidth: true
+                                        height: 22
+                                        color: ColorPalette.panelBg
+                                        Row {
+                                            anchors { fill: parent; leftMargin: 8 }
+                                            Text { width: parent.width - 90; text: qsTr("Server"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                            Text { width: 80; text: qsTr("Number"); color: ColorPalette.textSecond; font.pixelSize: 12 * App.fontScale; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                        }
+                                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: ColorPalette.border }
+                                    }
+
+                                    ListView {
+                                        id: serverConnList
+                                        Layout.fillWidth: true
+                                        Layout.fillHeight: true
+                                        clip: true
+                                        model: root.serverConnModel
+                                        ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
+                                        currentIndex: -1
+                                        delegate: Rectangle {
+                                            width: ListView.view.width
+                                            height: 24
+                                            color: ListView.isCurrentItem ? ColorPalette.selectionBg
+                                                 : (index % 2 === 0 ? "transparent" : ColorPalette.rowAltBg)
+                                            Row {
+                                                anchors { fill: parent; leftMargin: 8 }
+                                                Text { width: parent.width - 90; text: model.server; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter; elide: Text.ElideRight }
+                                                Text { width: 80; text: model.conns; color: ColorPalette.textPrimary; font.pixelSize: 12 * App.fontScale; anchors.verticalCenter: parent.verticalCenter }
+                                            }
+                                            MouseArea {
+                                                anchors.fill: parent
+                                                acceptedButtons: Qt.LeftButton
+                                                onClicked: serverConnList.currentIndex = index
+                                                onDoubleClicked: { serverConnList.currentIndex = index; root.openServerConnDialog(index) }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            ColumnLayout {
+                                Layout.alignment: Qt.AlignTop
+                                Layout.preferredWidth: 90
+                                spacing: 6
+                                DlgButton { text: qsTr("New");    Layout.fillWidth: true; onClicked: root.openServerConnDialog(-1) }
+                                DlgButton { text: qsTr("Edit");   Layout.fillWidth: true; enabled: serverConnList.currentIndex >= 0; onClicked: root.openServerConnDialog(serverConnList.currentIndex) }
+                                DlgButton { text: qsTr("Delete"); Layout.fillWidth: true; enabled: serverConnList.currentIndex >= 0; destructive: true; onClicked: root.deleteServerConnRule(serverConnList.currentIndex) }
+                            }
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: ColorPalette.border }

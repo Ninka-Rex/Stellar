@@ -19,6 +19,8 @@
 #include <QList>
 #include <QHash>
 #include <QString>
+#include <QUrl>
+#include <QRegularExpression>
 #include <functional>
 #include "DownloadItem.h"
 
@@ -48,6 +50,11 @@ public:
     void setCustomUserAgent(const QString &userAgent);
     void setTemporaryDirectory(const QString &path);
     void setMaxConnectionsPerHost(int v);
+    // The default per-host connection count and per-server wildcard overrides.
+    // These supersede the old fixed segments/perHost cap: the effective number
+    // of connections for a download is resolved from its URL at start time.
+    void setDefaultConnLimit(int v);
+    void setPerServerConnLimits(const QString &json);
     void setCanStartPredicate(std::function<bool(DownloadItem *)> predicate);
     Q_INVOKABLE void setDownloadSpeedLimit(const QString &id, int kbps);
     Q_INVOKABLE bool relocateDownload(const QString &id, const QString &newSavePath, const QString &newFilename);
@@ -83,6 +90,17 @@ signals:
 private:
     void onWorkerFinished(const QString &id);
     void onWorkerFailed(const QString &id, const QString &reason);
+    // Resolve the connection count for a URL: first matching per-server exception
+    // (by protocol + host wildcard), else the global default. Clamped [1,32].
+    int  resolveConnLimitForUrl(const QUrl &url) const;
+
+    struct ServerConnRule {
+        bool    matchFullUrl{false}; // pattern had a scheme → match full URL, else host
+        QRegularExpression re;       // precompiled wildcard (case-insensitive)
+        int     conns{8};
+    };
+    QList<ServerConnRule> m_serverConnRules;
+    int m_defaultConnLimit{8};
 
     QList<DownloadItem *>             m_items;
     QHash<QString, Transfer*> m_workers;

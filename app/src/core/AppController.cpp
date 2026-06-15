@@ -1682,7 +1682,11 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     m_queue->setCustomUserAgentEnabled(m_settings->useCustomUserAgent());
     m_queue->setCustomUserAgent(m_settings->customUserAgent());
     m_queue->setTemporaryDirectory(m_settings->temporaryDirectory());
-    m_queue->setMaxConnectionsPerHost(m_settings->perHostConnectionLimit());
+    // "Default max conn. number" (segmentsPerDownload) is the single per-host
+    // connection cap, plus per-server wildcard overrides. Supersedes the old
+    // perHostConnectionLimit control.
+    m_queue->setDefaultConnLimit(m_settings->segmentsPerDownload());
+    m_queue->setPerServerConnLimits(m_settings->perServerConnLimitsJson());
     m_queue->setCanStartPredicate([this](DownloadItem *item) {
         return canStartDownloadItem(item);
     });
@@ -1724,8 +1728,11 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         m_queue->setTemporaryDirectory(m_settings->temporaryDirectory());
         cleanupTemporaryDirectory();
     });
-    connect(m_settings, &AppSettings::perHostConnectionLimitChanged, this, [this]() {
-        m_queue->setMaxConnectionsPerHost(m_settings->perHostConnectionLimit());
+    connect(m_settings, &AppSettings::segmentsPerDownloadChanged, this, [this]() {
+        m_queue->setDefaultConnLimit(m_settings->segmentsPerDownload());
+    });
+    connect(m_settings, &AppSettings::perServerConnLimitsJsonChanged, this, [this]() {
+        m_queue->setPerServerConnLimits(m_settings->perServerConnLimitsJson());
     });
     // Migrate a bind interface saved as a raw Windows LUID (e.g. "iftype53_32769",
     // written by versions that stored iface.name()) to the stable friendly name.

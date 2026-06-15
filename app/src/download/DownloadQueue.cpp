@@ -19,6 +19,9 @@
 #include "SegmentedTransfer.h"
 #include "FtpTransfer.h"
 #include <algorithm>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
 
 DownloadQueue::DownloadQueue(QObject *parent) : QObject(parent) {}
 
@@ -87,6 +90,48 @@ void DownloadQueue::setMaxConnectionsPerHost(int v) {
     m_maxConnectionsPerHost = v;
     for (auto *worker : m_workers)
         worker->setMaxConnectionsPerHost(v);
+}
+
+void DownloadQueue::setDefaultConnLimit(int v) {
+    m_defaultConnLimit = qBound(1, v, SegmentedTransfer::kMaxDynamicSegments);
+}
+
+void DownloadQueue::setPerServerConnLimits(const QString &json) {
+    // Parse + precompile the wildcard host patterns ONCE here, never per download.
+    m_serverConnRules.clear();
+    const QJsonDocument doc = QJsonDocument::fromJson(json.toUtf8());
+    if (!doc.isArray())
+        return;
+    for (const QJsonValue &v : doc.array()) {
+        if (!v.isObject()) continue;
+        const QJsonObject o = v.toObject();
+        const QString server = o.value(QStringLiteral("server")).toString().trimmed();
+        if (server.isEmpty()) continue;
+
+        ServerConnRule rule;
+        // A pattern that includes a scheme ("http://...") is matched against the
+        // full URL; a bare pattern ("*.example.com") is matched against the host.
+        rule.matchFullUrl = server.contains(QStringLiteral("://"));
+        rule.conns  = qBound(1, o.value(QStringLiteral("conns")).toInt(8),
+                             SegmentedTransfer::kMaxDynamicSegments);
+        // Wildcard '*' → regex, anchored, case-insensitive (mirrors GrabberCrawler).
+        QString rx = QRegularExpression::escape(server);
+        rx.replace(QStringLiteral("\\*"), QStringLiteral(".*"));
+        rule.re = QRegularExpression(QStringLiteral("^") + rx + QStringLiteral("$"),
+                                     QRegularExpression::CaseInsensitiveOption);
+        m_serverConnRules.append(rule);
+    }
+}
+
+int DownloadQueue::resolveConnLimitForUrl(const QUrl &url) const {
+    const QString host    = url.host();
+    const QString fullUrl = url.toString();
+    for (const ServerConnRule &rule : m_serverConnRules) {
+        const QString &subject = rule.matchFullUrl ? fullUrl : host;
+        if (rule.re.match(subject).hasMatch())
+            return rule.conns;
+    }
+    return m_defaultConnLimit;
 }
 
 void DownloadQueue::setCanStartPredicate(std::function<bool(DownloadItem *)> predicate) {
@@ -272,17 +317,20 @@ void DownloadQueue::scheduleNext() {
         // Pick the engine by URL scheme: FTP/FTPS use the raw-socket FtpTransfer,
         // everything else (http/https and schemeless) uses the QNAM-based engine.
         const QString scheme = item->url().scheme().toLower();
+        // Effective connection count: per-server exception or the global default,
+        // resolved once here (never in the hot read/tick path).
+        const int conns = resolveConnLimitForUrl(item->url());
         Transfer *worker =
             (scheme == QLatin1String("ftp") || scheme == QLatin1String("ftps"))
-                ? static_cast<Transfer*>(new FtpTransfer(item, m_segmentsPerDownload, this))
-                : static_cast<Transfer*>(new SegmentedTransfer(item, m_nam, m_segmentsPerDownload, this));
+                ? static_cast<Transfer*>(new FtpTransfer(item, conns, this))
+                : static_cast<Transfer*>(new SegmentedTransfer(item, m_nam, conns, this));
         // Use per-download limit if set, otherwise use global limit
         int speedLimit = item->speedLimitKBps() > 0 ? item->speedLimitKBps() : m_speedLimitKBps;
         worker->setSpeedLimitKBps(speedLimit);
         worker->setCustomUserAgentEnabled(m_useCustomUserAgent);
         worker->setCustomUserAgent(m_customUserAgent);
         worker->setTemporaryDirectory(m_temporaryDirectory);
-        worker->setMaxConnectionsPerHost(m_maxConnectionsPerHost);
+        worker->setMaxConnectionsPerHost(conns);
         m_workers[item->id()] = worker;
 
         const QString id = item->id();

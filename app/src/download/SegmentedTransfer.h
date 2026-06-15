@@ -38,7 +38,7 @@ public:
     static constexpr qint64 kMinSegmentSize      = 512 * 1024;       // 512 KB
     static constexpr int kMaxSegmentRetries      = 4;                // per segment: 1s/2s/4s/8s backoff
     static constexpr int kStallTimeoutMs         = 30'000;           // bytes must arrive within this window
-    static constexpr qint64 kStealThresholdBytes = 2 * 1024 * 1024; // only steal if victim has >2 MB left
+    static constexpr qint64 kStealThresholdBytes = 32 * 1024 * 1024; // only steal if victim has >32 MB left (avoids end-game micro-split thrash on fast links)
     static constexpr int kMaxDynamicSegments     = 32;               // hard cap on segment count
 
     // Progress tick cadence and derived sliding-window sizes
@@ -101,6 +101,12 @@ private:
         qint64 lastByteTime{0};  // QDateTime::currentMSecsSinceEpoch() of last received byte
         qint64 lastTickReceived{0}; // seg.received snapshot at previous progress tick
         double speedBps{0.0};       // EMA-smoothed per-connection speed (bytes/sec)
+        // Gave up as an "excess" connection the server wouldn't accept (refused/
+        // reset with zero bytes ever received) while other segments stayed healthy.
+        // Shown as "Disconnected" in the UI; NOT retried and does NOT fail the
+        // whole download. Its byte range is covered by the surviving connections
+        // via maybeStealWork()/pending-range redistribution.
+        bool   disconnected{false};
         // True after maybeStealWork() has shortened this segment's endOffset
         // and handed the second half to a new dynamic segment. Used by the UI
         // to flag the slot as "stolen from" (red marker on the progress bar)
@@ -126,6 +132,19 @@ private:
     void onHeadFinished(QNetworkReply *reply);
     void setupSegments(qint64 totalBytes, bool resumeCapable);
     void startAllSegments();
+    // Connection ramp-up (IDM/aria2-style): open ONE lead segment first; only
+    // after the server proves it accepts the connection and delivers bytes do we
+    // open the rest. Prevents a startup "thundering herd" against connection-
+    // limited servers — without it, every segment opens at t=0, all but the one
+    // or two the server tolerates fail near-simultaneously before any is
+    // established, hasHealthyProgress() is false for all of them, and they
+    // retry-spam through the full backoff ladder instead of cleanly dropping to
+    // "Disconnected".
+    void startRamped();
+    // Called once the lead connection has confirmed bytes (or on resume when a
+    // segment already has data): opens every remaining pending segment up to the
+    // per-host cap, in one shot, now that a healthy connection is guaranteed.
+    void unlockRamp();
     void startSegment(Segment &seg);
     void onSegmentReadyRead(int index);
     void onSegmentFinished(int index);
@@ -182,6 +201,14 @@ private:
     bool maybeStealWork(int freedUiSlot = -1);
     void startNextPendingSegment();
     void seedCookieJar();
+    // True if at least one segment is still a live, non-disconnected worker that
+    // can carry the download forward (active reply, or already has bytes and isn't
+    // done). Used to decide whether a refused/failed connection can be silently
+    // dropped as "excess" instead of failing the whole download.
+    bool hasHealthyProgress(int excludeIndex = -1) const;
+    // Mark a segment as a silently-dropped excess connection and re-cover its
+    // outstanding byte range with the surviving connections.
+    void markSegmentDisconnected(int index);
 
     // --- Async disk writer -------------------------------------------------
     // Streaming segment writes run on a dedicated thread so a slow/saturated
@@ -226,6 +253,10 @@ private:
     QString         m_etag;
     QString         m_lastModified;
     int             m_maxConnectionsPerHost{8};
+    // Ramp gate: false until the lead connection has confirmed it is receiving
+    // bytes. While false only one segment is allowed to be open; unlockRamp()
+    // opens the rest. See startRamped().
+    bool            m_rampUnlocked{false};
 
     // HEAD reply kept alive until processed
     QNetworkReply  *m_headReply{nullptr};

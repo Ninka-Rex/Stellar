@@ -400,7 +400,7 @@ void SegmentedTransfer::start() {
 
     // Try to resume from existing meta
     if (loadMeta()) {
-        startAllSegments();
+        startRamped();
         m_progressTimer->start();
         emit started();
         return;
@@ -522,12 +522,72 @@ void SegmentedTransfer::startNextPendingSegment() {
         if (!seg.done && seg.reply) ++active;
     if (active >= m_maxConnectionsPerHost) return;
 
+    // Prefer a never-started pending slot.
     for (auto &seg : m_segments) {
-        if (!seg.done && !seg.reply) {
+        if (!seg.done && !seg.reply && !seg.disconnected) {
             startSegment(seg);
             return;
         }
     }
+
+    // Otherwise revive a previously-disconnected slot now that a connection has
+    // freed up: the server may have refused it only because too many were open.
+    // Its byte range still needs covering, so retry it on the freed connection.
+    // If the server refuses again it simply re-enters the Disconnected state
+    // without spamming retries or failing the download.
+    for (auto &seg : m_segments) {
+        if (!seg.done && !seg.reply && seg.disconnected) {
+            seg.disconnected = false;
+            seg.retryCount   = 0;
+            seg.lastByteTime = 0;
+            startSegment(seg);
+            return;
+        }
+    }
+}
+
+// At least one segment that can still carry the download forward: an active
+// reply that isn't done, OR a segment that already pulled bytes and isn't done
+// (a transient gap between retries). Excludes the segment under evaluation.
+bool SegmentedTransfer::hasHealthyProgress(int excludeIndex) const {
+    for (int i = 0; i < m_segments.size(); ++i) {
+        if (i == excludeIndex) continue;
+        const auto &s = m_segments[i];
+        if (s.done || s.disconnected) continue;
+        if (s.reply) return true;                 // live worker
+        if (s.received > 0 && !s.networkDone) return true; // mid-retry, has data
+    }
+    return false;
+}
+
+// Flag a segment as a silently-dropped excess connection. Its outstanding byte
+// range is NOT lost: startNextPendingSegment() revives it on a freed connection,
+// and the all-done check below treats a disconnected segment as not-done so the
+// download won't falsely complete with a hole. Only when the file is genuinely
+// complete (every range covered) does merge run.
+void SegmentedTransfer::markSegmentDisconnected(int index) {
+    if (index < 0 || index >= m_segments.size()) return;
+    auto &seg = m_segments[index];
+    if (seg.reply) {
+        seg.reply->disconnect(this);
+        seg.reply->abort();
+        seg.reply->deleteLater();
+        seg.reply = nullptr;
+    }
+    // Close on the writer thread so the close is ordered AFTER any queued async
+    // writes for this file. A raw main-thread close() races ahead of in-flight
+    // writes → "device not open" → spurious "Disk write failed". (closeSegmentFile
+    // is a no-op if the file is already closed.)
+    closeSegmentFile(seg);
+    seg.disconnected = true;
+    qDebug() << "[ST] segment" << index << "marked Disconnected (server connection cap)";
+    updateSegmentDataOnItem();
+    // Deliberately do NOT revive here — reviving immediately would busy-loop
+    // refuse→disconnect→refuse while healthy segments download. Disconnected
+    // ranges are picked up by startNextPendingSegment() when a real connection
+    // slot frees on the next segment finish. Callers only reach this path while
+    // at least one other segment is healthy (hasHealthyProgress), so progress
+    // toward completion is guaranteed and the orphan range gets covered.
 }
 
 void SegmentedTransfer::sendHeadRequest(const QUrl &overrideUrl) {
@@ -658,7 +718,7 @@ void SegmentedTransfer::onHeadFinished(QNetworkReply *reply) {
 
     setupSegments(contentLength, m_resumeCapable);
     saveMeta();
-    startAllSegments();
+    startRamped();
     m_progressTimer->start();
     emit started();
 }
@@ -715,11 +775,69 @@ void SegmentedTransfer::startAllSegments() {
     }
 }
 
+void SegmentedTransfer::startRamped() {
+    // Ensure save path dir exists.
+    QDir().mkpath(m_item->savePath());
+
+    // A single-segment transfer (non-resumable, or file too small to split) has
+    // no herd to avoid — open it directly and treat the ramp as already unlocked.
+    if (m_segments.size() <= 1) {
+        m_rampUnlocked = true;
+        startAllSegments();
+        return;
+    }
+
+    // Cold start: open ONLY the lead (first not-done) segment. unlockRamp() opens
+    // the rest once it confirms bytes. Applies on a fresh download AND on resume —
+    // a server's connection cap can change between sessions, so we never assume a
+    // previously-accepted segment count is still tolerated. The one-RTT warm-up is
+    // negligible (the lead re-delivers immediately on a proven range), and it is
+    // what makes later refusals drop cleanly to "Disconnected" instead of a
+    // startup retry-storm. Until unlock the other segments stay pending
+    // (reply == nullptr) and render as "Waiting…".
+    for (auto &seg : m_segments) {
+        if (!seg.done) {
+            startSegment(seg);
+            break;
+        }
+    }
+}
+
+void SegmentedTransfer::unlockRamp() {
+    if (m_rampUnlocked) return;
+    m_rampUnlocked = true;
+    // The lead connection is alive and delivering; open the remaining pending
+    // segments up to the per-host cap. startNextPendingSegment() honours the cap
+    // and skips done/active/disconnected slots, so calling it in a bounded loop
+    // fills exactly the free connection budget in one shot.
+    for (int i = 0; i < m_maxConnectionsPerHost; ++i) {
+        int active = 0, pending = 0;
+        for (const auto &seg : m_segments) {
+            if (seg.done) continue;
+            if (seg.reply) ++active;
+            else if (!seg.disconnected) ++pending;
+        }
+        if (active >= m_maxConnectionsPerHost || pending == 0) break;
+        startNextPendingSegment();
+    }
+}
+
 void SegmentedTransfer::startSegment(Segment &seg) {
     // Drain queued async writes/closes before reopening or seeking this file on
     // the main thread (retry and steal paths restart segments whose writes may
     // still be in flight on the writer thread).
-    flushDiskWrites();
+    //
+    // Only flush when THIS segment could actually have writes in flight — i.e. it
+    // already has an open file and/or bytes on disk (a retry/steal/resume restart).
+    // A brand-new segment (no file yet, received==0) has nothing queued, so the
+    // flush is pure overhead. flushDiskWrites() is a BLOCKING barrier that waits
+    // for the writer to drain its whole queue; at multi-gigabit speeds that queue
+    // is near its 64 MB cap continuously, so flushing it for every freshly-opened
+    // connection (e.g. when the ramp opens the remaining segments mid-download)
+    // stalled the main thread — and with it the readyRead pump — causing the
+    // throughput to sawtooth and decay. Skip it for fresh segments.
+    if (seg.file || seg.received > 0)
+        flushDiskWrites();
 
     // Open part file for reading and writing (needed for pre-allocation and
     // memory-mapped I/O).  ReadWrite gives us explicit control over the write
@@ -952,7 +1070,8 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
                 m_item->setTotalBytes(cl);
                 setupSegments(cl, true);
                 saveMeta();
-                startAllSegments();
+                m_rampUnlocked = false; // fresh layout — re-arm the ramp
+                startRamped();
                 return;
             }
             // Not range-capable (or file too small) — continue as single segment.
@@ -997,7 +1116,8 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
             m_item->setTotalBytes(cl);
             setupSegments(cl, true);
             saveMeta();
-            startAllSegments();
+            m_rampUnlocked = false; // fresh layout — re-arm the ramp
+            startRamped();
             return;
         }
     }
@@ -1022,6 +1142,18 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
     //      offsets downstream.
     if (seg.endOffset >= 0 && seg.received == 0) {
         const int httpStatus = seg.reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+
+        // Error response (429 Too Many Requests, 503, 4xx…): do NOT read or write
+        // its body into the part file. Leave the bytes unread and return; the
+        // reply's finished() fires onSegmentFinished(), which classifies the
+        // status and either disconnects this excess connection (429/5xx while
+        // others are healthy) or fails fast (permanent 4xx). Writing the error
+        // body here is what corrupted the segment and made `received` climb in
+        // 162-byte steps of garbage across retries.
+        if (httpStatus >= 400) {
+            seg.lastByteTime = 0;
+            return;
+        }
 
         if (httpStatus == 200 && m_segments.size() > 1) {
             qDebug() << "[ST] segment" << index << "got 200 instead of 206 — server ignores Range; falling back to single segment";
@@ -1094,6 +1226,14 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
         if (data.size() > remaining)
             data.truncate(static_cast<int>(remaining));
     }
+
+    // First confirmed bytes on a ranged segment unlock the connection ramp: the
+    // server has accepted this connection and is delivering valid range data, so
+    // it's safe to open the remaining connections. Doing this only after a proven
+    // healthy lead means later refusals cleanly drop to "Disconnected" (because
+    // hasHealthyProgress() is now true) instead of a startup retry-storm.
+    if (!m_rampUnlocked && seg.received == 0 && seg.endOffset >= 0)
+        unlockRamp();
 
     // Hand off to the writer thread. `received` counts bytes accepted from the
     // network and may run ahead of disk by up to kMaxQueuedWriteBytes; every
@@ -1183,10 +1323,20 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         return;
     }
 
-    // Read any remaining bytes the network delivered before finishing.
-    // In throttled mode, onProgressTick has been reading budgetPerSeg bytes per
-    // tick directly from the reply; only a partial tick's worth can be left here.
-    if (seg.reply->bytesAvailable() > 0) {
+    QNetworkReply::NetworkError err = seg.reply->error();
+    int httpStatus = seg.reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    QByteArray retryAfterHdr = seg.reply->rawHeader("Retry-After");
+
+    // Read any remaining bytes the network delivered before finishing — but ONLY
+    // for a successful response. An error response (e.g. HTTP 429 from a
+    // connection-limited server) carries a short HTML/text error body; writing it
+    // into the part file corrupts the segment's data and accumulates across
+    // retries (received climbs 162→324→486 of pure garbage). Status is read above
+    // so this drain is gated on a real 200/206 body.
+    const bool okBody = (err == QNetworkReply::NoError || err == QNetworkReply::OperationCanceledError)
+                        && (httpStatus == 0 || httpStatus == 200 || httpStatus == 206
+                            || (httpStatus >= 200 && httpStatus < 300));
+    if (okBody && seg.reply->bytesAvailable() > 0) {
         QByteArray data = seg.reply->readAll();
         if (!data.isEmpty()) {
             if (m_speedLimitKBps > 0) {
@@ -1209,9 +1359,6 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         }
     }
 
-    QNetworkReply::NetworkError err = seg.reply->error();
-    int httpStatus = seg.reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-    QByteArray retryAfterHdr = seg.reply->rawHeader("Retry-After");
     seg.reply->deleteLater();
     seg.reply = nullptr;
 
@@ -1226,24 +1373,46 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         return s == 408 || s == 429 || (s >= 500 && s < 600);
     };
 
+    // Parse Retry-After once (seconds form only — the HTTP-date form is rare and
+    // Qt's parser doesn't expose it cleanly here). Shared by the retry paths below.
+    auto retryAfterMs = [&retryAfterHdr]() -> int {
+        if (retryAfterHdr.isEmpty()) return 0;
+        bool ok = false;
+        int seconds = retryAfterHdr.trimmed().toInt(&ok);
+        return (ok && seconds > 0 && seconds < 600) ? seconds * 1000 : 0;
+    };
+
+    // Excess-connection handling (IDM-style). A connection-limited server refuses
+    // the extra connections it won't serve — and it does so in several disguises:
+    //   • HTTP 429 (Too Many Requests) — the canonical "too many connections"
+    //     signal (Hetzner et al.). Qt surfaces this as err=UnknownContentError(299)
+    //     with httpStatus=429, NOT as a transport error.
+    //   • a transport reset / early close (RemoteHostClosedError, ConnectionRefused)
+    //   • a clean close after a tiny error body.
+    // In ALL of these, when at least one OTHER connection is healthy, the right
+    // move is to drop THIS one to "Disconnected" — not retry-spam the backoff
+    // ladder and ultimately fail the whole item. The dropped range is re-covered
+    // by the survivors / a revival when a connection slot frees
+    // (startNextPendingSegment). The download fails only if nothing healthy is
+    // left (handled in retrySegment's exhaustion branch).
+    //
+    // A 4xx that is genuinely permanent (404/403/401…) still fails fast below;
+    // only retriable failures (transport, 408/429, 5xx) collapse to Disconnected.
+    const bool permanent = httpStatus > 0 && isPermanentHttp(httpStatus);
+
     if (err != QNetworkReply::NoError && err != QNetworkReply::OperationCanceledError) {
         closeSegmentFile(seg); // ordered after any queued writes
-        if (httpStatus > 0 && isPermanentHttp(httpStatus)) {
+        if (permanent) {
             m_item->setStatus(DownloadItem::Status::Error);
             emit failed(tr("HTTP %1 on segment %2 (not retriable)")
                         .arg(httpStatus).arg(index + 1));
             return;
         }
-        // Honor Retry-After (seconds form only — the HTTP-date form is rare
-        // and Qt's parser doesn't expose it cleanly here).
-        int extraDelayMs = 0;
-        if (!retryAfterHdr.isEmpty()) {
-            bool ok = false;
-            int seconds = retryAfterHdr.trimmed().toInt(&ok);
-            if (ok && seconds > 0 && seconds < 600)
-                extraDelayMs = seconds * 1000;
+        if (hasHealthyProgress(index)) {
+            markSegmentDisconnected(index);
+            return;
         }
-        retrySegment(index, extraDelayMs);
+        retrySegment(index, retryAfterMs());
         return;
     }
 
@@ -1258,14 +1427,11 @@ void SegmentedTransfer::onSegmentFinished(int index) {
             return;
         }
         if (isRetriableHttp(httpStatus)) {
-            int extraDelayMs = 0;
-            if (!retryAfterHdr.isEmpty()) {
-                bool ok = false;
-                int seconds = retryAfterHdr.trimmed().toInt(&ok);
-                if (ok && seconds > 0 && seconds < 600)
-                    extraDelayMs = seconds * 1000;
+            if (hasHealthyProgress(index)) {
+                markSegmentDisconnected(index);
+                return;
             }
-            retrySegment(index, extraDelayMs);
+            retrySegment(index, retryAfterMs());
             return;
         }
     }
@@ -1289,6 +1455,13 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         }
         qint64 expected = seg.endOffset - seg.startOffset + 1;
         if (seg.received < expected) {
+            // A clean early close (err==NoError) that delivered real bytes is a
+            // benign truncation — retry to fetch the rest from where we stopped.
+            // Do NOT treat this as an excess connection: the connection-limit case
+            // (HTTP 429 / transport reset) is handled in the error branches above
+            // and disconnects there. Disconnecting here too was wrong — it dropped
+            // healthy localhost/keep-alive connections that should just resume,
+            // stalling throughput at fewer connections than configured.
             qDebug() << "[ST] segment" << index << "short:"
                      << seg.received << "of" << expected << "— retrying";
             closeSegmentFile(seg);
@@ -1491,6 +1664,15 @@ void SegmentedTransfer::onProgressTick() {
     qint64 delta = totalReceived - m_lastReceived;
     m_lastReceived = totalReceived;
 
+    // Ramp safety net: covers paths that don't reach the readyRead unlock (the
+    // throttled reader pulls bytes here in onProgressTick, never in readyRead).
+    // Once the lead has any disk-backed progress, open the rest.
+    if (!m_rampUnlocked) {
+        for (const auto &seg : m_segments) {
+            if (!seg.done && seg.received > 0) { unlockRamp(); break; }
+        }
+    }
+
     static constexpr int kTicksPerSecond = 1000 / kTickIntervalMs;
 
     // Per-connection speed: light single EMA per segment. Cheap (one subtract +
@@ -1563,25 +1745,59 @@ void SegmentedTransfer::updateSegmentDataOnItem() {
         m[QStringLiteral("endByte")]   = qint64(-1);
         m[QStringLiteral("received")]  = qint64(0);
         m[QStringLiteral("speed")]     = qint64(0);
-        m[QStringLiteral("info")]      = QStringLiteral("Waiting...");
+        m[QStringLiteral("info")]      = m_paused ? tr("Paused") : tr("Waiting...");
         list.append(m);
     }
+    // Several segments can share a UI slot (a dynamic segment inherits the slot
+    // of the one it was spawned from; a disconnected original and a live worker
+    // covering its range can coexist). Render the *most informative* state per
+    // slot so a live, downloading connection is never hidden behind a stale
+    // "Disconnected" sibling. Priority: Receiving > Complete > Waiting >
+    // Disconnected.
+    auto statePriority = [this](const Segment &s) -> int {
+        if (!s.done && !s.disconnected && s.reply) return 4; // receiving
+        if (s.done)                                return 3; // complete
+        if (!s.disconnected)                       return 2; // waiting
+        return 1;                                            // disconnected
+    };
+    QList<int> slotPriority(slotCount, 0);
     for (const auto &seg : m_segments) {
         if (seg.uiSlot < 0 || seg.uiSlot >= slotCount) continue;
+        const int pri = statePriority(seg);
+        if (pri < slotPriority[seg.uiSlot]) continue; // keep the better sibling
+        slotPriority[seg.uiSlot] = pri;
         QVariantMap m;
         m[QStringLiteral("startByte")] = seg.startOffset;
         m[QStringLiteral("endByte")]   = seg.endOffset;
         m[QStringLiteral("received")]  = seg.received;
         m[QStringLiteral("speed")]     = qint64(seg.speedBps);
         if (seg.done)
-            m[QStringLiteral("info")] = QStringLiteral("Complete");
+            m[QStringLiteral("info")] = tr("Complete");
+        else if (m_paused)
+            m[QStringLiteral("info")] = tr("Paused");
         else if (seg.reply)
-            m[QStringLiteral("info")] = QStringLiteral("Receiving data...");
+            m[QStringLiteral("info")] = tr("Receiving data...");
+        else if (seg.disconnected)
+            m[QStringLiteral("info")] = tr("Disconnected");
         else
-            m[QStringLiteral("info")] = QStringLiteral("Waiting...");
+            m[QStringLiteral("info")] = tr("Waiting...");
         list[seg.uiSlot] = m;
     }
     m_item->setSegmentData(list);
+
+    // Persistent completed ranges for the position-bar visualizer. Every done
+    // segment's file range is exposed here so the bar stays solid blue across it
+    // even after its connection ROW is recycled by work-stealing (the row list is
+    // capped at the connection count; the bar shows whole-file coverage).
+    QVariantList completed;
+    for (const auto &seg : m_segments) {
+        if (!seg.done) continue;
+        QVariantMap r;
+        r[QStringLiteral("startByte")] = seg.startOffset;
+        r[QStringLiteral("endByte")]   = seg.endOffset;
+        completed.append(r);
+    }
+    m_item->setCompletedRanges(completed);
 }
 
 void SegmentedTransfer::mergeAndFinish() {
@@ -2381,6 +2597,7 @@ void SegmentedTransfer::pause() {
     m_item->setStatus(DownloadItem::Status::Paused);
     m_item->setSpeed(0);
     m_item->setEtaSpeed(0);
+    updateSegmentDataOnItem(); // repaint Info column to "Paused"
 }
 
 void SegmentedTransfer::resume() {
@@ -2389,8 +2606,8 @@ void SegmentedTransfer::resume() {
 
     for (auto &seg : m_segments) {
         if (!seg.done) {
+            seg.disconnected = false; // fresh attempt on resume
             if (seg.file && seg.file->isOpen()) seg.file->close();
-            startSegment(seg);
         }
     }
 
@@ -2404,9 +2621,15 @@ void SegmentedTransfer::resume() {
         return;
     }
 
+    // Re-arm the connection ramp: a server's connection cap can differ from when
+    // the download first ran, so resume cold-starts the ramp (one lead segment,
+    // the rest opened on confirmed bytes) instead of flinging every segment at
+    // the server at once and re-triggering the startup retry-storm.
+    m_rampUnlocked = false;
     m_lastReceived = m_item->doneBytes();
     m_progressTimer->start();
     m_item->setStatus(DownloadItem::Status::Downloading);
+    startRamped();
 }
 
 bool SegmentedTransfer::relocateOutput(const QString &newSavePath, const QString &newFilename) {
@@ -2524,6 +2747,14 @@ void SegmentedTransfer::retrySegment(int index, int extraDelayMs) {
     auto &seg = m_segments[index];
 
     if (seg.retryCount >= kMaxSegmentRetries) {
+        // Don't fail the whole download for one exhausted connection if others
+        // are still making progress — the server is just connection-limited.
+        // Drop this one to "Disconnected"; its range is covered by survivors /
+        // a later revival. Fail only when nothing healthy remains.
+        if (hasHealthyProgress(index)) {
+            markSegmentDisconnected(index);
+            return;
+        }
         m_item->setStatus(DownloadItem::Status::Error);
         emit failed(tr("Segment %1 failed after %2 retries").arg(index + 1).arg(kMaxSegmentRetries));
         return;
@@ -2561,11 +2792,21 @@ bool SegmentedTransfer::maybeStealWork(int freedUiSlot) {
     if (!m_resumeCapable) return false;
     if (m_segments.size() >= kMaxDynamicSegments) return false;
 
-    // Count currently active connections — don't exceed the per-host cap.
-    int activeCount = 0;
-    for (const auto &seg : m_segments)
-        if (!seg.done && seg.reply) ++activeCount;
+    // Don't exceed the per-host cap. Count both active replies AND not-done
+    // segments without a reply (pending/disconnected) — together these are the
+    // ranges still to cover. Splitting once they already number the cap just
+    // accumulates more part files (each finish spawning another split → 8 grows
+    // to 20+ segments) for no extra parallelism, and on a fast link fragments the
+    // tail into ever-smaller micro-ranges. Cap on the live segment count, not
+    // just active replies.
+    int activeCount = 0, liveCount = 0;
+    for (const auto &seg : m_segments) {
+        if (seg.done) continue;
+        ++liveCount;
+        if (seg.reply) ++activeCount;
+    }
     if (activeCount >= m_maxConnectionsPerHost) return false;
+    if (liveCount   >= m_maxConnectionsPerHost) return false;
 
     // Pick the segment with the most bytes still to fetch.
     int victimIdx = -1;
@@ -2618,18 +2859,32 @@ bool SegmentedTransfer::maybeStealWork(int freedUiSlot) {
     victim.retryCount = 0;   // fresh retry budget for the shortened range
     victim.lastByteTime = 0;
 
-    // Create a new segment for the second half. Give it a fresh UI slot so
-    // completed connections remain visible instead of being recycled away.
+    // Create a new segment for the second half. Recycle the UI slot of an
+    // already-completed segment when one is free, so the per-connection LIST stays
+    // capped at the configured connection count instead of growing a row on every
+    // split. The completed segment's bytes don't vanish: the position-bar
+    // visualizer paints them from m_item->completedRanges() (built in
+    // updateSegmentDataOnItem), which keeps every finished range solid blue
+    // regardless of row recycling. Only when no done slot is free do we allocate a
+    // fresh one.
     Segment ns;
     ns.index       = m_segments.size();
     ns.startOffset = mid;
     ns.endOffset   = oldEnd;
     ns.received    = 0;
     ns.partPath    = partPath(ns.index);
-    int nextUiSlot = 0;
+
+    QSet<int> liveSlots;
     for (const auto &seg : m_segments)
-        nextUiSlot = qMax(nextUiSlot, seg.uiSlot + 1);
-    ns.uiSlot = nextUiSlot;
+        if (!seg.done && seg.uiSlot >= 0)
+            liveSlots.insert(seg.uiSlot);
+    int reuseSlot = -1, maxSlot = -1;
+    for (const auto &seg : m_segments) {
+        maxSlot = qMax(maxSlot, seg.uiSlot);
+        if (seg.done && seg.uiSlot >= 0 && !liveSlots.contains(seg.uiSlot))
+            reuseSlot = seg.uiSlot;
+    }
+    ns.uiSlot = (reuseSlot >= 0) ? reuseSlot : (maxSlot + 1);
     m_segments.append(ns);
 
     // Persist the new layout BEFORE any network I/O happens, so a crash
@@ -2795,12 +3050,13 @@ bool SegmentedTransfer::loadMeta() {
         seg.startOffset = s[QStringLiteral("startOffset")].toVariant().toLongLong();
         seg.endOffset   = s[QStringLiteral("endOffset")].toVariant().toLongLong();
         seg.partPath    = partPath(i);
-        // Persisted metas predate the uiSlot field; assign one based on the
-        // segment's index so the connections-list UI shows a row for every
-        // restored segment instead of leaving them all as "Waiting…".
-        // Dynamic-stolen segments (i >= m_segmentCount) inherit -1 and only
-        // re-acquire a slot if maybeStealWork() spawns them again.
-        seg.uiSlot      = (i < m_segmentCount) ? i : -1;
+        // Persisted metas predate the uiSlot field; assign one per restored
+        // segment so the connections-list UI shows a row for every restored
+        // connection. EVERY segment gets a real slot (its array index) — a
+        // dynamic-stolen segment (i >= m_segmentCount) restored from a paused
+        // download is often the only one still transferring; leaving it at -1
+        // hid live multi-MB connections behind stale "Waiting…" originals.
+        seg.uiSlot      = i;
         if (seg.startOffset < 0)
             return false;
         if (seg.endOffset >= 0 && seg.endOffset < seg.startOffset)

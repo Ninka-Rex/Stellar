@@ -1291,6 +1291,10 @@ Run manually: flatpak override --user --talk-name=org.freedesktop.Flatpak org.mo
 <context>
     <name>DownloadProgressDialog</name>
     <message>
+        <source>Speed</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../app/qml/dialogs/DownloadProgressDialog.qml" line="133"/>
         <source>Download</source>
         <translation type="unfinished">Download</translation>
@@ -5368,7 +5372,58 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </message>
 </context>
 <context>
+    <name>ServerConnLimitDialog</name>
+    <message>
+        <source>Max. connections number for a server</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Server</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>any://</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>You may use asterisk as a wildcard pattern</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Max. connections number:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>SegmentedTransfer</name>
+    <message>
+        <source>Paused</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Complete</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Receiving data...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Waiting...</source>
+        <translation></translation>
+    </message>
     <message>
         <location filename="../app/src/download/SegmentedTransfer.cpp" line="1664"/>
         <source>Server returned an HTML page instead of the expected file. The link may require opening in a browser or may have expired. Nothing was saved.</source>
@@ -5485,6 +5540,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
 </context>
 <context>
     <name>SettingsDialog</name>
+    <message>
+        <source>Default max. connections per download:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Max. connections number</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Override the default connection count for specific servers. Use an asterisk (*) as a wildcard.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Server</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Number</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>New</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation></translation>
+    </message>
     <message>
         <source>Used for merging video and audio streams.</source>
         <translation></translation>

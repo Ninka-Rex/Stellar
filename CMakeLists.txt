@@ -249,6 +249,7 @@ qt_add_qml_module(Stellar
         app/qml/dialogs/DeleteDoneConfirmDialog.qml
         app/qml/dialogs/DownloadFileInfoDialog.qml
         app/qml/dialogs/SettingsDialog.qml
+        app/qml/dialogs/ServerConnLimitDialog.qml
         app/qml/dialogs/DuplicateDownloadDialog.qml
         app/qml/dialogs/ExportDialog.qml
         app/qml/dialogs/AddExceptionDialog.qml
@@ -612,7 +613,7 @@ qt_add_resources(Stellar "conf"
 # ── Platform-specific ─────────────────────────────────────────────────────────
 if(WIN32)
     set_target_properties(Stellar PROPERTIES
-        WIN32_EXECUTABLE TRUE
+        WIN32_EXECUTABLE FALSE
     )
     target_compile_definitions(Stellar PRIVATE STELLAR_WINDOWS)
 elseif(UNIX AND NOT APPLE)

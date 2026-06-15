@@ -40,6 +40,11 @@ class DownloadItem : public QObject {
     Q_PROPERTY(QString  timeLeft       READ timeLeft       NOTIFY timeLeftChanged)
     Q_PROPERTY(bool     resumeCapable  READ resumeCapable  NOTIFY resumeCapableChanged)
     Q_PROPERTY(QVariantList segmentData READ segmentData   NOTIFY segmentDataChanged)
+    // Permanent blue ranges for the position-bar visualizer: every file range that
+    // has fully downloaded, kept even after its connection row is recycled by
+    // work-stealing. Lets the bar stay solid blue across completed regions while
+    // the per-connection list caps at the configured connection count.
+    Q_PROPERTY(QVariantList completedRanges READ completedRanges NOTIFY completedRangesChanged)
     Q_PROPERTY(QString  description    READ description    NOTIFY descriptionChanged)
     Q_PROPERTY(QString  contentType    READ contentType    NOTIFY contentTypeChanged)
     Q_PROPERTY(int      speedLimitKBps READ speedLimitKBps WRITE setSpeedLimitKBps NOTIFY speedLimitKBpsChanged)
@@ -125,6 +130,7 @@ public:
     QString      timeLeft()      const;
     bool         resumeCapable() const { return m_resumeCapable; }
     QVariantList segmentData()   const { return m_segmentData; }
+    QVariantList completedRanges() const { return m_completedRanges; }
     QString      description()   const { return m_description; }
     QString      contentType()   const { return m_contentType; }
     int          speedLimitKBps() const { return m_speedLimitKBps; }
@@ -148,6 +154,7 @@ public:
     void setSavePath(const QString &v);
     void setResumeCapable(bool v);
     void setSegmentData(const QVariantList &v);
+    void setCompletedRanges(const QVariantList &v) { m_completedRanges = v; emit completedRangesChanged(); }
     void setDescription(const QString &v);
     void setContentType(const QString &v) { if (m_contentType != v) { m_contentType = v; emit contentTypeChanged(); } }
     void setSpeedLimitKBps(int v);
@@ -274,6 +281,7 @@ signals:
     void savePathChanged();
     void resumeCapableChanged();
     void segmentDataChanged();
+    void completedRangesChanged();
     void descriptionChanged();
     void contentTypeChanged();
     void speedLimitKBpsChanged(int newLimit);
@@ -312,6 +320,7 @@ private:
     bool         m_resumeCapable{false};
     bool         m_filenameManuallySet{false};
     QVariantList m_segmentData;
+    QVariantList m_completedRanges;
     QString      m_description;
     QString      m_contentType;
     int          m_speedLimitKBps{0};
